@@ -83,6 +83,7 @@ ncmp:
 
     policy-executor:
         enabled: true
+        defaultDecision: "some default decision"
         server:
             address: http://localhost
             port: 8785

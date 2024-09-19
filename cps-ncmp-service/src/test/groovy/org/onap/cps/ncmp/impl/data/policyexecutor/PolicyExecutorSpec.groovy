@@ -28,7 +28,6 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
-import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -36,6 +35,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import spock.lang.Specification
+
+import java.util.concurrent.TimeoutException
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
 import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE
@@ -69,52 +70,90 @@ class PolicyExecutorSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(PolicyExecutor)).detachAndStopAllAppenders()
     }
 
-    def 'Permission check with allow response.'() {
+    def 'Permission check with "allow" decision.'() {
         given: 'allow response'
             mockResponse([decision:'allow'], HttpStatus.OK)
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
         then: 'system logs the operation is allowed'
-            assert getLogEntry(2) == 'Policy Executor allows the operation'
+            assert getLogEntry(2) == 'Operation allowed.'
         and: 'no exception occurs'
             noExceptionThrown()
         where: 'all write operations are tested'
             operationType << [ CREATE, DELETE, PATCH, UPDATE ]
     }
 
-    def 'Permission check with other response (not allowed).'() {
+    def 'Permission check with "other" decision (not allowed).'() {
         given: 'other response'
             mockResponse([decision:'other', decisionId:123, message:'I dont like Mondays' ], HttpStatus.OK)
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'Policy Executor exception is thrown'
             def thrownException = thrown(PolicyExecutorException)
-            assert thrownException.message == 'Policy Executor did not allow request. Decision #123 : other'
+            assert thrownException.message == 'Operation not allowed. Decision id 123 : other'
             assert thrownException.details == 'I dont like Mondays'
     }
 
-    def 'Permission check with non 2xx response.'() {
-        given: 'other response'
+    def 'Permission check with non-2xx response and "allow" default decision.'() {
+        given: 'other http response'
             mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        and: 'the configured default decision is "allow"'
+            objectUnderTest.defaultDecision = 'allow'
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
-        then: 'Server Ncmp exception is thrown'
-            def thrownException = thrown(ServerNcmpException)
-            assert thrownException.message == 'Policy Executor invocation failed'
-            assert thrownException.details == 'HTTP status code: 418'
+        then: 'No exception is thrown'
+            noExceptionThrown()
+    }
+
+    def 'Permission check with non-2xx response and "other" default decision.'() {
+        given: 'other http response'
+            mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        and: 'the configured default decision is NOT "allow"'
+            objectUnderTest.defaultDecision = 'deny by default'
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials', 'my resource', someValidJson)
+        then: 'Policy Executor exception is thrown'
+            def thrownException = thrown(PolicyExecutorException)
+            assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
+            assert thrownException.details == 'Policy Executor returned HTTP Status code 418. Falling back to configured default decision: deny by default'
     }
 
     def 'Permission check with invalid response from Policy Executor.'() {
         given: 'invalid response from Policy executor'
             mockResponseSpec.toEntity(*_) >> invalidResponse
         when: 'permission is checked for an operation'
-            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials','my resource',someValidJson)
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
         then: 'system logs the expected message'
             assert getLogEntry(1) == expectedMessage
         where: 'following invalid responses are received'
-            invalidResponse                                        || expectedMessage
-            Mono.empty()                                           || 'No valid response from policy, ignored'
-            Mono.just(new ResponseEntity<>(null, HttpStatus.OK))   || 'No valid response body from policy, ignored'
+            invalidResponse                                      || expectedMessage
+            Mono.empty()                                         || 'No valid response from Policy Executor, ignored'
+            Mono.just(new ResponseEntity<>(null, HttpStatus.OK)) || 'No valid response body from Policy Executor, ignored'
+    }
+
+    def 'Permission check with timeout exception.'() {
+        given: 'a timeout during the request'
+            def cause = new TimeoutException()
+            mockResponseSpec.toEntity(*_) >> { throw new RuntimeException(cause) }
+        and: 'the configured default decision is NOT "allow"'
+            objectUnderTest.defaultDecision = 'deny by default'
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'Policy Executor exception is thrown'
+            def thrownException = thrown(PolicyExecutorException)
+            assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
+            assert thrownException.details == 'Policy Executor request timed out. Falling back to configured default decision: deny by default'
+    }
+
+    def 'Permission check with other runtime exception.'() {
+        given: 'some other runtime exception'
+            def originalException =  new RuntimeException()
+            mockResponseSpec.toEntity(*_) >> { throw originalException}
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'The original exception is thrown'
+            def thrownException = thrown(RuntimeException)
+            assert thrownException == originalException
     }
 
     def 'Permission check with an invalid change request json.'() {

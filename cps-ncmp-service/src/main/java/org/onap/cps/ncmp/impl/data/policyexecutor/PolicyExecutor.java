@@ -23,16 +23,18 @@ package org.onap.cps.ncmp.impl.data.policyexecutor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
-import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -52,11 +54,17 @@ public class PolicyExecutor {
     @Value("${ncmp.policy-executor.enabled:false}")
     private boolean enabled;
 
+    @Value("${ncmp.policy-executor.defaultDecision:deny}")
+    private String defaultDecision;
+
     @Value("${ncmp.policy-executor.server.address:http://policy-executor}")
     private String serverAddress;
 
     @Value("${ncmp.policy-executor.server.port:8080}")
     private String serverPort;
+
+    @Value("${ncmp.policy-executor.httpclient.all-services.readTimeoutInSeconds:30}")
+    private long readTimeoutInSeconds;
 
     @Qualifier("policyExecutorWebClient")
     private final WebClient policyExecutorWebClient;
@@ -80,26 +88,26 @@ public class PolicyExecutor {
                                 final String changeRequestAsJson) {
         log.trace("Policy Executor Enabled: {}", enabled);
         if (enabled) {
-            final ResponseEntity<JsonNode> responseEntity =
-                getPolicyExecutorResponse(yangModelCmHandle, operationType, authorization, resourceIdentifier,
-                    changeRequestAsJson);
-
+            ResponseEntity<JsonNode> responseEntity = null;
+            try {
+                responseEntity =
+                    getPolicyExecutorResponse(yangModelCmHandle, operationType, authorization, resourceIdentifier,
+                        changeRequestAsJson);
+            } catch (final RuntimeException runtimeException) {
+                processException(runtimeException);
+            }
             if (responseEntity == null) {
-                log.warn("No valid response from policy, ignored");
+                log.warn("No valid response from Policy Executor, ignored");
                 return;
             }
-
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 if (responseEntity.getBody() == null) {
-                    log.warn("No valid response body from policy, ignored");
+                    log.warn("No valid response body from Policy Executor, ignored");
                     return;
                 }
-                processResponse(responseEntity.getBody());
+                processSuccessResponse(responseEntity.getBody());
             } else {
-                log.warn("Policy Executor invocation failed with status {}",
-                    responseEntity.getStatusCode().value());
-                throw new ServerNcmpException("Policy Executor invocation failed", "HTTP status code: "
-                    + responseEntity.getStatusCode().value());
+                processNon2xxResponse(responseEntity.getStatusCode().value());
             }
         }
     }
@@ -143,8 +151,6 @@ public class PolicyExecutor {
                                                                final String authorization,
                                                                final String resourceIdentifier,
                                                                final String changeRequestAsJson) {
-
-
         final Map<String, Object> requestAsMap = getSingleRequestAsMap(yangModelCmHandle,
             operationType,
             resourceIdentifier,
@@ -163,21 +169,46 @@ public class PolicyExecutor {
             .body(BodyInserters.fromValue(bodyAsObject))
             .retrieve()
             .toEntity(JsonNode.class)
+            .timeout(Duration.of(readTimeoutInSeconds, ChronoUnit.SECONDS))
             .block();
     }
 
-    private static void processResponse(final JsonNode responseBody) {
+    private void processNon2xxResponse(final int httpStatusCode) {
+        processFallbackResponse("Policy Executor returned HTTP Status code " + httpStatusCode + ".");
+    }
+
+    private void processException(final RuntimeException runtimeException) {
+        if (runtimeException.getCause() instanceof TimeoutException) {
+            processFallbackResponse("Policy Executor request timed out.");
+        } else {
+            log.warn("Request to Policy Executor failed with unexpected exception", runtimeException);
+            throw runtimeException;
+        }
+    }
+
+    private void processFallbackResponse(final String message) {
+        final String decisionId = "N/A";
+        final String decision = defaultDecision;
+        final String warning = message + " Falling back to configured default decision: " + defaultDecision;
+        log.warn(warning);
+        processDecision(decisionId, decision, warning);
+    }
+
+    private static void processSuccessResponse(final JsonNode responseBody) {
         final String decisionId = responseBody.path("decisionId").asText("unknown id");
-        log.trace("Policy Executor Decision ID: {} ", decisionId);
         final String decision = responseBody.path("decision").asText("unknown");
+        final String messageFromPolicyExecutor = responseBody.path("message").asText();
+        processDecision(decisionId, decision, messageFromPolicyExecutor);
+    }
+
+    private static void processDecision(final String decisionId, final String decision, final String details) {
+        log.trace("Policy Executor decision id: {} ", decisionId);
         if ("allow".equals(decision)) {
-            log.trace("Policy Executor allows the operation");
+            log.trace("Operation allowed.");
         } else {
             log.warn("Policy Executor decision: {}", decision);
-            final String details = responseBody.path("message").asText();
             log.warn("Policy Executor message: {}", details);
-            final String message = "Policy Executor did not allow request. Decision #"
-                + decisionId + " : " + decision;
+            final String message = "Operation not allowed. Decision id " + decisionId + " : " + decision;
             throw new PolicyExecutorException(message, details);
         }
     }

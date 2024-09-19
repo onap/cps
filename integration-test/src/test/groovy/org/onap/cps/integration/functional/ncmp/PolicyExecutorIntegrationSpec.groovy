@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.functional.ncmp
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -29,18 +30,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
 
+    def objectMapper = new ObjectMapper()
+
     def setup() {
         // Enable mocked policy executor logic
         policyDispatcher.allowAll = false;
-        //minimum setup for 2 cm handles with alternate ids
-        dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': [], 'ch-2': []]
+        //minimum setup for cm handles with alternate ids
+        dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': [], 'ch-2': [], 'ch-3':[]]
         registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'fdn1')
         registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'fdn2')
+        registerCmHandle(DMI1_URL, 'ch-3', NO_MODULE_SET_TAG, 'mock slow response')
     }
 
     def cleanup() {
         deregisterCmHandle(DMI1_URL, 'ch-1')
         deregisterCmHandle(DMI1_URL, 'ch-2')
+        deregisterCmHandle(DMI1_URL, 'ch-3')
     }
 
     def 'Policy Executor create request with #scenario.'() {
@@ -53,11 +58,17 @@ class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
                     .andReturn().response
         then: 'the expected status code is returned'
             response.getStatus() == execpectedStatusCode
+        and: 'when not allowed the response body contains the expected message'
+            if (expectedMessage!='allow') {
+                def bodyAsMap = objectMapper.readValue(response.getContentAsByteArray(), Map.class)
+                assert bodyAsMap.get('message').endsWith(expectedMessage)
+            }
         where: 'following parameters are used'
-            scenario                | cmHandle | authorization         || execpectedStatusCode
-            'accepted cm handle'    | 'ch-1'   | 'mock expects "ABC"'  || 201
-            'un-accepted cm handle' | 'ch-2'   | 'mock expects "ABC"'  || 409
-            'invalid authorization' | 'ch-1'   | 'something else'      || 500
+            scenario                | cmHandle | authorization         || execpectedStatusCode || expectedMessage
+            'accepted cm handle'    | 'ch-1'   | 'mock expects "ABC"'  || 201                  || 'allow'
+            'un-accepted cm handle' | 'ch-2'   | 'mock expects "ABC"'  || 409                  || 'deny from mock server (dispatcher)'
+            'timeout'               | 'ch-3'   | 'mock expects "ABC"'  || 409                  || 'test default decision'
+            'invalid authorization' | 'ch-1'   | 'something else'      || 500                  || '401 Unauthorized from POST http://localhost:8790/policy-executor/api/v1/execute'
     }
 
 }

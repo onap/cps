@@ -41,8 +41,13 @@ class PolicyExecutorHttpClientConfigSpec extends Specification {
                 assert maximumConnectionsTotal == 32
                 assert pendingAcquireMaxCount == 33
                 assert connectionTimeoutInSeconds == 34
-                assert readTimeoutInSeconds == 35
                 assert writeTimeoutInSeconds == 36
             }
+    }
+
+    def 'Increased read timeout.'() {
+        expect: 'Read timeout is 10 seconds more then configured to enable a separate timeout method in policy executor with the required timeout'
+            assert policyExecutorHttpClientConfig.allServices.readTimeoutInSeconds == 35 + 10
+
     }
 }
