@@ -33,6 +33,23 @@
       "message": "all good but one unanswered question",
       "revId": "234c46608654c79468b5d8dda9cfe6a08c61d549",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec06a3e0_cb8e1d30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-09-19T14:16:03Z",
+      "side": 1,
+      "message": "Pending answering of Toines query",
+      "revId": "234c46608654c79468b5d8dda9cfe6a08c61d549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
