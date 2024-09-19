@@ -39,6 +39,7 @@ class PolicyExecutorConfigurationSpec extends Specification {
     def 'Policy executor configuration properties.'() {
         expect: 'properties used from application.yml'
             assert objectUnderTest.enabled
+            assert objectUnderTest.defaultDecision == 'some default decision'
             assert objectUnderTest.serverAddress == 'http://localhost'
             assert objectUnderTest.serverPort == '8785'
     }

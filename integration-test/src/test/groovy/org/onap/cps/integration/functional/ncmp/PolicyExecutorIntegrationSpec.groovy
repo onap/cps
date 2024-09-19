@@ -32,15 +32,17 @@ class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
     def setup() {
         // Enable mocked policy executor logic
         policyDispatcher.allowAll = false;
-        //minimum setup for 2 cm handles with alternate ids
-        dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': [], 'ch-2': []]
+        //minimum setup for cm handles with alternate ids
+        dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': [], 'ch-2': [], 'ch-3':[]]
         registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'fdn1')
         registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'fdn2')
+        registerCmHandle(DMI1_URL, 'ch-3', NO_MODULE_SET_TAG, 'mock slow response')
     }
 
     def cleanup() {
         deregisterCmHandle(DMI1_URL, 'ch-1')
         deregisterCmHandle(DMI1_URL, 'ch-2')
+        deregisterCmHandle(DMI1_URL, 'ch-3')
     }
 
     def 'Policy Executor create request with #scenario.'() {
@@ -55,6 +57,7 @@ class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
             response.getStatus() == execpectedStatusCode
         where: 'following parameters are used'
             scenario                | cmHandle | authorization         || execpectedStatusCode
+//            'timeout'               | 'ch-3'   | 'mock expects "ABC"'  || 201
             'accepted cm handle'    | 'ch-1'   | 'mock expects "ABC"'  || 201
             'un-accepted cm handle' | 'ch-2'   | 'mock expects "ABC"'  || 409
             'invalid authorization' | 'ch-1'   | 'something else'      || 500
