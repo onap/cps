@@ -24,10 +24,12 @@ package org.onap.cps.integration.base
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
+import java.util.concurrent.TimeUnit
 
 /**
  * This class simulates responses from the Policy Execution server in NCMP integration tests.
@@ -53,11 +55,14 @@ class PolicyDispatcher extends Dispatcher {
         def targetIdentifier = body.get('requests').get(0).get('data').get('targetIdentifier')
         def responseAsMap = [:]
         responseAsMap.put('decisionId',1)
+        if (targetIdentifier == "mock slow response") {
+            TimeUnit.SECONDS.sleep(2) // One second more then configured readTimeoutInSeconds
+        }
         if (allowAll || targetIdentifier == 'fdn1') {
             responseAsMap.put('decision','allow')
             responseAsMap.put('message','')
         } else {
-            responseAsMap.put('decision','deny')
+            responseAsMap.put('decision','deny from mock server (dispatcher)')
             responseAsMap.put('message','I only like fdn1')
         }
         def responseAsString = objectMapper.writeValueAsString(responseAsMap)

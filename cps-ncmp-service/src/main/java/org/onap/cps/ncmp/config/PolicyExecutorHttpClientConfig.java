@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.config;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -37,5 +38,10 @@ public class PolicyExecutorHttpClientConfig {
     @Setter
     public static class AllServices extends ServiceConfig {
         private String connectionProviderName = "policyExecutorConfig";
+    }
+
+    @PostConstruct
+    public void increaseReadTimeoutOfWebClient() {
+        allServices.setReadTimeoutInSeconds(allServices.getReadTimeoutInSeconds() + 10);
     }
 }

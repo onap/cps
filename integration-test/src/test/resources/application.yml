@@ -215,6 +215,7 @@ ncmp:
 
   policy-executor:
     enabled: true
+    defaultDecision: "test default decision"
     server:
       address: http://localhost
       port: 8790
@@ -224,7 +225,7 @@ ncmp:
         maximumConnectionsTotal: 10
         pendingAcquireMaxCount: 10
         connectionTimeoutInSeconds: 30
-        readTimeoutInSeconds: 30
+        readTimeoutInSeconds: 1
         writeTimeoutInSeconds: 30
 
 hazelcast:
