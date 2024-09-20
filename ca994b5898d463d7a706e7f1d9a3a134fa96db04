@@ -130,6 +130,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a64e4b_cd1a9998",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-20T10:20:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4c7fc400_37805ad3",
+      "range": {
+        "startLine": 74,
+        "startChar": 51,
+        "endLine": 74,
+        "endChar": 58
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf36963f_c25fe219",
