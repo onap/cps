@@ -66,7 +66,7 @@ function createCmHandlePayload(cmHandleIds) {
 }
 
 function getNumberOfReadyCmHandles() {
-    const response = executeCmHandleIdSearch('readyCmHandles');
+    const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
     const arrayOfCmHandleIds = JSON.parse(response.body);
     return arrayOfCmHandleIds.length;
 }
