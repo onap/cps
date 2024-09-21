@@ -36,15 +36,38 @@ function executeSearchRequest(searchType, scenario) {
 }
 
 const SEARCH_PARAMETERS_PER_SCENARIO = {
-    "module-and-properties": {
+    "no-filter": {
+        "cmHandleQueryParameters": []
+    },
+    "module": {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllModules",
                 "conditionParameters": [{"moduleName": "ietf-yang-types"}]
-            },
+            }
+        ]
+    },
+    "property": {
+        "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllProperties",
                 "conditionParameters": [{"Color": "yellow"}]
+            }
+        ]
+    },
+    "cps-path": {
+        "cmHandleQueryParameters": [
+            {
+                "conditionName": "cmHandleWithCpsPath",
+                "conditionParameters": [{"cpsPath": "//state[@cm-handle-state='READY']"}]
+            }
+        ]
+    },
+    "trust-level": {
+        "cmHandleQueryParameters": [
+            {
+                "conditionName": "cmHandleWithTrustLevel",
+                "conditionParameters": [ {"trustLevel": "COMPLETE"} ]
             }
         ]
     },
