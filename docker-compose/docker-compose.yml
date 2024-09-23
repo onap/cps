@@ -60,18 +60,16 @@ services:
       ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
+      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
     restart: unless-stopped
     depends_on:
       - dbpostgresql
     deploy:
       replicas: 2
       resources:
-        reservations:
-          cpus: '2'
-          memory: 2G
         limits:
           cpus: '3'
-          memory: 3G
+          memory: 2G
 
   nginx:
     container_name: nginx-loadbalancer
