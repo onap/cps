@@ -39,6 +39,30 @@
       },
       "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "628992a8_ce7b0298",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-23T15:55:02Z",
+      "side": 1,
+      "message": "Yes, task is link to epic NCMP to support 50K CM-Handles. Thus, we have to fine tune the JVM parameters. Otherwise, Java reserves 25% of total physical memory for the heap, and the remaining proportion becomes unused. These new parameters have been tested and the result shared on the ticket number CPS-2180.",
+      "parentUuid": "8b81d8b5_10f6d6af",
+      "range": {
+        "startLine": 63,
+        "startChar": 25,
+        "endLine": 63,
+        "endChar": 159
+      },
+      "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
