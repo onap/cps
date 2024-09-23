@@ -56,6 +56,30 @@
       },
       "revId": "868e1db469bb6a5755452fe31f8e2e25e86d7d5e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f4fa2b8_e418a8fc",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-23T09:54:32Z",
+      "side": 1,
+      "message": "Yes, updating deployment documentation and informing stakeholders is in the acceptance criteria",
+      "parentUuid": "a1cb2cb3_2dce6849",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "868e1db469bb6a5755452fe31f8e2e25e86d7d5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
