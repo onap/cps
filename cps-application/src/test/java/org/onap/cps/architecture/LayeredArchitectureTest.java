@@ -21,11 +21,9 @@ package org.onap.cps.architecture;
 
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.library.freeze.FreezingArchRule.freeze;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
-import com.tngtech.archunit.junit.ArchIgnore;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 
@@ -35,38 +33,32 @@ import com.tngtech.archunit.lang.ArchRule;
 @AnalyzeClasses(packages = "org.onap.cps", importOptions = {ImportOption.DoNotIncludeTests.class})
 public class LayeredArchitectureTest {
 
-    private static final String REST_CONTROLLER_PACKAGE = "org.onap.cps.rest..";
-    private static final String NCMP_REST_PACKAGE = "org.onap.cps.ncmp.rest..";
-    private static final String API_SERVICE_PACKAGE = "org.onap.cps.api..";
-    private static final String SPI_SERVICE_PACKAGE = "org.onap.cps.ri..";
-    private static final String NCMP_SERVICE_PACKAGE = "org.onap.cps.ncmp.api..";
-    private static final String SPI_REPOSITORY_PACKAGE = "org.onap.cps.ri.repository..";
-    private static final String YANG_SCHEMA_PACKAGE = "org.onap.cps.yang..";
-    private static final String NOTIFICATION_PACKAGE = "org.onap.cps.notification..";
-    private static final String CPS_UTILS_PACKAGE = "org.onap.cps.utils..";
-    private static final String NCMP_INIT_PACKAGE = "org.onap.cps.ncmp.init..";
-    private static final String CPS_CACHE_PACKAGE = "org.onap.cps.cache..";
-    private static final String CPS_EVENTS_PACKAGE = "org.onap.cps.events..";
-
-    //TODO We need to revisit these rules, the first one doesn't even make any sense: CPS-2293
+    @ArchTest
+    static final ArchRule nothingDependsOnCpsNcmpRest =
+            classes().that().resideInAPackage("org.onap.cps.ncmp.rest..").should().onlyHaveDependentClassesThat()
+                    .resideInAPackage("org.onap.cps.ncmp.rest..");
 
     @ArchTest
-    static final ArchRule restControllerShouldOnlyDependOnRestController =
-        classes().that().resideInAPackage(REST_CONTROLLER_PACKAGE).should().onlyHaveDependentClassesThat()
-            .resideInAPackage(REST_CONTROLLER_PACKAGE);
+    static final ArchRule ncmpRestControllerShouldOnlyDependOnService =
+            classes().that().resideInAPackage("org.onap.cps.ncmp.rest..")
+                    .should()
+                    .onlyDependOnClassesThat()
+                    .resideInAnyPackage("org.onap.cps.ncmp.rest..", "org.onap.cps.ncmp.api..", "org.onap.cps.api..",
+                            // third party dependencies like Java, Lombok etc. order them alpahabetically
+                            "com.fasterxml..", "io.micrometer..", "io.swagger..", "jakarta..", "java..", "lombok..",
+                            "org.mapstruct..", "org.slf4j..", "org.springframework..",
+                            // these packages are breaking the architecture rules
+                            "org.onap.cps.spi..", "org.onap.cps.utils..", "org.onap.cps.ncmp.impl..");
 
     @ArchTest
-    @ArchIgnore
-    static final ArchRule apiOrSpiServiceShouldOnlyBeDependedOnByControllerAndServicesAndCommonUtilityPackages =
-        freeze(classes().that().resideInAPackage(API_SERVICE_PACKAGE)
-            .or().resideInAPackage(SPI_SERVICE_PACKAGE).should().onlyHaveDependentClassesThat()
-            .resideInAnyPackage(REST_CONTROLLER_PACKAGE, API_SERVICE_PACKAGE, SPI_SERVICE_PACKAGE, NCMP_REST_PACKAGE,
-                NCMP_SERVICE_PACKAGE, YANG_SCHEMA_PACKAGE, NOTIFICATION_PACKAGE, CPS_UTILS_PACKAGE, NCMP_INIT_PACKAGE,
-                CPS_CACHE_PACKAGE, CPS_EVENTS_PACKAGE));
-
-
-    @ArchTest
-    static final ArchRule repositoryShouldOnlyBeDependedOnByServicesAndRepository =
-        classes().that().resideInAPackage(SPI_REPOSITORY_PACKAGE).should().onlyHaveDependentClassesThat()
-            .resideInAnyPackage(API_SERVICE_PACKAGE, SPI_SERVICE_PACKAGE, SPI_REPOSITORY_PACKAGE);
+    static final ArchRule ncmpServiceShouldOnlyDependOnCpsServiceAndUtils =
+            classes().that().resideInAPackage("org.onap.cps.ncmp.api..").should().onlyDependOnClassesThat()
+                    .resideInAnyPackage("org.onap.cps.ncmp.api..", "org.onap.cps.ncmp.impl..",
+                            "org.onap.cps.ncmp.config", "org.onap.cps.api..", "org.onap.cps.utils..",
+                            // third party dependencies like Java, Lombok etc.
+                            "com.fasterxml..", "com.google.common..", "io.micrometer..", "io.swagger..", "jakarta..",
+                            "java..", "lombok..", "org.mapstruct..", "org.slf4j..", "org.springframework..",
+                            // break the rules
+                            "org.onap.cps.spi..");
 }
+
