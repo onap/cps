@@ -60,6 +60,7 @@ services:
       ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
+      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0 -XX:MaxMetaspaceSize=256m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=45"
     restart: unless-stopped
     depends_on:
       - dbpostgresql
