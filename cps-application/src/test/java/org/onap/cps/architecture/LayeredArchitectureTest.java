@@ -47,6 +47,8 @@ public class LayeredArchitectureTest {
     private static final String NCMP_INIT_PACKAGE = "org.onap.cps.ncmp.init..";
     private static final String CPS_CACHE_PACKAGE = "org.onap.cps.cache..";
     private static final String CPS_EVENTS_PACKAGE = "org.onap.cps.events..";
+    private static final String[] COMMON_3PP_PACKAGES = {"io.swagger..", "org.mapstruct..", "java..", "org.springframework..",
+            "com.fasterxml..", "jakarta..", "lombok..", "org.slf4j..", "io.micrometer.."};
 
     //TODO We need to revisit these rules, the first one doesn't even make any sense: CPS-2293
 
@@ -69,4 +71,20 @@ public class LayeredArchitectureTest {
     static final ArchRule repositoryShouldOnlyBeDependedOnByServicesAndRepository =
         classes().that().resideInAPackage(SPI_REPOSITORY_PACKAGE).should().onlyHaveDependentClassesThat()
             .resideInAnyPackage(API_SERVICE_PACKAGE, SPI_SERVICE_PACKAGE, SPI_REPOSITORY_PACKAGE);
+
+    // Rule 'classes that reside in a package 'org.onap.cps.ncmp.rest..' should only depend on classes that reside in
+    // any package ['org.onap.cps.ncmp.api..', 'org.onap.cps.ncmp.rest..', 'org.onap.cps.api..', ...
+    // 'org.onap.cps.spi..', 'org.onap.cps.utils..', 'org.onap.cps.ncmp.impl..']'
+    @ArchTest
+    static final ArchRule ncmpRestControllerShouldOnlyDependOnService =
+            classes().that().resideInAPackage("org.onap.cps.ncmp.rest..").should().onlyDependOnClassesThat()
+                    .resideInAnyPackage("org.onap.cps.ncmp.rest..", "org.onap.cps.api..")
+                    .andShould()
+                    .onlyDependOnClassesThat()
+                    // these packages are breaking the architecture rules
+                    .resideInAnyPackage("org.onap.cps.spi..", "org.onap.cps.utils..", "org.onap.cps.ncmp.impl..")
+                    // third party dependencies like Java, Lombok etc.
+                    .andShould()
+                    .resideInAnyPackage(COMMON_3PP_PACKAGES);
 }
+
