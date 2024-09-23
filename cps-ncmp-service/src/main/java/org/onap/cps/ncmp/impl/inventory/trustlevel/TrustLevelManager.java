@@ -138,8 +138,8 @@ public class TrustLevelManager {
      * @param cmHandleId       cm handle id
      * @return TrustLevel      effective trust level
      */
-    public TrustLevel getEffectiveTrustLevel(final String dmiServiceName, final String cmHandleId) {
-        final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
+    public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
+        final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
         final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
         return dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
     }
