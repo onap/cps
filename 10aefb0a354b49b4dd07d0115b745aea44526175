@@ -139,6 +139,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa96a8f_5fc815a7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-23T10:33:30Z",
+      "side": 1,
+      "message": "just use the old method (has same name anyway!)",
+      "range": {
+        "startLine": 368,
+        "startChar": 7,
+        "endLine": 368,
+        "endChar": 72
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "262029a9_4b49f600",
@@ -290,6 +313,30 @@
       "writtenOn": "2024-09-23T10:28:59Z",
       "side": 1,
       "message": "NB Suggestion: I probably would create separate tests for JSON and XML",
+      "range": {
+        "startLine": 201,
+        "startChar": 3,
+        "endLine": 201,
+        "endChar": 61
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c22b14d7_21b74ed0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-23T10:33:30Z",
+      "side": 1,
+      "message": "ignore, the test can be removed when you remove the new public method",
+      "parentUuid": "71c01746_222ef868",
       "range": {
         "startLine": 201,
         "startChar": 3,
