@@ -26,7 +26,6 @@ package org.onap.cps.ncmp.api.inventory;
 
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCmHandleQueryParameters;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,6 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
-import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.ModuleDefinition;
@@ -148,13 +146,9 @@ public class NetworkCmProxyInventoryFacade {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
             cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        final Collection<YangModelCmHandle> yangModelCmHandles =
-            parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelCmHandles.size());
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            final NcmpServiceCmHandle ncmpServiceCmHandle = toNcmpServiceCmHandleWithTrustLevel(yangModelCmHandle);
-            ncmpServiceCmHandles.add(ncmpServiceCmHandle);
-        }
+        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles =
+                parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
+        ncmpServiceCmHandles.forEach(this::applyCurrentTrustLevel);
         return ncmpServiceCmHandles;
     }
 
@@ -190,8 +184,10 @@ public class NetworkCmProxyInventoryFacade {
      */
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference) {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        return toNcmpServiceCmHandleWithTrustLevel(yangModelCmHandle);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
+                inventoryPersistence.getYangModelCmHandle(cmHandleId));
+        applyCurrentTrustLevel(ncmpServiceCmHandle);
+        return ncmpServiceCmHandle;
     }
 
     /**
@@ -217,12 +213,9 @@ public class NetworkCmProxyInventoryFacade {
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
     }
 
-    private NcmpServiceCmHandle toNcmpServiceCmHandleWithTrustLevel(final YangModelCmHandle yangModelCmHandle) {
-        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle);
-        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
-        ncmpServiceCmHandle.setCurrentTrustLevel(
-                trustLevelManager.getEffectiveTrustLevel(dmiServiceName, ncmpServiceCmHandle.getCmHandleId()));
-        return ncmpServiceCmHandle;
+    private void applyCurrentTrustLevel(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        ncmpServiceCmHandle.setCurrentTrustLevel(trustLevelManager
+                .getEffectiveTrustLevel(ncmpServiceCmHandle.getCmHandleId()));
     }
 
 }
