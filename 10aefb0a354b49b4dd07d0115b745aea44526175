@@ -70,6 +70,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e01ebb_e8268938",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "Resolved comments. Need clarification for https://gerrit.onap.org/r/c/cps/+/138676/comment/3ec1b344_06c9a33f/ and that would help resolve other unresolved comments",
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5737014_690b8cb8",
@@ -83,6 +100,30 @@
       "writtenOn": "2024-09-23T10:28:59Z",
       "side": 1,
       "message": "not sure, was this discussed (in teh study) is theer a way indicating to the user it was a dry run? Mayb gice a 200 repsonse with a message instead?",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 47
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f191c7a2_638bda20",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "This question was not brought up by anyone in the discussions. But from my study what I found is the most common scenario in dry-run application is to return either a 200 or 204 response code with no content. And I kept the same in my proposal document.\nAny inputs are appreciated.",
+      "parentUuid": "e5737014_690b8cb8",
       "range": {
         "startLine": 78,
         "startChar": 19,
@@ -116,6 +157,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e50ad7_44d230f3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85ad2002_5a9bfc79",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 86
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "549781f4_916f2a09",
@@ -129,6 +194,30 @@
       "writtenOn": "2024-09-23T10:28:59Z",
       "side": 1,
       "message": "NB: \u0027ToUse\u0027 bit not really needed",
+      "range": {
+        "startLine": 366,
+        "startChar": 21,
+        "endLine": 366,
+        "endChar": 32
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe713ecf_a46ccd0a",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "549781f4_916f2a09",
       "range": {
         "startLine": 366,
         "startChar": 21,
@@ -208,6 +297,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e7cf1ff_713644bf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d47fabd5_38385c17",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 59
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ec1b344_06c9a33f",
@@ -221,6 +334,30 @@
       "writtenOn": "2024-09-23T10:28:59Z",
       "side": 1,
       "message": "I simply think this method is not need (Its badly named anyway and parameter order is inconsistent)\n\nBut you can simply call the original parse Method above without using the return for validation from the client. \nThis also mean you need no NEW testware",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 58
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "847dac8f_294be4bf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-23T12:57:38Z",
+      "side": 1,
+      "message": "yes we can use the existing method, the same question was asked by Daniel earlier(https://gerrit.onap.org/r/c/cps/+/138676/comment/c49d4cc2_777f68bf/). \nBut there is a slight difference in the parser methods of JSON and XML data.XML parsing performs an extra step as follows\n1. XML is parsed\n2. The parsed data is packaged into a container node, this step prevents the parsing and validation of leaf nodes.\nSo, if we use the existing method, the test, https://gerrit.onap.org/r/c/cps/+/138676/19/cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy#548 would lead to a failure for scenario 4: \u0027XML data with specific xpath\u0027 which is validating a leaf node under a specific xpath.\n\nIn the current implementation, the above two steps are performed /cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java#130",
+      "parentUuid": "3ec1b344_06c9a33f",
       "range": {
         "startLine": 104,
         "startChar": 0,
