@@ -51,6 +51,23 @@
       "parentUuid": "80164fb8_2c865795",
       "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2466f2a4_d9a27fea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-23T10:01:59Z",
+      "side": 1,
+      "message": "fine by me. can be merged.\nApologies for the delay.",
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -154,6 +154,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79433d34_0b2d8e0c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-23T10:01:59Z",
+      "side": 1,
+      "message": "yes.. we can have a separate patch for this. will remove unnecessary null checks.",
+      "parentUuid": "09a64e4b_cd1a9998",
+      "range": {
+        "startLine": 74,
+        "startChar": 51,
+        "endLine": 74,
+        "endChar": 58
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf36963f_c25fe219",
@@ -896,6 +920,54 @@
       "side": 1,
       "message": "Nice suggestion. Thanks 😊",
       "parentUuid": "11977496_c178caff",
+      "range": {
+        "startLine": 366,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 9
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "336c012f_94d1f89f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-23T10:01:59Z",
+      "side": 1,
+      "message": "yeah. looks simpler now.",
+      "parentUuid": "469c364e_81f0fe16",
+      "range": {
+        "startLine": 366,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 9
+      },
+      "revId": "ca994b5898d463d7a706e7f1d9a3a134fa96db04",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cdcd901_47c9642e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-23T10:01:59Z",
+      "side": 1,
+      "message": "yeah. looks simpler now.",
+      "parentUuid": "469c364e_81f0fe16",
       "range": {
         "startLine": 366,
         "startChar": 8,
