@@ -62,6 +62,7 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
+      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
       ### DEBUG: Uncomment next line to enable java debugging
       ### DEBUG: JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
@@ -71,12 +72,9 @@ services:
       ### DEBUG: For easier debugging use just 1 instance (also update docker-compose/config/nginx/nginx.conf !)
       replicas: 2
       resources:
-        reservations:
-          cpus: '2'
-          memory: 2G
         limits:
           cpus: '3'
-          memory: 3G
+          memory: 2G
     ### DEBUG: Uncomment next 2 lines to enable java debugging (ensure 'ports' aligns with 'deploy')
     ### DEBUG ports:
     ### DEBUG  - ${CPS_CORE_DEBUG_PORT:-5005}:5005
