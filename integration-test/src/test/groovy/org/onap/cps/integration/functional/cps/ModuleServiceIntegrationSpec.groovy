@@ -215,7 +215,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         when: 'all schema sets are retrieved'
             def result = objectUnderTest.getSchemaSets(FUNCTIONAL_TEST_DATASPACE_1)
         then: 'the result contains all expected schema sets'
-            assert result.name == [ 'bookstoreSchemaSet', 'newSchema1' ]
+            assert result.name.size() == 2
+            assert result.name.containsAll('bookstoreSchemaSet', 'newSchema1')
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchema1'])
     }
