@@ -16,6 +16,138 @@
       "message": "resolved comments",
       "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec50c485_50ef6b3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "looking much better, almost there",
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc16fbaf_9f5d012a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "thsi constant belongs to the helper. declare it (package protected) there and use a static import here",
+      "range": {
+        "startLine": 44,
+        "startChar": 33,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b74225_bd8c983d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "dont use !  use a new constant VALIDATE_AND_PARSE \u003d false",
+      "range": {
+        "startLine": 62,
+        "startChar": 85,
+        "endLine": 62,
+        "endChar": 98
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e86ee96_c267b998",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "I know it doesn\u0027t make a functional difference but for readability and consistency if would do a check of the boolean for json too and return null (just for clarity and maybe prevent incorrect use )\n(that wil mean an extra code path to test :-)",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 75
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbb70fab_5098ca8a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "change order (and remove duplication)\n\nresult \u003d parsXML\nif (validateOnly) \n  return null\nreturn buildContainer(...)",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 0
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7583f165_2c3b83d4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "you shoudl have done similar in teh production code :-)",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

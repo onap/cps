@@ -152,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "897ec46b_59112b93",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "I woudl like to see a differnce so maybe a 204 is a good idea. Lets make suer we dsicuss this soon with Priyank etc. But it does not block this commit.",
+      "parentUuid": "f191c7a2_638bda20",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 47
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85ad2002_5a9bfc79",
@@ -495,6 +519,30 @@
       "side": 1,
       "message": "this is the test that helped identify that XML parsing would fail when validating individual leaves. as mentioned in the following comment https://gerrit.onap.org/r/c/cps/+/138676/comment/3ec1b344_06c9a33f/\nSpecifically, the 4th scenario. So what should we do? keep the entire test or remove the 3rd one and keep 1st 2nd and 4th.",
       "parentUuid": "9763a87d_2828c3b2",
+      "range": {
+        "startLine": 556,
+        "startChar": 76,
+        "endLine": 556,
+        "endChar": 87
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b519d4ce_21c57631",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:17:49Z",
+      "side": 1,
+      "message": "keep the scenario that identified the issue with XML parsing\nactually, I stil dont understand this really: if XML validation failed in that second part why are you EXCLUDING it from the validation logic?!",
+      "parentUuid": "b3243f05_2346707a",
       "range": {
         "startLine": 556,
         "startChar": 76,
