@@ -370,6 +370,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "feba06ce_5748246e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T08:26:41Z",
+      "side": 1,
+      "message": "ok, i didnt think that additional step could cause a problem. But there is a simple solution\n\nchange the original method into a private method with an extra boolean parameter: validateAndParse and use that parameter to skip the additional step\n\nthen add 2 public methods that redirect to the private method like so (pseudo code):\n\nVALIDATE_AND_PARSE \u003d false\nVALIDATE_ONLY \u003d true\n\npublic containerNode parseData(...)\n  return parseData(...., VALIDATE_AND_PARSE)\n\npublic void validateData(...)\n  parseData(...., VALIDATE_ONLY)\n  \n  \nprivate containerNode parseData(...., parseAndValdiate)\n     ...\n     if (validate_andParse) { }\n     \n     \nENSURE the parameters of all the methods are in the same order!\nTESTWARE: the existing test should automatically call the new public method and then the private method.\nyou should only add ONE simple test(oen scenario) for the validate test just to proof it redirects to the private method throws an exception with invalid data. All other scenario are covered by the existing tests.",
+      "parentUuid": "847dac8f_294be4bf",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 58
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9763a87d_2828c3b2",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
         "patchSetId": 19
