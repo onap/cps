@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "876afc49_917b7362",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T15:54:06Z",
+      "side": 1,
+      "message": "fine by me.\nnice testware.",
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "454a0b17_bd260d56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T15:54:06Z",
+      "side": 1,
+      "message": "NB: maybe extract to a private method processHttpReponse(..) or some better name.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
