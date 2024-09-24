@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36568700_b542fc3b",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T08:05:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0c5cdac_5f8abfa5",
+      "range": {
+        "startLine": 193,
+        "startChar": 25,
+        "endLine": 193,
+        "endChar": 32
+      },
+      "revId": "1c4ded0e0661266c7f8c1836d7ff08b10077a76c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb8d74f1_52dd439f",
