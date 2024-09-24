@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -23,18 +23,13 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.spi.PaginationOption
-import org.onap.cps.utils.PrefixResolver
-
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -43,11 +38,19 @@ import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
+import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+
 @WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
 
     @SpringBean
     CpsQueryService mockCpsQueryService = Mock()
+
+    @SpringBean
+    CpsAnchorService mockCpsAnchorService = Mock()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())

@@ -55,19 +55,6 @@ public class PrefixResolver {
     private final IMap<String, AnchorDataCacheEntry> anchorDataCache;
 
     /**
-     * Get the module prefix for the given xpath for a dataspace and anchor name.
-     *
-     * @param dataspaceName the name of the dataspace
-     * @param anchorName the name of the anchor the xpath belongs to
-     * @param xpath the xpath to prefix a prefix for
-     * @return the prefix of the module the top level element of given xpath
-     */
-    public String getPrefix(final String dataspaceName, final String anchorName, final String xpath) {
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        return getPrefix(anchor, xpath);
-    }
-
-    /**
      * Get the module prefix for the given xpath under the given anchor.
      *
      * @param anchor the anchor the xpath belong to
