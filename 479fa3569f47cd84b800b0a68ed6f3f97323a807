@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "534780dc_3a2370b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T13:54:12Z",
+      "side": 1,
+      "message": "There is a filter duplication, otherwise good.",
+      "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796a2b27_f20ee945",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T13:54:12Z",
+      "side": 1,
+      "message": "Duplicated. \nThe same filter with different name is already availabe on line 74.\nYou can think on a common name for of your scenarios.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 6
+      },
+      "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3615aac2_3551b435",
