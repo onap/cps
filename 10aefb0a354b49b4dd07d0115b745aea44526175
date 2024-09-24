@@ -87,6 +87,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a28969f_73b72cdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "closing as no further queries are there",
+      "parentUuid": "19e189bb_259f4618",
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5737014_690b8cb8",
@@ -253,6 +271,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2ca5f39d_dd5db9fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsDataServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "changed it to validateData as recommended in the following comment https://gerrit.onap.org/r/c/cps/+/138676/comment/3ec1b344_06c9a33f/",
+      "parentUuid": "ffa96a8f_5fc815a7",
+      "range": {
+        "startLine": 368,
+        "startChar": 7,
+        "endLine": 368,
+        "endChar": 72
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "262029a9_4b49f600",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
         "patchSetId": 19
@@ -392,6 +434,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dd1e4ad_d2953da7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feba06ce_5748246e",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 58
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9763a87d_2828c3b2",
@@ -405,6 +471,30 @@
       "writtenOn": "2024-09-23T10:28:59Z",
       "side": 1,
       "message": "content type is no relevant for the method being tested (no different code paths) SO need to test with 2 different content types, just 2 scenarios for the types of parentPath are needed",
+      "range": {
+        "startLine": 556,
+        "startChar": 76,
+        "endLine": 556,
+        "endChar": 87
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3243f05_2346707a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "this is the test that helped identify that XML parsing would fail when validating individual leaves. as mentioned in the following comment https://gerrit.onap.org/r/c/cps/+/138676/comment/3ec1b344_06c9a33f/\nSpecifically, the 4th scenario. So what should we do? keep the entire test or remove the 3rd one and keep 1st 2nd and 4th.",
+      "parentUuid": "9763a87d_2828c3b2",
       "range": {
         "startLine": 556,
         "startChar": 76,
@@ -461,6 +551,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a86f08_ae1134a9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff860f3_98cd315a",
+      "range": {
+        "startLine": 183,
+        "startChar": 9,
+        "endLine": 183,
+        "endChar": 58
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71c01746_222ef868",
@@ -498,6 +612,30 @@
       "side": 1,
       "message": "ignore, the test can be removed when you remove the new public method",
       "parentUuid": "71c01746_222ef868",
+      "range": {
+        "startLine": 201,
+        "startChar": 3,
+        "endLine": 201,
+        "endChar": 61
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5882d1f5_34365972",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c22b14d7_21b74ed0",
       "range": {
         "startLine": 201,
         "startChar": 3,

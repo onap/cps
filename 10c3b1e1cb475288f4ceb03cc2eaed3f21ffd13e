@@ -160,6 +160,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be8ea88_526a13a0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-24T11:58:12Z",
+      "side": 1,
+      "message": "closing as no further comments",
+      "parentUuid": "7f1a6c15_cc226181",
+      "revId": "10c3b1e1cb475288f4ceb03cc2eaed3f21ffd13e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ac2dbfa_e6a13e78",
