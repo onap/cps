@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3615aac2_3551b435",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T07:41:45Z",
+      "side": 1,
+      "message": "Q: are these all running parallel ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 162
+      },
+      "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
