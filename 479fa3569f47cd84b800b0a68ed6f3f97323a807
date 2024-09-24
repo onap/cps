@@ -39,6 +39,30 @@
       },
       "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe1b2c7f_5ff00b15",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-24T10:10:06Z",
+      "side": 1,
+      "message": "Yes, all in parallel, but only 1 instance of each search type.\nBefore we had 5 of the same search and 5 id-searches.",
+      "parentUuid": "3615aac2_3551b435",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 162
+      },
+      "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
