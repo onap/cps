@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4756766f_6209f89d",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T15:57:32Z",
+      "side": 1,
+      "message": "still ignored?\nMayeb we should just delete it for now",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf698b1d_143a9692",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T15:57:32Z",
+      "side": 1,
+      "message": "I am lost, I think we need to dicusss the naming convention for these rules\nI liek what you did belwo having comments in between to explain waht is what..\nthe rull can have a simplere name based on teh module \n\ne.g cpsServiceDependencies",
+      "range": {
+        "startLine": 45,
+        "startChar": 26,
+        "endLine": 45,
+        "endChar": 111
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f30f49b_66e79cb5",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T15:57:32Z",
+      "side": 1,
+      "message": "can we remove comments",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 81
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
