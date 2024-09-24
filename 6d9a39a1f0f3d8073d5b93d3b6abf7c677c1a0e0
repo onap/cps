@@ -39,6 +39,30 @@
       },
       "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99ccfa23_4a08761a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:21:35Z",
+      "side": 1,
+      "message": "maybe lines 104-107 shoudl be be inside the handle SuccessResponse...\nI see if theer is any more comments or not",
+      "parentUuid": "454a0b17_bd260d56",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
