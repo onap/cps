@@ -244,8 +244,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'query cm handle method returns two cm handles'
             mockParameterizedCmHandleQueryService.queryCmHandles(
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
-                >> [new YangModelCmHandle(id: 'ch-0', dmiProperties: [], publicProperties: []),
-                    new YangModelCmHandle(id: 'ch-1', dmiProperties: [], publicProperties: [])]
+                >> [new NcmpServiceCmHandle(cmHandleId: 'ch-0'), new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
         and: 'a trust level for cm handles'
             mockTrustLevelManager.getEffectiveTrustLevel(*_) >> TrustLevel.COMPLETE
         when: 'execute cm handle search is called'
