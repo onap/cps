@@ -182,6 +182,30 @@
       },
       "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c598f5f8_2f10753b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/PolicyDispatcher.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-24T17:00:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f5ea111_5576435c",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
