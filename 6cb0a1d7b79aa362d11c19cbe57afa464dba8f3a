@@ -87,6 +87,30 @@
       },
       "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "670ed54c_209b1f2d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T08:57:14Z",
+      "side": 1,
+      "message": "I haven\u0027t seen any GC related issues during my local tests and observations.\n\nAgree, lets don\u0027t set MaxGCPauseMillis explicitely until we have observe GC performance issue. \n\nThanks for suggesting...",
+      "parentUuid": "c22c4bf4_69a5c912",
+      "range": {
+        "startLine": 63,
+        "startChar": 25,
+        "endLine": 63,
+        "endChar": 159
+      },
+      "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
