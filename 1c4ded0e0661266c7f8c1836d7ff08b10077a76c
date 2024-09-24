@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "1c4ded0e0661266c7f8c1836d7ff08b10077a76c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527f4e2f_deb060e0",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T07:48:18Z",
+      "side": 1,
+      "message": "NB: can also expose env variable so that the policy executor guys can change the default decision to allow or deny without the need to redeploy the app.",
+      "range": {
+        "startLine": 193,
+        "startChar": 25,
+        "endLine": 193,
+        "endChar": 32
+      },
+      "revId": "1c4ded0e0661266c7f8c1836d7ff08b10077a76c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8d74f1_52dd439f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T07:48:18Z",
+      "side": 1,
+      "message": "doesnt seem right??\ndo you just mean deny ??",
+      "range": {
+        "startLine": 55,
+        "startChar": 51,
+        "endLine": 55,
+        "endChar": 60
+      },
+      "revId": "1c4ded0e0661266c7f8c1836d7ff08b10077a76c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f73ceb1c_ea30ee1c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/PolicyExecutorIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-24T07:48:18Z",
+      "side": 1,
+      "message": "NB: need more work here?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 79
+      },
+      "revId": "1c4ded0e0661266c7f8c1836d7ff08b10077a76c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
