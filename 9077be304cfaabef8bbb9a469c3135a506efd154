@@ -50,6 +50,115 @@
       "message": "it seems you need to make a sort operation in ModuleServiceIntegrationSpec.Retrieve all schema sets.:218 Condition not satisfied:  for result.name",
       "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "985aa97b_585b49c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T15:48:11Z",
+      "side": 1,
+      "message": "Some non-blocking reviews, but a suggestion to fix build issue.",
+      "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461831f7_a87c5cc9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T15:48:11Z",
+      "side": 1,
+      "message": "NB: I don\u0027t understand what does it mean",
+      "range": {
+        "startLine": 46,
+        "startChar": 20,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19a63df1_dbf1a342",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T15:48:11Z",
+      "side": 1,
+      "message": "NB: You can extract this into a final variable with a meaningful name",
+      "range": {
+        "startLine": 52,
+        "startChar": 19,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0e9237_591b3a77",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T15:48:11Z",
+      "side": 1,
+      "message": "NB: Can be more specific variable name in terms of bussiness maybe?",
+      "range": {
+        "startLine": 63,
+        "startChar": 24,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22fddc53_37afbbc9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/PrefixResolver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-24T15:48:11Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 68,
+        "startChar": 24,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "9077be304cfaabef8bbb9a469c3135a506efd154",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
