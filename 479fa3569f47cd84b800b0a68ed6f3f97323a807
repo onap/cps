@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf8de45_b4b90801",
+        "filename": "k6-tests/ncmp/common/search-base.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-09-24T15:59:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "796a2b27_f20ee945",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 6
+      },
+      "revId": "479fa3569f47cd84b800b0a68ed6f3f97323a807",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3615aac2_3551b435",
