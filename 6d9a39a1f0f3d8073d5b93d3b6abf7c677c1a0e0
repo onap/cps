@@ -134,6 +134,30 @@
       },
       "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f59060_cd1183a6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/PolicyDispatcher.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:58:03Z",
+      "side": 1,
+      "message": "yes we know teh api needs to be udpated but awaiting formal review and suggested wordign from Kieran. Baslcially \u0027allow\u0027 is the only recognised value any other value can be used band will be  interpreted as \u0027not;\u0027 allowed. So could use \u0027deny\u0027 \u0027too soon\u0027 \u0027not authorized\u0027 or whatever suits teh use case...",
+      "parentUuid": "0e8a43f9_e5816ec2",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
