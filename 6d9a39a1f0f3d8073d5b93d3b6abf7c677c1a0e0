@@ -158,6 +158,30 @@
       },
       "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5ea111_5576435c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/PolicyDispatcher.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T16:59:55Z",
+      "side": 1,
+      "message": "there are 2 comments on teh open api (descriptions) which are tracked on the relevant wiki page",
+      "parentUuid": "a3f59060_cd1183a6",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "6d9a39a1f0f3d8073d5b93d3b6abf7c677c1a0e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
