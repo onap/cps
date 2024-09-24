@@ -63,6 +63,30 @@
       },
       "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c22c4bf4_69a5c912",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-24T08:27:38Z",
+      "side": 1,
+      "message": "-XX:+UseG1GC\n\nImprovement Consideration: This is a good default, especially with large heap sizes. If latency is critical, we can fine-tune G1GC with more advanced options (e.g., -XX:MaxGCPauseMillis\u003d\u003ctime\u003e).\n\nSuggested Value: No changes unless you have specific GC performance issues. we could add -XX:MaxGCPauseMillis\u003d200 (or whatever pause goal you desire) to optimize GC for pause times.",
+      "parentUuid": "628992a8_ce7b0298",
+      "range": {
+        "startLine": 63,
+        "startChar": 25,
+        "endLine": 63,
+        "endChar": 159
+      },
+      "revId": "6cb0a1d7b79aa362d11c19cbe57afa464dba8f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
