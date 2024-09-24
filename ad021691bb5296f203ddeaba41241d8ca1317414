@@ -33,6 +33,24 @@
       "message": "This code needs to be revisited in future. This \u0027prefix \u003d\u003d null\u0027 means the same prefix is applied to all anchors, which may be incorrect when querying across anchors (different anchors -\u003e different modules -\u003e possibly different prefix).\nIn the other cases like GET api, which operates on a single anchor, we should use this trick, but instead we check prefix for every node.\nBasically, the logic is incorrect in both cases.",
       "revId": "ad021691bb5296f203ddeaba41241d8ca1317414",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4147aa72_c7f5e5a6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T15:50:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1988905f_c1e135d8",
+      "revId": "ad021691bb5296f203ddeaba41241d8ca1317414",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
