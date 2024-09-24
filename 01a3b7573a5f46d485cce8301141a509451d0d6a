@@ -67,6 +67,69 @@
       "message": "recheck",
       "revId": "01a3b7573a5f46d485cce8301141a509451d0d6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e113cc9_fb637870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T07:48:56Z",
+      "side": 1,
+      "message": "one minor legacy naming issue",
+      "revId": "01a3b7573a5f46d485cce8301141a509451d0d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e4d8856_61906be1",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T07:48:56Z",
+      "side": 1,
+      "message": "legacy: getDataNodesPerAnchor() or groupDataNodesPerAnchor()",
+      "range": {
+        "startLine": 93,
+        "startChar": 66,
+        "endLine": 93,
+        "endChar": 91
+      },
+      "revId": "01a3b7573a5f46d485cce8301141a509451d0d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76c2371a_c374591c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T07:48:56Z",
+      "side": 1,
+      "message": "legacy: dataNodesPerAnchor",
+      "range": {
+        "startLine": 93,
+        "startChar": 42,
+        "endLine": 93,
+        "endChar": 64
+      },
+      "revId": "01a3b7573a5f46d485cce8301141a509451d0d6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
