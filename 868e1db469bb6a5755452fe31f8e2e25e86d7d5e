@@ -161,6 +161,30 @@
       },
       "revId": "868e1db469bb6a5755452fe31f8e2e25e86d7d5e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175883d6_edfa1320",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-24T07:53:59Z",
+      "side": 1,
+      "message": "very good!",
+      "parentUuid": "4f4fa2b8_e418a8fc",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "868e1db469bb6a5755452fe31f8e2e25e86d7d5e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
