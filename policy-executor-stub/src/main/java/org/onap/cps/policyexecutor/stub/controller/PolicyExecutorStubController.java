@@ -41,9 +41,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class PolicyExecutorStubController implements PolicyExecutorApi {
 
+    private final Sleeper sleeper;
     private final ObjectMapper objectMapper;
     private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
     private int decisionCounter = 0;
+    private static int slowResponseTimeInSeconds = 40;
 
     @Override
     public ResponseEntity<PolicyExecutionResponse> executePolicyAction(
@@ -85,7 +87,13 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
         final String decisionId = String.valueOf(++decisionCounter);
         final String decision;
         final String message;
-
+        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("slow")) {
+            try {
+                sleeper.haveALittleRest(slowResponseTimeInSeconds);
+            } catch (final InterruptedException e) {
+                log.trace("sleep interruption ignored");
+            }
+        }
         if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
             decision = "allow";
             message = "All good";

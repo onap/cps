@@ -35,8 +35,9 @@ public class PolicyExecutorException extends NcmpException {
      *
      * @param message response message
      * @param details response details
+     * @param cause   the cause of the exception
      */
-    public PolicyExecutorException(final String message, final String details) {
-        super(message, details);
+    public PolicyExecutorException(final String message, final String details, final Throwable cause) {
+        super(message, details, cause);
     }
 }

@@ -53,6 +53,7 @@
       <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
       <Bug pattern="EI_EXPOSE_REP"/>
       <Bug pattern="EI_EXPOSE_REP2"/>
+      <Bug pattern="VA_FORMAT_STRING_USES_NEWLINE"/>
     </Or>
   </Match>
 
