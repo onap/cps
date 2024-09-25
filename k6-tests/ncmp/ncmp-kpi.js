@@ -37,8 +37,16 @@ let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read
 let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
 let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write', true);
 let passthroughWriteNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_write_alt_id', true);
-let idSearchDurationTrend = new Trend('id_search_duration', true);
-let cmSearchDurationTrend = new Trend('cm_search_duration', true);
+let idSearchNoFilterDurationTrend = new Trend('id_search_nofilter_duration', true);
+let idSearchModuleDurationTrend = new Trend('id_search_module_duration', true);
+let idSearchPropertyDurationTrend = new Trend('id_search_property_duration', true);
+let idSearchCpsPathDurationTrend = new Trend('id_search_cpspath_duration', true);
+let idSearchTrustLevelDurationTrend = new Trend('id_search_trustlevel_duration', true);
+let cmSearchNoFilterDurationTrend = new Trend('cm_search_nofilter_duration', true);
+let cmSearchModuleDurationTrend = new Trend('cm_search_module_duration', true);
+let cmSearchPropertyDurationTrend = new Trend('cm_search_property_duration', true);
+let cmSearchCpsPathDurationTrend = new Trend('cm_search_cpspath_duration', true);
+let cmSearchTrustLevelDurationTrend = new Trend('cm_search_trustlevel_duration', true);
 let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
 
 const legacyBatchEventReader = new Reader({
@@ -56,37 +64,85 @@ export const options = {
         passthrough_read_scenario: {
             executor: 'constant-vus',
             exec: 'passthroughReadScenario',
-            vus: 4,
+            vus: 2,
             duration: DURATION,
         },
         passthrough_read_alt_id_scenario: {
             executor: 'constant-vus',
             exec: 'passthroughReadAltIdScenario',
-            vus: 4,
+            vus: 2,
             duration: DURATION,
         },
         passthrough_write_scenario: {
             executor: 'constant-vus',
             exec: 'passthroughWriteScenario',
-            vus: 4,
+            vus: 2,
             duration: DURATION,
         },
         passthrough_write_alt_id_scenario: {
             executor: 'constant-vus',
             exec: 'passthroughWriteAltIdScenario',
-            vus: 4,
+            vus: 2,
             duration: DURATION,
         },
-        cm_handle_id_search_scenario: {
+        cm_handle_id_search_nofilter_scenario: {
             executor: 'constant-vus',
-            exec: 'cmHandleIdSearchScenario',
-            vus: 5,
+            exec: 'cmHandleIdSearchNoFilterScenario',
+            vus: 1,
             duration: DURATION,
         },
-        cm_handle_search_scenario: {
+        cm_handle_search_nofilter_scenario: {
             executor: 'constant-vus',
-            exec: 'cmHandleSearchScenario',
-            vus: 5,
+            exec: 'cmHandleSearchNoFilterScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_id_search_module_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleIdSearchModuleScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_search_module_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleSearchModuleScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_id_search_property_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleIdSearchPropertyScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_search_property_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleSearchPropertyScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_id_search_cpspath_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleIdSearchCpsPathScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_search_cpspath_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleSearchCpsPathScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_id_search_trustlevel_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleIdSearchTrustLevelScenario',
+            vus: 1,
+            duration: DURATION,
+        },
+        cm_handle_search_trustlevel_scenario: {
+            executor: 'constant-vus',
+            exec: 'cmHandleSearchTrustLevelScenario',
+            vus: 1,
             duration: DURATION,
         },
         legacy_batch_produce_scenario: {
@@ -112,8 +168,16 @@ export const options = {
         'ncmp_overhead_passthrough_write': ['avg <= 40'],
         'ncmp_overhead_passthrough_read_alt_id': ['avg <= 40'],
         'ncmp_overhead_passthrough_write_alt_id': ['avg <= 40'],
-        'id_search_duration': ['avg <= 2000'],
-        'cm_search_duration': ['avg <= 15000'],
+        'id_search_nofilter_duration': ['avg <= 2000'],
+        'id_search_module_duration': ['avg <= 2000'],
+        'id_search_property_duration': ['avg <= 2000'],
+        'id_search_cpspath_duration': ['avg <= 2000'],
+        'id_search_trustlevel_duration': ['avg <= 2000'],
+        'cm_search_nofilter_duration': ['avg <= 15000'],
+        'cm_search_module_duration': ['avg <= 15000'],
+        'cm_search_property_duration': ['avg <= 15000'],
+        'cm_search_cpspath_duration': ['avg <= 15000'],
+        'cm_search_trustlevel_duration': ['avg <= 15000'],
         'legacy_batch_read_cmhandles_per_second': ['avg >= 150'],
     },
 };
@@ -188,19 +252,83 @@ export function passthroughWriteAltIdScenario() {
     }
 }
 
-export function cmHandleIdSearchScenario() {
-    const response = executeCmHandleIdSearch('module-and-properties');
-    if (check(response, { 'CM handle ID search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
-        idSearchDurationTrend.add(response.timings.duration);
+export function cmHandleIdSearchNoFilterScenario() {
+    const response = executeCmHandleIdSearch('no-filter');
+    if (check(response, { 'CM handle ID no-filter search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID no-filter search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        idSearchNoFilterDurationTrend.add(response.timings.duration);
     }
 }
 
-export function cmHandleSearchScenario() {
-    const response = executeCmHandleSearch('module-and-properties');
-    if (check(response, { 'CM handle search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
-        cmSearchDurationTrend.add(response.timings.duration);
+export function cmHandleSearchNoFilterScenario() {
+    const response = executeCmHandleSearch('no-filter');
+    if (check(response, { 'CM handle no-filter search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle no-filter search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        cmSearchNoFilterDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleIdSearchModuleScenario() {
+    const response = executeCmHandleIdSearch('module');
+    if (check(response, { 'CM handle ID module search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID module search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        idSearchModuleDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleSearchModuleScenario() {
+    const response = executeCmHandleSearch('module');
+    if (check(response, { 'CM handle module search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle module search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        cmSearchModuleDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleIdSearchPropertyScenario() {
+    const response = executeCmHandleIdSearch('property');
+    if (check(response, { 'CM handle ID property search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID property search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        idSearchPropertyDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleSearchPropertyScenario() {
+    const response = executeCmHandleSearch('property');
+    if (check(response, { 'CM handle property search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle property search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        cmSearchPropertyDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleIdSearchCpsPathScenario() {
+    const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
+    if (check(response, { 'CM handle ID cps path search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID cps path search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        idSearchCpsPathDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleSearchCpsPathScenario() {
+    const response = executeCmHandleSearch('cps-path-for-ready-cm-handles');
+    if (check(response, { 'CM handle cps path search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle cps path search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        cmSearchCpsPathDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleIdSearchTrustLevelScenario() {
+    const response = executeCmHandleIdSearch('trust-level');
+    if (check(response, { 'CM handle ID trust level search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle ID trust level search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        idSearchTrustLevelDurationTrend.add(response.timings.duration);
+    }
+}
+
+export function cmHandleSearchTrustLevelScenario() {
+    const response = executeCmHandleSearch('trust-level');
+    if (check(response, { 'CM handle trust level search status equals 200': (r) => r.status === 200 })
+     && check(response, { 'CM handle trust level search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+        cmSearchTrustLevelDurationTrend.add(response.timings.duration);
     }
 }
 
