@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ecb3f7_e3103ca7",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-09-25T11:11:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4756766f_6209f89d",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 15
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf698b1d_143a9692",
@@ -130,6 +154,30 @@
       "writtenOn": "2024-09-24T15:57:32Z",
       "side": 1,
       "message": "can we remove comments",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 81
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c4ede8d_36faa216",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-09-25T11:11:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f30f49b_66e79cb5",
       "range": {
         "startLine": 58,
         "startChar": 0,
