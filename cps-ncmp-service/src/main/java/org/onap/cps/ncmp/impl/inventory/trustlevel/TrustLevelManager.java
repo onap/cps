@@ -140,7 +140,7 @@ public class TrustLevelManager {
      */
     public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
         final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
-        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.getOrDefault(cmHandleId, TrustLevel.NONE);
         return dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
     }
 
