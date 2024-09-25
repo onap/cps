@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "303247ec_1e1c5e7d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc16fbaf_9f5d012a",
+      "range": {
+        "startLine": 44,
+        "startChar": 33,
+        "endLine": 44,
+        "endChar": 54
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0b74225_bd8c983d",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-09-24T16:17:49Z",
       "side": 1,
       "message": "dont use !  use a new constant VALIDATE_AND_PARSE \u003d false",
+      "range": {
+        "startLine": 62,
+        "startChar": 85,
+        "endLine": 62,
+        "endChar": 98
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ed2649_1af5a07e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0b74225_bd8c983d",
       "range": {
         "startLine": 62,
         "startChar": 85,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8dd48a9_c8345c1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e86ee96_c267b998",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 75
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbb70fab_5098ca8a",
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c2b853_967a06d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb70fab_5098ca8a",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 0
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7583f165_2c3b83d4",
@@ -140,6 +236,30 @@
       "writtenOn": "2024-09-24T16:17:49Z",
       "side": 1,
       "message": "you shoudl have done similar in teh production code :-)",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "9ae4f2598fba7ae32a5e1c5f99bae4e0877db7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55f3d6d_b8e62b83",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "yes I was going for it but changed it to !VALIDATE_ONLY, right before pushing the code. Fixed it now 😄",
+      "parentUuid": "7583f165_2c3b83d4",
       "range": {
         "startLine": 33,
         "startChar": 0,

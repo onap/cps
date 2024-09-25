@@ -553,6 +553,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b16eb02e_8e4be8a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T06:24:39Z",
+      "side": 1,
+      "message": "the second part does not deal with validation of XML, rather one can say it handles data extraction. As I said earlier XML parsing is done in 2 steps:\n1. We parse the XML data and validate it against a Yang model(this is the only step needed for validation). Once the XML is successfully parsed the XML structure after parsing contains a top-level container node corresponding to \"root\". This root is not part of the core XML data that was provided as part of request (just in memory representation by ODL). So, we move to second step, that is to extract the first child under root using getFirstChildXmlRoot().\n2. This step involves extracting the first child under root node. The extraction is handled by getFirstChildXmlRoot() and we can see it ignores leaf nodes (as seen on line 260 !(child instanceof LeafNode)) because usually any meaningful data is under container nodes or list nodes. So if we provide just a leaf node it fails in this step.\n\nSo, if a validation request contains only leaves, then the yang parser successfully parses it because they might be a valid element in the associated Yang model. But fails in second step that is extraction of core data under the root node.",
+      "parentUuid": "b519d4ce_21c57631",
+      "range": {
+        "startLine": 556,
+        "startChar": 76,
+        "endLine": 556,
+        "endChar": 87
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cbc2cf58_16263309",
