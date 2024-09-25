@@ -16,6 +16,92 @@
       "message": "recheck",
       "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ea764c_d052023c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-25T05:20:12Z",
+      "side": 1,
+      "message": "few non blocking comments.",
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f97cfb_4828615b",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-25T05:20:12Z",
+      "side": 1,
+      "message": "NB: copy paste mistake??",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0385f2a_dcdda7ee",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-25T05:20:12Z",
+      "side": 1,
+      "message": "NB: same as before.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b21247_52933005",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-25T05:20:12Z",
+      "side": 1,
+      "message": "NB: be consistent in spacing here.\nRFC 9144 and RFC 6902",
+      "range": {
+        "startLine": 32,
+        "startChar": 41,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
