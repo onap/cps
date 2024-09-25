@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a8ba6fed_3aa35b75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1e731c1_f56bb900",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "dab7fc39_4ba7da64",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 14
@@ -98,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "282602c5_e26720e1",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "yes 😂",
+      "parentUuid": "18f97cfb_4828615b",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "940dcdbf_a7449049",
@@ -121,6 +169,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "289d77f6_dd2cbce9",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "940dcdbf_a7449049",
+      "range": {
+        "startLine": 13,
+        "startChar": 35,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d41274ed_9e09f040",
@@ -134,6 +206,30 @@
       "writtenOn": "2024-09-25T08:01:31Z",
       "side": 1,
       "message": "Can you label them A \u0026 B or 1 \u0026 2 for easier reference below...",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56020c74_155e5c60",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d41274ed_9e09f040",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -169,6 +265,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6ca4cb3_64935440",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "yes it is to set the heading level.",
+      "parentUuid": "aa3475f9_25f2b624",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ec9fc55_1848bd00",
         "filename": "docs/cps-delta-endpoints.rst",
         "patchSetId": 14
@@ -180,6 +300,30 @@
       "writtenOn": "2024-09-25T08:01:31Z",
       "side": 1,
       "message": "like code I dont think we should duplicate.\n\nMake do something like this\nCommon Path Parameters\nboth endpoint endpoint have....\n\nCommon Query Parameters\n....\n\n\nAdditional Query Parameter Endpoint 2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 95
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553e9a43_212641f9",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec9fc55_1848bd00",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -213,6 +357,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e67e49d_5fa48c61",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d510eaf7_5126f49d",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 12
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0385f2a_dcdda7ee",
@@ -236,6 +404,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42b95d4_0304a292",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0385f2a_dcdda7ee",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 35
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3b21247_52933005",
@@ -249,6 +441,30 @@
       "writtenOn": "2024-09-25T05:20:12Z",
       "side": 1,
       "message": "NB: be consistent in spacing here.\nRFC 9144 and RFC 6902",
+      "range": {
+        "startLine": 32,
+        "startChar": 41,
+        "endLine": 32,
+        "endChar": 61
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95c3214f_4a715b8d",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T10:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b21247_52933005",
       "range": {
         "startLine": 32,
         "startChar": 41,
