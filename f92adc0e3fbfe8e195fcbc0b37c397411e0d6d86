@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e731c1_f56bb900",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-25T05:21:52Z",
+      "side": 1,
+      "message": "NB: RTD update for delta feature APIs",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "dab7fc39_4ba7da64",
