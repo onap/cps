@@ -190,7 +190,7 @@ logging:
 ncmp:
     policy-executor:
         enabled: ${POLICY_SERVICE_ENABLED:false}
-        defaultDecision: "allow"
+        defaultDecision: ${POLICY_SERVICE_DEFAULT_DECISION:"allow"}
         server:
             address: ${POLICY_SERVICE_URL:http://policy-executor-stub}
             port: ${POLICY_SERVICE_PORT:8093}
@@ -200,7 +200,7 @@ ncmp:
                 maximumConnectionsTotal: 100
                 pendingAcquireMaxCount: 50
                 connectionTimeoutInSeconds: 30
-                readTimeoutInSeconds: 30
+                readTimeoutInSeconds: 10
                 writeTimeoutInSeconds: 30
     dmi:
         httpclient:

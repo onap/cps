@@ -59,12 +59,14 @@ services:
       ONAP_TRACING_ENABLED: 'false'
       ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
-      POLICY_SERVICE_ENABLED: 'false'
+      POLICY_SERVICE_ENABLED: 'true'
+      POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
+      JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
     deploy:
-      replicas: 2
+      replicas: 1
       resources:
         reservations:
           cpus: '2'
@@ -72,6 +74,8 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+    ports:
+      - ${CPS_CORE_DEBUG_PORT:-5005}:5005
 
   nginx:
     container_name: nginx-loadbalancer
@@ -155,7 +159,7 @@ services:
     container_name: policy-executor-stub
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
     ports:
-      - 8785:8093
+      - 8785:8083
     restart: unless-stopped
     profiles:
       - policy-executor-stub

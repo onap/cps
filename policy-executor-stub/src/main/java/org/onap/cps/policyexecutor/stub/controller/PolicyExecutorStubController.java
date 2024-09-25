@@ -22,9 +22,11 @@ package org.onap.cps.policyexecutor.stub.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.policyexecutor.stub.api.PolicyExecutorApi;
 import org.onap.cps.policyexecutor.stub.model.NcmpDelete;
@@ -81,11 +83,14 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
         return createPolicyExecutionResponse(targetIdentifier);
     }
 
+    @SneakyThrows
     private ResponseEntity<PolicyExecutionResponse> createPolicyExecutionResponse(final String targetIdentifier) {
         final String decisionId = String.valueOf(++decisionCounter);
         final String decision;
         final String message;
-
+        if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("slow")) {
+            TimeUnit.SECONDS.sleep(10);
+        }
         if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
             decision = "allow";
             message = "All good";
