@@ -161,7 +161,7 @@ public class YangParserHelper {
                 final XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(stringReader);
                 xmlParserStream.parse(xmlStreamReader);
             }
-        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException | NullPointerException
+        } catch (final XMLStreamException | URISyntaxException | IOException | SAXException
                        | ParserConfigurationException | TransformerException exception) {
             throw new DataValidationException(
                 "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
