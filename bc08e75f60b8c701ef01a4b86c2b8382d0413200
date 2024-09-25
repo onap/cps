@@ -16,6 +16,52 @@
       "message": "resolved comments",
       "revId": "bc08e75f60b8c701ef01a4b86c2b8382d0413200",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc812522_02ae3ca4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:41:04Z",
+      "side": 1,
+      "message": "sorry, missed this before: why compare a boolean with a true?!\ncan it be null? will it not come in in as false if parameter isn\u0027t provided?",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "bc08e75f60b8c701ef01a4b86c2b8382d0413200",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12c71bcd_b1adadea",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:41:04Z",
+      "side": 1,
+      "message": "else block no neet because of return above",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "bc08e75f60b8c701ef01a4b86c2b8382d0413200",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
