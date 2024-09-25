@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 
@@ -59,6 +60,8 @@ class PolicyExecutorSpec extends Specification {
     def setup() {
         setupLogger()
         objectUnderTest.enabled = true
+        objectUnderTest.serverAddress = 'some host'
+        objectUnderTest.serverPort = 'some port'
         mockWebClient.post() >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.uri(*_) >> mockRequestBodyUriSpec
         mockRequestBodyUriSpec.header(*_) >> mockRequestBodyUriSpec
@@ -95,8 +98,8 @@ class PolicyExecutorSpec extends Specification {
     }
 
     def 'Permission check with non-2xx response and "allow" default decision.'() {
-        given: 'other http response'
-            mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        given: 'non-2xx http response'
+            mockErrorResponse()
         and: 'the configured default decision is "allow"'
             objectUnderTest.defaultDecision = 'allow'
         when: 'permission is checked for an operation'
@@ -106,8 +109,8 @@ class PolicyExecutorSpec extends Specification {
     }
 
     def 'Permission check with non-2xx response and "other" default decision.'() {
-        given: 'other http response'
-            mockResponse([], HttpStatus.I_AM_A_TEAPOT)
+        given: 'non-2xx http response'
+            def webClientException = mockErrorResponse()
         and: 'the configured default decision is NOT "allow"'
             objectUnderTest.defaultDecision = 'deny by default'
         when: 'permission is checked for an operation'
@@ -116,25 +119,23 @@ class PolicyExecutorSpec extends Specification {
             def thrownException = thrown(PolicyExecutorException)
             assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
             assert thrownException.details == 'Policy Executor returned HTTP Status code 418. Falling back to configured default decision: deny by default'
+        and: 'the cause is the original web client exception'
+            assert thrownException.cause == webClientException
     }
 
     def 'Permission check with invalid response from Policy Executor.'() {
         given: 'invalid response from Policy executor'
-            mockResponseSpec.toEntity(*_) >> invalidResponse
+            mockResponseSpec.toEntity(*_) >> Mono.just(new ResponseEntity<>(null, HttpStatus.OK))
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
         then: 'system logs the expected message'
-            assert getLogEntry(1) == expectedMessage
-        where: 'following invalid responses are received'
-            invalidResponse                                      || expectedMessage
-            Mono.empty()                                         || 'No valid response from Policy Executor, ignored'
-            Mono.just(new ResponseEntity<>(null, HttpStatus.OK)) || 'No valid response body from Policy Executor, ignored'
+            assert getLogEntry(1) == 'No valid response body from Policy Executor, ignored'
     }
 
     def 'Permission check with timeout exception.'() {
         given: 'a timeout during the request'
-            def cause = new TimeoutException()
-            mockResponseSpec.toEntity(*_) >> { throw new RuntimeException(cause) }
+            def timeoutException = new TimeoutException()
+            mockResponseSpec.toEntity(*_) >> { throw new RuntimeException(timeoutException) }
         and: 'the configured default decision is NOT "allow"'
             objectUnderTest.defaultDecision = 'deny by default'
         when: 'permission is checked for an operation'
@@ -143,6 +144,24 @@ class PolicyExecutorSpec extends Specification {
             def thrownException = thrown(PolicyExecutorException)
             assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
             assert thrownException.details == 'Policy Executor request timed out. Falling back to configured default decision: deny by default'
+        and: 'the cause is the original time out exception'
+            assert thrownException.cause == timeoutException
+    }
+
+    def 'Permission check with unknown host.'() {
+        given: 'a unknown host exception during the request'
+            def unknownHostException = new UnknownHostException()
+            mockResponseSpec.toEntity(*_) >> { throw new RuntimeException(unknownHostException) }
+        and: 'the configured default decision is NOT "allow"'
+            objectUnderTest.defaultDecision = 'deny by default'
+        when: 'permission is checked for an operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'Policy Executor exception is thrown'
+            def thrownException = thrown(PolicyExecutorException)
+            assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
+            assert thrownException.details == 'Cannot connect to Policy Executor (some host:some port). Falling back to configured default decision: deny by default'
+        and: 'the cause is the original unknown host exception'
+            assert thrownException.cause == unknownHostException
     }
 
     def 'Permission check with other runtime exception.'() {
@@ -178,6 +197,13 @@ class PolicyExecutorSpec extends Specification {
         JsonNode jsonNode = spiedObjectMapper.readTree(spiedObjectMapper.writeValueAsString(mockResponseAsMap))
         def mono = Mono.just(new ResponseEntity<>(jsonNode, httpStatus))
         mockResponseSpec.toEntity(*_) >> mono
+    }
+
+    def mockErrorResponse() {
+        def webClientResponseException = Mock(WebClientResponseException)
+        webClientResponseException.getStatusCode() >> HttpStatus.I_AM_A_TEAPOT
+        mockResponseSpec.toEntity(*_) >> { throw webClientResponseException }
+        return webClientResponseException
     }
 
     def setupLogger() {
