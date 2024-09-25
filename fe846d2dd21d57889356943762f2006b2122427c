@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a24ffded_1912af42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-25T15:00:41Z",
+      "side": 1,
+      "message": "The solution has been agreed with Gergely (who reports the bug).\nI\u0027ve been asking stakeholders opinion at the moment, thus this needs to be on hold.",
+      "revId": "fe846d2dd21d57889356943762f2006b2122427c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
