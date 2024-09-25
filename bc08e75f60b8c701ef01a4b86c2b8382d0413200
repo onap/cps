@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6c7e272_8bcadefb",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T09:52:54Z",
+      "side": 1,
+      "message": "currently there is no configuration in place (within the pom.xml files) for the kind of boolean value that will be set for generated java code. So, by default the CpsDataApi.java uses Boolean wrapper class instead of boolean primitive.\nSo here final Boolean dryRunEnabled can be true, false or null. Therefore, to handle the null condition I used Boolean.TRUE.equals(dryRunEnabled) because in case where dryRunEnabled is null, the equals expression will result in a \"false\" and hence it will consider the dry-run to be off and execute the else block.\nI suggested a fix in the following comment https://gerrit.onap.org/r/c/cps/+/138676/comment/76be3815_3b9b1a94/ we decided to not implement it in the current patch because this change will impact the parameter \"includeDescendants\" in other controller methods like \"getNodeByDataspaceAndAnchor\" and \"getNodesByDataspaceAndAnchorAndCpsPath\".",
+      "parentUuid": "bc812522_02ae3ca4",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "bc08e75f60b8c701ef01a4b86c2b8382d0413200",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12c71bcd_b1adadea",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
         "patchSetId": 22
@@ -54,6 +78,30 @@
       "writtenOn": "2024-09-25T08:41:04Z",
       "side": 1,
       "message": "else block no neet because of return above",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "bc08e75f60b8c701ef01a4b86c2b8382d0413200",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1dc6917_ec9c3165",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-09-25T09:52:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12c71bcd_b1adadea",
       "range": {
         "startLine": 97,
         "startChar": 10,
