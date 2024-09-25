@@ -58,6 +58,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab63c23_aa7786fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "good docs. Some suggestions below",
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18f97cfb_4828615b",
@@ -76,6 +93,121 @@
         "startChar": 0,
         "endLine": 3,
         "endChar": 35
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "940dcdbf_a7449049",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "remove the word \u0027new\u0027 \nit wont make sense in a years time :-) )",
+      "range": {
+        "startLine": 13,
+        "startChar": 35,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41274ed_9e09f040",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "Can you label them A \u0026 B or 1 \u0026 2 for easier reference below...",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3475f9_25f2b624",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "Q: is the is next level?\nI might need a look after it has ben rendered  (ie merged and available) but I assume its ok",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec9fc55_1848bd00",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "like code I dont think we should duplicate.\n\nMake do something like this\nCommon Path Parameters\nboth endpoint endpoint have....\n\nCommon Query Parameters\n....\n\n\nAdditional Query Parameter Endpoint 2",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 95
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d510eaf7_5126f49d",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-25T08:01:31Z",
+      "side": 1,
+      "message": "Request Body Endpoint 2",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 12
       },
       "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
