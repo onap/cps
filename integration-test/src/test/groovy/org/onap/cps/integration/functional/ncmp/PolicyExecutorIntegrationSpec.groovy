@@ -68,7 +68,7 @@ class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
             'accepted cm handle'    | 'ch-1'   | 'mock expects "ABC"'  || 201                  || 'allow'
             'un-accepted cm handle' | 'ch-2'   | 'mock expects "ABC"'  || 409                  || 'deny from mock server (dispatcher)'
             'timeout'               | 'ch-3'   | 'mock expects "ABC"'  || 409                  || 'test default decision'
-            'invalid authorization' | 'ch-1'   | 'something else'      || 500                  || '401 Unauthorized from POST http://localhost:8790/policy-executor/api/v1/execute'
+            'invalid authorization' | 'ch-1'   | 'something else'      || 409                  || 'test default decision'
     }
 
 }

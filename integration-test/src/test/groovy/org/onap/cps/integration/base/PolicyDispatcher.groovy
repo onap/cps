@@ -20,15 +20,14 @@
 
 package org.onap.cps.integration.base
 
-
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper
+
 import java.util.concurrent.TimeUnit
 
 /**
