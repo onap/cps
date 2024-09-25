@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1032f22_527f3f8e",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-09-25T11:26:16Z",
+      "side": 1,
+      "message": "Hi Daniel!\nPls keep in mind that this patch only supposed to cover the scenarios that we discussed during the meetings. CPS at this stage will contain dependencies that are rule breakers like this one (and the one new test related to the NSCMP REST module).\nWe will dael with these issues after we identify all of them.\nThis rule for example have been here for ages. i just removed the constants from the code.",
+      "parentUuid": "6c761bba_884c5d93",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 63
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa9cfdb8_b37ec91a",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 2
