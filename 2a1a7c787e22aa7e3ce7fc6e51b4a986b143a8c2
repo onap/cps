@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35593b9_6cad8ad3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-26T14:00:00Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e01cb1fd_6fff0145",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-09-26T13:34:40Z",
       "side": 1,
       "message": "😊 seeing 4 level versioning for the first time.",
+      "range": {
+        "startLine": 157,
+        "startChar": 29,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1daa3b55_aad88498",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-26T14:00:00Z",
+      "side": 1,
+      "message": "yead I noticed that too, but that was teh latest stable version",
+      "parentUuid": "e01cb1fd_6fff0145",
       "range": {
         "startLine": 157,
         "startChar": 29,

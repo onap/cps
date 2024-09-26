@@ -46,6 +46,30 @@
       },
       "revId": "2dbf14888235bf6140fe2e041e8681e15a725314",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cffc1b21_dda6ade7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/NcmpException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-09-26T14:00:00Z",
+      "side": 0,
+      "message": "ok, iontellij recommended it I thought it woudl only expose details",
+      "parentUuid": "fb8af349_01cf44f4",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "2dbf14888235bf6140fe2e041e8681e15a725314",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
