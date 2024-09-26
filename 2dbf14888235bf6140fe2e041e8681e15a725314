@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb8af349_01cf44f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/NcmpException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-09-26T12:11:45Z",
+      "side": 0,
+      "message": "We should revert it back :\n\nUnintentional Getters: If we add this to class Level all fields including serialVersionUID, will automatically have a getter unless we specifically exclude them. This might lead to exposing fields we don’t intend to.",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "2dbf14888235bf6140fe2e041e8681e15a725314",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
