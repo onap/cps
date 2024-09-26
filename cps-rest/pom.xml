@@ -141,7 +141,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
+                            <inputSpec>docs/api/swagger/cps/openapi.yaml</inputSpec>
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>
@@ -165,35 +165,11 @@
                         </goals>
                         <phase>compile</phase>
                         <configuration>
-                            <inputSpec>${project.basedir}/docs/openapi/openapi.yml</inputSpec>
+                            <inputSpec>docs/api/swagger/cps/openapi.yaml</inputSpec>
                             <generatorName>openapi-yaml</generatorName>
                             <configOptions>
                                 <outputFile>openapi.yaml</outputFile>
                             </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}/target/classes/static/api-docs/cps-core</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.basedir}/target/generated-sources/openapi/</directory>
-                                    <includes>
-                                      <include>openapi.yaml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
                         </configuration>
                     </execution>
                 </executions>
