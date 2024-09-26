@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c04cf3_228b316c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-26T13:34:40Z",
+      "side": 1,
+      "message": "nothing objectionable as such.",
+      "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e01cb1fd_6fff0145",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-09-26T13:34:40Z",
+      "side": 1,
+      "message": "😊 seeing 4 level versioning for the first time.",
+      "range": {
+        "startLine": 157,
+        "startChar": 29,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
