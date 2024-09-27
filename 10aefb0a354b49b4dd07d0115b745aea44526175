@@ -105,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ca54b04_0936997a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-27T12:22:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19e189bb_259f4618",
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5737014_690b8cb8",
@@ -165,6 +183,30 @@
       "writtenOn": "2024-09-24T16:17:49Z",
       "side": 1,
       "message": "I woudl like to see a differnce so maybe a 204 is a good idea. Lets make suer we dsicuss this soon with Priyank etc. But it does not block this commit.",
+      "parentUuid": "f191c7a2_638bda20",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 47
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15b9666d_ad7b985d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-27T12:22:21Z",
+      "side": 1,
+      "message": "maybe for now have a log or some message? that says there was no process done etc etc",
       "parentUuid": "f191c7a2_638bda20",
       "range": {
         "startLine": 78,
