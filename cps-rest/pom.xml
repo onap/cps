@@ -141,7 +141,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>docs/api/swagger/cps/openapi.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/../docs/api/swagger/cps/openapi.yaml</inputSpec>
                             <invokerPackage>org.onap.cps.rest.controller</invokerPackage>
                             <modelPackage>org.onap.cps.rest.model</modelPackage>
                             <apiPackage>org.onap.cps.rest.api</apiPackage>
@@ -165,7 +165,7 @@
                         </goals>
                         <phase>compile</phase>
                         <configuration>
-                            <inputSpec>docs/api/swagger/cps/openapi.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/../docs/api/swagger/cps/openapi.yaml</inputSpec>
                             <generatorName>openapi-yaml</generatorName>
                             <configOptions>
                                 <outputFile>openapi.yaml</outputFile>
