@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "8f9d40623c35a1c7fe57d2b988d565916bea2d11",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7358f9_a4cf7f11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-09-30T15:41:44Z",
+      "side": 1,
+      "message": "This is a non-blocking review. (Please ignore if not relevalt to the meetings that I haven\u0027t been there.)\n\nNB: I have a NB suggestion to make it easier:\n\nCurrently, the main modules and the packages that have some classes are like this:\n\ncps-ncmp-rest\n\torg.onap.cps.ncmp.rest.controller\n\torg.onap.cps.ncmp.rest.util\n\t\ncps-rest\n\torg.onap.cps.rest.controller\n\torg.onap.cps.rest.exceptions\n\torg.onap.cps.rest.utils\n\ncps-ncmp-service\n\ttoo.many.package\n\t\ncps-service\n\ttoo.many.package\n\t\ncps-ri\n\torg.onap.cps.ri.repository\n\torg.onap.cps.ri\n\torg.onap.cps.ri.models \n\torg.onap.cps.ri.utils\n\t\ncps-path-parser\n\torg.onap.cps.cpspath.parser\n\t\n\t\n1- There is a test case restControllerShouldOnlyDependOnRestController can be renamed into cpsRestControllerArchTest without changing the test (right hand side of equality.)\n\n2- Then, I would write the same test for ncmpRestControllerArchTest. I would still  keep the final variable names as is by adding more like for this: \nNCMP_REST_CONTROLLER_PACKAGE \u003d \"org.onap.cps.ncmp.rest..\";\n\n3- Also, the same test can be added for cps-path-parser since it has only a package that contain classes. (using the same strategy above)\n\n4- Finally, I would add the same test for cps-ri (exactly the same ones above.)\n\nNOTE: I would skip writing any tests for cps-ncmp-service and cps-service modules since there are many package that have cross dependencies (at least for this commit)\n\nNote-2: There may be another way (I haven\u0027t check yet) in order not to include third party dependencies in ArchTest. Since, it must be really difficult and complex to find all of them.\n\nHope this make it a bit simplfy Levente.",
+      "revId": "8f9d40623c35a1c7fe57d2b988d565916bea2d11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
