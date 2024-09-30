@@ -33,6 +33,98 @@
       "message": "fine by me.",
       "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e21bd557_967d0cc0",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-30T12:12:10Z",
+      "side": 1,
+      "message": "prefer if on a seperate sentence or inner bullet",
+      "range": {
+        "startLine": 26,
+        "startChar": 53,
+        "endLine": 26,
+        "endChar": 95
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa6bc50_4764d5e6",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-30T12:12:10Z",
+      "side": 1,
+      "message": "NB \u0027has the\u0027",
+      "range": {
+        "startLine": 40,
+        "startChar": 189,
+        "endLine": 40,
+        "endChar": 192
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeae4efa_8428abd9",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-30T12:12:10Z",
+      "side": 1,
+      "message": "is the \u0027Description\u0027 heading meant to be smaller than \u0027Request Body\u0027 ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65df9778_3db17f6b",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-09-30T12:12:10Z",
+      "side": 1,
+      "message": "accepts",
+      "range": {
+        "startLine": 45,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
