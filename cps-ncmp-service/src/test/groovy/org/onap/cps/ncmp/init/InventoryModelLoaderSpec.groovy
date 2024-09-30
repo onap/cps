@@ -51,7 +51,7 @@ class InventoryModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('dmi-registry@2024-02-23.yang')
+        expectedYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)

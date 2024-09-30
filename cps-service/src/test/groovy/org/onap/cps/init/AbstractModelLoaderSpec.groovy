@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Modification Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.init
+package org.onap.cps.init
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
@@ -27,7 +28,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.exceptions.NcmpStartUpException
+import org.onap.cps.api.exceptions.ModelStartupException
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.slf4j.LoggerFactory
@@ -46,12 +47,10 @@ class AbstractModelLoaderSpec extends Specification {
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def yangResourceToContentMap
     def logger = (Logger) LoggerFactory.getLogger(AbstractModelLoader)
     def loggingListAppender
 
     void setup() {
-        yangResourceToContentMap = objectUnderTest.createYangResourcesToContentMap('cm-data-subscriptions@2024-02-12.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -60,20 +59,21 @@ class AbstractModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        logger.detachAndStopAllAppenders()
         applicationContext.close()
+        loggingListAppender.stop()
     }
 
-    def 'Application started event'() {
+    def 'Application started event triggers onboarding/upgrade'() {
         when: 'Application (started) event is triggered'
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
     }
 
-    def 'Application started event with start up exception'() {
-        given: 'a start up exception is thrown doing model onboarding'
-            objectUnderTest.onboardOrUpgradeModel() >> { throw new NcmpStartUpException('test message','details are not logged') }
+    def 'Application started event handles startup exception'() {
+        given: 'a startup exception is thrown during model onboarding'
+            objectUnderTest.onboardOrUpgradeModel() >> { throw new ModelStartupException('test message','details are not logged') }
         when: 'Application (started) event is triggered'
             objectUnderTest.onApplicationEvent(new ApplicationStartedEvent(new SpringApplication(), null, applicationContext, null))
         then: 'the exception message is logged'
@@ -81,41 +81,123 @@ class AbstractModelLoaderSpec extends Specification {
             assert logs.contains('test message')
     }
 
-    def 'Create schema set.'() {
+    def 'Creating a dataspace delegates to the service.'() {
+        when: 'creating a dataspace'
+            objectUnderTest.createDataspace('some dataspace')
+        then: 'the operation is delegated to the admin service'
+            1 * mockCpsDataspaceService.createDataspace('some dataspace')
+    }
+
+    def 'Creating a dataspace handles already defined exception.'() {
+        given: 'dataspace service throws an already defined exception'
+            mockCpsDataspaceService.createDataspace(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
+        when: 'creating a dataspace'
+            objectUnderTest.createDataspace('some dataspace')
+        then: 'the exception is ignored i.e. no exception thrown up'
+            noExceptionThrown()
+        and: 'the exception is ignored, and a log message is produced'
+            assertLogContains('Dataspace already exists')
+    }
+
+    def 'Creating a dataspace handles other exception.'() {
+        given: 'dataspace service throws a runtime exception'
+            mockCpsDataspaceService.createDataspace(*_) >> { throw new RuntimeException('test message')  }
+        when: 'creating a dataspace'
+            objectUnderTest.createDataspace('some dataspace')
+        then: 'a startup exception with correct message and details is thrown'
+            def thrown = thrown(ModelStartupException)
+            assert thrown.message.contains('Creating dataspace failed')
+            assert thrown.details.contains('test message')
+    }
+
+    def 'Creating a schema set delegates to the service.'() {
         when: 'creating a schema set'
-            objectUnderTest.createSchemaSet('some dataspace','new name','cm-data-subscriptions@2024-02-12.yang')
+            objectUnderTest.createSchemaSet('some dataspace','new name','cps-notification-subscriptions@2024-07-03.yang')
         then: 'the operation is delegated to the admin service'
             1 * mockCpsModuleService.createSchemaSet('some dataspace','new name',_)
     }
 
-    def 'Create schema set with already defined exception.'() {
+    def 'Creating a schema set handles already defined exception.'() {
         given: 'the module service throws an already defined exception'
             mockCpsModuleService.createSchemaSet(*_) >>  { throw AlreadyDefinedException.forSchemaSet('name','context',null) }
         when: 'attempt to create a schema set'
-            objectUnderTest.createSchemaSet('some dataspace','new name','cm-data-subscriptions@2024-02-12.yang')
-        then: 'the exception is ignored i.e. no exception thrown up'
+            objectUnderTest.createSchemaSet('some dataspace','new name','cps-notification-subscriptions@2024-07-03.yang')
+        then: 'the exception is ignored, and a log message is produced'
             noExceptionThrown()
-        and: 'the exception message is logged'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('Creating new schema set failed as schema set already exists')
+            assertLogContains('Creating new schema set failed as schema set already exists')
     }
 
-    def 'Create schema set with non existing yang file.'() {
-        when: 'attempt to create a schema set from a non existing file'
+    def 'Creating a schema set from a non-existing YANG file.'() {
+        when: 'attempting to create a schema set from a non-existing file'
             objectUnderTest.createSchemaSet('some dataspace','some name','no such yang file')
         then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
+            def thrown = thrown(ModelStartupException)
             assert thrown.message.contains('Creating schema set failed')
             assert thrown.details.contains('unable to read file')
     }
 
-    def 'Delete unused schema sets.'() {
-        when: 'several unused schemas are deleted '
+    def 'Creating an anchor delegates to the service.'() {
+        when: 'creating an anchor'
+            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
+        then: 'the operation is delegated to the admin service'
+            1 * mockCpsAnchorService.createAnchor('some dataspace','some schema set', 'new name')
+    }
+
+    def 'Creating an anchor handles already defined exception.'() {
+        given: 'the admin service throws an already defined exception'
+            mockCpsAnchorService.createAnchor(*_)>>  { throw AlreadyDefinedException.forAnchor('name','context',null) }
+        when: 'attempting to create an anchor'
+            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
+        then: 'the exception is ignored, and a log message is produced'
+            noExceptionThrown()
+            assertLogContains('Creating new anchor failed as anchor already exists')
+    }
+
+    def 'Creating an anchor handles other exceptions.'() {
+        given: 'the admin service throws a runtime exception'
+            mockCpsAnchorService.createAnchor(*_)>>  { throw new RuntimeException('test message') }
+        when: 'attempt to create anchor'
+            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
+        then: 'a startup exception with correct message and details is thrown'
+            def thrown = thrown(ModelStartupException)
+            assert thrown.message.contains('Creating anchor failed')
+            assert thrown.details.contains('test message')
+    }
+
+    def 'Creating a top-level data node delegates to the service.'() {
+        when: 'top-level node is created'
+            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
+        then: 'the correct JSON is saved using the data service'
+            1 * mockCpsDataService.saveData('dataspace','anchor', '{"new node":{}}',_)
+    }
+
+    def 'Creating a top-level node handles already defined exception.'() {
+        given: 'the data service throws an Already Defined exception'
+            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
+        when: 'attempting to create a top-level node'
+            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
+        then: 'the exception is ignored, and a log message is produced'
+            noExceptionThrown()
+            assertLogContains('failed as data node already exists')
+    }
+
+    def 'Create a top-level node with any other exception.'() {
+        given: 'the data service throws a runtime exception'
+            mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
+        when: 'attempt to create a top-level node'
+            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
+        then: 'a startup exception with correct message and details is thrown'
+            def thrown = thrown(ModelStartupException)
+            assert thrown.message.contains('Creating data node failed')
+            assert thrown.details.contains('test message')
+    }
+
+    def 'Delete unused schema sets delegates to the service.'() {
+        when: 'unused schema sets get deleted'
             objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
         then: 'a request to delete each (without cascade) is delegated to the module service'
             1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 1', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
             1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
-
     }
 
     def 'Delete unused schema sets with exception.'() {
@@ -131,66 +213,6 @@ class AbstractModelLoaderSpec extends Specification {
             1 * mockCpsModuleService.deleteSchemaSet('some dataspace', 'schema set 2', CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED)
     }
 
-    def 'Create anchor.'() {
-        when: 'creating an anchor'
-            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
-        then: 'the operation is delegated to the admin service'
-            1 * mockCpsAnchorService.createAnchor('some dataspace','some schema set', 'new name')
-    }
-
-    def 'Create anchor with already defined exception.'() {
-        given: 'the admin service throws an already defined exception'
-            mockCpsAnchorService.createAnchor(*_)>>  { throw AlreadyDefinedException.forAnchor('name','context',null) }
-        when: 'attempt to create anchor'
-            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
-        then: 'the exception is ignored i.e. no exception thrown up'
-            noExceptionThrown()
-        and: 'the exception message is logged'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('Creating new anchor failed as anchor already exists')
-    }
-
-    def 'Create anchor with any other exception.'() {
-        given: 'the admin service throws a exception'
-            mockCpsAnchorService.createAnchor(*_)>>  { throw new RuntimeException('test message') }
-        when: 'attempt to create anchor'
-            objectUnderTest.createAnchor('some dataspace','some schema set','new name')
-        then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
-            assert thrown.message.contains('Creating anchor failed')
-            assert thrown.details.contains('test message')
-    }
-
-    def 'Create top level node.'() {
-        when: 'top level node is created'
-            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
-        then: 'the correct json is saved using the data service'
-            1 * mockCpsDataService.saveData('dataspace','anchor', '{"new node":{}}',_)
-    }
-
-    def 'Create top level node with already defined exception.'() {
-        given: 'the data service throws an Already Defined exception'
-            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
-        when: 'attempt to create top level node'
-            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
-        then: 'the exception is ignored i.e. no exception thrown up'
-            noExceptionThrown()
-        and: 'the exception message is logged'
-            def logs = loggingListAppender.list.toString()
-            assert logs.contains('failed as data node already exists')
-    }
-
-    def 'Create top level node with any other exception.'() {
-        given: 'the data service throws an exception'
-            mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
-        when: 'attempt to create top level node'
-            objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
-        then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
-            assert thrown.message.contains('Creating data node failed')
-            assert thrown.details.contains('test message')
-    }
-
     def 'Update anchor schema set.'() {
         when: 'a schema set for an anchor is updated'
             objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
@@ -204,9 +226,14 @@ class AbstractModelLoaderSpec extends Specification {
         when: 'a schema set for an anchor is updated'
             objectUnderTest.updateAnchorSchemaSet('some dataspace', 'anchor', 'new schema set')
         then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
+            def thrown = thrown(ModelStartupException)
             assert thrown.message.contains('Updating schema set failed')
             assert thrown.details.contains('test message')
+    }
+
+    private void assertLogContains(String message) {
+        def logs = loggingListAppender.list.toString()
+        assert logs.contains(message)
     }
 
     class TestModelLoader extends AbstractModelLoader {
@@ -216,12 +243,11 @@ class AbstractModelLoaderSpec extends Specification {
                         final CpsAnchorService cpsAnchorService,
                         final CpsDataService cpsDataService) {
             super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService)
-            super.maximumAttemptCount = 2
-            super.retryTimeMs = 1
         }
 
         @Override
-        void onboardOrUpgradeModel() { }
+        void onboardOrUpgradeModel() {
+            // No operation needed for testing
+        }
     }
-
 }

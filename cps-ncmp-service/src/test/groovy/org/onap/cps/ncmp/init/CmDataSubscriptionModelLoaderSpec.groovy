@@ -52,7 +52,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourcesToContentMap = objectUnderTest.createYangResourcesToContentMap('cm-data-subscriptions@2024-02-12.yang')
+        expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-subscriptions@2024-02-12.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
