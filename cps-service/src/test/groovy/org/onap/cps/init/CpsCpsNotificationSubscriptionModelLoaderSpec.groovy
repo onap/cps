@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.init
+package org.onap.cps.init
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
@@ -27,32 +27,34 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.exceptions.NcmpStartUpException
 import org.onap.cps.spi.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.exceptions.ModelStartupException
 import org.onap.cps.spi.model.Dataspace
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
-
-class CmDataSubscriptionModelLoaderSpec extends Specification {
-
+class CpsCpsNotificationSubscriptionModelLoaderSpec extends Specification {
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
+    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def expectedYangResourcesToContentMap
+    def expectedYangResourcesToContents
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
 
+    def CPS_DATASPACE_NAME = 'CPS-Admin'
+    def ANCHOR_NAME = 'cps-notification-subscriptions'
+    def SCHEMASET_NAME = 'cps-notification-subscriptions'
+    def MODEL_FILENAME = 'cps-notification-subscriptions@2024-07-03.yang'
+
     void setup() {
-        expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-subscriptions@2024-02-12.yang')
+        expectedYangResourcesToContents = objectUnderTest.mapYangResourcesToContent(MODEL_FILENAME)
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -61,50 +63,61 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        logger.detachAndStopAllAppenders()
         applicationContext.close()
+        loggingListAppender.stop()
     }
 
     def 'Onboard subscription model via application started event.'() {
-        given: 'dataspace is ready for use'
-            mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
         when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', expectedYangResourcesToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(CPS_DATASPACE_NAME, SCHEMASET_NAME, expectedYangResourcesToContents)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
+            1 * mockCpsAnchorService.createAnchor(CPS_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME)
         and: 'the data service to create a top level datanode is called once'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
-        and: 'the data service is called once to create datastore for Passthrough-operational'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                '{"datastore":[{"name":"ncmp-datastore:passthrough-operational","cm-handles":{}}]}', _, _)
-        and: 'the data service is called once to create datastore for Passthrough-running'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                '{"datastore":[{"name":"ncmp-datastore:passthrough-running","cm-handles":{}}]}', _, _)
-    }
-
-    def 'Create node for datastore with already defined exception.'() {
-        given: 'the data service throws an Already Defined exception'
-            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
-        when: 'attempt to create datastore'
-            objectUnderTest.createDatastore('some datastore')
-        then: 'the exception is ignored i.e. no exception thrown up'
-            noExceptionThrown()
-        and: 'the exception message is logged'
-            def logs = loggingListAppender.list.toString()
-            logs.contains("Creating new child data node 'some datastore' for data node 'datastores' failed as data node already exists")
+            1 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, '{"dataspaces":{}}', _)
     }
 
     def 'Create node for datastore with any other exception.'() {
-        given: 'the data service throws an exception'
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
+        and: 'the data service throws a Runtime exception'
             mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
         when: 'attempt to create datastore'
-            objectUnderTest.createDatastore('some datastore')
+            objectUnderTest.createInitialSubscription()
         then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
+            def thrown = thrown(ModelStartupException)
             assert thrown.message.contains('Creating data node failed')
             assert thrown.details.contains('test message')
+    }
+
+    def 'Creating initial subscription handles already defined exception gracefully.'() {
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
+        and: 'the data service throws a Runtime exception'
+            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context')  }
+        when: 'attempt to create datastore subscription'
+            objectUnderTest.createInitialSubscription()
+        then: 'the exception is ignored, and a log message is produced'
+            noExceptionThrown()
+            assertLogContains('Data node for dataspace \'test\' already exists under \'dataspaces\'')
+    }
+
+    def 'Creating initial subscription when dataspaces list is null'() {
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> null
+        when: 'attempt to create datastore'
+            objectUnderTest.createInitialSubscription()
+        then: 'the data service to create a top level datanode is not called'
+            0 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, _, _)
+    }
+
+    private void assertLogContains(String message) {
+        def logs = loggingListAppender.list.toString()
+        assert logs.contains(message)
     }
 
 }
