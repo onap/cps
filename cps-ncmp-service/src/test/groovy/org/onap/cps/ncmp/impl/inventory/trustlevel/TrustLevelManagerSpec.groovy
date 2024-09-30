@@ -149,6 +149,11 @@ class TrustLevelManagerSpec extends Specification {
             assert effectiveTrustLevel == TrustLevel.NONE
     }
 
+    def 'Select effective trust level  when the trust level caches are empty (restart case)'() {
+        expect: 'effective trust level is NONE when cm-1 does not exist in the cache'
+            assert objectUnderTest.getEffectiveTrustLevel('ch-1') == TrustLevel.NONE
+    }
+
     def 'CmHandle trust level removed'() {
         given: 'a cm handle'
             trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
