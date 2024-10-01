@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "001b4add_49239635",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 58
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-01T14:10:43Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "756bfdd0_ae026c59",
+      "range": {
+        "startLine": 131,
+        "startChar": 38,
+        "endLine": 131,
+        "endChar": 51
+      },
+      "revId": "d339670edf43463cd8dbde43f91f00cd44666ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "945a8d74_47e127f0",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-09-18T17:25:25Z",
       "side": 1,
       "message": "This behaviour seems wrong. Surely leaf list elements should be separated somehow? e.g. \n\n    \u003cleafList\u003e\n        \u003cleaf\u003eleaveListElement1\u003c/leaf\u003e\n        \u003cleaf\u003eleaveListElement2\u003c/leaf\u003e\n    \u003c/leafList\u003e\n\nNote for JSON, we get output like:\n\n    \"leafList\": [\"leaveListElement1\", \"leaveListElement2\"]",
+      "range": {
+        "startLine": 318,
+        "startChar": 84,
+        "endLine": 318,
+        "endChar": 113
+      },
+      "revId": "d339670edf43463cd8dbde43f91f00cd44666ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25021281_414d70f8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 58
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-01T14:10:43Z",
+      "side": 1,
+      "message": "resolved",
+      "parentUuid": "945a8d74_47e127f0",
       "range": {
         "startLine": 318,
         "startChar": 84,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eb98071_7ec44ea3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/spi/impl/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 58
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-01T14:10:43Z",
+      "side": 1,
+      "message": "Modified",
+      "parentUuid": "a914f9f5_080eadf8",
+      "range": {
+        "startLine": 528,
+        "startChar": 45,
+        "endLine": 528,
+        "endChar": 74
+      },
+      "revId": "d339670edf43463cd8dbde43f91f00cd44666ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "683620be_ec6ab7ff",
@@ -117,6 +189,30 @@
       "writtenOn": "2024-09-18T17:25:25Z",
       "side": 1,
       "message": "content type not needed here, since method does not return xml/json",
+      "range": {
+        "startLine": 115,
+        "startChar": 85,
+        "endLine": 115,
+        "endChar": 109
+      },
+      "revId": "d339670edf43463cd8dbde43f91f00cd44666ddc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65547828_4764a4e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 58
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-01T14:10:43Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "683620be_ec6ab7ff",
       "range": {
         "startLine": 115,
         "startChar": 85,
