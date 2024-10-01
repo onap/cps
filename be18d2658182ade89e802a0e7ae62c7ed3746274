@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4822e9a_06ba2fe4",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T07:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e21bd557_967d0cc0",
+      "range": {
+        "startLine": 26,
+        "startChar": 53,
+        "endLine": 26,
+        "endChar": 95
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fa6bc50_4764d5e6",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-09-30T12:12:10Z",
       "side": 1,
       "message": "NB \u0027has the\u0027",
+      "range": {
+        "startLine": 40,
+        "startChar": 189,
+        "endLine": 40,
+        "endChar": 192
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8fd0347_0b14c6a9",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T07:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fa6bc50_4764d5e6",
       "range": {
         "startLine": 40,
         "startChar": 189,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4245168d_104f461e",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T07:22:22Z",
+      "side": 1,
+      "message": "nope, but I fixed it now. I did a mistake in making sections",
+      "parentUuid": "eeae4efa_8428abd9",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65df9778_3db17f6b",
@@ -117,6 +189,30 @@
       "writtenOn": "2024-09-30T12:12:10Z",
       "side": 1,
       "message": "accepts",
+      "range": {
+        "startLine": 45,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "be18d2658182ade89e802a0e7ae62c7ed3746274",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1031892d_8debf4cf",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T07:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65df9778_3db17f6b",
       "range": {
         "startLine": 45,
         "startChar": 35,

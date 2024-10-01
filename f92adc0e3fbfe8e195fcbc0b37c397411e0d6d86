@@ -287,6 +287,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d82049_0159437a",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T07:22:22Z",
+      "side": 1,
+      "message": "sorry, Ignore the previous comment. ~ is alternative for -. To make different sections we have the following rules:https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#sections, and I corrected based on the documentation",
+      "parentUuid": "c6ca4cb3_64935440",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "f92adc0e3fbfe8e195fcbc0b37c397411e0d6d86",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ec9fc55_1848bd00",
