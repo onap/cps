@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cae40fb_e4d91798",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "557c084e_22a6dbb8",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 3
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd2b6b38_b57bf67c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "Better to keep it const above the writer object.",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d46fa45e_69775df1",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "prefer to use string literal",
+      "parentUuid": "fd2b6b38_b57bf67c",
       "range": {
         "startLine": 32,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7eaeaab_27bdbf47",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "as above",
+      "parentUuid": "d4608209_0da0b5b8",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea4a989e_9033d122",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "No-need",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3571c4df_738293a1",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea4a989e_9033d122",
       "range": {
         "startLine": 36,
         "startChar": 25,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "189c1bd3_5fcaee6d",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8656eef3_8e8724b7",
+      "range": {
+        "startLine": 37,
+        "startChar": 27,
+        "endLine": 37,
+        "endChar": 75
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cc2e081_0e5a675a",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "I would move these above near to other consts.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38cf3177_b9717e92",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Partially done",
+      "parentUuid": "5cc2e081_0e5a675a",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e08610f7_d234807c",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7857155f_d7ab7dbb",
+      "range": {
+        "startLine": 51,
+        "startChar": 23,
+        "endLine": 51,
+        "endChar": 77
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b019c3fa_5f66cca3",
@@ -175,6 +343,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "No-need",
+      "range": {
+        "startLine": 52,
+        "startChar": 40,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02615f3a_291fa086",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b019c3fa_5f66cca3",
       "range": {
         "startLine": 52,
         "startChar": 40,
@@ -208,6 +400,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a5a47b_db3578f2",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90345d3d_6c8a4fb3",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 83
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a483f08a_ab8f12dd",
@@ -221,6 +437,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "Since not dynamically changed, I would move this above near to other const e.g.\n\nconst jsonData \u003d open(\u0027../../resources/sampleAvcInputEvent.json\u0027);\nconst testEventSent \u003d JSON.parse(jsonData);\nconst payload \u003d JSON.stringify(testEventSent);\n\nSince the only cloudEventHeaders changed dynamically thus it can stay in the function.",
+      "range": {
+        "startLine": 75,
+        "startChar": 3,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3edfdf5_1302543b",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a483f08a_ab8f12dd",
       "range": {
         "startLine": 75,
         "startChar": 3,
@@ -254,6 +494,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6216f5_8449629e",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59d04d29_06c7fc1e",
+      "range": {
+        "startLine": 77,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "977a64d3_6168aa63",
@@ -277,6 +541,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00a42e4e_53d35cfe",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "977a64d3_6168aa63",
+      "range": {
+        "startLine": 97,
+        "startChar": 53,
+        "endLine": 97,
+        "endChar": 61
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19d8b506_ebc60bd8",
@@ -290,6 +578,30 @@
       "writtenOn": "2024-09-30T16:42:21Z",
       "side": 1,
       "message": "avcCloudEvent",
+      "range": {
+        "startLine": 100,
+        "startChar": 57,
+        "endLine": 100,
+        "endChar": 65
+      },
+      "revId": "3a9bc6a33c9330746e5b773c35e453e7686515f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "147aec78_7b9a226a",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-01T14:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19d8b506_ebc60bd8",
       "range": {
         "startLine": 100,
         "startChar": 57,
