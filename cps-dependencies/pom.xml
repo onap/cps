@@ -4,6 +4,7 @@
   Copyright (c) 2021 Linux Foundation.
   Modifications Copyright (C) 2020-2024 Nordix Foundation
   Modifications Copyright (C) 2022 Bell Canada.
+  Modifications Copyright (C) 2024 TechMahindra Ltd.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -239,6 +240,11 @@
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-json</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-xml</artifactId>
                 <version>${groovy.version}</version>
             </dependency>
             <dependency>
