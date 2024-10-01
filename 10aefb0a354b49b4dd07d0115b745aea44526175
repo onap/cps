@@ -220,6 +220,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9600c15_85812e39",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-01T05:24:00Z",
+      "side": 1,
+      "message": "sure, I can discuss what can be the best approach here. I remember earlier it would log the entire payload with error message, but Daniel suggested to remove it because it is a security risk to log the data. We can do something generic like \"Data Validation Passed/Successful\".",
+      "parentUuid": "15b9666d_ad7b985d",
+      "range": {
+        "startLine": 78,
+        "startChar": 19,
+        "endLine": 78,
+        "endChar": 47
+      },
+      "revId": "10aefb0a354b49b4dd07d0115b745aea44526175",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85ad2002_5a9bfc79",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 19
