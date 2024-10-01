@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bae8324_1e65c10f",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-01T12:57:58Z",
+      "side": 1,
+      "message": "Many of these can be adjusted much closer to actual performance, like this 4c is trending at around 17 seconds, not 14. Similar for other cases.",
+      "range": {
+        "startLine": 97,
+        "startChar": 121,
+        "endLine": 97,
+        "endChar": 126
+      },
+      "revId": "27b959cc260cbb212361cbd697723067af41897c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
