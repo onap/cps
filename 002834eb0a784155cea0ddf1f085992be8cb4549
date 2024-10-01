@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2cb42d2_10e2de6f",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-01T15:39:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36b094b2_787d4e85",
+      "range": {
+        "startLine": 63,
+        "startChar": 26,
+        "endLine": 63,
+        "endChar": 82
+      },
+      "revId": "002834eb0a784155cea0ddf1f085992be8cb4549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d985cc5a_6a285f7c",
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "okz. maybe some smaller nodes can have lower memory. fair enough.\nhope the incoming load to it is not overwhelming 😊\nAgree. Needs additional discussion on the use case.",
       "parentUuid": "8a4abc26_361f2886",
+      "range": {
+        "startLine": 72,
+        "startChar": 18,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "002834eb0a784155cea0ddf1f085992be8cb4549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a16c3a_d5f69fbd",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-01T15:39:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa17c650_bf061be1",
       "range": {
         "startLine": 72,
         "startChar": 18,

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d36e29_534e67de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-01T15:39:35Z",
+      "side": 1,
+      "message": "The latest patch-set has been discussed offline and agreed to keep it 75%. The further update can be seen on the jira ticket.",
+      "revId": "d7147f34ad331ab0205d959591801814fd1a174f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
