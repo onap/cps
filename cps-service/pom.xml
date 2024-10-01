@@ -64,6 +64,11 @@
       <groupId>com.github.ben-manes.caffeine</groupId>
       <artifactId>caffeine</artifactId>
     </dependency>
+    <!-- Disable SpotBug Rules -->
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+    </dependency>
     <dependency>
       <!-- For parsing JSON object -->
       <groupId>com.google.code.gson</groupId>
@@ -139,6 +144,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
+
     <!-- T E S T   D E P E N D E N C I E S -->
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
