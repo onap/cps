@@ -86,6 +86,30 @@
       },
       "revId": "002834eb0a784155cea0ddf1f085992be8cb4549",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4abc26_361f2886",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-01T15:16:19Z",
+      "side": 1,
+      "message": "Maybe needs additional discussion. But the idea is that // uses between 2G and 3G, meaning it COULD run with only 2GB, so we should test against the lower amount.",
+      "parentUuid": "d985cc5a_6a285f7c",
+      "range": {
+        "startLine": 72,
+        "startChar": 18,
+        "endLine": 72,
+        "endChar": 20
+      },
+      "revId": "002834eb0a784155cea0ddf1f085992be8cb4549",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
