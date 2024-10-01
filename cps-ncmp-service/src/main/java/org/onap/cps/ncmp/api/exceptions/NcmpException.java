@@ -39,7 +39,18 @@ public class NcmpException extends RuntimeException {
      * @param details the error details
      */
     public NcmpException(final String message, final String details) {
-        super(message);
+        this(message, details, null);
+    }
+
+    /**
+     * Constructor with cause.
+     *
+     * @param message the error message
+     * @param details the error details
+     * @param cause the cause of the exception
+     */
+    public NcmpException(final String message, final String details, final Throwable cause) {
+        super(message, cause);
         this.details = details;
     }
 

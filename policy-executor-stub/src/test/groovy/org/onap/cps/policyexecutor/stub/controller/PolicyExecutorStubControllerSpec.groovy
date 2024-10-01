@@ -25,6 +25,7 @@ import org.onap.cps.policyexecutor.stub.model.NcmpDelete
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionRequest
 import org.onap.cps.policyexecutor.stub.model.PolicyExecutionResponse
 import org.onap.cps.policyexecutor.stub.model.Request
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
@@ -43,7 +44,14 @@ class PolicyExecutorStubControllerSpec extends Specification {
     @Autowired
     ObjectMapper objectMapper
 
+    @SpringBean
+    Sleeper sleeper = Spy()
+
     def url = '/policy-executor/api/v1/some-action'
+
+    def setup() {
+        PolicyExecutorStubController.slowResponseTimeInSeconds = 1
+    }
 
     def 'Execute policy action.'() {
         given: 'a policy execution request with target: #targetIdentifier'
@@ -66,6 +74,7 @@ class PolicyExecutorStubControllerSpec extends Specification {
             targetIdentifier        || expectedDecsisonId | expectedDecision | expectedMessage
             'some fdn'              || '1'                | 'deny'           | "Only FDNs containing 'cps-is-great' are allowed"
             'fdn with cps-is-great' || '2'                | 'allow'          | 'All good'
+            'slow'                  || '3'                | 'deny'           | "Only FDNs containing 'cps-is-great' are allowed"
     }
 
     def 'Execute policy action with a HTTP error code.'() {
@@ -116,6 +125,19 @@ class PolicyExecutorStubControllerSpec extends Specification {
                 .andReturn().response
         then: 'response status is Bad Request'
             assert response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'Execute policy action with interrupted exception during slow response.'() {
+        given: 'a policy execution request with target: "slow"'
+            def requestBody = createRequestBody('slow')
+            sleeper.haveALittleRest(_) >> { throw new InterruptedException() }
+        when: 'request is posted'
+            mockMvc.perform(post(url)
+                .header('Authorization','some string')
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+        then: 'response status is Bad Request'
+            noExceptionThrown()
     }
 
     def 'Execute policy action with missing or invalid attributes.'() {
