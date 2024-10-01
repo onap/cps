@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "779de9cb_f1341ae6",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-01T15:39:56Z",
+      "side": 1,
+      "message": "NB: just checking , is it also possible to serialize using the CloudEvent serializer? I mean is it available in the k6/x/kafka.. ( may not be relevant right now but wanted to know if you already know )",
+      "range": {
+        "startLine": 76,
+        "startChar": 24,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
