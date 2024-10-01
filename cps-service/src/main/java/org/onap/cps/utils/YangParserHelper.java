@@ -22,6 +22,7 @@ package org.onap.cps.utils;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URISyntaxException;
@@ -127,6 +128,7 @@ public class YangParserHelper {
         return dataContainerNodeBuilder.build();
     }
 
+    @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION", justification = "Problem originates in 3PP code")
     private ContainerNode parseXmlData(final String xmlData,
                                        final SchemaContext schemaContext,
                                        final String parentNodeXpath) {

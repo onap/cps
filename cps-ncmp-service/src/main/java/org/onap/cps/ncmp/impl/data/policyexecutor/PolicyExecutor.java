@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.data.policyexecutor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
@@ -45,6 +46,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Slf4j
 @Service
@@ -71,6 +73,8 @@ public class PolicyExecutor {
 
     private final ObjectMapper objectMapper;
 
+    private static final Throwable NO_ERROR = null;
+
     /**
      * Use the Policy Executor to check permission for a cm write operation.
      * Wil throw an exception when the operation is not permitted (work in progress)
@@ -88,26 +92,20 @@ public class PolicyExecutor {
                                 final String changeRequestAsJson) {
         log.trace("Policy Executor Enabled: {}", enabled);
         if (enabled) {
-            ResponseEntity<JsonNode> responseEntity = null;
             try {
-                responseEntity =
-                    getPolicyExecutorResponse(yangModelCmHandle, operationType, authorization, resourceIdentifier,
-                        changeRequestAsJson);
-            } catch (final RuntimeException runtimeException) {
-                processException(runtimeException);
-            }
-            if (responseEntity == null) {
-                log.warn("No valid response from Policy Executor, ignored");
-                return;
-            }
-            if (responseEntity.getStatusCode().is2xxSuccessful()) {
-                if (responseEntity.getBody() == null) {
+                final ResponseEntity<JsonNode> responseEntity = getPolicyExecutorResponse(yangModelCmHandle,
+                                                                                          operationType,
+                                                                                          authorization,
+                                                                                          resourceIdentifier,
+                                                                                          changeRequestAsJson);
+                final JsonNode responseBody = responseEntity.getBody();
+                if (responseBody == null) {
                     log.warn("No valid response body from Policy Executor, ignored");
                     return;
                 }
-                processSuccessResponse(responseEntity.getBody());
-            } else {
-                processNon2xxResponse(responseEntity.getStatusCode().value());
+                processSuccessResponse(responseBody);
+            } catch (final RuntimeException runtimeException) {
+                processException(runtimeException);
             }
         }
     }
@@ -173,35 +171,17 @@ public class PolicyExecutor {
             .block();
     }
 
-    private void processNon2xxResponse(final int httpStatusCode) {
-        processFallbackResponse("Policy Executor returned HTTP Status code " + httpStatusCode + ".");
-    }
-
-    private void processException(final RuntimeException runtimeException) {
-        if (runtimeException.getCause() instanceof TimeoutException) {
-            processFallbackResponse("Policy Executor request timed out.");
-        } else {
-            log.warn("Request to Policy Executor failed with unexpected exception", runtimeException);
-            throw runtimeException;
-        }
-    }
-
-    private void processFallbackResponse(final String message) {
-        final String decisionId = "N/A";
-        final String decision = defaultDecision;
-        final String warning = message + " Falling back to configured default decision: " + defaultDecision;
-        log.warn(warning);
-        processDecision(decisionId, decision, warning);
-    }
-
     private static void processSuccessResponse(final JsonNode responseBody) {
         final String decisionId = responseBody.path("decisionId").asText("unknown id");
         final String decision = responseBody.path("decision").asText("unknown");
         final String messageFromPolicyExecutor = responseBody.path("message").asText();
-        processDecision(decisionId, decision, messageFromPolicyExecutor);
+        processDecision(decisionId, decision, messageFromPolicyExecutor, NO_ERROR);
     }
 
-    private static void processDecision(final String decisionId, final String decision, final String details) {
+    private static void processDecision(final String decisionId,
+                                        final String decision,
+                                        final String details,
+                                        final Throwable optionalCauseOfError) {
         log.trace("Policy Executor decision id: {} ", decisionId);
         if ("allow".equals(decision)) {
             log.trace("Operation allowed.");
@@ -209,8 +189,37 @@ public class PolicyExecutor {
             log.warn("Policy Executor decision: {}", decision);
             log.warn("Policy Executor message: {}", details);
             final String message = "Operation not allowed. Decision id " + decisionId + " : " + decision;
-            throw new PolicyExecutorException(message, details);
+            throw new PolicyExecutorException(message, details, optionalCauseOfError);
         }
+    }
+
+    private void processException(final RuntimeException runtimeException) {
+        if (runtimeException instanceof WebClientResponseException) {
+            final WebClientResponseException webClientResponseException = (WebClientResponseException) runtimeException;
+            final int httpStatusCode = webClientResponseException.getStatusCode().value();
+            processFallbackResponse("Policy Executor returned HTTP Status code " + httpStatusCode + ".",
+                webClientResponseException);
+        } else {
+            final Throwable cause = runtimeException.getCause();
+            if (cause instanceof TimeoutException) {
+                processFallbackResponse("Policy Executor request timed out.", cause);
+            } else if (cause instanceof UnknownHostException) {
+                final String message
+                    = String.format("Cannot connect to Policy Executor (%s:%s).", serverAddress, serverPort);
+                processFallbackResponse(message, cause);
+            } else {
+                log.warn("Request to Policy Executor failed with unexpected exception", runtimeException);
+                throw runtimeException;
+            }
+        }
+    }
+
+    private void processFallbackResponse(final String message, final Throwable cause) {
+        final String decisionId = "N/A";
+        final String decision = defaultDecision;
+        final String warning = message + " Falling back to configured default decision: " + defaultDecision;
+        log.warn(warning);
+        processDecision(decisionId, decision, warning, cause);
     }
 
 }
