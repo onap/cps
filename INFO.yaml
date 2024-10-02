@@ -30,7 +30,7 @@ project_lead: &onap_releng_ptl
 primary_contact: *onap_releng_ptl
 issue_tracking:
     type: 'jira'
-    url: 'https://jira.onap.org/projects/CPS'
+    url: 'https://lf-onap.atlassian.net/projects/CPS'
     key: 'CPS'
 mailing_list:
     type: 'groups.io'
@@ -39,7 +39,7 @@ mailing_list:
 realtime_discussion: ''
 meetings:
     - type: 'zoom'
-      agenda: 'https://wiki.onap.org/pages/viewpage.action?pageId=111117075'
+      agenda: 'https://lf-onap.atlassian.net/wiki/spaces/DW/pages/18644995/2024-10-01+Meeting+notes+ONAP+O-RAN-SC+SMO+-+Meeting+-+Agenda'
       url: 'https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09'
       server: 'n/a'
       channel: 'n/a'
