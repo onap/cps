@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -59,11 +59,9 @@ public class CpsPathUtil {
         return getCpsPathBuilder(xpathSource).build().getNormalizedParentPath();
     }
 
-    public static String[] getXpathNodeIdSequence(final String xpathSource) {
-        final List<String> containerNames = getCpsPathBuilder(xpathSource).build().getContainerNames();
-        return containerNames.toArray(new String[containerNames.size()]);
+    public static List<String> getXpathNodeIdSequence(final String xpathSource) {
+        return getCpsPathBuilder(xpathSource).build().getContainerNames();
     }
-
 
     /**
      * Returns boolean indicating xpath is an absolute path to a list element.

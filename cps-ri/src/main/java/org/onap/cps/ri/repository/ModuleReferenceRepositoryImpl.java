@@ -64,7 +64,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         }
 
         final String tempTableName = tempTableCreator.createTemporaryTable(
-            "moduleReferencesToCheckTemp", sqlData, "module_name", "revision");
+            "moduleReferencesToCheckTemp", sqlData, List.of("module_name", "revision"));
 
         return identifyNewModuleReferencesForCmHandle(tempTableName);
     }

@@ -341,8 +341,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             if (anchorIds.isEmpty()) {
                 fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
             } else {
-                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(
-                        anchorIds.toArray(new Long[0]), ancestorXpaths.toArray(new String[0]));
+                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(anchorIds, ancestorXpaths);
             }
 
         }
@@ -475,7 +474,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, deleteChecklist);
         if (onlySupportListDeletion) {
             final Collection<String> xpathsToExistingListElements = xpathsToExistingContainers.stream()
-                .filter(CpsPathUtil::isPathToListElement).collect(Collectors.toList());
+                .filter(CpsPathUtil::isPathToListElement).toList();
             deleteChecklist.removeAll(xpathsToExistingListElements);
         } else {
             deleteChecklist.removeAll(xpathsToExistingContainers);
@@ -483,15 +482,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpathsToExistingLists = deleteChecklist.stream()
             .filter(xpath -> fragmentRepository.existsByAnchorAndXpathStartsWith(anchorEntity, xpath + "["))
-            .collect(Collectors.toList());
+            .toList();
         deleteChecklist.removeAll(xpathsToExistingLists);
 
         if (!deleteChecklist.isEmpty()) {
             throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, deleteChecklist);
         }
 
-        fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToExistingContainers);
-        fragmentRepository.deleteListsByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToExistingLists);
+        if (!xpathsToExistingContainers.isEmpty()) {
+            fragmentRepository.deleteByAnchorIdAndXpaths(anchorEntity.getId(), xpathsToExistingContainers);
+        }
+        for (final String listXpath : xpathsToExistingLists) {
+            fragmentRepository.deleteListByAnchorIdAndXpath(anchorEntity.getId(), listXpath);
+        }
     }
 
     @Override

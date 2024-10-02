@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation.
+ *  Copyright (C) 2022-2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,8 @@ package org.onap.cps.ri.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -54,7 +52,7 @@ public class TempTableCreator {
      */
     public String createTemporaryTable(final String prefix,
                                        final Collection<List<String>> sqlData,
-                                       final String... columnNames) {
+                                       final Collection<String> columnNames) {
         final String tempTableName = prefix + UUID.randomUUID().toString().replace("-", "");
         final StringBuilder sqlStringBuilder = new StringBuilder("CREATE TEMPORARY TABLE ");
         sqlStringBuilder.append(tempTableName);
@@ -65,29 +63,21 @@ public class TempTableCreator {
         return tempTableName;
     }
 
-    private static void defineColumns(final StringBuilder sqlStringBuilder, final String[] columnNames) {
-        sqlStringBuilder.append('(');
-        final Iterator<String> it = Arrays.stream(columnNames).iterator();
-        while (it.hasNext()) {
-            final String columnName = it.next();
-            sqlStringBuilder.append(" ");
-            sqlStringBuilder.append(columnName);
-            sqlStringBuilder.append(" varchar NOT NULL");
-            if (it.hasNext()) {
-                sqlStringBuilder.append(",");
-            }
-        }
-        sqlStringBuilder.append(")");
+    private static void defineColumns(final StringBuilder sqlStringBuilder, final Collection<String> columnNames) {
+        final String columns = columnNames.stream()
+                .map(columnName -> " " + columnName + " varchar NOT NULL")
+                .collect(Collectors.joining(","));
+        sqlStringBuilder.append('(').append(columns).append(')');
     }
 
     private static void insertData(final StringBuilder sqlStringBuilder,
                                    final String tempTableName,
-                                   final String[] columnNames,
+                                   final Collection<String> columnNames,
                                    final Collection<List<String>> sqlData) {
         final Collection<String> sqlInserts = new HashSet<>(sqlData.size());
         for (final Collection<String> rowValues : sqlData) {
             final Collection<String> escapedValues =
-                rowValues.stream().map(EscapeUtils::escapeForSqlStringLiteral).collect(Collectors.toList());
+                rowValues.stream().map(EscapeUtils::escapeForSqlStringLiteral).toList();
             sqlInserts.add("('" + String.join("','", escapedValues) + "')");
         }
         sqlStringBuilder.append("INSERT INTO ");

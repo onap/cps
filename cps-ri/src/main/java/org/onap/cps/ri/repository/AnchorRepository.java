@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,26 +46,26 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
 
     Collection<AnchorEntity> findAllBySchemaSet(SchemaSetEntity schemaSetEntity);
 
-    @Query(value = "SELECT * FROM anchor WHERE dataspace_id = :dataspaceId AND name = ANY (:anchorNames)",
+    @Query(value = "SELECT * FROM anchor WHERE dataspace_id = :dataspaceId AND name IN (:anchorNames)",
         nativeQuery = true)
     Collection<AnchorEntity> findAllByDataspaceIdAndNameIn(@Param("dataspaceId") int dataspaceId,
-                                                           @Param("anchorNames") String[] anchorNames);
+                                                           @Param("anchorNames") Collection<String> anchorNames);
 
     default Collection<AnchorEntity> findAllByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
                                                                  final Collection<String> anchorNames) {
-        return findAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
+        return findAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames);
     }
 
     @Query(value = "SELECT a.* FROM anchor a"
         + " LEFT OUTER JOIN schema_set s ON a.schema_set_id = s.id"
-        + " WHERE a.dataspace_id = :dataspaceId AND s.name = ANY (:schemaSetNames)",
+        + " WHERE a.dataspace_id = :dataspaceId AND s.name IN (:schemaSetNames)",
         nativeQuery = true)
-    Collection<AnchorEntity> findAllByDataspaceIdAndSchemaSetNameIn(@Param("dataspaceId") int dataspaceId,
-                                                                    @Param("schemaSetNames") String[] schemaSetNames);
+    Collection<AnchorEntity> findAllByDataspaceIdAndSchemaSetNameIn(
+            @Param("dataspaceId") int dataspaceId, @Param("schemaSetNames") Collection<String> schemaSetNames);
 
     default Collection<AnchorEntity> findAllByDataspaceAndSchemaSetNameIn(final DataspaceEntity dataspaceEntity,
                                                                           final Collection<String> schemaSetNames) {
-        return findAllByDataspaceIdAndSchemaSetNameIn(dataspaceEntity.getId(), schemaSetNames.toArray(new String[0]));
+        return findAllByDataspaceIdAndSchemaSetNameIn(dataspaceEntity.getId(), schemaSetNames);
     }
 
     Integer countByDataspace(DataspaceEntity dataspaceEntity);
@@ -80,7 +80,7 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
                 JOIN anchor ON anchor.schema_set_id = schema_set.id
             WHERE
                     schema_set.dataspace_id = :dataspaceId
-                AND module_name = ANY ( :moduleNames )
+                AND module_name IN (:moduleNames)
             GROUP BY
                 anchor.id,
                 anchor.name,
@@ -90,25 +90,18 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
                 COUNT(DISTINCT module_name) = :sizeOfModuleNames
             """, nativeQuery = true)
     Collection<String> getAnchorNamesByDataspaceIdAndModuleNames(@Param("dataspaceId") int dataspaceId,
-                                                                 @Param("moduleNames") String[] moduleNames,
+                                                                 @Param("moduleNames") Collection<String> moduleNames,
                                                                  @Param("sizeOfModuleNames") int sizeOfModuleNames);
 
-    default Collection<String> getAnchorNamesByDataspaceIdAndModuleNames(final int dataspaceId,
-                                                                         final Collection<String> moduleNames,
-                                                                         final int sizeOfModuleNames) {
-        final String[] moduleNamesArray = moduleNames.toArray(new String[0]);
-        return getAnchorNamesByDataspaceIdAndModuleNames(dataspaceId, moduleNamesArray, sizeOfModuleNames);
-    }
-
     @Modifying
-    @Query(value = "DELETE FROM anchor WHERE dataspace_id = :dataspaceId AND name = ANY (:anchorNames)",
+    @Query(value = "DELETE FROM anchor WHERE dataspace_id = :dataspaceId AND name IN (:anchorNames)",
         nativeQuery = true)
     void deleteAllByDataspaceIdAndNameIn(@Param("dataspaceId") int dataspaceId,
-                                         @Param("anchorNames") String[] anchorNames);
+                                         @Param("anchorNames") Collection<String> anchorNames);
 
     default void deleteAllByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
                                                final Collection<String> anchorNames) {
-        deleteAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames.toArray(new String[0]));
+        deleteAllByDataspaceIdAndNameIn(dataspaceEntity.getId(), anchorNames);
     }
 
     @Modifying
