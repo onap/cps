@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3716c3_921ecfaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-02T15:48:32Z",
+      "side": 1,
+      "message": "NB: There are still 4 links that not replaced with the new ones I am not sure if the job verify them if they are not in rtd files.\n\nHere:\nCpsPath.g4 Line 94\nINFO.yaml line 33\nEventsPublisher.java line 47 and line 76",
+      "revId": "e6cc912a9e3956be3b119b9c8b1f2d080cbc5b56",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
