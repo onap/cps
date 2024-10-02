@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b5639e_19f10797",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "nice , but have a few last suggestions",
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92288339_6c96f82d",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "This",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa45910_78bca84d",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "Specific Query Parameters",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3bb8687_f7c3ade1",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "...following additional/specific query...",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6010b61d_42837f55",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "This",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d8294f_63572b5f",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:28:24Z",
+      "side": 1,
+      "message": "the delta report is always generated its not an optional thing. I would simplify it like this:\nThe response is a Delta Report, which can be used...\nOR something like\nThe difference found are compiled into a Delta Report returned by the server. This report can be used...",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 70
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
