@@ -30,7 +30,7 @@ project_lead: &onap_releng_ptl
 primary_contact: *onap_releng_ptl
 issue_tracking:
     type: 'jira'
-    url: 'https://jira.onap.org/projects/CPS'
+    url: 'https://lf-onap.atlassian.net/projects/CPS'
     key: 'CPS'
 mailing_list:
     type: 'groups.io'
