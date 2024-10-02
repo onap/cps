@@ -51,6 +51,6 @@ This is built previously from the CPS-NF-Proxy component.
 CPS Project
 ===========
 
-* Wiki: `Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
+* Wiki: `Configuration Persistence Service Project <https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16398157/Configuration+Persistence+Service+Project>`_
 * Contact Information: onap-discuss@lists.onap.org
-* Meeting details: `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_ & `Agenda <https://wiki.onap.org/pages/viewpage.action?pageId=111117075>`_
+* Meeting details: `Join  <https://zoom.us/j/836561560?pwd=TTZNcFhXTWYxMmZ4SlgzcVZZQXluUT09>`_ & `Agenda <https://lf-onap.atlassian.net/wiki/pages/viewpage.action?pageId=111117075>`_

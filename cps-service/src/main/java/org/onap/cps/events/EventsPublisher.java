@@ -44,7 +44,7 @@ public class EventsPublisher<T> {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
-     * Note: Cloud events should be used. This will be addressed as part of  https://jira.onap.org/browse/CPS-1717.
+     * Note: Cloud events should be used. This will be addressed as part of  https://lf-onap.atlassian.net/browse/CPS-1717.
      */
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
@@ -73,7 +73,7 @@ public class EventsPublisher<T> {
 
     /**
      * Generic Event publisher.
-     * Note: Cloud events should be used. This will be addressed as part of  https://jira.onap.org/browse/CPS-1717.
+     * Note: Cloud events should be used. This will be addressed as part of  https://lf-onap.atlassian.net/browse/CPS-1717.
      *
      * @param topicName valid topic name
      * @param eventKey  message key

@@ -91,7 +91,7 @@ KW_CONTAINS_FUNCTION : 'contains' ;
 KW_ANCESTOR_AXIS_PREFIX : SLASH KW_ANCESTOR COLONCOLON ;
 
 IntegerLiteral : FragDigits ;
-// Add below type definitions for leafvalue comparision in https://jira.onap.org/browse/CPS-440
+// Add below type definitions for leafvalue comparision in https://lf-onap.atlassian.net/CPS-440
 DecimalLiteral : ('.' FragDigits) | (FragDigits '.' [0-9]*) ;
 DoubleLiteral : (('.' FragDigits) | (FragDigits ('.' [0-9]*)?)) [eE] [+-]? FragDigits ;
 StringLiteral : '"' (~["] | FragEscapeQuot)* '"' | '\'' (~['] | FragEscapeApos)* '\'' ;
