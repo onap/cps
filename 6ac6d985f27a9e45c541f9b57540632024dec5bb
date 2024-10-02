@@ -22,6 +22,30 @@
       },
       "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e1adff4_214c95b2",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-02T08:51:45Z",
+      "side": 1,
+      "message": "Nope , we can\u0027t",
+      "parentUuid": "779de9cb_f1341ae6",
+      "range": {
+        "startLine": 76,
+        "startChar": 24,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
