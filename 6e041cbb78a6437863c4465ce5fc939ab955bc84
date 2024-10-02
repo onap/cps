@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2808a801_fb3832a2",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:20:46Z",
+      "side": 1,
+      "message": "good suggestions",
+      "parentUuid": "41624c17_2447d081",
+      "range": {
+        "startLine": 45,
+        "startChar": 26,
+        "endLine": 45,
+        "endChar": 111
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c761bba_884c5d93",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
         "patchSetId": 2
@@ -155,6 +179,30 @@
       "writtenOn": "2024-09-24T18:29:17Z",
       "side": 1,
       "message": "I think this rule could be more targeted: nothing should depend directly on cps-ri at all\n\ncpsReferenceImplShouldHaveNoDependants\n\n    classes().that().resideInAPackage(\"org.onap.cps.ri..\").should().onlyHaveDependentClassesThat()\n                    .resideInAnyPackage(\"org.onap.cps.ri..\");",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "6e041cbb78a6437863c4465ce5fc939ab955bc84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed0dd4c1_4a10dc50",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-02T14:20:46Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "fa9cfdb8_b37ec91a",
       "range": {
         "startLine": 54,
         "startChar": 0,
