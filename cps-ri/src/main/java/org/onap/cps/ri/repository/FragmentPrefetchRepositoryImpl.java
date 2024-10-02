@@ -53,7 +53,7 @@ public class FragmentPrefetchRepositoryImpl implements FragmentPrefetchRepositor
         }
 
         final List<Long> fragmentEntityIds = proxiedFragmentEntities.stream()
-                .map(FragmentEntity::getId).collect(Collectors.toList());
+                .map(FragmentEntity::getId).toList();
 
         final Map<Long, AnchorEntity> anchorEntityPerId = proxiedFragmentEntities.stream()
                 .map(FragmentEntity::getAnchor)

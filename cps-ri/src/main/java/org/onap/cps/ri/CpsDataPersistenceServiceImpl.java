@@ -341,8 +341,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             if (anchorIds.isEmpty()) {
                 fragmentEntities = fragmentRepository.findByDataspaceAndXpathIn(dataspaceEntity, ancestorXpaths);
             } else {
-                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(
-                        anchorIds.toArray(new Long[0]), ancestorXpaths.toArray(new String[0]));
+                fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(anchorIds, ancestorXpaths);
             }
 
         }

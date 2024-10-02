@@ -61,10 +61,10 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
     }
 
     @Modifying
-    @Query(value = "DELETE FROM schema_set WHERE dataspace_id = :dataspaceId AND name = ANY (:schemaSetNames)",
+    @Query(value = "DELETE FROM schema_set WHERE dataspace_id = :dataspaceId AND name IN (:schemaSetNames)",
         nativeQuery = true)
     void deleteByDataspaceIdAndNameIn(@Param("dataspaceId") final int dataspaceId,
-                                      @Param("schemaSetNames") final String[] schemaSetNames);
+                                      @Param("schemaSetNames") final Collection<String> schemaSetNames);
 
     /**
      * Delete multiple schema sets in a given dataspace.
@@ -73,7 +73,7 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      */
     default void deleteByDataspaceAndNameIn(final DataspaceEntity dataspaceEntity,
                                             final Collection<String> schemaSetNames) {
-        deleteByDataspaceIdAndNameIn(dataspaceEntity.getId(), schemaSetNames.toArray(new String[0]));
+        deleteByDataspaceIdAndNameIn(dataspaceEntity.getId(), schemaSetNames);
     }
 
 }
