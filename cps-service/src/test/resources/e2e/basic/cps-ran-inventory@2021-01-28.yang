@@ -34,7 +34,7 @@ module cps-ran-inventory {
     description
       "RAN Network YANG Model for ONAP/O-RAN POC";
     reference
-      "https://wiki.onap.org/display/DW/E2E+Network+Slicing+Use+Case+in+R7+Guilin";
+      "https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16414819/E2E+Network+Slicing+Use+Case+in+R7+Guilin";
     }
 
     typedef Mcc {
