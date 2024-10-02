@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2023 Nordix Foundation.
+ * Copyright (C) 2021-2024 Nordix Foundation.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -48,14 +48,14 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
     }
 
-    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND xpath IN (:xpaths)",
             nativeQuery = true)
     List<FragmentEntity> findByAnchorIdAndXpathIn(@Param("anchorId") long anchorId,
-                                                  @Param("xpaths") String[] xpaths);
+                                                  @Param("xpaths") Collection<String> xpaths);
 
     default List<FragmentEntity> findByAnchorAndXpathIn(final AnchorEntity anchorEntity,
                                                         final Collection<String> xpaths) {
-        return findByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
+        return findByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths);
     }
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId \n"
@@ -70,58 +70,52 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     }
 
     @Query(value = "SELECT fragment.* FROM fragment JOIN anchor ON anchor.id = fragment.anchor_id "
-        + "WHERE dataspace_id = :dataspaceId AND xpath = ANY (:xpaths)", nativeQuery = true)
+        + "WHERE dataspace_id = :dataspaceId AND xpath IN (:xpaths)", nativeQuery = true)
     List<FragmentEntity> findByDataspaceIdAndXpathIn(@Param("dataspaceId") int dataspaceId,
-                                                     @Param("xpaths") String[] xpaths);
+                                                     @Param("xpaths") Collection<String> xpaths);
 
     default List<FragmentEntity> findByDataspaceAndXpathIn(final DataspaceEntity dataspaceEntity,
                                                            final Collection<String> xpaths) {
-        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths.toArray(new String[0]));
+        return findByDataspaceIdAndXpathIn(dataspaceEntity.getId(), xpaths);
     }
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id IN (:anchorIds)"
-            + " AND xpath = ANY (:xpaths)", nativeQuery = true)
-    List<FragmentEntity> findByAnchorIdsAndXpathIn(@Param("anchorIds") Long[] anchorIds,
-                                                   @Param("xpaths") String[] xpaths);
+            + " AND xpath IN (:xpaths)", nativeQuery = true)
+    List<FragmentEntity> findByAnchorIdsAndXpathIn(@Param("anchorIds") Collection<Long> anchorIds,
+                                                   @Param("xpaths") Collection<String> xpaths);
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
     Optional<FragmentEntity> findOneByAnchorId(@Param("anchorId") long anchorId);
 
     @Modifying
-    @Query(value = "DELETE FROM fragment WHERE anchor_id = ANY (:anchorIds)", nativeQuery = true)
-    void deleteByAnchorIdIn(@Param("anchorIds") long[] anchorIds);
+    @Query(value = "DELETE FROM fragment WHERE anchor_id IN (:anchorIds)", nativeQuery = true)
+    void deleteByAnchorIdIn(@Param("anchorIds") Collection<Long> anchorIds);
 
     default void deleteByAnchorIn(final Collection<AnchorEntity> anchorEntities) {
-        deleteByAnchorIdIn(anchorEntities.stream().map(AnchorEntity::getId).mapToLong(id -> id).toArray());
+        deleteByAnchorIdIn(anchorEntities.stream().map(AnchorEntity::getId).toList());
     }
 
     @Modifying
-    @Query(value = "DELETE FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)", nativeQuery = true)
-    void deleteByAnchorIdAndXpaths(@Param("anchorId") long anchorId, @Param("xpaths") String[] xpaths);
-
-    default void deleteByAnchorIdAndXpaths(final long anchorId, final Collection<String> xpaths) {
-        deleteByAnchorIdAndXpaths(anchorId, xpaths.toArray(new String[0]));
-    }
+    @Query(value = "DELETE FROM fragment WHERE anchor_id = :anchorId AND xpath IN (:xpaths)", nativeQuery = true)
+    void deleteByAnchorIdAndXpaths(@Param("anchorId") long anchorId, @Param("xpaths") Collection<String> xpaths);
 
     @Modifying
-    @Query(value = "DELETE FROM fragment f WHERE anchor_id = :anchorId AND xpath LIKE ANY (:xpathPatterns)",
+    @Query(value = "DELETE FROM fragment f WHERE anchor_id = :anchorId AND xpath LIKE :xpathPattern",
         nativeQuery = true)
-    void deleteByAnchorIdAndXpathLikeAny(@Param("anchorId") long anchorId,
-                                         @Param("xpathPatterns") String[] xpathPatterns);
+    void deleteByAnchorIdAndXpathLike(@Param("anchorId") long anchorId, @Param("xpathPattern") String xpathPattern);
 
-    default void deleteListsByAnchorIdAndXpaths(long anchorId, Collection<String> xpaths) {
-        deleteByAnchorIdAndXpathLikeAny(anchorId,
-                xpaths.stream().map(xpath -> EscapeUtils.escapeForSqlLike(xpath) + "[@%").toArray(String[]::new));
+    default void deleteListByAnchorIdAndXpath(final long anchorId, final String xpath) {
+        deleteByAnchorIdAndXpathLike(anchorId, EscapeUtils.escapeForSqlLike(xpath) + "[@%");
     }
 
-    @Query(value = "SELECT xpath FROM fragment WHERE anchor_id = :anchorId AND xpath = ANY (:xpaths)",
+    @Query(value = "SELECT xpath FROM fragment WHERE anchor_id = :anchorId AND xpath IN (:xpaths)",
         nativeQuery = true)
     List<String> findAllXpathByAnchorIdAndXpathIn(@Param("anchorId") long anchorId,
-                                                  @Param("xpaths") String[] xpaths);
+                                                  @Param("xpaths") Collection<String> xpaths);
 
     default List<String> findAllXpathByAnchorAndXpathIn(final AnchorEntity anchorEntity,
                                                         final Collection<String> xpaths) {
-        return findAllXpathByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths.toArray(new String[0]));
+        return findAllXpathByAnchorIdAndXpathIn(anchorEntity.getId(), xpaths);
     }
 
     @Query(value = "SELECT EXISTS(SELECT 1 FROM fragment WHERE anchor_id = :anchorId"

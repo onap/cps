@@ -35,11 +35,7 @@ import org.springframework.stereotype.Repository;
 public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Integer>,
     YangResourceNativeRepository, SchemaSetYangResourceRepository {
 
-    List<YangResourceEntity> findAllByChecksumIn(String[] checksums);
-
-    default List<YangResourceEntity> findAllByChecksumIn(final Collection<String> checksums) {
-        return findAllByChecksumIn(checksums.toArray(new String[0]));
-    }
+    List<YangResourceEntity> findAllByChecksumIn(Collection<String> checksums);
 
     @Query(value = """
             SELECT DISTINCT
