@@ -19,7 +19,7 @@ parameters that need to be used by ONAP.
 CPS is no longer a stand alone component and is released along with and the NCMP-DMI-Plugin.
 
 Project page describing eventual scope and ambition is here:
-`Configuration Persistence Service Project <https://wiki.onap.org/display/DW/Configuration+Persistence+Service+Project>`_
+`Configuration Persistence Service Project <https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16398157/Configuration+Persistence+Service+Project>`_
 
 This page reflects the state for the latest release.
 
