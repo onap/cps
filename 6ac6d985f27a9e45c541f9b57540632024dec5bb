@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4644bb6_8074464a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-03T09:53:28Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9afc6de9_d007f13c",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-10-03T06:41:42Z",
       "side": 1,
       "message": "1000 vus is necessary ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240e802d_30fa08af",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-03T09:53:28Z",
+      "side": 1,
+      "message": "To publish all 100k or 200k within the time limit (5min) we need high number of vus",
+      "parentUuid": "9afc6de9_d007f13c",
       "range": {
         "startLine": 46,
         "startChar": 17,
