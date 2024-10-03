@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa2d164c_e43ec803",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-03T11:32:11Z",
+      "side": 1,
+      "message": "They run as part of the groovy performance test suite. It needs to be confirmed if the 32K query parameter limit even applies anymore.",
+      "parentUuid": "e0c6e6bf_d5822b00",
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "95dcb6cc_084658a8",
