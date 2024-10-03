@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f8626d5_59dca647",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-03T11:21:33Z",
+      "side": 1,
+      "message": "k6 job is currently running with this patch, from builds 2818.",
+      "parentUuid": "95dcb6cc_084658a8",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48ec1529_74430c10",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-10-03T11:09:31Z",
       "side": 1,
       "message": "Q: why is the \u0027default\u0027 method no longer needed?",
+      "range": {
+        "startLine": 92,
+        "startChar": 23,
+        "endLine": 92,
+        "endChar": 64
+      },
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdbaf0dc_046184be",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-03T11:21:33Z",
+      "side": 1,
+      "message": "The default was just converting Collection to array. After changing this, they both have same method signature, so overload can be removed.",
+      "parentUuid": "48ec1529_74430c10",
       "range": {
         "startLine": 92,
         "startChar": 23,
