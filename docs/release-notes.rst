@@ -39,6 +39,7 @@ Release Data
 Bug Fixes
 ---------
 3.5.3
+    - `CPS-2409 <https://lf-onap.atlassian.net/browse/CPS-2409>`_ Fix for 500 Internal Server Error occurring after upgrade and service restart with data in DB
 
 Features
 --------
