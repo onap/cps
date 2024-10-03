@@ -1,0 +1,116 @@
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2021-2023 Nordix Foundation
+#  Modifications Copyright (C) 2021 Pantheon.tech
+#  Modifications Copyright (C) 2021 Bell Canada.
+#  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+openapi: 3.0.3
+info:
+  title: ONAP Open API v3 Configuration Persistence Service
+  description: Configuration Persistence Service is a Model Driven Generic Database
+  version: "3.5.2"
+  contact:
+     name: ONAP
+     url: "https://onap.readthedocs.io"
+     email: "onap-discuss@lists.onap.org"
+  license:
+      name: "Apache 2.0"
+      url: "http://www.apache.org/licenses/LICENSE-2.0"
+
+servers:
+  - url: /cps/api
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+tags:
+  - name: cps-admin
+    description: cps Admin
+  - name: cps-data
+    description: cps Data
+paths:
+
+  /v1/dataspaces:
+    $ref: 'cpsAdminV1Deprecated.yml#/dataspaces'
+
+  /{apiVersion}/dataspaces:
+    $ref: 'cpsAdmin.yml#/dataspaces'
+
+  /v2/dataspaces:
+    $ref: 'cpsAdminV2.yml#/dataspaces'
+
+  /{apiVersion}/admin/dataspaces:
+    $ref: 'cpsAdmin.yml#/adminDataspaces'
+
+  /{apiVersion}/admin/dataspaces/{dataspace-name}:
+    $ref: 'cpsAdmin.yml#/adminDataspace'
+
+  /v1/dataspaces/{dataspace-name}/anchors:
+    $ref: 'cpsAdminV1Deprecated.yml#/anchorsByDataspace'
+
+  /v2/dataspaces/{dataspace-name}/anchors:
+    $ref: 'cpsAdminV2.yml#/anchorsByDataspace'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors:
+    $ref: 'cpsAdmin.yml#/anchorsByDataspace'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}:
+    $ref: 'cpsAdmin.yml#/anchorByDataspaceAndAnchorName'
+
+  /v1/dataspaces/{dataspace-name}/schema-sets:
+    $ref: 'cpsAdminV1Deprecated.yml#/schemaSet'
+
+  /v2/dataspaces/{dataspace-name}/schema-sets:
+    $ref: 'cpsAdminV2.yml#/schemaSet'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets:
+    $ref: 'cpsAdmin.yml#/schemaSet'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/schema-sets/{schema-set-name}:
+    $ref: 'cpsAdmin.yml#/schemaSetBySchemaSetName'
+
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV1Deprecated.yml#/nodeByDataspaceAndAnchor'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV2.yml#/nodeByDataspaceAndAnchor'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
+    $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'
+
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+    $ref: 'cpsDataV1Deprecated.yml#/listElementByDataspaceAndAnchor'
+
+  /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/list-nodes:
+    $ref: 'cpsData.yml#/listElementByDataspaceAndAnchor'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/delta:
+    $ref: 'cpsDataV2.yml#/delta'
+
+  /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV1Deprecated.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+
+  /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndAnchorAndCpsPath'
+
+  /v2/dataspaces/{dataspace-name}/nodes/query:
+    $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndCpsPath'
+
+security:
+  - basicAuth: []
