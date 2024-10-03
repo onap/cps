@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44daa9c_52459511",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T10:22:33Z",
+      "side": 1,
+      "message": "NB: no a gre\\t slogan\nSugegstion:  Add script for Jafa throughput test\n\n(that it is not part of K6 automated test can be in the details below",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d4644bb6_8074464a",
@@ -91,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6eef03a_0cd8836b",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T10:22:33Z",
+      "side": 1,
+      "message": "i understand Sourabh tried to populate the load as quick as posisble but I doubt too 1,000 is need and it might work just as fast with 100\n(would need to experiment but is not a blockign issue)",
+      "parentUuid": "9afc6de9_d007f13c",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "779de9cb_f1341ae6",
         "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
         "patchSetId": 3
@@ -131,6 +178,46 @@
         "startChar": 24,
         "endLine": 76,
         "endChar": 42
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31916bf3_63c27852",
+        "filename": "k6-tests/resources/sampleAvcInputEvent.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T10:22:33Z",
+      "side": 1,
+      "message": "Can you check(estimate) the size of the event incl header, multiple it by 40,000 and see what that mean in bandwidth (add to your report) I suspect that might be the actual bottleneck when used in a real cluster...\n\nLET me do that now myself...",
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de92875_8001f1d5",
+        "filename": "k6-tests/resources/sampleAvcInputEvent.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T10:22:33Z",
+      "side": 1,
+      "message": "are we sure thees are not ericsson specific models (3GPP is fine).\nI don\u0027t think the content of the string matters for this test, it might as well be \u0027lorem ipsum ...\u0027",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 153
       },
       "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
