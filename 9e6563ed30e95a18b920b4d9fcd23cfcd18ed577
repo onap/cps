@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c8df841_e0e68360",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T15:51:51Z",
+      "side": 1,
+      "message": "NB: Add a note that other dependencies wil follow in separate commits",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 89
+      },
+      "revId": "9e6563ed30e95a18b920b4d9fcd23cfcd18ed577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e36031c1_67c38a19",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T15:51:51Z",
+      "side": 1,
+      "message": "we agreed to extract out a common-accepted packages array with just java for now...\nWhat happened with that?!",
+      "range": {
+        "startLine": 48,
+        "startChar": 95,
+        "endLine": 48,
+        "endChar": 103
+      },
+      "revId": "9e6563ed30e95a18b920b4d9fcd23cfcd18ed577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345ad263_dcd388ef",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T15:51:51Z",
+      "side": 1,
+      "message": "below packages are breaking the agreed dependencies and need to be removed from this rule. This wil be handle in a separate user story",
+      "range": {
+        "startLine": 50,
+        "startChar": 31,
+        "endLine": 50,
+        "endChar": 81
+      },
+      "revId": "9e6563ed30e95a18b920b4d9fcd23cfcd18ed577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496d7fa9_536a1a1a",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T15:51:51Z",
+      "side": 1,
+      "message": "use same comment as suggested above",
+      "range": {
+        "startLine": 61,
+        "startChar": 31,
+        "endLine": 61,
+        "endChar": 46
+      },
+      "revId": "9e6563ed30e95a18b920b4d9fcd23cfcd18ed577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
