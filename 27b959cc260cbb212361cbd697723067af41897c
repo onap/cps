@@ -46,6 +46,30 @@
       },
       "revId": "27b959cc260cbb212361cbd697723067af41897c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e01733_c26d3f6c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-03T10:36:42Z",
+      "side": 1,
+      "message": "After offline chat, the latest values have been applied.",
+      "parentUuid": "c5760dc7_4a233e7d",
+      "range": {
+        "startLine": 97,
+        "startChar": 121,
+        "endLine": 97,
+        "endChar": 126
+      },
+      "revId": "27b959cc260cbb212361cbd697723067af41897c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
