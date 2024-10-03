@@ -16,6 +16,29 @@
       "message": "looks good",
       "revId": "6041e3f4b9af9387added1c5d093150a247a24a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3c6423_ca198023",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-03T15:02:51Z",
+      "side": 1,
+      "message": "NB: No need this since there is no setup() function.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "6041e3f4b9af9387added1c5d093150a247a24a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
