@@ -110,6 +110,23 @@
       },
       "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f75e58_d767a444",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-03T11:24:34Z",
+      "side": 1,
+      "message": "I have verified this code is not used in NCMP, but it is exposed in CPS Core Rest.",
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
