@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad170d86_f57ed1dc",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-03T13:25:45Z",
+      "side": 1,
+      "message": "Examining closely, this is not needed. The bug ticket reproduction steps show that bug was introduced in 3.5.3-SNAPSHOT. Upgrading FROM 3.5.2 to 3.5.3-SNAPSHOT triggers the behaviour. This bug seems to have been introduced due to refactorings/changes made around Trust Level in this release.\n\nThus release note update not needed.",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 159
+      },
+      "revId": "ecfaea17f590382012a813b9ac19c0c9511713a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
