@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cb348abd_19134fd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-03T11:30:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f44daa9c_52459511",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d4644bb6_8074464a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -136,6 +160,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eed363d_e76d84aa",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-03T11:30:44Z",
+      "side": 1,
+      "message": "Tried with 100, 200,400,500 ... 1000 vus to publish 200k kafka messages and found 1000 vus are more optimal number to perform this this.",
+      "parentUuid": "d6eef03a_0cd8836b",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "779de9cb_f1341ae6",
@@ -213,6 +261,30 @@
       "writtenOn": "2024-10-03T10:22:33Z",
       "side": 1,
       "message": "are we sure thees are not ericsson specific models (3GPP is fine).\nI don\u0027t think the content of the string matters for this test, it might as well be \u0027lorem ipsum ...\u0027",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 153
+      },
+      "revId": "6ac6d985f27a9e45c541f9b57540632024dec5bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeaa8195_32575e69",
+        "filename": "k6-tests/resources/sampleAvcInputEvent.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-03T11:30:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5de92875_8001f1d5",
       "range": {
         "startLine": 11,
         "startChar": 25,
