@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64442573_bd84064f",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-03T06:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92288339_6c96f82d",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9aa45910_78bca84d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-10-02T14:28:24Z",
       "side": 1,
       "message": "Specific Query Parameters",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2403bc2a_8ca6570f",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-03T06:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aa45910_78bca84d",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3feba68f_5a398aae",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-03T06:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3bb8687_f7c3ade1",
+      "range": {
+        "startLine": 34,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6010b61d_42837f55",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4403bf63_f270c1cc",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-03T06:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6010b61d_42837f55",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35d8294f_63572b5f",
@@ -123,6 +219,30 @@
       "writtenOn": "2024-10-02T14:28:24Z",
       "side": 1,
       "message": "the delta report is always generated its not an optional thing. I would simplify it like this:\nThe response is a Delta Report, which can be used...\nOR something like\nThe difference found are compiled into a Delta Report returned by the server. This report can be used...",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 70
+      },
+      "revId": "49c53801ee9f3c19e814d8ba53860e83212f52c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e53ee75_b7476852",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-03T06:42:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35d8294f_63572b5f",
       "range": {
         "startLine": 19,
         "startChar": 0,
