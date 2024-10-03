@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c6e6bf_d5822b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T11:09:31Z",
+      "side": 1,
+      "message": "main question, why is the test with 33K element not affected in this patch (maybe the build is breaking, I need to check)",
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95dcb6cc_084658a8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T11:09:31Z",
+      "side": 1,
+      "message": "strange that the SQL syntax is different for a collection...\nthis definitly warrant a good performance check!",
+      "range": {
+        "startLine": 83,
+        "startChar": 32,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ec1529_74430c10",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-03T11:09:31Z",
+      "side": 1,
+      "message": "Q: why is the \u0027default\u0027 method no longer needed?",
+      "range": {
+        "startLine": 92,
+        "startChar": 23,
+        "endLine": 92,
+        "endChar": 64
+      },
+      "revId": "83e2a90e04ff32ec8d35f540bed06a81f52eab77",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
