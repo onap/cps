@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bffb5d7_fc0ca40a",
+        "filename": "docs/cps-delta-endpoints.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-04T08:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f2fbd27_140c5530",
+      "range": {
+        "startLine": 40,
+        "startChar": 84,
+        "endLine": 40,
+        "endChar": 97
+      },
+      "revId": "4f53d086fafb0cd5d6e70c48446173d81f79f865",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab8e4c2c_eb1e8b00",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5039506e_fe49d25b",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-04T08:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab8e4c2c_eb1e8b00",
+      "range": {
+        "startLine": 17,
+        "startChar": 44,
+        "endLine": 17,
+        "endChar": 57
+      },
+      "revId": "4f53d086fafb0cd5d6e70c48446173d81f79f865",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21b4821c_415c949c",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-10-03T14:02:06Z",
       "side": 1,
       "message": "NB: I see this old link works but to comply with the latest changes made by Sourabh you can update this link to:\n\nhttps://lf-onap.atlassian.net/wiki/spaces/DW/pages/16523520/Analysis+of+RFC+9144+and+RFC6902+for+Delta+Report+generation",
+      "range": {
+        "startLine": 31,
+        "startChar": 92,
+        "endLine": 31,
+        "endChar": 185
+      },
+      "revId": "4f53d086fafb0cd5d6e70c48446173d81f79f865",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58925fb5_7cf3f168",
+        "filename": "docs/cps-delta-feature.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-04T08:11:08Z",
+      "side": 1,
+      "message": "Thanks this one was important change I missed to fix. 😊",
+      "parentUuid": "21b4821c_415c949c",
       "range": {
         "startLine": 31,
         "startChar": 92,
