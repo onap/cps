@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLInputFactory;
@@ -181,12 +182,12 @@ public class YangParserHelper {
 
     private static Map<String, Object> getDataSchemaNodeAndIdentifiersByXpath(final String parentNodeXpath,
                                                                               final SchemaContext schemaContext) {
-        final String[] xpathNodeIdSequence = xpathToNodeIdSequence(parentNodeXpath);
+        final List<String> xpathNodeIdSequence = xpathToNodeIdSequence(parentNodeXpath);
         return findDataSchemaNodeAndIdentifiersByXpathNodeIdSequence(xpathNodeIdSequence, schemaContext.getChildNodes(),
                 new ArrayList<>());
     }
 
-    private static String[] xpathToNodeIdSequence(final String xpath) {
+    private static List<String> xpathToNodeIdSequence(final String xpath) {
         try {
             return CpsPathUtil.getXpathNodeIdSequence(xpath);
         } catch (final PathParsingException pathParsingException) {
@@ -196,17 +197,16 @@ public class YangParserHelper {
     }
 
     private static Map<String, Object> findDataSchemaNodeAndIdentifiersByXpathNodeIdSequence(
-            final String[] xpathNodeIdSequence,
+            final List<String> xpathNodeIdSequence,
             final Collection<? extends DataSchemaNode> dataSchemaNodes,
             final Collection<QName> dataSchemaNodeIdentifiers) {
-        final String currentXpathNodeId = xpathNodeIdSequence[0];
+        final String currentXpathNodeId = xpathNodeIdSequence.get(0);
         final DataSchemaNode currentDataSchemaNode = dataSchemaNodes.stream()
             .filter(dataSchemaNode -> currentXpathNodeId.equals(dataSchemaNode.getQName().getLocalName()))
             .findFirst().orElseThrow(() -> schemaNodeNotFoundException(currentXpathNodeId));
         dataSchemaNodeIdentifiers.add(currentDataSchemaNode.getQName());
-        if (xpathNodeIdSequence.length <= 1) {
-            final Map<String, Object> dataSchemaNodeAndIdentifiers =
-                    new HashMap<>();
+        if (xpathNodeIdSequence.size() <= 1) {
+            final Map<String, Object> dataSchemaNodeAndIdentifiers = new HashMap<>();
             dataSchemaNodeAndIdentifiers.put("dataSchemaNode", currentDataSchemaNode);
             dataSchemaNodeAndIdentifiers.put("dataSchemaNodeIdentifiers", dataSchemaNodeIdentifiers);
             return dataSchemaNodeAndIdentifiers;
@@ -217,13 +217,11 @@ public class YangParserHelper {
                     ((DataNodeContainer) currentDataSchemaNode).getChildNodes(),
                     dataSchemaNodeIdentifiers);
         }
-        throw schemaNodeNotFoundException(xpathNodeIdSequence[1]);
+        throw schemaNodeNotFoundException(xpathNodeIdSequence.get(1));
     }
 
-    private static String[] getNextLevelXpathNodeIdSequence(final String[] xpathNodeIdSequence) {
-        final String[] nextXpathNodeIdSequence = new String[xpathNodeIdSequence.length - 1];
-        System.arraycopy(xpathNodeIdSequence, 1, nextXpathNodeIdSequence, 0, nextXpathNodeIdSequence.length);
-        return nextXpathNodeIdSequence;
+    private static List<String> getNextLevelXpathNodeIdSequence(final List<String> xpathNodeIdSequence) {
+        return xpathNodeIdSequence.subList(1, xpathNodeIdSequence.size());
     }
 
     private static DataValidationException schemaNodeNotFoundException(final String schemaNodeIdentifier) {
