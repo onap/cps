@@ -1,72 +1,169 @@
-#  ============LICENSE_START=======================================================
-#  Copyright (C) 2024 Nordix Foundation
-#  ================================================================================
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-#
-#  SPDX-License-Identifier: Apache-2.0
-#  ============LICENSE_END=========================================================
-
 openapi: 3.0.3
 info:
+  description: Allows NCMP to execute a policy defined by a third party implementation
+    before proceeding with a CM operation
   title: Policy Executor
-  description: "Allows NCMP to execute a policy defined by a third party implementation before proceeding with a CM operation"
   version: 1.0.0
+servers:
+- url: /
+security:
+- bearerAuth: []
 tags:
-  - name: policy-executor
-    description: "Execute all your policies"
+- description: Execute all your policies
+  name: policy-executor
 paths:
   /policy-executor/api/v1/{action}:
     post:
-      description: "Fire a Policy action"
+      description: Fire a Policy action
       operationId: executePolicyAction
       parameters:
-        - $ref: '#/components/parameters/authorizationInHeader'
-        - $ref: '#/components/parameters/actionInPath'
-      requestBody:
+      - description: Bearer token may be used to identify client as part of a policy
+        explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "The policy action. Currently supported options: 'execute'"
+        explode: false
+        in: path
+        name: action
         required: true
-        description: "The action request body"
+        schema:
+          example: execute
+          type: string
+        style: simple
+      requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PolicyExecutionRequest'
-      tags:
-        - policy-executor
+        description: The action request body
+        required: true
       responses:
-        '200':
-          description: "Successful policy execution"
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyExecutionResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-
+          description: Successful policy execution
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              example:
+                status: 401
+                message: Unauthorized request
+                details: This request is unauthorized
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Unauthorized request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Request forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal server error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal server error
+      tags:
+      - policy-executor
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      description: "Bearer token (from client that called CPS-NCMP),used by policies to identify the client"
-      scheme: bearer
+  parameters:
+    actionInPath:
+      description: "The policy action. Currently supported options: 'execute'"
+      explode: false
+      in: path
+      name: action
+      required: true
+      schema:
+        example: execute
+        type: string
+      style: simple
+    authorizationInHeader:
+      description: Bearer token may be used to identify client as part of a policy
+      explode: false
+      in: header
+      name: Authorization
+      required: false
+      schema:
+        type: string
+      style: simple
+  responses:
+    BadRequest:
+      content:
+        application/json:
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Bad request
+    Unauthorized:
+      content:
+        application/json:
+          example:
+            status: 401
+            message: Unauthorized request
+            details: This request is unauthorized
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Unauthorized request
+    Forbidden:
+      content:
+        application/json:
+          example:
+            status: 403
+            message: Request Forbidden
+            details: This request is forbidden
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Request forbidden
+    InternalServerError:
+      content:
+        application/json:
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal server error occurred
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Internal server error
+    NotImplemented:
+      content:
+        application/json:
+          example:
+            status: 501
+            message: Not Implemented
+            details: Method not implemented
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Method not (yet) implemented
   schemas:
     ErrorMessage:
-      type: object
-      title: Error
       properties:
         status:
           type: string
@@ -74,125 +171,73 @@ components:
           type: string
         details:
           type: string
-
-    Request:
+      title: Error
       type: object
+    Request:
+      example:
+        schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
+        data: "{}"
       properties:
         schema:
+          description: The schema for the data in this request. The schema name should
+            include the type of operation
+          example: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
           type: string
-          description: "The schema for the data in this request. The schema name should include the type of operation"
-          example: "org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0"
         data:
+          description: The data related to the request. The format of the object is
+            determined by the schema
           type: object
-          description: "The data related to the request. The format of the object is determined by the schema"
       required:
-        - schema
-        - data
-
-    PolicyExecutionRequest:
+      - data
+      - schema
       type: object
+    PolicyExecutionRequest:
+      example:
+        decisionType: allow
+        requests:
+        - schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
+          data: "{}"
+        - schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
+          data: "{}"
       properties:
         decisionType:
-          type: string
           description: "The type of decision. Currently supported options: 'allow'"
-          example: "allow"
+          example: allow
+          type: string
         requests:
-          type: array
           items:
             $ref: '#/components/schemas/Request'
+          type: array
       required:
-        - decisionType
-        - requests
-
-    PolicyExecutionResponse:
+      - decisionType
+      - requests
       type: object
+    PolicyExecutionResponse:
+      example:
+        decision: deny
+        decisionId: 550e8400-e29b-41d4-a716-446655440000
+        message: Object locked due to recent change
       properties:
         decisionId:
+          description: Unique ID for the decision (for auditing purposes)
+          example: 550e8400-e29b-41d4-a716-446655440000
           type: string
-          description: "Unique ID for the decision (for auditing purposes)"
-          example: "550e8400-e29b-41d4-a716-446655440000"
         decision:
-          type: string
           description: "The decision outcome. Currently supported values: 'allow','deny'"
-          example: "deny"
-        message:
+          example: deny
           type: string
-          description: "Additional information regarding the decision outcome"
-          example: "Object locked due to recent change"
+        message:
+          description: Additional information regarding the decision outcome
+          example: Object locked due to recent change
+          type: string
       required:
-        - decisionId
-        - decision
-        - message
-
-  responses:
-    BadRequest:
-      description: "Bad request"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 400
-            message: "Bad Request"
-            details: "The provided request is not valid"
-    Unauthorized:
-      description: "Unauthorized request"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 401
-            message: "Unauthorized request"
-            details: "This request is unauthorized"
-    Forbidden:
-      description: "Request forbidden"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 403
-            message: "Request Forbidden"
-            details: "This request is forbidden"
-
-    InternalServerError:
-      description: "Internal server error"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 500
-            message: "Internal Server Error"
-            details: "Internal server error occurred"
-
-    NotImplemented:
-      description: "Method not (yet) implemented"
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-          example:
-            status: 501
-            message: "Not Implemented"
-            details: "Method not implemented"
-
-  parameters:
-    actionInPath:
-      name: action
-      in: path
-      description: "The policy action. Currently supported options: 'execute'"
-      required: true
-      schema:
-        type: string
-        example: "execute"
-    authorizationInHeader:
-      name: Authorization
-      in: header
-      description: "Bearer token may be used to identify client as part of a policy"
-      schema:
-        type: string
-
-security:
-  - bearerAuth: []
+      - decision
+      - decisionId
+      - message
+      type: object
+  securitySchemes:
+    bearerAuth:
+      description: "Bearer token (from client that called CPS-NCMP),used by policies\
+        \ to identify the client"
+      scheme: bearer
+      type: http
