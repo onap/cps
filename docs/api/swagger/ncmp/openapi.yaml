@@ -20,13 +20,14 @@ paths:
         schema:
           example: ncmp-datastore:running
           type: string
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
@@ -130,13 +131,14 @@ paths:
         schema:
           example: ncmp-datastore:running
           type: string
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
@@ -264,13 +266,14 @@ paths:
         schema:
           example: ncmp-datastore:running
           type: string
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
@@ -377,13 +380,14 @@ paths:
         schema:
           example: ncmp-datastore:running
           type: string
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
@@ -495,13 +499,14 @@ paths:
         schema:
           example: ncmp-datastore:running
           type: string
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: The format of resource identifier depend on the associated DMI
           Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but
@@ -824,13 +829,14 @@ paths:
         handle
       operationId: getModuleReferencesByCmHandle
       parameters:
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       responses:
         "200":
@@ -880,13 +886,14 @@ paths:
         \ with options to filter on module name and revision"
       operationId: getModuleDefinitions
       parameters:
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       - description: Filter for a module name.This is an optional parameter
         in: query
@@ -1017,13 +1024,14 @@ paths:
       description: Retrieve CM handle details and properties by cm handle id
       operationId: retrieveCmHandleDetailsById
       parameters:
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       responses:
         "200":
@@ -1070,13 +1078,14 @@ paths:
       description: Get CM handle properties by cm handle id
       operationId: getCmHandlePublicPropertiesByCmHandleId
       parameters:
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       responses:
         "200":
@@ -1210,13 +1219,14 @@ paths:
       description: Get CM handle state by cm handle id
       operationId: getCmHandleStateByCmHandleId
       parameters:
-      - description: "The identifier for a network function, network element, subnetwork\
-          \ or any other cm object by managed Network CM Proxy"
+      - description: "The identifier (cmHandle or alternate) for a network function,\
+          \ network element, subnetwork or any other cm object by managed Network\
+          \ CM Proxy"
         in: path
         name: cm-handle
         required: true
         schema:
-          example: my-cm-handle
+          example: my-cm-handle-reference
           type: string
       responses:
         "200":
@@ -1464,14 +1474,15 @@ components:
       schema:
         example: ncmp-datastore:running
         type: string
-    cmHandleInPath:
-      description: "The identifier for a network function, network element, subnetwork\
-        \ or any other cm object by managed Network CM Proxy"
+    cmHandleReferenceInPath:
+      description: "The identifier (cmHandle or alternate) for a network function,\
+        \ network element, subnetwork or any other cm object by managed Network CM\
+        \ Proxy"
       in: path
       name: cm-handle
       required: true
       schema:
-        example: my-cm-handle
+        example: my-cm-handle-reference
         type: string
     resourceIdentifierInQuery:
       description: The format of resource identifier depend on the associated DMI
@@ -1557,6 +1568,15 @@ components:
       name: topic
       required: true
       schema:
+        type: string
+    cmHandleInPath:
+      description: "The identifier for a network function, network element, subnetwork\
+        \ or any other cm object by managed Network CM Proxy"
+      in: path
+      name: cm-handle
+      required: true
+      schema:
+        example: my-cm-handle
         type: string
     cpsPathInQuery:
       description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"

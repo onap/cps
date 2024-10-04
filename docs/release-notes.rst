@@ -39,10 +39,18 @@ Release Data
 Bug Fixes
 ---------
 3.5.3
+    - `CPS-2353 <https://lf-onap.atlassian.net/browse/CPS-2353>`_ Slow cmHandle registration when we use moduleSetTag, alternateId and dataProducerIdentifier
+    - `CPS-2395 <https://lf-onap.atlassian.net/browse/CPS-2395>`_ Retry mechanism (with back off algorithm) is removed with more frequent watchdog poll
+    - `CPS-2409 <https://lf-onap.atlassian.net/browse/CPS-2409>`_ Return NONE for get effective trust level api if the trust level caches empty (restart case)
+    - `CPS-2430 <https://lf-onap.atlassian.net/browse/CPS-2430>`_ Fix memory leak related to using arrays in Hibernate
+
 
 Features
 --------
 3.5.3
+    - `CPS-2247 <https://lf-onap.atlassian.net/browse/CPS-2247>`_ Policy Executor: Invoke Policy Executor and handle 'deny' response
+    - `CPS-2412 <https://lf-onap.atlassian.net/browse/CPS-2412>`_ Policy Executor: handle errors
+    - `CPS-2417 <https://lf-onap.atlassian.net/browse/CPS-2417>`_ Remove Hazelcast cache for prefix resolver
 
 
 Version: 3.5.2
