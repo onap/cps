@@ -76,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49cc994d_201c9882",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-04T13:51:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51ba885a_0bbb4d02",
+      "range": {
+        "startLine": 42,
+        "startChar": 157,
+        "endLine": 43,
+        "endChar": 162
+      },
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96268ede_59aa684e",
@@ -99,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efccaa68_972cfa77",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-04T13:51:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96268ede_59aa684e",
+      "range": {
+        "startLine": 52,
+        "startChar": 132,
+        "endLine": 53,
+        "endChar": 142
+      },
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93bc495f_a6637214",
@@ -112,6 +160,30 @@
       "writtenOn": "2024-10-04T13:43:38Z",
       "side": 1,
       "message": "NB: need to be in incremental order.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71025b90_2438009b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-04T13:51:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "93bc495f_a6637214",
       "range": {
         "startLine": 54,
         "startChar": 4,
