@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af7c8bc7_72ba33ee",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-04T13:49:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "109459cf_090d4235",
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ba885a_0bbb4d02",
