@@ -16,6 +16,23 @@
       "message": "had a look at this one.\nlooks fine to me.",
       "revId": "153aa48c6945cfc54ceb1b3f6a38508ad93f1d16",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1b563f_2d00d235",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-04T11:58:35Z",
+      "side": 1,
+      "message": "NB: copyright can be sorted later",
+      "revId": "153aa48c6945cfc54ceb1b3f6a38508ad93f1d16",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
