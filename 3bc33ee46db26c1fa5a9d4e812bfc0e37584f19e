@@ -37,6 +37,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51ba885a_0bbb4d02",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-04T13:48:26Z",
+      "side": 1,
+      "message": "This change was reverted and is not part of current release",
+      "range": {
+        "startLine": 42,
+        "startChar": 157,
+        "endLine": 43,
+        "endChar": 162
+      },
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96268ede_59aa684e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-04T13:48:26Z",
+      "side": 1,
+      "message": "This is not implemented",
+      "range": {
+        "startLine": 52,
+        "startChar": 132,
+        "endLine": 53,
+        "endChar": 142
+      },
+      "revId": "3bc33ee46db26c1fa5a9d4e812bfc0e37584f19e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93bc495f_a6637214",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
