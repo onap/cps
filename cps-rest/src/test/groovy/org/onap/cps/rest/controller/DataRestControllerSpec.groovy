@@ -294,7 +294,9 @@ class DataRestControllerSpec extends Specification {
             mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
         when: 'V2 of get request is performed through REST API'
             def response =
-                mvc.perform(get(endpoint).param('xpath', xpath))
+                mvc.perform(get(endpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .param('xpath', xpath))
                     .andReturn().response
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
@@ -306,6 +308,21 @@ class DataRestControllerSpec extends Specification {
             assert numberOfDataTrees == 2
     }
 
+    def 'Get all the data trees as XML with root node xPath using V2'() {
+        given: 'the service returns all data node leaves'
+            def xpath = '/'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren]
+        when: 'V2 of get request is performed through REST API with XML content type'
+            def response =
+                mvc.perform(get(endpoint).contentType(MediaType.APPLICATION_XML).param('xpath', xpath))
+                    .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the datanode in XML format'
+            response.getContentAsString() == '<parent-1><leaf>value</leaf><leafList>leaveListElement1</leafList><leafList>leaveListElement2</leafList></parent-1>'
+    }
+
     def 'Get data node with #scenario using V2.'() {
         given: 'the service returns data nodes with #scenario'
             def xpath = 'some xPath'
@@ -315,6 +332,7 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     get(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', xpath)
                         .param('descendants', includeDescendantsOption))
                     .andReturn().response
@@ -341,6 +359,7 @@ class DataRestControllerSpec extends Specification {
             def response =
                 mvc.perform(
                     get(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
                         .param('xpath', xpath)
                         .param('descendants', '2'))
                     .andReturn().response

@@ -3,6 +3,7 @@
   ============LICENSE_START=======================================================
   Modifications Copyright (C) 2020-2024 Nordix Foundation.
   Modifications Copyright (C) 2021 Bell Canada.
+  Modifications Copyright (C) 2024 TechMahindra Ltd.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -103,6 +104,11 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-json</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-xml</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
