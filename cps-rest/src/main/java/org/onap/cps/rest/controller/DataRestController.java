@@ -48,6 +48,7 @@ import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.PrefixResolver;
+import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -129,8 +130,9 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
-                                                                final String xpath,
+                                                                final String contentTypeInHeader, final String xpath,
                                                                 final String fetchDescendantsOptionAsString) {
+        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
@@ -142,7 +144,7 @@ public class DataRestController implements CpsDataApi {
             final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
             dataMaps.add(dataMap);
         }
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+        return buildResponseEntity(dataMaps, contentType);
     }
 
     @Override
@@ -221,6 +223,17 @@ public class DataRestController implements CpsDataApi {
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
+    }
+
+    ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
+                                               final ContentType contentType) {
+        final String responseData;
+        if (contentType == ContentType.XML) {
+            responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);
+        } else {
+            responseData = jsonObjectMapper.asJsonString(dataMaps);
+        }
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
     private static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {

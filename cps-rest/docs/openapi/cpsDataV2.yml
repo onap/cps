@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2022-2024 TechMahindra Ltd.
+# Modifications Copyright (C) 2024 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,6 +29,7 @@ nodeByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     responses:
       '200':
         description: OK
@@ -38,6 +40,14 @@ nodeByDataspaceAndAnchor:
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/dataSample'
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: stores
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/dataSampleXml'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
