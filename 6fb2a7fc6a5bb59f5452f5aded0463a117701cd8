@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43aca654_4ef12051",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-07T14:00:08Z",
+      "side": 1,
+      "message": "minor comments ..\n\nhad question about calling the parseData method twice but priyank confirmed the approach",
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb0c932_d05b2503",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-07T14:00:08Z",
+      "side": 1,
+      "message": "no scenario here",
+      "range": {
+        "startLine": 167,
+        "startChar": 71,
+        "endLine": 167,
+        "endChar": 87
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb1a577_c497b8e2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-07T14:00:08Z",
+      "side": 1,
+      "message": "can be just \u0027Validate data for create a node API\u0027",
+      "range": {
+        "startLine": 167,
+        "startChar": 9,
+        "endLine": 167,
+        "endChar": 70
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8694efcc_dbfccf16",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-07T14:00:08Z",
+      "side": 1,
+      "message": "NB : suggestion DATA_VALIDATION_FAILURE_MESSAGE , something with \u0027message\u0027",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8283b003_35b199eb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-07T14:00:08Z",
+      "side": 1,
+      "message": "Validating #scenario when dry run is enabled.",
+      "range": {
+        "startLine": 549,
+        "startChar": 8,
+        "endLine": 549,
+        "endChar": 60
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
