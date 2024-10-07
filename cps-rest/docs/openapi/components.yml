@@ -293,7 +293,9 @@ components:
       description: Content type in header
       schema:
         type: string
-        example: 'application/json'
+        enum:
+          - application/json
+          - application/xml
       required: true
     descendantsInQuery:
       name: descendants
