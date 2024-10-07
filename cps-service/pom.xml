@@ -5,6 +5,7 @@
   Modifications Copyright (C) 2021 Bell Canada.
   Modifications Copyright (C) 2021 Pantheon.tech
   Modifications Copyright (C) 2022 Deutsche Telekom AG
+  Modifications Copyright (C) 2024 TechMahindra Ltd.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -186,5 +187,9 @@
       <artifactId>spring-kafka-test</artifactId>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+      </dependency>
   </dependencies>
 </project>

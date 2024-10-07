@@ -49,7 +49,6 @@ import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.PrefixResolver;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,7 +74,7 @@ public class DataRestController implements CpsDataApi {
                                              final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
                                              final String observedTimestamp) {
-        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         if (isRootXpath(parentNodeXpath)) {
             cpsDataService.saveData(dataspaceName, anchorName, nodeData,
                     toOffsetDateTime(observedTimestamp), contentType);
@@ -100,7 +99,7 @@ public class DataRestController implements CpsDataApi {
                                                   final String anchorName, final String parentNodeXpath,
                                                   final String contentTypeInHeader, final String nodeData,
                                                   final String observedTimestamp) {
-        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -145,7 +144,7 @@ public class DataRestController implements CpsDataApi {
                                                    final String anchorName, final String contentTypeInHeader,
                                                    final String nodeData, final String parentNodeXpath,
                                                    final String observedTimestamp) {
-        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -156,7 +155,7 @@ public class DataRestController implements CpsDataApi {
                                              final String anchorName, final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
                                               final String observedTimestamp) {
-        final ContentType contentType = getContentTypeFromHeader(contentTypeInHeader);
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
                         nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -216,10 +215,6 @@ public class DataRestController implements CpsDataApi {
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
-    }
-
-    private static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {
-        return contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML : ContentType.JSON;
     }
 
     private static boolean isRootXpath(final String xpath) {

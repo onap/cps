@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,7 +21,14 @@
 
 package org.onap.cps.utils;
 
+import org.springframework.http.MediaType;
+
 public enum ContentType {
     JSON,
-    XML
+    XML;
+
+    public static ContentType fromString(final String contentTypeAsString) {
+        return contentTypeAsString.startsWith(MediaType.APPLICATION_XML_VALUE) ? XML : JSON;
+    }
+
 }
