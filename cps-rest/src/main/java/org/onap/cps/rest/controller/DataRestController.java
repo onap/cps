@@ -223,7 +223,7 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
-    private static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {
+    static ContentType getContentTypeFromHeader(final String contentTypeInHeader) {
         return contentTypeInHeader.contains(MediaType.APPLICATION_XML_VALUE) ? ContentType.XML : ContentType.JSON;
     }
 
