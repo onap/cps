@@ -2,6 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
  *  Modifications Copyright (C) 2023-2024 Nordix Foundation.
+ *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +35,7 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -42,8 +45,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -156,6 +158,83 @@ public class XmlFileUtils {
         return document;
     }
 
+    /**
+     * Convert a list of data maps to XML format.
+     *
+     * @param dataMaps List of data maps to convert
+     * @return XML string representation of the data maps
+     */
+    public static String convertDataMapsToXml(final List<Map<String, Object>> dataMaps) {
+        try {
+            final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+            final Document document = documentBuilder.newDocument();
+            final DocumentFragment documentFragment = document.createDocumentFragment();
+            for (final Map<String, Object> dataMap : dataMaps) {
+                if (dataMap == null) {
+                    throw new NullPointerException("Entry in DataMaps cannot be null.");
+                }
+                createXmlElements(document, documentFragment, dataMap);
+            }
+            return transformFragmentToString(documentFragment);
+        } catch (final DOMException | ParserConfigurationException | TransformerException
+                exception) {
+            throw new RuntimeException("Failed to parse xml data: " + exception.getMessage(), exception);
+        }
+    }
+
+    private static void createXmlElements(final Document document, final Node parent,
+                                          final Map<String, Object> dataMap) {
+        for (final Map.Entry<String, Object> entry : dataMap.entrySet()) {
+            if (entry.getValue() instanceof List) {
+                appendList(document, parent, entry);
+            } else if (entry.getValue() instanceof Map) {
+                appendMap(document, parent, entry);
+            } else {
+                appendObject(document, parent, entry);
+            }
+        }
+    }
+
+    private static void appendList(final Document document, final Node parent, final Map.Entry<String, Object> entry) {
+        final List<Object> list = (List<Object>) entry.getValue();
+        if (list.isEmpty()) {
+            final Element listElement = document.createElement(entry.getKey());
+            parent.appendChild(listElement);
+        } else {
+            for (final Object element : list) {
+                final Element listElement = document.createElement(entry.getKey());
+                if (element instanceof Map) {
+                    createXmlElements(document, listElement, (Map<String, Object>) element);
+                } else {
+                    listElement.appendChild(document.createTextNode(element.toString()));
+                }
+                parent.appendChild(listElement);
+            }
+        }
+    }
+
+    private static void appendMap(final Document document, final Node parent, final Map.Entry<String, Object> entry) {
+        final Element childElement = document.createElement(entry.getKey());
+        createXmlElements(document, childElement, (Map<String, Object>) entry.getValue());
+        parent.appendChild(childElement);
+    }
+
+    private static void appendObject(final Document document, final Node parent,
+                                     final Map.Entry<String, Object> entry) {
+        final Element element = document.createElement(entry.getKey());
+        element.appendChild(document.createTextNode(entry.getValue().toString()));
+        parent.appendChild(element);
+    }
+
+    private static String transformFragmentToString(final DocumentFragment documentFragment)
+            throws TransformerException {
+        final Transformer transformer = getTransformerFactory().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        final StringWriter writer = new StringWriter();
+        final StreamResult result = new StreamResult(writer);
+        transformer.transform(new DOMSource(documentFragment), result);
+        return writer.toString();
+    }
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
 
         if (isNewDocumentBuilderFactoryInstance) {
