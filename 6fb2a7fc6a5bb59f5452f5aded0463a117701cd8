@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9b7478b_e7d185d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-08T13:24:18Z",
+      "side": 1,
+      "message": "resolved comments",
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeb0c932_d05b2503",
@@ -64,6 +81,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c697184_61da0ee2",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-08T13:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aeb0c932_d05b2503",
+      "range": {
+        "startLine": 167,
+        "startChar": 71,
+        "endLine": 167,
+        "endChar": 87
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40951934_7a84c74b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-08T13:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eeb1a577_c497b8e2",
+      "range": {
+        "startLine": 167,
+        "startChar": 9,
+        "endLine": 167,
+        "endChar": 70
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8694efcc_dbfccf16",
@@ -87,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155940a2_b29e31c5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParserHelper.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-08T13:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8694efcc_dbfccf16",
+      "range": {
+        "startLine": 74,
+        "startChar": 24,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8283b003_35b199eb",
@@ -100,6 +189,30 @@
       "writtenOn": "2024-10-07T14:00:08Z",
       "side": 1,
       "message": "Validating #scenario when dry run is enabled.",
+      "range": {
+        "startLine": 549,
+        "startChar": 8,
+        "endLine": 549,
+        "endChar": 60
+      },
+      "revId": "6fb2a7fc6a5bb59f5452f5aded0463a117701cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c201dbd_fea70381",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2024-10-08T13:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8283b003_35b199eb",
       "range": {
         "startLine": 549,
         "startChar": 8,
