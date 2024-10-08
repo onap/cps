@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "57fa35fa5e2c078c5146fc27038ba8c79bfbec50",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c189b42_c3d8200c",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:09:59Z",
+      "side": 1,
+      "message": "NB: remove comment",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 32
+      },
+      "revId": "57fa35fa5e2c078c5146fc27038ba8c79bfbec50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
