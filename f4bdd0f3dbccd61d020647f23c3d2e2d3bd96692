@@ -39,6 +39,374 @@
       },
       "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8b1dcc_226020f6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "no need for \u0027else\u0027 after \u0027return\u0027 but I dont want you to have 2 return statements, see next comment",
+      "range": {
+        "startLine": 230,
+        "startChar": 10,
+        "endLine": 230,
+        "endChar": 16
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16ec414_f4ff984f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "too much duplication, instead do something like this (pseudo code)\n\nfinal String responseData\nif (XML) responseData \u003d ... else  responsData \u003d ...\nreturn new ResponsEntity(responseDaata, OK)",
+      "range": {
+        "startLine": 231,
+        "startChar": 19,
+        "endLine": 231,
+        "endChar": 92
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e378609a_2361577f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "I think the \u0027focus\u0027 on number of trees is related to the old legacy issue of multiple roots.\n\nBy adding XML support I would do a more detailed check of the XML content ie assert the whole string using as small as possible data example",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 41
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fdc7559_8daa8207",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "not suer if this should be tested here at all, it does NOT COVER and code BRANCHING in DataRestController!\nAll the work is don in XmlFileUtils so Unit test of that class only is much better and easier",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c70d8436_45c0fc06",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "again I dont think this add test vale/coverage to the rest controller!\nAny scenario for formatting should be tested in a XMLFileUtilsSpec",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e28d54_c9d5852e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "ensure you have test for this",
+      "range": {
+        "startLine": 177,
+        "startChar": 20,
+        "endLine": 177,
+        "endChar": 88
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fc8b46d_ee9c2f43",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "ensure you have test for all 3 exceptions",
+      "range": {
+        "startLine": 182,
+        "startChar": 23,
+        "endLine": 182,
+        "endChar": 107
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402d17b4_0a194c99",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "to make this more readable extract out\nappendList()\nand for the next two blocks extract out\nappendMap()\nappendObject()",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 17
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d124393_dc542735",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "identical to line #211 so can be done outside if else block just using generic name \u0027elemnt\u0027",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 84
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00304ec0_c8f6fd0c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "identical to line #213 so can be done outside the block, just need to use more generic names",
+      "range": {
+        "startLine": 209,
+        "startChar": 16,
+        "endLine": 209,
+        "endChar": 49
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f436c33_afdbe411",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "I prefer to call this just \u0027result\u0027 ( a term I often use use in test for the output of the method, its a good unambiguous term in testware and prevent awkward names as you are trying to come up with here)",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26b7b2b_2034bdcd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "bit hard to read in Gerrit but based on the scenarios I think this is a good test and description of the supported functionality",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 209
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77efaf5_ffa4452d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "i prefer to call this just \u0027result\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7614046b_bacca614",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "I think this can be simplified in Groovy like this\ndef dataMapsWithNull \u003d [null]\n\n(IntelliJ might complain but the tets will work)",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88921ff6_5610df91",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "use assert and single quotes!",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 86
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4fd9ce7_40f7aba7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:52:10Z",
+      "side": 1,
+      "message": "I think you are missing coverage for many ,more exception scenarios. Use maven clean install in the module and check the Cobertura report in target\\site folder!",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
