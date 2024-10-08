@@ -68,6 +68,11 @@
             <artifactId>postgresql</artifactId>
             <version>${postgres.version}</version>
         </dependency>
+        <!-- Disable SpotBug Rules -->
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+        </dependency>
         <!-- Add Hibernate support for Postgres datatype JSONB and Postgres arrays -->
         <dependency>
             <groupId>io.hypersistence</groupId>

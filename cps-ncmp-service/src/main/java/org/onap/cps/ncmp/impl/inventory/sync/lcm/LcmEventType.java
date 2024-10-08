@@ -26,10 +26,10 @@ public enum LcmEventType {
 
     private final String eventName;
 
-    private final String eventTypeTemplate = "org.onap.ncmp.cmhandle-lcm-event.%s";
+    private static final String EVENT_TYPE_TEMPLATE = "org.onap.ncmp.cmhandle-lcm-event.%s";
 
     LcmEventType(final String eventName) {
-        this.eventName = String.format(eventTypeTemplate, eventName);
+        this.eventName = String.format(EVENT_TYPE_TEMPLATE, eventName);
     }
 
     public String getEventType() {

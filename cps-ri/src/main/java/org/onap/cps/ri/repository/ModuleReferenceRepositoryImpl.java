@@ -20,6 +20,7 @@
 
 package org.onap.cps.ri.repository;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -118,6 +119,7 @@ public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {
         query.setParameter(4, dataspaceName);
     }
 
+    @SuppressFBWarnings(value = "VA_FORMAT_STRING_USES_NEWLINE", justification = "no \n in string just in file format")
     private String buildModuleReferencesSqlQuery(final String parentFragmentClause, final String childFragmentClause) {
         return """
                 WITH Fragment AS (

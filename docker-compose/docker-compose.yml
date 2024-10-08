@@ -23,6 +23,7 @@ services:
   ### docker-compose --profile dmi-stub --profile tracing up -d -> run CPS with stubbed dmi-plugin (for open telemetry tracing testing make ONAP_TRACING_ENABLED "true" later "http://localhost:16686" can be accessed from browser)
   ### docker-compose --profile dmi-stub --profile policy-executor-stub up -d -> run CPS with stubbed dmi-plugin and policy executor stub (for policy executor service testing make POLICY_SERVICE_ENABLED "true")
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
+  ### DEBUG: Look for '### DEBUG' comments to enable CPS-NCMP debugging
 
   dbpostgresql:
     container_name: dbpostgresql
@@ -60,10 +61,14 @@ services:
       ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: http://jaeger-service:14250
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
+      POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
+      ### DEBUG: Uncomment next line to enable java debugging
+      ### DEBUG: JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
     deploy:
+      ### DEBUG: For easier debugging use just 1 instance (also update docker-compose/config/nginx/nginx.conf !)
       replicas: 2
       resources:
         reservations:
@@ -72,6 +77,9 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+    ### DEBUG: Uncomment next 2 lines to enable java debugging (ensure 'ports' aligns with 'deploy')
+    ### DEBUG ports:
+    ### DEBUG  - ${CPS_CORE_DEBUG_PORT:-5005}:5005
 
   nginx:
     container_name: nginx-loadbalancer
