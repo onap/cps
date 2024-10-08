@@ -22,6 +22,30 @@
       },
       "revId": "5b71fc8acd029fac928eb088e413bdcf95002bf1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d28edbd_a6d753a5",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-08T14:36:13Z",
+      "side": 1,
+      "message": "In a Docker Compose setup with multiple replicas, Docker’s internal DNS resolves the service name (e.g., cps-and-ncmp) to one of the running replicas. Then, Prometheus will only scrape the service that\u0027s accessible via the default service name, which is typically tied to just one of the replicas at any given time.\n\nThus, there will be no incorrect observation but selecting either of replicas.\n\nOtherwise, individuals need to reset the targets according to their docker-compose version and dynamic container naming.",
+      "parentUuid": "fd8355ea_a3f4b64c",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 26
+      },
+      "revId": "5b71fc8acd029fac928eb088e413bdcf95002bf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
