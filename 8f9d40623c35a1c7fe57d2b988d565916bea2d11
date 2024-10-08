@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "738bc416_3470b7b0",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-08T11:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d57e8d7_87236e2c",
+      "range": {
+        "startLine": 37,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "8f9d40623c35a1c7fe57d2b988d565916bea2d11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92f94ec0_31518a0b",
@@ -88,6 +112,30 @@
       "writtenOn": "2024-10-02T14:20:46Z",
       "side": 1,
       "message": "Similar to teh issue above,\ndo we really need these reverse-dependency rules can we not JUST have rules using onlyDependOnClassesThat() instead?!",
+      "range": {
+        "startLine": 43,
+        "startChar": 87,
+        "endLine": 43,
+        "endChar": 115
+      },
+      "revId": "8f9d40623c35a1c7fe57d2b988d565916bea2d11",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a62676_108227ab",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-08T11:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92f94ec0_31518a0b",
       "range": {
         "startLine": 43,
         "startChar": 87,
