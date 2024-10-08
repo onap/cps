@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2800665_2622510c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:58:58Z",
+      "side": 1,
+      "message": "ready",
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13bd9a6c_16835f3e",
@@ -112,6 +129,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3cfefbe_ed516a82",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:58:58Z",
+      "side": 1,
+      "message": "you are already verifying the content so just don\u0027t add the numebrOfDataTrees assertion...",
+      "parentUuid": "e378609a_2361577f",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 41
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fdc7559_8daa8207",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 61
@@ -135,6 +176,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56460236_599db5b0",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:58:58Z",
+      "side": 1,
+      "message": "I think you have all the required test already ibn utils spec",
+      "parentUuid": "3fdc7559_8daa8207",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c70d8436_45c0fc06",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 61
@@ -146,6 +211,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "again I dont think this add test vale/coverage to the rest controller!\nAny scenario for formatting should be tested in a XMLFileUtilsSpec",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d26ef3_11c640da",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T16:58:58Z",
+      "side": 1,
+      "message": "I think you have all the required test already ibn utils spec",
+      "parentUuid": "c70d8436_45c0fc06",
       "range": {
         "startLine": 404,
         "startChar": 0,
