@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b476c2b_d70ce809",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T16:27:14Z",
+      "side": 1,
+      "message": "more comments to follow.",
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13bd9a6c_16835f3e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T16:27:14Z",
+      "side": 1,
+      "message": "instance of jsonObjectMapper already present. we dont have to instantiate again.",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 87
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
