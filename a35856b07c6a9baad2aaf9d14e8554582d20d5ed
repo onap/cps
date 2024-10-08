@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e88201_c7821580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T20:09:06Z",
+      "side": 1,
+      "message": "Daniel might have some outstanding comments as well. Would ask him to post his comment and once you resolve them then I think this is good to go.",
+      "revId": "a35856b07c6a9baad2aaf9d14e8554582d20d5ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
