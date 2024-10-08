@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2db9c1_a9e868bc",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-08T12:05:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74c03dba_3cf0aac5",
+      "range": {
+        "startLine": 46,
+        "startChar": 95,
+        "endLine": 46,
+        "endChar": 115
+      },
+      "revId": "78abefd30c1515894bd6cfe879d1c29df0ca6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2c7e0c8_295d7477",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea675ce8_c2eb0b7d",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-08T12:05:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f2c7e0c8_295d7477",
+      "range": {
+        "startLine": 58,
+        "startChar": 67,
+        "endLine": 58,
+        "endChar": 94
+      },
+      "revId": "78abefd30c1515894bd6cfe879d1c29df0ca6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5b34c68_572b06a3",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-10-08T11:45:38Z",
       "side": 1,
       "message": "Is this a current dependency? NCMP *API* should not depend CPS API, rather NCMP impl may depend on CPS. Either way, I don\u0027t see any package imports to _org.onap.cps.api_ inside _org.onap.cps.ncmp.api_.\n\n@Toine should we be adding rules for dependencies that don\u0027t currently exist?",
+      "range": {
+        "startLine": 59,
+        "startChar": 56,
+        "endLine": 59,
+        "endChar": 76
+      },
+      "revId": "78abefd30c1515894bd6cfe879d1c29df0ca6ffe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "189bc540_763ea455",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-08T12:05:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5b34c68_572b06a3",
       "range": {
         "startLine": 59,
         "startChar": 56,
