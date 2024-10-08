@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8355ea_a3f4b64c",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T11:34:05Z",
+      "side": 1,
+      "message": "as we were discussing on the chat.\nwanted to check which server metrics will be shown by the dashboard when we look at it ??\nfirst one , second one , mixed ?? hope it wont lead us to incorrect observations.",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 26
+      },
+      "revId": "5b71fc8acd029fac928eb088e413bdcf95002bf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
