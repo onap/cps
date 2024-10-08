@@ -80,6 +80,30 @@
       },
       "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a58b1f_4a6d7bec",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-08T08:37:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1daa3b55_aad88498",
+      "range": {
+        "startLine": 157,
+        "startChar": 29,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "2a1a7c787e22aa7e3ce7fc6e51b4a986b143a8c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
