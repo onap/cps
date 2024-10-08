@@ -316,6 +316,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e4340ad_d7d80f62",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T20:07:52Z",
+      "side": 1,
+      "message": "agreed. extract to methods to make it more readable.",
+      "parentUuid": "402d17b4_0a194c99",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 17
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0d124393_dc542735",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 61
@@ -355,6 +379,29 @@
         "startChar": 16,
         "endLine": 209,
         "endChar": 49
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2005de08_a33de11e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T20:07:52Z",
+      "side": 1,
+      "message": "why this is imported 3 times???",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
       },
       "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -488,6 +535,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "I think you are missing coverage for many ,more exception scenarios. Use maven clean install in the module and check the Cobertura report in target\\site folder!",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9f3b2e9_df11eaed",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-08T20:07:52Z",
+      "side": 1,
+      "message": "can also look jacoco reporT as well.",
+      "parentUuid": "b4fd9ce7_40f7aba7",
       "range": {
         "startLine": 115,
         "startChar": 0,
