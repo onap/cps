@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "012790ef_d51ea8d3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-08T07:12:21Z",
+      "side": 1,
+      "message": "what happened to the method for multiple xpath patterns?!\nwas it no used?!",
+      "range": {
+        "startLine": 105,
+        "startChar": 94,
+        "endLine": 105,
+        "endChar": 114
+      },
+      "revId": "153aa48c6945cfc54ceb1b3f6a38508ad93f1d16",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d1b563f_2d00d235",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 5
