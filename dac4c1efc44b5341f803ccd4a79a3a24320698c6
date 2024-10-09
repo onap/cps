@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e64364e0_ca444e5f",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-09T15:01:06Z",
+      "side": 1,
+      "message": "we agreed before NOT to use constants!",
+      "parentUuid": "b432c254_c9ea2828",
+      "revId": "dac4c1efc44b5341f803ccd4a79a3a24320698c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c425a19_53f9dc0e",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
         "patchSetId": 17
@@ -71,6 +89,30 @@
       "writtenOn": "2024-10-09T14:56:04Z",
       "side": 1,
       "message": "NB: cpsNcmpRestShouldNotBeDependedUpon",
+      "range": {
+        "startLine": 55,
+        "startChar": 26,
+        "endLine": 55,
+        "endChar": 54
+      },
+      "revId": "dac4c1efc44b5341f803ccd4a79a3a24320698c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4afdc3c_b719ee4a",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-09T15:01:06Z",
+      "side": 1,
+      "message": "i prefer the current name",
+      "parentUuid": "7c425a19_53f9dc0e",
       "range": {
         "startLine": 55,
         "startChar": 26,
