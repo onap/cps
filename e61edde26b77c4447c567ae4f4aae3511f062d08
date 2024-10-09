@@ -39,6 +39,30 @@
       },
       "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "794094a2_cb302746",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-09T10:43:24Z",
+      "side": 1,
+      "message": "right. static and default methods in interfaces and we can do everything thr.",
+      "parentUuid": "96977626_8742a479",
+      "range": {
+        "startLine": 51,
+        "startChar": 67,
+        "endLine": 51,
+        "endChar": 78
+      },
+      "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
