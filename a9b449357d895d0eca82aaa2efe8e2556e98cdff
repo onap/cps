@@ -49,6 +49,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8167a8fd_9f1305db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T15:59:54Z",
+      "side": 1,
+      "message": "getOrCreateHazelCastInstance(namedConfig)",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 86
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b779c33_b43a8407",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T15:59:54Z",
+      "side": 1,
+      "message": "maybe defineConfig(namedConfig)... you already have instanceConfigName at top\nyou can use this method to get the instanceConfig and add the namedConfig when getOrCreate is called",
+      "range": {
+        "startLine": 56,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bebe6d7_e9985292",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T15:59:54Z",
+      "side": 1,
+      "message": "instanceConfig",
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaab8408_33bd3027",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T15:59:54Z",
+      "side": 1,
+      "message": "can be placed after line 81 , does not need to be configured everytime",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e93b68_13cedfe0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/CmSubscriptionConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T15:59:54Z",
+      "side": 1,
+      "message": "getHazelcastInstance , same with others",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 38
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5fc326a_d27ead0d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
         "patchSetId": 3
