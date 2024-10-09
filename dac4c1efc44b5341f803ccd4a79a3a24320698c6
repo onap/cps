@@ -20,6 +20,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c72eac0_eb5b4f82",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-09T14:56:04Z",
+      "side": 1,
+      "message": "NB:  /**\n * Verifies the proper use of dependencies across all CPS modules.\n * This ensures a clean architectural separation and prevents circular dependencies between components.\n */",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "dac4c1efc44b5341f803ccd4a79a3a24320698c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b432c254_c9ea2828",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-09T14:56:04Z",
+      "side": 1,
+      "message": "// Constants for package names to improve maintainability and readability\n    private static final String NCMP_REST_PACKAGE \u003d \"org.onap.cps.ncmp.rest..\";\n    private static final String NCMP_API_PACKAGE \u003d \"org.onap.cps.ncmp.api..\";\n    private static final String NCMP_IMPL_PACKAGE \u003d \"org.onap.cps.ncmp.impl..\";\n    private static final String CPS_SPI_PACKAGE \u003d \"org.onap.cps.spi..\";\n    private static final String CPS_UTILS_PACKAGE \u003d \"org.onap.cps.utils..\";",
+      "revId": "dac4c1efc44b5341f803ccd4a79a3a24320698c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c425a19_53f9dc0e",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-09T14:56:04Z",
+      "side": 1,
+      "message": "NB: cpsNcmpRestShouldNotBeDependedUpon",
+      "range": {
+        "startLine": 55,
+        "startChar": 26,
+        "endLine": 55,
+        "endChar": 54
+      },
+      "revId": "dac4c1efc44b5341f803ccd4a79a3a24320698c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ee49fb7_d88082aa",
         "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
         "patchSetId": 17
