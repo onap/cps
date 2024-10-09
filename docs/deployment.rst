@@ -19,6 +19,26 @@ CPS uses PostgreSQL database. As per the `PostgreSQL documentation on resource c
 parameter should be set between 25% and 40% of total memory. It has a default value of 128 megabytes, so this should be
 set appropriately. For example, given a database with 2GB of memory, 512MB is a recommended value.
 
+CPS and NCMP Configuration
+=============================
+
+This configuration ensures the container is deployed with two instances, restricting each instance to use up to 3 CPU cores
+and 2 GB of memory. These resource limits help maintain controlled resource usage, preventing excessive consumption in a clustered environment.
+
+JVM Memory Allocation
+
+Allocating 75% of the container's memory to the JVM heap ensures efficient memory management.
+This helps the JVM make the best use of the allocated resources while leaving enough memory for other processes.
+
+JVM Configuration
+
+By tuning the JVM's memory allocation this way, the JVM can dynamically adjust its heap size based on the available memory,
+preventing OutOfMemory errors and ensuring stable performance within the allocated limits.
+
+.. code-block:: yaml
+
+    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
+
 CPS OOM Charts
 ==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
@@ -330,8 +350,6 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | Component    | Datastructure name                 |                 Use                                       |
 +==============+====================================+===========================================================+
-| cps-core     | anchorDataCache                    | Used to resolve prefix for the container name.            |
-+--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | moduleSyncStartedOnCmHandles       | Watchdog process to register cm handles.                  |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | dataSyncSemaphores                 | Watchdog process to sync data from the nodes.             |
