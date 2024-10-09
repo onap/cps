@@ -19,6 +19,27 @@ CPS uses PostgreSQL database. As per the `PostgreSQL documentation on resource c
 parameter should be set between 25% and 40% of total memory. It has a default value of 128 megabytes, so this should be
 set appropriately. For example, given a database with 2GB of memory, 512MB is a recommended value.
 
+cps-and-ncmp configuration
+==============================
+
+This configuration ensures that the container is deployed with two instances and is restricted to
+using up to 3 CPU cores and 2GB of memory, providing controlled resource usage.
+
+.. code-block:: yaml
+
+    deploy:
+        replicas: 2
+        resources:
+          limits:
+            cpus: '3'
+            memory: 2G
+
+Allocating 75% of the container's memory to the JVM heap ensures the best efficient memory usage.
+
+.. code-block:: yaml
+
+    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
+
 CPS OOM Charts
 ==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
@@ -330,8 +351,6 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | Component    | Datastructure name                 |                 Use                                       |
 +==============+====================================+===========================================================+
-| cps-core     | anchorDataCache                    | Used to resolve prefix for the container name.            |
-+--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | moduleSyncStartedOnCmHandles       | Watchdog process to register cm handles.                  |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | dataSyncSemaphores                 | Watchdog process to sync data from the nodes.             |
