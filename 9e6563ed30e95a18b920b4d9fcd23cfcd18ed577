@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fda58e5_1eedd5ce",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-09T10:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "839cb25f_fc622071",
+      "range": {
+        "startLine": 48,
+        "startChar": 95,
+        "endLine": 48,
+        "endChar": 103
+      },
+      "revId": "9e6563ed30e95a18b920b4d9fcd23cfcd18ed577",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "345ad263_dcd388ef",
