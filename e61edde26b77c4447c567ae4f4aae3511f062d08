@@ -63,6 +63,30 @@
       },
       "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b3c15c_ef8d7fcd",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-09T10:49:31Z",
+      "side": 1,
+      "message": "i did not moved it , because the ncmp api for example should not use this in the future.\nI wouldn\u0027t be strict with the 3pp array anyways, im sure it will change a lot in the future anyways, depending on what other modules are depending on",
+      "parentUuid": "794094a2_cb302746",
+      "range": {
+        "startLine": 51,
+        "startChar": 67,
+        "endLine": 51,
+        "endChar": 78
+      },
+      "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
