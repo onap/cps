@@ -30,6 +30,8 @@ import spock.lang.Specification
 class YangParserHelperSpec extends Specification {
 
     def objectUnderTest = new YangParserHelper()
+    def validateOnly = true
+    def validateAndParse = false
 
     def 'Parsing a valid multicontainer Json String.'() {
         given: 'a yang model (file)'
@@ -38,7 +40,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('multipleDataTree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the json data is parsed'
-            def result = objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, '')
+            def result = objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
             result.body().getAt(index) instanceof NormalizedNode == true
         then: 'qualified name of children created is as expected'
@@ -56,7 +58,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'the data is parsed'
-            NormalizedNode result = objectUnderTest.parseData(contentType, fileData, schemaContext, '')
+            NormalizedNode result = objectUnderTest.parseData(contentType, fileData, schemaContext, '', validateAndParse)
         then: 'the result is a normalized node of the correct type'
             if (revision) {
                 result.identifier.nodeType == QName.create(namespace, revision, localName)
@@ -74,7 +76,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         when: 'invalid data is parsed'
-            objectUnderTest.parseData(contentType, invalidData, schemaContext, '')
+            objectUnderTest.parseData(contentType, invalidData, schemaContext, '', validateAndParse)
         then: 'an exception is thrown'
             thrown(DataValidationException)
         where: 'the following invalid data is provided'
@@ -92,7 +94,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         when: 'json string is parsed'
-            def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath)
+            def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath, validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
             result.body().getAt(0) instanceof NormalizedNode == true
         then: 'result represents a node of expected type'
@@ -112,7 +114,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         when: 'json string is parsed'
-            objectUnderTest.parseData(ContentType.JSON, '{"nest": {"name" : "Nest", "birds": ["bird"]}}', schemaContext, parentNodeXpath)
+            objectUnderTest.parseData(ContentType.JSON, '{"nest": {"name" : "Nest", "birds": ["bird"]}}', schemaContext, parentNodeXpath, validateAndParse)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where:
@@ -129,7 +131,7 @@ class YangParserHelperSpec extends Specification {
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
         when: 'malformed json string is parsed'
-            objectUnderTest.parseData(ContentType.JSON, invalidJson, schemaContext, '')
+            objectUnderTest.parseData(ContentType.JSON, invalidJson, schemaContext, '', validateAndParse)
         then: 'an exception is thrown'
             thrown(DataValidationException)
         where: 'the following malformed json is provided'
@@ -145,7 +147,7 @@ class YangParserHelperSpec extends Specification {
         and: 'some json data with space in the array elements'
             def jsonDataWithSpacesInArrayElement = TestUtils.getResourceFileContent('bookstore.json')
         when: 'that json data is parsed'
-            objectUnderTest.parseData(ContentType.JSON, jsonDataWithSpacesInArrayElement, schemaContext, '')
+            objectUnderTest.parseData(ContentType.JSON, jsonDataWithSpacesInArrayElement, schemaContext, '', validateAndParse)
         then: 'no exception thrown'
             noExceptionThrown()
     }
@@ -162,5 +164,22 @@ class YangParserHelperSpec extends Specification {
             'xpath contains list attributes with /'        | '/test-tree/branch[@name=\'/Branch\']/categories[@id=\'/broken\']'  || ['test-tree','branch','categories']
     }
 
+    def 'Validating #scenario xpath String.'() {
+        given: 'a data model (file) is provided'
+            def fileData = TestUtils.getResourceFileContent(contentFile)
+        and: 'the schema context is built for that data model'
+            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        when: 'the data is parsed to be validated'
+            objectUnderTest.parseData(contentType, fileData, schemaContext,  parentNodeXpath, validateOnly)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        where:
+            scenario                   | parentNodeXpath | contentFile                      | contentType
+            'JSON without parent node' | ''              | 'bookstore.json'                 | ContentType.JSON
+            'JSON with parent node'    | '/bookstore'    | 'bookstore-categories-data.json' | ContentType.JSON
+            'XML without parent node'  | ''              | 'bookstore.xml'                  | ContentType.XML
+            'XML with parent node'     | '/bookstore'    | 'bookstore-categories-data.xml'  | ContentType.XML
+    }
 
 }
