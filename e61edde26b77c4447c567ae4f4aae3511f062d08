@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3217b9_17a3c403",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-09T10:35:18Z",
+      "side": 1,
+      "message": "one last suggestion (but would like feedback form others)",
+      "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96977626_8742a479",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/LayeredArchitectureTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-09T10:35:18Z",
+      "side": 1,
+      "message": "I am happy enough to move this into common to (so what if somebody wants to try logging in an interface (default) method\nthe main purpose for these rules was to prevent misuse of our own packages not so much the 3pps..\nBut we can discuss at next meeting...",
+      "range": {
+        "startLine": 51,
+        "startChar": 67,
+        "endLine": 51,
+        "endChar": 78
+      },
+      "revId": "e61edde26b77c4447c567ae4f4aae3511f062d08",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
