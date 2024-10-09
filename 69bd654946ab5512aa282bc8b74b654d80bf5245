@@ -16,6 +16,23 @@
       "message": "tested , works fine",
       "revId": "69bd654946ab5512aa282bc8b74b654d80bf5245",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73bb8380_7ff86cee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-09T09:11:57Z",
+      "side": 1,
+      "message": "even I checked by running 2 instances.\nthe results were coming out from one instance I guess. and when I paused/stopped the first container the results start to come out from the second container.\nAnyways we have commented config. for extra ordinary times we can as well uncomment the code and look metrics for both containers.",
+      "revId": "69bd654946ab5512aa282bc8b74b654d80bf5245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
