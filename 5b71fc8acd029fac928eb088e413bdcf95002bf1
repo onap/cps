@@ -46,6 +46,30 @@
       },
       "revId": "5b71fc8acd029fac928eb088e413bdcf95002bf1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d9b782_3a0c82de",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-09T09:05:26Z",
+      "side": 1,
+      "message": "both is assigned with that alias \n\n\t\t\"Networks\": {\n\t\t\t\"docker-compose_default\": {\n\t\t\t\t\"IPAMConfig\": null,\n\t\t\t\t\"Links\": null,\n\t\t\t\t\"Aliases\": [\n\t\t\t\t\t\"docker-compose-cps-and-ncmp-1\",\n\t\t\t\t\t\"cps-and-ncmp\",\n\t\t\t\t\t\"62480de2f027\"\n\t\t\t\t],\n--------\t\t\t\t\n\t       \t\t\"Networks\": {\n\t\t\t\"docker-compose_default\": {\n\t\t\t\t\"IPAMConfig\": null,\n\t\t\t\t\"Links\": null,\n\t\t\t\t\"Aliases\": [\n\t\t\t\t\t\"docker-compose-cps-and-ncmp-2\",\n\t\t\t\t\t\"cps-and-ncmp\",\n\t\t\t\t\t\"9a55af85ec7b\"\n\t\t\t\t],",
+      "parentUuid": "8d28edbd_a6d753a5",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 26
+      },
+      "revId": "5b71fc8acd029fac928eb088e413bdcf95002bf1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
