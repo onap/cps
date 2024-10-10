@@ -72,6 +72,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96748625_7ce364b5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-10T15:09:42Z",
+      "side": 1,
+      "message": "Exclude all of the docker-compose config, etc. All users we know of are deploying with kubernetes anyway. I\u0027d say just changes about the JVM heap is enough.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 22
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71ce1fb1_0091de88",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
