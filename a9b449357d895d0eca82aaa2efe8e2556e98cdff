@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1797d44b_363ad6cd",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-10T12:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45039d27_6bf2546f",
+      "range": {
+        "startLine": 252,
+        "startChar": 59,
+        "endLine": 252,
+        "endChar": 83
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b62ad2ab_57a1f8b6",
@@ -284,6 +308,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7acc8818_8abf0fda",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-10T12:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39fb4366_4bb8b9fe",
+      "range": {
+        "startLine": 56,
+        "startChar": 19,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bebe6d7_e9985292",
@@ -362,6 +410,30 @@
       "side": 1,
       "message": "cannot incorporate this comment fully coz started to get test failures coz unable to fetch the config object.\nrefactored it to make it more readable.",
       "parentUuid": "b8a48f7e_1435ba79",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef990d2_b1be5ab7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-10T12:15:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5493d4dd_a60c5790",
       "range": {
         "startLine": 68,
         "startChar": 7,
@@ -602,6 +674,30 @@
         "startChar": 46,
         "endLine": 50,
         "endChar": 82
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecb9dcad_2b5b03df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-10T12:15:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4c1218c_6e888b4b",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 83
       },
       "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
