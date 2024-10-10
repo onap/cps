@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc7bba2a_262a0e5d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:35:21Z",
+      "side": 1,
+      "message": "CPS and NCMP Configuration",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3880cda2_738547a5",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:35:21Z",
+      "side": 1,
+      "message": "align it with title length",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50bbcf21_74e40891",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:35:21Z",
+      "side": 1,
+      "message": "This configuration ensures the container is deployed with two instances, restricting each instance to use up to 3 CPU cores and 2 GB of memory. These resource limits help maintain controlled resource usage, preventing excessive consumption in a clustered environment.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ce1fb1_0091de88",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:35:21Z",
+      "side": 1,
+      "message": "JVM Memory Allocation\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nAllocating 75% of the container\u0027s memory to the JVM heap ensures efficient memory management. This helps the JVM make the best use of the allocated resources while leaving enough memory for other processes.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 97
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce2fb0fd_d05050ce",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:35:21Z",
+      "side": 1,
+      "message": "JVM Configuration\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\nBy tuning the JVM\u0027s memory allocation this way, the JVM can dynamically adjust its heap size based on the available memory, preventing OutOfMemory errors and ensuring stable performance within the allocated limits.",
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
