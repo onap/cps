@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58000599_dd0fc139",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-10T09:42:42Z",
+      "side": 1,
+      "message": "would it be ok to call it \"cps-and-ncmp-hazelcast-instance-config\" ?\nwanted to be consistent with how we have named cluster name on #251.\nor I can as well call it cps-and-ncmp-common-instance-config ??",
+      "parentUuid": "cb74134c_9d569896",
+      "range": {
+        "startLine": 252,
+        "startChar": 59,
+        "endLine": 252,
+        "endChar": 83
+      },
+      "revId": "a9b449357d895d0eca82aaa2efe8e2556e98cdff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b62ad2ab_57a1f8b6",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
         "patchSetId": 3
