@@ -36,13 +36,17 @@ class CmSubscriptionConfigSpec extends Specification {
     @Autowired
     IMap<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache;
 
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
+    }
+
     def 'Embedded (hazelcast) cache for Cm Notification Subscription Cache.'() {
         expect: 'system is able to create an instance of the Cm Notification Subscription Cache'
             assert null != cmNotificationSubscriptionCache
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
         and: 'Cm Notification Subscription Cache is present'
-            assert Hazelcast.allHazelcastInstances.name.contains('hazelCastInstanceCmNotificationSubscription')
+            assert Hazelcast.allHazelcastInstances.name.contains('cps-and-ncmp-hazelcast-instance-test-config')
     }
 
     def 'Provided CM Subscription data'() {

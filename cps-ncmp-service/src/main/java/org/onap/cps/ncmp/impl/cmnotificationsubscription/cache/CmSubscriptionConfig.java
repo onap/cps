@@ -43,7 +43,7 @@ public class CmSubscriptionConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache() {
-        return createHazelcastInstance("hazelCastInstanceCmNotificationSubscription",
-                cmNotificationSubscriptionCacheMapConfig).getMap("cmNotificationSubscriptionCache");
+        return getOrCreateHazelcastInstance(cmNotificationSubscriptionCacheMapConfig).getMap(
+                "cmNotificationSubscriptionCache");
     }
 }

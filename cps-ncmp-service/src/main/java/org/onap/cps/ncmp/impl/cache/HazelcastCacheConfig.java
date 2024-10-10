@@ -40,19 +40,30 @@ public class HazelcastCacheConfig {
     @Value("${hazelcast.cluster-name}")
     protected String clusterName;
 
+    @Value("${hazelcast.instance-config-name}")
+    protected String instanceConfigName;
+
     @Value("${hazelcast.mode.kubernetes.enabled}")
     protected boolean cacheKubernetesEnabled;
 
     @Value("${hazelcast.mode.kubernetes.service-name}")
     protected String cacheKubernetesServiceName;
 
-    protected HazelcastInstance createHazelcastInstance(final String hazelcastInstanceName,
-                                                        final NamedConfig namedConfig) {
-        return Hazelcast.newHazelcastInstance(initializeConfig(hazelcastInstanceName, namedConfig));
+    protected HazelcastInstance getOrCreateHazelcastInstance(final NamedConfig namedConfig) {
+        return Hazelcast.getOrCreateHazelcastInstance(defineInstanceConfig(instanceConfigName, namedConfig));
     }
 
-    private Config initializeConfig(final String instanceName, final NamedConfig namedConfig) {
-        final Config config = new Config(instanceName);
+    private Config defineInstanceConfig(final String instanceConfigName, final NamedConfig namedConfig) {
+        final Config config = getHazelcastInstanceConfig(instanceConfigName);
+        config.setClusterName(clusterName);
+        config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
+        dataStructuresConfig(namedConfig, config);
+        exposeClusterInformation(config);
+        updateDiscoveryMode(config);
+        return config;
+    }
+
+    private static void dataStructuresConfig(final NamedConfig namedConfig, final Config config) {
         if (namedConfig instanceof MapConfig) {
             config.addMapConfig((MapConfig) namedConfig);
         }
@@ -62,11 +73,16 @@ public class HazelcastCacheConfig {
         if (namedConfig instanceof SetConfig) {
             config.addSetConfig((SetConfig) namedConfig);
         }
+    }
 
-        config.setClusterName(clusterName);
-        config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
-        exposeClusterInformation(config);
-        updateDiscoveryMode(config);
+    private Config getHazelcastInstanceConfig(final String instanceConfigName) {
+        final HazelcastInstance hazelcastInstance = Hazelcast.getHazelcastInstanceByName(instanceConfigName);
+        Config config = null;
+        if (hazelcastInstance != null) {
+            config = hazelcastInstance.getConfig();
+        } else {
+            config = new Config(instanceConfigName);
+        }
         return config;
     }
 

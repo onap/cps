@@ -46,6 +46,10 @@ class SynchronizationCacheConfigSpec extends Specification {
     @Autowired
     private IMap<String, Boolean> dataSyncSemaphores
 
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
+    }
+
     def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
         expect: 'system is able to create an instance of the Module Sync Work Queue'
             assert null != moduleSyncWorkQueue
@@ -53,22 +57,19 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'there are at least 3 instances'
-            assert Hazelcast.allHazelcastInstances.size() > 2
         and: 'they have the correct names (in any order)'
-            assert Hazelcast.allHazelcastInstances.name.containsAll('moduleSyncWorkQueue', 'moduleSyncStartedOnCmHandles', 'dataSyncSemaphores')
+            assert Hazelcast.allHazelcastInstances.name.contains('cps-and-ncmp-hazelcast-instance-test-config')
     }
 
     def 'Verify configs for Distributed objects'(){
-        given: 'the Module Sync Work Queue config'
-            def moduleSyncWorkQueueConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config
-            def moduleSyncDefaultWorkQueueConfig =  moduleSyncWorkQueueConfig.queueConfigs.get('defaultQueueConfig')
+        given: 'hazelcast common config'
+            def hzConfig = Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').config
+        and: 'the Module Sync Work Queue config'
+            def moduleSyncDefaultWorkQueueConfig =  hzConfig.queueConfigs.get('defaultQueueConfig')
         and: 'the Module Sync Started Cm Handle Map config'
-            def moduleSyncStartedOnCmHandlesConfig =  Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config
-            def moduleSyncStartedOnCmHandlesMapConfig =  moduleSyncStartedOnCmHandlesConfig.mapConfigs.get('moduleSyncStartedConfig')
+            def moduleSyncStartedOnCmHandlesMapConfig =  hzConfig.mapConfigs.get('moduleSyncStartedConfig')
         and: 'the Data Sync Semaphores Map config'
-            def dataSyncSemaphoresConfig =  Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config
-            def dataSyncSemaphoresMapConfig =  dataSyncSemaphoresConfig.mapConfigs.get('dataSyncSemaphoresConfig')
+            def dataSyncSemaphoresMapConfig =  hzConfig.mapConfigs.get('dataSyncSemaphoresConfig')
         expect: 'system created instance with correct config of Module Sync Work Queue'
             assert moduleSyncDefaultWorkQueueConfig.backupCount == 1
             assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 0
@@ -79,28 +80,15 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert dataSyncSemaphoresMapConfig.backupCount == 1
             assert dataSyncSemaphoresMapConfig.asyncBackupCount == 0
         and: 'all instances are part of same cluster'
-            def testClusterName = 'cps-and-ncmp-test-caches'
-            assert moduleSyncWorkQueueConfig.clusterName == testClusterName
-            assert moduleSyncStartedOnCmHandlesConfig.clusterName == testClusterName
-            assert dataSyncSemaphoresConfig.clusterName == testClusterName
+            assert hzConfig.clusterName == 'cps-and-ncmp-test-caches'
     }
 
     def 'Verify deployment network configs for Distributed objects'() {
-        given: 'the Module Sync Work Queue config'
-            def queueNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncWorkQueue').config.networkConfig
-        and: 'the Module Sync Started Cm Handle Map config'
-            def moduleSyncStartedOnCmHandlesNetworkConfig = Hazelcast.getHazelcastInstanceByName('moduleSyncStartedOnCmHandles').config.networkConfig
-        and: 'the Data Sync Semaphores Map config'
-            def dataSyncSemaphoresNetworkConfig = Hazelcast.getHazelcastInstanceByName('dataSyncSemaphores').config.networkConfig
-        expect: 'system created instance with correct config of Module Sync Work Queue'
-            assert queueNetworkConfig.join.autoDetectionConfig.enabled
-            assert !queueNetworkConfig.join.kubernetesConfig.enabled
-        and: 'Module Sync Started Cm Handle Map has the correct settings'
-            assert moduleSyncStartedOnCmHandlesNetworkConfig.join.autoDetectionConfig.enabled
-            assert !moduleSyncStartedOnCmHandlesNetworkConfig.join.kubernetesConfig.enabled
-        and: 'Data Sync Semaphore Map has the correct settings'
-            assert dataSyncSemaphoresNetworkConfig.join.autoDetectionConfig.enabled
-            assert !dataSyncSemaphoresNetworkConfig.join.kubernetesConfig.enabled
+        given: 'common hazelcast network config'
+            def hzConfig = Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').config.networkConfig
+        and: 'all configs has the correct settings'
+            assert hzConfig.join.autoDetectionConfig.enabled
+            assert !hzConfig.join.kubernetesConfig.enabled
     }
 
     def 'Verify network config'() {

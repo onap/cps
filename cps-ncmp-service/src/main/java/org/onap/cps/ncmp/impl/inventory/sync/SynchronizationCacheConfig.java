@@ -51,7 +51,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public BlockingQueue<DataNode> moduleSyncWorkQueue() {
-        return createHazelcastInstance("moduleSyncWorkQueue", commonQueueConfig).getQueue("moduleSyncWorkQueue");
+        return getOrCreateHazelcastInstance(commonQueueConfig).getQueue("moduleSyncWorkQueue");
     }
 
     /**
@@ -61,7 +61,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Object> moduleSyncStartedOnCmHandles() {
-        return createHazelcastInstance("moduleSyncStartedOnCmHandles", moduleSyncStartedConfig).getMap(
+        return getOrCreateHazelcastInstance(moduleSyncStartedConfig).getMap(
                 "moduleSyncStartedOnCmHandles");
     }
 
@@ -72,6 +72,6 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
-        return createHazelcastInstance("dataSyncSemaphores", dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
+        return getOrCreateHazelcastInstance(dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
     }
 }
