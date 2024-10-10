@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "076b1b140925168e0c1eb0ffad2ae1e648010d1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d724c1c_9ba71955",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-10T12:18:23Z",
+      "side": 1,
+      "message": "I presume you test this\n(we did try this before but didnt get it to work, at the time it might have been using a different mvn plugin at the, o we are simply on a newer version now and it all works fine :-) )",
+      "revId": "076b1b140925168e0c1eb0ffad2ae1e648010d1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
