@@ -1,0 +1,1130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0216b85e_a0f5a6f5",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Dependency Injection: Can we use JsonObjectMapper bean in this class as a bean?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 95
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f2e9027_679d410e",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Exiting application due to failure in onboarding model...",
+      "range": {
+        "startLine": 59,
+        "startChar": 23,
+        "endLine": 59,
+        "endChar": 54
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "118c7709_12c09c15",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "mapYangResourcesToContent",
+      "range": {
+        "startLine": 66,
+        "startChar": 64,
+        "endLine": 66,
+        "endChar": 95
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38f25da_45f13f01",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "yangResourceContentByName",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 62
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11aafa1b_2bfb0800",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "yangResourceContentByName",
+      "range": {
+        "startLine": 113,
+        "startChar": 34,
+        "endLine": 113,
+        "endChar": 60
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39de8c9b_c2400e4d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "yangResourceContentByName",
+      "range": {
+        "startLine": 117,
+        "startChar": 15,
+        "endLine": 117,
+        "endChar": 40
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe78e4b_c3c38327",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "remove white space",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0fd0d32_fe5575e3",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "remove white space",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22619e55_82b27fa6",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "models",
+      "range": {
+        "startLine": 60,
+        "startChar": 31,
+        "endLine": 60,
+        "endChar": 38
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bef52f_5ecb790e",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "// Exit early if there are no dataspaces\n\nif (dataSpaces \u003d\u003d null || dataSpaces.isEmpty()) {\n            log.warn(\"No dataspaces found for initial subscriptions.\");\n            return; \n        }\n        \ndataSpaces.forEach(this::subscribeNotificationForDataspace);",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 63
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "771b0bd0_bff31c30",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "dataspace",
+      "range": {
+        "startLine": 78,
+        "startChar": 67,
+        "endLine": 78,
+        "endChar": 69
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a3094c_5c09a03d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Readability: The structure of the JSON is clearly defined within the method using standard Java collections.\n\nFlexibility: You can easily modify the structure of the JSON by adjusting the contents of the Map.\n\nTry to make use of \"org.onap.cps.utils.JsonObjectMapper\"  instead \"ObjectMapper\"\n\nIdea is like below : \n\nNew Method createNodeDataJson:\n\nThis method takes a Dataspace object and constructs a JSON string using JsonObjectMapper.\n\nIt returns the generated JSON string, allowing the main method to focus on its primary logic.\n\nObjectMapper objectMapper \u003d new ObjectMapper();\n    \n        // Create a map to represent the JSON structure\n        Map\u003cString, Object\u003e dataMap \u003d new HashMap\u003c\u003e();\n        dataMap.put(\"dataspace\", Collections.singletonList(Collections.singletonMap(\"name\", ds.getName())));\n\n        // Serialize the map to a JSON string\n        String nodeData \u003d objectMapper.writeValueAsString(dataMap);",
+      "range": {
+        "startLine": 79,
+        "startChar": 7,
+        "endLine": 79,
+        "endChar": 88
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1813aa_7c6c13ac",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "log.info(\"Data node for dataspace \u0027{}\u0027 already exists under \u0027{}\u0027.\", dataspace .getName(), REGISTRY_DATANODE_NAME);",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e2acf35_700a5b5f",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "log.error(\"Failed to create data node for dataspace \u0027{}\u0027: {}\", dataspace .getName(), exception.getMessage());",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 79
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31376c5_9c4d8374",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "remove it",
+      "range": {
+        "startLine": 24,
+        "startChar": 26,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e34e13a2_810d31a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "use same variable name as previous comment",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 32
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95b9d266_dca76ea6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "rename method name as suggested into previous comment",
+      "range": {
+        "startLine": 33,
+        "startChar": 51,
+        "endLine": 33,
+        "endChar": 82
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d68031_ce698caa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "// Stop the appender after tests to prevent memory leaks\n\nloggingListAppender.stop()",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49affa5f_2644640a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Application started event triggers onboarding/upgrade",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38abdb5a_d8139594",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Application started event handles startup exception",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 58
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a702762d_3de469a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "a startup exception is thrown during model onboarding",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 69
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d14727_8cc76d22",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a dataspace delegates to the service",
+      "range": {
+        "startLine": 63,
+        "startChar": 9,
+        "endLine": 63,
+        "endChar": 25
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "951850f7_cf2df50b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a dataspace handles",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6057da1f_9b5f013a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "the exception is ignored, and a log message is produced",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 45
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9aa124d_3271f2b5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a dataspace handles",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64728b53_4eef1131",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "dataspace service throws a runtime exception",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 69
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c853e491_c30eefb8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a schema set delegates to the service",
+      "range": {
+        "startLine": 93,
+        "startChar": 9,
+        "endLine": 93,
+        "endChar": 26
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1a5bc3_4e145098",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a schema set handles already defined exception",
+      "range": {
+        "startLine": 100,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 57
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "012a97f3_c5a2ef90",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a schema set from a non-existing YANG file",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 54
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e57aa6d7_59956805",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "attempting to create a schema set from a non-existing fil",
+      "range": {
+        "startLine": 113,
+        "startChar": 15,
+        "endLine": 113,
+        "endChar": 70
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f638a5e_4059bf3d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating an anchor delegates to the service",
+      "range": {
+        "startLine": 121,
+        "startChar": 9,
+        "endLine": 121,
+        "endChar": 23
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f5ae7ac_fc6f3f49",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating an anchor handles already defined exception",
+      "range": {
+        "startLine": 128,
+        "startChar": 9,
+        "endLine": 128,
+        "endChar": 53
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9f3dd8_a195f12a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "attempting to create an ancho",
+      "range": {
+        "startLine": 131,
+        "startChar": 15,
+        "endLine": 131,
+        "endChar": 39
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200afdad_abae5bb2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "then: \u0027the exception is ignored, and a log message is produced\u0027\n            noExceptionThrown()\n def logs \u003d loggingListAppender.list.toString()\n            assert logs.contains(\u0027Creating new anchor failed as anchor already exists\u0027)",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 87
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eccf956_dc984a5c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating an anchor handles other exceptions",
+      "range": {
+        "startLine": 140,
+        "startChar": 9,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa061840_514f3930",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "runtime exception",
+      "range": {
+        "startLine": 141,
+        "startChar": 43,
+        "endLine": 141,
+        "endChar": 52
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9116b6_59414a41",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a top-level data node delegates to the service",
+      "range": {
+        "startLine": 151,
+        "startChar": 9,
+        "endLine": 151,
+        "endChar": 35
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e8ead7_8221d38c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "top-level",
+      "range": {
+        "startLine": 152,
+        "startChar": 15,
+        "endLine": 152,
+        "endChar": 24
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e9d3c5_20f42e71",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "JSON",
+      "range": {
+        "startLine": 154,
+        "startChar": 27,
+        "endLine": 154,
+        "endChar": 32
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ac5d10_c462ece0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "Creating a top-level node handles already defined exception",
+      "range": {
+        "startLine": 158,
+        "startChar": 9,
+        "endLine": 158,
+        "endChar": 61
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e27658_04e30917",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "a top-level",
+      "range": {
+        "startLine": 161,
+        "startChar": 33,
+        "endLine": 161,
+        "endChar": 42
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a00f387_731288a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "attempting",
+      "range": {
+        "startLine": 161,
+        "startChar": 15,
+        "endLine": 161,
+        "endChar": 23
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8626adc2_1047d8fa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "then: \u0027the exception is ignored, and a log message is produced\u0027\n            noExceptionThrown()\n            assertLogContains(\u0027failed as data node already exists\u0027)",
+      "range": {
+        "startLine": 163,
+        "startChar": 10,
+        "endLine": 167,
+        "endChar": 70
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347f1b8b_9b454bfc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "a top-level",
+      "range": {
+        "startLine": 170,
+        "startChar": 16,
+        "endLine": 170,
+        "endChar": 25
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9451c901_4825d5e5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "a runtime exception",
+      "range": {
+        "startLine": 171,
+        "startChar": 40,
+        "endLine": 171,
+        "endChar": 52
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfaba88d_60ecc373",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "a top-level",
+      "range": {
+        "startLine": 173,
+        "startChar": 33,
+        "endLine": 173,
+        "endChar": 42
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28794c87_793b1aa8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "// No operation needed for testing",
+      "range": {
+        "startLine": 191,
+        "startChar": 38,
+        "endLine": 191,
+        "endChar": 39
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c67584_c3a8f3d1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "expectedYangResourcesToContents",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca07fb81_2a9e2661",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "single quotation should be used",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 73
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d572b700_bc3379bb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:20:49Z",
+      "side": 1,
+      "message": "// Stop the appender after tests to prevent memory leaks\n\nloggingListAppender.stop()",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
