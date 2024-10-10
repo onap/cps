@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cdbbed_3ae75f1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-10T12:49:03Z",
+      "side": 1,
+      "message": "can take care sourabhs comment in the next related patches I will have if thats ok.",
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e58f121_1e5327d3",
