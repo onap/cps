@@ -33,6 +33,52 @@
       "message": "I presume you test this\n(we did try this before but didnt get it to work, at the time it might have been using a different mvn plugin at the, o we are simply on a newer version now and it all works fine :-) )",
       "revId": "076b1b140925168e0c1eb0ffad2ae1e648010d1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a77385_c6279ec6",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:43:35Z",
+      "side": 1,
+      "message": "NB: \u003c/configuration\u003e\n    \u003cdescription\u003eCopies generated OpenAPI YAML files to the documentation folder.\u003c/description\u003e",
+      "range": {
+        "startLine": 251,
+        "startChar": 20,
+        "endLine": 251,
+        "endChar": 40
+      },
+      "revId": "076b1b140925168e0c1eb0ffad2ae1e648010d1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5360248_bef4a19c",
+        "filename": "cps-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T15:43:35Z",
+      "side": 1,
+      "message": "NB: \u003c/configuration\u003e\n    \u003cdescription\u003eCopies generated OpenAPI YAML files to the documentation folder.\u003c/description\u003e",
+      "range": {
+        "startLine": 216,
+        "startChar": 23,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "076b1b140925168e0c1eb0ffad2ae1e648010d1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
