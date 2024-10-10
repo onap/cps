@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e58f121_1e5327d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": "NB: \nConsistent Naming: Renamed dataStructuresConfig to configureDataStructures for more clarity.\n\nconfigureDataStructures",
+      "range": {
+        "startLine": 66,
+        "startChar": 24,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9c61f4_ae84787c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cache/CmSubscriptionConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": "Line Breaking: By placing .getMap(\"cmNotificationSubscriptionCache\") on a new line, the code becomes easier to read and debug. This is especially useful if there are future modifications or additions.",
+      "range": {
+        "startLine": 46,
+        "startChar": 85,
+        "endLine": 47,
+        "endChar": 51
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ddbef1_2fbb249b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": "config name",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 48
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eaf91dd_b59c07a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": "a",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15df3f45_c6de07c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 39,
+        "startChar": 27,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da4e86e_e6bfb275",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 43,
+        "startChar": 27,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a45a8c88_42fe9489",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfigSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-10T12:29:09Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 47,
+        "startChar": 27,
+        "endLine": 47,
+        "endChar": 28
+      },
+      "revId": "8e46da6c3a7b46a067bf72ebae0be1811ea7f9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
