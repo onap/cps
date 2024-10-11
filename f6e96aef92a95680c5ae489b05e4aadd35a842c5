@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c115a51_1ff14335",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc7bba2a_262a0e5d",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3880cda2_738547a5",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-10T12:35:21Z",
       "side": 1,
       "message": "align it with title length",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba5bf0ae_9a33d86a",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3880cda2_738547a5",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4bef1c_3f4aca07",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50bbcf21_74e40891",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 79
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96748625_7ce364b5",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-10T15:09:42Z",
       "side": 1,
       "message": "Exclude all of the docker-compose config, etc. All users we know of are deploying with kubernetes anyway. I\u0027d say just changes about the JVM heap is enough.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 22
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21e6cbe_63666493",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96748625_7ce364b5",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb20f68_1b87b80d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71ce1fb1_0091de88",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 97
+      },
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce2fb0fd_d05050ce",
@@ -129,6 +249,24 @@
       "writtenOn": "2024-10-10T12:35:21Z",
       "side": 1,
       "message": "JVM Configuration\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\nBy tuning the JVM\u0027s memory allocation this way, the JVM can dynamically adjust its heap size based on the available memory, preventing OutOfMemory errors and ensuring stable performance within the allocated limits.",
+      "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3e0019_c46cb057",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-11T08:58:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce2fb0fd_d05050ce",
       "revId": "f6e96aef92a95680c5ae489b05e4aadd35a842c5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
