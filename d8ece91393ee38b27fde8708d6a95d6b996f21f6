@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d9e82b_a6452dff",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-10-11T10:14:54Z",
+      "side": 1,
+      "message": "I\u0027m not sure reserving cpus works.\n\nThe following deploy sub-keys are not supported and have been ignored: resources.reservations.cpus",
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
