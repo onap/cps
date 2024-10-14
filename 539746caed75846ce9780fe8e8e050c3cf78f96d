@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a959cbb_e4dcd5f2",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-14T19:43:45Z",
+      "side": 1,
+      "message": "Nb. Less words is more readable: keep it simple. It is enough to say 75%",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 90
+      },
+      "revId": "539746caed75846ce9780fe8e8e050c3cf78f96d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
