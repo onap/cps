@@ -29,10 +29,10 @@ class HazelcastCacheConfigSpec extends Specification {
     def objectUnderTest = new HazelcastCacheConfig()
 
     def 'Create Hazelcast instance with a #scenario'() {
-        given: 'a cluster name and instance name'
+        given: 'a cluster name and instance config name'
             objectUnderTest.clusterName = 'my cluster'
             objectUnderTest.instanceConfigName = 'my instance config'
-        when: 'an hazelcast instance is created (name has to be unique)'
+        when: 'a hazelcast instance is created (name has to be unique)'
             def result = objectUnderTest.getOrCreateHazelcastInstance(config)
         then: 'the instance is created and has the correct name'
             assert result.name == 'my instance config'

@@ -331,16 +331,15 @@ The latest instructions are covered in the `README <https://github.com/onap/cps/
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
 .. _cps_common_distributed_datastructures:
 
-CPS-Core and NCMP Distributed Datastructures
-============================================
+NCMP Distributed Data Structures
+================================
 
-CPS-Core and NCMP both internally uses embedded distributed datastructure to replicate the state across various instances for low latency.
-These instances require some additional ports to be available. The default range starts from 5701 and based on the number of instances configured they are incremented sequentially.
+NCMP utilizes embedded distributed data structures to replicate state across various instances, ensuring low latency and high performance. Each JVM runs a Hazelcast instance to manage these data structures. To facilitate member visibility and cluster formation, an additional port (defaulting to 5701) must be available.
 
 Below are the list of distributed datastructures that we have.
 
 +--------------+------------------------------------+-----------------------------------------------------------+
-| Component    | Datastructure name                 |                 Use                                       |
+| Component    | Data Structure Name                |                 Use                                       |
 +==============+====================================+===========================================================+
 | cps-ncmp     | moduleSyncStartedOnCmHandles       | Watchdog process to register cm handles.                  |
 +--------------+------------------------------------+-----------------------------------------------------------+
@@ -348,13 +347,11 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | moduleSyncWorkQueue                | Queue used internally for workers to pick the task.       |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | untrustworthyCmHandlesSet          | Stores untrustworthy cm handles whose trust level is NONE.|
+| cps-ncmp     | trustLevelPerCmHandle              | Stores the trust level per cm handle id                   |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerDmiPlugin             | Stores the trust level for the dmi-plugins.               |
-+--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | moduleSetTagCacheMapConfig         | Stores the module set tags for cm handles.                |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 8
+Total number of caches : 6
