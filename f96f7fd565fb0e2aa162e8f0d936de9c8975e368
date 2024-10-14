@@ -16,6 +16,184 @@
       "message": "recheck",
       "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbbe2cab_b30c6676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "a few initial observation, will look at groovy tests later.",
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9510de4_f15b631f",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "it would be nice to have this different than cmHandleReferenceInPath since it is a boolean flag but not an id at all.\n\nyou can tell about what does the parameter used for e.g.\n\nis used to decide to output alternate id if true otherwise output cm handle id.",
+      "range": {
+        "startLine": 519,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 160
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4868541f_58cdc754",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "or alternate ids",
+      "range": {
+        "startLine": 271,
+        "startChar": 34,
+        "endLine": 271,
+        "endChar": 37
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d89881b_91e21403",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "Not needed since there is nothing to logged",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 6
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4954263_2a2ade46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "redundant import since nothing has been logged",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 2
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ae774a_1d0040d7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "it should also be possible to reduce these two methods into one single method like:\n\ngetIdsByTrustLevel(targetTrustLevel, outputAlternateId)\n\nSince both funtions are quite similar. You just need to decide which id you should collect based on outputAlternatId flag.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 9
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d1260e_1043a512",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "You can think about having a single method for this and getCmHandleIdsByTrustLevel function having one more parameter mentioned above already.",
+      "range": {
+        "startLine": 175,
+        "startChar": 31,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f12a1ade_f2256e7d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T17:00:27Z",
+      "side": 1,
+      "message": "redundant import not used at all to log anything.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 6
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
