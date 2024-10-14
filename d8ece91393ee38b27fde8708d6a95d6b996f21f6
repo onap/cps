@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7b8dc54_b3815ac1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:07:55Z",
+      "side": 1,
+      "message": "NB: this is extra.\nhow come the build is not failing coz of this.\nIt used to fail i think before.",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53d9e82b_a6452dff",
         "filename": "docs/deployment.rst",
         "patchSetId": 2
