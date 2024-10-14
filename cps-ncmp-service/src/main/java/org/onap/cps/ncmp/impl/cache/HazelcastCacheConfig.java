@@ -57,13 +57,13 @@ public class HazelcastCacheConfig {
         final Config config = getHazelcastInstanceConfig(instanceConfigName);
         config.setClusterName(clusterName);
         config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
-        dataStructuresConfig(namedConfig, config);
+        configureDataStructures(namedConfig, config);
         exposeClusterInformation(config);
         updateDiscoveryMode(config);
         return config;
     }
 
-    private static void dataStructuresConfig(final NamedConfig namedConfig, final Config config) {
+    private static void configureDataStructures(final NamedConfig namedConfig, final Config config) {
         if (namedConfig instanceof MapConfig) {
             config.addMapConfig((MapConfig) namedConfig);
         }
