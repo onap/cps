@@ -16,6 +16,29 @@
       "message": "I\u0027m not sure reserving cpus works.\n\nThe following deploy sub-keys are not supported and have been ignored: resources.reservations.cpus",
       "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff11dc6_4a941f5f",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-14T08:27:18Z",
+      "side": 1,
+      "message": "I think you forgot to remove this, the docker-compose config is gone now",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 143
+      },
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
