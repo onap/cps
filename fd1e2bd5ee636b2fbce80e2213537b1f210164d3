@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9a4664f_20cc2b01",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "i think we call it as ModelLoader in NCMP. So I guess we should follow similar stuff atleast for the base interfaces and abstract classes.\n\nCpsModelLoader suggested. and same comments applicable for all the places.",
+      "range": {
+        "startLine": 43,
+        "startChar": 50,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0216b85e_a0f5a6f5",
         "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
         "patchSetId": 5
@@ -14,6 +37,30 @@
       "writtenOn": "2024-10-10T15:20:49Z",
       "side": 1,
       "message": "Dependency Injection: Can we use JsonObjectMapper bean in this class as a bean?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 95
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d339be3a_613b8d46",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "amm.. this is not spring managed so I guess no. we wont be able to do DI here.",
+      "parentUuid": "0216b85e_a0f5a6f5",
       "range": {
         "startLine": 52,
         "startChar": 4,
@@ -141,6 +188,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "add25487_6c6d1c7d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractCpsModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "final ?",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f739ae1b_178c2c5a",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "i think we agreed that all this Notification Subscription stuff will be part of a different/new dataspace. right ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 54,
+        "endLine": 45,
+        "endChar": 63
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efe78e4b_c3c38327",
         "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
         "patchSetId": 5
@@ -152,6 +239,29 @@
       "writtenOn": "2024-10-10T15:20:49Z",
       "side": 1,
       "message": "remove white space",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3289c32b_b272203d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModuleLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 47,
+        "startChar": 58,
+        "endLine": 47,
+        "endChar": 68
+      },
       "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -307,6 +417,46 @@
         "endLine": 87,
         "endChar": 79
       },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260a3768_a7637acf",
+        "filename": "cps-service/src/main/resources/cps-notification-subscriptions@2024-07-03.yang",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "?? can we be more descriptive here.",
+      "range": {
+        "startLine": 9,
+        "startChar": 13,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba62b30e_b34bd013",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "no header ?",
       "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -1066,6 +1216,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb41f17f_df57b064",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "again no header?",
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11c67584_c3a8f3d1",
         "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
         "patchSetId": 5
@@ -1082,6 +1249,29 @@
         "startChar": 8,
         "endLine": 27,
         "endChar": 41
+      },
+      "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa34850e_58d6bed9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-14T13:22:08Z",
+      "side": 1,
+      "message": "same comment as before w.r.t the dataspace and anchors we are going to use.",
+      "range": {
+        "startLine": 31,
+        "startChar": 30,
+        "endLine": 31,
+        "endChar": 39
       },
       "revId": "fd1e2bd5ee636b2fbce80e2213537b1f210164d3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
