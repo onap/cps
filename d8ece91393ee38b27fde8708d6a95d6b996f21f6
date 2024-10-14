@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc235ab_0fb7dcd1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T15:57:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7b8dc54_b3815ac1",
+      "range": {
+        "startLine": 23,
+        "startChar": 26,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53d9e82b_a6452dff",
@@ -41,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93344181_7fdf5f25",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T15:57:46Z",
+      "side": 1,
+      "message": "That was good point, thanks.\n \nIt\u0027s been understood that that WARN appears if the docker-compose version is 1.29.2\nThere was no WARN if the docker-compose version is v2.15.1\n\nEven though cpu reservation ignored, but still I can see the reserved cpu when I run Grafana dashboard.",
+      "parentUuid": "53d9e82b_a6452dff",
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ff11dc6_4a941f5f",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-10-14T08:27:18Z",
       "side": 1,
       "message": "I think you forgot to remove this, the docker-compose config is gone now",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 143
+      },
+      "revId": "d8ece91393ee38b27fde8708d6a95d6b996f21f6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a5d87e_9db71838",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-14T15:57:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ff11dc6_4a941f5f",
       "range": {
         "startLine": 25,
         "startChar": 0,
