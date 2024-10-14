@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df50acb6_62e635da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-14T12:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0606c977_119c266e",
+      "range": {
+        "startLine": 155,
+        "startChar": 31,
+        "endLine": 155,
+        "endChar": 56
+      },
+      "revId": "67ba9b3d834ad4862acdff7b15981795f9e25485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce5c88e9_b4027724",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-14T09:45:23Z",
       "side": 1,
       "message": "Remove duplication, maybe pass boolean into collectIdsFromDataNodes",
+      "range": {
+        "startLine": 219,
+        "startChar": 45,
+        "endLine": 231,
+        "endChar": 17
+      },
+      "revId": "67ba9b3d834ad4862acdff7b15981795f9e25485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75def29b_e7374ddb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-14T12:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce5c88e9_b4027724",
       "range": {
         "startLine": 219,
         "startChar": 45,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e674d21_3ff3b14e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-14T12:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dc48415_9329766b",
+      "range": {
+        "startLine": 186,
+        "startChar": 13,
+        "endLine": 195,
+        "endChar": 13
+      },
+      "revId": "67ba9b3d834ad4862acdff7b15981795f9e25485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ad8127d_f2738a87",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-14T09:45:23Z",
       "side": 1,
       "message": "These are nearly identical, could be refactored to take in boolean, could refactor all the way down:\n\n    private Collection\u003cString\u003e getAllCmHandleIds(final boolean outputAlternateId) {\n        final DataNode dataNode \u003d inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)\n                .iterator().next();\n        return collectIdsFromDataNodes(dataNode.getChildDataNodes(), \n                outputAlternateId);\n    }",
+      "range": {
+        "startLine": 234,
+        "startChar": 5,
+        "endLine": 246,
+        "endChar": 5
+      },
+      "revId": "67ba9b3d834ad4862acdff7b15981795f9e25485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eae4fd5_409fa9dd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-14T12:16:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ad8127d_f2738a87",
       "range": {
         "startLine": 234,
         "startChar": 5,
