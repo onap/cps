@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03df5a8a_c72cb35e",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "yangResourcesContentByResourceName",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3752461_2de04dfa",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "Improved Readability: The refactor all catch blocks to call these helper methods, which improves the overall readability and maintainability of the code.\n\nSomething like below:\n\n// Helper method to handle exceptions consistently\n    private void handleException(final String message, final Exception ex, final String context) {\n        log.error(\"{}: {} \", message, ex.getMessage());\n        throw new CpsStartupException(message, context + \": \" + ex.getMessage());\n    }\n\n    // Helper method to log warnings for already defined exceptions\n    private void logWarning(final String message, final String context) {\n        log.warn(message, context);\n    }",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21484bcb_29adf31f",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "Simplified Optional Usage: Removed unnecessary Optional logic and replaced it with straightforward null checks.:\n \n if (dataspaceList !\u003d null) {\n            dataspaceList.forEach(this::subscribeNotificationForDataspace);\n        }",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 117
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47431a37_04c44aee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "Removed Unused Fields: \n\nThe mapYangResourcesToContent field was declared but never used, I suspect if we need it.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 127
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4749a09_44769d1e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "logger",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 70
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7baffd0c_41705bd5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\u0027test message\u0027)",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 48
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17492ac2_81c6a8ef",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\u0027Dataspace already exists\u0027)",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 60
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4f1162_2f06121c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\u0027Creating new schema set failed as schema set already exists\u0027)",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 131,
+        "endChar": 95
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51862247_9a703847",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\u0027Creating new anchor failed as anchor already exists\u0027)",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 158,
+        "endChar": 87
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6207774f_a855e7a3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\"Data node for dataspace \u0027test\u0027 already exists under \u0027dataspaces\u0027\")\n    }",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 198,
+        "endChar": 93
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a034bc5_ec80277a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "assertLogContains(\u0027failed as data node already exists\u0027)",
+      "range": {
+        "startLine": 208,
+        "startChar": 12,
+        "endLine": 209,
+        "endChar": 70
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b066583_d8787ef5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "Utility Method for Logging Assertions: Add a private method assertLogContains(String message) to streamline the assertions related to log messages. This reduces redundancy and improves clarity like below:\n\n private void assertLogContains(String message) {\n        def logs \u003d loggingListAppender.list.toString()\n        assert logs.contains(message)\n    }",
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97c8ee4_fd43920f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "logger",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 86
+      },
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a307e89_467ddc39",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModuleLoaderSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:25:10Z",
+      "side": 1,
+      "message": "Unified Exception Handling: We can have a new test case/ merged with previous to handle AlreadyDefinedException gracefully, maintaining clarity on how exceptions are logged and handled.:\n \n \n def \u0027Create node for datastore handles already defined exception gracefully.\u0027() {\n        given: \u0027dataspace is already present\u0027\n            mockCpsDataspaceService.getAllDataspaces() \u003e\u003e [new Dataspace(\u0027test\u0027)]\n        and: \u0027the data service throws an already defined exception\u0027\n            mockCpsDataService.saveData(*_) \u003e\u003e { throw AlreadyDefinedException.forDataNodes([], \u0027some context\u0027) }\n        when: \u0027attempt to create datastore\u0027\n            objectUnderTest.createInitialSubscription(CPS_DATASPACE_NAME, ANCHOR_NAME)\n        then: \u0027the exception is ignored, and a log message is produced\u0027\n            noExceptionThrown()\n            assertLogContains(\u0027failed as data node already exists\u0027)\n    }",
+      "revId": "bf0491a014c31e0349770f4a263897d33481669f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
