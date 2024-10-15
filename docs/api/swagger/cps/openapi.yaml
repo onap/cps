@@ -1451,6 +1451,15 @@ paths:
         schema:
           default: /
           type: string
+      - description: "Boolean flag to validate data, without persisting it. Default\
+          \ value is set to false."
+        in: query
+        name: dry-run
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       - description: observed-timestamp
         in: query
         name: observed-timestamp
@@ -2550,6 +2559,16 @@ components:
       schema:
         example: application/json
         type: string
+    dryRunInQuery:
+      description: "Boolean flag to validate data, without persisting it. Default\
+        \ value is set to false."
+      in: query
+      name: dry-run
+      required: false
+      schema:
+        default: false
+        example: false
+        type: boolean
     requiredXpathInQuery:
       description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
       examples:
