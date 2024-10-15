@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f63eae7_0c1c3425",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-15T12:07:19Z",
+      "side": 1,
+      "message": "it stil doen\u0027 mention the use-case: update. Pleas consider my proposed message",
+      "range": {
+        "startLine": 259,
+        "startChar": 22,
+        "endLine": 259,
+        "endChar": 48
+      },
+      "revId": "66ca487346320ebdab76f3285c0d5aefa6eb8c0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
