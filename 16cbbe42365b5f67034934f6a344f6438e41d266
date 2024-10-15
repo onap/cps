@@ -22,6 +22,30 @@
       },
       "revId": "16cbbe42365b5f67034934f6a344f6438e41d266",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a6c1f55_e9adacc6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T11:24:13Z",
+      "side": 1,
+      "message": "Its temporary. We need to handle this case in a proper way. Working how we need to handle handle it , schedule another internal meeting for more insight.\n@Danile need your opinion as well.",
+      "parentUuid": "b6e2f04c_091d6f67",
+      "range": {
+        "startLine": 258,
+        "startChar": 22,
+        "endLine": 258,
+        "endChar": 31
+      },
+      "revId": "16cbbe42365b5f67034934f6a344f6438e41d266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
