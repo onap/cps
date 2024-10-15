@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6e2f04c_091d6f67",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-15T11:20:11Z",
+      "side": 1,
+      "message": "is this temporary logging or permanent?!\nif s permanent i would like to see a bit more context ie.\n\u0027Update date nodes, target xpaths not found in DB {}\u0027\n(also not is shoudl be plural)",
+      "range": {
+        "startLine": 258,
+        "startChar": 22,
+        "endLine": 258,
+        "endChar": 31
+      },
+      "revId": "16cbbe42365b5f67034934f6a344f6438e41d266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
