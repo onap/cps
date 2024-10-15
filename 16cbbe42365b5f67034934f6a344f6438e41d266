@@ -46,6 +46,30 @@
       },
       "revId": "16cbbe42365b5f67034934f6a344f6438e41d266",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8565c7b4_d37af1a5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-15T11:40:40Z",
+      "side": 1,
+      "message": "I\u0027d assume the logging is permanent. I agree with Toine, it needs more context like \"Cannot update non-existing data nodes with xpaths: {}\"\n\nBut DT may come up with a different solution - they raised this issue in last community meeting, of update silently ignoring non-existing entries.",
+      "parentUuid": "9a6c1f55_e9adacc6",
+      "range": {
+        "startLine": 258,
+        "startChar": 22,
+        "endLine": 258,
+        "endChar": 31
+      },
+      "revId": "16cbbe42365b5f67034934f6a344f6438e41d266",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
