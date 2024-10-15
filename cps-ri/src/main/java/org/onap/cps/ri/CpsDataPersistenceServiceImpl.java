@@ -228,6 +228,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
+
+        logMissingXPaths(dataspaceName, anchorName, xpaths, existingFragmentEntities);
+
         existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
 
@@ -240,6 +243,20 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             fragmentRepository.saveAll(existingFragmentEntities);
         } catch (final StaleStateException staleStateException) {
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
+        }
+    }
+
+    private void logMissingXPaths(final String dataspaceName, final String anchorName,
+                                  final Collection<String> xpaths, final Collection<FragmentEntity>
+            existingFragmentEntities) {
+        final Set<String> existingXPaths = existingFragmentEntities.stream().map(FragmentEntity::getXpath)
+                .collect(Collectors.toSet());
+
+        final Set<String> missingXPaths = xpaths.stream().filter(xpath -> !existingXPaths.contains(xpath))
+                .collect(Collectors.toSet());
+
+        if (!missingXPaths.isEmpty()) {
+            log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
         }
     }
 
