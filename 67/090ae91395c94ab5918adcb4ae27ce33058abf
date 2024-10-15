@@ -1,0 +1,10 @@
+Code-Review+1: Gerard Nugent <gerard.nugent@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Code-Review+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-by: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Submitted-at: Tue, 15 Oct 2024 10:20:31 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/139181
+Project: cps
+Branch: refs/heads/master
