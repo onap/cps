@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "996cec7e_615255fb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4868541f_58cdc754",
+      "range": {
+        "startLine": 271,
+        "startChar": 34,
+        "endLine": 271,
+        "endChar": 37
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d89881b_91e21403",
@@ -104,6 +128,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87bfa08e_e84138a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d89881b_91e21403",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 6
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4954263_2a2ade46",
@@ -117,6 +165,30 @@
       "writtenOn": "2024-10-14T17:00:27Z",
       "side": 1,
       "message": "redundant import since nothing has been logged",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 2
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31df9fa_66b3b3f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacade.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4954263_2a2ade46",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -174,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd48a825_954a05cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "561fb5be_d84fa9f7",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 9
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5d1260e_1043a512",
@@ -197,6 +293,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02ccfebf_c446e9ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5d1260e_1043a512",
+      "range": {
+        "startLine": 175,
+        "startChar": 31,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f12a1ade_f2256e7d",
@@ -210,6 +330,30 @@
       "writtenOn": "2024-10-14T17:00:27Z",
       "side": 1,
       "message": "redundant import not used at all to log anything.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 6
+      },
+      "revId": "f96f7fd565fb0e2aa162e8f0d936de9c8975e368",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a1bbc17_7718b4d8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-15T09:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f12a1ade_f2256e7d",
       "range": {
         "startLine": 57,
         "startChar": 0,
