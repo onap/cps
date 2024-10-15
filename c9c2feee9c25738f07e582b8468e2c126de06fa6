@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16587fd5_dc98d1f2",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-15T12:31:33Z",
+      "side": 1,
+      "message": "NB:   \n\nNCMP utilizes embedded distributed data structures to replicate state across various instances, ensuring low latency and high performance. Each JVM runs a Hazelcast instance to manage these data structures. To facilitate member visibility and cluster formation, an additional port (defaulting to 5701) must be available.",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 219
+      },
+      "revId": "c9c2feee9c25738f07e582b8468e2c126de06fa6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
