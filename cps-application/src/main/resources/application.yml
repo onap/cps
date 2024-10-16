@@ -180,6 +180,11 @@ management:
             probes:
                 enabled: true
 
+    info:
+        git:
+            enabled: true
+            mode: full
+
 logging:
     format: json
     level:
