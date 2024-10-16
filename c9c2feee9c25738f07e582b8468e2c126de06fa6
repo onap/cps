@@ -22,6 +22,53 @@
       },
       "revId": "c9c2feee9c25738f07e582b8468e2c126de06fa6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef984b3b_4050b3f6",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-16T14:56:01Z",
+      "side": 1,
+      "message": "I like Sourabhs wording...",
+      "parentUuid": "16587fd5_dc98d1f2",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 219
+      },
+      "revId": "c9c2feee9c25738f07e582b8468e2c126de06fa6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c111b3ee_157f9267",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-16T14:56:01Z",
+      "side": 1,
+      "message": "NV: capital N as it is a tile :-)",
+      "range": {
+        "startLine": 343,
+        "startChar": 31,
+        "endLine": 343,
+        "endChar": 33
+      },
+      "revId": "c9c2feee9c25738f07e582b8468e2c126de06fa6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
