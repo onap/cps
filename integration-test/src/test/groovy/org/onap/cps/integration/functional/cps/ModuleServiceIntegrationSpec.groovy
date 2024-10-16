@@ -134,7 +134,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ 'newSchema1', 'newSchema2'])
     }
 
-    def 'Create schema set error scenario: #scenario.'() {
+    def 'Attempt to create schema set, error scenario: #scenario.'() {
         when: 'attempt to store schema set #schemaSetName in dataspace #dataspaceName'
             populateNewYangResourcesNameToContentMapAndAllModuleReferences(0)
             objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, newYangResourcesNameToContentMap)
@@ -145,6 +145,14 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             'dataspace does not exist'  | 'unknown'                   | 'not-relevant'       || DataspaceNotFoundException
             'schema set already exists' | FUNCTIONAL_TEST_DATASPACE_1 | BOOKSTORE_SCHEMA_SET || AlreadyDefinedException
     }
+
+    def 'Attempt to create duplicate schema set from modules.'() {
+        when: 'attempt to store duplicate schema set from modules'
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, newYangResourcesNameToContentMap, [])
+        then: 'an Already Defined Exception is thrown'
+            thrown(AlreadyDefinedException)
+    }
+
 
     /*
         R E A D   S C H E M A   S E T   I N F O   U S E - C A S E S
