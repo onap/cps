@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b7d435_71ed39cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T13:07:23Z",
+      "side": 1,
+      "message": "as we have discussed in the call, you can modify integration-test to see how does the new parameter (outputAlternateId\u003dtrue / false) behaving.\n\nintegration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/RestApiSpec.groovy \nYou can modify \"Search for CM Handles by module using REST API\" test by having expectedAlternateIds",
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b22514c9_c5934c5b",
@@ -19,6 +36,53 @@
         "startChar": 51,
         "endLine": 292,
         "endChar": 62
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94353649_b09e55ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T13:07:23Z",
+      "side": 1,
+      "message": "right when I changed this to alternate-id then no more 500 server error appeared.",
+      "parentUuid": "b22514c9_c5934c5b",
+      "range": {
+        "startLine": 292,
+        "startChar": 51,
+        "endLine": 292,
+        "endChar": 62
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb002a2_f452115b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T13:07:23Z",
+      "side": 1,
+      "message": "These two method never used. Candidate to be removal.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 5
       },
       "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
