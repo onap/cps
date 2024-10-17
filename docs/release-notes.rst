@@ -15,6 +15,33 @@ CPS Release Notes
 ..      ====================
 ..      * * *   OSLO   * * *
 ..      ====================
+Version: 3.5.5
+==============
+
+Release Data
+------------
+
++--------------------------------------+--------------------------------------------------------+
+| **CPS Project**                      |                                                        |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Docker images**                    | onap/cps-and-ncmp:3.5.5                                |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release designation**              | 3.5.5 Oslo                                             |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+| **Release date**                     | Not yet released                                       |
+|                                      |                                                        |
++--------------------------------------+--------------------------------------------------------+
+
+Bug Fixes
+---------
+3.5.5
+
+Features
+--------
+3.5.5
 
 Version: 3.5.4
 ==============
@@ -32,20 +59,19 @@ Release Data
 | **Release designation**              | 3.5.4 Oslo                                             |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release date**                     | Not yet released                                       |
+| **Release date**                     | 2024 October 17                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
 Bug Fixes
 ---------
 3.5.4
-    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM-handle Module Sync.
+     - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM-handle Module Sync.
 
 Features
 --------
 3.5.4
     - `CPS-2408 <https://lf-onap.atlassian.net/browse/CPS-2408>`_ One Hazelcast instance per JVM to manage the distributed data structures.
-
 
 Version: 3.5.3
 ==============
