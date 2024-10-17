@@ -228,8 +228,6 @@ ncmp:
     timers:
         advised-modules-sync:
             sleep-time-ms: 5000
-        locked-modules-sync:
-            sleep-time-ms: 15000
         cm-handle-data-sync:
             sleep-time-ms: 30000
         subscription-forwarding:

@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   description: NCMP to CPS Proxy API
   title: NCMP to CPS Proxy API
-  version: 3.5.2
+  version: 3.5.4
 servers:
 - url: /ncmp
 security:

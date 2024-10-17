@@ -296,20 +296,15 @@ Additional CPS-NCMP Customizations
 |                                           |                                                                                                         |                               |
 |                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                        | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``30000``                     |
+| config.ncmp.timers                        | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``5000``                      |
 | .advised-modules-sync.sleep-time-ms       |                                                                                                         |                               |
-|                                           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                        | Specifies the delay in milliseconds in which the retry mechanism watch dog                              |                               |
-| .locked-modules-sync.sleep-time-ms        | will wake again after finishing.                                                                        | ``300000``                    |
-|                                           |                                                                                                         |                               |
 |                                           |                                                                                                         |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.ncmp.timers                        | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
 | .cm-handle-data-sync.sleep-time-ms        |                                                                                                         |                               |
 |                                           |                                                                                                         |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.ncmp.dmi.httpclient     | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``180``                       |
+| config.additional.ncmp.dmi.httpclient     | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``30``                        |
 | .connectionTimeoutInSeconds               |                                                                                                         |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.additional.ncmp.dmi.httpclient     | Specifies the maximum number of connections allowed per route in the HTTP client.                       | ``50``                        |
