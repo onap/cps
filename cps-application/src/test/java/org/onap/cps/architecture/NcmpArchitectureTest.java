@@ -25,31 +25,12 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
- * These test verify the correct use of dependencies in all CPS modules.
+ * These test verify the correct use of dependencies in NCMP modules.
  */
 @AnalyzeClasses(packages = "org.onap.cps", importOptions = {ImportOption.DoNotIncludeTests.class})
-public class NcmpArchitectureTest {
-
-    private static final String[] ACCEPTED_3PP_PACKAGES = { "com.fasterxml..",
-                                                            "com.google..",
-                                                            "com.hazelcast..",
-                                                            "edu..",
-                                                            "io.cloudevents..",
-                                                            "io.micrometer..",
-                                                            "io.netty..",
-                                                            "io.swagger..",
-                                                            "jakarta..",
-                                                            "java..",
-                                                            "lombok..",
-                                                            "org.apache..",
-                                                            "org.mapstruct..",
-                                                            "org.slf4j..",
-                                                            "org.springframework..",
-                                                            "reactor.."
-    };
+public class NcmpArchitectureTest extends ArchitectureTestBase {
 
     @ArchTest
     static final ArchRule nothingDependsOnCpsNcmpRest =
@@ -89,10 +70,5 @@ public class NcmpArchitectureTest {
                             // This will be handled in a separate user story
                             "org.onap.cps.spi..", "org.onap.cps.events..", "org.onap.cps.cpspath..",
                             "org.onap.cps.impl..", "org.onap.cps.utils.."));
-
-    static String[] commonAndListedPackages(final String... packageIdentifiers) {
-        return ArrayUtils.addAll(ACCEPTED_3PP_PACKAGES, packageIdentifiers);
-    }
-
 }
 
