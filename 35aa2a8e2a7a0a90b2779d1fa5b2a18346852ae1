@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "060c16c6_d469c567",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T15:41:16Z",
+      "side": 1,
+      "message": "Some NB comments",
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229830dd_9fc1ac88",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T15:41:16Z",
+      "side": 1,
+      "message": "NB: As you did for NCMP you can have a class doc like:\n\n/**\n * These test verify the correct use of dependencies in CPS modules.\n */",
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec8a219_f2a8a454",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T15:41:16Z",
+      "side": 1,
+      "message": "NB: It seems cps service api only depend on 3pp packages. But still good test name I think.",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 64
+      },
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0c4474e_44da1048",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T15:41:16Z",
+      "side": 1,
+      "message": "NB: This is not a good test name since cps service not only depend on 3pp packages, but also some other cps packages.",
+      "range": {
+        "startLine": 44,
+        "startChar": 26,
+        "endLine": 44,
+        "endChar": 72
+      },
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
