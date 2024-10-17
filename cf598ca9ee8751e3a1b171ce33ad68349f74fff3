@@ -16,6 +16,24 @@
       "message": "This one went missing:\n\n    - `CPS-2403 \u003chttps://lf-onap.atlassian.net/browse/CPS-2403\u003e`_ Improve lock handling and queue management during CM-handle Module Sync.",
       "revId": "cf598ca9ee8751e3a1b171ce33ad68349f74fff3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc8db7e8_04b91f3e",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-17T16:29:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e8e0bfe_b8375ec1",
+      "revId": "cf598ca9ee8751e3a1b171ce33ad68349f74fff3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
