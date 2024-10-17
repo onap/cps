@@ -86,6 +86,167 @@
       },
       "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc867ee5_2f2855c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacadeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fea880f_84bace26",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacadeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 86
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2757c72a_b7c5a7ac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "expectedCmHandleOrAlternateIds",
+      "range": {
+        "startLine": 72,
+        "startChar": 159,
+        "endLine": 72,
+        "endChar": 178
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87540a53_92373acb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "\"output cmhandle id\"\n\nis enough to scenario title since the parameter has been passed as false",
+      "range": {
+        "startLine": 93,
+        "startChar": 13,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14995432_94a96f61",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "\"output alternate id\"\n\nis enough to scenario title since the parameter has been passed as true",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe0bd96_0e88f5c9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "\"output cmhandle ids\"\n\nas commented on the other test file above would be nice since the flag \"false\" already indicate the same meaning",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70258b16_65f0d911",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T14:39:54Z",
+      "side": 1,
+      "message": "\"output alternate ids\"\n\n\nThere are some other similar to this below, if you can have a look at.",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 61,
+        "endChar": 36
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
