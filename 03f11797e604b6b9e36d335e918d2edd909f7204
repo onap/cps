@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b22514c9_c5934c5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-17T12:51:26Z",
+      "side": 1,
+      "message": "As per Halil\u0027s testing, this leads to NullPointerException. In the DB, the parameter is called \u0027alternate-id\u0027, not \u0027alternateId\u0027",
+      "range": {
+        "startLine": 292,
+        "startChar": 51,
+        "endLine": 292,
+        "endChar": 62
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
