@@ -64,15 +64,16 @@ public class NetworkCmProxyInventoryFacade {
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdMatcher alternateIdMatcher;
 
+
+
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
      *
      * @param dmiPluginRegistration Dmi Plugin Registration details
      * @return dmiPluginRegistrationResponse
      */
-    public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
-        final DmiPluginRegistration dmiPluginRegistration) {
-        return cmHandleRegistrationService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration);
+    public DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
+        return cmHandleRegistrationService.updateDmiRegistration(dmiPluginRegistration);
     }
 
     /**

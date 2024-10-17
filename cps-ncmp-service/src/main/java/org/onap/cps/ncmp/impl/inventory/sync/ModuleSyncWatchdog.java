@@ -32,6 +32,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.utils.Sleeper;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class ModuleSyncWatchdog {
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
     private final Lock workQueueLock;
+    private final Sleeper sleeper;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
     private static final long PREVENT_CPU_BURN_WAIT_TIME_MILLIS = 10;
@@ -59,9 +61,10 @@ public class ModuleSyncWatchdog {
      * Check DB for any cm handles in 'ADVISED' state.
      * Queue and create batches to process them asynchronously.
      * This method will only finish when there are no more 'ADVISED' cm handles in the DB.
-     * This method wil be triggered on a configurable interval
+     * This method is triggered on a configurable interval (ncmp.timers.advised-modules-sync.sleep-time-ms)
      */
-    @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
+    @Scheduled(initialDelayString = "${test.ncmp.timers.advised-modules-sync.initial-delay-ms:0}",
+               fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
         log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
@@ -82,16 +85,12 @@ public class ModuleSyncWatchdog {
         }
     }
 
-    private void preventBusyWait() {
-        try {
-            log.debug("Busy waiting now");
-            TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    private void populateWorkQueueIfNeeded() {
+    /**
+     * Populate work queue with advised cm handles from db.
+     * This method is made public for (integration) testing purposes.
+     * So it can be tested without the queue being emptied immediately as the main public method does.
+     */
+    public void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty() && workQueueLock.tryLock()) {
             try {
                 populateWorkQueue();
@@ -153,5 +152,14 @@ public class ModuleSyncWatchdog {
         }
         log.info("nextBatch size : {}", nextBatch.size());
         return nextBatch;
+    }
+
+    private void preventBusyWait() {
+        try {
+            log.debug("Busy waiting now");
+            sleeper.haveALittleRest(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
+        } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
