@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57eb2cff_64a1d338",
+        "filename": "docs/cps-scheduled-processes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-17T14:52:22Z",
+      "side": 1,
+      "message": "handles",
+      "range": {
+        "startLine": 28,
+        "startChar": 88,
+        "endLine": 28,
+        "endChar": 95
+      },
+      "revId": "0a00c4679c47370d2d2796cf6169177d370cf68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8231bb92_2e494b1f",
+        "filename": "docs/cps-scheduled-processes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-17T14:52:22Z",
+      "side": 1,
+      "message": "suggestion: add \"so the next sync cycle will process those again.\"",
+      "range": {
+        "startLine": 29,
+        "startChar": 90,
+        "endLine": 29,
+        "endChar": 91
+      },
+      "revId": "0a00c4679c47370d2d2796cf6169177d370cf68b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
