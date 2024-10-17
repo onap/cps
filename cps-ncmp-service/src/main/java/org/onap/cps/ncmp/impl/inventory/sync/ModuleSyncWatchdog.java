@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +46,8 @@ public class ModuleSyncWatchdog {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
+    private final Lock workQueueLock;
+
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
     private static final long PREVENT_CPU_BURN_WAIT_TIME_MILLIS = 10;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
@@ -60,7 +63,7 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
-        log.info("Processing module sync watchdog waking up.");
+        log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
             if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
@@ -79,21 +82,9 @@ public class ModuleSyncWatchdog {
         }
     }
 
-    /**
-     * Find any failed (locked) cm handles and change state back to 'ADVISED'.
-     */
-    @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:15000}")
-    public void resetPreviouslyFailedCmHandles() {
-        log.info("Processing module sync retry-watchdog waking up.");
-        final Collection<YangModelCmHandle> failedCmHandles
-                = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
-        log.info("Retrying {} cmHandles", failedCmHandles.size());
-        moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
-    }
-
     private void preventBusyWait() {
         try {
-            log.info("Busy waiting now");
+            log.debug("Busy waiting now");
             TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -102,14 +93,44 @@ public class ModuleSyncWatchdog {
 
     private void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty()) {
-            final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
-            log.info("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());
-            for (final DataNode advisedCmHandle : advisedCmHandles) {
-                if (!moduleSyncWorkQueue.offer(advisedCmHandle)) {
-                    log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));
+            try {
+                if (workQueueLock.tryLock()) {
+                    populateWorkQueue();
+                    if (moduleSyncWorkQueue.isEmpty()) {
+                        setPreviouslyLockedCmHandlesToAdvised();
+                    }
                 }
+            } finally {
+                workQueueLock.unlock();
             }
-            log.info("Work Queue Size : {}", moduleSyncWorkQueue.size());
+        }
+    }
+
+    private void populateWorkQueue() {
+        final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
+        if (advisedCmHandles.isEmpty()) {
+            log.debug("No advised CM handles found in DB.");
+        } else {
+            log.info("Fetched {} advised CM handles from DB. Adding them to the work queue.", advisedCmHandles.size());
+            advisedCmHandles.forEach(advisedCmHandle -> {
+                final String cmHandleId = String.valueOf(advisedCmHandle.getLeaves().get("id"));
+                if (moduleSyncWorkQueue.offer(advisedCmHandle)) {
+                    log.info("CM handle {} added to the work queue.", cmHandleId);
+                } else {
+                    log.warn("Failed to add CM handle {} to the work queue.", cmHandleId);
+                }
+            });
+        }
+    }
+
+    private void setPreviouslyLockedCmHandlesToAdvised() {
+        final Collection<YangModelCmHandle> lockedCmHandles
+                = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
+        if (lockedCmHandles.isEmpty()) {
+            log.debug("No locked CM handles found in DB.");
+        } else {
+            log.info("Retrying {} locked CM handles to reset.", lockedCmHandles.size());
+            moduleSyncTasks.setCmHandlesToAdvised(lockedCmHandles);
         }
     }
 
@@ -130,8 +151,7 @@ public class ModuleSyncWatchdog {
                 nextBatch.add(batchCandidate);
             }
         }
-        log.debug("nextBatch size : {}", nextBatch.size());
+        log.info("nextBatch size : {}", nextBatch.size());
         return nextBatch;
     }
-
 }

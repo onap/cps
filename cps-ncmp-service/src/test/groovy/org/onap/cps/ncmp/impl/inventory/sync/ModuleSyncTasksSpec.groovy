@@ -136,7 +136,7 @@ class ModuleSyncTasksSpec extends Specification {
             moduleSyncStartedOnCmHandles.put('cm-handle-1', 'started')
             moduleSyncStartedOnCmHandles.put('cm-handle-2', 'started')
         when: 'resetting failed cm handles'
-            objectUnderTest.resetFailedCmHandles([yangModelCmHandle1, yangModelCmHandle2])
+            objectUnderTest.setCmHandlesToAdvised([yangModelCmHandle1, yangModelCmHandle2])
         then: 'updated to state "ADVISED" from "READY" is called as often as there are cm handles ready for retry'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(expectedCmHandleStatePerCmHandle)
         and: 'after reset performed progress map is empty'

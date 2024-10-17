@@ -27,6 +27,7 @@ import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.locks.Lock
 
 class ModuleSyncWatchdogSpec extends Specification {
 
@@ -42,10 +43,13 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor)
+    def mockWorkQueueLock = Mock(Lock)
+
+    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, mockWorkQueueLock)
 
     void setup() {
         spiedAsyncTaskExecutor.setupThreadPool()
+        mockWorkQueueLock.tryLock() >> true
     }
 
     def 'Module sync advised cm handles with #scenario.'() {
@@ -108,9 +112,9 @@ class ModuleSyncWatchdogSpec extends Specification {
             def failedCmHandles = [new YangModelCmHandle()]
             mockSyncUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
         when: 'reset failed cm handles is started'
-            objectUnderTest.resetPreviouslyFailedCmHandles()
+            objectUnderTest.setPreviouslyLockedCmHandlesToAdvised()
         then: 'it is delegated to the module sync task (service)'
-            1 * mockModuleSyncTasks.resetFailedCmHandles(failedCmHandles)
+            1 * mockModuleSyncTasks.setCmHandlesToAdvised(failedCmHandles)
     }
 
     def createDataNodes(numberOfDataNodes) {
