@@ -44,7 +44,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         when: "CM-handle is registered for update with new alternate ID: $newAlternateId"
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: newAlternateId)
             def dmiPluginRegistrationResponse =
-                    objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
+                    objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
@@ -74,7 +74,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for update with new alternate ID'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: 'new')
             def dmiPluginRegistrationResponse =
-                    objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
+                    objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
 
         then: 'registration gives failure response, due to alternate ID being already associated'
             assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createFailureResponse('ch-1', NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED)]

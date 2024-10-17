@@ -27,11 +27,13 @@ import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 class NcmpPerfTestBase extends PerfTestBase {
 
     def static NCMP_PERFORMANCE_TEST_DATASPACE = 'ncmpPerformance'
-    def static REGISTRY_ANCHOR = 'ncmp-registry'
+    def static REGISTRY_ANCHOR = NCMP_DMI_REGISTRY_ANCHOR
+    def static REGISTRY_PARENT = NCMP_DMI_REGISTRY_PARENT
     def static REGISTRY_SCHEMA_SET = 'registrySchemaSet'
     def static TOTAL_CM_HANDLES = 20_000
     def static CM_DATA_SUBSCRIPTIONS_ANCHOR = 'cm-data-subscriptions'
@@ -70,30 +72,30 @@ class NcmpPerfTestBase extends PerfTestBase {
     }
 
     def createRegistrySchemaSet() {
-        def modelAsString = readResourceDataFile('ncmp-registry/dmi-registry@2024-02-23.yang')
+        def modelAsString = readResourceDataFile('inventory/dmi-registry@2024-02-23.yang')
         cpsModuleService.createSchemaSet(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, [registry: modelAsString])
     }
 
     def addRegistryData() {
         cpsAnchorService.createAnchor(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_SCHEMA_SET, REGISTRY_ANCHOR)
         cpsDataService.saveData(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '{"dmi-registry": []}', now)
-        def innerNodeJsonTemplate = readResourceDataFile('ncmp-registry/innerNode.json')
+        def cmHandleJsonTemplate = readResourceDataFile('inventory/cmHandleTemplate.json')
         def batchSize = 100
         for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
-            def data = '{ "cm-handles": [' + (1..batchSize).collect { innerNodeJsonTemplate.replace('CMHANDLE_ID_HERE', (it + i).toString()) }.join(',') + ']}'
-            cpsDataService.saveListElements(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/dmi-registry', data, now, ContentType.JSON)
+            def data = '{ "cm-handles": [' + (1..batchSize).collect { cmHandleJsonTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString()) }.join(',') + ']}'
+            cpsDataService.saveListElements(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, REGISTRY_PARENT, data, now, ContentType.JSON)
         }
     }
 
     def addRegistryDataWithAlternateIdAsPath() {
-        def innerNodeJsonTemplate = readResourceDataFile('ncmp-registry/innerCmHandleNode.json')
+        def cmHandleWithAlternateIdTemplate = readResourceDataFile('inventory/cmHandleWithAlternateIdTemplate.json')
         def batchSize = 10
         for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
             def data = '{ "cm-handles": [' + (1..batchSize).collect {
-                innerNodeJsonTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString())
+                cmHandleWithAlternateIdTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString())
                         .replace('ALTERNATE_ID_AS_PATH', (it + i).toString())
             }.join(',') + ']}'
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry', data, now, ContentType.JSON)
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_PARENT, data, now, ContentType.JSON)
         }
     }
 
@@ -117,7 +119,7 @@ class NcmpPerfTestBase extends PerfTestBase {
             def result = cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, '/', FetchDescendantsOption.OMIT_DESCENDANTS)
             resourceMeter.stop()
         then: 'expected data exists'
-            assert result.xpath == ['/dmi-registry']
+            assert result.xpath == [REGISTRY_PARENT]
         and: 'operation completes within expected time'
             recordAndAssertResourceUsage('NCMP pre-load test data',
                     15, resourceMeter.totalTimeInSeconds,
