@@ -39,11 +39,13 @@ Release Data
 Bug Fixes
 ---------
 3.5.4
+    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM-handle Module Sync.
 
 Features
 --------
 3.5.4
     - `CPS-2408 <https://lf-onap.atlassian.net/browse/CPS-2408>`_ One Hazelcast instance per JVM to manage the distributed data structures.
+
 
 Version: 3.5.3
 ==============
