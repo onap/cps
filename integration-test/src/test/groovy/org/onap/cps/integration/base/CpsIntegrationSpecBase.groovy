@@ -244,11 +244,24 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
-        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
+        registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId)
         new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
             CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
         })
+    }
+
+    def registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
+    }
+
+    def registerBatchOfCmHandlesWithoutWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles) {
+        def cmHandles = []
+        (1..numberOfCmHandles).each {
+            def cmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-'+it, moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
+            cmHandles.add(cmHandle)
+        }
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: cmHandles))
     }
 
     def deregisterCmHandle(dmiPlugin, cmHandleId) {
@@ -256,7 +269,15 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def deregisterCmHandles(dmiPlugin, cmHandleIds) {
-        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
+    }
+
+    def deregisterBatchOfCmHandles(dmiPlugin, numberOfCmHandles) {
+        def cmHandleIds = []
+        (1..numberOfCmHandles).each {
+            cmHandleIds.add('ch-'+it)
+        }
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
     def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {

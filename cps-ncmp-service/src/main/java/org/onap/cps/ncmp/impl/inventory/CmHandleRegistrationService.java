@@ -87,8 +87,7 @@ public class CmHandleRegistrationService {
      * @param dmiPluginRegistration Dmi Plugin Registration details
      * @return dmiPluginRegistrationResponse
      */
-    public DmiPluginRegistrationResponse updateDmiRegistrationAndSyncModule(
-        final DmiPluginRegistration dmiPluginRegistration) {
+    public DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
 
         dmiPluginRegistration.validateDmiPluginRegistration();
         final DmiPluginRegistrationResponse dmiPluginRegistrationResponse = new DmiPluginRegistrationResponse();

@@ -56,9 +56,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         given: 'an (updated) dmi plugin registration'
             def dmiPluginRegistration = Mock(DmiPluginRegistration)
         when: 'the registration is submitted '
-           objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+           objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'the call is delegated to the cm handle registration service'
-            1 * mockCmHandleRegistrationService.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            1 * mockCmHandleRegistrationService.updateDmiRegistration(dmiPluginRegistration)
     }
 
     def 'Execute cm handle id search for inventory'() {

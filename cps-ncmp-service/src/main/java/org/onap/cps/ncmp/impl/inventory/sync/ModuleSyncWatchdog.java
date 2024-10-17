@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.spi.model.DataNode;
@@ -41,6 +42,7 @@ import org.springframework.stereotype.Service;
 public class ModuleSyncWatchdog {
 
     private final ModuleOperationsUtils moduleOperationsUtils;
+    @Getter
     private final BlockingQueue<DataNode> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
@@ -51,6 +53,8 @@ public class ModuleSyncWatchdog {
     private static final long ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = TimeUnit.MINUTES.toMillis(5);
     @Getter
     private AtomicInteger batchCounter = new AtomicInteger(1);
+    @Setter
+    private boolean enabled = true;
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -60,6 +64,9 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
+        if (!enabled) {
+            return;
+        }
         log.info("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
@@ -84,6 +91,9 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:15000}")
     public void resetPreviouslyFailedCmHandles() {
+        if (!enabled) {
+            return;
+        }
         log.info("Processing module sync retry-watchdog waking up.");
         final Collection<YangModelCmHandle> failedCmHandles
                 = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
@@ -100,7 +110,7 @@ public class ModuleSyncWatchdog {
         }
     }
 
-    private void populateWorkQueueIfNeeded() {
+    public void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty()) {
             final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
             log.info("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());

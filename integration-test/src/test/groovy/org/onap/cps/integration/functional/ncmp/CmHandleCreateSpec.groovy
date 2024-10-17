@@ -35,7 +35,6 @@ import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
-import java.time.OffsetDateTime
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
@@ -57,7 +56,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
@@ -92,7 +91,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -117,7 +116,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
-            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate]))
+            objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate]))
 
         then: 'the CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -151,7 +150,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
                     new NcmpServiceCmHandle(cmHandleId: 'ch-7', alternateId: 'duplicate-alt-id'),
             ]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: cmHandlesToCreate)
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
         then: 'registration gives expected responses'
             assert dmiPluginRegistrationResponse.createdCmHandles.sort { it.cmHandle } == [
@@ -173,7 +172,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: cmHandlesToCreate)
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'CM-handles go to LOCKED state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
