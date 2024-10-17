@@ -1,0 +1,9 @@
+Code-Review+1: Sean Beirne <sean.beirne@est.tech>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Submitted-by: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-at: Thu, 17 Oct 2024 15:08:49 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/139222
+Project: cps
+Branch: refs/heads/master
