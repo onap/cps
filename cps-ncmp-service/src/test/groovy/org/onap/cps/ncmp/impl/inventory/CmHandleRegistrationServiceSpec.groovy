@@ -87,7 +87,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'cm handle is in READY state'
             mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
         when: 'registration is processed'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'cm-handles are removed first'
             1 * objectUnderTest.processRemovedCmHandles(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
@@ -108,7 +108,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'exception while checking cm handle state'
             mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: cmHandleState))
         when: 'registration is processed'
-            def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            def result = objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'upgrade operation contains expected error code'
             assert result.upgradedCmHandles[0].status == expectedResponseStatus
         where: 'the following parameters are used'
@@ -124,7 +124,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'exception while checking cm handle state'
             mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> { throw exception }
         when: 'registration is processed'
-            def result = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiRegistration)
+            def result = objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'upgrade operation contains expected error code'
             assert result.upgradedCmHandles.ncmpResponseStatus.code[0] == expectedErrorCode
         where: 'the following parameters are used'
@@ -139,7 +139,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
                 dmiDataPlugin: dmiDataPlugin)
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
         when: 'update registration and sync module is called with correct DMI plugin information'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'create cm handles registration and sync modules is called with the correct plugin information'
             1 * objectUnderTest.processCreatedCmHandles(dmiPluginRegistration, _)
         where:
@@ -155,7 +155,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
                 dmiDataPlugin: dmiDataPlugin)
             dmiPluginRegistration.createdCmHandles = [ncmpServiceCmHandle]
         when: 'registration is called with incorrect DMI plugin information'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a DMI Request Exception is thrown with correct message details'
             def exceptionThrown = thrown(DmiRequestException.class)
             assert exceptionThrown.getMessage().contains(expectedMessageDetails)
@@ -178,7 +178,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a successful response is received'
             response.createdCmHandles.size() == 1
             with(response.createdCmHandles[0]) {
@@ -206,7 +206,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 createdCmHandles:[new NcmpServiceCmHandle(cmHandleId: 'ch-1', registrationTrustLevel: registrationTrustLevel)])
         when: 'registration is updated'
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'trustLevel is set for the created cm-handle'
             1 * mockTrustLevelManager.registerCmHandles(expectedMapping)
         where:
@@ -225,7 +225,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
             def xpath = "somePathWithId[@id='cmhandle2']"
             mockLcmEventsCmHandleStateHandler.initiateStateAdvised(*_) >> { throw AlreadyDefinedException.forDataNodes([xpath], 'some-context') }
         when: 'registration is updated to create cm-handles'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a response is received for all cm-handles'
             response.createdCmHandles.size() == 1
         and: 'all cm-handles creation fails'
@@ -244,7 +244,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'cm-handler registration fails: #scenario'
             mockLcmEventsCmHandleStateHandler.initiateStateAdvised(*_) >> { throw exception }
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a failure response is received'
             response.createdCmHandles.size() == 1
             with(response.createdCmHandles[0]) {
@@ -269,7 +269,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
                                            CmHandleRegistrationResponse.createFailureResponse('cm handle 4', CM_HANDLE_INVALID_ID)]
             mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(_) >> updateOperationResponse
         when: 'registration is updated'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'the response contains updateOperationResponse'
             assert response.updatedCmHandles.size() == 4
             assert response.updatedCmHandles.containsAll(updateOperationResponse)
@@ -281,7 +281,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: '#scenario'
             mockCpsModuleService.deleteSchemaSetsWithCascade(_, ['cmhandle']) >>  { if (!schemaSetExist) { throw new SchemaSetNotFoundException('', '') } }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'the cmHandle state is updated to "DELETING"'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >>
                 { args -> args[0].values()[0] == CmHandleState.DELETING }
@@ -315,7 +315,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
             mockInventoryPersistence.deleteDataNode("/dmi-registry/cm-handles[@id='cmhandle2']") >> { throw new RuntimeException("Failed") }
         when: 'registration is updated to delete cmhandles'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'the cmHandle states are all updated to "DELETING"'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch({ assert it.every { entry -> entry.value == CmHandleState.DELETING } })
         and: 'a response is received for all cm-handles'
@@ -361,7 +361,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'schema set single deletion failed with unknown error'
             mockInventoryPersistence.deleteSchemaSetWithCascade(_) >> { throw new RuntimeException('Failed') }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'cm-handle is not deleted'
@@ -387,7 +387,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'cm-handle deletion fails on individual delete'
             mockInventoryPersistence.deleteDataNode(_) >> { throw deleteListElementException }
         when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a failure response is received'
             assert response.removedCmHandles.size() == 1
             with(response.removedCmHandles[0]) {

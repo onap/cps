@@ -53,6 +53,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
@@ -61,6 +62,7 @@ import spock.util.concurrent.PollingConditions
 
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.BlockingQueue
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
@@ -73,6 +75,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
+@ActiveProfiles('module-sync-delayed')
 abstract class CpsIntegrationSpecBase extends Specification {
 
     @Shared
@@ -116,6 +119,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     ModuleSyncWatchdog moduleSyncWatchdog
+
+    @Autowired
+    BlockingQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -244,11 +250,25 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
-        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
-        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
+        registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId)
+        moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
             CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
         })
+    }
+
+    def registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
+        def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, moduleSetTag: moduleSetTag, alternateId: alternateId)
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
+    }
+
+    def registerSequenceOfCmHandlesWithoutWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles) {
+        def cmHandles = []
+        (1..numberOfCmHandles).each {
+            def cmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-'+it, moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
+            cmHandles.add(cmHandle)
+        }
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: cmHandles))
     }
 
     def deregisterCmHandle(dmiPlugin, cmHandleId) {
@@ -256,14 +276,13 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def deregisterCmHandles(dmiPlugin, cmHandleIds) {
-        networkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
-    def overrideCmHandleLastUpdateTime(cmHandleId, newUpdateTime) {
-        String ISO_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-        DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
-        def jsonForUpdate = '{ "state": { "last-update-time": "%s" } }'.formatted(ISO_TIMESTAMP_FORMATTER.format(newUpdateTime))
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='${cmHandleId}']", jsonForUpdate, now, ContentType.JSON)
+    def deregisterSequenceOfCmHandles(dmiPlugin, numberOfCmHandles) {
+        def cmHandleIds = []
+        (1..numberOfCmHandles).each { cmHandleIds.add('ch-'+it) }
+        networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
+
 }

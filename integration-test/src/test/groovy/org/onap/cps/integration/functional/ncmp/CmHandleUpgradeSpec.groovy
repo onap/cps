@@ -48,7 +48,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: "the CM-handle is upgraded with given moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'registration gives successful response'
@@ -62,6 +62,9 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'DMI will return different modules for upgrade: M1 and M3'
             dmiDispatcher1.moduleNamesPerCmHandleId[CM_HANDLE_ID] = ['M1', 'M3']
+
+        and: 'the module sync watchdog is triggered twice'
+            2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -98,11 +101,14 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: "CM-handle is upgraded to moduleSetTag '${updatedModuleSetTag}'"
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: updatedModuleSetTag)
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.upgradedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(CM_HANDLE_ID)]
+
+        and: 'the module sync watchdog is triggered twice'
+            2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         and: 'CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -132,7 +138,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'CM-handle is upgraded with the same moduleSetTag'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'same')
-            objectUnderTest.updateDmiRegistrationAndSyncModule(
+            objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
 
         then: 'CM-handle remains in READY state'
@@ -157,8 +163,11 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         when: 'the CM-handle is upgraded'
             def cmHandlesToUpgrade = new UpgradedCmHandles(cmHandles: [CM_HANDLE_ID], moduleSetTag: 'newTag')
-            objectUnderTest.updateDmiRegistrationAndSyncModule(
+            objectUnderTest.updateDmiRegistration(
                     new DmiPluginRegistration(dmiPlugin: DMI1_URL, upgradedCmHandles: cmHandlesToUpgrade))
+
+        and: 'the module sync watchdog is triggered twice'
+            2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_UPGRADE_FAILED'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {

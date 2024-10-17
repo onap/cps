@@ -18,18 +18,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.policyexecutor.stub.controller;
+package org.onap.cps.ncmp.impl.utils;
 
 import java.util.concurrent.TimeUnit;
 import org.springframework.stereotype.Service;
 
 /**
  * This class is to extract out sleep functionality so the interrupted exception handling can
- * be covered with a test (e.g. using spy on Sleeper) and help to get too 100% code coverage.
+ * be covered with a test (e.g. using spy on Sleeper) and help to get to 100% code coverage.
  */
 @Service
 public class Sleeper {
-    public void haveALittleRest(final int timeInSeconds) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(timeInSeconds);
+    public void haveALittleRest(final long timeInMillis) throws InterruptedException {
+        TimeUnit.MILLISECONDS.sleep(timeInMillis);
     }
 }

@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.inventory.sync
 
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.Sleeper
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
@@ -31,7 +32,7 @@ import java.util.concurrent.locks.Lock
 
 class ModuleSyncWatchdogSpec extends Specification {
 
-    def mockSyncUtils = Mock(ModuleOperationsUtils)
+    def mockModuleOperationsUtils = Mock(ModuleOperationsUtils)
 
     def static testQueueCapacity = 50 + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE
 
@@ -45,16 +46,21 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def mockWorkQueueLock = Mock(Lock)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockSyncUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, mockWorkQueueLock)
+    def spiedSleeper = Spy(Sleeper)
+
+    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, mockWorkQueueLock, spiedSleeper)
 
     void setup() {
         spiedAsyncTaskExecutor.setupThreadPool()
-        mockWorkQueueLock.tryLock() >> true
     }
 
     def 'Module sync advised cm handles with #scenario.'() {
-        given: 'sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
-            mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
+        given: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
+            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
+        and: 'module sync utilities returns no failed (locked) cm handles'
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
+        and: 'the work queue is not locked'
+            mockWorkQueueLock.tryLock() >> true
         and: 'the executor has enough available threads'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 3
         when: ' module sync is started'
@@ -63,6 +69,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             expectedNumberOfTaskExecutions * spiedAsyncTaskExecutor.executeTask(*_)
         where: 'the following parameter are used'
             scenario              | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
+            'none at all'         | 0                                                                 || 0
             'less then 1 batch'   | 1                                                                 || 1
             'exactly 1 batch'     | ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                         || 1
             '2 batches'           | 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE                     || 2
@@ -70,9 +77,11 @@ class ModuleSyncWatchdogSpec extends Specification {
             'over queue capacity' | testQueueCapacity + 2 * ModuleSyncWatchdog.MODULE_SYNC_BATCH_SIZE || 3
     }
 
-    def 'Module sync advised cm handles starts with no available threads.'() {
-        given: 'sync utilities returns a advise cm handles'
-            mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(1)
+    def 'Module sync cm handles starts with no available threads.'() {
+        given: 'module sync utilities returns a advise cm handles'
+            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+        and: 'the work queue is not locked'
+            mockWorkQueueLock.tryLock() >> true
         and: 'the executor first has no threads but has one thread on the second attempt'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >>> [ 0, 1 ]
         when: ' module sync is started'
@@ -81,9 +90,11 @@ class ModuleSyncWatchdogSpec extends Specification {
             1 * spiedAsyncTaskExecutor.executeTask(*_)
     }
 
-    def 'Module sync advised cm handles already handled.'() {
-        given: 'sync utilities returns a advise cm handles'
-            mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(1)
+    def 'Module sync advised cm handle already handled by other thread.'() {
+        given: 'module sync utilities returns an advised cm handle'
+            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+        and: 'the work queue is not locked'
+            mockWorkQueueLock.tryLock() >> true
         and: 'the executor has a thread available'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 1
         and: 'the semaphore cache indicates the cm handle is already being processed'
@@ -98,7 +109,7 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'there is still a cm handle in the queue'
             moduleSyncWorkQueue.offer(new DataNode())
         and: 'sync utilities returns many advise cm handles'
-            mockSyncUtils.getAdvisedCmHandles() >> createDataNodes(500)
+            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(500)
         and: 'the executor has plenty threads available'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 10
         when: ' module sync is started'
@@ -108,18 +119,42 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Reset failed cm handles.'() {
-        given: 'sync utilities returns failed cm handles'
+        given: 'module sync utilities returns failed cm handles'
             def failedCmHandles = [new YangModelCmHandle()]
-            mockSyncUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
+            mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
         when: 'reset failed cm handles is started'
             objectUnderTest.setPreviouslyLockedCmHandlesToAdvised()
         then: 'it is delegated to the module sync task (service)'
             1 * mockModuleSyncTasks.setCmHandlesToAdvised(failedCmHandles)
     }
 
+    def 'Module Sync Locking.'() {
+        given: 'module sync utilities returns an advised cm handle'
+            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+        and: 'can lock is : #canLock'
+            mockWorkQueueLock.tryLock() >> canLock
+        when: 'attempt to populate teh work queue'
+            objectUnderTest.populateWorkQueueIfNeeded()
+        then: 'the queue remains empty is #expectQueueRemainsEmpty'
+            assert moduleSyncWorkQueue.isEmpty() == expectQueueRemainsEmpty
+        where: 'teh following lock states are applied'
+            canLock | expectQueueRemainsEmpty
+            false   | true
+            true    | false
+    }
+
+    def 'Sleeper gets interrupted.'() {
+        given:
+            spiedSleeper.haveALittleRest(_) >> { throw new InterruptedException() }
+        when:
+            objectUnderTest.preventBusyWait()
+        then:
+            noExceptionThrown()
+    }
+
     def createDataNodes(numberOfDataNodes) {
         def dataNodes = []
-        (1..numberOfDataNodes).each {dataNodes.add(new DataNode())}
+        numberOfDataNodes.times { dataNodes.add(new DataNode()) }
         return dataNodes
     }
 }
