@@ -18,7 +18,7 @@
 docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
 
 echo "Waiting for CPS to start..."
-READY_MESSAGE="Processing module sync fetched 0 advised cm handles from DB"
+READY_MESSAGE="Inventory Model updated successfully"
 
 # Get the container IDs of the cps-and-ncmp replicas
 CONTAINER_IDS=$(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}")
