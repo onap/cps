@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import com.hazelcast.cp.lock.FencedLock;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
@@ -45,10 +46,13 @@ public class ModuleSyncWatchdog {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
+    private final FencedLock workQueueLock;
+
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
     private static final long PREVENT_CPU_BURN_WAIT_TIME_MILLIS = 10;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
     private static final long ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = TimeUnit.MINUTES.toMillis(5);
+    private static final long LOCK_ACQUIRE_TIMEOUT_MS = 100;
     @Getter
     private AtomicInteger batchCounter = new AtomicInteger(1);
 
@@ -60,7 +64,7 @@ public class ModuleSyncWatchdog {
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
-        log.info("Processing module sync watchdog waking up.");
+        log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
             if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
@@ -83,17 +87,36 @@ public class ModuleSyncWatchdog {
      * Find any failed (locked) cm handles and change state back to 'ADVISED'.
      */
     @Scheduled(fixedDelayString = "${ncmp.timers.locked-modules-sync.sleep-time-ms:15000}")
-    public void resetPreviouslyFailedCmHandles() {
-        log.info("Processing module sync retry-watchdog waking up.");
-        final Collection<YangModelCmHandle> failedCmHandles
+    public void resetPreviouslyLockedCmHandles() {
+        log.debug("Watchdog to reset locked CM handles is triggered.");
+        if (!moduleSyncWorkQueue.isEmpty()) {
+            log.debug("Work queue is not empty. Skipping reset.");
+            return;
+        }
+        try {
+            if (acquireLock(workQueueLock)) {
+                log.debug("Lock 'workQueueLock' successfully acquired. Proceeding with reset.");
+                retryLockedCmHandles();
+            }
+        } finally {
+            releaseLock(workQueueLock);
+        }
+    }
+
+    private void retryLockedCmHandles() {
+        final Collection<YangModelCmHandle> lockedCmHandles
                 = moduleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade();
-        log.info("Retrying {} cmHandles", failedCmHandles.size());
-        moduleSyncTasks.resetFailedCmHandles(failedCmHandles);
+        if (lockedCmHandles.isEmpty()) {
+            log.debug("No locked CM handles found in DB.");
+        } else {
+            log.info("Retrying {} locked CM handles to reset.", lockedCmHandles.size());
+            moduleSyncTasks.resetFailedCmHandles(lockedCmHandles);
+        }
     }
 
     private void preventBusyWait() {
         try {
-            log.info("Busy waiting now");
+            log.debug("Busy waiting now");
             TimeUnit.MILLISECONDS.sleep(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
         } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -101,15 +124,33 @@ public class ModuleSyncWatchdog {
     }
 
     private void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty()) {
-            final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
-            log.info("Processing module sync fetched {} advised cm handles from DB", advisedCmHandles.size());
-            for (final DataNode advisedCmHandle : advisedCmHandles) {
-                if (!moduleSyncWorkQueue.offer(advisedCmHandle)) {
-                    log.warn("Unable to add cm handle {} to the work queue", advisedCmHandle.getLeaves().get("id"));
-                }
+        if (!moduleSyncWorkQueue.isEmpty()) {
+            log.debug("Work queue already contains {} items. Skipping population.", moduleSyncWorkQueue.size());
+            return;
+        }
+        try {
+            if (acquireLock(workQueueLock)) {
+                fillWorkQueue();
             }
-            log.info("Work Queue Size : {}", moduleSyncWorkQueue.size());
+        } finally {
+            releaseLock(workQueueLock);
+        }
+    }
+
+    private void fillWorkQueue() {
+        final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
+        if (advisedCmHandles.isEmpty()) {
+            log.debug("No advised CM handles found in DB.");
+        } else {
+            log.info("Fetched {} advised CM handles from DB. Adding them to the work queue.", advisedCmHandles.size());
+            advisedCmHandles.forEach(advisedCmHandle -> {
+                final String cmHandleId = String.valueOf(advisedCmHandle.getLeaves().get("id"));
+                if (moduleSyncWorkQueue.offer(advisedCmHandle)) {
+                    log.info("CM handle {} added to the work queue.", cmHandleId);
+                } else {
+                    log.warn("Failed to add CM handle {} to the work queue.", cmHandleId);
+                }
+            });
         }
     }
 
@@ -130,8 +171,26 @@ public class ModuleSyncWatchdog {
                 nextBatch.add(batchCandidate);
             }
         }
-        log.debug("nextBatch size : {}", nextBatch.size());
+        log.info("nextBatch size : {}", nextBatch.size());
         return nextBatch;
+    }
+
+    private boolean acquireLock(final FencedLock fencedLock) {
+        try {
+            if (fencedLock.tryLock(LOCK_ACQUIRE_TIMEOUT_MS, TimeUnit.MILLISECONDS)) {
+                log.debug("Acquired lock.");
+                return true;
+            }
+        } catch (final Exception e) {
+            log.error("An error occurred while trying to acquire 'workQueueLock'. {}", e.getMessage());
+        }
+        log.debug("Failed to acquire lock after waiting {} ms.", LOCK_ACQUIRE_TIMEOUT_MS);
+        return false;
+    }
+
+    private void releaseLock(final FencedLock fencedLock) {
+        fencedLock.unlock();
+        log.debug("Released lock.");
     }
 
 }

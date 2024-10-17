@@ -108,7 +108,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             def failedCmHandles = [new YangModelCmHandle()]
             mockSyncUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
         when: 'reset failed cm handles is started'
-            objectUnderTest.resetPreviouslyFailedCmHandles()
+            objectUnderTest.resetPreviouslyLockedCmHandles()
         then: 'it is delegated to the module sync task (service)'
             1 * mockModuleSyncTasks.resetFailedCmHandles(failedCmHandles)
     }

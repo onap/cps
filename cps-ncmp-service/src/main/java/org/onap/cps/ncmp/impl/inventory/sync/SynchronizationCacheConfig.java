@@ -22,6 +22,9 @@ package org.onap.cps.ncmp.impl.inventory.sync;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.QueueConfig;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.cp.CPSubsystem;
+import com.hazelcast.cp.lock.FencedLock;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +46,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
+    private static final String LOCK_NAME_FOR_WORK_QUEUE = "workQueueLock";
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -73,5 +77,34 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
         return getOrCreateHazelcastInstance(dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
+    }
+
+    /**
+     * Retrieves a distributed lock used to control access to the work queue for module synchronization.
+     * This lock ensures that the population and modification of the work queue are thread-safe and
+     * protected from concurrent access across different nodes in the distributed system.
+     * The lock guarantees that only one instance of the application can populate or modify the
+     * module sync work queue at a time, preventing race conditions and potential data inconsistencies.
+     * The lock is obtained using the Hazelcast CP Subsystem's {@link FencedLock}, which provides
+     * strong consistency guarantees for distributed operations.
+     * If the lock cannot be acquired (due to an error or timeout), an {@link IllegalStateException}
+     * is thrown, signaling a failure to secure the lock for modifying the work queue.
+     * Example use case includes controlling access to adding new CM handles to the work queue when
+     * multiple instances are running in parallel.
+     *
+     * @return a {@link FencedLock} instance used for synchronizing access to the work queue.
+     * @throws IllegalStateException if the lock cannot be retrieved or created.
+     */
+    @Bean
+    public FencedLock workQueueLock() {
+        try {
+            final CPSubsystem cpSubsystem = Hazelcast.newHazelcastInstance().getCPSubsystem();
+            final FencedLock workQueueLock = cpSubsystem.getLock(LOCK_NAME_FOR_WORK_QUEUE);
+            log.debug("Successfully created lock '{}' for work queue.", LOCK_NAME_FOR_WORK_QUEUE);
+            return workQueueLock;
+        } catch (final Exception e) {
+            log.error("Error while creating lock for work queue. {}", e.getMessage());
+            throw new IllegalStateException("Error while creating lock for work queue.", e);
+        }
     }
 }
