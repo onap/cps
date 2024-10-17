@@ -35,7 +35,6 @@ import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
-import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
@@ -170,7 +169,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         if (NCMP == apiType) {
             mockNetworkCmProxyInventoryFacade.getYangResourcesModuleReferences(*_) >> { throw exception }
         }
-        mockNetworkCmProxyInventoryFacade.updateDmiRegistrationAndSyncModule(*_) >> { throw exception }
+        mockNetworkCmProxyInventoryFacade.updateDmiRegistration(*_) >> { throw exception }
     }
 
     def performTestRequest(apiType) {
