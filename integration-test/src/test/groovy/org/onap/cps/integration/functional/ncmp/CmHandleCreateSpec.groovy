@@ -35,7 +35,6 @@ import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
-import java.time.OffsetDateTime
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
@@ -54,16 +53,24 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'consumer subscribed to topic'
             kafkaConsumer.subscribe(['ncmp-events'])
 
+        and: 'Clear any messages from previous tests'
+            def oldMessage = kafkaConsumer.poll(Duration.ofMillis(10000))
+            oldMessage.records(new TopicPartition('ncmp-events', 0))
+
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
         then: 'registration gives successful response'
             assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse('ch-1')]
 
+
         and: 'CM-handle is initially in ADVISED state'
             assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState
+
+        and: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         and: 'CM-handle goes to READY state after module sync'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -92,7 +99,10 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+
+        and: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -117,7 +127,10 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         when: 'a CM-handle is registered for creation with moduleSetTag "B"'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: 'ch-3', moduleSetTag: 'B')
-            objectUnderTest.updateDmiRegistrationAndSyncModule(new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate]))
+            objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate]))
+
+        and: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'the CM-handle goes to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
@@ -151,7 +164,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
                     new NcmpServiceCmHandle(cmHandleId: 'ch-7', alternateId: 'duplicate-alt-id'),
             ]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: cmHandlesToCreate)
-            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
         then: 'registration gives expected responses'
             assert dmiPluginRegistrationResponse.createdCmHandles.sort { it.cmHandle } == [
@@ -173,7 +186,11 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'CM-handles are registered for creation'
             def cmHandlesToCreate = [new NcmpServiceCmHandle(cmHandleId: 'ch-1'), new NcmpServiceCmHandle(cmHandleId: 'ch-2')]
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: cmHandlesToCreate)
-            objectUnderTest.updateDmiRegistrationAndSyncModule(dmiPluginRegistration)
+            objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+
+        and: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+
         then: 'CM-handles go to LOCKED state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
@@ -182,6 +199,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         when: 'DMI is available for retry'
             dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M2']]
             dmiDispatcher1.isAvailable = true
+
+        and: 'the module sync watchdog is triggered TWICE'
+            2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'Both CM-handles go to READY state'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {

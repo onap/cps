@@ -1,6 +1,6 @@
 {
-  "id": "cm-CMHANDLE_ID_HERE",
-  "alternate-id": "alt-CMHANDLE_ID_HERE",
+  "id": "cm-CM_HANDLE_ID_HERE",
+  "alternate-id": "alt-CM_HANDLE_ID_HERE",
   "module-set-tag": "my-module-set-tag",
   "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
   "dmi-data-service-name": "",
