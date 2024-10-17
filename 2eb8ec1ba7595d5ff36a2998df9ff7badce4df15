@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3cb3de_642f720d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T09:56:15Z",
+      "side": 1,
+      "message": "I have see two different date and timestamp on output:\n\nPlease see below: The git plugin showing the right date and time (as per my local build time) whereas the other (I think spring-boot plugin) showing 1 hour before.\n\nMaybe, we can only have the plugin offered by git, and never use the spring-boot\u0027s one.\n\nOtherwise, this may be confusing in the future.\n\n{\n    \"git\": {\n         ...\n        \"build\": {\n            \"time\": \"2024-10-17T10:00:29+01:00\",\n            \"version\": \"3.5.4-SNAPSHOT\"\n        }\n    },\n    \"build\": {\n        \"artifact\": \"cps-application\",\n        \"name\": \"cps-application\",\n        \"time\": \"2024-10-17T08:59:40.724Z\",\n        \"version\": \"3.5.4-SNAPSHOT\",\n        \"group\": \"org.onap.cps\"\n    }\n}",
+      "revId": "2eb8ec1ba7595d5ff36a2998df9ff7badce4df15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

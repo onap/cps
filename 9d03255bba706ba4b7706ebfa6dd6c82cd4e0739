@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7dbd2889_d879d6c0",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-17T09:56:15Z",
+      "side": 1,
+      "message": "if there is an side-effect of conditional execution on Jenkins jobs, I don\u0027t suggest it.",
+      "parentUuid": "da170c08_db5a95eb",
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9d4e8d0_9d67162a",
         "filename": "cps-application/pom.xml",
         "patchSetId": 1
