@@ -95,22 +95,21 @@ public class ModuleSyncTasks {
     }
 
     /**
-     * Resets the state of failed CM handles and updates their status to ADVISED for retry.
-
-     * This method processes a collection of failed CM handles, logs their lock reason, and resets their state
+     * Set the state of CM handles to ADVISED.
+     * This method processes a collection of CM handles, logs their lock reason, and resets their state
      * to ADVISED. Once reset, it updates the CM handle states in a batch to allow for re-attempt by the module-sync
      * watchdog.
      *
-     * @param failedCmHandles a collection of CM handles that have failed and need their state reset
+     * @param yangModelCmHandles a collection of CM handles that needs their state reset
      */
-    public void resetFailedCmHandles(final Collection<YangModelCmHandle> failedCmHandles) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(failedCmHandles.size());
-        for (final YangModelCmHandle failedCmHandle : failedCmHandles) {
-            final CompositeState compositeState = failedCmHandle.getCompositeState();
-            final String resetCmHandleId = failedCmHandle.getId();
+    public void setCmHandlesToAdvised(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
+            final CompositeState compositeState = yangModelCmHandle.getCompositeState();
+            final String resetCmHandleId = yangModelCmHandle.getId();
             log.debug("Resetting CM handle {} state to ADVISED for retry by the module-sync watchdog. Lock reason: {}",
-                    failedCmHandle.getId(), compositeState.getLockReason().getLockReasonCategory().name());
-            cmHandleStatePerCmHandle.put(failedCmHandle, CmHandleState.ADVISED);
+                    yangModelCmHandle.getId(), compositeState.getLockReason().getLockReasonCategory().name());
+            cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.ADVISED);
             removeResetCmHandleFromModuleSyncMap(resetCmHandleId);
         }
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
