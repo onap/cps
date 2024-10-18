@@ -34,6 +34,24 @@
       "parentUuid": "8d3cb3de_642f720d",
       "revId": "2eb8ec1ba7595d5ff36a2998df9ff7badce4df15",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "169112df_37cf570b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:44:16Z",
+      "side": 1,
+      "message": "fixed the timezone.\nI think we can still leave the build-info as is.\n\nBut if you guys think otherwise we can switch-off the build info altogether.",
+      "parentUuid": "fdd7ccd7_ce9ef28c",
+      "revId": "2eb8ec1ba7595d5ff36a2998df9ff7badce4df15",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
