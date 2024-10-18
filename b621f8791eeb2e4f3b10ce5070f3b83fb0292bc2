@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcc5551c_45e2384a",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:55:44Z",
+      "side": 1,
+      "message": "AbstractModelLoader",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 35
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "783ae99c_e08e44a2",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:55:44Z",
+      "side": 1,
+      "message": "can look at AbstractModelLoader in the NCMP codebase for reference as well.",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 35
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d99479_da9767e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:55:44Z",
+      "side": 1,
+      "message": "these should be part of the concrete model loader that u have related to notifications.\nand then u can name ur constant specific to subscription notification.\n\nthis can be the generic model loader class with some methods definition. to be used for other cases which want to onboard some model.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 72
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2b1a8a_a0005aa8",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:55:44Z",
+      "side": 1,
+      "message": "we agreed to call it CpsModelLoader.. right ??",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e063d88e_26cb446c",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/NotificationSubscriptionModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:55:44Z",
+      "side": 1,
+      "message": "NotificationSubscriptionModelLoader",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 49
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
