@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1704c9b5_5e9adc6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:35:53Z",
+      "side": 1,
+      "message": "nice. so now the new version of spotbugs has now feature from findbugs as well.",
+      "revId": "369017c7fba4c2444e2594215f2b511290e39950",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
