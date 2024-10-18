@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5538297a_5056886c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-18T12:26:02Z",
+      "side": 1,
+      "message": "Based on the offline discussion, the 1 hour difference doesnot cause an issue since the info has also the commit hash, thus +1.",
+      "revId": "265710d389a3cefe026b49d98bb56d855f9ac181",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
