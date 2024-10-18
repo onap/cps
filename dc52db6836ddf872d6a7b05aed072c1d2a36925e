@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899a389a_9bf4038d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:40:09Z",
+      "side": 1,
+      "message": "NB: are we now able to test using the test cases ??",
+      "range": {
+        "startLine": 183,
+        "startChar": 10,
+        "endLine": 186,
+        "endChar": 9
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2dac28f_bb53b90f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-18T10:40:09Z",
+      "side": 1,
+      "message": "why is this imported 3 times ??",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 66
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
