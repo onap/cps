@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.utils.http;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -63,7 +62,6 @@ public class WebClientConfiguration {
                 .compress(true);
     }
 
-    @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
     private static ConnectionProvider getConnectionProvider(final ServiceConfig serviceConfig) {
         return ConnectionProvider.builder(serviceConfig.getConnectionProviderName())
                 .maxConnections(serviceConfig.getMaximumConnectionsTotal())
