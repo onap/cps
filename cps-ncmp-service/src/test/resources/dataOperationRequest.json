@@ -36,6 +36,17 @@
         "ch4-dmi2",
         "ch6-dmi1"
       ]
+    },
+    {
+      "operation": "read",
+      "operationId": "operational-16",
+      "datastore": "ncmp-datastore:passthrough-operational",
+      "options": "some option",
+      "resourceIdentifier": "some resource identifier",
+      "targetIds": [
+        "ch4-dmi2",
+        "alt6-dmi1"
+      ]
     }
   ]
 }

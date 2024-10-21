@@ -73,7 +73,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         and: 'notification feature is turned on/off'
             objectUnderTest.notificationFeatureEnabled = notificationFeatureEnabled
         when: 'data operation request is executed'
-            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: ['ch'])
+            def dataOperationDefinition = new DataOperationDefinition(operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: ['ch'])
             def result = objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'the task is executed in an async fashion or not'
             expectedCalls * dmiDataOperations.requestResourceDataFromDmi('someTopic', _, _, NO_AUTH_HEADER)
@@ -120,7 +120,7 @@ class NcmpDatastoreRequestHandlerSpec extends Specification {
         given: 'a data operation definition with too many cm handles'
             def tooMany = objectUnderTest.MAXIMUM_CM_HANDLES_PER_OPERATION + 1
             def cmHandleIds = new String[tooMany]
-            def dataOperationDefinition = new DataOperationDefinition(operationId: 'abc', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleIds: cmHandleIds)
+            def dataOperationDefinition = new DataOperationDefinition(operationId: 'abc', operation: 'read', datastore: 'ncmp-datastore:passthrough-running', cmHandleReferences: cmHandleIds)
         when: 'data operation request is executed'
             objectUnderTest.executeAsynchronousRequest('someTopic', new DataOperationRequest(dataOperationDefinitions:[dataOperationDefinition]), NO_AUTH_HEADER)
         then: 'a payload too large exception is thrown'

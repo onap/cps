@@ -61,7 +61,7 @@ abstract class DmiOperationsBaseSpec extends Specification {
 
     def mockYangModelCmHandleCollectionRetrieval(dmiProperties) {
         populateYangModelCmHandle(dmiProperties, '')
-        mockInventoryPersistence.getYangModelCmHandles(_) >> [yangModelCmHandle]
+        mockInventoryPersistence.getYangModelCmHandlesFromCmHandleReferences(_) >> [yangModelCmHandle]
     }
 
     def populateYangModelCmHandle(dmiProperties, moduleSetTag) {

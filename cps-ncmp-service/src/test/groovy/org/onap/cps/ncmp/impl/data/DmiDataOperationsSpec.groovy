@@ -112,7 +112,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
-            dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
+            dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
         and: 'a positive response from DMI service when it is called with valid request parameters'
             def responseFromDmi = Mono.just(new ResponseEntity<Object>(HttpStatus.ACCEPTED))
             def expectedUrlTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/data?requestId={requestId}&topic={topic}', ['requestId': 'requestId', 'topic': 'my-topic-name'])
@@ -129,7 +129,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
-            dataOperationRequest.dataOperationDefinitions[0].cmHandleIds = [cmHandleId]
+            dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
         and: 'the published cloud event will be captured'
             def actualDataOperationCloudEvent = null
             eventsPublisher.publishCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
@@ -143,7 +143,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert eventDataValue.statusMessage == UNKNOWN_ERROR.message
         and: 'the event contains the correct operation details'
             assert eventDataValue.operationId == dataOperationRequest.dataOperationDefinitions[0].operationId
-            assert eventDataValue.ids == dataOperationRequest.dataOperationDefinitions[0].cmHandleIds
+            assert eventDataValue.ids == dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences
     }
 
     def 'call get all resource data.'() {

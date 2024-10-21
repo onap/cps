@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.Lists;
@@ -33,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -133,6 +135,19 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
+    public Collection<YangModelCmHandle> getYangModelCmHandlesFromCmHandleReferences(
+        final Collection<String> cmHandleReferences) {
+
+        final String cpsPathForCmHandlesByReferences = getCpsPathForCmHandlesByReferences(cmHandleReferences);
+
+        final Collection<DataNode> cmHandlesAsDataNodes =
+            cmHandleQueryService.queryNcmpRegistryByCpsPath(
+                cpsPathForCmHandlesByReferences, INCLUDE_ALL_DESCENDANTS);
+
+        return YangDataConverter.toYangModelCmHandles(cmHandlesAsDataNodes);
+    }
+
+    @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
         return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
@@ -190,7 +205,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             return Collections.emptyList();
         }
         final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
-        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds, OMIT_DESCENDANTS);
+        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds,
+            INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
@@ -232,6 +248,12 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private static String getCpsPathForCmHandlesByAlternateIds(final Collection<String> alternateIds) {
         return alternateIds.stream().collect(Collectors.joining("' or @alternate-id='",
                 NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='", "']"));
+    }
+
+    private String getCpsPathForCmHandlesByReferences(final Collection<String> cmHandleReferences) {
+        return cmHandleReferences.stream()
+            .flatMap(id -> Stream.of("@id='" + id + "'", "@alternate-id='" + id + "'"))
+            .collect(Collectors.joining(" or ", NCMP_DMI_REGISTRY_PARENT + "/cm-handles[", "]"));
     }
 
     private static String createStateJsonData(final String state) {

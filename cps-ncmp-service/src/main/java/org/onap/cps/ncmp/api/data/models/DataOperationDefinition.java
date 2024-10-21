@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -45,5 +45,5 @@ public class DataOperationDefinition {
 
     @JsonProperty("targetIds")
     @Valid
-    private List<String> cmHandleIds = new ArrayList<>();
+    private List<String> cmHandleReferences = new ArrayList<>();
 }
