@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1a0b3c_fb949717",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-21T10:33:42Z",
+      "side": 1,
+      "message": "for consistency this should be capital J.\nLets push back on this \u0027bug\u0027. if the client has code this with lowercase j they are being inconsistent and not applying camelCase correctly",
+      "range": {
+        "startLine": 45,
+        "startChar": 69,
+        "endLine": 45,
+        "endChar": 72
+      },
+      "revId": "a1ae17d52684a1370a69bdb4c520073421c4832d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
