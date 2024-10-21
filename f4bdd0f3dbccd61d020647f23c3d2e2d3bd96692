@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b06759f8_e9a52e56",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13bd9a6c_16835f3e",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 87
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc8b1dcc_226020f6",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a960cc1_09f3c416",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "cc8b1dcc_226020f6",
+      "range": {
+        "startLine": 230,
+        "startChar": 10,
+        "endLine": 230,
+        "endChar": 16
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f16ec414_f4ff984f",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "too much duplication, instead do something like this (pseudo code)\n\nfinal String responseData\nif (XML) responseData \u003d ... else  responsData \u003d ...\nreturn new ResponsEntity(responseDaata, OK)",
+      "range": {
+        "startLine": 231,
+        "startChar": 19,
+        "endLine": 231,
+        "endChar": 92
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "072f0105_28c9ee19",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f16ec414_f4ff984f",
       "range": {
         "startLine": 231,
         "startChar": 19,
@@ -151,6 +223,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9da1c314_a97a890b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e3cfefbe_ed516a82",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 41
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fdc7559_8daa8207",
@@ -188,6 +284,30 @@
       "side": 1,
       "message": "I think you have all the required test already ibn utils spec",
       "parentUuid": "3fdc7559_8daa8207",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba79dd70_66b180fd",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "56460236_599db5b0",
       "range": {
         "startLine": 356,
         "startChar": 0,
@@ -245,6 +365,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "409a38b9_7dcafadc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "42d26ef3_11c640da",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 5
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3e28d54_c9d5852e",
@@ -268,6 +412,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3684e58e_88543134",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3e28d54_c9d5852e",
+      "range": {
+        "startLine": 177,
+        "startChar": 20,
+        "endLine": 177,
+        "endChar": 88
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fc8b46d_ee9c2f43",
@@ -281,6 +449,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "ensure you have test for all 3 exceptions",
+      "range": {
+        "startLine": 182,
+        "startChar": 23,
+        "endLine": 182,
+        "endChar": 107
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ecd1d0c_7a197b86",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Here transformer Exception and parser Exception ate thrown due to issues that occur during XML processing infrastructure Generally thrown by the XML processing library. dataMaps will not cause TransformerException so any exception that occurs related to invalid XML element names or structures in the dataMaps will throw a DOMException during the DOM creation. TransformerException occurs after the DOM and the Transformer tries to serialize the DOM into an XML output and an issue occurs during the transformation. Suppose if we transform XML to a file or stream, I/O problems (e.g., file permissions, disk space, stream errors) can occur,using invalid or unsupported encoding (e.g., INVALID_ENCODING), XSL transformations with XML and the stylesheet has errors , it will throw a TransformerException. Have seen these exception have been used in YangParserHelper observed that there also there were no testcase written",
+      "parentUuid": "4fc8b46d_ee9c2f43",
       "range": {
         "startLine": 182,
         "startChar": 23,
@@ -338,6 +530,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a58637_1d0c4723",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e4340ad_d7d80f62",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 17
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d124393_dc542735",
@@ -351,6 +567,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "identical to line #211 so can be done outside if else block just using generic name \u0027elemnt\u0027",
+      "range": {
+        "startLine": 207,
+        "startChar": 16,
+        "endLine": 207,
+        "endChar": 84
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a2f7204_6b4de8c4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d124393_dc542735",
       "range": {
         "startLine": 207,
         "startChar": 16,
@@ -384,6 +624,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a05386_bfa8f571",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 61
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00304ec0_c8f6fd0c",
+      "range": {
+        "startLine": 209,
+        "startChar": 16,
+        "endLine": 209,
+        "endChar": 49
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2005de08_a33de11e",
@@ -397,6 +661,30 @@
       "writtenOn": "2024-10-08T20:07:52Z",
       "side": 1,
       "message": "why this is imported 3 times???",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb9203d_5c2e292f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "2005de08_a33de11e",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -430,6 +718,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ab7b7f9_1c4e96f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "3f436c33_afdbe411",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d26b7b2b_2034bdcd",
@@ -443,6 +755,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "bit hard to read in Gerrit but based on the scenarios I think this is a good test and description of the supported functionality",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 209
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ac71b22_59d4901d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "d26b7b2b_2034bdcd",
       "range": {
         "startLine": 81,
         "startChar": 12,
@@ -476,6 +812,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "163d45a0_b264bff7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f77efaf5_ffa4452d",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 33
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7614046b_bacca614",
@@ -499,6 +859,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec989cfc_0a4c3118",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7614046b_bacca614",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 30
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88921ff6_5610df91",
@@ -512,6 +896,30 @@
       "writtenOn": "2024-10-08T16:52:10Z",
       "side": 1,
       "message": "use assert and single quotes!",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 86
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd35b92b_d3d0bf1d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88921ff6_5610df91",
       "range": {
         "startLine": 112,
         "startChar": 12,
@@ -559,6 +967,30 @@
       "side": 1,
       "message": "can also look jacoco reporT as well.",
       "parentUuid": "b4fd9ce7_40f7aba7",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "f4bdd0f3dbccd61d020647f23c3d2e2d3bd96692",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b440ea3_14060d83",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 61
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T16:39:02Z",
+      "side": 1,
+      "message": "Replied to below Comment",
+      "parentUuid": "a9f3b2e9_df11eaed",
       "range": {
         "startLine": 115,
         "startChar": 0,
