@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public interface DataOperationRequestMapper {
     DataOperationRequest toDataOperationRequest(
             org.onap.cps.ncmp.rest.model.DataOperationRequest dataOperationRequest);
 
-    @Mapping(source = "targetIds", target = "cmHandleIds")
+    @Mapping(source = "targetIds", target = "cmHandleReferences")
     DataOperationDefinition toDataOperationDefinition(
             org.onap.cps.ncmp.rest.model.DataOperationDefinition dataOperationDefinition);
 }

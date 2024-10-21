@@ -698,7 +698,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
           description: Bad Gateway
-      summary: Execute a data operation for group of cm handle ids
+      summary: Execute a data operation for group of cm handle references
       tags:
       - network-cm-proxy
   /v1/ch/{cm-handle}/data/ds/{datastore-name}/query:
@@ -1771,8 +1771,8 @@ components:
           type: string
         targetIds:
           items:
-            description: "targeted cm handles, maximum of 50 supported. If this limit\
-              \ is exceeded the request wil be refused."
+            description: "targeted cm handle references, maximum of 50 supported.\
+              \ If this limit is exceeded the request wil be refused."
             example: "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
               ]"
             type: string

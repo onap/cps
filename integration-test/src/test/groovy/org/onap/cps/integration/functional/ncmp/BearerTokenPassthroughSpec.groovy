@@ -37,11 +37,14 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG)
+        dmiDispatcher1.moduleNamesPerCmHandleId['ch-2'] = ['M1', 'M3']
+        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'alt-1')
+        registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'alt-2')
     }
 
     def cleanup() {
         deregisterCmHandle(DMI1_URL, 'ch-1')
+        deregisterCmHandle(DMI1_URL, 'ch-2')
     }
 
     def 'Bearer token is passed from NCMP to DMI in pass-through data operations.'() {
@@ -83,7 +86,7 @@ class BearerTokenPassthroughSpec extends CpsIntegrationSpecBase {
                 "operationId": "operational-1",
                 "datastore": "ncmp-datastore:passthrough-running",
                 "resourceIdentifier": "my-resource-id",
-                "targetIds": ["ch-1"]
+                "targetIds": ["ch-1","alt-2"]
             }]}"""
         mvc.perform(request(POST, '/ncmp/v1/data')
                     .queryParam('topic', 'my-topic')
