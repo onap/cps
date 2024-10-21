@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6538ea25_8e3cd20d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T18:49:30Z",
+      "side": 1,
+      "message": "Here transformer Exception and parser Exception ate thrown due to issues that occur during XML processing infrastructure Generally thrown by the XML processing library. dataMaps will not cause TransformerException so any exception that occurs related to invalid XML element names or structures in the dataMaps will throw a DOMException during the DOM creation. TransformerException occurs after the DOM and the Transformer tries to serialize the DOM into an XML output and an issue occurs during the transformation. Suppose if we transform XML to a file or stream, I/O problems (e.g., file permissions, disk space, stream errors) can occur,using invalid or unsupported encoding (e.g., INVALID_ENCODING), XSL transformations with XML and the stylesheet has errors , it will throw a TransformerException. Have seen these exception have been used in YangParserHelper observed that there also there were no testcase written",
+      "parentUuid": "899a389a_9bf4038d",
+      "range": {
+        "startLine": 183,
+        "startChar": 10,
+        "endLine": 186,
+        "endChar": 9
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2dac28f_bb53b90f",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c9474bb_a881953a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T18:49:30Z",
+      "side": 1,
+      "message": "Need to modify",
+      "parentUuid": "a2dac28f_bb53b90f",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 66
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c8efbe_2d6353e6",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-10-21T13:26:14Z",
       "side": 1,
       "message": "we are throwing NullpointerException only and its not been catched by the catch block.We are catching other specific exceptions.\n\nDo you want to rethrow it as RuntimeException ??\nif Yes then add a separate catch block.\n\ncatch (final NullPointerException ... ) { \n  throw new RuntimeException(.... ) \n}",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 87
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "216e58a7_3d984056",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-10-21T18:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c8efbe_2d6353e6",
       "range": {
         "startLine": 106,
         "startChar": 9,
