@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3016334_70f0ccea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 64
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-21T15:37:14Z",
+      "side": 1,
+      "message": "i thing best we merge the query data node patch and then this would be way too simpler.\nalthough the comments here are applicable to the other patch as well.\nAlso I made some comments on the query data node patch as well.",
+      "revId": "80fe543247a12f86e134a98ba6bd1bb8b3215317",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
