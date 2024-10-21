@@ -131,9 +131,19 @@ paths:
       - network-cm-proxy-inventory
   /v1/ch/searches:
     post:
-      description: "Query and get CMHandleIds for additional properties, public properties\
-        \ and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)."
+      description: "Query and get CMHandle references for additional properties, public\
+        \ properties and registered DMI plugin (DMI plugin, DMI data plugin, DMI model\
+        \ plugin)."
       operationId: searchCmHandleIds
+      parameters:
+      - description: Boolean parameter to determine if returned value(s) will be cm
+          handle references for a given query
+        in: query
+        name: outputAlternateId
+        required: false
+        schema:
+          default: false
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -182,6 +192,15 @@ components:
       schema:
         example: my-dmi-plugin
         type: string
+    outputAlternateIdOptionInQuery:
+      description: Boolean parameter to determine if returned value(s) will be cm
+        handle references for a given query
+      in: query
+      name: outputAlternateId
+      required: false
+      schema:
+        default: false
+        type: boolean
   responses:
     NoContent:
       content: {}

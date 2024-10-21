@@ -698,7 +698,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DmiErrorMessage'
           description: Bad Gateway
-      summary: Execute a data operation for group of cm handle ids
+      summary: Execute a data operation for group of cm handle references
       tags:
       - network-cm-proxy
   /v1/ch/{cm-handle}/data/ds/{datastore-name}/query:
@@ -1129,7 +1129,7 @@ paths:
       - network-cm-proxy
   /v1/ch/id-searches:
     post:
-      description: Execute cm handle query search and return a list of cm handle ids.
+      description: Execute cm handle query search and return a list of cm handle references.
         Any number of conditions can be applied. To be included in the result a cm-handle
         must fulfill ALL the conditions. An empty collection will be returned in the
         case that the cm handle does not match a condition. For more on cm handle
@@ -1140,6 +1140,15 @@ paths:
         Path Read the Docs</a>. The cm handle ancestor is automatically returned for
         this query.
       operationId: searchCmHandleIds
+      parameters:
+      - description: Boolean parameter to determine if returned value(s) will be cm
+          handle references for a given query
+        in: query
+        name: outputAlternateId
+        required: false
+        schema:
+          default: false
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -1608,6 +1617,15 @@ components:
       schema:
         example: 2024-01-22
         type: string
+    outputAlternateIdOptionInQuery:
+      description: Boolean parameter to determine if returned value(s) will be cm
+        handle references for a given query
+      in: query
+      name: outputAlternateId
+      required: false
+      schema:
+        default: false
+        type: boolean
     dataSyncEnabled:
       description: Is used to enable or disable the data synchronization flag
       in: query
@@ -1771,8 +1789,8 @@ components:
           type: string
         targetIds:
           items:
-            description: "targeted cm handles, maximum of 50 supported. If this limit\
-              \ is exceeded the request wil be refused."
+            description: "targeted cm handle references, maximum of 200 supported.\
+              \ If this limit is exceeded the request wil be refused."
             example: "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
               ]"
             type: string
