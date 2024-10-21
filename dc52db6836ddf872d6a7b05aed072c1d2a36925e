@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25c2a6ef_4e84137c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-21T13:26:14Z",
+      "side": 1,
+      "message": "apart from the few previous comments and this comment. I am ok with the coverage and patch.\nXmlFileUtils has some generic code related to parseXml which looks a bit complex but as long as we have robust tests for that. I am good.",
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "899a389a_9bf4038d",
@@ -42,6 +59,29 @@
         "startChar": 0,
         "endLine": 32,
         "endChar": 66
+      },
+      "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c8efbe_2d6353e6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-21T13:26:14Z",
+      "side": 1,
+      "message": "we are throwing NullpointerException only and its not been catched by the catch block.We are catching other specific exceptions.\n\nDo you want to rethrow it as RuntimeException ??\nif Yes then add a separate catch block.\n\ncatch (final NullPointerException ... ) { \n  throw new RuntimeException(.... ) \n}",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 87
       },
       "revId": "dc52db6836ddf872d6a7b05aed072c1d2a36925e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
