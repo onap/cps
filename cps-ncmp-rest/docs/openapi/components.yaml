@@ -366,7 +366,7 @@ components:
           type: array
           items:
             type: string
-            description: targeted cm handles, maximum of 50 supported. If this limit is exceeded the request wil be refused.
+            description: targeted cm handle references, maximum of 200 supported. If this limit is exceeded the request wil be refused.
             example: [ "da310eecdb8d44c2acc0ddaae01174b1","c748c58f8e0b438f9fd1f28370b17d47" ]
 
   examples:

@@ -38,7 +38,6 @@ import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.BasicClassIntrospector
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -75,11 +74,15 @@ class InventoryPersistenceImplSpec extends Specification {
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def cmHandleId = 'some-cm-handle'
-    def leaves = ["id":cmHandleId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
+    def alternateId = 'some-alternate-id'
+    def leaves = ["id":cmHandleId, "alternateId":alternateId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     def cmHandleId2 = 'another-cm-handle'
+    def alternateId2 = 'another-alternate-id'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
+
+    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"])
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -135,12 +138,23 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
-    def "Retrieve multiple YangModelCmHandles"() {
+    def "Retrieve multiple YangModelCmHandles using cm handle ids"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
             mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
         when: 'retrieving the yang modelled cm handle'
             def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
+        then: 'verify both have returned and cmhandleIds are correct'
+            assert results.size() == 2
+            assert results.id.containsAll([cmHandleId, cmHandleId2])
+    }
+
+    def "Retrieve multiple YangModelCmHandles using cm handle references"() {
+        given: 'the cps data service returns 2 data nodes from the DMI registry'
+            def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId, 'alternate-id':alternateId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2,'alternate-id':alternateId2])]
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
+        when: 'retrieving the yang modelled cm handle'
+            def results = objectUnderTest.getYangModelCmHandlesFromCmHandleReferences([cmHandleId, cmHandleId2])
         then: 'verify both have returned and cmhandleIds are correct'
             assert results.size() == 2
             assert results.id.containsAll([cmHandleId, cmHandleId2])
@@ -317,15 +331,6 @@ class InventoryPersistenceImplSpec extends Specification {
             assert thrownException.getMessage().contains('DataNode not found')
     }
 
-    def 'Get multiple cm handle data nodes by alternate ids'() {
-        given: 'expected xPath to get cmHandle data node'
-            def expectedXPath = "/dmi-registry/cm-handles[@alternate-id='A' or @alternate-id='B']"
-        when: 'getting the cm handle data node'
-            objectUnderTest.getCmHandleDataNodesByAlternateIds(['A', 'B'])
-        then: 'query service is invoked with expected xpath'
-            1 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS)
-    }
-
     def 'Get multiple cm handle data nodes by alternate ids, passing empty collection'() {
         when: 'getting the cm handle data node for no alternate ids'
             objectUnderTest.getCmHandleDataNodesByAlternateIds([])
@@ -371,5 +376,14 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
+    }
+
+    def 'Check if cm handle exists for a given cm handle id'() {
+        given: 'data service returns a datanode with correct cm handle id'
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+        when: 'method is called to check if cm handle exists from cm handle id'
+            def result = objectUnderTest.isExistingCmHandleId('some-cm-handle')
+        then: 'check if cm handle id in datanode is equal to given cm handle id'
+            assert result == true
     }
 }

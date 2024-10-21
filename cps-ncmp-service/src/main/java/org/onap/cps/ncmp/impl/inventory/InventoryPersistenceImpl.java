@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.Lists;
@@ -133,6 +134,20 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
+    public Collection<YangModelCmHandle> getYangModelCmHandlesFromCmHandleReferences(
+        final Collection<String> cmHandleReferences) {
+        final Collection<YangModelCmHandle> yangModelCmHandles = YangDataConverter.toYangModelCmHandles(
+            getCmHandleDataNodes(cmHandleReferences));
+
+        if (yangModelCmHandles.size() < cmHandleReferences.size()) {
+            yangModelCmHandles.addAll(YangDataConverter.toYangModelCmHandles(
+                getCmHandleDataNodesByAlternateIds(
+                    getOutstandingCmHandleReferences(yangModelCmHandles, cmHandleReferences))));
+        }
+        return yangModelCmHandles;
+    }
+
+    @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
         return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
@@ -190,7 +205,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             return Collections.emptyList();
         }
         final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
-        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds, OMIT_DESCENDANTS);
+        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds,
+            INCLUDE_ALL_DESCENDANTS);
     }
 
     @Override
@@ -245,5 +261,15 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private Collection<String> getAlternateIdsFromDataNodes(final Collection<DataNode> dataNodes) {
         return dataNodes.stream().map(dataNode ->
             (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
+    }
+
+    private static Collection<String> getOutstandingCmHandleReferences(
+        final Collection<YangModelCmHandle> yangModelCmHandles, final Collection<String> cmHandleReferences) {
+
+        final Collection<String> outstandingCmHandleReferences = new ArrayList<>(cmHandleReferences);
+        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+            outstandingCmHandleReferences.remove(yangModelCmHandle.getId());
+        }
+        return outstandingCmHandleReferences;
     }
 }
