@@ -55,7 +55,7 @@ public class DataJobStatusServiceImpl implements DataJobStatusService {
                                                      final String dataProducerId,
                                                      final String dataProducerJobId) {
         return RestServiceUrlTemplateBuilder.newInstance()
-                .fixedPathSegment("cmwriteJob")
+                .fixedPathSegment("cmwritejob")
                 .fixedPathSegment("dataProducer")
                 .variablePathSegment("dataProducerId", dataProducerId)
                 .fixedPathSegment("dataProducerJob")

@@ -42,7 +42,7 @@ public class DataJobResultServiceImpl implements DataJobResultService {
                                    final String dataProducerJobId,
                                    final String destination) {
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
-                                           .fixedPathSegment("cmwriteJob")
+                                           .fixedPathSegment("cmwritejob")
                                            .fixedPathSegment("dataProducer")
                                            .variablePathSegment("dataProducerId", dataProducerId)
                                            .fixedPathSegment("dataProducerJob")

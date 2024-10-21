@@ -43,7 +43,7 @@ class DataJobResultServiceImplSpec extends Specification {
             def dataProducerId = 'some-data-producer-id'
             def authorization = 'my authorization header'
             def destination = 'some-destination'
-            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/result?destination={destination}', ['dataProducerJobId':'some-data-producer-job-id', 'dataProducerId':'some-data-producer-id', 'destination': 'some-destination'])
+            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwritejob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/result?destination={destination}', ['dataProducerJobId':'some-data-producer-job-id', 'dataProducerId':'some-data-producer-id', 'destination': 'some-destination'])
         and: 'the rest client returns the result for the given parameters'
             mockDmiRestClient.getDataJobResult(urlParams, authorization) >> Mono.just('some result')
         when: 'the job status is queried'

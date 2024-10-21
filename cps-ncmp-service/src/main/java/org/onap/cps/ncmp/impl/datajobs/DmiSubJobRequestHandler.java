@@ -89,7 +89,7 @@ public class DmiSubJobRequestHandler {
 
     private UrlTemplateParameters getUrlTemplateParameters(final String destination, final ProducerKey producerKey) {
         return RestServiceUrlTemplateBuilder.newInstance()
-                .fixedPathSegment("cmwriteJob")
+                .fixedPathSegment("cmwritejob")
                 .queryParameter("destination", destination)
                 .createUrlTemplateParameters(producerKey.dmiServiceName(), dmiProperties.getDmiBasePath());
     }

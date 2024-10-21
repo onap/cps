@@ -93,15 +93,15 @@ class DmiDispatcher extends Dispatcher {
                 return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
 
             // get data job status
-            case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/status$':
+            case ~'^/dmi/v1/cmwritejob/dataProducer/(.*)/dataProducerJob/(.*)/status$':
                 return mockResponseWithBody(HttpStatus.OK, '{"status":"status details from mock service"}')
 
             // get data job result
-            case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/result(.*)$':
+            case ~'^/dmi/v1/cmwritejob/dataProducer/(.*)/dataProducerJob/(.*)/result(.*)$':
                 return mockResponseWithBody(HttpStatus.OK, '{ "result": "some result"}')
 
             // get write sub job response
-            case ~'^/dmi/v1/cmwriteJob(.*)$':
+            case ~'^/dmi/v1/cmwritejob(.*)$':
                 return mockWriteJobResponse(request)
 
             default:

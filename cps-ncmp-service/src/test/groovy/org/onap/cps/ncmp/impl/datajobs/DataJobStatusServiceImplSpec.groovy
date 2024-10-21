@@ -42,7 +42,7 @@ class DataJobStatusServiceImplSpec extends Specification {
             def dataProducerId = 'some-data-producer-id'
             def dataProducerJobId = 'some-data-producer-job-id'
             def authorization = 'my authorization header'
-            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/status', ['dataProducerId':'some-data-producer-id', 'dataProducerJobId':'some-data-producer-job-id'])
+            def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwritejob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/status', ['dataProducerId':'some-data-producer-id', 'dataProducerJobId':'some-data-producer-job-id'])
         and: 'the rest client returns a status for the given parameters'
             mockDmiRestClient.getDataJobStatus(urlParams, authorization) >> Mono.just('some status')
         when: 'the job status is queried'
