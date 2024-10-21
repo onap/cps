@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5631dd1_c5df74d3",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-21T14:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "229830dd_9fc1ac88",
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fec8a219_f2a8a454",
@@ -58,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13d7eb3_8b3d5214",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-21T14:59:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fec8a219_f2a8a454",
+      "range": {
+        "startLine": 39,
+        "startChar": 26,
+        "endLine": 39,
+        "endChar": 64
+      },
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0c4474e_44da1048",
@@ -71,6 +113,30 @@
       "writtenOn": "2024-10-17T15:41:16Z",
       "side": 1,
       "message": "NB: This is not a good test name since cps service not only depend on 3pp packages, but also some other cps packages.",
+      "range": {
+        "startLine": 44,
+        "startChar": 26,
+        "endLine": 44,
+        "endChar": 72
+      },
+      "revId": "35aa2a8e2a7a0a90b2779d1fa5b2a18346852ae1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e05852_c776e2b7",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-21T14:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0c4474e_44da1048",
       "range": {
         "startLine": 44,
         "startChar": 26,
