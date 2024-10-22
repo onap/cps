@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f73c006_9b52154d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-10-22T05:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "783ae99c_e08e44a2",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 35
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fdb792d_7fe5a7d7",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-10-22T05:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcc5551c_45e2384a",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 35
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2d99479_da9767e8",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-10-18T10:55:44Z",
       "side": 1,
       "message": "these should be part of the concrete model loader that u have related to notifications.\nand then u can name ur constant specific to subscription notification.\n\nthis can be the generic model loader class with some methods definition. to be used for other cases which want to onboard some model.",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 72
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44e371ef_7ea0c73b",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-10-22T05:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2d99479_da9767e8",
       "range": {
         "startLine": 58,
         "startChar": 4,
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb0102a_20c5c5f3",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-10-22T05:44:22Z",
+      "side": 1,
+      "message": "As per your previous review comments we are using interface name and abstract classes name similar to ncmp code",
+      "parentUuid": "1d2b1a8a_a0005aa8",
+      "range": {
+        "startLine": 26,
+        "startChar": 17,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e063d88e_26cb446c",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-10-18T10:55:44Z",
       "side": 1,
       "message": "NotificationSubscriptionModelLoader",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 49
+      },
+      "revId": "b621f8791eeb2e4f3b10ce5070f3b83fb0292bc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15bbeffd_98ecde1d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/NotificationSubscriptionModuleLoader.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-10-22T05:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e063d88e_26cb446c",
       "range": {
         "startLine": 32,
         "startChar": 13,
