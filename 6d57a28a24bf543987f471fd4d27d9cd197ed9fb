@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d42f9ee_0131d9bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-22T09:05:55Z",
+      "side": 1,
+      "message": "would like to have a quick chat about this when you have a few minutes",
+      "revId": "6d57a28a24bf543987f471fd4d27d9cd197ed9fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16e5816_c3a63185",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-22T09:05:55Z",
+      "side": 1,
+      "message": "You no longer have comment on packages that we \u0027should NOT depend on\u0027 in this test class?",
+      "revId": "6d57a28a24bf543987f471fd4d27d9cd197ed9fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7328bf4_4b6ede70",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-22T09:05:55Z",
+      "side": 1,
+      "message": "OnCpsService",
+      "range": {
+        "startLine": 36,
+        "startChar": 59,
+        "endLine": 36,
+        "endChar": 68
+      },
+      "revId": "6d57a28a24bf543987f471fd4d27d9cd197ed9fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6fe31ea_0184eabf",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-22T09:05:55Z",
+      "side": 1,
+      "message": "cpsServiceImpl",
+      "range": {
+        "startLine": 47,
+        "startChar": 26,
+        "endLine": 47,
+        "endChar": 36
+      },
+      "revId": "6d57a28a24bf543987f471fd4d27d9cd197ed9fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
