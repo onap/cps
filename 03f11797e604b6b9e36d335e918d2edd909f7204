@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f72a6907_2b88aea3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94353649_b09e55ba",
+      "range": {
+        "startLine": 292,
+        "startChar": 51,
+        "endLine": 292,
+        "endChar": 62
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efb002a2_f452115b",
@@ -78,6 +102,30 @@
       "writtenOn": "2024-10-17T13:07:23Z",
       "side": 1,
       "message": "These two method never used. Candidate to be removal.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 5
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c92f2dd5_e5a1398b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efb002a2_f452115b",
       "range": {
         "startLine": 299,
         "startChar": 0,
@@ -111,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae26115_7ec93be5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacadeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc867ee5_2f2855c6",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fea880f_84bace26",
@@ -124,6 +196,30 @@
       "writtenOn": "2024-10-17T14:39:54Z",
       "side": 1,
       "message": "Not needed",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 86
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae927de1_1704d8c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/NetworkCmProxyFacadeSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fea880f_84bace26",
       "range": {
         "startLine": 92,
         "startChar": 12,
@@ -157,6 +253,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c6b4ce8_cee830b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2757c72a_b7c5a7ac",
+      "range": {
+        "startLine": 72,
+        "startChar": 159,
+        "endLine": 72,
+        "endChar": 178
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87540a53_92373acb",
@@ -170,6 +290,30 @@
       "writtenOn": "2024-10-17T14:39:54Z",
       "side": 1,
       "message": "\"output cmhandle id\"\n\nis enough to scenario title since the parameter has been passed as false",
+      "range": {
+        "startLine": 93,
+        "startChar": 13,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9223cb_49d0d554",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87540a53_92373acb",
       "range": {
         "startLine": 93,
         "startChar": 13,
@@ -203,6 +347,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfbd17cb_80bf208e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14995432_94a96f61",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fe0bd96_0e88f5c9",
@@ -226,6 +394,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "914f9fc2_6418d1b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fe0bd96_0e88f5c9",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70258b16_65f0d911",
@@ -239,6 +431,30 @@
       "writtenOn": "2024-10-17T14:39:54Z",
       "side": 1,
       "message": "\"output alternate ids\"\n\n\nThere are some other similar to this below, if you can have a look at.",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 61,
+        "endChar": 36
+      },
+      "revId": "03f11797e604b6b9e36d335e918d2edd909f7204",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b97d74f_f83815ba",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-22T08:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70258b16_65f0d911",
       "range": {
         "startLine": 61,
         "startChar": 13,
