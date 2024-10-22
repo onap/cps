@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "086d62b2_dfdb087b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/RestApiSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-22T11:05:58Z",
+      "side": 1,
+      "message": "Nice extension, well done.",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 91
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
