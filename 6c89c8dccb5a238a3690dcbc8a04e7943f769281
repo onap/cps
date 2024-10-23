@@ -3,6 +3,212 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6a8457c3_496ab4c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "I will revisit the core logic one more time.\nthese are preliminary comments.",
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c87ae5_03b5dd99",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "NB: was this name agreed or we came up with this ?? just asking.",
+      "range": {
+        "startLine": 516,
+        "startChar": 4,
+        "endLine": 516,
+        "endChar": 27
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de76f4df_61d00fd3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "can actually have 3 possible values.\nnull is also an option.\nif it is null then what do we do ?? we can put that one as well in the javadoc ?",
+      "range": {
+        "startLine": 274,
+        "startChar": 76,
+        "endLine": 274,
+        "endChar": 116
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e452b7d9_4397132e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "Boolean",
+      "range": {
+        "startLine": 274,
+        "startChar": 32,
+        "endLine": 274,
+        "endChar": 39
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f022e0_3ad6862a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "we have to be consistent here.\ncm handle references OR cmhandle references??\nToine mentioned the same for cm handle ids as well.",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "198d9933_6cedc27c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "similar comment as before.",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 116
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e618600_ef1bc0ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "same as before.",
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b390b1e9_cd986338",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "so by this logic..\nfor outputAlternateId as null or false , we output the cmHandleIds..",
+      "range": {
+        "startLine": 166,
+        "startChar": 17,
+        "endLine": 170,
+        "endChar": 21
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2312b7a1_43b89b7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "same as before.",
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c98a88_333792ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "here as well.",
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "086d62b2_dfdb087b",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/RestApiSpec.groovy",
         "patchSetId": 12
@@ -20,6 +226,23 @@
         "endLine": 68,
         "endChar": 91
       },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7307a6b5_21bdff73",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/RestApiSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T08:41:15Z",
+      "side": 1,
+      "message": "and the case when outputAlternateId query parameter is altogether not present ??\ni.e outputAlternateId is null.",
       "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
