@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b153987b_d0bcf159",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-23T14:59:07Z",
+      "side": 1,
+      "message": "put each package on a line so we can refer ,more easily and add comment etc.",
+      "range": {
+        "startLine": 38,
+        "startChar": 64,
+        "endLine": 38,
+        "endChar": 108
+      },
+      "revId": "4e00ef00613fa063db74693e74526e04a79e1b19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6d023b1_b87b4bfb",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-23T14:59:07Z",
+      "side": 1,
+      "message": "use separate lines",
+      "range": {
+        "startLine": 53,
+        "startChar": 41,
+        "endLine": 55,
+        "endChar": 110
+      },
+      "revId": "4e00ef00613fa063db74693e74526e04a79e1b19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aae7a0c0_75c8ebaf",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-23T14:59:07Z",
+      "side": 1,
+      "message": "use individual lines",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 73,
+        "endChar": 0
+      },
+      "revId": "4e00ef00613fa063db74693e74526e04a79e1b19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
