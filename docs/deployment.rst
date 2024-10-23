@@ -31,6 +31,12 @@ This helps the JVM make the best use of the allocated resources while leaving en
 
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
 
+Load balancer configuration
+===========================
+
+Load balancers for CPS/NCMP should use a least-requests policy (also called least-connected). Use of round-robin load
+balancing can lead to instability. Note Istio uses a least requests load balancing policy by default.
+
 CPS OOM Charts
 ==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
