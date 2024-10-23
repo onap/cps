@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4dbbc14_3f1c13e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T21:58:03Z",
+      "side": 1,
+      "message": "This is how the output will look like\n\n{\n  \"git\": {\n    \"commit\": {\n      \"message\": {\n        \"short\": \"Add metadata related to builds and commits\"\n      },\n      \"user\": {\n        \"name\": \"mpriyank\",\n        \"email\": \"priyank.maheshwari@est.tech\"\n      },\n      \"id\": {\n        \"full\": \"4f76458d3a02a43f3ea28820caa2b35687c62daa\"\n      }\n    },\n    \"branch\": \"master\",\n    \"build\": {\n      \"time\": \"2024-10-23T22:49:38.038Z\",\n      \"version\": \"3.5.5-SNAPSHOT\"\n    }\n  }\n}",
+      "revId": "ff99139d82e9911e485f228bcd93e0d9b4d6a74b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
