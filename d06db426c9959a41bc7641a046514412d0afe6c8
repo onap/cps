@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92ba8ac5_e9435061",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T10:23:37Z",
+      "side": 1,
+      "message": "NB: For optimal performance in CPS/NCMP, load balancers should be configured to use a least-requests policy, also known as least-connected.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 92
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a20bcac5_2216c369",
         "filename": "docs/deployment.rst",
         "patchSetId": 1
@@ -42,6 +65,52 @@
         "startChar": 35,
         "endLine": 38,
         "endChar": 101
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca29cb5f_8cd20f26",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T10:23:37Z",
+      "side": 1,
+      "message": "NB: It is important to avoid using a round-robin load balancing approach, as this can lead to instability in the system.",
+      "range": {
+        "startLine": 37,
+        "startChar": 94,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "141059af_b1534c1d",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T10:23:37Z",
+      "side": 1,
+      "message": "NB: Additionally, it is worth noting that Istio automatically employs a least-requests load balancing policy by default, enhancing stability and performance for services managed within its framework.",
+      "range": {
+        "startLine": 38,
+        "startChar": 35,
+        "endLine": 38,
+        "endChar": 100
       },
       "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
