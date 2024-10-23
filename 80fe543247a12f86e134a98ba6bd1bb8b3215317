@@ -51,6 +51,23 @@
       "parentUuid": "a3016334_70f0ccea",
       "revId": "80fe543247a12f86e134a98ba6bd1bb8b3215317",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c04d40bd_b530f805",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 64
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T12:21:35Z",
+      "side": 1,
+      "message": "* @throws RuntimeException if an error occurs during XML conversion",
+      "revId": "80fe543247a12f86e134a98ba6bd1bb8b3215317",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
