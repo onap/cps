@@ -54,6 +54,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe63ee9_bedf1d1d",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dbd2889_d879d6c0",
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9d4e8d0_9d67162a",
@@ -124,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb4526a6_62af2c47",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e76c5b_d64b98f8",
+      "range": {
+        "startLine": 185,
+        "startChar": 24,
+        "endLine": 185,
+        "endChar": 49
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e7f1781_d3fb440d",
@@ -161,6 +203,30 @@
       "side": 1,
       "message": "can do but I thought the one I had was more readable.\nso now I have them grouped.\nLet me know if its not readable and I can revert back to original.",
       "parentUuid": "1e7f1781_d3fb440d",
+      "range": {
+        "startLine": 191,
+        "startChar": 23,
+        "endLine": 192,
+        "endChar": 92
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c1b04ae_da3bb5ce",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55e3a425_9646f9c9",
       "range": {
         "startLine": 191,
         "startChar": 23,
@@ -218,6 +284,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "874427d9_bd52dabe",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1a93ba_447d5b0d",
+      "range": {
+        "startLine": 194,
+        "startChar": 45,
+        "endLine": 194,
+        "endChar": 56
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1eeefd7_bcae360b",
@@ -255,6 +345,30 @@
       "side": 1,
       "message": "and why do we want to change the filename??\nif we change the filename then we might need to take care of other defaults to render it using actuator endpoint.",
       "parentUuid": "c1eeefd7_bcae360b",
+      "range": {
+        "startLine": 197,
+        "startChar": 51,
+        "endLine": 197,
+        "endChar": 98
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7b8708_eaeaef71",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00ef4e5b_5d34c2c7",
       "range": {
         "startLine": 197,
         "startChar": 51,
@@ -312,6 +426,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0130182_f30c4c84",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff6018b_db26527f",
+      "range": {
+        "startLine": 186,
+        "startChar": 18,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9015e2dd_9782fce7",
@@ -349,6 +487,30 @@
       "side": 1,
       "message": "changed to package and answered above.",
       "parentUuid": "9015e2dd_9782fce7",
+      "range": {
+        "startLine": 141,
+        "startChar": 27,
+        "endLine": 141,
+        "endChar": 53
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e69fb09_edfba0c8",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T08:46:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2925c6e8_a11157ae",
       "range": {
         "startLine": 141,
         "startChar": 27,
