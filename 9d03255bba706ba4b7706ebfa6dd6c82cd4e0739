@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0716f32f_13d3e1d4",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-23T21:56:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9d4e8d0_9d67162a",
+      "range": {
+        "startLine": 181,
+        "startChar": 28,
+        "endLine": 181,
+        "endChar": 45
+      },
+      "revId": "9d03255bba706ba4b7706ebfa6dd6c82cd4e0739",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4932ee5e_98f7d23f",
