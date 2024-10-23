@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d37d92cb_4d189e04",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/ArchitectureTestBase.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T12:32:31Z",
+      "side": 1,
+      "message": "NB: /**\n * Base class for architecture tests that provides utilities for handling package identifiers.\n */",
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3283002_c20773df",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/ArchitectureTestBase.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T12:32:31Z",
+      "side": 1,
+      "message": "NB: /**\n     * Combines accepted third-party packages with additional package identifiers.\n     *\n     * @param packageIdentifiers additional package identifiers to include\n     * @return an array of combined package identifiers\n     */",
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb68dc5e_bb078293",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T12:32:31Z",
+      "side": 1,
+      "message": "NB: Tests to verify correct dependency usage across CPS modules.",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a149824_b50ce8bb",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-10-23T12:32:31Z",
+      "side": 1,
+      "message": "NB: Tests to verify the correct use of dependencies in NCMP modules.",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
