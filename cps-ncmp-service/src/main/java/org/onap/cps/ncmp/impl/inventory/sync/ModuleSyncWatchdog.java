@@ -92,16 +92,14 @@ public class ModuleSyncWatchdog {
     }
 
     private void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty()) {
-            if (workQueueLock.tryLock()) {
-                try {
-                    populateWorkQueue();
-                    if (moduleSyncWorkQueue.isEmpty()) {
-                        setPreviouslyLockedCmHandlesToAdvised();
-                    }
-                } finally {
-                    workQueueLock.unlock();
+        if (moduleSyncWorkQueue.isEmpty() && workQueueLock.tryLock()) {
+            try {
+                populateWorkQueue();
+                if (moduleSyncWorkQueue.isEmpty()) {
+                    setPreviouslyLockedCmHandlesToAdvised();
                 }
+            } finally {
+                workQueueLock.unlock();
             }
         }
     }

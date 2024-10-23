@@ -204,18 +204,17 @@ public class DataNodeBuilder {
     private static void addDataNodeFromNormalizedNode(final DataNode currentDataNode,
         final NormalizedNode normalizedNode) {
 
-        if (normalizedNode instanceof ChoiceNode) {
-            addChoiceNode(currentDataNode, (ChoiceNode) normalizedNode);
-        } else if (normalizedNode instanceof DataContainerNode) {
-            addYangContainer(currentDataNode, (DataContainerNode) normalizedNode);
-        } else if (normalizedNode instanceof MapNode) {
-            addDataNodeForEachListElement(currentDataNode, (MapNode) normalizedNode);
-        } else if (normalizedNode instanceof ValueNode) {
-            final ValueNode<NormalizedNode> valuesNode = (ValueNode) normalizedNode;
-            addYangLeaf(currentDataNode, valuesNode.getIdentifier().getNodeType().getLocalName(),
-                    (Serializable) valuesNode.body());
-        } else if (normalizedNode instanceof LeafSetNode) {
-            addYangLeafList(currentDataNode, (LeafSetNode<?>) normalizedNode);
+        if (normalizedNode instanceof ChoiceNode choiceNode) {
+            addChoiceNode(currentDataNode, choiceNode);
+        } else if (normalizedNode instanceof DataContainerNode dataContainerNode) {
+            addYangContainer(currentDataNode, dataContainerNode);
+        } else if (normalizedNode instanceof MapNode mapNode) {
+            addDataNodeForEachListElement(currentDataNode, mapNode);
+        } else if (normalizedNode instanceof ValueNode<?> valueNode) {
+            addYangLeaf(currentDataNode, valueNode.getIdentifier().getNodeType().getLocalName(),
+                    (Serializable) valueNode.body());
+        } else if (normalizedNode instanceof LeafSetNode<?> leafSetNode) {
+            addYangLeafList(currentDataNode, leafSetNode);
         } else {
             log.warn("Unsupported NormalizedNode type detected: {}", normalizedNode.getClass());
         }
@@ -243,7 +242,7 @@ public class DataNodeBuilder {
 
     private static void addYangLeafList(final DataNode currentDataNode, final LeafSetNode<?> leafSetNode) {
         final String leafListName = leafSetNode.getIdentifier().getNodeType().getLocalName();
-        List<?> leafListValues = ((Collection<? extends NormalizedNode>) leafSetNode.body())
+        List<?> leafListValues = (leafSetNode.body())
                 .stream()
                 .map(NormalizedNode::body)
                 .collect(Collectors.toList());
