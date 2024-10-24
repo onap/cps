@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99f5ff18_2d01d855",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-10-24T10:49:01Z",
+      "side": 1,
+      "message": "Name is fine to me.",
+      "parentUuid": "57258cdf_c3a099e6",
+      "range": {
+        "startLine": 516,
+        "startChar": 4,
+        "endLine": 516,
+        "endChar": 27
+      },
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de76f4df_61d00fd3",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
         "patchSetId": 12
