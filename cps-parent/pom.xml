@@ -22,14 +22,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.onap.oparent</groupId>
-        <artifactId>oparent</artifactId>
-        <version>3.2.0</version>
-        <relativePath/>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-parent</artifactId>
     <version>3.5.5-SNAPSHOT</version>
@@ -38,6 +32,8 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <java.version>17</java.version>
+        <version.parent.checkstyle>3.5.5-SNAPSHOT</version.parent.checkstyle>
+        <version.maven-checkstyle-plugin>3.3.1</version.maven-checkstyle-plugin>
         <minimum-coverage>1.00</minimum-coverage>
         <postgres.version>42.5.1</postgres.version>
 
@@ -238,6 +234,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${version.maven-checkstyle-plugin}</version>
                 <executions>
                     <execution>
                         <id>onap-license</id>
@@ -246,7 +243,7 @@
                         </goals>
                         <phase>process-sources</phase>
                         <configuration>
-                            <configLocation>onap-checkstyle/check-license.xml</configLocation>
+                            <configLocation>check-license.xml</configLocation>
                             <includeResources>false</includeResources>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                             <includeTestResources>false</includeTestResources>
@@ -265,7 +262,7 @@
                         </goals>
                         <phase>process-sources</phase>
                         <configuration>
-                            <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
+                            <configLocation>onap-java-style.xml</configLocation>
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                             </sourceDirectories>
@@ -299,9 +296,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.onap.oparent</groupId>
+                        <groupId>org.onap.cps</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>3.2.0</version>
+                        <version>${version.parent.checkstyle}</version>
                     </dependency>
                     <dependency>
                         <groupId>${project.groupId}</groupId>

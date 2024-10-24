@@ -36,13 +36,19 @@ public class DeprecationHelper {
     private final JsonObjectMapper jsonObjectMapper;
 
     /**
-     * Convert the old condition properties to the new schema.
-     * !!! remove it after the old condition removed !!!
-     * it only works for module names
+     * Converts the old condition properties from {@link CmHandleQueryParameters}
+     * to the new schema defined in {@link CmHandleQueryApiParameters}.
      *
-     * @deprecated this method will be removed in Release 12 (No Name know yet)
+     * <p>This method transforms the old module name-based condition properties to the new format.
+     * It should only be used for backward compatibility until the old conditions
+     * are removed in future releases.
      *
-     * @param cmHandleQueryParameters the original input parameter
+     * <p><b>Important:</b> This method will be removed in Release 12 (release name not finalized yet).</p>
+     *
+     * @param cmHandleQueryParameters the original query parameters containing old condition properties
+     * @return an instance of {@link CmHandleQueryApiParameters} with the transformed condition properties
+     * @deprecated This method is deprecated and will be removed in Release 12.
+     *     Use the new condition handling approach instead.
      */
     @Deprecated
     public CmHandleQueryApiParameters mapOldConditionProperties(
@@ -69,7 +75,6 @@ public class DeprecationHelper {
                 }
             );
         }
-
         return cmHandleQueryApiParameters;
     }
 }
