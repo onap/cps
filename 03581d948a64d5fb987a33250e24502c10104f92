@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df019d3b_357cea44",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T11:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "631fe642_daf9080c",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 35
+      },
+      "revId": "03581d948a64d5fb987a33250e24502c10104f92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab13a00d_3cf446f3",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf78444d_ae7eddca",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T11:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab13a00d_3cf446f3",
+      "range": {
+        "startLine": 49,
+        "startChar": 19,
+        "endLine": 49,
+        "endChar": 50
+      },
+      "revId": "03581d948a64d5fb987a33250e24502c10104f92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "688b68e3_e96c7ead",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-10-24T10:08:10Z",
       "side": 1,
       "message": "2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 25
+      },
+      "revId": "03581d948a64d5fb987a33250e24502c10104f92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a05b7357_1a5b2001",
+        "filename": "integration-test/src/test/resources/application-module-sync-delayed.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T11:40:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "688b68e3_e96c7ead",
       "range": {
         "startLine": 2,
         "startChar": 15,
