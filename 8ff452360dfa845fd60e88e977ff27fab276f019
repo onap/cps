@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6f3aa8_a594bae3",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/ArchitectureTestBase.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-24T09:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "890eda74_38f22ad4",
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3283002_c20773df",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "as above, documentation tends to get outdated, I prefer to rely on good method and variabel names....",
       "parentUuid": "a3283002_c20773df",
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4273d92_69c107bb",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/ArchitectureTestBase.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-24T09:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbae93dd_01ebe08f",
       "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -135,6 +171,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d62b61_b9c58c8d",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-24T09:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "004886dd_f2230ca8",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09f7ce9d_bb536b75",
@@ -148,6 +208,30 @@
       "writtenOn": "2024-10-23T14:59:07Z",
       "side": 1,
       "message": "NB: is it possibel to include a package and all its subpackages using only one string here?",
+      "range": {
+        "startLine": 71,
+        "startChar": 41,
+        "endLine": 72,
+        "endChar": 69
+      },
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b089183_4d453ca0",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/CpsArchitectureTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-24T09:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09f7ce9d_bb536b75",
       "range": {
         "startLine": 71,
         "startChar": 41,
@@ -195,6 +279,30 @@
       "side": 1,
       "message": "prefer this to be removed",
       "parentUuid": "3a149824_b50ce8bb",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "8ff452360dfa845fd60e88e977ff27fab276f019",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639d07e2_5ef1e45b",
+        "filename": "cps-application/src/test/java/org/onap/cps/architecture/NcmpArchitectureTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-10-24T09:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7efa638_82121e27",
       "range": {
         "startLine": 30,
         "startChar": 3,
