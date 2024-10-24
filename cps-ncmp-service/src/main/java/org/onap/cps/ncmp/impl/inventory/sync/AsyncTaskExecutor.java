@@ -70,7 +70,7 @@ public class AsyncTaskExecutor {
             if (throwable instanceof TimeoutException) {
                 log.warn("Async task didn't completed within the required time.");
             } else {
-                log.debug("Watchdog async batch failed. caused by : {}", throwable.getMessage());
+                log.warn("Watchdog async batch failed.", throwable);
             }
         }
     }
