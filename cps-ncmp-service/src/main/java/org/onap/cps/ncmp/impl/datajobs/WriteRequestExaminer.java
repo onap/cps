@@ -32,6 +32,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.DataNode;
@@ -69,9 +70,11 @@ public class WriteRequestExaminer {
         final DataNode dataNode = alternateIdMatcher
                 .getCmHandleDataNodeByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
 
-        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, dataNode);
+        final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNode);
 
-        final ProducerKey producerKey = createProducerKey(dataNode);
+        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, yangModelCmHandle);
+
+        final ProducerKey producerKey = createProducerKey(yangModelCmHandle);
         final List<DmiWriteOperation> dmiWriteOperations;
         if (dmiWriteOperationsPerProducerKey.containsKey(producerKey)) {
             dmiWriteOperations = dmiWriteOperationsPerProducerKey.get(producerKey);
@@ -82,24 +85,23 @@ public class WriteRequestExaminer {
         dmiWriteOperations.add(dmiWriteOperation);
     }
 
-    private ProducerKey createProducerKey(final DataNode dataNode) {
-        return new ProducerKey((String) dataNode.getLeaves().get("dmi-service-name"),
-                (String) dataNode.getLeaves().get("data-producer-identifier"));
+    private ProducerKey createProducerKey(final YangModelCmHandle yangModelCmHandle) {
+        return new ProducerKey(yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
+                yangModelCmHandle.getDataProducerIdentifier());
     }
 
     private DmiWriteOperation createDmiWriteOperation(final WriteOperation writeOperation,
-                                                      final DataNode dataNode) {
+                                                      final YangModelCmHandle yangModelCmHandle) {
         return new DmiWriteOperation(
                 writeOperation.path(),
                 writeOperation.op(),
-                (String) dataNode.getLeaves().get("module-set-tag"),
+                yangModelCmHandle.getModuleSetTag(),
                 writeOperation.value(),
                 writeOperation.operationId(),
-                getPrivatePropertiesFromDataNode(dataNode));
+                getPrivatePropertiesFromDataNode(yangModelCmHandle));
     }
 
-    private Map<String, String> getPrivatePropertiesFromDataNode(final DataNode dataNode) {
-        final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNode);
+    private Map<String, String> getPrivatePropertiesFromDataNode(final YangModelCmHandle yangModelCmHandle) {
         final Map<String, String> cmHandleDmiProperties = new LinkedHashMap<>();
         yangModelCmHandle.getDmiProperties()
                 .forEach(dmiProperty -> cmHandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));
