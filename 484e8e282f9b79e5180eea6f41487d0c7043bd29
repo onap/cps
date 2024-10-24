@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc7532cf_22be00a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T08:01:43Z",
+      "side": 1,
+      "message": "timers now disabled",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 23
+      },
+      "revId": "484e8e282f9b79e5180eea6f41487d0c7043bd29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a226b590_42825435",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
         "patchSetId": 3
@@ -14,6 +37,30 @@
       "writtenOn": "2024-10-23T16:03:10Z",
       "side": 1,
       "message": "Nb. should end in -ms to be consistent: initial-time-ms",
+      "range": {
+        "startLine": 64,
+        "startChar": 77,
+        "endLine": 64,
+        "endChar": 90
+      },
+      "revId": "484e8e282f9b79e5180eea6f41487d0c7043bd29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "581b612b_744b4be4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T08:01:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a226b590_42825435",
       "range": {
         "startLine": 64,
         "startChar": 77,
@@ -43,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b0e317b_5b18103d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T08:01:43Z",
+      "side": 1,
+      "message": "will consider when we revisit this again",
+      "parentUuid": "e8d3b18b_c89bdd2b",
+      "revId": "484e8e282f9b79e5180eea6f41487d0c7043bd29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3c1bcc2_2ae516e1",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
         "patchSetId": 3
@@ -54,6 +119,24 @@
       "writtenOn": "2024-10-23T16:03:10Z",
       "side": 1,
       "message": "Looking at the populateWorkQueueIfNeeded() code, it does indeed take two runs to reset locked handles AND get them into the queue:\n\n    if (moduleSyncWorkQueue.isEmpty()) {\n        populateWorkQueue();  // Nothing in first run, will be SECOND run\n        if (moduleSyncWorkQueue.isEmpty()) {\n            setPreviouslyLockedCmHandlesToAdvised(); // FIRST run\n            // locked are now advised, but not yet in the queue\n        }\n\nThe 2 times makes sense when you think this used to be two separate scheduled tasks.",
+      "revId": "484e8e282f9b79e5180eea6f41487d0c7043bd29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16adfd9d_f2f471aa",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-24T08:01:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3c1bcc2_2ae516e1",
       "revId": "484e8e282f9b79e5180eea6f41487d0c7043bd29",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
