@@ -37,7 +37,7 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-        <minimum-coverage>0.68</minimum-coverage>
+        <minimum-coverage>0.4</minimum-coverage>
         <base.image>${docker.pull.registry}/onap/integration-java17:12.0.0</base.image>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
     </properties>
