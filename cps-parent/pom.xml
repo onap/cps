@@ -22,32 +22,75 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.onap.oparent</groupId>
-        <artifactId>oparent</artifactId>
-        <version>3.2.0</version>
-        <relativePath/>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project Metadata -->
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-parent</artifactId>
     <version>3.5.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-        <app>org.onap.cps.Application</app>
-        <java.version>17</java.version>
-        <minimum-coverage>1.00</minimum-coverage>
-        <postgres.version>42.5.1</postgres.version>
+        <!-- Set UTF-8 encoding for consistent builds across platforms -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Application Configuration -->
+        <app>org.onap.cps.Application</app>
+
+        <!-- Parent Directory Configuration -->
+        <parent.directory>${project.basedir}/..</parent.directory>
+
+        <!-- Global properties for version management -->
+        <bug.pattern.version>1.5.0</bug.pattern.version>
+        <dependency.check.version>9.2.0</dependency.check.version>
+        <git.commit.id.version>9.0.0</git.commit.id.version>
+        <gmavenplus.plugin.version>4.0.1</gmavenplus.plugin.version>
+        <jacoco.version>0.8.11</jacoco.version>
+        <java.version>17</java.version>
+        <jsonschema2pojo.maven.plugin.version>1.2.1</jsonschema2pojo.maven.plugin.version>
+        <maven.checkstyle.plugin.version>3.3.1</maven.checkstyle.plugin.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+        <postgres.version>42.5.1</postgres.version>
+        <slf4j.simple.version>2.0.6</slf4j.simple.version>
+        <sonar.version>4.0.0.4121</sonar.version>
+        <spotbugs.plugin.version>4.8.6.4</spotbugs.plugin.version>
+        <spotbugs.version>4.8.6</spotbugs.version>
+        <spring.boot.maven.plugin.version>3.2.4</spring.boot.maven.plugin.version>
+        <swagger.codegen.version>1.2.1</swagger.codegen.version>
+
+        <!-- Reporting paths and coverage -->
+        <jacoco.execFile>${project.build.directory}/code-coverage/jacoco-ut.exec</jacoco.execFile>
+        <jacoco.outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</jacoco.outputDirectory>
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
+        <minimum-coverage>1.00</minimum-coverage>
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
-        <parent.directory>${project.basedir}/..</parent.directory>
-        <maven.compiler.release>17</maven.compiler.release>
     </properties>
+
+    <!-- Dependency Management, Profiles, Build, and Plugins -->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.onap.cps</groupId>
+                <artifactId>cps-dependencies</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.onap.cps</groupId>
+                <artifactId>cps-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
@@ -72,26 +115,26 @@
                 <script.executor>python3</script.executor>
             </properties>
         </profile>
+        <profile>
+            <id>dependency-vulnerability-check</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${dependency.check.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.onap.cps</groupId>
-                <artifactId>cps-dependencies</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.onap.cps</groupId>
-                <artifactId>cps-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <resources>
@@ -118,7 +161,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>3.2.4</version>
+                    <version>${spring.boot.maven.plugin.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -130,7 +173,7 @@
                 <plugin>
                     <groupId>io.github.git-commit-id</groupId>
                     <artifactId>git-commit-id-maven-plugin</artifactId>
-                    <version>9.0.0</version>
+                    <version>${git.commit.id.version}</version>
                     <executions>
                         <execution>
                             <id>get-git-info</id>
@@ -140,11 +183,6 @@
                             <phase>package</phase>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
                 </plugin>
                 <!-- Swagger code generation. -->
                 <plugin>
@@ -167,12 +205,12 @@
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
-                    <version>4.8.6.4</version>
+                    <version>${spotbugs.plugin.version}</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.github.spotbugs</groupId>
                             <artifactId>spotbugs</artifactId>
-                            <version>4.8.6</version>
+                            <version>${spotbugs.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>${project.groupId}</groupId>
@@ -183,7 +221,7 @@
                             <!-- The SpotBugs Maven plugin uses SLF4J 1.8 beta 2 -->
                             <groupId>org.slf4j</groupId>
                             <artifactId>slf4j-simple</artifactId>
-                            <version>2.0.6</version>
+                            <version>${slf4j.simple.version}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -191,7 +229,7 @@
                             <plugin>
                                 <groupId>jp.skypencil.findbugs.slf4j</groupId>
                                 <artifactId>bug-pattern</artifactId>
-                                <version>1.5.0</version>
+                                <version>${bug.pattern.version}</version>
                             </plugin>
                         </plugins>
                         <!--
@@ -228,7 +266,7 @@
                 <plugin>
                     <groupId>org.jsonschema2pojo</groupId>
                     <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                    <version>1.2.1</version>
+                    <version>${jsonschema2pojo.maven.plugin.version}</version>
                     <configuration>
                         <targetVersion>${java.version}</targetVersion>
                     </configuration>
@@ -246,11 +284,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>onap-license</id>
@@ -259,7 +301,7 @@
                         </goals>
                         <phase>process-sources</phase>
                         <configuration>
-                            <configLocation>onap-checkstyle/check-license.xml</configLocation>
+                            <configLocation>cps-checkstyle/check-license.xml</configLocation>
                             <includeResources>false</includeResources>
                             <includeTestSourceDirectory>true</includeTestSourceDirectory>
                             <includeTestResources>false</includeTestResources>
@@ -272,13 +314,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>onap-java-style</id>
+                        <id>cps-java-style</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
                         <phase>process-sources</phase>
                         <configuration>
-                            <configLocation>onap-checkstyle/onap-java-style.xml</configLocation>
+                            <configLocation>cps-checkstyle/cps-java-style.xml</configLocation>
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                             </sourceDirectories>
@@ -290,32 +332,8 @@
                             <failOnViolation>true</failOnViolation>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>cps-java-style</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                        <configuration>
-                            <configLocation>cps-java-style.xml</configLocation>
-                            <sourceDirectories>
-                                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-                            </sourceDirectories>
-                            <includeResources>true</includeResources>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                            <includeTestResources>true</includeTestResources>
-                            <consoleOutput>true</consoleOutput>
-                            <violationSeverity>warning</violationSeverity>
-                            <failOnViolation>true</failOnViolation>
-                        </configuration>
-                    </execution>
                 </executions>
                 <dependencies>
-                    <dependency>
-                        <groupId>org.onap.oparent</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>3.2.0</version>
-                    </dependency>
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>checkstyle</artifactId>
@@ -329,7 +347,7 @@
                     To learn more about this plugin, visit https://github.com/groovy/GMavenPlus/wiki -->
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>${gmavenplus.plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -343,6 +361,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${surefireArgLine}</argLine>
@@ -371,17 +390,18 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>${jacoco.version}</version>
                 <configuration>
-                    <!--All exclusions below are referring to generated code-->
+                    <!-- Exclude all generated classes or specific patterns if necessary -->
                     <excludes>
-                        <exclude>org/onap/cps/event/model/*</exclude>
+                        <exclude>org/onap/cps/events/model/*</exclude>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                         <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
+                        <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -390,14 +410,19 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <destFile>${jacoco.execFile}</destFile>
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>coverage-check</id>
+                        <phase>test</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <dataFile>${project.build.directory}/code-coverage/jacoco-ut.exec</dataFile>
+                            <dataFile>${jacoco.execFile}</dataFile>
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>
@@ -412,16 +437,41 @@
                             </rules>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.execFile}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${jacoco.outputDirectory}</outputDirectory>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-            </plugin>
+
+            <!-- Sonar Plugin for Code Quality -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>${sonar.version}</version>
+            </plugin>
+
+            <!-- Maven Site Plugin for Site Generation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven.site.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-site</id>
+                        <phase>site</phase>
+                        <goals><goal>site</goal></goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
