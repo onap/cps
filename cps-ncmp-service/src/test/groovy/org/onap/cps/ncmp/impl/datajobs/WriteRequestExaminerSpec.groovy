@@ -3,6 +3,8 @@ package org.onap.cps.ncmp.impl.datajobs
 
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
@@ -59,5 +61,17 @@ class WriteRequestExaminerSpec extends Specification {
             def dmiWriteOperations = objectUnderTest.splitDmiWriteOperationsFromRequest('some id', dataJobWriteRequest).values().iterator().next()
         then: 'we get the operation ids in the expected order.'
             assert dmiWriteOperations.operationId == ['1', '2', '3']
+    }
+
+    def 'Validate the creation of a ProducerKey with correct dmiservicename.'() {
+        when: 'the ProducerKey is created'
+            def result = objectUnderTest.createProducerKey(yangModels).toString()
+        then: 'we get the ProducerKey with the correct service name'
+            result == expectedProducerKey
+        where:
+            scenario                                                        | yangModels                                                                                                                                                    || expectedProducerKey
+            'yangModel with only dmi-service-name'                          | YangModelCmHandle.toYangModelCmHandle('dmi-service-name', '', '', new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'), '', '', 'dpi1')                      || 'dmi-service-name#dpi1'
+            'yangModel with only dmi-data-service-name'                     | YangModelCmHandle.toYangModelCmHandle('', 'dmi-data-service-name', '', new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'), '', '', 'dpi1')                 || 'dmi-data-service-name#dpi1'
+            'yangModel with dmi-service-name and dmi-data-service-name'     | YangModelCmHandle.toYangModelCmHandle('dmi-service-name', 'dmi-data-service-name', '', new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'), '', '', 'dpi1') || 'dmi-service-name#dpi1'
     }
 }
