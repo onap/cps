@@ -1618,10 +1618,6 @@ Following CPS components are available with default ONAP/CPS installation.
         - Postgres Database
 
 
-Below service components (mS) are available to be deployed on-demand.
-    - CPS-TBDMT
-
-
 Under OOM (Kubernetes) all CPS component containers are deployed as Kubernetes Pods/Deployments/Services into Kubernetes cluster.
 
 Known Limitations, Issues and Workarounds
@@ -1729,10 +1725,6 @@ Following CPS components are available with default ONAP/CPS installation.
     * Additional resources that CPS utilizes deployed using ONAP common charts
 
         - Postgres Database
-
-
-Below service components (mS) are available to be deployed on-demand.
-    - CPS-TBDMT
 
 
 Under OOM (Kubernetes) all CPS component containers are deployed as Kubernetes Pods/Deployments/Services into Kubernetes cluster.
