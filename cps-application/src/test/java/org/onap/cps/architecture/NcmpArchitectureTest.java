@@ -25,31 +25,9 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import org.apache.commons.lang3.ArrayUtils;
 
-/**
- * These test verify the correct use of dependencies in all CPS modules.
- */
 @AnalyzeClasses(packages = "org.onap.cps", importOptions = {ImportOption.DoNotIncludeTests.class})
-public class NcmpArchitectureTest {
-
-    private static final String[] ACCEPTED_3PP_PACKAGES = { "com.fasterxml..",
-                                                            "com.google..",
-                                                            "com.hazelcast..",
-                                                            "edu..",
-                                                            "io.cloudevents..",
-                                                            "io.micrometer..",
-                                                            "io.netty..",
-                                                            "io.swagger..",
-                                                            "jakarta..",
-                                                            "java..",
-                                                            "lombok..",
-                                                            "org.apache..",
-                                                            "org.mapstruct..",
-                                                            "org.slf4j..",
-                                                            "org.springframework..",
-                                                            "reactor.."
-    };
+public class NcmpArchitectureTest extends ArchitectureTestBase {
 
     @ArchTest
     static final ArchRule nothingDependsOnCpsNcmpRest =
@@ -61,38 +39,45 @@ public class NcmpArchitectureTest {
             classes().that().resideInAPackage("org.onap.cps.ncmp.rest..")
                     .should()
                     .onlyDependOnClassesThat()
-                    .resideInAnyPackage(commonAndListedPackages("org.onap.cps.ncmp.rest..", "org.onap.cps.ncmp.api..",
-                            // Below packages are breaking the agreed dependencies
-                            // and need to be removed from this rule.
-                            // This will be handled in a separate user story
-                            "org.onap.cps.spi..", "org.onap.cps.utils..", "org.onap.cps.ncmp.impl.."));
+                    .resideInAnyPackage(commonAndListedPackages("org.onap.cps.ncmp.api..",
+                                                                "org.onap.cps.ncmp.rest..",
+                                                                // Below packages are breaking the agreed dependencies
+                                                                // and need to be removed from this rule.
+                                                                // This will be handled in a separate user story
+                                                                "org.onap.cps.spi..",
+                                                                "org.onap.cps.utils..",
+                                                                "org.onap.cps.ncmp.impl.."));
 
     @ArchTest
     static final ArchRule ncmpServiceApiShouldOnlyDependOnThirdPartyPackages =
             classes().that().resideInAPackage("org.onap.cps.ncmp.api..").should().onlyDependOnClassesThat()
-                    .resideInAnyPackage(commonAndListedPackages(
-                            // Below packages are breaking the agreed dependencies
-                            // and need to be removed from this rule.
-                            // This will be handled in a separate user story
-                            "org.onap.cps.spi..", "org.onap.cps.ncmp.api..", "org.onap.cps.ncmp.impl..",
-                            "org.onap.cps.ncmp.config", "org.onap.cps.utils.."));
+                    .resideInAnyPackage(commonAndListedPackages(// Below packages are breaking the agreed dependencies
+                                                                // and need to be removed from this rule.
+                                                                // This will be handled in a separate user story
+                                                                "org.onap.cps.ncmp.api..",
+                                                                "org.onap.cps.ncmp.impl..",
+                                                                "org.onap.cps.ncmp.config",
+                                                                "org.onap.cps.spi..",
+                                                                "org.onap.cps.utils.."));
 
     @ArchTest
     static final ArchRule ncmpServiceImplShouldOnlyDependOnCpsServiceAndNcmpEvents =
             classes().that().resideInAPackage("org.onap.cps.ncmp.impl..").should().onlyDependOnClassesThat()
-                    .resideInAnyPackage(commonAndListedPackages(
-                            "org.onap.cps.ncmp.api..", "org.onap.cps.ncmp.impl..",
-                            "org.onap.cps.ncmp.event..", "org.onap.cps.ncmp.events..", "org.onap.cps.ncmp.utils..",
-                            "org.onap.cps.ncmp.config..", "org.onap.cps.api..", "org.onap.cps.ncmp.exceptions..",
-                            // Below packages are breaking the agreed dependencies
-                            // and need to be removed from this rule.
-                            // This will be handled in a separate user story
-                            "org.onap.cps.spi..", "org.onap.cps.events..", "org.onap.cps.cpspath..",
-                            "org.onap.cps.impl..", "org.onap.cps.utils.."));
-
-    static String[] commonAndListedPackages(final String... packageIdentifiers) {
-        return ArrayUtils.addAll(ACCEPTED_3PP_PACKAGES, packageIdentifiers);
-    }
-
+                    .resideInAnyPackage(commonAndListedPackages("org.onap.cps.api..",
+                                                                "org.onap.cps.ncmp.api..",
+                                                                "org.onap.cps.ncmp.impl..",
+                                                                "org.onap.cps.ncmp.event..",
+                                                                "org.onap.cps.ncmp.events..",
+                                                                "org.onap.cps.ncmp.utils..",
+                                                                "org.onap.cps.ncmp.config..",
+                                                                "org.onap.cps.ncmp.exceptions..",
+                                                                // Below packages are breaking the agreed dependencies
+                                                                // and need to be removed from this rule.
+                                                                // This will be handled in a separate user story
+                                                                "org.onap.cps.cpspath..",
+                                                                "org.onap.cps.events..",
+                                                                "org.onap.cps.impl..",
+                                                                "org.onap.cps.spi..",
+                                                                "org.onap.cps.utils.."));
 }
 
