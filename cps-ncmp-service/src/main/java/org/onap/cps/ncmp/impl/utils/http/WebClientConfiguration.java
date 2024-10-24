@@ -57,7 +57,7 @@ public class WebClientConfiguration {
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, serviceConfig.getConnectionTimeoutInSeconds() * 1000)
                 .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(
                         serviceConfig.getReadTimeoutInSeconds(), TimeUnit.SECONDS)).addHandlerLast(
-                        new WriteTimeoutHandler(serviceConfig.getWriteTimeoutInSeconds(), TimeUnit.SECONDS)))
+                            new WriteTimeoutHandler(serviceConfig.getWriteTimeoutInSeconds(), TimeUnit.SECONDS)))
                 .resolver(DefaultAddressResolverGroup.INSTANCE)
                 .compress(true);
     }
