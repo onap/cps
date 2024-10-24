@@ -3,6 +3,8 @@ package org.onap.cps.ncmp.impl.datajobs
 
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
@@ -59,5 +61,19 @@ class WriteRequestExaminerSpec extends Specification {
             def dmiWriteOperations = objectUnderTest.splitDmiWriteOperationsFromRequest('some id', dataJobWriteRequest).values().iterator().next()
         then: 'we get the operation ids in the expected order.'
             assert dmiWriteOperations.operationId == ['1', '2', '3']
+    }
+
+    def 'Validate the creation of a ProducerKey with correct dmiservicename.'() {
+        given: 'some yangModelCmHandles with different combinations of dmiServiceName and dataServiceNames'
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dataServiceName, '', new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'), '', '', 'dpi1')
+        when: 'the ProducerKey is created'
+            def result = objectUnderTest.createProducerKey(yangModelCmHandle).toString()
+        then: 'we get the ProducerKey with the correct service name'
+            result == expectedProducerKey
+        where: 'the following services are registered'
+            dmiServiceName     | dataServiceName          || expectedProducerKey
+            'dmi-service-name' | ''                       || 'dmi-service-name#dpi1'
+            ''                 | 'dmi-data-service-name'  || 'dmi-data-service-name#dpi1'
+            'dmi-service-name' | 'dmi-data-service-name'  || 'dmi-service-name#dpi1'
     }
 }
