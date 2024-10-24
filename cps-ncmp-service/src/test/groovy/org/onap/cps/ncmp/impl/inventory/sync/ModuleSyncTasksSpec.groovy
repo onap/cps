@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
@@ -121,6 +122,28 @@ class ModuleSyncTasksSpec extends Specification {
             'module upgrade' | MODULE_UPGRADE        | 'Upgrade in progress'                          || MODULE_UPGRADE_FAILED
     }
 
+    // TODO Update this test once the bug is fixed
+    def 'Bug CPS-2474 - Module sync fails if a handle gets deleted during module sync.'() {
+        given: 'cm handles in an ADVISED state'
+            def cmHandle1 = cmHandleAsDataNodeByIdAndState('cm-handle-1', CmHandleState.ADVISED)
+            def cmHandle2 = cmHandleAsDataNodeByIdAndState('cm-handle-2', CmHandleState.ADVISED)
+        and: 'inventory persistence cm handle returns a ADVISED state for the first handle'
+            mockInventoryPersistence.getCmHandleState('cm-handle-1') >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+        and: 'inventory persistence cannot find the second handle'
+            mockInventoryPersistence.getCmHandleState('cm-handle-2') >> { throw new DataNodeNotFoundException('dataspace', 'anchor', 'xpath') }
+
+        when: 'module sync poll is executed'
+            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
+
+        then: 'an exception is thrown'
+            thrown(DataNodeNotFoundException)
+        and: 'even though the existing cm-handle did sync'
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
+        and: 'logs report the cm-handle is in READY state'
+            assert getLoggingEvent().formattedMessage == 'cm-handle-1 is now in READY state'
+        and: 'this is impossible as the state handler was not called at all'
+            0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
+    }
 
     def 'Reset failed CM Handles #scenario.'() {
         given: 'cm handles in an locked state'
