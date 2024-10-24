@@ -31,6 +31,12 @@ This helps the JVM make the best use of the allocated resources while leaving en
 
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
 
+Load balancer configuration
+===========================
+
+For optimal performance in CPS/NCMP, load balancers should be configured to use a least-requests policy, also known as
+least-connected. Use of round-robin load balancing can lead to instability.
+
 CPS OOM Charts
 ==============
 The CPS kubernetes chart is located in the `OOM repository <https://github.com/onap/oom/tree/master/kubernetes/cps>`_.
