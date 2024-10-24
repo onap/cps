@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43519f9_7f380f2e",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-24T09:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92ba8ac5_e9435061",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 92
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0999ac6_e1ed72b0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-24T09:17:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb755682_15346978",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a20bcac5_2216c369",
@@ -106,6 +154,78 @@
       "writtenOn": "2024-10-23T10:23:37Z",
       "side": 1,
       "message": "NB: Additionally, it is worth noting that Istio automatically employs a least-requests load balancing policy by default, enhancing stability and performance for services managed within its framework.",
+      "range": {
+        "startLine": 38,
+        "startChar": 35,
+        "endLine": 38,
+        "endChar": 100
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a594cd_a3b68417",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-24T09:17:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ca29cb5f_8cd20f26",
+      "range": {
+        "startLine": 37,
+        "startChar": 94,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d8f8bed_c7006963",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-24T09:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a20bcac5_2216c369",
+      "range": {
+        "startLine": 38,
+        "startChar": 35,
+        "endLine": 38,
+        "endChar": 101
+      },
+      "revId": "d06db426c9959a41bc7641a046514412d0afe6c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4b7622d_edb972e8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-24T09:17:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "141059af_b1534c1d",
       "range": {
         "startLine": 38,
         "startChar": 35,
