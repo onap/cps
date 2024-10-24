@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,9 +68,9 @@ public class AsyncTaskExecutor {
     private void handleTaskCompletion(final Object response, final Throwable throwable) {
         if (throwable != null) {
             if (throwable instanceof TimeoutException) {
-                log.warn("Async task didn't completed within the required time.");
+                log.error("Async task didn't completed within the required time.", throwable);
             } else {
-                log.debug("Watchdog async batch failed. caused by : {}", throwable.getMessage());
+                log.error("Watchdog async batch failed.", throwable);
             }
         }
     }
