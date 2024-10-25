@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,18 +36,6 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
 
     private final LcmEventsCreator lcmEventsCreator;
     private final LcmEventsService lcmEventsService;
-
-    /**
-     * Publish LCM Event in asynchronous manner.
-     *
-     * @param targetNcmpServiceCmHandle  target NcmpServiceCmHandle
-     * @param currentNcmpServiceCmHandle current NcmpServiceCmHandle
-     */
-    @Async("notificationExecutor")
-    public void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-                                              final NcmpServiceCmHandle currentNcmpServiceCmHandle) {
-        publishLcmEvent(targetNcmpServiceCmHandle, currentNcmpServiceCmHandle);
-    }
 
     /**
      * Publish LcmEvent in batches and in asynchronous manner.
