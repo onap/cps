@@ -20,7 +20,7 @@
 
 package org.onap.cps.integration.functional.ncmp
 
-import org.apache.kafka.common.TopicPartition
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
@@ -32,7 +32,6 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
-import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
 
 import java.time.Duration
@@ -42,20 +41,25 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
     NetworkCmProxyInventoryFacade objectUnderTest
     def uniqueId = 'ch-unique-id-for-create-test'
 
-    def kafkaConsumer = KafkaTestContainer.getConsumer('test-group', StringDeserializer.class)
+    static KafkaConsumer kafkaConsumer
+
+    static def KAFKA_POLL_WAIT_TIME_IN_SECONDS = 10
+
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
+        subscribeAndClearPreviousMessages()
     }
 
-    @Ignore
-    def 'CM Handle registration is successful.'() {
+    def cleanupSpec() {
+        kafkaConsumer.unsubscribe()
+        kafkaConsumer.close()
+    }
+
+    def 'CM Handle registration.'() {
         given: 'DMI will return modules when requested'
             dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
             dmiDispatcher1.moduleNamesPerCmHandleId[uniqueId] = ['M1', 'M2']
-
-        and: 'consumer subscribed to topic'
-            kafkaConsumer.subscribe(['ncmp-events'])
 
         when: 'a CM-handle is registered for creation'
             def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueId)
@@ -68,31 +72,39 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'CM-handle is initially in ADVISED state'
             assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
 
-        and: 'the module sync watchdog is triggered'
+        then: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
-        and: 'CM-handle goes to READY state after module sync'
+        then: 'CM-handle goes to READY state after module sync'
             new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
                 assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
             })
 
-        and: 'the messages is polled'
-            def message = kafkaConsumer.poll(Duration.ofMillis(10000))
-            def records = message.records(new TopicPartition('ncmp-events', 0))
-
-        and: 'the newest lcm event notification is received with READY state'
-            def notificationMessage = jsonObjectMapper.convertJsonString(records.last().value().toString(), LcmEvent)
-            /*TODO (Toine) This test was failing intermittently (when running as part of suite).
-                I suspect that it often gave false positives as the message being assert here was any random message created by previous tests
-                By checking the cm-handle and using an unique cm-handle in this test this flaw became obvious.
-                I have now ignored this test as it is out of scope of this commit to fix it.
-                Created: https://lf-onap.atlassian.net/browse/CPS-2468 to fix this instead
-             */
-            assert notificationMessage.event.cmHandleId == uniqueId
-            assert notificationMessage.event.newValues.cmHandleState.value() == 'READY'
-
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
+
+        then: 'get the latest messages'
+
+            def consumerRecords = []
+            new PollingConditions().within(KAFKA_POLL_WAIT_TIME_IN_SECONDS , () -> {
+                consumerRecords.addAll(kafkaConsumer.poll(Duration.ofMillis(2000)))
+            })
+
+        then: 'there are exactly 2 message'
+            assert consumerRecords.size() == 2
+
+        and: 'both converted messages are for the correct cm handle'
+            def notificationMessages = []
+            for (def consumerRecord : consumerRecords) {
+                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
+            }
+            assert notificationMessages.event.cmHandleId == [ uniqueId, uniqueId ]
+
+        and: 'the oldest event is about the update to ADVISED state'
+            notificationMessages[0].event.newValues.cmHandleState.value() == 'ADVISED'
+
+        and: 'the next event is about update to READY state'
+            notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
@@ -224,4 +236,11 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
     }
+
+    def subscribeAndClearPreviousMessages() {
+        kafkaConsumer = KafkaTestContainer.getConsumer('test-group', StringDeserializer.class)
+        kafkaConsumer.subscribe(['ncmp-events'])
+        kafkaConsumer.poll(Duration.ofMillis(1000))
+    }
+
 }
