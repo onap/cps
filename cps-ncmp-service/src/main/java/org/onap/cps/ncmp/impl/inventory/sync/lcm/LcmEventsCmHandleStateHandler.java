@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,14 +30,6 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
  * corresponding lcm event.
  */
 public interface LcmEventsCmHandleStateHandler {
-
-    /**
-     * Updates the composite state of cmHandle based on cmHandleState.
-     *
-     * @param yangModelCmHandle   cm handle represented as yang model
-     * @param targetCmHandleState target cm handle state
-     */
-    void updateCmHandleState(final YangModelCmHandle yangModelCmHandle, final CmHandleState targetCmHandleState);
 
     /**
      * Updates the composite state of cmHandle based on cmHandleState in batch.

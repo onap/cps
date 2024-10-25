@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2024 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -38,25 +39,12 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
     private final LcmEventsService lcmEventsService;
 
     /**
-     * Publish LCM Event in asynchronous manner.
-     *
-     * @param targetNcmpServiceCmHandle  target NcmpServiceCmHandle
-     * @param currentNcmpServiceCmHandle current NcmpServiceCmHandle
-     */
-    @Async("notificationExecutor")
-    public void publishLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-                                              final NcmpServiceCmHandle currentNcmpServiceCmHandle) {
-        publishLcmEvent(targetNcmpServiceCmHandle, currentNcmpServiceCmHandle);
-    }
-
-    /**
      * Publish LcmEvent in batches and in asynchronous manner.
      *
      * @param cmHandleTransitionPairs Pair of existing and modified cm handle represented as YangModelCmHandle
      */
     @Async("notificationExecutor")
-    public void publishLcmEventBatchAsynchronously(
-            final Collection<LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair> cmHandleTransitionPairs) {
+    public void publishLcmEventBatchAsynchronously(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> publishLcmEvent(
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getTargetYangModelCmHandle()),
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
