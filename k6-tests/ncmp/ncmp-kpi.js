@@ -58,8 +58,8 @@ const DURATION = '15m';
 const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = '15m30s';
 
 export const options = {
-    setupTimeout: '8m',
-    teardownTimeout: '6m',
+    setupTimeout: '30m',
+    teardownTimeout: '10m',
     scenarios: {
         passthrough_read_scenario: {
             executor: 'constant-vus',

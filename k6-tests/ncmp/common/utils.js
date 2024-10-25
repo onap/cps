@@ -30,7 +30,7 @@ export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
 export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 1000;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
-export const MODULE_SET_TAGS = ['tagA','tagB','tagC',' tagD']
+export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
 
 /**

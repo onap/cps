@@ -43,7 +43,7 @@ const SEARCH_PARAMETERS_PER_SCENARIO = {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllModules",
-                "conditionParameters": [{"moduleName": "ietf-yang-types"}]
+                "conditionParameters": [{"moduleName": "module100"}]
             }
         ]
     },
