@@ -68,7 +68,7 @@ public class AsyncTaskExecutor {
     private void handleTaskCompletion(final Object response, final Throwable throwable) {
         if (throwable != null) {
             if (throwable instanceof TimeoutException) {
-                log.error("Async task didn't completed within the required time.", throwable);
+                log.error("Async task didn't complete within the required time.", throwable);
             } else {
                 log.error("Watchdog async batch failed.", throwable);
             }

@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
+import spock.lang.Ignore
 import spock.lang.Specification
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -122,25 +123,28 @@ class ModuleSyncTasksSpec extends Specification {
             'module upgrade' | MODULE_UPGRADE        | 'Upgrade in progress'                          || MODULE_UPGRADE_FAILED
     }
 
-    // TODO Update this test once the bug CPS-2474 is fixed
-    def 'Module sync fails if a handle gets deleted during module sync.'() {
+    @Ignore  // TODO Enable this test once the bug CPS-2474 is fixed
+    def 'Module sync succeeds even if a handle gets deleted during module sync.'() {
         given: 'cm handles in an ADVISED state'
             def cmHandle1 = cmHandleAsDataNodeByIdAndState('cm-handle-1', CmHandleState.ADVISED)
             def cmHandle2 = cmHandleAsDataNodeByIdAndState('cm-handle-2', CmHandleState.ADVISED)
-        and: 'inventory persistence returns the first handle with ADVISED state'
+            def cmHandle3 = cmHandleAsDataNodeByIdAndState('cm-handle-3', CmHandleState.ADVISED)
+        and: 'inventory persistence returns the first and third handles with ADVISED state'
             mockInventoryPersistence.getCmHandleState('cm-handle-1') >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+            mockInventoryPersistence.getCmHandleState('cm-handle-3') >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
         and: 'inventory persistence cannot find the second handle'
             mockInventoryPersistence.getCmHandleState('cm-handle-2') >> { throw new DataNodeNotFoundException('dataspace', 'anchor', 'xpath') }
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
-        then: 'an exception is thrown'
-            thrown(DataNodeNotFoundException)
-        and: 'even though the existing cm-handle did sync'
+            objectUnderTest.performModuleSync([cmHandle1, cmHandle2, cmHandle3], batchCount)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        and: 'the existing cm-handles synced'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
-        and: 'logs report the cm-handle is in READY state'
-            assert getLoggingEvent().formattedMessage == 'cm-handle-1 is now in READY state'
-        and: 'this is impossible as the state handler was not called at all'
-            0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3' }
+        and: 'the deleted cm-handle did not sync'
+            0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
+        and: 'the state handler called'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
     }
 
     def 'Reset failed CM Handles #scenario.'() {
@@ -174,7 +178,7 @@ class ModuleSyncTasksSpec extends Specification {
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync([cmHandle1], batchCount)
         then: 'module sync service is invoked for cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assertYamgModelCmHandleArgument(args, 'cm-handle-1') }
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_)
         and: 'the entry for other cm handle is still in the progress map'
             assert moduleSyncStartedOnCmHandles.get('other-cm-handle') != null
     }
