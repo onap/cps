@@ -467,6 +467,24 @@
       "message": "and the case when outputAlternateId query parameter is altogether not present ??\ni.e outputAlternateId is null.",
       "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4a915a_ac00ccbe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/RestApiSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-25T10:06:59Z",
+      "side": 1,
+      "message": "?",
+      "parentUuid": "7307a6b5_21bdff73",
+      "revId": "6c89c8dccb5a238a3690dcbc8a04e7943f769281",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

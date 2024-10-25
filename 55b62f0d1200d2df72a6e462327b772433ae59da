@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca433eee_51faf554",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-25T10:06:59Z",
+      "side": 1,
+      "message": "not so major comments.",
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ca1d554_54b9c557",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-25T10:06:59Z",
+      "side": 1,
+      "message": "Boolean.\nand same comment on the previous patch.",
+      "range": {
+        "startLine": 152,
+        "startChar": 34,
+        "endLine": 152,
+        "endChar": 41
+      },
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95956d90_c2cc2f92",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-25T10:06:59Z",
+      "side": 1,
+      "message": "legacy issue.",
+      "range": {
+        "startLine": 162,
+        "startChar": 15,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3023a3f3_dd48a712",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-10-25T10:06:59Z",
+      "side": 1,
+      "message": "lets be consistent with the javadoc everywhere.\nSince wrapper type.\nwe can have 3 possible values. And since we are mentioning this everywhere we have to provide a clear picture.",
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
