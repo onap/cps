@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e901ab_e1c3956d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/AsyncTaskExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3887b6_13c3699f",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "789053a5_f9eb3934",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-10-25T14:33:34Z",
       "side": 1,
       "message": "NB: Can be on the same line with TODO",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 24
+      },
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d538667_1b067d2b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789053a5_f9eb3934",
       "range": {
         "startLine": 126,
         "startChar": 9,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "764bf295_0a01b67e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c87bd64_d7c1c305",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 90
+      },
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a2f4d79_188f0ba3",
@@ -100,6 +172,24 @@
       "writtenOn": "2024-10-25T14:33:34Z",
       "side": 1,
       "message": "NB: No space needed",
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f64ccd3_35458d41",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a2f4d79_188f0ba3",
       "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -121,6 +211,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cd41eb3_861cfde1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "500284c5_e95cd648",
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c5af077_a9cd109b",
@@ -134,6 +242,30 @@
       "writtenOn": "2024-10-25T14:33:34Z",
       "side": 1,
       "message": "Good point, it has been logged as READY before state handler finalize.\n\nThe log line: 87 in ModuleSyncTasks.java",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 77
+      },
+      "revId": "174fdca8d1214eaa1d4958772c6c714fe9eab023",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3687cbcf_e6f3d2bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-25T14:40:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c5af077_a9cd109b",
       "range": {
         "startLine": 142,
         "startChar": 0,
