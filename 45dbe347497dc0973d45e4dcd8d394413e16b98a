@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a7bbe7_f28ffab0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 65
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "NB: The commit message could be a bit more detailed maybe?\ne.g. what use case are impacted",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "087086c1_1a726edc",
@@ -14,6 +37,190 @@
       "writtenOn": "2024-10-24T08:51:54Z",
       "side": 1,
       "message": "Ready for review",
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d52e20_ebc632ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "not in the method signature (as it is not a checked exception) so shouldn\u0027t be in the Javadoc\nBut maybe you WANT to thrown a checked exception liked some a CPS validation exception and then you might want to document it \n(Maybe in a later commit)",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 170,
+        "endChar": 72
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c872c8b_d0aa67a0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "suggestion: parentNode  (for all below method)",
+      "range": {
+        "startLine": 190,
+        "startChar": 78,
+        "endLine": 190,
+        "endChar": 84
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "657cd6df_787c75d0",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "i prefer mapEntry to betert reflect the class",
+      "range": {
+        "startLine": 192,
+        "startChar": 45,
+        "endLine": 192,
+        "endChar": 51
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ea016aa_ba113695",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "i prefer mapEntry to betert reflect the class",
+      "range": {
+        "startLine": 203,
+        "startChar": 111,
+        "endLine": 203,
+        "endChar": 116
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a165b60_74081654",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "i prefer mapEntry to betert reflect the class",
+      "range": {
+        "startLine": 221,
+        "startChar": 110,
+        "endLine": 221,
+        "endChar": 115
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5d3eb4_7461cfde",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 65
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "i prefer mapEntry to betert reflect the class",
+      "range": {
+        "startLine": 228,
+        "startChar": 69,
+        "endLine": 228,
+        "endChar": 74
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "475c7245_6c19976e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 65
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "noy quite true! \n\u0027a runtime exception is thrown\u0027\nand:\u0027the cause is a null pointer exception\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 17,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86abd0b8_a4866369",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 65
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T15:33:44Z",
+      "side": 1,
+      "message": "split using and: to describe the cause part",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 58
+      },
       "revId": "45dbe347497dc0973d45e4dcd8d394413e16b98a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
