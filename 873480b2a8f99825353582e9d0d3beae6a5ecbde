@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25a336b_3e4d67ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/AsyncTaskExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-10-29T09:50:17Z",
+      "side": 1,
+      "message": "nb: \"didn\u0027t complete\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 45,
+        "endLine": 71,
+        "endChar": 54
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
