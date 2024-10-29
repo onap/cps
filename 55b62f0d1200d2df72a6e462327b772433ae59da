@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89eb9a87_b42115ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-29T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ca1d554_54b9c557",
+      "range": {
+        "startLine": 152,
+        "startChar": 34,
+        "endLine": 152,
+        "endChar": 41
+      },
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95956d90_c2cc2f92",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83b1f46_c4510a09",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-29T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95956d90_c2cc2f92",
+      "range": {
+        "startLine": 162,
+        "startChar": 15,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3023a3f3_dd48a712",
@@ -77,6 +125,24 @@
       "writtenOn": "2024-10-25T10:06:59Z",
       "side": 1,
       "message": "lets be consistent with the javadoc everywhere.\nSince wrapper type.\nwe can have 3 possible values. And since we are mentioning this everywhere we have to provide a clear picture.",
+      "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f316a72a_a9b47df2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-10-29T09:19:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3023a3f3_dd48a712",
       "revId": "55b62f0d1200d2df72a6e462327b772433ae59da",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
