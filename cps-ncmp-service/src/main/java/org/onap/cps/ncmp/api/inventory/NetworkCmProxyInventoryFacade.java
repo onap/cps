@@ -29,7 +29,6 @@ import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -51,7 +50,6 @@ import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NetworkCmProxyInventoryFacade {
@@ -90,12 +88,16 @@ public class NetworkCmProxyInventoryFacade {
      * Get all cm handle IDs by various properties.
      *
      * @param cmHandleQueryServiceParameters cm handle query parameters
-     * @return collection of cm handle IDs
+     * @param outputAlternateId              Boolean for cm handle reference type either
+     *                                       cm handle id (false) or alternate id (true)
+     * @return                               collection of cm handle IDs
      */
     public Collection<String> executeParameterizedCmHandleIdSearch(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters);
+
+        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
+            outputAlternateId);
     }
 
 
@@ -157,13 +159,16 @@ public class NetworkCmProxyInventoryFacade {
      * Retrieve cm handle ids for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
+     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
-    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
+                                                      final Boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
             cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleIds(cmHandleQueryServiceParameters);
+        return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
+            outputAlternateId);
     }
 
     /**

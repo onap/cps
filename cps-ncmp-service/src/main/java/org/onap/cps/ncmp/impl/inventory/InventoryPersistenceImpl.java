@@ -201,12 +201,19 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<String> getCmHandleIdsWithGivenModules(final Collection<String> moduleNamesForQuery) {
-        return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+    public Collection<String> getCmHandleReferencesWithGivenModules(final Collection<String> moduleNamesForQuery,
+                                                                    final Boolean outputAlternateIds) {
+        if (Boolean.TRUE.equals(outputAlternateIds)) {
+            final Collection<String> cmHandleIds =
+                cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+            return getAlternateIdsFromDataNodes(getCmHandleDataNodes(cmHandleIds));
+        } else {
+            return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+        }
     }
 
     @Override
-    public boolean isExistingCmHandleId(final String cmHandleId) {
+    public Boolean isExistingCmHandleId(final String cmHandleId) {
         try {
             return  !getCmHandleDataNodeByCmHandleId(cmHandleId).isEmpty();
         } catch (final DataNodeNotFoundException exception) {
@@ -233,5 +240,10 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private String createCmHandlesJsonData(final List<YangModelCmHandle> yangModelCmHandles) {
         return "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
+    }
+
+    private Collection<String> getAlternateIdsFromDataNodes(final Collection<DataNode> dataNodes) {
+        return dataNodes.stream().map(dataNode ->
+            (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
     }
 }

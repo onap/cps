@@ -28,16 +28,13 @@ import static org.onap.cps.ncmp.api.data.models.DatastoreType.OPERATIONAL;
 
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
-import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NetworkCmProxyFacade {
@@ -45,7 +42,6 @@ public class NetworkCmProxyFacade {
     private final NcmpCachedResourceRequestHandler ncmpCachedResourceRequestHandler;
     private final NcmpPassthroughResourceRequestHandler ncmpPassthroughResourceRequestHandler;
     private final DmiDataOperations dmiDataOperations;
-    private final AlternateIdMatcher alternateIdMatcher;
 
     /**
      * Fetches resource data for a given data store using DMI (Data Management Interface).
