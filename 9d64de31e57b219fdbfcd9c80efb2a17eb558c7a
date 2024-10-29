@@ -16,6 +16,282 @@
       "message": "recheck",
       "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "096c7b97_4aeeb05a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "move this method to ContentType class e.g static ContentType fromString(contentTypeAsString)",
+      "range": {
+        "startLine": 221,
+        "startChar": 23,
+        "endLine": 221,
+        "endChar": 47
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e631dd8_a0934db5",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "could this be .equals() or startsWith()",
+      "range": {
+        "startLine": 222,
+        "startChar": 35,
+        "endLine": 222,
+        "endChar": 43
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f0ac89_a69cc956",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "very hard to understand! See my previous comment on moving this logic to ContentType class and have better named method",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 86
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f8c047_fda717c9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "legacy; there is no datNode2 so just drop the 1",
+      "range": {
+        "startLine": 104,
+        "startChar": 24,
+        "endLine": 104,
+        "endChar": 25
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6c8545_a755db6f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "NB: not suer if you need 2 elements, not sure if you need a leaf-list at all at this MVC test (I think the xml conversion of specific are better left to unit test for the conversion class)\nThis wil make it easer (shorted values) to combine the 2 test as I suggest below",
+      "range": {
+        "startLine": 105,
+        "startChar": 76,
+        "endLine": 105,
+        "endChar": 95
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d4c062_bfeba8f8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "NB: IntelliJ might complain but this \u0027cast\u0027 should NOT be need to run the test sucssfullly I also dont think it improves readability so I\u0027d rather you restore it the way it was",
+      "range": {
+        "startLine": 107,
+        "startChar": 66,
+        "endLine": 107,
+        "endChar": 91
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f879f3be_50204c4f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "this test is almost identical as the previous one, a lot of duplication so I think I would combine them into 1 add add column for \u0027mediaType\u0027 and \u0027expectedResponseContent\u0027",
+      "range": {
+        "startLine": 141,
+        "startChar": 58,
+        "endLine": 141,
+        "endChar": 169
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3977031f_677dc585",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "why check this and stil throw a NPE, assuming the code that follows wil throw and NPE anyway (or maybe a more valuable, clearer exception on whatever bit of code has the problem)",
+      "range": {
+        "startLine": 178,
+        "startChar": 5,
+        "endLine": 180,
+        "endChar": 17
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23c9822_28e3535f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "this is probably copy from a legacy issue in the Json version. Why don\u0027t we use a validation exception here?",
+      "range": {
+        "startLine": 184,
+        "startChar": 17,
+        "endLine": 187,
+        "endChar": 9
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c0172c_49395b58",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "I realize now I commented on this code in the other patch so I wont comment here again....",
+      "range": {
+        "startLine": 190,
+        "startChar": 3,
+        "endLine": 252,
+        "endChar": 38
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57f3ae7b_abd2849e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "unclear, what is \u0027null\u0027?!  I see \u0027empty\u0027 element and \u0027missing\u0027 stuff. It might be better to use \u0027null\u0027 in the provide input data\n(same comment for all 4 tests scenarios)",
+      "range": {
+        "startLine": 98,
+        "startChar": 13,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0042ad45_252efee1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:25:16Z",
+      "side": 1,
+      "message": "see comments on other patch",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 123,
+        "endChar": 0
+      },
+      "revId": "9d64de31e57b219fdbfcd9c80efb2a17eb558c7a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
