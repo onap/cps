@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce434644_7e27544c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T14:02:35Z",
+      "side": 1,
+      "message": "all good, \none important improvement I think\nand as discussed: need unit test for 2 use cases\nA) only one service registered\nB) separate Model and Data Service registered",
+      "revId": "55f2607983d0b3fd5f7dd4f9747d918befab29be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33941bbe_57c6baf4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T14:02:35Z",
+      "side": 1,
+      "message": "Suggestion: I think this method probably should return a YangModelCmHandle (to prevent us making similar mistakes again)\nI talked to Sean and he agrees that is better and can update his usage of the DataNode-version of the method and then remove it",
+      "range": {
+        "startLine": 71,
+        "startChar": 28,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "55f2607983d0b3fd5f7dd4f9747d918befab29be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
