@@ -22,6 +22,52 @@
       },
       "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7126eac1_0542084e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:29:01Z",
+      "side": 1,
+      "message": "very good, but I preferred if you submitted a test of the EXPECTED correct behavior annotated with @Ignore until the issue is fixed",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc79093_cb0c0a04",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-29T17:29:01Z",
+      "side": 1,
+      "message": "so changing the order of teh test wil avoid the issue being exposed, correct?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 103
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
