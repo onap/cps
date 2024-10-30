@@ -181,7 +181,7 @@
                         <goals>
                             <goal>revision</goal>
                         </goals>
-                        <phase>package</phase>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
                 <configuration>
