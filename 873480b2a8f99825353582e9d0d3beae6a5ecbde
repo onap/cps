@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b04f8726_b1380181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-30T13:19:57Z",
+      "side": 1,
+      "message": "Will fix comments in next patch",
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a25a336b_3e4d67ca",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-10-29T09:50:17Z",
       "side": 1,
       "message": "nb: \"didn\u0027t complete\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 45,
+        "endLine": 71,
+        "endChar": 54
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b50fe1f_daab6814",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/AsyncTaskExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-30T13:19:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a25a336b_3e4d67ca",
       "range": {
         "startLine": 71,
         "startChar": 45,
@@ -47,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d239f62d_0350b77a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-30T13:19:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7126eac1_0542084e",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dc79093_cb0c0a04",
@@ -60,6 +125,30 @@
       "writtenOn": "2024-10-29T17:29:01Z",
       "side": 1,
       "message": "so changing the order of teh test wil avoid the issue being exposed, correct?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 103
+      },
+      "revId": "873480b2a8f99825353582e9d0d3beae6a5ecbde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b4328f4_39097e38",
+        "filename": "csit/tests/cps-model-sync/cps-model-sync.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-30T13:19:57Z",
+      "side": 1,
+      "message": "It should, since this handle is only deleted after handle is ready",
+      "parentUuid": "7dc79093_cb0c0a04",
       "range": {
         "startLine": 99,
         "startChar": 0,
