@@ -16,6 +16,23 @@
       "message": "Addressed review comments",
       "revId": "9124bd40b7e5811917a5d20002f8d44575b5e422",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d37f2003_d29e82fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-30T09:02:29Z",
+      "side": 1,
+      "message": "Hi Rajesh,\n\nGod approach to use modelloader etc to introduce new data like in ncmp-service. \n\nHowever this code is all new but seems for a great part duplication of the code in ncmp-service.\nObviously some refactoring should take place here first. I even recommend a separate commit to move the common functionality to CPS (its OK for NCMP to depend on CPS but not the other way!)\nI would prefer a paper(wiki) based analysis/proposal first which can be discussed and greed with team before committing anymore code...",
+      "revId": "9124bd40b7e5811917a5d20002f8d44575b5e422",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
