@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import com.hazelcast.map.IMap;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus;
@@ -46,7 +47,7 @@ import org.springframework.stereotype.Component;
 public class DmiCacheHandler {
 
     private final CmSubscriptionPersistenceService cmSubscriptionPersistenceService;
-    private final Map<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache;
+    private final IMap<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache;
     private final InventoryPersistence inventoryPersistence;
 
     /**
@@ -56,7 +57,7 @@ public class DmiCacheHandler {
      * @param predicates        subscription request predicates
      */
     public void add(final String subscriptionId, final List<Predicate> predicates) {
-        cmNotificationSubscriptionCache.put(subscriptionId, createDmiSubscriptionsPerDmi(predicates));
+        cmNotificationSubscriptionCache.putAsync(subscriptionId, createDmiSubscriptionsPerDmi(predicates));
     }
 
     /**
@@ -68,7 +69,7 @@ public class DmiCacheHandler {
     public void add(final String subscriptionId,
                     final Map<String, DmiCmSubscriptionDetails>
                             dmiCmSubscriptionDetailsPerDmi) {
-        cmNotificationSubscriptionCache.put(subscriptionId, dmiCmSubscriptionDetailsPerDmi);
+        cmNotificationSubscriptionCache.putAsync(subscriptionId, dmiCmSubscriptionDetailsPerDmi);
     }
 
     /**
@@ -95,7 +96,7 @@ public class DmiCacheHandler {
                         .filter(dmiCmNotificationSubscription -> !isAcceptedOrRejected(
                                 dmiCmNotificationSubscription.getValue()))
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        cmNotificationSubscriptionCache.put(subscriptionId, updatedDmiSubscriptionsPerDmi);
+        cmNotificationSubscriptionCache.putAsync(subscriptionId, updatedDmiSubscriptionsPerDmi);
     }
 
     /**
@@ -139,7 +140,7 @@ public class DmiCacheHandler {
         final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi =
                 cmNotificationSubscriptionCache.get(subscriptionId);
         dmiSubscriptionsPerDmi.get(dmiServiceName).setCmSubscriptionStatus(status);
-        cmNotificationSubscriptionCache.put(subscriptionId, dmiSubscriptionsPerDmi);
+        cmNotificationSubscriptionCache.putAsync(subscriptionId, dmiSubscriptionsPerDmi);
     }
 
     /**

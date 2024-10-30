@@ -88,19 +88,19 @@ public class HazelcastCacheConfig {
 
     protected static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(1);
+        mapConfig.setAsyncBackupCount(1);
         return mapConfig;
     }
 
     protected static QueueConfig createQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);
-        commonQueueConfig.setBackupCount(1);
+        commonQueueConfig.setAsyncBackupCount(1);
         return commonQueueConfig;
     }
 
     protected static SetConfig createSetConfig(final String configName) {
         final SetConfig commonSetConfig = new SetConfig(configName);
-        commonSetConfig.setBackupCount(1);
+        commonSetConfig.setAsyncBackupCount(1);
         return commonSetConfig;
     }
 

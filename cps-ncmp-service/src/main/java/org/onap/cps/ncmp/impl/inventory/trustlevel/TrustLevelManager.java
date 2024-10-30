@@ -22,6 +22,8 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import java.util.Collection;
 import java.util.Map;
+
+import com.hazelcast.map.IMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
@@ -39,10 +41,10 @@ import org.springframework.stereotype.Service;
 public class TrustLevelManager {
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final IMap<String, TrustLevel> trustLevelPerCmHandle;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     private final InventoryPersistence inventoryPersistence;
     private final CmAvcEventPublisher cmAvcEventPublisher;
@@ -61,7 +63,7 @@ public class TrustLevelManager {
         } else {
             dmiServiceName = dmiPluginRegistration.getDmiDataPlugin();
         }
-        trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);
+        trustLevelPerDmiPlugin.putAsync(dmiServiceName, TrustLevel.COMPLETE);
     }
 
     /**
@@ -79,7 +81,7 @@ public class TrustLevelManager {
                 if (initialTrustLevel == null) {
                     initialTrustLevel = TrustLevel.COMPLETE;
                 }
-                trustLevelPerCmHandle.put(cmHandleId, initialTrustLevel);
+                trustLevelPerCmHandle.putAsync(cmHandleId, initialTrustLevel);
                 if (TrustLevel.NONE.equals(initialTrustLevel)) {
                     cmAvcEventPublisher.publishAvcEvent(cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
@@ -102,7 +104,7 @@ public class TrustLevelManager {
                           final Collection<String> affectedCmHandleIds,
                           final TrustLevel newDmiTrustLevel) {
         final TrustLevel oldDmiTrustLevel  = trustLevelPerDmiPlugin.get(dmiServiceName);
-        trustLevelPerDmiPlugin.put(dmiServiceName, newDmiTrustLevel);
+        trustLevelPerDmiPlugin.putAsync(dmiServiceName, newDmiTrustLevel);
         for (final String affectedCmHandleId : affectedCmHandleIds) {
             final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.get(affectedCmHandleId);
             final TrustLevel oldEffectiveTrustLevel = cmHandleTrustLevel.getEffectiveTrustLevel(oldDmiTrustLevel);
@@ -128,7 +130,7 @@ public class TrustLevelManager {
         final TrustLevel oldEffectiveTrustLevel = oldCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
         final TrustLevel newEffectiveTrustLevel = newCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
 
-        trustLevelPerCmHandle.put(cmHandleId, newCmHandleTrustLevel);
+        trustLevelPerCmHandle.putAsync(cmHandleId, newCmHandleTrustLevel);
         sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
     }
 
