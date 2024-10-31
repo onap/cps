@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b629ac7_a022b472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-31T15:08:23Z",
+      "side": 1,
+      "message": "looks good, nothing major",
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aeb174ee_930fd0f5",
@@ -31,6 +48,30 @@
       "writtenOn": "2024-10-31T14:49:56Z",
       "side": 1,
       "message": "You can init this list with required size.\n\nNB: cmHandleTransitionPairs.size()",
+      "range": {
+        "startLine": 97,
+        "startChar": 68,
+        "endLine": 97,
+        "endChar": 70
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe87d406_c579082f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-31T15:08:23Z",
+      "side": 1,
+      "message": "@Halil: you actually dont know this as per logic below you don\u0027t know what colletion wil be used",
+      "parentUuid": "aeb174ee_930fd0f5",
       "range": {
         "startLine": 97,
         "startChar": 68,
@@ -89,6 +130,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b535bcc3_736e0438",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-31T15:08:23Z",
+      "side": 1,
+      "message": "do we really need a 3rd cm handle does it cover a branch that is otherwise not covered does it make the scenario clearer?!. \nIf not I think it just adds unnecessary complexity to the test...",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 96
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19ec80f8_d08f3619",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 2
@@ -105,6 +169,29 @@
         "startChar": 22,
         "endLine": 3,
         "endChar": 26
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d82129_b903f9d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-31T15:08:23Z",
+      "side": 1,
+      "message": "any reason you removed the case(s) when the change did not change ie. from ready to ready. it might not be common or even real but no harm having a unitest around it?! \nYou might have lost branch coverage here...\n(in any case we don\u0027t need to duplicate test by adding locked to locked ot others)\nAh, do you cover that later I see now, correct? Just confirm please",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 53
       },
       "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -192,6 +279,30 @@
       "writtenOn": "2024-10-31T14:49:56Z",
       "side": 1,
       "message": "This piece of code is repeated many times arount 10 times. Thus you can extract it into a method returning a String (logMessage) having a parameter e.g. index\n\ne.g. String getLogMessage(index) {}",
+      "range": {
+        "startLine": 199,
+        "startChar": 19,
+        "endLine": 199,
+        "endChar": 50
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c84a16_dea0a7e3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-10-31T15:08:23Z",
+      "side": 1,
+      "message": "agreed; we often defined getLogMessage(i)\n(i wonder if we could have a baseLOggerSpec ie base class for any spec that want to check logging... maybe some other time, definitely NOT this commit)",
+      "parentUuid": "1624259f_964203af",
       "range": {
         "startLine": 199,
         "startChar": 19,
