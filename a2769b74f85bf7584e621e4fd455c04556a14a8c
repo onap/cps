@@ -249,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06b01c59_f1fd0b0e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:56:00Z",
+      "side": 1,
+      "message": "Fixed by making cm-handle-1 be the deleted one, and cm-handle-2 will be processed.",
+      "parentUuid": "b535bcc3_736e0438",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 96
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19ec80f8_d08f3619",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 2
