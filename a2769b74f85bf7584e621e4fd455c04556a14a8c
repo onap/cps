@@ -106,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6733acce_3542a26c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Agreed, we don\u0027t know how many of the transitions are for new vs existing vs deleted handles.\n\nFor example, for 100 new ADVISED handles: newCmHandles will be 100, compositeStatePerCmHandleId will be empty. For 100 DELETED handles: both newCmHandles and compositeStatePerCmHandleId will be empty, etc.\n\nBasically we will be wasting memory most of the time by pre-allocating.",
+      "parentUuid": "cae48501_1dfe0eee",
+      "range": {
+        "startLine": 97,
+        "startChar": 68,
+        "endLine": 97,
+        "endChar": 70
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c6ac2f9_2d7d0077",
@@ -129,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad215f2a_25aae98a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Same response, we have no idea what size this will be, so we will be wasting memory, e.g. if all the handles were ADVISED or DELETED, the map will be empty.",
+      "parentUuid": "1c6ac2f9_2d7d0077",
+      "range": {
+        "startLine": 98,
+        "startChar": 76,
+        "endLine": 98,
+        "endChar": 94
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb8044cf_31ea1d7b",
@@ -142,6 +190,30 @@
       "writtenOn": "2024-10-31T14:49:56Z",
       "side": 1,
       "message": "you can extract this into a method for more readebility",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 90
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da4577f3_96067724",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb8044cf_31ea1d7b",
       "range": {
         "startLine": 116,
         "startChar": 0,
@@ -198,6 +270,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4bf862b_efbaa45f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19ec80f8_d08f3619",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25d82129_b903f9d4",
@@ -211,6 +307,30 @@
       "writtenOn": "2024-10-31T15:08:23Z",
       "side": 1,
       "message": "any reason you removed the case(s) when the change did not change ie. from ready to ready. it might not be common or even real but no harm having a unitest around it?! \nYou might have lost branch coverage here...\n(in any case we don\u0027t need to duplicate test by adding locked to locked ot others)\nAh, do you cover that later I see now, correct? Just confirm please",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 53
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85f7b016_3a06a9dd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "I simplified by removing cases for same state, like READY to READY. This is already covered in a below test \u0027No state change and no event to be published\u0027",
+      "parentUuid": "25d82129_b903f9d4",
       "range": {
         "startLine": 80,
         "startChar": 12,
@@ -244,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6b17ad_37574f4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0da8d60e_73c0e353",
+      "range": {
+        "startLine": 120,
+        "startChar": 51,
+        "endLine": 120,
+        "endChar": 59
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f3fb87e_3a147ceb",
@@ -267,6 +411,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81592bc6_5755f7bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3fb87e_3a147ceb",
+      "range": {
+        "startLine": 143,
+        "startChar": 31,
+        "endLine": 143,
+        "endChar": 44
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15e5a33f_cda5b345",
@@ -280,6 +448,30 @@
       "writtenOn": "2024-10-31T14:49:56Z",
       "side": 1,
       "message": "from DELETING to DELETED",
+      "range": {
+        "startLine": 157,
+        "startChar": 31,
+        "endLine": 157,
+        "endChar": 43
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c5e3805_f0c3956b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15e5a33f_cda5b345",
       "range": {
         "startLine": 157,
         "startChar": 31,
@@ -327,6 +519,30 @@
       "side": 1,
       "message": "agreed; we often defined getLogMessage(i)\n(i wonder if we could have a baseLOggerSpec ie base class for any spec that want to check logging... maybe some other time, definitely NOT this commit)",
       "parentUuid": "1624259f_964203af",
+      "range": {
+        "startLine": 199,
+        "startChar": 19,
+        "endLine": 199,
+        "endChar": 50
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40417a24_7110dd0a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-10-31T16:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75c84a16_dea0a7e3",
       "range": {
         "startLine": 199,
         "startChar": 19,
