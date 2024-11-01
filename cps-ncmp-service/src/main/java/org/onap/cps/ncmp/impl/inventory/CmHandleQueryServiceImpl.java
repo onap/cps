@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
@@ -45,6 +44,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -87,14 +87,18 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<DataNode> queryCmHandlesByState(final CmHandleState cmHandleState) {
-        return queryCmHandleAncestorsByCpsPath("//state[@cm-handle-state=\"" + cmHandleState + "\"]",
-            INCLUDE_ALL_DESCENDANTS);
+    public Collection<String> queryCmHandleIdsByState(final CmHandleState cmHandleState) {
+        final Collection<DataNode> cmHandlesAsDataNodes =
+                queryNcmpRegistryByCpsPath("//state[@cm-handle-state='" + cmHandleState + "']", OMIT_DESCENDANTS);
+        return cmHandlesAsDataNodes.stream()
+                .map(DataNode::getXpath)
+                .map(YangDataConverter::extractCmHandleIdFromXpath)
+                .toList();
     }
 
     @Override
     public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
-                                                     final FetchDescendantsOption fetchDescendantsOption) {
+                                                           final FetchDescendantsOption fetchDescendantsOption) {
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
                 fetchDescendantsOption);
     }
@@ -232,5 +236,3 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
                 xpath, OMIT_DESCENDANTS).iterator().next();
     }
 }
-
-

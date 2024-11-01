@@ -72,11 +72,8 @@ public class ModuleOperationsUtils {
      *
      * @return cm handles (data nodes) in ADVISED state (empty list if none found)
      */
-    public Collection<DataNode> getAdvisedCmHandles() {
-        final Collection<DataNode> advisedCmHandlesAsDataNodes =
-            cmHandleQueryService.queryCmHandlesByState(CmHandleState.ADVISED);
-        log.debug("Total number of fetched advised cm handle(s) is (are) {}", advisedCmHandlesAsDataNodes.size());
-        return advisedCmHandlesAsDataNodes;
+    public Collection<String> getAdvisedCmHandleIds() {
+        return cmHandleQueryService.queryCmHandleIdsByState(CmHandleState.ADVISED);
     }
 
     /**

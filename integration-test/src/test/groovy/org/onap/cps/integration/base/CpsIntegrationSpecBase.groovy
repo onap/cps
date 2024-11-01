@@ -120,7 +120,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     ModuleSyncService moduleSyncService
 
     @Autowired
-    BlockingQueue<DataNode> moduleSyncWorkQueue
+    BlockingQueue<String> moduleSyncWorkQueue
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
