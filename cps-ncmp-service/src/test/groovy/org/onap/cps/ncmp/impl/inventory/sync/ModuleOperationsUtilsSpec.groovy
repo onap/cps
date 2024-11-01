@@ -79,15 +79,15 @@ class ModuleOperationsUtilsSpec extends Specification{
 
     def 'Get an advised Cm-Handle where ADVISED cm handle #scenario'() {
         given: 'the inventory persistence service returns a collection of data nodes'
-            mockCmHandleQueries.queryCmHandlesByState(CmHandleState.ADVISED) >> dataNodeCollection
-        when: 'get advised cm handles are fetched'
-            def yangModelCmHandles = objectUnderTest.getAdvisedCmHandles()
-        then: 'the returned data node collection is the correct size'
-            yangModelCmHandles.size() == expectedDataNodeSize
+            mockCmHandleQueries.queryCmHandleIdsByState(CmHandleState.ADVISED) >> cmHandleIds
+        when: 'advised cm handle ids are fetched'
+            def advisedCmHandleIds = objectUnderTest.getAdvisedCmHandleIds()
+        then: 'the expected cm handle ids are returned'
+            advisedCmHandleIds == cmHandleIds
         where: 'the following scenarios are used'
-            scenario         | dataNodeCollection || expectedCallsToGetYangModelCmHandle | expectedDataNodeSize
-            'exists'         | [dataNode]         || 1                                   | 1
-            'does not exist' | []                 || 0                                   | 0
+            scenario         | cmHandleIds
+            'exists'         | ['cm-handle-123']
+            'does not exist' | []
     }
 
     def 'Update Lock Reason, Details and Attempts where lock reason #scenario'() {
