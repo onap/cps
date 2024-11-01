@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61c70211_c7e69c6c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-01T14:40:01Z",
+      "side": 1,
+      "message": "Mainly it makes testing easier, e.g. we can say:\n\n    0 * inventoryPersistence.saveCmHandleBatch(_)\n    1 * inventoryPersistence.saveCmHandleStateBatch(_)\n\nIt should also be more a little more efficient.",
+      "parentUuid": "1dace47c_471d834d",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "d8d688f581ae7d1f96cafa7834b385c5423bbe5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0755c00f_37e55d0f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-01T11:47:09Z",
       "side": 1,
       "message": "and this one as well ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 7,
+        "endLine": 112,
+        "endChar": 53
+      },
+      "revId": "d8d688f581ae7d1f96cafa7834b385c5423bbe5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675334f1_ed760d7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-01T14:40:01Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "0755c00f_37e55d0f",
       "range": {
         "startLine": 112,
         "startChar": 7,
