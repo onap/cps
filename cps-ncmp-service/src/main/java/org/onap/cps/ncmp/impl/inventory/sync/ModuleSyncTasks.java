@@ -58,9 +58,9 @@ public class ModuleSyncTasks {
      */
     public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
                                                      final AtomicInteger batchCounter) {
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle =
+                new HashMap<>(cmHandlesAsDataNodes.size());
         try {
-            final Map<YangModelCmHandle, CmHandleState> cmHandelStatePerCmHandle
-                    = new HashMap<>(cmHandlesAsDataNodes.size());
             for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
                 final String cmHandleId = String.valueOf(cmHandleAsDataNode.getLeaves().get("id"));
                 final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleAsDataNode);
@@ -74,7 +74,7 @@ public class ModuleSyncTasks {
                         moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
                     }
                     yangModelCmHandle.getCompositeState().setLockReason(null);
-                    cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
+                    cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);
                 } catch (final Exception e) {
                     log.warn("Processing of {} module failed due to reason {}.", cmHandleId, e.getMessage());
                     final LockReasonCategory lockReasonCategory = inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED
@@ -82,12 +82,12 @@ public class ModuleSyncTasks {
                     moduleOperationsUtils.updateLockReasonWithAttempts(compositeState,
                             lockReasonCategory, e.getMessage());
                     setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
-                    cmHandelStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
+                    cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);
                 }
             }
-            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandelStatePerCmHandle);
         } finally {
             batchCounter.getAndDecrement();
+            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
             log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
         return CompletableFuture.completedFuture(null);
