@@ -100,6 +100,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e97ce704_2030adff",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/KafkaTestContainer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-01T12:27:21Z",
+      "side": 1,
+      "message": "implementing singleton pattern using double checked locking.\ncan be done differently , but this is one way to do it.",
+      "parentUuid": "f595830a_bc192e9e",
+      "range": {
+        "startLine": 56,
+        "startChar": 11,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "1f68bd7cc56a20df5e6ec3e0b946524e7bd64288",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ab42d46_08969526",
         "filename": "integration-test/src/test/java/org/onap/cps/integration/KafkaTestContainer.java",
         "patchSetId": 8
