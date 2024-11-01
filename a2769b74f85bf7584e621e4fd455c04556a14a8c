@@ -130,6 +130,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc1cd3ba_26c1bc36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-01T09:24:46Z",
+      "side": 1,
+      "message": "Ack. Thank you for detailed comments.",
+      "parentUuid": "6733acce_3542a26c",
+      "range": {
+        "startLine": 97,
+        "startChar": 68,
+        "endLine": 97,
+        "endChar": 70
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c6ac2f9_2d7d0077",
@@ -379,6 +403,30 @@
       "side": 1,
       "message": "I simplified by removing cases for same state, like READY to READY. This is already covered in a below test \u0027No state change and no event to be published\u0027",
       "parentUuid": "25d82129_b903f9d4",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 53
+      },
+      "revId": "a2769b74f85bf7584e621e4fd455c04556a14a8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95e96d34_402a6429",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-01T09:24:46Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "85f7b016_3a06a9dd",
       "range": {
         "startLine": 80,
         "startChar": 12,
