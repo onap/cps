@@ -52,6 +52,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9477f0_95302e42",
+        "filename": "docker-compose/config/endurance.env",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-01T12:59:31Z",
+      "side": 1,
+      "message": "Good point, otherwise the caches could have connected to each other.",
+      "parentUuid": "02a749e1_8dc71ce8",
+      "revId": "187711069643e01d9bb4c6fb9aa4fea1cbae6d3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fcba30f_da642be2",
