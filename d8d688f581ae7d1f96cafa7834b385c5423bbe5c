@@ -89,6 +89,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9002b55a_d8c38c41",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-01T17:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6af9dc42_66be41c5",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 38
+      },
+      "revId": "d8d688f581ae7d1f96cafa7834b385c5423bbe5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0755c00f_37e55d0f",
@@ -136,6 +160,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54e1b8f0_49ee3ef3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-01T17:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "675334f1_ed760d7f",
+      "range": {
+        "startLine": 112,
+        "startChar": 7,
+        "endLine": 112,
+        "endChar": 53
+      },
+      "revId": "d8d688f581ae7d1f96cafa7834b385c5423bbe5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7cca13a_42a892bb",
@@ -149,6 +197,30 @@
       "writtenOn": "2024-11-01T14:52:07Z",
       "side": 1,
       "message": "i see that you are using the conditional checks here.",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 66
+      },
+      "revId": "d8d688f581ae7d1f96cafa7834b385c5423bbe5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67fac44f_bd14dff4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-01T17:31:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7cca13a_42a892bb",
       "range": {
         "startLine": 72,
         "startChar": 12,
