@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1714f4d9_ebb74165",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-01T16:39:12Z",
+      "side": 1,
+      "message": "lets focus on first merging Get a node changes first. then only we will start to look at this one.",
+      "revId": "93842881949dbfc22bbba64f231ae3b68ce9031e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
