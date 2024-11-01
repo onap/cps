@@ -18,6 +18,40 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8fd3065_0181611e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-01T10:53:41Z",
+      "side": 1,
+      "message": "even I tried bringing both of them together and it comes up fine.\nNot tried executing any requests against the deployment yet.",
+      "revId": "187711069643e01d9bb4c6fb9aa4fea1cbae6d3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a749e1_8dc71ce8",
+        "filename": "docker-compose/config/endurance.env",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-01T10:53:41Z",
+      "side": 1,
+      "message": "just a suggestion to also include a separate cluster name and instance config name for hazelcast as well.\n\nto be clear the current deployment works fine and both the projects are coming up fine.\n\nCPS_NCMP_CACHES_CLUSTER_NAME\u003dendurance-cps-and-ncmp-common-cache-cluster\nCPS_NCMP_INSTANCE_CONFIG_NAME\u003dendurance-cps-and-ncmp-hazelcast-instance-config",
+      "revId": "187711069643e01d9bb4c6fb9aa4fea1cbae6d3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fcba30f_da642be2",
