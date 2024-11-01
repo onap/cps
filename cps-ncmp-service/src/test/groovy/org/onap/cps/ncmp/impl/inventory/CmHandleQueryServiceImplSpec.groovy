@@ -27,7 +27,6 @@ import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.spi.model.DataNode
-import spock.lang.Shared
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
@@ -40,17 +39,14 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsDataService = Mock(CpsDataService)
-
     def trustLevelPerDmiPlugin = [:]
-
     def trustLevelPerCmHandleId = [ 'PNFDemo': TrustLevel.COMPLETE, 'PNFDemo2': TrustLevel.NONE, 'PNFDemo4': TrustLevel.NONE ]
-
     def mockCpsValidator = Mock(CpsValidator)
 
     def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
 
-    @Shared
-    def static sampleDataNodes = [new DataNode()]
+    def static sampleDataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']"),
+                                  new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-2']")]
 
     def dataNodeWithPrivateField = '//additional-properties[@name=\"Contact3\" and @value=\"newemailforstore3@bookstore.com\"]/ancestor::cm-handles'
 
@@ -122,11 +118,11 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cmHandleState = CmHandleState.ADVISED
         and: 'the persistence service returns a list of data nodes'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                '//state[@cm-handle-state="ADVISED"]/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS) >> sampleDataNodes
+                "//state[@cm-handle-state='ADVISED']", OMIT_DESCENDANTS) >> sampleDataNodes
         when: 'cm handles are fetched by state'
-            def result = objectUnderTest.queryCmHandlesByState(cmHandleState)
+            def result = objectUnderTest.queryCmHandleIdsByState(cmHandleState)
         then: 'the returned result matches the result from the persistence service'
-            assert result == sampleDataNodes
+            assert result.toSet() == ['ch-1', 'ch-2'].toSet()
     }
 
     def 'Check the state of a cmHandle when #scenario.'() {

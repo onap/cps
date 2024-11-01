@@ -33,7 +33,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.Sleeper;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +42,7 @@ import org.springframework.stereotype.Service;
 public class ModuleSyncWatchdog {
 
     private final ModuleOperationsUtils moduleOperationsUtils;
-    private final BlockingQueue<DataNode> moduleSyncWorkQueue;
+    private final BlockingQueue<String> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
@@ -70,7 +69,7 @@ public class ModuleSyncWatchdog {
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
             if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
-                final Collection<DataNode> nextBatch = prepareNextBatch();
+                final Collection<String> nextBatch = prepareNextBatch();
                 log.info("Processing module sync batch of {}. {} batch(es) active.",
                     nextBatch.size(), batchCounter.get());
                 if (!nextBatch.isEmpty()) {
@@ -104,14 +103,14 @@ public class ModuleSyncWatchdog {
     }
 
     private void populateWorkQueue() {
-        final Collection<DataNode> advisedCmHandles = moduleOperationsUtils.getAdvisedCmHandles();
-        if (advisedCmHandles.isEmpty()) {
+        final Collection<String> advisedCmHandleIds = moduleOperationsUtils.getAdvisedCmHandleIds();
+        if (advisedCmHandleIds.isEmpty()) {
             log.debug("No advised CM handles found in DB.");
         } else {
-            log.info("Fetched {} advised CM handles from DB. Adding them to the work queue.", advisedCmHandles.size());
-            advisedCmHandles.forEach(advisedCmHandle -> {
-                final String cmHandleId = String.valueOf(advisedCmHandle.getLeaves().get("id"));
-                if (moduleSyncWorkQueue.offer(advisedCmHandle)) {
+            log.info("Fetched {} advised CM handles from DB. Adding them to the work queue.",
+                    advisedCmHandleIds.size());
+            advisedCmHandleIds.forEach(cmHandleId -> {
+                if (moduleSyncWorkQueue.offer(cmHandleId)) {
                     log.info("CM handle {} added to the work queue.", cmHandleId);
                 } else {
                     log.warn("Failed to add CM handle {} to the work queue.", cmHandleId);
@@ -133,13 +132,12 @@ public class ModuleSyncWatchdog {
         }
     }
 
-    private Collection<DataNode> prepareNextBatch() {
-        final Collection<DataNode> nextBatchCandidates = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
-        final Collection<DataNode> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
+    private Collection<String> prepareNextBatch() {
+        final Collection<String> nextBatchCandidates = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
+        final Collection<String> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
         moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
         log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
-        for (final DataNode batchCandidate : nextBatchCandidates) {
-            final String cmHandleId = String.valueOf(batchCandidate.getLeaves().get("id"));
+        for (final String cmHandleId : nextBatchCandidates) {
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
                             SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
@@ -147,7 +145,7 @@ public class ModuleSyncWatchdog {
                 log.info("module sync for {} already in progress by other instance", cmHandleId);
             } else {
                 log.info("Adding cmHandle : {} to current batch", cmHandleId);
-                nextBatch.add(batchCandidate);
+                nextBatch.add(cmHandleId);
             }
         }
         log.info("nextBatch size : {}", nextBatch.size());

@@ -56,7 +56,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def 'Module sync advised cm handles with #scenario.'() {
         given: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
-            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(numberOfAdvisedCmHandles)
         and: 'module sync utilities returns no failed (locked) cm handles'
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue is not locked'
@@ -79,7 +79,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def 'Module sync cm handles starts with no available threads.'() {
         given: 'module sync utilities returns a advise cm handles'
-            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue is not locked'
             mockWorkQueueLock.tryLock() >> true
         and: 'the executor first has no threads but has one thread on the second attempt'
@@ -92,7 +92,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def 'Module sync advised cm handle already handled by other thread.'() {
         given: 'module sync utilities returns an advised cm handle'
-            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue is not locked'
             mockWorkQueueLock.tryLock() >> true
         and: 'the executor has a thread available'
@@ -107,9 +107,9 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def 'Module sync with previous cm handle(s) left in work queue.'() {
         given: 'there is still a cm handle in the queue'
-            moduleSyncWorkQueue.offer(new DataNode())
+            moduleSyncWorkQueue.offer('ch-1')
         and: 'sync utilities returns many advise cm handles'
-            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(500)
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(500)
         and: 'the executor has plenty threads available'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 10
         when: ' module sync is started'
@@ -130,7 +130,7 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def 'Module Sync Locking.'() {
         given: 'module sync utilities returns an advised cm handle'
-            mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
+            mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'can lock is : #canLock'
             mockWorkQueueLock.tryLock() >> canLock
         when: 'attempt to populate the work queue'
@@ -152,9 +152,7 @@ class ModuleSyncWatchdogSpec extends Specification {
             noExceptionThrown()
     }
 
-    def createDataNodes(numberOfDataNodes) {
-        def dataNodes = []
-        numberOfDataNodes.times { dataNodes.add(new DataNode()) }
-        return dataNodes
+    def createCmHandleIds(numberOfCmHandles) {
+        return (numberOfCmHandles > 0) ? (1..numberOfCmHandles).collect { 'ch-'+it } : []
     }
 }

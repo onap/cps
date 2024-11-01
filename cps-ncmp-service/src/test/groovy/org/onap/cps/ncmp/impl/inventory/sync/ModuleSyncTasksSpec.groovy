@@ -36,9 +36,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.model.DataNode
 import org.slf4j.LoggerFactory
-import spock.lang.Ignore
 import spock.lang.Specification
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -82,12 +80,13 @@ class ModuleSyncTasksSpec extends Specification {
 
     def 'Module Sync ADVISED cm handles.'() {
         given: 'cm handles in an ADVISED state'
-            def cmHandle1 = cmHandleAsDataNodeByIdAndState('cm-handle-1', CmHandleState.ADVISED)
-            def cmHandle2 = cmHandleAsDataNodeByIdAndState('cm-handle-2', CmHandleState.ADVISED)
-        and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
-            mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+            def cmHandle1 = cmHandleByIdAndState('cm-handle-1', CmHandleState.ADVISED)
+            def cmHandle2 = cmHandleByIdAndState('cm-handle-2', CmHandleState.ADVISED)
+        and: 'the inventory persistence cm handle returns a ADVISED state for the handles'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle1
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandle2
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'], batchCount)
         then: 'module sync service deletes schemas set of each cm handle if it already exists'
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-1')
             1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-2')
@@ -103,18 +102,17 @@ class ModuleSyncTasksSpec extends Specification {
     }
 
     def 'Handle CM handle failure during #scenario and log MODULE_UPGRADE lock reason'() {
-        given: 'a CM handle in LOCKED state with a specific lock reason'
-            def cmHandle = cmHandleAsDataNodeByIdAndState('cm-handle', CmHandleState.LOCKED)
-            def expectedCmHandleState = new CompositeState(cmHandleState: CmHandleState.LOCKED, lockReason: CompositeState
-                    .LockReason.builder().lockReasonCategory(lockReasonCategory).details(lockReasonDetails).build())
-            1 * mockInventoryPersistence.getCmHandleState('cm-handle') >> expectedCmHandleState
+        given: 'a CM handle in ADVISED state with a specific lock reason'
+            def cmHandle = cmHandleByIdAndState('cm-handle', CmHandleState.ADVISED)
+            cmHandle.compositeState.lockReason = CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).details(lockReasonDetails).build()
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle') >> cmHandle
         and: 'module sync service attempts to sync/upgrade the CM handle and throws an exception'
             mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { throw new Exception('some exception') }
             mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync([cmHandle], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle'], batchCount)
         then: 'lock reason is updated with number of attempts'
-            1 * mockSyncUtils.updateLockReasonWithAttempts(expectedCmHandleState, expectedLockReasonCategory, 'some exception')
+            1 * mockSyncUtils.updateLockReasonWithAttempts(_, expectedLockReasonCategory, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
@@ -128,25 +126,27 @@ class ModuleSyncTasksSpec extends Specification {
             'module upgrade' | MODULE_UPGRADE        | 'Upgrade in progress'                          || MODULE_UPGRADE_FAILED
     }
 
-    @Ignore  // TODO Enable this test once the bug CPS-2474 is fixed
     def 'Module sync succeeds even if a handle gets deleted during module sync.'() {
-        given: 'cm handles in an ADVISED state'
-            def cmHandle1 = cmHandleAsDataNodeByIdAndState('cm-handle-1', CmHandleState.ADVISED)
-            def cmHandle2 = cmHandleAsDataNodeByIdAndState('cm-handle-2', CmHandleState.ADVISED)
-        and: 'inventory persistence cannot find the first handle'
-            mockInventoryPersistence.getCmHandleState('cm-handle-1') >> { throw new DataNodeNotFoundException('dataspace', 'anchor', 'xpath') }
-        and: 'inventory persistence returns the second handle with ADVISED state'
-            mockInventoryPersistence.getCmHandleState('cm-handle-2') >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+        given: 'a cm handle which has been deleted'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> { throw new DataNodeNotFoundException('dataspace', 'anchor', 'cm-handle-1') }
+        and: 'a cm handle which is being deleted'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandleByIdAndState('cm-handle-2', CmHandleState.DELETING)
+        and: 'a cm handle in advised state'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-3') >> cmHandleByIdAndState('cm-handle-3', CmHandleState.ADVISED)
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1, cmHandle2], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2', 'cm-handle-3'], batchCount)
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'the deleted cm-handle did not sync'
             0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
-        and: 'the existing cm-handle synced'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
-        and: 'the state handler called'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_)
+        and: 'the deleting cm-handle did not sync'
+            0 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
+        and: 'the advised cm-handle synced'
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-3' }
+        and: 'the state handler called for only the advised handle'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
+                assertBatch(args, ['cm-handle-3'], CmHandleState.READY)
+            }
     }
 
     def 'Reset failed CM Handles #scenario.'() {
@@ -172,15 +172,15 @@ class ModuleSyncTasksSpec extends Specification {
 
     def 'Module Sync ADVISED cm handle without entry in progress map.'() {
         given: 'cm handles in an ADVISED state'
-            def cmHandle1 = cmHandleAsDataNodeByIdAndState('cm-handle-1', CmHandleState.ADVISED)
+            def cmHandle1 = cmHandleByIdAndState('cm-handle-1', CmHandleState.ADVISED)
         and: 'the inventory persistence cm handle returns a ADVISED state for the any handle'
-            mockInventoryPersistence.getCmHandleState(_) >> new CompositeState(cmHandleState: CmHandleState.ADVISED)
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle1
         and: 'entry in progress map for other cm handle'
             moduleSyncStartedOnCmHandles.put('other-cm-handle', 'started')
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync([cmHandle1], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1'], batchCount)
         then: 'module sync service is invoked for cm handle'
-            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_)
+            1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
         and: 'the entry for other cm handle is still in the progress map'
             assert moduleSyncStartedOnCmHandles.get('other-cm-handle') != null
     }
@@ -199,11 +199,11 @@ class ModuleSyncTasksSpec extends Specification {
 
     def 'Sync and upgrade CM handle if in upgrade state for #scenario'() {
         given: 'a CM handle in an upgrade state'
-            def cmHandle = cmHandleAsDataNodeByIdAndState('cm-handle', CmHandleState.LOCKED)
-            def compositeState = new CompositeState(lockReason: CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).build())
-            1 * mockInventoryPersistence.getCmHandleState('cm-handle') >> compositeState
+            def cmHandle = cmHandleByIdAndState('cm-handle', CmHandleState.ADVISED)
+            cmHandle.compositeState.setLockReason(CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).build())
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle') >> cmHandle
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync([cmHandle], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle'], batchCount)
         then: 'the module sync service should attempt to sync and upgrade the CM handle'
             1 * mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { args ->
                 assert args[0].id == 'cm-handle'
@@ -226,8 +226,8 @@ class ModuleSyncTasksSpec extends Specification {
             assert loggingEvent == null
     }
 
-    def cmHandleAsDataNodeByIdAndState(cmHandleId, cmHandleState) {
-        return new DataNode(anchorName: cmHandleId, leaves: ['id': cmHandleId, 'cm-handle-state': cmHandleState])
+    def cmHandleByIdAndState(cmHandleId, cmHandleState) {
+        return new YangModelCmHandle(id: cmHandleId, compositeState: new CompositeState(cmHandleState: cmHandleState))
     }
 
     def assertBatch(args, expectedCmHandleStatePerCmHandleIds, expectedCmHandleState) {

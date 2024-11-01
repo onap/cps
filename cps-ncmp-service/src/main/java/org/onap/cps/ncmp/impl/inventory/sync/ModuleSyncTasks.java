@@ -34,8 +34,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
-import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -51,21 +50,29 @@ public class ModuleSyncTasks {
     /**
      * Perform module sync on a batch of cm handles.
      *
-     * @param cmHandlesAsDataNodes         a batch of Data nodes representing cm handles to perform module sync on
+     * @param cmHandleIds                  a batch of cm handle ids to perform module sync on
      * @param batchCounter                 the number of batches currently being processed, will be decreased when
      *                                     task is finished or fails
      * @return completed future to handle post-processing
      */
-    public CompletableFuture<Void> performModuleSync(final Collection<DataNode> cmHandlesAsDataNodes,
+    public CompletableFuture<Void> performModuleSync(final Collection<String> cmHandleIds,
                                                      final AtomicInteger batchCounter) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle =
-            new HashMap<>(cmHandlesAsDataNodes.size());
+        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(cmHandleIds.size());
         try {
-            cmHandlesAsDataNodes.forEach(cmHandleAsDataNode -> {
-                final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleAsDataNode);
-                final CmHandleState cmHandleState = processCmHandle(yangModelCmHandle);
-                cmHandleStatePerCmHandle.put(yangModelCmHandle, cmHandleState);
-            });
+            for (final String cmHandleId : cmHandleIds) {
+                try {
+                    final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+                    if (isCmHandleInAdvisedState(yangModelCmHandle)) {
+                        final CmHandleState newCmHandleState = processCmHandle(yangModelCmHandle);
+                        cmHandleStatePerCmHandle.put(yangModelCmHandle, newCmHandleState);
+                    } else {
+                        log.warn("Skipping module sync for CM handle '{}' as it is in {} state", cmHandleId,
+                                yangModelCmHandle.getCompositeState().getCmHandleState().name());
+                    }
+                } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
+                    log.warn("Skipping module sync for CM handle '{}' as it does not exist", cmHandleId);
+                }
+            }
         } finally {
             batchCounter.getAndDecrement();
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
@@ -96,7 +103,7 @@ public class ModuleSyncTasks {
     }
 
     private CmHandleState processCmHandle(final YangModelCmHandle yangModelCmHandle) {
-        final CompositeState compositeState = inventoryPersistence.getCmHandleState(yangModelCmHandle.getId());
+        final CompositeState compositeState = yangModelCmHandle.getCompositeState();
         final boolean inUpgrade = ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);
         try {
             if (inUpgrade) {
@@ -105,27 +112,25 @@ public class ModuleSyncTasks {
                 moduleSyncService.deleteSchemaSetIfExists(yangModelCmHandle.getId());
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
             }
-            yangModelCmHandle.getCompositeState().setLockReason(null);
+            compositeState.setLockReason(null);
             return CmHandleState.READY;
         } catch (final Exception e) {
             log.warn("Processing of {} module failed due to reason {}.", yangModelCmHandle.getId(), e.getMessage());
-            final LockReasonCategory lockReasonCategory = inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED
-                : LockReasonCategory.MODULE_SYNC_FAILED;
-            moduleOperationsUtils.updateLockReasonWithAttempts(compositeState,
-                lockReasonCategory, e.getMessage());
-            setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());
+            final LockReasonCategory lockReasonCategory = inUpgrade
+                    ? LockReasonCategory.MODULE_UPGRADE_FAILED
+                    : LockReasonCategory.MODULE_SYNC_FAILED;
+            moduleOperationsUtils.updateLockReasonWithAttempts(compositeState, lockReasonCategory, e.getMessage());
             return CmHandleState.LOCKED;
         }
-    }
-
-    private void setCmHandleStateLocked(final YangModelCmHandle advisedCmHandle,
-                                        final CompositeState.LockReason lockReason) {
-        advisedCmHandle.getCompositeState().setLockReason(lockReason);
     }
 
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
         if (moduleSyncStartedOnCmHandles.remove(resetCmHandleId) != null) {
             log.info("{} removed from in progress map", resetCmHandleId);
         }
+    }
+
+    private static boolean isCmHandleInAdvisedState(final YangModelCmHandle yangModelCmHandle) {
+        return yangModelCmHandle.getCompositeState().getCmHandleState() == CmHandleState.ADVISED;
     }
 }

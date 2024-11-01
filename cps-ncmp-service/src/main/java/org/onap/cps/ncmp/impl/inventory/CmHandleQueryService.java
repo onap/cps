@@ -59,12 +59,12 @@ public interface CmHandleQueryService {
                                                   boolean outputAlternateId);
 
     /**
-     * Method which returns cm handles by the cm handles state.
+     * Method which returns cm handle ids by the cm handles state.
      *
      * @param cmHandleState cm handle state
-     * @return a list of data nodes representing the cm handles.
+     * @return a list of cm handle ids.
      */
-    Collection<DataNode> queryCmHandlesByState(CmHandleState cmHandleState);
+    Collection<String> queryCmHandleIdsByState(CmHandleState cmHandleState);
 
     /**
      * Method to return data nodes with ancestor representing the cm handles.
