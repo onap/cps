@@ -1162,6 +1162,15 @@ paths:
           default: none
           example: "3"
           type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          enum:
+          - application/json
+          - application/xml
+          type: string
       responses:
         "200":
           content:
@@ -1172,6 +1181,15 @@ paths:
                   value: null
               schema:
                 type: object
+            application/xml:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSampleXml'
+                  value: null
+              schema:
+                type: object
+                xml:
+                  name: stores
           description: OK
         "400":
           content:
@@ -1347,7 +1365,9 @@ paths:
         name: Content-Type
         required: true
         schema:
-          example: application/json
+          enum:
+          - application/json
+          - application/xml
           type: string
       requestBody:
         content:
@@ -1472,7 +1492,9 @@ paths:
         name: Content-Type
         required: true
         schema:
-          example: application/json
+          enum:
+          - application/json
+          - application/xml
           type: string
       requestBody:
         content:
@@ -1597,7 +1619,9 @@ paths:
         name: Content-Type
         required: true
         schema:
-          example: application/json
+          enum:
+          - application/json
+          - application/xml
           type: string
       requestBody:
         content:
@@ -1788,7 +1812,9 @@ paths:
         name: Content-Type
         required: true
         schema:
-          example: application/json
+          enum:
+          - application/json
+          - application/xml
           type: string
       requestBody:
         content:
@@ -2543,6 +2569,16 @@ components:
         default: none
         example: "3"
         type: string
+    contentTypeInHeader:
+      description: Content type in header
+      in: header
+      name: Content-Type
+      required: true
+      schema:
+        enum:
+        - application/json
+        - application/xml
+        type: string
     observedTimestampInQuery:
       description: observed-timestamp
       in: query
@@ -2550,14 +2586,6 @@ components:
       required: false
       schema:
         example: 2021-03-21T00:10:34.030-0100
-        type: string
-    contentTypeInHeader:
-      description: Content type in header
-      in: header
-      name: Content-Type
-      required: true
-      schema:
-        example: application/json
         type: string
     dryRunInQuery:
       description: "Boolean flag to validate data, without persisting it. Default\
