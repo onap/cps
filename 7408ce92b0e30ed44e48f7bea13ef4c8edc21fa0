@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "7408ce92b0e30ed44e48f7bea13ef4c8edc21fa0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c998b6_89c3c570",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 67
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-01T16:38:11Z",
+      "side": 1,
+      "message": "lets focus on this patch now to get this one merged.\nI will mark the other query node patch as WIP.\n\nthere was a comment to introduce a method in ContentType class to return the content type.",
+      "range": {
+        "startLine": 130,
+        "startChar": 8,
+        "endLine": 130,
+        "endChar": 86
+      },
+      "revId": "7408ce92b0e30ed44e48f7bea13ef4c8edc21fa0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
