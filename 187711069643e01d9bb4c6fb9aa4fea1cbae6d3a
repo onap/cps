@@ -33,6 +33,24 @@
       "message": "Looks good. I tried running two deployments at the same time: one default and the other using above options.\n\nFrom `docker ps` I can see the two deployments running. k6 test suite passes for the normal deployment, while I also see from DB inspection that the endurance deployment has 0 handles and no load.\n\nIt seems we have process isolation 😊",
       "revId": "187711069643e01d9bb4c6fb9aa4fea1cbae6d3a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8846eaa_dbb93d8a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-01T09:55:05Z",
+      "side": 1,
+      "message": "Very good to hear that it works as expected, thanks trying it locally.",
+      "parentUuid": "9fcba30f_da642be2",
+      "revId": "187711069643e01d9bb4c6fb9aa4fea1cbae6d3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
