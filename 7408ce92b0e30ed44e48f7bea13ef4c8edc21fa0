@@ -56,6 +56,30 @@
       },
       "revId": "7408ce92b0e30ed44e48f7bea13ef4c8edc21fa0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7393793a_40f51ef9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 67
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-02T11:17:19Z",
+      "side": 1,
+      "message": "Resolved the comments which are applicable for this patch .",
+      "parentUuid": "87c998b6_89c3c570",
+      "range": {
+        "startLine": 130,
+        "startChar": 8,
+        "endLine": 130,
+        "endChar": 86
+      },
+      "revId": "7408ce92b0e30ed44e48f7bea13ef4c8edc21fa0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
