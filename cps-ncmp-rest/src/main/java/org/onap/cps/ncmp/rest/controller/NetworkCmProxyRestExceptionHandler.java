@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.spi.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.exceptions.CmHandleNotFoundException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
@@ -92,6 +93,11 @@ public class NetworkCmProxyRestExceptionHandler {
 
     @ExceptionHandler({DataNodeNotFoundException.class})
     public static ResponseEntity<Object> handleNotFoundExceptions(final Exception exception) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
+    }
+
+    @ExceptionHandler({CmHandleNotFoundException.class})
+    public static ResponseEntity<Object> cmHandleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 

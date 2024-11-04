@@ -43,6 +43,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.exceptions.CmHandleNotFoundException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.spi.model.DataNode;
@@ -178,8 +179,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         final Collection<DataNode> dataNodes = cmHandleQueryService
             .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
         if (dataNodes.isEmpty()) {
-            throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPathForCmHandleByAlternateId);
+            throw new CmHandleNotFoundException(alternateId);
         }
         return dataNodes.iterator().next();
     }
