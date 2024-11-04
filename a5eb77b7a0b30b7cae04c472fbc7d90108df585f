@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02fd16a_240e1bca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T17:18:51Z",
+      "side": 1,
+      "message": "looking good but as you knew the columns in your test can be easily refactored in something more readable, see my comments below\n(please note that additional spaces in comments gets removed, I tried to align my suggested columns but that didn\u0027t work :-()",
+      "revId": "a5eb77b7a0b30b7cae04c472fbc7d90108df585f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27d270e_c51d1889",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T17:18:51Z",
+      "side": 1,
+      "message": "do add some label to the where blok e.g \u0027the following services are regitered\u0027",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "a5eb77b7a0b30b7cae04c472fbc7d90108df585f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2208afb_2d1186f5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T17:18:51Z",
+      "side": 1,
+      "message": "instead of a yangModels column have 3 columns like this (and also use shorter value with just thee most relevant keyword)\n\ndmiServiceName | dataServiceName | modelServiceName\n\u0027dmiService\u0027   | \u0027\u0027              | \u0027\u0027           \n\u0027\u0027             | \u0027dataService\u0027   | \u0027modelService\u0027 \n\u0027dmiService\u0027   | \u0027dataService\u0027   | \u0027modelService\u0027 \n\n\n(you probably dont even need the column for modelService as it is not used at all)\n\ncreate the yangModelCmHandle in a given: block BEFORE the when: block\n\nyangModelCmHandle \u003d  YangModelCmHandle.toYangModelCmHandle(dmiServiceName\u0027, daatServiceName, modelServiceName, new NcmpServiceCmHandle(cmHandleId: \u0027cm-handle-id-1\u0027), \u0027\u0027, \u0027\u0027, \u0027dpi1\u0027)",
+      "range": {
+        "startLine": 72,
+        "startChar": 78,
+        "endLine": 72,
+        "endChar": 236
+      },
+      "revId": "a5eb77b7a0b30b7cae04c472fbc7d90108df585f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c23a4525_af7a4dd0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T17:18:51Z",
+      "side": 1,
+      "message": "sometimes when the columns are very self-explanatory you do not need a \u0027scenario\u0027 column. I think this might be such a case",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 73,
+        "endChar": 50
+      },
+      "revId": "a5eb77b7a0b30b7cae04c472fbc7d90108df585f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
