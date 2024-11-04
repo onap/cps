@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bfb0f39_4f2d0c2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "good summary!",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 23
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eaba7b6_4d0f1942",
+        "filename": "checkstyle/src/main/resources/onap-checkstyle/onap-java-style.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "can we rename this file or do we still want to refer to \u0027onap\u0027 as a style\nI think I would prefer cps_java_style",
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a70ca57_a51e52ec",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "ok, that is an issue :-)",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20e9e21c_41fc5100",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/DeprecationHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "NB: i dont think we can be so specific :-)",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672ed465_ba0f420f",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "strange comment, please remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c6930f_4bfc4c00",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T08:35:43Z",
+      "side": 1,
+      "message": "what is this for? can we give a clearer name?",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
