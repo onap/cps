@@ -16,6 +16,29 @@
       "message": "Based on the discussion on the call, and offline chat with Toine. I am ok now. Thanks.",
       "revId": "3db2da4634eb2f0b64042ce040210616327e6681",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac589d40_95bc4545",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T14:55:45Z",
+      "side": 1,
+      "message": "NB: I know it is NOT needed but for readability I would use the \u0027return\u0027 keyword here",
+      "range": {
+        "startLine": 245,
+        "startChar": 7,
+        "endLine": 245,
+        "endChar": 23
+      },
+      "revId": "3db2da4634eb2f0b64042ce040210616327e6681",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
