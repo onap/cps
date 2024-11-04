@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dfb39b8_edb71eeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-04T16:12:54Z",
+      "side": 1,
+      "message": "fine for me.",
+      "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1614c009_12dbf6b1",
@@ -50,6 +67,24 @@
       "side": 1,
       "message": "FYI, the batchCounter is used for controlling the multi-threaded workers. I will be posting another patch that gets rid of the counter using Semaphore instead.",
       "parentUuid": "728dc4ae_a96fd3f3",
+      "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04e5f81_85589a90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-04T16:12:54Z",
+      "side": 1,
+      "message": "alright if we are getting rid of this then lets see in the other patch.thnx.",
+      "parentUuid": "511d0125_96e2603c",
       "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
