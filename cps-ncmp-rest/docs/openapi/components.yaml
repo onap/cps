@@ -516,7 +516,7 @@ components:
     outputAlternateIdOptionInQuery:
       name: outputAlternateId
       in: query
-      description: Boolean parameter to determine if returned value(s) will be cm handle Ids or alternate Ids for a given query
+      description: Boolean parameter to determine if returned value(s) will be cm handle ids or alternate ids for a given query
       required: false
       schema:
         type: boolean

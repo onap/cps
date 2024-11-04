@@ -97,7 +97,7 @@ paths:
           example: my-dmi-plugin
           type: string
       - description: Boolean parameter to determine if returned value(s) will be cm
-          handle Ids or alternate Ids for a given query
+          handle ids or alternate ids for a given query
         in: query
         name: outputAlternateId
         required: false
@@ -145,7 +145,7 @@ paths:
       operationId: searchCmHandleIds
       parameters:
       - description: Boolean parameter to determine if returned value(s) will be cm
-          handle Ids or alternate Ids for a given query
+          handle ids or alternate ids for a given query
         in: query
         name: outputAlternateId
         required: false
@@ -202,7 +202,7 @@ components:
         type: string
     outputAlternateIdOptionInQuery:
       description: Boolean parameter to determine if returned value(s) will be cm
-        handle Ids or alternate Ids for a given query
+        handle ids or alternate ids for a given query
       in: query
       name: outputAlternateId
       required: false
