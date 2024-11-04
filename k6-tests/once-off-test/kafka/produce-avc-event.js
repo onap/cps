@@ -50,6 +50,11 @@ export const options = {
     }
 };
 
+const getRandomNetworkElement = () => {
+    const networkElementIds = Array.from({ length: 10 }, (_, i) => `neType-${i + 1}`);
+    return networkElementIds[Math.floor(Math.random() * networkElementIds.length)];
+};
+
 function getCloudEventHeaders() {
     return {
         ce_type: 'org.onap.cps.ncmp.events.avc1_0_0.AvcEvent',
@@ -65,10 +70,11 @@ function getCloudEventHeaders() {
 
 export function sendKafkaMessages() {
     const cloudEventHeaders = getCloudEventHeaders();
+    const networkElementId = getRandomNetworkElement();
 
     const avcCloudEvent = {
         key: schemaRegistry.serialize({
-            data: cloudEventHeaders.ce_correlationid,
+            data: networkElementId,
             schemaType: SCHEMA_TYPE_STRING,
         }),
         value: schemaRegistry.serialize({

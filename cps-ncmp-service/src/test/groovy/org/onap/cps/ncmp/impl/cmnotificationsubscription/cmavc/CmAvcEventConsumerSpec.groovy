@@ -64,6 +64,7 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
             cloudEventKafkaConsumer.subscribe([cmEventsTopicName] as List<String>)
         and: 'an event is sent'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
+            def testEventKey = 'sample-eventid-key'
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(jsonObjectMapper.asJsonBytes(testEventSent))
@@ -72,17 +73,19 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
                 .withSource(URI.create('sample-test-source'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
         and: 'event has header information'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>(cmEventsTopicName, 0, 0, 'sample-eventid', testCloudEventSent)
-        when: 'the event is consumed'
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>(cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
+        when: 'the event is consumed and forwarded to target topic'
             acvEventConsumer.consumeAndForward(consumerRecord)
-        and: 'the topic is polled'
+        and: 'the target topic is polled'
             def records = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'
             assert records.size() == 1
-        and: 'record can be converted to AVC event'
+        and: 'target record can be converted to AVC event'
             def record = records.iterator().next()
             def cloudEvent = record.value() as CloudEvent
             def convertedAvcEvent = toTargetEvent(cloudEvent, AvcEvent.class)
+        and: 'the target event has the same key as the source event to maintain the ordering in a partition'
+            assert record.key() == consumerRecord.key()
         and: 'we have correct headers forwarded where correlation id matches'
             assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_correlationid') == 'test-cmhandle1'
         and: 'event id is same between consumed and forwarded'

@@ -46,7 +46,8 @@ public class CmAvcEventConsumer {
     private final EventsPublisher<CloudEvent> eventsPublisher;
 
     /**
-     * Incoming AvcEvent in the form of Consumer Record.
+     * Incoming Cm AvcEvent in the form of Consumer Record, it will be forwarded as is to a target topic.
+     * The key from incoming record will be used as key for the target topic as well to preserve the message ordering.
      *
      * @param cmAvcEventAsConsumerRecord Incoming raw consumer record
      */
@@ -55,7 +56,8 @@ public class CmAvcEventConsumer {
     public void consumeAndForward(
             final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
-        log.debug("Consuming AVC event {} ...", outgoingAvcEvent);
-        eventsPublisher.publishCloudEvent(cmEventsTopicName, outgoingAvcEvent.getId(), outgoingAvcEvent);
+        final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
+        log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
+        eventsPublisher.publishCloudEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 }
