@@ -121,6 +121,24 @@
       "parentUuid": "511d0125_96e2603c",
       "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de0fa2e7_2199cb80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T17:21:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f04e5f81_85589a90",
+      "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
