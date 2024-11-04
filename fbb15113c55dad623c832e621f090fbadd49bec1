@@ -33,6 +33,24 @@
       "message": "was also thinking if we need a separate docker network for the endurance test??\nif not then it will rely on the default network.\ni dont see any network related section in our docker-compose.",
       "revId": "fbb15113c55dad623c832e621f090fbadd49bec1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f295bc_0c1cc0c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-04T10:00:21Z",
+      "side": 1,
+      "message": "Good question, actually by providing a project name during the init of compose, it will create separate network and volumes:\n\n--project-name endurance",
+      "parentUuid": "94ea3c9e_740deb53",
+      "revId": "fbb15113c55dad623c832e621f090fbadd49bec1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
