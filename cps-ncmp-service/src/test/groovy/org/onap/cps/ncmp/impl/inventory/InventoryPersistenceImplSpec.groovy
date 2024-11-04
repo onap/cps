@@ -28,17 +28,16 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.BasicClassIntrospector
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -313,8 +312,24 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'getting the cm handle data node'
             objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id')
         then: 'no data found exception thrown'
-            def thrownException = thrown(DataNodeNotFoundException)
-            assert thrownException.getMessage().contains('DataNode not found')
+            def thrownException = thrown(CmHandleNotFoundException)
+            assert thrownException.getMessage().contains('Cm handle not found')
+    }
+
+    def 'Attempt to find cm handle match without any matches.'() {
+        when: 'attempt to find alternate Id and mock cm handle query response'
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_,_) >> []
+            objectUnderTest.getCmHandleDataNodeByAlternateId(targetCmHandleReference)
+        then: 'no cm handle match found exception thrown'
+            def thrown = thrown(CmHandleNotFoundException)
+        and: 'the exception has the relevant details from the error response'
+            assert thrown.message == 'Cm handle not found'
+            assert thrown.details == 'Cm handle does not exist for cm handle reference ' + targetCmHandleReference
+        where: 'the following parameters are used'
+            scenario                   | targetCmHandleReference
+            'no match for parent only' | '/a'
+            'no match for other child' | '/a/c'
+            'no match at all'          | '/x/y'
     }
 
     def 'Get multiple cm handle data nodes by alternate ids'() {

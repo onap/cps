@@ -32,6 +32,7 @@ class CpsExceptionsSpec extends Specification {
     def providedDetails = 'some details'
     def xpath = 'some xpath'
     def additionalInformation = 'some information'
+    def cmHadleReference = 'some cm handle reference'
 
     def 'Creating an exception that the Anchor already exist.'() {
         given: 'an exception dat the Anchor already exist is created'
