@@ -400,7 +400,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
             0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_, CmHandleState.DELETED)
         where:
         scenario                     | cmHandleId             | deleteListElementException                || expectedError        | expectedErrorText
-        'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
+        'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle reference(s) not found'
         'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
         'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
