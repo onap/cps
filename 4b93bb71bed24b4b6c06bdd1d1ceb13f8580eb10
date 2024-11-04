@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "548b38c7_27c11d76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-04T17:16:02Z",
+      "side": 1,
+      "message": "NB: You can simplify the method performModuleSync by extracting some part of it into a private method like below:\n\npublic CompletableFuture\u003cVoid\u003e performModuleSync(final Collection\u003cDataNode\u003e cmHandlesAsDataNodes, final AtomicInteger batchCounter) {\n        final Map\u003cYangModelCmHandle, CmHandleState\u003e cmHandleStatePerCmHandle \u003d\n            new HashMap\u003c\u003e(cmHandlesAsDataNodes.size());\n        try {\n            cmHandlesAsDataNodes.forEach(cmHandleAsDataNode -\u003e {\n                final YangModelCmHandle yangModelCmHandle \u003d YangDataConverter.toYangModelCmHandle(cmHandleAsDataNode);\n                final CompositeState compositeState \u003d inventoryPersistence.getCmHandleState(yangModelCmHandle.getId());\n                final boolean inUpgrade \u003d ModuleOperationsUtils.inUpgradeOrUpgradeFailed(compositeState);\n                processCmHandle(yangModelCmHandle, compositeState, inUpgrade, cmHandleStatePerCmHandle);\n            });\n        } finally {\n            batchCounter.getAndDecrement();\n            lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);\n            log.info(\"Processing module sync batch finished. {} batch(es) active.\", batchCounter.get());\n        }\n        return CompletableFuture.completedFuture(null);\n    }\n    \nprivate void processCmHandle(final YangModelCmHandle yangModelCmHandle,\n                                 final CompositeState compositeState,\n                                 final boolean inUpgrade,\n                                 final Map\u003cYangModelCmHandle, CmHandleState\u003e cmHandleStatePerCmHandle) {\n        try {\n            if (inUpgrade) {\n                moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);\n            } else {\n                moduleSyncService.deleteSchemaSetIfExists(yangModelCmHandle.getId());\n                moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);\n            }\n            yangModelCmHandle.getCompositeState().setLockReason(null);\n            cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.READY);\n        } catch (final Exception e) {\n            log.warn(\"Processing of {} module failed due to reason {}.\", yangModelCmHandle.getId(), e.getMessage());\n            final LockReasonCategory lockReasonCategory \u003d inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED\n                : LockReasonCategory.MODULE_SYNC_FAILED;\n            moduleOperationsUtils.updateLockReasonWithAttempts(compositeState,\n                lockReasonCategory, e.getMessage());\n            setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());\n            cmHandleStatePerCmHandle.put(yangModelCmHandle, CmHandleState.LOCKED);\n        }\n    }",
+      "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1614c009_12dbf6b1",
