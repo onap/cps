@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20eb7246_e3598ed8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-04T14:54:50Z",
+      "side": 1,
+      "message": "Based on the discussion on the call, and offline chat with Toine. I am ok now. Thanks.",
+      "revId": "3db2da4634eb2f0b64042ce040210616327e6681",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
