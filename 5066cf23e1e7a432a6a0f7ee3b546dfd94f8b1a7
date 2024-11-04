@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "5066cf23e1e7a432a6a0f7ee3b546dfd94f8b1a7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "532c0d9f_57ae90a5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-04T13:10:53Z",
+      "side": 1,
+      "message": "\"and:\" is fine here as then sequence of these asserts are not relevant",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "5066cf23e1e7a432a6a0f7ee3b546dfd94f8b1a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
