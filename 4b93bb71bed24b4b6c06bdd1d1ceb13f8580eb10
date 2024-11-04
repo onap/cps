@@ -16,6 +16,24 @@
       "message": "do u think we should flip #89 and 90 ??\nfirst let it update and then only mark the batch as done.",
       "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "728dc4ae_a96fd3f3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-04T15:45:26Z",
+      "side": 1,
+      "message": "No. If an exception occurred while updating the state (e.g. DB timeout), then the counter would not decrement, meaning that worker thread would not process any more batches.",
+      "parentUuid": "1614c009_12dbf6b1",
+      "revId": "4b93bb71bed24b4b6c06bdd1d1ceb13f8580eb10",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
