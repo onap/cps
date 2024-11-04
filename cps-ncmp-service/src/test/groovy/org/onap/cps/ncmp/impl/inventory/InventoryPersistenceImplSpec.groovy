@@ -28,17 +28,16 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import org.onap.cps.spi.model.ModuleDefinition
 import org.onap.cps.spi.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.BasicClassIntrospector
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -313,8 +312,8 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'getting the cm handle data node'
             objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id')
         then: 'no data found exception thrown'
-            def thrownException = thrown(DataNodeNotFoundException)
-            assert thrownException.getMessage().contains('DataNode not found')
+            def thrownException = thrown(CmHandleNotFoundException)
+            assert thrownException.getMessage().contains('Cm handle not found')
     }
 
     def 'Get multiple cm handle data nodes by alternate ids'() {
