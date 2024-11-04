@@ -24,9 +24,11 @@ services:
   ### docker-compose --profile dmi-stub --profile policy-executor-stub up -d -> run CPS with stubbed dmi-plugin and policy executor stub (for policy executor service testing make POLICY_SERVICE_ENABLED "true")
   ### to disable notifications make notification.enabled to false & comment out kafka/zookeeper services ###
   ### DEBUG: Look for '### DEBUG' comments to enable CPS-NCMP debugging
+  ### docker-compose --profile dmi-stub --project-name endurance --env-file config/endurance.env up -d -> run CPS with stubbed dmi-plugin for endurance testing
+  ### docker-compose --profile dmi-stub --project-name endurance down --volumes
 
   dbpostgresql:
-    container_name: dbpostgresql
+    container_name: ${DB_CONTAINER_NAME:-dbpostgresql}
     image: postgres:14.1-alpine
     ports:
       - ${DB_PORT:-5432}:5432
@@ -80,7 +82,7 @@ services:
     ### DEBUG  - ${CPS_CORE_DEBUG_PORT:-5005}:5005
 
   nginx:
-    container_name: nginx-loadbalancer
+    container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
     image: nginx:latest
     ports:
       - ${CPS_CORE_PORT:-8883}:80
@@ -93,17 +95,17 @@ services:
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
     image: confluentinc/cp-zookeeper:6.2.1
-    container_name: zookeeper
+    container_name: ${ZOOKEEPER_CONTAINER_NAME:-zookeeper}
     ports:
-      - '2181:2181'
+      - ${ZOOKEEPER_PORT:-2181}:2181
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
     image: confluentinc/cp-kafka:6.2.1
-    container_name: kafka
+    container_name: ${KAFKA_CONTAINER_NAME:-kafka}
     ports:
-      - '9092:9092'
+      - ${KAFKA_PORT:-9092}:9092
     depends_on:
       - zookeeper
     environment:
@@ -114,7 +116,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   ncmp-dmi-plugin:
-    container_name: ncmp-dmi-plugin
+    container_name: ${NCMP_DMI_PLUGIN_CONTAINER_NAME:-ncmp-dmi-plugin}
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.6.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
@@ -139,7 +141,7 @@ services:
       - dmi-service
 
   ncmp-dmi-plugin-demo-and-csit-stub:
-    container_name: ncmp-dmi-plugin-demo-and-csit-stub
+    container_name: ${NCMP_DMI_PLUGIN_DEMO_AND_CSIT_STUB_CONTAINER_NAME:-ncmp-dmi-plugin-demo-and-csit-stub}
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-plugin-demo-and-csit-stub:${DMI_DEMO_STUB_VERSION:-latest}
     ports:
       - ${DMI_DEMO_STUB_PORT:-8784}:8092
@@ -158,19 +160,19 @@ services:
       - dmi-service
 
   policy-executor-stub:
-    container_name: policy-executor-stub
+    container_name: ${POLICY_EXECUTOR_STUB_CONTAINER_NAME:-policy-executor-stub}
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
     ports:
-      - 8785:8093
+      - ${POLICY_EXECUTOR_STUB_PORT:-8785}:8093
     restart: unless-stopped
     profiles:
       - policy-executor-stub
 
   prometheus:
-    container_name: prometheus
+    container_name: ${PROMETHEUS_CONTAINER_NAME:-prometheus}
     image: prom/prometheus:latest
     ports:
-      - 9090:9090
+      - ${PROMETHEUS_PORT:-9090}:9090
     restart: always
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -180,12 +182,12 @@ services:
   grafana:
     image: grafana/grafana-oss:latest
     user: ""
-    container_name: grafana
+    container_name: ${GRAFANA_CONTAINER_NAME:-grafana}
     depends_on:
       prometheus:
         condition: service_started
     ports:
-      - 3000:3000
+      - ${GRAFANA_PORT:-3000}:3000
     volumes:
       - ./config/grafana/provisioning/:/etc/grafana/provisioning/
       - ./config/grafana/jvm-micrometer-dashboard.json:/var/lib/grafana/dashboards/jvm-micrometer-dashboard.json
@@ -197,10 +199,10 @@ services:
       - monitoring
 
   kafka-ui:
-    container_name: kafka-ui
+    container_name: ${KAFKA_UI_CONTAINER_NAME:-kafka-ui}
     image: provectuslabs/kafka-ui:latest
     ports:
-      - 8089:8080
+      - ${KAFKA_UI_PORT:-8089}:8080
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
       KAFKA_CLUSTERS_0_NAME: 'cps-kafka-local'
@@ -209,10 +211,10 @@ services:
       - monitoring
 
   jaeger-service:
-    container_name: jaeger-service
+    container_name: ${JAEGER_SERVICE_CONTAINER_NAME:-jaeger-service}
     image: jaegertracing/all-in-one:latest
     ports:
-      - 16686:16686
+      - ${JAEGER_SERVICE_PORT:-16686}:16686
     restart: unless-stopped
     profiles:
       - tracing
