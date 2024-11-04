@@ -41,6 +41,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d59a135_ece27ff3",
+        "filename": "checkstyle/src/main/resources/onap-checkstyle/onap-java-style.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-04T14:14:05Z",
+      "side": 1,
+      "message": "Renamed as : cps_java_style",
+      "parentUuid": "1eaba7b6_4d0f1942",
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a70ca57_a51e52ec",
@@ -54,6 +72,30 @@
       "writtenOn": "2024-11-04T08:35:43Z",
       "side": 1,
       "message": "ok, that is an issue :-)",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b97362_25a9e35d",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-04T14:14:05Z",
+      "side": 1,
+      "message": "Reverted",
+      "parentUuid": "3a70ca57_a51e52ec",
       "range": {
         "startLine": 40,
         "startChar": 8,
@@ -87,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98330525_d5a5f5cf",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/DeprecationHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-04T14:14:05Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "20e9e21c_41fc5100",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "672ed465_ba0f420f",
@@ -110,6 +176,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8696f637_9cca5dd6",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-04T14:14:05Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "672ed465_ba0f420f",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24c6930f_4bfc4c00",
@@ -123,6 +213,30 @@
       "writtenOn": "2024-11-04T08:35:43Z",
       "side": 1,
       "message": "what is this for? can we give a clearer name?",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "revId": "74dcb980aa05a844969e6ae1707510798146b3bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2552b57d_097f90b9",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-04T14:14:05Z",
+      "side": 1,
+      "message": "dependency-vulnerability-check",
+      "parentUuid": "24c6930f_4bfc4c00",
       "range": {
         "startLine": 106,
         "startChar": 16,
