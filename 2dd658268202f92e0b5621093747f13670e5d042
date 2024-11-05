@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2254323_b860ad29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-05T08:34:53Z",
+      "side": 1,
+      "message": "just one question but it is not blocking",
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a91470_06a9a712",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-05T08:34:53Z",
+      "side": 1,
+      "message": "always worry a bit about random. It means the same key could be used multipel times... Could that cause an issue with the test?!\nWhy dont you just use sequential? Maybe you cant because you need to send many more events then available elements....",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
