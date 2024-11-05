@@ -171,8 +171,8 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
-    @Timed(value = "cps.module.service.module.reference.query",
-            description = "Time taken to query list of module references")
+    @Timed(value = "cps.module.service.module.reference.query.by.attribute",
+            description = "Time taken to query list of module references by attribute (e.g moduleSetTag)")
     @Override
     public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
                                                                       final String anchorName,
