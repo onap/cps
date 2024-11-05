@@ -39,6 +39,30 @@
       },
       "revId": "28b037cade833be8af3dae8b72ef54ac317e06cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883e3cc0_4044d375",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-05T10:31:00Z",
+      "side": 1,
+      "message": "edit: Collectors.joining line has a typo: extra quote in \" or \"",
+      "parentUuid": "73cd4e9d_422c1d66",
+      "range": {
+        "startLine": 138,
+        "startChar": 54,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "28b037cade833be8af3dae8b72ef54ac317e06cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
