@@ -218,8 +218,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public Collection<String> getCmHandleReferencesWithGivenModules(final Collection<String> moduleNamesForQuery,
-                                                                    final Boolean outputAlternateIds) {
-        if (Boolean.TRUE.equals(outputAlternateIds)) {
+                                                                    final boolean outputAlternateIds) {
+        if (outputAlternateIds) {
             final Collection<String> cmHandleIds =
                 cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
             return getAlternateIdsFromDataNodes(getCmHandleDataNodes(cmHandleIds));

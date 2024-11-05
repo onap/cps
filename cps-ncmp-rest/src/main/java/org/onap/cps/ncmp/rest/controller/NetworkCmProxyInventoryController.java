@@ -74,12 +74,17 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * Get all cm-handle IDs under a registered DMI plugin.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
+     * @param outputAlternateId   Boolean for cm handle reference type either
+     *                            cm handle id (False) or alternate id (True)
      * @return list of cm handle IDs
      */
     @Override
-    public ResponseEntity<List<String>> getAllCmHandleIdsForRegisteredDmi(final String dmiPluginIdentifier) {
+    public ResponseEntity<List<String>> getAllCmHandleReferencesForRegisteredDmi(final String dmiPluginIdentifier,
+                                                                                 final Boolean outputAlternateId) {
+
         final Collection<String> cmHandleIds =
-            networkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            networkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier,
+                outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 

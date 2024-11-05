@@ -200,22 +200,31 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             'additional properties, no matching cm handles'   | 'hasAllAdditionalProperties' | null                                  | []                                     || 0
     }
 
-    def 'Retrieve CMHandleIds by different DMI properties with #scenario.' () {
+    def 'Retrieve alternate ids by different DMI properties.' () {
         given: 'a query object created with dmi plugin as condition'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = createConditionProperties('cmHandleWithDmiPlugin', [['some-key': 'some-value']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
-            partiallyMockedCmHandleQueries.getCmHandleIdsByDmiPluginIdentifier(*_) >> cmHandleQueryResult
-            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(*_) >> cmHandleQueryResult
+            partiallyMockedCmHandleQueries.getCmHandleReferencesMapByDmiPluginIdentifier(*_) >> [:]
         when: 'the query executed'
-            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, outputAlternateId)
+            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, true)
         then: 'the expected number of results are returned.'
-            assert result.size() == expectedCmHandleIdsSize
-        where: 'the following data is used'
-            scenario       | cmHandleQueryResult | outputAlternateId || expectedCmHandleIdsSize
-            'some matches' | ['h1','h2']         | false             || 2
-            'no matches'   | [:]                  | true              || 0
+            assert result.size() == 0
+    }
+
+    def 'Retrieve cm handle ids by different DMI properties.' () {
+        given: 'a query object created with dmi plugin as condition'
+            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+            def conditionProperties = createConditionProperties('cmHandleWithDmiPlugin', [['some-key': 'some-value']])
+            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+        and: 'the inventoryPersistence returns different CmHandleIds'
+            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(_, _) >> ['h1','h2']
+        when: 'the query executed'
+            def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, false)
+        then: 'the expected number of results are returned.'
+            assert result.size() == 2
+
     }
 
     def 'Combine two query results where #scenario.'() {

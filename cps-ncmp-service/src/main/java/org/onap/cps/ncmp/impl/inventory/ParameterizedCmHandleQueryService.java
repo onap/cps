@@ -38,7 +38,7 @@ public interface ParameterizedCmHandleQueryService {
      * @return collection of cm handle ids or alternate ids
      */
     Collection<String> queryCmHandleReferenceIds(CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
-                                                 Boolean outputAlternateId);
+                                                 boolean outputAlternateId);
 
     /**
      * Query and return cm handle ids or alternate ids that match the given query parameters.
@@ -54,7 +54,7 @@ public interface ParameterizedCmHandleQueryService {
      * @return collection of cm handle ids
      */
     Collection<String> queryCmHandleIdsForInventory(CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
-                                                    Boolean outputAlternateId);
+                                                    boolean outputAlternateId);
 
     /**
      * Query and return cm handle objects that match the given query parameters.

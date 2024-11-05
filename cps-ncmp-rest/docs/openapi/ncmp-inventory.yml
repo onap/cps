@@ -96,15 +96,16 @@ updateDmiRegistration:
                 }
               ]
 
-getAllCmHandleIdsForRegisteredDmi:
+getAllCmHandleReferencesForRegisteredDmi:
   get:
-    description: Get all cm handle IDs for a registered DMI plugin
+    description: Get all cm handle references for a registered DMI plugin
     tags:
       - network-cm-proxy-inventory
-    summary: Get all cm handle IDs for a registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)
-    operationId: getAllCmHandleIdsForRegisteredDmi
+    summary: Get all cm handle references for a registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin)
+    operationId: getAllCmHandleReferencesForRegisteredDmi
     parameters:
       - $ref: 'components.yaml#/components/parameters/dmiPluginIdentifierInQuery'
+      - $ref: 'components.yaml#/components/parameters/outputAlternateIdOptionInQuery'
     responses:
       200:
         description: OK
@@ -121,7 +122,7 @@ getAllCmHandleIdsForRegisteredDmi:
 
 searchCmHandleIds:
   post:
-    description: Query and get CMHandle references for additional properties, public properties and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin).
+    description: Query and get cm handle references for additional properties, public properties and registered DMI plugin (DMI plugin, DMI data plugin, DMI model plugin).
     tags:
       - network-cm-proxy-inventory
     summary: Query for CM Handle IDs
