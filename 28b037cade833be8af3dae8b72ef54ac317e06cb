@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "28b037cade833be8af3dae8b72ef54ac317e06cb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73cd4e9d_422c1d66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-05T10:27:59Z",
+      "side": 1,
+      "message": "This may also work:\n\n    public Collection\u003cYangModelCmHandle\u003e getYangModelCmHandlesFromCmHandleReferences(\n            final Collection\u003cString\u003e cmHandleReferences) {\n        \n        final String cpsPathForCmHandlesByReferences \u003d getCpsPathForCmHandlesByReferences(cmHandleReferences);\n        \n        final Collection\u003cDataNode\u003e cmHandlesAsDataNodes \u003d\n            cmHandleQueryService.queryNcmpRegistryByCpsPath(\n                cpsPathForCmHandlesByReferences, INCLUDE_ALL_DESCENDANTS);\n\n        return YangDataConverter.toYangModelCmHandles(cmHandlesAsDataNodes);\n    }\n\n    // This makes a string like:\n    \"/cm-handles[@id\u003d\u0027x\u0027 or @alternate-id\u003d\u0027x\u0027 or or @id\u003d\u0027y\u0027 or @alternate-id\u003d\u0027y\u0027]\"\n    private String getCpsPathForCmHandlesByReferences(final Collection\u003cString\u003e cmHandleReferences) { \n        return alternateIds.stream()\n            .flatMap(id -\u003e Stream.of(\"@id\u003d\u0027\" + id + \"\u0027\", \"@alternate-id\u003d\u0027\" + id + \"\u0027\"))\n            .collect(Collectors.joining(\"\u0027 or \", NCMP_DMI_REGISTRY_PARENT + \"/cm-handles[\", \"]\"));\n    }",
+      "range": {
+        "startLine": 138,
+        "startChar": 54,
+        "endLine": 147,
+        "endChar": 34
+      },
+      "revId": "28b037cade833be8af3dae8b72ef54ac317e06cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
