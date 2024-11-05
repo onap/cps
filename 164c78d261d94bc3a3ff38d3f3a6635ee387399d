@@ -70,6 +70,30 @@
       },
       "revId": "164c78d261d94bc3a3ff38d3f3a6635ee387399d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b26315a_9f3193c2",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-05T10:56:27Z",
+      "side": 1,
+      "message": "Reverting back : \n\nMinor discrepancy between the local build and the ONAP pipeline. While my local build completes without issue, the pipeline logs a warning regarding a missing version specification for maven-resources-plugin. Specifically:\n\nSome problems were encountered while building the effective model for org.onap.cps:cps-rest:jar:3.5.5-SNAPSHOT \u0027build.plugins.plugin.version\u0027 for org.apache.maven.plugins:maven-resources-plugin is missing.\n\nAlthough this doesn’t impact the build locally, it may be worth addressing in a future update to ensure consistency across environments.",
+      "parentUuid": "acebbc88_7ee1ec32",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 78
+      },
+      "revId": "164c78d261d94bc3a3ff38d3f3a6635ee387399d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
