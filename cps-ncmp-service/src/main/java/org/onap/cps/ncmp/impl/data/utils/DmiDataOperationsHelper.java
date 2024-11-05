@@ -71,7 +71,7 @@ public class DmiDataOperationsHelper {
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
         final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus,
                 List<String>>> cmHandleReferencesPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
-        final Map<String, String> nonReadyCmHandleReferencesLookup =
+        final Map<String, String> getNonReadyAlternateIdPerCmHandleId =
             filterAndGetNonReadyCmHandleReferences(yangModelCmHandles);
 
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
@@ -87,8 +87,8 @@ public class DmiDataOperationsHelper {
             final List<String> nonExistingCmHandleReferences = new ArrayList<>();
             final List<String> nonReadyCmHandleReferences = new ArrayList<>();
             for (final String cmHandleReference : dataOperationDefinitionIn.getCmHandleReferences()) {
-                if (nonReadyCmHandleReferencesLookup.containsKey(cmHandleReference)
-                    || nonReadyCmHandleReferencesLookup.containsValue(cmHandleReference)) {
+                if (getNonReadyAlternateIdPerCmHandleId.containsKey(cmHandleReference)
+                    || getNonReadyAlternateIdPerCmHandleId.containsValue(cmHandleReference)) {
                     nonReadyCmHandleReferences.add(cmHandleReference);
                 } else {
                     final String cmHandleId = getCmHandleId(cmHandleReference, yangModelCmHandles);

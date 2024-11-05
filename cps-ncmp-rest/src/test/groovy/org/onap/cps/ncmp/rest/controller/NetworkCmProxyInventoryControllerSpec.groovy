@@ -234,11 +234,11 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             'delete upgrade failed' | expectedSuccessResponse('cm-handle-1') | expectedSuccessResponse('cm-handle-2') | expectedFailedResponse('cm-handle-3')  | expectedFailedResponse('cm-handle-4')  || []                                            | []                                            | [expectedUnknownErrorResponse('cm-handle-3')] | [expectedUnknownErrorResponse('cm-handle-4')]
     }
 
-    def 'Get all cm handle IDs by DMI plugin identifier.'() {
-        given: 'an endpoint for returning cm handle IDs for a registered dmi plugin'
+    def 'Get all cm handle references by DMI plugin identifier.'() {
+        given: 'an endpoint for returning cm handle references for a registered dmi plugin'
             def getUrl = "$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi-plugin-identifier"
-        and: 'a collection of cm handle IDs are returned'
-            1 * mockNetworkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+        and: 'a collection of cm handle references are returned'
+            1 * mockNetworkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', false)
                     >> ['cm-handle-id-1','cm-handle-id-2']
         when: 'the endpoint is invoked'
             def response = mvc.perform(

@@ -100,19 +100,21 @@ public interface CmHandleQueryService {
     Collection<DataNode> queryCmHandlesByOperationalSyncState(DataStoreSyncState dataStoreSyncState);
 
     /**
-     * Get all cm handles ids by DMI plugin identifier.
+     * Get collection of all cm handles references by DMI plugin identifier and alternate id output option.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
+     * @param outputAlternateId   boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return collection of cm handle ids
      */
-    Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Collection<String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier,
+                                                                  Boolean outputAlternateId);
 
     /**
-     * Get map of cmHandle ids and alternate ids by DMI plugin identifier.
+     * Get map of cmHandle references by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
      * @return map of cmHandle references key:CmHandleId Value:AlternateId
      */
-    Map<String, String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(String dmiPluginIdentifier);
 
 }
