@@ -34,7 +34,7 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         objectUnderTest = moduleSyncWatchdog
-        registerSequenceOfCmHandlesWithoutWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, SYNC_SAMPLE_SIZE)
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, SYNC_SAMPLE_SIZE, 1)
     }
 
     def cleanup() {
