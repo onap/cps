@@ -114,9 +114,11 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
             .get(PropertyType.DMI_PLUGIN.getYangContainerName());
 
         if (Boolean.TRUE.equals(outputAlternateId)) {
-            return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue).values();
+            return
+                cmHandleQueryService.getCmHandleReferencesMapByDmiPluginIdentifier(dmiPluginIdentifierValue).values();
         } else {
-            return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
+            return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue,
+                outputAlternateId);
         }
     }
 

@@ -78,15 +78,20 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.contains('cmHandle2')
     }
 
-    def 'Get all cm handle IDs by DMI plugin identifier.' () {
-        given: 'cm handle queries service returns cm handles'
-            1 * mockCmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier') >> ['cm-handle-1','cm-handle-2']
-        when: 'cm handle Ids are requested with dmi plugin identifier'
-            def result = objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+    def 'Get all cm handle references by DMI plugin identifier and alternate id output option.' () {
+        given: 'cm handle queries service returns cm handle references'
+            mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', false) >> ['cm-handle-1','cm-handle-2']
+            mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', true) >> ['alternate-id-1','alternate-id-2']
+        when: 'cm handle references are requested with dmi plugin identifier and alternate id output option'
+            def result = objectUnderTest.getAllCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', outputAlternateId)
         then: 'the result size is correct'
             assert result.size() == 2
         and: 'the result returns the correct details'
-            assert result.containsAll('cm-handle-1','cm-handle-2')
+            assert result.containsAll(expectedResult)
+        where:
+            scenario                        | outputAlternateId || expectedResult
+            'output is for alternate ids'   | true              || ['alternate-id-1', 'alternate-id-2']
+            'output is for cm handle ids'   | false             || ['cm-handle-1','cm-handle-2']
     }
 
     def 'Getting Yang Resources for a given #scenario'() {
