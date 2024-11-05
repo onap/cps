@@ -77,9 +77,11 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * @return list of cm handle IDs
      */
     @Override
-    public ResponseEntity<List<String>> getAllCmHandleIdsForRegisteredDmi(final String dmiPluginIdentifier) {
+    public ResponseEntity<List<String>> getAllCmHandleReferencesForRegisteredDmi(final String dmiPluginIdentifier,
+                                                                                 final Boolean outputAlternateId) {
         final Collection<String> cmHandleIds =
-            networkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+            networkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier,
+                outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 

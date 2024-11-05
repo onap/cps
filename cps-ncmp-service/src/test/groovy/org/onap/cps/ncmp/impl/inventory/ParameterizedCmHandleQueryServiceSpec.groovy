@@ -206,7 +206,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithDmiPlugin', [['some-key': 'some-value']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
-            partiallyMockedCmHandleQueries.getCmHandleIdsByDmiPluginIdentifier(*_) >> cmHandleQueryResult
+            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(_, _) >> cmHandleQueryResult
             partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(*_) >> cmHandleQueryResult
         when: 'the query executed'
             def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, outputAlternateId)
@@ -215,7 +215,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         where: 'the following data is used'
             scenario       | cmHandleQueryResult | outputAlternateId || expectedCmHandleIdsSize
             'some matches' | ['h1','h2']         | false             || 2
-            'no matches'   | [:]                  | true              || 0
+            'no matches'   | [:]                 | true              || 0
     }
 
     def 'Combine two query results where #scenario.'() {

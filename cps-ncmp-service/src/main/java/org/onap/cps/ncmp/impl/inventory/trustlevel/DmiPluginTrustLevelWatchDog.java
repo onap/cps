@@ -66,7 +66,7 @@ public class DmiPluginTrustLevelWatchDog {
                 log.debug("The Dmi Plugin: {} has already the same trust level: {}", dmiServiceName, newDmiTrustLevel);
             } else {
                 final Collection<String> cmHandleIds =
-                    cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiServiceName);
+                    cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiServiceName, false);
                 trustLevelManager.updateDmi(dmiServiceName, cmHandleIds, newDmiTrustLevel);
             }
         });

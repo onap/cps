@@ -80,9 +80,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Get all cm handle IDs by DMI plugin identifier.' () {
         given: 'cm handle queries service returns cm handles'
-            1 * mockCmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier') >> ['cm-handle-1','cm-handle-2']
+            1 * mockCmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', false) >> ['cm-handle-1','cm-handle-2']
         when: 'cm handle Ids are requested with dmi plugin identifier'
-            def result = objectUnderTest.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+            def result = objectUnderTest.getAllCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', false)
         then: 'the result size is correct'
             assert result.size() == 2
         and: 'the result returns the correct details'

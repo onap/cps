@@ -122,16 +122,21 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<String> getCmHandleIdsByDmiPluginIdentifier(final String dmiPluginIdentifier) {
-        final Collection<String> cmHandleIds = new HashSet<>();
+    public Collection<String> getCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier,
+                                                                  final Boolean outputAlternateId) {
+        final Collection<String> cmHandleReferences = new HashSet<>();
         for (final ModelledDmiServiceLeaves modelledDmiServiceLeaf : ModelledDmiServiceLeaves.values()) {
             for (final DataNode cmHandleAsDataNode: getCmHandlesByDmiPluginIdentifierAndDmiProperty(
                     dmiPluginIdentifier,
                     modelledDmiServiceLeaf.getLeafName())) {
-                cmHandleIds.add(cmHandleAsDataNode.getLeaves().get("id").toString());
+                if (Boolean.TRUE.equals(outputAlternateId)) {
+                    cmHandleReferences.add(cmHandleAsDataNode.getLeaves().get(ALTERNATE_ID).toString());
+                } else {
+                    cmHandleReferences.add(cmHandleAsDataNode.getLeaves().get("id").toString());
+                }
             }
         }
-        return cmHandleIds;
+        return cmHandleReferences;
     }
 
     @Override

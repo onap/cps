@@ -238,7 +238,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         given: 'an endpoint for returning cm handle IDs for a registered dmi plugin'
             def getUrl = "$ncmpBasePathV1/ch/cmHandles?dmi-plugin-identifier=some-dmi-plugin-identifier"
         and: 'a collection of cm handle IDs are returned'
-            1 * mockNetworkCmProxyInventoryFacade.getAllCmHandleIdsByDmiPluginIdentifier('some-dmi-plugin-identifier')
+            1 * mockNetworkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier('some-dmi-plugin-identifier', false)
                     >> ['cm-handle-id-1','cm-handle-id-2']
         when: 'the endpoint is invoked'
             def response = mvc.perform(

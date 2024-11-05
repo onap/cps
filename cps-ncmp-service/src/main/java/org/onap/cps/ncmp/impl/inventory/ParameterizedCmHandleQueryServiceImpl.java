@@ -116,7 +116,8 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (Boolean.TRUE.equals(outputAlternateId)) {
             return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue).values();
         } else {
-            return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifierValue);
+            return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue,
+                outputAlternateId);
         }
     }
 

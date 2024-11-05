@@ -203,7 +203,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'cm Handles are fetched for a given dmi plugin identifier'
-            def result = objectUnderTest.getCmHandleIdsByDmiPluginIdentifier('my-dmi-plugin-identifier')
+            def result = objectUnderTest.getCmHandleReferencesByDmiPluginIdentifier('my-dmi-plugin-identifier', false)
         then: 'result is the correct size'
             assert result.size() == 3
         and: 'result contains the correct cm handles'
