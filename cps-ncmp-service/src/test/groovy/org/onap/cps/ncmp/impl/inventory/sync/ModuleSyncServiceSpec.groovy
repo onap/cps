@@ -75,7 +75,7 @@ class ModuleSyncServiceSpec extends Specification {
         where: 'the following parameters are used'
             scenario                  | identifiedNewModuleReferences         | newModuleNameContentToMap     | moduleSetTag | existingModuleReferences
             'one new module, new tag' | [new ModuleReference('module1', '1')] | [module1: 'some yang source'] | ''           | []
-            'no new module, new tag'  | []                                    | [:]                           | 'new-tag-1'  | []
+            'no new module, new tag'  | []                                    | [:]                           | 'new-tag'    | []
             'same tag'                | []                                    | [:]                           | 'same-tag'   | [new ModuleReference('module1', '1'), new ModuleReference('module2', '2')]
     }
 
