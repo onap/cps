@@ -1,5 +1,75 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49a9eab0_0e1fb6ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-05T10:12:24Z",
+      "side": 1,
+      "message": "NB: This method currently combines error handling, state updating, and operations on the CM handle within a single function. Splitting some parts into helper methods could improve readability.\n\n\n\nprocessModuleSyncFailure(yangModelCmHandle, compositeState, inUpgrade, e);\n\n private void processModuleSyncFailure(final YangModelCmHandle yangModelCmHandle, \n                                       final CompositeState compositeState, \n                                       final boolean inUpgrade, \n                                       final Exception e) {\n        log.warn(\"Failed to process module {}: {}\", yangModelCmHandle.getId(), e.getMessage());\n        LockReasonCategory lockReasonCategory \u003d inUpgrade ? LockReasonCategory.MODULE_UPGRADE_FAILED : LockReasonCategory.MODULE_SYNC_FAILED;\n        \n        moduleOperationsUtils.updateLockReasonWithAttempts(compositeState, lockReasonCategory, e.getMessage());\n        setCmHandleStateLocked(yangModelCmHandle, compositeState.getLockReason());\n    }",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 86
+      },
+      "revId": "c475188530572efedbcb606239da0cdcee48c05b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d59f068_094216ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-05T10:12:24Z",
+      "side": 1,
+      "message": "NB:  If setCmHandleStateLocked is used in multiple places, it could be justified as a utility for setting a locked state. However, if it is only used once, it would simplify the code to remove it and perform advisedCmHandle.getCompositeState().setLockReason(lockReason); directly in the calling method.",
+      "range": {
+        "startLine": 120,
+        "startChar": 17,
+        "endLine": 120,
+        "endChar": 39
+      },
+      "revId": "c475188530572efedbcb606239da0cdcee48c05b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd3ebda_302f70c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-05T10:12:24Z",
+      "side": 1,
+      "message": "NB: Recommendation: Keep as it provides encapsulation for the map operation and logging behavior, improving readability.",
+      "range": {
+        "startLine": 125,
+        "startChar": 17,
+        "endLine": 125,
+        "endChar": 53
+      },
+      "revId": "c475188530572efedbcb606239da0cdcee48c05b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
