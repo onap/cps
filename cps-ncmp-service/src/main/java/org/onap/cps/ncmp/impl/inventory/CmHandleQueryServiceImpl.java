@@ -122,20 +122,25 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<String> getCmHandleIdsByDmiPluginIdentifier(final String dmiPluginIdentifier) {
-        final Collection<String> cmHandleIds = new HashSet<>();
+    public Collection<String> getCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier,
+                                                                  final Boolean outputAlternateId) {
+        final Collection<String> cmHandleReferences = new HashSet<>();
         for (final ModelledDmiServiceLeaves modelledDmiServiceLeaf : ModelledDmiServiceLeaves.values()) {
             for (final DataNode cmHandleAsDataNode: getCmHandlesByDmiPluginIdentifierAndDmiProperty(
                     dmiPluginIdentifier,
                     modelledDmiServiceLeaf.getLeafName())) {
-                cmHandleIds.add(cmHandleAsDataNode.getLeaves().get("id").toString());
+                if (Boolean.TRUE.equals(outputAlternateId)) {
+                    cmHandleReferences.add(cmHandleAsDataNode.getLeaves().get(ALTERNATE_ID).toString());
+                } else {
+                    cmHandleReferences.add(cmHandleAsDataNode.getLeaves().get("id").toString());
+                }
             }
         }
-        return cmHandleIds;
+        return cmHandleReferences;
     }
 
     @Override
-    public Map<String, String> getCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+    public Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(final String dmiPluginIdentifier) {
         final Map<String, String> cmHandleReferencesMap = new HashMap<>();
         for (final ModelledDmiServiceLeaves modelledDmiServiceLeaf : ModelledDmiServiceLeaves.values()) {
             for (final DataNode cmHandleAsDataNode: getCmHandlesByDmiPluginIdentifierAndDmiProperty(
@@ -156,7 +161,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             final String dmiPluginIdentifier = mapEntry.getKey();
             final TrustLevel dmiTrustLevel = mapEntry.getValue();
             final Map<String, String> candidateCmHandleReferences =
-                getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier);
+                getCmHandleReferencesMapByDmiPluginIdentifier(dmiPluginIdentifier);
             for (final Map.Entry<String, String> candidateCmHandleReference : candidateCmHandleReferences.entrySet()) {
                 final TrustLevel candidateCmHandleTrustLevel =
                     trustLevelPerCmHandle.get(candidateCmHandleReference.getKey());
