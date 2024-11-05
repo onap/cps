@@ -20,8 +20,10 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import com.hazelcast.collection.ISet;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.QueueConfig;
+import com.hazelcast.config.SetConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Lock;
@@ -44,6 +46,8 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
     private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
+    private static final SetConfig moduleSetTagsBeingProcessedConfig
+        = createSetConfig("moduleSetTagsBeingProcessedConfig");
     private static final String LOCK_NAME_FOR_WORK_QUEUE = "workQueueLock";
 
     /**
@@ -63,8 +67,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Object> moduleSyncStartedOnCmHandles() {
-        return getOrCreateHazelcastInstance(moduleSyncStartedConfig).getMap(
-                "moduleSyncStartedOnCmHandles");
+        return getOrCreateHazelcastInstance(moduleSyncStartedConfig).getMap("moduleSyncStartedOnCmHandles");
     }
 
     /**
@@ -75,6 +78,17 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     @Bean
     public IMap<String, Boolean> dataSyncSemaphores() {
         return getOrCreateHazelcastInstance(dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
+    }
+
+    /**
+     * Collection of (new) module set tags being processed.
+     * To prevent processing on multiple threads of same tag
+     *
+     * @return set of module set tags being processed
+     */
+    @Bean
+    public ISet<String> moduleSetTagsBeingProcessed() {
+        return getOrCreateHazelcastInstance(moduleSetTagsBeingProcessedConfig).getSet("moduleSetTagsBeingProcessed");
     }
 
     /**
