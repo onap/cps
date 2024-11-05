@@ -526,6 +526,30 @@
       },
       "revId": "91b1dabdbdfca3fea591817449348dc1790d7c00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522306c1_f106d6a5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 74
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-05T08:26:35Z",
+      "side": 1,
+      "message": "maybe I misled you hear, not sure what Happend with my comment I obviously made a typo (Oh I see now I meant \u0027add\u0027 instead of \u0027as\u0027. I did not mean for you to remove the \u0027the cause\u0027 part...",
+      "parentUuid": "eeae2ce9_53933e6b",
+      "range": {
+        "startLine": 123,
+        "startChar": 36,
+        "endLine": 123,
+        "endChar": 37
+      },
+      "revId": "91b1dabdbdfca3fea591817449348dc1790d7c00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
