@@ -199,22 +199,26 @@ class CmHandleQueryServiceImplSpec extends Specification {
             assert result.contains(cmHandleDataNode)
     }
 
-    def 'Get all cm handles by dmi plugin identifier'() {
+    def 'Get all cm handles by dmi plugin identifier and alternate id output option'() {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
-        when: 'cm Handles are fetched for a given dmi plugin identifier'
-            def result = objectUnderTest.getCmHandleIdsByDmiPluginIdentifier('my-dmi-plugin-identifier')
+        when: 'cm Handles are fetched for a given dmi plugin identifier and alternate id output option'
+            def result = objectUnderTest.getCmHandleReferencesByDmiPluginIdentifier('my-dmi-plugin-identifier', outputAlternateId)
         then: 'result is the correct size'
             assert result.size() == 3
         and: 'result contains the correct cm handles'
-            assert result.containsAll('PNFDemo', 'PNFDemo2', 'PNFDemo4')
+            assert result.containsAll(expectedResult)
+        where:
+            scenario                        | outputAlternateId || expectedResult
+            'output is for alternate ids'   | true              || ['alt-PNFDemo', 'alt-PNFDemo2', 'alt-PNFDemo4']
+            'output is for cm handle ids'   | false             || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
     }
 
     def 'Get all alternateIds by dmi plugin identifier'() {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'cm Handles are fetched for a given dmi plugin identifier'
-            def result = objectUnderTest.getCmHandleReferencesByDmiPluginIdentifier('my-dmi-plugin-identifier').values()
+            def result = objectUnderTest.getCmHandleReferencesMapByDmiPluginIdentifier('my-dmi-plugin-identifier').values()
         then: 'result is the correct size'
             assert result.size() == 3
         and: 'result contains the correct alternate Ids'
