@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
@@ -48,6 +50,7 @@ import org.springframework.stereotype.Service;
 /**
  * Operations class for DMI Model.
  */
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class DmiModelOperations {
@@ -62,6 +65,8 @@ public class DmiModelOperations {
      * @param yangModelCmHandle the yang model cm handle
      * @return module references
      */
+    @Timed(value = "cps.ncmp.inventory.module.references.from.dmi",
+        description = "Time taken to get all module references for a cm handle from dmi")
     public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
                 .moduleSetTag(yangModelCmHandle.getModuleSetTag()).build();
@@ -79,6 +84,8 @@ public class DmiModelOperations {
      * @param newModuleReferences the unknown module references
      * @return yang resources as map of module name to yang(re)source
      */
+    @Timed(value = "cps.ncmp.inventory.yang.resources.from.dmi",
+        description = "Time taken to get list of yang resources from dmi")
     public Map<String, String> getNewYangResourcesFromDmi(final YangModelCmHandle yangModelCmHandle,
                                                           final Collection<ModuleReference> newModuleReferences) {
         if (newModuleReferences.isEmpty()) {
