@@ -381,9 +381,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def 'Check if cm handle exists for a given cm handle id'() {
         given: 'data service returns a datanode with correct cm handle id'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
-        when: 'method is called to check if cm handle exists from cm handle id'
-            def result = objectUnderTest.isExistingCmHandleId('some-cm-handle')
-        then: 'check if cm handle id in datanode is equal to given cm handle id'
-            assert result == true
+        expect: 'cm handle exists for given cm handle id'
+            assert true == objectUnderTest.isExistingCmHandleId('some-cm-handle')
     }
 }

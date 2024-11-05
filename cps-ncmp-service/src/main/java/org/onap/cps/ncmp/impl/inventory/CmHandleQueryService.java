@@ -36,7 +36,7 @@ public interface CmHandleQueryService {
      * @return Ids of Cm Handles which have these private properties
      */
     Collection<String> queryCmHandleAdditionalProperties(Map<String, String> additionalPropertyQueryPairs,
-                                                         Boolean outputAlternateId);
+                                                         boolean outputAlternateId);
 
     /**
      * Query Cm Handles based on public properties.
@@ -46,7 +46,7 @@ public interface CmHandleQueryService {
      * @return CmHandles which have these public properties
      */
     Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs,
-                                                     Boolean outputAlternateId);
+                                                     boolean outputAlternateId);
 
     /**
      * Query Cm Handles based on Trust Level.
@@ -56,7 +56,7 @@ public interface CmHandleQueryService {
      * @return Ids of Cm Handles which have desired trust level
      */
     Collection<String> queryCmHandlesByTrustLevel(Map<String, String> trustLevelPropertyQueryPairs,
-                                                  Boolean outputAlternateId);
+                                                  boolean outputAlternateId);
 
     /**
      * Method which returns cm handles by the cm handles state.
@@ -100,19 +100,21 @@ public interface CmHandleQueryService {
     Collection<DataNode> queryCmHandlesByOperationalSyncState(DataStoreSyncState dataStoreSyncState);
 
     /**
-     * Get all cm handles ids by DMI plugin identifier.
+     * Get collection of all cm handles references by DMI plugin identifier and alternate id output option.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
+     * @param outputAlternateId   Boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return collection of cm handle ids
      */
-    Collection<String> getCmHandleIdsByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Collection<String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier,
+                                                                  boolean outputAlternateId);
 
     /**
-     * Get map of cmHandle ids and alternate ids by DMI plugin identifier.
+     * Get map of cmHandle references by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
      * @return map of cmHandle references key:CmHandleId Value:AlternateId
      */
-    Map<String, String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier);
+    Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(String dmiPluginIdentifier);
 
 }

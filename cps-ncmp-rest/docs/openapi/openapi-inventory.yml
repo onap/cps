@@ -34,7 +34,7 @@ paths:
     $ref: 'ncmp-inventory.yml#/updateDmiRegistration'
 
   /v1/ch/cmHandles:
-    $ref: 'ncmp-inventory.yml#/getAllCmHandleIdsForRegisteredDmi'
+    $ref: 'ncmp-inventory.yml#/getAllCmHandleReferencesForRegisteredDmi'
 
   /v1/ch/searches:
     $ref: 'ncmp-inventory.yml#/searchCmHandleIds'

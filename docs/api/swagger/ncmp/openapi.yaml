@@ -1142,7 +1142,7 @@ paths:
       operationId: searchCmHandleIds
       parameters:
       - description: Boolean parameter to determine if returned value(s) will be cm
-          handle references for a given query
+          handle Ids or alternate Ids for a given query
         in: query
         name: outputAlternateId
         required: false
@@ -1619,7 +1619,7 @@ components:
         type: string
     outputAlternateIdOptionInQuery:
       description: Boolean parameter to determine if returned value(s) will be cm
-        handle references for a given query
+        handle Ids or alternate Ids for a given query
       in: query
       name: outputAlternateId
       required: false
@@ -1790,7 +1790,7 @@ components:
         targetIds:
           items:
             description: "targeted cm handle references, maximum of 200 supported.\
-              \ If this limit is exceeded the request wil be refused."
+              \ If this limit is exceeded the request will be refused."
             example: "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
               ]"
             type: string
