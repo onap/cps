@@ -20,26 +20,32 @@
 
 package org.onap.cps.integration.functional.ncmp
 
+import io.micrometer.core.instrument.MeterRegistry
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
+import org.springframework.beans.factory.annotation.Autowired
+import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
 
     ModuleSyncWatchdog objectUnderTest
 
+    @Autowired
+    MeterRegistry meterRegistry
+
     def executorService = Executors.newFixedThreadPool(2)
-    def SYNC_SAMPLE_SIZE = 100
+    def PARALLEL_SYNC_SAMPLE_SIZE = 100
 
     def setup() {
         objectUnderTest = moduleSyncWatchdog
-        registerSequenceOfCmHandlesWithoutWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, SYNC_SAMPLE_SIZE)
     }
 
     def cleanup() {
         try {
-            deregisterSequenceOfCmHandles(DMI1_URL, SYNC_SAMPLE_SIZE)
+            deregisterSequenceOfCmHandles(DMI1_URL, PARALLEL_SYNC_SAMPLE_SIZE, 1)
             moduleSyncWorkQueue.clear()
         } finally {
             executorService.shutdownNow()
@@ -47,15 +53,60 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     }
 
     def 'Watchdog is disabled for test.'() {
+        given:
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, PARALLEL_SYNC_SAMPLE_SIZE, 1)
         when: 'wait a while but less then the initial delay of 10 minutes'
             Thread.sleep(3000)
         then: 'the work queue remains empty'
             assert moduleSyncWorkQueue.isEmpty()
     }
 
+    def 'CPS-2478 Highlight module sync inefficiencies.'() {
+        given: 'register 250 cm handles with module set tag cps-2478-A'
+            def numberOfTags = 2
+            def cmHandlesPerTag = 250
+            def totalCmHandles = numberOfTags * cmHandlesPerTag
+            def offset = 1
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-A', cmHandlesPerTag, offset)
+        and: 'register anther 250 cm handles with module set tag cps-2478-B'
+            offset += cmHandlesPerTag
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-B', cmHandlesPerTag, offset)
+        and: 'clear any previous instrumentation'
+            meterRegistry.clear()
+        when: 'sync all advised cm handles'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+            Thread.sleep(100)
+        then: 'retry until all schema sets are stored in db (1 schema set  for each cm handle)'
+            def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schemaset.store').timer()
+            new PollingConditions().within(10, () -> {
+                objectUnderTest.moduleSyncAdvisedCmHandles()
+                Thread.sleep(100)
+                assert dbSchemaSetStorageTimer.count() >= 500
+            })
+        then: 'wait till at least 5 batches of state updates are done (often more because of retries of locked cm handles)'
+            def dbStateUpdateTimer = meterRegistry.get('cps.ncmp.cmhandle.state.update.batch').timer()
+            new PollingConditions().within(10, () -> {
+                assert dbStateUpdateTimer.count() >= 5
+            })
+        and: 'the db has been queried for tags exactly 2 times.'
+            def dbModuleQueriesTimer = meterRegistry.get('cps.module.service.module.reference.query.by.attribute').timer()
+            assert dbModuleQueriesTimer.count() == 2
+        and: 'exactly 2 calls to DMI to get module references'
+            def dmiModuleRetrievalTimer = meterRegistry.get('cps.ncmp.inventory.module.references.from.dmi').timer()
+            assert dmiModuleRetrievalTimer.count() == 2
+        and: 'log the relevant instrumentation'
+            logInstrumentation(dbModuleQueriesTimer,    'query module references')
+            logInstrumentation(dmiModuleRetrievalTimer, 'get modules from DMI   ')
+            logInstrumentation(dbSchemaSetStorageTimer, 'store schema sets      ')
+            logInstrumentation(dbStateUpdateTimer,      'batch state updates    ')
+        cleanup: 'remove all cm handles'
+            deregisterSequenceOfCmHandles(DMI1_URL, totalCmHandles, 1)
+    }
+
     def 'Populate module sync work queue simultaneously on two parallel threads (CPS-2403).'() {
         // This test failed before bug https://lf-onap.atlassian.net/browse/CPS-2403 was fixed
         given: 'the queue is empty at the start'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, PARALLEL_SYNC_SAMPLE_SIZE, 1)
             assert moduleSyncWorkQueue.isEmpty()
         when: 'attempt to populate the queue on the main (test) and another parallel thread at the same time'
             objectUnderTest.populateWorkQueueIfNeeded()
@@ -63,12 +114,13 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
         and: 'wait a little (to give all threads time to complete their task)'
             Thread.sleep(50)
         then: 'the queue size is exactly the sample size'
-            assert moduleSyncWorkQueue.size() == SYNC_SAMPLE_SIZE
+            assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
     }
 
     def 'Populate module sync work queue on two parallel threads with a slight difference in start time.'() {
         // This test proved that the issue in CPS-2403 did not arise if the the queue was populated and given time to be distributed
         given: 'the queue is empty at the start'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, PARALLEL_SYNC_SAMPLE_SIZE, 1)
             assert moduleSyncWorkQueue.isEmpty()
         when: 'attempt to populate the queue on the main (test) and another parallel thread a little later'
             objectUnderTest.populateWorkQueueIfNeeded()
@@ -76,7 +128,12 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
         and: 'wait a little (to give all threads time to complete their task)'
             Thread.sleep(50)
         then: 'the queue size is exactly the sample size'
-            assert moduleSyncWorkQueue.size() == SYNC_SAMPLE_SIZE
+            assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
+    }
+
+    def logInstrumentation(timer, description) {
+        System.out.println('*** CPS-2478, ' + description + ' : ' + timer.count()+ ' times, total ' + timer.totalTime(TimeUnit.MILLISECONDS) + ' ms')
+        return true
     }
 
     def populateQueueWithoutDelay = () -> {

@@ -21,6 +21,7 @@
 
 package org.onap.cps.integration.base
 
+import com.hazelcast.collection.ISet
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -37,13 +38,13 @@ import org.onap.cps.ncmp.impl.data.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.spi.exceptions.DataspaceNotFoundException
 import org.onap.cps.spi.model.DataNode
-import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -61,12 +62,7 @@ import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
 
 import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
 import java.util.concurrent.BlockingQueue
-
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -121,6 +117,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
     ModuleSyncWatchdog moduleSyncWatchdog
 
     @Autowired
+    ModuleSyncService moduleSyncService
+
+    @Autowired
     BlockingQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
@@ -132,6 +131,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
+    @Autowired
+    ISet<String> moduleSetTagsBeingProcessed
 
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
@@ -174,13 +175,13 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
         DMI1_URL = String.format("http://%s:%s", mockDmiServer1.getHostName(), mockDmiServer1.getPort())
         DMI2_URL = String.format("http://%s:%s", mockDmiServer2.getHostName(), mockDmiServer2.getPort())
-
     }
 
     def cleanup() {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
         mockPolicyServer.shutdown()
+        moduleSetTagsBeingProcessed.clear()
     }
 
     def static readResourceDataFile(filename) {
@@ -262,11 +263,16 @@ abstract class CpsIntegrationSpecBase extends Specification {
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: [cmHandleToCreate]))
     }
 
-    def registerSequenceOfCmHandlesWithoutWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles) {
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset) {
         def cmHandles = []
+        def id = offset
+        def moduleReferences = (1..200).collect { moduleSetTag + '_Module_' + it.toString() }
         (1..numberOfCmHandles).each {
-            def cmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-'+it, moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
-            cmHandles.add(cmHandle)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-'+id, moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
+            cmHandles.add(ncmpServiceCmHandle)
+            dmiDispatcher1.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
+            dmiDispatcher2.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
+            id++
         }
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, createdCmHandles: cmHandles))
     }
@@ -279,9 +285,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
-    def deregisterSequenceOfCmHandles(dmiPlugin, numberOfCmHandles) {
+    def deregisterSequenceOfCmHandles(dmiPlugin, numberOfCmHandles, offset) {
         def cmHandleIds = []
-        (1..numberOfCmHandles).each { cmHandleIds.add('ch-'+it) }
+        def id = offset
+        (1..numberOfCmHandles).each { cmHandleIds.add('ch-' + id++) }
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 

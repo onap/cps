@@ -182,23 +182,7 @@ export const options = {
     },
 };
 
-export function setup() {
-    const startTimeInMillis = Date.now();
-
-    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
-    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
-        const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
-        const response = createCmHandles(nextBatchOfCmHandleIds);
-        check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });
-    }
-
-    waitForAllCmHandlesToBeReady();
-
-    const endTimeInMillis = Date.now();
-    const totalRegistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
-
-    cmHandlesCreatedPerSecondTrend.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
-}
+k6-tests/ncmp/ncmp-kpi.js
 
 export function teardown() {
     const startTimeInMillis = Date.now();

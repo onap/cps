@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
+import com.hazelcast.collection.ISet
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
@@ -38,13 +39,16 @@ import java.util.concurrent.TimeUnit
 class SynchronizationCacheConfigSpec extends Specification {
 
     @Autowired
-    private BlockingQueue<DataNode> moduleSyncWorkQueue
+    BlockingQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
-    private IMap<String, Object> moduleSyncStartedOnCmHandles
+    IMap<String, Object> moduleSyncStartedOnCmHandles
 
     @Autowired
-    private IMap<String, Boolean> dataSyncSemaphores
+    IMap<String, Boolean> dataSyncSemaphores
+
+    @Autowired
+    ISet<String> moduleSetTagsBeingProcessed
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
@@ -57,8 +61,11 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'they have the correct names (in any order)'
-            assert Hazelcast.allHazelcastInstances.name.contains('cps-and-ncmp-hazelcast-instance-test-config')
+        and: 'system is able to create an instance of a set to hold module set tags being processed'
+            assert null != moduleSetTagsBeingProcessed
+        and: 'there is only one instance with the correct name'
+            assert Hazelcast.allHazelcastInstances.size() == 1
+            assert Hazelcast.allHazelcastInstances.name[0] == 'cps-and-ncmp-hazelcast-instance-test-config'
     }
 
     def 'Verify configs for Distributed objects'(){
@@ -103,7 +110,6 @@ class SynchronizationCacheConfigSpec extends Specification {
         then: 'applied properties are reflected'
             assert testConfig.networkConfig.join.kubernetesConfig.enabled
             assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
-
     }
 
     def 'Time to Live Verify for Module Sync Semaphore'() {

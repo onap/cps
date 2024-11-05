@@ -63,7 +63,8 @@ public class ModuleSyncTasks {
         try {
             cmHandlesAsDataNodes.forEach(cmHandleAsDataNode -> {
                 final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleAsDataNode);
-                cmHandleStatePerCmHandle.put(yangModelCmHandle, processCmHandle(yangModelCmHandle));
+                final CmHandleState cmHandleState = processCmHandle(yangModelCmHandle);
+                cmHandleStatePerCmHandle.put(yangModelCmHandle, cmHandleState);
             });
         } finally {
             batchCounter.getAndDecrement();
