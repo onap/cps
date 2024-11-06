@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "5e2fea016b5b9cd54a7c497ae254c0f3f5620510",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b43945_6c2e3aed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T10:31:37Z",
+      "side": 1,
+      "message": "logic looks fine to me.",
+      "revId": "5e2fea016b5b9cd54a7c497ae254c0f3f5620510",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
