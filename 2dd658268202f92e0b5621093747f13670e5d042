@@ -71,6 +71,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73a528a8_e20b4d26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T17:21:40Z",
+      "side": 1,
+      "message": "yes thats correct.\nwe just consume from one topic and forward to another.\neg : we could be reading from a source topic ( with 3 partitions ) and forwarding to target topic ( with 5 partitions )\n\nits just that we are retaining the same key during reading from source key and while forwarding to target key is to preserve the order. Messages are guaranteed to be ordered in a particular partition.",
+      "parentUuid": "586caf9a_db8e50f2",
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a91470_06a9a712",
