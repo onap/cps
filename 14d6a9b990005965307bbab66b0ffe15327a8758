@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad4bf1c_a629058c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 78
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T09:58:20Z",
+      "side": 1,
+      "message": "just minor question..otherwise looks ok.",
+      "revId": "14d6a9b990005965307bbab66b0ffe15327a8758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62393cfa_fdff3742",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 78
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T09:58:20Z",
+      "side": 1,
+      "message": "NB: why do we need spring-web in the service layer ??\nalso does it look misaligned?",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 19
+      },
+      "revId": "14d6a9b990005965307bbab66b0ffe15327a8758",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
