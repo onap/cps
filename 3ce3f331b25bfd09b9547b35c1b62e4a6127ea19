@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ca7851b_bcc399a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-06T12:47:05Z",
+      "side": 1,
+      "message": "Stakeholder is happy with cm handle reference as a catch all term for cm handle ids and alternate ids, I\u0027d prefer to keep it as cm handle references not found as that is what it is searching off leaving it as just cm handle might be a bit ambiguous. Thoughts?",
+      "parentUuid": "bcdc50b6_84d8dce1",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 65
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81f89a9e_f389097a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "writtenOn": "2024-11-05T18:01:24Z",
       "side": 1,
       "message": "Not related to this patch, but I think we should stop returning Cps DataNode from this InventoryPersistence class. It makes more sense to return actual CM handle object like YangModelCmHandle",
+      "range": {
+        "startLine": 177,
+        "startChar": 11,
+        "endLine": 177,
+        "endChar": 19
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dccb78a3_2b368c38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-06T12:47:05Z",
+      "side": 1,
+      "message": "Agreed, Gerard and myself are going to tackle this issue when we have the time",
+      "parentUuid": "6933e534_c6ea7f45",
       "range": {
         "startLine": 177,
         "startChar": 11,
