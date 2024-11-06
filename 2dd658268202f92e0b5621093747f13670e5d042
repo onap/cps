@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "586caf9a_db8e50f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-06T17:08:39Z",
+      "side": 1,
+      "message": "what I understood the current CmAvcEventConsumer can consume from multiple partitions of dmi-cm-events (e.g if it configured with 5 partitions). We dont have to change any consumer config e.g. group in our application, right?",
+      "parentUuid": "45d57c86_4cd00197",
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a91470_06a9a712",
