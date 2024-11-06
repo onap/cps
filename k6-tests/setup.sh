@@ -15,13 +15,22 @@
 # limitations under the License.
 #
 
-docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
+testProfile=$1
+
+if [[ "$testProfile" == "ENDURANCE" ]]; then
+  echo "Spin off the CPS and NCMP containers for endurance testing..."
+  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name endurance --env-file ../docker-compose/config/endurance.env up -d
+  # Get the container IDs of the endurance-cps-and-ncmp replicas
+  CONTAINER_IDS=$(docker ps --filter "name=endurance-cps-and-ncmp" --format "{{.ID}}")
+else
+  echo "Spin off the CPS and NCMP containers for performance testing..."
+  docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
+  # Get the container IDs of the docker-compose-cps-and-ncmp (default) replicas
+  CONTAINER_IDS=$(docker ps --filter "name=docker-compose-cps-and-ncmp" --format "{{.ID}}")
+fi
 
 echo "Waiting for CPS to start..."
 READY_MESSAGE="Inventory Model updated successfully"
-
-# Get the container IDs of the cps-and-ncmp replicas
-CONTAINER_IDS=$(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}")
 
 # Check the logs for each container
 for CONTAINER_ID in $CONTAINER_IDS; do

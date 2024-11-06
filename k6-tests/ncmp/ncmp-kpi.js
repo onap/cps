@@ -25,7 +25,8 @@ import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
     LEGACY_BATCH_TOPIC_NAME, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
-    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS
+    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, ENDURANCE_DURATION,
+    ENDURANCE_LEGACY_BATCH_THROUGHPUT_TEST_START_TIME, TEST_PROFILE
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -54,8 +55,8 @@ const legacyBatchEventReader = new Reader({
     topic: LEGACY_BATCH_TOPIC_NAME,
 });
 
-const DURATION = '15m';
-const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = '15m30s';
+const DURATION = TEST_PROFILE ? ENDURANCE_DURATION : '15m';
+const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = TEST_PROFILE ? ENDURANCE_LEGACY_BATCH_THROUGHPUT_TEST_START_TIME : '15m30s';
 
 export const options = {
     setupTimeout: '20m',

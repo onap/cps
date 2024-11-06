@@ -19,7 +19,14 @@
  */
 
 import http from 'k6/http';
-export const NCMP_BASE_URL = 'http://localhost:8883';
+
+export const TEST_PROFILE = __ENV.ENDURANCE;
+const enduranceTestConfig = JSON.parse(open('../config/endurance.json'));
+export const ENDURANCE_NCMP_BASE_URL = enduranceTestConfig.hosts.ncmpBaseUrl;
+export const ENDURANCE_KAFKA_BOOTSTRAP_SERVERS = enduranceTestConfig.hosts.kafkaBootstrapServer;
+export const ENDURANCE_DURATION = enduranceTestConfig.timingConfig.testDuration;
+export const ENDURANCE_LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = enduranceTestConfig.timingConfig.legacyBatchThroughputTestStartTime;
+export const NCMP_BASE_URL = TEST_PROFILE ? ENDURANCE_NCMP_BASE_URL : 'http://localhost:8883';
 export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;
@@ -29,7 +36,7 @@ export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
 export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
 export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 1000;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
-export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
+export const KAFKA_BOOTSTRAP_SERVERS = TEST_PROFILE ? [ENDURANCE_KAFKA_BOOTSTRAP_SERVERS] : ['localhost:9092'];
 export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
 

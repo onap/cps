@@ -18,10 +18,16 @@
 pushd "$(dirname "$0")" >/dev/null || exit 1
 
 number_of_failures=0
-echo "Running K6 performance tests..."
+testProfile=$1
 
-# Redirecting stderr to /dev/null to prevent large log files
-k6 --quiet run ncmp-kpi.js > summary.csv 2>/dev/null || ((number_of_failures++))
+if [[ "$testProfile" == "ENDURANCE" ]]; then
+  echo "Running endurance performance tests..."
+  k6 --quiet run --env ENDURANCE=true ncmp-kpi.js > summary.csv 2>/dev/null || ((number_of_failures++))
+else
+  echo "Running K6 performance tests..."
+  # Redirecting stderr to /dev/null to prevent large log files
+  k6 --quiet run ncmp-kpi.js > summary.csv 2>/dev/null || ((number_of_failures++))
+fi
 
 if [ -f summary.csv ]; then
 

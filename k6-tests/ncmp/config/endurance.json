@@ -1,0 +1,10 @@
+{
+  "hosts": {
+    "ncmpBaseUrl": "http://localhost:8884",
+    "kafkaBootstrapServer": "localhost:9093"
+  },
+  "timingConfig": {
+    "testDuration": "2h",
+    "legacyBatchThroughputTestStartTime": "2h2m"
+  }
+}
