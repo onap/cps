@@ -91,6 +91,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e64b2aac_8747d989",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-06T17:22:55Z",
+      "side": 1,
+      "message": "NB: sendKafkaMessage same as below",
+      "range": {
+        "startLine": 45,
+        "startChar": 19,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4a91470_06a9a712",
         "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
         "patchSetId": 1
@@ -155,6 +178,53 @@
         "startChar": 6,
         "endLine": 53,
         "endChar": 30
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b8bbe5_6ef99308",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-06T17:22:55Z",
+      "side": 1,
+      "message": "So 10 unique event keys means 10 partitions in dmi-cm-events topit, right?",
+      "parentUuid": "c8286611_e515ee65",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23806d42_59e5010c",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-06T17:22:55Z",
+      "side": 1,
+      "message": "NB: sendKafkaMessage since it sends only a message at at time.",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 33
       },
       "revId": "2dd658268202f92e0b5621093747f13670e5d042",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
