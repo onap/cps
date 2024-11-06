@@ -1,0 +1,14 @@
+{
+  "hosts": {
+    "ncmpBaseUrl": "http://localhost:8883",
+    "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
+    "kafkaBootstrapServer": "localhost:9092"
+  },
+  "timingConfig": {
+    "testDuration": "15m",
+    "legacyBatchThroughputTestStartTime": "15m30s"
+  },
+  "kafka": {
+    "legacyBatchTopic": "legacy_batch_topic"
+  }
+}
