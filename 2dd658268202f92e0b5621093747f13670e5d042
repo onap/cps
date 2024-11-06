@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f9acd6_bd9f61ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-06T16:44:04Z",
+      "side": 1,
+      "message": "To be honest I got lost a bit while reviewing. Since the related wiki page have Performance - Outstanding mentioned Consuming 250K messsages with 5 partition but I haven\u0027t seen neither the produce-avc-event.js creating 5 partitons ( I checked it on our kafka-ui by monitoring profile- there was only default partition that is 0) nor CmAvcEventConsumer has been modified to consume messages from 5 different partitions. I think, I need a bit clarification to understand the intention on this commit for myself.",
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a91470_06a9a712",
