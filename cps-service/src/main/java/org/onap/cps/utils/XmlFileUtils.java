@@ -189,30 +189,32 @@ public class XmlFileUtils {
 
     private static void createXmlElements(final Document document, final Node parentNode,
                                           final Map<String, Object> dataMap) {
-        for (final Map.Entry<String, Object> mapEntry : dataMap.entrySet()) {
-            if (mapEntry.getValue() instanceof List) {
-                appendList(document, parentNode, mapEntry);
-            } else if (mapEntry.getValue() instanceof Map) {
-                appendMap(document, parentNode, mapEntry);
+        for (final Map.Entry<String, Object> dataNodeMapEntry : dataMap.entrySet()) {
+            if (dataNodeMapEntry.getValue() instanceof List) {
+                appendList(document, parentNode, dataNodeMapEntry);
+            } else if (dataNodeMapEntry.getValue() instanceof Map) {
+                appendMap(document, parentNode, dataNodeMapEntry);
             } else {
-                appendObject(document, parentNode, mapEntry);
+                appendObject(document, parentNode, dataNodeMapEntry);
             }
         }
     }
 
     private static void appendList(final Document document, final Node parentNode,
-                                   final Map.Entry<String, Object> mapEntry) {
-        final List<Object> list = (List<Object>) mapEntry.getValue();
-        if (list.isEmpty()) {
-            final Element listElement = document.createElement(mapEntry.getKey());
+                                   final Map.Entry<String, Object> dataNodeMapEntry) {
+        final List<Object> dataNodeMaps = (List<Object>) dataNodeMapEntry.getValue();
+        if (dataNodeMaps.isEmpty()) {
+            final Element listElement = document.createElement(dataNodeMapEntry.getKey());
             parentNode.appendChild(listElement);
         } else {
-            for (final Object element : list) {
-                final Element listElement = document.createElement(mapEntry.getKey());
-                if (element instanceof Map) {
-                    createXmlElements(document, listElement, (Map<String, Object>) element);
+            for (final Object dataNodeMap : dataNodeMaps) {
+                final Element listElement = document.createElement(dataNodeMapEntry.getKey());
+                if (dataNodeMap == null) {
+                    parentNode.appendChild(listElement);
+                } else if (dataNodeMap instanceof Map) {
+                    createXmlElements(document, listElement, (Map<String, Object>) dataNodeMap);
                 } else {
-                    listElement.appendChild(document.createTextNode(element.toString()));
+                    listElement.appendChild(document.createTextNode(dataNodeMap.toString()));
                 }
                 parentNode.appendChild(listElement);
             }
@@ -220,16 +222,18 @@ public class XmlFileUtils {
     }
 
     private static void appendMap(final Document document, final Node parentNode,
-                                  final Map.Entry<String, Object> mapEntry) {
-        final Element childElement = document.createElement(mapEntry.getKey());
-        createXmlElements(document, childElement, (Map<String, Object>) mapEntry.getValue());
+                                  final Map.Entry<String, Object> dataNodeMapEntry) {
+        final Element childElement = document.createElement(dataNodeMapEntry.getKey());
+        createXmlElements(document, childElement, (Map<String, Object>) dataNodeMapEntry.getValue());
         parentNode.appendChild(childElement);
     }
 
     private static void appendObject(final Document document, final Node parentNode,
-                                     final Map.Entry<String, Object> mapEntry) {
-        final Element element = document.createElement(mapEntry.getKey());
-        element.appendChild(document.createTextNode(mapEntry.getValue().toString()));
+                                     final Map.Entry<String, Object> dataNodeMapEntry) {
+        final Element element = document.createElement(dataNodeMapEntry.getKey());
+        if (dataNodeMapEntry.getValue() != null) {
+            element.appendChild(document.createTextNode(dataNodeMapEntry.getValue().toString()));
+        }
         parentNode.appendChild(element);
     }
 
