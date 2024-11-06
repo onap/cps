@@ -39,6 +39,30 @@
       },
       "revId": "2dd658268202f92e0b5621093747f13670e5d042",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab8ac16_780152c5",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T10:38:37Z",
+      "side": 1,
+      "message": "I was thinking more like a realistic test here , thats why I did my testing with a limited network size ( with 10 n/w element ) and yes the duplicate key is intended. The reason being with mutiple kafka partition , when the events would be sent. So all the messages belonging to a n/w element should fall in the same partition everytime ( which kafka will guarantee as we are making n/w element id as the key ). So when the messages are consumed in parallel there would be no out of order elements with respect to the n/w element.",
+      "parentUuid": "a4a91470_06a9a712",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
