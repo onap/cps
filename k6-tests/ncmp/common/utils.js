@@ -19,8 +19,14 @@
  */
 
 import http from 'k6/http';
-export const NCMP_BASE_URL = 'http://localhost:8883';
-export const DMI_PLUGIN_URL = 'http://ncmp-dmi-plugin-demo-and-csit-stub:8092';
+
+const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`));
+export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
+export const LEGACY_BATCH_TOPIC_NAME = testConfig.kafka.legacyBatchTopic;
+export const DURATION = testConfig.timingConfig.testDuration;
+export const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = testConfig.timingConfig.legacyBatchThroughputTestStartTime;
+export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
+export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml
@@ -28,8 +34,6 @@ export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as
 export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
 export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
 export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 100;
-export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
-export const KAFKA_BOOTSTRAP_SERVERS = ['localhost:9092'];
 export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
 

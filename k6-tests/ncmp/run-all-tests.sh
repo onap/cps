@@ -18,31 +18,36 @@
 pushd "$(dirname "$0")" >/dev/null || exit 1
 
 number_of_failures=0
-echo "Running K6 performance tests..."
+testProfile=$1
+summaryFile="${testProfile}Summary.csv"
 
-# Redirecting stderr to /dev/null to prevent large log files
-k6 --quiet run ncmp-kpi.js > summary.csv 2>/dev/null || ((number_of_failures++))
+echo "Running $testProfile performance tests..."
+k6 run ncmp-kpi.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile" 2>/dev/null || ((number_of_failures++))
 
-if [ -f summary.csv ]; then
+if [ -f "$summaryFile" ]; then
 
   # Output raw CSV for plotting job
-  echo '-- BEGIN CSV REPORT'
-  cat summary.csv
-  echo '-- END CSV REPORT'
+  echo "-- BEGIN CSV REPORT"
+  cat "$summaryFile"
+  echo "-- END CSV REPORT"
   echo
 
   # Output human-readable report
-  echo '####################################################################################################'
-  echo '##                  K 6   P E R F O R M A N C E   T E S T   R E S U L T S                         ##'
-  echo '####################################################################################################'
-  column -t -s, summary.csv
+  echo "####################################################################################################"
+  if [ "$testProfile" = "kpi" ]; then
+    echo "##            K 6     K P I       P E R F O R M A N C E   T E S T   R E S U L T S                  ##"
+  else
+    echo "##            K 6   E N D U R A N C E      P E R F O R M A N C E   T E S T   R E S U L T S         ##"
+  fi
+  echo "####################################################################################################"
+  column -t -s, "$summaryFile"
   echo
 
   # Clean up
-  rm -f summary.csv
+  rm -f "$summaryFile"
 
 else
-  echo "Error: Failed to generate summary.csv" >&2
+  echo "Error: Failed to generate $summaryFile" >&2
   ((number_of_failures++))
 fi
 
