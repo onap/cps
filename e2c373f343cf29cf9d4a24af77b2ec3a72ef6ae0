@@ -33,6 +33,29 @@
       "message": "recheck",
       "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e150fb6_76cc9c8e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T11:32:36Z",
+      "side": 1,
+      "message": "2 times?? why ?",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 210,
+        "endChar": 112
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
