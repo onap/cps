@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d57c86_4cd00197",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T16:55:51Z",
+      "side": 1,
+      "message": "these are just once-off-test and in order to have a more accurate result I did the testing in my local using 250K messages.\nNot everybody has to do with 250K messages , 100k is enough. Just to get more sample data it was done like that.\n\nThe test is not supposed to create 5 partitions. Its just local testing data just to get some figures and prove that it has no impact on the performance.\nMoreover its just testing kafka capabilities.\n\nMain thing we are doing in the production code is just reusing the key from source topic and populating to the target topic while consuming the messages.\n\nAnyways I can demo the ordering bit to the team once this is merged.",
+      "parentUuid": "06f9acd6_bd9f61ad",
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a91470_06a9a712",
