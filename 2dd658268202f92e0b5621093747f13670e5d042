@@ -226,6 +226,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04a1d041_3d27b6bc",
+        "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T17:59:15Z",
+      "side": 1,
+      "message": "possibly..\nbasically we dont care.\n10 dmi plugins could be emitting the notifications on 5 partitions OR\n10 dmi plugins could be emitting the notifications on 1 partition.\n\nBut kafka guarantees that if an event from dmi-1 goes to partition#1 , then further events from the dmi-1 would be going to the same partition. ( also that doesnt mean that dmi-2 cannot publish to partition#1 )",
+      "parentUuid": "50b8bbe5_6ef99308",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "2dd658268202f92e0b5621093747f13670e5d042",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23806d42_59e5010c",
         "filename": "k6-tests/once-off-test/kafka/produce-avc-event.js",
         "patchSetId": 1
