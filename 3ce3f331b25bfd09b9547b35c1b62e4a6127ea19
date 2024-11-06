@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bcdc50b6_84d8dce1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-06T11:39:24Z",
+      "side": 1,
+      "message": "do we call it CM_HANDLE_REFERENCES_NOT_FOUND ?? \nwhat is the stakeholder take on this ??\n\nnow we have support for both cm handle id as well as alternate id.. right ??",
+      "parentUuid": "8cd61e55_cc1bae44",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 65
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81f89a9e_f389097a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
         "patchSetId": 3
