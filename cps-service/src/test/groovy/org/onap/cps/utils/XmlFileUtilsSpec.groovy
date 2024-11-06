@@ -84,8 +84,8 @@ class XmlFileUtilsSpec extends Specification {
             'nested XML branch'                   | [['test-tree': [branch: [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]]                                                       || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
             'list of branch within a test tree'   | [['test-tree': [branch: [[name: 'Left', nest: [name: 'Small', birds: 'Sparrow']], [name: 'Right', nest: [name: 'Big', birds: 'Owl']]]]]] || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch><branch><name>Right</name><nest><name>Big</name><birds>Owl</birds></nest></branch></test-tree>'
             'list of birds under a nest'          | [['nest': ['name': 'Small', 'birds': ['Sparrow']]]]                                                                                      || '<nest><name>Small</name><birds>Sparrow</birds></nest>'
-            'XML Content map with null key/value' | [['test-tree': [branch: [name: 'Left', nest: []]]]]                                                                                      || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
-            'XML Content list is empty'           | [['nest': ['name': 'Small', 'birds': []]]]                                                                                               || '<nest><name>Small</name><birds/></nest>'
+            'XML Content map with null key/value' | [['test-tree': [branch: [name: 'Left', nest: [null]]]]]                                                                                  || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
+            'XML Content list is empty'           | [['nest': ['name': 'Small', 'birds': [null]]]]                                                                                           || '<nest><name>Small</name><birds/></nest>'
             'XML with mixed content in list'      | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': ['', 'Sparrow']]]]]                                                      || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds></nest></branch>'
     }
 
@@ -95,11 +95,11 @@ class XmlFileUtilsSpec extends Specification {
         then: 'the result contains the expected XML or handles nulls correctly'
             assert result == expectedXmlOutput
         where:
-            scenario                      | dataMaps                                                       || expectedXmlOutput
-            'null entry in map'           | [['branch': []]]                                               || '<branch/>'
-            'list with null object'       | [['branch': [name: 'Left', nest: [name: 'Small', birds: []]]]] || '<branch><name>Left</name><nest><name>Small</name><birds/></nest></branch>'
-            'list containing null list'   | [['test-tree': [branch: '']]]                                  || '<test-tree><branch/></test-tree>'
-            'nested map with null values' | [['test-tree': [branch: [name: 'Left', nest: '']]]]            || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
+            scenario                      | dataMaps                                                           || expectedXmlOutput
+            'null entry in map'           | [['branch': [null]]]                                               || '<branch/>'
+            'list with null object'       | [['branch': [name: 'Left', nest: [name: 'Small', birds: [null]]]]] || '<branch><name>Left</name><nest><name>Small</name><birds/></nest></branch>'
+            'list containing null list'   | [['test-tree': [branch: null]]]                                    || '<test-tree><branch/></test-tree>'
+            'nested map with null values' | [['test-tree': [branch: [name: 'Left', nest: null]]]]              || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
     }
 
     def 'Converting data maps to xml with no data'() {

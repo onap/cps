@@ -209,7 +209,9 @@ public class XmlFileUtils {
         } else {
             for (final Object element : list) {
                 final Element listElement = document.createElement(mapEntry.getKey());
-                if (element instanceof Map) {
+                if (element == null) {
+                    parentNode.appendChild(listElement);
+                } else if (element instanceof Map) {
                     createXmlElements(document, listElement, (Map<String, Object>) element);
                 } else {
                     listElement.appendChild(document.createTextNode(element.toString()));
@@ -229,7 +231,9 @@ public class XmlFileUtils {
     private static void appendObject(final Document document, final Node parentNode,
                                      final Map.Entry<String, Object> mapEntry) {
         final Element element = document.createElement(mapEntry.getKey());
-        element.appendChild(document.createTextNode(mapEntry.getValue().toString()));
+        if (mapEntry.getValue() != null) {
+            element.appendChild(document.createTextNode(mapEntry.getValue().toString()));
+        }
         parentNode.appendChild(element);
     }
 
