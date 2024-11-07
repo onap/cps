@@ -42,6 +42,7 @@ import org.onap.cps.spi.exceptions.SessionTimeoutException
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.spi.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.DataNodeBuilderUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
@@ -69,9 +70,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
+    def dataNodeBuilderUtility = new DataNodeBuilderUtility(yangParser)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService,
-            mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+            mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver, dataNodeBuilderUtility)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender

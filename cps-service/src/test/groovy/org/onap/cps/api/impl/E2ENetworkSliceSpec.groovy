@@ -33,6 +33,7 @@ import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.spi.model.Anchor
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.DataNodeBuilderUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
@@ -52,13 +53,14 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsDeltaService = Mock(CpsDeltaService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
+    def dataNodeBuilderUtility = new DataNodeBuilderUtility(yangParser)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockDataUpdateEventsService, mockCpsAnchorService, mockCpsValidator,
-            yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+            yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver, dataNodeBuilderUtility)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
