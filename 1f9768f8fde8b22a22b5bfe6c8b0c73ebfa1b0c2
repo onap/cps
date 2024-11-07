@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c135dd5_263d70ef",
+        "filename": "integration-test/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-07T17:04:15Z",
+      "side": 1,
+      "message": "i see that other newer versions are also availble.\nmaybe try checking with a newer version.\nhttps://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin",
+      "range": {
+        "startLine": 35,
+        "startChar": 33,
+        "endLine": 35,
+        "endChar": 41
+      },
+      "revId": "1f9768f8fde8b22a22b5bfe6c8b0c73ebfa1b0c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
