@@ -32,11 +32,11 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `'/ManagedElement=NRNode1/GNBDUFunction=1'`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
-              resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+              resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
         in: query
         name: resourceIdentifier
         required: true
@@ -138,11 +138,11 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
-              resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+              resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
         in: query
         name: resourceIdentifier
         required: true
@@ -152,18 +152,18 @@ paths:
           The `options` parameter specifies additional query options. It is mandatory to wrap key(s)=value(s) in parentheses `()`.
           Examples for GNBDUFunctionConfig queries:
             - Limit depth of returned sub-tree: `(depth=2)`
-            - Select specific fields: `(fields=id,gNBDUName)`
-            - Combine options: `(depth=3,fields=id,gNBDUName)`
+            - Select specific fields: `(fields=attributes(gNBId;gNBDUName))`
+            - Combine options: `(depth=3,fields=attributes(gNBId;gNBDUName))`
         examples:
           Limit Depth:
             value:
               options: (depth=2)
           Select Specific Fields:
             value:
-              options: "(fields=id,gNBDUName)"
+              options: (fields=attributes(gNBId;gNBDUName))
           Combine Depth and Fields:
             value:
-              options: "(depth=3,fields=id,gNBDUName)"
+              options: "(depth=3,fields=attributes(gNBId;gNBDUName))"
         in: query
         name: options
         required: false
@@ -271,11 +271,11 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
-              resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+              resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
         in: query
         name: resourceIdentifier
         required: true
@@ -380,11 +380,11 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
-              resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+              resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
         in: query
         name: resourceIdentifier
         required: true
@@ -494,11 +494,11 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
-              resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+              resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
         in: query
         name: resourceIdentifier
         required: true
@@ -699,10 +699,10 @@ paths:
         schema:
           example: my-cm-handle
           type: string
-      - description: For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
+      - description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
         examples:
           container cps path:
-            value: '/GNBDUFunction'
+            value: //GNBDUFunction
           list attributes cps path:
             value: "//GNBDUFunction[@id='1001']"
         in: query
@@ -723,7 +723,7 @@ paths:
               options: (depth=2)
           Select Specific Fields:
             value:
-              options: "(fields=attributes(gNBId;gNBDUName))"
+              options: (fields=attributes(gNBId;gNBDUName))
           Combine Depth and Fields:
             value:
               options: "(depth=3,fields=attributes(gNBId;gNBDUName))"
@@ -1478,11 +1478,11 @@ components:
       description: |
         The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
            For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-             - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+             - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
       examples:
         sample 1:
           value:
-            resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+            resourceIdentifier: /ManagedElement=node1/GNBDUFunction=1
       in: query
       name: resourceIdentifier
       required: true
@@ -1501,7 +1501,7 @@ components:
             options: (depth=2)
         Select Specific Fields:
           value:
-            options: "(fields=attributes(gNBId;gNBDUName))"
+            options: (fields=attributes(gNBId;gNBDUName))
         Combine Depth and Fields:
           value:
             options: "(depth=3,fields=attributes(gNBId;gNBDUName))"
@@ -1567,21 +1567,12 @@ components:
         example: my-cm-handle
         type: string
     cpsPathInQuery:
-      description: |
-        The `cps-path` parameter allows referencing elements in the GNBDUFunctionConfig data model.
-            For more details on cps path, please refer to:
-            [CPS Path Documentation](https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html).
-            Example paths:
-              - Root GNBDUFunction: `/GNBDUFunction`
-              - Specific gNB ID: `//GNBDUFunction[@id='1001']`
-              - RIM-RS Reporting Config: `//GNBDUFunction[@id='1001']/rimRSReportConf`
+      description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
       examples:
-        GNBDUFunction Root:
-          value: /GNBDUFunction
-        Specific gNB ID:
+        container cps path:
+          value: //GNBDUFunction
+        list attributes cps path:
           value: "//GNBDUFunction[@id='1001']"
-        RIM-RS Reporting Config:
-          value: "//GNBDUFunction[@id='1001']/rimRSReportConf"
       in: query
       name: cps-path
       required: false
@@ -1719,7 +1710,7 @@ components:
     DataOperationRequest:
       example:
         operations:
-        - resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+        - resourceIdentifier: /ManagedElement=NRNode1/GNBDUFunction=1
           targetIds:
           - "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
             ]"
@@ -1729,7 +1720,7 @@ components:
           options: (fields=NRCellDU/attributes/cellLocalId)
           operationId: "12"
           operation: read
-        - resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+        - resourceIdentifier: /ManagedElement=NRNode1/GNBDUFunction=1
           targetIds:
           - "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
             ]"
@@ -1749,7 +1740,7 @@ components:
       type: object
     DataOperationDefinition:
       example:
-        resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+        resourceIdentifier: /ManagedElement=NRNode1/GNBDUFunction=1
         targetIds:
         - "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
           ]"
@@ -1773,7 +1764,7 @@ components:
           example: (fields=NRCellDU/attributes/cellLocalId)
           type: string
         resourceIdentifier:
-          example: '/ManagedElement=NRNode1/GNBDUFunction=1'
+          example: /ManagedElement=NRNode1/GNBDUFunction=1
           type: string
         targetIds:
           items:
