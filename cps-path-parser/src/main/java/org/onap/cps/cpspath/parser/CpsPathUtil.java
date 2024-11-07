@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,6 +40,9 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class CpsPathUtil {
 
+    public static final String ROOT_NODE_XPATH = "/";
+    public static final String NO_PARENT_PATH = "";
+
     /**
      * Returns a normalized xpath path query.
      *
@@ -46,6 +50,9 @@ public class CpsPathUtil {
      * @return a normalized xpath String.
      */
     public static String getNormalizedXpath(final String xpathSource) {
+        if (ROOT_NODE_XPATH.equals(xpathSource)) {
+            return NO_PARENT_PATH;
+        }
         return getCpsPathBuilder(xpathSource).build().getNormalizedXpath();
     }
 
