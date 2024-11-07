@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28a32407_e3053881",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-07T16:56:14Z",
+      "side": 1,
+      "message": "overall a good patch.\njust rename the classes and check if testware needed.",
+      "revId": "9c136c3d8c51587c2c2d122ee2caf722afa433de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87cdadcb_1c0d4675",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataNodeBuilderUtility.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-07T16:56:14Z",
+      "side": 1,
+      "message": "Its not a kind of utility.\nUsually when anybody sees utility we think it will have some public static methods.\nBut here its a spring managed bean.\nIts more like a Service and moreover it needs YangParser as a dependency to perform its operation.\n\nDataNodeBuilderService probably or something better.\n\nAlso extract to interface.\nDataNodeBuilderService interface.\nand DataNodeBuilderServiceImpl to be the implementation.",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "9c136c3d8c51587c2c2d122ee2caf722afa433de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "437f46e1_f3ee4c7e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-07T16:56:14Z",
+      "side": 1,
+      "message": "also try to sort the testware as well.\nwe would need to have some testware around the same.",
+      "revId": "9c136c3d8c51587c2c2d122ee2caf722afa433de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
