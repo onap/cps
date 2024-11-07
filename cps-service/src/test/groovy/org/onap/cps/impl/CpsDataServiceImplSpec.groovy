@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.api.DataNodeBuilderService
 import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -68,9 +69,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
+    def mockDataNodeBuilderService = Mock(DataNodeBuilderService)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService,
-            mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+        mockDataNodeBuilderService, mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -107,10 +109,11 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Saving #scenario data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with test-tree #scenario data'
             def data = TestUtils.getResourceFileContent(dataFile)
+        when: 'save data method is invoked with test-tree #scenario data'
             objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
         then: 'the persistence service method is invoked with correct parameters'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorXpathAndNodeData(anchor, '/', data, contentType) >> [new DataNodeBuilder().withXpath('/test-tree').build()]
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
                     { dataNode -> dataNode.xpath[0] == '/test-tree' })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
@@ -127,6 +130,7 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'save data method is invoked with test-tree json data'
             objectUnderTest.saveData(dataspaceName, anchorName, invalidData, observedTimestamp, contentType)
         then: 'a data validation exception is thrown with the correct message'
+            mockDataNodeBuilderService.buildDataNodesWithAnchorXpathAndNodeData(anchor, '/', invalidData, contentType) >> { throw new DataValidationException(expectedMessage, 'Exception details') }
             def exceptionThrown  = thrown(DataValidationException)
             assert exceptionThrown.message.startsWith(expectedMessage)
         where: 'given parameters'
@@ -139,10 +143,11 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Saving list element data fragment under Root node.'() {
         given: 'schema set for given anchor and dataspace references bookstore model'
             setupSchemaSetMocks('bookstore.yang')
-        when: 'save data method is invoked with list element json data'
             def jsonData = '{"bookstore-address":[{"bookstore-name":"Easons","address":"Dublin,Ireland","postal-code":"D02HA21"}]}'
+        when: 'save data method is invoked with list element json data'
             objectUnderTest.saveListElements(dataspaceName, anchorName, '/', jsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, '/', jsonData, ContentType.JSON) >> [new DataNodeBuilder().withXpath('/bookstore-address[@bookstore-name=\'Easons\']').build()]
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
                 { dataNodeCollection ->
                     {
