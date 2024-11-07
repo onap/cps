@@ -39,6 +39,9 @@ import org.onap.cps.cpspath.parser.antlr4.CpsPathParser;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class CpsPathUtil {
 
+    public static final String ROOT_NODE_XPATH = "/";
+    public static final String NO_PARENT_PATH = "";
+
     /**
      * Returns a normalized xpath path query.
      *
@@ -46,6 +49,9 @@ public class CpsPathUtil {
      * @return a normalized xpath String.
      */
     public static String getNormalizedXpath(final String xpathSource) {
+        if (ROOT_NODE_XPATH.equals(xpathSource)) {
+            return NO_PARENT_PATH;
+        }
         return getCpsPathBuilder(xpathSource).build().getNormalizedXpath();
     }
 
