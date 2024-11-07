@@ -30,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.api.DataNodeBuilderService
 import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -68,9 +69,10 @@ class CpsDataServiceImplSpec extends Specification {
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
+    def mockDataNodeBuilderService = Mock(DataNodeBuilderService)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService,
-            mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+        mockDataNodeBuilderService, mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -107,10 +109,12 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Saving #scenario data.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with test-tree #scenario data'
             def data = TestUtils.getResourceFileContent(dataFile)
+        when: 'save data method is invoked with test-tree #scenario data'
             objectUnderTest.saveData(dataspaceName, anchorName, data, observedTimestamp, contentType)
-        then: 'the persistence service method is invoked with correct parameters'
+        then: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorXpathAndNodeData(anchor, '/', data, contentType) >> [new DataNodeBuilder().withXpath('/test-tree').build()]
+        and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
                     { dataNode -> dataNode.xpath[0] == '/test-tree' })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
@@ -126,7 +130,8 @@ class CpsDataServiceImplSpec extends Specification {
             setupSchemaSetMocks('test-tree.yang')
         when: 'save data method is invoked with test-tree json data'
             objectUnderTest.saveData(dataspaceName, anchorName, invalidData, observedTimestamp, contentType)
-        then: 'a data validation exception is thrown with the correct message'
+        then: 'the data node builder service is invoked and a data validation exception is thrown with the correct message'
+            mockDataNodeBuilderService.buildDataNodesWithAnchorXpathAndNodeData(anchor, '/', invalidData, contentType) >> { throw new DataValidationException(expectedMessage, 'Exception details') }
             def exceptionThrown  = thrown(DataValidationException)
             assert exceptionThrown.message.startsWith(expectedMessage)
         where: 'given parameters'
@@ -139,10 +144,12 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Saving list element data fragment under Root node.'() {
         given: 'schema set for given anchor and dataspace references bookstore model'
             setupSchemaSetMocks('bookstore.yang')
-        when: 'save data method is invoked with list element json data'
             def jsonData = '{"bookstore-address":[{"bookstore-name":"Easons","address":"Dublin,Ireland","postal-code":"D02HA21"}]}'
+        when: 'save data method is invoked with list element json data'
             objectUnderTest.saveListElements(dataspaceName, anchorName, '/', jsonData, observedTimestamp, ContentType.JSON)
-        then: 'the persistence service method is invoked with correct parameters'
+        then: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, '/', jsonData, ContentType.JSON) >> [new DataNodeBuilder().withXpath('/bookstore-address[@bookstore-name=\'Easons\']').build()]
+        and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName,
                 { dataNodeCollection ->
                     {
@@ -159,22 +166,26 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Saving child data fragment under existing node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'save data method is invoked with test-tree json data'
             def jsonData = '{"branch": [{"name": "New"}]}'
+        when: 'save data method is invoked with test-tree json data'
             objectUnderTest.saveData(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
-        then: 'the persistence service method is invoked with correct parameters'
+        then: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, '/test-tree', jsonData, ContentType.JSON) >> [new DataNodeBuilder().withXpath('/test-tree/branch[@name=\'New\']').build()]
+        and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.addChildDataNodes(dataspaceName, anchorName, '/test-tree',
                 { dataNode -> dataNode.xpath[0] == '/test-tree/branch[@name=\'New\']' })
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
-    def 'Saving list element data fragment under existing JSON/XML node.'() {
+    def 'Saving list element data fragment under existing #scenario .'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'save data method is invoked with list element data'
             objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', data, observedTimestamp, contentType)
-        then: 'the persistence service method is invoked with correct parameters'
+        then: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, '/test-tree', data, contentType) >> [new DataNodeBuilder().withXpath('/test-tree/branch[@name=\'A\']').build(), new DataNodeBuilder().withXpath('/test-tree/branch[@name=\'B\']').build()]
+        and: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.addListElements(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
                     {
@@ -187,22 +198,25 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where:
-            data                                                                                                                        | contentType
-            '{"branch": [{"name": "A"}, {"name": "B"}]}'                                                                                | ContentType.JSON
-            '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML
+            scenario    | data                                                                                                                        | contentType
+            'JSON data' | '{"branch": [{"name": "A"}, {"name": "B"}]}'                                                                                | ContentType.JSON
+            'XML data'  | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>A</name></branch><branch><name>B</name></branch></test-tree>' | ContentType.XML
+
     }
 
-    def 'Saving empty list element data fragment for JSON/XML data.'() {
+    def 'Saving empty list element data fragment for #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'save data method is invoked with an empty list'
             objectUnderTest.saveListElements(dataspaceName, anchorName, '/test-tree', data, observedTimestamp, contentType)
-        then: 'invalid data exception is thrown'
+        then: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, '/test-tree', data, contentType) >> { throw new DataValidationException('Exception message', 'Exception details') }
+        and: 'invalid data exception is thrown'
             thrown(DataValidationException)
         where:
-            data                                       | contentType
-            '{"branch": []}'                           | ContentType.JSON
-            '<test-tree><branch></branch></test-tree>' | ContentType.XML
+            scenario    | data                                       | contentType
+            'JSON data' | '{"branch": []}'                           | ContentType.JSON
+            'XML data'  | '<test-tree><branch></branch></test-tree>' | ContentType.XML
     }
 
     def 'Get all data nodes #scenario.'() {
@@ -254,6 +268,8 @@ class CpsDataServiceImplSpec extends Specification {
             objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourcesNameToContentMap, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'dataspacename and anchor names are validated'
             1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
+        and: 'the data node builder service is invoked with correct paramters and returns data nodes'
+            1 * mockDataNodeBuilderService.buildDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, jsonData, ContentType.JSON) >> [new DataNodeBuilder().withXpath('/bookstore').build()]
         and: 'source data nodes are fetched using appropriate persistence layer method'
             1 * mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'appropriate delta service method is invoked once with correct source and target data nodes'
