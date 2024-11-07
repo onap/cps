@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,11 @@ import spock.lang.Specification
 
 class CpsPathUtilSpec extends Specification {
 
+    def 'Normalized xpath for root.'() {
+        expect: 'root node xpath is parsed'
+            assert CpsPathUtil.getNormalizedXpath('/') == ''
+    }
+
     def 'Normalized xpaths for list index values using #scenario'() {
         when: 'xpath with #scenario is parsed'
             def result = CpsPathUtil.getNormalizedXpath(xpath)
@@ -36,7 +42,7 @@ class CpsPathUtilSpec extends Specification {
             'single quotes' | "/parent/child[@common-leaf-name='123']"
     }
 
-    def 'Normalized parent paths of absolute paths'() {
+    def 'Normalized parent paths of absolute paths.'() {
         when: 'a given cps path is parsed'
             def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
         then: 'the result is the expected parent path'
@@ -54,7 +60,7 @@ class CpsPathUtilSpec extends Specification {
             '/parent/child/name[text()="value"]'  || '/parent'
     }
 
-    def 'Normalized parent paths of descendant paths'() {
+    def 'Normalized parent paths of descendant paths.'() {
         when: 'a given cps path is parsed'
             def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
         then: 'the result is the expected parent path'
@@ -72,7 +78,7 @@ class CpsPathUtilSpec extends Specification {
             '//parent/child/name[text()="value"]'  || '//parent'
     }
 
-    def 'Get node ID sequence for given xpath'() {
+    def 'Get node ID sequence for given xpath with #scenario.'() {
         when: 'a given xpath with #scenario is parsed'
             def result = CpsPathUtil.getXpathNodeIdSequence(xpath)
         then: 'the result is the expected node ID sequence'
@@ -89,7 +95,7 @@ class CpsPathUtilSpec extends Specification {
             'does not include ancestor node' | '/parent/child/ancestor::grandparent' || ["parent","child"]
     }
 
-    def 'Recognizing (absolute) xpaths to List elements'() {
+    def 'Recognizing (absolute) xpaths to List elements.'() {
         expect: 'check for list returns the correct values'
             assert CpsPathUtil.isPathToListElement(xpath) == expectList
         where: 'the following xpaths are used'
@@ -101,7 +107,7 @@ class CpsPathUtilSpec extends Specification {
             '/parent/ancestor::grandparent[@id=1]' || false
     }
 
-    def 'Parsing Exception'() {
+    def 'Parsing Exception.'() {
         when: 'a invalid xpath is parsed'
             CpsPathUtil.getNormalizedXpath('///')
         then: 'a path parsing exception is thrown'
