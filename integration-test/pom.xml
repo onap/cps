@@ -30,6 +30,11 @@
 
     <artifactId>integration-test</artifactId>
 
+    <properties>
+        <!-- Define a global property for the maven-failsafe-plugin version -->
+        <failsafe.plugin.version>3.0.0-M4</failsafe.plugin.version>
+    </properties>
+
     <dependencies>
         <!-- T E S T   D E P E N D E N C I E S -->
         <dependency>
@@ -127,6 +132,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${failsafe.plugin.version}</version>
                         <configuration>
                             <includes>
                                 <include>**/*PerfTest.java</include>
