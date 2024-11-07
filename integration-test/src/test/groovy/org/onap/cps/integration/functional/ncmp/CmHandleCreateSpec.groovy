@@ -242,7 +242,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             if (retryAttempts == 0)
                 break
         }
-        consumerRecords
+        return consumerRecords
     }
 
 }
