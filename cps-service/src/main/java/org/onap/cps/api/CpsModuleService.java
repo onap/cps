@@ -178,8 +178,8 @@ public interface CpsModuleService {
      *                         an attribute key-value pair used in the WHERE clause for parent fragments.
      * @param childAttributes  a map of attributes to filter child fragments. Each entry in this map represents
      *                         an attribute key-value pair used in the WHERE clause for child fragments.
-     * @return a collection of {@link ModuleReference} objects that match the given criteria. Each
-     * {@code ModuleReference} contains information about a module's name and revision.
+     * @return a collection of {@link ModuleReference} objects that match the given criteria.
+     *     Each {@code ModuleReference} contains information about a module's name and revision.
      * @implNote The method assumes that both `parentAttributes` and `childAttributes` maps contain at least
      *     one entry. The first entry from `parentAttributes` is used to filter parent fragments,
      *     and the first entry from `childAttributes` is used to filter child fragments.
