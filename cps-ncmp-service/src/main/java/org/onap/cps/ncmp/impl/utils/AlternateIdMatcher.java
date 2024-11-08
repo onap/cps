@@ -45,7 +45,8 @@ public class AlternateIdMatcher {
      * @return data node
      */
     public DataNode getCmHandleDataNodeByLongestMatchingAlternateId(final String alternateId, final String separator) {
-        String bestMatch = alternateId;
+        final String[] splitPath = alternateId.split("#", 2);
+        String bestMatch = splitPath[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
             try {
                 return inventoryPersistence.getCmHandleDataNodeByAlternateId(bestMatch);
