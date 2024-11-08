@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cce2369_6106946b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T12:08:00Z",
+      "side": 1,
+      "message": "NB: You can have only a single line (no need then block) test for this:\n\nexpect: \u0027cm handle exists for given cm handle id\u0027\n    assert true \u003d\u003d objectUnderTest.isExistingCmHandleId(\u0027some-cm-handle\u0027)",
+      "range": {
+        "startLine": 384,
+        "startChar": 1,
+        "endLine": 387,
+        "endChar": 33
+      },
+      "revId": "a1a71f782f2db1b50a41f095d49c981f5095b4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
