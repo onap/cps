@@ -35,6 +35,161 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d96f4b8e_cf2df18f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "Nice one but some tests were missing.",
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1eafa1_ad668f77",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "references",
+      "range": {
+        "startLine": 237,
+        "startChar": 27,
+        "endLine": 237,
+        "endChar": 30
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a136434e_e76a5538",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "identifier and output alternate id option",
+      "range": {
+        "startLine": 205,
+        "startChar": 61,
+        "endLine": 205,
+        "endChar": 71
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18036b00_2c23d690",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "You should have scenarios for this test as well by also passing output flag as true.",
+      "range": {
+        "startLine": 206,
+        "startChar": 112,
+        "endLine": 206,
+        "endChar": 117
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd72a3c_cf2df295",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "handle references",
+      "range": {
+        "startLine": 82,
+        "startChar": 53,
+        "endLine": 82,
+        "endChar": 60
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06257dc_8d5d96e4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "NB: You may have scenarios to test true case as well.",
+      "range": {
+        "startLine": 83,
+        "startChar": 114,
+        "endLine": 83,
+        "endChar": 119
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4998dcdf_9da5211d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "identifier and output alternate id option",
+      "range": {
+        "startLine": 84,
+        "startChar": 59,
+        "endLine": 84,
+        "endChar": 69
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e150fb6_76cc9c8e",
@@ -48,6 +203,30 @@
       "writtenOn": "2024-11-06T11:32:36Z",
       "side": 1,
       "message": "2 times?? why ?",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 210,
+        "endChar": 112
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b418f3d_6bb91106",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-08T17:00:18Z",
+      "side": 1,
+      "message": "I think these are overloaded methods in CmHandleQueryService:\nOne should return collection of String.\nThe other should return a map.",
+      "parentUuid": "1e150fb6_76cc9c8e",
       "range": {
         "startLine": 209,
         "startChar": 12,
