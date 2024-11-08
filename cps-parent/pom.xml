@@ -43,7 +43,7 @@
         <!-- Global properties for version management -->
         <bug.pattern.version>1.5.0</bug.pattern.version>
         <dependency.check.version>9.2.0</dependency.check.version>
-        <git.commit.id.version>9.0.0</git.commit.id.version>
+        <git.commit.id.version>9.0.1</git.commit.id.version>
         <gmavenplus.plugin.version>4.0.1</gmavenplus.plugin.version>
         <jacoco.version>0.8.11</jacoco.version>
         <java.version>17</java.version>
@@ -51,15 +51,16 @@
         <maven.checkstyle.plugin.version>3.3.1</maven.checkstyle.plugin.version>
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <maven.compiler.release>17</maven.compiler.release>
+        <maven.failsafe.plugin.version>3.5.2</maven.failsafe.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>4.0.0-M13</maven.site.plugin.version>
-        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>3.3.1</maven.surefire.plugin.version>
         <postgres.version>42.5.1</postgres.version>
         <slf4j.simple.version>2.0.6</slf4j.simple.version>
         <sonar.version>4.0.0.4121</sonar.version>
         <spotbugs.plugin.version>4.8.6.4</spotbugs.plugin.version>
         <spotbugs.version>4.8.6</spotbugs.version>
-        <spring.boot.maven.plugin.version>3.2.4</spring.boot.maven.plugin.version>
+        <spring.boot.maven.plugin.version>3.3.1</spring.boot.maven.plugin.version>
         <swagger.codegen.version>1.2.1</swagger.codegen.version>
 
         <!-- Reporting paths and coverage -->
@@ -128,6 +129,36 @@
                             <execution>
                                 <goals>
                                     <goal>aggregate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- Performance tests are run with maven-failsafe-plugin using a separate profile, so they will
+            not affect Jacoco coverage. Heap size is set here to ensure consistent test environment. -->
+        <profile>
+            <id>include-performance</id>
+            <properties>
+                <failsafeArgLine>-Xms512m -Xmx512m</failsafeArgLine>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven.failsafe.plugin.version}</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*PerfTest.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
                                 </goals>
                             </execution>
                         </executions>
