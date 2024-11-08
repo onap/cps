@@ -6,14 +6,14 @@
 .. _cmNotificationSubscriptions:
 
 
-CM Data Subscriptions
-#####################
+CM Data Subscriptions and Notifications
+#######################################
 
 .. toctree::
    :maxdepth: 1
 
-Introduction
-============
+CM Data Subscriptions
+=====================
 CM Subscriptions are created to subscribe to notifications for CM related changes that happened in the network based on predicates.
 Predicates can be used to filter on CM Handle (id), Datastore and Xpath.
 
@@ -44,5 +44,17 @@ The response for the involved subscription participants for the Create and Delet
 
 **Note.** The Cm Subscription feature relies on the DMI Plugin support for applying the subscriptions. This support is currently not implemented in the ONAP DMI Plugin.
 
+CM Data Notifications
+=====================
+CM Notifications are triggered by any change in the network, provided the client has already set up a CM Subscription to receive such notifications. Once the events are generated, they are processed by NCMP and forwarded to the client in the same format.
+
+**Note.** Currently, CM Notifications are sent regardless of the CM Subscriptions. Notifications controlled by CM Subscription have not yet been delivered.
+
+The CM Notification Event follows the structure outlined in the schema below:
+
+:download:`CM Data Notification Event Schema <schemas/dmidataavc/avc-event-schema-1.0.0.json>`
+
+**Note.** NCMP uses the CM Notification event key from the source topic to forward notifications to the client, ensuring that the order of notifications within a topic partition is maintained during forwarding.
+**Note.** If the notification key from the source topic is null, NCMP cannot guarantee the order of events within a topic partition when forwarding.
 
 

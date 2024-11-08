@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.cps.ncmp.events:avc-event-schema:1.0.0",
+  "$ref": "#/definitions/AvcEvent",
+  "definitions": {
+    "Edit": {
+      "additionalProperties": false,
+      "properties": {
+        "edit-id": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object",
+          "existingJavaType": "java.lang.Object"
+        }
+      },
+      "required": [
+        "edit-id",
+        "operation",
+        "target"
+      ]
+    },
+    "AvcEvent": {
+      "description": "The payload for AVC event.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.events.avc1_0_0.AvcEvent",
+      "properties": {
+        "data": {
+          "description": "The AVC event content compliant with RFC8641 format",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "push-change-update": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "datastore-changes": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "ietf-yang-patch:yang-patch": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "patch-id": {
+                          "type": "string"
+                        },
+                        "edit": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Edit"
+                          }
+                        }
+                      },
+                      "required": [
+                        "patch-id",
+                        "edit"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ietf-yang-patch:yang-patch"
+                  ]
+                }
+              },
+              "required": [
+                "datastore-changes"
+              ]
+            }
+          },
+          "required": [
+            "push-change-update"
+          ]
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
