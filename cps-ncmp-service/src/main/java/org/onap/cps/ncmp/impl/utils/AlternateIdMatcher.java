@@ -38,14 +38,15 @@ public class AlternateIdMatcher {
 
     /**
      * Get data node that matches longest alternate id by removing elements (as defined by the separator string)
-     * from right to left.
+     * from right to left. If alternate id contains a hash then all elements after that hash are ignored.
      *
      * @param alternateId alternate ID
      * @param separator   a string that separates each element from the next.
      * @return data node
      */
     public DataNode getCmHandleDataNodeByLongestMatchingAlternateId(final String alternateId, final String separator) {
-        String bestMatch = alternateId;
+        final String[] splitPath = alternateId.split("#", 2);
+        String bestMatch = splitPath[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
             try {
                 return inventoryPersistence.getCmHandleDataNodeByAlternateId(bestMatch);
