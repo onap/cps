@@ -1,6 +1,86 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c01620a2_ecc691cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T11:36:06Z",
+      "side": 1,
+      "message": "comment on a legacy code.\notherwise looks ok to me.",
+      "revId": "a1a71f782f2db1b50a41f095d49c981f5095b4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ebcea6_139668a4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T11:36:06Z",
+      "side": 1,
+      "message": "NB: will",
+      "range": {
+        "startLine": 369,
+        "startChar": 120,
+        "endLine": 369,
+        "endChar": 123
+      },
+      "revId": "a1a71f782f2db1b50a41f095d49c981f5095b4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f72a53ce_e8a14463",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T11:36:06Z",
+      "side": 1,
+      "message": "we might have to think abt simplifying this.\nthis method is doing way too much.\nbut maybe not part of the same patch.",
+      "revId": "a1a71f782f2db1b50a41f095d49c981f5095b4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f5fb093_2a218da7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T11:36:06Z",
+      "side": 1,
+      "message": "NB: do we rename this one.\nfrom the name its not clear what the key and the value is.\nbecomes clear when we look at the code.",
+      "range": {
+        "startLine": 74,
+        "startChar": 34,
+        "endLine": 74,
+        "endChar": 66
+      },
+      "revId": "a1a71f782f2db1b50a41f095d49c981f5095b4fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cce2369_6106946b",
