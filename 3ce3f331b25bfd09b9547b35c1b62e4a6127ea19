@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a6b9b8d_e7a1275a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-11T13:47:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81f89a9e_f389097a",
+      "range": {
+        "startLine": 33,
+        "startChar": 14,
+        "endLine": 33,
+        "endChar": 43
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6933e534_c6ea7f45",
