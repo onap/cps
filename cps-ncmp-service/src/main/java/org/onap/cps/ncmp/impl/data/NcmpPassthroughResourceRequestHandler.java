@@ -91,10 +91,10 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
                 throw new InvalidDatastoreException(dataOperationDefinition.getDatastore()
                         + " datastore is not supported");
             }
-            if (dataOperationDefinition.getCmHandleIds().size() > MAXIMUM_CM_HANDLES_PER_OPERATION) {
+            if (dataOperationDefinition.getCmHandleReferences().size() > MAXIMUM_CM_HANDLES_PER_OPERATION) {
                 final String errorMessage = String.format(PAYLOAD_TOO_LARGE_TEMPLATE,
                         dataOperationDefinition.getOperationId(),
-                        dataOperationDefinition.getCmHandleIds().size());
+                        dataOperationDefinition.getCmHandleReferences().size());
                 throw new PayloadTooLargeException(errorMessage);
             }
         });

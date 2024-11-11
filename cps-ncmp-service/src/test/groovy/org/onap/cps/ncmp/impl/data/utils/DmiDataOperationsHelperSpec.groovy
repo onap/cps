@@ -74,15 +74,16 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
             assert dmiDataOperationRequestBodyAsJsonNode.get('operationId').asText() == expectedOperationId
             assert dmiDataOperationRequestBodyAsJsonNode.get('datastore').asText() == expectedDatastore
         and: 'the correct cm handles (just for #serviceName)'
-            assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleIds.size()
-            expectedCmHandleIds.each {
+            assert dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').size() == expectedCmHandleReferences.size()
+            expectedCmHandleReferences.each {
                 dmiDataOperationRequestBodyAsJsonNode.get('cmHandles').toString().contains(it)
             }
         where: 'the following dmi service and operations are checked'
-            serviceName | operationIndex || expectedOperationId | expectedDatastore                        | expectedCmHandleIds
+            serviceName | operationIndex || expectedOperationId | expectedDatastore                        | expectedCmHandleReferences
             'dmi1'      | 0              || 'operational-14'    | 'ncmp-datastore:passthrough-operational' | ['ch6-dmi1']
             'dmi1'      | 1              || 'running-12'        | 'ncmp-datastore:passthrough-running'     | ['ch1-dmi1', 'ch2-dmi1']
             'dmi1'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch6-dmi1']
+            'dmi1'      | 3              || 'operational-16'    | 'ncmp-datastore:passthrough-operational' | ['alt6-dmi1']
             'dmi2'      | 0              || 'operational-14'    | 'ncmp-datastore:passthrough-operational' | ['ch3-dmi2']
             'dmi2'      | 1              || 'running-12'        | 'ncmp-datastore:passthrough-running'     | ['ch7-dmi2']
             'dmi2'      | 2              || 'operational-15'    | 'ncmp-datastore:passthrough-operational' | ['ch4-dmi2']
@@ -137,14 +138,14 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
         def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
         def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
         def advisedState = new CompositeStateBuilder().withCmHandleState(ADVISED).withLastUpdatedTimeNow().build()
-        return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch2-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch6-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch8-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'non-ready-cm-handle', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
+        return [new YangModelCmHandle(id: 'ch1-dmi1', 'alternateId': 'alt1-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch2-dmi1', 'alternateId': 'alt2-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch6-dmi1', 'alternateId': 'alt6-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch8-dmi1', 'alternateId': 'alt8-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch3-dmi2', 'alternateId': 'alt3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch4-dmi2', 'alternateId': 'alt4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch7-dmi2', 'alternateId': 'alt7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'non-ready-cm-handle', 'alternateId': 'non-ready-alternate', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
         ]
     }
 

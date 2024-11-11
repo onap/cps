@@ -139,10 +139,10 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Set<String> cmHandlesIds = getDistinctCmHandleIds(dataOperationRequest);
+        final Set<String> cmHandlesReferences = getDistinctCmHandleReferences(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
-            = inventoryPersistence.getYangModelCmHandles(cmHandlesIds);
+            = inventoryPersistence.getYangModelCmHandlesFromCmHandleReferences(cmHandlesReferences);
 
         final Map<String, List<DmiDataOperation>> operationsOutPerDmiServiceName
                 = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(topicParamInQuery,
@@ -246,10 +246,10 @@ public class DmiDataOperations {
         }
     }
 
-    private static Set<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
+    private static Set<String> getDistinctCmHandleReferences(final DataOperationRequest dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(dataOperationDefinition ->
-                        dataOperationDefinition.getCmHandleIds().stream()).collect(Collectors.toSet());
+                        dataOperationDefinition.getCmHandleReferences().stream()).collect(Collectors.toSet());
     }
 
     private void asyncSendMultipleRequest(final String requestId, final String topicParamInQuery,
