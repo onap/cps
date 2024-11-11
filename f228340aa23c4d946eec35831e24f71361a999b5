@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dcb11e3_c04f7ad1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-11T10:46:56Z",
+      "side": 1,
+      "message": "Now the profile \u0027include-performance\u0027 is triggering the peformance test either from the root path of cps-and-ncmp or integration-test module.",
+      "revId": "f228340aa23c4d946eec35831e24f71361a999b5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
