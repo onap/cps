@@ -34,7 +34,7 @@ ${auth}                                     Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}                    /ncmpInventory
 ${ncmpBasePath}                             /ncmp/v1
 ${dmiUrl}                                   http://${DMI_HOST}:${DMI_PORT}
-${jsonCreateCmHandles}                      {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"trustLevel":"COMPLETE","cmHandle":"CH-1"},{"trustLevel":"COMPLETE","cmHandle":"CH-2"},{"cmHandle":"CH-3"},{"trustLevel":"NONE","cmHandle":"CH-4"}]}
+${jsonCreateCmHandles}                      {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPlugin":"","createdCmHandles":[{"trustLevel":"NONE","cmHandle":"CH-1"},{"trustLevel":"NONE","cmHandle":"CH-2"},{"cmHandle":"CH-3"},{"trustLevel":"COMPLETE","cmHandle":"CH-4"}]}
 ${jsonTrustLevelPropertyQueryParameters}    {"cmHandleQueryParameters": [{"conditionName": "cmHandleWithTrustLevel", "conditionParameters": [ {"trustLevel": "COMPLETE"} ] }]}
 ${jsonTrustLevelEventPayload}               {"data":{"attributeValueChange":[{"attributeName":"trustLevel","newAttributeValue":"NONE"}]}}
 
@@ -68,7 +68,7 @@ Retrieve CM Handle ids where query parameters Match (trust level query)
     Should Be Equal As Strings              ${response.status_code}   200
     Should Contain       ${responseJson}    CH-1
     Should Contain       ${responseJson}    CH-2
-    Should Contain       ${responseJson}    CH-3
+    Should Not Contain   ${responseJson}    CH-3
     Should Not Contain   ${responseJson}    CH-4
 
 *** Keywords ***

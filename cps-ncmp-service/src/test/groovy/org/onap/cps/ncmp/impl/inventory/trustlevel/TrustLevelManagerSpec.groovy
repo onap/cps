@@ -47,15 +47,15 @@ class TrustLevelManagerSpec extends Specification {
     }
 
     def 'Initial cm handle registration'() {
-        given: 'two cm handles: one with no trust level and one trusted'
-            def cmHandleModelsToBeCreated = ['ch-1': null, 'ch-2': TrustLevel.COMPLETE]
+        given: 'two cm handles: one not trusted and one trusted'
+            def cmHandleModelsToBeCreated = ['ch-1': TrustLevel.NONE, 'ch-2': TrustLevel.COMPLETE]
         when: 'method to register to the cache is called'
             objectUnderTest.registerCmHandles(cmHandleModelsToBeCreated)
         then: 'no notification sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
-        and: 'both cm handles are in the cache and are trusted'
-            assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.COMPLETE
-            assert trustLevelPerCmHandle.get('ch-2') == TrustLevel.COMPLETE
+            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+        and: 'only one cmhandle is in the cache and not trusted'
+            assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.NONE
+            assert trustLevelPerCmHandle.get('ch-2') == null
     }
 
     def 'Initial cm handle registration with a cm handle that is not trusted'() {
@@ -151,7 +151,7 @@ class TrustLevelManagerSpec extends Specification {
 
     def 'Select effective trust level  when the trust level caches are empty (restart case)'() {
         expect: 'effective trust level is NONE when cm-1 does not exist in the cache'
-            assert objectUnderTest.getEffectiveTrustLevel('ch-1') == TrustLevel.NONE
+            assert objectUnderTest.getEffectiveTrustLevel('ch-1') == TrustLevel.COMPLETE
     }
 
     def 'CmHandle trust level removed'() {
