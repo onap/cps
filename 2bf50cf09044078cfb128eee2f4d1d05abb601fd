@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a46df96_72297058",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-11T11:01:23Z",
+      "side": 1,
+      "message": "Waiting on edge case clarification",
+      "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
