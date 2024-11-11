@@ -72,20 +72,14 @@ public class TrustLevelManager {
     public void registerCmHandles(final Map<String, TrustLevel> cmHandlesToBeCreated) {
         for (final Map.Entry<String, TrustLevel> entry : cmHandlesToBeCreated.entrySet()) {
             final String cmHandleId = entry.getKey();
-            if (trustLevelPerCmHandle.containsKey(cmHandleId)) {
-                log.warn("Cm handle: {} already registered", cmHandleId);
-            } else {
-                TrustLevel initialTrustLevel = entry.getValue();
-                if (initialTrustLevel == null) {
-                    initialTrustLevel = TrustLevel.COMPLETE;
-                }
+            final TrustLevel initialTrustLevel = entry.getValue();
+            if (TrustLevel.NONE.equals(initialTrustLevel)) {
                 trustLevelPerCmHandle.put(cmHandleId, initialTrustLevel);
-                if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                    cmAvcEventPublisher.publishAvcEvent(cmHandleId,
+                cmAvcEventPublisher.publishAvcEvent(
+                        cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
                         AVC_NO_OLD_VALUE,
                         initialTrustLevel.name());
-                }
             }
         }
     }
@@ -123,12 +117,14 @@ public class TrustLevelManager {
         final String dmiServiceName = getDmiServiceName(cmHandleId);
 
         final TrustLevel dmiTrustLevel = trustLevelPerDmiPlugin.get(dmiServiceName);
-        final TrustLevel oldCmHandleTrustLevel = trustLevelPerCmHandle.get(cmHandleId);
+        final TrustLevel oldCmHandleTrustLevel = trustLevelPerCmHandle.getOrDefault(cmHandleId, TrustLevel.COMPLETE);
 
         final TrustLevel oldEffectiveTrustLevel = oldCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
         final TrustLevel newEffectiveTrustLevel = newCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
 
-        trustLevelPerCmHandle.put(cmHandleId, newCmHandleTrustLevel);
+        if (newCmHandleTrustLevel == TrustLevel.NONE) {
+            trustLevelPerCmHandle.put(cmHandleId, newCmHandleTrustLevel);
+        }
         sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
     }
 
@@ -140,7 +136,7 @@ public class TrustLevelManager {
      */
     public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
         final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
-        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.getOrDefault(cmHandleId, TrustLevel.NONE);
+        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.getOrDefault(cmHandleId, TrustLevel.COMPLETE);
         return dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
     }
 
