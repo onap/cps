@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.cache;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
+import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.config.RestEndpointGroup;
 import com.hazelcast.config.SetConfig;
@@ -89,6 +90,7 @@ public class HazelcastCacheConfig {
     protected static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(1);
+        mapConfig.setNearCacheConfig(getNearCacheConfig(configName));
         return mapConfig;
     }
 
@@ -115,6 +117,10 @@ public class HazelcastCacheConfig {
     protected void exposeClusterInformation(final Config config) {
         config.getNetworkConfig().getRestApiConfig().setEnabled(true)
                 .enableGroups(RestEndpointGroup.HEALTH_CHECK, RestEndpointGroup.CLUSTER_READ);
+    }
+
+    private static NearCacheConfig getNearCacheConfig(final String configName) {
+        return new NearCacheConfig().setName(configName);
     }
 
 }
