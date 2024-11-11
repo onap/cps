@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1156ca_d871aae2",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-11T08:35:46Z",
+      "side": 1,
+      "message": "CM Notifications are sent regardless of the CM Subscription",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 92
+      },
+      "revId": "6ec3adca82cc5cc6e701e7220981f8e6dc75328b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7a41a0_3450d4b9",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-11T08:35:46Z",
+      "side": 1,
+      "message": "\u0027filtered\u0027 isn\u0027t the right word. I t implies they all exists and then only some are et trough.\n\n\u0027controlled\u0027 would be a more appropriate term",
+      "range": {
+        "startLine": 51,
+        "startChar": 108,
+        "endLine": 51,
+        "endChar": 117
+      },
+      "revId": "6ec3adca82cc5cc6e701e7220981f8e6dc75328b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
