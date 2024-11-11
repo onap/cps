@@ -187,6 +187,30 @@
       },
       "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a4e3a85_cc37b242",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T14:59:00Z",
+      "side": 1,
+      "message": "right. need to have a separate task to take care of the refactoring in the InventoryPersistence to only return YangModelCmHandle.\nand exception handling as well.",
+      "parentUuid": "0c1932a1_e2662aaa",
+      "range": {
+        "startLine": 182,
+        "startChar": 22,
+        "endLine": 182,
+        "endChar": 47
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
