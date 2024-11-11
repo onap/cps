@@ -33,6 +33,52 @@
       "message": "recheck",
       "revId": "6ef50f92814a09a7638141f19de2166ef4e31058",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a16ced_14639055",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T14:07:10Z",
+      "side": 1,
+      "message": "with false it returns the cm handle ids but with true it returns alternate ids..\nwe do have to check both the cases??",
+      "range": {
+        "startLine": 241,
+        "startChar": 126,
+        "endLine": 241,
+        "endChar": 131
+      },
+      "revId": "6ef50f92814a09a7638141f19de2166ef4e31058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b0c39c_cef38183",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-11T14:07:10Z",
+      "side": 1,
+      "message": "maybe just be explicit abt the null case as well.",
+      "range": {
+        "startLine": 82,
+        "startChar": 48,
+        "endLine": 82,
+        "endChar": 53
+      },
+      "revId": "6ef50f92814a09a7638141f19de2166ef4e31058",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
