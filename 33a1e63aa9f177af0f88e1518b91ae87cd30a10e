@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "33a1e63aa9f177af0f88e1518b91ae87cd30a10e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba6cb6f_36a45d59",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/23-yang-resource-index.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-11T08:32:44Z",
+      "side": 1,
+      "message": "should there be a rollback option or is it not needed because its only an index?!",
+      "revId": "33a1e63aa9f177af0f88e1518b91ae87cd30a10e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
