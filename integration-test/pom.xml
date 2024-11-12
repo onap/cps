@@ -113,29 +113,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <profiles>
-        <!-- Performance tests are run with maven-failsafe-plugin using a separate profile, so they will
-             not affect Jacoco coverage. Heap size is set here to ensure consistent test environment. -->
-        <profile>
-            <id>include-performance</id>
-            <properties>
-                <failsafeArgLine>-Xms512m -Xmx512m</failsafeArgLine>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/*PerfTest.java</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>
