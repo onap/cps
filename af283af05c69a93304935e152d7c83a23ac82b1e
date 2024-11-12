@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "580ccc5c_a2f7141f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-12T16:58:46Z",
+      "side": 1,
+      "message": "removing +2 as it was just there for testing issue and bypassing the new \u0027Bypass\u0027 GHA job...",
+      "revId": "af283af05c69a93304935e152d7c83a23ac82b1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
