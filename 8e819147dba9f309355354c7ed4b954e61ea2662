@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35e6128e_4fa18483",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5cb0441_9556e31e",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 26
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae0e27c4_be0b1a50",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-11T11:24:01Z",
       "side": 1,
       "message": "only EXPORT as environment variable the ones you really need outside script",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 133
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4480db6_38e121e8",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e27c4_be0b1a50",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb58bd5b_245c7b80",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c9300f_5c3646bc",
+      "range": {
+        "startLine": 29,
+        "startChar": 29,
+        "endLine": 29,
+        "endChar": 42
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1227f29_e7265242",
@@ -104,6 +176,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5309a9a6_ade49888",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1227f29_e7265242",
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdb2c2ee_6194e7c4",
@@ -117,6 +207,30 @@
       "writtenOn": "2024-11-11T11:24:01Z",
       "side": 1,
       "message": "enduranceSummary",
+      "range": {
+        "startLine": 25,
+        "startChar": 51,
+        "endLine": 25,
+        "endChar": 64
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59557459_2c892cb3",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb2c2ee_6194e7c4",
       "range": {
         "startLine": 25,
         "startChar": 51,
@@ -150,6 +264,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e590efa_651b80f8",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2533fe_0d7e9916",
+      "range": {
+        "startLine": 29,
+        "startChar": 31,
+        "endLine": 29,
+        "endChar": 38
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3a9f637_37e21ef9",
@@ -163,6 +301,30 @@
       "writtenOn": "2024-11-11T11:24:01Z",
       "side": 1,
       "message": "suggestion use \u0027KPI\u0027 as the name for the legacy file",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6b4b10_afe7fd39",
+        "filename": "k6-tests/run-k6-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3a9f637_37e21ef9",
       "range": {
         "startLine": 24,
         "startChar": 11,
@@ -219,6 +381,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "083cf12e_8bf29a34",
+        "filename": "k6-tests/run-k6-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3191a7f5_dda8a3bd",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 67
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "311594f7_238aa259",
+        "filename": "k6-tests/run-k6-tests.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e011d40d_fc8140a4",
+      "range": {
+        "startLine": 43,
+        "startChar": 48,
+        "endLine": 43,
+        "endChar": 60
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2eb0fba6_63263976",
@@ -232,6 +442,30 @@
       "writtenOn": "2024-11-11T11:24:01Z",
       "side": 1,
       "message": "kpi",
+      "range": {
+        "startLine": 26,
+        "startChar": 49,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c6866d_0e322fa9",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2eb0fba6_63263976",
       "range": {
         "startLine": 26,
         "startChar": 49,
@@ -265,6 +499,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bee85fc0_ec319d8c",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d195ac21_32fc6098",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e70ed431_7a7aebf1",
@@ -278,6 +536,30 @@
       "writtenOn": "2024-11-11T11:24:01Z",
       "side": 1,
       "message": "use project-name kpi \nThen reduce the duplication by just setting a variabel project name and NOT duplicating this whole line",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 111
+      },
+      "revId": "8e819147dba9f309355354c7ed4b954e61ea2662",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2531ab73_3e5cce6b",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-12T10:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e70ed431_7a7aebf1",
       "range": {
         "startLine": 28,
         "startChar": 0,
