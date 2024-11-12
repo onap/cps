@@ -16,6 +16,40 @@
       "message": "recheck",
       "revId": "2f72d9831388522c3ad230b43afcd1e1428b71ae",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8781be5e_b49073fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-12T11:36:30Z",
+      "side": 1,
+      "message": "we cant do it here. this would mean all the maps using the common config will have a near cache and we dont want that.\nwe just need for trust level one.",
+      "revId": "2f72d9831388522c3ad230b43afcd1e1428b71ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7070b735_0d7c3a17",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-12T11:36:30Z",
+      "side": 1,
+      "message": "protected static MapConfig createNearCacheMapConfig(final String configName) {\n        final MapConfig mapConfig \u003d new MapConfig(configName);\n        mapConfig.setBackupCount(1);\n        mapConfig.setNearCacheConfig(new NearCacheConfig(configName));\n        return mapConfig;\n    }\n    \nmaybe do something like this and then call this method instead from the TrustLevelCacheConfig.",
+      "revId": "2f72d9831388522c3ad230b43afcd1e1428b71ae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
