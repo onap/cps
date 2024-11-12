@@ -50,6 +50,29 @@
       "message": "recheck",
       "revId": "ea5b0a88b64ed86c7a1e443bfe8e8b0477f673e6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced195e5_9f17f5fd",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-12T14:00:19Z",
+      "side": 1,
+      "message": "NB: do we need to tag it during the verify stage as well ??",
+      "range": {
+        "startLine": 161,
+        "startChar": 36,
+        "endLine": 161,
+        "endChar": 55
+      },
+      "revId": "ea5b0a88b64ed86c7a1e443bfe8e8b0477f673e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
