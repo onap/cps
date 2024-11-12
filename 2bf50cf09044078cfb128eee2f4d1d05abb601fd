@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fbee66f_318b8397",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-12T11:44:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4acca0ba_35246954",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f38b547_ba9932ce",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-12T11:27:11Z",
       "side": 1,
       "message": "proably not so relevant but more realistic to have something behing the # eg. \u0027/a/b#q\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 59,
+        "endLine": 50,
+        "endChar": 61
+      },
+      "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb0e5e0_b7c12486",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-12T11:44:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f38b547_ba9932ce",
       "range": {
         "startLine": 50,
         "startChar": 59,
