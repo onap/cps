@@ -16,6 +16,52 @@
       "message": "Waiting on edge case clarification",
       "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4acca0ba_35246954",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-12T11:27:11Z",
+      "side": 1,
+      "message": "suggestion: update javadox to explain if # is found only the string before the # is used...",
+      "range": {
+        "startLine": 40,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f38b547_ba9932ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-12T11:27:11Z",
+      "side": 1,
+      "message": "proably not so relevant but more realistic to have something behing the # eg. \u0027/a/b#q\u0027",
+      "range": {
+        "startLine": 50,
+        "startChar": 59,
+        "endLine": 50,
+        "endChar": 61
+      },
+      "revId": "2bf50cf09044078cfb128eee2f4d1d05abb601fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
