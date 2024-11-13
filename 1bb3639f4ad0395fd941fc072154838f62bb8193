@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53654937_9e08eda2",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T13:20:13Z",
+      "side": 1,
+      "message": "we should also provide name as well.",
+      "revId": "1bb3639f4ad0395fd941fc072154838f62bb8193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7222cee_cab66396",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T13:20:13Z",
+      "side": 1,
+      "message": "we have these sections in the other pom\u0027s.\ncps-bom , checkstyle etc.\n\n  \u003cdistributionManagement\u003e\n        \u003crepository\u003e\n            \u003cid\u003eecomp-releases\u003c/id\u003e\n            \u003cname\u003eECOMP Release Repository\u003c/name\u003e\n            \u003curl\u003e${nexusproxy}${releaseNexusPath}\u003c/url\u003e\n        \u003c/repository\u003e\n        \u003csnapshotRepository\u003e\n            \u003cid\u003eecomp-snapshots\u003c/id\u003e\n            \u003cname\u003eECOMP Snapshot Repository\u003c/name\u003e\n            \u003curl\u003e${nexusproxy}${snapshotNexusPath}\u003c/url\u003e\n        \u003c/snapshotRepository\u003e\n    \u003c/distributionManagement\u003e",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 29
+      },
+      "revId": "1bb3639f4ad0395fd941fc072154838f62bb8193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
