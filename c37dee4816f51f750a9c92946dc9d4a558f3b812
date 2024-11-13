@@ -33,6 +33,115 @@
       "message": "NB: I suggest to have an integration test (possibly in RestApiSpec.groovy) for this \u0027/ncmpInventory/v1/ch/cmHandles\u0027 endpoint in a different commit if your time allows. if you decide to implement it, and want to how please let me know.",
       "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d473fd3_4b823c07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T15:04:36Z",
+      "side": 1,
+      "message": "non blocking comments on the javadoc only.\nyou have one more patch to be reviewed.\nu can apply the changes in the next related patch.",
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee86912_64194f18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T15:04:36Z",
+      "side": 1,
+      "message": "boolean",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 41
+      },
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0188d335_37b9a5fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T15:04:36Z",
+      "side": 1,
+      "message": "boolean",
+      "range": {
+        "startLine": 165,
+        "startChar": 32,
+        "endLine": 165,
+        "endChar": 39
+      },
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ff0ce95_21b1c1d9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T15:04:36Z",
+      "side": 1,
+      "message": "boolean",
+      "range": {
+        "startLine": 106,
+        "startChar": 34,
+        "endLine": 106,
+        "endChar": 41
+      },
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28aec269_c36420ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T15:04:36Z",
+      "side": 1,
+      "message": "boolean",
+      "range": {
+        "startLine": 160,
+        "startChar": 34,
+        "endLine": 160,
+        "endChar": 41
+      },
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
