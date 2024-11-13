@@ -3,6 +3,7 @@
 *.war
 *.log
 *.log.zip
+*.*~
 
 cps-ncmp-rest-stub/dependency-reduced-pom.xml
 cps-application/archunit_store

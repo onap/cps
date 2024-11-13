@@ -35,7 +35,7 @@
 
     <properties>
         <minimum-coverage>0.99</minimum-coverage>
-        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     </properties>
 
     <dependencies>

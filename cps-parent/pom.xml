@@ -33,7 +33,7 @@
     <properties>
         <!-- Set UTF-8 encoding for consistent builds across platforms -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Application Configuration -->
         <app>org.onap.cps.Application</app>
 
@@ -72,6 +72,17 @@
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>ecomp-releases</id>
+            <url>${onap.nexus.url}/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>ecomp-snapshots</id>
+            <url>${onap.nexus.url}/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <!-- Dependency Management, Profiles, Build, and Plugins -->
 
@@ -476,6 +487,7 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
+                            <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
                             <!-- Sets the path to the file which contains the execution data. -->
                             <dataFile>${jacoco.execFile}</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
@@ -504,6 +516,11 @@
                         <goals><goal>site</goal></goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.2</version>
             </plugin>
         </plugins>
     </build>
