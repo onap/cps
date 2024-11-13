@@ -345,8 +345,7 @@ export function legacyBatchConsumeScenario() {
         let startTime = Date.now();
 
         while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
-            let messages = legacyBatchEventReader.consume({ limit: 1000 });
-
+            let messages = legacyBatchEventReader.consume({ limit: LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE });
             if (messages.length > 0) {
                 messagesConsumed += messages.length;
             }
