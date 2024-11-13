@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee20d71_5cace2aa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28f27dc6_845c5c94",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 78,
+        "endChar": 7
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04027721_6261d969",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5fc5657_fe59e908",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04027721_6261d969",
+      "range": {
+        "startLine": 74,
+        "startChar": 34,
+        "endLine": 74,
+        "endChar": 69
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0775fdfd_ae13f332",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-11-11T14:07:10Z",
       "side": 1,
       "message": "maybe reflect the method name as well corresponding to the variable name.\nfilterAndGetNonReadyAlternateIdPerCmHandleId ??",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 50
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "404d3a2b_261e316f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0775fdfd_ae13f332",
       "range": {
         "startLine": 75,
         "startChar": 12,
@@ -133,6 +205,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "560c8ffc_5933e912",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7d98df8_d3da8093",
+      "range": {
+        "startLine": 106,
+        "startChar": 34,
+        "endLine": 106,
+        "endChar": 41
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "498f4ff1_90648afd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95f0f96f_2ab1d6e4",
+      "range": {
+        "startLine": 106,
+        "startChar": 90,
+        "endLine": 106,
+        "endChar": 95
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "079af60c_e1c90830",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-11-11T14:07:10Z",
       "side": 1,
       "message": "constant looks odd one out but I can understand we need to do it for the sonar.",
+      "range": {
+        "startLine": 133,
+        "startChar": 78,
+        "endLine": 133,
+        "endChar": 90
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7405f235_08c88479",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "079af60c_e1c90830",
       "range": {
         "startLine": 133,
         "startChar": 78,
@@ -173,6 +317,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c058147_05c0d67d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "342d891c_e3a1c495",
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ce03b4e_0483f76c",
@@ -186,6 +348,24 @@
       "writtenOn": "2024-11-11T14:07:10Z",
       "side": 1,
       "message": ".. when #scenario\nsame comment like before.",
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12440756_adecfc0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ce03b4e_0483f76c",
       "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -238,6 +418,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1429a4c5_33a1434e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "invocations are implied with the correct return values being applied",
+      "parentUuid": "1779f946_5358b850",
+      "range": {
+        "startLine": 208,
+        "startChar": 8,
+        "endLine": 210,
+        "endChar": 115
+      },
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e8c93c9_2c980a2e",
         "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
         "patchSetId": 5
@@ -249,6 +453,24 @@
       "writtenOn": "2024-11-11T14:07:10Z",
       "side": 1,
       "message": "same comment as before in relation to the casing.\napplies for this file.",
+      "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b6cdd36_934e6a78",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e8c93c9_2c980a2e",
       "revId": "d97b216b48f75a97bea165d0e686aff3ce876555",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },

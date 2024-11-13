@@ -403,6 +403,30 @@
       },
       "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc735a9_a264b93c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-13T12:58:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b2ba5e0_c99d02bd",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 210,
+        "endChar": 112
+      },
+      "revId": "e2c373f343cf29cf9d4a24af77b2ec3a72ef6ae0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
