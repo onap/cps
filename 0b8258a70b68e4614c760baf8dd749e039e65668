@@ -16,6 +16,92 @@
       "message": "recheck",
       "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4071a58a_947cec9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-13T14:13:25Z",
+      "side": 1,
+      "message": "much cleaner, thanks!\njust some doubts about one test that is run after all others...",
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e45122b_ead49745",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-13T14:13:25Z",
+      "side": 1,
+      "message": "It seems this si for a test that is ran AFTER all other test, not suer why.\nBut since endurance is about running all test in parallel for 2 hours we either need to excluded this test or do run it in parallel...",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c11bb728_c0d7cb10",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-13T14:13:25Z",
+      "side": 1,
+      "message": "see question on previous profile...",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 39
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "569e0d56_a3d74866",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-13T14:13:25Z",
+      "side": 1,
+      "message": "NB: this probably wont align the same for both cases. but not so important\nbut if you want you coudl do an if-else statement in this case to get correct formatted and uppercase output for each...",
+      "range": {
+        "startLine": 37,
+        "startChar": 35,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
