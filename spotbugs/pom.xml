@@ -28,7 +28,7 @@
     <version>3.5.5-SNAPSHOT</version>
 
     <properties>
-        <nexusproxy>https://nexus.onap.org</nexusproxy>
+        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
         <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
         <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
@@ -49,12 +49,12 @@
         <repository>
             <id>ecomp-releases</id>
             <name>ECOMP Release Repository</name>
-            <url>${nexusproxy}${releaseNexusPath}</url>
+            <url>${onap.nexus.url}${releaseNexusPath}</url>
         </repository>
         <snapshotRepository>
             <id>ecomp-snapshots</id>
             <name>ECOMP Snapshot Repository</name>
-            <url>${nexusproxy}${snapshotNexusPath}</url>
+            <url>${onap.nexus.url}${snapshotNexusPath}</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

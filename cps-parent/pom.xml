@@ -71,16 +71,23 @@
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
+
+        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
+        <nexusproxy>https://nexus.onap.org</nexusproxy>
+        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
+        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
 
     <distributionManagement>
         <repository>
             <id>ecomp-releases</id>
-            <url>${onap.nexus.url}/content/repositories/releases</url>
+            <name>ECOMP Release Repository</name>
+            <url>${onap.nexus.url}${releaseNexusPath}</url>
         </repository>
         <snapshotRepository>
             <id>ecomp-snapshots</id>
-            <url>${onap.nexus.url}/content/repositories/snapshots</url>
+            <name>ECOMP Snapshot Repository</name>
+            <url>${onap.nexus.url}${snapshotNexusPath}</url>
         </snapshotRepository>
     </distributionManagement>
 

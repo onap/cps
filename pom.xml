@@ -41,6 +41,10 @@
     <properties>
         <maven.deploy.skip>false</maven.deploy.skip>
         <maven.install.skip>false</maven.install.skip>
+        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
+        <nexusproxy>https://nexus.onap.org</nexusproxy>
+        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
+        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
     </properties>
 
     <modules>
@@ -63,6 +67,19 @@
         <module>jacoco-report</module>
         <module>policy-executor-stub</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>ecomp-releases</id>
+            <name>ECOMP Release Repository</name>
+            <url>${onap.nexus.url}${releaseNexusPath}</url>
+        </repository>
+        <snapshotRepository>
+            <id>ecomp-snapshots</id>
+            <name>ECOMP Snapshot Repository</name>
+            <url>${onap.nexus.url}${snapshotNexusPath}</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <plugins>
