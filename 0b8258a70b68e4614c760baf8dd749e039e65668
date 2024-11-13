@@ -116,6 +116,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b24df97_32f7b423",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T15:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "764e8e81_481ce6a1",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c11bb728_c0d7cb10",
@@ -163,6 +187,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b3a1bd_5357346b",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T15:51:40Z",
+      "side": 1,
+      "message": "For the kpi suit, in the past, the testing strategy (for legacy batch operations) decided  to run them after parallel tests completed.",
+      "parentUuid": "0abcfebc_b0cb2763",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 39
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "569e0d56_a3d74866",
@@ -200,6 +248,30 @@
       "side": 1,
       "message": "That is correct, and I can address it in the next commit for new Endurance Test Suit.",
       "parentUuid": "569e0d56_a3d74866",
+      "range": {
+        "startLine": 37,
+        "startChar": 35,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270d9729_856e55dd",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T15:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e508a159_49a286d6",
       "range": {
         "startLine": 37,
         "startChar": 35,
