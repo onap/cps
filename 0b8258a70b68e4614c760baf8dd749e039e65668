@@ -71,6 +71,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddfdea23_f0ca262c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T21:43:37Z",
+      "side": 1,
+      "message": "NB: i would probably say activeTestConfig and activeTestProfile( wherever we have testProfile). what do u think ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 16
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e45122b_ead49745",
         "filename": "k6-tests/ncmp/config/endurance.json",
         "patchSetId": 3
