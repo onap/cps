@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up -d
+docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub up --quiet-pull -d
 
 echo "Waiting for CPS to start..."
 READY_MESSAGE="Inventory Model updated successfully"
@@ -28,3 +28,8 @@ for CONTAINER_ID in $CONTAINER_IDS; do
     echo "Checking logs for container: $CONTAINER_ID"
     docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
 done
+
+# Output build information including git commit info
+echo "Build information:"
+curl http://localhost:8883/actuator/info
+echo
