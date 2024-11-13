@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "8a1aa78d3b3a3e93568c0272062d22a23837199c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "851fe9a6_9557218b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-13T12:14:51Z",
+      "side": 1,
+      "message": "this patch doesnt take care of removing the duplicate code from NCMP side??\ntestware update etc.",
+      "revId": "8a1aa78d3b3a3e93568c0272062d22a23837199c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
