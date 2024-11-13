@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31f14bde_1c4cd0fc",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-13T13:25:13Z",
+      "side": 1,
+      "message": "We cant verify cps-master-merge-java job on local need to be merged to check if it works. May need to optimize after verification",
+      "parentUuid": "53654937_9e08eda2",
+      "revId": "1bb3639f4ad0395fd941fc072154838f62bb8193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7222cee_cab66396",
         "filename": "cps-parent/pom.xml",
         "patchSetId": 1
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "can use similar in the parent pom.",
       "parentUuid": "c7222cee_cab66396",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 29
+      },
+      "revId": "1bb3639f4ad0395fd941fc072154838f62bb8193",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f3fce98_36ec1389",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-13T13:25:13Z",
+      "side": 1,
+      "message": "We cant verify cps-master-merge-java job on local need to be merged to check if it works. May need to optimize after verification",
+      "parentUuid": "59274d77_436b8ecd",
       "range": {
         "startLine": 76,
         "startChar": 4,
