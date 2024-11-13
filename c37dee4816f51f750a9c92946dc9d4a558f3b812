@@ -16,6 +16,23 @@
       "message": "close comments done",
       "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4631695_9645dc3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T14:25:12Z",
+      "side": 1,
+      "message": "NB: I suggest to have an integration test (possibly in RestApiSpec.groovy) for this \u0027/ncmpInventory/v1/ch/cmHandles\u0027 endpoint in a different commit if your time allows. if you decide to implement it, and want to how please let me know.",
+      "revId": "c37dee4816f51f750a9c92946dc9d4a558f3b812",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
