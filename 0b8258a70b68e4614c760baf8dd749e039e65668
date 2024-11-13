@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "826cecbe_85f6113d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T14:35:53Z",
+      "side": 1,
+      "message": "Many thanks Toine for your valuable comments, please see my replies in line.",
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e45122b_ead49745",
@@ -65,6 +82,30 @@
       "writtenOn": "2024-11-13T14:13:25Z",
       "side": 1,
       "message": "It seems this si for a test that is ran AFTER all other test, not suer why.\nBut since endurance is about running all test in parallel for 2 hours we either need to excluded this test or do run it in parallel...",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "764e8e81_481ce6a1",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T14:35:53Z",
+      "side": 1,
+      "message": "Very good point indeed. I proposing to get rid of legacy tests from endunrance suit. However it has not been decided with the team yet. \n\nThe proposed test suite, on the wiki, I\u0027ve already removed these tests from the table. https://lf-onap.atlassian.net/wiki/spaces/DW/pages/34570296/CPS-2444+Add+Endurance+tests+for+NCMP (please look at The proposed test suite)\n\nNo harm to keep it now, I can remove this in the commit will be for Endurance Suit.",
+      "parentUuid": "4e45122b_ead49745",
       "range": {
         "startLine": 9,
         "startChar": 30,
@@ -100,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0abcfebc_b0cb2763",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T14:35:53Z",
+      "side": 1,
+      "message": "Same as above, replied already.",
+      "parentUuid": "c11bb728_c0d7cb10",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 39
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "569e0d56_a3d74866",
         "filename": "k6-tests/ncmp/run-all-tests.sh",
         "patchSetId": 3
@@ -111,6 +176,30 @@
       "writtenOn": "2024-11-13T14:13:25Z",
       "side": 1,
       "message": "NB: this probably wont align the same for both cases. but not so important\nbut if you want you coudl do an if-else statement in this case to get correct formatted and uppercase output for each...",
+      "range": {
+        "startLine": 37,
+        "startChar": 35,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e508a159_49a286d6",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-13T14:35:53Z",
+      "side": 1,
+      "message": "That is correct, and I can address it in the next commit for new Endurance Test Suit.",
+      "parentUuid": "569e0d56_a3d74866",
       "range": {
         "startLine": 37,
         "startChar": 35,
