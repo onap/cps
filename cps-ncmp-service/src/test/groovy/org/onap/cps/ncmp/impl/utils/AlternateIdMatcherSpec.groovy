@@ -42,11 +42,15 @@ class AlternateIdMatcherSpec extends Specification {
         expect: 'querying for alternate id a matching result found'
             assert objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(targetAlternateId, '/') != null
         where: 'the following parameters are used'
-            scenario                   | targetAlternateId
-            'exact match'              | '/a/b'
-            'parent match'             | '/a/b/c'
-            'grand parent match'       | '/a/b/c/d'
-            'trailing separator match' | '/a/b/'
+            scenario                                | targetAlternateId
+            'exact match'                           | '/a/b'
+            'parent match'                          | '/a/b/c'
+            'grand parent match'                    | '/a/b/c/d'
+            'trailing separator match'              | '/a/b/'
+            'trailing hash'                         | '/a/b#q'
+            'trailing hash parent match'            | '/a/b/c#q'
+            'trailing hash grand parent match'      | '/a/b/c/d#q'
+            'trailing separator then hash match'    | '/a/b/#q'
     }
 
     def 'Attempt to find longest alternate id match without any matches.'() {
