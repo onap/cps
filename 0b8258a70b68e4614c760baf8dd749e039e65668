@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5b2431b_4c03adb8",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-14T16:09:24Z",
+      "side": 1,
+      "message": "Yes would be nice if we were having two configs at a time like kpiConfig and enduranceConfig. However, it is only one should be used. Thus, I recommend to keep this name as is.",
+      "parentUuid": "ddfdea23_f0ca262c",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 16
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e45122b_ead49745",

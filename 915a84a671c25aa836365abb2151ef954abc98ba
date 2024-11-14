@@ -70,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2c595f5_6fd91f81",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-14T16:09:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f8dff63_9f78b4d6",
+      "revId": "915a84a671c25aa836365abb2151ef954abc98ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3e4fee5_06f4bea9",
@@ -93,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db18036_fadcaeaa",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-14T16:09:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3e4fee5_06f4bea9",
+      "range": {
+        "startLine": 38,
+        "startChar": 36,
+        "endLine": 38,
+        "endChar": 40
+      },
+      "revId": "915a84a671c25aa836365abb2151ef954abc98ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f468196_c6ef243a",
@@ -106,6 +148,30 @@
       "writtenOn": "2024-11-14T08:12:55Z",
       "side": 1,
       "message": "NB: E N D U R A N C E",
+      "range": {
+        "startLine": 40,
+        "startChar": 37,
+        "endLine": 40,
+        "endChar": 46
+      },
+      "revId": "915a84a671c25aa836365abb2151ef954abc98ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be67bffe_bbf51577",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-14T16:09:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f468196_c6ef243a",
       "range": {
         "startLine": 40,
         "startChar": 37,
