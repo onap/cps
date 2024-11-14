@@ -163,6 +163,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5eb3c4d_77fb0b8d",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-14T08:12:55Z",
+      "side": 1,
+      "message": "this test came up a an issue yesterday (unrelated to your changes). Talked to Daniel we agreed to reduce the number of requests from 1000 to 100. Hopefully thsi tets can then just in parallel wich all others. If not it needs to be removed from the endurance profile",
+      "parentUuid": "3b24df97_32f7b423",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "0b8258a70b68e4614c760baf8dd749e039e65668",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c11bb728_c0d7cb10",
