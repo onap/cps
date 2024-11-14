@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f8dff63_9f78b4d6",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-14T15:02:03Z",
+      "side": 1,
+      "message": "Halil and I have agreed this as a solution:\n- there will a single JS script handling both pipelines, which will be configurable using json configs: kpi.json and endurance.json\n- we will store \u0027scenarios\u0027 and \u0027thresholds\u0027 in these config files also, so everything is configurable\n- that is all the information needed for both kpi and endurance pipelines\n\nFor now, I recommend merging this commit, as it is a good base to build upon.",
+      "parentUuid": "0003f431_e47ddf98",
+      "revId": "915a84a671c25aa836365abb2151ef954abc98ba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3e4fee5_06f4bea9",
         "filename": "k6-tests/ncmp/run-all-tests.sh",
         "patchSetId": 4
