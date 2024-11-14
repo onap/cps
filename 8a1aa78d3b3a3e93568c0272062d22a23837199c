@@ -33,6 +33,41 @@
       "message": "this patch doesnt take care of removing the duplicate code from NCMP side??\ntestware update etc.",
       "revId": "8a1aa78d3b3a3e93568c0272062d22a23837199c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dc394fd_d0765c0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-11-14T06:43:49Z",
+      "side": 1,
+      "message": "NCMP code cleanup was planned for separate patch. do you want to add NCML changes also with same patch?",
+      "parentUuid": "851fe9a6_9557218b",
+      "revId": "8a1aa78d3b3a3e93568c0272062d22a23837199c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8991a22f_1073aa61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-11-14T06:43:49Z",
+      "side": 1,
+      "message": "NCMP code refactoring to remove duplicate code will be in separate patch",
+      "revId": "8a1aa78d3b3a3e93568c0272062d22a23837199c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
