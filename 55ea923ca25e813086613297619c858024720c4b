@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ceab29_0f0d5365",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "NB: you had better to mention XML support for only cps query v2",
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d4851e_4c0d4c89",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "NB: no need to mention the variable name updates in the commit message. \ninstead you can be more generic what to do?",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4b7aabf2_12ab4881",
@@ -31,6 +71,115 @@
       "writtenOn": "2024-11-15T16:23:27Z",
       "side": 1,
       "message": "recheck",
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fda4500_7b8be10d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "A few NB comments. Also you need to rebase your commit.",
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5406d4_f9a1ceb8",
+        "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
+        "patchSetId": 36
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "NB: 2023-2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f330ab_a7393656",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "private access modifier better to use since it is belong to this class only.",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 18
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0befd418_04e96f20",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "please be more specific on variable name e.g. what kind of entiry values in this map you consuming. e.g. dataNodeMaps",
+      "range": {
+        "startLine": 205,
+        "startChar": 27,
+        "endLine": 205,
+        "endChar": 31
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6434747_50add639",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T17:11:39Z",
+      "side": 1,
+      "message": "similar to above like dataNodeMap",
+      "range": {
+        "startLine": 210,
+        "startChar": 30,
+        "endLine": 210,
+        "endChar": 37
+      },
       "revId": "55ea923ca25e813086613297619c858024720c4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
