@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fa2242_5fd142a0",
+        "filename": "csit/plans/cps/test.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T15:38:11Z",
+      "side": 1,
+      "message": "this is not anymore avaiable in nexus. but 1.5.1-SNAPSHOT-latest is available.",
+      "range": {
+        "startLine": 24,
+        "startChar": 12,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "43be0d2c6cb918a8a608d02126386597df5e5d89",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
