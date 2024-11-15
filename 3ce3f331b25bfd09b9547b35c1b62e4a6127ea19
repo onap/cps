@@ -96,6 +96,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5cc4e4f_2cfcf538",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T11:08:33Z",
+      "side": 1,
+      "message": "\"cm handle reference(s) not found\" is a good message. \n\nOtherwise it will be ambiguous like on the current master: \"errorText\": \"cm handle id(s) not found\"",
+      "parentUuid": "1be3a532_f4549786",
+      "range": {
+        "startLine": 30,
+        "startChar": 33,
+        "endLine": 30,
+        "endChar": 65
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81f89a9e_f389097a",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "right. need to have a separate task to take care of the refactoring in the InventoryPersistence to only return YangModelCmHandle.\nand exception handling as well.",
       "parentUuid": "0c1932a1_e2662aaa",
+      "range": {
+        "startLine": 182,
+        "startChar": 22,
+        "endLine": 182,
+        "endChar": 47
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b481adfd_a467b55b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-15T11:08:33Z",
+      "side": 1,
+      "message": "Lets leave refactoring things to a different commit not in this one.",
+      "parentUuid": "6a4e3a85_cc37b242",
       "range": {
         "startLine": 182,
         "startChar": 22,
