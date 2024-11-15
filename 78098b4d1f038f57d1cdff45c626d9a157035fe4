@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee30aac2_a7b14fec",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-15T14:02:32Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "549eb219_73e247a2",
+      "range": {
+        "startLine": 122,
+        "startChar": 83,
+        "endLine": 122,
+        "endChar": 110
+      },
+      "revId": "78098b4d1f038f57d1cdff45c626d9a157035fe4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46e85f31_65fdbad7",
@@ -105,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdbcba3b_1ceabc2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-15T14:02:32Z",
+      "side": 1,
+      "message": "Using listElement once has  Nesting Issues,Entire list represent as  a single XML element, So here we used it twice(creating new listElement for each list item) because while generating XML from list ,each item in the list needs to appear as a sibling under the parent node.",
+      "parentUuid": "46e85f31_65fdbad7",
+      "range": {
+        "startLine": 207,
+        "startChar": 12,
+        "endLine": 207,
+        "endChar": 82
+      },
+      "revId": "78098b4d1f038f57d1cdff45c626d9a157035fe4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36bf5a28_81744f9b",
@@ -118,6 +166,24 @@
       "writtenOn": "2024-11-15T10:26:47Z",
       "side": 1,
       "message": "i think we are testing the null scenarios twice.\ncheck if we can remove the scenarios from here. The test after this is anyways taking care of the scenarios.",
+      "revId": "78098b4d1f038f57d1cdff45c626d9a157035fe4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b2e0d9d_3787c8ee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-15T14:02:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36bf5a28_81744f9b",
       "revId": "78098b4d1f038f57d1cdff45c626d9a157035fe4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
