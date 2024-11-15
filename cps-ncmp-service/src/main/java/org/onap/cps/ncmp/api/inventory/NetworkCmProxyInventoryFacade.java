@@ -75,13 +75,16 @@ public class NetworkCmProxyInventoryFacade {
     }
 
     /**
-     * Get all cm handle IDs by DMI plugin identifier.
+     * Get all cm handle references by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
-     * @return collection of cm handle IDs
+     * @param outputAlternateId   Boolean for cm handle reference type either
+     *                            cm handle id (false) or alternate id (true)
+     * @return collection of cm handle references
      */
-    public Collection<String> getAllCmHandleIdsByDmiPluginIdentifier(final String dmiPluginIdentifier) {
-        return cmHandleQueryService.getCmHandleIdsByDmiPluginIdentifier(dmiPluginIdentifier);
+    public Collection<String> getAllCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier,
+                                                                     final boolean outputAlternateId) {
+        return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier, outputAlternateId);
     }
 
     /**
@@ -90,10 +93,10 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleQueryServiceParameters cm handle query parameters
      * @param outputAlternateId              Boolean for cm handle reference type either
      *                                       cm handle id (false) or alternate id (true)
-     * @return                               collection of cm handle IDs
+     * @return                               collection of cm handle references
      */
     public Collection<String> executeParameterizedCmHandleIdSearch(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final Boolean outputAlternateId) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
 
         return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
@@ -159,11 +162,11 @@ public class NetworkCmProxyInventoryFacade {
      * Retrieve cm handle ids for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
-     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
+     * @param outputAlternateId Boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
     public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
-                                                      final Boolean outputAlternateId) {
+                                                      final boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
             cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);

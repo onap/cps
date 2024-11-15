@@ -71,8 +71,8 @@ public class DmiDataOperationsHelper {
         final Map<String, List<DmiDataOperation>> dmiDataOperationsOutPerDmiServiceName = new HashMap<>();
         final MultiValueMap<DmiDataOperation, Map<NcmpResponseStatus,
                 List<String>>> cmHandleReferencesPerResponseCodesPerOperation = new LinkedMultiValueMap<>();
-        final Map<String, String> nonReadyCmHandleReferencesLookup =
-            filterAndGetNonReadyCmHandleReferences(yangModelCmHandles);
+        final Map<String, String> nonReadyAlternateIdPerCmHandleId =
+            filterAndGetNonReadyAlternateIdPerCmHandleId(yangModelCmHandles);
 
         final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
                 DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
@@ -87,8 +87,8 @@ public class DmiDataOperationsHelper {
             final List<String> nonExistingCmHandleReferences = new ArrayList<>();
             final List<String> nonReadyCmHandleReferences = new ArrayList<>();
             for (final String cmHandleReference : dataOperationDefinitionIn.getCmHandleReferences()) {
-                if (nonReadyCmHandleReferencesLookup.containsKey(cmHandleReference)
-                    || nonReadyCmHandleReferencesLookup.containsValue(cmHandleReference)) {
+                if (nonReadyAlternateIdPerCmHandleId.containsKey(cmHandleReference)
+                    || nonReadyAlternateIdPerCmHandleId.containsValue(cmHandleReference)) {
                     nonReadyCmHandleReferences.add(cmHandleReference);
                 } else {
                     final String cmHandleId = getCmHandleId(cmHandleReference, yangModelCmHandles);
@@ -184,7 +184,7 @@ public class DmiDataOperationsHelper {
         return dmiBatchOperationsOut.get(dmiBatchOperationsOut.size() - 1);
     }
 
-    private static Map<String, String> filterAndGetNonReadyCmHandleReferences(
+    private static Map<String, String> filterAndGetNonReadyAlternateIdPerCmHandleId(
         final Collection<YangModelCmHandle> yangModelCmHandles) {
         final Map<String, String> cmHandleReferenceMap = new HashMap<>(yangModelCmHandles.size());
         for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
