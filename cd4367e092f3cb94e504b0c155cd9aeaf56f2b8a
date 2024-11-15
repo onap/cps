@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a874d77_72762211",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-15T14:00:49Z",
+      "side": 1,
+      "message": "this can be hardcoded here as both are same string.\nsame comment for the XML one as well.",
+      "range": {
+        "startLine": 118,
+        "startChar": 58,
+        "endLine": 118,
+        "endChar": 85
+      },
+      "revId": "cd4367e092f3cb94e504b0c155cd9aeaf56f2b8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b1b0f36_5aa4433a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 35
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-15T14:00:49Z",
+      "side": 1,
+      "message": "same comment as above.",
+      "range": {
+        "startLine": 142,
+        "startChar": 58,
+        "endLine": 142,
+        "endChar": 84
+      },
+      "revId": "cd4367e092f3cb94e504b0c155cd9aeaf56f2b8a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

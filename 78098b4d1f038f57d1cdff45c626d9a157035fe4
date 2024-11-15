@@ -83,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "949253ce_fa4396fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-15T14:00:49Z",
+      "side": 1,
+      "message": "??",
+      "parentUuid": "46e85f31_65fdbad7",
+      "range": {
+        "startLine": 207,
+        "startChar": 12,
+        "endLine": 207,
+        "endChar": 82
+      },
+      "revId": "78098b4d1f038f57d1cdff45c626d9a157035fe4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36bf5a28_81744f9b",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
         "patchSetId": 33
