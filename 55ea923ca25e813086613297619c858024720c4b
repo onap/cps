@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f57f6448_63f30dbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6ceab29_0f0d5365",
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16d4851e_4c0d4c89",
@@ -115,6 +133,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b0475c_2ddce261",
+        "filename": "cps-rest/docs/openapi/cpsQueryV2.yml",
+        "patchSetId": 36
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb5406d4_f9a1ceb8",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04f330ab_a7393656",
@@ -161,6 +203,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb3c39d1_6b8ab367",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0befd418_04e96f20",
+      "range": {
+        "startLine": 205,
+        "startChar": 27,
+        "endLine": 205,
+        "endChar": 31
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6434747_50add639",
@@ -174,6 +240,30 @@
       "writtenOn": "2024-11-15T17:11:39Z",
       "side": 1,
       "message": "similar to above like dataNodeMap",
+      "range": {
+        "startLine": 210,
+        "startChar": 30,
+        "endLine": 210,
+        "endChar": 37
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9bfb007_0e55a06b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6434747_50add639",
       "range": {
         "startLine": 210,
         "startChar": 30,
