@@ -61,6 +61,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1252f8ac_aa475be6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16d4851e_4c0d4c89",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4b7aabf2_12ab4881",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 36
@@ -170,6 +194,30 @@
       "writtenOn": "2024-11-15T17:11:39Z",
       "side": 1,
       "message": "private access modifier better to use since it is belong to this class only.",
+      "range": {
+        "startLine": 154,
+        "startChar": 4,
+        "endLine": 154,
+        "endChar": 18
+      },
+      "revId": "55ea923ca25e813086613297619c858024720c4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d7628d3_825ebfa6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-17T17:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04f330ab_a7393656",
       "range": {
         "startLine": 154,
         "startChar": 4,
