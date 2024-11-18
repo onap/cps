@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2023 Nordix Foundation
+.. Copyright (C) 2023-2024 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cmHandleDataOperation:
@@ -43,7 +43,7 @@ This endpoint executes data operation for given array of operations:
     |                          |             | implementation. For ONAP DMI Plugin it will be RESTConf paths but it can|
     |                          |             | really be anything.                                                     |
     +--------------------------+-------------+-------------------------------------------------------------------------+
-    | targetIds                | Yes         | List of cm handle ids.                                                  |
+    | targetIds                | Yes         | List of cm handle references                                            |
     +--------------------------+-------------+-------------------------------------------------------------------------+
 
 The status codes used in the events resulting from these operations are defined here:
