@@ -202,7 +202,11 @@ components:
         type: string
     outputAlternateIdOptionInQuery:
       description: Boolean parameter to determine if returned value(s) will be cm
+<<<<<<< HEAD
         handle Ids or alternate Ids for a given query
+=======
+        handle references for a given query
+>>>>>>> eb86d975 (XML content support on Replace list content)
       in: query
       name: outputAlternateId
       required: false
