@@ -103,8 +103,8 @@ public interface CmHandleQueryService {
      * Get collection of all cm handles references by DMI plugin identifier and alternate id output option.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
-     * @param outputAlternateId   Boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
-     * @return collection of cm handle ids
+     * @param outputAlternateId   boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
+     * @return collection of cm handle references
      */
     Collection<String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier,
                                                                   boolean outputAlternateId);
