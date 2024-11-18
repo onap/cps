@@ -36,6 +36,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aab90f35_a3135422",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-18T12:26:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d84414ac_2c88e83f",
+      "revId": "e11c31781c5bb1303d88e0f6b9280af88e176284",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1844c6df_388dec21",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-11-18T09:51:04Z",
       "side": 1,
       "message": "This whole if-statement can be simplified using $testProfile variable, something like this:\n\n    docker-compose \\\n        -f ../docker-compose/docker-compose.yml \\\n        --env-file ../docker-compose/config/$testProfile.env \\\n        --project-name \"$testProfile\" \\\n        --profile dmi-stub \\\n        up --quiet-pull -d\n\n    CONTAINER_IDS\u003d$(docker ps --filter \"name\u003d$testProfile-cps-and-ncmp\" --format \"{{.ID}}\")",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "e11c31781c5bb1303d88e0f6b9280af88e176284",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b213bba_31e56d25",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-18T12:26:23Z",
+      "side": 1,
+      "message": "As discussed offline, there is no kpi.env for docker-compose deployment. For default profile (kpi) it uses values from docker-compose.yml file.",
+      "parentUuid": "1844c6df_388dec21",
       "range": {
         "startLine": 22,
         "startChar": 0,
