@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9be0b7_b7c56724",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/NcmpResponseStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad18109c_0f08ad2f",
+      "range": {
+        "startLine": 37,
+        "startChar": 33,
+        "endLine": 37,
+        "endChar": 42
+      },
+      "revId": "b0fd6baf3f403d4a2d21feb3ed42c7b28405b5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "802314e3_ae0ba399",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-15T11:08:33Z",
       "side": 1,
       "message": "You can extract this into a private constant e.g.:\n\nprivate static final String CM_HANDLE_NOT_EXIST_MESSAGE_FORMAT \u003d \"Cm handle does not exist for cm handle reference %s\";",
+      "range": {
+        "startLine": 31,
+        "startChar": 52,
+        "endLine": 31,
+        "endChar": 103
+      },
+      "revId": "b0fd6baf3f403d4a2d21feb3ed42c7b28405b5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeca9f9f_0639753a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "802314e3_ae0ba399",
       "range": {
         "startLine": 31,
         "startChar": 52,
@@ -111,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6e6b2e_05c6ff34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "No there is no such requirement",
+      "parentUuid": "728ea88e_da7fb761",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "b0fd6baf3f403d4a2d21feb3ed42c7b28405b5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbf70d47_096ee454",
@@ -124,6 +196,30 @@
       "writtenOn": "2024-11-15T11:08:33Z",
       "side": 1,
       "message": "NB: Since the cmHandleIds never used in any of scenarios (not verified), the cmHandleId column can be removed.",
+      "range": {
+        "startLine": 402,
+        "startChar": 39,
+        "endLine": 402,
+        "endChar": 49
+      },
+      "revId": "b0fd6baf3f403d4a2d21feb3ed42c7b28405b5da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5f3ac7_cc6dd254",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbf70d47_096ee454",
       "range": {
         "startLine": 402,
         "startChar": 39,

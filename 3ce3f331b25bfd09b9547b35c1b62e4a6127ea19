@@ -214,6 +214,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60260ed1_17897366",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dccb78a3_2b368c38",
+      "range": {
+        "startLine": 177,
+        "startChar": 11,
+        "endLine": 177,
+        "endChar": 19
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c1932a1_e2662aaa",
@@ -275,6 +299,30 @@
       "side": 1,
       "message": "Lets leave refactoring things to a different commit not in this one.",
       "parentUuid": "6a4e3a85_cc37b242",
+      "range": {
+        "startLine": 182,
+        "startChar": 22,
+        "endLine": 182,
+        "endChar": 47
+      },
+      "revId": "3ce3f331b25bfd09b9547b35c1b62e4a6127ea19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecbfa557_27bc469d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2024-11-18T09:42:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b481adfd_a467b55b",
       "range": {
         "startLine": 182,
         "startChar": 22,
