@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1d0321_8251b159",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-18T16:13:33Z",
+      "side": 1,
+      "message": "Nb. Could be simplified to\n\n    - *outputAlternateId\u003dfalse* returns CM Handle IDs (default)",
+      "range": {
+        "startLine": 31,
+        "startChar": 48,
+        "endLine": 35,
+        "endChar": 119
+      },
+      "revId": "fcceb29449916859e1117df1196e0b5e9d970ab7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
