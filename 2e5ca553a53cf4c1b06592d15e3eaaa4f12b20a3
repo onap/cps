@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f183cef3_7942754e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-18T10:56:17Z",
+      "side": 1,
+      "message": "We can make use of handleNotFoundExceptions method by adding CmHandleNotFoundException into @ExceptionHandler({DataNodeNotFoundException.class,CmHandleNotFoundException.class}) at line number 94",
+      "parentUuid": "d90ec7e6_7f129185",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34b08b2e_4cfb1fee",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
         "patchSetId": 6
@@ -76,6 +100,76 @@
         "startChar": 24,
         "endLine": 26,
         "endChar": 33
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352b7670_7bcf2005",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-18T10:56:17Z",
+      "side": 1,
+      "message": "\u0027not found\u0027 sounds beter to me as well",
+      "parentUuid": "34b08b2e_4cfb1fee",
+      "range": {
+        "startLine": 26,
+        "startChar": 24,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dceb1935_36d76f31",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-18T10:56:17Z",
+      "side": 1,
+      "message": "NB: Exception thrown when a CM handle is not found.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "690a5bb6_efb5bc9d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-18T10:56:17Z",
+      "side": 1,
+      "message": "NB: @param cmHandleReference the CM handle reference, which could be either a CM handle ID or an alternate ID",
+      "range": {
+        "startLine": 31,
+        "startChar": 7,
+        "endLine": 31,
+        "endChar": 87
       },
       "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
