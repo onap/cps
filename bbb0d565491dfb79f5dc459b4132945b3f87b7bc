@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53e915b1_b7643af6",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-18T08:35:25Z",
+      "side": 1,
+      "message": "i thought this would be removed?!",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "bbb0d565491dfb79f5dc459b4132945b3f87b7bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
