@@ -22,6 +22,30 @@
       },
       "revId": "bbb0d565491dfb79f5dc459b4132945b3f87b7bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84007eab_92eb3a96",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-18T09:20:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53e915b1_b7643af6",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "bbb0d565491dfb79f5dc459b4132945b3f87b7bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
