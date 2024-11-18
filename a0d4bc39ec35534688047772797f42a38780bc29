@@ -18,6 +18,40 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b9ffe4_84ddd356",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T17:00:09Z",
+      "side": 1,
+      "message": "we also need to add a documentation for the new distributed cache.\ndocs/deployment.rst",
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea2d118_cbbe9611",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T17:00:09Z",
+      "side": 1,
+      "message": "NB: we might need to think of refactoring this later on.",
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ace5545e_d3f75556",
