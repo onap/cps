@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6737717d_600fdeb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-18T10:10:59Z",
+      "side": 1,
+      "message": "all good, just would like to reword new exception",
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34b08b2e_4cfb1fee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/exceptions/CmHandleNotFoundException.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-18T10:10:59Z",
+      "side": 1,
+      "message": "NB: \u0027not found\u0027 sounds beter to me\n\u0027No cm handles found with reference %s\u0027",
+      "range": {
+        "startLine": 26,
+        "startChar": 24,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
