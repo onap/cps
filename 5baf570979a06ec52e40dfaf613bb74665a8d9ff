@@ -16,6 +16,46 @@
       "message": "fine by me after resolving the comments.",
       "revId": "5baf570979a06ec52e40dfaf613bb74665a8d9ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a10945_2ce3c055",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-18T10:34:45Z",
+      "side": 1,
+      "message": "looks good! no blocking issues",
+      "revId": "5baf570979a06ec52e40dfaf613bb74665a8d9ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8251322_bd0eeb72",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/QueryRestController.java",
+        "patchSetId": 39
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-18T10:34:45Z",
+      "side": 1,
+      "message": "use \nContentType.XML.equals(contentType) \n(safer, prevents NPE)",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 42
+      },
+      "revId": "5baf570979a06ec52e40dfaf613bb74665a8d9ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
