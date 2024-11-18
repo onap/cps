@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2022-2023 Nordix Foundation
+.. Copyright (C) 2022-2024 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cmhandlequerying:
@@ -19,9 +19,20 @@ For querying CM Handles we have two Post endpoints:
 
 - ncmp/v1/ch/searches Returns all CM Handles which match the query properties provided. Gives a JSON payload of the **details** of all matching CM Handles.
 
-- ncmp/v1/ch/id-searches Returns all CM Handles IDs which match the query properties provided. Gives a JSON payload of the **ids** of all matching CM Handles.
+- ncmp/v1/ch/id-searches Returns all CM Handles IDs or Alternate IDs which match the query properties provided. Gives a JSON payload of the **ids** of all matching CM Handles.
 
-/searches returns whole CM Handle object (data) whereas /id-searches returns only CM Handle IDs. Otherwise these endpoints are intended to be functionally identical so both can be queried with the same request body. If no matching CM Handles are found an empty array is returned.
+/searches returns whole CM Handle object (data) whereas /id-searches returns only CM Handle IDs or Alternate IDs. Otherwise these endpoints are intended to be functionally identical so both can be queried with the same request body. If no matching CM Handles are found an empty array is returned.
+
+Parameters
+==========
+
+/id-searches can return either CM Handle IDs or Alternate IDs. This is controlled with an optional parameter outputAlternateId.
+
+- *outputAlternateId=true* returns Alternate IDs
+
+- *outputAlternateId=false* returns CM Handle IDs
+
+Note: Null values will default to false so /id-searches & /id-searches?outputAlternateId will both return CM Handle IDs
 
 Request Body
 ============
