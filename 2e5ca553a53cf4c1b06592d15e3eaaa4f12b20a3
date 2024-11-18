@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8380cd3d_56b2865e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T10:19:44Z",
+      "side": 1,
+      "message": "not so major comments now.",
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90ec7e6_7f129185",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T10:19:44Z",
+      "side": 1,
+      "message": "can as well reuse the handleNotFoundExceptions handler.",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 5
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34b08b2e_4cfb1fee",
@@ -36,6 +76,75 @@
         "startChar": 24,
         "endLine": 26,
         "endChar": 33
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd7e8362_ad7050b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T10:19:44Z",
+      "side": 1,
+      "message": "references",
+      "range": {
+        "startLine": 107,
+        "startChar": 39,
+        "endLine": 107,
+        "endChar": 42
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5d8e48_73f2ea18",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T10:19:44Z",
+      "side": 1,
+      "message": "references",
+      "range": {
+        "startLine": 162,
+        "startChar": 39,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e43b764d_ac042af1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-18T10:19:44Z",
+      "side": 1,
+      "message": "outputAlternateId and same to be refelcted in the javadoc.",
+      "range": {
+        "startLine": 165,
+        "startChar": 69,
+        "endLine": 165,
+        "endChar": 87
       },
       "revId": "2e5ca553a53cf4c1b06592d15e3eaaa4f12b20a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
