@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcbfec02_9222c7f9",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-18T09:51:04Z",
+      "side": 1,
+      "message": "-1 I think this got pulled in by mistake during rebase?\n(because of the new parameter --quiet-pull)",
+      "revId": "e11c31781c5bb1303d88e0f6b9280af88e176284",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1844c6df_388dec21",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-18T09:51:04Z",
+      "side": 1,
+      "message": "This whole if-statement can be simplified using $testProfile variable, something like this:\n\n    docker-compose \\\n        -f ../docker-compose/docker-compose.yml \\\n        --env-file ../docker-compose/config/$testProfile.env \\\n        --project-name \"$testProfile\" \\\n        --profile dmi-stub \\\n        up --quiet-pull -d\n\n    CONTAINER_IDS\u003d$(docker ps --filter \"name\u003d$testProfile-cps-and-ncmp\" --format \"{{.ID}}\")",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "e11c31781c5bb1303d88e0f6b9280af88e176284",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
