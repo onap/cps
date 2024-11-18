@@ -193,8 +193,8 @@ components:
         example: my-dmi-plugin
         type: string
     outputAlternateIdOptionInQuery:
-      description: Boolean parameter to determine if returned value(s) will be cmHandle
-        Ids or Alternate Ids for a given query
+      description: Boolean parameter to determine if returned value(s) will be cm
+        handle references for a given query
       in: query
       name: outputAlternateId
       required: false

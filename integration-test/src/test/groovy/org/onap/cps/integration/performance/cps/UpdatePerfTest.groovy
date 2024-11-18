@@ -94,7 +94,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             def jsonListData = generateJsonForOpenRoadmDevices(startId, totalNodes, changeLeaves)
         when: 'the container node is updated'
             resourceMeter.start()
-            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now)
+            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now, ContentType.JSON)
             resourceMeter.stop()
         then: 'there are the expected number of total nodes'
             assert totalNodes == countDataNodes('/openroadm-devices/openroadm-device')
@@ -118,7 +118,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
     def 'Update leaves for 100 data nodes.'() {
         given: 'there are 200 existing data nodes'
             def jsonListData = generateJsonForOpenRoadmDevices(1, 200, false)
-            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now)
+            objectUnderTest.replaceListContent(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/openroadm-devices', jsonListData, now, ContentType.JSON)
         and: 'JSON for updated data leaves of 100 nodes'
             def jsonDataUpdated  = "{'openroadm-device':[" + (1..100).collect {"{'device-id':'C201-7-1A-" + it + "','status':'fail','ne-state':'jeopardy'}" }.join(",") + "]}"
         when: 'update is performed for leaves'
