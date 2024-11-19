@@ -171,10 +171,11 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> replaceListContent(final String apiVersion,
                                                      final String dataspaceName, final String anchorName,
-                                                     final String parentNodeXpath, final Object jsonData,
-        final String observedTimestamp) {
+                                                     final String parentNodeXpath, final String contentTypeInHeader,
+                                                     final String nodeData, final String observedTimestamp) {
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
-                jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+                nodeData, toOffsetDateTime(observedTimestamp), contentType);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -224,10 +225,10 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
-    ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
+    private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
                                                final ContentType contentType) {
         final String responseData;
-        if (contentType == ContentType.XML) {
+        if (ContentType.XML.equals(contentType)) {
             responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);
         } else {
             responseData = jsonObjectMapper.asJsonString(dataMaps);
