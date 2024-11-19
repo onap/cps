@@ -39,10 +39,20 @@ Release Data
 Bug Fixes
 ---------
 3.5.5
+    - `CPS-2509 <https://lf-onap.atlassian.net/browse/CPS-2509>`_ Fix module endpoints using alternate identifier.
+    - `CPS-2517 <https://lf-onap.atlassian.net/browse/CPS-2517>`_ Make Content-Type header default to JSON for CPS APIs.
 
 Features
 --------
 3.5.5
+    - `CPS-2009 <https://lf-onap.atlassian.net/browse/CPS-2009>`_ Update legacy NCMP APIs interfaces to support alternate id.
+    - `CPS-2082 <https://lf-onap.atlassian.net/browse/CPS-2082>`_ Support XML content type to data node APIs in cps-core.
+    - `CPS-2433 <https://lf-onap.atlassian.net/browse/CPS-2433>`_ Remove traces of unmaintained CPS-TBDMT repository.
+    - `CPS-2436 <https://lf-onap.atlassian.net/browse/CPS-2436>`_ CM Avc Event to publish source key to target key while forwarding.
+    - `CPS-2445 <https://lf-onap.atlassian.net/browse/CPS-2445>`_ Expose CPS and NCMP version information using git plugin.
+    - `CPS-2451 <https://lf-onap.atlassian.net/browse/CPS-2451>`_ Removing oparent from CPS-NCMP and ONAP DMI Plugin repository.
+    - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Minimize affect of module and size from Cm Handle Registration and De-Registration use case.
+    - `CPS-2507 <https://lf-onap.atlassian.net/browse/CPS-2507>`_ Upgrade liquibase to 4.30.0 version.
 
 Version: 3.5.4
 ==============
