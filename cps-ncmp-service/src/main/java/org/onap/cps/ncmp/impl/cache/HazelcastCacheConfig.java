@@ -51,6 +51,7 @@ public class HazelcastCacheConfig {
 
     protected HazelcastInstance getOrCreateHazelcastInstance(final NamedConfig namedConfig) {
         return Hazelcast.getOrCreateHazelcastInstance(defineInstanceConfig(instanceConfigName, namedConfig));
+
     }
 
     private Config defineInstanceConfig(final String instanceConfigName, final NamedConfig namedConfig) {

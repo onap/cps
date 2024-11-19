@@ -43,9 +43,7 @@ class PolicyExecutorIntegrationSpec extends CpsIntegrationSpecBase {
     }
 
     def cleanup() {
-        deregisterCmHandle(DMI1_URL, 'ch-1')
-        deregisterCmHandle(DMI1_URL, 'ch-2')
-        deregisterCmHandle(DMI1_URL, 'ch-3')
+        deregisterSequenceOfCmHandles(DMI1_URL, 3, 1)
     }
 
     def 'Policy Executor create request with #scenario.'() {

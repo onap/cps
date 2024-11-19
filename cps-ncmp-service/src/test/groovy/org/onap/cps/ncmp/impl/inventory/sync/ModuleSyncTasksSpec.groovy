@@ -26,6 +26,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.config.Config
+import com.hazelcast.core.Hazelcast
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -74,6 +75,10 @@ class ModuleSyncTasksSpec extends Specification {
 
     def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
             mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
+
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+    }
 
     def 'Module Sync ADVISED cm handles.'() {
         given: 'cm handles in an ADVISED state'

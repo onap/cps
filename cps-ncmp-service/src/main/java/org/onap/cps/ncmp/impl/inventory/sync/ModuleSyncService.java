@@ -26,16 +26,20 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import com.hazelcast.collection.ISet;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.spi.CascadeDeleteAllowed;
@@ -50,12 +54,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ModuleSyncService {
 
+    private static final Map<String, String> NO_NEW_MODULES = Collections.emptyMap();
+
     private final DmiModelOperations dmiModelOperations;
     private final CpsModuleService cpsModuleService;
     private final CpsDataService cpsDataService;
     private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
-    private static final Map<String, String> NO_NEW_MODULES = Collections.emptyMap();
+    private final ISet<String> moduleSetTagsBeingProcessed;
+    private final Map<String, ModuleDelta> privateModuleSetCache = new HashMap<>();
 
     @AllArgsConstructor
     private static final class ModuleDelta {
@@ -69,11 +76,37 @@ public class ModuleSyncService {
      * @param yangModelCmHandle the yang model of cm handle.
      */
     public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
-        final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle, yangModelCmHandle.getModuleSetTag());
-        final String cmHandleId = yangModelCmHandle.getId();
-        cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
+        final String moduleSetTag = yangModelCmHandle.getModuleSetTag();
+        final ModuleDelta moduleDelta;
+        boolean isNewModuleSetTag = Strings.isNotBlank(moduleSetTag);
+        try {
+            if (privateModuleSetCache.containsKey(moduleSetTag)) {
+                moduleDelta = privateModuleSetCache.get(moduleSetTag);
+            } else {
+                if (isNewModuleSetTag) {
+                    if (moduleSetTagsBeingProcessed.add(moduleSetTag)) {
+                        log.info("Processing new module set tag {}", moduleSetTag);
+                    } else {
+                        isNewModuleSetTag = false;
+                        throw new NcmpException("Concurrent processing of module set tag " + moduleSetTag,
+                            moduleSetTag + " already being processed for cm handle " + yangModelCmHandle.getId());
+                    }
+                }
+                moduleDelta = getModuleDelta(yangModelCmHandle, moduleSetTag);
+            }
+            final String cmHandleId = yangModelCmHandle.getId();
+            cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                 moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
-        cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
+            cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
+            if (isNewModuleSetTag) {
+                final ModuleDelta noModuleDelta = new ModuleDelta(moduleDelta.allModuleReferences, NO_NEW_MODULES);
+                privateModuleSetCache.put(moduleSetTag, noModuleDelta);
+            }
+        } finally {
+            if (isNewModuleSetTag) {
+                moduleSetTagsBeingProcessed.remove(moduleSetTag);
+            }
+        }
     }
 
     /**
@@ -105,6 +138,10 @@ public class ModuleSyncService {
         }
     }
 
+    public void clearPrivateModuleSetCache() {
+        privateModuleSetCache.clear();
+    }
+
     private ModuleDelta getModuleDelta(final YangModelCmHandle yangModelCmHandle, final String targetModuleSetTag) {
         final Map<String, String> newYangResources;
         Collection<ModuleReference> allModuleReferences = getModuleReferencesByModuleSetTag(targetModuleSetTag);
@@ -120,7 +157,7 @@ public class ModuleSyncService {
     }
 
     private Collection<ModuleReference> getModuleReferencesByModuleSetTag(final String moduleSetTag) {
-        if (moduleSetTag == null || moduleSetTag.trim().isEmpty()) {
+        if (Strings.isBlank(moduleSetTag)) {
             return Collections.emptyList();
         }
         return cpsModuleService.getModuleReferencesByAttribute(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,

@@ -191,7 +191,7 @@ ncmp:
 
   modules-sync-watchdog:
     async-executor:
-      parallelism-level: 1
+      parallelism-level: 2
 
   model-loader:
     maximum-attempt-count: 20

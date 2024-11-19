@@ -27,6 +27,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
+import io.micrometer.core.annotation.Timed;
 import jakarta.transaction.Transactional;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -186,6 +187,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     // can occur in case of specific concurrent requests.
     @Retryable(retryFor = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
         @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
+    @Timed(value = "cps.module.persistence.schemaset.store",
+        description = "Time taken to store a schemaset (list of module references")
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newModuleNameToContentMap,
                                           final Collection<ModuleReference> allModuleReferences) {

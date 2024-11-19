@@ -22,11 +22,16 @@ package org.onap.cps.ncmp.impl.cache
 
 import com.hazelcast.config.Config
 import com.hazelcast.config.RestEndpointGroup
+import com.hazelcast.core.Hazelcast
 import spock.lang.Specification
 
 class HazelcastCacheConfigSpec extends Specification {
 
     def objectUnderTest = new HazelcastCacheConfig()
+
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('my instance config').shutdown()
+    }
 
     def 'Create Hazelcast instance with a #scenario'() {
         given: 'a cluster name and instance config name'
