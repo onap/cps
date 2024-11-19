@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "02d8314b6fa6781357758dfc62f6675d2aa17ef0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ab3ab8_3a7b331e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistenceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-19T22:46:46Z",
+      "side": 1,
+      "message": "why do we need it as a string??\nwhy was it not needed before??",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "02d8314b6fa6781357758dfc62f6675d2aa17ef0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
