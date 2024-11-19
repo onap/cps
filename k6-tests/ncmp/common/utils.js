@@ -20,13 +20,11 @@
 
 import http from 'k6/http';
 
-const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`));
+export const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`));
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
-export const LEGACY_BATCH_TOPIC_NAME = testConfig.kafka.legacyBatchTopic;
-export const DURATION = testConfig.timingConfig.testDuration;
-export const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = testConfig.timingConfig.legacyBatchThroughputTestStartTime;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
+export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;
 export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as in docker-compose.yml

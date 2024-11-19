@@ -20,9 +20,9 @@ pushd "$(dirname "$0")" >/dev/null || exit 1
 number_of_failures=0
 testProfile=$1
 summaryFile="${testProfile}Summary.csv"
-
 echo "Running $testProfile performance tests..."
-k6 run ncmp-kpi.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile" 2>/dev/null || ((number_of_failures++))
+
+k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile" 2>/dev/null || ((number_of_failures++))
 
 if [ -f "$summaryFile" ]; then
 
