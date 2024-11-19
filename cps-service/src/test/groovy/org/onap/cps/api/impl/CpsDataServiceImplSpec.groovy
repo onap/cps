@@ -448,12 +448,12 @@ class CpsDataServiceImplSpec extends Specification {
             assert thrownUp == originalException
     }
 
-    def 'Replace list content data fragment under parent node.'() {
+    def 'Replace list content data fragment JSON under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace list data method is invoked with list element json data'
             def jsonData = '{"branch": [{"name": "A"}, {"name": "B"}]}'
-            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
             1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, '/test-tree',
                 { dataNodeCollection ->
@@ -468,12 +468,42 @@ class CpsDataServiceImplSpec extends Specification {
             2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
+    def 'Replace list content data fragment XML under parent node.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace list data method is invoked with list element xml data'
+            def nodeData = '<branch><name>A</name></branch>'
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', nodeData, observedTimestamp, ContentType.XML)
+        then: 'the persistence service method is invoked with correct parameters'
+            1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, '/test-tree',
+                { dataNodeCollection ->
+                    {
+                        assert dataNodeCollection.size() == 1
+                        assert dataNodeCollection.collect { it.getXpath() }
+                            .containsAll(['/test-tree/branch[@name=\'A\']'])
+                    }
+                }
+            )
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName twice'
+            2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+    }
+
     def 'Replace whole list content with empty list element.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'replace list data method is invoked with empty list'
             def jsonData = '{"branch": []}'
-            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp)
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', jsonData, observedTimestamp, ContentType.JSON)
+        then: 'invalid data exception is thrown'
+            thrown(DataValidationException)
+    }
+
+    def 'Replace whole list content XML with empty list element.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace list data method is invoked with xml empty list'
+            def nodeData = '[]'
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', nodeData, observedTimestamp, ContentType.XML)
         then: 'invalid data exception is thrown'
             thrown(DataValidationException)
     }
