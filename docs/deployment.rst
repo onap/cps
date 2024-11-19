@@ -354,5 +354,8 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | moduleSetTagsBeingProcessed        | Track module set tags which are processed to prevent      |
+|              |                                    | multiple threads working with same tag.                   |
++--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 6
+Total number of caches : 7
