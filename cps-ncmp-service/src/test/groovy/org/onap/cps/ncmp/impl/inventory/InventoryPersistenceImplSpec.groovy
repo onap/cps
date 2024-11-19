@@ -361,7 +361,7 @@ class InventoryPersistenceImplSpec extends Specification {
         when: 'replace list content method is called with xpath and data nodes collection'
             objectUnderTest.replaceListContent('sample xpath', [new DataNode()])
         then: 'the cps data service method to replace list content is invoked once with same parameters'
-            1 * mockCpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xpath', [new DataNode()], NO_TIMESTAMP);
+            1 * mockCpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xpath', [new DataNode()] as String, NO_TIMESTAMP, ContentType.JSON);
     }
 
     def 'Delete data node via xPath'() {
