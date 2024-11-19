@@ -24,8 +24,8 @@ import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
-    REGISTRATION_BATCH_SIZE, LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, DURATION,
-    LEGACY_BATCH_THROUGHPUT_TEST_START_TIME, KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME
+    REGISTRATION_BATCH_SIZE, LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, KAFKA_BOOTSTRAP_SERVERS,
+    LEGACY_BATCH_TOPIC_NAME, testConfig
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -57,126 +57,8 @@ export const legacyBatchEventReader = new Reader({
 export const options = {
     setupTimeout: '20m',
     teardownTimeout: '20m',
-    scenarios: {
-        passthrough_read_scenario: {
-            executor: 'constant-vus',
-            exec: 'passthroughReadScenario',
-            vus: 2,
-            duration: DURATION,
-        },
-        passthrough_read_alt_id_scenario: {
-            executor: 'constant-vus',
-            exec: 'passthroughReadAltIdScenario',
-            vus: 2,
-            duration: DURATION,
-        },
-        passthrough_write_scenario: {
-            executor: 'constant-vus',
-            exec: 'passthroughWriteScenario',
-            vus: 2,
-            duration: DURATION,
-        },
-        passthrough_write_alt_id_scenario: {
-            executor: 'constant-vus',
-            exec: 'passthroughWriteAltIdScenario',
-            vus: 2,
-            duration: DURATION,
-        },
-        cm_handle_id_search_nofilter_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleIdSearchNoFilterScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_search_nofilter_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleSearchNoFilterScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_id_search_module_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleIdSearchModuleScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_search_module_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleSearchModuleScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_id_search_property_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleIdSearchPropertyScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_search_property_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleSearchPropertyScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_id_search_cpspath_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleIdSearchCpsPathScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_search_cpspath_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleSearchCpsPathScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_id_search_trustlevel_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleIdSearchTrustLevelScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        cm_handle_search_trustlevel_scenario: {
-            executor: 'constant-vus',
-            exec: 'cmHandleSearchTrustLevelScenario',
-            vus: 1,
-            duration: DURATION,
-        },
-        legacy_batch_produce_scenario: {
-            executor: 'shared-iterations',
-            exec: 'legacyBatchProduceScenario',
-            vus: 2,
-            iterations: LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
-            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
-        },
-        legacy_batch_consume_scenario: {
-            executor: 'per-vu-iterations',
-            exec: 'legacyBatchConsumeScenario',
-            vus: 1,
-            iterations: 1,
-            startTime: LEGACY_BATCH_THROUGHPUT_TEST_START_TIME,
-        }
-    },
-    thresholds: {
-        'http_req_failed': ['rate == 0'],
-        'cmhandles_created_per_second': ['avg >= 22'],
-        'cmhandles_deleted_per_second': ['avg >= 22'],
-        'ncmp_overhead_passthrough_read': ['avg <= 40'],
-        'ncmp_overhead_passthrough_write': ['avg <= 40'],
-        'ncmp_overhead_passthrough_read_alt_id': ['avg <= 40'],
-        'ncmp_overhead_passthrough_write_alt_id': ['avg <= 40'],
-        'id_search_nofilter_duration': ['avg <= 2000'],
-        'id_search_module_duration': ['avg <= 2000'],
-        'id_search_property_duration': ['avg <= 2000'],
-        'id_search_cpspath_duration': ['avg <= 2000'],
-        'id_search_trustlevel_duration': ['avg <= 2000'],
-        'cm_search_nofilter_duration': ['avg <= 15000'],
-        'cm_search_module_duration': ['avg <= 15000'],
-        'cm_search_property_duration': ['avg <= 15000'],
-        'cm_search_cpspath_duration': ['avg <= 15000'],
-        'cm_search_trustlevel_duration': ['avg <= 15000'],
-        'legacy_batch_read_cmhandles_per_second': ['avg >= 150'],
-    },
+    scenarios: testConfig.scenarios,
+    thresholds: testConfig.thresholds,
 };
 
 export function setup() {

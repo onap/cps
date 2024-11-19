@@ -4,10 +4,96 @@
     "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
     "kafkaBootstrapServer": "localhost:9093"
   },
-  "timingConfig": {
-    "testDuration": "2h"
-  },
-  "kafka": {
-    "legacyBatchTopic": "legacy_batch_topic"
+  "scenarios": {
+    "passthrough_read_scenario": {
+      "executor": "constant-vus",
+      "exec": "passthroughReadScenario",
+      "vus": 2,
+      "duration": "2h"
+    },
+    "passthrough_read_alt_id_scenario": {
+      "executor": "constant-vus",
+      "exec": "passthroughReadAltIdScenario",
+      "vus": 2,
+      "duration": "2h"
+    },
+    "passthrough_write_scenario": {
+      "executor": "constant-vus",
+      "exec": "passthroughWriteScenario",
+      "vus": 2,
+      "duration": "2h"
+    },
+    "passthrough_write_alt_id_scenario": {
+      "executor": "constant-vus",
+      "exec": "passthroughWriteAltIdScenario",
+      "vus": 2,
+      "duration": "2h"
+    },
+    "cm_handle_id_search_nofilter_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleIdSearchNoFilterScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_search_nofilter_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleSearchNoFilterScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_id_search_module_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleIdSearchModuleScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_search_module_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleSearchModuleScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_id_search_property_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleIdSearchPropertyScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_search_property_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleSearchPropertyScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_id_search_cpspath_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleIdSearchCpsPathScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_search_cpspath_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleSearchCpsPathScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_id_search_trustlevel_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleIdSearchTrustLevelScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "cm_handle_search_trustlevel_scenario": {
+      "executor": "constant-vus",
+      "exec": "cmHandleSearchTrustLevelScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "legacy_batch_produce_scenario": {
+      "executor": "shared-iterations",
+      "exec": "legacyBatchProduceScenario",
+      "vus": 2,
+      "iterations": 100
+    }
   }
 }
