@@ -20,9 +20,9 @@
 
 package org.onap.cps.ncmp.impl.utils
 
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
@@ -35,7 +35,7 @@ class AlternateIdMatcherSpec extends Specification {
         given: 'cm handle in the registry with alternate id /a/b'
             mockInventoryPersistence.getCmHandleDataNodeByAlternateId('/a/b') >> new DataNode()
         and: 'no other cm handle'
-            mockInventoryPersistence.getCmHandleDataNodeByAlternateId(_) >> { throw new DataNodeNotFoundException('', '') }
+            mockInventoryPersistence.getCmHandleDataNodeByAlternateId(_) >> { throw new CmHandleNotFoundException('') }
     }
 
     def 'Finding longest alternate id matches.'() {
