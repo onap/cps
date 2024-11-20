@@ -399,10 +399,10 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'the cm handle state is not updated to "DELETED"'
             0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_, CmHandleState.DELETED)
         where:
-        scenario                     | deleteListElementException                || expectedError        | expectedErrorText
-        'cm-handle does not exist'   | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle reference(s) not found'
-        'cm-handle has invalid name' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm handle reference has an invalid character(s) in id'
-        'an unexpected exception'    | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
+        scenario                     | cmHandleId             | deleteListElementException                || expectedError        | expectedErrorText
+        'cm-handle does not exist'   | 'cmhandle'             | new DataNodeNotFoundException('', '', '') || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
+        'cm-handle has invalid name' | 'cm handle with space' | new DataValidationException('', '')       || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
+        'an unexpected exception'    | 'cmhandle'             | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
     def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is  #scenario'() {

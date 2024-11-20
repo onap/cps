@@ -78,7 +78,7 @@ public class NetworkCmProxyInventoryFacade {
      * Get all cm handle references by DMI plugin identifier.
      *
      * @param dmiPluginIdentifier DMI plugin identifier
-     * @param outputAlternateId   boolean for cm handle reference type either
+     * @param outputAlternateId   Boolean for cm handle reference type either
      *                            cm handle id (false) or alternate id (true)
      * @return collection of cm handle references
      */
@@ -91,7 +91,7 @@ public class NetworkCmProxyInventoryFacade {
      * Get all cm handle IDs by various properties.
      *
      * @param cmHandleQueryServiceParameters cm handle query parameters
-     * @param outputAlternateId              boolean for cm handle reference type either
+     * @param outputAlternateId              Boolean for cm handle reference type either
      *                                       cm handle id (false) or alternate id (true)
      * @return                               collection of cm handle references
      */
@@ -162,7 +162,7 @@ public class NetworkCmProxyInventoryFacade {
      * Retrieve cm handle ids for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
-     * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
+     * @param outputAlternateId Boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
     public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,

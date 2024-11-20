@@ -1130,10 +1130,10 @@ paths:
   /v1/ch/id-searches:
     post:
       description: Execute cm handle query search and return a list of cm handle references.
-        Any number of conditions can be applied. To be included in the result a cm
-        handle must fulfill ALL the conditions. An empty collection will be returned
-        in the case that the cm handle does not match a condition. For more on cm
-        handle query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm
+        Any number of conditions can be applied. To be included in the result a cm-handle
+        must fulfill ALL the conditions. An empty collection will be returned in the
+        case that the cm handle does not match a condition. For more on cm handle
+        query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm
         handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible
         to query on any data related to the cm handle. For more on CPS Path please
         refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS
@@ -1142,7 +1142,7 @@ paths:
       operationId: searchCmHandleIds
       parameters:
       - description: Boolean parameter to determine if returned value(s) will be cm
-          handle ids or alternate ids for a given query
+          handle Ids or alternate Ids for a given query
         in: query
         name: outputAlternateId
         required: false
@@ -1619,7 +1619,7 @@ components:
         type: string
     outputAlternateIdOptionInQuery:
       description: Boolean parameter to determine if returned value(s) will be cm
-        handle ids or alternate ids for a given query
+        handle Ids or alternate Ids for a given query
       in: query
       name: outputAlternateId
       required: false

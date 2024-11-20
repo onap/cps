@@ -417,7 +417,7 @@ getCmHandleStateById:
 
 searchCmHandleIds:
   post:
-    description: Execute cm handle query search and return a list of cm handle references. Any number of conditions can be applied. To be included in the result a cm handle must fulfill ALL the conditions. An empty collection will be returned in the case that the cm handle does not match a condition. For more on cm handle query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible to query on any data related to the cm handle. For more on CPS Path please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS Path Read the Docs</a>. The cm handle ancestor is automatically returned for this query.
+    description: Execute cm handle query search and return a list of cm handle references. Any number of conditions can be applied. To be included in the result a cm-handle must fulfill ALL the conditions. An empty collection will be returned in the case that the cm handle does not match a condition. For more on cm handle query search please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/ncmp-cmhandle-querying.html">cm handle query search Read the Docs</a>.<br/>By supplying a CPS Path it is possible to query on any data related to the cm handle. For more on CPS Path please refer to <a href="https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html">CPS Path Read the Docs</a>. The cm handle ancestor is automatically returned for this query.
     tags:
       - network-cm-proxy
     summary: Execute cm handle query upon a given set of query parameters

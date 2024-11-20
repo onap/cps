@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidDatastoreException;
 import org.onap.cps.ncmp.api.data.exceptions.InvalidOperationException;
 import org.onap.cps.ncmp.api.data.exceptions.OperationNotSupportedException;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.api.exceptions.DmiRequestException;
 import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
@@ -91,8 +90,8 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.CONFLICT, exception);
     }
 
-    @ExceptionHandler({CmHandleNotFoundException.class, DataNodeNotFoundException.class})
-    public static ResponseEntity<Object> cmHandleNotFoundExceptions(final Exception exception) {
+    @ExceptionHandler({DataNodeNotFoundException.class})
+    public static ResponseEntity<Object> handleNotFoundExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 

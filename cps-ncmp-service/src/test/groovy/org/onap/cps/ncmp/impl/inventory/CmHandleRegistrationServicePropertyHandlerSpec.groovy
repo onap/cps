@@ -162,9 +162,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             }
         where:
             scenario                   | cmHandleId               | exception                                                                                           || expectedError        | expectedErrorText
-            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                        || CM_HANDLES_NOT_FOUND | 'cm handle reference(s) not found'
+            'Cm Handle does not exist' | 'cmHandleId'             | new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)                        || CM_HANDLES_NOT_FOUND | 'cm handle id(s) not found'
             'Unknown'                  | 'cmHandleId'             | new RuntimeException('Failed')                                                                      || UNKNOWN_ERROR        | 'Failed'
-            'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID | 'cm handle reference has an invalid character(s) in id'
+            'Invalid cm handle id'     | 'cmHandleId with spaces' | new DataValidationException('Name Validation Error.', cmHandleId + 'contains an invalid character') || CM_HANDLE_INVALID_ID | 'cm-handle has an invalid character(s) in id'
     }
 
     def 'Multiple update operations in a single request'() {
@@ -193,7 +193,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
                 assert it.status == Status.FAILURE
                 assert it.cmHandle == cmHandleId
                 assert it.ncmpResponseStatus == CM_HANDLES_NOT_FOUND
-                assert it.errorText == 'cm handle reference(s) not found'
+                assert it.errorText == 'cm handle id(s) not found'
             }
         then: 'the replace list method is called twice'
             2 * mockInventoryPersistence.replaceListContent(cmHandleXpath, _)
