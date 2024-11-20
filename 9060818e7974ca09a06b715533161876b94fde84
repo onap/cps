@@ -16,6 +16,23 @@
       "message": "fine by me.",
       "revId": "9060818e7974ca09a06b715533161876b94fde84",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9d49696_fc7c036d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-20T14:56:01Z",
+      "side": 1,
+      "message": "Assuming a new commit with a proper integration test that would have failed will be added before we close the user story",
+      "revId": "9060818e7974ca09a06b715533161876b94fde84",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
