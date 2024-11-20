@@ -39,6 +39,30 @@
       },
       "revId": "2e0bf111dc9694139649ac5f05713177411a7ff9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a071f29d_204c1e4e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistenceImpl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-11-20T18:15:47Z",
+      "side": 1,
+      "message": "dataNodes as collection was used initially when handling only JSON content because JSON objects could be directly mapped to java objects and collections. Here now XML support is introduced, so payload may not be easily map to dataNode object(as XML nodes might not have a direct mapping to Java objects)so dataNodes.toString() converts collection to string which is like a generic payload which is passed to cpsDataService irrespective of the contentType.",
+      "parentUuid": "e9ecca7b_997e2f5f",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "2e0bf111dc9694139649ac5f05713177411a7ff9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
