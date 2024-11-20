@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  ================================================================================
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
@@ -35,6 +36,8 @@ import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
@@ -133,6 +136,20 @@ public class QueryRestController implements CpsQueryApi {
     private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,
              final String anchorName, final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
                                                                                  final ContentType contentType) {
+        final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        if (cpsPathQuery.hasAttributeAxis()) {
+            final Set<Object> attributeValues =
+                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class);
+            if (contentType == ContentType.XML) {
+                final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
+                final List<Map<String, Object>> attributesAsListOfMaps =
+                        convertAttributesToDataMaps(attributeName, attributeValues);
+                return buildResponseEntity(attributesAsListOfMaps, ContentType.XML);
+            } else {
+                final String responseData = jsonObjectMapper.asJsonString(attributeValues);
+                return new ResponseEntity<>(responseData, HttpStatus.OK);
+            }
+        }
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
@@ -146,6 +163,11 @@ public class QueryRestController implements CpsQueryApi {
             dataNodesAsListOfMaps.add(dataMap);
         }
         return buildResponseEntity(dataNodesAsListOfMaps, contentType);
+    }
+
+    private List<Map<String, Object>> convertAttributesToDataMaps(final String attributeName,
+                                                                  final Collection<Object> attributeValues) {
+        return attributeValues.stream().map(attributeValue -> Map.of(attributeName, attributeValue)).toList();
     }
 
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsListOfMaps,

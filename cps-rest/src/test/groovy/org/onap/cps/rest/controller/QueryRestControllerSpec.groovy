@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
@@ -67,7 +67,8 @@ class QueryRestControllerSpec extends Specification {
 
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
-    def cpsPath = 'some cps-path'
+    def cpsPath = '/some/cps-path'
+    def cpsPathWithAttribute = '/some/cps-path/@my-leaf'
     def dataNodeEndpointV2
 
     def setup() {
@@ -144,6 +145,29 @@ class QueryRestControllerSpec extends Specification {
             scenario          | includeDescendantsOptionString || expectedDepth
             'direct children' | 'direct'                       || 1
             'descendants'     | '2'                            || 2
+    }
+
+    def 'Query data node v2 API by cps path with attribute axis and #scenario'() {
+        given: 'service method returns a list containing a data node'
+            mockCpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPathWithAttribute, Object.class) >> values
+        when: 'query data nodes API is invoked'
+            def response =
+                    mvc.perform(get(dataNodeEndpointV2).contentType(contentType).param('cps-path', cpsPathWithAttribute))
+                            .andReturn().response
+        then: 'the response contains the datanode in the expected JSON format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.contentAsString == expectedResponse
+        where: 'the following options for content type are provided in the request'
+            scenario                 | values               | contentType                || expectedResponse
+            'no values as JSON'      | []                   | MediaType.APPLICATION_JSON || '[]'
+            'no values as XML'       | []                   | MediaType.APPLICATION_XML  || ''
+            'string values as JSON'  | ['value1', 'value2'] | MediaType.APPLICATION_JSON || '["value1","value2"]'
+            'string values as XML'   | ['value1', 'value2'] | MediaType.APPLICATION_XML  || '<my-leaf>value1</my-leaf><my-leaf>value2</my-leaf>'
+            'integer values as JSON' | [1, 2, 3]            | MediaType.APPLICATION_JSON || '[1,2,3]'
+            'integer values as XML'  | [1, 2, 3]            | MediaType.APPLICATION_XML  || '<my-leaf>1</my-leaf><my-leaf>2</my-leaf><my-leaf>3</my-leaf>'
+            // TODO There is a difference in behaviour here, it needs to be decided in A/C
+            'leaf-lists as JSON'     | [[1], [1, 2]]        | MediaType.APPLICATION_JSON || '[[1],[1,2]]'
+            'leaf-lists as XML'      | [[1], [1, 2]]        | MediaType.APPLICATION_XML  || '<my-leaf>1</my-leaf><my-leaf>1</my-leaf><my-leaf>2</my-leaf>'
     }
 
     def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {

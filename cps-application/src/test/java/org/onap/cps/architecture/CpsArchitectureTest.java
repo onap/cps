@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ public class CpsArchitectureTest extends ArchitectureTestBase {
             classes().that().resideInAPackage("org.onap.cps.rest..").should().onlyDependOnClassesThat()
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.rest..",
                                                                 "org.onap.cps.api..",
-                                                                "org.onap.cps.utils.."));
+                                                                "org.onap.cps.utils..",
+                                                                "org.onap.cps.cpspath.parser.."));
 
     @ArchTest
     static final ArchRule cpsServiceApiShouldNotDependOnAnything =
