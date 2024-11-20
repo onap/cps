@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.data.models;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.CpsApplicationContext;
@@ -31,7 +30,6 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 public class CmResourceAddress {
 
     private final String datastoreName;
-    @Getter(AccessLevel.NONE)
     private final String cmHandleReference;
     private final String resourceIdentifier;
 
