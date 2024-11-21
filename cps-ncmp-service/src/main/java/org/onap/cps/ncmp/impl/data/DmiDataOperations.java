@@ -52,6 +52,7 @@ import org.onap.cps.ncmp.impl.models.DmiRequestBody;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.spi.exceptions.CpsException;
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -93,7 +94,7 @@ public class DmiDataOperations {
                                                                final String topic,
                                                                final String requestId,
                                                                final String authorization) {
-        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.getResolvedCmHandleId());
+        final YangModelCmHandle yangModelCmHandle = resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
@@ -173,7 +174,8 @@ public class DmiDataOperations {
         final CmResourceAddress cmResourceAddress =
                 new CmResourceAddress(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleId, resourceId);
 
-        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmResourceAddress.getResolvedCmHandleId());
+        final YangModelCmHandle yangModelCmHandle =
+            getYangModelCmHandle(cmResourceAddress.resolveCmHandleReferenceToId());
 
         policyExecutor.checkPermission(yangModelCmHandle, operationType, authorization, resourceId, requestData);
 
@@ -277,6 +279,16 @@ public class DmiDataOperations {
                                 return Mono.empty();
                             });
                 }).subscribe();
+    }
+
+    private YangModelCmHandle resolveYangModelCmHandleFromCmHandleReference(final CmResourceAddress cmResourceAddress) {
+        String cmHandleId = cmResourceAddress.getCmHandleReference();
+        try {
+            return getYangModelCmHandle(cmHandleId);
+        } catch (final DataNodeNotFoundException ignored) {
+            cmHandleId = cmResourceAddress.resolveCmHandleReferenceToId();
+            return getYangModelCmHandle(cmHandleId);
+        }
     }
 
     private String createDmiDataOperationRequestAsJsonString(

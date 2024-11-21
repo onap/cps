@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.spi.exceptions.DataNodeNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -92,7 +93,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockDmiRestClient.asynchronousPostOperationWithJsonData(DATA, expectedUrlTemplateWithVariables, expectedJson, READ, NO_AUTH_HEADER) >> responseFromDmi
         when: 'get resource data is invoked'
             def cmResourceAddress = new CmResourceAddress(expectedDataStore.datastoreName, cmHandleId, resourceIdentifier)
-            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
             def result = objectUnderTest.getResourceDataFromDmi(cmResourceAddress, expectedOptions, NO_TOPIC, NO_REQUEST_ID, NO_AUTH_HEADER).block()
         then: 'the result is the response from the DMI service'
             assert result.body == '{some-key:some-value}'
@@ -204,6 +204,29 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             CmHandleState.READY   || false
             CmHandleState.ADVISED || true
     }
+
+    def 'Resolving cm handle references with cm handle id.'() {
+        given: 'a resource address with a cm handle id'
+            def cmResourceAddress = new CmResourceAddress('some store', 'cm-handle-id', 'some resource')
+        and: 'the given cm handle id is available in the inventory'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-id') >> yangModelCmHandle
+        expect: 'resolving the cm handle id returns the cm handle'
+            assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
+    }
+
+    def 'Resolving cm handle references with alternate id.'() {
+        given: 'a resource with a alternate id'
+            def cmResourceAddress = new CmResourceAddress('some store', 'alternate-id', 'some resource')
+        and: 'the alternate id cannot be found in the inventory directly and that results in a data node not found exception'
+            mockInventoryPersistence.getYangModelCmHandle('alternate-id') >>  { throw new DataNodeNotFoundException('','') }
+        and: 'the alternate id can be matched to a cm handle id'
+            alternateIdMatcher.getCmHandleId('alternate-id') >> 'cm-handle-id'
+        and: 'that cm handle id is available in the inventory'
+            mockInventoryPersistence.getYangModelCmHandle('cm-handle-id') >> yangModelCmHandle
+        expect: 'resolving that cm handle id returns the cm handle'
+            assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
+    }
+
 
     def extractDataValue(actualDataOperationCloudEvent) {
         return toTargetEvent(actualDataOperationCloudEvent, DataOperationEvent).data.responses[0]
