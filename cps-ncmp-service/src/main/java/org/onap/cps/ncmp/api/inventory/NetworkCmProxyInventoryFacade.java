@@ -27,8 +27,10 @@ package org.onap.cps.ncmp.api.inventory;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCmHandleQueryParameters;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -111,8 +113,12 @@ public class NetworkCmProxyInventoryFacade {
      * @return a collection of modules names and revisions
      */
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
+        try {
+            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     /**
@@ -122,8 +128,12 @@ public class NetworkCmProxyInventoryFacade {
      * @return a collection of module definition (moduleName, revision and yang resource content)
      */
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
+        try {
+            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     /**
@@ -137,8 +147,12 @@ public class NetworkCmProxyInventoryFacade {
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
                                                                                 final String moduleRevision) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
+        try {
+            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return Collections.emptyList();
+        }
     }
 
     /**
