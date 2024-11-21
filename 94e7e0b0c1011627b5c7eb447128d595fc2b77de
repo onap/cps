@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8175ac_163f6021",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-21T15:51:28Z",
+      "side": 1,
+      "message": "looks good, only 2 questions really",
+      "revId": "94e7e0b0c1011627b5c7eb447128d595fc2b77de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3fa7e8f_f5d2699b",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-21T15:51:28Z",
+      "side": 1,
+      "message": "so no more consume, correct?\nI thank Daniel explain that. The load is all about produce these events...",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "94e7e0b0c1011627b5c7eb447128d595fc2b77de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce37fd69_8bf83b78",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-21T15:51:28Z",
+      "side": 1,
+      "message": "the endurance has no thresholds which is understandable\nthat causes no issues here?!",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "94e7e0b0c1011627b5c7eb447128d595fc2b77de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
