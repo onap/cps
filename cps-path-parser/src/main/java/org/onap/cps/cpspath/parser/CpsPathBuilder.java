@@ -181,11 +181,16 @@ public class CpsPathBuilder extends CpsPathBaseListener {
             currentNormalizedPathBuilder.append(" ").append(getLastElement(booleanOperators)).append(" ");
         }
         currentNormalizedPathBuilder.append("@")
-                                    .append(name)
-                                    .append(operator)
-                                    .append("'")
-                                    .append(value.toString().replace("'", "''"))
-                                    .append("'");
+                .append(name)
+                .append(operator);
+        if (operator.equals("=")) {
+            currentNormalizedPathBuilder
+                    .append("'")
+                    .append(value.toString().replace("'", "''"))
+                    .append("'");
+        } else {
+            currentNormalizedPathBuilder.append(value);
+        }
     }
 
     private static String getLastElement(final List<String> listOfStrings) {
