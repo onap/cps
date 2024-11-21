@@ -89,6 +89,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33bb32ec_50dbdb71",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-21T16:47:32Z",
+      "side": 1,
+      "message": "Good point I forgot it.",
+      "parentUuid": "d016ab40_db750c12",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "94e7e0b0c1011627b5c7eb447128d595fc2b77de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce37fd69_8bf83b78",
