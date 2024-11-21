@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60de35a_b08f17c5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f396d0b_060b8a4b",
+      "range": {
+        "startLine": 25,
+        "startChar": 35,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ae3f6c_1a4367a5",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-21T13:14:08Z",
       "side": 1,
       "message": "with #scenerio",
+      "range": {
+        "startLine": 45,
+        "startChar": 60,
+        "endLine": 45,
+        "endChar": 61
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd1c61f7_36cf5cee",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56ae3f6c_1a4367a5",
       "range": {
         "startLine": 45,
         "startChar": 60,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d03563f_6b8c824b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2298c954_90431c90",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 14
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54ce9a69_6d06c2ca",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-11-21T13:14:08Z",
       "side": 1,
       "message": "with #scenerio",
+      "range": {
+        "startLine": 60,
+        "startChar": 58,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79e01687_1209994b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ce9a69_6d06c2ca",
       "range": {
         "startLine": 60,
         "startChar": 58,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "374c2424_d0b40216",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d65d0bb_57fa19c5",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f41aebc1_335b4084",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba5be4c_fa2bc0b8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f41aebc1_335b4084",
+      "range": {
+        "startLine": 76,
+        "startChar": 56,
+        "endLine": 76,
+        "endChar": 57
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fc17bb9_985a5a63",
@@ -169,6 +313,30 @@
       "writtenOn": "2024-11-21T13:14:08Z",
       "side": 1,
       "message": "\u0027following scenarios are applied\u0027",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "19d09b6d0097663e8f1b5aa804d623ed133e447e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "082c10f8_0a6a51e9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/YangModulesSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T13:24:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fc17bb9_985a5a63",
       "range": {
         "startLine": 87,
         "startChar": 12,
