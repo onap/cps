@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e0b310_d37cca19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-21T15:43:27Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "1e34dc01f3319517d66387f2c443c989a0752f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f676021_67af470e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/data/models/CmResourceAddress.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-21T15:43:27Z",
+      "side": 1,
+      "message": "NB: this is not a good way of obtaining a bean from the context. Instead the class can be a service that autowire(injects) AlternateIdMatcher at field level. \n\nThe consuming class is actively pulling its dependencies (getCpsBean) instead of having them pushed via dependency injection.\nThis breaks the IoC principle, making the architecture less aligned with Spring\u0027s design philosophy.\n\nSince the urgency of the bug, that is ok.",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 113
+      },
+      "revId": "1e34dc01f3319517d66387f2c443c989a0752f7f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
