@@ -24,8 +24,8 @@ import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
-    LEGACY_BATCH_TOPIC_NAME, KAFKA_BOOTSTRAP_SERVERS, REGISTRATION_BATCH_SIZE,
-    LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS
+    REGISTRATION_BATCH_SIZE, LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, DURATION,
+    LEGACY_BATCH_THROUGHPUT_TEST_START_TIME, KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -49,13 +49,10 @@ let cmSearchCpsPathDurationTrend = new Trend('cm_search_cpspath_duration', true)
 let cmSearchTrustLevelDurationTrend = new Trend('cm_search_trustlevel_duration', true);
 let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
 
-const legacyBatchEventReader = new Reader({
-    brokers: KAFKA_BOOTSTRAP_SERVERS,
+export const legacyBatchEventReader = new Reader({
+    brokers: [KAFKA_BOOTSTRAP_SERVERS],
     topic: LEGACY_BATCH_TOPIC_NAME,
 });
-
-const DURATION = '15m';
-const LEGACY_BATCH_THROUGHPUT_TEST_START_TIME = '15m30s';
 
 export const options = {
     setupTimeout: '20m',

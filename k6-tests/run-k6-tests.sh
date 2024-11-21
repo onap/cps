@@ -20,9 +20,12 @@ set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
 #set -o xtrace   # Uncomment for debugging
 
+# default is empty string, which means performance tests
+testProfile=${1:-kpi}
+
 on_exit() {
   rc=$?
-  ./teardown.sh
+  ./teardown.sh "$testProfile"
   popd
   echo "TEST FAILURES: $rc"
   exit $rc
@@ -34,9 +37,11 @@ pushd "$(dirname "$0")" || exit 1
 # Install needed dependencies.
 source install-deps.sh
 
+echo "Test profile provided: $testProfile"
+
 # Run k6 test suite.
-./setup.sh
-./ncmp/run-all-tests.sh
+./setup.sh "$testProfile"
+./ncmp/run-all-tests.sh "$testProfile"
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!

@@ -18,11 +18,13 @@
 echo '================================== docker info =========================='
 docker ps -a
 
-echo 'Stopping, Removing containers and volumes...'
-docker_compose_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub down --volumes"
+testProfile=$1
+docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"
+
 # Set an environment variable CLEAN_DOCKER_IMAGES=1 to also remove docker images when done (used on jenkins job)
+echo "Stopping, Removing containers and volumes for $testProfile tests..."
 if [ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]; then
-  $docker_compose_cmd --rmi all
+  $docker_compose_shutdown_cmd --rmi all
 else
-  $docker_compose_cmd
+  $docker_compose_shutdown_cmd
 fi
