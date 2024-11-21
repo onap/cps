@@ -87,10 +87,10 @@ class CpsPathQuerySpec extends Specification {
             'yang container'                                              | '/cps-path'                                                    || '/cps-path'
             'descendant anywhere'                                         | '//cps-path'                                                   || '//cps-path'
             'descendant with leaf condition'                              | '//cps-path[@key=1]'                                           || "//cps-path[@key='1']"
-            'descendant with leaf condition has ">" operator'             | '//cps-path[@key>9]'                                           || "//cps-path[@key>'9']"
-            'descendant with leaf condition has "<" operator'             | '//cps-path[@key<10]'                                          || "//cps-path[@key<'10']"
-            'descendant with leaf condition has ">=" operator'            | '//cps-path[@key>=8]'                                          || "//cps-path[@key>='8']"
-            'descendant with leaf condition has "<=" operator'            | '//cps-path[@key<=12]'                                         || "//cps-path[@key<='12']"
+            'descendant with leaf condition has ">" operator'             | '//cps-path[@key>9]'                                           || "//cps-path[@key>9]"
+            'descendant with leaf condition has "<" operator'             | '//cps-path[@key<10]'                                          || "//cps-path[@key<10]"
+            'descendant with leaf condition has ">=" operator'            | '//cps-path[@key>=8]'                                          || "//cps-path[@key>=8]"
+            'descendant with leaf condition has "<=" operator'            | '//cps-path[@key<=12]'                                         || "//cps-path[@key<=12]"
             'descendant with leaf value and ancestor'                     | '//cps-path[@key=1]/ancestor::parent[@key=1]'                  || "//cps-path[@key='1']/ancestor::parent[@key='1']"
             'parent & child'                                              | '/parent/child'                                                || '/parent/child'
             'parent leaf of type Integer & child'                         | '/parent/child[@code=1]/child2'                                || "/parent/child[@code='1']/child2"
