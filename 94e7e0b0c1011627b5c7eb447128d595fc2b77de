@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d016ab40_db750c12",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T16:25:43Z",
+      "side": 1,
+      "message": "As per wiki, endurance should use constant-arrival-rate executor, sending 1 request per second for whole duration.",
+      "parentUuid": "08f64a3c_95031504",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "94e7e0b0c1011627b5c7eb447128d595fc2b77de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce37fd69_8bf83b78",
         "filename": "k6-tests/ncmp/ncmp-test-runner.js",
         "patchSetId": 2
