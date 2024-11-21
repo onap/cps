@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b97dfa_c47726e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-21T15:07:12Z",
+      "side": 1,
+      "message": "Nb. This will likely give worse performance when using alternate Id now. Assuming we have an alternateId:\n- first we try get YangModelCmHandle by id on line 285, which fails\n- then we resolve the reference using getResolvedCmHandleId() which\n  - tries to look up Cm handle by id, which fails again\n  - tries to look up Cm handle by alternate-id, which succeeds and returns id\n- get the YangModelCmHandle by resolved id\n\nSo this patch optimizes for Cm Handle ID - doing it in a single DB lookup, while it takes 4 DB lookups to resolve alternate ID!\n\nI am investigating alternatives as part of CPS-2511",
+      "range": {
+        "startLine": 287,
+        "startChar": 12,
+        "endLine": 287,
+        "endChar": 83
+      },
+      "revId": "41ca52da79db2354149c1ae88a50c99799d33f1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
