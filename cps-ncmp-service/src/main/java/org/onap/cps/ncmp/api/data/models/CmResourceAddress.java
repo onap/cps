@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.api.data.models;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.CpsApplicationContext;
@@ -31,11 +30,11 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 public class CmResourceAddress {
 
     private final String datastoreName;
-    @Getter(AccessLevel.NONE)
     private final String cmHandleReference;
     private final String resourceIdentifier;
 
-    public String getResolvedCmHandleId() {
-        return CpsApplicationContext.getCpsBean(AlternateIdMatcher.class).getCmHandleId(cmHandleReference);
+    public String resolveCmHandleReferenceToId() {
+        final AlternateIdMatcher alternateIdMatcher = CpsApplicationContext.getCpsBean(AlternateIdMatcher.class);
+        return alternateIdMatcher.getCmHandleId(cmHandleReference);
     }
 }
