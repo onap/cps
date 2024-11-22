@@ -25,12 +25,10 @@ package org.onap.cps.ri.repository;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -41,12 +39,8 @@ import org.springframework.stereotype.Repository;
 public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>, FragmentRepositoryCpsPathQuery,
         FragmentPrefetchRepository {
 
-    Optional<FragmentEntity> findByAnchorAndXpath(AnchorEntity anchorEntity, String xpath);
-
-    default FragmentEntity getByAnchorAndXpath(final AnchorEntity anchorEntity, final String xpath) {
-        return findByAnchorAndXpath(anchorEntity, xpath).orElseThrow(() ->
-            new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath));
-    }
+    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND xpath = :xpath", nativeQuery = true)
+    FragmentEntity findByAnchorIdAndXpath(@Param("anchorId") long anchorId, @Param("xpath") String xpath);
 
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND xpath IN (:xpaths)",
             nativeQuery = true)
@@ -83,9 +77,6 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
             + " AND xpath IN (:xpaths)", nativeQuery = true)
     List<FragmentEntity> findByAnchorIdsAndXpathIn(@Param("anchorIds") Collection<Long> anchorIds,
                                                    @Param("xpaths") Collection<String> xpaths);
-
-    @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId LIMIT 1", nativeQuery = true)
-    Optional<FragmentEntity> findOneByAnchorId(@Param("anchorId") long anchorId);
 
     @Modifying
     @Query(value = "DELETE FROM fragment WHERE anchor_id IN (:anchorIds)", nativeQuery = true)

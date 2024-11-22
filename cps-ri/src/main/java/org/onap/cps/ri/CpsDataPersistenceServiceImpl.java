@@ -609,12 +609,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
-        final FragmentEntity fragmentEntity;
-        if (isRootXpath(xpath)) {
-            fragmentEntity = fragmentRepository.findOneByAnchorId(anchorEntity.getId()).orElse(null);
-        } else {
-            fragmentEntity = fragmentRepository.getByAnchorAndXpath(anchorEntity, getNormalizedXpath(xpath));
-        }
+        final FragmentEntity fragmentEntity =
+                fragmentRepository.findByAnchorIdAndXpath(anchorEntity.getId(), getNormalizedXpath(xpath));
         if (fragmentEntity == null) {
             throw new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath);
         }
