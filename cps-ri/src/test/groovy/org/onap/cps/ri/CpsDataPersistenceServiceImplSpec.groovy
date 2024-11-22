@@ -246,7 +246,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
     def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
-        mockFragmentRepository.getByAnchorAndXpath(_, xpath) >> fragmentEntity
+        mockFragmentRepository.findByAnchorIdAndXpath(_, xpath) >> fragmentEntity
         if ('EXCEPTION' == scenario) {
             mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
         }
