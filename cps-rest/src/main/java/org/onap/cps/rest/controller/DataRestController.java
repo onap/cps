@@ -72,9 +72,9 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<String> createNode(final String apiVersion,
                                              final String dataspaceName, final String anchorName,
-                                             final String contentTypeInHeader,
                                              final String nodeData, final String parentNodeXpath,
-                                             final Boolean dryRunEnabled, final String observedTimestamp) {
+                                             final Boolean dryRunEnabled, final String observedTimestamp,
+                                             final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         if (Boolean.TRUE.equals(dryRunEnabled)) {
             cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
@@ -92,19 +92,18 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteDataNode(final String apiVersion,
-        final String dataspaceName, final String anchorName,
-        final String xpath, final String observedTimestamp) {
-        cpsDataService.deleteDataNode(dataspaceName, anchorName, xpath,
-            toOffsetDateTime(observedTimestamp));
+    public ResponseEntity<Void> deleteDataNode(final String apiVersion, final String dataspaceName,
+                                               final String anchorName, final String xpath,
+                                               final String observedTimestamp) {
+        cpsDataService.deleteDataNode(dataspaceName, anchorName, xpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<String> addListElements(final String apiVersion, final String dataspaceName,
                                                   final String anchorName, final String parentNodeXpath,
-                                                  final String contentTypeInHeader, final String nodeData,
-                                                  final String observedTimestamp) {
+                                                  final String nodeData, final String observedTimestamp,
+                                                  final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
@@ -115,7 +114,9 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v1",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
-        final String anchorName, final String xpath, final Boolean includeDescendants) {
+                                                              final String anchorName,
+                                                              final String xpath,
+                                                              final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
@@ -129,8 +130,9 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.datanode.get.v2",
             description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
-                                                                final String contentTypeInHeader, final String xpath,
-                                                                final String fetchDescendantsOptionAsString) {
+                                                                final String xpath,
+                                                                final String fetchDescendantsOptionAsString,
+                                                                final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
@@ -148,9 +150,9 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
-                                                   final String anchorName, final String contentTypeInHeader,
-                                                   final String nodeData, final String parentNodeXpath,
-                                                   final String observedTimestamp) {
+                                                   final String anchorName, final String nodeData,
+                                                   final String parentNodeXpath, final String observedTimestamp,
+                                                   final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
@@ -159,9 +161,9 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Object> replaceNode(final String apiVersion, final String dataspaceName,
-                                             final String anchorName, final String contentTypeInHeader,
-                                             final String nodeData, final String parentNodeXpath,
-                                              final String observedTimestamp) {
+                                              final String anchorName, final String nodeData,
+                                              final String parentNodeXpath, final String observedTimestamp,
+                                              final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
                         nodeData, toOffsetDateTime(observedTimestamp), contentType);
@@ -169,10 +171,9 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    public ResponseEntity<Object> replaceListContent(final String apiVersion,
-                                                     final String dataspaceName, final String anchorName,
-                                                     final String parentNodeXpath, final Object jsonData,
-        final String observedTimestamp) {
+    public ResponseEntity<Object> replaceListContent(final String apiVersion, final String dataspaceName,
+                                                     final String anchorName, final String parentNodeXpath,
+                                                     final Object jsonData, final String observedTimestamp) {
         cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
                 jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.OK);
@@ -180,7 +181,7 @@ public class DataRestController implements CpsDataApi {
 
     @Override
     public ResponseEntity<Void> deleteListOrListElement(final String dataspaceName, final String anchorName,
-        final String listElementXpath, final String observedTimestamp) {
+                                                        final String listElementXpath, final String observedTimestamp) {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -211,10 +212,10 @@ public class DataRestController implements CpsDataApi {
     @Timed(value = "cps.data.controller.get.delta",
             description = "Time taken to get delta between anchors")
     public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName,
-                                                                           final String sourceAnchorName,
-                                                                           final String targetAnchorName,
-                                                                           final String xpath,
-                                                                           final String descendants) {
+                                                                final String sourceAnchorName,
+                                                                final String targetAnchorName,
+                                                                final String xpath,
+                                                                final String descendants) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(descendants);
 

@@ -328,6 +328,23 @@ class DataRestControllerSpec extends Specification {
             assert numberOfDataTrees == 2
     }
 
+    def 'Get all the data trees using V2 without Content-Type defaults to json'() {
+        given: 'the service returns all data node leaves'
+            def xpath = '/'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/node"
+            mockCpsDataService.getDataNodes(dataspaceName, anchorName, xpath, OMIT_DESCENDANTS) >> [dataNodeWithLeavesNoChildren, dataNodeWithLeavesNoChildren2]
+        when: 'V2 of get request is performed through REST API without specifying content-type header'
+            def response =
+                    mvc.perform(get(endpoint)
+                            .param('xpath', xpath))
+                            .andReturn().response
+        then: 'a success response is returned'
+            response.status == HttpStatus.OK.value()
+        and: 'the response contains the datanode in json array format'
+            response.getContentAsString() == '[{"parent-1":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}},' +
+                    '{"parent-2":{"leaf":"value"}}]'
+    }
+
     def 'Get all the data trees as XML with root node xPath using V2'() {
         given: 'the service returns all data node leaves'
             def xpath = '/'

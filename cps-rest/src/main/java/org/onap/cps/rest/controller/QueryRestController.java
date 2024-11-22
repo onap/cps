@@ -60,7 +60,9 @@ public class QueryRestController implements CpsQueryApi {
     @Timed(value = "cps.data.controller.datanode.query.v1",
             description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
-        final String anchorName, final String cpsPath, final Boolean includeDescendants) {
+                                                                         final String anchorName,
+                                                                         final String cpsPath,
+                                                                         final Boolean includeDescendants) {
         final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
             ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
         return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
@@ -71,8 +73,10 @@ public class QueryRestController implements CpsQueryApi {
     @Timed(value = "cps.data.controller.datanode.query.v2",
             description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
-        final String anchorName, final String contentTypeInHeader, final String cpsPath,
-                                        final String fetchDescendantsOptionAsString) {
+                                                                           final String anchorName,
+                                                                           final String cpsPath,
+                                                                           final String fetchDescendantsOptionAsString,
+                                                                           final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
@@ -83,9 +87,11 @@ public class QueryRestController implements CpsQueryApi {
     @Override
     @Timed(value = "cps.data.controller.datanode.query.across.anchors",
             description = "Time taken to query data nodes across anchors")
-    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName, final String cpsPath,
+    public ResponseEntity<Object> getNodesByDataspaceAndCpsPath(final String dataspaceName,
+                                                                final String cpsPath,
                                                                 final String fetchDescendantsOptionAsString,
-                                                                final Integer pageIndex, final Integer pageSize) {
+                                                                final Integer pageIndex,
+                                                                final Integer pageSize) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
@@ -111,7 +117,7 @@ public class QueryRestController implements CpsQueryApi {
     }
 
     private Integer getTotalPages(final String dataspaceName, final String cpsPath,
-                                                          final PaginationOption paginationOption) {
+                                  final PaginationOption paginationOption) {
         if (paginationOption == PaginationOption.NO_PAGINATION) {
             return 1;
         }
