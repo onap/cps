@@ -116,26 +116,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    /**
-     * Convert DataNode object into Fragment and places the result in the fragments placeholder. Performs same action
-     * for all DataNode children recursively.
-     *
-     * @param anchorEntity          anchorEntity
-     * @param dataNodeToBeConverted dataNode
-     * @return a Fragment built from current DataNode
-     */
-    private FragmentEntity convertToFragmentWithAllDescendants(final AnchorEntity anchorEntity,
-                                                               final DataNode dataNodeToBeConverted) {
-        final FragmentEntity parentFragment = toFragmentEntity(anchorEntity, dataNodeToBeConverted);
-        final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
-        for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
-            final FragmentEntity childFragment = convertToFragmentWithAllDescendants(anchorEntity, childDataNode);
-            childFragmentsImmutableSetBuilder.add(childFragment);
-        }
-        parentFragment.setChildFragments(childFragmentsImmutableSetBuilder.build());
-        return parentFragment;
-    }
-
     @Override
     public void addListElements(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                 final Collection<DataNode> newListElements) {
@@ -148,53 +128,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                   final String parentNodeXpath, final Collection<DataNode> dataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         addChildrenDataNodes(anchorEntity, parentNodeXpath, dataNodes);
-    }
-
-    private void addChildrenDataNodes(final AnchorEntity anchorEntity, final String parentNodeXpath,
-                                      final Collection<DataNode> newChildren) {
-        final FragmentEntity parentFragmentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
-        final List<FragmentEntity> fragmentEntities = new ArrayList<>(newChildren.size());
-        try {
-            for (final DataNode newChildAsDataNode : newChildren) {
-                final FragmentEntity newChildAsFragmentEntity =
-                    convertToFragmentWithAllDescendants(anchorEntity, newChildAsDataNode);
-                newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
-                fragmentEntities.add(newChildAsFragmentEntity);
-            }
-            fragmentRepository.saveAll(fragmentEntities);
-        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
-            log.warn("Exception occurred : {} , While saving : {} children, retrying using individual save operations",
-                dataIntegrityViolationException, fragmentEntities.size());
-            retrySavingEachChildIndividually(anchorEntity, parentNodeXpath, newChildren);
-        }
-    }
-
-    private void addNewChildDataNode(final AnchorEntity anchorEntity, final String parentNodeXpath,
-                                     final DataNode newChild) {
-        final FragmentEntity parentFragmentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
-        final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, newChild);
-        newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
-        try {
-            fragmentRepository.save(newChildAsFragmentEntity);
-        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
-            throw AlreadyDefinedException.forDataNodes(Collections.singletonList(newChild.getXpath()),
-                anchorEntity.getName());
-        }
-    }
-
-    private void retrySavingEachChildIndividually(final AnchorEntity anchorEntity, final String parentNodeXpath,
-                                                  final Collection<DataNode> newChildren) {
-        final Collection<String> failedXpaths = new HashSet<>();
-        for (final DataNode newChild : newChildren) {
-            try {
-                addNewChildDataNode(anchorEntity, parentNodeXpath, newChild);
-            } catch (final AlreadyDefinedException alreadyDefinedException) {
-                failedXpaths.add(newChild.getXpath());
-            }
-        }
-        if (!failedXpaths.isEmpty()) {
-            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
-        }
     }
 
     @Override
@@ -246,19 +179,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
-    private void logMissingXPaths(final Collection<String> xpaths, final Collection<FragmentEntity>
-            existingFragmentEntities) {
-        final Set<String> existingXPaths = existingFragmentEntities.stream().map(FragmentEntity::getXpath)
-                .collect(Collectors.toSet());
-
-        final Set<String> missingXPaths = xpaths.stream().filter(xpath -> !existingXPaths.contains(xpath))
-                .collect(Collectors.toSet());
-
-        if (!missingXPaths.isEmpty()) {
-            log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
-        }
-    }
-
     private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
                                                   final Collection<FragmentEntity> fragmentEntities) {
         final Collection<String> failedXpaths = new HashSet<>();
@@ -306,14 +226,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException pathParsingException) {
-            throw new CpsPathException(pathParsingException.getMessage());
-        }
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
 
         Collection<FragmentEntity> fragmentEntities;
         fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
@@ -321,8 +235,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
             fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-                fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -333,12 +245,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                       final FetchDescendantsOption fetchDescendantsOption,
                                                       final PaginationOption paginationOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
-        }
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
 
         final List<Long> anchorIds;
         if (paginationOption == NO_PAGINATION) {
@@ -359,20 +266,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             } else {
                 fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(anchorIds, ancestorXpaths);
             }
-
         }
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-                fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
-    }
-
-    private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
-                                                               final Collection<FragmentEntity> fragmentEntities) {
-        final List<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
-        }
-        return Collections.unmodifiableList(dataNodes);
     }
 
     @Override
@@ -394,40 +289,10 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
-        }
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
     }
-
-    private DataNode toDataNode(final FragmentEntity fragmentEntity,
-                                final FetchDescendantsOption fetchDescendantsOption) {
-        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
-        Map<String, Serializable> leaves = new HashMap<>();
-        if (fragmentEntity.getAttributes() != null) {
-            leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
-        }
-        return new DataNodeBuilder()
-                .withXpath(fragmentEntity.getXpath())
-                .withLeaves(leaves)
-                .withDataspace(fragmentEntity.getAnchor().getDataspace().getName())
-                .withAnchor(fragmentEntity.getAnchor().getName())
-                .withChildDataNodes(childDataNodes).build();
-    }
-
-    private FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity, final DataNode dataNode) {
-        return FragmentEntity.builder()
-            .anchor(anchorEntity)
-            .xpath(dataNode.getXpath())
-            .attributes(jsonObjectMapper.asJsonString(dataNode.getLeaves()))
-            .build();
-    }
-
-
 
     @Override
     @Transactional
@@ -487,18 +352,18 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> deleteChecklist = getNormalizedXpaths(xpathsToDelete);
         final Collection<String> xpathsToExistingContainers =
-            fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, deleteChecklist);
+                fragmentRepository.findAllXpathByAnchorAndXpathIn(anchorEntity, deleteChecklist);
         if (onlySupportListDeletion) {
             final Collection<String> xpathsToExistingListElements = xpathsToExistingContainers.stream()
-                .filter(CpsPathUtil::isPathToListElement).toList();
+                    .filter(CpsPathUtil::isPathToListElement).toList();
             deleteChecklist.removeAll(xpathsToExistingListElements);
         } else {
             deleteChecklist.removeAll(xpathsToExistingContainers);
         }
 
         final Collection<String> xpathsToExistingLists = deleteChecklist.stream()
-            .filter(xpath -> fragmentRepository.existsByAnchorAndXpathStartsWith(anchorEntity, xpath + "["))
-            .toList();
+                .filter(xpath -> fragmentRepository.existsByAnchorAndXpathStartsWith(anchorEntity, xpath + "["))
+                .toList();
         deleteChecklist.removeAll(xpathsToExistingLists);
 
         if (!deleteChecklist.isEmpty()) {
@@ -531,7 +396,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final String normalizedXpath = getNormalizedXpath(targetXpath);
         try {
             deleteDataNodes(dataspaceName, anchorName, Collections.singletonList(normalizedXpath),
-                onlySupportListNodeDeletion);
+                    onlySupportListNodeDeletion);
         } catch (final DataNodeNotFoundExceptionBatch dataNodeNotFoundExceptionBatch) {
             throw new DataNodeNotFoundException(dataspaceName, anchorName, targetXpath);
         }
@@ -559,10 +424,102 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                               final Collection<String> xpaths,
                                                               final FetchDescendantsOption fetchDescendantsOption) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpaths);
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-            fragmentEntities);
+        final Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpaths);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+
+    private void addChildrenDataNodes(final AnchorEntity anchorEntity, final String parentNodeXpath,
+                                      final Collection<DataNode> newChildren) {
+        final FragmentEntity parentFragmentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
+        final List<FragmentEntity> fragmentEntities = new ArrayList<>(newChildren.size());
+        try {
+            for (final DataNode newChildAsDataNode : newChildren) {
+                final FragmentEntity newChildAsFragmentEntity =
+                        convertToFragmentWithAllDescendants(anchorEntity, newChildAsDataNode);
+                newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
+                fragmentEntities.add(newChildAsFragmentEntity);
+            }
+            fragmentRepository.saveAll(fragmentEntities);
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+            log.warn("Exception occurred : {} , While saving : {} children, retrying using individual save operations",
+                    dataIntegrityViolationException, fragmentEntities.size());
+            retrySavingEachChildIndividually(anchorEntity, parentNodeXpath, newChildren);
+        }
+    }
+
+    private void addNewChildDataNode(final AnchorEntity anchorEntity, final String parentNodeXpath,
+                                     final DataNode newChild) {
+        final FragmentEntity parentFragmentEntity = getFragmentEntity(anchorEntity, parentNodeXpath);
+        final FragmentEntity newChildAsFragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, newChild);
+        newChildAsFragmentEntity.setParentId(parentFragmentEntity.getId());
+        try {
+            fragmentRepository.save(newChildAsFragmentEntity);
+        } catch (final DataIntegrityViolationException dataIntegrityViolationException) {
+            throw AlreadyDefinedException.forDataNodes(Collections.singletonList(newChild.getXpath()),
+                    anchorEntity.getName());
+        }
+    }
+
+    private void retrySavingEachChildIndividually(final AnchorEntity anchorEntity, final String parentNodeXpath,
+                                                  final Collection<DataNode> newChildren) {
+        final Collection<String> failedXpaths = new HashSet<>();
+        for (final DataNode newChild : newChildren) {
+            try {
+                addNewChildDataNode(anchorEntity, parentNodeXpath, newChild);
+            } catch (final AlreadyDefinedException alreadyDefinedException) {
+                failedXpaths.add(newChild.getXpath());
+            }
+        }
+        if (!failedXpaths.isEmpty()) {
+            throw AlreadyDefinedException.forDataNodes(failedXpaths, anchorEntity.getName());
+        }
+    }
+
+    private FragmentEntity convertToFragmentWithAllDescendants(final AnchorEntity anchorEntity,
+                                                               final DataNode dataNodeToBeConverted) {
+        final FragmentEntity parentFragment = toFragmentEntity(anchorEntity, dataNodeToBeConverted);
+        final Builder<FragmentEntity> childFragmentsImmutableSetBuilder = ImmutableSet.builder();
+        for (final DataNode childDataNode : dataNodeToBeConverted.getChildDataNodes()) {
+            final FragmentEntity childFragment = convertToFragmentWithAllDescendants(anchorEntity, childDataNode);
+            childFragmentsImmutableSetBuilder.add(childFragment);
+        }
+        parentFragment.setChildFragments(childFragmentsImmutableSetBuilder.build());
+        return parentFragment;
+    }
+
+    private FragmentEntity toFragmentEntity(final AnchorEntity anchorEntity, final DataNode dataNode) {
+        return FragmentEntity.builder()
+                .anchor(anchorEntity)
+                .xpath(dataNode.getXpath())
+                .attributes(jsonObjectMapper.asJsonString(dataNode.getLeaves()))
+                .build();
+    }
+
+    private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
+                                                               final Collection<FragmentEntity> fragmentEntities) {
+        final Collection<FragmentEntity> fragmentEntitiesWithDescendants =
+                fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption, fragmentEntities);
+        final List<DataNode> dataNodes = new ArrayList<>(fragmentEntitiesWithDescendants.size());
+        for (final FragmentEntity fragmentEntity : fragmentEntitiesWithDescendants) {
+            dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
+        }
+        return Collections.unmodifiableList(dataNodes);
+    }
+
+    private DataNode toDataNode(final FragmentEntity fragmentEntity,
+                                final FetchDescendantsOption fetchDescendantsOption) {
+        final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
+        Map<String, Serializable> leaves = new HashMap<>();
+        if (fragmentEntity.getAttributes() != null) {
+            leaves = jsonObjectMapper.convertJsonString(fragmentEntity.getAttributes(), Map.class);
+        }
+        return new DataNodeBuilder()
+                .withXpath(fragmentEntity.getXpath())
+                .withLeaves(leaves)
+                .withDataspace(fragmentEntity.getAnchor().getDataspace().getName())
+                .withAnchor(fragmentEntity.getAnchor().getName())
+                .withChildDataNodes(childDataNodes).build();
     }
 
     private List<DataNode> getChildDataNodes(final FragmentEntity fragmentEntity,
@@ -570,7 +527,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (fetchDescendantsOption.hasNext()) {
             return fragmentEntity.getChildFragments().stream()
                 .map(childFragmentEntity -> toDataNode(childFragmentEntity, fetchDescendantsOption.next()))
-                .collect(Collectors.toList());
+                .toList();
         }
         return Collections.emptyList();
     }
@@ -583,6 +540,97 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     private List<Long> getAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
         return fragmentRepository.findAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
+    }
+
+    private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
+        final FragmentEntity fragmentEntity;
+        if (isRootXpath(xpath)) {
+            fragmentEntity = fragmentRepository.findOneByAnchorId(anchorEntity.getId()).orElse(null);
+        } else {
+            fragmentEntity = fragmentRepository.getByAnchorAndXpath(anchorEntity, getNormalizedXpath(xpath));
+        }
+        if (fragmentEntity == null) {
+            throw new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath);
+        }
+        return fragmentEntity;
+    }
+
+    private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
+                                                           final Collection<String> xpaths) {
+        final Collection<String> normalizedXpaths = getNormalizedXpaths(xpaths);
+
+        final boolean haveRootXpath = normalizedXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
+
+        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
+                normalizedXpaths);
+
+        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+            normalizedXpaths.remove(fragmentEntity.getXpath());
+        }
+
+        for (final String xpath : normalizedXpaths) {
+            if (!CpsPathUtil.isPathToListElement(xpath)) {
+                fragmentEntities.addAll(fragmentRepository.findListByAnchorAndXpath(anchorEntity, xpath));
+            }
+        }
+
+        if (haveRootXpath) {
+            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
+        }
+
+        return fragmentEntities;
+    }
+
+    private FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
+                                                     final DataNode newListElement,
+                                                     final FragmentEntity existingListElementEntity) {
+        if (existingListElementEntity == null) {
+            return convertToFragmentWithAllDescendants(parentEntity.getAnchor(), newListElement);
+        }
+        if (newListElement.getChildDataNodes().isEmpty()) {
+            copyAttributesFromNewDataNode(existingListElementEntity, newListElement);
+            existingListElementEntity.getChildFragments().clear();
+        } else {
+            updateFragmentEntityAndDescendantsWithDataNode(existingListElementEntity, newListElement);
+        }
+        return existingListElementEntity;
+    }
+
+    private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
+        Map<String, Serializable> currentLeavesAsMap = new HashMap<>();
+        if (currentLeavesAsString != null) {
+            currentLeavesAsMap = jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
+            currentLeavesAsMap.putAll(updateLeaves);
+        }
+
+        if (currentLeavesAsMap.isEmpty()) {
+            return "";
+        }
+        return jsonObjectMapper.asJsonString(currentLeavesAsMap);
+    }
+
+    private void copyAttributesFromNewDataNode(final FragmentEntity existingFragmentEntity,
+                                               final DataNode newDataNode) {
+        final String oldOrderedLeavesAsJson = getOrderedLeavesAsJson(existingFragmentEntity.getAttributes());
+        final String newOrderedLeavesAsJson = getOrderedLeavesAsJson(newDataNode.getLeaves());
+        if (!oldOrderedLeavesAsJson.equals(newOrderedLeavesAsJson)) {
+            existingFragmentEntity.setAttributes(jsonObjectMapper.asJsonString(newDataNode.getLeaves()));
+        }
+    }
+
+    private String getOrderedLeavesAsJson(final Map<String, Serializable> currentLeaves) {
+        final Map<String, Serializable> sortedLeaves = new TreeMap<>(String::compareTo);
+        sortedLeaves.putAll(currentLeaves);
+        return jsonObjectMapper.asJsonString(sortedLeaves);
+    }
+
+    private String getOrderedLeavesAsJson(final String currentLeavesAsString) {
+        if (currentLeavesAsString == null) {
+            return "{}";
+        }
+        final Map<String, Serializable> sortedLeaves = jsonObjectMapper.convertJsonString(currentLeavesAsString,
+            TreeMap.class);
+        return jsonObjectMapper.asJsonString(sortedLeaves);
     }
 
     private static String getNormalizedXpath(final String xpathSource) {
@@ -608,45 +656,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return normalizedXpaths;
     }
 
-    private FragmentEntity getFragmentEntity(final AnchorEntity anchorEntity, final String xpath) {
-        final FragmentEntity fragmentEntity;
-        if (isRootXpath(xpath)) {
-            fragmentEntity = fragmentRepository.findOneByAnchorId(anchorEntity.getId()).orElse(null);
-        } else {
-            fragmentEntity = fragmentRepository.getByAnchorAndXpath(anchorEntity, getNormalizedXpath(xpath));
-        }
-        if (fragmentEntity == null) {
-            throw new DataNodeNotFoundException(anchorEntity.getDataspace().getName(), anchorEntity.getName(), xpath);
-        }
-        return fragmentEntity;
-    }
-
-    private Collection<FragmentEntity> getFragmentEntities(final AnchorEntity anchorEntity,
-                                                           final Collection<String> xpaths) {
-        final Collection<String> normalizedXpaths = getNormalizedXpaths(xpaths);
-
-        final boolean haveRootXpath = normalizedXpaths.removeIf(CpsDataPersistenceServiceImpl::isRootXpath);
-
-        final List<FragmentEntity> fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity,
-            normalizedXpaths);
-
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
-            normalizedXpaths.remove(fragmentEntity.getXpath());
-        }
-
-        for (final String xpath : normalizedXpaths) {
-            if (!CpsPathUtil.isPathToListElement(xpath)) {
-                fragmentEntities.addAll(fragmentRepository.findListByAnchorAndXpath(anchorEntity, xpath));
-            }
-        }
-
-        if (haveRootXpath) {
-            fragmentEntities.addAll(fragmentRepository.findRootsByAnchorId(anchorEntity.getId()));
-        }
-
-        return fragmentEntities;
-    }
-
     private static String getListElementXpathPrefix(final Collection<DataNode> newListElements) {
         if (newListElements.isEmpty()) {
             throw new CpsAdminException("Invalid list replacement",
@@ -654,36 +663,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final String firstChildNodeXpath = newListElements.iterator().next().getXpath();
         return firstChildNodeXpath.substring(0, firstChildNodeXpath.lastIndexOf('[') + 1);
-    }
-
-    private FragmentEntity getFragmentForReplacement(final FragmentEntity parentEntity,
-                                                     final DataNode newListElement,
-                                                     final FragmentEntity existingListElementEntity) {
-        if (existingListElementEntity == null) {
-            return convertToFragmentWithAllDescendants(parentEntity.getAnchor(), newListElement);
-        }
-        if (newListElement.getChildDataNodes().isEmpty()) {
-            copyAttributesFromNewDataNode(existingListElementEntity, newListElement);
-            existingListElementEntity.getChildFragments().clear();
-        } else {
-            updateFragmentEntityAndDescendantsWithDataNode(existingListElementEntity, newListElement);
-        }
-        return existingListElementEntity;
-    }
-
-    private String getOrderedLeavesAsJson(final Map<String, Serializable> currentLeaves) {
-        final Map<String, Serializable> sortedLeaves = new TreeMap<>(String::compareTo);
-        sortedLeaves.putAll(currentLeaves);
-        return jsonObjectMapper.asJsonString(sortedLeaves);
-    }
-
-    private String getOrderedLeavesAsJson(final String currentLeavesAsString) {
-        if (currentLeavesAsString == null) {
-            return "{}";
-        }
-        final Map<String, Serializable> sortedLeaves = jsonObjectMapper.convertJsonString(currentLeavesAsString,
-            TreeMap.class);
-        return jsonObjectMapper.asJsonString(sortedLeaves);
     }
 
     private static Map<String, FragmentEntity> extractListElementFragmentEntitiesByXPath(
@@ -717,25 +696,23 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return !existingListElementsByXpath.containsKey(replacementDataNode.getXpath());
     }
 
-    private void copyAttributesFromNewDataNode(final FragmentEntity existingFragmentEntity,
-                                               final DataNode newDataNode) {
-        final String oldOrderedLeavesAsJson = getOrderedLeavesAsJson(existingFragmentEntity.getAttributes());
-        final String newOrderedLeavesAsJson = getOrderedLeavesAsJson(newDataNode.getLeaves());
-        if (!oldOrderedLeavesAsJson.equals(newOrderedLeavesAsJson)) {
-            existingFragmentEntity.setAttributes(jsonObjectMapper.asJsonString(newDataNode.getLeaves()));
+    private static CpsPathQuery getCpsPathQuery(final String cpsPath) {
+        try {
+            return CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
         }
     }
 
-    private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
-        Map<String, Serializable> currentLeavesAsMap = new HashMap<>();
-        if (currentLeavesAsString != null) {
-            currentLeavesAsMap = jsonObjectMapper.convertJsonString(currentLeavesAsString, Map.class);
-            currentLeavesAsMap.putAll(updateLeaves);
+    private static void logMissingXPaths(final Collection<String> xpaths,
+                                         final Collection<FragmentEntity> existingFragmentEntities) {
+        final Set<String> existingXPaths =
+                existingFragmentEntities.stream().map(FragmentEntity::getXpath).collect(Collectors.toSet());
+        final Set<String> missingXPaths =
+                xpaths.stream().filter(xpath -> !existingXPaths.contains(xpath)).collect(Collectors.toSet());
+        if (!missingXPaths.isEmpty()) {
+            log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
         }
-
-        if (currentLeavesAsMap.isEmpty()) {
-            return "";
-        }
-        return jsonObjectMapper.asJsonString(currentLeavesAsMap);
     }
+
 }
