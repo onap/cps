@@ -33,6 +33,24 @@
       "message": "for endurance no thresholds needed??",
       "revId": "fd5b04c51451cb0525d7ed93b1bb9b53573f6aaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc04a2e1_20c82c27",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-11-22T15:37:21Z",
+      "side": 1,
+      "message": "yes correct, no tresholds needed. Instead, the jvm parameters such as memory usage will be visualized.",
+      "parentUuid": "7f2ba81e_4be58511",
+      "revId": "fd5b04c51451cb0525d7ed93b1bb9b53573f6aaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
