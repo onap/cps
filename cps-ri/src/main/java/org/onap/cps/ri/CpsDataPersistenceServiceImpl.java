@@ -306,14 +306,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final AnchorEntity anchorEntity = anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException pathParsingException) {
-            throw new CpsPathException(pathParsingException.getMessage());
-        }
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
 
         Collection<FragmentEntity> fragmentEntities;
         fragmentEntities = fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
@@ -321,8 +315,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             final Collection<String> ancestorXpaths = processAncestorXpath(fragmentEntities, cpsPathQuery);
             fragmentEntities = fragmentRepository.findByAnchorAndXpathIn(anchorEntity, ancestorXpaths);
         }
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-                fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -333,12 +325,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                       final FetchDescendantsOption fetchDescendantsOption,
                                                       final PaginationOption paginationOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
-        }
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
 
         final List<Long> anchorIds;
         if (paginationOption == NO_PAGINATION) {
@@ -359,17 +346,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             } else {
                 fragmentEntities = fragmentRepository.findByAnchorIdsAndXpathIn(anchorIds, ancestorXpaths);
             }
-
         }
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-                fragmentEntities);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
     private List<DataNode> createDataNodesFromFragmentEntities(final FetchDescendantsOption fetchDescendantsOption,
                                                                final Collection<FragmentEntity> fragmentEntities) {
+        final Collection<FragmentEntity> fragmentEntitiesWithDescendants =
+                fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption, fragmentEntities);
         final List<DataNode> dataNodes = new ArrayList<>(fragmentEntities.size());
-        for (final FragmentEntity fragmentEntity : fragmentEntities) {
+        for (final FragmentEntity fragmentEntity : fragmentEntitiesWithDescendants) {
             dataNodes.add(toDataNode(fragmentEntity, fetchDescendantsOption));
         }
         return Collections.unmodifiableList(dataNodes);
@@ -394,12 +380,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     @Override
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final CpsPathQuery cpsPathQuery;
-        try {
-            cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
-        } catch (final PathParsingException e) {
-            throw new CpsPathException(e.getMessage());
-        }
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
     }
@@ -426,8 +407,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             .attributes(jsonObjectMapper.asJsonString(dataNode.getLeaves()))
             .build();
     }
-
-
 
     @Override
     @Transactional
@@ -559,9 +538,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                               final Collection<String> xpaths,
                                                               final FetchDescendantsOption fetchDescendantsOption) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpaths);
-        fragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(fetchDescendantsOption,
-            fragmentEntities);
+        final Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpaths);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 
@@ -570,7 +547,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (fetchDescendantsOption.hasNext()) {
             return fragmentEntity.getChildFragments().stream()
                 .map(childFragmentEntity -> toDataNode(childFragmentEntity, fetchDescendantsOption.next()))
-                .collect(Collectors.toList());
+                .toList();
         }
         return Collections.emptyList();
     }
@@ -737,5 +714,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return "";
         }
         return jsonObjectMapper.asJsonString(currentLeavesAsMap);
+    }
+
+    private static CpsPathQuery getCpsPathQuery(final String cpsPath) {
+        try {
+            return CpsPathUtil.getCpsPathQuery(cpsPath);
+        } catch (final PathParsingException e) {
+            throw new CpsPathException(e.getMessage());
+        }
     }
 }
