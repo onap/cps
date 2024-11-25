@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac5d2e0_7a65b11e",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T14:30:24Z",
+      "side": 1,
+      "message": "NB: extract out a method with meaningful name\ne.g. wrapStringValue  or whatever you think best describes what happens",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 190,
+        "endChar": 33
+      },
+      "revId": "980e5414db0ae6867b5b68677818cfbc161181ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
