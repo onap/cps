@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d9f0e4e_b3295423",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T14:18:22Z",
+      "side": 1,
+      "message": "as discussed, rename to \u0027exceptionFromInitialInventoryCall\u0027 or something like that. Since this is not the expected outcome but a flow-control parameter",
+      "range": {
+        "startLine": 230,
+        "startChar": 74,
+        "endLine": 230,
+        "endChar": 93
+      },
+      "revId": "0321b1e9b5e7c137f8f5f4fe6fbfeba3b4fe15fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
