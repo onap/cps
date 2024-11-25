@@ -310,9 +310,9 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Attempt to add empty lists.'() {
         when: 'the batches of new list element(s) are saved'
-            objectUnderTest.replaceListContent(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [ ], now)
+            objectUnderTest.replaceListContent(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1 , '/bookstore', [ ] as String, now, ContentType.JSON)
         then: 'an admin exception is thrown'
-            thrown(CpsAdminException)
+            thrown(DataValidationException)
     }
 
     def 'Add child error scenario: #scenario.'() {
@@ -344,7 +344,7 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             assert countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="2"]', DIRECT_CHILDREN_ONLY)) > 1
         when: 'the categories list is replaced with just category "1" and without child nodes (books)'
             def json = '{"categories": [ {"code":"' +categoryCode + '"' + childJson + '} ] }'
-            objectUnderTest.replaceListContent(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now)
+            objectUnderTest.replaceListContent(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', json, now, ContentType.JSON)
         then: 'the new replaced category can be retrieved but has no children anymore'
             assert expectedNumberOfDataNodes == countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories[@code="' +categoryCode + '"]', DIRECT_CHILDREN_ONLY))
         when: 'attempt to retrieve a category (code) not in the new list'
