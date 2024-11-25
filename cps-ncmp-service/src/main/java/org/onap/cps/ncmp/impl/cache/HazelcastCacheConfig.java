@@ -90,6 +90,7 @@ public class HazelcastCacheConfig {
     protected static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(1);
+        mapConfig.setReadBackupData(true);
         return mapConfig;
     }
 
