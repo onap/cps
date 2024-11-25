@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c0785e_e7eb42e8",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T14:39:15Z",
+      "side": 1,
+      "message": "\u0027find\u0027 is more correct name for this method as well...",
+      "range": {
+        "startLine": 249,
+        "startChar": 31,
+        "endLine": 249,
+        "endChar": 53
+      },
+      "revId": "45649e163fae2cd97d7bca8cb0089ebd3daf44c5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
