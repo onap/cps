@@ -160,7 +160,7 @@ public class QueryRestController implements CpsQueryApi {
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsListOfMaps,
                                                final ContentType contentType) {
         final String responseData;
-        if (contentType == ContentType.XML) {
+        if (ContentType.XML.equals(contentType)) {
             responseData = XmlFileUtils.convertDataMapsToXml(dataNodesAsListOfMaps);
         } else {
             responseData = jsonObjectMapper.asJsonString(dataNodesAsListOfMaps);
