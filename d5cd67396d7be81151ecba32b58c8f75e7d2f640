@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "693ef61e_36e7a8fd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T18:39:09Z",
+      "side": 1,
+      "message": "Done. Moved most private methods below, and private static methods to bottom.",
+      "parentUuid": "af9406a4_a7956d06",
+      "range": {
+        "startLine": 353,
+        "startChar": 4,
+        "endLine": 353,
+        "endChar": 12
+      },
+      "revId": "d5cd67396d7be81151ecba32b58c8f75e7d2f640",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8e72da2_df14bc62",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-25T14:37:41Z",
       "side": 1,
       "message": "maybe fragmentEntitiesWithDescendants to be clearer even if they are",
+      "range": {
+        "startLine": 357,
+        "startChar": 57,
+        "endLine": 357,
+        "endChar": 73
+      },
+      "revId": "d5cd67396d7be81151ecba32b58c8f75e7d2f640",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d1f4ee_86336721",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T18:39:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e72da2_df14bc62",
       "range": {
         "startLine": 357,
         "startChar": 57,
