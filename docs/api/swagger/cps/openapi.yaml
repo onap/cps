@@ -1927,6 +1927,16 @@ paths:
         schema:
           example: 2021-03-21T00:10:34.030-0100
           type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          default: application/json
+          enum:
+          - application/json
+          - application/xml
+          type: string
       requestBody:
         content:
           application/json:
@@ -1935,7 +1945,16 @@ paths:
                 $ref: '#/components/examples/dataSample'
                 value: null
             schema:
+              type: string
+          application/xml:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/dataSampleXml'
+                value: null
+            schema:
               type: object
+              xml:
+                name: stores
         required: true
       responses:
         "200":
