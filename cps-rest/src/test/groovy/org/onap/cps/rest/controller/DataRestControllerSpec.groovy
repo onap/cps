@@ -563,7 +563,7 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 
-    def 'Replace list content #scenario.'() {
+    def 'Replace list JSON content #scenario.'() {
         when: 'list-nodes endpoint is invoked with put (update) operation'
             def putRequestBuilder = put("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -576,7 +576,28 @@ class DataRestControllerSpec extends Specification {
             response.status == expectedHttpStatus.value()
         and: 'the java API was called with the correct parameters'
             expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', expectedJsonData,
-                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.JSON)
+        where:
+            scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
+            'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK
+            'without observed-timestamp'      | null                           || 1                | HttpStatus.OK
+            'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+    }
+
+    def 'Replace list XML content #scenario.'() {
+        when: 'list-nodes endpoint is invoked with put (update) operation'
+            def putRequestBuilder = put("$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes")
+                .contentType(MediaType.APPLICATION_XML)
+                .param('xpath', 'parent xpath')
+                .content(requestBodyXml)
+            if (observedTimestamp != null)
+                putRequestBuilder.param('observed-timestamp', observedTimestamp)
+            def response = mvc.perform(putRequestBuilder).andReturn().response
+        then: 'a success response is returned'
+            response.status == expectedHttpStatus.value()
+        and: 'the java API was called with the correct parameters'
+            expectedApiCount * mockCpsDataService.replaceListContent(dataspaceName, anchorName, 'parent xpath', expectedXmlData,
+                { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) }, ContentType.XML)
         where:
             scenario                          | observedTimestamp              || expectedApiCount | expectedHttpStatus
             'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK
