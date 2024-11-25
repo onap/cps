@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ee76a2_6e80375c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "See https://gerrit.onap.org/r/c/cps/+/139542",
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73c4441d_e40e9bb1",
@@ -75,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4da9dc2e_55d4c93e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperations.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73c4441d_e40e9bb1",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 6
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1ebeb2a_d530bbb8",
@@ -88,6 +129,30 @@
       "writtenOn": "2024-11-19T11:59:48Z",
       "side": 1,
       "message": "NB: Synchronizes and creates SchemaSet and Anchor for the given CM handle.",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 66
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f2c7534_dfc0f383",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1ebeb2a_d530bbb8",
       "range": {
         "startLine": 74,
         "startChar": 6,
@@ -128,6 +193,30 @@
       "writtenOn": "2024-11-19T11:59:48Z",
       "side": 1,
       "message": "Enhanced readability and modularity by breaking down large methods:\n\n public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {\n        final String moduleSetTag \u003d yangModelCmHandle.getModuleSetTag();\n        boolean isNewModuleSetTag \u003d Strings.isNotBlank(moduleSetTag);\n        ModuleDelta moduleDelta;\n\n        try {\n            moduleDelta \u003d resolveModuleDelta(yangModelCmHandle, moduleSetTag, isNewModuleSetTag);\n            createSchemaSetAndAnchor(yangModelCmHandle, moduleDelta, isNewModuleSetTag);\n        } finally {\n            if (isNewModuleSetTag) {\n                moduleSetTagsBeingProcessed.remove(moduleSetTag);\n            }\n        }\n    }\n\n    /**\n     * Resolves the module delta for the given CM handle and module set tag.\n     */\n    private ModuleDelta resolveModuleDelta(YangModelCmHandle yangModelCmHandle, String moduleSetTag, boolean isNewModuleSetTag) {\n        if (privateModuleSetCache.containsKey(moduleSetTag)) {\n            return privateModuleSetCache.get(moduleSetTag);\n        }\n        if (isNewModuleSetTag) {\n            if (!moduleSetTagsBeingProcessed.add(moduleSetTag)) {\n                throw new NcmpException(\n                    \"Concurrent processing of module set tag \" + moduleSetTag,\n                    moduleSetTag + \" already being processed for CM handle \" + yangModelCmHandle.getId()\n                );\n            }\n            log.info(\"Processing new module set tag: {}\", moduleSetTag);\n        }\n        return getModuleDelta(yangModelCmHandle, moduleSetTag);\n    }\n\n    /**\n     * Creates SchemaSet and Anchor for the given CM handle.\n     */\n    private void createSchemaSetAndAnchor(YangModelCmHandle yangModelCmHandle, ModuleDelta moduleDelta, boolean isNewModuleSetTag) {\n        final String cmHandleId \u003d yangModelCmHandle.getId();\n        cpsModuleService.createSchemaSetFromModules(\n            NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,\n            cmHandleId,\n            moduleDelta.newModuleNameToContentMap,\n            moduleDelta.allModuleReferences\n        );\n        cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);\n\n        if (isNewModuleSetTag) {\n            privateModuleSetCache.put(moduleSetTag, new ModuleDelta(moduleDelta.allModuleReferences, NO_NEW_MODULES));\n        }\n    }",
+      "range": {
+        "startLine": 78,
+        "startChar": 3,
+        "endLine": 110,
+        "endChar": 5
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5ad2ab7_b4bf4b0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "if you look carefully you see that isNewModulrSetTag is re-assigned. You ignored this in the method you extracted. Also the creation is a little more complicated. \nBasically this method is quiet interwoven and can not easily be split. \nI tried to extract a check for isNewModuleSetTag but since it needs to set the boolean ADN thrown an exception it cannot be done...\nTh method is smaller then a single page on my screen so although not ideal it is acceptable for me",
+      "parentUuid": "9355fbc1_d55ac658",
       "range": {
         "startLine": 78,
         "startChar": 3,
@@ -184,6 +273,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e67d2023_1796d796",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb9d0ca9_b6e11f58",
+      "range": {
+        "startLine": 94,
+        "startChar": 36,
+        "endLine": 94,
+        "endChar": 40
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71f73180_480ff5d1",
@@ -207,6 +320,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9e22d34_49cd8634",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71f73180_480ff5d1",
+      "range": {
+        "startLine": 113,
+        "startChar": 33,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f6c3ff_32bbece8",
@@ -220,6 +357,30 @@
       "writtenOn": "2024-11-19T11:59:48Z",
       "side": 1,
       "message": "NB: exists",
+      "range": {
+        "startLine": 128,
+        "startChar": 41,
+        "endLine": 128,
+        "endChar": 47
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7ac771_e56789a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4f6c3ff_32bbece8",
       "range": {
         "startLine": 128,
         "startChar": 41,
@@ -255,6 +416,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79b50d84_93eadc65",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "i prefer my description :-)",
+      "parentUuid": "0e19fde7_5be243e7",
+      "range": {
+        "startLine": 220,
+        "startChar": 16,
+        "endLine": 220,
+        "endChar": 49
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05a28487_c4c6d711",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 10
@@ -266,6 +451,30 @@
       "writtenOn": "2024-11-19T11:59:48Z",
       "side": 1,
       "message": "Used template strings (\"${}\") for better readability when constructing strings.\n\ndef moduleReferences \u003d (1..200).collect { \"${moduleSetTag}_Module_${it}\" }",
+      "range": {
+        "startLine": 269,
+        "startChar": 50,
+        "endLine": 269,
+        "endChar": 91
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f820fbb_6f15e85a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05a28487_c4c6d711",
       "range": {
         "startLine": 269,
         "startChar": 50,
@@ -299,6 +508,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f29a12f3_47dc48e8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad52e2d3_8797e1bc",
+      "range": {
+        "startLine": 271,
+        "startChar": 62,
+        "endLine": 271,
+        "endChar": 82
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b005be7f_35edd3f9",
@@ -312,6 +545,30 @@
       "writtenOn": "2024-11-19T11:59:48Z",
       "side": 1,
       "message": "println \"*** CPS-2478, $description : Invoked ${timer.count()} times, Total Time: ${timer.totalTime(TimeUnit.MILLISECONDS)} ms, Mean Time: ${timer.mean(TimeUnit.MILLISECONDS)} ms\"\n    return true",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 149
+      },
+      "revId": "a0d4bc39ec35534688047772797f42a38780bc29",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6483b53a_75b55a76",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-25T10:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b005be7f_35edd3f9",
       "range": {
         "startLine": 135,
         "startChar": 8,
