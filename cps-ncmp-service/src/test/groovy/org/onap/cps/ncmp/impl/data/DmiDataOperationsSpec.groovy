@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -214,17 +215,21 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
     }
 
-    def 'Resolving cm handle references with alternate id.'() {
+    def 'Resolving cm handle references with alternate id #scenario.'() {
         given: 'a resource with a alternate id'
-            def cmResourceAddress = new CmResourceAddress('some store', 'alternate-id', 'some resource')
+            def cmResourceAddress = new CmResourceAddress('some store', alternateId, 'some resource')
         and: 'the alternate id cannot be found in the inventory directly and that results in a data node not found exception'
-            mockInventoryPersistence.getYangModelCmHandle('alternate-id') >>  { throw new DataNodeNotFoundException('','') }
+            mockInventoryPersistence.getYangModelCmHandle(alternateId) >>  { throw expectedErrorThrown }
         and: 'the alternate id can be matched to a cm handle id'
-            alternateIdMatcher.getCmHandleId('alternate-id') >> 'cm-handle-id'
+            alternateIdMatcher.getCmHandleId(alternateId) >> 'cm-handle-id'
         and: 'that cm handle id is available in the inventory'
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-id') >> yangModelCmHandle
         expect: 'resolving that cm handle id returns the cm handle'
             assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
+        where: ''
+            scenario                                  | alternateId     | expectedErrorThrown
+            'alternate id with no special characters' | 'alternate-id'  | new DataNodeNotFoundException('','')
+            'alternate id with special characters'    | 'alternate#id'  | new DataValidationException('','')
     }
 
 
