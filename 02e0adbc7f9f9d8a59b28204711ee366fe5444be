@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6324335c_ee74aa59",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T20:41:40Z",
+      "side": 1,
+      "message": "Yes, and I\u0027ve added a new test to ensure an ancestor search such as \u0027//books/ancestor::books\u0027 will not match anything, since a node cannot be its own ancestor.",
+      "parentUuid": "577263a1_eb8eaeef",
+      "range": {
+        "startLine": 268,
+        "startChar": 24,
+        "endLine": 268,
+        "endChar": 46
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cafecb2_2275dc38",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-08T16:21:49Z",
       "side": 1,
       "message": "lowercase \u0027ancestors\u0027 for consistency ?",
+      "range": {
+        "startLine": 273,
+        "startChar": 55,
+        "endLine": 273,
+        "endChar": 64
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39cb48fc_c44f2b7b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T20:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cafecb2_2275dc38",
       "range": {
         "startLine": 273,
         "startChar": 55,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cdcd4bb_26ef32fc",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T20:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee2f85ca_2edd9f62",
+      "range": {
+        "startLine": 279,
+        "startChar": 43,
+        "endLine": 279,
+        "endChar": 61
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16cff491_61923115",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "593f1aba_b070eb87",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T20:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16cff491_61923115",
+      "range": {
+        "startLine": 282,
+        "startChar": 20,
+        "endLine": 282,
+        "endChar": 25
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26adcc82_a44fdcd7",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-10-08T16:21:49Z",
       "side": 1,
       "message": "a lot of \u0027magic\u0027 in this one liner. Can you extract out (parts) as constants with meaningful names ort make it more readable?\nespecially \u0027[@%]/%[@%]\u0027 bit, is it translatable into english?",
+      "range": {
+        "startLine": 300,
+        "startChar": 23,
+        "endLine": 300,
+        "endChar": 106
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41639f80_1a343ab2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-25T20:41:40Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve introduced a template called sqlForXpathLikeContainerOrList and added some JavaDoc too, hope this helps.",
+      "parentUuid": "26adcc82_a44fdcd7",
       "range": {
         "startLine": 300,
         "startChar": 23,
