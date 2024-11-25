@@ -91,7 +91,7 @@ class ModuleSyncServiceSpec extends Specification {
             def yangModelCmHandle = createAdvisedCmHandle(moduleSetTag)
         and: 'the service returns a list of module references when queried with the specified attributes'
             mockCpsModuleService.getModuleReferencesByAttribute(*_) >> [new ModuleReference('module1', '1')]
-        and: 'exception occurs when try to store result'
+        and: 'exception occurs when trying to store result'
             def testException = new RuntimeException('test')
             mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw testException }
         when: 'module sync is triggered'
@@ -110,7 +110,7 @@ class ModuleSyncServiceSpec extends Specification {
     def 'Sync models for a cm handle with previously cached module set tag.'() {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('cached-tag')
-        and: 'The module set tag exist in the private cache'
+        and: 'The module set tag exists in the private cache'
             def moduleReferences = [ new ModuleReference('module1','1') ]
             def cachedModuleDelta = new ModuleDelta(moduleReferences, [:])
             objectUnderTest.privateModuleSetCache.put('cached-tag', cachedModuleDelta)
@@ -125,7 +125,7 @@ class ModuleSyncServiceSpec extends Specification {
     def 'Attempt to sync using a module set tag already being processed by a different instance or thread.'() {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('duplicateTag')
-        and: 'The module set tag already exist in the processing semaphore set'
+        and: 'The module set tag already exists in the processing semaphore set'
             mockModuleSetTagsBeingProcessed.add('duplicate-processing-tag') > false
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)

@@ -266,9 +266,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset) {
         def cmHandles = []
         def id = offset
-        def moduleReferences = (1..200).collect { moduleSetTag + '_Module_' + it.toString() }
+        def moduleReferences = (1..200).collect {  "${moduleSetTag}Module${it}" }
         (1..numberOfCmHandles).each {
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-'+id, moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
             cmHandles.add(ncmpServiceCmHandle)
             dmiDispatcher1.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
             dmiDispatcher2.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences

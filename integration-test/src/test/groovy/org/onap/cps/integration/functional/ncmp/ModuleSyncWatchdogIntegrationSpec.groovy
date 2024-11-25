@@ -132,7 +132,7 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     }
 
     def logInstrumentation(timer, description) {
-        System.out.println('*** CPS-2478, ' + description + ' : ' + timer.count()+ ' times, total ' + timer.totalTime(TimeUnit.MILLISECONDS) + ' ms')
+        println "*** CPS-2478, $description : Invoked ${timer.count()} times, Total Time: ${timer.totalTime(TimeUnit.MILLISECONDS)} ms, Mean Time: ${timer.mean(TimeUnit.MILLISECONDS)} ms"
         return true
     }
 

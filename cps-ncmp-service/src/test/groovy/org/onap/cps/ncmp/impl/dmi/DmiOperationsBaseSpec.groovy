@@ -44,7 +44,6 @@ abstract class DmiOperationsBaseSpec extends Specification {
     ObjectMapper spyObjectMapper = Spy()
 
     def yangModelCmHandle = new YangModelCmHandle()
-    def otherYangModelCmHandle = new YangModelCmHandle()
     def static dmiServiceName = 'myServiceName'
     def static cmHandleId = 'some-cm-handle'
     def static alternateId = 'alt-id-' + cmHandleId

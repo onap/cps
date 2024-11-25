@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
 import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
@@ -50,7 +49,6 @@ import org.springframework.stereotype.Service;
 /**
  * Operations class for DMI Model.
  */
-@Slf4j
 @RequiredArgsConstructor
 @Service
 public class DmiModelOperations {
