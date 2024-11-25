@@ -52,7 +52,7 @@ import org.onap.cps.ncmp.impl.models.DmiRequestBody;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -285,7 +285,7 @@ public class DmiDataOperations {
         String cmHandleId = cmResourceAddress.getCmHandleReference();
         try {
             return getYangModelCmHandle(cmHandleId);
-        } catch (final DataNodeNotFoundException ignored) {
+        } catch (final DataValidationException ignored) {
             cmHandleId = cmResourceAddress.resolveCmHandleReferenceToId();
             return getYangModelCmHandle(cmHandleId);
         }
