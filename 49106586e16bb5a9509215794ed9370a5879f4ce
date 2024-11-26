@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9464466f_cd160164",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-26T11:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4052eea_63ccb260",
+      "range": {
+        "startLine": 175,
+        "startChar": 7,
+        "endLine": 175,
+        "endChar": 10
+      },
+      "revId": "49106586e16bb5a9509215794ed9370a5879f4ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f09b5760_9f49b471",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-26T10:08:16Z",
       "side": 1,
       "message": "NB: not sure about this description. But find it hard to improve it...\n\u0027ancestor is same as search target\u0027",
+      "range": {
+        "startLine": 227,
+        "startChar": 27,
+        "endLine": 227,
+        "endChar": 50
+      },
+      "revId": "49106586e16bb5a9509215794ed9370a5879f4ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e385c2ca_44fbc59f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-26T11:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09b5760_9f49b471",
       "range": {
         "startLine": 227,
         "startChar": 27,
