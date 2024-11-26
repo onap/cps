@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4052eea_63ccb260",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-26T10:08:16Z",
+      "side": 1,
+      "message": "not a big fan of javadoc in general let alone for private methods..\nBut I cna see why you adde dit here.\nBut maybe remove the html code you somehow copied into it...",
+      "range": {
+        "startLine": 175,
+        "startChar": 7,
+        "endLine": 175,
+        "endChar": 10
+      },
+      "revId": "49106586e16bb5a9509215794ed9370a5879f4ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09b5760_9f49b471",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-26T10:08:16Z",
+      "side": 1,
+      "message": "NB: not sure about this description. But find it hard to improve it...\n\u0027ancestor is same as search target\u0027",
+      "range": {
+        "startLine": 227,
+        "startChar": 27,
+        "endLine": 227,
+        "endChar": 50
+      },
+      "revId": "49106586e16bb5a9509215794ed9370a5879f4ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

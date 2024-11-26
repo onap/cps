@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89cfeca6_5e040c3b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-26T10:08:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6324335c_ee74aa59",
+      "range": {
+        "startLine": 268,
+        "startChar": 24,
+        "endLine": 268,
+        "endChar": 46
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cafecb2_2275dc38",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Yes, I\u0027ve introduced a template called sqlForXpathLikeContainerOrList and added some JavaDoc too, hope this helps.",
       "parentUuid": "26adcc82_a44fdcd7",
+      "range": {
+        "startLine": 300,
+        "startChar": 23,
+        "endLine": 300,
+        "endChar": 106
+      },
+      "revId": "02e0adbc7f9f9d8a59b28204711ee366fe5444be",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a34a284b_dde321a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-26T10:08:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "41639f80_1a343ab2",
       "range": {
         "startLine": 300,
         "startChar": 23,
