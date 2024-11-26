@@ -27,7 +27,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Transactional
 public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourceRepository {
 

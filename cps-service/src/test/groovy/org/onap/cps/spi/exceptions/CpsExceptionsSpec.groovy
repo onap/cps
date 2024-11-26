@@ -21,6 +21,17 @@
 
 package org.onap.cps.spi.exceptions
 
+import org.onap.cps.api.exceptions.AlreadyDefinedException
+import org.onap.cps.api.exceptions.AnchorNotFoundException
+import org.onap.cps.api.exceptions.CpsPathException
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataspaceInUseException
+import org.onap.cps.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.api.exceptions.ModelValidationException
+import org.onap.cps.api.exceptions.NotFoundInDataspaceException
+import org.onap.cps.api.exceptions.SchemaSetInUseException
+import org.onap.cps.api.exceptions.SchemaSetNotFoundException
 import spock.lang.Specification
 
 class CpsExceptionsSpec extends Specification {

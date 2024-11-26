@@ -22,14 +22,14 @@ package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.CascadeDeleteAllowed
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.spi.exceptions.SchemaSetInUseException
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
-import org.onap.cps.spi.model.ModuleDefinition
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.api.parameters.CascadeDeleteAllowed
+import org.onap.cps.api.exceptions.AlreadyDefinedException
+import org.onap.cps.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.api.exceptions.ModelValidationException
+import org.onap.cps.api.exceptions.SchemaSetInUseException
+import org.onap.cps.api.exceptions.SchemaSetNotFoundException
+import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.api.model.ModuleReference
 
 class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 

@@ -26,8 +26,8 @@ import org.onap.cps.ri.repository.ModuleReferenceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.repository.YangResourceRepository
 import org.onap.cps.spi.CpsModulePersistenceService
-import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.api.exceptions.DuplicatedYangResourceException
+import org.onap.cps.api.model.ModuleReference
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
 

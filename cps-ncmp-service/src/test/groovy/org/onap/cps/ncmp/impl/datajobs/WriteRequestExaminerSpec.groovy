@@ -6,7 +6,7 @@ import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 class WriteRequestExaminerSpec extends Specification {

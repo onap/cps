@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.impl.inventory
 
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.ConditionProperties
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.ConditionProperties
 import spock.lang.Specification
 
 class CmHandleQueryParametersValidatorSpec extends Specification {

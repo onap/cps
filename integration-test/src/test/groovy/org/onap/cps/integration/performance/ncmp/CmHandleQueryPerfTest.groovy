@@ -26,8 +26,8 @@ import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 
 import java.util.stream.Collectors
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 

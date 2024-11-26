@@ -33,6 +33,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.exceptions.CpsException;
+import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
@@ -51,8 +53,6 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.DataValidationException;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -285,7 +285,7 @@ public class DmiDataOperations {
         String cmHandleId = cmResourceAddress.getCmHandleReference();
         try {
             return getYangModelCmHandle(cmHandleId);
-        } catch (final DataValidationException ignored) {
+        } catch (final DataNodeNotFoundException ignored) {
             cmHandleId = cmResourceAddress.resolveCmHandleReferenceToId();
             return getYangModelCmHandle(cmHandleId);
         }

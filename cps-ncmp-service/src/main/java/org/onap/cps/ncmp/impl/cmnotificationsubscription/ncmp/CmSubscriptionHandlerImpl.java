@@ -31,6 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.model.DataNode;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiCmSubscriptionDetailsPerDmiMapper;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi.DmiInEventMapper;
@@ -45,7 +46,6 @@ import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Pr
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

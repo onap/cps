@@ -21,7 +21,7 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.NormalizedNode

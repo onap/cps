@@ -22,7 +22,7 @@ package org.onap.cps.ri.repository;
 
 import java.util.Collection;
 import java.util.List;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.api.model.ModuleReference;
 
 public interface YangResourceNativeRepository {
 

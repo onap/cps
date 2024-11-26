@@ -22,7 +22,7 @@ package org.onap.cps.ri.repository;
 
 import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.api.model.ModuleReference;
 
 /**
  * This interface is used in conjunction with {@link ModuleReferenceRepository} to create native sql queries.

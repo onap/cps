@@ -21,8 +21,8 @@
 package org.onap.cps.ri.repository;
 
 import java.util.Optional;
+import org.onap.cps.api.exceptions.DataspaceNotFoundException;
 import org.onap.cps.ri.models.DataspaceEntity;
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

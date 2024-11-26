@@ -21,6 +21,7 @@
 
 package org.onap.cps.spi
 
+import org.onap.cps.api.parameters.PaginationOption
 import spock.lang.Specification
 
 class PaginationOptionSpec extends Specification {
