@@ -21,8 +21,8 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.utils;
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -34,8 +34,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.DataNode;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
-import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;

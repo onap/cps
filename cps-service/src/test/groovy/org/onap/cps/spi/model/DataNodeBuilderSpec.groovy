@@ -22,7 +22,9 @@
 package org.onap.cps.spi.model
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangParserHelper

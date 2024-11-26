@@ -20,8 +20,8 @@
 
 package org.onap.cps.rest.utils
 
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.api.exceptions.CpsException
+import org.onap.cps.api.exceptions.ModelValidationException
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Specification

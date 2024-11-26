@@ -30,6 +30,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.model.ModuleDefinition;
+import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
@@ -47,8 +49,6 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 

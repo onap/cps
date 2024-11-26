@@ -24,7 +24,7 @@ import com.hazelcast.collection.ISet
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration

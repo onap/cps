@@ -22,8 +22,8 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.Anchor
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Component;
 
 @Slf4j

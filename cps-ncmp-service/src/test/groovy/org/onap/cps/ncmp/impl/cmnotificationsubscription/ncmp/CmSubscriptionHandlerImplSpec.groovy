@@ -34,7 +34,7 @@ import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiIn
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 

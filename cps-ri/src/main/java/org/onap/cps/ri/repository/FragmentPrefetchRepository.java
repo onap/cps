@@ -21,8 +21,8 @@
 package org.onap.cps.ri.repository;
 
 import java.util.Collection;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ri.models.FragmentEntity;
-import org.onap.cps.spi.FetchDescendantsOption;
 
 public interface FragmentPrefetchRepository {
     Collection<FragmentEntity> prefetchDescendantsOfFragmentEntities(

@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
