@@ -141,8 +141,8 @@ services:
       - dmi-service
 
   ncmp-dmi-plugin-demo-and-csit-stub:
-    container_name: ${NCMP_DMI_PLUGIN_DEMO_AND_CSIT_STUB_CONTAINER_NAME:-ncmp-dmi-plugin-demo-and-csit-stub}
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-plugin-demo-and-csit-stub:${DMI_DEMO_STUB_VERSION:-latest}
+    container_name: ${NCMP_DMI_PLUGIN_DEMO_AND_CSIT_STUB_CONTAINER_NAME:-dmi-stub}
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/dmi-stub:${DMI_DEMO_STUB_VERSION:-latest}
     ports:
       - ${DMI_DEMO_STUB_PORT:-8784}:8092
     environment:
