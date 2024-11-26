@@ -1,7 +1,7 @@
 <!--
   ============LICENSE_START=======================================================
    Copyright (C) 2020 Pantheon.tech
-   Modifications Copyright (C) 2020-2021 Nordix Foundation.
+   Modifications Copyright (C) 2020-2024 Nordix Foundation.
    Modifications Copyright (C) 2021 Bell Canada.
    Modifications Copyright (C) 2022 TechMahindra Ltd.
   ================================================================================
@@ -65,6 +65,34 @@ Use one of the below version type that has been generated in the local system's 
 VERSION=latest DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
 or
 VERSION=<version> DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+```
+
+## Running Docker containers with profile: monitoring
+
+Run docker-compose with profile, monitoring, then it will start monitoring services:
+* prometheus
+* grafana
+* kafka-ui
+
+```bash
+docker-compose --profile monitoring up -d
+```
+
+### prometheus service
+It collects and stores metrics as time series data, recording information with a timestamp.
+
+The environment variable, PROMETHEUS_RETENTION_TIME, is used to set the retention time for the metrics 
+in the prometheus database. The default value is 15d, but can be changed to any value.
+
+To be able to use the historical data, the prometheus container should not be removed.
+Instead, it can be stopped and started using the following commands:
+
+```bash
+docker-compose start prometheus
+```
+
+```bash
+docker-compose stop prometheus
 ```
 
 ## Running or debugging Java built code
