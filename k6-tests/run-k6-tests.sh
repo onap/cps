@@ -20,7 +20,7 @@ set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
 #set -o xtrace   # Uncomment for debugging
 
-# default is empty string, which means performance tests
+# Default test profile is kpi.
 testProfile=${1:-kpi}
 
 on_exit() {
