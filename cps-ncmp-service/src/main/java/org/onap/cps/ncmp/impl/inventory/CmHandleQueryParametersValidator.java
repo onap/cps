@@ -26,8 +26,8 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
-import org.onap.cps.spi.exceptions.DataValidationException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

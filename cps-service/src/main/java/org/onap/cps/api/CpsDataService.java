@@ -28,9 +28,9 @@ import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.DeltaReport;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DeltaReport;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.utils.ContentType;
 
 /*

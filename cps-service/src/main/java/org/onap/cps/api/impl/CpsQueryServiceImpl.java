@@ -26,11 +26,11 @@ import java.util.Collection;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.impl.utils.CpsValidator;
 import org.onap.cps.spi.CpsDataPersistenceService;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

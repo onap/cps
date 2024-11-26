@@ -21,7 +21,7 @@
 package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.api.model.ModuleReference
 
 class ModuleQueryPerfTest extends CpsPerfTestBase {
 

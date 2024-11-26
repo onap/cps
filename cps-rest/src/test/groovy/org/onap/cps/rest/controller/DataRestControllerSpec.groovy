@@ -28,10 +28,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
-import org.onap.cps.spi.model.DeltaReportBuilder
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.api.model.DeltaReportBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
@@ -48,8 +48,8 @@ import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart

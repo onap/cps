@@ -34,9 +34,7 @@ public class CpsArchitectureTest extends ArchitectureTestBase {
             classes().that().resideInAPackage("org.onap.cps.rest..").should().onlyDependOnClassesThat()
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.rest..",
                                                                 "org.onap.cps.api..",
-                                                                "org.onap.cps.utils..",
-                                                                // Breaks arch rules
-                                                                "org.onap.cps.spi.."));
+                                                                "org.onap.cps.utils.."));
 
     @ArchTest
     static final ArchRule cpsServiceApiShouldNotDependOnAnything =

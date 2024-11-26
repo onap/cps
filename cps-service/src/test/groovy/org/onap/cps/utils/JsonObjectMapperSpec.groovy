@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.json.JsonSlurper
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataValidationException
 import spock.lang.Specification
 
 class JsonObjectMapperSpec extends Specification {

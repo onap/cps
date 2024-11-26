@@ -24,9 +24,9 @@ package org.onap.cps.spi;
 
 import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
-import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.api.model.ModuleDefinition;
+import org.onap.cps.api.model.ModuleReference;
+import org.onap.cps.api.model.SchemaSet;
 
 /**
  * Service to manage modules.
