@@ -22,9 +22,9 @@ package org.onap.cps.ncmp.impl.inventory;
 
 import java.util.Collection;
 import java.util.Map;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
 
 public interface CmHandleQueryService {
 

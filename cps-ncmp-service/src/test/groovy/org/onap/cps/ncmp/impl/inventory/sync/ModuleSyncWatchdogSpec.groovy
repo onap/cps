@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.impl.inventory.sync
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.Sleeper
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 import java.util.concurrent.ArrayBlockingQueue

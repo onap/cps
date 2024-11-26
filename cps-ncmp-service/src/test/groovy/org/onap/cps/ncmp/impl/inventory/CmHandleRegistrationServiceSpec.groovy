@@ -35,11 +35,11 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException
+import org.onap.cps.api.exceptions.AlreadyDefinedException
+import org.onap.cps.api.exceptions.CpsException
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.SchemaSetNotFoundException
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND

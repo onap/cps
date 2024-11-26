@@ -23,8 +23,8 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED;
 
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.Valid;
@@ -36,13 +36,13 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.model.Dataspace;
+import org.onap.cps.api.model.SchemaSet;
 import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
-import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.Dataspace;
-import org.onap.cps.spi.model.SchemaSet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

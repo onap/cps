@@ -29,10 +29,10 @@ import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory

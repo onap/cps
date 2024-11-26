@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
@@ -28,8 +30,6 @@ import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HA
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
 import static org.onap.cps.ncmp.impl.utils.YangDataConverter.toNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,6 +40,9 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.api.model.ConditionProperties;
+import org.onap.cps.api.model.DataNode;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
@@ -47,9 +50,6 @@ import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.ConditionProperties;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.impl.utils
 
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 class YangDataConverterSpec extends Specification{

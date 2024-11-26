@@ -24,11 +24,11 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.spi.CascadeDeleteAllowed;
-import org.onap.cps.spi.exceptions.DataInUseException;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
-import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.api.exceptions.DataInUseException;
+import org.onap.cps.api.model.ModuleDefinition;
+import org.onap.cps.api.model.ModuleReference;
+import org.onap.cps.api.model.SchemaSet;
+import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 
 /**
  * Responsible for managing module sets.

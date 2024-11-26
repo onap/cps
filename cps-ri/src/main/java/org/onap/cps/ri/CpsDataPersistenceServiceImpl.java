@@ -23,7 +23,7 @@
 
 package org.onap.cps.ri;
 
-import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -43,6 +43,16 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.StaleStateException;
+import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.ConcurrencyException;
+import org.onap.cps.api.exceptions.CpsAdminException;
+import org.onap.cps.api.exceptions.CpsPathException;
+import org.onap.cps.api.exceptions.DataNodeNotFoundException;
+import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.DataNodeBuilder;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
@@ -54,16 +64,6 @@ import org.onap.cps.ri.repository.DataspaceRepository;
 import org.onap.cps.ri.repository.FragmentRepository;
 import org.onap.cps.ri.utils.SessionManager;
 import org.onap.cps.spi.CpsDataPersistenceService;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.ConcurrencyException;
-import org.onap.cps.spi.exceptions.CpsAdminException;
-import org.onap.cps.spi.exceptions.CpsPathException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.DataNodeBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

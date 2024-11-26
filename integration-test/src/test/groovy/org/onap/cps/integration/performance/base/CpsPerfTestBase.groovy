@@ -22,7 +22,7 @@ package org.onap.cps.integration.performance.base
 
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.rest.utils.MultipartFileUtil
-import org.onap.cps.spi.FetchDescendantsOption
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.springframework.web.multipart.MultipartFile
 
 class CpsPerfTestBase extends PerfTestBase {

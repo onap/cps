@@ -22,7 +22,7 @@ package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.api.model.ModuleReference
 import org.springframework.util.StopWatch
 
 import java.util.concurrent.ThreadLocalRandom

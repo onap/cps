@@ -22,7 +22,7 @@ package org.onap.cps.rest.utils;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.spi.exceptions.ModelValidationException;
+import org.onap.cps.api.exceptions.ModelValidationException;
 
 @Setter
 @Getter
