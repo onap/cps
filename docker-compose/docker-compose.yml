@@ -176,12 +176,19 @@ services:
     restart: always
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    environment:
+      - PROMETHEUS_RETENTION_TIME=${PROMETHEUS_RETENTION_TIME:-30d}
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --spider --quiet --tries=1 --timeout=10 http://localhost:9090/-/healthy || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     profiles:
       - monitoring
 
   grafana:
     image: grafana/grafana-oss:latest
-    user: ""
     container_name: ${GRAFANA_CONTAINER_NAME:-grafana}
     depends_on:
       prometheus:
@@ -194,7 +201,7 @@ services:
       - grafana:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_SERVER_DOMAIN:localhost
+      - GF_SERVER_DOMAIN=localhost
     profiles:
       - monitoring
 
@@ -221,3 +228,6 @@ services:
 
 volumes:
   grafana:
+    driver: local
+  prometheus_data:
+    driver: local
