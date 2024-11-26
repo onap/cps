@@ -27,20 +27,20 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsModulePersistenceService
-import org.onap.cps.spi.exceptions.DuplicatedYangResourceException
-import org.onap.cps.spi.exceptions.ModelValidationException
-import org.onap.cps.spi.exceptions.SchemaSetInUseException
-import org.onap.cps.spi.model.Anchor
-import org.onap.cps.spi.model.ModuleDefinition
-import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.model.SchemaSet
+import org.onap.cps.spi.api.exceptions.DuplicatedYangResourceException
+import org.onap.cps.spi.api.exceptions.ModelValidationException
+import org.onap.cps.spi.api.exceptions.SchemaSetInUseException
+import org.onap.cps.spi.api.model.Anchor
+import org.onap.cps.spi.api.model.ModuleDefinition
+import org.onap.cps.spi.api.model.ModuleReference
+import org.onap.cps.spi.api.model.SchemaSet
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
 
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+import static org.onap.cps.spi.api.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
+import static org.onap.cps.spi.api.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 
 class CpsModuleServiceImplSpec extends Specification {
 

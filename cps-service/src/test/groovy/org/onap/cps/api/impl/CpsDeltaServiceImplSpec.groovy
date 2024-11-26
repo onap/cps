@@ -20,7 +20,7 @@
 
 package org.onap.cps.api.impl
 
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.model.DataNode
 import spock.lang.Specification
 
 class CpsDeltaServiceImplSpec extends Specification{

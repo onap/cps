@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.spi.api.exceptions.SchemaSetNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

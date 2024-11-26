@@ -23,10 +23,10 @@ package org.onap.cps.integration.performance.ncmp
 
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.model.DataNode
 import org.onap.cps.utils.ContentType
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 
 class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
 

@@ -28,8 +28,8 @@ import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HA
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
 import static org.onap.cps.ncmp.impl.utils.YangDataConverter.toNcmpServiceCmHandle;
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,9 +47,9 @@ import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.ConditionProperties;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.exceptions.DataValidationException;
+import org.onap.cps.spi.api.model.ConditionProperties;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

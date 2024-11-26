@@ -22,7 +22,7 @@
 package org.onap.cps.yang;
 
 import java.util.List;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 
 /**

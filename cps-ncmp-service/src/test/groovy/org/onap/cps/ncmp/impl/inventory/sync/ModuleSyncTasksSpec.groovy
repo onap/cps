@@ -35,8 +35,8 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.api.model.DataNode
 import org.slf4j.LoggerFactory
 import spock.lang.Ignore
 import spock.lang.Specification

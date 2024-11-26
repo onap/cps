@@ -26,7 +26,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class UpdatePerfTest extends CpsPerfTestBase {
     static final def UPDATE_TEST_ANCHOR = 'updateTestAnchor'

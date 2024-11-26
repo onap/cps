@@ -23,7 +23,7 @@
 
 package org.onap.cps.ri;
 
-import static org.onap.cps.spi.PaginationOption.NO_PAGINATION;
+import static org.onap.cps.spi.api.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSet.Builder;
@@ -56,16 +56,16 @@ import org.onap.cps.ri.repository.DataspaceRepository;
 import org.onap.cps.ri.repository.FragmentRepository;
 import org.onap.cps.ri.utils.SessionManager;
 import org.onap.cps.spi.CpsDataPersistenceService;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.ConcurrencyException;
-import org.onap.cps.spi.exceptions.CpsAdminException;
-import org.onap.cps.spi.exceptions.CpsPathException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.DataNodeBuilder;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.PaginationOption;
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.api.exceptions.ConcurrencyException;
+import org.onap.cps.spi.api.exceptions.CpsAdminException;
+import org.onap.cps.spi.api.exceptions.CpsPathException;
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundExceptionBatch;
+import org.onap.cps.spi.api.model.DataNode;
+import org.onap.cps.spi.api.model.DataNodeBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

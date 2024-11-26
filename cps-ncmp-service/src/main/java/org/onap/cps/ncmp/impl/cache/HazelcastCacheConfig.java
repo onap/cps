@@ -29,6 +29,7 @@ import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.spi.api.model.Dataspace;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -57,7 +58,7 @@ public class HazelcastCacheConfig {
     private Config defineInstanceConfig(final String instanceConfigName, final NamedConfig namedConfig) {
         final Config config = getHazelcastInstanceConfig(instanceConfigName);
         config.setClusterName(clusterName);
-        config.setClassLoader(org.onap.cps.spi.model.Dataspace.class.getClassLoader());
+        config.setClassLoader(Dataspace.class.getClassLoader());
         configureDataStructures(namedConfig, config);
         exposeClusterInformation(config);
         updateDiscoveryMode(config);

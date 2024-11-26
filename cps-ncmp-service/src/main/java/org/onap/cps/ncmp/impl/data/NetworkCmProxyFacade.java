@@ -32,7 +32,7 @@ import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.api.data.models.OperationType;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

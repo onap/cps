@@ -25,9 +25,9 @@ import java.time.OffsetDateTime
 
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.api.exceptions.AnchorNotFoundException
 import org.onap.cps.utils.ContentType
 
 class AnchorServiceIntegrationSpec extends FunctionalSpecBase {

@@ -26,7 +26,7 @@ import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
-import org.onap.cps.spi.PaginationOption;
+import org.onap.cps.spi.api.PaginationOption;
 
 public interface FragmentRepositoryCpsPathQuery {
     List<FragmentEntity> findByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery);

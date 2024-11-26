@@ -26,7 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 
 /**
  * Common convenience methods for testing.

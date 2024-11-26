@@ -24,8 +24,8 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.model.Dataspace;
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.api.model.Dataspace;
 
 /**
  * CPS Admin Service.

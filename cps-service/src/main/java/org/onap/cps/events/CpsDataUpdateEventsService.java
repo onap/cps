@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.model.CpsDataUpdatedEvent;
 import org.onap.cps.events.model.Data;
 import org.onap.cps.events.model.Data.Operation;
-import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.api.model.Anchor;
 import org.onap.cps.utils.DateTimeUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

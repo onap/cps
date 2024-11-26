@@ -34,7 +34,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j

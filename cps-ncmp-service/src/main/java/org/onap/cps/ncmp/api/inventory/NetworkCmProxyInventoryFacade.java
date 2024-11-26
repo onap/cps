@@ -47,8 +47,8 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleDefinition;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 

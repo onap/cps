@@ -24,8 +24,8 @@ import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 

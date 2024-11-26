@@ -24,8 +24,8 @@ import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
 

@@ -33,8 +33,8 @@ import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
 import org.onap.cps.ncmp.rest.model.RestInputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleDefinition;
+import org.onap.cps.spi.api.model.ModuleReference;
 
 @Mapper(componentModel = "spring")
 public interface NcmpRestInputMapper {

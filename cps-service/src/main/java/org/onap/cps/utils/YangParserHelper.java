@@ -40,7 +40,7 @@ import javax.xml.transform.TransformerException;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
-import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.api.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;

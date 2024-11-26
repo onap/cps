@@ -22,7 +22,7 @@ package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.ri.utils.SessionManager
-import org.onap.cps.spi.exceptions.SessionManagerException
+import org.onap.cps.spi.api.exceptions.SessionManagerException
 
 class SessionManagerIntegrationSpec extends FunctionalSpecBase {
 

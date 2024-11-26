@@ -29,11 +29,11 @@ import org.onap.cps.ri.repository.AnchorRepository
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.FragmentRepository
 import org.onap.cps.ri.utils.SessionManager
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.ConcurrencyException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.DataNodeBuilder
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.exceptions.ConcurrencyException
+import org.onap.cps.spi.api.exceptions.DataValidationException
+import org.onap.cps.spi.api.model.DataNode
+import org.onap.cps.spi.api.model.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification

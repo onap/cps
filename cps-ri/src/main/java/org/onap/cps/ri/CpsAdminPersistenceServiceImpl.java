@@ -35,10 +35,10 @@ import org.onap.cps.ri.repository.AnchorRepository;
 import org.onap.cps.ri.repository.DataspaceRepository;
 import org.onap.cps.ri.repository.SchemaSetRepository;
 import org.onap.cps.spi.CpsAdminPersistenceService;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.DataspaceInUseException;
-import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.Dataspace;
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.api.exceptions.DataspaceInUseException;
+import org.onap.cps.spi.api.model.Anchor;
+import org.onap.cps.spi.api.model.Dataspace;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 

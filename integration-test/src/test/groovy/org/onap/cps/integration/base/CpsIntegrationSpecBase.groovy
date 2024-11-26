@@ -43,8 +43,8 @@ import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.utils.SessionManager
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.api.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

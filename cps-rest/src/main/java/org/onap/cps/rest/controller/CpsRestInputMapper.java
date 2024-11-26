@@ -28,9 +28,9 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
-import org.onap.cps.spi.model.Anchor;
-import org.onap.cps.spi.model.Dataspace;
-import org.onap.cps.spi.model.SchemaSet;
+import org.onap.cps.spi.api.model.Anchor;
+import org.onap.cps.spi.api.model.Dataspace;
+import org.onap.cps.spi.api.model.SchemaSet;
 
 @Mapper(componentModel = "spring")
 public interface CpsRestInputMapper {

@@ -20,7 +20,7 @@
 
 package org.onap.cps.impl.utils;
 
-import org.onap.cps.spi.PaginationOption;
+import org.onap.cps.spi.api.PaginationOption;
 
 public interface CpsValidator {
 

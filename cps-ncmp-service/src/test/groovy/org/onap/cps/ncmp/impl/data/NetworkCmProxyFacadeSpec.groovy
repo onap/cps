@@ -26,8 +26,7 @@ package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
-import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.model.DataNode
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 

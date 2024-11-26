@@ -29,7 +29,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Lock;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

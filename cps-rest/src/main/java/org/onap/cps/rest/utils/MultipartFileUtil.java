@@ -34,8 +34,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.ModelValidationException;
+import org.onap.cps.spi.api.exceptions.CpsException;
+import org.onap.cps.spi.api.exceptions.ModelValidationException;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

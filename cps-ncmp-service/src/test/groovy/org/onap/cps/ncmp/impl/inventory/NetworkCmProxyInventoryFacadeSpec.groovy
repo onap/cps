@@ -37,7 +37,7 @@ import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.ConditionProperties
+import org.onap.cps.spi.api.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 

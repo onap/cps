@@ -24,14 +24,14 @@ package org.onap.cps.integration.functional.cps
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.PaginationOption
-import org.onap.cps.spi.exceptions.CpsPathException
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.PaginationOption
+import org.onap.cps.spi.api.exceptions.CpsPathException
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.spi.PaginationOption.NO_PAGINATION
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.PaginationOption.NO_PAGINATION
 
 class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 

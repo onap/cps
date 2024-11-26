@@ -45,7 +45,7 @@ import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Pr
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Service

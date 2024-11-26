@@ -21,8 +21,8 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.model.Anchor;
+import org.onap.cps.spi.api.exceptions.CpsException;
+import org.onap.cps.spi.api.model.Anchor;
 
 public interface CpsAnchorService {
 

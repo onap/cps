@@ -22,8 +22,8 @@ package org.onap.cps.ncmp.impl.inventory;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.model.DataNode;
 
 /**
  * DmiRegistryConstants class to be strictly used for DMI Related constants only.

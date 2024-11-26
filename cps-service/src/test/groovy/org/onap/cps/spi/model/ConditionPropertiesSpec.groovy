@@ -21,7 +21,7 @@
 package org.onap.cps.spi.model
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.spi.api.model.ConditionProperties
 import spock.lang.Specification
 
 class ConditionPropertiesSpec extends Specification {
@@ -30,7 +30,7 @@ class ConditionPropertiesSpec extends Specification {
 
     def 'Condition Properties JSON conversion.'() {
         given: 'a condition properties'
-            def objectUnderTest = new ConditionProperties(conditionName: 'test', conditionParameters: [ [ key : 'value' ] ])
+            def objectUnderTest = new ConditionProperties(conditionName: 'test', conditionParameters: [[key: 'value' ] ])
         expect: 'the name is blank'
             assert objectMapper.writeValueAsString(objectUnderTest) == '{"conditionName":"test","conditionParameters":[{"key":"value"}]}'
     }

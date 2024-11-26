@@ -44,7 +44,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.api.exceptions.DataValidationException;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.w3c.dom.DOMException;

@@ -31,7 +31,7 @@ import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.FragmentEntity;
-import org.onap.cps.spi.FetchDescendantsOption;
+import org.onap.cps.spi.api.FetchDescendantsOption;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;

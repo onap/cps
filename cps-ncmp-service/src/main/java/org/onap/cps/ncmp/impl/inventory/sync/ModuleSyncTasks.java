@@ -35,7 +35,7 @@ import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

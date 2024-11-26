@@ -22,8 +22,8 @@ package org.onap.cps.api;
 
 import java.util.Collection;
 import java.util.List;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.DeltaReport;
+import org.onap.cps.spi.api.model.DataNode;
+import org.onap.cps.spi.api.model.DeltaReport;
 
 public interface CpsDeltaService {
 

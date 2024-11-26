@@ -24,7 +24,7 @@
 package org.onap.cps.yang
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.api.exceptions.ModelValidationException
 import org.opendaylight.yangtools.yang.common.Revision
 import spock.lang.Specification
 

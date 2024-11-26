@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j

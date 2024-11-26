@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
 import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.api.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired

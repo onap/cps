@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.StringJoiner;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.type.StandardBasicTypes;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

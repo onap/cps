@@ -24,8 +24,8 @@ package org.onap.cps.ncmp.impl.inventory;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -43,8 +43,8 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.model.DataNode;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

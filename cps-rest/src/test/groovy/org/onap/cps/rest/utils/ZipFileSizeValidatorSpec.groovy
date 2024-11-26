@@ -20,7 +20,7 @@
 
 package org.onap.cps.rest.utils
 
-import org.onap.cps.spi.exceptions.ModelValidationException
+import org.onap.cps.spi.api.exceptions.ModelValidationException
 import spock.lang.Specification
 
 class ZipFileSizeValidatorSpec extends Specification {

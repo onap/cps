@@ -29,7 +29,7 @@ import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.spi.model.ConditionProperties;
+import org.onap.cps.spi.api.model.ConditionProperties;
 
 @Setter
 @Getter

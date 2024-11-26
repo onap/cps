@@ -32,8 +32,8 @@ import org.onap.cps.ncmp.impl.data.DmiDataOperations
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext

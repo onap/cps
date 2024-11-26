@@ -27,7 +27,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.PaginationOption;
+import org.onap.cps.spi.api.model.DataNode;
 
 /*
     Data Store interface that is responsible for handling yang data.

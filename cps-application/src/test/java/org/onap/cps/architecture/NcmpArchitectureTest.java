@@ -41,10 +41,10 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                     .onlyDependOnClassesThat()
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.ncmp.api..",
                                                                 "org.onap.cps.ncmp.rest..",
+                                                                "org.onap.cps.spi.api..",
                                                                 // Below packages are breaking the agreed dependencies
                                                                 // and need to be removed from this rule.
                                                                 // This will be handled in a separate user story
-                                                                "org.onap.cps.spi..",
                                                                 "org.onap.cps.utils..",
                                                                 "org.onap.cps.ncmp.impl.."));
 
@@ -71,13 +71,13 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                                                                 "org.onap.cps.ncmp.utils..",
                                                                 "org.onap.cps.ncmp.config..",
                                                                 "org.onap.cps.ncmp.exceptions..",
+                                                                "org.onap.cps.spi.api..",
                                                                 // Below packages are breaking the agreed dependencies
                                                                 // and need to be removed from this rule.
                                                                 // This will be handled in a separate user story
                                                                 "org.onap.cps.cpspath..",
                                                                 "org.onap.cps.events..",
                                                                 "org.onap.cps.impl..",
-                                                                "org.onap.cps.spi..",
                                                                 "org.onap.cps.utils.."));
 }
 

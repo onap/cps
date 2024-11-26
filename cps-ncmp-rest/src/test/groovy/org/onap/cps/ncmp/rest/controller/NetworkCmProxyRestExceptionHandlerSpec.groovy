@@ -40,10 +40,10 @@ import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.CpsException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.api.exceptions.CpsException
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.api.exceptions.DataValidationException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired

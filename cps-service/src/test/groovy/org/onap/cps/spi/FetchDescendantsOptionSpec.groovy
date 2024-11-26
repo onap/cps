@@ -21,7 +21,8 @@
 
 package org.onap.cps.spi
 
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.exceptions.DataValidationException
 import spock.lang.Specification
 
 class FetchDescendantsOptionSpec extends Specification {

@@ -28,7 +28,7 @@ import java.util.stream.Collectors
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {
 

@@ -23,9 +23,9 @@ package org.onap.cps.integration.performance.cps
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class GetPerfTest extends CpsPerfTestBase {
 

@@ -41,7 +41,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -25,7 +25,7 @@ import java.util.Optional;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
-import org.onap.cps.spi.exceptions.AnchorNotFoundException;
+import org.onap.cps.spi.api.exceptions.AnchorNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

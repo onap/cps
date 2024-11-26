@@ -35,7 +35,7 @@ import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired

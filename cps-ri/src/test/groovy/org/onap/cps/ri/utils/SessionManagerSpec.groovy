@@ -28,7 +28,7 @@ import org.hibernate.Transaction
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.repository.AnchorRepository
 import org.onap.cps.ri.repository.DataspaceRepository
-import org.onap.cps.spi.exceptions.SessionManagerException
+import org.onap.cps.spi.api.exceptions.SessionManagerException
 import spock.lang.Specification
 
 class SessionManagerSpec extends Specification {

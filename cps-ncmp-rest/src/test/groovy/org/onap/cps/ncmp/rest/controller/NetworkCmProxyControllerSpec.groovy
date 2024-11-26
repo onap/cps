@@ -47,8 +47,8 @@ import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
-import org.onap.cps.spi.model.ModuleDefinition
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.spi.api.model.ModuleDefinition
+import org.onap.cps.spi.api.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.spockframework.spring.SpringBean

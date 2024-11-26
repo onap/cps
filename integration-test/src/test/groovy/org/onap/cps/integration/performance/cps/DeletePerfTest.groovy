@@ -20,7 +20,7 @@
 
 package org.onap.cps.integration.performance.cps
 
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException
 
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService

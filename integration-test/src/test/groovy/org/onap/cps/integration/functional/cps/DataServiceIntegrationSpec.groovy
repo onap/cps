@@ -23,21 +23,21 @@ package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.AlreadyDefinedException
-import org.onap.cps.spi.exceptions.AnchorNotFoundException
-import org.onap.cps.spi.exceptions.CpsAdminException
-import org.onap.cps.spi.exceptions.CpsPathException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.exceptions.DataNodeNotFoundExceptionBatch
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.exceptions.DataspaceNotFoundException
-import org.onap.cps.spi.model.DeltaReport
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException
+import org.onap.cps.spi.api.exceptions.AnchorNotFoundException
+import org.onap.cps.spi.api.exceptions.CpsAdminException
+import org.onap.cps.spi.api.exceptions.CpsPathException
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundExceptionBatch
+import org.onap.cps.spi.api.exceptions.DataValidationException
+import org.onap.cps.spi.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.spi.api.model.DeltaReport
 import org.onap.cps.utils.ContentType
 
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class DataServiceIntegrationSpec extends FunctionalSpecBase {
 

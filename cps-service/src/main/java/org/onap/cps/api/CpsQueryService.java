@@ -22,9 +22,9 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.PaginationOption;
+import org.onap.cps.spi.api.model.DataNode;
 
 /*
  * Query interface for handling cps queries.

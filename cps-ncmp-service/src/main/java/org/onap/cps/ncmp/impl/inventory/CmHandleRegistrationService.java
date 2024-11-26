@@ -60,10 +60,10 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
-import org.onap.cps.spi.exceptions.AlreadyDefinedException;
-import org.onap.cps.spi.exceptions.CpsException;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataValidationException;
+import org.onap.cps.spi.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.spi.api.exceptions.CpsException;
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.api.exceptions.DataValidationException;
 import org.springframework.stereotype.Service;
 
 @Slf4j

@@ -22,8 +22,8 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.spi.api.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.Lists;
 import java.time.OffsetDateTime;
@@ -45,12 +45,12 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
-import org.onap.cps.spi.exceptions.DataValidationException;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
+import org.onap.cps.spi.api.FetchDescendantsOption;
+import org.onap.cps.spi.api.exceptions.DataNodeNotFoundException;
+import org.onap.cps.spi.api.exceptions.DataValidationException;
+import org.onap.cps.spi.api.model.DataNode;
+import org.onap.cps.spi.api.model.ModuleDefinition;
+import org.onap.cps.spi.api.model.ModuleReference;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;

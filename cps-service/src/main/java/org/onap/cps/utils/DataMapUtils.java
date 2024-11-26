@@ -37,7 +37,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.spi.api.model.DataNode;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DataMapUtils {

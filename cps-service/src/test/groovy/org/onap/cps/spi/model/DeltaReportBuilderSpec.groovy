@@ -20,6 +20,7 @@
 
 package org.onap.cps.spi.model
 
+import org.onap.cps.spi.api.model.DeltaReportBuilder
 import spock.lang.Specification
 
 class DeltaReportBuilderSpec extends Specification{

@@ -24,11 +24,11 @@ import org.onap.cps.cpspath.parser.PathParsingException
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.exceptions.DataInUseException
-import org.onap.cps.spi.exceptions.DataValidationException
-import org.onap.cps.spi.model.ConditionProperties
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.FetchDescendantsOption
+import org.onap.cps.spi.api.exceptions.DataInUseException
+import org.onap.cps.spi.api.exceptions.DataValidationException
+import org.onap.cps.spi.api.model.ConditionProperties
+import org.onap.cps.spi.api.model.DataNode
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT

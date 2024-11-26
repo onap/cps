@@ -21,8 +21,8 @@
 package org.onap.cps.ri.utils
 
 
-import org.onap.cps.spi.PaginationOption
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.spi.api.PaginationOption
+import org.onap.cps.spi.api.exceptions.DataValidationException
 import spock.lang.Specification
 
 class CpsValidatorImplSpec extends Specification {

@@ -31,7 +31,7 @@ import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
-import org.onap.cps.spi.model.Anchor
+import org.onap.cps.spi.api.model.Anchor
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver

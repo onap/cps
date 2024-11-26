@@ -36,8 +36,8 @@ import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.exceptions.CpsPathException;
+import org.onap.cps.spi.api.PaginationOption;
+import org.onap.cps.spi.api.exceptions.CpsPathException;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

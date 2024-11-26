@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.utils
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.model.DataNode
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
@@ -34,8 +34,8 @@ import static CmSubscriptionPersistenceService.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTIO
 import static CmSubscriptionPersistenceService.CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
-import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.spi.api.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.spi.api.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class CmSubscriptionPersistenceServiceSpec extends Specification {
 

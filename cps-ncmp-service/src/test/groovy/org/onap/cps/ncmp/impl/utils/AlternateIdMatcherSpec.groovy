@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.utils
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.spi.api.model.DataNode
 import spock.lang.Specification
 
 class AlternateIdMatcherSpec extends Specification {
