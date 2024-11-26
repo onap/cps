@@ -24,11 +24,11 @@ package org.onap.cps.ncmp.impl.inventory;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.model.ModuleDefinition;
+import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.spi.model.DataNode;
-import org.onap.cps.spi.model.ModuleDefinition;
-import org.onap.cps.spi.model.ModuleReference;
 
 public interface InventoryPersistence extends NcmpPersistence {
 

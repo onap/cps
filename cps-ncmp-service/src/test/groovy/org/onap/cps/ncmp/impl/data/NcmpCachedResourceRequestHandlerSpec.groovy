@@ -21,12 +21,10 @@
 package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.config.CpsApplicationContext
-import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.model.DataNode
 import org.spockframework.spring.SpringBean
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
@@ -34,8 +32,8 @@ import org.springframework.test.context.ContextConfiguration
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
 @SpringBootTest
 @ContextConfiguration(classes = [CpsApplicationContext])

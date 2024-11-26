@@ -23,10 +23,10 @@ package org.onap.cps.rest.controller
 import org.mapstruct.factory.Mappers
 import org.onap.cps.rest.model.AnchorDetails
 import org.onap.cps.rest.model.SchemaSetDetails
-import org.onap.cps.spi.model.Anchor
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.rest.model.ModuleReferences
-import org.onap.cps.spi.model.ModuleReference
-import org.onap.cps.spi.model.SchemaSet
+import org.onap.cps.api.model.ModuleReference
+import org.onap.cps.api.model.SchemaSet
 import spock.lang.Specification
 
 class CpsRestInputMapperSpec extends Specification {

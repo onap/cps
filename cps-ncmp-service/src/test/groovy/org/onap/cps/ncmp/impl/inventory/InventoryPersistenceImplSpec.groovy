@@ -31,11 +31,11 @@ import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.spi.CascadeDeleteAllowed
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
-import org.onap.cps.spi.model.ModuleDefinition
-import org.onap.cps.spi.model.ModuleReference
+import org.onap.cps.api.parameters.CascadeDeleteAllowed
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
@@ -50,8 +50,8 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NO_TIMESTAMP
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.spi.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
 class InventoryPersistenceImplSpec extends Specification {
 

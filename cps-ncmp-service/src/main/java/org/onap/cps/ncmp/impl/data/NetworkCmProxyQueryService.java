@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.impl.data;
 
 import java.util.Collection;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.model.DataNode;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 
 /*
  * Datastore interface for handling cached CPS data query requests.

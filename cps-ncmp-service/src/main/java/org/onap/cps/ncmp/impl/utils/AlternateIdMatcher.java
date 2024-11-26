@@ -23,10 +23,10 @@ package org.onap.cps.ncmp.impl.utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.onap.cps.api.model.DataNode;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Slf4j

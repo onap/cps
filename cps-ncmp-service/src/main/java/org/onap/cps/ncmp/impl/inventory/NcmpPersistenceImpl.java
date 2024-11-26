@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
-import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
@@ -29,10 +29,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.impl.utils.CpsValidator;
-import org.onap.cps.spi.FetchDescendantsOption;
-import org.onap.cps.spi.exceptions.SchemaSetNotFoundException;
-import org.onap.cps.spi.model.DataNode;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
