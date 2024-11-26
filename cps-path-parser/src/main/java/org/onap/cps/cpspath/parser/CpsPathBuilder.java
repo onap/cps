@@ -180,12 +180,12 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         if (!isStartOfExpression) {
             currentNormalizedPathBuilder.append(" ").append(getLastElement(booleanOperators)).append(" ");
         }
-        currentNormalizedPathBuilder.append("@")
-                                    .append(name)
-                                    .append(operator)
-                                    .append("'")
-                                    .append(value.toString().replace("'", "''"))
-                                    .append("'");
+        currentNormalizedPathBuilder.append("@").append(name).append(operator);
+        if (operator.equals("=")) {
+            currentNormalizedPathBuilder.append(wrapValueInSingleQuotes(value));
+        } else {
+            currentNormalizedPathBuilder.append(value);
+        }
     }
 
     private static String getLastElement(final List<String> listOfStrings) {
@@ -200,6 +200,10 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         } else {
             return value.replace("\"\"", "\"");
         }
+    }
+
+    private static String wrapValueInSingleQuotes(final Object value) {
+        return "'" + value.toString().replace("'", "''") + "'";
     }
 
     private static String stripFirstAndLastCharacter(final String wrappedString) {
