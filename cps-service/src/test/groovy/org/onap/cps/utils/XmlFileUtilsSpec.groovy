@@ -22,7 +22,7 @@
 package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
-import org.onap.cps.spi.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.w3c.dom.DOMException
 import org.xml.sax.SAXParseException

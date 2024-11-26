@@ -24,7 +24,7 @@ package org.onap.cps.utils
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache
-import org.onap.cps.spi.model.Anchor
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification

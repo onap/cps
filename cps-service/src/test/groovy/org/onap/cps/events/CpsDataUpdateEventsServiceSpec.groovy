@@ -30,7 +30,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.core.CloudEventUtils
 import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.onap.cps.events.model.CpsDataUpdatedEvent
-import org.onap.cps.spi.model.Anchor
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification

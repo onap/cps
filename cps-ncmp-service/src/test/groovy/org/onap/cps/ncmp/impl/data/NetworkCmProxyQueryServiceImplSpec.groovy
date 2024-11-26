@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.impl.data
 
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.spi.FetchDescendantsOption
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR

@@ -22,8 +22,8 @@ package org.onap.cps.ncmp.impl.inventory
 
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 class AlternateIdCheckerSpec extends Specification {

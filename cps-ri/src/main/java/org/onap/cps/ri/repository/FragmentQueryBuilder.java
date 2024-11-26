@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.api.exceptions.CpsPathException;
+import org.onap.cps.api.parameters.PaginationOption;
 import org.apache.commons.text.StringSubstitutor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
@@ -38,8 +40,6 @@ import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
-import org.onap.cps.spi.PaginationOption;
-import org.onap.cps.spi.exceptions.CpsPathException;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

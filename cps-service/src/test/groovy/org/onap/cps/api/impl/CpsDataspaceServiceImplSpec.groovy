@@ -22,7 +22,7 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsAdminPersistenceService
-import org.onap.cps.spi.model.Dataspace
+import org.onap.cps.api.model.Dataspace
 import spock.lang.Specification
 
 class CpsDataspaceServiceImplSpec extends Specification {

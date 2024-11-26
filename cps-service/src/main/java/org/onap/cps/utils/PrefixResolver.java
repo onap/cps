@@ -22,10 +22,10 @@ package org.onap.cps.utils;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.impl.YangTextSchemaSourceSetCache;
+import org.onap.cps.api.model.Anchor;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.spi.model.Anchor;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.opendaylight.yangtools.yang.common.QName;
 import org.opendaylight.yangtools.yang.model.api.DataNodeContainer;
