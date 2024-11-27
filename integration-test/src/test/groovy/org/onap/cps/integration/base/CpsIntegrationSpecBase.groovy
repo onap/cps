@@ -22,6 +22,7 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.collection.ISet
+import com.hazelcast.map.IMap
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -121,6 +122,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     BlockingQueue<DataNode> moduleSyncWorkQueue
+
+    @Autowired
+    IMap<String, String> cpsAndNcmpLock
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
