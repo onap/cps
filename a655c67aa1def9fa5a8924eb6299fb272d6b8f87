@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "a655c67aa1def9fa5a8924eb6299fb272d6b8f87",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb32682c_df8ed406",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-27T16:38:03Z",
+      "side": 1,
+      "message": "discussed offline regarding the upcoming patches.. approach makes sense to me.",
+      "revId": "a655c67aa1def9fa5a8924eb6299fb272d6b8f87",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
