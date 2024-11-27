@@ -1354,6 +1354,15 @@ paths:
         schema:
           default: /
           type: string
+      - description: "Boolean flag to validate data, without persisting it. Default\
+          \ value is set to false."
+        in: query
+        name: dry-run
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       - description: observed-timestamp
         in: query
         name: observed-timestamp
@@ -1610,6 +1619,15 @@ paths:
         schema:
           default: /
           type: string
+      - description: "Boolean flag to validate data, without persisting it. Default\
+          \ value is set to false."
+        in: query
+        name: dry-run
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       - description: observed-timestamp
         in: query
         name: observed-timestamp
@@ -1804,6 +1822,15 @@ paths:
         required: true
         schema:
           type: string
+      - description: "Boolean flag to validate data, without persisting it. Default\
+          \ value is set to false."
+        in: query
+        name: dry-run
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       - description: observed-timestamp
         in: query
         name: observed-timestamp
@@ -1920,6 +1947,15 @@ paths:
         required: true
         schema:
           type: string
+      - description: "Boolean flag to validate data, without persisting it. Default\
+          \ value is set to false."
+        in: query
+        name: dry-run
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       - description: observed-timestamp
         in: query
         name: observed-timestamp
@@ -1935,7 +1971,7 @@ paths:
                 $ref: '#/components/examples/dataSample'
                 value: null
             schema:
-              type: object
+              type: string
         required: true
       responses:
         "200":
@@ -2604,14 +2640,6 @@ components:
         - application/json
         - application/xml
         type: string
-    observedTimestampInQuery:
-      description: observed-timestamp
-      in: query
-      name: observed-timestamp
-      required: false
-      schema:
-        example: 2021-03-21T00:10:34.030-0100
-        type: string
     dryRunInQuery:
       description: "Boolean flag to validate data, without persisting it. Default\
         \ value is set to false."
@@ -2622,6 +2650,14 @@ components:
         default: false
         example: false
         type: boolean
+    observedTimestampInQuery:
+      description: observed-timestamp
+      in: query
+      name: observed-timestamp
+      required: false
+      schema:
+        example: 2021-03-21T00:10:34.030-0100
+        type: string
     requiredXpathInQuery:
       description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
       examples:

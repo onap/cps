@@ -102,12 +102,17 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<String> addListElements(final String apiVersion, final String dataspaceName,
                                                   final String anchorName, final String parentNodeXpath,
-                                                  final String nodeData, final String observedTimestamp,
-                                                  final String contentTypeInHeader) {
+                                                  final String nodeData,  final Boolean dryRunEnabled,
+                                                  final String observedTimestamp, final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
-        cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
+        if (Boolean.TRUE.equals(dryRunEnabled)) {
+            cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
+            return ResponseEntity.ok().build();
+        }  else {
+            cpsDataService.saveListElements(dataspaceName, anchorName, parentNodeXpath,
                 nodeData, toOffsetDateTime(observedTimestamp), contentType);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Override
@@ -151,31 +156,48 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
                                                    final String anchorName, final String nodeData,
-                                                   final String parentNodeXpath, final String observedTimestamp,
-                                                   final String contentTypeInHeader) {
+                                                   final String parentNodeXpath,  final Boolean dryRunEnabled,
+                                                   final String observedTimestamp, final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
-        cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
-                nodeData, toOffsetDateTime(observedTimestamp), contentType);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (Boolean.TRUE.equals(dryRunEnabled)) {
+            cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
+            return ResponseEntity.ok().build();
+        } else {
+            cpsDataService.updateNodeLeaves(dataspaceName, anchorName, parentNodeXpath,
+                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
     public ResponseEntity<Object> replaceNode(final String apiVersion, final String dataspaceName,
                                               final String anchorName, final String nodeData,
-                                              final String parentNodeXpath, final String observedTimestamp,
-                                              final String contentTypeInHeader) {
+                                              final String parentNodeXpath, final Boolean dryRunEnabled,
+                                              final String observedTimestamp, final String contentTypeInHeader) {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
-        cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                        nodeData, toOffsetDateTime(observedTimestamp), contentType);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (Boolean.TRUE.equals(dryRunEnabled)) {
+            cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
+            return ResponseEntity.ok().build();
+        } else {
+            cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
+                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
     public ResponseEntity<Object> replaceListContent(final String apiVersion, final String dataspaceName,
                                                      final String anchorName, final String parentNodeXpath,
-                                                     final Object jsonData, final String observedTimestamp) {
-        cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
-                jsonObjectMapper.asJsonString(jsonData), toOffsetDateTime(observedTimestamp));
+                                                      final String nodeData, final Boolean dryRunEnabled,
+                                                     final String observedTimestamp) {
+        if (Boolean.TRUE.equals(dryRunEnabled)) {
+            cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData,
+                    ContentType.JSON);
+            return ResponseEntity.ok().build();
+        } else {
+            cpsDataService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
+                    nodeData, toOffsetDateTime(observedTimestamp));
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
