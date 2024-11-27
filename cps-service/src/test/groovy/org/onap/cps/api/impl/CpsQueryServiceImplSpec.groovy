@@ -71,4 +71,12 @@ class CpsQueryServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath("some-dataspace", "/cps-path")
     }
+
+    // TODO will be implemented in CPS-2416
+    def 'Query data leaf.'() {
+        when: 'a query for a specific leaf is executed'
+        objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+        then: 'solution is not implemented yet'
+            thrown(UnsupportedOperationException)
+    }
 }
