@@ -28,6 +28,7 @@ import org.springframework.util.StopWatch
 import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 
 class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
@@ -124,6 +125,31 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
     }
 
+    def 'Populate module sync work queue simultaneously on two parallel threads.'() {
+        given: 'the queue is empty at the start'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, PARALLEL_SYNC_SAMPLE_SIZE, 1)
+            assert moduleSyncWorkQueue.isEmpty()
+        and: 'no lock is initially acquired'
+            assert cpsAndNcmpLock.isLocked('workQueueLock') == false
+        when: 'attempt to populate the queue using 2 threads at the same time'
+            def submittedTasks = new ArrayList()
+            (1..2).each {submittedTasks.addAll(executorService.submit(populateQueueWithoutDelayCallable))}
+        then: 'we have results for both the threads'
+            assert submittedTasks.size() == 2
+        then: 'the lock is acquired just by one thread i.e one thread can be there in the critical section at a time'
+            for (def task : submittedTasks) {
+                if (task.get() == 'task acquired the lock first') {
+                    assert cpsAndNcmpLock.isLocked('workQueueLock') == true
+                } else {
+                    assert cpsAndNcmpLock.isLocked('workQueueLock') == false
+                }
+            }
+        then: 'the queue size is exactly the sample size'
+            assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
+        and: 'after processing the lock is released'
+            assert cpsAndNcmpLock.isLocked('workQueueLock') == false
+    }
+
     def 'Populate module sync work queue on two parallel threads with a slight difference in start time.'() {
         // This test proved that the issue in CPS-2403 did not arise if the the queue was populated and given time to be distributed
         given: 'the queue is empty at the start'
@@ -146,6 +172,15 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     def populateQueueWithoutDelay = () -> {
         try {
             objectUnderTest.populateWorkQueueIfNeeded()
+        } catch (InterruptedException e) {
+            e.printStackTrace()
+        }
+    }
+
+    def populateQueueWithoutDelayCallable = () -> {
+        try {
+            objectUnderTest.populateWorkQueueIfNeeded()
+            return 'task acquired the lock first'
         } catch (InterruptedException e) {
             e.printStackTrace()
         }
