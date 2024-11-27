@@ -21,13 +21,14 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import static org.onap.cps.ncmp.impl.cache.CpsAndNcmpLockConfig.MODULE_SYNC_WORK_QUEUE_LOCK_NAME;
+
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Lock;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +48,7 @@ public class ModuleSyncWatchdog {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
-    private final Lock workQueueLock;
+    private final IMap<String, String> cpsAndNcmpLock;
     private final Sleeper sleeper;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
@@ -91,14 +92,16 @@ public class ModuleSyncWatchdog {
      * So it can be tested without the queue being emptied immediately as the main public method does.
      */
     public void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty() && workQueueLock.tryLock()) {
+        if (moduleSyncWorkQueue.isEmpty() && cpsAndNcmpLock.tryLock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME)) {
+            log.info("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
                 populateWorkQueue();
                 if (moduleSyncWorkQueue.isEmpty()) {
                     setPreviouslyLockedCmHandlesToAdvised();
                 }
             } finally {
-                workQueueLock.unlock();
+                cpsAndNcmpLock.unlock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME);
+                log.info("Lock released by thread : {}", Thread.currentThread().getName());
             }
         }
     }
