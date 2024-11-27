@@ -34,6 +34,7 @@ class CpsPathQuerySpec extends Specification {
         then: 'the query has the correct default properties'
             assert result.cpsPathPrefixType == ABSOLUTE
             assert result.hasAncestorAxis() == false
+            assert result.hasAttributeAxis() == false
             assert result.hasLeafConditions() == false
             assert result.hasTextFunctionCondition() == false
             assert result.hasContainsFunctionCondition() == false
@@ -107,6 +108,7 @@ class CpsPathQuerySpec extends Specification {
             'parent & child with multiple OR  operators'                  | '/parent/child[@key1=1 or @key2="abc" or @key="xyz"]/child2'   || "/parent/child[@key1='1' or @key2='abc' or @key='xyz']/child2"
             'parent & child with multiple AND/OR combination'             | '/parent/child[@key1=1 and @key2="abc" or @key="xyz"]/child2'  || "/parent/child[@key1='1' and @key2='abc' or @key='xyz']/child2"
             'parent & child with multiple OR/AND combination'             | '/parent/child[@key1=1 or @key2="abc" and @key="xyz"]/child2'  || "/parent/child[@key1='1' or @key2='abc' and @key='xyz']/child2"
+            'attribute axis'                                              | '/parent/child/@key'                                           || '/parent/child/@key'
     }
 
     def 'Parse xpath to form the Normalized xpath containing #scenario.'() {
@@ -252,6 +254,22 @@ class CpsPathQuerySpec extends Specification {
             cpsPath                                      || expectedFirstLeafName | expectedSecondLeafName
             '/test[@name1="value1" and @name2="value2"]' || 'name1'               | 'name2'
             '/test[@name2="value2" and @name1="value1"]' || 'name2'               | 'name1'
+    }
+
+    def 'Cps Path using attribute axis.'() {
+        when: 'the cps path is parsed'
+            def result = CpsPathQuery.createFrom(cpsPath)
+        then: 'the query has the correct properties for attribute axis'
+            assert result.hasAttributeAxis() == expectAttributeAxis
+            assert result.attributeName == expectedAttributeName
+        where: 'the following data is used'
+            cpsPath                      || expectAttributeAxis | expectedAttributeName
+            '/test'                      || false               | ''
+            '/test/@id'                  || true                | 'id'
+            '/test[@id="id"]'            || false               | ''
+            '/test[@id="id"]/@id'        || true                | 'id'
+            '//test/ancestor::root'      || false               | ''
+            '//test/ancestor::root/@xyz' || true                | 'xyz'
     }
 
 }
