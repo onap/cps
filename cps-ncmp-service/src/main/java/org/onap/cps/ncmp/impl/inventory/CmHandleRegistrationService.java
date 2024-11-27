@@ -64,6 +64,7 @@ import org.onap.cps.spi.exceptions.AlreadyDefinedException;
 import org.onap.cps.spi.exceptions.CpsException;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.onap.cps.spi.exceptions.DataValidationException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -77,6 +78,7 @@ public class CmHandleRegistrationService {
     private final InventoryPersistence inventoryPersistence;
     private final CpsDataService cpsDataService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
+    @Qualifier("moduleSyncStartedOnCmHandles")
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;

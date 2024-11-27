@@ -21,19 +21,21 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import static org.onap.cps.ncmp.impl.cache.CpsAndNcmpLockConfig.MODULE_SYNC_WORK_QUEUE_LOCK_NAME;
+
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.Lock;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.Sleeper;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -44,10 +46,12 @@ public class ModuleSyncWatchdog {
 
     private final ModuleOperationsUtils moduleOperationsUtils;
     private final BlockingQueue<DataNode> moduleSyncWorkQueue;
+    @Qualifier("moduleSyncStartedOnCmHandles")
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
-    private final Lock workQueueLock;
+    @Qualifier("cpsAndNcmpLock")
+    private final IMap<String, Object> cpsAndNcmpLock;
     private final Sleeper sleeper;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
@@ -91,14 +95,14 @@ public class ModuleSyncWatchdog {
      * So it can be tested without the queue being emptied immediately as the main public method does.
      */
     public void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty() && workQueueLock.tryLock()) {
+        if (moduleSyncWorkQueue.isEmpty() && cpsAndNcmpLock.tryLock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME)) {
             try {
                 populateWorkQueue();
                 if (moduleSyncWorkQueue.isEmpty()) {
                     setPreviouslyLockedCmHandlesToAdvised();
                 }
             } finally {
-                workQueueLock.unlock();
+                cpsAndNcmpLock.unlock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME);
             }
         }
     }
