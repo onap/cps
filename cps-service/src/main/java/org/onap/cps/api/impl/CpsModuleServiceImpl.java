@@ -106,7 +106,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         }
         cpsModulePersistenceService.deleteSchemaSet(dataspaceName, schemaSetName);
         yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
-        cpsModulePersistenceService.deleteUnusedYangResourceModules();
+//        cpsModulePersistenceService.deleteUnusedYangResourceModules();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
                         .stream().map(Anchor::getName).collect(Collectors.toSet());
         cpsAnchorService.deleteAnchors(dataspaceName, anchorNames);
         cpsModulePersistenceService.deleteSchemaSets(dataspaceName, schemaSetNames);
-        cpsModulePersistenceService.deleteUnusedYangResourceModules();
+//        cpsModulePersistenceService.deleteUnusedYangResourceModules();
         for (final String schemaSetName : schemaSetNames) {
             yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
         }

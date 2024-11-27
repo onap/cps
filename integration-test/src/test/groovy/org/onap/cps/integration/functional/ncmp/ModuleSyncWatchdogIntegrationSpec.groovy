@@ -24,6 +24,7 @@ import io.micrometer.core.instrument.MeterRegistry
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.util.StopWatch
 import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.Executors
@@ -61,12 +62,13 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             assert moduleSyncWorkQueue.isEmpty()
     }
 
-    def 'CPS-2478 Highlight module sync inefficiencies.'() {
+    def 'CPS-2478 Highlight (and improve) module sync inefficiencies.'() {
         given: 'register 250 cm handles with module set tag cps-2478-A'
             def numberOfTags = 2
-            def cmHandlesPerTag = 250
+            def cmHandlesPerTag = 10000
             def totalCmHandles = numberOfTags * cmHandlesPerTag
             def offset = 1
+            def minimumBatches = totalCmHandles / 100
             registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-A', cmHandlesPerTag, offset)
         and: 'register anther 250 cm handles with module set tag cps-2478-B'
             offset += cmHandlesPerTag
@@ -78,15 +80,15 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             Thread.sleep(100)
         then: 'retry until all schema sets are stored in db (1 schema set  for each cm handle)'
             def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schemaset.store').timer()
-            new PollingConditions().within(10, () -> {
+            new PollingConditions().within(100, () -> {
                 objectUnderTest.moduleSyncAdvisedCmHandles()
                 Thread.sleep(100)
                 assert dbSchemaSetStorageTimer.count() >= 500
             })
         then: 'wait till at least 5 batches of state updates are done (often more because of retries of locked cm handles)'
             def dbStateUpdateTimer = meterRegistry.get('cps.ncmp.cmhandle.state.update.batch').timer()
-            new PollingConditions().within(10, () -> {
-                assert dbStateUpdateTimer.count() >= 5
+            new PollingConditions().within(30, () -> {
+                assert dbStateUpdateTimer.count() >= minimumBatches
             })
         and: 'the db has been queried for tags exactly 2 times.'
             def dbModuleQueriesTimer = meterRegistry.get('cps.module.service.module.reference.query.by.attribute').timer()
@@ -100,7 +102,11 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             logInstrumentation(dbSchemaSetStorageTimer, 'store schema sets      ')
             logInstrumentation(dbStateUpdateTimer,      'batch state updates    ')
         cleanup: 'remove all cm handles'
+            def stopWatch = new StopWatch()
+            stopWatch.start()
             deregisterSequenceOfCmHandles(DMI1_URL, totalCmHandles, 1)
+            stopWatch.stop()
+            println "*** CPS-2478, Deletion of $totalCmHandles cm handles took ${stopWatch.getTotalTimeMillis()} milliseconds"
     }
 
     def 'Populate module sync work queue simultaneously on two parallel threads (CPS-2403).'() {
