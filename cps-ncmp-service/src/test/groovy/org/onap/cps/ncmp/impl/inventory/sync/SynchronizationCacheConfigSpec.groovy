@@ -26,6 +26,7 @@ import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.spi.model.DataNode
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
@@ -42,6 +43,7 @@ class SynchronizationCacheConfigSpec extends Specification {
     BlockingQueue<DataNode> moduleSyncWorkQueue
 
     @Autowired
+    @Qualifier("moduleSyncStartedOnCmHandles")
     IMap<String, Object> moduleSyncStartedOnCmHandles
 
     @Autowired

@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.spi.model.DataNode;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -46,6 +47,7 @@ public class ModuleSyncTasks {
     private final ModuleOperationsUtils moduleOperationsUtils;
     private final ModuleSyncService moduleSyncService;
     private final LcmEventsCmHandleStateHandler lcmEventsCmHandleStateHandler;
+    @Qualifier("moduleSyncStartedOnCmHandles")
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
 
     /**
