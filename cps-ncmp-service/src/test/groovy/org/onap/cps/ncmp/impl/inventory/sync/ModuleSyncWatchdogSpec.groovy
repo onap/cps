@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,11 +44,11 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def spiedAsyncTaskExecutor = Spy(AsyncTaskExecutor)
 
-    def mockWorkQueueLock = Mock(Lock)
+    def mockCpsAndNcmpLock = Mock(IMap<String,Object>)
 
     def spiedSleeper = Spy(Sleeper)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, mockWorkQueueLock, spiedSleeper)
+    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, spiedAsyncTaskExecutor, mockCpsAndNcmpLock, spiedSleeper)
 
     void setup() {
         spiedAsyncTaskExecutor.setupThreadPool()
@@ -59,8 +59,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(numberOfAdvisedCmHandles)
         and: 'module sync utilities returns no failed (locked) cm handles'
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
-        and: 'the work queue is not locked'
-            mockWorkQueueLock.tryLock() >> true
+        and: 'the work queue is locked'
+            mockCpsAndNcmpLock.tryLock("workQueueLock") >> true
         and: 'the executor has enough available threads'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 3
         when: ' module sync is started'
@@ -80,8 +80,8 @@ class ModuleSyncWatchdogSpec extends Specification {
     def 'Module sync cm handles starts with no available threads.'() {
         given: 'module sync utilities returns a advise cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
-        and: 'the work queue is not locked'
-            mockWorkQueueLock.tryLock() >> true
+        and: 'the work queue is locked'
+            mockCpsAndNcmpLock.tryLock("workQueueLock") >> true
         and: 'the executor first has no threads but has one thread on the second attempt'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >>> [ 0, 1 ]
         when: ' module sync is started'
@@ -93,8 +93,8 @@ class ModuleSyncWatchdogSpec extends Specification {
     def 'Module sync advised cm handle already handled by other thread.'() {
         given: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
-        and: 'the work queue is not locked'
-            mockWorkQueueLock.tryLock() >> true
+        and: 'the work queue is locked'
+            mockCpsAndNcmpLock.tryLock("workQueueLock") >> true
         and: 'the executor has a thread available'
             spiedAsyncTaskExecutor.getAsyncTaskParallelismLevel() >> 1
         and: 'the semaphore cache indicates the cm handle is already being processed'
@@ -132,7 +132,7 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandles() >> createDataNodes(1)
         and: 'can lock is : #canLock'
-            mockWorkQueueLock.tryLock() >> canLock
+            mockCpsAndNcmpLock.tryLock("workQueueLock") >> canLock
         when: 'attempt to populate the work queue'
             objectUnderTest.populateWorkQueueIfNeeded()
         then: 'the queue remains empty is #expectQueueRemainsEmpty'
