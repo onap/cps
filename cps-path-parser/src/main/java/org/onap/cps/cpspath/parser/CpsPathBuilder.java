@@ -131,6 +131,13 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     }
 
     @Override
+    public void exitAttributeAxis(final CpsPathParser.AttributeAxisContext ctx) {
+        final String attributeName = ctx.leafName().getText();
+        normalizedXpathBuilder.append("/@").append(attributeName);
+        cpsPathQuery.setAttributeAxisAttributeName(attributeName);
+    }
+
+    @Override
     public void exitTextFunctionCondition(final TextFunctionConditionContext ctx) {
         cpsPathQuery.setTextFunctionConditionLeafName(ctx.leafName().getText());
         cpsPathQuery.setTextFunctionConditionValue(unwrapQuotedString(ctx.StringLiteral().getText()));

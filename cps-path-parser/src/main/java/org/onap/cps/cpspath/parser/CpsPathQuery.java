@@ -40,6 +40,7 @@ public class CpsPathQuery {
     private String descendantName;
     private List<LeafCondition> leafConditions;
     private String ancestorSchemaNodeIdentifier = "";
+    private String attributeAxisAttributeName = "";
     private String textFunctionConditionLeafName;
     private String textFunctionConditionValue;
     private List<String> booleanOperators;
@@ -63,6 +64,15 @@ public class CpsPathQuery {
      */
     public boolean hasAncestorAxis() {
         return !(ancestorSchemaNodeIdentifier.isEmpty());
+    }
+
+    /**
+     * Has attribute axis been included in cpsPath.
+     *
+     * @return boolean value.
+     */
+    public boolean hasAttributeAxis() {
+        return !(attributeAxisAttributeName.isEmpty());
     }
 
     /**

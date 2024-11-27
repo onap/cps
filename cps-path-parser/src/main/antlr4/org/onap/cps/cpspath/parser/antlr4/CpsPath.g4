@@ -27,9 +27,11 @@
 
 grammar CpsPath ;
 
-cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? EOF ;
+cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? attributeAxis? EOF ;
 
 slash : SLASH ;
+
+attributeAxis : SLASH AT leafName ;
 
 ancestorAxis : KW_ANCESTOR_AXIS_PREFIX ancestorPath ;
 
