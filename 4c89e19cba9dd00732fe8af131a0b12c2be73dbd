@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270908a1_12095ebf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-27T10:22:31Z",
+      "side": 1,
+      "message": "this doesnt seem to work.\nu might need to check for your change in NcmpPersistenceImpl#replaceListContent method.\nits throwing exception hence the CSIT fails.",
+      "revId": "4c89e19cba9dd00732fe8af131a0b12c2be73dbd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
