@@ -25,9 +25,9 @@ package org.onap.cps.rest.controller;
 import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsQueryService;
@@ -126,17 +126,8 @@ public class QueryRestController implements CpsQueryApi {
                 : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
-    private Map<String, List<DataNode>> groupDataNodesPerAnchor(final Collection<DataNode> dataNodes) {
-        final Map<String, List<DataNode>> dataNodesMapForAnchor = new HashMap<>();
-        for (final DataNode dataNode : dataNodes) {
-            List<DataNode> dataNodesInAnchor = dataNodesMapForAnchor.get(dataNode.getAnchorName());
-            if (dataNodesInAnchor == null) {
-                dataNodesInAnchor = new ArrayList<>();
-                dataNodesMapForAnchor.put(dataNode.getAnchorName(), dataNodesInAnchor);
-            }
-            dataNodesInAnchor.add(dataNode);
-        }
-        return dataNodesMapForAnchor;
+    private static Map<String, List<DataNode>> groupDataNodesPerAnchor(final Collection<DataNode> dataNodes) {
+        return dataNodes.stream().collect(Collectors.groupingBy(DataNode::getAnchorName));
     }
 
     private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,
