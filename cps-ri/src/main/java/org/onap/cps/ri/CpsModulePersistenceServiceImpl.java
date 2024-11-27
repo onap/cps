@@ -230,8 +230,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         updateAllModuleReferences(allModuleReferences, schemaSetEntity.getId());
     }
 
-
-
     @Override
     @Transactional
     public void deleteUnusedYangResourceModules() {

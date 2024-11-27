@@ -37,6 +37,7 @@ import org.onap.cps.spi.model.SchemaSet
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.testcontainers.shaded.org.bouncycastle.crypto.engines.EthereumIESEngine
 import spock.lang.Specification
 
 import static org.onap.cps.spi.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED
@@ -142,8 +143,6 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
-        and: 'orphan yang resources are deleted'
-            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('my-dataspace', _)
         where: 'following parameters are used'
@@ -161,8 +160,6 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
-        and: 'orphan yang resources are deleted'
-            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
         and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
             1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
     }
@@ -187,8 +184,6 @@ class CpsModuleServiceImplSpec extends Specification {
             mockCpsModulePersistenceService.deleteSchemaSets('my-dataspace', _)
         and: 'schema sets will be removed from the cache'
             2 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', _)
-        and: 'orphan yang resources are deleted'
-            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('my-dataspace')
         and: 'the CpsValidator is called on the schemaSetNames'
@@ -274,6 +269,13 @@ class CpsModuleServiceImplSpec extends Specification {
             assert result == moduleDefinitionsFromPersistenceService
         and: 'cps validator is called on the dataspace and anchor name'
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
+    }
+
+    def 'Delete unused yang resource modules.'() {
+        when: 'deleting unused yang resource modules'
+            objectUnderTest.deleteUnusedYangResourceModules()
+        then: 'it is delegated to the module persistence service'
+            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
     }
 
     def getModuleReferences() {

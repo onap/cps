@@ -188,4 +188,9 @@ public interface CpsModuleService {
                                                                final Map<String, String> parentAttributes,
                                                                final Map<String, String> childAttributes);
 
+    /**
+     * Remove any Yang Resource Modules from the DB that are no longer referenced by any schema set.
+     */
+    void deleteUnusedYangResourceModules();
+
 }
