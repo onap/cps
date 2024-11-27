@@ -28,6 +28,7 @@ import org.springframework.util.StopWatch
 import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.Executors
+import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 
 class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
@@ -124,6 +125,29 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
     }
 
+    def 'Populate module sync work queue simultaneously on two parallel threads.'() {
+        given: 'the queue is empty at the start'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, NO_MODULE_SET_TAG, PARALLEL_SYNC_SAMPLE_SIZE, 1)
+            assert moduleSyncWorkQueue.isEmpty()
+        and: 'no lock is acquired'
+            assert !cpsAndNcmpLock.isLocked("workQueueLock")
+        when: 'attempt to populate the queue using 2 threads'
+            def submittedTasks = new ArrayList()
+            for (int i = 0; i < 2; i++) {
+                submittedTasks.addAll(executorService.submit(populateQueueWithoutDelayCallable))
+            }
+        then: 'the lock is acquired by a thread'
+            for (def task : submittedTasks) {
+                if (task.get() == "locked") {
+                    assert cpsAndNcmpLock.isLocked("workQueueLock")
+                }
+            }
+        then: 'the queue size is exactly the sample size'
+            assert moduleSyncWorkQueue.size() == PARALLEL_SYNC_SAMPLE_SIZE
+        and: 'after processing the lock is released'
+            assert !cpsAndNcmpLock.isLocked("workQueueLock")
+    }
+
     def 'Populate module sync work queue on two parallel threads with a slight difference in start time.'() {
         // This test proved that the issue in CPS-2403 did not arise if the the queue was populated and given time to be distributed
         given: 'the queue is empty at the start'
@@ -146,6 +170,15 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     def populateQueueWithoutDelay = () -> {
         try {
             objectUnderTest.populateWorkQueueIfNeeded()
+        } catch (InterruptedException e) {
+            e.printStackTrace()
+        }
+    }
+
+    def populateQueueWithoutDelayCallable = () -> {
+        try {
+            objectUnderTest.populateWorkQueueIfNeeded()
+            return "locked"
         } catch (InterruptedException e) {
             e.printStackTrace()
         }
