@@ -281,11 +281,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Timed(value = "cps.data.service.list.update",
         description = "Time taken to update a list")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
-            final String jsonData, final OffsetDateTime observedTimestamp) {
+            final String nodeData, final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> newListElements =
-            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, jsonData, ContentType.JSON);
+            buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
         replaceListContent(dataspaceName, anchorName, parentNodeXpath, newListElements, observedTimestamp);
     }
 
