@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7005f0_5a68e1e4",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-27T09:57:24Z",
+      "side": 1,
+      "message": "In k6 endurance.json and kpi.json files, we use container name in variable called dmiStubUrl. This needs to be updated to this new name \u0027dmi-stub\u0027",
+      "range": {
+        "startLine": 144,
+        "startChar": 73,
+        "endLine": 144,
+        "endChar": 81
+      },
+      "revId": "dbc22d0809c9addd73a5ae477d8b3f50378a6905",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
