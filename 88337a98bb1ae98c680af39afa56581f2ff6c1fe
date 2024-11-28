@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c9f29c_2fb2553f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:26:36Z",
+      "side": 1,
+      "message": "just one little suggestion",
+      "revId": "88337a98bb1ae98c680af39afa56581f2ff6c1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5d770b_48457e9d",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:26:36Z",
+      "side": 1,
+      "message": "maybe a little more elaborate name?\n\nattributeAxisattributeName",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "88337a98bb1ae98c680af39afa56581f2ff6c1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538a6122_35ecee76",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:26:36Z",
+      "side": 1,
+      "message": "good comprehensive testing :-D",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 71
+      },
+      "revId": "88337a98bb1ae98c680af39afa56581f2ff6c1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
