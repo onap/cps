@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8feed2a0_d05a20ad",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-28T09:16:55Z",
+      "side": 1,
+      "message": "Is this used somewhere?",
+      "range": {
+        "startLine": 40,
+        "startChar": 65,
+        "endLine": 40,
+        "endChar": 82
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
