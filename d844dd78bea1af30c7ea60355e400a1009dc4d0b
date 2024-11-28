@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f44f39a9_04ab2593",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-28T09:52:49Z",
+      "side": 1,
+      "message": "NB: once ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed1941dc_3ae2dcc4",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-28T09:52:49Z",
+      "side": 1,
+      "message": "why use scheduled here?? if its just at the startup and just needed once then\nbetter rely on Application Event Listeners.\nApplicationListener\u003cApplicationStartedEvent\u003e",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8feed2a0_d05a20ad",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
