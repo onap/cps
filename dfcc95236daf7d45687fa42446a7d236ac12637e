@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f3ae9d8_a742e400",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-28T10:32:37Z",
+      "side": 1,
+      "message": "if there are major comments from others then incorporate my comment now , otherwise it can be part of the next patch that u make.",
+      "revId": "dfcc95236daf7d45687fa42446a7d236ac12637e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e0f127_9b405427",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-28T10:32:37Z",
+      "side": 1,
+      "message": "this test can be have the scenarios that take in JSON and XML coz all other things are the same.",
+      "range": {
+        "startLine": 451,
+        "startChar": 4,
+        "endLine": 469,
+        "endChar": 5
+      },
+      "revId": "dfcc95236daf7d45687fa42446a7d236ac12637e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
