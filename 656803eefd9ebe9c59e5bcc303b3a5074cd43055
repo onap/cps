@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae4f7899_45c5d2c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-28T10:52:13Z",
+      "side": 1,
+      "message": "@Service Annotation:\n\nDeclares the class as a service layer bean.\nAutomatically detected during component scanning by Spring.",
+      "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49472970_71900616",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-28T10:52:13Z",
+      "side": 1,
+      "message": "@PostConstruct Annotation:\n\nExecutes the cleanDbAtStartUp method once after the bean\u0027s initialization and dependency injection.",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
