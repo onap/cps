@@ -19,6 +19,7 @@
 databaseChangeLog:
   - changeSet:
       author: cps
+      comment: Add index to the yang_resource table on module_name and revision
       id: 23
       changes:
         - createIndex:
