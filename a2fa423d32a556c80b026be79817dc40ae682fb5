@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdace578_5ddba0e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:33:03Z",
+      "side": 1,
+      "message": "just some suggestions",
+      "revId": "a2fa423d32a556c80b026be79817dc40ae682fb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "360234db_08cac91e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:33:03Z",
+      "side": 1,
+      "message": "NB: I dont like this particularly way of naming the target class variable. I know its doen a lot and maybe could be considered a convention...\nBut i would prefer something more self-explanatory like :targetClass",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "a2fa423d32a556c80b026be79817dc40ae682fb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03909781_592acfdc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:33:03Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 37
+      },
+      "revId": "a2fa423d32a556c80b026be79817dc40ae682fb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35b57426_9d0f608b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:33:03Z",
+      "side": 1,
+      "message": "NB: I dont mind (and in this cane would prefer) a long line in groovy test (spotBugs wont complain)",
+      "range": {
+        "startLine": 76,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 90
+      },
+      "revId": "a2fa423d32a556c80b026be79817dc40ae682fb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e118166_b0780e90",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T08:33:03Z",
+      "side": 1,
+      "message": "will this way of comparing ignore order issues and prevent false negatives?!",
+      "range": {
+        "startLine": 79,
+        "startChar": 19,
+        "endLine": 79,
+        "endChar": 53
+      },
+      "revId": "a2fa423d32a556c80b026be79817dc40ae682fb5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
