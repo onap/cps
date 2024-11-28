@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "517754cf_c9a0c946",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T15:37:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae4f7899_45c5d2c6",
+      "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49472970_71900616",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "Discard my above suggestion of using @PostConstruct.\n\nI agree with Priyank to use :\n\n @EventListener(ApplicationReadyEvent.class):\n\nEnsures the method is executed only after the application is fully initialized and ready to accept requests. It handles any timing issues with service initialization or database availability.",
       "parentUuid": "49472970_71900616",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6a6b08_61f22283",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T15:37:06Z",
+      "side": 1,
+      "message": "databases should be up befeor CPS starts no otehr dependencies so I think @Scheduled is fine",
+      "parentUuid": "89281349_133e55a9",
       "range": {
         "startLine": 39,
         "startChar": 3,

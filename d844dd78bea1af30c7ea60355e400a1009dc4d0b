@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01f1a017_3e306025",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T15:37:06Z",
+      "side": 1,
+      "message": "Daniel suggested this approach and I agreed that this is simpler. ie much less code... and the behavior is effectively te same...",
+      "parentUuid": "ed1941dc_3ae2dcc4",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8feed2a0_d05a20ad",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "writtenOn": "2024-11-28T09:16:55Z",
       "side": 1,
       "message": "Is this used somewhere?",
+      "range": {
+        "startLine": 40,
+        "startChar": 65,
+        "endLine": 40,
+        "endChar": 82
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2559e880_aa61d530",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-11-28T15:37:06Z",
+      "side": 1,
+      "message": "no introduced by typo, i\u0027ll clean it up",
+      "parentUuid": "8feed2a0_d05a20ad",
       "range": {
         "startLine": 40,
         "startChar": 65,
