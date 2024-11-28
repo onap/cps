@@ -59,9 +59,9 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
     def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
     def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
 
-    def setup() {
-        objectUnderTest = cpsModuleService
-    }
+    def setup() { objectUnderTest = cpsModuleService }
+
+    def cleanup() { objectUnderTest.deleteUnusedYangResourceModules() }
 
     /*
         C R E A T E   S C H E M A   S E T   U S E - C A S E S
@@ -77,7 +77,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             originalNumberOfModuleReferences + numberOfNewModules == yangResourceModuleReferences.size()
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ 'newSchemaSet' ])
-        where: 'the following parameters are use'
+        where: 'the following parameters are used'
             scenario                       | numberOfNewModules
             'two valid new modules'        | 2
             'empty schema set'             | 0

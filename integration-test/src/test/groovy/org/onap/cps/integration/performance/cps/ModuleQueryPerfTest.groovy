@@ -100,6 +100,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
                 cpsModuleService.deleteSchemaSetsWithCascade(CPS_PERFORMANCE_TEST_DATASPACE, (i..i+100).collect {SCHEMA_SET_PREFIX + it})
             }
             cpsModuleService.deleteSchemaSetsWithCascade(CPS_PERFORMANCE_TEST_DATASPACE, [SCHEMA_SET_PREFIX + '0'])
+            cpsModuleService.deleteUnusedYangResourceModules()
     }
 
     // This makes a Yang module of approximately target length in bytes by padding the description field with many '*'
