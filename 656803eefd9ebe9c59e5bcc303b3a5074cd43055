@@ -105,6 +105,30 @@
       },
       "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3395f02_6974125a",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-11-28T16:01:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae6a6b08_61f22283",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "656803eefd9ebe9c59e5bcc303b3a5074cd43055",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
