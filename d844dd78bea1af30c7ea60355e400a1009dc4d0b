@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "343e0ab4_b2d97e33",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/DbCleaner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-11-28T10:20:33Z",
+      "side": 1,
+      "message": "I\u0027ve been checking logs for below messages, it seems @Scheduled() is not running.",
+      "parentUuid": "ed1941dc_3ae2dcc4",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "d844dd78bea1af30c7ea60355e400a1009dc4d0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8feed2a0_d05a20ad",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsModuleServiceImplSpec.groovy",
         "patchSetId": 2
