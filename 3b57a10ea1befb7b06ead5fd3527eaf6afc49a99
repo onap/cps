@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14ba88ad_16f17a38",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-29T13:28:37Z",
+      "side": 1,
+      "message": "Oslo",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 53
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d66606c_2dbf1f16",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-29T13:28:37Z",
+      "side": 1,
+      "message": "indendation is off",
+      "range": {
+        "startLine": 31,
+        "startChar": 97,
+        "endLine": 31,
+        "endChar": 98
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a891b3c_0cf76c6b",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-29T13:28:37Z",
+      "side": 1,
+      "message": "November",
+      "range": {
+        "startLine": 66,
+        "startChar": 46,
+        "endLine": 66,
+        "endChar": 54
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
