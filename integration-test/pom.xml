@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.onap.cps</groupId>
         <artifactId>cps-parent</artifactId>
-        <version>3.5.5-SNAPSHOT</version>
+        <version>3.5.5</version>
         <relativePath>../cps-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>

@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-bom</artifactId>
-    <version>3.5.5-SNAPSHOT</version>
+    <version>3.5.5</version>
     <packaging>pom</packaging>
 
     <description>This artifact contains dependencyManagement declarations of all published CPS components.</description>

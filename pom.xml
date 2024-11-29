@@ -27,7 +27,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>cps-aggregator</artifactId>
-    <version>3.5.5-SNAPSHOT</version>
+    <version>3.5.5</version>
     <packaging>pom</packaging>
 
     <name>cps</name>
