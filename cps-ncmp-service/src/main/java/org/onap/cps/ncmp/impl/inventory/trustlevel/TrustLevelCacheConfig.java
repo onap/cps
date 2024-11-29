@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import com.hazelcast.config.MapConfig;
-import java.util.Map;
+import com.hazelcast.map.IMap;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
@@ -45,7 +45,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      * @return configured map of cm handle name as keys to trust-level for values.
      */
     @Bean(TRUST_LEVEL_PER_CM_HANDLE)
-    public Map<String, TrustLevel> trustLevelPerCmHandle() {
+    public IMap<String, TrustLevel> trustLevelPerCmHandle() {
         return getOrCreateHazelcastInstance(trustLevelPerCmHandleCacheConfig).getMap(TRUST_LEVEL_PER_CM_HANDLE);
     }
 
@@ -55,7 +55,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      * @return configured map of dmi-plugin name as keys to trust-level for values.
      */
     @Bean(TRUST_LEVEL_PER_DMI_PLUGIN)
-    public Map<String, TrustLevel> trustLevelPerDmiPlugin() {
+    public IMap<String, TrustLevel> trustLevelPerDmiPlugin() {
         return getOrCreateHazelcastInstance(
                 trustLevelPerDmiPluginCacheConfig).getMap(TRUST_LEVEL_PER_DMI_PLUGIN);
     }
