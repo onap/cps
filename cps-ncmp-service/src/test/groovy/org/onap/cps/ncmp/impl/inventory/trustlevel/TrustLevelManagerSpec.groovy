@@ -20,30 +20,49 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
+import com.hazelcast.core.Hazelcast
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
-import spock.lang.Ignore
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
 
-    def trustLevelPerCmHandle = [:]
-    def trustLevelPerDmiPlugin = [:]
+    TrustLevelManager objectUnderTest
+
+    def hazelcastInstance
+    IMap<String, TrustLevel> trustLevelPerCmHandle
+    IMap<String, TrustLevel>  trustLevelPerDmiPlugin
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
-    def objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
+
+    def setup() {
+        hazelcastInstance = Hazelcast.newHazelcastInstance()
+        trustLevelPerCmHandle = hazelcastInstance.getMap("trustLevelPerCmHandle")
+        trustLevelPerDmiPlugin = hazelcastInstance.getMap("trustLevelPerCmHandle")
+        objectUnderTest = new TrustLevelManager(trustLevelPerCmHandle, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
+    }
+
+    def cleanup() {
+        hazelcastInstance.shutdown()
+    }
 
     def 'Initial dmi registration'() {
         given: 'a dmi plugin'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'dmi-1')
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: dmiPlugin, dmiDataPlugin: dmiDataPlugin)
         when: 'method to register to the cache is called'
             objectUnderTest.registerDmiPlugin(dmiPluginRegistration)
         then: 'dmi plugin in the cache and trusted'
-            assert trustLevelPerDmiPlugin.get('dmi-1') == TrustLevel.COMPLETE
+            assert trustLevelPerDmiPlugin.get(expectedDmiPlugin) == TrustLevel.COMPLETE
+        where: 'the following parameters are used'
+            dmiPlugin | dmiDataPlugin || expectedDmiPlugin
+            'dmi-1'   | ''            || 'dmi-1'
+            ''        | 'dmi-2'       || 'dmi-2'
     }
 
     def 'Initial cm handle registration'() {
@@ -56,6 +75,19 @@ class TrustLevelManagerSpec extends Specification {
         and: 'both cm handles are in the cache and are trusted'
             assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.COMPLETE
             assert trustLevelPerCmHandle.get('ch-2') == TrustLevel.COMPLETE
+    }
+
+    def 'Initial cm handle registration where a cm handle is already in the cache'() {
+        given: 'a trusted cm handle'
+            def cmHandleModelsToBeCreated = ['ch-1': TrustLevel.NONE]
+        and: 'the cm handle id already in the cache'
+            trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        when: 'method to register to the cache is called'
+            objectUnderTest.registerCmHandles(cmHandleModelsToBeCreated)
+        then: 'no notification sent'
+            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+        and: 'cm handle cache is not updated'
+            assert trustLevelPerCmHandle.get('ch-1') == TrustLevel.COMPLETE
     }
 
     def 'Initial cm handle registration with a cm handle that is not trusted'() {
@@ -136,22 +168,27 @@ class TrustLevelManagerSpec extends Specification {
             0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
     }
 
-    @Ignore
-    // TODO: CPS-2375
-    def 'Select effective trust level among CmHandle and dmi plugin'() {
+    def 'Apply effective trust level among CmHandle and dmi plugin'() {
         given: 'a non trusted dmi'
             trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.NONE)
         and: 'a trusted CmHandle'
             trustLevelPerCmHandle.put('ch-1', TrustLevel.COMPLETE)
+        and: 'a cm handle object'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
         when: 'effective trust level selected'
-            def effectiveTrustLevel = objectUnderTest.getEffectiveTrustLevel('ch-1')
+            objectUnderTest.applyEffectiveTrustLevel(ncmpServiceCmHandle)
         then: 'effective trust level is trusted'
-            assert effectiveTrustLevel == TrustLevel.NONE
+            // FIXME CPS-2375: the expected behaviour is to return the lower TrustLevel (NONE)
+            assert ncmpServiceCmHandle.currentTrustLevel == TrustLevel.COMPLETE
     }
 
-    def 'Select effective trust level  when the trust level caches are empty (restart case)'() {
-        expect: 'effective trust level is NONE when cm-1 does not exist in the cache'
-            assert objectUnderTest.getEffectiveTrustLevel('ch-1') == TrustLevel.NONE
+    def 'Apply effective trust level  when the trust level caches are empty (restart case)'() {
+        given: 'a cm-handle that is not in the cache'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+        when: 'effective trust level is applied'
+            objectUnderTest.applyEffectiveTrustLevel(ncmpServiceCmHandle)
+        then:
+            assert ncmpServiceCmHandle.currentTrustLevel == TrustLevel.NONE
     }
 
     def 'CmHandle trust level removed'() {

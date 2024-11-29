@@ -168,7 +168,7 @@ public class NetworkCmProxyInventoryFacade {
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles =
                 parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
-        ncmpServiceCmHandles.forEach(this::applyCurrentTrustLevel);
+        trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
         return ncmpServiceCmHandles;
     }
 
@@ -209,7 +209,7 @@ public class NetworkCmProxyInventoryFacade {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
                 inventoryPersistence.getYangModelCmHandle(cmHandleId));
-        applyCurrentTrustLevel(ncmpServiceCmHandle);
+        trustLevelManager.applyEffectiveTrustLevel(ncmpServiceCmHandle);
         return ncmpServiceCmHandle;
     }
 
@@ -234,11 +234,6 @@ public class NetworkCmProxyInventoryFacade {
     public CompositeState getCmHandleCompositeState(final String cmHandleReference) {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
-    }
-
-    private void applyCurrentTrustLevel(final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        ncmpServiceCmHandle.setCurrentTrustLevel(trustLevelManager
-                .getEffectiveTrustLevel(ncmpServiceCmHandle.getCmHandleId()));
     }
 
 }
