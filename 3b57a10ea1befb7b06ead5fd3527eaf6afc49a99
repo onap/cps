@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0930614f_4370962f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-29T13:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d66606c_2dbf1f16",
+      "range": {
+        "startLine": 31,
+        "startChar": 97,
+        "endLine": 31,
+        "endChar": 98
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54709d71_1c50d63a",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-29T13:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14ba88ad_16f17a38",
+      "range": {
+        "startLine": 31,
+        "startChar": 47,
+        "endLine": 31,
+        "endChar": 53
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a891b3c_0cf76c6b",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-29T13:28:37Z",
       "side": 1,
       "message": "November",
+      "range": {
+        "startLine": 66,
+        "startChar": 46,
+        "endLine": 66,
+        "endChar": 54
+      },
+      "revId": "3b57a10ea1befb7b06ead5fd3527eaf6afc49a99",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8365ad7a_6cf94045",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2024-11-29T13:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a891b3c_0cf76c6b",
       "range": {
         "startLine": 66,
         "startChar": 46,
