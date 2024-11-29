@@ -121,10 +121,9 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             def alternateId = 'some-alternate-id'
             def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties,
                  publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
-            mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
+            1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
             1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
-        and: 'a trust level for the cm handle in the cache'
-            mockTrustLevelManager.getEffectiveTrustLevel(*_) >> TrustLevel.COMPLETE
+            1 * mockTrustLevelManager.applyEffectiveTrustLevel(_) >> { args -> args[0].currentTrustLevel = TrustLevel.COMPLETE }
         when: 'getting cm handle details for a given cm handle id from ncmp service'
             def result = objectUnderTest.getNcmpServiceCmHandle(cmHandleRef)
         then: 'the result is a ncmpServiceCmHandle'
@@ -251,7 +250,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
                 >> [new NcmpServiceCmHandle(cmHandleId: 'ch-0'), new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
         and: 'a trust level for cm handles'
-            mockTrustLevelManager.getEffectiveTrustLevel(*_) >> TrustLevel.COMPLETE
+            1 * mockTrustLevelManager.applyEffectiveTrustLevels(_) >> { args -> args[0].forEach{it.currentTrustLevel = TrustLevel.COMPLETE } }
         when: 'execute cm handle search is called'
             def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
         then: 'result consists of the two cm handles returned by the CPS Data Service'

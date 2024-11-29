@@ -20,11 +20,15 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -39,10 +43,10 @@ import org.springframework.stereotype.Service;
 public class TrustLevelManager {
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final IMap<String, TrustLevel> trustLevelPerCmHandle;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     private final InventoryPersistence inventoryPersistence;
     private final CmAvcEventPublisher cmAvcEventPublisher;
@@ -133,18 +137,6 @@ public class TrustLevelManager {
     }
 
     /**
-     * Select effective trust level among device and dmi plugin.
-     *
-     * @param cmHandleId       cm handle id
-     * @return TrustLevel      effective trust level
-     */
-    public TrustLevel getEffectiveTrustLevel(final String cmHandleId) {
-        final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
-        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandle.getOrDefault(cmHandleId, TrustLevel.NONE);
-        return dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
-    }
-
-    /**
      * Remove cm handle trust level from the cache.
      *
      * @param cmHandleIds       cm handle ids to be removed from the cache
@@ -155,6 +147,40 @@ public class TrustLevelManager {
                 log.debug("Removed Cm handle: {} is not in trust level cache", cmHandleId);
             }
         }
+    }
+
+    /**
+     * Apply effective trust levels for a collection of cm handles.
+     * Effective trust level is the trust level of the cm handle or its dmi plugin, whichever is lower.
+     *
+     * @param ncmpServiceCmHandles a collection of cm handles to apply trust levels to
+     */
+    public void applyEffectiveTrustLevels(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
+        final Set<String> cmHandleIds = ncmpServiceCmHandles.stream()
+                .map(NcmpServiceCmHandle::getCmHandleId).collect(Collectors.toUnmodifiableSet());
+        final Map<String, TrustLevel> trustLevelPerCmHandleInBatch = trustLevelPerCmHandle.getAll(cmHandleIds);
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
+            applyEffectiveTrustLevel(ncmpServiceCmHandle, trustLevelPerCmHandleInBatch);
+        }
+    }
+
+    /**
+     * Apply effective trust level to a cm handle.
+     * Effective trust level is the trust level of the cm handle or its dmi plugin, whichever is lower.
+     *
+     * @param ncmpServiceCmHandle cm handle to apply trust level to
+     */
+    public void applyEffectiveTrustLevel(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        applyEffectiveTrustLevel(ncmpServiceCmHandle, trustLevelPerCmHandle);
+    }
+
+    private static void applyEffectiveTrustLevel(final NcmpServiceCmHandle ncmpServiceCmHandle,
+                                                 final Map<String, TrustLevel> trustLevelPerCmHandleId) {
+        final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+        final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
+        final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandleId.getOrDefault(cmHandleId, TrustLevel.NONE);
+        final TrustLevel effectiveTrustLevel = dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
+        ncmpServiceCmHandle.setCurrentTrustLevel(effectiveTrustLevel);
     }
 
     private String getDmiServiceName(final String cmHandleId) {
