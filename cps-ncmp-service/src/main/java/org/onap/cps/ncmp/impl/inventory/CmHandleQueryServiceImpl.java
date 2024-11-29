@@ -62,7 +62,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandle;
+    private final Map<String, TrustLevel> trustLevelPerCmHandleId;
 
     private final CpsValidator cpsValidator;
 
@@ -164,7 +164,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
                 getCmHandleReferencesMapByDmiPluginIdentifier(dmiPluginIdentifier);
             for (final Map.Entry<String, String> candidateCmHandleReference : candidateCmHandleReferences.entrySet()) {
                 final TrustLevel candidateCmHandleTrustLevel =
-                    trustLevelPerCmHandle.get(candidateCmHandleReference.getKey());
+                    trustLevelPerCmHandleId.get(candidateCmHandleReference.getKey());
                 final TrustLevel effectiveTrustlevel =
                     candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
                 if (targetTrustLevel.equals(effectiveTrustlevel)) {
