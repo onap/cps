@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.onap.cps</groupId>
     <artifactId>spotbugs</artifactId>
-    <version>3.5.5-SNAPSHOT</version>
+    <version>3.5.6-SNAPSHOT</version>
 
     <properties>
         <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
