@@ -50,6 +50,23 @@
       "message": "fine by me. as per the explanation given.",
       "revId": "6067e18b93a7bde19547406769498fcd64407ad8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf80a5d_b439af53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-11-29T09:50:06Z",
+      "side": 1,
+      "message": "remerge",
+      "revId": "6067e18b93a7bde19547406769498fcd64407ad8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
