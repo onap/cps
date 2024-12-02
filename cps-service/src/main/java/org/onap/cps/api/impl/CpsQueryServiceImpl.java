@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2022 Nordix Foundation
+ *  Copyright (C) 2021-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ package org.onap.cps.api.impl;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.impl.utils.CpsValidator;
@@ -43,15 +44,23 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Timed(value = "cps.data.service.datanode.query",
             description = "Time taken to query data nodes")
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption) {
+                                               final String cpsPath,
+                                               final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
     }
 
     @Override
-    public Collection<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName,
-        final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
-        final PaginationOption paginationOption) {
+    public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
+                                    final Class<T> targetClass) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
+        throw new UnsupportedOperationException("Query by attribute-axis not implemented yet!");
+    }
+
+    @Override
+    public Collection<DataNode> queryDataNodesAcrossAnchors(final String dataspaceName, final String cpsPath,
+                                                            final FetchDescendantsOption fetchDescendantsOption,
+                                                            final PaginationOption paginationOption) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsValidator.validatePaginationOption(paginationOption);
         return cpsDataPersistenceService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
