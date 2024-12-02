@@ -168,16 +168,17 @@ class DataRestControllerSpec extends Specification {
         given: 'an endpoint to create a node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
             def parentNodeXpath = '/'
+        and: 'dryRunEnabled flag is set to true'
             def dryRunEnabled = 'true'
         when: 'post is invoked with json data and dry-run flag enabled'
             def response =
-                    mvc.perform(
-                            post(endpoint)
-                                    .contentType(MediaType.APPLICATION_JSON)
-                                    .param('xpath', parentNodeXpath)
-                                    .param('dry-run', dryRunEnabled)
-                                    .content(requestBodyJson)
-                    ).andReturn().response
+                mvc.perform(
+                    post(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('xpath', parentNodeXpath)
+                        .param('dry-run', dryRunEnabled)
+                        .content(requestBodyJson)
+                ).andReturn().response
         then: 'a 200 OK response is returned'
             response.status == HttpStatus.OK.value()
         then: 'the service was called with correct parameters'
@@ -261,6 +262,26 @@ class DataRestControllerSpec extends Specification {
             'Content type XML with observed-timestamp'          | '2021-03-03T23:59:59.999-0400' | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
             'Content type XML without observed-timestamp'       | null                           | MediaType.APPLICATION_XML  | requestBodyXml  || 1                | HttpStatus.CREATED     | expectedXmlData  | ContentType.XML
             'Content type XML with invalid observed-timestamp'  | 'invalid'                      | MediaType.APPLICATION_XML  | requestBodyXml  || 0                | HttpStatus.BAD_REQUEST | expectedXmlData  | ContentType.XML
+    }
+
+    def 'Validate data using Save list elements API'() {
+        given: 'endpoint to save list elements'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes"
+        and: 'dryRunEnabled flag is set to true'
+            def dryRunEnabled = 'true'
+        when: 'post request is performed'
+            def response =
+                mvc.perform(
+                    post(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('xpath', '/')
+                        .content(requestBodyJson)
+                        .param('dry-run', dryRunEnabled)
+                ).andReturn().response
+        then: 'a 200 OK response is returned'
+            response.status == HttpStatus.OK.value()
+        then: 'the service was called with correct parameters'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
     }
 
     def 'Get data node with leaves'() {
@@ -515,6 +536,26 @@ class DataRestControllerSpec extends Specification {
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
     }
 
+    def 'Validate data using Update a node API'() {
+        given: 'endpoint to update a node leaves'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
+        and: 'dryRunEnabled flag is set to true'
+            def dryRunEnabled = 'true'
+        when: 'patch request is performed'
+            def response =
+                mvc.perform(
+                    patch(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBodyJson)
+                        .param('xpath', '/')
+                        .param('dry-run', dryRunEnabled)
+                ).andReturn().response
+        then: 'a 200 OK response is returned'
+            response.status == HttpStatus.OK.value()
+        then: 'the service was called with correct parameters'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
+    }
+
     def 'Replace data node tree: #scenario.'() {
         given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
@@ -538,6 +579,26 @@ class DataRestControllerSpec extends Specification {
             'XML content: root node by default'  | ''            | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
             'XML content: root node by choice'   | '/'           | MediaType.APPLICATION_XML  || '/'                   | requestBodyXml  | expectedXmlData  | ContentType.XML
             'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData  | ContentType.XML
+    }
+
+    def 'Validate data using Replace data node API'() {
+        given: 'endpoint to replace node'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
+        and: 'dryRunEnabled flag is set to true'
+            def dryRunEnabled = 'true'
+        when: 'put request is performed'
+            def response =
+                mvc.perform(
+                    put(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBodyJson)
+                        .param('xpath', '/')
+                        .param('dry-run', dryRunEnabled)
+                ).andReturn().response
+        then: 'a 200 OK response is returned'
+            response.status == HttpStatus.OK.value()
+        then: 'the service was called with correct parameters'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
     }
 
     def 'Update data node and descendants with observedTimestamp.'() {
@@ -603,6 +664,26 @@ class DataRestControllerSpec extends Specification {
             'with observed-timestamp'         | '2021-03-03T23:59:59.999-0400' || 1                | HttpStatus.OK
             'without observed-timestamp'      | null                           || 1                | HttpStatus.OK
             'with invalid observed-timestamp' | 'invalid'                      || 0                | HttpStatus.BAD_REQUEST
+    }
+
+    def 'Validate data using Replace list content API'() {
+        given: 'endpoint to replace list-nodes'
+            def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/list-nodes"
+        and: 'dryRunEnabled flag is set to true'
+            def dryRunEnabled = 'true'
+        when: 'put request is performed'
+            def response =
+                mvc.perform(
+                    put(endpoint)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param('xpath', '/')
+                        .content(requestBodyJson)
+                        .param('dry-run', dryRunEnabled)
+                ).andReturn().response
+        then: 'a 200 OK response is returned'
+            response.status == HttpStatus.OK.value()
+        then: 'the service was called with correct parameters'
+            1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
     }
 
     def 'Delete list element #scenario.'() {
