@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0323fcc4_76eff4d9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-02T09:20:45Z",
+      "side": 1,
+      "message": "probably should be trustLevelPerCmHandleId for correctness and then the clashing local variable below should get a better name...",
+      "range": {
+        "startLine": 46,
+        "startChar": 43,
+        "endLine": 46,
+        "endChar": 64
+      },
+      "revId": "7594d087b53ff16c30dfa7698c76569d1afc7885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc06279_c34ebda9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-02T09:20:45Z",
+      "side": 1,
+      "message": "NB: it all looks very good but I am a bit confused about the use of the verb \u0027apply\u0027 what exactly is the trustlevel being applied to?!",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 21
+      },
+      "revId": "7594d087b53ff16c30dfa7698c76569d1afc7885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40dd71d_23d2d06b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-02T09:20:45Z",
+      "side": 1,
+      "message": "I am also a bit confused about the different names being used for this map. I get a sense of what you are trying to but current names dont help me understand it...",
+      "range": {
+        "startLine": 178,
+        "startChar": 79,
+        "endLine": 178,
+        "endChar": 102
+      },
+      "revId": "7594d087b53ff16c30dfa7698c76569d1afc7885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af97483_d7060d4e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-02T09:20:45Z",
+      "side": 1,
+      "message": "for consistency cmHandleId",
+      "range": {
+        "startLine": 46,
+        "startChar": 21,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "7594d087b53ff16c30dfa7698c76569d1afc7885",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
