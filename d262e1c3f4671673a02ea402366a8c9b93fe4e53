@@ -22,6 +22,30 @@
       },
       "revId": "d262e1c3f4671673a02ea402366a8c9b93fe4e53",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a4c0664_ac7add2c",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-02T20:23:31Z",
+      "side": 1,
+      "message": "That was Toine\u0027s suggestion 😄 I\u0027m not sure what to call it. To complicate things:\n1. XPath standard uses the term \u0027attribute\u0027\n2. Yang uses the term \u0027leaf\u0027\n3. we use xpath to query yang data, so should it be called \u0027attribute\u0027 or \u0027leaf\u0027?\n4. we use both terms in our code base.\n\nWould it be better to call it attributeAxisLeafName, to be consistent with other \u0027LeafName\u0027 variables in this class?",
+      "parentUuid": "4abaf8ca_c05e92da",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "d262e1c3f4671673a02ea402366a8c9b93fe4e53",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
