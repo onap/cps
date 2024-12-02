@@ -6,7 +6,6 @@ import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 class WriteRequestExaminerSpec extends Specification {
@@ -15,10 +14,10 @@ class WriteRequestExaminerSpec extends Specification {
     def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher)
 
     def setup() {
-        def ch1 = new DataNode(leaves: [id: 'ch1', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p1'])
-        def ch2 = new DataNode(leaves: [id: 'ch2', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p1'])
-        def ch3 = new DataNode(leaves: [id: 'ch3', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p2'])
-        def ch4 = new DataNode(leaves: [id: 'ch4', 'dmi-service-name': 'dmiB', 'data-producer-identifier': 'p1'])
+        def ch1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
+        def ch2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
+        def ch3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p2', dmiProperties: [])
+        def ch4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', dataProducerIdentifier: 'p1', dmiProperties: [])
         mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn1', '/') >> ch1
         mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn2', '/') >> ch2
         mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn3', '/') >> ch3
