@@ -1,3 +1,22 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2024 Nordix Foundation
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
 
 package org.onap.cps.ncmp.impl.datajobs
 
@@ -6,7 +25,6 @@ import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 class WriteRequestExaminerSpec extends Specification {
@@ -15,14 +33,14 @@ class WriteRequestExaminerSpec extends Specification {
     def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher)
 
     def setup() {
-        def ch1 = new DataNode(leaves: [id: 'ch1', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p1'])
-        def ch2 = new DataNode(leaves: [id: 'ch2', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p1'])
-        def ch3 = new DataNode(leaves: [id: 'ch3', 'dmi-service-name': 'dmiA', 'data-producer-identifier': 'p2'])
-        def ch4 = new DataNode(leaves: [id: 'ch4', 'dmi-service-name': 'dmiB', 'data-producer-identifier': 'p1'])
-        mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn1', '/') >> ch1
-        mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn2', '/') >> ch2
-        mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn3', '/') >> ch3
-        mockAlternateIdMatcher.getCmHandleDataNodeByLongestMatchingAlternateId('fdn4', '/') >> ch4
+        def ch1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
+        def ch2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
+        def ch3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p2', dmiProperties: [])
+        def ch4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', dataProducerIdentifier: 'p1', dmiProperties: [])
+        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn1', '/') >> ch1
+        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn2', '/') >> ch2
+        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn3', '/') >> ch3
+        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn4', '/') >> ch4
     }
 
     def 'Create a map of dmi write requests per producer key with #scenario.'() {

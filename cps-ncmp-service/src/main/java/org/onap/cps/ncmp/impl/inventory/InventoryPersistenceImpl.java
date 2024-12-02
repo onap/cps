@@ -189,24 +189,25 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public DataNode getCmHandleDataNodeByAlternateId(final String alternateId) {
+    public YangModelCmHandle getYangModelCmHandleByAlternateId(final String alternateId) {
         final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
         final Collection<DataNode> dataNodes = cmHandleQueryService
             .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
         if (dataNodes.isEmpty()) {
             throw new CmHandleNotFoundException(alternateId);
         }
-        return dataNodes.iterator().next();
+        return YangDataConverter.toYangModelCmHandle(dataNodes.iterator().next());
     }
 
     @Override
-    public Collection<DataNode> getCmHandleDataNodesByAlternateIds(final Collection<String> alternateIds) {
+    public Collection<YangModelCmHandle> getYangModelCmHandleByAlternateIds(final Collection<String> alternateIds) {
         if (alternateIds.isEmpty()) {
             return Collections.emptyList();
         }
         final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
-        return cmHandleQueryService.queryNcmpRegistryByCpsPath(cpsPathForCmHandlesByAlternateIds,
-            INCLUDE_ALL_DESCENDANTS);
+        final Collection<DataNode> dataNodes = cmHandleQueryService.queryNcmpRegistryByCpsPath(
+            cpsPathForCmHandlesByAlternateIds, INCLUDE_ALL_DESCENDANTS);
+        return YangDataConverter.toYangModelCmHandles(dataNodes);
     }
 
     @Override
@@ -229,7 +230,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Boolean isExistingCmHandleId(final String cmHandleId) {
+    public boolean isExistingCmHandleId(final String cmHandleId) {
         try {
             return  !getCmHandleDataNodeByCmHandleId(cmHandleId).isEmpty();
         } catch (final DataNodeNotFoundException exception) {

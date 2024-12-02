@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -96,8 +97,8 @@ public class AlternateIdChecker {
                 .map(NcmpServiceCmHandle::getAlternateId)
                 .filter(StringUtils::isNotBlank)
                 .collect(Collectors.toSet());
-        return inventoryPersistence.getCmHandleDataNodesByAlternateIds(alternateIdsToCheck).stream()
-                .map(dataNode -> (String) dataNode.getLeaves().get("alternate-id"))
+        return inventoryPersistence.getYangModelCmHandleByAlternateIds(alternateIdsToCheck).stream()
+                .map(YangModelCmHandle::getAlternateId)
                 .collect(Collectors.toSet());
     }
 
