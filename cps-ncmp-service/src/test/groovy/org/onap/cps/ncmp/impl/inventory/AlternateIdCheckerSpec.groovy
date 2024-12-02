@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.impl.inventory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.spi.exceptions.DataNodeNotFoundException
-import org.onap.cps.spi.model.DataNode
 import spock.lang.Specification
 
 class AlternateIdCheckerSpec extends Specification {
@@ -37,8 +36,8 @@ class AlternateIdCheckerSpec extends Specification {
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: alt1),
                          new NcmpServiceCmHandle(cmHandleId: 'ch-2', alternateId: alt2)]
         and: 'the database already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
-            mockInventoryPersistenceService.getCmHandleDataNodesByAlternateIds(_ as Collection<String>) >>
-                { args -> args[0].stream().filter(altId -> altAlreadyInDb.contains(altId)).map(altId -> new DataNode(leaves: ["alternate-id": altId])).toList() }
+            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_ as Collection<String>) >>
+                { args -> args[0].stream().filter(altId -> altAlreadyInDb.contains(altId)).map(altId -> new YangModelCmHandle(alternateId: altId)).toList() }
         when: 'the batch of new cm handles is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.CREATE)
         then: 'the result contains ids of the rejected cm handles'
@@ -57,8 +56,8 @@ class AlternateIdCheckerSpec extends Specification {
         given: 'a batch of 1 existing cm handle to update alternate id to #proposedAlt'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: proposedAlt)]
         and: 'the database already contains a cm handle with alternate id: #altAlreadyInDb'
-            mockInventoryPersistenceService.getCmHandleDataNodesByAlternateIds(_ as Collection<String>) >>
-                { args -> args[0].stream().filter(altId -> altAlreadyInDb == altId).map(altId -> new DataNode(leaves: ["alternate-id": altId])).toList() }
+            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_ as Collection<String>) >>
+                { args -> args[0].stream().filter(altId -> altAlreadyInDb == altId).map(altId -> new YangModelCmHandle(alternateId: altId)).toList() }
             mockInventoryPersistenceService.getYangModelCmHandle(_) >> new YangModelCmHandle(alternateId: altAlreadyInDb)
         when: 'the batch of cm handle updates is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.UPDATE)
@@ -75,7 +74,7 @@ class AlternateIdCheckerSpec extends Specification {
         given: 'a batch of 1 non-existing cm handle to update alternate id'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'non-existing', alternateId: 'altId')]
         and: 'the database does not contain any cm handles'
-            mockInventoryPersistenceService.getCmHandleDataNodesByAlternateIds(_) >> []
+            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_) >> []
             mockInventoryPersistenceService.getYangModelCmHandle(_) >> { throwDataNodeNotFoundException() }
         when: 'the batch of cm handle updates is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.UPDATE)

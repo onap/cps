@@ -41,7 +41,7 @@ class CmHandleQueryByAlternateIdPerfTest extends NcmpPerfTestBase {
         when: 'an alternate id as cps path query'
             resourceMeter.start()
             def cpsPath = "/a/b/c/d-5/e/f/g/h/i"
-            def dataNodes = objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(cpsPath, '/')
+            def dataNodes = objectUnderTest.getYangModelCmHandleByLongestMatchingAlternateId(cpsPath, '/')
         and: 'the ids of the result are extracted and converted to xpath'
             def cpsXpaths = dataNodes.stream().map(dataNode -> "/dmi-registry/cm-handles[@id='${dataNode.leaves.id}']".toString() ).collect(Collectors.toSet())
         and: 'a single get is executed to get all the parent objects and their descendants'

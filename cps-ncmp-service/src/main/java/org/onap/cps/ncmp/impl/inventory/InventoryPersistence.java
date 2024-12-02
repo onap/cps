@@ -130,20 +130,20 @@ public interface InventoryPersistence extends NcmpPersistence {
     Collection<DataNode> getCmHandleDataNodeByCmHandleId(String cmHandleId);
 
     /**
-     * Get data node with the given alternate id.
+     * Get yang model cm handle with the given alternate id.
      *
      * @param alternateId alternate ID
-     * @return data node
+     * @return yang model cm handle
      */
-    DataNode getCmHandleDataNodeByAlternateId(String alternateId);
+    YangModelCmHandle getYangModelCmHandleByAlternateId(String alternateId);
 
     /**
-     * Get data nodes for the given batch of alternate ids.
+     * Get yang model cm handles for the given batch of alternate ids.
      *
      * @param alternateIds alternate IDs
-     * @return data nodes
+     * @return yang model cm handles
      */
-    Collection<DataNode> getCmHandleDataNodesByAlternateIds(Collection<String> alternateIds);
+    Collection<YangModelCmHandle> getYangModelCmHandleByAlternateIds(Collection<String> alternateIds);
 
     /**
      * Get collection of data nodes of given cm handles.
@@ -168,7 +168,7 @@ public interface InventoryPersistence extends NcmpPersistence {
      * Check database if cm handle id exists if not return false.
      *
      * @param cmHandleId cmHandle Id
-     * @return Boolean
+     * @return boolean
      */
-    Boolean isExistingCmHandleId(String cmHandleId);
+    boolean isExistingCmHandleId(String cmHandleId);
 }

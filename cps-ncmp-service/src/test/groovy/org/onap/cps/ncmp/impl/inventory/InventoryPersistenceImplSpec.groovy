@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.spi.CascadeDeleteAllowed
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.model.DataNode
@@ -66,6 +67,8 @@ class InventoryPersistenceImplSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
 
     def mockCmHandleQueries = Mock(CmHandleQueryService)
+
+    def mockYangDataConverter = Mock(YangDataConverter)
 
     def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
             mockCpsValidator, mockCpsAnchorService, mockCmHandleQueries)
@@ -312,29 +315,31 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
-    def 'Get cm handle data node by alternate id'() {
+    def 'Get yang model cm handle by alternate id'() {
         given: 'expected xPath to get cmHandle data node'
             def expectedXPath = '/dmi-registry/cm-handles[@alternate-id=\'alternate id\']'
+            def expectedDataNode = new DataNode(xpath: expectedXPath, leaves: [id: 'id', alternateId: 'alternate id'])
         and: 'query service is invoked with expected xpath'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS) >> [new DataNode()]
-        expect: 'getting the cm handle data node'
-            assert objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id') == new DataNode()
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS) >> [expectedDataNode]
+            mockYangDataConverter.toYangModelCmHandle(expectedDataNode) >> new YangModelCmHandle(id: 'id')
+        expect: 'getting the yang model cm handle'
+            assert objectUnderTest.getYangModelCmHandleByAlternateId('alternate id') == new YangModelCmHandle(id: 'id')
     }
 
-    def 'Attempt to get non existing cm handle data node by alternate id'() {
+    def 'Attempt to get non existing yang model cm handle by alternate id'() {
         given: 'query service is invoked and returns empty collection of data nodes'
             mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
-        when: 'getting the cm handle data node'
-            objectUnderTest.getCmHandleDataNodeByAlternateId('alternate id')
+        when: 'getting the yang model cm handle'
+            objectUnderTest.getYangModelCmHandleByAlternateId('alternate id')
         then: 'no data found exception thrown'
             def thrownException = thrown(CmHandleNotFoundException)
             assert thrownException.getMessage().contains('Cm handle not found')
             assert thrownException.getDetails().contains('No cm handles found with reference alternate id')
     }
 
-    def 'Get multiple cm handle data nodes by alternate ids, passing empty collection'() {
-        when: 'getting the cm handle data node for no alternate ids'
-            objectUnderTest.getCmHandleDataNodesByAlternateIds([])
+    def 'Get multiple yang model cm handles by alternate ids, passing empty collection'() {
+        when: 'getting the  yang model cm handle for no alternate ids'
+            objectUnderTest.getYangModelCmHandleByAlternateIds([])
         then: 'query service is not invoked'
             0 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, _)
     }
