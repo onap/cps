@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.utils
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
-import org.onap.cps.spi.model.DataNode
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
 
 class AlternateIdMatcherSpec extends Specification {
@@ -33,14 +33,14 @@ class AlternateIdMatcherSpec extends Specification {
 
     def setup() {
         given: 'cm handle in the registry with alternate id /a/b'
-            mockInventoryPersistence.getCmHandleDataNodeByAlternateId('/a/b') >> new DataNode()
+            mockInventoryPersistence.getYangModelCmHandleByAlternateId('/a/b') >> new YangModelCmHandle()
         and: 'no other cm handle'
-            mockInventoryPersistence.getCmHandleDataNodeByAlternateId(_) >> { throw new CmHandleNotFoundException('') }
+            mockInventoryPersistence.getYangModelCmHandleByAlternateId(_) >> { throw new CmHandleNotFoundException('') }
     }
 
     def 'Finding longest alternate id matches.'() {
         expect: 'querying for alternate id a matching result found'
-            assert objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(targetAlternateId, '/') != null
+            assert objectUnderTest.getYangModelCmHandleByLongestMatchingAlternateId(targetAlternateId, '/') != null
         where: 'the following parameters are used'
             scenario                                | targetAlternateId
             'exact match'                           | '/a/b'
@@ -55,7 +55,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Attempt to find longest alternate id match without any matches.'() {
         when: 'attempt to find alternateId'
-            objectUnderTest.getCmHandleDataNodeByLongestMatchingAlternateId(targetAlternateId, '/')
+            objectUnderTest.getYangModelCmHandleByLongestMatchingAlternateId(targetAlternateId, '/')
         then: 'no alternate id match found exception thrown'
             def thrown = thrown(NoAlternateIdMatchFoundException)
         and: 'the exception has the relevant details from the error response'
@@ -73,12 +73,12 @@ class AlternateIdMatcherSpec extends Specification {
             def result = objectUnderTest.getCmHandleId(cmHandleReference)
         then: 'the inventory persistence service returns a cm handle (or not)'
             mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> existingCmHandleIdResponse
-            mockInventoryPersistence.getCmHandleDataNodeByAlternateId(cmHandleReference) >> alternateIdGetResponse
+            mockInventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference) >> alternateIdGetResponse
         and: 'correct result is returned'
             assert result == cmHandleReference
-        where:
+        where: 'the following parameters are used'
             cmHandleReference | existingCmHandleIdResponse | alternateIdGetResponse
             'ch-1'            |  true                      |  ''
-            'alt-1'           |  false                     |  new DataNode(leaves: [id:'alt-1'])
+            'alt-1'           |  false                     |  new YangModelCmHandle(id: 'alt-1')
     }
 }

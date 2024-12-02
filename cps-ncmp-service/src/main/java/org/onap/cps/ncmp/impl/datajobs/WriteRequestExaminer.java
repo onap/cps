@@ -34,8 +34,6 @@ import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
-import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.spi.model.DataNode;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -67,14 +65,12 @@ public class WriteRequestExaminer {
                                        final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey,
                                        final WriteOperation writeOperation) {
         log.debug("data job id for write operation is: {}", dataJobId);
-        final DataNode dataNode = alternateIdMatcher
-                .getCmHandleDataNodeByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
+        final YangModelCmHandle getYangModelCmHandle = alternateIdMatcher
+                .getYangModelCmHandleByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
 
-        final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNode);
+        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, getYangModelCmHandle);
 
-        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, yangModelCmHandle);
-
-        final ProducerKey producerKey = createProducerKey(yangModelCmHandle);
+        final ProducerKey producerKey = createProducerKey(getYangModelCmHandle);
         final List<DmiWriteOperation> dmiWriteOperations;
         if (dmiWriteOperationsPerProducerKey.containsKey(producerKey)) {
             dmiWriteOperations = dmiWriteOperationsPerProducerKey.get(producerKey);
