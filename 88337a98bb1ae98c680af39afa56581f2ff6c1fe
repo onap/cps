@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "34b43714_0224764a",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathQuery.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-02T14:45:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de5d770b_48457e9d",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "88337a98bb1ae98c680af39afa56581f2ff6c1fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "538a6122_35ecee76",
         "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
         "patchSetId": 1
