@@ -326,7 +326,7 @@ components:
     dryRunInQuery:
       name: dry-run
       in: query
-      description: Boolean flag to validate data, without persisting it. Default value is set to false.
+      description: Boolean flag to validate data, without persisting it. Default value is false.
       required: false
       schema:
         type: boolean
