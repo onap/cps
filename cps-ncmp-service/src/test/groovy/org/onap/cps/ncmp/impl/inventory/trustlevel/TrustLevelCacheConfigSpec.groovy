@@ -22,8 +22,10 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel
 
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
@@ -31,10 +33,12 @@ import spock.lang.Specification
 class TrustLevelCacheConfigSpec extends Specification {
 
     @Autowired
-    private Map<String, TrustLevel> trustLevelPerDmiPlugin
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
+    private IMap<String, TrustLevel> trustLevelPerDmiPlugin
 
     @Autowired
-    private Map<String, TrustLevel> trustLevelPerCmHandle
+    @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
+    private IMap<String, TrustLevel> trustLevelPerCmHandleId
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
@@ -51,7 +55,7 @@ class TrustLevelCacheConfigSpec extends Specification {
 
     def 'Hazelcast cache for trust level per cm handle'() {
         expect: 'system is able to create an instance of the trust level per cm handle cache'
-            assert null != trustLevelPerCmHandle
+            assert null != trustLevelPerCmHandleId
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
         and: 'Hazelcast cache instance for trust level is present'

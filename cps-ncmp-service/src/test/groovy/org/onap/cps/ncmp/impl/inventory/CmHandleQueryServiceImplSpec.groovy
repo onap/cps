@@ -43,11 +43,11 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def trustLevelPerDmiPlugin = [:]
 
-    def trustLevelPerCmHandle = [ 'PNFDemo': TrustLevel.COMPLETE, 'PNFDemo2': TrustLevel.NONE, 'PNFDemo4': TrustLevel.NONE ]
+    def trustLevelPerCmHandleId = [ 'PNFDemo': TrustLevel.COMPLETE, 'PNFDemo2': TrustLevel.NONE, 'PNFDemo4': TrustLevel.NONE ]
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandle, mockCpsValidator)
+    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
 
     @Shared
     def static sampleDataNodes = [new DataNode()]
