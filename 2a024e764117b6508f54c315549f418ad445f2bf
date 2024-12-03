@@ -73,6 +73,24 @@
       "message": "you shoudl have MOVED this spec as well\nplus a few others. always check for the related groovy specs to move when you move source code. Intellij does NOT move them automatically :-(",
       "revId": "2a024e764117b6508f54c315549f418ad445f2bf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d92fd26_7b68611d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/spi/exceptions/CpsExceptionsSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-12-03T11:46:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff14ba41_451f0c49",
+      "revId": "2a024e764117b6508f54c315549f418ad445f2bf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
