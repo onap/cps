@@ -24,7 +24,7 @@
 package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -32,12 +32,12 @@ import org.onap.cps.ncmp.api.inventory.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
@@ -50,7 +50,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
-    def objectUnderTest = new NetworkCmProxyInventoryFacade(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
+    def objectUnderTest = new NetworkCmProxyInventoryFacadeImpl(mockCmHandleRegistrationService, mockCmHandleQueryService, mockParameterizedCmHandleQueryService, mockInventoryPersistence, spiedJsonObjectMapper, mockTrustLevelManager, mockAlternateIdMatcher)
 
     def 'Update DMI Registration'() {
         given: 'an (updated) dmi plugin registration'

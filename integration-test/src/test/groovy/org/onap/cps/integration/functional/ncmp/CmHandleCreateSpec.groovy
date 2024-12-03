@@ -25,7 +25,7 @@ import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
@@ -38,7 +38,7 @@ import java.time.Duration
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyInventoryFacade objectUnderTest
+    NetworkCmProxyInventoryFacadeImpl objectUnderTest
     def uniqueId = 'ch-unique-id-for-create-test'
 
     static KafkaConsumer kafkaConsumer

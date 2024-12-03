@@ -30,7 +30,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
@@ -108,7 +108,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     NetworkCmProxyFacade networkCmProxyFacade
 
     @Autowired
-    NetworkCmProxyInventoryFacade NetworkCmProxyInventoryFacade
+    NetworkCmProxyInventoryFacadeImpl NetworkCmProxyInventoryFacade
 
     @Autowired
     NetworkCmProxyQueryService networkCmProxyQueryService

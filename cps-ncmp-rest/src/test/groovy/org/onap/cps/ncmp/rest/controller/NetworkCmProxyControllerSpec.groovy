@@ -32,7 +32,7 @@ import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
@@ -91,7 +91,7 @@ class NetworkCmProxyControllerSpec extends Specification {
     NetworkCmProxyFacade mockNetworkCmProxyFacade = Mock()
 
     @SpringBean
-    NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
+    NetworkCmProxyInventoryFacadeImpl mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
     AlternateIdMatcher mockAlternateIdMatcher = Mock()

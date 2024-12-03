@@ -1,10 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
- *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2023 TechMahindra Ltd.
+ *  Copyright (C) 2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,47 +20,18 @@
 
 package org.onap.cps.ncmp.api.inventory;
 
-import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCmHandleQueryParameters;
-
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
-import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
-import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
-import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
-import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
-import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.utils.JsonObjectMapper;
-import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class NetworkCmProxyInventoryFacade {
-
-    private final CmHandleRegistrationService cmHandleRegistrationService;
-    private final CmHandleQueryService cmHandleQueryService;
-    private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
-    private final InventoryPersistence inventoryPersistence;
-    private final JsonObjectMapper jsonObjectMapper;
-    private final TrustLevelManager trustLevelManager;
-    private final AlternateIdMatcher alternateIdMatcher;
-
-
+public interface NetworkCmProxyInventoryFacade {
 
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
@@ -72,9 +39,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param dmiPluginRegistration Dmi Plugin Registration details
      * @return dmiPluginRegistrationResponse
      */
-    public DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration) {
-        return cmHandleRegistrationService.updateDmiRegistration(dmiPluginRegistration);
-    }
+    DmiPluginRegistrationResponse updateDmiRegistration(final DmiPluginRegistration dmiPluginRegistration);
 
     /**
      * Get all cm handle references by DMI plugin identifier.
@@ -84,10 +49,8 @@ public class NetworkCmProxyInventoryFacade {
      *                            cm handle id (false) or alternate id (true)
      * @return collection of cm handle references
      */
-    public Collection<String> getAllCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier,
-                                                                     final boolean outputAlternateId) {
-        return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier, outputAlternateId);
-    }
+    Collection<String> getAllCmHandleReferencesByDmiPluginIdentifier(final String dmiPluginIdentifier,
+                                                                     final boolean outputAlternateId);
 
     /**
      * Get all cm handle IDs by various properties.
@@ -97,14 +60,9 @@ public class NetworkCmProxyInventoryFacade {
      *                                       cm handle id (false) or alternate id (true)
      * @return                               collection of cm handle references
      */
-    public Collection<String> executeParameterizedCmHandleIdSearch(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
-
-        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
-            outputAlternateId);
-    }
-
+    Collection<String> executeParameterizedCmHandleIdSearch(final CmHandleQueryServiceParameters
+                                                                  cmHandleQueryServiceParameters,
+                                                            final boolean outputAlternateId);
 
     /**
      * Retrieve module references for the given cm handle reference.
@@ -112,14 +70,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate id identifier
      * @return a collection of modules names and revisions
      */
-    public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
-        try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-            return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
-    }
+    Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference);
 
     /**
      * Retrieve module definitions for the given cm handle.
@@ -127,14 +78,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate id identifier
      * @return a collection of module definition (moduleName, revision and yang resource content)
      */
-    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
-        try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-            return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
-    }
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference);
 
     /**
      * Get module definitions for the given parameters.
@@ -144,16 +88,9 @@ public class NetworkCmProxyInventoryFacade {
      * @param moduleRevision     the revision of the module
      * @return list of module definitions (module name, revision, yang resource content)
      */
-    public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
-                                                                                final String moduleName,
-                                                                                final String moduleRevision) {
-        try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-            return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
-    }
+    Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
+                                                                         final String moduleName,
+                                                                         final String moduleRevision);
 
     /**
      * Retrieve cm handles with details for the given query parameters.
@@ -161,16 +98,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleQueryApiParameters cm handle query parameters
      * @return cm handles with details
      */
-    public Collection<NcmpServiceCmHandle> executeCmHandleSearch(
-        final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
-            cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles =
-                parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
-        trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
-        return ncmpServiceCmHandles;
-    }
+    Collection<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Retrieve cm handle ids for the given query parameters.
@@ -179,14 +107,8 @@ public class NetworkCmProxyInventoryFacade {
      * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
-    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
-                                                      final boolean outputAlternateId) {
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
-            cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
-            outputAlternateId);
-    }
+    Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
+                                               final boolean outputAlternateId);
 
     /**
      * Set the data sync enabled flag, along with the data sync state
@@ -195,9 +117,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleId                 cm handle id
      * @param dataSyncEnabledTargetValue data sync enabled flag
      */
-    public void setDataSyncEnabled(final String cmHandleId, final Boolean dataSyncEnabledTargetValue) {
-        cmHandleRegistrationService.setDataSyncEnabled(cmHandleId, dataSyncEnabledTargetValue);
-    }
+    void setDataSyncEnabled(final String cmHandleId, final Boolean dataSyncEnabledTargetValue);
 
     /**
      * Retrieve cm handle details for a given cm handle reference.
@@ -205,13 +125,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle details
      */
-    public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
-                inventoryPersistence.getYangModelCmHandle(cmHandleId));
-        trustLevelManager.applyEffectiveTrustLevel(ncmpServiceCmHandle);
-        return ncmpServiceCmHandle;
-    }
+    NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference);
 
     /**
      * Get cm handle public properties for a given cm handle or alternate id.
@@ -219,11 +133,7 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle public properties
      */
-    public Map<String, String> getCmHandlePublicProperties(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        return YangDataConverter.toPropertiesMap(yangModelCmHandle.getPublicProperties());
-    }
+    Map<String, String> getCmHandlePublicProperties(final String cmHandleReference);
 
     /**
      * Get cm handle composite state for a given cm handle id.
@@ -231,9 +141,5 @@ public class NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle state
      */
-    public CompositeState getCmHandleCompositeState(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-        return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
-    }
-
+    CompositeState getCmHandleCompositeState(final String cmHandleReference);
 }

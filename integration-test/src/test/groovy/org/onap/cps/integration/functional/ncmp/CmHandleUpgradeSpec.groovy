@@ -21,7 +21,7 @@
 package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.UpgradedCmHandles
@@ -31,7 +31,7 @@ import spock.util.concurrent.PollingConditions
 
 class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyInventoryFacade objectUnderTest
+    NetworkCmProxyInventoryFacadeImpl objectUnderTest
 
     def cmHandleId = 'ch-1'
     def cmHandleIdWithExistingModuleSetTag = 'ch-2'

@@ -22,14 +22,14 @@ package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 
 class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
-    NetworkCmProxyInventoryFacade objectUnderTest
+    NetworkCmProxyInventoryFacadeImpl objectUnderTest
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade

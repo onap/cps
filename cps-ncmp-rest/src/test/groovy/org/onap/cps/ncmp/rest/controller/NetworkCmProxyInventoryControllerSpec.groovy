@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
-import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
@@ -55,7 +55,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
     MockMvc mvc
 
     @SpringBean
-    NetworkCmProxyInventoryFacade mockNetworkCmProxyInventoryFacade = Mock()
+    NetworkCmProxyInventoryFacadeImpl mockNetworkCmProxyInventoryFacade = Mock()
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mock()
