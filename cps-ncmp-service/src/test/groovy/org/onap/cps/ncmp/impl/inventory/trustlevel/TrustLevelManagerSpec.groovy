@@ -209,13 +209,16 @@ class TrustLevelManagerSpec extends Specification {
             assert ncmpServiceCmHandle.currentTrustLevel == TrustLevel.NONE
     }
 
-    def 'CmHandle trust level removed'() {
-        given: 'a cm handle'
+    def 'Removing cm Handle ids from trust level cache.'() {
+        given: 'a cm handle id with trustlevel in the cache'
             trustLevelPerCmHandleId.put('ch-1', TrustLevel.COMPLETE)
-        when: 'the remove is handled'
-            objectUnderTest.removeCmHandles(['ch-1'])
-        then: 'cm handle removed from the cache'
-            assert trustLevelPerCmHandleId.get('ch-1') == null
+        when: 'remove existing and non-existing cm handle ids'
+            objectUnderTest.removeCmHandles(['non-existing-id','ch-1'])
+        then: 'both cm handle ids are not included in the cache'
+            assert !trustLevelPerCmHandleId.contains('non-existing-id')
+            assert !trustLevelPerCmHandleId.contains('ch-1')
+        and: 'removing the non-existing id did not cause an exception'
+            noExceptionThrown()
     }
 
 }
