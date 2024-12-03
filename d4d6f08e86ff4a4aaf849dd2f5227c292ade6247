@@ -16,6 +16,23 @@
       "message": "Looks good, just check code coverage on new/modified methods now",
       "revId": "d4d6f08e86ff4a4aaf849dd2f5227c292ade6247",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7661efd6_fb88f005",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-03T08:47:41Z",
+      "side": 1,
+      "message": "code coverage is 100% on new /modified stuff\nI had some doubts about something but it is all covered\nthere is a legacy issue with cover coverage for removeCmHandles (attempt to remove a cm handle that does exist) I might add that when I am bored...",
+      "revId": "d4d6f08e86ff4a4aaf849dd2f5227c292ade6247",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
