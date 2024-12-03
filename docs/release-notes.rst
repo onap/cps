@@ -86,6 +86,10 @@ Features
     - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Minimize affect of module and size from Cm Handle Registration and De-Registration use case.
     - `CPS-2507 <https://lf-onap.atlassian.net/browse/CPS-2507>`_ Upgrade liquibase to 4.30.0 version.
 
+Performance
+-----------
+The OSLO delivery brought major performance enhancements by streamlining module sync algorithm. It also optimized caching technology, improving instance efficiency and connection management.
+
 Version: 3.5.4
 ==============
 

@@ -21,7 +21,7 @@ openapi: 3.0.3
 info:
   title: NCMP Inventory API
   description: NCMP Inventory API
-  version: "3.5.4"
+  version: "3.5.5"
 servers:
   - url: /ncmpInventory
 components:
