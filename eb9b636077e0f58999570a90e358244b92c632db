@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e8b066_df88769d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-03T10:01:03Z",
+      "side": 1,
+      "message": "nb: document its default and how to use (As you talked about)",
+      "range": {
+        "startLine": 181,
+        "startChar": 63,
+        "endLine": 181,
+        "endChar": 67
+      },
+      "revId": "eb9b636077e0f58999570a90e358244b92c632db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
