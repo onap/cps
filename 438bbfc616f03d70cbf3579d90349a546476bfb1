@@ -22,6 +22,46 @@
       },
       "revId": "438bbfc616f03d70cbf3579d90349a546476bfb1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57134873_445139f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-03T16:29:40Z",
+      "side": 1,
+      "message": "just one minor comment.",
+      "revId": "438bbfc616f03d70cbf3579d90349a546476bfb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e731fd57_715f1d95",
+        "filename": "cps-ri/src/main/resources/changelog/db/changes/01-createCPSTables.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-03T16:29:40Z",
+      "side": 1,
+      "message": "NB: \"Create\" just for consistency with others.",
+      "range": {
+        "startLine": 141,
+        "startChar": 15,
+        "endLine": 141,
+        "endChar": 21
+      },
+      "revId": "438bbfc616f03d70cbf3579d90349a546476bfb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
