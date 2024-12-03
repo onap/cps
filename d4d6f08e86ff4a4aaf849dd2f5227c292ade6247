@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f8fe2b6_a61ee094",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-03T08:38:58Z",
+      "side": 1,
+      "message": "Looks good, just check code coverage on new/modified methods now",
+      "revId": "d4d6f08e86ff4a4aaf849dd2f5227c292ade6247",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
