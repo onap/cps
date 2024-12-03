@@ -15,7 +15,7 @@ CPS Release Notes
 ..      * * *   PARIS   * * *
 ..      ====================
 
-Version: 3.5.6
+Version: 3.6.0
 ==============
 
 Release Data
@@ -25,10 +25,10 @@ Release Data
 | **CPS Project**                      |                                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Docker images**                    | onap/cps-and-ncmp:3.5.6                                |
+| **Docker images**                    | onap/cps-and-ncmp:3.6.0                                |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-| **Release designation**              | 3.5.6 Oslo                                             |
+| **Release designation**              | 3.6.0 Paris                                            |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 | **Release date**                     | Not yet released                                       |
@@ -83,8 +83,12 @@ Features
     - `CPS-2436 <https://lf-onap.atlassian.net/browse/CPS-2436>`_ CM Avc Event to publish source key to target key while forwarding.
     - `CPS-2445 <https://lf-onap.atlassian.net/browse/CPS-2445>`_ Expose CPS and NCMP version information using git plugin.
     - `CPS-2451 <https://lf-onap.atlassian.net/browse/CPS-2451>`_ Removing oparent from CPS-NCMP and ONAP DMI Plugin repository.
-    - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Minimize affect of module and size from Cm Handle Registration and De-Registration use case.
+    - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Optimized Cm Handle Registration and De-Registration use case.
     - `CPS-2507 <https://lf-onap.atlassian.net/browse/CPS-2507>`_ Upgrade liquibase to 4.30.0 version.
+
+Performance
+-----------
+The OSLO delivery brought major performance enhancements by streamlining module sync algorithm. It also optimized caching technology, improving instance efficiency and connection management.
 
 Version: 3.5.4
 ==============

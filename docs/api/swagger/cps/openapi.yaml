@@ -9,7 +9,7 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0
   title: ONAP Open API v3 Configuration Persistence Service
-  version: 3.5.4
+  version: 3.6.0
 servers:
 - url: /cps/api
 security:
