@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a0c465_ec314976",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-03T12:40:43Z",
+      "side": 1,
+      "message": "All good just looking for a Jira, see below",
+      "revId": "7a568b56802ad4c34cba175465e4a81491c1e399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3038aa29_cb886b97",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CompositeStateBuilder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-03T12:40:43Z",
+      "side": 1,
+      "message": "Have you got a Jira, can you answer here for sorting out the builders",
+      "revId": "7a568b56802ad4c34cba175465e4a81491c1e399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
