@@ -132,6 +132,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                         dataValidationException.getMessage());
             }
         });
+        if (validCmHandleIds.isEmpty()) {
+            return Collections.emptyList();
+        }
         return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds));
     }
 

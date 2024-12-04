@@ -46,24 +46,20 @@ public class CmSubscriptionComparator {
             final List<DmiCmSubscriptionPredicate> existingDmiCmSubscriptionPredicates) {
         final List<DmiCmSubscriptionPredicate> newDmiCmSubscriptionPredicates =
                 new ArrayList<>();
-
         for (final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate : existingDmiCmSubscriptionPredicates) {
-
             final Set<String> targetCmHandleIds = new HashSet<>();
             final Set<String> xpaths = new HashSet<>();
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
-
             for (final String cmHandleId : dmiCmSubscriptionPredicate.getTargetCmHandleIds()) {
                 for (final String xpath : dmiCmSubscriptionPredicate.getXpaths()) {
                     if (!cmSubscriptionPersistenceService.isOngoingCmSubscription(datastoreType,
                             cmHandleId, xpath)) {
-                        xpaths.add(xpath);
                         targetCmHandleIds.add(cmHandleId);
+                        xpaths.add(xpath);
 
                     }
                 }
             }
-
             populateValidDmiSubscriptionPredicates(targetCmHandleIds, xpaths, datastoreType,
                     newDmiCmSubscriptionPredicates);
         }
@@ -73,7 +69,7 @@ public class CmSubscriptionComparator {
     private void populateValidDmiSubscriptionPredicates(final Set<String> targetCmHandleIds,
             final Set<String> xpaths, final DatastoreType datastoreType,
             final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
-        if (!(targetCmHandleIds.isEmpty() || xpaths.isEmpty())) {
+        if (!targetCmHandleIds.isEmpty()) {
             final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate =
                     new DmiCmSubscriptionPredicate(targetCmHandleIds, datastoreType, xpaths);
             dmiCmSubscriptionPredicates.add(dmiCmSubscriptionPredicate);
