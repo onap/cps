@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f746afd_ec7a25e9",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T10:39:38Z",
+      "side": 1,
+      "message": "Yes, can be useful for some developers who want to know how to connect docker containers by container-name other than Docker\u0027s default gateway IP (172.17.0.1).\n\nAlso, if they have a specific Gateway IP for their docker setup on their local, then default gateway IP (172.17.0.1) may not work.",
+      "parentUuid": "993753de_a2d266e9",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 44
+      },
+      "revId": "4abf9518076cc442ba101e25c91b292cd9cc2fe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42b96ae6_c88d94ec",
         "filename": "docker-compose/config/prometheus.yml",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-04T10:31:38Z",
       "side": 1,
       "message": "NO need to repeat this",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 44
+      },
+      "revId": "4abf9518076cc442ba101e25c91b292cd9cc2fe2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56b3ac7_6127edba",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T10:39:38Z",
+      "side": 1,
+      "message": "I ll remove these comments. But before, please let me know if my comments are ok for you above. So that I can hanlde any suggestion in a single commit.",
+      "parentUuid": "42b96ae6_c88d94ec",
       "range": {
         "startLine": 21,
         "startChar": 0,
