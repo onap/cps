@@ -16,6 +16,63 @@
       "message": "can as well do a static import of DmiServiceNameResolver in the places it is been used.\nBut thats personal choice :)",
       "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e77ec4d3_5c7e6da1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:35:42Z",
+      "side": 1,
+      "message": "very good, just see have 2 questions below\nand one overall question: do you already know the impacts on performance?",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98466b51_8e37eda8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:35:42Z",
+      "side": 1,
+      "message": "I see no dedicated spec for this but I guess all branches are covered indirectly via existing unit test?!",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea46da9f_b411c30c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:35:42Z",
+      "side": 1,
+      "message": "NB Question: could we use a generic mapper for this with hard-coding so much?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 67
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
