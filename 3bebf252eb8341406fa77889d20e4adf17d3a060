@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d39c727_12bf4259",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-04T11:21:19Z",
+      "side": 1,
+      "message": "the nordix monitoring machine will always have this IP?? or it can change as well??? just checking coz it could be a cloud machine.",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "3bebf252eb8341406fa77889d20e4adf17d3a060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
