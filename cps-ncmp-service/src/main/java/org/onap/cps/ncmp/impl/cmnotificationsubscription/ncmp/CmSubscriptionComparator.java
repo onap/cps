@@ -73,7 +73,7 @@ public class CmSubscriptionComparator {
     private void populateValidDmiSubscriptionPredicates(final Set<String> targetCmHandleIds,
             final Set<String> xpaths, final DatastoreType datastoreType,
             final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
-        if (!(targetCmHandleIds.isEmpty() || xpaths.isEmpty())) {
+        if (!targetCmHandleIds.isEmpty()) {
             final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate =
                     new DmiCmSubscriptionPredicate(targetCmHandleIds, datastoreType, xpaths);
             dmiCmSubscriptionPredicates.add(dmiCmSubscriptionPredicate);
