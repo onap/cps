@@ -49,6 +49,8 @@ services:
 
   cps-and-ncmp:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
+    ports:
+      - ${CPS_PORT_RANGE:-8698-8699}:8080
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
