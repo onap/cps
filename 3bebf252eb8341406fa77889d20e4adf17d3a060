@@ -22,6 +22,30 @@
       },
       "revId": "3bebf252eb8341406fa77889d20e4adf17d3a060",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab1a044_c196216a",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T11:28:45Z",
+      "side": 1,
+      "message": "Our Prometheus config is not used in Nordix job. There is a dedicated Nordix Prometheus, and it will use a different IP. This commit is just for locally running with monitoring profile.",
+      "parentUuid": "3d39c727_12bf4259",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "3bebf252eb8341406fa77889d20e4adf17d3a060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
