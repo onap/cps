@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -227,6 +228,27 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final Collection<FragmentEntity> fragmentEntities =
                 fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    @Override
+    public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
+                                    final Class<T> targetClass) {
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
+        if (!cpsPathQuery.hasAttributeAxis()) {
+            throw new IllegalArgumentException(
+                    "Only Cps Path Queries with attribute-axis are supported by queryDataLeaf");
+        }
+
+        final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
+        final List<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
+                FetchDescendantsOption.OMIT_DESCENDANTS);
+        return dataNodes.stream()
+                .map(dataNode -> {
+                    final Object attributeValue = dataNode.getLeaves().get(attributeName);
+                    return targetClass.isInstance(attributeValue) ? targetClass.cast(attributeValue) : null;
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
     }
 
     @Override
