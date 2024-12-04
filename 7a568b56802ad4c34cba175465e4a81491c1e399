@@ -33,6 +33,29 @@
       "message": "Have you got a Jira, can you answer here for sorting out the builders",
       "revId": "7a568b56802ad4c34cba175465e4a81491c1e399",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541ec5b6_aefbd813",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/ConditionProperties.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T10:42:38Z",
+      "side": 1,
+      "message": "Note this class belongs in NCMP. It is not used by CPS.",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "7a568b56802ad4c34cba175465e4a81491c1e399",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
