@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5424b92e_14ea7ca7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-04T15:24:51Z",
+      "side": 1,
+      "message": "can as well do a static import of DmiServiceNameResolver in the places it is been used.\nBut thats personal choice :)",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
