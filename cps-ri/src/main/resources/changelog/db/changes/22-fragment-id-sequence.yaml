@@ -19,6 +19,7 @@
 databaseChangeLog:
   - changeSet:
       author: cps
+      comment: Change the ID generation strategy on fragment table from IDENTITY to SEQUENCE generator for improved performance
       id: 21
       changes:
         - sqlFile:

@@ -19,6 +19,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-1
       author: cps
+      comment: Create anchor table
       changes:
         - createTable:
             columns:
@@ -45,6 +46,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-2
       author: cps
+      comment: Create relation table
       changes:
         - createTable:
             columns:
@@ -77,6 +79,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-3
       author: cps
+      comment: Create relation_type table
       changes:
         - createTable:
             columns:
@@ -97,6 +100,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-4
       author: cps
+      comment: create fragment table
       changes:
         - createTable:
             columns:
@@ -134,6 +138,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-5
       author: cps
+      comment: Create schema_set table
       changes:
         - createTable:
             columns:
@@ -159,6 +164,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-6
       author: cps
+      comment: Create yang_resource table
       changes:
         - createTable:
             columns:
@@ -189,6 +195,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-7
       author: cps
+      comment: Create dataspace table
       changes:
         - createTable:
             columns:
@@ -209,6 +216,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-8
       author: cps
+      comment: Create schema_node table
       changes:
         - createTable:
             columns:
@@ -229,6 +237,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-9
       author: cps
+      comment: Create schema_set_yang_resources table
       changes:
         - createTable:
             columns:
@@ -246,6 +255,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-10
       author: cps
+      comment: Add index to the anchor table on schema_set_id
       changes:
         - createIndex:
             columns:
@@ -256,6 +266,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-11
       author: cps
+      comment: Add uniqueness constraint to anchor table
       changes:
         - addUniqueConstraint:
             columnNames: dataspace_id, name
@@ -264,6 +275,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-12
       author: cps
+      comment: Add foreign key constraint from fragment to anchor table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: anchor_id
@@ -279,6 +291,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-13
       author: cps
+      comment: Add index to relation table on from_fragment_id
       changes:
         - createIndex:
             columns:
@@ -289,6 +302,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-14
       author: cps
+      comment: Add index to relation table on to_fragment_id
       changes:
         - createIndex:
             columns:
@@ -299,6 +313,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-15
       author: cps
+      comment: Add index to relation table on relation_type_id
       changes:
         - createIndex:
             columns:
@@ -309,6 +324,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-16
       author: cps
+      comment: Add primary key relation table
       changes:
         - addPrimaryKey:
             columnNames: to_fragment_id, from_fragment_id, relation_type_id
@@ -317,6 +333,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-17
       author: cps
+      comment: Add index to fragment table on anchor_id
       changes:
         - createIndex:
             columns:
@@ -327,6 +344,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-18
       author: cps
+      comment: Add index to fragment table on dataspace_id
       changes:
         - createIndex:
             columns:
@@ -337,6 +355,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-19
       author: cps
+      comment: Add index to fragment table on parent_id
       changes:
         - createIndex:
             columns:
@@ -347,6 +366,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-20
       author: cps
+      comment: Add index to fragment table on schema_node_id
       changes:
         - createIndex:
             columns:
@@ -357,6 +377,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-21
       author: cps
+      comment: Add index to fragment table on xpath and dataspace_id
       changes:
         - createIndex:
             columns:
@@ -370,6 +391,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-22
       author: cps
+      comment: Add uniqueness constraint to fragment table
       changes:
         - addUniqueConstraint:
             columnNames: dataspace_id, anchor_id, xpath
@@ -378,6 +400,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-23
       author: cps
+      comment: Add foreign key constraint from relation to fragment table on from_fragment_id
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: from_fragment_id
@@ -393,6 +416,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-24
       author: cps
+      comment: Add foreign key constraint from relation to fragment table on to_fragment_id
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: to_fragment_id
@@ -408,6 +432,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-25
       author: cps
+      comment: Add uniqueness constraint to schema_set table
       changes:
         - addUniqueConstraint:
             columnNames: name, dataspace_id
@@ -416,6 +441,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-26
       author: cps
+      comment: Add foreign key constraint from schema_set_yang_resources to schema_set table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: schema_set_id
@@ -431,6 +457,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-27
       author: cps
+      comment: Add uniqueness constraint to yang_resource table
       changes:
         - addUniqueConstraint:
             columnNames: checksum
@@ -439,6 +466,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-28
       author: cps
+      comment: Add uniqueness constraint to dataspace table
       changes:
         - addUniqueConstraint:
             columnNames: name
@@ -447,6 +475,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-29
       author: cps
+      comment: Add foreign key constraint from fragment to dataspace table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: dataspace_id
@@ -462,6 +491,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-30
       author: cps
+      comment: Add foreign key constraint from schema_set to dataspace table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: dataspace_id
@@ -477,6 +507,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-31
       author: cps
+      comment: Add index to schema_node table on schema_node_identifier
       changes:
         - createIndex:
             columns:
@@ -487,6 +518,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-32
       author: cps
+      comment: Add foreign key constraint from schema_set_yang_resources to yang_resource table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: yang_resource_id
@@ -502,6 +534,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-33
       author: cps
+      comment: Add foreign key constraint from anchor to dataspace table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: dataspace_id
@@ -517,6 +550,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-34
       author: cps
+      comment: Add foreign key constraint from anchor to schema_set table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: schema_set_id
@@ -532,6 +566,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-35
       author: cps
+      comment: Add foreign key constraint from relation to relation_type table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: relation_type_id
@@ -547,6 +582,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-36
       author: cps
+      comment: Add foreign key constraint in fragment table from parent_id to id
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: parent_id
@@ -562,6 +598,7 @@ databaseChangeLog:
   - changeSet:
       id: 1-37
       author: cps
+      comment: Add foreign key constraint from fragment to schema_node table
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: schema_node_id
@@ -597,8 +634,8 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath:  changelog/db/changes/11-add-column-to-yang-resources-table.yaml
       id: 11
-      label: add-module-name-and-revision-column
       author: cps
+      comment: Add module name and revision columns
       changes:
         - addColumn:
             tableName: yang_resource
@@ -612,8 +649,8 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath:  changelog/db/changes/11-add-column-to-yang-resources-table.yaml
       id: 11.1
-      label: update-previous-data-module-name-and-revision
       author: cps
+      comment: Update previous data module name and revision
       changes:
         - sql:
             sql: update yang_resource set module_name = 'dummy_module_name', revision = '2021-08-04' where module_name is null and revision is null
@@ -622,8 +659,8 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath:  changelog/db/changes/15-rename-column-yang-resource-table.yaml
       author: cps
-      label: yang-resource-rename-column
       id: 15
+      comment: rename yang-resource.file_name column to name
       changes:
         - renameColumn:
             tableName: yang_resource
@@ -636,6 +673,7 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath:  changelog/db/changes/17-add-index-to-schema-set-yang-resources.yaml
       author: cps
+      comment: add index to schema_set_yang_resources on schema_set_id
       id: 17
       changes:
         - createIndex:
@@ -651,6 +689,7 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath:  changelog/db/changes/18-cascade-delete-fragment-children.yaml
       author: cps
+      comment: add cascade delete to fragment table (delete children automatically)
       id: 18
       changes:
         - dropForeignKeyConstraint:
@@ -686,6 +725,7 @@ databaseChangeLog:
       logicalFilePath:  changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
       id: 19-1
       author: cps
+      comment: Remove dataspace_id field from fragment table, drop related index
       changes:
         - dropIndex:
             indexName: FKI_FRAGMENT_DATASPACE_ID_FK
@@ -701,6 +741,7 @@ databaseChangeLog:
       logicalFilePath: changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
       id: 19-2
       author: cps
+      comment: Remove dataspace_id field from fragment table, drop related index, change related constraint
       changes:
         - dropUniqueConstraint:
             constraintName: fragment_dataspace_id_anchor_id_xpath_key
@@ -721,6 +762,7 @@ databaseChangeLog:
       logicalFilePath: changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
       id: 19-3
       author: cps
+      comment: Remove dataspace_id field from fragment table, drop related index, remove unique constraint
       changes:
         - dropForeignKeyConstraint:
             baseTableName: fragment
@@ -741,6 +783,7 @@ databaseChangeLog:
       logicalFilePath: changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
       id: 19-4
       author: cps
+      comment: Remove dataspace_id field from fragment table, drop column
       changes:
         - dropColumn:
             columnName: dataspace_id
@@ -762,6 +805,7 @@ databaseChangeLog:
   - changeSet:
       logicalFilePath: changelog/db/changes/19-delete-not-required-dataspace-id-from-fragment.yaml
       id: 19-5
+      comment: Remove dataspace_id field from fragment table, add non-null constraint on anchor_id
       author: cps
       changes:
         - addNotNullConstraint:
@@ -775,6 +819,7 @@ databaseChangeLog:
             columnDataType: BIGINT
   - changeSet:
       author: cps
+      comment: Align integer datatypes to java (change from bigint to integer)
       logicalFilePath: changelog/db/changes/20-change-foreign-key-id-types-to-integer.yaml
       id: 20
       changes:
