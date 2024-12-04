@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e9da24e_66c851b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T15:57:24Z",
+      "side": 1,
+      "message": "Some NB...",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98466b51_8e37eda8",
@@ -48,6 +65,29 @@
       "writtenOn": "2024-12-04T15:35:42Z",
       "side": 1,
       "message": "I see no dedicated spec for this but I guess all branches are covered indirectly via existing unit test?!",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf9ba14_c48227f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T15:57:24Z",
+      "side": 1,
+      "message": "NB: you can mark class \u0027final\u0027 so that can not be exteded since includes all static methods.",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 12
+      },
       "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -70,6 +110,52 @@
         "startChar": 0,
         "endLine": 63,
         "endChar": 67
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8d0a72_2c3c3f01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T15:57:24Z",
+      "side": 1,
+      "message": "MB: Maybe more comments on what is expected verbally...",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "440fe58b_7b7c28ed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/YangDataConverterSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T15:57:24Z",
+      "side": 1,
+      "message": "NB: expected fields",
+      "range": {
+        "startLine": 37,
+        "startChar": 44,
+        "endLine": 37,
+        "endChar": 50
       },
       "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
