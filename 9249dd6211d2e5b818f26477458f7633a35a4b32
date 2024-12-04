@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7506e921_dce90966",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T16:35:13Z",
+      "side": 1,
+      "message": "Yes, coverage is 100%. I saved some time by relying on existing coverage. There\u0027s comprehensive tests under YangModelCmHandle.",
+      "parentUuid": "98466b51_8e37eda8",
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baf9ba14_c48227f9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
         "patchSetId": 1
@@ -82,6 +100,30 @@
       "writtenOn": "2024-12-04T15:57:24Z",
       "side": 1,
       "message": "NB: you can mark class \u0027final\u0027 so that can not be exteded since includes all static methods.",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7871c484_a04c0c08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceNameResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T16:35:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "baf9ba14_c48227f9",
       "range": {
         "startLine": 32,
         "startChar": 7,
@@ -117,6 +159,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83c0ba01_93da8061",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T16:35:13Z",
+      "side": 1,
+      "message": "I\u0027m not sure how. Note on lines 62 and 63 we\u0027re doing some logic.",
+      "parentUuid": "ea46da9f_b411c30c",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 67
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b8d0a72_2c3c3f01",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
         "patchSetId": 1
@@ -140,6 +206,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0c32041_c20e5ad8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T16:35:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b8d0a72_2c3c3f01",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "440fe58b_7b7c28ed",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/YangDataConverterSpec.groovy",
         "patchSetId": 1
@@ -151,6 +241,30 @@
       "writtenOn": "2024-12-04T15:57:24Z",
       "side": 1,
       "message": "NB: expected fields",
+      "range": {
+        "startLine": 37,
+        "startChar": 44,
+        "endLine": 37,
+        "endChar": 50
+      },
+      "revId": "9249dd6211d2e5b818f26477458f7633a35a4b32",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61fda94_396c6fcd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/YangDataConverterSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-04T16:35:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "440fe58b_7b7c28ed",
       "range": {
         "startLine": 37,
         "startChar": 44,
