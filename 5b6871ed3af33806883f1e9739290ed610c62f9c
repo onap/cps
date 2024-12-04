@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecb1a386_8e830855",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:26:41Z",
+      "side": 1,
+      "message": "no blocking issues",
+      "revId": "5b6871ed3af33806883f1e9739290ed610c62f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0dad05_083ecd45",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:26:41Z",
+      "side": 1,
+      "message": "NB: I woudl have doen this in 2 steps for redability",
+      "range": {
+        "startLine": 209,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 75
+      },
+      "revId": "5b6871ed3af33806883f1e9739290ed610c62f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c75ba19c_bf96799d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-04T15:26:41Z",
+      "side": 1,
+      "message": "NB: Legacy: I think this should be a in given block BEFOR the then; block!",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 115
+      },
+      "revId": "5b6871ed3af33806883f1e9739290ed610c62f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
