@@ -26,6 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -85,7 +87,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def alternateId2 = 'another-alternate-id'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
-    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"])
+    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: leaves)
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -100,7 +102,7 @@ class InventoryPersistenceImplSpec extends Specification {
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
 
-    def "Retrieve CmHandle using datanode with #scenario."() {
+    def 'Retrieve CmHandle using datanode with #scenario.'() {
         given: 'the cps data service returns a data node from the DMI registry'
             def dataNode = new DataNode(childDataNodes:childDataNodes, leaves: leaves)
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
@@ -127,7 +129,7 @@ class InventoryPersistenceImplSpec extends Specification {
             'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
     }
 
-    def "Handling missing service names as null."() {
+    def 'Handling missing service names as null.'() {
         given: 'the cps data service returns a data node from the DMI registry with empty child and leaf attributes'
             def dataNode = new DataNode(childDataNodes:[], leaves: ['id':cmHandleId])
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
@@ -141,15 +143,24 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
-    def "Retrieve multiple YangModelCmHandles using cm handle ids"() {
+    def 'Retrieve multiple YangModelCmHandles using cm handle ids'() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
             mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
-        when: 'retrieving the yang modelled cm handle'
+        when: 'retrieving the yang modelled cm handles'
             def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
-        then: 'verify both have returned and cmhandleIds are correct'
+        then: 'verify both have returned and cm handle Ids are correct'
             assert results.size() == 2
             assert results.id.containsAll([cmHandleId, cmHandleId2])
+    }
+
+    def 'YangModelCmHandles are not returned for invalid cm handle ids'() {
+        given: 'invalid cm handle id throws a data validation exception'
+            mockCpsValidator.validateNameCharacters('Invalid Cm Handle Id') >> {throw new DataValidationException('','')}
+        when: 'retrieving the yang modelled cm handles'
+            def results = objectUnderTest.getYangModelCmHandles(['Invalid Cm Handle Id'])
+        then: 'only one YangModelCmHandle is returned'
+            assert results.size() == 0
     }
 
     def "Retrieve multiple YangModelCmHandles using cm handle references"() {
@@ -337,11 +348,15 @@ class InventoryPersistenceImplSpec extends Specification {
             assert thrownException.getDetails().contains('No cm handles found with reference alternate id')
     }
 
-    def 'Get multiple yang model cm handles by alternate ids, passing empty collection'() {
-        when: 'getting the  yang model cm handle for no alternate ids'
-            objectUnderTest.getYangModelCmHandleByAlternateIds([])
-        then: 'query service is not invoked'
-            0 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, _)
+    def 'Get multiple yang model cm handles by alternate ids #scenario'() {
+        when: 'getting the yang model cm handle with a empty/populated collection of alternate Ids'
+            objectUnderTest.getYangModelCmHandleByAlternateIds(alternateIdCollection)
+        then: 'query service invoked when needed'
+            expectedInvocations * mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [dataNode]
+        where: 'collections are either empty or populated with alternate ids'
+            scenario               | alternateIdCollection || expectedInvocations
+            'empty collection'     | []                    || 0
+            'populated collection' | ['alt']               || 1
     }
 
     def 'Get CM handle ids for CM Handles that has given module names'() {
@@ -384,10 +399,24 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
     }
 
-    def 'Check if cm handle exists for a given cm handle id'() {
+    def 'CM handle exists'() {
         given: 'data service returns a datanode with correct cm handle id'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         expect: 'cm handle exists for given cm handle id'
-            assert true == objectUnderTest.isExistingCmHandleId('some-cm-handle')
+            assert true == objectUnderTest.isExistingCmHandleId(cmHandleId)
+    }
+
+    def 'CM handle does not exist, empty dataNode collection returned'() {
+        given: 'data service returns an empty datanode'
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> []
+        expect: 'false is returned for non-existent cm handle'
+            assert false == objectUnderTest.isExistingCmHandleId(cmHandleId)
+    }
+
+    def 'CM handle does not exist, exception thrown'() {
+        given: 'data service throws an exception'
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry/cm-handles[@id='non-existent-cm-handle']", INCLUDE_ALL_DESCENDANTS) >> {throw new DataNodeNotFoundException('','')}
+        expect: 'false is returned for non-existent cm handle'
+            assert false == objectUnderTest.isExistingCmHandleId('non-existent-cm-handle')
     }
 }
