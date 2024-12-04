@@ -27,6 +27,7 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.spi.FetchDescendantsOption
 import org.onap.cps.spi.PaginationOption
 import org.onap.cps.spi.exceptions.CpsPathException
+import spock.lang.Ignore
 
 import static org.onap.cps.spi.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.spi.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -54,6 +55,44 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                      | cpsPath                                    || expectedResultSize | expectedLeaves
             'the AND condition is used'                   | '//books[@lang="English" and @price=15]'   || 2                  | [lang:"English", price:15]
             'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
+    }
+
+    @Ignore  // TODO will be implemented in CPS-2416
+    def 'Query data leaf using CPS path for #scenario.'() {
+        when: 'query data leaf for bookstore container'
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class)
+        then: 'the result contains the expected number of leaf values'
+            assert result.size() == expectedUniqueBooksTitles
+        where:
+            scenario                  | cpsPath                                       || expectedUniqueBooksTitles
+            'all books'               | '//books/@title'                              || 19
+            'all books in a category' | '/bookstore/categories[@code=5]/books/@title' || 10
+            'non-existing path'       | '/non-existing/@title'                        || 0
+    }
+
+    @Ignore
+    def 'Query data leaf with type #leafType using CPS path.'() {
+        given: 'a cps path query for two books, returning only #leafName'
+            def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/@' + leafName
+        when: 'query data leaf for bookstore container'
+            def results = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, leafType)
+        then: 'the result contains the expected leaf values'
+            assert results == expectedResults as Set
+        where:
+            leafName    | leafType      || expectedResults
+            'lang'      | String.class  || ['English']
+            'price'     | Number.class  || [13, 20]
+            'editions'  | List.class    || [[1988, 2000], [2006]]
+    }
+
+    @Ignore
+    def 'Query data leaf using CPS path with ancestor axis.'() {
+        given: 'a cps path query that will return the names of the categories of two books'
+            def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/ancestor::categories/@name'
+        when: 'query data leaf for bookstore container'
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class)
+        then: 'the result contains the expected leaf values'
+            assert result == ['Children', 'Comedy'] as Set
     }
 
     def 'Cps Path query using comparative and boolean operators.'() {

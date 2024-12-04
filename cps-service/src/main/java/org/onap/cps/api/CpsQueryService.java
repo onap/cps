@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2022 Nordix Foundation
+ *  Copyright (C) 2020-2024 Nordix Foundation
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import java.util.Set;
 import org.onap.cps.spi.FetchDescendantsOption;
 import org.onap.cps.spi.PaginationOption;
 import org.onap.cps.spi.model.DataNode;
@@ -43,6 +44,18 @@ public interface CpsQueryService {
      */
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
                                         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
+
+
+    /**
+     * Get data leaf for the given dataspace and anchor by cps path.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param cpsPath                cps path
+     * @param targetClass            class of the expected data type
+     * @return a collection of data objects of expected type
+     */
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
 
     /**
      * Get data nodes for the given dataspace across all anchors by cps path.
