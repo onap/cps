@@ -22,10 +22,16 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -39,6 +45,7 @@ import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
+import org.slf4j.LoggerFactory
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -85,7 +92,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def alternateId2 = 'another-alternate-id'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
-    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"])
+    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: leaves)
 
     @Shared
     def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
@@ -99,6 +106,17 @@ class InventoryPersistenceImplSpec extends Specification {
 
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
+
+    def logger = Spy(ListAppender<ILoggingEvent>)
+
+    def setup() {
+        setupLogger()
+    }
+
+    def cleanup() {
+        ((Logger) LoggerFactory.getLogger(InventoryPersistenceImpl.class)).detachAndStopAllAppenders()
+    }
+
 
     def "Retrieve CmHandle using datanode with #scenario."() {
         given: 'the cps data service returns a data node from the DMI registry'
@@ -143,11 +161,15 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def "Retrieve multiple YangModelCmHandles using cm handle ids"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
+            mockCpsValidator.validateNameCharacters('Invalid Cm Handle') >> {throw new DataValidationException('','')}
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
             mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
-        when: 'retrieving the yang modelled cm handle'
-            def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2])
-        then: 'verify both have returned and cmhandleIds are correct'
+        when: 'retrieving the yang modelled cm handles'
+            def results = objectUnderTest.getYangModelCmHandles([cmHandleId, cmHandleId2, 'Invalid Cm Handle'])
+        then: 'verify both have returned, cm handle Ids are correct and one cm handle id is invalid'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.ERROR
+            assert lastLoggingEvent.formattedMessage.contains('DataValidationException')
             assert results.size() == 2
             assert results.id.containsAll([cmHandleId, cmHandleId2])
     }
@@ -339,9 +361,13 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'Get multiple yang model cm handles by alternate ids, passing empty collection'() {
         when: 'getting the  yang model cm handle for no alternate ids'
-            objectUnderTest.getYangModelCmHandleByAlternateIds([])
-        then: 'query service is not invoked'
-            0 * mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, _)
+            objectUnderTest.getYangModelCmHandleByAlternateIds(alternateIdCollection)
+        then: 'query service is or is not invoked'
+            noOfInvocations * mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [dataNode]
+        where: 'collections are either empty or populated with alternate ids'
+            scenario               | alternateIdCollection || noOfInvocations
+            'empty collection'     | []                    || 0
+            'populated collection' | ['alt']               || 1
     }
 
     def 'Get CM handle ids for CM Handles that has given module names'() {
@@ -388,6 +414,27 @@ class InventoryPersistenceImplSpec extends Specification {
         given: 'data service returns a datanode with correct cm handle id'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         expect: 'cm handle exists for given cm handle id'
-            assert true == objectUnderTest.isExistingCmHandleId('some-cm-handle')
+            assert true == objectUnderTest.isExistingCmHandleId(cmHandleId)
+    }
+
+    def 'Check if cm handle exists for a given cm handle id and returns empty datanode'() {
+        given: 'data service returns an empty datanode'
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> []
+        expect: 'cm handle exists for given cm handle id'
+            assert false == objectUnderTest.isExistingCmHandleId(cmHandleId)
+    }
+
+    def 'Check if cm handle exists for a given non-existent cm handle id'() {
+        given: 'data service throws an exception'
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry/cm-handles[@id='non-existent-cm-handle']", INCLUDE_ALL_DESCENDANTS) >> {throw new DataNodeNotFoundException('','')}
+        expect: 'cm handle does not exists for given cm handle id'
+            assert false == objectUnderTest.isExistingCmHandleId('non-existent-cm-handle')
+    }
+
+    def setupLogger() {
+        def setupLogger = ((Logger) LoggerFactory.getLogger(InventoryPersistenceImpl.class))
+        setupLogger.setLevel(Level.DEBUG)
+        setupLogger.addAppender(logger)
+        logger.start()
     }
 }
