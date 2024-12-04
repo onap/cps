@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
@@ -60,12 +62,8 @@ public class TrustLevelManager {
      * @param dmiPluginRegistration a dmi plugin being registered
      */
     public void registerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
-        final String dmiServiceName;
-        if (DmiPluginRegistration.isNullEmptyOrBlank(dmiPluginRegistration.getDmiDataPlugin())) {
-            dmiServiceName = dmiPluginRegistration.getDmiPlugin();
-        } else {
-            dmiServiceName = dmiPluginRegistration.getDmiDataPlugin();
-        }
+        final String dmiServiceName = DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA,
+                dmiPluginRegistration);
         trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);
     }
 
@@ -146,9 +144,13 @@ public class TrustLevelManager {
     public void applyEffectiveTrustLevels(final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles) {
         final Set<String> cmHandleIds = getCmHandleIds(ncmpServiceCmHandles);
         final Map<String, TrustLevel> trustLevelPerCmHandleIdInBatch = trustLevelPerCmHandleId.getAll(cmHandleIds);
+        final Map<String, TrustLevel> trustLevelPerDmiPluginInBatch = new HashMap<>(trustLevelPerDmiPlugin);
         for (final NcmpServiceCmHandle ncmpServiceCmHandle : ncmpServiceCmHandles) {
             final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
-            final TrustLevel dmiTrustLevel = TrustLevel.COMPLETE; // TODO: CPS-2375
+            final String dmiDataServiceName = DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA,
+                    ncmpServiceCmHandle);
+            final TrustLevel dmiTrustLevel = trustLevelPerDmiPluginInBatch.getOrDefault(dmiDataServiceName,
+                    TrustLevel.NONE);
             final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandleIdInBatch.getOrDefault(cmHandleId,
                     TrustLevel.NONE);
             final TrustLevel effectiveTrustLevel = dmiTrustLevel.getEffectiveTrustLevel(cmHandleTrustLevel);
@@ -187,7 +189,7 @@ public class TrustLevelManager {
 
     private String getDmiServiceName(final String cmHandleId) {
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        return yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
+        return DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA, yangModelCmHandle);
     }
 
     private void sendAvcNotificationIfRequired(final String notificationCandidateCmHandleId,

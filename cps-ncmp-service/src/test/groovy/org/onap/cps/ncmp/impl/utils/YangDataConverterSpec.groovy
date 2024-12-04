@@ -31,11 +31,15 @@ class YangDataConverterSpec extends Specification{
                     leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
             def dataNodePublicProperties = new DataNode(xpath:'/public-properties[@name="pubProp1"]',
                     leaves: ['name': 'pubProp1', 'value': 'pubValue1'])
-            def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
+            def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id', 'alternate-id': 'alt-id', 'module-set-tag': 'my-tag', 'dmi-service-name': 'my-dmi', 'data-producer-identifier': 'my-dpi'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
         when: 'the dataNode is converted'
             def yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNodeCmHandle)
-        then: 'the converted object has the correct id'
+        then: 'the converted object has the fields'
             assert yangModelCmHandle.id == 'sample-id'
+            assert yangModelCmHandle.alternateId == 'alt-id'
+            assert yangModelCmHandle.dmiServiceName == 'my-dmi'
+            assert yangModelCmHandle.moduleSetTag == 'my-tag'
+            assert yangModelCmHandle.dataProducerIdentifier == 'my-dpi'
         and: 'the additional (dmi, private) properties are included'
             assert yangModelCmHandle.dmiProperties[0].name == 'dmiProp1'
             assert yangModelCmHandle.dmiProperties[0].value == 'dmiValue1'
