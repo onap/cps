@@ -16,6 +16,23 @@
       "message": "Good follow up for cps-path parser (Attribute axis) especially the integration-tests",
       "revId": "cca2dc7d661fa6fbad66bfdde2638b7bfd6b9bcd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ddac4ff_0fa149a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-04T14:42:02Z",
+      "side": 1,
+      "message": "fine by me..",
+      "revId": "cca2dc7d661fa6fbad66bfdde2638b7bfd6b9bcd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
