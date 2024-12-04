@@ -35,6 +35,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 
 /**
@@ -129,8 +130,7 @@ public class YangModelCmHandle {
         yangModelCmHandle.setAlternateId(StringUtils.trimToEmpty(alternateId));
         yangModelCmHandle.setDataProducerIdentifier(StringUtils.trimToEmpty(dataProducerIdentifier));
         yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
-        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(
-                ncmpServiceCmHandle.getPublicProperties()));
+        yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         return yangModelCmHandle;
     }
@@ -138,17 +138,11 @@ public class YangModelCmHandle {
     /**
      * Resolve a dmi service name.
      *
-     * @param requiredService indicates what typo of service is required
+     * @param requiredService indicates what type of service is required
      * @return dmi service name
      */
     public String resolveDmiServiceName(final RequiredDmiService requiredService) {
-        if (StringUtils.isBlank(dmiServiceName)) {
-            if (RequiredDmiService.DATA.equals(requiredService)) {
-                return dmiDataServiceName;
-            }
-            return dmiModelServiceName;
-        }
-        return dmiServiceName;
+        return DmiServiceNameResolver.resolveDmiServiceName(requiredService, this);
     }
 
     private static List<Property> asYangModelCmHandleProperties(final Map<String, String> propertiesAsMap) {

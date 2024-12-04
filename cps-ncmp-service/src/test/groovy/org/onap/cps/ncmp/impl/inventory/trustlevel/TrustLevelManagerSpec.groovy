@@ -177,25 +177,23 @@ class TrustLevelManagerSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
         when: 'effective trust level selected'
             objectUnderTest.applyEffectiveTrustLevel(ncmpServiceCmHandle)
-        then: 'effective trust level is trusted'
-            // FIXME CPS-2375: the expected behaviour is to return the lower TrustLevel (NONE)
-            assert ncmpServiceCmHandle.currentTrustLevel == TrustLevel.COMPLETE
+        then: 'effective trust level is none'
+            assert ncmpServiceCmHandle.currentTrustLevel == TrustLevel.NONE
     }
 
     def 'Apply effective trust levels from CmHandle batch'() {
-        given: 'a non trusted dmi'
-            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.NONE)
+        given: 'a trusted dmi'
+            trustLevelPerDmiPlugin.put('my-dmi', TrustLevel.COMPLETE)
         and: 'a trusted CmHandle'
             trustLevelPerCmHandleId.put('ch-1', TrustLevel.COMPLETE)
         and: 'a not trusted CmHandle'
             trustLevelPerCmHandleId.put('ch-2', TrustLevel.NONE)
         and: 'cm handle objects'
-            def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
-            def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
+            def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiServiceName: 'my-dmi')
+            def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2', dmiDataServiceName: 'my-dmi')
         when: 'effective trust level selected'
             objectUnderTest.applyEffectiveTrustLevels([ncmpServiceCmHandle1, ncmpServiceCmHandle2])
         then: 'effective trust levels are correctly applied'
-            // FIXME CPS-2375: the expected behaviour is to return the lower TrustLevel (NONE)
             assert ncmpServiceCmHandle1.currentTrustLevel == TrustLevel.COMPLETE
             assert ncmpServiceCmHandle2.currentTrustLevel == TrustLevel.NONE
     }

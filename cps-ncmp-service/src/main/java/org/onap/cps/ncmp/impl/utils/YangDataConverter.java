@@ -47,12 +47,14 @@ public class YangDataConverter {
      * @param yangModelCmHandle the yang model of the cm handle
      * @return ncmp service cm handle
      */
-    public static NcmpServiceCmHandle toNcmpServiceCmHandle(
-        final YangModelCmHandle yangModelCmHandle) {
+    public static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
         final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
+        ncmpServiceCmHandle.setDmiServiceName(yangModelCmHandle.getDmiServiceName());
+        ncmpServiceCmHandle.setDmiDataServiceName(yangModelCmHandle.getDmiDataServiceName());
+        ncmpServiceCmHandle.setDmiModelServiceName(yangModelCmHandle.getDmiModelServiceName());
         ncmpServiceCmHandle.setCompositeState(yangModelCmHandle.getCompositeState());
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
