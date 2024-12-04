@@ -46,6 +46,30 @@
       },
       "revId": "3bebf252eb8341406fa77889d20e4adf17d3a060",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "508db710_1de29908",
+        "filename": "docker-compose/config/prometheus.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-04T11:29:53Z",
+      "side": 1,
+      "message": "Yes, the Nordix Monitoring host has exactly this IP address by default. I can see it now.\n\nHowever, the reality, Nordix Monitoring does not use our CPS\u0027 prometheus. They have their own deployment of Prometheus. We are adding our prometheus jobs manually on the host.",
+      "parentUuid": "3d39c727_12bf4259",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "3bebf252eb8341406fa77889d20e4adf17d3a060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
