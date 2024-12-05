@@ -6,89 +6,135 @@
   },
   "scenarios": {
     "passthrough_read_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "passthroughReadScenario",
-      "vus": 2,
-      "duration": "15m"
+      "rate": 5,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "startTime": "0ms"
     },
     "passthrough_read_alt_id_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "passthroughReadAltIdScenario",
-      "vus": 2,
-      "duration": "15m"
+      "rate": 5,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "startTime": "200ms"
     },
+
     "passthrough_write_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "passthroughWriteScenario",
-      "vus": 2,
-      "duration": "15m"
+      "rate": 5,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "startTime": "400ms"
     },
     "passthrough_write_alt_id_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "passthroughWriteAltIdScenario",
-      "vus": 2,
-      "duration": "15m"
+      "rate": 5,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 5,
+      "startTime": "600ms"
     },
+
     "cm_handle_id_search_nofilter_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchNoFilterScenario",
-      "vus": 1,
-      "duration": "15m"
-    },
-    "cm_handle_search_nofilter_scenario": {
-      "executor": "constant-vus",
-      "exec": "cmHandleSearchNoFilterScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "2s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "0ms"
     },
     "cm_handle_id_search_module_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchModuleScenario",
-      "vus": 1,
-      "duration": "15m"
-    },
-    "cm_handle_search_module_scenario": {
-      "executor": "constant-vus",
-      "exec": "cmHandleSearchModuleScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "2s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "400ms"
     },
     "cm_handle_id_search_property_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchPropertyScenario",
-      "vus": 1,
-      "duration": "15m"
-    },
-    "cm_handle_search_property_scenario": {
-      "executor": "constant-vus",
-      "exec": "cmHandleSearchPropertyScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "2s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "800ms"
     },
     "cm_handle_id_search_cpspath_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchCpsPathScenario",
-      "vus": 1,
-      "duration": "15m"
-    },
-    "cm_handle_search_cpspath_scenario": {
-      "executor": "constant-vus",
-      "exec": "cmHandleSearchCpsPathScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "2s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "1200ms"
     },
     "cm_handle_id_search_trustlevel_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchTrustLevelScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "2s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "1600ms"
+    },
+
+    "cm_handle_search_nofilter_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchNoFilterScenario",
+      "rate": 1,
+      "timeUnit": "15s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "0s"
+    },
+    "cm_handle_search_module_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchModuleScenario",
+      "rate": 1,
+      "timeUnit": "15s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "3s"
+    },
+    "cm_handle_search_property_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchPropertyScenario",
+      "rate": 1,
+      "timeUnit": "15s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "6s"
+    },
+    "cm_handle_search_cpspath_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "cmHandleSearchCpsPathScenario",
+      "rate": 1,
+      "timeUnit": "15s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "9s"
     },
     "cm_handle_search_trustlevel_scenario": {
-      "executor": "constant-vus",
+      "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchTrustLevelScenario",
-      "vus": 1,
-      "duration": "15m"
+      "rate": 1,
+      "timeUnit": "15s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "12s"
     },
+
     "legacy_batch_produce_scenario": {
       "executor": "shared-iterations",
       "exec": "legacyBatchProduceScenario",
