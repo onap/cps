@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09a3f4ca_75a01d8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-05T14:00:38Z",
+      "side": 1,
+      "message": "approved based on prev +1s (last patch is just a rebase)",
+      "revId": "2dac434c92dfd20791eda9364783846a5da8c605",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
