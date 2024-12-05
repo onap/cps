@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d52e2be_3ada03ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-05T08:47:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e0dad05_083ecd45",
+      "range": {
+        "startLine": 209,
+        "startChar": 11,
+        "endLine": 210,
+        "endChar": 75
+      },
+      "revId": "5b6871ed3af33806883f1e9739290ed610c62f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c75ba19c_bf96799d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-04T15:26:41Z",
       "side": 1,
       "message": "NB: Legacy: I think this should be a in given block BEFOR the then; block!",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 115
+      },
+      "revId": "5b6871ed3af33806883f1e9739290ed610c62f9c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a630726b_da2449f8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-05T08:47:40Z",
+      "side": 1,
+      "message": "can be doen again, not blocking",
+      "parentUuid": "c75ba19c_bf96799d",
       "range": {
         "startLine": 74,
         "startChar": 0,
