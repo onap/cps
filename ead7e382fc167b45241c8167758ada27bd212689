@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63cf98a4_f6c3f7fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-06T10:44:45Z",
+      "side": 1,
+      "message": "nothing objectionable from my side.\njust few minor non blockers for the javadocs.\ndo look at other places for cm handles , where now it returns cm handle ids.\n\nAlso now the heap space used should also be reduced by some factor as the size of the object stored would be way less in the queue. I think we can see a before and after using our grafana dashboard as well.",
+      "revId": "ead7e382fc167b45241c8167758ada27bd212689",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0360f860_921c3f56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-06T10:44:45Z",
+      "side": 1,
+      "message": "NB: cm handle ids",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 38
+      },
+      "revId": "ead7e382fc167b45241c8167758ada27bd212689",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30b1a42e_cde8f41b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-06T10:44:45Z",
+      "side": 1,
+      "message": "NB: can as well replace with forEach",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 55
+      },
+      "revId": "ead7e382fc167b45241c8167758ada27bd212689",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ccd34df_b44f8cfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-06T10:44:45Z",
+      "side": 1,
+      "message": "NB: now its cm handle ids",
+      "range": {
+        "startLine": 116,
+        "startChar": 13,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "ead7e382fc167b45241c8167758ada27bd212689",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
