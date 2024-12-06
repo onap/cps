@@ -33,6 +33,23 @@
       "message": "need to do a test on the k6 pipeline against this patch , just to make sure no negative impacts of the same.",
       "revId": "24663a3afbc1ee5911ff46fe949cbd7259b9c823",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7a0bae2_94abd340",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2024-12-06T15:48:45Z",
+      "side": 1,
+      "message": "This was testing on kpi pipeline, builds 4362 to 4365. There was no observed issues.",
+      "revId": "24663a3afbc1ee5911ff46fe949cbd7259b9c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
