@@ -16,6 +16,184 @@
       "message": "Toine already had a look at it in nordix.",
       "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f633cdc_132cbd9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "Some NB commets... others good",
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298aecdb_2f98a540",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: cm handle ids",
+      "range": {
+        "startLine": 71,
+        "startChar": 13,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a97f4a2d_b570446b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: expectedCmHandleIds",
+      "range": {
+        "startLine": 88,
+        "startChar": 31,
+        "endLine": 88,
+        "endChar": 42
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b2d92e_a8849cb5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: ||",
+      "range": {
+        "startLine": 88,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 30
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16354d17_18cefe6a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: You need to update this slogan I think",
+      "range": {
+        "startLine": 85,
+        "startChar": 14,
+        "endLine": 85,
+        "endChar": 90
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e68aba0e_d4e4881c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasksSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: ADVISED",
+      "range": {
+        "startLine": 201,
+        "startChar": 34,
+        "endLine": 201,
+        "endChar": 41
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a23009_c07be98c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "Not used in the test class",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da137a87_c2357914",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-06T16:41:05Z",
+      "side": 1,
+      "message": "NB: ||",
+      "range": {
+        "startLine": 141,
+        "startChar": 20,
+        "endLine": 141,
+        "endChar": 21
+      },
+      "revId": "42dfa67015d7478eca07eb5778ec55c2c24c19a5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
