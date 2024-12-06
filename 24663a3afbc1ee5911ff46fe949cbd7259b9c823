@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "24663a3afbc1ee5911ff46fe949cbd7259b9c823",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f645535_9cd7f562",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-06T10:51:21Z",
+      "side": 1,
+      "message": "need to do a test on the k6 pipeline against this patch , just to make sure no negative impacts of the same.",
+      "revId": "24663a3afbc1ee5911ff46fe949cbd7259b9c823",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
