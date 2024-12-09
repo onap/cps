@@ -2,7 +2,8 @@
   "hosts": {
     "ncmpBaseUrl": "http://localhost:8883",
     "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
-    "kafkaBootstrapServer": "localhost:9092"
+    "kafkaBootstrapServer": "localhost:9092",
+    "containerUpTime": 300
   },
   "scenarios": {
     "passthrough_read_scenario": {

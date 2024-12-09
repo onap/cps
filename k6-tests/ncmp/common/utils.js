@@ -24,6 +24,7 @@ export const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
+export const CONTAINER_UP_TIME = testConfig.hosts.containerUpTime;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = 20000;
 export const REGISTRATION_BATCH_SIZE = 100;

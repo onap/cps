@@ -18,14 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { check } from 'k6';
+import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
     REGISTRATION_BATCH_SIZE, LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS, KAFKA_BOOTSTRAP_SERVERS,
-    LEGACY_BATCH_TOPIC_NAME, testConfig
+    LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME, testConfig
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -97,6 +97,9 @@ export function teardown() {
     const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
     cmHandlesDeletedPerSecondTrend.add(DEREGISTERED_CM_HANDLES / totalDeregistrationTimeInSeconds);
+
+    // the time unit is in seconds
+    sleep(CONTAINER_UP_TIME);
 }
 
 export function passthroughReadScenario() {
