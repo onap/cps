@@ -20,6 +20,9 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
+import com.hazelcast.config.Config
+import com.hazelcast.core.Hazelcast
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
@@ -32,10 +35,15 @@ class DmiPluginTrustLevelWatchDogSpec extends Specification {
     def mockDmiRestClient = Mock(DmiRestClient)
     def mockCmHandleQueryService = Mock(CmHandleQueryService)
     def mockTrustLevelManager = Mock(TrustLevelManager)
-    def trustLevelPerDmiPlugin = [:]
-
+    def trustLevelPerDmiPlugin = HazelcastInstanceFactory
+        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+        .getMap('trustLevelPerDmiPlugin')
 
     def objectUnderTest = new DmiPluginTrustLevelWatchDog(mockDmiRestClient, mockCmHandleQueryService, mockTrustLevelManager, trustLevelPerDmiPlugin)
+
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+    }
 
     def 'watch dmi plugin health status for #dmiHealhStatus'() {
         given: 'the cache has been initialised and "knows" about dmi-1'

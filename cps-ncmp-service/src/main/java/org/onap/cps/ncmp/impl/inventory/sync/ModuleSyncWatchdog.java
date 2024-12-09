@@ -139,8 +139,7 @@ public class ModuleSyncWatchdog {
         log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
         for (final String cmHandleId : nextBatchCandidates) {
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
-                    moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP,
-                            SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS, TimeUnit.SECONDS));
+                    moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
             if (alreadyAddedToInProgressMap) {
                 log.info("module sync for {} already in progress by other instance", cmHandleId);
             } else {

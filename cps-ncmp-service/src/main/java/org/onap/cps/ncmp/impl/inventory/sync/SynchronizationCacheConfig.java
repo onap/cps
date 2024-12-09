@@ -43,7 +43,8 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
-    private static final MapConfig moduleSyncStartedConfig = createMapConfig("moduleSyncStartedConfig");
+    private static final MapConfig moduleSyncStartedConfig =
+            createMapConfigWithTimeToLiveInSeconds("moduleSyncStartedConfig", MODULE_SYNC_STARTED_TTL_SECS);
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
     private static final SetConfig moduleSetTagsBeingProcessedConfig
         = createSetConfig("moduleSetTagsBeingProcessedConfig");

@@ -21,6 +21,9 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
+import com.hazelcast.config.Config
+import com.hazelcast.core.Hazelcast
+import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.impl.utils.CpsValidator
@@ -39,11 +42,17 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsDataService = Mock(CpsDataService)
-    def trustLevelPerDmiPlugin = [:]
-    def trustLevelPerCmHandleId = [ 'PNFDemo': TrustLevel.COMPLETE, 'PNFDemo2': TrustLevel.NONE, 'PNFDemo4': TrustLevel.NONE ]
+    def trustLevelPerDmiPlugin = HazelcastInstanceFactory
+        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+        .getMap('trustLevelPerDmiPlugin')
+    def trustLevelPerCmHandleId = HazelcastInstanceFactory
+        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
+        .getMap('trustLevelPerCmHandleId')
     def mockCpsValidator = Mock(CpsValidator)
 
-    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
+
+    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService,
+        trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
 
     def static sampleDataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']"),
                                   new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-2']")]
@@ -55,6 +64,16 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def static pnfDemo3 = createDataNode('PNFDemo3')
     def static pnfDemo4 = createDataNode('PNFDemo4')
     def static pnfDemo5 = createDataNode('PNFDemo5')
+
+    def setup() {
+        trustLevelPerCmHandleId.put("PNFDemo", TrustLevel.COMPLETE)
+        trustLevelPerCmHandleId.put("PNFDemo2", TrustLevel.NONE)
+        trustLevelPerCmHandleId.put("PNFDemo4", TrustLevel.NONE)
+    }
+
+    def cleanupSpec() {
+        Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
+    }
 
     def 'Query CmHandles with public properties query pair.'() {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'

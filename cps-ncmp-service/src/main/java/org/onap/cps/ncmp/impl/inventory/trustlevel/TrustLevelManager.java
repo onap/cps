@@ -64,7 +64,7 @@ public class TrustLevelManager {
     public void registerDmiPlugin(final DmiPluginRegistration dmiPluginRegistration) {
         final String dmiServiceName = DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA,
                 dmiPluginRegistration);
-        trustLevelPerDmiPlugin.put(dmiServiceName, TrustLevel.COMPLETE);
+        trustLevelPerDmiPlugin.putAsync(dmiServiceName, TrustLevel.COMPLETE);
     }
 
     /**
@@ -73,24 +73,22 @@ public class TrustLevelManager {
      * @param cmHandlesToBeCreated a list of cmHandles being created
      */
     public void registerCmHandles(final Map<String, TrustLevel> cmHandlesToBeCreated) {
+        final Map<String, TrustLevel> trustLevelPerCmHandleIdForCache = new HashMap<>();
         for (final Map.Entry<String, TrustLevel> entry : cmHandlesToBeCreated.entrySet()) {
             final String cmHandleId = entry.getKey();
-            if (trustLevelPerCmHandleId.containsKey(cmHandleId)) {
-                log.warn("Cm handle: {} already registered", cmHandleId);
-            } else {
-                TrustLevel initialTrustLevel = entry.getValue();
-                if (initialTrustLevel == null) {
-                    initialTrustLevel = TrustLevel.COMPLETE;
-                }
-                trustLevelPerCmHandleId.put(cmHandleId, initialTrustLevel);
-                if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                    cmAvcEventPublisher.publishAvcEvent(cmHandleId,
+            TrustLevel initialTrustLevel = entry.getValue();
+            if (initialTrustLevel == null) {
+                initialTrustLevel = TrustLevel.COMPLETE;
+            }
+            trustLevelPerCmHandleIdForCache.put(cmHandleId, initialTrustLevel);
+            if (TrustLevel.NONE.equals(initialTrustLevel)) {
+                cmAvcEventPublisher.publishAvcEvent(cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
                         AVC_NO_OLD_VALUE,
                         initialTrustLevel.name());
-                }
             }
         }
+        trustLevelPerCmHandleId.putAllAsync(trustLevelPerCmHandleIdForCache);
     }
 
     /**
@@ -105,7 +103,7 @@ public class TrustLevelManager {
                           final Collection<String> affectedCmHandleIds,
                           final TrustLevel newDmiTrustLevel) {
         final TrustLevel oldDmiTrustLevel  = trustLevelPerDmiPlugin.get(dmiServiceName);
-        trustLevelPerDmiPlugin.put(dmiServiceName, newDmiTrustLevel);
+        trustLevelPerDmiPlugin.putAsync(dmiServiceName, newDmiTrustLevel);
         for (final String affectedCmHandleId : affectedCmHandleIds) {
             final TrustLevel cmHandleTrustLevel = trustLevelPerCmHandleId.get(affectedCmHandleId);
             final TrustLevel oldEffectiveTrustLevel = cmHandleTrustLevel.getEffectiveTrustLevel(oldDmiTrustLevel);
@@ -131,7 +129,7 @@ public class TrustLevelManager {
         final TrustLevel oldEffectiveTrustLevel = oldCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
         final TrustLevel newEffectiveTrustLevel = newCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
 
-        trustLevelPerCmHandleId.put(cmHandleId, newCmHandleTrustLevel);
+        trustLevelPerCmHandleId.putAsync(cmHandleId, newCmHandleTrustLevel);
         sendAvcNotificationIfRequired(cmHandleId, oldEffectiveTrustLevel, newEffectiveTrustLevel);
     }
 
@@ -174,10 +172,11 @@ public class TrustLevelManager {
      * @param cmHandleIds       cm handle ids to be removed from the cache
      */
     public void removeCmHandles(final Collection<String> cmHandleIds) {
-        for (final String cmHandleId : cmHandleIds) {
-            if (trustLevelPerCmHandleId.remove(cmHandleId) == null) {
-                log.debug("Removed Cm handle: {} is not in trust level cache", cmHandleId);
-            }
+        final Set<String> cmHandlesToRemove = trustLevelPerCmHandleId.keySet().stream()
+                .filter(cmHandleIds::contains)
+                .collect(Collectors.toSet());
+        for (final String cmHandleId : cmHandlesToRemove) {
+            trustLevelPerCmHandleId.removeAsync(cmHandleId);
         }
     }
 

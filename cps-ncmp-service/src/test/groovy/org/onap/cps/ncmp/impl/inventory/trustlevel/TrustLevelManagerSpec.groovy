@@ -77,19 +77,6 @@ class TrustLevelManagerSpec extends Specification {
             assert trustLevelPerCmHandleId.get('ch-2') == TrustLevel.COMPLETE
     }
 
-    def 'Initial cm handle registration where a cm handle is already in the cache'() {
-        given: 'a trusted cm handle'
-            def cmHandleModelsToBeCreated = ['ch-1': TrustLevel.NONE]
-        and: 'the cm handle id already in the cache'
-            trustLevelPerCmHandleId.put('ch-1', TrustLevel.COMPLETE)
-        when: 'method to register to the cache is called'
-            objectUnderTest.registerCmHandles(cmHandleModelsToBeCreated)
-        then: 'no notification sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
-        and: 'cm handle cache is not updated'
-            assert trustLevelPerCmHandleId.get('ch-1') == TrustLevel.COMPLETE
-    }
-
     def 'Initial cm handle registration with a cm handle that is not trusted'() {
         given: 'a not trusted cm handle'
             def cmHandleModelsToBeCreated = ['ch-2': TrustLevel.NONE]

@@ -64,7 +64,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
 
     def objectUnderTest = Spy(new CmHandleRegistrationService(
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
-        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker))
+        mockModuleSyncStartedOnCmHandles as IMap<String, Object>, mockTrustLevelManager, mockAlternateIdChecker))
 
     def setup() {
         // always accept all cm handles
@@ -86,14 +86,14 @@ class CmHandleRegistrationServiceSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
         and: 'cm handle is in READY state'
             mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
+        and: 'cm handle to be removed is in progress map'
+            mockModuleSyncStartedOnCmHandles.containsKey('cmhandle-2') >> true
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'cm-handles are removed first'
             1 * objectUnderTest.processRemovedCmHandles(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
-            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle-2')
-        then: 'cm-handles are created'
-            1 * objectUnderTest.processCreatedCmHandles(*_)
+            1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle-2')
         then: 'cm-handles are updated'
             1 * objectUnderTest.processUpdatedCmHandles(*_)
             1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> []
@@ -310,6 +310,9 @@ class CmHandleRegistrationServiceSpec extends Specification {
         given: 'a registration with three cm-handles to be deleted'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
                 removedCmHandles: ['cmhandle1', 'cmhandle2', 'cmhandle3'])
+        and: 'cm handles to be deleted in the progress map'
+            mockModuleSyncStartedOnCmHandles.containsKey("cmhandle1") >> true
+            mockModuleSyncStartedOnCmHandles.containsKey("cmhandle3") >> true
         and: 'cm-handle deletion fails on batch'
             mockInventoryPersistence.deleteDataNodes(_) >> { throw new RuntimeException("Failed") }
         and: 'cm-handle deletion is successful for 1st and 3rd; failed for 2nd'
@@ -321,11 +324,12 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'a response is received for all cm-handles'
             response.removedCmHandles.size() == 3
         and: 'successfully de-registered cm handle 1 is removed from in progress map'
-            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle1')
+            1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle1')
         and: 'successfully de-registered cm handle 3 is removed from in progress map even though it was already being removed'
-            1 * mockModuleSyncStartedOnCmHandles.remove('cmhandle3') >> 'already in progress'
+            1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle3')
         and: 'failed de-registered cm handle entries should NOT be removed from in progress map'
-            0 * mockModuleSyncStartedOnCmHandles.remove('cmhandle2')
+            0 * mockModuleSyncStartedOnCmHandles.containsKey('cmhandle2')
+            0 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle2')
         and: '1st and 3rd cm-handle deletes successfully'
             with(response.removedCmHandles[0]) {
                 assert it.status == Status.SUCCESS
@@ -349,7 +353,6 @@ class CmHandleRegistrationServiceSpec extends Specification {
             })
         and: 'No cm handles state updates for "upgraded cm handles"'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch([:])
-
     }
 
     def 'Remove CmHandle Error Handling: Schema Set Deletion failed'() {

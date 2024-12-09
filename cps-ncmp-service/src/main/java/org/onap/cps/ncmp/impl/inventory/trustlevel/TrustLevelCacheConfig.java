@@ -34,7 +34,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
     public static final String TRUST_LEVEL_PER_CM_HANDLE = "trustLevelPerCmHandle";
     private static final MapConfig trustLevelPerCmHandleIdCacheConfig =
-            createMapConfig("trustLevelPerCmHandleCacheConfig");
+            createNearCacheMapConfig("trustLevelPerCmHandleCacheConfig");
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
             createMapConfig("trustLevelPerDmiPluginCacheConfig");
