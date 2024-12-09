@@ -75,7 +75,7 @@ class PolicyExecutorSpec extends Specification {
 
     def 'Permission check with "allow" decision.'() {
         given: 'allow response'
-            mockResponse([decision:'allow'], HttpStatus.OK)
+            mockResponse([permissionResult:'allow'], HttpStatus.OK)
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
         then: 'system logs the operation is allowed'
@@ -88,7 +88,7 @@ class PolicyExecutorSpec extends Specification {
 
     def 'Permission check with "other" decision (not allowed).'() {
         given: 'other response'
-            mockResponse([decision:'other', decisionId:123, message:'I dont like Mondays' ], HttpStatus.OK)
+            mockResponse([permissionResult:'other', id:123, message:'I dont like Mondays' ], HttpStatus.OK)
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'Policy Executor exception is thrown'

@@ -20,72 +20,66 @@
 
 package org.onap.cps.policyexecutor.stub.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.policyexecutor.stub.api.PolicyExecutorApi;
-import org.onap.cps.policyexecutor.stub.model.NcmpDelete;
-import org.onap.cps.policyexecutor.stub.model.PolicyExecutionRequest;
-import org.onap.cps.policyexecutor.stub.model.PolicyExecutionResponse;
-import org.onap.cps.policyexecutor.stub.model.Request;
+import org.onap.cps.policyexecutor.stub.api.OperationPermissionApi;
+import org.onap.cps.policyexecutor.stub.model.Operation;
+import org.onap.cps.policyexecutor.stub.model.PermissionRequest;
+import org.onap.cps.policyexecutor.stub.model.PermissionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/operation-permission/v1")
 @RequiredArgsConstructor
 @Slf4j
-public class PolicyExecutorStubController implements PolicyExecutorApi {
+public class PolicyExecutorStubController implements OperationPermissionApi {
 
     private final Sleeper sleeper;
-    private final ObjectMapper objectMapper;
     private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
     private int decisionCounter = 0;
     private static int slowResponseTimeInSeconds = 40;
 
     @Override
-    public ResponseEntity<PolicyExecutionResponse> executePolicyAction(
-                                                     final String action,
-                                                     final PolicyExecutionRequest policyExecutionRequest,
-                                                     final String authorization) {
-        log.info("Stub Policy Executor Invoked (only supports 'delete' operations)");
-        if (policyExecutionRequest.getRequests().isEmpty()) {
+    public ResponseEntity<PermissionResponse> initiatePermissionRequest(final String contentType,
+                                                                        final PermissionRequest permissionRequest,
+                                                                        final String accept,
+                                                                        final String authorization) {
+        log.info("Stub Policy Executor Invoked");
+        if (permissionRequest.getOperations().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        final Request firstRequest = policyExecutionRequest.getRequests().iterator().next();
-        log.info("1st Request Schema:{}", firstRequest.getSchema());
-        if (firstRequest.getSchema().contains("ncmp-delete-schema:1.0.0")) {
-            return handleNcmpDeleteSchema(firstRequest);
+        final Operation firstOperation = permissionRequest.getOperations().iterator().next();
+        log.info("1st Operation: {}", firstOperation.getOperation());
+        if (!"delete".equals(firstOperation.getOperation()) && firstOperation.getChangeRequest() == null) {
+            log.warn("Change Request is required for " + firstOperation.getOperation() + " operations");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        log.warn("This stub only supports 'delete' operations");
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return handleOperation(firstOperation);
     }
 
-    private ResponseEntity<PolicyExecutionResponse> handleNcmpDeleteSchema(final Request request) {
-        final NcmpDelete ncmpDelete = objectMapper.convertValue(request.getData(), NcmpDelete.class);
-
-        final String targetIdentifier = ncmpDelete.getTargetIdentifier();
-
-        if (targetIdentifier == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    private ResponseEntity<PermissionResponse> handleOperation(final Operation operation) {
+        final String targetIdentifier = operation.getTargetIdentifier();
 
         final Matcher matcher = ERROR_CODE_PATTERN.matcher(targetIdentifier);
         if (matcher.find()) {
             final int errorCode = Integer.parseInt(matcher.group(1));
+            log.warn("Stub is mocking an error response, code: " + errorCode);
             return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
         }
 
         return createPolicyExecutionResponse(targetIdentifier);
     }
 
-    private ResponseEntity<PolicyExecutionResponse> createPolicyExecutionResponse(final String targetIdentifier) {
-        final String decisionId = String.valueOf(++decisionCounter);
-        final String decision;
+    private ResponseEntity<PermissionResponse> createPolicyExecutionResponse(final String targetIdentifier) {
+        final String id = String.valueOf(++decisionCounter);
+        final String permissionResult;
         final String message;
         if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("slow")) {
             try {
@@ -96,17 +90,14 @@ public class PolicyExecutorStubController implements PolicyExecutorApi {
             }
         }
         if (targetIdentifier.toLowerCase(Locale.getDefault()).contains("cps-is-great")) {
-            decision = "allow";
+            permissionResult = "allow";
             message = "All good";
         } else {
-            decision = "deny";
+            permissionResult = "deny";
             message = "Only FDNs containing 'cps-is-great' are allowed";
         }
-        log.info("Decision: {} ({})", decision, message);
-        final PolicyExecutionResponse policyExecutionResponse =
-            new PolicyExecutionResponse(decisionId, decision, message);
-
-        return ResponseEntity.ok(policyExecutionResponse);
+        log.info("Decision: {} ({})", permissionResult, message);
+        return ResponseEntity.ok(new PermissionResponse(id, permissionResult, message));
     }
 
 }
