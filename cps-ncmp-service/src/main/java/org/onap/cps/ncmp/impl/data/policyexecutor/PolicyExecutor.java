@@ -26,9 +26,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
@@ -67,6 +67,10 @@ public class PolicyExecutor {
 
     @Value("${ncmp.policy-executor.httpclient.all-services.readTimeoutInSeconds:30}")
     private long readTimeoutInSeconds;
+
+    private static final String CHANGE_REQUEST_FORMAT = "cm-legacy";
+    private static final String PERMISSION_BASE_PATH = "operation-permission";
+    private static final String REQUEST_PATH = "permissions";
 
     @Qualifier("policyExecutorWebClient")
     private final WebClient policyExecutorWebClient;
@@ -110,38 +114,33 @@ public class PolicyExecutor {
         }
     }
 
-    private Map<String, Object> getSingleRequestAsMap(final YangModelCmHandle yangModelCmHandle,
-                                                      final OperationType operationType,
-                                                      final String resourceIdentifier,
-                                                      final String changeRequestAsJson) {
-        final Map<String, Object> data = new HashMap<>(4);
-        data.put("cmHandleId", yangModelCmHandle.getId());
-        data.put("resourceIdentifier", resourceIdentifier);
-        data.put("targetIdentifier", yangModelCmHandle.getAlternateId());
+    private Map<String, Object> getSingleOperationAsMap(final YangModelCmHandle yangModelCmHandle,
+                                                        final OperationType operationType,
+                                                        final String resourceIdentifier,
+                                                        final String changeRequestAsJson) {
+        final Map<String, Object> operationAsMap = new HashMap<>(5);
+        operationAsMap.put("operation", operationType.getOperationName());
+        operationAsMap.put("entityHandleId", yangModelCmHandle.getId());
+        operationAsMap.put("resourceIdentifier", resourceIdentifier);
+        operationAsMap.put("targetIdentifier", yangModelCmHandle.getAlternateId());
         if (!OperationType.DELETE.equals(operationType)) {
             try {
                 final Object changeRequestAsObject = objectMapper.readValue(changeRequestAsJson, Object.class);
-                data.put("cmChangeRequest", changeRequestAsObject);
+                operationAsMap.put("changeRequest", changeRequestAsObject);
             } catch (final JsonProcessingException e) {
                 throw new NcmpException("Cannot convert Change Request data to Object",
                     "Invalid Json: " + changeRequestAsJson);
             }
         }
-        final Map<String, Object> request = new HashMap<>(2);
-        request.put("schema", getAssociatedPolicyDataSchemaName(operationType));
-        request.put("data", data);
-        return request;
+        return operationAsMap;
     }
 
-    private static String getAssociatedPolicyDataSchemaName(final OperationType operationType) {
-        return "urn:cps:org.onap.cps.ncmp.policy-executor.ncmp-" + operationType.getOperationName() + "-schema:1.0.0";
-    }
-
-    private Object createBodyAsObject(final List<Object> requests) {
-        final Map<String, Object> bodyAsMap = new HashMap<>(2);
-        bodyAsMap.put("decisionType", "allow");
-        bodyAsMap.put("requests", requests);
-        return bodyAsMap;
+    private Object createBodyAsObject(final Map<String, Object> operationAsMap) {
+        final Collection<Map<String, Object>> operations = Collections.singletonList(operationAsMap);
+        final Map<String, Object> permissionRequestAsMap = new HashMap<>(2);
+        permissionRequestAsMap.put("changeRequestFormat", CHANGE_REQUEST_FORMAT);
+        permissionRequestAsMap.put("operations", operations);
+        return permissionRequestAsMap;
     }
 
     private ResponseEntity<JsonNode> getPolicyExecutorResponse(final YangModelCmHandle yangModelCmHandle,
@@ -149,17 +148,16 @@ public class PolicyExecutor {
                                                                final String authorization,
                                                                final String resourceIdentifier,
                                                                final String changeRequestAsJson) {
-        final Map<String, Object> requestAsMap = getSingleRequestAsMap(yangModelCmHandle,
+        final Map<String, Object> operationAsMap = getSingleOperationAsMap(yangModelCmHandle,
             operationType,
             resourceIdentifier,
             changeRequestAsJson);
 
-        final Object bodyAsObject = createBodyAsObject(Collections.singletonList(requestAsMap));
+        final Object bodyAsObject = createBodyAsObject(operationAsMap);
 
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
-                .fixedPathSegment("execute")
-                .createUrlTemplateParameters(String.format("%s:%s", serverAddress, serverPort),
-                        "policy-executor/api");
+                .fixedPathSegment(REQUEST_PATH)
+                .createUrlTemplateParameters(String.format("%s:%s", serverAddress, serverPort), PERMISSION_BASE_PATH);
 
         return policyExecutorWebClient.post()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
@@ -172,23 +170,23 @@ public class PolicyExecutor {
     }
 
     private static void processSuccessResponse(final JsonNode responseBody) {
-        final String decisionId = responseBody.path("decisionId").asText("unknown id");
-        final String decision = responseBody.path("decision").asText("unknown");
+        final String id = responseBody.path("id").asText("unknown id");
+        final String permissionResult = responseBody.path("permissionResult").asText("unknown");
         final String messageFromPolicyExecutor = responseBody.path("message").asText();
-        processDecision(decisionId, decision, messageFromPolicyExecutor, NO_ERROR);
+        processDecision(id, permissionResult, messageFromPolicyExecutor, NO_ERROR);
     }
 
-    private static void processDecision(final String decisionId,
-                                        final String decision,
+    private static void processDecision(final String id,
+                                        final String permissionResult,
                                         final String details,
                                         final Throwable optionalCauseOfError) {
-        log.trace("Policy Executor decision id: {} ", decisionId);
-        if ("allow".equals(decision)) {
+        log.trace("Policy Executor Decision id: {} ", id);
+        if ("allow".equals(permissionResult)) {
             log.trace("Operation allowed.");
         } else {
-            log.warn("Policy Executor decision: {}", decision);
+            log.warn("Policy Executor permission result: {}", permissionResult);
             log.warn("Policy Executor message: {}", details);
-            final String message = "Operation not allowed. Decision id " + decisionId + " : " + decision;
+            final String message = "Operation not allowed. Decision id " + id + " : " + permissionResult;
             throw new PolicyExecutorException(message, details, optionalCauseOfError);
         }
     }
@@ -196,6 +194,7 @@ public class PolicyExecutor {
     private void processException(final RuntimeException runtimeException) {
         if (runtimeException instanceof WebClientResponseException) {
             final WebClientResponseException webClientResponseException = (WebClientResponseException) runtimeException;
+            log.warn("HTTP Error Message: {}", webClientResponseException.getMessage());
             final int httpStatusCode = webClientResponseException.getStatusCode().value();
             processFallbackResponse("Policy Executor returned HTTP Status code " + httpStatusCode + ".",
                 webClientResponseException);

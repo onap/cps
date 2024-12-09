@@ -74,7 +74,7 @@ services:
       - dbpostgresql
     deploy:
       ### DEBUG: For easier debugging use just 1 instance (also update docker-compose/config/nginx/nginx.conf !)
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           cpus: '3'
