@@ -18,244 +18,267 @@
 
 openapi: 3.0.3
 info:
-  description: Allows NCMP to execute a policy defined by a third party implementation
-    before proceeding with a CM operation
-  title: Policy Executor
-  version: 1.0.0
-servers:
-- url: /
-security:
-- bearerAuth: []
+  title: Operation permission API
+  description: "Allows a client application to execute a permission request defined by a third party implementation before proceeding with an operation. As an example, a permission can be requested before performing any configuration management operation."
+  version: 1.0.0-alpha.1+1
+contact:
+  name: CPS team
+  url: https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16442177/Configuration+Persistence+Service+Developer+s+Landing+Page
+  email: cpsteam@est.tech
+  license:
+    name: Copyright (C) 2024 Nordix Foundation
+  x-audience: external-partner
+  x-api-id: c7fc2f5b-16bd-4bcb-8ac8-ea8d543fcc15
 tags:
-- description: Execute all your policies
-  name: policy-executor
+- servers:
+    - url: http://{hostname}/operation-permission/v1
+- security:
+    - bearerAuth: []
+- name: Operation permission
+  description: "Initiate a permission request on an operation."
 paths:
-  /policy-executor/api/v1/{action}:
+  /permissions:
     post:
-      description: Fire a Policy action
-      operationId: executePolicyAction
+      description: "Initiate permission request"
+      operationId: initiatePermissionRequest
       parameters:
-      - description: Bearer token may be used to identify client as part of a policy
-        explode: false
-        in: header
-        name: Authorization
-        required: false
-        schema:
-          type: string
-        style: simple
-      - description: "The policy action. Currently supported options: 'execute'"
-        explode: false
-        in: path
-        name: action
-        required: true
-        schema:
-          example: execute
-          type: string
-        style: simple
+        - $ref: '#/components/parameters/authorizationInHeader'
+        - name: Content-Type
+          description: This specifies the media type of the request sent by the client to the server
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/json
+        - name: Accept
+          description: Indicates the response media type accepted by the client.
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/json
       requestBody:
+        required: true
+        description: "The permission request body"
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PolicyExecutionRequest'
-        description: The action request body
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PolicyExecutionResponse'
-          description: Successful policy execution
-        "400":
-          content:
-            application/json:
-              example:
-                status: 400
-                message: Bad Request
-                details: The provided request is not valid
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              example:
-                status: 401
-                message: Unauthorized request
-                details: This request is unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized request
-        "403":
-          content:
-            application/json:
-              example:
-                status: 403
-                message: Request Forbidden
-                details: This request is forbidden
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Request forbidden
-        "500":
-          content:
-            application/json:
-              example:
-                status: 500
-                message: Internal Server Error
-                details: Internal server error occurred
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Internal server error
+              $ref: '#/components/schemas/PermissionRequest'
       tags:
-      - policy-executor
+        - Operation permission
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
 components:
-  parameters:
-    actionInPath:
-      description: "The policy action. Currently supported options: 'execute'"
-      explode: false
-      in: path
-      name: action
-      required: true
-      schema:
-        example: execute
-        type: string
-      style: simple
-    authorizationInHeader:
-      description: Bearer token may be used to identify client as part of a policy
-      explode: false
-      in: header
-      name: Authorization
-      required: false
-      schema:
-        type: string
-      style: simple
-  responses:
-    BadRequest:
-      content:
-        application/json:
-          example:
-            status: 400
-            message: Bad Request
-            details: The provided request is not valid
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Bad request
-    Unauthorized:
-      content:
-        application/json:
-          example:
-            status: 401
-            message: Unauthorized request
-            details: This request is unauthorized
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Unauthorized request
-    Forbidden:
-      content:
-        application/json:
-          example:
-            status: 403
-            message: Request Forbidden
-            details: This request is forbidden
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Request forbidden
-    InternalServerError:
-      content:
-        application/json:
-          example:
-            status: 500
-            message: Internal Server Error
-            details: Internal server error occurred
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Internal server error
-    NotImplemented:
-      content:
-        application/json:
-          example:
-            status: 501
-            message: Not Implemented
-            details: Method not implemented
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-      description: Method not (yet) implemented
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: "Bearer token (from a client),used by policies to identify the client"
+      scheme: bearer
   schemas:
     ErrorMessage:
+      type: object
+      title: Error
       properties:
         status:
           type: string
-        message:
+        title:
           type: string
         details:
           type: string
-      title: Error
-      type: object
-    Request:
-      example:
-        schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
-        data: "{}"
-      properties:
-        schema:
-          description: The schema for the data in this request. The schema name should
-            include the type of operation
-          example: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
-          type: string
-        data:
-          description: The data related to the request. The format of the object is
-            determined by the schema
-          type: object
-      required:
-      - data
-      - schema
-      type: object
-    PolicyExecutionRequest:
-      example:
-        decisionType: allow
-        requests:
-        - schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
-          data: "{}"
-        - schema: org.onap.cps.ncmp.policy-executor:ncmp-create-schema:1.0.0
-          data: "{}"
-      properties:
-        decisionType:
-          description: "The type of decision. Currently supported options: 'allow'"
-          example: allow
-          type: string
-        requests:
-          items:
-            $ref: '#/components/schemas/Request'
-          type: array
-      required:
-      - decisionType
-      - requests
-      type: object
-    PolicyExecutionResponse:
-      example:
-        decision: deny
-        decisionId: 550e8400-e29b-41d4-a716-446655440000
-        message: Object locked due to recent change
-      properties:
-        decisionId:
-          description: Unique ID for the decision (for auditing purposes)
-          example: 550e8400-e29b-41d4-a716-446655440000
-          type: string
-        decision:
-          description: "The decision outcome. Currently supported values: 'allow','deny'"
-          example: deny
-          type: string
-        message:
-          description: Additional information regarding the decision outcome
-          example: Object locked due to recent change
-          type: string
-      required:
-      - decision
-      - decisionId
-      - message
-      type: object
-  securitySchemes:
-    bearerAuth:
-      description: "Bearer token (from client that called CPS-NCMP),used by policies\
-        \ to identify the client"
-      scheme: bearer
-      type: http
+
+Operation:
+  example:
+    operation: update
+    entityHandleId: ABCD123450d7A822AB27B386829FD9E12
+    resourceIdentifier: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+    targetIdentifier: MEContext=RadioNode-K6_0001,ManagedElement=RadioNode-K6_0001
+    changeRequest:
+  Cell:
+  - id: Cell-id
+    attributes:
+        administrativeState: UNLOCKED
+    properties:
+      operation:
+        description: Currently supported operations are 'create', 'update', 'patch', 'delete'. For other possible operation types see the client documentation.
+        example: update
+        type: string
+      entityHandleId:
+        description: A unique identifier for the network element.
+        example: ABCD123450d7A822AB27B386829FD9E12
+        type: string
+      resourceIdentifier:
+        description: Identifies the object in the node model. Currently supported separators are '/' and ','. For other possible format see the client documentation.
+        example: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+        type: string
+      targetIdentifier:
+        description: FDN of the target node. Currently supported separators are '/' and ','. For other possible format see the client documentation.
+        example: MEContext=RadioNode-K6_0001/ManagedElement=RadioNode-K6_0001
+        type: string
+      changeRequest:
+        description: All the information that is required to identify which parameters and attributes of the network is changing.
+        example:
+          Cell:
+            - id: Cell-id
+              attributes:
+                administrativeState: UNLOCKED
+        type: object
+    required:
+      - operation
+      - targetIdentifier
+      - changeRequest
+    type: object
+DeleteOperation:
+  example:
+    operation: delete
+    entityHandleId: ABCD123450d7A822AB27B386829FD9E12
+    resourceIdentifier: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+    targetIdentifier: MEContext=RadioNode-K6_0001/ManagedElement=RadioNode-K6_0001
+  properties:
+    operation:
+      description: Currently supported operations are 'create', 'update', 'patch', 'delete'. For other possible operation types see the client documentation.
+      example: delete
+      type: string
+    entityHandleId:
+      description: A unique identifier for the network element.
+      example: ABCD123450d7A822AB27B386829FD9E12
+      type: string
+    resourceIdentifier:
+      description: Identifies the object in the node model. Currently supported separators are '/' and ','. For other possible format see the client documentation.
+      example: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+      type: string
+    targetIdentifier:
+      description: FDN of the target node. Currently supported separators are '/' and ','. For other possible format see the client documentation.
+      example: MEContext=RadioNode-K6_0001/ManagedElement=RadioNode-K6_0001
+      type: string
+  required:
+    - operation
+    - targetIdentifier
+  type: object
+PermissionRequest:
+  example:
+    permissionId: 550e8400-e29b-41d4-a716-446655440000
+    changeRequestFormat: cm-legacy
+    operations:
+      - operation: update
+        entityHandleId: ABCD123450d7A822AB27B386829FD9E12
+        resourceIdentifier: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+        targetIdentifier: MEContext=RadioNode-K6_0001/ManagedElement=RadioNode-K6_0001
+        changeRequest:
+          Cell:
+            - id: Cell-id
+              attributes:
+                administrativeState: UNLOCKED
+      - operation: delete
+        entityHandleId: DCBA123450d7A822AB27B386829FD9E12
+        resourceIdentifier: ManagedElement=Kista/GNBDUFunction=1/UECC=1
+        targetIdentifier: MEContext=RadioNode-K6_0002/ManagedElement=RadioNode-K6_0002
+  properties:
+    permissionId:
+      description: Unique ID for the permission request (for auditing purposes)
+      example: 550e8400-e29b-41d4-a716-446655440000
+      type: string
+    changeRequestFormat:
+      description: Format of the change request. Currently supported 'cm-legacy'. For other possible formats see the client documentation.
+      example: cm-legacy
+      type: string
+    operations:
+      items:
+        anyOf:
+          - $ref: '#/components/schemas/Operation'
+          - $ref: '#/components/schemas/DeleteOperation'
+      type: array
+  required:
+    - operations
+    - changeRequestFormat
+  type: object
+PermissionResponse:
+  example:
+    id: 550e8400-e29b-41d4-a716-446655440000
+    permissionResult: deny
+    message: Object locked due to recent changes
+  properties:
+    id:
+      description: Unique ID for the permission request (for auditing purposes)
+      example: 550e8400-e29b-41d4-a716-446655440000
+      type: string
+    permissionResult:
+      description: "The decision outcome. Currently supported values: 'allow','deny'"
+      example: deny
+      type: string
+    message:
+      description: Additional information regarding the decision outcome
+      example: Object locked due to recent change
+      type: string
+  required:
+    - id
+    - permissionResult
+    - message
+  type: object
+
+  responses:
+    BadRequest:
+      description: "Bad Request"
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: '400'
+            title: "Bad Request"
+            details: "The provided request is not valid"
+    Unauthorized:
+      description: "Unauthorized request"
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: '401'
+            message: "Unauthorized request"
+            details: "This request is unauthorized"
+    Forbidden:
+      description: "Forbidden"
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: '403'
+            title: "Request Forbidden"
+            details: "This request is forbidden"
+
+    InternalServerError:
+      description: "Internal Server Error"
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: '500'
+            title: "Internal Server Error"
+            details: "Internal server error occurred"
+
+  parameters:
+    authorizationInHeader:
+      name: Authorization
+      in: header
+      description: "Bearer token may be used to identify client as part of a policy"
+      schema:
+        type: string
+
+security:
+  - bearerAuth: []
