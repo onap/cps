@@ -33,6 +33,24 @@
       "message": "if u can resolve the merge conflict then I can ask ppl to review this.",
       "revId": "92fb342ba2c5ed125f442ff047954be6fedbac82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de062968_ef794d38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2024-12-09T09:44:14Z",
+      "side": 1,
+      "message": "Addressed merge conflicts. please review",
+      "parentUuid": "6a860abe_8511882d",
+      "revId": "92fb342ba2c5ed125f442ff047954be6fedbac82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
