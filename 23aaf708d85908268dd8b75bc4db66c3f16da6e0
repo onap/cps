@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04570c86_e2c0ecac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T08:46:21Z",
+      "side": 1,
+      "message": "some suggestions",
+      "revId": "23aaf708d85908268dd8b75bc4db66c3f16da6e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbffe844_3cee16b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/CpsAndNcmpLockConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T08:46:21Z",
+      "side": 1,
+      "message": "The key of the map entry should be the name of the lock ...\nMaybe list the agreed keys in this class or even better have a dedicated class managing each lock",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "23aaf708d85908268dd8b75bc4db66c3f16da6e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b36ea2b_b9df37b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T08:46:21Z",
+      "side": 1,
+      "message": "suggested have a dedicated bean with dedicated methods ie.g.\n\nCpsNcmpLocks.tryLockModulesSyncWorkQueue()\nCpsNcmpLocks.unlockModulesSyncWorkQueue()\n\nlogging etc can go into the dedicated class",
+      "range": {
+        "startLine": 94,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 100
+      },
+      "revId": "23aaf708d85908268dd8b75bc4db66c3f16da6e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
