@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366e6e01_ab836e6e",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T18:02:32Z",
+      "side": 1,
+      "message": "not suer about x-api-id value.... Where does this come from is it some king of UUID ?!",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 48
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc71d61_16f028f7",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T18:02:32Z",
+      "side": 1,
+      "message": "I am confused about the use of dash - when is it needed, or is just an alternative/different style of indenting?!\nUnfortunatly comments loose most formatting in Gerrit :-(",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 63
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ab898f_3ff8f3d6",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T18:02:32Z",
+      "side": 1,
+      "message": "Something wrong here, but not suer what. Indenting in comment wasn\u0027t clear.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 15
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e05b5d_3ce19509",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T18:02:32Z",
+      "side": 1,
+      "message": "I changed to \u0027title\u0027 for consistency reasons",
+      "range": {
+        "startLine": 261,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 17
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0483edd5_7ab91926",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T18:02:32Z",
+      "side": 1,
+      "message": "applied quotes for consistency",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 271,
+        "endChar": 25
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
