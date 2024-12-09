@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a6d6c3_6130cd12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-09T17:57:01Z",
+      "side": 1,
+      "message": "I meant here: https://gerrit.onap.org/r/c/cps/+/139696",
+      "revId": "6191d41c8d8ee20f0388172faf57e2bf8bbf8862",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ca46806_6bf9fb87",
