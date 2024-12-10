@@ -63,6 +63,30 @@
       },
       "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028fceb5_5b6c5736",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-10T18:36:03Z",
+      "side": 1,
+      "message": "weird, I thought I checked out from master, all other updates like debugging were revert except this option... Anyway I posted another patch",
+      "parentUuid": "bcbf1f25_2c3c1f1b",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
