@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.cache;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
+import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.config.RestEndpointGroup;
 import com.hazelcast.config.SetConfig;
@@ -91,6 +92,21 @@ public class HazelcastCacheConfig {
     protected static MapConfig createMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(1);
+        return mapConfig;
+    }
+
+    protected static MapConfig createMapConfigWithTimeToLiveInSeconds(final String configName,
+                                                                      final int timeToLiveInSeconds) {
+        final MapConfig mapConfig = new MapConfig(configName);
+        mapConfig.setBackupCount(1);
+        mapConfig.setTimeToLiveSeconds(timeToLiveInSeconds);
+        return mapConfig;
+    }
+
+    protected static MapConfig createNearCacheMapConfig(final String configName) {
+        final MapConfig mapConfig = new MapConfig(configName);
+        mapConfig.setBackupCount(1);
+        mapConfig.setNearCacheConfig(new NearCacheConfig(configName));
         return mapConfig;
     }
 

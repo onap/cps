@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -59,10 +60,10 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final CpsQueryService cpsQueryService;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_DMI_PLUGIN)
-    private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
+    private final IMap<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandleId;
+    private final IMap<String, TrustLevel> trustLevelPerCmHandleId;
 
     private final CpsValidator cpsValidator;
 
