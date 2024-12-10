@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "455e2bb1_4c362cd0",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-12-10T14:16:39Z",
+      "side": 1,
+      "message": "revert",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
