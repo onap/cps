@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6949c0c_307032c9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:54:08Z",
+      "side": 1,
+      "message": "and: dryRunEnabled flag is set to true , think its good to emphasize this part",
+      "range": {
+        "startLine": 269,
+        "startChar": 12,
+        "endLine": 269,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93abe333_999b16d8",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:54:08Z",
+      "side": 1,
+      "message": "and: dryRunEnabled flag is set to true",
+      "range": {
+        "startLine": 540,
+        "startChar": 12,
+        "endLine": 540,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f278a6_b5c79f08",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:54:08Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 584,
+        "startChar": 12,
+        "endLine": 584,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd906406_f68abedb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:54:08Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 668,
+        "startChar": 13,
+        "endLine": 668,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
