@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a2ea78e_6ecfce3c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-12-10T15:47:32Z",
+      "side": 1,
+      "message": "good spotting. but i\u0027d rather fix this in a diff commit",
+      "parentUuid": "49ca09b9_a9409e83",
+      "range": {
+        "startLine": 44,
+        "startChar": 29,
+        "endLine": 44,
+        "endChar": 39
+      },
+      "revId": "d7e82deca1f8594c2421bacb0267b5f800c1f7f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19efebca_ffa4eeed",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-10T15:43:34Z",
       "side": 1,
       "message": "NB: Can\u0027t we use NetworkCmProxyInventoryFacade here?",
+      "range": {
+        "startLine": 111,
+        "startChar": 3,
+        "endLine": 111,
+        "endChar": 37
+      },
+      "revId": "d7e82deca1f8594c2421bacb0267b5f800c1f7f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3194c6f4_9226c410",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2024-12-10T15:47:32Z",
+      "side": 1,
+      "message": "sure we can. good spotting. but i\u0027d rather fix this in a diff commit",
+      "parentUuid": "19efebca_ffa4eeed",
       "range": {
         "startLine": 111,
         "startChar": 3,
