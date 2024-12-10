@@ -217,14 +217,15 @@ public class DataRestController implements CpsDataApi {
                                                                 final String sourceAnchorName,
                                                                 final String targetAnchorName,
                                                                 final String xpath,
-                                                                final String descendants) {
+                                                                final String descendants,
+                                                                final String contentTypeInHeader) {
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(descendants);
-
         final List<DeltaReport> deltaBetweenAnchors =
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                         targetAnchorName, xpath, fetchDescendantsOption);
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
+        return buildDeltaResponseEntity(deltaBetweenAnchors, contentType);
     }
 
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
@@ -234,6 +235,17 @@ public class DataRestController implements CpsDataApi {
             responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);
         } else {
             responseData = jsonObjectMapper.asJsonString(dataMaps);
+        }
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+    private ResponseEntity<Object> buildDeltaResponseEntity(final List<DeltaReport> deltaBetweenAnchors,
+                                                       final ContentType contentType) {
+        final String responseData;
+        if (ContentType.XML.equals(contentType)) {
+            responseData = XmlFileUtils.buildXmlUsingDom(deltaBetweenAnchors);
+        } else {
+            responseData = jsonObjectMapper.asJsonString(deltaBetweenAnchors);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
