@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48019851_13eb9232",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-10T14:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "610e7f99_5eb11ec5",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "36c095f6af8aff2db77fa8940a603d86616dcfe7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25ddad8c_69adf883",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-10T14:05:20Z",
       "side": 1,
       "message": "TimeInSeconds, same as other one",
+      "range": {
+        "startLine": 6,
+        "startChar": 16,
+        "endLine": 6,
+        "endChar": 20
+      },
+      "revId": "36c095f6af8aff2db77fa8940a603d86616dcfe7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "166c8504_69d31109",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-10T14:23:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25ddad8c_69adf883",
       "range": {
         "startLine": 6,
         "startChar": 16,
