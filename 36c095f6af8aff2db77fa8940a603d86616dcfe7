@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "610e7f99_5eb11ec5",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T14:06:11Z",
+      "side": 1,
+      "message": "put \u0027seconds\u0027 or \u0027in seconds\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "36c095f6af8aff2db77fa8940a603d86616dcfe7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25ddad8c_69adf883",
         "filename": "k6-tests/ncmp/config/endurance.json",
         "patchSetId": 1
