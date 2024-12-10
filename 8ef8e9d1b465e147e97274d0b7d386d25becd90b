@@ -39,6 +39,30 @@
       },
       "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcbf1f25_2c3c1f1b",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-10T18:32:15Z",
+      "side": 1,
+      "message": "Done, it was only temporary but I knew I had a more testing to do and would revert it at the end",
+      "parentUuid": "455e2bb1_4c362cd0",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 17
+      },
+      "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5151615_89d00e1b",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-10T18:32:15Z",
+      "side": 1,
+      "message": "as agreed any random UUID is acceptable here, just cannot be changed in the future...",
+      "parentUuid": "366e6e01_ab836e6e",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 48
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acc71d61_16f028f7",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "115d3d6d_fec07e85",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-10T18:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acc71d61_16f028f7",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 63
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70ab898f_3ff8f3d6",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-12-09T18:02:32Z",
       "side": 1,
       "message": "Something wrong here, but not suer what. Indenting in comment wasn\u0027t clear.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 15
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c359edbc_fdf72eaa",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-10T18:32:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70ab898f_3ff8f3d6",
       "range": {
         "startLine": 103,
         "startChar": 0,
