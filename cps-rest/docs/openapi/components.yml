@@ -157,6 +157,36 @@ components:
             name: "Funny"
           target-data:
             name: "Comic"
+    deltaReportSampleXml:
+      value:
+        <deltaReports>
+            <deltaReport id="1">
+                <action>replace</action>
+                <xpath>/bookstore/categories[@code='1']</xpath>
+                <source-data>
+                    <name>SciFi</name>
+                </source-data>
+                <target-data>
+                    <name>Comic</name>
+                </target-data>
+            </deltaReport>
+            <deltaReport id="2">
+                <action>remove</action>
+                <xpath>/bookstore/categories[@code='2']</xpath>
+                <source-data>
+                    <code>2</code>
+                    <name>kids</name>
+                </source-data>
+            </deltaReport>
+            <deltaReport id="3">
+                <action>create</action>
+                <xpath>/bookstore/categories[@code='3']</xpath>
+                <target-data>
+                    <code>3</code>
+                    <name>Fiction</name>
+                </target-data>
+            </deltaReport>
+        </deltaReports>
 
   parameters:
     dataspaceNameInQuery:
