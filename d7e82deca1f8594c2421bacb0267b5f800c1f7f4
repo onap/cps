@@ -39,6 +39,29 @@
       },
       "revId": "d7e82deca1f8594c2421bacb0267b5f800c1f7f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19efebca_ffa4eeed",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-12-10T15:43:34Z",
+      "side": 1,
+      "message": "NB: Can\u0027t we use NetworkCmProxyInventoryFacade here?",
+      "range": {
+        "startLine": 111,
+        "startChar": 3,
+        "endLine": 111,
+        "endChar": 37
+      },
+      "revId": "d7e82deca1f8594c2421bacb0267b5f800c1f7f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
