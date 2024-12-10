@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3b2b3c_12c4d94b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8462
+      },
+      "writtenOn": "2024-12-10T15:40:07Z",
+      "side": 1,
+      "message": "OAS is approved by team Agora.",
+      "revId": "8ef8e9d1b465e147e97274d0b7d386d25becd90b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "455e2bb1_4c362cd0",
