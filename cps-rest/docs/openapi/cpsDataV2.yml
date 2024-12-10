@@ -68,6 +68,7 @@ delta:
       - $ref: 'components.yml#/components/parameters/targetAnchorNameInQuery'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     responses:
       '200':
         description: OK
@@ -78,6 +79,12 @@ delta:
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSample'
+          application/xml:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':

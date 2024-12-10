@@ -2047,6 +2047,16 @@ paths:
           default: none
           example: "3"
           type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          default: application/json
+          enum:
+          - application/json
+          - application/xml
+          type: string
       responses:
         "200":
           content:
@@ -2054,6 +2064,13 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/deltaReportSample'
+                  value: null
+              schema:
+                type: object
+            application/xml:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/deltaReportSampleXml'
                   value: null
               schema:
                 type: object
@@ -2500,6 +2517,14 @@ components:
           name: Funny
         target-data:
           name: Comic
+    deltaReportSampleXml:
+      value: "<deltaReports> <deltaReport id=\"1\"> <action>replace</action> <xpath>/bookstore/categories[@code='1']</xpath>\
+        \ <source-data> <name>SciFi</name> </source-data> <target-data> <name>Comic</name>\
+        \ </target-data> </deltaReport> <deltaReport id=\"2\"> <action>remove</action>\
+        \ <xpath>/bookstore/categories[@code='2']</xpath> <source-data> <code>2</code>\
+        \ <name>kids</name> </source-data> </deltaReport> <deltaReport id=\"3\"> <action>create</action>\
+        \ <xpath>/bookstore/categories[@code='3']</xpath> <target-data> <code>3</code>\
+        \ <name>Fiction</name> </target-data> </deltaReport> </deltaReports>"
     dataSampleAcrossAnchors:
       value:
       - anchorName: bookstore1
