@@ -16,6 +16,115 @@
       "message": "please review this code",
       "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b918b390_8c971b2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:20:14Z",
+      "side": 1,
+      "message": "is this agreed?",
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e2b7954_af998bce",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:20:14Z",
+      "side": 1,
+      "message": "i know this is private but maybe add a test around this",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb65dc6_d390a951",
+        "filename": "cps-service/src/main/resources/models/cps-notification-subscriptions@2024-07-03.yang",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:20:14Z",
+      "side": 1,
+      "message": "org:onap:cps",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe0f937_952c369e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:20:14Z",
+      "side": 1,
+      "message": "since you have this as given , show the effect of it on the \u0027then\u0027 clause i.e. any log?",
+      "range": {
+        "startLine": 72,
+        "startChar": 18,
+        "endLine": 72,
+        "endChar": 45
+      },
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa3226cd_0592f530",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-10T12:20:14Z",
+      "side": 1,
+      "message": "\u0027there is no dataspaces available\u0027",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 44
+      },
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
