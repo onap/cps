@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,9 +56,10 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockLcmEventsCreator = Mock(LcmEventsCreator)
     def mockLcmEventsService = Mock(LcmEventsService)
+    def mockCmHandleStateMonitor = Mock(CmHandleStateMonitor)
 
     def lcmEventsCmHandleStateHandlerAsyncHelper = new LcmEventsCmHandleStateHandlerAsyncHelper(mockLcmEventsCreator, mockLcmEventsService)
-    def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, lcmEventsCmHandleStateHandlerAsyncHelper)
+    def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, lcmEventsCmHandleStateHandlerAsyncHelper, mockCmHandleStateMonitor)
 
     def cmHandleId = 'cmhandle-id-1'
     def compositeState

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation.
+ * Copyright (C) 2023-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,16 +20,36 @@
 
 package org.onap.cps.config
 
+import com.hazelcast.map.IMap
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import spock.lang.Specification
 
 class MicroMeterConfigSpec extends Specification {
 
-    def objectUnderTest = new MicroMeterConfig()
+    def cmHandlesByState = Mock(IMap)
+    def objectUnderTest = new MicroMeterConfig(cmHandlesByState)
+    def simpleMeterRegistry = new SimpleMeterRegistry()
 
-    def 'Creating a tined aspect.'() {
+    def 'Creating a timed aspect.'() {
         expect: ' a timed aspect can be created'
-            assert objectUnderTest.timedAspect(new SimpleMeterRegistry()) != null
+            assert objectUnderTest.timedAspect(simpleMeterRegistry) != null
+    }
+
+    def 'Creating gauges for cm handle states.'() {
+        given: 'cache returns value for each state'
+            cmHandlesByState.get(_) >> 1
+        when: 'gauges for each state are created'
+             objectUnderTest.advisedCmHandles(simpleMeterRegistry)
+             objectUnderTest.readyCmHandles(simpleMeterRegistry)
+             objectUnderTest.lockedCmHandles(simpleMeterRegistry)
+             objectUnderTest.deletingCmHandles(simpleMeterRegistry)
+             objectUnderTest.deletedCmHandles(simpleMeterRegistry)
+        then: 'each state has the correct value when queried'
+            def states = ["ADVISED", "READY", "LOCKED", "DELETING", "DELETED"]
+            states.each { state ->
+                def gaugeValue = simpleMeterRegistry.get("cmHandlesByState").tag("state",state).gauge().value()
+                assert gaugeValue == 1
+            }
     }
 
 }
