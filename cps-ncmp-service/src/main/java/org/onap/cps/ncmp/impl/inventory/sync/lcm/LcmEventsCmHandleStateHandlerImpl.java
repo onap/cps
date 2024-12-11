@@ -51,6 +51,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     private final InventoryPersistence inventoryPersistence;
     private final LcmEventsCmHandleStateHandlerAsyncHelper lcmEventsCmHandleStateHandlerAsyncHelper;
+    private final CmHandleStateGaugeManager cmHandleStateGaugeManager;
 
     @Override
     @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
@@ -60,6 +61,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
         lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
+        cmHandleStateGaugeManager.updateCmHandleStateMetrics(cmHandleTransitionPairs);
     }
 
     @Override
