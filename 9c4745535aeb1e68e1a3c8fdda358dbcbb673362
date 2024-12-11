@@ -62,6 +62,54 @@
       },
       "revId": "9c4745535aeb1e68e1a3c8fdda358dbcbb673362",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02aa32d_3f1b63a2",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T12:40:40Z",
+      "side": 1,
+      "message": "could have doen, but for a stub for testing I am going to leave it this time",
+      "parentUuid": "223972b9_02d41576",
+      "range": {
+        "startLine": 60,
+        "startChar": 100,
+        "endLine": 60,
+        "endChar": 104
+      },
+      "revId": "9c4745535aeb1e68e1a3c8fdda358dbcbb673362",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "155f5b45_0a0c3a5f",
+        "filename": "policy-executor-stub/src/main/java/org/onap/cps/policyexecutor/stub/controller/PolicyExecutorStubController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T12:40:40Z",
+      "side": 1,
+      "message": "prefer strin literals in such cases a constant woudl not add value",
+      "parentUuid": "142882e7_c0544297",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 21
+      },
+      "revId": "9c4745535aeb1e68e1a3c8fdda358dbcbb673362",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
