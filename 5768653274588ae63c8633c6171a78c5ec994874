@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d47879_47e9cd37",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-12-11T09:19:00Z",
+      "side": 1,
+      "message": "use single quotes",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 71
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edafde1c_18fd502b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2024-12-11T09:19:00Z",
+      "side": 1,
+      "message": "use single quotes",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 73
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
