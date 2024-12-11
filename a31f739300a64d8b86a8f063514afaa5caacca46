@@ -165,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "742206ce_9935e6bc",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T12:35:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "92e05b5d_3ce19509",
+      "range": {
+        "startLine": 261,
+        "startChar": 12,
+        "endLine": 261,
+        "endChar": 17
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0483edd5_7ab91926",
@@ -178,6 +202,30 @@
       "writtenOn": "2024-12-09T18:02:32Z",
       "side": 1,
       "message": "applied quotes for consistency",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 271,
+        "endChar": 25
+      },
+      "revId": "a31f739300a64d8b86a8f063514afaa5caacca46",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9363ca45_fa35a9e4",
+        "filename": "docs/api/swagger/policy-executor/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T12:35:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0483edd5_7ab91926",
       "range": {
         "startLine": 271,
         "startChar": 20,
