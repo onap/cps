@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e0afd11_25c5e66b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:30:14Z",
+      "side": 1,
+      "message": "agreed, valid use case is already tested before, no need to repeat",
+      "parentUuid": "5ad1fe05_ced6d4b9",
+      "range": {
+        "startLine": 160,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 155
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0ae0304_bf9229c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 3
@@ -83,6 +107,30 @@
       "writtenOn": "2024-12-11T10:44:10Z",
       "side": 1,
       "message": "then theres none returned",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 38
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce9a9aa5_8c31b4ab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:30:14Z",
+      "side": 1,
+      "message": "? I Dont understands above comment?",
+      "parentUuid": "c0ae0304_bf9229c8",
       "range": {
         "startLine": 166,
         "startChar": 19,
