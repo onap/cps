@@ -46,22 +46,22 @@ class PolicyDispatcher extends Dispatcher {
             return new MockResponse().setResponseCode(401)
         }
 
-        if (recordedRequest.path != '/policy-executor/api/v1/execute') {
+        if (recordedRequest.path != '/operation-permission/v1/permissions') {
             return new MockResponse().setResponseCode(400)
         }
 
         def body = objectMapper.readValue(recordedRequest.getBody().readUtf8(), Map.class)
-        def targetIdentifier = body.get('requests').get(0).get('data').get('targetIdentifier')
+        def targetIdentifier = body.get('operations').get(0).get('targetIdentifier')
         def responseAsMap = [:]
-        responseAsMap.put('decisionId',1)
+        responseAsMap.put('id',1)
         if (targetIdentifier == "mock slow response") {
             TimeUnit.SECONDS.sleep(2) // One second more then configured readTimeoutInSeconds
         }
         if (allowAll || targetIdentifier == 'fdn1') {
-            responseAsMap.put('decision','allow')
+            responseAsMap.put('permissionResult','allow')
             responseAsMap.put('message','')
         } else {
-            responseAsMap.put('decision','deny from mock server (dispatcher)')
+            responseAsMap.put('permissionResult','deny from mock server (dispatcher)')
             responseAsMap.put('message','I only like fdn1')
         }
         def responseAsString = objectMapper.writeValueAsString(responseAsMap)
