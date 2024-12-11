@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +51,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     private final InventoryPersistence inventoryPersistence;
     private final LcmEventsCmHandleStateHandlerAsyncHelper lcmEventsCmHandleStateHandlerAsyncHelper;
+    private final CmHandleStateGaugeManager cmHandleStateGaugeManager;
 
     @Override
     @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
@@ -60,6 +61,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
         lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
+        cmHandleStateGaugeManager.updateCmHandleStateMetrics(cmHandleTransitionPairs);
     }
 
     @Override
