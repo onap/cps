@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
+import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
@@ -37,6 +38,7 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
 
     private final LcmEventsCreator lcmEventsCreator;
     private final LcmEventsService lcmEventsService;
+    private final CmHandleStateMetrics cmHandleStateMetrics;
 
     /**
      * Publish LcmEvent in batches and in asynchronous manner.
@@ -48,6 +50,20 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> publishLcmEvent(
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getTargetYangModelCmHandle()),
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
+    }
+
+    //POC
+    @Async
+    public void updateLCMGauge(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
+        cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> updateGaugeForLcm(
+                cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState().getCmHandleState(),
+                cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState().getCmHandleState()));
+    }
+
+    //POC
+    private void updateGaugeForLcm(final CmHandleState previousState,
+                                   final CmHandleState targetState) {
+        cmHandleStateMetrics.updateMetricWithStateChange(previousState, targetState);
     }
 
     private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,

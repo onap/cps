@@ -60,6 +60,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                 prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
         lcmEventsCmHandleStateHandlerAsyncHelper.publishLcmEventBatchAsynchronously(cmHandleTransitionPairs);
+        lcmEventsCmHandleStateHandlerAsyncHelper.updateLCMGauge(cmHandleTransitionPairs);
     }
 
     @Override
