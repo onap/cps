@@ -1,6 +1,115 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38723271_54b1a202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "look ok, just some minor suggestions",
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16150937_a26ca07d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "NB: what is wrong with the way we used to cerate this response?! (and te pattern stil sued for many other methods)\n\nnew ResponseEntity\u003c\u003e(HttpStatus.CREATED);\n\nIt looks simpler to me...",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53a8d286_561453bd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 169,
+        "startChar": 15,
+        "endLine": 169,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6600d9_2aa6b723",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 185,
+        "startChar": 15,
+        "endLine": 185,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f5eb38_b6f8a3c4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 202,
+        "startChar": 15,
+        "endLine": 202,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6949c0c_307032c9",
@@ -26,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "734cf22f_d7a363ef",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "agree, add dedicated label",
+      "parentUuid": "b6949c0c_307032c9",
+      "range": {
+        "startLine": 269,
+        "startChar": 12,
+        "endLine": 269,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93abe333_999b16d8",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
         "patchSetId": 2
@@ -37,6 +170,30 @@
       "writtenOn": "2024-12-10T12:54:08Z",
       "side": 1,
       "message": "and: dryRunEnabled flag is set to true",
+      "range": {
+        "startLine": 540,
+        "startChar": 12,
+        "endLine": 540,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a54e302_49837b3a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "93abe333_999b16d8",
       "range": {
         "startLine": 540,
         "startChar": 12,
@@ -88,6 +245,29 @@
         "startChar": 13,
         "endLine": 668,
         "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce321b0_dec415a9",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T11:27:08Z",
+      "side": 1,
+      "message": "\u0027value is false\u0027\nremove \u0027set to\u0027\nRepeat for all messages",
+      "range": {
+        "startLine": 1358,
+        "startChar": 12,
+        "endLine": 1358,
+        "endChar": 33
       },
       "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
