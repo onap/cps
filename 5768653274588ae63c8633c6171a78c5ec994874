@@ -166,6 +166,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "933ffbfd_4d90c011",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-11T15:26:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c012e6be_7ec6da71",
+      "range": {
+        "startLine": 160,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 155
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0ae0304_bf9229c8",
