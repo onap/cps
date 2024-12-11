@@ -21,16 +21,99 @@
 package org.onap.cps.config;
 
 import io.micrometer.core.aop.TimedAspect;
+import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
+import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class MicroMeterConfig {
 
+    private static final String TAG = "state";
+    private static final String CMHANDLE_STATE_GAUGE = "cmHandlesByState";
+    private final CmHandleStateMonitor cmHandleStateMonitor;
+
     @Bean
-    public TimedAspect timedAspect(final MeterRegistry registry) {
-        return new TimedAspect(registry);
+    public TimedAspect timedAspect(final MeterRegistry meterRegistry) {
+        return new TimedAspect(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'advised'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge advisedCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandleStateMonitor,
+                        value -> cmHandleStateMonitor.getCmHandlesByState().get("advisedCmHandlesCount"))
+                .tag(TAG, "ADVISED")
+                .description("Current number of cmhandles in advised state")
+                .register(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'ready'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge readyCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandleStateMonitor,
+                        value -> cmHandleStateMonitor.getCmHandlesByState().get("readyCmHandlesCount"))
+                .tag(TAG, "READY")
+                .description("Current number of cmhandles in ready state")
+                .register(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'locked'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge lockedCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandleStateMonitor,
+                        value -> cmHandleStateMonitor.getCmHandlesByState().get("lockedCmHandlesCount"))
+                .tag(TAG, "LOCKED")
+                .description("Current number of cmhandles in locked state")
+                .register(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'deleting'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge deletingCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandleStateMonitor,
+                        value -> cmHandleStateMonitor.getCmHandlesByState().get("deletingCmHandlesCount"))
+                .tag(TAG, "DELETING")
+                .description("Current number of cmhandles in deleting state")
+                .register(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'deleted'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge deletedCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandleStateMonitor,
+                        value -> cmHandleStateMonitor.getCmHandlesByState().get("deletedCmHandlesCount"))
+                .tag(TAG, "DELETED")
+                .description("Current number of cmhandles in deleted state")
+                .register(meterRegistry);
     }
 
 }
