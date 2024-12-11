@@ -26,6 +26,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1d95de5_ad8757f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T10:44:10Z",
+      "side": 1,
+      "message": "datanode",
+      "range": {
+        "startLine": 160,
+        "startChar": 16,
+        "endLine": 160,
+        "endChar": 25
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad1fe05_ced6d4b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T10:44:10Z",
+      "side": 1,
+      "message": "this can be removed and only focus on the invalid one",
+      "range": {
+        "startLine": 160,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 155
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0ae0304_bf9229c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T10:44:10Z",
+      "side": 1,
+      "message": "then theres none returned",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 38
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edafde1c_18fd502b",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 3
@@ -42,6 +111,29 @@
         "startChar": 8,
         "endLine": 169,
         "endChar": 73
+      },
+      "revId": "5768653274588ae63c8633c6171a78c5ec994874",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02841f29_6b2f5981",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-11T10:44:10Z",
+      "side": 1,
+      "message": "incorrect now given the changes\n\npassing \u0027scenario\u0027 or something better\npassing an empty collection / passing a populated collection",
+      "range": {
+        "startLine": 355,
+        "startChar": 53,
+        "endLine": 355,
+        "endChar": 70
       },
       "revId": "5768653274588ae63c8633c6171a78c5ec994874",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
