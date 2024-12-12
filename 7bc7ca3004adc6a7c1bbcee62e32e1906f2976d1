@@ -33,6 +33,46 @@
       "message": "Ready for Review",
       "revId": "7bc7ca3004adc6a7c1bbcee62e32e1906f2976d1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf0aacd_03e42a93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-12T17:44:12Z",
+      "side": 1,
+      "message": "A NB comment. Otherwise good to me",
+      "revId": "7bc7ca3004adc6a7c1bbcee62e32e1906f2976d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d7a642_faf9ce22",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2024-12-12T17:44:12Z",
+      "side": 1,
+      "message": "NB: This part of the code has been repeated 3 times. Thus, you can extract it into a private method like this:\n\nprivate ResponseEntity\u003cString\u003e validateAndReturnSuccess(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData, String contentTypeInHeader) {\n    final ContentType contentType \u003d ContentType.fromString(contentTypeInHeader);\n    cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);\n    return ResponseEntity.ok().build();\n}\n\nThen, can make a call to it;\n    if (Boolean.TRUE.equals(dryRunEnabled)) {\n        return validateAndReturnSuccess(dataspaceName, anchorName, parentNodeXpath, nodeData, contentTypeInHeader);\n    } else { ...\n    \n    }",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 9
+      },
+      "revId": "7bc7ca3004adc6a7c1bbcee62e32e1906f2976d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
