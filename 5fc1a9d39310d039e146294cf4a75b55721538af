@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f320c175_96ca6e92",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "This Change was made for brevity, as it was recommended in previous patch Reference- https://gerrit.onap.org/r/c/cps/+/138676/17..28/cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java#b78\n \nfunctionality has no change, if required i will revert it back",
+      "parentUuid": "16150937_a26ca07d",
+      "range": {
+        "startLine": 115,
+        "startChar": 15,
+        "endLine": 115,
+        "endChar": 65
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53a8d286_561453bd",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-11T11:27:08Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 169,
+        "startChar": 15,
+        "endLine": 169,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3acfde0b_d63b1bf4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "53a8d286_561453bd",
       "range": {
         "startLine": 169,
         "startChar": 15,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcc482c2_49a4685a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad6600d9_2aa6b723",
+      "range": {
+        "startLine": 185,
+        "startChar": 15,
+        "endLine": 185,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0f5eb38_b6f8a3c4",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-12-11T11:27:08Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 202,
+        "startChar": 15,
+        "endLine": 202,
+        "endChar": 60
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb43df6_2032a6c6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0f5eb38_b6f8a3c4",
       "range": {
         "startLine": 202,
         "startChar": 15,
@@ -157,6 +253,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c63fb7_cd0416d5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "734cf22f_d7a363ef",
+      "range": {
+        "startLine": 269,
+        "startChar": 12,
+        "endLine": 269,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93abe333_999b16d8",
@@ -204,6 +324,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "711da537_cc1e5509",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "8a54e302_49837b3a",
+      "range": {
+        "startLine": 540,
+        "startChar": 12,
+        "endLine": 540,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78f278a6_b5c79f08",
@@ -217,6 +361,30 @@
       "writtenOn": "2024-12-10T12:54:08Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 584,
+        "startChar": 12,
+        "endLine": 584,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0cc56a_2e1a5dbb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78f278a6_b5c79f08",
       "range": {
         "startLine": 584,
         "startChar": 12,
@@ -250,6 +418,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4142c12c_2351009a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd906406_f68abedb",
+      "range": {
+        "startLine": 668,
+        "startChar": 13,
+        "endLine": 668,
+        "endChar": 38
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ce321b0_dec415a9",
@@ -263,6 +455,30 @@
       "writtenOn": "2024-12-11T11:27:08Z",
       "side": 1,
       "message": "\u0027value is false\u0027\nremove \u0027set to\u0027\nRepeat for all messages",
+      "range": {
+        "startLine": 1358,
+        "startChar": 12,
+        "endLine": 1358,
+        "endChar": 33
+      },
+      "revId": "5fc1a9d39310d039e146294cf4a75b55721538af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e80fe0_ec203e18",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-12T09:13:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ce321b0_dec415a9",
       "range": {
         "startLine": 1358,
         "startChar": 12,
