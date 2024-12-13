@@ -73,6 +73,30 @@
       },
       "revId": "7bc7ca3004adc6a7c1bbcee62e32e1906f2976d1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d3a4d2_d5c1c43a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2024-12-13T06:31:26Z",
+      "side": 1,
+      "message": "Agree, but some the methods returns Response as String and some other as Object. So here again we need to change response to string which may lead to inconsistency",
+      "parentUuid": "12d7a642_faf9ce22",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 9
+      },
+      "revId": "7bc7ca3004adc6a7c1bbcee62e32e1906f2976d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
