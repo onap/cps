@@ -31,6 +31,7 @@ listElementByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+      - $ref: 'components.yml#/components/parameters/dryRunInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
       - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     requestBody:
@@ -70,6 +71,7 @@ listElementByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/requiredXpathInQuery'
+      - $ref: 'components.yml#/components/parameters/dryRunInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
       - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     requestBody:
@@ -154,6 +156,7 @@ nodesByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/dryRunInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
       - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     requestBody:
@@ -214,6 +217,7 @@ nodesByDataspaceAndAnchor:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/dryRunInQuery'
       - $ref: 'components.yml#/components/parameters/observedTimestampInQuery'
       - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     requestBody:
