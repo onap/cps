@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1538cbf1_b606fb29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-13T14:32:26Z",
+      "side": 1,
+      "message": "few NB issues. Otherwise its just code movement from NCMP to CPS side to avoid duplication.",
+      "revId": "0bdb9d95c77eefebff531e640c369dae3b94458a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89026703_e4aeb80c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/exceptions/ModelStartupException.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-13T14:32:26Z",
+      "side": 1,
+      "message": "NB: 2 spaces..\nformatting issue I guess.. fix it.",
+      "range": {
+        "startLine": 23,
+        "startChar": 42,
+        "endLine": 23,
+        "endChar": 44
+      },
+      "revId": "0bdb9d95c77eefebff531e640c369dae3b94458a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6202b5_029fef44",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-13T14:32:26Z",
+      "side": 1,
+      "message": "if u are adding a copyright. probably then it should be 2024.",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "0bdb9d95c77eefebff531e640c369dae3b94458a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

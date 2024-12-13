@@ -117,6 +117,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94092c33_9b32f046",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-13T14:32:26Z",
+      "side": 1,
+      "message": "@Sourabh : its code movement from NCMP to CPS side to remove duplication.",
+      "parentUuid": "c883979d_569f2434",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "171fc7f3a23a7f5ee8f45f68cc05d5759adf9fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b918b390_8c971b2f",
