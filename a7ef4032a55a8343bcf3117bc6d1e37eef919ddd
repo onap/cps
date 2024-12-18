@@ -72,6 +72,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de7cf539_6c88d4a6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-18T10:47:20Z",
+      "side": 1,
+      "message": "Suggestion : \nwe were having just one operation before. But now its 2 operations (containskey and removal ) just for the sake of logging.\nif logging is not important then I would directly go ahead and remove it async.\nIf its present then it will be deleted otherwise we silently ignore it.",
+      "range": {
+        "startLine": 322,
+        "startChar": 8,
+        "endLine": 324,
+        "endChar": 69
+      },
+      "revId": "a7ef4032a55a8343bcf3117bc6d1e37eef919ddd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f9979cf_4aee8924",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
         "patchSetId": 1
@@ -83,6 +106,30 @@
       "writtenOn": "2024-12-12T09:54:56Z",
       "side": 1,
       "message": "as befoer",
+      "range": {
+        "startLine": 130,
+        "startChar": 25,
+        "endLine": 130,
+        "endChar": 32
+      },
+      "revId": "a7ef4032a55a8343bcf3117bc6d1e37eef919ddd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30dc660a_b9bd4cf3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-18T10:47:20Z",
+      "side": 1,
+      "message": "same comment as before regarding the 2 operations.",
+      "parentUuid": "7f9979cf_4aee8924",
       "range": {
         "startLine": 130,
         "startChar": 25,
