@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c551181_ee69a3aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "ok, its it just  map and cannot have methods...",
+      "parentUuid": "4b36ea2b_b9df37b5",
+      "range": {
+        "startLine": 94,
+        "startChar": 45,
+        "endLine": 94,
+        "endChar": 100
+      },
+      "revId": "23aaf708d85908268dd8b75bc4db66c3f16da6e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39f643ce_0edf0168",

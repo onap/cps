@@ -1,6 +1,115 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c01d2c8_8edff83a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "a little tidying needed",
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3177f04_79ee4fab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "can be",
+      "range": {
+        "startLine": 62,
+        "startChar": 29,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f4a8067_820a7e4a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "can be",
+      "range": {
+        "startLine": 85,
+        "startChar": 29,
+        "endLine": 85,
+        "endChar": 32
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b364be2_9fb32488",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "can be",
+      "range": {
+        "startLine": 98,
+        "startChar": 29,
+        "endLine": 98,
+        "endChar": 31
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae54c811_7a6b76f3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "can be locked is :",
+      "range": {
+        "startLine": 136,
+        "startChar": 14,
+        "endLine": 136,
+        "endChar": 22
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da71c695_9fc46013",
@@ -19,6 +128,144 @@
         "startChar": 48,
         "endLine": 142,
         "endChar": 49
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed227c6_4e7db220",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "cpsAndNcmpLock.isLocked(\u0027workQueueLock\u0027) \u003d\u003d false",
+      "range": {
+        "startLine": 133,
+        "startChar": 19,
+        "endLine": 133,
+        "endChar": 60
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e23f43_fbc23f9a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "Use groovy for this\n2.each {}",
+      "range": {
+        "startLine": 136,
+        "startChar": 12,
+        "endLine": 136,
+        "endChar": 39
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4930fe_86aaf908",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "describe what you want to assert more exactly. Only one task ....",
+      "range": {
+        "startLine": 139,
+        "startChar": 16,
+        "endLine": 139,
+        "endChar": 47
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d57de87_62302bc0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "check for \"",
+      "range": {
+        "startLine": 141,
+        "startChar": 33,
+        "endLine": 141,
+        "endChar": 35
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59811718_0a37479e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "can give false positives, do more specific asserts possible by checking/controller thread names..",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 13
+      },
+      "revId": "545281cade4838db5457e6a120f022c404110188",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c69ba833_43e9611f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:05:05Z",
+      "side": 1,
+      "message": "need more descriptive:\n\u0027task that got the lock first\u0027",
+      "range": {
+        "startLine": 181,
+        "startChar": 20,
+        "endLine": 181,
+        "endChar": 26
       },
       "revId": "545281cade4838db5457e6a120f022c404110188",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
