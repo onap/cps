@@ -37,7 +37,8 @@ Release Data
 
 Bug Fixes
 ---------
-
+3.6.0
+    - `CPS-2069 <https://lf-onap.atlassian.net/browse/CPS-2069>`_ Suggestions to improve async use case behaviour when client provides a non-existent topic.
 
 Features
 --------
