@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903596cf_f8479d94",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:10:32Z",
+      "side": 1,
+      "message": "add 60000ms by default , can be set to a lower value",
+      "range": {
+        "startLine": 24,
+        "startChar": 331,
+        "endLine": 24,
+        "endChar": 332
+      },
+      "revId": "1eec9e5d3e133bb8430b34ba6b6317f5febec8a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b953e132_fe2c7118",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:10:32Z",
+      "side": 1,
+      "message": "value_in_ms",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 100
+      },
+      "revId": "1eec9e5d3e133bb8430b34ba6b6317f5febec8a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ffeb98_1e0bcc9f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T12:10:32Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 156
+      },
+      "revId": "1eec9e5d3e133bb8430b34ba6b6317f5febec8a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
