@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "709d4032_702db081",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-19T12:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "903596cf_f8479d94",
+      "range": {
+        "startLine": 24,
+        "startChar": 331,
+        "endLine": 24,
+        "endChar": 332
+      },
+      "revId": "1eec9e5d3e133bb8430b34ba6b6317f5febec8a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b953e132_fe2c7118",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-19T12:10:32Z",
       "side": 1,
       "message": "value_in_ms",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 100
+      },
+      "revId": "1eec9e5d3e133bb8430b34ba6b6317f5febec8a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78ec90e_4716cc62",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-19T12:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b953e132_fe2c7118",
       "range": {
         "startLine": 28,
         "startChar": 52,
