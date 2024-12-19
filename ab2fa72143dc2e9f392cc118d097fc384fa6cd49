@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08723dc9_0dff24fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "some suggestion, see below\nAlso need see unit test for teh gauge logic itself",
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c33c106_a23632d1",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "meterRegistry for consistency",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f4e2588_f0662417",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "i known LCM what stands for but, why are there 2 different \u0027metrics\u0027 passed on to the builder, what is the exact difference between cmHandleStateMetrics (plural) and                        lcmMetric. I didn\u0027t check out the code to see the method signature, but the difference should be clear from the names, so maybe better names are needed",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 34
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68348fad_632ef3e6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "why no use switch statement?",
+      "range": {
+        "startLine": 64,
+        "startChar": 7,
+        "endLine": 64,
+        "endChar": 51
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b1f5757_afc95979",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "extract out METRIC_POSTFIX \u003d \"CmHandlesCount",
+      "range": {
+        "startLine": 65,
+        "startChar": 50,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2f3150d_a016f54b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "you are repeating this many times and only one var is different, so assign a  var in the (switch) statement and then call this only once.\nMaybe explicitly do NOTHING for states log something at trace level \u0027CM handles with State(S) X, Y are not instrumented\u0027\n\n\natualy I see now you can produce the keyName (from teh state itself) some simple pseodo code here:\n\nif State\u003dX OR state\u003dY\n  log.trace(\u0027ignored because...\u0027)\nelse\n  keyName \u003d state.toLowercase()+METRIC_POSTFIX  \n  cmHandlesByState.executeOnKey(\"advisedCmHandlesCount\",DECREASE_GUAGE_PROCESSOR)",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 96
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0bf51db_3b883719",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "could this be extracted out to a (static?) constant like DECREASE_GUAGE_PROCESSOR ?",
+      "range": {
+        "startLine": 65,
+        "startChar": 67,
+        "endLine": 65,
+        "endChar": 95
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f7a0e9_e5c62ece",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "why no use switch statement?",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 48
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f5360b9_532c8e26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "lei above, just assign this to a var etc.",
+      "range": {
+        "startLine": 77,
+        "startChar": 42,
+        "endLine": 77,
+        "endChar": 65
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92734d9e_f786b76c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "I actaully would create two static processors, increase and decrease! no need to for a delta var, no need for any check on the increase one,. Might perform slightly better",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

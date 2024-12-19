@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ae05fc_b222abb8",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "455edcac_876a8894",
+      "range": {
+        "startLine": 45,
+        "startChar": 58,
+        "endLine": 45,
+        "endChar": 82
+      },
+      "revId": "8088f153019e879c2bb0d5f9f037dcbecfc3323e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "954dcdea_9f6ac727",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-11T15:32:59Z",
       "side": 1,
       "message": "Don\u0027t use .* imports :-)",
+      "range": {
+        "startLine": 28,
+        "startChar": 68,
+        "endLine": 28,
+        "endChar": 70
+      },
+      "revId": "8088f153019e879c2bb0d5f9f037dcbecfc3323e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c10cb9ce_49efa48b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T15:15:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "954dcdea_9f6ac727",
       "range": {
         "startLine": 28,
         "startChar": 68,
