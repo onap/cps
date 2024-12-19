@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<bookstore xmlns="org:onap:ccsdk:sample">
+    <bookstore-name>Chapters</bookstore-name>
+    <categories>
+        <code>1</code>
+        <name>SciFi</name>
+        <books>
+            <title>2001: A Space Odyssey</title>
+            <lang>en</lang>
+            <authors>
+                Iain M. Banks
+            </authors>
+            <editions>1994</editions>
+            <price>895</price>
+        </books>
+    </categories>
+</bookstore>
+</stores>

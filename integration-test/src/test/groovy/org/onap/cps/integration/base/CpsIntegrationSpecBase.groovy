@@ -45,6 +45,7 @@ import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -225,10 +226,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
         return true
     }
 
-    def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data) {
+    def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data, ContentType contentType = ContentType.JSON) {
         (1..numberOfAnchors).each {
             cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now())
+            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now(), contentType)
         }
     }
 

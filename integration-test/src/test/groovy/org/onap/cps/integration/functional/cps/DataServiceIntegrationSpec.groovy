@@ -361,6 +361,17 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             'new code, new child'           | 'new'        | ', "books" : [ { "title": "New Book" } ]' || 2
     }
 
+    def 'Update xml bookstore top-level container data node.'() {
+        when: 'the xml bookstore top-level container is updated'
+            def xml = '<categories><code>1</code><name>Unknown</name></categories>'
+            cpsDataService.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/', xml, now, ContentType.XML)
+        then: 'bookstore name has been updated'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore', DIRECT_CHILDREN_ONLY)
+            result.leaves.'name'[0] == 'Unknown'
+        cleanup:
+            restoreBookstoreXmlDataAnchor(1)
+    }
+
     def 'Update data node leaves for node that has no leaves (yet).'() {
         given: 'new (webinfo) datanode without leaves'
             def json = '{"webinfo": {} }'
