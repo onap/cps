@@ -172,10 +172,7 @@ public class TrustLevelManager {
      * @param cmHandleIds       cm handle ids to be removed from the cache
      */
     public void removeCmHandles(final Collection<String> cmHandleIds) {
-        final Set<String> cmHandlesToRemove = trustLevelPerCmHandleId.keySet().stream()
-                .filter(cmHandleIds::contains)
-                .collect(Collectors.toSet());
-        for (final String cmHandleId : cmHandlesToRemove) {
+        for (final String cmHandleId : cmHandleIds) {
             trustLevelPerCmHandleId.removeAsync(cmHandleId);
         }
     }

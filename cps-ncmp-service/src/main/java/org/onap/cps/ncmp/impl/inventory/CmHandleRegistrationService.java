@@ -319,10 +319,8 @@ public class CmHandleRegistrationService {
 
     // CPS-1239 Robustness cleaning of in progress cache
     private void removeDeletedCmHandleFromModuleSyncMap(final String cmHandleId) {
-        if (moduleSyncStartedOnCmHandles.containsKey(cmHandleId)) {
-            moduleSyncStartedOnCmHandles.removeAsync(cmHandleId);
-            log.debug("{} will be removed asynchronously from in progress map", cmHandleId);
-        }
+        moduleSyncStartedOnCmHandles.removeAsync(cmHandleId);
+        log.debug("{} will be removed asynchronously from in progress map", cmHandleId);
     }
 
     private List<CmHandleRegistrationResponse> upgradeCmHandles(final Map<YangModelCmHandle, CmHandleState>
