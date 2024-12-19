@@ -16,6 +16,52 @@
       "message": "functional issue from Priyank can be dealt with in separate commit",
       "revId": "40578d56733247540a09b6bbf000181b46b5c1fc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52702197_0e15824b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-19T12:31:32Z",
+      "side": 1,
+      "message": "as discussed this can be removed and check if it has further effect on the performance/ n/w calls.",
+      "range": {
+        "startLine": 322,
+        "startChar": 12,
+        "endLine": 322,
+        "endChar": 64
+      },
+      "revId": "40578d56733247540a09b6bbf000181b46b5c1fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "364a6215_888ac57e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncTasks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-19T12:31:32Z",
+      "side": 1,
+      "message": "same comment as before.",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 69
+      },
+      "revId": "40578d56733247540a09b6bbf000181b46b5c1fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
