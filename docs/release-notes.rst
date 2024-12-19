@@ -38,7 +38,6 @@ Release Data
 Bug Fixes
 ---------
 
-
 Features
 --------
 

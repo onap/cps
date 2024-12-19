@@ -21,6 +21,13 @@ For all data operations on cm handle(s), we have a post endpoint:
 
 - When asynchronous (with topic) operations are executed, a request id (UUID) will be returned.
 
+**Note.** The client topic is validated to ensure it adheres to Kafka's topic naming conventions. Additionally, if a client specifies a topic that does not exist, the request might be delayed. To enable a fail-fast mechanism, the max.block.ms parameter can be adjusted to define the maximum duration the request is allowed to block. The parameter is 60000ms by default but can be set to a lower value.
+
+.. code:: bash
+
+    spring.kafka.producer.properties.max.block.ms: <value_in_ms>
+
+
 Request Body
 ============
 
