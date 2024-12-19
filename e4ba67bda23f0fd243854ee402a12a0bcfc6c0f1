@@ -16,6 +16,293 @@
       "message": "since its just code movement from NCMP to CPS side to avoid code duplication.",
       "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c98052f_fd6c9168",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "if you take out the initial subscription creation its actually almost OK really...",
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f63fded_2c4cf911",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/exceptions/ModelStartupException.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "ModelOnboardingException",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 35
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981fac0d_36dc87fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "why not private?",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 14
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4631cc3d_a81667c9",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "this is not in scope (also not mentioned in commit message) and I think it needs discussion before you go ahead, see next comment",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 33
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9e4d37_9755bb17",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "Creating \u0027initial\u0027 subscriptions on all existing dataspaces (during upgrade?) needs to be discussed. I think it requires a separate user story and input from the CPS team on what should/should not happen...",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 0
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e301bab_85fad707",
+        "filename": "cps-service/src/main/resources/models/cps-notification-subscriptions@2024-07-03.yang",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "model looks good and as discussed with team!",
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d91ce83d_e8da7e57",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "dataspace",
+      "range": {
+        "startLine": 87,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 55
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e963bb80_520276c6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "module",
+      "range": {
+        "startLine": 116,
+        "startChar": 49,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2decee_e11b4e49",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "anchor",
+      "range": {
+        "startLine": 142,
+        "startChar": 49,
+        "endLine": 142,
+        "endChar": 55
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa5f4a4_06c3d650",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "anchor",
+      "range": {
+        "startLine": 147,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 26
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d678625_9aee173b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "anchor",
+      "range": {
+        "startLine": 157,
+        "startChar": 20,
+        "endLine": 157,
+        "endChar": 26
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac1405c0_19b8b405",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "anchor",
+      "range": {
+        "startLine": 78,
+        "startChar": 18,
+        "endLine": 78,
+        "endChar": 24
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e85c050_b20f61bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/CpsNotificationSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2024-12-19T11:48:08Z",
+      "side": 1,
+      "message": "out of scope adn needs discussion, remove for now",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "e4ba67bda23f0fd243854ee402a12a0bcfc6c0f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
