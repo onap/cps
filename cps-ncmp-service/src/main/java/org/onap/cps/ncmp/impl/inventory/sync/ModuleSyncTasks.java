@@ -127,7 +127,7 @@ public class ModuleSyncTasks {
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
         if (moduleSyncStartedOnCmHandles.containsKey(resetCmHandleId)) {
             moduleSyncStartedOnCmHandles.removeAsync(resetCmHandleId);
-            log.info("{} removed from in progress map", resetCmHandleId);
+            log.info("{} will be removed asynchronously from in progress map", resetCmHandleId);
         }
     }
 

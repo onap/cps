@@ -86,7 +86,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
         and: 'cm handle is in READY state'
             mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
-        and: 'cm handle to be removed is in progress map'
+        and: 'cm handles is present in in-progress map'
             mockModuleSyncStartedOnCmHandles.containsKey('cmhandle-2') >> true
         when: 'registration is processed'
             objectUnderTest.updateDmiRegistration(dmiRegistration)
@@ -328,7 +328,6 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'successfully de-registered cm handle 3 is removed from in progress map even though it was already being removed'
             1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle3')
         and: 'failed de-registered cm handle entries should NOT be removed from in progress map'
-            0 * mockModuleSyncStartedOnCmHandles.containsKey('cmhandle2')
             0 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle2')
         and: '1st and 3rd cm-handle deletes successfully'
             with(response.removedCmHandles[0]) {

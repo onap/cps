@@ -42,18 +42,11 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsDataService = Mock(CpsDataService)
-    def trustLevelPerDmiPlugin = HazelcastInstanceFactory
-        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
-        .getMap('trustLevelPerDmiPlugin')
-    def trustLevelPerCmHandleId = HazelcastInstanceFactory
-        .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
-        .getMap('trustLevelPerCmHandleId')
+    def trustLevelPerDmiPlugin = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('trustLevelPerDmiPlugin')
+    def trustLevelPerCmHandleId = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('trustLevelPerCmHandleId')
     def mockCpsValidator = Mock(CpsValidator)
 
-
-    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService,
-        trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
-
+    def objectUnderTest = new CmHandleQueryServiceImpl(mockCpsDataService, mockCpsQueryService, trustLevelPerDmiPlugin, trustLevelPerCmHandleId, mockCpsValidator)
     def static sampleDataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']"),
                                   new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-2']")]
 

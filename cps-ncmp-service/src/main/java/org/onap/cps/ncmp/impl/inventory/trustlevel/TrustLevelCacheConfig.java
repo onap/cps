@@ -33,7 +33,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     public static final String TRUST_LEVEL_PER_DMI_PLUGIN = "trustLevelPerDmiPlugin";
 
     public static final String TRUST_LEVEL_PER_CM_HANDLE = "trustLevelPerCmHandle";
-    private static final MapConfig trustLevelPerCmHandleIdCacheConfig =
+    private static final MapConfig trustLevelPerCmHandleIdNearCacheConfig =
             createNearCacheMapConfig("trustLevelPerCmHandleCacheConfig");
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
@@ -46,7 +46,7 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
      */
     @Bean(TRUST_LEVEL_PER_CM_HANDLE)
     public IMap<String, TrustLevel> trustLevelPerCmHandleId() {
-        return getOrCreateHazelcastInstance(trustLevelPerCmHandleIdCacheConfig).getMap(TRUST_LEVEL_PER_CM_HANDLE);
+        return getOrCreateHazelcastInstance(trustLevelPerCmHandleIdNearCacheConfig).getMap(TRUST_LEVEL_PER_CM_HANDLE);
     }
 
     /**

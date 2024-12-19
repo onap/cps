@@ -321,7 +321,7 @@ public class CmHandleRegistrationService {
     private void removeDeletedCmHandleFromModuleSyncMap(final String cmHandleId) {
         if (moduleSyncStartedOnCmHandles.containsKey(cmHandleId)) {
             moduleSyncStartedOnCmHandles.removeAsync(cmHandleId);
-            log.debug("{} removed from in progress map", cmHandleId);
+            log.debug("{} will be removed asynchronously from in progress map", cmHandleId);
         }
     }
 

@@ -194,7 +194,7 @@ class ModuleSyncTasksSpec extends Specification {
             def loggingEvent = getLoggingEvent()
             assert loggingEvent.level == Level.INFO
         and: 'the log indicates the cm handle entry is removed successfully'
-            assert loggingEvent.formattedMessage == 'ch-1 removed from in progress map'
+            assert loggingEvent.formattedMessage == 'ch-1 will be removed asynchronously from in progress map'
     }
 
     def 'Sync and upgrade CM handle if in upgrade state for #scenario'() {
