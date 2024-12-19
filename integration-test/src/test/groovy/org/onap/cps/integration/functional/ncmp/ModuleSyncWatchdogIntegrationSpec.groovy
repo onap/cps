@@ -151,6 +151,15 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
         }
     }
 
+    def populateQueueWithoutDelayCallable = () -> {
+        try {
+            objectUnderTest.populateWorkQueueIfNeeded()
+            return 'task acquired the lock first'
+        } catch (InterruptedException e) {
+            e.printStackTrace()
+        }
+    }
+
     def populateQueueWithDelay = () -> {
         try {
             Thread.sleep(10)
