@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee1d081_0dc175ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T13:51:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f39e7df3_8b2d7c5a",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d5f8a3c_f0066030",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-20T13:16:44Z",
       "side": 1,
       "message": "NB: 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b0b66c_359ca33f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateGaugeManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T13:51:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d5f8a3c_f0066030",
       "range": {
         "startLine": 3,
         "startChar": 17,
@@ -93,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc174851_377427ff",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T13:51:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d2785107_cfa7792e",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 85
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f49b4105_8577476b",
@@ -106,6 +178,30 @@
       "writtenOn": "2024-12-20T12:32:54Z",
       "side": 1,
       "message": "simplify:\nif currentValue \u003e 0 {\ndecrease...\n}",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c03944f_cc0058a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T13:51:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f49b4105_8577476b",
       "range": {
         "startLine": 65,
         "startChar": 0,
