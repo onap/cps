@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.init
+package org.onap.cps.init
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
@@ -33,25 +33,26 @@ import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR
-
-class InventoryModelLoaderSpec extends Specification {
-
-    def mockCpsAdminService = Mock(CpsDataspaceService)
+class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
+    def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
+    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
-    def expectedYangResourceToContentMap
+    def expectedYangResourcesToContents
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
 
+    def CPS_DATASPACE_NAME = 'CPS-Admin'
+    def ANCHOR_NAME = 'cps-notification-subscriptions'
+    def SCHEMASET_NAME = 'cps-notification-subscriptions'
+    def MODEL_FILENAME = 'cps-notification-subscriptions@2024-07-03.yang'
+
     void setup() {
-        expectedYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
+        expectedYangResourcesToContents = objectUnderTest.mapYangResourcesToContent(MODEL_FILENAME)
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -60,21 +61,27 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     void cleanup() {
-        ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
+        logger.detachAndStopAllAppenders()
         applicationContext.close()
+        loggingListAppender.stop()
     }
 
-    def 'Onboard subscription model via application ready event.'() {
-        given: 'dataspace is ready for use'
-            mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
-        when: 'the application is started'
+    def 'Onboard subscription model via application started event.'() {
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
+        when: 'the application is ready'
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
-        then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedYangResourceToContentMap)
-        and: 'the admin service is used to update the anchor'
-            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
-        and: 'No schema sets are being removed by the module service (yet)'
-            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
+        then: 'the module service to create schema set is called once'
+            1 * mockCpsModuleService.createSchemaSet(CPS_DATASPACE_NAME, SCHEMASET_NAME, expectedYangResourcesToContents)
+        and: 'the anchor service to create an anchor set is called once'
+            1 * mockCpsAnchorService.createAnchor(CPS_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME)
+        and: 'the data service to create a top level datanode is called once'
+            1 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, '{"dataspaces":{}}', _)
+    }
+
+    private void assertLogContains(String message) {
+        def logs = loggingListAppender.list.toString()
+        assert logs.contains(message)
     }
 
 }
