@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "177b6ba9_ca9e76fe",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c33c106_a23632d1",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 63
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f4e2588_f0662417",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae8a7798_822ab0c2",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f4e2588_f0662417",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 34
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68348fad_632ef3e6",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-12-19T15:15:29Z",
       "side": 1,
       "message": "why no use switch statement?",
+      "range": {
+        "startLine": 64,
+        "startChar": 7,
+        "endLine": 64,
+        "endChar": 51
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "398cf7a0_4cb816bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68348fad_632ef3e6",
       "range": {
         "startLine": 64,
         "startChar": 7,
@@ -156,6 +228,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aff33726_4e2b962a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0bf51db_3b883719",
+      "range": {
+        "startLine": 65,
+        "startChar": 67,
+        "endLine": 65,
+        "endChar": 95
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a84126f_80fe7300",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b1f5757_afc95979",
+      "range": {
+        "startLine": 65,
+        "startChar": 50,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a9a51c9_f0cb0493",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2f3150d_a016f54b",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 96
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67f7a0e9_e5c62ece",
@@ -169,6 +313,30 @@
       "writtenOn": "2024-12-19T15:15:29Z",
       "side": 1,
       "message": "why no use switch statement?",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 48
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf75dcbb_a4725240",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "67f7a0e9_e5c62ece",
       "range": {
         "startLine": 76,
         "startChar": 10,
@@ -202,6 +370,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf1e06b_e5c60da2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f5360b9_532c8e26",
+      "range": {
+        "startLine": 77,
+        "startChar": 42,
+        "endLine": 77,
+        "endChar": 65
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92734d9e_f786b76c",
@@ -215,6 +407,30 @@
       "writtenOn": "2024-12-19T15:15:29Z",
       "side": 1,
       "message": "I actaully would create two static processors, increase and decrease! no need to for a delta var, no need for any check on the increase one,. Might perform slightly better",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "ab2fa72143dc2e9f392cc118d097fc384fa6cd49",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2686a3f9_21c2b6fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMetrics.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2024-12-20T10:12:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92734d9e_f786b76c",
       "range": {
         "startLine": 90,
         "startChar": 0,
