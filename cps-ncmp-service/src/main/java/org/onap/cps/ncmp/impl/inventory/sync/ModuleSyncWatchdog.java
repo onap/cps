@@ -92,7 +92,7 @@ public class ModuleSyncWatchdog {
      */
     public void populateWorkQueueIfNeeded() {
         if (moduleSyncWorkQueue.isEmpty() && cpsAndNcmpLock.tryLock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME)) {
-            log.info("Lock acquired by thread : {}", Thread.currentThread().getName());
+            log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
                 populateWorkQueue();
                 if (moduleSyncWorkQueue.isEmpty()) {
@@ -100,7 +100,7 @@ public class ModuleSyncWatchdog {
                 }
             } finally {
                 cpsAndNcmpLock.unlock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME);
-                log.info("Lock released by thread : {}", Thread.currentThread().getName());
+                log.debug("Lock released by thread : {}", Thread.currentThread().getName());
             }
         }
     }

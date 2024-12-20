@@ -357,5 +357,7 @@ Below are the list of distributed datastructures that we have.
 | cps-ncmp     | moduleSetTagsBeingProcessed        | Track module set tags which are processed to prevent      |
 |              |                                    | multiple threads working with same tag.                   |
 +--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | cpsAndNcmpLock                     | Cps and NCMP distributed lock for various use cases.      |
++--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 7
+Total number of caches : 8
