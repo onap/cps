@@ -125,10 +125,8 @@ public class ModuleSyncTasks {
     }
 
     private void removeResetCmHandleFromModuleSyncMap(final String resetCmHandleId) {
-        if (moduleSyncStartedOnCmHandles.containsKey(resetCmHandleId)) {
-            moduleSyncStartedOnCmHandles.removeAsync(resetCmHandleId);
-            log.info("{} will be removed asynchronously from in progress map", resetCmHandleId);
-        }
+        moduleSyncStartedOnCmHandles.removeAsync(resetCmHandleId);
+        log.info("{} will be removed asynchronously from in progress map", resetCmHandleId);
     }
 
     private static boolean isCmHandleInAdvisedState(final YangModelCmHandle yangModelCmHandle) {

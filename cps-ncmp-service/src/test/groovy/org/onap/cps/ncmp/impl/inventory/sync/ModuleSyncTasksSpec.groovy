@@ -214,18 +214,6 @@ class ModuleSyncTasksSpec extends Specification {
             'module upgrade failed' | MODULE_UPGRADE_FAILED
     }
 
-
-    def 'Remove non-existing cm handle id from hazelcast map'() {
-        given: 'hazelcast map does not contains cm handle id'
-            def result = moduleSyncStartedOnCmHandles.get('non-existing-cm-handle')
-            assert result == null
-        when: 'remove cm handle entry from  hazelcast map'
-            objectUnderTest.removeResetCmHandleFromModuleSyncMap('non-existing-cm-handle')
-        then: 'no event is logged'
-            def loggingEvent = getLoggingEvent()
-            assert loggingEvent == null
-    }
-
     def cmHandleByIdAndState(cmHandleId, cmHandleState) {
         return new YangModelCmHandle(id: cmHandleId, compositeState: new CompositeState(cmHandleState: cmHandleState))
     }
