@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2785107_cfa7792e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-20T13:14:44Z",
+      "side": 1,
+      "message": "NB: in LCM terminology we use current and target. so if u want to follow the same ??\ncurrentCmHandleState for consistency.\nIf u apply this comment then there are other places in the code. Not commenting everywhr.",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 85
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b0a548_f51e326f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2024-12-20T13:14:44Z",
+      "side": 1,
+      "message": "for newly registered cmhandles , there wont be any intial state.. right ?\nwill that result in nullpointer? check for that behaviour.",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 85
+      },
+      "revId": "b5dd84dcb952c778f2854cfd4e5687e71ef20424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f49b4105_8577476b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
         "patchSetId": 5
