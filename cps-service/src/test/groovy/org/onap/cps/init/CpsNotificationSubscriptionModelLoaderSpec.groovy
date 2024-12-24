@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 TechMahindra Ltd.
+ *  Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.Dataspace
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationStartedEvent
@@ -77,6 +78,26 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
             1 * mockCpsAnchorService.createAnchor(CPS_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME)
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, '{"dataspaces":{}}', _)
+    }
+
+    def 'Initial notification subscription for dataspaces.'() {
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
+        when: 'create initial subscription is called'
+            objectUnderTest.createInitialSubscription()
+        then: 'the module service to create schema set is called once'
+            1 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, '/dataspaces', '{"dataspace":[{"name":"test"}]}', _, _)
+    }
+
+    def 'Initial notification subscription for  throws exception.'() {
+        given: 'dataspace is already present'
+            mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
+        and: 'saving notification subscription throws the exception'
+            mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, _, _, _, _) >> {  throw new Exception() }
+        when: 'create initial subscription is called'
+            objectUnderTest.createInitialSubscription()
+        then: 'module onboarding exception is thrown'
+            thrown(ModelOnboardingException)
     }
 
     private void assertLogContains(String message) {
