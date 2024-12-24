@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 TechMahindra Ltd.
+ *  Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -78,10 +78,4 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME, '{"dataspaces":{}}', _)
     }
-
-    private void assertLogContains(String message) {
-        def logs = loggingListAppender.list.toString()
-        assert logs.contains(message)
-    }
-
 }
