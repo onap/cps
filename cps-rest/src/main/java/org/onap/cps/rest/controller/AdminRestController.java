@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,11 +31,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.Dataspace;
 import org.onap.cps.api.model.SchemaSet;
@@ -43,6 +45,7 @@ import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +61,8 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
     private final CpsAnchorService cpsAnchorService;
+    private final CpsNotificationService cpsNotificationService;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create a dataspace.
@@ -280,4 +285,25 @@ public class AdminRestController implements CpsAdminApi {
         final DataspaceDetails dataspaceDetails = cpsRestInputMapper.toDataspaceDetails(dataspace);
         return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Void> createNotificationSubscription(final String xpath,
+                                                               final Object notificationSubscrptionAsJson) {
+        cpsNotificationService.createNotificationSubscription(
+                jsonObjectMapper.asJsonString(notificationSubscrptionAsJson), xpath);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteNotificationSubscription(final String xpath) {
+        cpsNotificationService.deleteNotificationSubscription(xpath);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Object> getNotificationSubscription(final String xpath) {
+        final List<Map<String, Object>> dataMaps = cpsNotificationService.getNotificationSubscription(xpath);
+        return new ResponseEntity<>(jsonObjectMapper.asJsonString(dataMaps), HttpStatus.OK);
+    }
+
 }
