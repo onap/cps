@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.api.exceptions.AlreadyDefinedException
@@ -86,6 +87,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     PrefixResolver prefixResolver = Mock()
+
+    @SpringBean
+    CpsNotificationService mockCpsNotificationService = Mock()
 
     @Autowired
     MockMvc mvc
