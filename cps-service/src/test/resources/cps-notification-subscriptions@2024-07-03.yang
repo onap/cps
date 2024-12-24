@@ -1,0 +1,48 @@
+module cps-notification-subscriptions {
+    yang-version 1.1;
+    namespace "org:onap:cps";
+
+    prefix cps-notification-subscriptions;
+
+    revision "2024-08-05" {
+        description
+            "First release of cps notification subscriptions model";
+    }
+    container dataspaces {
+
+        list dataspace {
+            key "name";
+
+            leaf name {
+                type string;
+            }
+
+            container anchors {
+
+                list anchor {
+                    key "name";
+
+                    leaf name {
+                        type string;
+                    }
+
+                    container xpaths {
+
+                        list xpath {
+                            key "path";
+                            leaf path {
+                                type string;
+                            }
+                        }
+                    }
+                }
+            }
+            leaf-list subscriptionIds {
+                type string;
+            }
+            leaf topic {
+                type string;
+            }
+        }
+    }
+}

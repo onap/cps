@@ -20,11 +20,22 @@
 
 package org.onap.cps.init;
 
+import static org.onap.cps.utils.ContentType.JSON;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.ModelOnboardingException;
+import org.onap.cps.api.model.Dataspace;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -55,6 +66,36 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
         createSchemaSet(CPS_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(CPS_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(CPS_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        createInitialSubscription();
+    }
+
+    /**
+     * Create notification subscription for existing dataspaces.
+     */
+    private void createInitialSubscription() {
+        final Collection<Dataspace> dataspaceList  = cpsDataspaceService.getAllDataspaces();
+        if (dataspaceList != null) {
+            dataspaceList.forEach(this::subscribeNotificationForDataspace);
+        }
+    }
+
+    private void subscribeNotificationForDataspace(final Dataspace dataspace) {
+        final Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("dataspace", Collections.singletonList(Collections.singletonMap("name", dataspace.getName())));
+        final ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            final String nodeData = objectMapper.writeValueAsString(dataMap);
+            cpsDataService.saveData(CPS_DATASPACE_NAME, ANCHOR_NAME,
+                    "/" + REGISTRY_DATANODE_NAME, nodeData,
+                    OffsetDateTime.now(), JSON);
+        } catch (final AlreadyDefinedException exception) {
+            log.info("Data node for dataspace '{}' already exists under '{}'.",
+                    dataspace.getName(), REGISTRY_DATANODE_NAME);
+        } catch (final Exception exception) {
+            log.error("Failed to create data node for dataspace '{}': {}",
+                    dataspace.getName(), exception.getMessage());
+            throw new ModelOnboardingException("Creating data node failed", exception.getMessage());
+        }
     }
 
 }
