@@ -2,7 +2,7 @@
 #  Copyright (C) 2021-2024 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
-#  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+#  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -111,6 +111,9 @@ paths:
 
   /v2/dataspaces/{dataspace-name}/nodes/query:
     $ref: 'cpsQueryV2.yml#/nodesByDataspaceAndCpsPath'
+
+  /v2/notification-subscription:
+    $ref: 'cpsAdminV2.yml#/notification'
 
 security:
   - basicAuth: []

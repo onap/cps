@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021-2022 Nordix Foundation
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,13 +23,19 @@
 
 package org.onap.cps.rest.controller
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsNotificationService
+import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 
 import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 import org.mapstruct.factory.Mappers
 import org.onap.cps.api.CpsDataspaceService
@@ -64,7 +70,16 @@ class AdminRestControllerSpec extends Specification {
     CpsAnchorService mockCpsAnchorService = Mock()
 
     @SpringBean
+    CpsNotificationService mockCpsNotificationService = Mock()
+
+    @SpringBean
     CpsRestInputMapper cpsRestInputMapper = Mappers.getMapper(CpsRestInputMapper)
+
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    @SpringBean
+    PrefixResolver prefixResolver = Mock()
 
     @Autowired
     MockMvc mvc
@@ -382,6 +397,51 @@ class AdminRestControllerSpec extends Specification {
             1 * mockCpsDataspaceService.deleteDataspace(dataspaceName)
         and: 'response code indicates success'
             response.status == HttpStatus.NO_CONTENT.value()
+    }
+
+    def 'Add notification subscription'() {
+        given: 'an endpoint and its payload'
+            def endpoint = "$basePath/v2/notification-subscription"
+            def xpath = '/dataspaces'
+            def jsonPayload = '{"dataspace":[{"name":"ds01"}]}'
+        when: 'post request is performed'
+            def response =
+                mvc.perform(
+                        post(endpoint)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonPayload))
+                        .andReturn().response
+        then: 'notification service method is invoked with expected parameter'
+            1 * mockCpsNotificationService.createNotificationSubscription(jsonPayload, xpath)
+        and: 'HTTP response code indicates success'
+            response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'delete notification subscription'() {
+        given: 'an endpoint and xpath'
+            def endpoint = "$basePath/v2/notification-subscription"
+            def xpath = '/dataspaces'
+        when: 'delete request is performed'
+            def response = mvc.perform(delete(endpoint).param('xpath', xpath)).andReturn().response
+        then: 'notification service method is invoked with expected parameter'
+            1 * mockCpsNotificationService.deleteNotificationSubscription(xpath)
+        and: 'HTTP response code indicates success'
+            response.status == HttpStatus.NO_CONTENT.value()
+    }
+
+    def 'Get notification subscription.'() {
+        given: 'and endpoint and xpath'
+            def endPoint = "$basePath/v2/notification-subscription"
+            def xpath = '/dataspaces'
+        and: 'notification service method returns notification subscription data'
+            mockCpsNotificationService.getNotificationSubscription(xpath) >> [new DataNodeBuilder().withXpath('/dataspaces')
+                                                                                      .withLeaves([leaf: 'dataspace', leafList: ['ds01', 'ds02']]).build()]
+        when: 'get notification subscription is invoked'
+            def response = mvc.perform(get(endPoint).param('xpath', xpath)).andReturn().response
+        then: 'HTTP response code indicates success'
+            response.status == HttpStatus.OK.value()
+        and: 'response message contains notification subscription data'
+            response.getContentAsString() == '[{"dataspaces":{"leaf":"dataspace","leafList":["ds01","ds02"]}}]'
     }
 
     def createMultipartFile(filename, content) {
