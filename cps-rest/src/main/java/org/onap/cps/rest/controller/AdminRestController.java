@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.Dataspace;
 import org.onap.cps.api.model.SchemaSet;
@@ -43,6 +44,7 @@ import org.onap.cps.rest.api.CpsAdminApi;
 import org.onap.cps.rest.model.AnchorDetails;
 import org.onap.cps.rest.model.DataspaceDetails;
 import org.onap.cps.rest.model.SchemaSetDetails;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +60,8 @@ public class AdminRestController implements CpsAdminApi {
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
     private final CpsAnchorService cpsAnchorService;
+    private final CpsNotificationService cpsNotificationService;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Create a dataspace.
@@ -266,4 +270,17 @@ public class AdminRestController implements CpsAdminApi {
         final DataspaceDetails dataspaceDetails = cpsRestInputMapper.toDataspaceDetails(dataspace);
         return new ResponseEntity<>(dataspaceDetails, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Void> createNotificationSubscription(final Object jsonData, String xpath) {
+        cpsNotificationService.createNotificationSubscription(jsonObjectMapper.asJsonString(jsonData), xpath);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteNotificationSubscription(final String xpath) {
+        cpsNotificationService.deleteNotificationSubscription(xpath);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

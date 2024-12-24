@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2022 TechMahindra Ltd.
+# Copyright (C) 2022-2025 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -79,6 +79,55 @@ schemaSet:
     responses:
       '201':
         $ref: 'components.yml#/components/responses/CreatedV2'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
+
+notification:
+  post:
+    description: Subscribe cps notifications
+    tags:
+      - cps-admin
+    summary: Create notification subscription
+    operationId: createNotificationSubscription
+    parameters:
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/SubscribeNotificationsDataSample'
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/CreatedV2'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '409':
+        $ref: 'components.yml#/components/responses/Conflict'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
+  delete:
+    description: Unsubscribe cps notifications
+    tags:
+      - cps-admin
+    summary: Delete notification subscription
+    operationId: deleteNotificationSubscription
+    parameters:
+      - $ref: 'components.yml#/components/parameters/xpathInQuery'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
