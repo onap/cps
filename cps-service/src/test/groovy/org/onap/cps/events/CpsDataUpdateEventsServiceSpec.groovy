@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 TechMahindra Ltd.
+ * Copyright (C) 2024-2025 TechMahindra Ltd.
  * Copyright (C) 2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,6 +25,7 @@ import static org.onap.cps.events.model.Data.Operation.CREATE
 import static org.onap.cps.events.model.Data.Operation.DELETE
 import static org.onap.cps.events.model.Data.Operation.UPDATE
 
+import org.onap.cps.api.CpsNotificationService
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.CloudEventUtils
@@ -41,8 +42,13 @@ import java.time.OffsetDateTime
 class CpsDataUpdateEventsServiceSpec extends Specification {
     def mockEventsPublisher = Mock(EventsPublisher)
     def objectMapper = new ObjectMapper();
+    def mockCpsNotificationService = Mock(CpsNotificationService)
 
-    def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher)
+    def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher, mockCpsNotificationService)
+
+    def setup() {
+        mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
+    }
 
     def 'Create and Publish cps update event where events are #scenario'() {
         given: 'an anchor, operation and observed timestamp'
