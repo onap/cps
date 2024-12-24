@@ -332,7 +332,7 @@ paths:
       - cps-admin
   /{apiVersion}/admin/dataspaces/{dataspace-name}/actions/clean:
     post:
-      description: Clean the dataspace (remove orphaned modules)
+      description: Clean the dataspace (remove orphaned schema sets and modules)
       operationId: cleanDataspace
       parameters:
       - description: apiVersion
@@ -2562,6 +2562,208 @@ paths:
       tags:
       - cps-query
       x-codegen-request-body-name: xpath
+  /v2/notification-subscription:
+    delete:
+      description: Unsubscribe cps notifications
+      operationId: deleteNotificationSubscription
+      parameters:
+      - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+        examples:
+          subscription by dataspace xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']"
+          subscription by anchor xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
+        in: query
+        name: xpath
+        required: true
+        schema:
+          default: /dataspaces
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Delete notification subscription
+      tags:
+      - cps-admin
+    get:
+      description: Get cps notifications subscription
+      operationId: getNotificationSubscription
+      parameters:
+      - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+        examples:
+          subscription by dataspace xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']"
+          subscription by anchor xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
+        in: query
+        name: xpath
+        required: true
+        schema:
+          default: /dataspaces
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeNotificationsDataSample'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get notification subscription
+      tags:
+      - cps-admin
+    post:
+      description: Subscribe cps notifications
+      operationId: createNotificationSubscription
+      parameters:
+      - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+        examples:
+          subscription by dataspace xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']"
+          subscription by anchor xpath:
+            value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
+        in: query
+        name: xpath
+        required: true
+        schema:
+          default: /dataspaces
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/SubscribeNotificationsDataSample'
+                value: null
+            schema:
+              type: object
+        required: true
+      responses:
+        "201":
+          description: Created without response body
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "409":
+          content:
+            application/json:
+              example:
+                status: 409
+                message: Conflicting request
+                details: The request cannot be processed as the resource is in use.
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Conflict
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Create notification subscription
+      tags:
+      - cps-admin
 components:
   examples:
     dataSample:
@@ -2615,6 +2817,12 @@ components:
               name: SciFi
             - code: 2
               name: kids
+    SubscribeNotificationsDataSample:
+      value:
+        cps-notification-subscriptions:dataspaces:
+          dataspace:
+          - name: ds01
+          - name: ds02
   parameters:
     dataspaceNameInQuery:
       description: dataspace-name
@@ -2795,6 +3003,19 @@ components:
       schema:
         example: 10
         type: integer
+    notificationSubscriptionXpathInQuery:
+      description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+      examples:
+        subscription by dataspace xpath:
+          value: "/dataspaces/dataspace[@name='dataspace01']"
+        subscription by anchor xpath:
+          value: "/dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']"
+      in: query
+      name: xpath
+      required: true
+      schema:
+        default: /dataspaces
+        type: string
   responses:
     Created:
       content:
@@ -2956,6 +3177,7 @@ components:
           type: string
       title: Module reference object
       type: object
+    SubscribeNotificationsDataSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
         json:
