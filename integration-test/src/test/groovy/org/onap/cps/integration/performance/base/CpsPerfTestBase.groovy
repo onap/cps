@@ -23,6 +23,7 @@ package org.onap.cps.integration.performance.base
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.rest.utils.MultipartFileUtil
 import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.utils.ContentType
 import org.springframework.web.multipart.MultipartFile
 
 class CpsPerfTestBase extends PerfTestBase {
@@ -63,7 +64,7 @@ class CpsPerfTestBase extends PerfTestBase {
     def addOpenRoadData() {
         def data = generateOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR)
         resourceMeter.start()
-        addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data)
+        addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data, ContentType.JSON)
         resourceMeter.stop()
         def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         recordAndAssertResourceUsage('Creating openroadm anchors with large data tree', 100, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB())

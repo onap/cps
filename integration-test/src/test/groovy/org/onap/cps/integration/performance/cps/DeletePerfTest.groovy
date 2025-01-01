@@ -21,6 +21,7 @@
 package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
+import org.onap.cps.utils.ContentType
 
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsDataService
@@ -36,7 +37,7 @@ class DeletePerfTest extends CpsPerfTestBase {
         when: 'multiple anchors with a node with a large number of descendants is created'
             resourceMeter.start()
             def data = generateOpenRoadData(300)
-            addAnchorsWithData(10, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'delete', data)
+            addAnchorsWithData(10, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'delete', data, ContentType.JSON)
             resourceMeter.stop()
             def setupDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'setup duration is within expected time and memory used is within limit'

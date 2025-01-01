@@ -26,7 +26,6 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
-import org.onap.cps.api.exceptions.CpsAdminException
 import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
@@ -44,11 +43,13 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     CpsDataService objectUnderTest
     def originalCountBookstoreChildNodes
     def originalCountBookstoreTopLevelListNodes
+    def originalCountXmlBookstoreChildNodes
 
     def setup() {
         objectUnderTest = cpsDataService
         originalCountBookstoreChildNodes = countDataNodesInBookstore()
         originalCountBookstoreTopLevelListNodes = countTopLevelListDataNodesInBookstore()
+        originalCountXmlBookstoreChildNodes = countXmlDataNodesInBookstore()
     }
 
     def 'Read bookstore top-level container(s) using #fetchDescendantsOption.'() {
@@ -277,6 +278,17 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             assert originalCountBookstoreChildNodes == countDataNodesInBookstore()
     }
 
+    def 'Add and Delete list (element) XML data nodes.'() {
+        given: 'a new (categories) data nodes'
+            def xml = '<categories><code>new1</code><name>SciFii</name></categories>'
+        and: 'the new list element is saved'
+            objectUnderTest.saveListElements(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore', xml, now, ContentType.XML)
+        when: 'the new element is deleted'
+            objectUnderTest.deleteListOrListElement(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore/categories[@code="new1"]', now)
+        then: 'the original number of data nodes is restored'
+            assert originalCountXmlBookstoreChildNodes == countXmlDataNodesInBookstore()
+    }
+
     def 'Add and Delete a batch of list element data nodes.'() {
         given: 'two new (categories) data nodes in a single batch'
             def json = '{"categories": [ {"code":"new1"}, {"code":"new2"} ] }'
@@ -428,6 +440,37 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             assert result[0].leaves['price'] == 100
         cleanup:
             restoreBookstoreDataAnchor(2)
+    }
+
+    def 'Update xml bookstore top-level container data node.'() {
+        given: 'Updated xml for bookstore data'
+            def xml = '<categories><code>1</code><name>Unknown</name></categories>'
+        when: 'update is performed for leaves'
+            objectUnderTest.updateDataNodeAndDescendants(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore', xml, now, ContentType.XML)
+        then: 'the updated data nodes are retrieved'
+            def result = objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore/categories[@code=1]', DIRECT_CHILDREN_ONLY)
+        and: 'the leaf values are updated as expected'
+            assert result.leaves.'name'[0] == 'Unknown'
+        cleanup:
+            restoreBookstoreXmlDataAnchor(1)
+    }
+
+    def 'Update multiple xml data node leaves.'() {
+        given: 'Updated xml for bookstore data'
+            def xmlData = '''<books>
+                      <title>2001: A Space Odyssey</title>
+                      <lang>english</lang>
+                      <authors>Iain M. Banks</authors>
+                      <editions>1994</editions>
+                      <price>995</price>
+                      </books> '''
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore/categories[@code=1]', xmlData, now, ContentType.XML)
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore/categories[@code=1]/books[@title="2001: A Space Odyssey"]', INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values are updated as expected'
+            assert result[0].leaves['lang'] == 'english'
+            assert result[0].leaves['price'] == 995
     }
 
     def 'Order of leaf-list elements is preserved when "ordered-by user" is set in the YANG model.'() {
@@ -647,5 +690,9 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
 
     def countTopLevelListDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/', INCLUDE_ALL_DESCENDANTS))
+    }
+
+    def countXmlDataNodesInBookstore() {
+        return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
 }
