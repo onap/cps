@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2024 Nordix Foundation
+.. Copyright (C) 2021-2025 Nordix Foundation
 .. Modifications Copyright (C) 2021 Bell Canada.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -354,10 +354,7 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | moduleSetTagsBeingProcessed        | Track module set tags which are processed to prevent      |
-|              |                                    | multiple threads working with same tag.                   |
-+--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cpsAndNcmpLock                     | Cps and NCMP distributed lock for various use cases.      |
 +--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 8
+Total number of caches : 7

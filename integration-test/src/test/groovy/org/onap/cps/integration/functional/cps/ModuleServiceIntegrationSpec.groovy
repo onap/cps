@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -41,17 +41,17 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
     private static def bookStoreTypesModuleReference = new ModuleReference('bookstore-types','2024-01-30')
     private static def bookStoreTypesModuleReferenceWithNamespace = new ModuleReference('bookstore-types','2024-01-30', 'org:onap:cps:types:sample')
     static def NEW_RESOURCE_REVISION = '2023-05-10'
-    static def NEW_RESOURCE_CONTENT = 'module test_module {\n' +
-        '    yang-version 1.1;\n' +
-        '    namespace "org:onap:ccsdk:sample";\n' +
-        '\n' +
-        '    prefix book-store;\n' +
-        '\n' +
-        '    revision "2023-05-10" {\n' +
-        '        description\n' +
-        '        "Sample Model";\n' +
-        '    }' +
-        '}'
+    static def NEW_RESOURCE_CONTENT = """
+        module test_module {
+            yang-version 1.1;
+            namespace "org:onap:ccsdk:sample";
+            prefix book-store;
+            revision "2023-05-10" {
+                description
+                "Sample Model";
+            }
+        }
+        """
 
     def newYangResourcesNameToContentMap = [:]
     def moduleReferences = []
@@ -61,7 +61,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def setup() { objectUnderTest = cpsModuleService }
 
-    def cleanup() { objectUnderTest.deleteUnusedYangResourceModules() }
+    def cleanup() { objectUnderTest.deleteAllUnusedYangModuleData() }
 
     /*
         C R E A T E   S C H E M A   S E T   U S E - C A S E S

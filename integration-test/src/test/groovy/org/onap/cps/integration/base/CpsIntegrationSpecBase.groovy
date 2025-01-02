@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -21,8 +21,9 @@
 
 package org.onap.cps.integration.base
 
-import com.hazelcast.collection.ISet
 import com.hazelcast.map.IMap
+import java.time.OffsetDateTime
+import java.util.concurrent.BlockingQueue
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -62,9 +63,6 @@ import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
-
-import java.time.OffsetDateTime
-import java.util.concurrent.BlockingQueue
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -136,9 +134,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
-    @Autowired
-    ISet<String> moduleSetTagsBeingProcessed
-
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
 
@@ -158,7 +153,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 10
+    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 2
 
     static initialized = false
     def now = OffsetDateTime.now()
@@ -167,6 +162,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
+            cpsAnchorService.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'owner-of-bookstore-schema-set-do-not-delete')
             initialized = true
         }
         mockDmiServer1.setDispatcher(dmiDispatcher1)
@@ -186,7 +182,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
         mockPolicyServer.shutdown()
-        moduleSetTagsBeingProcessed.clear()
+        cpsModuleService.deleteAllUnusedYangModuleData()
     }
 
     def static readResourceDataFile(filename) {

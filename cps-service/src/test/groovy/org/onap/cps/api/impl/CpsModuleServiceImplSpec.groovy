@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -54,23 +54,23 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Create schema set.'() {
         when: 'Create schema set method is invoked'
-            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', [:])
+            objectUnderTest.createSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'someSchemaSet', [:])
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
+            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
 
     def 'Create schema set from new modules and existing modules.'() {
         given: 'a list of existing modules module reference'
-            def moduleReferenceForExistingModule = new ModuleReference('test',  '2021-10-12','test.org')
+            def moduleReferenceForExistingModule = new ModuleReference('test', '2021-10-12', 'test.org')
             def listOfExistingModulesModuleReference = [moduleReferenceForExistingModule]
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
             1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someSchemaSetName')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspaceName')
     }
 
     def 'Create schema set from invalid resources'() {
@@ -100,15 +100,15 @@ class CpsModuleServiceImplSpec extends Specification {
         given: 'an already present schema set'
             def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
         and: 'yang resource cache returns the expected schema set'
-            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'schemaSetName@with Special!Characters') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
         when: 'get schema set method is invoked'
-            def result = objectUnderTest.getSchemaSet('someDataspace', 'someSchemaSet')
+            def result = objectUnderTest.getSchemaSet('someDataspace', 'schemaSetName@with Special!Characters')
         then: 'the correct schema set is returned'
-            result.getName().contains('someSchemaSet')
+            result.getName().contains('schemaSetName@with Special!Characters')
             result.getDataspaceName().contains('someDataspace')
             result.getModuleReferences().contains(new ModuleReference('stores', '2020-09-15', 'org:onap:ccsdk:sample'))
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
 
     def 'Get schema sets by dataspace name.'() {
@@ -142,8 +142,8 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', _)
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
         where: 'following parameters are used'
             numberOfAnchors << [0, 3]
     }
@@ -159,8 +159,8 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.deleteSchemaSet('my-dataspace', 'my-schemaset')
         and: 'schema set will be removed from the cache'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', 'my-schemaset')
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
     }
 
     def 'Delete schema-set when cascade is prohibited and schema-set has anchors.'() {
@@ -185,17 +185,15 @@ class CpsModuleServiceImplSpec extends Specification {
             2 * mockYangTextSchemaSourceSetCache.removeFromCache('my-dataspace', _)
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('my-dataspace')
-        and: 'the CpsValidator is called on the schemaSetNames'
-            1 * mockCpsValidator.validateNameCharacters(_)
         where: 'following parameters are used'
             numberOfAnchors << [0, 3]
     }
 
     def 'Upgrade existing schema set'() {
         when: 'schema set update is requested'
-        objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
+            objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
         then: 'no exception is thrown '
-        noExceptionThrown()
+            noExceptionThrown()
     }
 
     def 'Get all yang resources module references.'() {
@@ -206,7 +204,7 @@ class CpsModuleServiceImplSpec extends Specification {
             def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName')
         then: 'the list provided by persistence service is returned as result'
             result == moduleReferences
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+        and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName')
     }
 
@@ -218,7 +216,7 @@ class CpsModuleServiceImplSpec extends Specification {
             def result = objectUnderTest.getYangResourcesModuleReferences('someDataspaceName', 'someAnchorName')
         then: 'the list provided by persistence service is returned as result'
             result == moduleReferences
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
+        and: 'the CpsValidator is called on the dataspaceName and anchorName'
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName', 'someAnchorName')
     }
 
@@ -229,22 +227,6 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
         then: 'cps module persistence service is called with module references to check'
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck)
-    }
-
-    def 'Get module references when queried by attributes'() {
-        given: 'a valid dataspace name and anchor name'
-            def dataspaceName = 'someDataspace'
-            def anchorName = 'someAnchor'
-        and: 'a set of parent attributes and child attributes used for filtering'
-            def parentAttributes = ['some-property-key1': 'some-property-val1']
-            def childAttributes = ['some-property-key2': 'some-property-val2']
-        and: 'a list of expected module references returned by the persistence service'
-            def expectedModuleReferences = [new ModuleReference(moduleName: 'some-name', revision: 'some-revision')]
-            mockCpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes) >> expectedModuleReferences
-        when: 'the method is invoked to retrieve module references by attributes'
-            def actualModuleReferences = objectUnderTest.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes)
-        then: 'the retrieved module references should match the expected module references'
-            assert actualModuleReferences == expectedModuleReferences
     }
 
 
@@ -270,11 +252,18 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }
 
-    def 'Delete unused yang resource modules.'() {
-        when: 'deleting unused yang resource modules'
-            objectUnderTest.deleteUnusedYangResourceModules()
+    def 'Delete all unused yang module data.'() {
+        when: 'deleting unused yang module data'
+            objectUnderTest.deleteAllUnusedYangModuleData()
         then: 'it is delegated to the module persistence service'
-            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
+            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData()
+    }
+
+    def 'Schema set exists.'() {
+        when: 'checking if schema set exists'
+            objectUnderTest.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
+        then: 'it is delegated to the module persistence service'
+            1 * mockCpsModulePersistenceService.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
     }
 
     def getModuleReferences() {

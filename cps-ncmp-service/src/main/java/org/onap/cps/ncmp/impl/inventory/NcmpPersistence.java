@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2025 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@ import java.util.Collection;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 
-/**
- * DmiRegistryConstants class to be strictly used for DMI Related constants only.
- */
 public interface NcmpPersistence {
 
     String NCMP_DATASPACE_NAME = "NCMP-Admin";
@@ -42,20 +39,6 @@ public interface NcmpPersistence {
      * @param listElementXpath list element xPath
      */
     void deleteListOrListElement(String listElementXpath);
-
-    /**
-     * Method to delete a schema set.
-     *
-     * @param schemaSetName schema set name
-     */
-    void deleteSchemaSetWithCascade(String schemaSetName);
-
-    /**
-     * Method to delete multiple schema sets.
-     *
-     * @param schemaSetNames schema set names
-     */
-    void deleteSchemaSetsWithCascade(Collection<String> schemaSetNames);
 
     /**
      * Get data node via xpath.
@@ -113,4 +96,12 @@ public interface NcmpPersistence {
      * @param dataNodeXpaths data node xpaths
      */
     void deleteDataNodes(Collection<String> dataNodeXpaths);
+
+    /**
+     * Deletes multiple anchors.
+     *
+     * @param anchorIds ids of the anchors to be deleted
+     */
+    void deleteAnchors(Collection<String> anchorIds);
+
 }

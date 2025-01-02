@@ -38,14 +38,16 @@ class YangModulesSpec extends CpsIntegrationSpecBase {
     def setup() {
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-2'] = ['M1', 'M3']
+        dmiDispatcher1.moduleNamesPerCmHandleId['ch-3'] = ['M4']
         registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'alt-1')
         registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'alt-2')
+        registerCmHandle(DMI1_URL, 'ch-3', 'my-module-set-tag', 'alt-3')
         // Note DMI dispatcher is not configured to return modules for this handle, so module sync will fail
         registerCmHandleWithoutWaitForReady(DMI1_URL, 'not-ready-id', NO_MODULE_SET_TAG, NO_ALTERNATE_ID)
     }
 
     def cleanup() {
-        deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2', 'not-ready-id'])
+        deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2', 'ch-3', 'not-ready-id'])
     }
 
     def 'Get yang module references returns expected modules with #scenario.'() {
@@ -56,11 +58,12 @@ class YangModulesSpec extends CpsIntegrationSpecBase {
                     .andExpect(jsonPath('$[*].moduleName', containsInAnyOrder(expectedModuleNames.toArray())))
                     .andExpect(jsonPath('$[*].revision', everyItem(equalTo('2024-01-01'))))
         where: 'following scenarios are applied'
-            scenario                 | cmHandleReference || expectedModuleNames
-            'cm-handle id'           | 'ch-1'            || ['M1', 'M2']
-            'alternate id'           | 'alt-2'           || ['M1', 'M3']
-            'not ready CM handle'    | 'not-ready-id'    || []
-            'non-existing CM handle' | 'non-existing'    || []
+            scenario                        | cmHandleReference || expectedModuleNames
+            'cm-handle id'                  | 'ch-1'            || ['M1', 'M2']
+            'alternate id'                  | 'alt-2'           || ['M1', 'M3']
+            'CM handle with module set tag' | 'ch-3'            || ['M4']
+            'not ready CM handle'           | 'not-ready-id'    || []
+            'non-existing CM handle'        | 'non-existing'    || []
     }
 
     def 'Get yang module definitions returns expected modules with #scenario.'() {
@@ -72,11 +75,12 @@ class YangModulesSpec extends CpsIntegrationSpecBase {
                     .andExpect(jsonPath('$[*].revision', everyItem(equalTo('2024-01-01'))))
                     .andExpect(jsonPath('$[*].content', not(is(emptyString()))))
         where: 'following scenarios are applied'
-            scenario                 | cmHandleReference || expectedModuleNames
-            'cm-handle id'           | 'ch-1'            || ['M1', 'M2']
-            'alternate id'           | 'alt-2'           || ['M1', 'M3']
-            'not ready CM handle'    | 'not-ready-id'    || []
-            'non-existing CM handle' | 'non-existing'    || []
+            scenario                        | cmHandleReference || expectedModuleNames
+            'cm-handle id'                  | 'ch-1'            || ['M1', 'M2']
+            'alternate id'                  | 'alt-2'           || ['M1', 'M3']
+            'CM handle with module set tag' | 'ch-3'            || ['M4']
+            'not ready CM handle'           | 'not-ready-id'    || []
+            'non-existing CM handle'        | 'non-existing'    || []
     }
 
     def 'Get yang module definition for specific module with #scenario.'() {
