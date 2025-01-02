@@ -193,9 +193,9 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Upgrade existing schema set'() {
         when: 'schema set update is requested'
-        objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
+            objectUnderTest.upgradeSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], moduleReferences)
         then: 'no exception is thrown '
-        noExceptionThrown()
+            noExceptionThrown()
     }
 
     def 'Get all yang resources module references.'() {
@@ -231,22 +231,6 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck)
     }
 
-    def 'Get module references when queried by attributes'() {
-        given: 'a valid dataspace name and anchor name'
-            def dataspaceName = 'someDataspace'
-            def anchorName = 'someAnchor'
-        and: 'a set of parent attributes and child attributes used for filtering'
-            def parentAttributes = ['some-property-key1': 'some-property-val1']
-            def childAttributes = ['some-property-key2': 'some-property-val2']
-        and: 'a list of expected module references returned by the persistence service'
-            def expectedModuleReferences = [new ModuleReference(moduleName: 'some-name', revision: 'some-revision')]
-            mockCpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes) >> expectedModuleReferences
-        when: 'the method is invoked to retrieve module references by attributes'
-            def actualModuleReferences = objectUnderTest.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes, childAttributes)
-        then: 'the retrieved module references should match the expected module references'
-            assert actualModuleReferences == expectedModuleReferences
-    }
-
 
     def 'Getting module definitions with module name'() {
         given: 'module persistence service returns module definitions for module name'
@@ -270,11 +254,18 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }
 
-    def 'Delete unused yang resource modules.'() {
-        when: 'deleting unused yang resource modules'
-            objectUnderTest.deleteUnusedYangResourceModules()
+    def 'Delete all unused yang module data.'() {
+        when: 'deleting unused yang module data'
+            objectUnderTest.deleteAllUnusedYangModuleData()
         then: 'it is delegated to the module persistence service'
-            1 * mockCpsModulePersistenceService.deleteUnusedYangResourceModules()
+            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData()
+    }
+
+    def 'Schema set exits.'() {
+        when: 'checking if schema set exists'
+            objectUnderTest.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
+        then: 'it is delegated to the module persistence service'
+            1 * mockCpsModulePersistenceService.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
     }
 
     def getModuleReferences() {

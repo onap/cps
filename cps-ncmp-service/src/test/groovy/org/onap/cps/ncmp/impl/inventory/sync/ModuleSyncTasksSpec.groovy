@@ -29,15 +29,16 @@ import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import com.hazelcast.map.IMap
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
-import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
+
 import java.util.concurrent.atomic.AtomicInteger
 
 import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
@@ -87,10 +88,7 @@ class ModuleSyncTasksSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandle2
         when: 'module sync poll is executed'
             objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'], batchCount)
-        then: 'module sync service deletes schemas set of each cm handle if it already exists'
-            1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-1')
-            1 * mockModuleSyncService.deleteSchemaSetIfExists('cm-handle-2')
-        and: 'module sync service is invoked for each cm handle'
+        then: 'module sync service is invoked for each cm handle'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
         and: 'the state handler is called for the both cm handles'

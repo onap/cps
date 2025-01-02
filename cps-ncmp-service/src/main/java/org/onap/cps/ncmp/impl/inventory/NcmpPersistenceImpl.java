@@ -27,6 +27,7 @@ import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.SchemaSetNotFoundException;
@@ -42,6 +43,7 @@ import org.springframework.stereotype.Component;
 public class NcmpPersistenceImpl implements NcmpPersistence {
 
     protected final JsonObjectMapper jsonObjectMapper;
+    protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
@@ -114,6 +116,11 @@ public class NcmpPersistenceImpl implements NcmpPersistence {
     @Override
     public void deleteDataNodes(final Collection<String> dataNodeXpaths) {
         cpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpaths, NO_TIMESTAMP);
+    }
+
+    @Override
+    public void deleteAnchors(final Collection<String> anchorIds) {
+        cpsAnchorService.deleteAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, anchorIds);
     }
 
 }

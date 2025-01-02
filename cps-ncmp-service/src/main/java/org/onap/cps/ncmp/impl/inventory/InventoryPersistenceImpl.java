@@ -62,26 +62,27 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private static final int CMHANDLE_BATCH_SIZE = 100;
 
     private final CpsModuleService cpsModuleService;
-    private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
     private final CmHandleQueryService cmHandleQueryService;
 
     /**
      * initialize an inventory persistence object.
      *
-     * @param jsonObjectMapper json mapper object
-     * @param cpsDataService   cps data service instance
-     * @param cpsModuleService cps module service instance
-     * @param cpsValidator     cps validation service instance
-     * @param cpsAnchorService  cps anchor service instance
+     * @param cpsValidator         cps validation service instance
+     * @param jsonObjectMapper     json mapper object
+     * @param cpsAnchorService     cps anchor service instance
+     * @param cpsModuleService     cps module service instance
+     * @param cpsDataService       cps data service instance
+     * @param cmHandleQueryService cm handle query service instance
      */
-    public InventoryPersistenceImpl(final JsonObjectMapper jsonObjectMapper, final CpsDataService cpsDataService,
-                                    final CpsModuleService cpsModuleService, final CpsValidator cpsValidator,
+    public InventoryPersistenceImpl(final CpsValidator cpsValidator,
+                                    final JsonObjectMapper jsonObjectMapper,
                                     final CpsAnchorService cpsAnchorService,
+                                    final CpsModuleService cpsModuleService,
+                                    final CpsDataService cpsDataService,
                                     final CmHandleQueryService cmHandleQueryService) {
-        super(jsonObjectMapper, cpsDataService, cpsModuleService, cpsValidator);
+        super(jsonObjectMapper, cpsAnchorService, cpsDataService, cpsModuleService, cpsValidator);
         this.cpsModuleService = cpsModuleService;
-        this.cpsAnchorService = cpsAnchorService;
         this.cpsValidator = cpsValidator;
         this.cmHandleQueryService = cmHandleQueryService;
     }

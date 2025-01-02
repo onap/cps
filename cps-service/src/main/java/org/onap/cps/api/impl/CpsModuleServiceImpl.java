@@ -75,6 +75,12 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
+    public boolean schemaSetExists(final String dataspaceName, final String schemaSetName) {
+        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        return cpsModulePersistenceService.schemaSetExists(dataspaceName, schemaSetName);
+    }
+
+    @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
@@ -169,20 +175,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
-    @Timed(value = "cps.module.service.module.reference.query.by.attribute",
-            description = "Time taken to query list of module references by attribute (e.g moduleSetTag)")
     @Override
-    public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
-                                                                      final String anchorName,
-                                                                      final Map<String, String> parentAttributes,
-                                                                      final Map<String, String> childAttributes) {
-        return cpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes,
-                childAttributes);
-    }
-
-    @Override
-    public void deleteUnusedYangResourceModules() {
-        cpsModulePersistenceService.deleteUnusedYangResourceModules();
+    public void deleteAllUnusedYangModuleData() {
+        cpsModulePersistenceService.deleteAllUnusedYangModuleData();
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

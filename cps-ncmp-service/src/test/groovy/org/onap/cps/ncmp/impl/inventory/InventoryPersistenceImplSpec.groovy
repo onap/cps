@@ -72,8 +72,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockYangDataConverter = Mock(YangDataConverter)
 
-    def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsValidator, mockCpsAnchorService, mockCmHandleQueries)
+    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleQueries)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))

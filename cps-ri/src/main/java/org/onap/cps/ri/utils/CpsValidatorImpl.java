@@ -35,6 +35,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CpsValidatorImpl implements CpsValidator {
 
+    // TODO Some of these characters do frequently appear in moduleSetTag, such as '@'.
     private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
 
     @Override

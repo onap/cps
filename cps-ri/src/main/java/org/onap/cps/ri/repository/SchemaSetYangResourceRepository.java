@@ -21,9 +21,16 @@
 package org.onap.cps.ri.repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
 
 public interface SchemaSetYangResourceRepository {
 
+
     void insertSchemaSetIdYangResourceId(final Integer schemaSetId, final List<Integer> yangResourceIds);
 
+    /**
+     * Delete any yang resources references no longer used by any schema set.
+     */
+    @Modifying
+    void deleteOrphanedYangResourceReferences();
 }

@@ -36,6 +36,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Integer> {
 
+    boolean existsByDataspaceAndName(DataspaceEntity dataspaceEntity, String schemaSetName);
+
     Optional<SchemaSetEntity> findByDataspaceAndName(DataspaceEntity dataspaceEntity, String schemaSetName);
 
     /**
@@ -76,4 +78,11 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
         deleteByDataspaceIdAndNameIn(dataspaceEntity.getId(), schemaSetNames);
     }
 
+    /**
+     * Delete any schema set no longer used by any anchor.
+     */
+    @Modifying
+    @Query(value = "DELETE FROM schema_set WHERE NOT EXISTS "
+        + "(SELECT 1 FROM anchor WHERE anchor.schema_set_id = schema_set.id)", nativeQuery = true)
+    void deleteOrphanedSchemaSets();
 }

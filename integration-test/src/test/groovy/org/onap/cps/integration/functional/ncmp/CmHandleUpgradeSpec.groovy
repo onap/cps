@@ -21,10 +21,10 @@
 package org.onap.cps.integration.functional.ncmp
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.UpgradedCmHandles
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
@@ -38,10 +38,9 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
-        moduleSyncService.clearPrivateModuleSetCache()
     }
 
-    def 'Upgrade CM-handle with new moduleSetTag or no moduleSetTag.'() {
+    def 'Upgrade CM-handle with and without (new) module set tags.'() {
         given: 'a CM-handle is created with expected initial modules: M1 and M2'
             dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
             registerCmHandle(DMI1_URL, cmHandleId, initialModuleSetTag)
@@ -78,8 +77,9 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
         and: 'CM-handle has expected updated modules: M1 and M3'
             assert ['M1', 'M3'] == objectUnderTest.getYangResourcesModuleReferences(cmHandleId).moduleName.sort()
 
-        cleanup: 'deregister CM-handle'
+        cleanup: 'deregister CM-handle and remove all associated module resources'
             deregisterCmHandle(DMI1_URL, cmHandleId)
+            cpsModuleService.deleteAllUnusedYangModuleData()
 
         where: 'following module set tags are used'
             initialModuleSetTag | updatedModuleSetTag

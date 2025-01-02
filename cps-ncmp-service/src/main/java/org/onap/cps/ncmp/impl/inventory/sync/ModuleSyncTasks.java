@@ -109,7 +109,6 @@ public class ModuleSyncTasks {
             if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
-                moduleSyncService.deleteSchemaSetIfExists(yangModelCmHandle.getId());
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
             }
             compositeState.setLockReason(null);

@@ -20,10 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
-import com.hazelcast.collection.ISet;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.QueueConfig;
-import com.hazelcast.config.SetConfig;
 import com.hazelcast.map.IMap;
 import java.util.concurrent.BlockingQueue;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +43,6 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     private static final MapConfig moduleSyncStartedConfig =
             createMapConfigWithTimeToLiveInSeconds("moduleSyncStartedConfig", MODULE_SYNC_STARTED_TTL_SECS);
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
-    private static final SetConfig moduleSetTagsBeingProcessedConfig
-        = createSetConfig("moduleSetTagsBeingProcessedConfig");
 
     /**
      * Module Sync Distributed Queue Instance.
@@ -78,14 +74,4 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
         return getOrCreateHazelcastInstance(dataSyncSemaphoresConfig).getMap("dataSyncSemaphores");
     }
 
-    /**
-     * Collection of (new) module set tags being processed.
-     * To prevent processing on multiple threads of same tag
-     *
-     * @return set of module set tags being processed
-     */
-    @Bean
-    public ISet<String> moduleSetTagsBeingProcessed() {
-        return getOrCreateHazelcastInstance(moduleSetTagsBeingProcessedConfig).getSet("moduleSetTagsBeingProcessed");
-    }
 }

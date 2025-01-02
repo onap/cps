@@ -45,9 +45,6 @@ class SynchronizationCacheConfigSpec extends Specification {
     @Autowired
     IMap<String, Boolean> dataSyncSemaphores
 
-    @Autowired
-    ISet<String> moduleSetTagsBeingProcessed
-
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
@@ -59,8 +56,6 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'system is able to create an instance of a set to hold module set tags being processed'
-            assert null != moduleSetTagsBeingProcessed
         and: 'there is only one instance with the correct name'
             assert Hazelcast.allHazelcastInstances.size() == 1
             assert Hazelcast.allHazelcastInstances.name[0] == 'cps-and-ncmp-hazelcast-instance-test-config'

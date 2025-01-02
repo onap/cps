@@ -113,4 +113,12 @@ public interface NcmpPersistence {
      * @param dataNodeXpaths data node xpaths
      */
     void deleteDataNodes(Collection<String> dataNodeXpaths);
+
+    /**
+     * Deletes multiple anchors.
+     *
+     * @param anchorIds ids of the anchors to be deleted
+     */
+    void deleteAnchors(Collection<String> anchorIds);
+
 }
