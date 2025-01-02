@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -72,8 +72,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockYangDataConverter = Mock(YangDataConverter)
 
-    def objectUnderTest = new InventoryPersistenceImpl(spiedJsonObjectMapper, mockCpsDataService, mockCpsModuleService,
-            mockCpsValidator, mockCpsAnchorService, mockCmHandleQueries)
+    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleQueries)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -292,24 +291,6 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteListOrListElement('sample xPath')
         then: 'the data service method to save list elements is called once'
             1 * mockCpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xPath',null)
-    }
-
-    def 'Delete schema set with a valid schema set name'() {
-        when: 'the method to delete schema set is called with valid schema set name'
-            objectUnderTest.deleteSchemaSetWithCascade('validSchemaSetName')
-        then: 'the module service to delete schemaSet is invoked once'
-            1 * mockCpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, 'validSchemaSetName', CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED)
-        and: 'the schema set name is validated'
-            1 * mockCpsValidator.validateNameCharacters('validSchemaSetName')
-    }
-
-    def 'Delete multiple schema sets with valid schema set names'() {
-        when: 'the method to delete schema sets is called with valid schema set names'
-            objectUnderTest.deleteSchemaSetsWithCascade(['validSchemaSetName1', 'validSchemaSetName2'])
-        then: 'the module service to delete schema sets is invoked once'
-            1 * mockCpsModuleService.deleteSchemaSetsWithCascade(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['validSchemaSetName1', 'validSchemaSetName2'])
-        and: 'the schema set names are validated'
-            1 * mockCpsValidator.validateNameCharacters(['validSchemaSetName1', 'validSchemaSetName2'])
     }
 
     def 'Get data node via xPath'() {

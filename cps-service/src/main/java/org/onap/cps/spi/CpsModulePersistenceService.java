@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -65,6 +65,14 @@ public interface CpsModulePersistenceService {
                                     final Map<String, String> newModuleNameToContentMap,
                                     final Collection<ModuleReference> allModuleReferences);
 
+    /**
+     * Check if a schema set exists in a given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param schemaSetName schema set name
+     * @return whether schema set exists
+     */
+    boolean schemaSetExists(String dataspaceName, String schemaSetName);
 
     /**
      * Get all schema sets for a given dataspace.
@@ -138,35 +146,18 @@ public interface CpsModulePersistenceService {
                                                                              String moduleName, String moduleRevision);
 
     /**
-     * Remove unused Yang Resource Modules.
+     * Remove any unused Yang Resource Modules and Schema Sets.
      */
-    void deleteUnusedYangResourceModules();
+    void deleteAllUnusedYangModuleData();
 
     /**
      * Identify new module references from those returned by a node compared to what is in CPS already.
      * The system will ignore the namespace of all module references.
      *
      * @param moduleReferencesToCheck the module references ot check
-     * @returns Collection of {@link ModuleReference} (namespace will be always blank)
+     * @return Collection of {@link ModuleReference} (namespace will be always blank)
      *
      */
-    Collection<ModuleReference> identifyNewModuleReferences(
-        Collection<ModuleReference> moduleReferencesToCheck);
-
-    /**
-     * Retrieves module references based on the specified dataspace, anchor, and attribute filters.
-
-     * Constructs and executes a SQL query to find module references by applying filters for parent and child fragments.
-     * Uses `parentAttributes` for filtering parent fragments and `childAttributes` for filtering child fragments.
-     *
-     * @param dataspaceName    the name of the dataspace to filter on.
-     * @param anchorName       the name of the anchor to filter on.
-     * @param parentAttributes a map of attributes for filtering parent fragments.
-     * @param childAttributes  a map of attributes for filtering child fragments.
-     * @return a collection of {@link ModuleReference} objects matching the criteria.
-     */
-    Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName, final String anchorName,
-                                                               final Map<String, String> parentAttributes,
-                                                               final Map<String, String> childAttributes);
+    Collection<ModuleReference> identifyNewModuleReferences(Collection<ModuleReference> moduleReferencesToCheck);
 
 }

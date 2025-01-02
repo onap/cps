@@ -169,6 +169,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (moduleNamesForQuery.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
+        // TODO Verify this works using moduleSetTag as SchemaSet name - it looks like no changes needed.
         return inventoryPersistence.getCmHandleReferencesWithGivenModules(moduleNamesForQuery, outputAlternateId);
     }
 

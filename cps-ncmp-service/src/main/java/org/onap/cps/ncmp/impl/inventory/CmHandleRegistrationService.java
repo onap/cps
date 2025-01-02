@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -200,8 +200,9 @@ public class CmHandleRegistrationService {
 
     protected void processUpdatedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
                                            final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
-        dmiPluginRegistrationResponse.setUpdatedCmHandles(cmHandleRegistrationServicePropertyHandler
-            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
+        final List<CmHandleRegistrationResponse> updatedCmHandles = cmHandleRegistrationServicePropertyHandler
+            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
+        dmiPluginRegistrationResponse.setUpdatedCmHandles(updatedCmHandles);
     }
 
     protected void processUpgradedCmHandles(
@@ -298,15 +299,16 @@ public class CmHandleRegistrationService {
     }
 
     private void deleteCmHandleFromDbAndCaches(final String cmHandleId) {
-        inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
         inventoryPersistence.deleteDataNode(NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']");
-        trustLevelManager.removeCmHandles(Collections.singleton(cmHandleId));
+        final Collection<String> anchorIdAsCollection = Collections.singletonList(cmHandleId);
+        inventoryPersistence.deleteAnchors(anchorIdAsCollection);
+        trustLevelManager.removeCmHandles(anchorIdAsCollection);
         removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
     }
 
     private void batchDeleteCmHandlesFromDbAndCaches(final Collection<String> cmHandleIds) {
-        inventoryPersistence.deleteSchemaSetsWithCascade(cmHandleIds);
         inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(cmHandleIds));
+        inventoryPersistence.deleteAnchors(cmHandleIds);
         trustLevelManager.removeCmHandles(cmHandleIds);
         cmHandleIds.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
     }
