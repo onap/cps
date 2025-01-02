@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class YangTextSchemaSourceSetCache {
      */
     @Cacheable(key = "#p0.concat('-').concat(#p1)")
     public YangTextSchemaSourceSet get(final String dataspaceName, final String schemaSetName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         final Map<String, String> yangResourceNameToContent =
                 cpsModulePersistenceService.getYangSchemaResources(dataspaceName, schemaSetName);
         return YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent);
@@ -78,7 +78,7 @@ public class YangTextSchemaSourceSetCache {
     @CanIgnoreReturnValue
     public YangTextSchemaSourceSet updateCache(final String dataspaceName, final String schemaSetName,
             final YangTextSchemaSourceSet yangTextSchemaSourceSet) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         yangSchemaCacheCounter.incrementAndGet();
         return yangTextSchemaSourceSet;
     }
@@ -91,9 +91,8 @@ public class YangTextSchemaSourceSetCache {
      */
     @CacheEvict(key = "#p0.concat('-').concat(#p1)")
     public void removeFromCache(final String dataspaceName, final String schemaSetName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         yangSchemaCacheCounter.decrementAndGet();
-        // Spring provides implementation for removing object from cache
     }
 
 }

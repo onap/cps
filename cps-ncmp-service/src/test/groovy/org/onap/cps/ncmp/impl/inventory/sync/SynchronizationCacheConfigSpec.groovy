@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,17 +20,17 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
-import com.hazelcast.collection.ISet
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
-import java.util.concurrent.BlockingQueue
-import java.util.concurrent.TimeUnit
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
+
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.TimeUnit
 
 @SpringBootTest
 @ContextConfiguration(classes = [SynchronizationCacheConfig])
@@ -45,9 +45,6 @@ class SynchronizationCacheConfigSpec extends Specification {
     @Autowired
     IMap<String, Boolean> dataSyncSemaphores
 
-    @Autowired
-    ISet<String> moduleSetTagsBeingProcessed
-
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
@@ -59,8 +56,6 @@ class SynchronizationCacheConfigSpec extends Specification {
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
-        and: 'system is able to create an instance of a set to hold module set tags being processed'
-            assert null != moduleSetTagsBeingProcessed
         and: 'there is only one instance with the correct name'
             assert Hazelcast.allHazelcastInstances.size() == 1
             assert Hazelcast.allHazelcastInstances.name[0] == 'cps-and-ncmp-hazelcast-instance-test-config'

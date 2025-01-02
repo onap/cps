@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd
@@ -58,7 +58,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         description = "Time taken to create (and store) a schemaset")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourcesNameToContentMap) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
         final YangTextSchemaSourceSet yangTextSchemaSourceSet =
             timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap);
@@ -69,14 +69,20 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                            final Map<String, String> newModuleNameToContentMap,
                                            final Collection<ModuleReference> allModuleReferences) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
             newModuleNameToContentMap, allModuleReferences);
     }
 
     @Override
+    public boolean schemaSetExists(final String dataspaceName, final String schemaSetName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        return cpsModulePersistenceService.schemaSetExists(dataspaceName, schemaSetName);
+    }
+
+    @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
@@ -96,7 +102,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Transactional
     public void deleteSchemaSet(final String dataspaceName, final String schemaSetName,
                                 final CascadeDeleteAllowed cascadeDeleteAllowed) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         final Collection<Anchor> anchors = cpsAnchorService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
         if (!anchors.isEmpty() && isCascadeDeleteProhibited(cascadeDeleteAllowed)) {
             throw new SchemaSetInUseException(dataspaceName, schemaSetName);
@@ -112,7 +118,6 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Transactional
     public void deleteSchemaSetsWithCascade(final String dataspaceName, final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        cpsValidator.validateNameCharacters(schemaSetNames);
         final Collection<String> anchorNames =
                 cpsAnchorService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames)
                         .stream().map(Anchor::getName).collect(Collectors.toSet());
@@ -127,7 +132,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void upgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                             final Map<String, String> newModuleNameToContentMap,
                                             final Collection<ModuleReference> allModuleReferences) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         cpsModulePersistenceService.updateSchemaSetFromModules(dataspaceName, schemaSetName,
                 newModuleNameToContentMap, allModuleReferences);
         yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
@@ -169,20 +174,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
         return cpsModulePersistenceService.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
-    @Timed(value = "cps.module.service.module.reference.query.by.attribute",
-            description = "Time taken to query list of module references by attribute (e.g moduleSetTag)")
     @Override
-    public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
-                                                                      final String anchorName,
-                                                                      final Map<String, String> parentAttributes,
-                                                                      final Map<String, String> childAttributes) {
-        return cpsModulePersistenceService.getModuleReferencesByAttribute(dataspaceName, anchorName, parentAttributes,
-                childAttributes);
-    }
-
-    @Override
-    public void deleteUnusedYangResourceModules() {
-        cpsModulePersistenceService.deleteUnusedYangResourceModules();
+    public void deleteAllUnusedYangModuleData() {
+        cpsModulePersistenceService.deleteAllUnusedYangModuleData();
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

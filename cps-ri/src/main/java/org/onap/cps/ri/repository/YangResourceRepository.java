@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -92,7 +92,9 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     void deleteSchemaSetYangResourceForSchemaSetId(@Param("schemaSetId") int schemaSetId);
 
     @Modifying
-    @Query(value = "DELETE FROM yang_resource yr WHERE NOT EXISTS "
-        + "(SELECT 1 FROM schema_set_yang_resources ssyr WHERE ssyr.yang_resource_id = yr.id)", nativeQuery = true)
-    void deleteOrphans();
+    @Query(value = """
+            DELETE FROM yang_resource WHERE NOT EXISTS (SELECT 1 FROM schema_set_yang_resources
+            WHERE schema_set_yang_resources.yang_resource_id = yang_resource.id)", nativeQuery = true)
+          """)
+    void deleteOrphanedYangResources();
 }

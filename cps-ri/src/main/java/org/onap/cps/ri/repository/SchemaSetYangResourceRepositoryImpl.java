@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation.
+ *  Copyright (C) 2021-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,9 @@ public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourc
 
     private static final int MAX_INSERT_BATCH_SIZE = 100;
 
+    private static final String DELETE_ORPHANS_SQL =
+        "DELETE FROM schema_set WHERE NOT EXISTS (SELECT 1 FROM anchor WHERE anchor.schema_set_id = schema_set.id)";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -54,5 +57,10 @@ public class SchemaSetYangResourceRepositoryImpl implements SchemaSetYangResourc
             }
         });
     }
+
+    public void deleteOrphanedYangResourceReferences() {
+        entityManager.createNativeQuery(DELETE_ORPHANS_SQL).executeUpdate();
+    }
+
 }
 
