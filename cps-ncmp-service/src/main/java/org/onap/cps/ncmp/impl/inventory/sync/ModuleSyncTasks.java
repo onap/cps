@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -109,13 +109,12 @@ public class ModuleSyncTasks {
             if (inUpgrade) {
                 moduleSyncService.syncAndUpgradeSchemaSet(yangModelCmHandle);
             } else {
-                moduleSyncService.deleteSchemaSetIfExists(yangModelCmHandle.getId());
                 moduleSyncService.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle);
             }
             compositeState.setLockReason(null);
             return CmHandleState.READY;
         } catch (final Exception e) {
-            log.warn("Processing of {} module failed due to reason {}.", yangModelCmHandle.getId(), e.getMessage());
+            log.warn("Processing of {} failed,reason : {}.", yangModelCmHandle.getId(), e.getMessage());
             final LockReasonCategory lockReasonCategory = inUpgrade
                     ? LockReasonCategory.MODULE_UPGRADE_FAILED
                     : LockReasonCategory.MODULE_SYNC_FAILED;

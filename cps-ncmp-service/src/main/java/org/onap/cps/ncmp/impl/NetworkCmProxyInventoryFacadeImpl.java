@@ -89,6 +89,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
         try {
             final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            // TODO Verify this works using moduleSetTag as SchemaSet name - it looks like no changes needed.
             return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
         } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
             return Collections.emptyList();
@@ -99,6 +100,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
         try {
             final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            // TODO Verify this works using moduleSetTag as SchemaSet name - it looks like no changes needed.
             return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
         } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
             return Collections.emptyList();

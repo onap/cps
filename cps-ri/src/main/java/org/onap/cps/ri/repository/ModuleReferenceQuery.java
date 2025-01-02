@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation.
+ *  Copyright (C) 2022-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.ri.repository;
 
 import java.util.Collection;
-import java.util.Map;
 import org.onap.cps.api.model.ModuleReference;
 
 /**
@@ -31,7 +30,4 @@ public interface ModuleReferenceQuery {
 
     Collection<ModuleReference> identifyNewModuleReferences(final Collection<ModuleReference> moduleReferencesToCheck);
 
-    Collection<ModuleReference> findModuleReferences(final String dataspaceName, final String anchorName,
-                                                     final Map<String, String> parentAttributes,
-                                                     final Map<String, String> childAttributes);
 }

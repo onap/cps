@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -79,26 +79,36 @@ class CmHandleRegistrationServiceSpec extends Specification {
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
             dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
             dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
-            dmiRegistration.setRemovedCmHandles(['cmhandle-2'])
-            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-3'], moduleSetTag: 'some-module-set-tag'))
-        and: 'cm handles are persisted'
+            dmiRegistration.setRemovedCmHandles(['cmhandle-3'])
+            dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-4', 'cmhandle-5'], moduleSetTag: moduleSetTagForUpgrade))
+        and: 'cm handles 2,3 and 4 already exist in the inventory'
             mockInventoryPersistence.getYangModelCmHandles(['cmhandle-2']) >> [new YangModelCmHandle()]
-            mockInventoryPersistence.getYangModelCmHandle('cmhandle-3') >> new YangModelCmHandle(id: 'cmhandle-3', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
-        and: 'cm handle is in READY state'
-            mockCmHandleQueries.cmHandleHasState('cmhandle-3', CmHandleState.READY) >> true
-        and: 'cm handles is present in in-progress map'
-            mockModuleSyncStartedOnCmHandles.containsKey('cmhandle-2') >> true
+            mockInventoryPersistence.getYangModelCmHandles(['cmhandle-3']) >> [new YangModelCmHandle()]
+            mockInventoryPersistence.getYangModelCmHandle('cmhandle-4') >> new YangModelCmHandle(id: 'cmhandle-4', moduleSetTag: '', compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
+        and: 'cm handle 5 also exist but already has the new module set tag (upgrade to)'
+            mockInventoryPersistence.getYangModelCmHandle('cmhandle-5') >> new YangModelCmHandle(id: 'cmhandle-5', moduleSetTag: moduleSetTagForUpgrade , compositeState: new CompositeState(cmHandleState: CmHandleState.READY))
+        and: 'all cm handles are in READY state'
+            mockCmHandleQueries.cmHandleHasState(_, CmHandleState.READY) >> true
+        and: 'cm handle to be removed is in progress map'
+            mockModuleSyncStartedOnCmHandles.containsKey('cmhandle-3') >> true
         when: 'registration is processed'
-            objectUnderTest.updateDmiRegistration(dmiRegistration)
+            def result = objectUnderTest.updateDmiRegistration(dmiRegistration)
         then: 'cm-handles are removed first'
             1 * objectUnderTest.processRemovedCmHandles(*_)
         and: 'de-registered cm handle entry is removed from in progress map'
-            1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle-2')
-        then: 'cm-handles are updated'
+            1 * mockModuleSyncStartedOnCmHandles.removeAsync('cmhandle-3')
+        then: 'updated cm handles are processed by the property handler service'
             1 * objectUnderTest.processUpdatedCmHandles(*_)
-            1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> []
+            1 * mockNetworkCmProxyDataServicePropertyHandler.updateCmHandleProperties(*_) >> [CmHandleRegistrationResponse.createSuccessResponse('cmhandle-2')]
         then: 'cm-handles are upgraded'
             1 * objectUnderTest.processUpgradedCmHandles(*_)
+        and: 'result contains the correct cm handles for each operation'
+            assert result.createdCmHandles.cmHandle == ['cmhandle-1']
+            assert result.updatedCmHandles.cmHandle == ['cmhandle-2']
+            assert result.removedCmHandles.cmHandle == ['cmhandle-3']
+            assert result.upgradedCmHandles.cmHandle as Set == ['cmhandle-4', 'cmhandle-5'] as Set
+        where: 'upgrade with and without module set tag'
+            moduleSetTagForUpgrade << ['some tag', '']
     }
 
     def 'DMI Registration upgrade operation with upgrade node state #scenario'() {
@@ -275,18 +285,15 @@ class CmHandleRegistrationServiceSpec extends Specification {
             assert response.updatedCmHandles.containsAll(updateOperationResponse)
     }
 
-    def 'Remove CmHandle Successfully: #scenario'() {
-        given: 'a registration'
+    def 'Remove CmHandle Successfully'() {
+        given: 'a registration update to delete a cm handle'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server', removedCmHandles: ['cmhandle'])
-        and: '#scenario'
-            mockCpsModuleService.deleteSchemaSetsWithCascade(_, ['cmhandle']) >>  { if (!schemaSetExist) { throw new SchemaSetNotFoundException('', '') } }
-        when: 'registration is updated to delete cmhandle'
+        when: 'the registration is updated'
             def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
-        then: 'the cmHandle state is updated to "DELETING"'
-            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >>
-                { args -> args[0].values()[0] == CmHandleState.DELETING }
-        then: 'method to delete relevant schema set is called once'
-            1 * mockInventoryPersistence.deleteSchemaSetsWithCascade(_)
+        then: 'the cmHandle state is set to "DELETING"'
+            1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args -> args[0].values()[0] == CmHandleState.DELETING }
+        then: 'method to delete anchors is called once'
+            1 * mockInventoryPersistence.deleteAnchors(_)
         and: 'method to delete relevant list/list element is called once'
             1 * mockInventoryPersistence.deleteDataNodes(_)
         and: 'successful response is received'
@@ -300,10 +307,6 @@ class CmHandleRegistrationServiceSpec extends Specification {
                 { args -> args[0].values()[0] == CmHandleState.DELETED }
         and: 'No cm handles state updates for "upgraded cm handles"'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch([:])
-        where:
-            scenario                                            | schemaSetExist
-            'schema-set exists and can be deleted successfully' | true
-            'schema-set does not exist'                         | false
     }
 
     def 'Remove CmHandle: Partial Success'() {
@@ -354,36 +357,9 @@ class CmHandleRegistrationServiceSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch([:])
     }
 
-    def 'Remove CmHandle Error Handling: Schema Set Deletion failed'() {
-        given: 'a registration'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                removedCmHandles: ['cmhandle'])
-        and: 'schema set batch deletion failed with unknown error'
-            mockInventoryPersistence.deleteSchemaSetsWithCascade(_) >> { throw new RuntimeException('Failed') }
-        and: 'schema set single deletion failed with unknown error'
-            mockInventoryPersistence.deleteSchemaSetWithCascade(_) >> { throw new RuntimeException('Failed') }
-        when: 'registration is updated to delete cmhandle'
-            def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
-        then: 'no exception is thrown'
-            noExceptionThrown()
-        and: 'cm-handle is not deleted'
-            0 * mockInventoryPersistence.deleteDataNodes(_)
-        and: 'the cmHandle state is not updated to "DELETED"'
-            0 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch([yangModelCmHandle: CmHandleState.DELETED])
-        and: 'a failure response is received'
-            assert response.removedCmHandles.size() == 1
-            with(response.removedCmHandles[0]) {
-                assert it.status == Status.FAILURE
-                assert it.cmHandle == 'cmhandle'
-                assert it.errorText == 'Failed'
-                assert it.ncmpResponseStatus == UNKNOWN_ERROR
-            }
-    }
-
     def 'Remove CmHandle Error Handling: #scenario'() {
         given: 'a registration'
-            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server',
-                removedCmHandles: ['cmhandle'])
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server', removedCmHandles: ['cmhandle'])
         and: 'cm-handle deletion fails on batch'
             mockInventoryPersistence.deleteDataNodes(_) >> { throw deleteListElementException }
         and: 'cm-handle deletion fails on individual delete'
@@ -407,7 +383,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         'an unexpected exception'    | new RuntimeException('Failed')            || UNKNOWN_ERROR        | 'Failed'
     }
 
-    def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is  #scenario'() {
+    def 'Set Cm Handle Data Sync Enabled Flag where data sync flag is #scenario'() {
         given: 'an existing cm handle composite state'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.READY, dataSyncEnabled: initialDataSyncEnabledFlag,
                 dataStores: CompositeState.DataStores.builder()
@@ -446,7 +422,5 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'the inventory persistence service to update node leaves is not invoked'
             0 * mockInventoryPersistence.saveCmHandleState(_, _)
     }
-
-
 
 }
