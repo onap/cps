@@ -18,6 +18,52 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7218a4e1_bfc2a954",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "I would have forgotten that...\nwere gonna have an issue with this for a while 😄",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccb5e41d_54a06203",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "I prefer lower case string literals....\nIs this \u0027constant\u0027 used anywhere else ?!\nif yo DO want or need the constant give it a more meaningful name, not just the value. e.g. stageGaugeCacheName",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 72
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd2383cf_e71d971b",
@@ -36,6 +82,98 @@
         "startChar": 0,
         "endLine": 33,
         "endChar": 7
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc05c5c_cbb4e79a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "NB: I think \u003e 0 reads better and would effectively do the same",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd30051_c4e28bf1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "NB:\n5 entries, one for each sate\n\n(you now imply we have 25 entries 😄)",
+      "range": {
+        "startLine": 50,
+        "startChar": 43,
+        "endLine": 50,
+        "endChar": 64
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352fbd00_8fbc7a68",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "NB: remove redundant spacing",
+      "range": {
+        "startLine": 65,
+        "startChar": 44,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e281ed0e_f8e70d37",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-03T13:59:23Z",
+      "side": 1,
+      "message": "NB: remove redundant spacing",
+      "range": {
+        "startLine": 65,
+        "startChar": 79,
+        "endLine": 65,
+        "endChar": 85
       },
       "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
