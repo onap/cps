@@ -60,7 +60,7 @@
         <sonar.version>4.0.0.4121</sonar.version>
         <spotbugs.plugin.version>4.8.6.4</spotbugs.plugin.version>
         <spotbugs.version>4.8.6</spotbugs.version>
-        <spring.boot.maven.plugin.version>3.3.1</spring.boot.maven.plugin.version>
+        <spring.boot.maven.plugin.version>3.3.7</spring.boot.maven.plugin.version>
         <swagger.codegen.version>1.2.1</swagger.codegen.version>
 
         <!-- Reporting paths and coverage -->
