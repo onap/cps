@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd5fa2b2_8220b026",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccb5e41d_54a06203",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 72
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd2383cf_e71d971b",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-01-03T12:58:43Z",
       "side": 1,
       "message": "NB: not needed I guess?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 7
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0435505_af524716",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd2383cf_e71d971b",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a95bcd57_4fb2f2b3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bc05c5c_cbb4e79a",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dd30051_c4e28bf1",
@@ -123,6 +195,30 @@
       "writtenOn": "2025-01-03T13:59:23Z",
       "side": 1,
       "message": "NB:\n5 entries, one for each sate\n\n(you now imply we have 25 entries 😄)",
+      "range": {
+        "startLine": 50,
+        "startChar": 43,
+        "endLine": 50,
+        "endChar": 64
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc34b2a_c40d93f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd30051_c4e28bf1",
       "range": {
         "startLine": 50,
         "startChar": 43,
@@ -169,6 +265,54 @@
       "writtenOn": "2025-01-03T13:59:23Z",
       "side": 1,
       "message": "NB: remove redundant spacing",
+      "range": {
+        "startLine": 65,
+        "startChar": 79,
+        "endLine": 65,
+        "endChar": 85
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3d84dee_1eb65c4e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "352fbd00_8fbc7a68",
+      "range": {
+        "startLine": 65,
+        "startChar": 44,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "95b59acc47b5038197f0b39faff2c6da77528c71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae0a97b8_670b9e7f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-06T09:04:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e281ed0e_f8e70d37",
       "range": {
         "startLine": 65,
         "startChar": 79,
