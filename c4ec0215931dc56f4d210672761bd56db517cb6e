@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8fdb0e_6981ef56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-06T15:44:59Z",
+      "side": 1,
+      "message": "There is a test issue otherwise good to me.",
+      "revId": "c4ec0215931dc56f4d210672761bd56db517cb6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ab4f50_e57fe9e7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-06T15:44:59Z",
+      "side": 1,
+      "message": "I don\u0027t understand what you test here?\n\nIf you want to see the bean cmHandleByState created then remove quotes.\n\nOtherwise, you don\u0027t have to inject cmHandlesByState bean. Since a local instance have already been created on line 49.",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "c4ec0215931dc56f4d210672761bd56db517cb6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
