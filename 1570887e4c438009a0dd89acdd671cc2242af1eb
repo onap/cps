@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "765e6263_3d81f796",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "looks good, minor comments",
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03182bb6_e2f7110e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "2024-2025",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4998d310_f15532b2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "25",
+      "range": {
+        "startLine": 4,
+        "startChar": 40,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be311786_8902757e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/FunctionalSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "suggestion: add JSON_DATA inline with line #45",
+      "range": {
+        "startLine": 34,
+        "startChar": 58,
+        "endLine": 34,
+        "endChar": 70
+      },
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117dcca0_f58f219f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "in XML",
+      "range": {
+        "startLine": 282,
+        "startChar": 43,
+        "endLine": 282,
+        "endChar": 45
+      },
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9474fbb_c0e6596a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T11:39:03Z",
+      "side": 1,
+      "message": "not clear which is an update \n\n\u0027XML for bookstore data with updated lang and price leaves\u0027",
+      "range": {
+        "startLine": 459,
+        "startChar": 16,
+        "endLine": 459,
+        "endChar": 46
+      },
+      "revId": "1570887e4c438009a0dd89acdd671cc2242af1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
