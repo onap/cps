@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da9c1448_57931d6d",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T13:48:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7fb6220_217f2b1d",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 21
+      },
+      "revId": "c838c39968ec546b50e639c80df162d9de6d7da5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9d98fe3_848693f0",
