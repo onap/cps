@@ -26,6 +26,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "744a5cc5_07bf3c26",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "Can be removed: there are lots of tests in *ModuleServiceIntegrationSpec*",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 109
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadb3b67_b427118e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "Given the use of singletonList, these two methods could probably be refactored into one taking a Collection cmHandleIds.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 5
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af9dda8_c5b21ca5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "I\u0027d prefer conditional logging only when cmHandleIds.size \u003e 0\nEven better, return early if the input Map is empty.",
+      "range": {
+        "startLine": 331,
+        "startChar": 8,
+        "endLine": 331,
+        "endChar": 111
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5ce26ee_a5faaf3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "Nb. I don\u0027t like that we use inheritance for this, it makes no sense - either use one single Persistence class, or use composition.\n\nBy inheritance, InventoryPersistence includes all the non-inventory related methods from NcmpPersistence. It would make more sense to use composition, i.e. InventoryPersistence uses NcmpPersistence.",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d882681d_337cb19b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistenceImpl.java",
         "patchSetId": 3
@@ -42,6 +134,29 @@
         "startChar": 0,
         "endLine": 47,
         "endChar": 44
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe51465_fc45567c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "Can be removed, given all tests passing.",
+      "range": {
+        "startLine": 172,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 105
       },
       "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -118,6 +233,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c87721f6_cd8d24da",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "BLOCKER!\n\nIn CPS REST API, we allow creating a SchemaSet as a single operation (without an anchor), so we should not delete orphaned ones ever!\n\nIt may make more sense to delete orphan Schema-Sets within a given dataspace, like *NFP-Operational* used by NCMP. Previous behaviour in CPS was that orphan *Yang modules* do get cleaned, but unused Schema-Sets do not.\n\nI think a separate discussion \u0026 proposal for deletion is needed.",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c32a8ef_c661404d",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/ModuleReferenceRepositoryImpl.java",
         "patchSetId": 3
@@ -129,6 +267,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "Can be a meaningful name.",
+      "range": {
+        "startLine": 70,
+        "startChar": 21,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8671a32d_d8ec2b90",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "I don\u0027t mind this, because the method name is very descriptive.",
+      "parentUuid": "2c32a8ef_c661404d",
       "range": {
         "startLine": 70,
         "startChar": 21,
@@ -187,6 +349,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fb3d52f_328a7bca",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "Yeah. @Modifying should be removed here, since it\u0027s only needed if the interface extends JpaRepository, to auto-generate the implementation code from annotations.",
+      "parentUuid": "0c8fd8f3_f07c5f99",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8737ab3_0ac3dc2a",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
         "patchSetId": 3
@@ -233,6 +419,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "045799e6_153f1dd3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "I prefer inline constant for this TBH, it makes the code below easier to understand. I\u0027d only bring a constant if it was used repeatedly.",
+      "parentUuid": "e297a225_fa62740f",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 104
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24df94d7_79fc6222",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/YangResourceRepository.java",
         "patchSetId": 3
@@ -267,6 +477,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "You can add javadoc for this interface.",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9baf6a_290c8e41",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T17:53:53Z",
+      "side": 1,
+      "message": "I\u0027m surprised checkstyle didn\u0027t complain 😕",
+      "parentUuid": "74be6a1b_2d4fcf91",
       "range": {
         "startLine": 60,
         "startChar": 4,
