@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bda6e34_061b6795",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T18:02:20Z",
+      "side": 1,
+      "message": "I think this should match spring boot version too, since it\u0027s also a spring boot artifact.\nI\u0027d say move this dependency directly after the main *spring-boot-dependencies* one, since they should have matching versions.",
+      "range": {
+        "startLine": 108,
+        "startChar": 25,
+        "endLine": 108,
+        "endChar": 30
+      },
+      "revId": "560d635e74635bb3aeaaf75db239aabce4a3a565",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
