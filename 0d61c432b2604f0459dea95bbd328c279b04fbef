@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48c8bb4_3d6acfe2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T14:54:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab089c1c_c6202802",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "0d61c432b2604f0459dea95bbd328c279b04fbef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff01079f_359147c3",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-07T13:22:13Z",
       "side": 1,
       "message": "NB: updating cm handle state metrics",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "0d61c432b2604f0459dea95bbd328c279b04fbef",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ce451c_01ff32ee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T14:54:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff01079f_359147c3",
       "range": {
         "startLine": 69,
         "startChar": 15,
