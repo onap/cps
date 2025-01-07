@@ -22,6 +22,30 @@
       },
       "revId": "a63b028215051e889c446eb8ca6d1a43cff4ce1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02fbbd2a_03e880e6",
+        "filename": "cps-ri/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-07T14:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "814ee337_b33d6739",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 86
+      },
+      "revId": "a63b028215051e889c446eb8ca6d1a43cff4ce1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
