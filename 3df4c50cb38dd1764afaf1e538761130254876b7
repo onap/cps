@@ -164,6 +164,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39c04720_18cc95ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-07T19:43:08Z",
+      "side": 1,
+      "message": "Based on code analysis, I think *DuplicateYangResourceException* here means that the SchemaSet was **not** created. In that case, the handle should go to LOCKED state and be retried.\n\nWe should create a separate Jira to investigate this duplicate yang resource logic - I think the *createSchemaSetFromModules* method should internally resolve the conflict and continue, but it needs further analysis.",
+      "range": {
+        "startLine": 121,
+        "startChar": 53,
+        "endLine": 121,
+        "endChar": 84
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dccfeed3_d8ac8731",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
         "patchSetId": 3
