@@ -31,8 +31,3 @@ DMI-Plugin
 ==========
 
 * :ref:`DMI-Plugin<onap-cps-ncmp-dmi-plugin:master_index>`
-
-CPS Temporal
-============
-
-* :ref:`CPS-Temporal<onap-cps-cps-temporal:master_index>`

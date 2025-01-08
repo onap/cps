@@ -19,8 +19,8 @@
 from docutils.parsers.rst import directives
 
 project = "onap"
-release = "master"
-version = "master"
+release = "oslo"
+version = "oslo"
 
 author = "Open Network Automation Platform"
 # yamllint disable-line rule:line-length
@@ -46,7 +46,7 @@ extensions = [
 # Change to {releasename} after you have created the new 'doc' branch.
 #
 
-branch = 'latest'
+branch = 'oslo'
 
 doc_url = 'https://docs.onap.org/projects'
 master_doc = 'index'
@@ -59,7 +59,6 @@ spelling_lang = "en_GB"
 intersphinx_mapping = {}
 
 intersphinx_mapping['onap-cps-ncmp-dmi-plugin'] = ('{}/onap-cps-ncmp-dmi-plugin/en/%s'.format(doc_url) % branch, None)
-intersphinx_mapping['onap-cps-cps-temporal'] = ('{}/onap-cps-cps-temporal/en/%s'.format(doc_url) % branch, None)
 
 linkcheck_ignore = [
     'http://localhost',
