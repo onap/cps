@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f55c43c6_b2ba2704",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-08T17:00:11Z",
+      "side": 1,
+      "message": "NB: same as below",
+      "range": {
+        "startLine": 1875,
+        "startChar": 0,
+        "endLine": 1881,
+        "endChar": 20
+      },
+      "revId": "ee0044e708c2e973f8d04dd1c999d1da3a30e81d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a369d34_e4f922e2",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-08T17:00:11Z",
+      "side": 1,
+      "message": "NB: instead of having back slash can pipe | be used here? You used it for descriptions: (will give more readability if works)\n\ncontent: |\n  module _3gpp-nr-nrm-gnbdufunction {\n    yang-version 1.1;\n    namespace \u0027urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction\u0027;\n    prefix gnbdu3gpp;\n    revision \u00272020-09-15\u0027 {\n      description\n      \u0027Defines the YANG mapping of the GNBDUFunction Information \n       Object Class (IOC) that is part of the\n       NR Network Resource Model (NRM). \n       Copyright 2024, 3GPP Organizational\n       Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,\n       TTA, TTC). All rights reserved.\u0027;\n    }\n  }",
+      "range": {
+        "startLine": 1891,
+        "startChar": 0,
+        "endLine": 1897,
+        "endChar": 36
+      },
+      "revId": "ee0044e708c2e973f8d04dd1c999d1da3a30e81d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7b04b9e_a9e292f4",
         "filename": "docs/ncmp-data-operation.rst",
         "patchSetId": 1
@@ -14,6 +60,30 @@
       "writtenOn": "2025-01-08T13:17:35Z",
       "side": 1,
       "message": "This and below examples seem to be malformed JSON, missing closing }",
+      "range": {
+        "startLine": 113,
+        "startChar": 33,
+        "endLine": 113,
+        "endChar": 52
+      },
+      "revId": "ee0044e708c2e973f8d04dd1c999d1da3a30e81d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cdedd08_b5977a1b",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-08T17:00:11Z",
+      "side": 1,
+      "message": "Yes, I think a closing parantheses is missing.\nNot only here but also it missed the lines below.",
+      "parentUuid": "d7b04b9e_a9e292f4",
       "range": {
         "startLine": 113,
         "startChar": 33,
