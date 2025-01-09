@@ -25,7 +25,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
-import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.slf4j.LoggerFactory
@@ -33,12 +33,12 @@ import spock.lang.Specification
 
 import static java.util.Collections.EMPTY_LIST
 import static java.util.Collections.EMPTY_MAP
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETING
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.LOCKED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETING
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.LOCKED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 
 class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 

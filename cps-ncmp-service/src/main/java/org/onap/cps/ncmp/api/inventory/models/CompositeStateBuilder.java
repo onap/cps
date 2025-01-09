@@ -22,12 +22,10 @@
 package org.onap.cps.ncmp.api.inventory.models;
 
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState.DataStores;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState.Operational;
-import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory;
 
 public class CompositeStateBuilder {
 

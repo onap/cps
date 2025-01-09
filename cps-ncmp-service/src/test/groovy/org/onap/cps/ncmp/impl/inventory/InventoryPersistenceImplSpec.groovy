@@ -31,7 +31,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.api.parameters.CascadeDeleteAllowed

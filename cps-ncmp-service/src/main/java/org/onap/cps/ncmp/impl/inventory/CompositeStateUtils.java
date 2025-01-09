@@ -23,8 +23,9 @@ package org.onap.cps.ncmp.impl.inventory;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 
 /**
  * It will have all the utility method responsible for handling the composite state.

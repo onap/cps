@@ -30,8 +30,8 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.impl.data.DmiDataOperations
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
-import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.JsonObjectMapper
@@ -42,9 +42,9 @@ import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 import java.util.stream.Collectors
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleOperationsUtilsSpec extends Specification{
 

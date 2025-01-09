@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
 import java.util.Collection;
 import java.util.Map;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 /**

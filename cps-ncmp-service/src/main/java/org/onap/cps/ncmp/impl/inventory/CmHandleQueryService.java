@@ -24,7 +24,8 @@ import java.util.Collection;
 import java.util.Map;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 
 public interface CmHandleQueryService {
 

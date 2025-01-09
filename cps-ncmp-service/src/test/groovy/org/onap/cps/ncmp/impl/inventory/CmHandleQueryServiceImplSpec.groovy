@@ -27,8 +27,9 @@ import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.impl.utils.CpsValidator
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
