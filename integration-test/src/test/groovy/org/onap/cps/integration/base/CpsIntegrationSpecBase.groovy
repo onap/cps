@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
- *  Modifications Copyright (C) 2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -46,6 +46,7 @@ import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DataNode
+import static org.onap.cps.utils.ContentType.*
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -229,10 +230,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
         return true
     }
 
-    def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data) {
+    def addAnchorsWithData(numberOfAnchors, dataspaceName, schemaSetName, anchorNamePrefix, data, contentType) {
         (1..numberOfAnchors).each {
             cpsAnchorService.createAnchor(dataspaceName, schemaSetName, anchorNamePrefix + it)
-            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now())
+            cpsDataService.saveData(dataspaceName, anchorNamePrefix + it, data.replace("Easons", "Easons-"+it.toString()), OffsetDateTime.now(), contentType)
         }
     }
 
