@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1668d7f6_16c205fc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-09T16:52:29Z",
+      "side": 1,
+      "message": "NB: No scenario availabe so you can remove this word",
+      "range": {
+        "startLine": 377,
+        "startChar": 34,
+        "endLine": 377,
+        "endChar": 43
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c64266b_17a27b78",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-09T16:52:29Z",
+      "side": 1,
+      "message": "two",
+      "range": {
+        "startLine": 390,
+        "startChar": 45,
+        "endLine": 390,
+        "endChar": 48
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d151e3ff_bb501170",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-09T16:52:29Z",
+      "side": 1,
+      "message": "NB: you can use a static import",
+      "range": {
+        "startLine": 40,
+        "startChar": 100,
+        "endLine": 40,
+        "endChar": 117
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
