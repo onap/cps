@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa9b3d3_83a39b84",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T16:40:25Z",
+      "side": 1,
+      "message": "this code is not covered by unit test (anymore?). Need to check if it was before refactorign and either way it should be covered",
+      "range": {
+        "startLine": 330,
+        "startChar": 8,
+        "endLine": 333,
+        "endChar": 9
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
