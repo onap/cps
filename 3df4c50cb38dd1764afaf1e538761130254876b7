@@ -24,6 +24,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89cf882_c47a757a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-09T15:36:35Z",
+      "side": 1,
+      "message": "Missing Issue-ID",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "14e8fe37_c15415ac",
@@ -1002,6 +1025,29 @@
         "startChar": 4,
         "endLine": 60,
         "endChar": 72
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa992e64_939026a4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-09T15:36:35Z",
+      "side": 1,
+      "message": "This code is unused now",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 5
       },
       "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
