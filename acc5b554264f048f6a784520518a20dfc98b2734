@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "125a44af_36b510ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T16:45:20Z",
+      "side": 1,
+      "message": "need to improve unit test\nSee the integration tests in YangModulesSpec.groovy tests these at the REST level, but only without module set tag.",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 109
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9aa9b3d3_83a39b84",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
         "patchSetId": 4
