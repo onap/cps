@@ -40,9 +40,9 @@ import org.slf4j.LoggerFactory
 import spock.lang.Specification
 import java.util.concurrent.atomic.AtomicInteger
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleSyncTasksSpec extends Specification {
 

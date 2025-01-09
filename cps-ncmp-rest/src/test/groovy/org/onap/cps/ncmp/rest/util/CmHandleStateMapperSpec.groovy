@@ -31,8 +31,8 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 
 class CmHandleStateMapperSpec extends Specification {
 

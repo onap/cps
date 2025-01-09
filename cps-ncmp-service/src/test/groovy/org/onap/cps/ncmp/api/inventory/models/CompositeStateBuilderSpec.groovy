@@ -24,7 +24,6 @@ package org.onap.cps.ncmp.api.inventory.models
 
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.model.DataNodeBuilder
 import spock.lang.Specification

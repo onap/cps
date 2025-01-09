@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.UpgradedCmHandles
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import spock.util.concurrent.PollingConditions
 
 class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {

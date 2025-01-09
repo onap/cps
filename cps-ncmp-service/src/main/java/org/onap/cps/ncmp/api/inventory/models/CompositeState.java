@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory;
 
 /**
  * State Model to store state corresponding to the Yang resource dmi-registry model.

@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.inventory.models;
+package org.onap.cps.ncmp.api.inventory.models;
 
 public enum LockReasonCategory {
     MODULE_SYNC_FAILED,

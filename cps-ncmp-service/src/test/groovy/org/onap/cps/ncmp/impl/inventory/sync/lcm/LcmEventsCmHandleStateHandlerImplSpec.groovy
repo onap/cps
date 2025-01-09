@@ -38,7 +38,7 @@ import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETING
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.LOCKED
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 
 class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 

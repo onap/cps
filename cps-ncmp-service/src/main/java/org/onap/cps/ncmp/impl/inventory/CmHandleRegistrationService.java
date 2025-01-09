@@ -28,9 +28,9 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE;
 
 import com.google.common.collect.Lists;
 import com.hazelcast.map.IMap;

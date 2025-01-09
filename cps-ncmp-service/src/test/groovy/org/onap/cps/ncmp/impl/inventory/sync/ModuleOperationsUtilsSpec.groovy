@@ -42,9 +42,9 @@ import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 import java.util.stream.Collectors
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
 
 class ModuleOperationsUtilsSpec extends Specification{
 

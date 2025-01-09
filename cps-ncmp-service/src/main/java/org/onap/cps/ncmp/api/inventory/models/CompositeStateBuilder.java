@@ -27,7 +27,6 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState.LockReason;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState.Operational;
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory;
 
 public class CompositeStateBuilder {
 

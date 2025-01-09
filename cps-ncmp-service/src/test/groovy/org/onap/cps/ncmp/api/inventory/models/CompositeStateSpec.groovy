@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.api.inventory.models
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
 import spock.lang.Specification
 
 import java.time.OffsetDateTime

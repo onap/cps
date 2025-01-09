@@ -34,7 +34,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
