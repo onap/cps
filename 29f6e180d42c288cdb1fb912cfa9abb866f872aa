@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e06295a5_ea45e36b",
+        "filename": "docs/conf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-09T17:10:47Z",
+      "side": 1,
+      "message": "NB: 2021-2025",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "29f6e180d42c288cdb1fb912cfa9abb866f872aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81e39ea6_00d40001",
+        "filename": "docs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-09T17:10:47Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "29f6e180d42c288cdb1fb912cfa9abb866f872aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
