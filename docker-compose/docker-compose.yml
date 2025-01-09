@@ -161,6 +161,19 @@ services:
       - dmi-stub
       - dmi-service
 
+  ran-topology-sim:
+    container_name: ${NCMP_RAN_TOPOLOGY_SIM_CONTAINER_NAME:-ran-topology-sim}
+    image: python:3.9-slim
+    working_dir: /app
+    volumes:
+      - ./ran-topology-sim:/app
+    command: bash -c "pip install -r requirements.txt && python consumer_service.py"
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    profiles:
+      - dmi-stub
+
   policy-executor-stub:
     container_name: ${POLICY_EXECUTOR_STUB_CONTAINER_NAME:-policy-executor-stub}
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/policy-executor-stub:latest
