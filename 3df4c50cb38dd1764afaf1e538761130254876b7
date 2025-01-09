@@ -24,6 +24,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e8fe37_c15415ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "I\u0027ll start implementing the easy comments now",
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "744a5cc5_07bf3c26",
@@ -37,6 +54,30 @@
       "writtenOn": "2025-01-07T17:53:53Z",
       "side": 1,
       "message": "Can be removed: there are lots of tests in *ModuleServiceIntegrationSpec*",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 109
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da71d15c_c3ef8f19",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/NetworkCmProxyInventoryFacadeImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "744a5cc5_07bf3c26",
       "range": {
         "startLine": 92,
         "startChar": 12,
@@ -72,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "629f2c23_f6b7dfbc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "nice to have, time permitting",
+      "parentUuid": "fadb3b67_b427118e",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 5
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8af9dda8_c5b21ca5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
         "patchSetId": 3
@@ -83,6 +148,30 @@
       "writtenOn": "2025-01-07T17:53:53Z",
       "side": 1,
       "message": "I\u0027d prefer conditional logging only when cmHandleIds.size \u003e 0\nEven better, return early if the input Map is empty.",
+      "range": {
+        "startLine": 331,
+        "startChar": 8,
+        "endLine": 331,
+        "endChar": 111
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b1c1cc_1f3a5342",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "yeah, not 100% sure normally iteration should handle empty without extra code (-paths which needs coverage) But given the logging (the mislead me before) maybe its acceptable here..\n\nOn second look I think now i have the improved logging that clearly with show \u00270 cm handles\u0027 it is OK",
+      "parentUuid": "8af9dda8_c5b21ca5",
       "range": {
         "startLine": 331,
         "startChar": 8,
@@ -118,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f400b25d_1754ada9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i found these classnames a bit confusing to start with. going on the names \u0027Inventory\u0027 is PART of \u0027NCMP\u0027 an not the other way around. \nI\u0027ll see how I can improve it",
+      "parentUuid": "f5ce26ee_a5faaf3b",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d882681d_337cb19b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistenceImpl.java",
         "patchSetId": 3
@@ -141,6 +254,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d0e203e_5bf342c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i\u0027ll check",
+      "parentUuid": "d882681d_337cb19b",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe51465_fc45567c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
         "patchSetId": 3
@@ -152,6 +289,30 @@
       "writtenOn": "2025-01-07T17:53:53Z",
       "side": 1,
       "message": "Can be removed, given all tests passing.",
+      "range": {
+        "startLine": 172,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 105
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe9b092b_ebc6604a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "cfe51465_fc45567c",
       "range": {
         "startLine": 172,
         "startChar": 8,
@@ -210,6 +371,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b904f5c7_eea8c20b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i\u0027ll check",
+      "parentUuid": "dccfeed3_d8ac8731",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6810e2ab_4b1656c2",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
         "patchSetId": 3
@@ -221,6 +406,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "unused import",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 55
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0647a1_f07b6ebb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i\u0027ll check",
+      "parentUuid": "6810e2ab_4b1656c2",
       "range": {
         "startLine": 37,
         "startChar": 0,
@@ -256,6 +465,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2af6c0fe_09fcef5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i\u0027ll check",
+      "parentUuid": "5a47368d_c82f8d1f",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 9
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c87721f6_cd8d24da",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
         "patchSetId": 3
@@ -267,6 +500,30 @@
       "writtenOn": "2025-01-07T17:53:53Z",
       "side": 1,
       "message": "BLOCKER!\n\nIn CPS REST API, we allow creating a SchemaSet as a single operation (without an anchor), so we should not delete orphaned ones ever!\n\nIt may make more sense to delete orphan Schema-Sets within a given dataspace, like *NFP-Operational* used by NCMP. Previous behaviour in CPS was that orphan *Yang modules* do get cleaned, but unused Schema-Sets do not.\n\nI think a separate discussion \u0026 proposal for deletion is needed.",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f357cc7e_737a7094",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "I think this method is currently only called from (indirectly) testware but you are right, we need a discussion..",
+      "parentUuid": "c87721f6_cd8d24da",
       "range": {
         "startLine": 241,
         "startChar": 8,
@@ -324,6 +581,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44de869a_e2b94bd5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/ModuleReferenceRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "agree with Daniel",
+      "parentUuid": "8671a32d_d8ec2b90",
+      "range": {
+        "startLine": 70,
+        "startChar": 21,
+        "endLine": 70,
+        "endChar": 24
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbccd5a1_4b671acb",
@@ -337,6 +618,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "NB: Can be formatted using the language support.",
+      "range": {
+        "startLine": 84,
+        "startChar": 3,
+        "endLine": 86,
+        "endChar": 98
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95fa0ba0_9a85d28f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "not sure what you mean",
+      "parentUuid": "dbccd5a1_4b671acb",
       "range": {
         "startLine": 84,
         "startChar": 3,
@@ -396,6 +701,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d195fb6_be86ca10",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "3fb3d52f_328a7bca",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8737ab3_0ac3dc2a",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
         "patchSetId": 3
@@ -407,6 +736,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "NB: The readability can be improved using language support and formatting by having the SQL inside three quotes \"\"\" \"\"\".",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 79
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e4ee60_ef6de1b0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will try",
+      "parentUuid": "a8737ab3_0ac3dc2a",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -464,6 +817,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe260df_48a7fd91",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "agree with Daniel extracting it wont add value",
+      "parentUuid": "045799e6_153f1dd3",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 104
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24df94d7_79fc6222",
@@ -477,6 +854,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "NB: The readability can be improved using language support and formatting like in above query on line 71.",
+      "range": {
+        "startLine": 95,
+        "startChar": 1,
+        "endLine": 96,
+        "endChar": 102
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810ad1e4_4617b860",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/YangResourceRepository.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will try",
+      "parentUuid": "24df94d7_79fc6222",
       "range": {
         "startLine": 95,
         "startChar": 1,
@@ -536,6 +937,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce54a2b3_82c0d8aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "i think because the method is very small\n\nwill do",
+      "parentUuid": "fc9baf6a_290c8e41",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3db7056f_764e591f",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
         "patchSetId": 3
@@ -547,6 +972,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "I think no need this comment",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 72
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85e50ac2_00ff0dce",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/YangTextSchemaSourceSetCache.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will remove",
+      "parentUuid": "3db7056f_764e591f",
       "range": {
         "startLine": 96,
         "startChar": 8,
@@ -582,6 +1031,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b636cc1_42e8c794",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will remove",
+      "parentUuid": "4057e5be_8a38484a",
+      "range": {
+        "startLine": 80,
+        "startChar": 62,
+        "endLine": 80,
+        "endChar": 79
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0c9025c_4570ffcd",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
         "patchSetId": 3
@@ -593,6 +1066,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "Redundant",
+      "range": {
+        "startLine": 107,
+        "startChar": 61,
+        "endLine": 107,
+        "endChar": 79
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d56f64b_7f77612f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will remove",
+      "parentUuid": "b0c9025c_4570ffcd",
       "range": {
         "startLine": 107,
         "startChar": 61,
@@ -628,6 +1125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "461b492f_92bb36d1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will remove",
+      "parentUuid": "d66608dd_c62b3774",
+      "range": {
+        "startLine": 122,
+        "startChar": 61,
+        "endLine": 122,
+        "endChar": 79
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26703f3d_14fb8bf0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
         "patchSetId": 3
@@ -639,6 +1160,30 @@
       "writtenOn": "2025-01-06T14:56:18Z",
       "side": 1,
       "message": "Redundant",
+      "range": {
+        "startLine": 133,
+        "startChar": 60,
+        "endLine": 133,
+        "endChar": 79
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e2cd10_6e20f572",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T13:46:55Z",
+      "side": 1,
+      "message": "will remove",
+      "parentUuid": "26703f3d_14fb8bf0",
       "range": {
         "startLine": 133,
         "startChar": 60,
