@@ -45,6 +45,29 @@
       },
       "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6376893b_a38916fd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-09T16:55:36Z",
+      "side": 1,
+      "message": "Quotes are in the wrong place, leading to errors in integration tests. It should be:\n\n    @Query(value \u003d \"\"\"\n            DELETE FROM schema_set WHERE NOT EXISTS \n            (SELECT 1 FROM anchor WHERE anchor.schema_set_id \u003d schema_set.id)\n           \"\"\", nativeQuery \u003d true)",
+      "range": {
+        "startLine": 87,
+        "startChar": 77,
+        "endLine": 87,
+        "endChar": 99
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
