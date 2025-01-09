@@ -1415,6 +1415,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "598f6559_10c550ff",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-09T16:37:56Z",
+      "side": 1,
+      "message": "again not sure, maybe it should be left as  a valid potential usecase...  Lets discuss and in any case agree to handle at least in separate commit",
+      "parentUuid": "b57c415a_0a0da959",
+      "range": {
+        "startLine": 105,
+        "startChar": 59,
+        "endLine": 112,
+        "endChar": 9
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa992e64_939026a4",
         "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
         "patchSetId": 3
