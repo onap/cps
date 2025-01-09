@@ -346,6 +346,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e556db39_89b5b91a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-09T15:29:18Z",
+      "side": 1,
+      "message": "Agreed to create a new Jira ticket to investigate DuplicatedYangResourceException",
+      "parentUuid": "39c04720_18cc95ce",
+      "range": {
+        "startLine": 121,
+        "startChar": 53,
+        "endLine": 121,
+        "endChar": 84
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dccfeed3_d8ac8731",
@@ -524,6 +548,30 @@
       "side": 1,
       "message": "I think this method is currently only called from (indirectly) testware but you are right, we need a discussion..",
       "parentUuid": "c87721f6_cd8d24da",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef23673_282980f9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-09T15:29:18Z",
+      "side": 1,
+      "message": "Agreed to create Jira for adding CPS admin interface to clean unused schemaset/module data.",
+      "parentUuid": "f357cc7e_737a7094",
       "range": {
         "startLine": 241,
         "startChar": 8,
