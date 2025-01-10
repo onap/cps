@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96546b11_6b5d539a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-01-10T04:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1668d7f6_16c205fc",
+      "range": {
+        "startLine": 377,
+        "startChar": 34,
+        "endLine": 377,
+        "endChar": 43
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c64266b_17a27b78",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00ca2e2a_8278660d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-01-10T04:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c64266b_17a27b78",
+      "range": {
+        "startLine": 390,
+        "startChar": 45,
+        "endLine": 390,
+        "endChar": 48
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d151e3ff_bb501170",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-09T16:52:29Z",
       "side": 1,
       "message": "NB: you can use a static import",
+      "range": {
+        "startLine": 40,
+        "startChar": 100,
+        "endLine": 40,
+        "endChar": 117
+      },
+      "revId": "05420189a0f94594d5e9dc90f714d9a1f440590c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc78c20_bcfd5e1c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-01-10T04:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d151e3ff_bb501170",
       "range": {
         "startLine": 40,
         "startChar": 100,
