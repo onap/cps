@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
- *  Modifications Copyright (C) 2023 TechMahindra Ltd
+ *  Modifications Copyright (C) 2023-2025 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -297,7 +297,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         and: 'correct anchors are queried'
             assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2].toSet()
         and: 'the correct number of nodes is returned'
-            assert result.size() == expectedXpathsPerAnchor.size() * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+            assert result.size() == expectedXpathsPerAnchor.size() * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA
         and: 'the queried nodes have expected xpaths'
             assert result.xpath.toSet() == expectedXpathsPerAnchor.toSet()
         where: 'the following data is used'
@@ -319,7 +319,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
-            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1
@@ -333,7 +333,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the correct dataspace was queried'
             assert result.dataspace.toSet() == [FUNCTIONAL_TEST_DATASPACE_1].toSet()
         and: 'correct number of datanodes are returned'
-            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA
+            assert countDataNodesInTree(result) == expectedNumberOfNodesPerAnchor * NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA
         where: 'the following data is used'
             scenario | fetchDescendantsOption  || expectedNumberOfNodesPerAnchor
             'no'     | OMIT_DESCENDANTS        || 1

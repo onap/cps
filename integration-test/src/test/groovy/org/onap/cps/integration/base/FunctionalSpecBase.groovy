@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2023-2024 Nordix Foundation
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -22,28 +22,35 @@
 package org.onap.cps.integration.base
 
 import java.time.OffsetDateTime
+import static org.onap.cps.utils.ContentType.JSON
+import static org.onap.cps.utils.ContentType.XML
 
 abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
 
     def static FUNCTIONAL_TEST_DATASPACE_1 = 'functionalTestDataspace1'
     def static FUNCTIONAL_TEST_DATASPACE_2 = 'functionalTestDataspace2'
     def static FUNCTIONAL_TEST_DATASPACE_3 = 'functionalTestDataspace3'
-    def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA = 2
+    def static FUNCTIONAL_TEST_DATASPACE_4 = 'functionalTestDataspace4'
+    def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA = 2
+    def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_XML_DATA = 1
     def static NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA = 1
     def static BOOKSTORE_ANCHOR_1 = 'bookstoreAnchor1'
     def static BOOKSTORE_ANCHOR_2 = 'bookstoreAnchor2'
     def static BOOKSTORE_ANCHOR_3 = 'bookstoreSourceAnchor1'
     def static BOOKSTORE_ANCHOR_4 = 'copyOfSourceAnchor1'
     def static BOOKSTORE_ANCHOR_5 = 'bookstoreAnchorForDeltaReport1'
+    def static BOOKSTORE_ANCHOR_6 = 'bookstoreAnchorXml1'
 
     def static initialized = false
     def static bookstoreJsonData = readResourceDataFile('bookstore/bookstoreData.json')
+    def static bookstoreXmlData = readResourceDataFile('bookstore/bookstoreData.xml')
     def static bookstoreJsonDataForDeltaReport = readResourceDataFile('bookstore/bookstoreDataForDeltaReport.json')
 
     def setup() {
         if (!initialized) {
             setupBookstoreInfraStructure()
             addBookstoreData()
+            addXmlData()
             addDeltaData()
             initialized = true
         }
@@ -53,20 +60,26 @@ abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
         cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_1)
         cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_2)
         cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_3)
+        cpsDataspaceService.createDataspace(FUNCTIONAL_TEST_DATASPACE_4)
         createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_1)
         createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_2)
         createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_3)
+        createStandardBookStoreSchemaSet(FUNCTIONAL_TEST_DATASPACE_4)
     }
 
     def addBookstoreData() {
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DATA, FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA, FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData, JSON)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_JSON_DATA, FUNCTIONAL_TEST_DATASPACE_2, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchor', bookstoreJsonData, JSON)
+    }
+
+    def addXmlData() {
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_XML_DATA, FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchorXml', bookstoreXmlData, XML)
     }
 
     def addDeltaData() {
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'bookstoreSourceAnchor', bookstoreJsonData)
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'copyOfSourceAnchor', bookstoreJsonData)
-        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchorForDeltaReport', bookstoreJsonDataForDeltaReport)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'bookstoreSourceAnchor', bookstoreJsonData, JSON)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'copyOfSourceAnchor', bookstoreJsonData, JSON)
+        addAnchorsWithData(NUMBER_OF_ANCHORS_PER_DATASPACE_WITH_BOOKSTORE_DELTA_DATA, FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_SCHEMA_SET, 'bookstoreAnchorForDeltaReport', bookstoreJsonDataForDeltaReport, JSON)
     }
 
     def restoreBookstoreDataAnchor(anchorNumber) {
@@ -74,6 +87,13 @@ abstract class FunctionalSpecBase extends CpsIntegrationSpecBase {
         cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_1, anchorName)
         cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, anchorName)
         cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_1, anchorName, bookstoreJsonData.replace('Easons', 'Easons-'+anchorNumber.toString()), OffsetDateTime.now())
+    }
+
+    def restoreBookstoreXmlDataAnchor(anchorNumber) {
+        def anchorName = 'bookstoreAnchorXml' + anchorNumber
+        cpsAnchorService.deleteAnchor(FUNCTIONAL_TEST_DATASPACE_4, anchorName)
+        cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_SCHEMA_SET, anchorName)
+        cpsDataService.saveData(FUNCTIONAL_TEST_DATASPACE_4, anchorName, bookstoreXmlData, OffsetDateTime.now(), XML)
     }
 
 }
