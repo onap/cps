@@ -20,23 +20,51 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETED;
+
 import com.hazelcast.map.EntryProcessor;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
+import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CmHandleStateMonitor {
-
     private static final String METRIC_POSTFIX = "CmHandlesCount";
+
+    private final CmHandleQueryService cmHandleQueryService;
     final IMap<String, Integer> cmHandlesByState;
+
+    /**
+     * Method to initialise cm handle state monitor  by querying the current state counts
+     * and storing them in the provided map. This method is triggered by NcmpInventoryModelOnboardingFinishedEvent.
+     *
+     * @param ncmpInventoryModelOnboardingFinishedEvent the event that triggers the initialization
+     */
+    @EventListener
+    public void initialiseCmHandleStateMonitor(
+            final NcmpInventoryModelOnboardingFinishedEvent ncmpInventoryModelOnboardingFinishedEvent) {
+        for (final CmHandleState cmHandleState : CmHandleState.values()) {
+            if (!cmHandleState.equals(DELETED)) {
+                final String cmHandleStateAsString = cmHandleState.name().toLowerCase();
+                final String stateMetricKey = cmHandleStateAsString + METRIC_POSTFIX;
+                final int cmHandleCountForState =  cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
+                cmHandlesByState.putIfAbsent(stateMetricKey, cmHandleCountForState);
+                log.info("Cm handle cmHandleState monitor has set " + stateMetricKey + " to " + cmHandleCountForState);
+            }
+        }
+    }
 
     /**
      * Asynchronously update the cm handle state metrics.
