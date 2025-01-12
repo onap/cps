@@ -30,11 +30,15 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class InventoryModelLoader extends AbstractModelLoader {
+
+    private final ApplicationEventPublisher applicationEventPublisher;
     private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2024-02-23.yang";
     private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
     private static final String REGISTRY_DATANODE_NAME = "dmi-registry";
@@ -42,14 +46,17 @@ public class InventoryModelLoader extends AbstractModelLoader {
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
                                 final CpsAnchorService cpsAnchorService,
-                                final CpsDataService cpsDataService) {
+                                final CpsDataService cpsDataService,
+                                final ApplicationEventPublisher applicationEventPublisher) {
         super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Override
     public void onboardOrUpgradeModel() {
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
+        applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
     }
 
     private void updateInventoryModel() {

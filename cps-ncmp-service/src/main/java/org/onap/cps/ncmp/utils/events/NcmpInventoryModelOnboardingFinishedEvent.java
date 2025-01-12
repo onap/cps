@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,26 +18,22 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache;
+package org.onap.cps.ncmp.utils.events;
 
-import com.hazelcast.config.MapConfig;
-import com.hazelcast.map.IMap;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.ApplicationEvent;
 
-@Configuration
-public class AdminCacheConfig extends HazelcastCacheConfig {
-
-    private static final MapConfig cmHandleStateCacheMapConfig = createMapConfig("cmHandleStateCacheMapConfig");
+/**
+ * Custom event triggered when the NCMP inventory model onboarding process is completed.
+ * Extends Spring's {@link ApplicationEvent} to be used within Spring's event-driven architecture.
+ */
+public class NcmpInventoryModelOnboardingFinishedEvent extends ApplicationEvent {
 
     /**
-     * Distributed instance admin cache map for cm handles by state for use of gauge metrics.
+     * Creates a new instance of NcmpModelOnboardingFinishedEvent.
      *
-     * @return configured map of cm handles by state.
+     * @param source the object that is the source of the event (i.e. the source that completed the onboarding process)
      */
-    @Bean
-    public IMap<String, Integer> cmHandlesByState() {
-        return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap(
-                "cmHandlesByState");
+    public NcmpInventoryModelOnboardingFinishedEvent(final Object source) {
+        super(source);
     }
 }
