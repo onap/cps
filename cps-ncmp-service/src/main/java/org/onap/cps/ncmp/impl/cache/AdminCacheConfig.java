@@ -37,13 +37,7 @@ public class AdminCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Integer> cmHandlesByState() {
-        final IMap<String, Integer> cmHandlesByState = getOrCreateHazelcastInstance(adminCacheMapConfig).getMap(
+        return getOrCreateHazelcastInstance(adminCacheMapConfig).getMap(
                 "cmHandlesByState");
-        cmHandlesByState.putIfAbsent("advisedCmHandlesCount", 0);
-        cmHandlesByState.putIfAbsent("readyCmHandlesCount", 0);
-        cmHandlesByState.putIfAbsent("lockedCmHandlesCount", 0);
-        cmHandlesByState.putIfAbsent("deletingCmHandlesCount", 0);
-        cmHandlesByState.putIfAbsent("deletedCmHandlesCount", 0);
-        return cmHandlesByState;
     }
 }

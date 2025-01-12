@@ -45,13 +45,5 @@ class AdminCacheConfigSpec extends Specification {
             assert Hazelcast.allHazelcastInstances.size() > 0
         and: 'Hazelcast cache instance for cm handle by state is present'
             assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandlesByState') != null
-        and: 'the cache already contains 5 entries, an entry for each state'
-            def cmHandleByState =  Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandlesByState')
-            assert cmHandleByState.size() == 5
-            assert cmHandleByState.containsKey('advisedCmHandlesCount')
-            assert cmHandleByState.containsKey('lockedCmHandlesCount')
-            assert cmHandleByState.containsKey('readyCmHandlesCount')
-            assert cmHandleByState.containsKey('deletingCmHandlesCount')
-            assert cmHandleByState.containsKey('deletedCmHandlesCount')
     }
 }

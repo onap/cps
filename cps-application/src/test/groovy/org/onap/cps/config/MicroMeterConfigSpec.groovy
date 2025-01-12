@@ -43,9 +43,8 @@ class MicroMeterConfigSpec extends Specification {
              objectUnderTest.readyCmHandles(simpleMeterRegistry)
              objectUnderTest.lockedCmHandles(simpleMeterRegistry)
              objectUnderTest.deletingCmHandles(simpleMeterRegistry)
-             objectUnderTest.deletedCmHandles(simpleMeterRegistry)
         then: 'each state has the correct value when queried'
-            def states = ["ADVISED", "READY", "LOCKED", "DELETING", "DELETED"]
+            def states = ["ADVISED", "READY", "LOCKED", "DELETING"]
             states.each { state ->
                 def gaugeValue = simpleMeterRegistry.get("cmHandlesByState").tag("state",state).gauge().value()
                 assert gaugeValue == 1

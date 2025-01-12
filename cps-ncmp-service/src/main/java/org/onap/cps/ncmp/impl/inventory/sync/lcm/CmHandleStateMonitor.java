@@ -20,23 +20,48 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETED;
+
 import com.hazelcast.map.EntryProcessor;
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
+import org.onap.cps.ncmp.utils.events.NcmpModelOnboardingFinishedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CmHandleStateMonitor {
 
+    private final CmHandleQueryService cmHandleQueryService;
     private static final String METRIC_POSTFIX = "CmHandlesCount";
     final IMap<String, Integer> cmHandlesByState;
+
+    /**
+     * Post construct method to initialise the cm handles by state map.
+     */
+    @EventListener
+    public void initialiseCmHandleStateMonitor(
+            final NcmpModelOnboardingFinishedEvent ncmpModelOnboardingFinishedEvent) {
+        for (final CmHandleState state : CmHandleState.values()) {
+            if (!state.equals(DELETED)) {
+                final String cmHandleStateAsString = state.name().toLowerCase();
+                final String stateMetricName = cmHandleStateAsString + METRIC_POSTFIX;
+                final int currentNoOfCmHandles =  cmHandleQueryService.queryCmHandleIdsByState(state).size();
+                cmHandlesByState.putIfAbsent(stateMetricName, currentNoOfCmHandles);
+                log.info("Cm handle state monitor has set " + stateMetricName + " to " + currentNoOfCmHandles);
+            }
+        }
+    }
 
     /**
      * Asynchronously update the cm handle state metrics.

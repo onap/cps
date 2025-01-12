@@ -26,16 +26,19 @@ import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor.DecreasingEntryProcessor
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor.IncreasingEntryProcessor
+import org.onap.cps.ncmp.utils.events.NcmpModelOnboardingFinishedEvent
 import spock.lang.Shared
 import spock.lang.Specification;
 
 class CmHandleStateMonitorSpec extends Specification {
 
-    def cmHandlesByState = Mock(IMap)
-    def objectUnderTest = new CmHandleStateMonitor(cmHandlesByState)
+    def mockCmHandlesByState = Mock(IMap)
+    def mockCmHandleQueryService = Mock(CmHandleQueryService)
+    def objectUnderTest = new CmHandleStateMonitor(mockCmHandleQueryService, mockCmHandlesByState)
 
     @Shared
     def entryProcessingMap =  Hazelcast.newHazelcastInstance().getMap('entryProcessingMap')
@@ -49,6 +52,25 @@ class CmHandleStateMonitorSpec extends Specification {
         Hazelcast.shutdownAll()
     }
 
+    def 'Initialise cm handle state monitor: #scenario'() {
+        given: 'the query service returns a value'
+            mockCmHandleQueryService.queryCmHandleIdsByState(_) >> queryResult
+        and: 'ncmp model onboarding event'
+            def mockNcmpModelOnboardingFinishedEvent = Mock(NcmpModelOnboardingFinishedEvent)
+        when: 'the method to initialise cm handle state monitor is triggered by onboarding event'
+            objectUnderTest.initialiseCmHandleStateMonitor(mockNcmpModelOnboardingFinishedEvent)
+        then: 'metrics map is called correct number of times for each state except DELETED with expected value'
+            1 * mockCmHandlesByState.putIfAbsent("advisedCmHandlesCount", expectedValue)
+            1 * mockCmHandlesByState.putIfAbsent("readyCmHandlesCount", expectedValue)
+            1 * mockCmHandlesByState.putIfAbsent("lockedCmHandlesCount", expectedValue)
+            1 * mockCmHandlesByState.putIfAbsent("deletingCmHandlesCount", expectedValue)
+        where:
+            scenario                                 | queryResult                 || expectedValue
+            'query service returns zero cm handle id'| []                          || 0
+            'query service returns 1 cm handle id'   | ['someId']                  || 1
+    }
+
+
     def 'Update cm handle state metric'() {
         given: 'a collection of cm handle state pair'
             def cmHandleTransitionPair = new LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair()
@@ -57,19 +79,19 @@ class CmHandleStateMonitorSpec extends Specification {
         when: 'method to update cm handle state metrics is called'
             objectUnderTest.updateCmHandleStateMetrics([cmHandleTransitionPair])
         then: 'cm handle by state cache map is called once for current and target state for entry processing'
-            1 * cmHandlesByState.executeOnKey('advisedCmHandlesCount', _)
-            1 * cmHandlesByState.executeOnKey('readyCmHandlesCount', _)
+            1 * mockCmHandlesByState.executeOnKey('advisedCmHandlesCount', _)
+            1 * mockCmHandlesByState.executeOnKey('readyCmHandlesCount', _)
     }
 
-    def 'Updating cm handle state metric with no previous state'() {
+    def 'Update cm handle state metric with no previous state'() {
         given: 'a collection of cm handle state pair wherein current state is null'
             def cmHandleTransitionPair = new LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair()
             cmHandleTransitionPair.currentYangModelCmHandle = new YangModelCmHandle(compositeState: null)
             cmHandleTransitionPair.targetYangModelCmHandle =  new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED))
-        when: 'method to update cm handle state metrics is called'
+        when: 'updating cm handle state metrics'
             objectUnderTest.updateCmHandleStateMetrics([cmHandleTransitionPair])
         then: 'cm handle by state cache map is called only once'
-            1 * cmHandlesByState.executeOnKey(_, _)
+            1 * mockCmHandlesByState.executeOnKey(_, _)
     }
 
     def 'Applying decreasing entry processor to a key on map where #scenario'() {
