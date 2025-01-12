@@ -20,12 +20,17 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
+import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED;
+
 import com.hazelcast.map.EntryProcessor;
 import com.hazelcast.map.IMap;
+import jakarta.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
+import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.springframework.scheduling.annotation.Async;
@@ -33,10 +38,32 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class CmHandleStateMonitor {
 
+    private final CmHandleQueryService cmHandleQueryService;
     private static final String METRIC_POSTFIX = "CmHandlesCount";
     final IMap<String, Integer> cmHandlesByState;
+
+    /**
+     * Post construct method to initialise the cm handles by state map.
+     */
+    @PostConstruct
+    public void initialiseCmHandleStateMonitor() {
+        for (final CmHandleState state : CmHandleState.values()) {
+            if (!state.equals(DELETED)) {
+                final String cmHandleStateAsString = state.name().toLowerCase();
+                final String stateMetricName = cmHandleStateAsString + METRIC_POSTFIX;
+                int currentNoOfCmHandles = 0;
+                try {
+                    currentNoOfCmHandles = cmHandleQueryService.queryCmHandleIdsByState(state).size();
+                } catch (final Exception exception) {
+                    log.info(exception.getClass() + " " + exception.getMessage());
+                }
+                cmHandlesByState.putIfAbsent(stateMetricName, currentNoOfCmHandles);
+            }
+        }
+    }
 
     /**
      * Asynchronously update the cm handle state metrics.

@@ -101,19 +101,4 @@ public class MicroMeterConfig {
                 .register(meterRegistry);
     }
 
-    /**
-     * Register gauge metric for cm handles with state 'deleted'.
-     *
-     * @param meterRegistry meter registry
-     * @return cm handle state gauge
-     */
-    @Bean
-    public Gauge deletedCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
-                        value -> cmHandlesByState.get("deletedCmHandlesCount"))
-                .tag(TAG, "DELETED")
-                .description("Current number of cmhandles in deleted state")
-                .register(meterRegistry);
-    }
-
 }
