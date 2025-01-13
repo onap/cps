@@ -21,6 +21,7 @@
 package org.onap.cps.spi.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,20 +31,22 @@ public class DeltaReportBuilder {
 
     private String action;
     private String xpath;
-    private Map<String, Serializable> sourceData;
-    private Map<String, Serializable> targetData;
+    private Collection<Map<String, Serializable>> sourceData;
+    private Collection<Map<String, Serializable>> targetData;
+    private Collection<Map<String, Object>> groupedSourceData;
+    private Collection<Map<String, Object>> groupedTargetData;
 
     public DeltaReportBuilder withXpath(final String xpath) {
         this.xpath = xpath;
         return this;
     }
 
-    public DeltaReportBuilder withSourceData(final Map<String, Serializable> sourceData) {
+    public DeltaReportBuilder withSourceData(final Collection<Map<String, Serializable>> sourceData) {
         this.sourceData = sourceData;
         return this;
     }
 
-    public DeltaReportBuilder withTargetData(final Map<String, Serializable> targetData) {
+    public DeltaReportBuilder withTargetData(final Collection<Map<String, Serializable>> targetData) {
         this.targetData = targetData;
         return this;
     }
@@ -81,4 +84,33 @@ public class DeltaReportBuilder {
         }
         return deltaReport;
     }
+
+    /**
+     * To create a grouped entry of {@link DeltaReport}.
+     *
+     * @return {@link DeltaReport}
+     */
+//    public DeltaReport buildGrouped() {
+//        final DeltaReport deltaReport = new DeltaReport();
+//        deltaReport.setAction(action);
+//        deltaReport.setXpath(xpath);
+//        if (groupedSourceData != null && !groupedSourceData.isEmpty()) {
+//            deltaReport.setGroupedSourceData(groupedSourceData);
+//        }
+//
+//        if (groupedTargetData != null && !groupedTargetData.isEmpty()) {
+//            deltaReport.setGroupedTargetData(groupedTargetData);
+//        }
+//        return deltaReport;
+//    }
+//
+//    public DeltaReportBuilder withGroupedTargetData(Collection<Map<String, Object>> groupedTargetData) {
+//        this.groupedTargetData = groupedTargetData;
+//        return this;
+//    }
+//
+//    public DeltaReportBuilder withGroupedSourceData(Collection<Map<String, Object>> groupedSourceData) {
+//        this.groupedSourceData = groupedSourceData;
+//        return this;
+//    }
 }
