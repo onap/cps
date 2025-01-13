@@ -331,6 +331,15 @@ components:
         type: boolean
         default: false
         example: false
+    groupingEnabledInQuery:
+      name: grouping-enabled
+      in: query
+      description: Boolean flag to enable or disable grouping of data nodes in delta report.
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
 
   responses:
     NotFound:
