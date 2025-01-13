@@ -29,6 +29,7 @@ delta:
       - $ref: 'components.yml#/components/parameters/targetAnchorNameInQuery'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
+      - $ref: 'components.yml#/components/parameters/groupingEnabledInQuery'
     responses:
       '200':
         description: OK
@@ -56,6 +57,7 @@ delta:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
+      - $ref: 'components.yml#/components/parameters/groupingEnabledInQuery'
     requestBody:
       content:
         multipart/form-data:

@@ -56,12 +56,14 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                 final String sourceAnchorName,
                                                                 final String targetAnchorName,
                                                                 final String xpath,
-                                                                final String descendants) {
+                                                                final String descendants,
+                                                                final Boolean groupDataNodes) {
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(descendants);
+        final boolean groupingEnabled = Boolean.TRUE.equals(groupDataNodes);
         final List<DeltaReport> deltaBetweenAnchors =
             cpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
-                targetAnchorName, xpath, fetchDescendantsOption);
+                targetAnchorName, xpath, fetchDescendantsOption, groupingEnabled);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
@@ -72,8 +74,10 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                       final String sourceAnchorName,
                                                                       final MultipartFile targetDataAsJsonFile,
                                                                       final String xpath,
+                                                                      final Boolean groupDataNodes,
                                                                       final MultipartFile yangResourceFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        final boolean groupingEnabled = Boolean.TRUE.equals(groupDataNodes);
         final String targetData = MultipartFileUtil.extractJsonContent(targetDataAsJsonFile, jsonObjectMapper);
         final Map<String, String> yangResourceMap;
         if (yangResourceFile == null) {
@@ -83,7 +87,7 @@ public class DeltaRestController implements CpsDeltaApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, targetData, fetchDescendantsOption));
+                xpath, yangResourceMap, targetData, fetchDescendantsOption, groupingEnabled));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
 }
