@@ -89,7 +89,7 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
         '#,Test Name,Unit,Fs Requirement,Current Expectation,Actual',
         makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', 0, testResults, scenarioConfig),
         makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', 50, testResults, scenarioConfig),
-        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', 100, testResults, scenarioConfig),
+        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', 120, testResults, scenarioConfig),
         makeSummaryCsvLine('3a', 'CM-handle ID search with No filter', 'milliseconds', 'id_search_nofilter_duration', 300, testResults, scenarioConfig),
         makeSummaryCsvLine('3b', 'CM-handle ID search with Module filter', 'milliseconds', 'id_search_module_duration', 300, testResults, scenarioConfig),
         makeSummaryCsvLine('3c', 'CM-handle ID search with Property filter', 'milliseconds', 'id_search_property_duration', 750, testResults, scenarioConfig),
