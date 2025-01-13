@@ -370,6 +370,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fc42491_1a132034",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/YangResourceRepository.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-13T16:29:03Z",
+      "side": 1,
+      "message": "This is a syntax error",
+      "range": {
+        "startLine": 97,
+        "startChar": 80,
+        "endLine": 97,
+        "endChar": 102
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4263e68_f71f7392",
         "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/YangTextSchemaSourceSetCacheSpec.groovy",
         "patchSetId": 4
