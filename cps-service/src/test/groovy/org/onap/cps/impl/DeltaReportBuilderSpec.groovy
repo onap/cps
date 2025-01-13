@@ -30,12 +30,12 @@ class DeltaReportBuilderSpec extends Specification{
             def result = new DeltaReportBuilder()
                     .actionCreate()
                     .withXpath('/xpath')
-                    .withTargetData(['data':'leaf-data'])
+                    .withTargetData([['data':'leaf-data']])
                     .build()
         then: 'the delta report contains the "create" action with expected target data'
             assert result.action == 'create'
             assert result.xpath == '/xpath'
-            assert result.targetData == ['data': 'leaf-data']
+            assert result.targetData == [['data': 'leaf-data']]
     }
 
     def 'Generating delta report with attributes for "remove" action'() {
@@ -43,11 +43,11 @@ class DeltaReportBuilderSpec extends Specification{
             def result = new DeltaReportBuilder()
                     .actionRemove()
                     .withXpath('/xpath')
-                    .withSourceData(['data':'leaf-data'])
+                    .withSourceData([['data':'leaf-data']])
                     .build()
         then: 'the delta report contains the "remove" action with expected source data'
             assert result.action == 'remove'
             assert result.xpath == '/xpath'
-            assert result.sourceData == ['data': 'leaf-data']
+            assert result.sourceData == [['data': 'leaf-data']]
     }
 }
