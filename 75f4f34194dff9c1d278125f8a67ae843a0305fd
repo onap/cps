@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1752a0_a3aaa8c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-13T09:22:34Z",
+      "side": 1,
+      "message": "please provide advice on how to handle this exception for when query service returns an exception such as \u0027DataspaceNotFound\u0027 on startup (initial up of application)",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 82
+      },
+      "revId": "75f4f34194dff9c1d278125f8a67ae843a0305fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
