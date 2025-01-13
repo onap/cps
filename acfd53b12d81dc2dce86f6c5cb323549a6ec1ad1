@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cac69e5_dcbed407",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-13T11:45:33Z",
+      "side": 1,
+      "message": "hope its ok not to update the copyright to 2025 ??",
+      "revId": "acfd53b12d81dc2dce86f6c5cb323549a6ec1ad1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
