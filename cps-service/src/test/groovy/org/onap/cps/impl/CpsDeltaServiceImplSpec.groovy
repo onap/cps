@@ -31,13 +31,14 @@ class CpsDeltaServiceImplSpec extends Specification{
     static def sourceDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-source'])]
     static def sourceDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
     static def targetDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-target'])]
+    static def targetDataNodeWithXpath = [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-in-target'])]
     static def targetDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
 
     def 'Get delta between data nodes for REMOVED data'() {
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNodeWithLeafData, [])
+            def result = objectUnderTest.getDeltaReports(sourceDataNodeWithLeafData, [], false)
         then: 'the delta report contains expected "remove" action'
             assert result[0].action.equals('remove')
         and : 'the delta report contains the expected xpath'
@@ -50,15 +51,20 @@ class CpsDeltaServiceImplSpec extends Specification{
 
     def 'Get delta between data nodes for ADDED data'() {
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports([], targetDataNodeWithLeafData)
+            def result = objectUnderTest.getDeltaReports([], targetDataNode, groupingEnabled)
         then: 'the delta report contains expected "create" action'
             assert result[0].action.equals('create')
         and: 'the delta report contains expected xpath'
-            assert result[0].xpath == '/parent'
+            assert result[0].xpath == expectedXpath
         and: 'the delta report contains no source data'
             assert result[0].sourceData == null
         and: 'the delta report contains expected target data'
-            assert result[0].targetData == ['parent-leaf': 'parent-payload-in-target']
+            assert result[0].targetData == expectedTargetData
+        where:
+            scenario                                | groupingEnabled | targetDataNode             || expectedXpath | expectedTargetData
+            'grouping is disabled'                  | false           | targetDataNodeWithLeafData || '/parent'     | ['parent-leaf': 'parent-payload-in-target']
+            'grouping is enabled with parent xpath' | true            | targetDataNodeWithLeafData || '/'           | ['parent': [['parent-leaf': 'parent-payload-in-target']]]
+            'grouping enabled with xpath'           | true            | targetDataNodeWithXpath    || '/parent'     | ['child': [['child-leaf' : 'child-payload-in-target']]]
     }
 
     def 'Delta Report between leaves for parent and child nodes'() {
@@ -66,7 +72,7 @@ class CpsDeltaServiceImplSpec extends Specification{
             def sourceDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload'])])]
             def targetDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-updated'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-updated'])])]
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
+            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode, false)
         then: 'the delta report contains expected details for parent node'
             assert result[0].action.equals('replace')
             assert result[0].xpath == '/parent'
@@ -81,7 +87,7 @@ class CpsDeltaServiceImplSpec extends Specification{
 
     def 'Delta report between leaves, #scenario'() {
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
+            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode, false)
         then: 'the delta report contains expected "replace" action'
             assert result[0].action.equals('replace')
         and: 'the delta report contains expected xpath'
@@ -97,10 +103,15 @@ class CpsDeltaServiceImplSpec extends Specification{
             'source and target dsta node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'] | ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target']
     }
 
-    def 'Get delta between data nodes for updated data, where source and target data nodes have no leaves '() {
+    def 'Get delta between data nodes for updated data,  '() {
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNodeWithoutLeafData, targetDataNodeWithoutLeafData)
+            def result = objectUnderTest.getDeltaReports(sourceDataNode,targetDataNode , groupingEnabled)
         then: 'the delta report is empty'
             assert result.isEmpty()
+        where:
+            scenario                                                | sourceDataNode                | targetDataNode                | groupingEnabled
+            'where source and target data nodes have no leaves'     | sourceDataNodeWithoutLeafData | targetDataNodeWithoutLeafData | false
+            'where target data node is empty with grouping enabled' | sourceDataNodeWithoutLeafData | []                            | true
+            'source and target have data with grouping enabled'     | sourceDataNodeWithLeafData    | targetDataNodeWithLeafData    | true
     }
 }

@@ -22,6 +22,7 @@ package org.onap.cps.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

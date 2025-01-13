@@ -93,6 +93,13 @@ public class DataMapUtils {
             .build();
     }
 
+    public static void toDataMapsWithIdentifier(final DataNode dataNode, final String prefix,
+                                                final Map<String, List<Map<String, Object>>> groupedLists) {
+        final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> nodeData = toDataMap(dataNode);
+        groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
+    }
+
     private static Map<String, Object> listElementsAsMap(final Collection<DataNode> dataNodes) {
         if (dataNodes.isEmpty()) {
             return Collections.emptyMap();

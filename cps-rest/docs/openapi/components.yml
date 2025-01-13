@@ -144,19 +144,19 @@ components:
         - action: "create"
           xpath: "/bookstore/categories/[@code=3]"
           target-data:
-            code: 3,
-            name: "kidz"
+            - code: 3,
+              name: "kidz"
         - action: "remove"
           xpath: "/bookstore/categories/[@code=1]"
           source-data:
-            code: 1,
-            name: "Fiction"
+            - code: 1,
+              name: "Fiction"
         - action: "replace"
           xpath: "/bookstore/categories/[@code=2]"
           source-data:
-            name: "Funny"
+            - name: "Funny"
           target-data:
-            name: "Comic"
+            - name: "Comic"
 
   parameters:
     dataspaceNameInQuery:
@@ -327,6 +327,15 @@ components:
       name: dry-run
       in: query
       description: Boolean flag to validate data, without persisting it. Default value is false.
+      required: false
+      schema:
+        type: boolean
+        default: false
+        example: false
+    groupingEnabledInQuery:
+      name: grouping-enabled
+      in: query
+      description: Boolean flag to enable or disable grouping of data nodes. Enabling it generates a condensed delta report.
       required: false
       schema:
         type: boolean
