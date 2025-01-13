@@ -190,7 +190,7 @@ services:
       - monitoring
 
   grafana:
-    image: grafana/grafana-oss:latest
+    image: grafana/grafana:latest
     container_name: ${GRAFANA_CONTAINER_NAME:-grafana}
     depends_on:
       prometheus:
