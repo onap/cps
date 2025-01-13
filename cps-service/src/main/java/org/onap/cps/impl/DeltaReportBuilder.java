@@ -76,7 +76,6 @@ public class DeltaReportBuilder {
         if (sourceData != null && !sourceData.isEmpty()) {
             deltaReport.setSourceData(sourceData);
         }
-
         if (targetData != null && !targetData.isEmpty()) {
             deltaReport.setTargetData(targetData);
         }
