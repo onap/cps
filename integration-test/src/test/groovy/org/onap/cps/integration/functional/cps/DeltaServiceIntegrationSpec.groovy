@@ -37,6 +37,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     static def INCLUDE_ALL_DESCENDANTS = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
     static def OMIT_DESCENDANTS = FetchDescendantsOption.OMIT_DESCENDANTS
     static def DIRECT_CHILDREN_ONLY = FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+    def NO_GROUPING = false
 
     def setup() {
         objectUnderTest = cpsDeltaService
@@ -47,7 +48,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between 2 anchors'() {
         when: 'attempt to get delta report between anchors'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, '/', OMIT_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, '/', OMIT_DESCENDANTS, NO_GROUPING)
         and: 'report is ordered based on xpath'
             result = result.toList().sort { it.xpath }
         then: 'delta report contains expected number of changes'
@@ -65,7 +66,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between 2 anchors returns empty response when #scenario'() {
         when: 'attempt to get delta report between anchors'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, targetAnchor, xpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, targetAnchor, xpath, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'delta report is empty'
             assert result.isEmpty()
         where: 'following data was used'
@@ -77,7 +78,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors error scenario: #scenario'() {
         when: 'attempt to get delta between anchors'
-            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchor, targetAnchor, '/some-xpath', INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchor, targetAnchor, '/some-xpath', INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'expected exception is thrown'
             thrown(expectedException)
         where: 'following data was used'
@@ -93,7 +94,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors for remove action, where source data node #scenario'() {
         when: 'attempt to get delta between leaves of data nodes present in 2 anchors'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_5, BOOKSTORE_ANCHOR_3, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_5, BOOKSTORE_ANCHOR_3, parentNodeXpath, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'expected action is present in delta report'
             assert result.get(0).getAction() == 'remove'
         where: 'following data was used'
@@ -106,7 +107,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors for "create" action, where target data node #scenario'() {
         when: 'attempt to get delta between leaves of data nodes present in 2 anchors'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'the expected action is present in delta report'
             result.get(0).getAction() == 'create'
         and: 'the expected xapth is present in delta report'
@@ -121,7 +122,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors when leaves of existing data nodes are updated,: #scenario'() {
         when: 'attempt to get delta between leaves of existing data nodes'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, OMIT_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, OMIT_DESCENDANTS, NO_GROUPING)
         then: 'expected action is "replace"'
             assert result[0].getAction() == 'replace'
         and: 'the payload has expected leaf values'
@@ -138,7 +139,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
         when: 'attempt to get delta between leaves of existing data nodes'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, sourceAnchor, targetAnchor, xpath, DIRECT_CHILDREN_ONLY, NO_GROUPING)
         then: 'expected action is "replace"'
             assert result[0].getAction() == 'replace'
         and: 'the delta report has expected child node xpaths'
@@ -160,7 +161,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
             def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
             def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[1988, 2000, 2023]]]
         when: 'attempt to get delta between leaves of existing data nodes'
-            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
             def deltaReportEntities = getDeltaReportEntities(result)
         then: 'expected action is "replace"'
             assert result[0].getAction() == 'replace'
@@ -179,7 +180,7 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchor and JSON payload'() {
         when: 'attempt to get delta report between anchor and JSON payload'
             def jsonPayload = '{\"book-store:bookstore\":{\"bookstore-name\":\"Crossword Bookstores\"},\"book-store:bookstore-address\":{\"address\":\"Bangalore, India\",\"postal-code\":\"560062\",\"bookstore-name\":\"Crossword Bookstores\"}}'
-            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, OMIT_DESCENDANTS, NO_GROUPING)
         then: 'delta report contains expected number of changes'
             result.size() == 3
         and: 'delta report contains "replace" action with expected xpath'
@@ -196,14 +197,14 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchor and payload returns empty response when JSON payload is identical to anchor data'() {
         when: 'attempt to get delta report between anchor and JSON payload (replacing the string Easons with Easons-1 because the data in JSON file is modified, to append anchor number, during the setup process of the integration tests)'
             def jsonPayload = readResourceDataFile('bookstore/bookstoreData.json').replace('Easons', 'Easons-1')
-            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
+            def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'delta report is empty'
             assert result.isEmpty()
     }
 
     def 'Get delta between anchor and payload error scenario: #scenario'() {
         when: 'attempt to get delta between anchor and json payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchor, xpath, [:], jsonPayload, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
         then: 'expected exception is thrown'
             thrown(expectedException)
         where: 'following data was used'
