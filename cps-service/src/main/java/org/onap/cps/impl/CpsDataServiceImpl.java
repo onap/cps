@@ -215,14 +215,14 @@ public class CpsDataServiceImpl implements CpsDataService {
     public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
                                                            final String sourceAnchorName,
                                                            final String targetAnchorName, final String xpath,
-                                                           final FetchDescendantsOption fetchDescendantsOption) {
+                                                           final FetchDescendantsOption fetchDescendantsOption,
+                                                           final boolean groupingEnabled) {
 
         final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
                 sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
         final Collection<DataNode> targetDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
                 targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
-
-        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes);
+        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes, groupingEnabled);
     }
 
     @Timed(value = "cps.data.service.get.deltaBetweenAnchorAndPayload",
@@ -232,20 +232,17 @@ public class CpsDataServiceImpl implements CpsDataService {
                                                                 final String sourceAnchorName, final String xpath,
                                                                 final Map<String, String> yangResourceContentPerName,
                                                                 final String targetData,
-                                                                final FetchDescendantsOption fetchDescendantsOption) {
+                                                                final FetchDescendantsOption fetchDescendantsOption,
+                                                                final boolean groupingEnabled) {
 
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
-
-        final Collection<DataNode> sourceDataNodes = getDataNodes(dataspaceName,
-                sourceAnchorName, xpath, fetchDescendantsOption);
-
+        final Collection<DataNode> sourceDataNodes =
+                getDataNodes(dataspaceName, sourceAnchorName, xpath, fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
                 new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
-
         final Collection<DataNode> targetDataNodes =
-                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
-
-        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
+                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourcesNameToContentMap, targetData));
+        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupingEnabled);
     }
 
     @Override
