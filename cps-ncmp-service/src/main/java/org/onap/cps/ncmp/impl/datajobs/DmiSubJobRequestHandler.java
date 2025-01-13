@@ -61,26 +61,29 @@ public class DmiSubJobRequestHandler {
     public List<SubJobWriteResponse> sendRequestsToDmi(final String authorization,
                                                        final String dataJobId,
                                                        final DataJobMetadata dataJobMetadata,
-                                     final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey) {
+                                  final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey) {
         final List<SubJobWriteResponse> subJobWriteResponses = new ArrayList<>(dmiWriteOperationsPerProducerKey.size());
         dmiWriteOperationsPerProducerKey.forEach((producerKey, dmi3ggpWriteOperations) -> {
             final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.destination(),
-                                                                                 dataJobMetadata.dataAcceptType(),
-                                                                                 dataJobMetadata.dataContentType(),
-                                                                                 producerKey.dataProducerIdentifier(),
-                                                                                 dataJobId,
-                                                                                 dmi3ggpWriteOperations);
+                    dataJobMetadata.dataAcceptType(),
+                    dataJobMetadata.dataContentType(),
+                    producerKey.dataProducerIdentifier(),
+                    dataJobId,
+                    dmi3ggpWriteOperations);
 
             final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobMetadata.destination(),
-                                                                                         producerKey);
+                    producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
                     RequiredDmiService.DATA,
                     urlTemplateParameters,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
                     authorization);
-            final SubJobWriteResponse subJobWriteResponse = jsonObjectMapper
-                                            .convertToValueType(responseEntity.getBody(), SubJobWriteResponse.class);
+            final Map<String, String> subJobId = jsonObjectMapper
+                    .convertToValueType(responseEntity.getBody(),
+                            Map.class);
+            final SubJobWriteResponse subJobWriteResponse = new SubJobWriteResponse(subJobId.get("subJobId"),
+                    producerKey.dmiServiceName(), producerKey.dataProducerIdentifier());
             log.debug("Sub job write response: {}", subJobWriteResponse);
             subJobWriteResponses.add(subJobWriteResponse);
         });
