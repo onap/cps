@@ -108,6 +108,20 @@ public class DataMapUtils {
             ).build();
     }
 
+    /**
+     * Adds a DataNode to the grouped lists map.
+     *
+     * @param dataNode      DataNode structure
+     * @param prefix        Prefix
+     * @param groupedLists  Map to group the lists
+     */
+    public static void listDataNodes(final DataNode dataNode, final String prefix,
+                                     final Map<String, List<Map<String, Object>>> groupedLists) {
+        final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> nodeData = toDataMap(dataNode);
+        groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
+    }
+
     private static Map<String, Object> containerElementsAsMap(final Collection<DataNode> dataNodes) {
         if (dataNodes.isEmpty()) {
             return Collections.emptyMap();
