@@ -302,11 +302,13 @@ public interface CpsDataService {
      * @param xpath                  xpath
      * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant
      *                               nodes (recursively) as well
+     * @param groupingEnabled        boolean flag to enable or disable grouping of data nodes in delta report
      * @return                       list containing {@link DeltaReport} objects
      */
     List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
                                                     String targetAnchorName, String xpath,
-                                                    FetchDescendantsOption fetchDescendantsOption);
+                                                    FetchDescendantsOption fetchDescendantsOption,
+                                                    boolean groupingEnabled);
 
     /**
      * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.
@@ -317,13 +319,14 @@ public interface CpsDataService {
      * @param yangResourceContentPerName     YANG resources (files) map where key is a name and value is content
      * @param targetData                        target data to be compared in JSON string format
      * @param fetchDescendantsOption            defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
+     * @param groupingEnabled                   boolean flag to enable or disable grouping of data nodes in delta report
      * @return                                  list containing {@link DeltaReport} objects
      */
     List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
                                                           Map<String, String> yangResourceContentPerName,
                                                           String targetData,
-                                                          FetchDescendantsOption fetchDescendantsOption);
-
+                                                          FetchDescendantsOption fetchDescendantsOption,
+                                                          boolean groupingEnabled);
 
     /**
      * Validates JSON or XML data by parsing it using the schema associated to an anchor within the given dataspace.
