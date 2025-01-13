@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -79,8 +79,10 @@ public class DmiSubJobRequestHandler {
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
                     authorization);
-            final SubJobWriteResponse subJobWriteResponse = jsonObjectMapper
-                                            .convertToValueType(responseEntity.getBody(), SubJobWriteResponse.class);
+            final Map<String, String> subJobIdPerResponse = jsonObjectMapper
+                    .convertToValueType(responseEntity.getBody(), Map.class);
+            final SubJobWriteResponse subJobWriteResponse = new SubJobWriteResponse(subJobIdPerResponse.get("subJobId"),
+                    producerKey.dmiServiceName(), producerKey.dataProducerIdentifier());
             log.debug("Sub job write response: {}", subJobWriteResponse);
             subJobWriteResponses.add(subJobWriteResponse);
         });
