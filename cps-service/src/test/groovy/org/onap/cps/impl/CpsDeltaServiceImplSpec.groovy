@@ -68,6 +68,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     static def sourceDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-source'])]
     static def sourceDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
     static def targetDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-target'])]
+    static def targetDataNodeWithXpath = [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-in-target'])]
     static def targetDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
@@ -104,7 +105,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'xpath to get delta'
             def xpath = '/'
         when: 'attempt to get delta between 2 anchors'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, false)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
@@ -128,7 +129,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def sourceDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload'])])]
             def targetDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-updated'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-updated'])])]
         when: 'attempt to get delta between 2 anchors'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, false)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNode
         and: 'cps data service is invoked again to return target data nodes'
@@ -149,7 +150,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     given: 'xpath to fetch delta between two anchors'
         def xpath = '/'
     when: 'attempt to get delta between 2 anchors'
-        def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+        def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, false)
     then: 'cps data service is invoked and returns source data nodes'
         mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNode
     and: 'cps data service is invoked again to return target data nodes'
@@ -173,7 +174,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'xpath to get delta between anchors'
             def xpath = '/'
         when: 'attempt to get delta between 2 data nodes'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, false)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
         and: 'cps data service is invoked again to return target data nodes'
@@ -187,7 +188,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, false)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
@@ -210,7 +211,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         given: 'schema set for a given dataspace and anchor'
             setupSchemaSetMocks('bookstore.yang')
         when: 'attempt to get delta between an anchor and a JSON payload'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS, false)
         then: 'cps data service is invoked and returns source data nodes'
             mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
@@ -234,7 +235,7 @@ class CpsDeltaServiceImplSpec extends Specification {
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between anchor and payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, false)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where: 'following parameters were used'
