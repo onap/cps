@@ -211,13 +211,15 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.get.delta",
+            description = "Time taken to get delta between anchors")
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
                                                                       final Object jsonPayload,
-                                                                      final String xpath,
+                                                                      final String xpath, final Boolean groupingEnabled,
                                                                       final MultipartFile multipartFile) {
+        final boolean groupingEnabledValue = isGroupingEnabled(groupingEnabled);
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
         final Map<String, String> yangResourceMap;
         if (multipartFile == null) {
             yangResourceMap = Collections.emptyMap();
@@ -226,8 +228,7 @@ public class DataRestController implements CpsDataApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
                 cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
-
+                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption, groupingEnabledValue));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
 
@@ -238,13 +239,13 @@ public class DataRestController implements CpsDataApi {
                                                                 final String sourceAnchorName,
                                                                 final String targetAnchorName,
                                                                 final String xpath,
-                                                                final String descendants) {
+                                                                final String descendants,
+                                                                final Boolean groupingEnabled) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(descendants);
-
-        final List<DeltaReport> deltaBetweenAnchors =
-                cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
-                        targetAnchorName, xpath, fetchDescendantsOption);
+        final boolean groupingEnabledValue = isGroupingEnabled(groupingEnabled);
+        final List<DeltaReport> deltaBetweenAnchors = cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName,
+                sourceAnchorName, targetAnchorName, xpath, fetchDescendantsOption, groupingEnabledValue);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
@@ -261,6 +262,10 @@ public class DataRestController implements CpsDataApi {
 
     private static boolean isRootXpath(final String xpath) {
         return ROOT_XPATH.equals(xpath);
+    }
+
+    private static boolean isGroupingEnabled(final Boolean groupingEnabled) {
+        return Boolean.TRUE.equals(groupingEnabled);
     }
 
     private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {
