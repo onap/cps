@@ -35,8 +35,11 @@ public interface CpsDeltaService {
      *
      * @param sourceDataNodes  collection of {@link DataNode} as source/reference for delta generation
      * @param targetDataNodes  collection of {@link DataNode} as target data for delta generation
+     * @param groupingEnabled  boolean flag to enable or disable grouping of data nodes in delta report.
+     *                         If enabled, data nodes are grouped based on parent-child, providing a condensed version
+     *                         of delta report.
      * @return                 list of {@link DeltaReport} containing delta information
      */
-    List<DeltaReport> getDeltaReports(Collection<DataNode> sourceDataNodes,
-                                      Collection<DataNode> targetDataNodes);
+    List<DeltaReport> getDeltaReports(Collection<DataNode> sourceDataNodes, Collection<DataNode> targetDataNodes,
+            boolean groupingEnabled);
 }
