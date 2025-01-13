@@ -238,13 +238,14 @@ public class DataRestController implements CpsDataApi {
                                                                 final String sourceAnchorName,
                                                                 final String targetAnchorName,
                                                                 final String xpath,
-                                                                final String descendants) {
+                                                                final String descendants,
+                                                                final Boolean groupingEnabled) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(descendants);
 
         final List<DeltaReport> deltaBetweenAnchors =
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
-                        targetAnchorName, xpath, fetchDescendantsOption);
+                        targetAnchorName, xpath, fetchDescendantsOption, groupingEnabled);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
