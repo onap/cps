@@ -215,14 +215,15 @@ public class CpsDataServiceImpl implements CpsDataService {
     public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
                                                            final String sourceAnchorName,
                                                            final String targetAnchorName, final String xpath,
-                                                           final FetchDescendantsOption fetchDescendantsOption) {
+                                                           final FetchDescendantsOption fetchDescendantsOption,
+                                                            final boolean groupingEnabled) {
 
         final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
                 sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
         final Collection<DataNode> targetDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
                 targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
 
-        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes);
+        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes, groupingEnabled);
     }
 
     @Timed(value = "cps.data.service.get.deltaBetweenAnchorAndPayload",
@@ -231,7 +232,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                 final String sourceAnchorName, final String xpath,
                                                                 final Map<String, String> yangResourcesNameToContentMap,
-                                                                final String targetData,
+                                                                final String targetData, final boolean groupingEnabled,
                                                                 final FetchDescendantsOption fetchDescendantsOption) {
 
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
@@ -245,7 +246,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Collection<DataNode> targetDataNodes =
                 new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourcesNameToContentMap, targetData));
 
-        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
+        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupingEnabled);
     }
 
     @Override

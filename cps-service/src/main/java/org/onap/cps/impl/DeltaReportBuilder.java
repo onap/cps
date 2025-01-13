@@ -21,6 +21,7 @@
 package org.onap.cps.impl;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DeltaReport;
@@ -31,20 +32,22 @@ public class DeltaReportBuilder {
 
     private String action;
     private String xpath;
-    private Map<String, Serializable> sourceData;
-    private Map<String, Serializable> targetData;
+    private Collection<Map<String, Serializable>> sourceData;
+    private Collection<Map<String, Serializable>> targetData;
+    private Collection<Map<String, Object>> groupedSourceData;
+    private Collection<Map<String, Object>> groupedTargetData;
 
     public DeltaReportBuilder withXpath(final String xpath) {
         this.xpath = xpath;
         return this;
     }
 
-    public DeltaReportBuilder withSourceData(final Map<String, Serializable> sourceData) {
+    public DeltaReportBuilder withSourceData(final Collection<Map<String, Serializable>> sourceData) {
         this.sourceData = sourceData;
         return this;
     }
 
-    public DeltaReportBuilder withTargetData(final Map<String, Serializable> targetData) {
+    public DeltaReportBuilder withTargetData(final Collection<Map<String, Serializable>> targetData) {
         this.targetData = targetData;
         return this;
     }

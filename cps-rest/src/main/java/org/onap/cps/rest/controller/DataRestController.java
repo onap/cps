@@ -214,7 +214,7 @@ public class DataRestController implements CpsDataApi {
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
                                                                       final Object jsonPayload,
-                                                                      final String xpath,
+                                                                      final String xpath, final Boolean groupingEnabled,
                                                                       final MultipartFile multipartFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
@@ -226,7 +226,7 @@ public class DataRestController implements CpsDataApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
                 cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
+                xpath, yangResourceMap, jsonPayload.toString(), groupingEnabled, fetchDescendantsOption));
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
@@ -238,13 +238,14 @@ public class DataRestController implements CpsDataApi {
                                                                 final String sourceAnchorName,
                                                                 final String targetAnchorName,
                                                                 final String xpath,
-                                                                final String descendants) {
+                                                                final String descendants,
+                                                                final Boolean groupingEnabled) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(descendants);
 
         final List<DeltaReport> deltaBetweenAnchors =
                 cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
-                        targetAnchorName, xpath, fetchDescendantsOption);
+                        targetAnchorName, xpath, fetchDescendantsOption, groupingEnabled);
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 

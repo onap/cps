@@ -38,5 +38,6 @@ public interface CpsDeltaService {
      * @return                 list of {@link DeltaReport} containing delta information
      */
     List<DeltaReport> getDeltaReports(Collection<DataNode> sourceDataNodes,
-                                      Collection<DataNode> targetDataNodes);
+            Collection<DataNode> targetDataNodes, boolean groupingEnabled);
+
 }
