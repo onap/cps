@@ -2023,6 +2023,15 @@ paths:
           default: none
           example: "3"
           type: string
+      - description: Boolean flag to enable or disable grouping of data nodes in delta
+          report.
+        in: query
+        name: grouping-enabled
+        required: false
+        schema:
+          default: false
+          example: false
+          type: boolean
       responses:
         "200":
           content:
@@ -2643,6 +2652,16 @@ components:
       schema:
         example: my-anchor
         type: string
+    groupingEnabledInQuery:
+      description: Boolean flag to enable or disable grouping of data nodes in delta
+        report.
+      in: query
+      name: grouping-enabled
+      required: false
+      schema:
+        default: false
+        example: false
+        type: boolean
     cpsPathInQuery:
       description: "For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html"
       examples:

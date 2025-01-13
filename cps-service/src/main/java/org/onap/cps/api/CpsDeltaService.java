@@ -37,6 +37,7 @@ public interface CpsDeltaService {
      * @param targetDataNodes  collection of {@link DataNode} as target data for delta generation
      * @return                 list of {@link DeltaReport} containing delta information
      */
-    List<DeltaReport> getDeltaReports(Collection<DataNode> sourceDataNodes,
-                                      Collection<DataNode> targetDataNodes);
+    List<DeltaReport> getDeltaReports(Collection<DataNode> sourceDataNodes, Collection<DataNode> targetDataNodes);
+
+    List<DeltaReport> getDeltaReports(String xpath, Collection<DataNode> sourceDataNodes, Collection<DataNode> targetDataNodes);
 }

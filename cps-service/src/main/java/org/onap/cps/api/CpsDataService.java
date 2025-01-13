@@ -305,7 +305,8 @@ public interface CpsDataService {
      */
     List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
                                                     String targetAnchorName, String xpath,
-                                                    FetchDescendantsOption fetchDescendantsOption);
+                                                    FetchDescendantsOption fetchDescendantsOption,
+                                                    boolean groupingEnabled);
 
     /**
      * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.

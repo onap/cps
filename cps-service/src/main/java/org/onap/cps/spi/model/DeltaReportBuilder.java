@@ -21,6 +21,7 @@
 package org.onap.cps.spi.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +33,8 @@ public class DeltaReportBuilder {
     private String xpath;
     private Map<String, Serializable> sourceData;
     private Map<String, Serializable> targetData;
+    private Collection<Map<String, Object>> groupedSourceData;
+    private Collection<Map<String, Object>> groupedTargetData;
 
     public DeltaReportBuilder withXpath(final String xpath) {
         this.xpath = xpath;
@@ -80,5 +83,34 @@ public class DeltaReportBuilder {
             deltaReport.setTargetData(targetData);
         }
         return deltaReport;
+    }
+
+    /**
+     * To create a grouped entry of {@link DeltaReport}.
+     *
+     * @return {@link DeltaReport}
+     */
+    public DeltaReport buildGrouped() {
+        final DeltaReport deltaReport = new DeltaReport();
+        deltaReport.setAction(action);
+        deltaReport.setXpath(xpath);
+        if (groupedSourceData != null && !groupedSourceData.isEmpty()) {
+            deltaReport.setGroupedSourceData(groupedSourceData);
+        }
+
+        if (groupedTargetData != null && !groupedTargetData.isEmpty()) {
+            deltaReport.setGroupedTargetData(groupedTargetData);
+        }
+        return deltaReport;
+    }
+
+    public DeltaReportBuilder withGroupedTargetData(Collection<Map<String, Object>> groupedTargetData) {
+        this.groupedTargetData = groupedTargetData;
+        return this;
+    }
+
+    public DeltaReportBuilder withGroupedSourceData(Collection<Map<String, Object>> groupedSourceData) {
+        this.groupedSourceData = groupedSourceData;
+        return this;
     }
 }
