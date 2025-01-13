@@ -235,33 +235,35 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Get delta between 2 anchors'() {
-        given: 'some xpath, source and target data nodes'
+        given: 'some xpath, source and target data nodes and grouping of data nodes in delta report is disabled'
             def xpath = '/xpath'
             def sourceDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
             def targetDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+            def groupingEnabled = false
         when: 'attempt to get delta between 2 anchors'
-            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, groupingEnabled)
         then: 'the dataspace and anchor names are validated'
             2 * mockCpsValidator.validateNameCharacters(_)
         and: 'data nodes are fetched using appropriate persistence layer method'
             mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
             mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
         and: 'appropriate delta service method is invoked once with correct source and target data nodes'
-            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes)
+            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes, groupingEnabled)
     }
 
     def 'Get delta between anchor and payload with user provided schema #scenario'() {
-        given: 'user provided schema set '
+        given: 'user provided schema set and grouping of data nodes in delta report is disabled'
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
+            def groupingEnabled = false
         when: 'attempt to get delta between an anchor and a JSON payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, groupingEnabled)
         then: 'dataspacename and anchor names are validated'
             1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
         and: 'source data nodes are fetched using appropriate persistence layer method'
             1 * mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'appropriate delta service method is invoked once with correct source and target data nodes'
-            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath})
+            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath}, groupingEnabled)
         where: 'following data was used'
             scenario             | xpath                               | sourceDataNodes                                                                                          | jsonData                                       || expectedNodeXpath
             'root node xpath'    | '/'                                 | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
@@ -270,16 +272,17 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Get delta between anchor and payload by using schema from anchor #scenario'() {
-        given: 'schema set for a given dataspace and anchor'
+        given: 'schema set for a given dataspace and anchor and grouping of data nodes in delta report is disabled'
             setupSchemaSetMocks("bookstore.yang")
+            def groupingEnabled = false
         when: 'attempt to get delta between an anchor and a JSON payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, groupingEnabled)
         then: 'dataspacename and anchor names are validated'
             1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
         and: 'source data nodes are fetched using appropriate persistence layer method'
             1 * mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'appropriate delta service method is invoked once with correct source and target data nodes'
-            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath})
+            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath}, groupingEnabled)
         where: 'following data was used'
             scenario          | xpath                               | sourceDataNodes                                                                                          | jsonData                                       || expectedNodeXpath
             'root node xpath' | '/'                                 | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
@@ -288,11 +291,12 @@ class CpsDataServiceImplSpec extends Specification {
     }
 
     def 'Delta between anchor and payload error scenario #scenario'() {
-        given: 'schema set for given anchor and dataspace references bookstore model'
+        given: 'schema set for given anchor and dataspace references bookstore model and grouping of data nodes in delta report is disabled'
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
             setupSchemaSetMocksForDelta(yangResourceContentPerName)
+            def groupingEnabled = false
         when: 'attempt to get delta between anchor and payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, groupingEnabled)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where: 'following parameters were used'
