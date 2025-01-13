@@ -431,15 +431,17 @@ class DataRestControllerSpec extends Specification {
 
     def 'Get delta between two anchors'() {
         given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
+            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData(['some key': 'some value']).withTargetData(['some key': 'some value']).build()
             def xpath = 'some xpath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
-            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
+            def groupingEnabled = false
+            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS, groupingEnabled) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(get(endpoint)
                     .param('target-anchor-name', 'targetAnchor')
-                    .param('xpath', xpath))
+                    .param('xpath', xpath)
+                    .param('grouping-enabled', groupingEnabled.toString()))
                     .andReturn().response
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
@@ -452,14 +454,16 @@ class DataRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
+            def groupingEnabled = false
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS, groupingEnabled) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                     mvc.perform(multipart(endpoint)
                             .file(multipartYangFile)
                             .param("json", requestBodyJson)
                             .param('xpath', xpath)
+                            .param('grouping-enabled', groupingEnabled.toString())
                             .contentType(MediaType.MULTIPART_FORM_DATA))
                             .andReturn().response
         then: 'expected response code is returned'
@@ -473,13 +477,15 @@ class DataRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
             def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
+            def groupingEnabled = false
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS, groupingEnabled) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                     mvc.perform(multipart(endpoint)
                             .param("json", requestBodyJson)
                             .param('xpath', xpath)
+                            .param('grouping-enabled', groupingEnabled.toString())
                             .contentType(MediaType.MULTIPART_FORM_DATA))
                             .andReturn().response
         then: 'expected response code is returned'
