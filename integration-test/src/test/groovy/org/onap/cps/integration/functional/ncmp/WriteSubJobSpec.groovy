@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
             assert response.size() == 2
             assert response[0].class == SubJobWriteResponse.class
             assert response[0].subJobId == "some sub job id"
-            assert response[0].dmiServiceName == "some dmi service name"
+            assert response[0].dmiServiceName.startsWith("http://localhost:")
             assert response[0].dataProducerId == "some data producer id"
         and: 'dmi 1 received the correct job details'
             def receivedSubJobsForDispatcher1 = dmiDispatcher1.receivedSubJobs['?destination=d1']['data'].collect()

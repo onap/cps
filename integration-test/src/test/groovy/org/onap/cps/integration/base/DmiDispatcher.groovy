@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ class DmiDispatcher extends Dispatcher {
         def destination = Matcher.lastMatcher[0][1]
         def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
         this.receivedSubJobs.put(destination, subJobWriteRequest)
-        def response = '{"subJobId":"some sub job id", "dmiServiceName":"some dmi service name", "dataProducerId":"some data producer id"}'
+        def response = '{"subJobId":"some sub job id"}'
         return mockResponseWithBody(HttpStatus.OK, response)
     }
 
