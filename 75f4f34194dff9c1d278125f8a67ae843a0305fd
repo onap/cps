@@ -22,6 +22,30 @@
       },
       "revId": "75f4f34194dff9c1d278125f8a67ae843a0305fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d093c1_13f7cbf9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-14T10:57:14Z",
+      "side": 1,
+      "message": "A couple of thoughts:\n- when restarting with an existing DB, the dataspace will already exist, so no exceptions are expected.\n- for DataspaceNotFound, then there would be no CM-handles anyway, so counters should be initialized to zero.\n- so your above solution should work fine. Maybe do some manual testing to verify.\n\nI think another option would be for this class to extend _ApplicationListener\u003cApplicationReadyEvent\u003e_. Since inventory model is created during startup (_ApplicationStartedEvent_), needed model would be available before the application is ready.",
+      "parentUuid": "ee1752a0_a3aaa8c7",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 61,
+        "endChar": 82
+      },
+      "revId": "75f4f34194dff9c1d278125f8a67ae843a0305fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
