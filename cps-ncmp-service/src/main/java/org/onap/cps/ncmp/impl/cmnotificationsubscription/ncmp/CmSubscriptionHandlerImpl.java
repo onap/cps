@@ -46,10 +46,12 @@ import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Pr
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     private static final Pattern SUBSCRIPTION_KEY_FROM_XPATH_PATTERN = Pattern.compile(
