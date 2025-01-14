@@ -255,6 +255,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f3fc7796_23e80b55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-14T10:45:42Z",
+      "side": 1,
+      "message": "Good approach getting it from a method. in this case, no name conflict occurs.",
+      "parentUuid": "63d6d4b1_50ee3014",
+      "range": {
+        "startLine": 71,
+        "startChar": 21,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "bb8cefb0_349f8716",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 4
