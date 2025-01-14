@@ -1,0 +1,11 @@
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Halil Cakal <halil.cakal@est.tech>
+Code-Review+1: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Submitted-by: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-at: Tue, 14 Jan 2025 10:45:43 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/139893
+Project: cps
+Branch: refs/heads/master
