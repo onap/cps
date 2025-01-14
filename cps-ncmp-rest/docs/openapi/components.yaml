@@ -142,7 +142,7 @@ components:
             example: "COMPLETE"
         alternateId:
           type: string
-          example: "my-alternate-id"
+          example: "Subnetwork=Europe,ManagedElement=X123"
         dataProducerIdentifier:
           type: string
           example: "my-data-producer-identifier"
@@ -192,13 +192,16 @@ components:
         content:
           type: string
           example: |
-            module stores {
+            module _3gpp-nr-nrm-gnbdufunction {
               yang-version 1.1;
-              namespace 'org:onap:ccsdk:sample';
-              prefix book-store;
+              namespace 'urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction';
+              prefix gnbdu3gpp;
               revision '2020-09-15' {
                 description
-                'Sample Model';
+                'Defines the YANG mapping of the GNBDUFunction Information 
+                 Object Class (IOC) that is part of the NR Network Resource Model (NRM). 
+                 Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
+                 TTA, TTC). All rights reserved.';
               }
             }
 
@@ -260,7 +263,7 @@ components:
           example: my-module-set-tag
         alternateId:
           type: string
-          example: my-alternate-id
+          example: "Subnetwork=Europe,ManagedElement=X123"
         dataProducerIdentifier:
           type: string
           example: my-data-producer-identifier
@@ -270,7 +273,7 @@ components:
         type: object
         additionalProperties:
           type: string
-          example: 'Book Type'
+          example: '3gpp Type'
     CmHandleCompositeState:
       type: object
       properties:
@@ -358,10 +361,10 @@ components:
           example: 'ncmp-datastore:passthrough-operational'
         options:
           type: string
-          example: '(fields=schemas/schema)'
+          example: '(fields=NRCellDU/attributes/cellLocalId)'
         resourceIdentifier:
           type: string
-          example: 'parent/child'
+          example: 'NRCellDU/attributes/cellLocalId'
         targetIds:
           type: array
           items:
@@ -372,84 +375,78 @@ components:
   examples:
     dataSampleRequest:
       summary: Sample request
-      description: Sample request body
+      description: Sample request body for GNBDUFunction configuration
       value:
-        test:bookstore:
-          bookstore-name: Chapters
-          categories:
-            - code: '01'
-              name: SciFi
-              books:
-                - authors:
-                    - Iain M. Banks
-                    - Ursula K. Le Guin
-            - code: '02'
-              name: kids
-              books:
-                - authors:
-                    - Philip Pullman
+        gnbdu3gpp:GNBDUFunction:
+          gNBId: 12345
+          gNBIdLength: 32
+          gNBDUId: 67890
+          gNBDUName: "DU-1"
+          rimRSReportConf:
+            reportIndicator: "enabled"
+            reportInterval: 1000
+            nrofRIMRSReportInfo: 5
+            maxPropagationDelay: 32767
+            RimRSReportInfoList:
+              - detectedSetID: 1
+                propagationDelay: 20
+                functionalityOfRIMRS: "RS1"
+              - detectedSetID: 2
+                propagationDelay: 15
+                functionalityOfRIMRS: "RS2"
 
     dataSamplePatchRequest:
       summary: Sample patch request
-      description: Sample patch request body
+      description: Sample patch request to modify GNBDUFunction
       value:
         ietf-restconf:yang-patch:
           patch-id: patch-1
           edit:
             - edit-id: edit1
-              operation: merge
-              target: /
+              operation: replace
+              target: /gnbdu3gpp:GNBDUFunction
               value:
-                test:bookstore:
-                  bookstore-name: Chapters
-                  categories:
-                    - code: '01'
-                      name: Science
-                      books:
-                        - authors:
-                            - Author1
-                            - Author2
-                    - code: '02'
-                      name: Arts
-                      books:
-                        - authors:
-                            - Author3
+                gnbdu3gpp:GNBDUFunction:
+                  gNBId: 54321
+                  gNBIdLength: 32
+                  gNBDUId: 98765
+                  gNBDUName: "DU-2"
+                  rimRSReportConf:
+                    reportIndicator: "disabled"
+                    reportInterval: 2000
+                    nrofRIMRSReportInfo: 3
+                    maxPropagationDelay: 20000
             - edit-id: edit2
               operation: merge
-              target: /
+              target: /gnbdu3gpp:GNBDUFunction
               value:
-                test:bookstore:
-                  bookstore-name: Novels
-                  categories:
-                    - code: '03'
-                      name: History
-                      books:
-                        - authors:
-                            - Iain M. Banks
-                            - Ursula K. Le Guin
-                    - code: '04'
-                      name: Fiction
-                      books:
-                        - authors:
-                            - Philip Pullman
+                gnbdu3gpp:GNBDUFunction:
+                  configurable5QISetRef: "/5QISet-001"
+                  dynamic5QISetRef: "/Dynamic5QISet-001"
 
     dataSampleResponse:
       summary: Sample response
-      description: Sample response for selecting 'sample 1'.
+      description: Sample response with GNBDUFunction configuration
       value:
-        bookstore:
-          categories:
-            - code: '01'
-              books:
-                - authors:
-                    - Iain M. Banks
-                    - Ursula K. Le Guin
-              name: SciFi
-            - code: '02'
-              books:
-                - authors:
-                    - Philip Pullman
-              name: kids
+        gnbdu3gpp:GNBDUFunction:
+          gNBId: 12345
+          gNBIdLength: 32
+          gNBDUId: 67890
+          gNBDUName: "DU-1"
+          rimRSReportConf:
+            reportIndicator: "enabled"
+            reportInterval: 1000
+            nrofRIMRSReportInfo: 5
+            maxPropagationDelay: 32767
+            RimRSReportInfoList:
+             - detectedSetID: 1
+               propagationDelay: 20
+               functionalityOfRIMRS: "RS1"
+             - detectedSetID: 2
+               propagationDelay: 15
+               functionalityOfRIMRS: "RS2"
+          configurable5QISetRef: "/5QISet-001"
+          dynamic5QISetRef: "/Dynamic5QISet-001"
 
     allCmHandleQueryParameters:
       value:
@@ -571,16 +568,25 @@ components:
     cpsPathInQuery:
       name: cps-path
       in: query
-      description: For more details on cps path, please refer https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html
+      description: |
+        The `cps-path` parameter allows referencing elements in the GNBDUFunctionConfig data model.
+            For more details on cps path, please refer to:
+            [CPS Path Documentation](https://docs.onap.org/projects/onap-cps/en/latest/cps-path.html).
+            Example paths:
+              - Root GNBDUFunction: `/GNBDUFunction`
+              - Specific gNB ID: `/GNBDUFunction[@gNBId='1001']`
+              - RIM-RS Reporting Config: `/GNBDUFunction[@gNBId='1001']/rimRSReportConf`
       required: false
       schema:
         type: string
-        default: /
+        default: "/GNBDUFunction"
       examples:
-        container cps path:
-          value: //bookstore
-        list attributes cps path:
-          value: //categories[@code=1]
+        GNBDUFunction Root:
+          value: "//GNBDUFunction"
+        Specific gNB ID:
+          value: "//GNBDUFunction[@gNBId='1001']"
+        RIM-RS Reporting Config:
+          value: "//GNBDUFunction[@gNBId='1001']/rimRSReportConf"
     dmiPluginIdentifierInQuery:
       name: dmi-plugin-identifier
       in: query
@@ -592,37 +598,50 @@ components:
     resourceIdentifierInQuery:
       name: resourceIdentifier
       in: query
-      description: The format of resource identifier depend on the associated DMI Plugin implementation. For ONAP DMI Plugin it will be RESTConf paths but it can really be anything.
+      description: |
+        The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
+           For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
+             - All GNBDUFunctions: `/GNBDUFunction`
+             - Specific GNBDUFunction by gNBId: `/GNBDUFunction[@gNBId='1001']`
+             - RIM-RS Reporting Configuration: `/GNBDUFunction[@gNBId='1001']/rimRSReportConf`
       required: true
       schema:
         type: string
       examples:
         sample 1:
           value:
-            resourceIdentifier: \shops\bookstore
+            resourceIdentifier: \GNBDUFunction
         sample 2:
           value:
-            resourceIdentifier: \shops\bookstore\categories[@code=1]
+            resourceIdentifier: \GNBDUFunction[@gNBId='1001']
         sample 3:
           value:
-            resourceIdentifier: parent=shops,child=bookstore
+            resourceIdentifier: \GNBDUFunction[@gNBId='1001']\rimRSReportConf
+        sample 4:
+          value:
+            resourceIdentifier: parent=GNBDUFunction,child=gNBId:1001
     optionsParamInQuery:
       name: options
       in: query
-      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'. The format of options parameter depend on the associated DMI Plugin implementation.
+      description: |
+        The `options` parameter specifies additional query options. It is mandatory to wrap key(s)=value(s) in parentheses `()`.
+        Examples for GNBDUFunctionConfig queries:
+          - Limit depth of returned sub-tree: `(depth=2)`
+          - Select specific fields: `(fields=gNBId,gNBDUName)`
+          - Combine options: `(depth=3,fields=gNBId,gNBDUName)`
       required: false
       schema:
         type: string
       examples:
-        sample 1:
+        Limit Depth:
           value:
-            options: (depth=3)
-        sample 2:
+            options: (depth=2)
+        Select Specific Fields:
           value:
-            options: (fields=book)
-        sample 3:
+            options: (fields=gNBId,gNBDUName)
+        Combine Depth and Fields:
           value:
-            options: (depth=2,fields=book/authors)
+            options: (depth=3,fields=gNBId,gNBDUName)
     topicParamInQuery:
       name: topic
       in: query

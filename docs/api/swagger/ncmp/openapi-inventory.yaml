@@ -248,7 +248,7 @@ components:
       example:
         updatedCmHandles:
         - cmHandle: my-cm-handle
-          alternateId: my-alternate-id
+          alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
@@ -257,7 +257,7 @@ components:
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
-          alternateId: my-alternate-id
+          alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
@@ -267,7 +267,7 @@ components:
           trustLevel: COMPLETE
         createdCmHandles:
         - cmHandle: my-cm-handle
-          alternateId: my-alternate-id
+          alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
@@ -276,7 +276,7 @@ components:
           moduleSetTag: my-module-set-tag
           trustLevel: COMPLETE
         - cmHandle: my-cm-handle
-          alternateId: my-alternate-id
+          alternateId: "Subnetwork=Europe,ManagedElement=X123"
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
@@ -332,7 +332,7 @@ components:
     RestInputCmHandle:
       example:
         cmHandle: my-cm-handle
-        alternateId: my-alternate-id
+        alternateId: "Subnetwork=Europe,ManagedElement=X123"
         dataProducerIdentifier: my-data-producer-identifier
         publicCmHandleProperties:
           key: my-property
@@ -364,7 +364,7 @@ components:
           example: COMPLETE
           type: string
         alternateId:
-          example: my-alternate-id
+          example: "Subnetwork=Europe,ManagedElement=X123"
           type: string
         dataProducerIdentifier:
           example: my-data-producer-identifier
