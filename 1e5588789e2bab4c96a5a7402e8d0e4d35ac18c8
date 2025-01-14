@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b6a5976_81d2a768",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-14T15:33:41Z",
+      "side": 1,
+      "message": "Nb. This dependency version does not even exist (latest is 3.0.0)! But I guess springfox itself is unused in cps, so this could be removed?",
+      "range": {
+        "startLine": 104,
+        "startChar": 25,
+        "endLine": 109,
+        "endChar": 25
+      },
+      "revId": "1e5588789e2bab4c96a5a7402e8d0e4d35ac18c8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
