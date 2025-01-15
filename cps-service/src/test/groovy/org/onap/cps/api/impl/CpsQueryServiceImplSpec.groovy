@@ -21,6 +21,7 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.impl.CpsQueryServiceImpl
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption

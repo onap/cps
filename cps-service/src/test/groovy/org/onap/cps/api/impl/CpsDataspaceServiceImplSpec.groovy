@@ -20,6 +20,7 @@
 
 package org.onap.cps.api.impl
 
+import org.onap.cps.impl.CpsDataspaceServiceImpl
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.api.model.Dataspace
