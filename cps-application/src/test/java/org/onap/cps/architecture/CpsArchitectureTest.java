@@ -43,11 +43,9 @@ public class CpsArchitectureTest extends ArchitectureTestBase {
 
     @ArchTest
     static final ArchRule cpsServiceImplShouldDependOnServiceAndEventsAndPathParserPackages =
-            // I think impl package should be moved from the api package.
-            // So in a way this whole rule is breaking our architecture goals
-            classes().that().resideInAPackage("org.onap.cps.api.impl..").should().onlyDependOnClassesThat()
+            classes().that().resideInAPackage("org.onap.cps.impl..").should().onlyDependOnClassesThat()
                     .resideInAnyPackage(commonAndListedPackages("org.onap.cps.api..",
-                                                                "org.onap.cps.api.impl..",
+                                                                "org.onap.cps.impl..",
                                                                 "org.onap.cps.events..",
                                                                 "org.onap.cps.impl.utils..",
                                                                 "org.onap.cps.spi..",

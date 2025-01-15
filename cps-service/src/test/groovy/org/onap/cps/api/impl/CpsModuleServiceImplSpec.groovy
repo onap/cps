@@ -25,6 +25,8 @@ package org.onap.cps.api.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.impl.CpsModuleServiceImpl
+import org.onap.cps.impl.YangTextSchemaSourceSetCache
 import org.onap.cps.impl.utils.CpsValidator
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
