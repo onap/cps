@@ -29,7 +29,7 @@ import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
-import org.onap.cps.api.impl.YangTextSchemaSourceSetCache
+import org.onap.cps.impl.YangTextSchemaSourceSetCache
 
 class YangParserSpec extends Specification {
 

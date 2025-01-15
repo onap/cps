@@ -21,7 +21,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps.impl
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
