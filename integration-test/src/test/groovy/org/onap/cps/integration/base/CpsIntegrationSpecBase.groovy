@@ -38,7 +38,7 @@ import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher

@@ -25,6 +25,7 @@ package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.model.ConditionProperties
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -33,8 +34,8 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
-import org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher

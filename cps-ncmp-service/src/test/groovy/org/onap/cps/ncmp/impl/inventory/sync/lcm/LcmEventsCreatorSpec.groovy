@@ -24,12 +24,12 @@ import org.mapstruct.factory.Mappers
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.Values
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import spock.lang.Specification
 
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETING
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETING
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 class LcmEventsCreatorSpec extends Specification {
 

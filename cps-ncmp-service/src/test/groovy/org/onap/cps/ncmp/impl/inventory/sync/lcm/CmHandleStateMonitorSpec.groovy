@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm
 
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap

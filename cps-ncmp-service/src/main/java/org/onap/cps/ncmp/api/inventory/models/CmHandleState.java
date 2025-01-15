@@ -1,5 +1,5 @@
 /*
- *  ============LICENSE_START=======================================================
+ * ============LICENSE_START=======================================================
  *  Copyright (C) 2022-2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.inventory;
+package org.onap.cps.ncmp.api.inventory.models;
 
-public enum DataStoreSyncState {
-    SYNCHRONIZED, UNSYNCHRONIZED, NONE_REQUESTED
+public enum CmHandleState {
+    ADVISED, READY, LOCKED, DELETING, DELETED
 }

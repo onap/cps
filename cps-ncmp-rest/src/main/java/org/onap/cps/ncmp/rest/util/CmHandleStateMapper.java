@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.rest.util;
 
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING;
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.LOCKED_MISBEHAVING;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

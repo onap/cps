@@ -20,10 +20,12 @@
 
 package org.onap.cps.ncmp.impl.inventory.models
 
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA

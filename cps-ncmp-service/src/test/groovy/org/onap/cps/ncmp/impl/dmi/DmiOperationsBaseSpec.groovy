@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.dmi
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.spockframework.spring.SpringBean
 import spock.lang.Shared

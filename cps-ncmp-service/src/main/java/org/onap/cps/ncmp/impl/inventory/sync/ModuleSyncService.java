@@ -43,7 +43,7 @@ import org.onap.cps.api.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;

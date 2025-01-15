@@ -28,7 +28,7 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService.ModuleDelta
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
@@ -38,7 +38,7 @@ import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
-import static org.onap.cps.ncmp.impl.inventory.models.LockReasonCategory.MODULE_UPGRADE
+import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
 
 class ModuleSyncServiceSpec extends Specification {
 

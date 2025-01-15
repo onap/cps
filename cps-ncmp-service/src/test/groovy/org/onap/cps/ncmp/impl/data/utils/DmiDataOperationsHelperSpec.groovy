@@ -42,8 +42,8 @@ import org.springframework.util.LinkedMultiValueMap
 
 import java.time.Duration
 
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.READY
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext])

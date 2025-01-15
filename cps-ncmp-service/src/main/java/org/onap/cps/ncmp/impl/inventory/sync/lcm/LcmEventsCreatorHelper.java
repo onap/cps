@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm;
 
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleState.DELETED;
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETED;
 import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.CREATE;
 import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.DELETE;
 import static org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventType.UPDATE;
