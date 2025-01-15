@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps.impl
 
 import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
