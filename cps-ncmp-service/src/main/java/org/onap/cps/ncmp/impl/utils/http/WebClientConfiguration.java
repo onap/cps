@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation.
+ *  Copyright (C) 2024-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,6 @@ import reactor.netty.resources.ConnectionProvider;
  */
 public class WebClientConfiguration {
 
-    private static final Duration DEFAULT_RESPONSE_TIMEOUT = Duration.ofSeconds(30);
-
     protected WebClient configureWebClient(final WebClient.Builder webClientBuilder,
                                            final ServiceConfig serviceConfig) {
         final ConnectionProvider connectionProvider = getConnectionProvider(serviceConfig);
@@ -53,7 +51,7 @@ public class WebClientConfiguration {
     private static HttpClient createHttpClient(final ServiceConfig serviceConfig,
                                                final ConnectionProvider connectionProvider) {
         return HttpClient.create(connectionProvider)
-                .responseTimeout(DEFAULT_RESPONSE_TIMEOUT)
+                .responseTimeout(Duration.ofSeconds(serviceConfig.getResponseTimeoutInSeconds()))
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, serviceConfig.getConnectionTimeoutInSeconds() * 1000)
                 .doOnConnected(connection -> connection.addHandlerLast(new ReadTimeoutHandler(
                         serviceConfig.getReadTimeoutInSeconds(), TimeUnit.SECONDS)).addHandlerLast(
