@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78c0ca0_f9dbd4fc",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-16T13:50:46Z",
+      "side": 1,
+      "message": "This does not match the alternate IDs used in passthrough-crud.js\n\nThis appends cmHandleId to the prefix, e.g. \u0027Subnetwork\u003dEurope,ManagedElement\u003dX\u0027 + \u0027ch-1\u0027 while the other appends a number \u0027Subnetwork\u003dEurope,ManagedElement\u003dX\u0027 + 1\n\nI think this one should be:\n\n    cmHandleId.replace(\u0027ch-\u0027, \u0027Subnetwork\u003dEurope,ManagedElement\u003dX\u0027)",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
