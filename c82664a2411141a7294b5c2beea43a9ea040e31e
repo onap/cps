@@ -18,6 +18,138 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "114e254e_f011e5a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc30edf_70527a59",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "NB: The name is too broad and seems gonna include all the config related to micro meter. Nice to have sth more specific like MicroMeterCmHandleStateConfig",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f80d17a_6c7f422d",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "NB: STATE_TAG or TAG_FOR_STATE",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7752245a_49b7dbae",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "NB: CM_HANDLE_STATE_GAUGE",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e94a1e90_b794507a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "NB: \nI suggest to renamet this bean into more relevant and specific one: CmHandleStateCacheConfig\n\nSince AdminCacheConfig is too generic, e.g. anything can be under adminCacheConfig but not in CmHandleStateCacheConfig other than cm handle states.",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce61b4a_aa3a8fe2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-16T13:31:26Z",
+      "side": 1,
+      "message": "NB: Same as above cmHandleStateCacheConfig",
+      "range": {
+        "startLine": 31,
+        "startChar": 74,
+        "endLine": 31,
+        "endChar": 93
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f1e0441_a4ca53a7",
