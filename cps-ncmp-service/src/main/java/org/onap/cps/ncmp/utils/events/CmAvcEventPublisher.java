@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.utils.events;
 
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.INVENTORY_EVENTS_V1;
+
 import io.cloudevents.CloudEvent;
 import java.util.Collections;
 import java.util.HashMap;
@@ -52,7 +54,7 @@ public class CmAvcEventPublisher {
 
         final Map<String, String> extensions = createAvcEventExtensions(eventKey);
         final CloudEvent avcCloudEvent =
-                NcmpEvent.builder().type(AvcEvent.class.getTypeName())
+                NcmpEvent.builder().type(AvcEvent.class.getTypeName()).dataSchema(INVENTORY_EVENTS_V1.getDataSchema())
                         .data(avcEvent).extensions(extensions).build().asCloudEvent();
 
         eventsPublisher.publishCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
