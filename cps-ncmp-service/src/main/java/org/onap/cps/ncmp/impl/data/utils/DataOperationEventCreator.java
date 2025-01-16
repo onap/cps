@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.ncmp.impl.data.utils;
+
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.BATCH_RESPONSE_V1;
 
 import io.cloudevents.CloudEvent;
 import java.util.ArrayList;
@@ -57,8 +59,9 @@ public class DataOperationEventCreator {
         final Data data = createPayloadFromDataOperationResponses(cmHandleIdsPerResponseCodesPerOperation);
         dataOperationEvent.setData(data);
         final Map<String, String> extensions = createDataOperationExtensions(requestId, clientTopic);
-        return NcmpEvent.builder().type(DataOperationEvent.class.getName())
-                .data(dataOperationEvent).extensions(extensions).build().asCloudEvent();
+        return NcmpEvent.builder().type(DataOperationEvent.class.getName()).data(dataOperationEvent)
+                       .dataSchema(BATCH_RESPONSE_V1.getDataSchema()).extensions(extensions).build()
+                       .asCloudEvent();
     }
 
     private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-dmi-out-event-schema:1.0.0",
+  "$id": "urn:cps:org.onap.ncmp.events.subscription:1.0.0",
   "$ref": "#/definitions/DmiOutEvent",
   "definitions": {
     "DmiOutEvent": {

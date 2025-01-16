@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
  */
 
 package org.onap.cps.ncmp.utils.events;
+
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.CM_HANDLE_CHANGES_V1;
 
 import io.cloudevents.CloudEvent;
 import java.util.Collections;
@@ -51,9 +53,9 @@ public class CmAvcEventPublisher {
         final AvcEvent avcEvent = buildAvcEvent(attributeName, oldAttributeValue, newAttributeValue);
 
         final Map<String, String> extensions = createAvcEventExtensions(eventKey);
-        final CloudEvent avcCloudEvent =
-            NcmpEvent.builder().type(AvcEvent.class.getTypeName())
-            .data(avcEvent).extensions(extensions).build().asCloudEvent();
+        final CloudEvent avcCloudEvent = NcmpEvent.builder().type(AvcEvent.class.getTypeName())
+                                                 .dataSchema(CM_HANDLE_CHANGES_V1.getDataSchema()).data(avcEvent)
+                                                 .extensions(extensions).build().asCloudEvent();
 
         eventsPublisher.publishCloudEvent(avcTopic, eventKey, avcCloudEvent);
     }
