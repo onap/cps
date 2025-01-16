@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecf0e117_2a29f999",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T12:27:00Z",
+      "side": 1,
+      "message": "just minor comments otherwise fine.",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f1e0441_a4ca53a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T12:27:00Z",
+      "side": 1,
+      "message": "NB: separately group the instance variables and static fields.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d83552ca_69ccb533",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T12:27:00Z",
+      "side": 1,
+      "message": "NB: correct this.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415d55d6_ec08d8bd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T12:27:00Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6aa206c_dc1047fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T12:27:00Z",
+      "side": 1,
+      "message": "NB: NcmpInventoryModel....",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
