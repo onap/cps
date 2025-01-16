@@ -32,7 +32,7 @@ class DataspaceServiceIntegrationSpec extends FunctionalSpecBase {
 
     def setup() { objectUnderTest = cpsDataspaceService }
 
-    def cleanup() { cpsModuleService.deleteUnusedYangResourceModules() }
+    def cleanup() { cpsModuleService.deleteAllUnusedYangModuleData() }
 
     def 'Dataspace CRUD operations.'() {
         when: 'a dataspace is created'

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,8 +40,8 @@ class CpsAnchorServiceImplSpec extends Specification {
             objectUnderTest.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
         then: 'the persistence service method is invoked with same parameters'
             1 * mockCpsAdminPersistenceService.createAnchor('someDataspace', 'someSchemaSet', 'someAnchorName')
-        and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet', 'someAnchorName')
+        and: 'the CpsValidator is called on the dataspaceName and anchorName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someAnchorName')
     }
 
     def 'Retrieve all anchors for dataspace.'() {
@@ -64,8 +64,8 @@ class CpsAnchorServiceImplSpec extends Specification {
             def result = objectUnderTest.getAnchorsBySchemaSetName('someDataspace', 'someSchemaSet')
         then: 'the collection provided by persistence service is returned as result'
             result == anchors
-        and: 'the CpsValidator is called on the dataspaceName, schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('someDataspace', 'someSchemaSet')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
 
     def 'Retrieve all anchors for multiple schema-sets.'() {
@@ -76,9 +76,8 @@ class CpsAnchorServiceImplSpec extends Specification {
             def result = objectUnderTest.getAnchorsBySchemaSetNames('someDataspace', ['schemaSet1', 'schemaSet2'])
         then: 'the collection provided by persistence service is returned as result'
             result == anchors
-        and: 'the CpsValidator is called on the dataspace name and schema-set names'
+        and: 'the CpsValidator is called on the dataspace name'
             1 * mockCpsValidator.validateNameCharacters('someDataspace')
-            1 * mockCpsValidator.validateNameCharacters(_)
     }
 
     def 'Retrieve anchor for dataspace and provided anchor name.'() {

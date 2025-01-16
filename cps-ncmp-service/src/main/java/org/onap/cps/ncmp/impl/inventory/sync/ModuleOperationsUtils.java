@@ -189,7 +189,7 @@ public class ModuleOperationsUtils {
                 .getLockReasonCategory()));
     }
 
-    public static String getUpgradedModuleSetTagFromLockReason(final CompositeState.LockReason lockReason) {
+    public static String getTargetModuleSetTagFromLockReason(final CompositeState.LockReason lockReason) {
         return getLockedCompositeStateDetails(lockReason).getOrDefault(MODULE_SET_TAG_KEY, "");
     }
 

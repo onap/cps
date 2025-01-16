@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -56,6 +56,15 @@ public interface CpsModuleService {
     void createSchemaSetFromModules(String dataspaceName, String schemaSetName,
                                     Map<String, String> newModuleNameToContentMap,
                                     Collection<ModuleReference> allModuleReferences);
+
+    /**
+     * Check if a schema set exist in the given dataspace.
+     *
+     * @param dataspaceName  Dataspace name
+     * @param schemaSetName  Schema set name
+     * @return boolean, true if a schema set with the given name exist in the given dataspace
+     */
+    boolean schemaSetExists(String dataspaceName, String schemaSetName);
 
     /**
      * Read schema set in the given dataspace.
@@ -150,47 +159,13 @@ public interface CpsModuleService {
      * The system will ignore the namespace of all module references.
      *
      * @param moduleReferencesToCheck the moduleReferencesToCheck
-     * @returns collection of module references (namespace will be always blank)
+     * @return collection of module references (namespace will be always blank)
      */
-    Collection<ModuleReference> identifyNewModuleReferences(
-        Collection<ModuleReference> moduleReferencesToCheck);
+    Collection<ModuleReference> identifyNewModuleReferences(Collection<ModuleReference> moduleReferencesToCheck);
 
     /**
-     * Retrieves module references based on the provided dataspace name, anchor name and attribute filters
-     * for both parent and child fragments.
-
-     * This method constructs and executes a SQL query to find module references from a database, using
-     * the specified `dataspaceName`, `anchorName` and two sets of attribute filters: one for parent fragments
-     * and one for child fragments. The method applies these filters to identify the appropriate fragments
-     * and schema sets, and then retrieves the corresponding module references.
-
-     * The SQL query is dynamically built based on the provided attribute filters:
-     * - The `parentAttributes` map is used to filter the parent fragments. The entries in this map are
-     * converted into a WHERE clause for the parent fragments.
-     * - The `childAttributes` map is used to filter the child fragments. This is applied to the child fragments
-     * after filtering the parent fragments.
-     *
-     * @param dataspaceName    the name of the dataspace to filter on. It is used to locate the relevant dataspace
-     *                         in the database.
-     * @param anchorName       the name of the anchor to filter on. It is used to locate the relevant anchor within
-     *                         the dataspace.
-     * @param parentAttributes a map of attributes to filter parent fragments. Each entry in this map represents
-     *                         an attribute key-value pair used in the WHERE clause for parent fragments.
-     * @param childAttributes  a map of attributes to filter child fragments. Each entry in this map represents
-     *                         an attribute key-value pair used in the WHERE clause for child fragments.
-     * @return a collection of {@link ModuleReference} objects that match the given criteria.
-     *     Each {@code ModuleReference} contains information about a module's name and revision.
-     * @implNote The method assumes that both `parentAttributes` and `childAttributes` maps contain at least
-     *     one entry. The first entry from `parentAttributes` is used to filter parent fragments,
-     *     and the first entry from `childAttributes` is used to filter child fragments.
+     * Remove any Yang Resource Modules and Schema Sets from the DB that are no longer referenced by any anchor.
      */
-    Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName, final String anchorName,
-                                                               final Map<String, String> parentAttributes,
-                                                               final Map<String, String> childAttributes);
-
-    /**
-     * Remove any Yang Resource Modules from the DB that are no longer referenced by any schema set.
-     */
-    void deleteUnusedYangResourceModules();
+    void deleteAllUnusedYangModuleData();
 
 }

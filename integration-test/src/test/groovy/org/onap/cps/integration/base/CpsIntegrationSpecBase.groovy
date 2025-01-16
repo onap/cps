@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -21,7 +21,6 @@
 
 package org.onap.cps.integration.base
 
-import com.hazelcast.collection.ISet
 import com.hazelcast.map.IMap
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
@@ -29,24 +28,23 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.api.model.DataNode
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyQueryService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.utils.SessionManager
-import org.onap.cps.api.exceptions.DataspaceNotFoundException
-import org.onap.cps.api.model.DataNode
-import static org.onap.cps.utils.ContentType.*
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -136,9 +134,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
-    @Autowired
-    ISet<String> moduleSetTagsBeingProcessed
-
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
 
@@ -158,7 +153,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 10
+    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 2
 
     static initialized = false
     def now = OffsetDateTime.now()
@@ -167,6 +162,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
+            cpsAnchorService.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'owner-of-bookstore-schema-set-do-not-delete')
             initialized = true
         }
         mockDmiServer1.setDispatcher(dmiDispatcher1)
@@ -186,7 +182,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
         mockPolicyServer.shutdown()
-        moduleSetTagsBeingProcessed.clear()
+        cpsModuleService.deleteAllUnusedYangModuleData()
     }
 
     def static readResourceDataFile(filename) {

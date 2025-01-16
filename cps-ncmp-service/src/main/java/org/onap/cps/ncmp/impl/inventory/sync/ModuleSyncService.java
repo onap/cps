@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,24 +26,18 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
-import com.hazelcast.collection.ISet;
 import java.time.OffsetDateTime;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.api.exceptions.SchemaSetNotFoundException;
+import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.model.ModuleReference;
-import org.onap.cps.api.parameters.CascadeDeleteAllowed;
-import org.onap.cps.ncmp.api.exceptions.NcmpException;
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -54,15 +48,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ModuleSyncService {
 
-    private static final Map<String, String> NO_NEW_MODULES = Collections.emptyMap();
-
     private final DmiModelOperations dmiModelOperations;
     private final CpsModuleService cpsModuleService;
     private final CpsDataService cpsDataService;
     private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
-    private final ISet<String> moduleSetTagsBeingProcessed;
-    private final Map<String, ModuleDelta> privateModuleSetCache = new HashMap<>();
 
     @AllArgsConstructor
     private static final class ModuleDelta {
@@ -71,42 +61,16 @@ public class ModuleSyncService {
     }
 
     /**
-     * This method creates a cm handle and initiates modules sync.
+     * Creates a CM handle and initiates the synchronization of modules to create a schema set and anchor.
      *
      * @param yangModelCmHandle the yang model of cm handle.
      */
     public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
+        final String cmHandleId = yangModelCmHandle.getId();
         final String moduleSetTag = yangModelCmHandle.getModuleSetTag();
-        final ModuleDelta moduleDelta;
-        boolean isNewModuleSetTag = Strings.isNotBlank(moduleSetTag);
-        try {
-            if (privateModuleSetCache.containsKey(moduleSetTag)) {
-                moduleDelta = privateModuleSetCache.get(moduleSetTag);
-            } else {
-                if (isNewModuleSetTag) {
-                    if (moduleSetTagsBeingProcessed.add(moduleSetTag)) {
-                        log.info("Processing new module set tag {}", moduleSetTag);
-                    } else {
-                        isNewModuleSetTag = false;
-                        throw new NcmpException("Concurrent processing of module set tag " + moduleSetTag,
-                            moduleSetTag + " already being processed for cm handle " + yangModelCmHandle.getId());
-                    }
-                }
-                moduleDelta = getModuleDelta(yangModelCmHandle, moduleSetTag);
-            }
-            final String cmHandleId = yangModelCmHandle.getId();
-            cpsModuleService.createSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
-                moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
-            cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, cmHandleId);
-            if (isNewModuleSetTag) {
-                final ModuleDelta noModuleDelta = new ModuleDelta(moduleDelta.allModuleReferences, NO_NEW_MODULES);
-                privateModuleSetCache.put(moduleSetTag, noModuleDelta);
-            }
-        } finally {
-            if (isNewModuleSetTag) {
-                moduleSetTagsBeingProcessed.remove(moduleSetTag);
-            }
-        }
+        final String schemaSetName = getSchemaSetName(cmHandleId, moduleSetTag);
+        syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName);
+        cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
     }
 
     /**
@@ -115,53 +79,59 @@ public class ModuleSyncService {
      * @param yangModelCmHandle the yang model of cm handle.
      */
     public void syncAndUpgradeSchemaSet(final YangModelCmHandle yangModelCmHandle) {
-        final String upgradedModuleSetTag = ModuleOperationsUtils.getUpgradedModuleSetTagFromLockReason(
+        final String cmHandleId = yangModelCmHandle.getId();
+        final String sourceModuleSetTag = yangModelCmHandle.getModuleSetTag();
+        final String targetModuleSetTag = ModuleOperationsUtils.getTargetModuleSetTagFromLockReason(
                 yangModelCmHandle.getCompositeState().getLockReason());
-        final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle, upgradedModuleSetTag);
-        cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                yangModelCmHandle.getId(), moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
-        setCmHandleModuleSetTag(yangModelCmHandle, upgradedModuleSetTag);
-    }
-
-    /**
-     * Deletes the SchemaSet for schema set id if the SchemaSet Exists.
-     *
-     * @param schemaSetId the schema set id to be deleted
-     */
-    public void deleteSchemaSetIfExists(final String schemaSetId) {
-        try {
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetId,
-                CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED);
-            log.debug("SchemaSet for {} has been deleted. Ready to be recreated.", schemaSetId);
-        } catch (final SchemaSetNotFoundException e) {
-            log.debug("No SchemaSet for {}. Assuming CmHandle has not been previously Module Synced.", schemaSetId);
-        }
-    }
-
-    public void clearPrivateModuleSetCache() {
-        privateModuleSetCache.clear();
-    }
-
-    private ModuleDelta getModuleDelta(final YangModelCmHandle yangModelCmHandle, final String targetModuleSetTag) {
-        final Map<String, String> newYangResources;
-        Collection<ModuleReference> allModuleReferences = getModuleReferencesByModuleSetTag(targetModuleSetTag);
-        if (allModuleReferences.isEmpty()) {
-            allModuleReferences = dmiModelOperations.getModuleReferences(yangModelCmHandle);
-            newYangResources = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                    cpsModuleService.identifyNewModuleReferences(allModuleReferences));
+        if (sourceModuleSetTag.isEmpty() && targetModuleSetTag.isEmpty()) {
+            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
+            cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                    cmHandleId, moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
         } else {
-            log.info("Found other cm handle having same module set tag: {}", targetModuleSetTag);
-            newYangResources = NO_NEW_MODULES;
+            final String targetSchemaSetName = getSchemaSetName(cmHandleId, targetModuleSetTag);
+            syncAndCreateSchemaSet(yangModelCmHandle, targetSchemaSetName);
+            cpsAnchorService.updateAnchorSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
+                    targetSchemaSetName);
+            setCmHandleModuleSetTag(yangModelCmHandle, targetModuleSetTag);
+            log.info("Upgrading schema set for CM handle ID: {}, Source Tag: {}, Target Tag: {}",
+                cmHandleId, sourceModuleSetTag, targetModuleSetTag);
         }
-        return new ModuleDelta(allModuleReferences, newYangResources);
     }
 
-    private Collection<ModuleReference> getModuleReferencesByModuleSetTag(final String moduleSetTag) {
-        if (Strings.isBlank(moduleSetTag)) {
-            return Collections.emptyList();
+    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String schemaSetName) {
+        if (isNewSchemaSet(schemaSetName)) {
+            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
+            try {
+                log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, yangModelCmHandle.getId());
+                cpsModuleService.createSchemaSetFromModules(
+                        NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                        schemaSetName,
+                        moduleDelta.newModuleNameToContentMap,
+                        moduleDelta.allModuleReferences
+                );
+                log.info("Successfully created Schema Set {} for CM Handle {}",
+                    schemaSetName, yangModelCmHandle.getId());
+            } catch (final AlreadyDefinedException | DuplicatedYangResourceException exception) {
+                log.warn("Schema Set {} already exists, no need to (re)create it for {}",
+                    schemaSetName, yangModelCmHandle.getId());
+            }
         }
-        return cpsModuleService.getModuleReferencesByAttribute(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                Map.of("module-set-tag", moduleSetTag), Map.of("cm-handle-state", CmHandleState.READY.name()));
+    }
+
+    private boolean isNewSchemaSet(final String schemaSetName) {
+        return !cpsModuleService.schemaSetExists(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName);
+    }
+
+    private ModuleDelta getModuleDelta(final YangModelCmHandle yangModelCmHandle) {
+        final Collection<ModuleReference> allModuleReferences =
+            dmiModelOperations.getModuleReferences(yangModelCmHandle);
+        final Collection<ModuleReference> newModuleReferences =
+                cpsModuleService.identifyNewModuleReferences(allModuleReferences);
+        final Map<String, String> newYangResources = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
+                newModuleReferences);
+        log.debug("Module delta calculated for CM handle ID: {}. All references: {}. New modules: {}",
+            yangModelCmHandle.getId(), allModuleReferences, newYangResources.keySet());
+        return new ModuleDelta(allModuleReferences, newYangResources);
     }
 
     private void setCmHandleModuleSetTag(final YangModelCmHandle yangModelCmHandle, final String newModuleSetTag) {
@@ -169,6 +139,10 @@ public class ModuleSyncService {
                 "cm-handles", Map.of("id", yangModelCmHandle.getId(), "module-set-tag", newModuleSetTag)));
         cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
                 jsonForUpdate, OffsetDateTime.now(), ContentType.JSON);
+    }
+
+    private static String getSchemaSetName(final String cmHandleId, final String moduleSetTag) {
+        return moduleSetTag.isEmpty() ? cmHandleId : moduleSetTag;
     }
 
 }
