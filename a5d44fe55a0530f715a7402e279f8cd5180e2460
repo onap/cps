@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "644024fa_71f6cf5c",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-16T16:54:40Z",
+      "side": 1,
+      "message": "This payload causes registration to fail with 400 error. Log shows exceptions:\n\n    HttpMessageNotReadableException: JSON parse error:\n    Cannot deserialize value of type `java.lang.String` from Object value\n\nIt seems nested properties are not allowed",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "a5d44fe55a0530f715a7402e279f8cd5180e2460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
