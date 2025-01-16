@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6cffee7_9937dad7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:28:15Z",
+      "side": 1,
+      "message": "move testware too!",
+      "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41d9e0b_a286ae14",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:28:15Z",
+      "side": 1,
+      "message": "You need to MOVE teh packages for the testware too, then you shoudl NOT need to import the object under test...",
+      "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7fefaf0_7f33d4e5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:28:15Z",
+      "side": 1,
+      "message": "move testware too!",
+      "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
