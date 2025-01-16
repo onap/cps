@@ -828,6 +828,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23996a2a_aa4a52d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/SchemaSetYangResourceRepositoryImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:45:52Z",
+      "side": 1,
+      "message": "perfect",
+      "parentUuid": "b3a17606_e339c514",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 116
+      },
+      "revId": "acc5b554264f048f6a784520518a20dfc98b2734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fc42491_1a132034",

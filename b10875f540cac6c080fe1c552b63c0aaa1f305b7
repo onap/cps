@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5231ac01_a8ff1b48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:45:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f614e058_58947768",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 15
+      },
+      "revId": "b10875f540cac6c080fe1c552b63c0aaa1f305b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18f0ec51_39ec315d",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-01-14T17:01:30Z",
       "side": 1,
       "message": "NB: Deletes multiple anchors identified by their IDs.",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 101,
+        "endChar": 32
+      },
+      "revId": "b10875f540cac6c080fe1c552b63c0aaa1f305b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "837c41d2_f5734ae4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistence.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:45:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18f0ec51_39ec315d",
       "range": {
         "startLine": 101,
         "startChar": 7,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c44f317_c23832f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:45:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a390717_bd74561e",
+      "range": {
+        "startLine": 64,
+        "startChar": 7,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "b10875f540cac6c080fe1c552b63c0aaa1f305b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af841540_4baff7b2",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-01-14T17:01:30Z",
       "side": 1,
       "message": "NB: ?",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 67
+      },
+      "revId": "b10875f540cac6c080fe1c552b63c0aaa1f305b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f50e18af_1afb1adb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:45:52Z",
+      "side": 1,
+      "message": "I think it is OK to ignore this test during normal builds. It was mainly for investigation purposes.\nSome off the asserts are very strict and can fail because of timing/ordering issues",
+      "parentUuid": "af841540_4baff7b2",
       "range": {
         "startLine": 67,
         "startChar": 4,
