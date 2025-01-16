@@ -33,4 +33,5 @@ public abstract class ServiceConfig {
     private Integer connectionTimeoutInSeconds = 1;
     private long readTimeoutInSeconds = 1;
     private long writeTimeoutInSeconds = 1;
+    private long responseTimeoutInSeconds = 60;
 }

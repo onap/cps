@@ -44,6 +44,7 @@ class DmiHttpClientConfigSpec extends Specification {
                 assert connectionTimeoutInSeconds == 4
                 assert readTimeoutInSeconds == 5
                 assert writeTimeoutInSeconds == 6
+                assert responseTimeoutInSeconds == 60
             }
     }
 
@@ -56,6 +57,7 @@ class DmiHttpClientConfigSpec extends Specification {
                 assert connectionTimeoutInSeconds == 14
                 assert readTimeoutInSeconds == 15
                 assert writeTimeoutInSeconds == 16
+                assert responseTimeoutInSeconds == 60
             }
     }
 
@@ -68,6 +70,7 @@ class DmiHttpClientConfigSpec extends Specification {
                 assert connectionTimeoutInSeconds == 24
                 assert readTimeoutInSeconds == 25
                 assert writeTimeoutInSeconds == 26
+                assert responseTimeoutInSeconds == 60
             }
     }
 }
