@@ -22,6 +22,30 @@
       },
       "revId": "ecfff5cb108e9679ee155a45becaa36a7e9c9059",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e01601_d372198b",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-16T16:38:17Z",
+      "side": 0,
+      "message": "The DELETED metric is a bit different from the others:\n1. This gauge will only ever increase, while others go up and down.\n2. After a restart, this metric goes to zero and can\u0027t be recovered.\n\nAll the other metrics can be obtained from the DB.\nTbh, it could still be useful info to have, while bearing the above in mind.",
+      "parentUuid": "6dba7236_9b49c69a",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "ecfff5cb108e9679ee155a45becaa36a7e9c9059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
