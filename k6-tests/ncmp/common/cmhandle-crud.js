@@ -53,9 +53,12 @@ function createCmHandlePayload(cmHandleIds) {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
             "cmHandle": cmHandleId,
-            "alternateId": cmHandleId.replace('ch-', 'alt-'),
+            "alternateId": 'Subnetwork=Europe,ManagedElement=X' + cmHandleId,
             "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
-            "cmHandleProperties": {"neType": "RadioNode"},
+            "cmHandleProperties": {
+                "id": "123",
+                "attributes": {"userLabel": "test"}
+            },
             "publicCmHandleProperties": {
                 "Color": "yellow",
                 "Size": "small",

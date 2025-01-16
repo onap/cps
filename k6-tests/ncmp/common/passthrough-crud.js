@@ -29,7 +29,7 @@ import {
 
 export function passthroughRead(useAlternateId) {
     const cmHandleReference = getRandomCmHandleReference(useAlternateId);
-    const resourceIdentifier = 'my-resource-identifier';
+    const resourceIdentifier = 'NRCellDU/attributes/cellLocalId';
     const datastoreName = 'ncmp-datastore:passthrough-operational';
     const includeDescendants = true;
     const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
@@ -38,11 +38,14 @@ export function passthroughRead(useAlternateId) {
 
 export function passthroughWrite(useAlternateId) {
     const cmHandleReference = getRandomCmHandleReference(useAlternateId);
-    const resourceIdentifier = 'my-resource-identifier';
+    const resourceIdentifier = 'NRCellDU/attributes/cellLocalId';
     const datastoreName = 'ncmp-datastore:passthrough-running';
     const includeDescendants = false;
     const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
-    const payload = JSON.stringify({"neType": "BaseStation"});
+    const payload = JSON.stringify({
+        "id": "123",
+        "attributes": {"userLabel": "test"}
+    });
     return performPostRequest(url, payload, 'passthroughWrite');
 }
 
@@ -51,10 +54,10 @@ export function legacyBatchRead(cmHandleIds) {
     const payload = JSON.stringify({
         "operations": [
             {
-                "resourceIdentifier": "parent/child",
+                "resourceIdentifier": "NRCellDU/attributes/cellLocalId",
                 "targetIds": cmHandleIds,
                 "datastore": "ncmp-datastore:passthrough-operational",
-                "options": "(fields=schemas/schema)",
+                "options": "(fields=NRCellDU/attributes/cellLocalId)",
                 "operationId": "12",
                 "operation": "read"
             }
@@ -64,7 +67,7 @@ export function legacyBatchRead(cmHandleIds) {
 }
 
 function getRandomCmHandleReference(useAlternateId) {
-    const prefix = useAlternateId ? 'alt' : 'ch';
+    const prefix = useAlternateId ? 'Subnetwork=Europe,ManagedElement=X' : 'ch';
     return `${prefix}-${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
 
