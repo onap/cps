@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024 Nordix Foundation.
+ * Copyright (c) 2024-2025 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,19 +23,23 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.Data
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent
 import org.onap.cps.ncmp.utils.events.CloudEventMapper
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
+@ContextConfiguration(classes = [CpsApplicationContext])
 class DmiInEventProducerSpec extends Specification {
 
     def mockEventsPublisher = Mock(EventsPublisher)
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    def objectUnderTest = new DmiInEventProducer(mockEventsPublisher, jsonObjectMapper)
+    def objectUnderTest = new DmiInEventProducer(mockEventsPublisher)
 
     def 'Create and Publish Cm Notification Subscription DMI In Event'() {
         given: 'a cm subscription for a dmi plugin'

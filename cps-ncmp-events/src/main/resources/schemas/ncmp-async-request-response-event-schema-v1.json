@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:ncmp-async-request-response-event-schema:v1",
+  "$id": "urn:cps:org.onap.cps.ncmp.dmi.events:cm-handle-trust-level:1.0.0",
   "$ref": "#/definitions/NcmpAsyncRequestResponseEvent",
   "definitions": {
     "NcmpAsyncRequestResponseEvent": {
