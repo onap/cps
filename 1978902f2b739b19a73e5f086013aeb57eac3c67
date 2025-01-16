@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9acf25f_0ccb4107",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:36:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fcfaba34_a1f87917",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "574b15a0_3c5f6212",
@@ -61,6 +85,30 @@
       "writtenOn": "2025-01-16T14:23:42Z",
       "side": 1,
       "message": "see my previous comment about this X",
+      "range": {
+        "startLine": 70,
+        "startChar": 70,
+        "endLine": 70,
+        "endChar": 71
+      },
+      "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b47b66_e518cbfd",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:36:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "574b15a0_3c5f6212",
       "range": {
         "startLine": 70,
         "startChar": 70,
