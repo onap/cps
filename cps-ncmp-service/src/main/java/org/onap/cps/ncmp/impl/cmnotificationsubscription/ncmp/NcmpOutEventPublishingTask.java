@@ -30,7 +30,6 @@ import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
-import org.onap.cps.utils.JsonObjectMapper;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -40,7 +39,6 @@ public class NcmpOutEventPublishingTask implements Runnable {
     private final String subscriptionId;
     private final String eventType;
     private final EventsPublisher<CloudEvent> eventsPublisher;
-    private final JsonObjectMapper jsonObjectMapper;
     private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiCacheHandler dmiCacheHandler;
 
@@ -55,7 +53,7 @@ public class NcmpOutEventPublishingTask implements Runnable {
         final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEvent(subscriptionId,
                 dmiSubscriptionsPerDmi);
         eventsPublisher.publishCloudEvent(topicName, subscriptionId,
-                buildAndGetNcmpOutEventAsCloudEvent(jsonObjectMapper, subscriptionId, eventType,
+                buildAndGetNcmpOutEventAsCloudEvent(subscriptionId, eventType,
                         ncmpOutEvent));
         dmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId);
     }

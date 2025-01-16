@@ -20,14 +20,14 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi;
 
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.SUBSCRIPTIONS_EVENT_V1;
+
 import io.cloudevents.CloudEvent;
-import io.cloudevents.core.builder.CloudEventBuilder;
-import java.net.URI;
-import java.util.UUID;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
-import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -38,7 +38,6 @@ import org.springframework.stereotype.Component;
 public class DmiInEventProducer {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
-    private final JsonObjectMapper jsonObjectMapper;
 
     @Value("${app.ncmp.avc.cm-subscription-dmi-in}")
     private String dmiInEventTopic;
@@ -58,13 +57,11 @@ public class DmiInEventProducer {
 
     }
 
-    private CloudEvent buildAndGetDmiInEventAsCloudEvent(final String subscriptionId,
-            final String dmiPluginName, final String eventType, final DmiInEvent dmiInEvent) {
-        return CloudEventBuilder.v1().withId(UUID.randomUUID().toString()).withType(eventType)
-                       .withSource(URI.create("NCMP"))
-                       .withDataSchema(URI.create("org.onap.ncmp.dmi.cm.subscription:1.0.0"))
-                       .withExtension("correlationid", subscriptionId.concat("#").concat(dmiPluginName))
-                       .withData(jsonObjectMapper.asJsonBytes(dmiInEvent)).build();
+    private CloudEvent buildAndGetDmiInEventAsCloudEvent(final String subscriptionId, final String dmiPluginName,
+            final String eventType, final DmiInEvent dmiInEvent) {
+        return NcmpEvent.builder().type(eventType).dataSchema(SUBSCRIPTIONS_EVENT_V1.getDataSchema())
+                       .extensions(Map.of("correlationid", subscriptionId.concat("#").concat(dmiPluginName)))
+                       .data(dmiInEvent).build().asCloudEvent();
     }
 
 

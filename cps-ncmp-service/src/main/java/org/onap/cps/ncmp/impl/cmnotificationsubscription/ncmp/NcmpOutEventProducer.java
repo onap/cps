@@ -20,11 +20,10 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp;
 
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.SUBSCRIPTIONS_EVENT_V1;
+
 import io.cloudevents.CloudEvent;
-import io.cloudevents.core.builder.CloudEventBuilder;
-import java.net.URI;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -35,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
-import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -53,7 +52,6 @@ public class NcmpOutEventProducer {
     private Integer dmiOutEventTimeoutInMs;
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
-    private final JsonObjectMapper jsonObjectMapper;
     private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiCacheHandler dmiCacheHandler;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -94,7 +92,7 @@ public class NcmpOutEventProducer {
     private ScheduledFuture<?> scheduleAndPublishNcmpOutEvent(final String subscriptionId, final String eventType) {
         final NcmpOutEventPublishingTask ncmpOutEventPublishingTask =
                 new NcmpOutEventPublishingTask(ncmpOutEventTopic, subscriptionId, eventType, eventsPublisher,
-                        jsonObjectMapper, ncmpOutEventMapper, dmiCacheHandler);
+                        ncmpOutEventMapper, dmiCacheHandler);
         return scheduledExecutorService.schedule(ncmpOutEventPublishingTask, dmiOutEventTimeoutInMs,
                 TimeUnit.MILLISECONDS);
     }
@@ -113,7 +111,7 @@ public class NcmpOutEventProducer {
     private void publishNcmpOutEventNow(final String subscriptionId, final String eventType,
             final NcmpOutEvent ncmpOutEvent) {
         final CloudEvent ncmpOutEventAsCloudEvent =
-                buildAndGetNcmpOutEventAsCloudEvent(jsonObjectMapper, subscriptionId, eventType, ncmpOutEvent);
+                buildAndGetNcmpOutEventAsCloudEvent(subscriptionId, eventType, ncmpOutEvent);
         eventsPublisher.publishCloudEvent(ncmpOutEventTopic, subscriptionId, ncmpOutEventAsCloudEvent);
         dmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId);
     }
@@ -121,19 +119,18 @@ public class NcmpOutEventProducer {
     /**
      * Get an NCMP out event as cloud event.
      *
-     * @param jsonObjectMapper JSON object mapper
      * @param subscriptionId   subscription id
      * @param eventType        event type
      * @param ncmpOutEvent     cm notification subscription NCMP out event
      * @return cm notification subscription NCMP out event as cloud event
      */
-    public static CloudEvent buildAndGetNcmpOutEventAsCloudEvent(final JsonObjectMapper jsonObjectMapper,
+    public static CloudEvent buildAndGetNcmpOutEventAsCloudEvent(
             final String subscriptionId, final String eventType, final NcmpOutEvent ncmpOutEvent) {
 
-        return CloudEventBuilder.v1().withId(UUID.randomUUID().toString()).withType(eventType)
-                       .withSource(URI.create("NCMP")).withDataSchema(URI.create("org.onap.ncmp.cm.subscription:1.0.0"))
-                       .withExtension("correlationid", subscriptionId)
-                       .withData(jsonObjectMapper.asJsonBytes(ncmpOutEvent)).build();
+        return NcmpEvent.builder().type(eventType)
+                       .dataSchema(SUBSCRIPTIONS_EVENT_V1.getDataSchema())
+                       .extensions(Map.of("correlationid", subscriptionId))
+                       .data(ncmpOutEvent).build().asCloudEvent();
     }
 
 }

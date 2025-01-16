@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ public class NcmpEvent {
     private Object data;
     private Map<String, String> extensions;
     private String type;
+    private String dataSchema;
     @Builder.Default
     private static final String CLOUD_EVENT_SPEC_VERSION_V1 = "1.0.0";
     @Builder.Default
@@ -53,7 +54,7 @@ public class NcmpEvent {
                 .withId(UUID.randomUUID().toString())
                 .withSource(URI.create(CLOUD_EVENT_SOURCE))
                 .withType(type)
-                .withDataSchema(URI.create("urn:cps:" + type + ":" + CLOUD_EVENT_SPEC_VERSION_V1))
+                .withDataSchema(URI.create(dataSchema))
                 .withTime(EventDateTimeFormatter.toIsoOffsetDateTime(
                         EventDateTimeFormatter.getCurrentIsoFormattedDateTime()))
                 .withData(jsonObjectMapper.asJsonBytes(data));
