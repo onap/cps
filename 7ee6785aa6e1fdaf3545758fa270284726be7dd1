@@ -39,6 +39,23 @@
       },
       "revId": "7ee6785aa6e1fdaf3545758fa270284726be7dd1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed62ff6b_738bfd72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-16T14:16:12Z",
+      "side": 1,
+      "message": "This line causes NullPointerException for DELETED state.\nI see in grafana that DELETING counter never decreases, maybe this is the cause?",
+      "revId": "7ee6785aa6e1fdaf3545758fa270284726be7dd1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
