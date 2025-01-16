@@ -3,21 +3,25 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import org.onap.cps.events.EventsPublisher
+import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.Data
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent
 import org.onap.cps.ncmp.utils.events.CloudEventMapper
 import org.onap.cps.utils.JsonObjectMapper
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
+@ContextConfiguration(classes = [CpsApplicationContext])
 class NcmpOutEventProducerSpec extends Specification {
 
     def mockEventsPublisher = Mock(EventsPublisher)
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
     def mockDmiCacheHandler = Mock(DmiCacheHandler)
 
-    def objectUnderTest = new NcmpOutEventProducer(mockEventsPublisher, jsonObjectMapper, mockNcmpOutEventMapper, mockDmiCacheHandler)
+    def objectUnderTest = new NcmpOutEventProducer(mockEventsPublisher, mockNcmpOutEventMapper, mockDmiCacheHandler)
 
     def 'Create and #scenario Cm Notification Subscription NCMP out event'() {
         given: 'a cm subscription response for the client'
@@ -101,6 +105,5 @@ class NcmpOutEventProducerSpec extends Specification {
         and: 'no event published'
             0 * mockEventsPublisher.publishCloudEvent(*_)
     }
-
 
 }
