@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.impl.data.utils;
 
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.BATCH_RESPONSE_V1;
+
 import io.cloudevents.CloudEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +31,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
+import org.onap.cps.ncmp.events.NcmpEventDataSchema;
 import org.onap.cps.ncmp.events.async1_0_0.Data;
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent;
 import org.onap.cps.ncmp.events.async1_0_0.Response;
@@ -57,8 +60,13 @@ public class DataOperationEventCreator {
         final Data data = createPayloadFromDataOperationResponses(cmHandleIdsPerResponseCodesPerOperation);
         dataOperationEvent.setData(data);
         final Map<String, String> extensions = createDataOperationExtensions(requestId, clientTopic);
-        return NcmpEvent.builder().type(DataOperationEvent.class.getName())
-                .data(dataOperationEvent).extensions(extensions).build().asCloudEvent();
+        return NcmpEvent.builder()
+                       .type(DataOperationEvent.class.getName())
+                       .data(dataOperationEvent)
+                       .dataSchema(BATCH_RESPONSE_V1.getDataSchema())
+                       .extensions(extensions)
+                       .build()
+                       .asCloudEvent();
     }
 
     private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,
