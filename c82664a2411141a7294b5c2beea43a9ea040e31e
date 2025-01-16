@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "497c5a8c_0d93cfc0",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "not only for cm handle state , the timed annottation config is there too",
+      "parentUuid": "2cc30edf_70527a59",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f80d17a_6c7f422d",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-01-16T13:31:26Z",
       "side": 1,
       "message": "NB: STATE_TAG or TAG_FOR_STATE",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a6eb9a_da383a96",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f80d17a_6c7f422d",
       "range": {
         "startLine": 35,
         "startChar": 32,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8989788_c5562744",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7752245a_49b7dbae",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 52
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e94a1e90_b794507a",
@@ -117,6 +189,30 @@
       "writtenOn": "2025-01-16T13:31:26Z",
       "side": 1,
       "message": "NB: \nI suggest to renamet this bean into more relevant and specific one: CmHandleStateCacheConfig\n\nSince AdminCacheConfig is too generic, e.g. anything can be under adminCacheConfig but not in CmHandleStateCacheConfig other than cm handle states.",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a95e5336_83015621",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "will keep name of class to handle other admin cache config in future but will change map config name as suggested",
+      "parentUuid": "e94a1e90_b794507a",
       "range": {
         "startLine": 29,
         "startChar": 13,
@@ -150,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fc17450_7be117ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AdminCacheConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ce61b4a_aa3a8fe2",
+      "range": {
+        "startLine": 31,
+        "startChar": 74,
+        "endLine": 31,
+        "endChar": 93
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f1e0441_a4ca53a7",
@@ -163,6 +283,30 @@
       "writtenOn": "2025-01-16T12:27:00Z",
       "side": 1,
       "message": "NB: separately group the instance variables and static fields.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 49
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a2ccc2_7cce8089",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f1e0441_a4ca53a7",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -219,6 +363,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad4baa3_e3cfb592",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4527b501_5704e576",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 71
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecd33110_02de0c78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d83552ca_69ccb533",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d8408a7_6dd66094",
@@ -236,6 +428,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40550d1c_5204938d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d8408a7_6dd66094",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4887a2b8_70226714",
@@ -249,6 +459,30 @@
       "writtenOn": "2025-01-16T13:25:07Z",
       "side": 1,
       "message": "cmHandleState",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3056393_3bbbdb07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4887a2b8_70226714",
       "range": {
         "startLine": 55,
         "startChar": 33,
@@ -282,6 +516,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b90e754_45bfdf5e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deea1466_c2c98143",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f1f6a5c_44e4d7b0",
@@ -295,6 +553,30 @@
       "writtenOn": "2025-01-16T13:25:07Z",
       "side": 1,
       "message": "cmHandleCountForState",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97672d1e_ff6b2d51",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1f6a5c_44e4d7b0",
       "range": {
         "startLine": 59,
         "startChar": 26,
@@ -328,6 +610,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "345c4e58_7870cd74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "415d55d6_ec08d8bd",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34fa410a_eeaf8e95",
@@ -341,6 +647,24 @@
       "writtenOn": "2025-01-16T13:25:07Z",
       "side": 1,
       "message": "/**\n * Custom event triggered when the model onboarding process is completed.\n * Extends Spring\u0027s {@link ApplicationEvent} to be used within Spring\u0027s event-driven architecture.\n */",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "021c60b9_ccde441f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34fa410a_eeaf8e95",
       "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -368,6 +692,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e31ee3_c98f7d05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6aa206c_dc1047fc",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64880cd5_c8754c5c",
@@ -385,6 +733,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da30dea6_9b0a6b2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64880cd5_c8754c5c",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b4a5c2f_6850b776",
@@ -398,6 +764,30 @@
       "writtenOn": "2025-01-16T13:25:07Z",
       "side": 1,
       "message": "the query service returns a list of CmHandle IDs for the given state",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 49
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51de0155_5a50c0b6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b4a5c2f_6850b776",
       "range": {
         "startLine": 56,
         "startChar": 16,
@@ -431,6 +821,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "517c835f_9fd1f578",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfd29e00_950d7fd9",
+      "range": {
+        "startLine": 58,
+        "startChar": 14,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf73362c_c4d8ead5",
@@ -444,6 +858,30 @@
       "writtenOn": "2025-01-16T13:25:07Z",
       "side": 1,
       "message": "the metrics map is updated with the correct number of times for each state except DELETED, with the expected value",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 110
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad8b247_7b96c59f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-16T13:49:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf73362c_c4d8ead5",
       "range": {
         "startLine": 62,
         "startChar": 15,
