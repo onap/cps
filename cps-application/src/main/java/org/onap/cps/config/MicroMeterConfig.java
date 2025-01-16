@@ -32,8 +32,8 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class MicroMeterConfig {
 
-    private static final String TAG = "state";
-    private static final String CMHANDLE_STATE_GAUGE = "cmHandlesByState";
+    private static final String STATE_TAG = "state";
+    private static final String CM_HANDLE_STATE_GAUGE = "cmHandlesByState";
     final IMap<String, Integer> cmHandlesByState;
 
     @Bean
@@ -49,9 +49,9 @@ public class MicroMeterConfig {
      */
     @Bean
     public Gauge advisedCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
+        return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("advisedCmHandlesCount"))
-                .tag(TAG, "ADVISED")
+                .tag(STATE_TAG, "ADVISED")
                 .description("Current number of cmhandles in advised state")
                 .register(meterRegistry);
     }
@@ -64,9 +64,9 @@ public class MicroMeterConfig {
      */
     @Bean
     public Gauge readyCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
+        return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("readyCmHandlesCount"))
-                .tag(TAG, "READY")
+                .tag(STATE_TAG, "READY")
                 .description("Current number of cmhandles in ready state")
                 .register(meterRegistry);
     }
@@ -79,9 +79,9 @@ public class MicroMeterConfig {
      */
     @Bean
     public Gauge lockedCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
+        return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("lockedCmHandlesCount"))
-                .tag(TAG, "LOCKED")
+                .tag(STATE_TAG, "LOCKED")
                 .description("Current number of cmhandles in locked state")
                 .register(meterRegistry);
     }
@@ -94,25 +94,10 @@ public class MicroMeterConfig {
      */
     @Bean
     public Gauge deletingCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
+        return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("deletingCmHandlesCount"))
-                .tag(TAG, "DELETING")
+                .tag(STATE_TAG, "DELETING")
                 .description("Current number of cmhandles in deleting state")
-                .register(meterRegistry);
-    }
-
-    /**
-     * Register gauge metric for cm handles with state 'deleted'.
-     *
-     * @param meterRegistry meter registry
-     * @return cm handle state gauge
-     */
-    @Bean
-    public Gauge deletedCmHandles(final MeterRegistry meterRegistry) {
-        return Gauge.builder(CMHANDLE_STATE_GAUGE, cmHandlesByState,
-                        value -> cmHandlesByState.get("deletedCmHandlesCount"))
-                .tag(TAG, "DELETED")
-                .description("Current number of cmhandles in deleted state")
                 .register(meterRegistry);
     }
 

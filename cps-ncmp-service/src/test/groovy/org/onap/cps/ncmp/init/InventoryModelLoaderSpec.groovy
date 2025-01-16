@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationStartedEvent
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
@@ -42,7 +43,8 @@ class InventoryModelLoaderSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService)
+    def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
+    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -75,6 +77,8 @@ class InventoryModelLoaderSpec extends Specification {
             1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
         and: 'No schema sets are being removed by the module service (yet)'
             0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
+        and: 'application event publisher is called once'
+            1 * mockApplicationEventPublisher.publishEvent(_)
     }
 
 }
