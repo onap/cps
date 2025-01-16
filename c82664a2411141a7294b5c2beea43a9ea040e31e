@@ -66,6 +66,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4527b501_5704e576",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "NB:\n\nInitializes the CmHandle state monitor by querying the current state counts\nand storing them in the provided map.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 71
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d8408a7_6dd66094",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "@param ncmpModelOnboardingFinishedEvent the event that triggers the initialization",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4887a2b8_70226714",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "cmHandleState",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 39
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deea1466_c2c98143",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "stateMetricKey",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f1f6a5c_44e4d7b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "cmHandleCountForState",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415d55d6_ec08d8bd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
         "patchSetId": 3
@@ -89,6 +198,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34fa410a_eeaf8e95",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "/**\n * Custom event triggered when the model onboarding process is completed.\n * Extends Spring\u0027s {@link ApplicationEvent} to be used within Spring\u0027s event-driven architecture.\n */",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6aa206c_dc1047fc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
         "patchSetId": 3
@@ -105,6 +231,92 @@
         "startChar": 13,
         "endLine": 25,
         "endChar": 22
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64880cd5_c8754c5c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpModelOnboardingFinishedEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "/**\n     * Creates a new instance of NcmpModelOnboardingFinishedEvent.\n     *\n     * @param source the object that is the source of the event (typically the source that completed the onboarding process)\n     */",
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4a5c2f_6850b776",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "the query service returns a list of CmHandle IDs for the given state",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 56,
+        "endChar": 49
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd29e00_950d7fd9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "a mocked NcmpModelOnboardingFinishedEvent is triggered",
+      "range": {
+        "startLine": 58,
+        "startChar": 14,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf73362c_c4d8ead5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitorSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T13:25:07Z",
+      "side": 1,
+      "message": "the metrics map is updated with the correct number of times for each state except DELETED, with the expected value",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 62,
+        "endChar": 110
       },
       "revId": "c82664a2411141a7294b5c2beea43a9ea040e31e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
