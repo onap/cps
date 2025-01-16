@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7fbd0f_b6190d68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/NcmpPersistence.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-16T14:59:15Z",
+      "side": 1,
+      "message": "Nb. Call it \u0027cmHandleIds\u0027 or \u0027anchorNames\u0027\n\n\u0027anchorIds\u0027 may be confusing since in cps-ri, _anchorId_ refers to the entity ID in the DB, while _anchorName_ is a string like cmHandleId. In the context of NCMP _NFP-Operational_, anchor name is always cmHandleId.",
+      "range": {
+        "startLine": 105,
+        "startChar": 42,
+        "endLine": 105,
+        "endChar": 51
+      },
+      "revId": "9df4a57a05e3ee67ff96284a4f7b1b07c94600b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
