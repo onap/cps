@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "809bc642_a7f67646",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ServiceConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:13:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "84954307_dabd715e",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "ce286e4e5a336408da22d6908bfd0f318a677995",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58ab59fe_17b3fa20",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-01-16T16:04:11Z",
       "side": 1,
       "message": "NB:2024-2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "ce286e4e5a336408da22d6908bfd0f318a677995",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d83b40_ae9b3aa0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/WebClientConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:13:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58ab59fe_17b3fa20",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "257fde76_c2c09683",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:13:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3aca65c8_763ec0b9",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "ce286e4e5a336408da22d6908bfd0f318a677995",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08cfd941_3f45123f",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-01-16T16:04:11Z",
       "side": 1,
       "message": "NB: you can add the same test to PolicyExecutorHttpClientConfigSpec.groovy",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 53
+      },
+      "revId": "ce286e4e5a336408da22d6908bfd0f318a677995",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab401653_477f97a6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/DmiHttpClientConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-16T16:13:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08cfd941_3f45123f",
       "range": {
         "startLine": 47,
         "startChar": 16,
