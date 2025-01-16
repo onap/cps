@@ -22,6 +22,53 @@
       },
       "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcfaba34_a1f87917",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:23:42Z",
+      "side": 1,
+      "message": "I also don\u0027t like the \u0027X@ in the alt ID\n\nI think the result aleternate id shodld be somethign like \n\n\u0027Subnetwork\u003dEurope,ManagedElement\u003d123\u0027",
+      "parentUuid": "d78c0ca0_f9dbd4fc",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 77
+      },
+      "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "574b15a0_3c5f6212",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-16T14:23:42Z",
+      "side": 1,
+      "message": "see my previous comment about this X",
+      "range": {
+        "startLine": 70,
+        "startChar": 70,
+        "endLine": 70,
+        "endChar": 71
+      },
+      "revId": "1978902f2b739b19a73e5f086013aeb57eac3c67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
