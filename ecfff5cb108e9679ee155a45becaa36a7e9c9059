@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dba7236_9b49c69a",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-16T16:09:21Z",
+      "side": 0,
+      "message": "NB: remind me why did we remove this bean???",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "ecfff5cb108e9679ee155a45becaa36a7e9c9059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
