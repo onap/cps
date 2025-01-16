@@ -200,6 +200,7 @@ services:
     volumes:
       - ./config/grafana/provisioning/:/etc/grafana/provisioning/
       - ./config/grafana/jvm-micrometer-dashboard.json:/var/lib/grafana/dashboards/jvm-micrometer-dashboard.json
+      - ./config/grafana/lcm-state-dashboard.json:/var/lib/grafana/dashboards/lcm-state-dashboard.json
       - grafana:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
