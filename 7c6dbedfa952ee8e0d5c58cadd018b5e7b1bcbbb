@@ -39,6 +39,30 @@
       },
       "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a27bbf9a_aa7d12de",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-17T13:48:53Z",
+      "side": 1,
+      "message": "managed object instance as per 3gpp standards.",
+      "parentUuid": "2d62c951_bf8b09ed",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
