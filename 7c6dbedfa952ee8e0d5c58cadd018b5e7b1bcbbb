@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "349b2aa7_6c242340",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-17T13:37:18Z",
+      "side": 1,
+      "message": "looks good, just need to know what moi means :)",
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d62c951_bf8b09ed",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-17T13:37:18Z",
+      "side": 1,
+      "message": "moi meaning?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
