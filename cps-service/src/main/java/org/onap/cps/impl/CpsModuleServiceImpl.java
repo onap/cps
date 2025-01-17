@@ -21,7 +21,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.impl;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;

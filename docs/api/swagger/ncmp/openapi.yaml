@@ -38,7 +38,7 @@ paths:
         examples:
           sample 1:
             value:
-              resourceIdentifier: "\GNBDUFunction"
+              resourceIdentifier: \GNBDUFunction
           sample 2:
             value:
               resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -155,7 +155,7 @@ paths:
         examples:
           sample 1:
             value:
-              resourceIdentifier: "\GNBDUFunction"
+              resourceIdentifier: \GNBDUFunction
           sample 2:
             value:
               resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -299,7 +299,7 @@ paths:
         examples:
           sample 1:
             value:
-              resourceIdentifier: "\GNBDUFunction"
+              resourceIdentifier: \GNBDUFunction
           sample 2:
             value:
               resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -419,7 +419,7 @@ paths:
         examples:
           sample 1:
             value:
-              resourceIdentifier: "\GNBDUFunction"
+              resourceIdentifier: \GNBDUFunction
           sample 2:
             value:
               resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -544,7 +544,7 @@ paths:
         examples:
           sample 1:
             value:
-              resourceIdentifier: "\GNBDUFunction"
+              resourceIdentifier: \GNBDUFunction
           sample 2:
             value:
               resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -1542,7 +1542,7 @@ components:
       examples:
         sample 1:
           value:
-            resourceIdentifier: "\GNBDUFunction"
+            resourceIdentifier: \GNBDUFunction
         sample 2:
           value:
             resourceIdentifier: "\\GNBDUFunction[@gNBId='1001']"
@@ -1872,19 +1872,13 @@ components:
     RestModuleDefinition:
       example:
         moduleName: my-module-name
-        content: |
-          module _3gpp-nr-nrm-gnbdufunction {
-            yang-version 1.1;
-            namespace 'urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction';
-            prefix gnbdu3gpp;
-            revision '2020-09-15' {
-              description
-              'Defines the YANG mapping of the GNBDUFunction Information 
-               Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-               Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-               TTA, TTC). All rights reserved.';
-            }
-          }
+        content: "module _3gpp-nr-nrm-gnbdufunction {\n  yang-version 1.1;\n  namespace\
+          \ 'urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction';\n  prefix gnbdu3gpp;\n  revision\
+          \ '2020-09-15' {\n    description\n    'Defines the YANG mapping of the\
+          \ GNBDUFunction Information \n     Object Class (IOC) that is part of the\
+          \ NR Network Resource Model (NRM). \n     Copyright 2024, 3GPP Organizational\
+          \ Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,\n     TTA, TTC). All rights reserved.';\n\
+          \  }\n}\n"
         revision: 2020-09-15
       properties:
         moduleName:
@@ -1894,17 +1888,13 @@ components:
           example: 2020-09-15
           type: string
         content:
-          example: |
-            module _3gpp-nr-nrm-gnbdufunction {
-            yang-version 1.1;
-            namespace 'urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction';
-            prefix gnbdu3gpp;
-            revision '2020-09-15' {
-              description
-              'Defines the YANG mapping of the GNBDUFunction Information 
-               Object Class (IOC) that is part of the NR Network Resource Model (NRM).
-               Copyright 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,
-               TTA, TTC). All rights reserved.';
+          example: "module _3gpp-nr-nrm-gnbdufunction {\n  yang-version 1.1;\n  namespace\
+            \ 'urn:3gpp:sa5:_3gpp-nr-nrm-gnbdufunction';\n  prefix gnbdu3gpp;\n  revision\
+            \ '2020-09-15' {\n    description\n    'Defines the YANG mapping of the\
+            \ GNBDUFunction Information \n     Object Class (IOC) that is part of\
+            \ the NR Network Resource Model (NRM). \n     Copyright 2024, 3GPP Organizational\
+            \ Partners (ARIB, ATIS, CCSA, ETSI, TSDSI,\n     TTA, TTC). All rights\
+            \ reserved.';\n  }\n}\n"
           type: string
       title: Module definitions
       type: object

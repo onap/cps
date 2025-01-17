@@ -20,7 +20,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.impl;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import io.micrometer.core.instrument.Metrics;

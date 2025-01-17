@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl;
+package org.onap.cps.impl;
 
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;

@@ -21,7 +21,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.impl
+package org.onap.cps.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
