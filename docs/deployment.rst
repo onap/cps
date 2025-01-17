@@ -293,35 +293,69 @@ Any spring supported property can be configured by providing in ``config.additio
 
 Additional CPS-NCMP Customizations
 ==================================
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserName                  | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``                   |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.dmiPluginUserPassword              | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined                   |
-|                                           |                                                                                                         |                               |
-|                                           | If not defined, the password is generated when deploying the application.                               |                               |
-|                                           |                                                                                                         |                               |
-|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                        | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``5000``                      |
-| .advised-modules-sync.sleep-time-ms       |                                                                                                         |                               |
-|                                           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.ncmp.timers                        | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``                     |
-| .cm-handle-data-sync.sleep-time-ms        |                                                                                                         |                               |
-|                                           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.ncmp.dmi.httpclient     | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``30``                        |
-| .connectionTimeoutInSeconds               |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.ncmp.dmi.httpclient     | Specifies the maximum number of connections allowed per route in the HTTP client.                       | ``50``                        |
-| .maximumConnectionsPerRoute               |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.ncmp.dmi.httpclient     | Specifies the maximum total number of connections that can be held by the HTTP client.                  | ``100``                       |
-| .maximumConnectionsTotal                  |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| config.additional.ncmp.dmi.httpclient     | Specifies the duration in seconds for the threshold, after which idle connections will be evicted       | ``5``                         |
-| .idleConnectionEvictionThresholdInSeconds | from the connection pool by the HTTP client.                                                            |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
+
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| Property                                        | Description                                                                                             | Default Value |
++=================================================+=========================================================================================================+===============+
+| config.dmiPluginUserName                        | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``   |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.dmiPluginUserPassword                    | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined   |
+|                                                 |                                                                                                         |               |
+|                                                 | If not defined, the password is generated when deploying the application.                               |               |
+|                                                 |                                                                                                         |               |
+|                                                 | See also :ref:`cps_common_credentials_retrieval`.                                                       |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.ncmp.timers                              | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``5000``      |
+| .advised-modules-sync.sleep-time-ms             |                                                                                                         |               |
+|                                                 |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.ncmp.timers                              | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``     |
+| .cm-handle-data-sync.sleep-time-ms              |                                                                                                         |               |
+|                                                 |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Maximum size (in MB) of the in-memory buffer for HTTP response data.                                    | ``16``        |
+|.<policy-executor | dmi>                         |                                                                                                         |               |
+| .httpclient                                     |                                                                                                         |               |
+|.<all-services | data-services| model-services>  |                                                                                                         |               |
+| .maximumInMemorySizeInMegabytes                 |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Maximum number of simultaneous connections allowed in the connection pool.                              | ``100``       |
+|.<policy-executor | dmi>                         |                                                                                                         |               |
+| .httpclient                                     |                                                                                                         |               |
+|.<all-services | data-services| model-services>  |                                                                                                         |               |
+| .maximumConnectionsTotal                        |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Maximum number of pending requests when the connection pool is full.                                    | ``50``        |
+|.<policy-executor | dmi>                         |                                                                                                         |               |
+| .httpclient                                     |                                                                                                         |               |
+|.<all-services | data-services| model-services>  |                                                                                                         |               |
+| .pendingAcquireMaxCount                         |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``30``        |
+| .<policy-executor | dmi>                        |                                                                                                         |               |
+|  .httpclient                                    |                                                                                                         |               |
+| .<all-services | data-services| model-services> |                                                                                                         |               |
+| .connectionTimeoutInSeconds                     |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Timeout (in seconds) for reading data from the server after the connection is established.              | ``30``        |
+| .<policy-executor | dmi>                        |                                                                                                         |               |
+|  .httpclient                                    |                                                                                                         |               |
+| .<all-services | data-services| model-services> |                                                                                                         |               |
+| .readTimeoutInSeconds                           |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Timeout (in seconds) for writing data to the server.                                                    | ``30``        |
+| .<policy-executor | dmi>                        |                                                                                                         |               |
+|  .httpclient                                    |                                                                                                         |               |
+| .<all-services | data-services| model-services> |                                                                                                         |               |
+| .writeTimeoutInSeconds                          |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+| config.additional.ncmp                          | Total timeout (in seconds) for receiving a complete response, including all processing stages.          | ``60``        |
+| .<policy-executor | dmi>                        |                                                                                                         |               |
+|  .httpclient                                    |                                                                                                         |               |
+| .<all-services | data-services| model-services> |                                                                                                         |               |
+| .responseTimeoutInSeconds                       |                                                                                                         |               |
++-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
+
 
 CPS-Core Docker Installation
 ============================
