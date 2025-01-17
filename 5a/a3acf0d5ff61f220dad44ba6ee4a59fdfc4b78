@@ -1,0 +1,11 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+2: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Code-Review+1: Halil Cakal <halil.cakal@est.tech>
+Code-Review+2: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-by: Sourabh Sourabh <sourabh.sourabh@est.tech>
+Submitted-at: Fri, 17 Jan 2025 17:16:25 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/139956
+Project: cps
+Branch: refs/heads/master
