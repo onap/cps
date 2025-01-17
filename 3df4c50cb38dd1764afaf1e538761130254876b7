@@ -420,6 +420,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e388e3f_4db18284",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T09:49:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ebeba487_4dfe4b9c",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d882681d_337cb19b",
@@ -1546,6 +1570,30 @@
       "side": 1,
       "message": "there is a lot of good unit test around it, feels bad to remove it now if we for some reason want to introduce it again in other limited scenarios...",
       "parentUuid": "aa992e64_939026a4",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 5
+      },
+      "revId": "3df4c50cb38dd1764afaf1e538761130254876b7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5339bf7e_8cb4bb28",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsModuleServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T09:49:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9efb9638_3e13ab56",
       "range": {
         "startLine": 117,
         "startChar": 0,
