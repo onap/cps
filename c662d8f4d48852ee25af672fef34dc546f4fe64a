@@ -16,6 +16,24 @@
       "message": "You missed this one",
       "revId": "c662d8f4d48852ee25af672fef34dc546f4fe64a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c8412dc_3b79d915",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-01-17T10:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45f4920b_d798865c",
+      "revId": "c662d8f4d48852ee25af672fef34dc546f4fe64a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ec5e14_288f5111",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsAnchorServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-01-17T10:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b41d9e0b_a286ae14",
+      "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7fefaf0_7f33d4e5",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-01-16T14:28:15Z",
       "side": 1,
       "message": "move testware too!",
+      "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb74535_9225c6e2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-01-17T10:52:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7fefaf0_7f33d4e5",
       "revId": "f79045f3c97bae778ec6ba37058fa7478031c71b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
