@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation.
+ *  Copyright (C) 2024-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,4 +33,5 @@ public abstract class ServiceConfig {
     private Integer connectionTimeoutInSeconds = 1;
     private long readTimeoutInSeconds = 1;
     private long writeTimeoutInSeconds = 1;
+    private long responseTimeoutInSeconds = 60;
 }

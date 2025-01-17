@@ -207,6 +207,7 @@ ncmp:
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
     dmi:
         httpclient:
             data-services:
@@ -216,6 +217,7 @@ ncmp:
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
             model-services:
                 maximumInMemorySizeInMegabytes: 16
                 maximumConnectionsTotal: 100
@@ -223,6 +225,7 @@ ncmp:
                 connectionTimeoutInSeconds: 30
                 readTimeoutInSeconds: 30
                 writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
         auth:
             username: ${DMI_USERNAME:cpsuser}
             password: ${DMI_PASSWORD:cpsr0cks!}

@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation.
+ *  Copyright (C) 2024-2025 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ class PolicyExecutorHttpClientConfigSpec extends Specification {
                 assert pendingAcquireMaxCount == 33
                 assert connectionTimeoutInSeconds == 34
                 assert writeTimeoutInSeconds == 36
+                assert responseTimeoutInSeconds == 60
             }
     }
 
