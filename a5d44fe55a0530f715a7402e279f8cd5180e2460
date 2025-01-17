@@ -22,6 +22,30 @@
       },
       "revId": "a5d44fe55a0530f715a7402e279f8cd5180e2460",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72d58e40_7eac7b4a",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-17T10:12:47Z",
+      "side": 1,
+      "message": "we need to check if this a bug or not. Maybe just needs to be docuemnted",
+      "parentUuid": "644024fa_71f6cf5c",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "a5d44fe55a0530f715a7402e279f8cd5180e2460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
