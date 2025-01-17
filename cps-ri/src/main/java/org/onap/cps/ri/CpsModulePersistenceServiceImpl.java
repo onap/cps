@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -174,6 +174,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     }
 
     @Override
+    public boolean schemaSetExists(final String dataspaceName, final String schemaSetName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        return schemaSetRepository.existsByDataspaceAndName(dataspaceEntity, schemaSetName);
+    }
+
+    @Override
     public Collection<SchemaSet> getSchemaSetsByDataspaceName(final String dataspaceName) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findByDataspace(dataspaceEntity);
@@ -217,7 +223,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         schemaSetRepository.deleteByDataspaceAndNameIn(dataspaceEntity, schemaSetNames);
     }
 
-
     @Override
     @Transactional
     public void updateSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
@@ -232,23 +237,15 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    public void deleteUnusedYangResourceModules() {
-        yangResourceRepository.deleteOrphans();
+    public void deleteAllUnusedYangModuleData() {
+        schemaSetRepository.deleteOrphanedSchemaSets();
+        yangResourceRepository.deleteOrphanedYangResources();
     }
 
     @Override
     public Collection<ModuleReference> identifyNewModuleReferences(
         final Collection<ModuleReference> moduleReferencesToCheck) {
         return moduleReferenceRepository.identifyNewModuleReferences(moduleReferencesToCheck);
-    }
-
-    @Override
-    public Collection<ModuleReference> getModuleReferencesByAttribute(final String dataspaceName,
-                                                                      final String anchorName,
-                                                                      final Map<String, String> parentAttributes,
-                                                                      final Map<String, String> childAttributes) {
-        return moduleReferenceRepository.findModuleReferences(dataspaceName, anchorName, parentAttributes,
-                childAttributes);
     }
 
     private Set<YangResourceEntity> synchronizeYangResources(

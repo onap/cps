@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName, anchorName);
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         cpsAdminPersistenceService.createAnchor(dataspaceName, schemaSetName, anchorName);
     }
 
@@ -64,7 +64,7 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
 
     @Override
     public Collection<Anchor> getAnchorsBySchemaSetName(final String dataspaceName, final String schemaSetName) {
-        cpsValidator.validateNameCharacters(dataspaceName, schemaSetName);
+        cpsValidator.validateNameCharacters(dataspaceName);
         return cpsAdminPersistenceService.getAnchorsBySchemaSetName(dataspaceName, schemaSetName);
     }
 
@@ -72,7 +72,6 @@ public class CpsAnchorServiceImpl implements CpsAnchorService {
     public Collection<Anchor> getAnchorsBySchemaSetNames(final String dataspaceName,
                                                          final Collection<String> schemaSetNames) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        cpsValidator.validateNameCharacters(schemaSetNames);
         return cpsAdminPersistenceService.getAnchorsBySchemaSetNames(dataspaceName, schemaSetNames);
     }
 

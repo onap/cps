@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -22,7 +22,6 @@
 package org.onap.cps.integration.functional.cps
 
 import java.time.OffsetDateTime
-
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
@@ -60,17 +59,17 @@ class AnchorServiceIntegrationSpec extends FunctionalSpecBase {
         and: '1 anchor with "other" schema set is created'
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE, 'otherSchemaSet')
             objectUnderTest.createAnchor(GENERAL_TEST_DATASPACE, 'otherSchemaSet', 'anchor3')
-        then: 'there are 3 anchors in the general test database'
-            assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE).size() == 3
-        and: 'there are 2 anchors associated with bookstore schema set'
-            assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 2
+        then: 'there are 4 anchors in the general test database'
+            assert objectUnderTest.getAnchors(GENERAL_TEST_DATASPACE).size() == 4
+        and: 'there are 3 anchors associated with bookstore schema set'
+            assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET).size() == 3
         and: 'there is 1 anchor associated with other schema set'
             assert objectUnderTest.getAnchorsBySchemaSetName(GENERAL_TEST_DATASPACE, 'otherSchemaSet').size() == 1
     }
 
     def 'Querying anchor(name)s (depends on previous test!).'() {
-        expect: 'there are now 3 anchors using the "stores" module (both schema sets use the same modules) '
-            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'bookstore-types']).size() == 3
+        expect: 'there are now 4 anchors using the "stores" module (both schema sets use the same modules) '
+            assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'bookstore-types']).size() == 4
         and: 'there are no anchors using both "stores" and a "unused-model"'
             assert objectUnderTest.queryAnchorNames(GENERAL_TEST_DATASPACE, ['stores', 'unused-model']).size() == 0
     }

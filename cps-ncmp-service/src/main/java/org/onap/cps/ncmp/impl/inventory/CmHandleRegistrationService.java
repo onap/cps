@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -138,17 +138,20 @@ public class CmHandleRegistrationService {
 
     protected void processRemovedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
                                            final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
-        final List<String> tobeRemovedCmHandleIds = dmiPluginRegistration.getRemovedCmHandles();
+        final List<String> toBeRemovedCmHandleIds = dmiPluginRegistration.getRemovedCmHandles();
+        if (toBeRemovedCmHandleIds.isEmpty()) {
+            return;
+        }
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
-            new ArrayList<>(tobeRemovedCmHandleIds.size());
+            new ArrayList<>(toBeRemovedCmHandleIds.size());
         final Collection<YangModelCmHandle> yangModelCmHandles =
-            inventoryPersistence.getYangModelCmHandles(tobeRemovedCmHandleIds);
+            inventoryPersistence.getYangModelCmHandles(toBeRemovedCmHandleIds);
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETING);
 
         final Set<String> notDeletedCmHandles = new HashSet<>();
-        for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(tobeRemovedCmHandleIds, DELETE_BATCH_SIZE)) {
+        for (final List<String> tobeRemovedCmHandleBatch : Lists.partition(toBeRemovedCmHandleIds, DELETE_BATCH_SIZE)) {
             try {
-                batchDeleteCmHandlesFromDbAndCaches(tobeRemovedCmHandleBatch);
+                deleteCmHandlesFromDbAndCaches(tobeRemovedCmHandleBatch);
                 tobeRemovedCmHandleBatch.forEach(cmHandleId ->
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)));
 
@@ -201,8 +204,9 @@ public class CmHandleRegistrationService {
 
     protected void processUpdatedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
                                            final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
-        dmiPluginRegistrationResponse.setUpdatedCmHandles(cmHandleRegistrationServicePropertyHandler
-            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles()));
+        final List<CmHandleRegistrationResponse> updatedCmHandles = cmHandleRegistrationServicePropertyHandler
+            .updateCmHandleProperties(dmiPluginRegistration.getUpdatedCmHandles());
+        dmiPluginRegistrationResponse.setUpdatedCmHandles(updatedCmHandles);
     }
 
     protected void processUpgradedCmHandles(
@@ -275,7 +279,7 @@ public class CmHandleRegistrationService {
 
     private CmHandleRegistrationResponse deleteCmHandleAndGetCmHandleRegistrationResponse(final String cmHandleId) {
         try {
-            deleteCmHandleFromDbAndCaches(cmHandleId);
+            deleteCmHandlesFromDbAndCaches(Collections.singletonList(cmHandleId));
             return CmHandleRegistrationResponse.createSuccessResponse(cmHandleId);
         } catch (final DataNodeNotFoundException dataNodeNotFoundException) {
             log.error("Unable to find dataNode for cmHandleId : {} , caused by : {}",
@@ -298,16 +302,9 @@ public class CmHandleRegistrationService {
         lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
     }
 
-    private void deleteCmHandleFromDbAndCaches(final String cmHandleId) {
-        inventoryPersistence.deleteSchemaSetWithCascade(cmHandleId);
-        inventoryPersistence.deleteDataNode(NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']");
-        trustLevelManager.removeCmHandles(Collections.singleton(cmHandleId));
-        removeDeletedCmHandleFromModuleSyncMap(cmHandleId);
-    }
-
-    private void batchDeleteCmHandlesFromDbAndCaches(final Collection<String> cmHandleIds) {
-        inventoryPersistence.deleteSchemaSetsWithCascade(cmHandleIds);
+    private void deleteCmHandlesFromDbAndCaches(final Collection<String> cmHandleIds) {
         inventoryPersistence.deleteDataNodes(mapCmHandleIdsToXpaths(cmHandleIds));
+        inventoryPersistence.deleteAnchors(cmHandleIds);
         trustLevelManager.removeCmHandles(cmHandleIds);
         cmHandleIds.forEach(this::removeDeletedCmHandleFromModuleSyncMap);
     }
@@ -326,8 +323,11 @@ public class CmHandleRegistrationService {
 
     private List<CmHandleRegistrationResponse> upgradeCmHandles(final Map<YangModelCmHandle, CmHandleState>
                                                                     cmHandleStatePerCmHandle) {
+        if (cmHandleStatePerCmHandle.isEmpty()) {
+            return Collections.emptyList();
+        }
         final List<String> cmHandleIds = getCmHandleIds(cmHandleStatePerCmHandle);
-        log.info("Moving cm handles : {} into locked (for upgrade) state.", cmHandleIds);
+        log.info("Moving {} cm handles into locked (for upgrade) state: {} ", cmHandleIds.size(), cmHandleIds);
         try {
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
             return CmHandleRegistrationResponse.createSuccessResponses(cmHandleIds);
@@ -383,6 +383,5 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getAlternateId(),
             ncmpServiceCmHandle.getDataProducerIdentifier());
     }
-
 
 }

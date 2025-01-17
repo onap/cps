@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -77,8 +77,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             assert cachedValue.getModuleReferences() == expectedYangTextSchemaSourceSet.getModuleReferences()
         and: 'the response is as expected'
             assert result.getModuleReferences() == expectedYangTextSchemaSourceSet.getModuleReferences()
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
     }
 
     def 'Cache Hit: Respond from cache'() {
@@ -104,8 +104,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
         then: 'cached value is same as expected'
             def cachedValue = getCachedValue('my-dataspace', 'my-schemaset')
             cachedValue.getModuleReferences() == yangTextSchemaSourceSet.getModuleReferences()
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
     }
 
     def 'Cache Evict:with invalid #scenario'() {
@@ -119,8 +119,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             objectUnderTest.removeFromCache('my-dataspace', 'my-schemaset')
         then: 'cached does not have value'
             assert getCachedValue('my-dataspace', 'my-schemaset') == null
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
     }
 
     def 'Cache Evict: remove when does not exist'() {
@@ -130,8 +130,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
             objectUnderTest.removeFromCache('my-dataspace', 'my-schemaset')
         then: 'cached does not have value'
             assert getCachedValue('my-dataspace', 'my-schemaset') == null
-        and: 'the CpsValidator is called on the dataspaceName and schemaSetName'
-            1 * mockCpsValidator.validateNameCharacters('my-dataspace', 'my-schemaset')
+        and: 'the CpsValidator is called on the dataspaceName'
+            1 * mockCpsValidator.validateNameCharacters('my-dataspace')
     }
 
     def getCachedValue(dataSpace, schemaSet) {
@@ -141,6 +141,5 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
     def getCacheKey(dataSpace, schemaSet) {
         return new String("${dataSpace}-${schemaSet}")
     }
-
 
 }

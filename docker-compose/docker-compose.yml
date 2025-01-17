@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2020 Pantheon.tech.
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2022-2024 Nordix Foundation.
+# Modifications Copyright (C) 2022-2025 Nordix Foundation.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,6 +51,8 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ports:
       - ${CPS_PORT_RANGE:-8698-8699}:8080
+      ### DEBUG: Uncomment next line to enable java debugging (ensure 'ports' aligns with 'deploy')
+      ### - ${CPS_CORE_DEBUG_PORT:-5005}:5005-
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
@@ -66,9 +68,9 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
-      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
+      ####JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
       ### DEBUG: Uncomment next line to enable java debugging
-      ### DEBUG: JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
     depends_on:
       - dbpostgresql
@@ -79,9 +81,6 @@ services:
         limits:
           cpus: '3'
           memory: 2G
-    ### DEBUG: Uncomment next 2 lines to enable java debugging (ensure 'ports' aligns with 'deploy')
-    ### DEBUG ports:
-    ### DEBUG  - ${CPS_CORE_DEBUG_PORT:-5005}:5005
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}

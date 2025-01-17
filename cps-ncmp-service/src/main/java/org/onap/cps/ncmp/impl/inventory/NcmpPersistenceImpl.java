@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,57 +20,30 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_ALLOWED;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.api.exceptions.SchemaSetNotFoundException;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.impl.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @RequiredArgsConstructor
 @Component
 public class NcmpPersistenceImpl implements NcmpPersistence {
 
     protected final JsonObjectMapper jsonObjectMapper;
+    protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
-    private final CpsModuleService cpsModuleService;
-    private final CpsValidator cpsValidator;
 
     @Override
     public void deleteListOrListElement(final String listElementXpath) {
         cpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, listElementXpath,
                 NO_TIMESTAMP);
-    }
-
-    @Override
-    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete",
-            description = "Time taken to delete a schemaset")
-    public void deleteSchemaSetWithCascade(final String schemaSetName) {
-        try {
-            cpsValidator.validateNameCharacters(schemaSetName);
-            cpsModuleService.deleteSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName,
-                    CASCADE_DELETE_ALLOWED);
-        } catch (final SchemaSetNotFoundException schemaSetNotFoundException) {
-            log.warn("Schema set {} does not exist or already deleted", schemaSetName);
-        }
-    }
-
-    @Override
-    @Timed(value = "cps.ncmp.inventory.persistence.schemaset.delete.batch",
-        description = "Time taken to delete multiple schemaset")
-    public void deleteSchemaSetsWithCascade(final Collection<String> schemaSetNames) {
-        cpsValidator.validateNameCharacters(schemaSetNames);
-        cpsModuleService.deleteSchemaSetsWithCascade(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetNames);
     }
 
     @Override
@@ -114,6 +87,11 @@ public class NcmpPersistenceImpl implements NcmpPersistence {
     @Override
     public void deleteDataNodes(final Collection<String> dataNodeXpaths) {
         cpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, dataNodeXpaths, NO_TIMESTAMP);
+    }
+
+    @Override
+    public void deleteAnchors(final Collection<String> anchorIds) {
+        cpsAnchorService.deleteAnchors(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, anchorIds);
     }
 
 }
