@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4726794_c261c5f8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T17:45:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a01449f_f067f286",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 21
+      },
+      "revId": "55ecc5b60b99596e75e5be05a225d9101cd4c1d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b21a4290_94459c44",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "ignore as this section wil be removed",
       "parentUuid": "c3f4a782_ba18032f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "55ecc5b60b99596e75e5be05a225d9101cd4c1d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e7c78f_ac6a4c20",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T17:45:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b21a4290_94459c44",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -259,6 +307,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fea16b_1ebeb3d4",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T17:45:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d93629f6_dc0feb2e",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 301
+      },
+      "revId": "55ecc5b60b99596e75e5be05a225d9101cd4c1d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdddc7b2_91b3bf97",
@@ -306,6 +378,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1643aa_eb6b30fb",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T17:45:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f78d248f_a8e15abe",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "55ecc5b60b99596e75e5be05a225d9101cd4c1d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c8db166_d3a9f1ea",
@@ -319,6 +415,30 @@
       "writtenOn": "2025-01-17T16:34:51Z",
       "side": 1,
       "message": "It looks like some properties are already in this table,\n\nJust add to this tabel. All the additional text is not really needed",
+      "range": {
+        "startLine": 393,
+        "startChar": 2,
+        "endLine": 393,
+        "endChar": 39
+      },
+      "revId": "55ecc5b60b99596e75e5be05a225d9101cd4c1d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a130fe3_0558ea51",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T17:45:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9c8db166_d3a9f1ea",
       "range": {
         "startLine": 393,
         "startChar": 2,
