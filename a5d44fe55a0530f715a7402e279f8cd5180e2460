@@ -46,6 +46,30 @@
       },
       "revId": "a5d44fe55a0530f715a7402e279f8cd5180e2460",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162b8c5f_5fd506fe",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-17T11:15:23Z",
+      "side": 1,
+      "message": "Investigating as a separate task.",
+      "parentUuid": "644024fa_71f6cf5c",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "a5d44fe55a0530f715a7402e279f8cd5180e2460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
