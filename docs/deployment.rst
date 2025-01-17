@@ -31,6 +31,86 @@ This helps the JVM make the best use of the allocated resources while leaving en
 
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
 
+Service Config Properties
+=========================
+
+Overview
+--------
+
+- The Web client configuration is designed to create and configure instances of Spring's WebClient with a focus on performance, resource management, and fine-grained control over HTTP client behavior.
+
+- The `ServiceConfig` class is the core configuration model for managing HTTP client settings in a flexible and reusable way. It enables control over connection pooling, timeout parameters, and memory allocation, ensuring optimized client behavior for various services such as Policy Executor and DMI.
+
+ServiceConfig Properties:
+-------------------------
+
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| **Property Name**               | **Type** | **Default Value** | **Description**                                                                                 | **Example**                          |
++=================================+==========+===================+=================================================================================================+======================================+
+| `connectionProviderName`        | String   | `""` (empty)      | Name of the connection provider used for managing connection pooling.                           | `"policyExecutorConnectionProvider"` |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `maximumInMemorySizeInMegabytes`| int      | `1`               | Maximum size (in MB) of the in-memory buffer for HTTP response data.                            | `16`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `maximumConnectionsTotal`       | int      | `1`               | Maximum number of simultaneous connections allowed in the connection pool.                      | `100`                                |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `pendingAcquireMaxCount`        | int      | `1`               | Maximum number of pending requests when the connection pool is full.                            | `50`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `connectionTimeoutInSeconds`    | Integer  | `1`               | Timeout (in seconds) for establishing a connection to the server.                               | `30`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `readTimeoutInSeconds`          | long     | `1`               | Timeout (in seconds) for reading data from the server after the connection is established.      | `30`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `writeTimeoutInSeconds`         | long     | `1`               | Timeout (in seconds) for writing data to the server.                                            | `30`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+| `responseTimeoutInSeconds`      | long     | `60`              | Total timeout (in seconds) for receiving a complete response, including all processing stages.  | `60`                                 |
++---------------------------------+----------+-------------------+-------------------------------------------------------------------------------------------------+--------------------------------------+
+
+Usage in Application
+--------------------
+
+The properties of the `ServiceConfig` class are typically configured in the `application.yaml` file. For example:
+
+.. code-block:: yaml
+
+    ncmp:
+      policy-executor:
+        httpclient:
+          connectionProviderName: "policyExecutorConnectionProvider"
+          maximumInMemorySizeInMegabytes: 16
+          maximumConnectionsTotal: 100
+          pendingAcquireMaxCount: 50
+          connectionTimeoutInSeconds: 30
+          readTimeoutInSeconds: 30
+          writeTimeoutInSeconds: 30
+          responseTimeoutInSeconds: 60
+      dmi:
+        httpclient:
+          data-services:
+            connectionProviderName: "dataServicesConnectionProvider"
+            maximumInMemorySizeInMegabytes: 16
+            maximumConnectionsTotal: 100
+            pendingAcquireMaxCount: 50
+            connectionTimeoutInSeconds: 30
+            readTimeoutInSeconds: 30
+            writeTimeoutInSeconds: 30
+            responseTimeoutInSeconds: 60
+
+Purpose and Usage
+-----------------
+
+This configuration allows developers and administrators to:
+
+- **Optimize Resource Usage**: By controlling connection pool size and pending request limits.
+- **Enhance Performance**: Through configurable timeout settings and memory allocation.
+- **Ensure Stability**: By setting global response timeouts to handle slow or unresponsive servers gracefully.
+- Use this table as a reference to fine-tune HTTP client behavior for your application needs.
+
+.. note::
+
+    - These settings provide a fine-grained way to optimize HTTP client behavior for different services.
+    - Parameters like `maximumConnectionsTotal` and `pendingAcquireMaxCount` should be carefully tuned based on expected load and server capabilities.
+    - The `responseTimeoutInSeconds` acts as a safeguard against prolonged request cycles.
+    - This documentation ensures that the `ServiceConfig` properties are clearly defined and can be understood for both configuration and tuning purposes.
+
 Load balancer configuration
 ===========================
 
