@@ -46,6 +46,30 @@
       },
       "revId": "ecfff5cb108e9679ee155a45becaa36a7e9c9059",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafc6a3d_84bb146e",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-20T18:57:56Z",
+      "side": 0,
+      "message": "I think we shoudl ahve kept it, I argued for this to be added from eth satrt. I am aware it will alwasy increase but it is usefull to have...",
+      "parentUuid": "e4e01601_d372198b",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 5
+      },
+      "revId": "ecfff5cb108e9679ee155a45becaa36a7e9c9059",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
