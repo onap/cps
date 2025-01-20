@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.parameters.PaginationOption
-import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.spockframework.spring.SpringBean

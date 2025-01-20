@@ -32,7 +32,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
-import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory

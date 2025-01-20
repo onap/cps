@@ -23,11 +23,10 @@ package org.onap.cps.api.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.Map;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter(AccessLevel.PROTECTED)
+@Setter
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeltaReport {
@@ -36,7 +35,7 @@ public class DeltaReport {
     public static final String REMOVE_ACTION = "remove";
     public static final String REPLACE_ACTION = "replace";
 
-    DeltaReport() {}
+    public DeltaReport() {}
 
     private String action;
     private String xpath;

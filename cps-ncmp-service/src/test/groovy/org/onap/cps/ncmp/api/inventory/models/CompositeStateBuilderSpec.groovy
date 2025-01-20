@@ -24,7 +24,7 @@ package org.onap.cps.ncmp.api.inventory.models
 
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.api.model.DataNode
-import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.impl.DataNodeBuilder
 import spock.lang.Specification
 
 import java.time.OffsetDateTime

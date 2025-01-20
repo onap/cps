@@ -20,7 +20,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.model;
+package org.onap.cps.impl;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -33,6 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.api.model.DataNode;
 import org.onap.cps.utils.YangUtils;
 import org.opendaylight.yangtools.yang.common.Ordering;
 import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;

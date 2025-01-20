@@ -18,11 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.model;
+package org.onap.cps.impl;
 
 import java.io.Serializable;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.model.DeltaReport;
 
 @Slf4j
 public class DeltaReportBuilder {

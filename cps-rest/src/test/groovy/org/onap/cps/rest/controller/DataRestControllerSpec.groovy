@@ -30,8 +30,8 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.model.DataNode
-import org.onap.cps.api.model.DataNodeBuilder
-import org.onap.cps.api.model.DeltaReportBuilder
+import org.onap.cps.impl.DataNodeBuilder
+import org.onap.cps.impl.DeltaReportBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper

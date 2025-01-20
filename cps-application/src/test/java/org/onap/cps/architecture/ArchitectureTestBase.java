@@ -36,6 +36,7 @@ public class ArchitectureTestBase {
                                                             "lombok..",
                                                             "org.apache..",
                                                             "org.mapstruct..",
+                                                            "org.opendaylight..",
                                                             "org.slf4j..",
                                                             "org.springframework..",
                                                             "reactor.."

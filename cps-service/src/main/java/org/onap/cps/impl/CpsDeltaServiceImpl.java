@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
-import org.onap.cps.api.model.DeltaReportBuilder;
 import org.springframework.stereotype.Service;
 
 @Slf4j

@@ -33,7 +33,7 @@ import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.ConcurrencyException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
-import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.dao.DataIntegrityViolationException
 import spock.lang.Specification
