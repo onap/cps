@@ -192,6 +192,15 @@ Prometheus Metrics can be checked at the following endpoint
 
     http://<cps-component-service-name>:8080/actuator/prometheus
 
+Heapdump
+--------
+
+On demand heapdump generation on the client's machine using the below endpoint.
+
+.. code::
+
+    http://<cps-component-service-name>:8080/actuator/heapdump
+
 Hazelcast
 ---------
 
