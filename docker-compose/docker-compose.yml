@@ -68,7 +68,7 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
-      ####JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
+      JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
       ### DEBUG: Uncomment next line to enable java debugging
       ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
     restart: unless-stopped
