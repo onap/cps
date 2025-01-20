@@ -172,7 +172,7 @@ management:
     endpoints:
         web:
             exposure:
-                include: info,health,loggers,prometheus,metrics
+                include: info,health,loggers,prometheus,metrics,heapdump,threaddump
     endpoint:
         health:
             show-details: always
