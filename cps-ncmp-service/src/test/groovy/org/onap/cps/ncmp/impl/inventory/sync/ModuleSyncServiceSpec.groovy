@@ -90,20 +90,21 @@ class ModuleSyncServiceSpec extends Specification {
             'without' | ''
     }
 
-    def 'Attempt Sync models for a cm handle with existing schema set (#exception).'() {
+    def 'Attempt Sync models for a cm handle with existing schema set (#originalException).'() {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('existing tag')
         and: 'dmi returns no new yang resources'
             mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
         and: 'already defined exception occurs when creating schema (existing)'
-            mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw exception  }
+            mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw originalException  }
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
-        then: 'no exception is thrown up'
-            noExceptionThrown()
+        then: 'same exception is thrown up'
+            def thrownException = thrown(Exception)
+            assert thrownException == originalException
         where: 'following exceptions occur'
-            exception << [ AlreadyDefinedException.forSchemaSet('', '', null),
-                           new DuplicatedYangResourceException('', '', null) ]
+            originalException << [AlreadyDefinedException.forSchemaSet('', '', null),
+                                  new DuplicatedYangResourceException('', '', null) ]
     }
 
     def 'Model upgrade without using Module Set Tags (legacy) where the modules are in database.'() {
