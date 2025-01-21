@@ -35,8 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.api.exceptions.AlreadyDefinedException;
-import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.ContentType;
@@ -101,20 +99,14 @@ public class ModuleSyncService {
     private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String schemaSetName) {
         if (isNewSchemaSet(schemaSetName)) {
             final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
-            try {
-                log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, yangModelCmHandle.getId());
-                cpsModuleService.createSchemaSetFromModules(
-                        NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                        schemaSetName,
-                        moduleDelta.newModuleNameToContentMap,
-                        moduleDelta.allModuleReferences
-                );
-                log.info("Successfully created Schema Set {} for CM Handle {}",
-                    schemaSetName, yangModelCmHandle.getId());
-            } catch (final AlreadyDefinedException | DuplicatedYangResourceException exception) {
-                log.warn("Schema Set {} already exists, no need to (re)create it for {}",
-                    schemaSetName, yangModelCmHandle.getId());
-            }
+            log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, yangModelCmHandle.getId());
+            cpsModuleService.createSchemaSetFromModules(
+                    NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                    schemaSetName,
+                    moduleDelta.newModuleNameToContentMap,
+                    moduleDelta.allModuleReferences
+            );
+            log.info("Successfully created Schema Set {} for CM Handle {}", schemaSetName, yangModelCmHandle.getId());
         }
     }
 

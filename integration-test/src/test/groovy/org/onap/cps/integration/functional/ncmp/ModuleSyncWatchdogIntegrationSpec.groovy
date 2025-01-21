@@ -20,16 +20,17 @@
 
 package org.onap.cps.integration.functional.ncmp
 
+import com.hazelcast.map.IMap
 import io.micrometer.core.instrument.MeterRegistry
-import spock.lang.Ignore
-
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.StopWatch
+import spock.lang.Ignore
 import spock.util.concurrent.PollingConditions
+
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
 
@@ -38,11 +39,15 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     @Autowired
     MeterRegistry meterRegistry
 
+    @Autowired
+    IMap<String, Integer> cmHandlesByState
+
     def executorService = Executors.newFixedThreadPool(2)
     def PARALLEL_SYNC_SAMPLE_SIZE = 100
 
     def setup() {
         objectUnderTest = moduleSyncWatchdog
+        clearCmHandleStateGauge()
     }
 
     def cleanup() {
@@ -64,11 +69,10 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             deregisterSequenceOfCmHandles(DMI1_URL, PARALLEL_SYNC_SAMPLE_SIZE, 1)
     }
 
-    @Ignore
     /** this test has intermittent failures, due to timeouts.
      *  Ignored but left here as it might be valuable to further optimization investigations.
      **/
-
+    @Ignore
     def 'CPS-2478 Highlight (and improve) module sync inefficiencies.'() {
         given: 'register 250 cm handles with module set tag cps-2478-A'
             def numberOfTags = 2
@@ -131,6 +135,26 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             deregisterSequenceOfCmHandles(DMI1_URL, PARALLEL_SYNC_SAMPLE_SIZE, 1)
     }
 
+    def 'Schema sets with overlapping modules processed at the same time (DB constraint violation).'() {
+        given: 'register one batch (100) cm handles of tag A (with overlapping module names)'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 100, 1, ModuleNameStrategy.OVERLAPPING)
+        and: 'register another batch cm handles of tag B (with overlapping module names)'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagB', 100, 101, ModuleNameStrategy.OVERLAPPING)
+        and: 'populate the work queue with both batches'
+            objectUnderTest.populateWorkQueueIfNeeded()
+        when: 'advised cm handles are processed on 2 threads (exactly one batch for each)'
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+            executorService.execute(moduleSyncAdvisedCmHandles)
+        then: 'wait till all cm handles have been processed'
+            new PollingConditions().within(10, () -> {
+                assert getNumberOfProcessedCmHandles() == 200
+            })
+        then: 'at least 1 cm handle is in state LOCKED'
+            assert cmHandlesByState.get('lockedCmHandlesCount') >= 1
+        cleanup: 'remove all test cm handles'
+            deregisterSequenceOfCmHandles(DMI1_URL, 200, 1)
+    }
+
     def 'Populate module sync work queue on two parallel threads with a slight difference in start time.'() {
         // This test proved that the issue in CPS-2403 did not arise if the the queue was populated and given time to be distributed
         given: 'the queue is empty at the start'
@@ -168,5 +192,22 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             e.printStackTrace()
         }
     }
+
+    def moduleSyncAdvisedCmHandles = () -> {
+        try {
+            objectUnderTest.moduleSyncAdvisedCmHandles()
+        } catch (InterruptedException e) {
+            e.printStackTrace()
+        }
+    }
+
+    def clearCmHandleStateGauge() {
+        cmHandlesByState.keySet().each { cmHandlesByState.put(it, 0)}
+    }
+
+    def getNumberOfProcessedCmHandles() {
+        return cmHandlesByState.get('readyCmHandlesCount') + cmHandlesByState.get('lockedCmHandlesCount')
+    }
+
 
 }
