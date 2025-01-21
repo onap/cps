@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7a5a4a_f80fa8a8",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-21T15:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ffa685e_87ac97d2",
+      "range": {
+        "startLine": 55,
+        "startChar": 48,
+        "endLine": 55,
+        "endChar": 57
+      },
+      "revId": "1d4afc98d0f166e235176195669b465e4a071b8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29f9060d_4c9dcc71",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-01-21T15:09:30Z",
       "side": 1,
       "message": "Number of cm handles that have been deleted since the application started",
+      "range": {
+        "startLine": 115,
+        "startChar": 30,
+        "endLine": 115,
+        "endChar": 74
+      },
+      "revId": "1d4afc98d0f166e235176195669b465e4a071b8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "180881ea_4ba8a323",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/MicroMeterConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-21T15:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29f9060d_4c9dcc71",
       "range": {
         "startLine": 115,
         "startChar": 30,
