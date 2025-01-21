@@ -240,6 +240,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5276873e_23ff9c34",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "961f9999_39c3b007",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bd66083_73322a1b",
@@ -253,6 +277,30 @@
       "writtenOn": "2025-01-20T13:50:50Z",
       "side": 1,
       "message": "NB: 2024-2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e0306cd_9d037f1d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bd66083_73322a1b",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -280,6 +328,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bf4f3c9_a53e2c77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f06aa1_f6fc781d",
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55ab548a_15007129",
@@ -293,6 +359,24 @@
       "writtenOn": "2025-01-20T13:50:50Z",
       "side": 1,
       "message": "NB: redundant",
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "106f4dcb_0f9478fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ab548a_15007129",
       "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -334,6 +418,30 @@
       "side": 1,
       "message": "will do it.",
       "parentUuid": "84cbd841_07e5a390",
+      "range": {
+        "startLine": 56,
+        "startChar": 77,
+        "endLine": 57,
+        "endChar": 38
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f1a8f9a_5e0406cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventPublishingTask.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "082c8d4f_53c7e0a3",
       "range": {
         "startLine": 56,
         "startChar": 77,
@@ -391,6 +499,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8cf236_621d45b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/NcmpEvent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eabf236c_1f063fbf",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5688e4e3_8fda560a",
@@ -414,6 +546,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4de3e459_16c39048",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiInEventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5688e4e3_8fda560a",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ae7041d_06532d8a",
@@ -427,6 +583,24 @@
       "writtenOn": "2025-01-20T13:50:50Z",
       "side": 1,
       "message": "NB: redundant space",
+      "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e11d96_ef30a95b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-21T15:27:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ae7041d_06532d8a",
       "revId": "7c6dbedfa952ee8e0d5c58cadd018b5e7b1bcbbb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
