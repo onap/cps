@@ -1,0 +1,25 @@
+---
+name: Gerrit Required Bypassable Verify
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+
+      TARGET_REPO:
+        # yamllint disable-line rule:line-length
+        description: "The target GitHub repository needing the bypassable workflow"
+        required: true
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rtd-validation:
+    # yamllint disable-line rule:line-length
+    uses: modeseven-onap/cps/.github/workflows/gerrit-compose-required-rtdv3-verify.yaml@master
+    with:
+      TARGET_REPO: ${{ inputs.TARGET_REPO }}
+    secrets:
+      RTD_TOKEN: ${{ secrets.RTD_TOKEN }}
