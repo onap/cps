@@ -150,6 +150,30 @@
       },
       "revId": "1d4afc98d0f166e235176195669b465e4a071b8c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db78e979_5773be05",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/MicroMeterConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-21T15:26:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d23f01_9b77ba0c",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "1d4afc98d0f166e235176195669b465e4a071b8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
