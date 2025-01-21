@@ -158,6 +158,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static initialized = false
     def now = OffsetDateTime.now()
 
+    enum ModuleNameStrategy { UNIQUE, OVERLAPPING }
+
     def setup() {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
@@ -265,9 +267,14 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset) {
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE)
+    }
+
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy ) {
         def cmHandles = []
         def id = offset
-        def moduleReferences = (1..200).collect {  "${moduleSetTag}Module${it}" }
+        def modulePrefix = moduleNameStrategy.OVERLAPPING.equals(moduleNameStrategy) ? 'same' : moduleSetTag
+        def moduleReferences = (1..200).collect {  "${modulePrefix}Module${it}" }
         (1..numberOfCmHandles).each {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
             cmHandles.add(ncmpServiceCmHandle)
