@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 12,
   "links": [],
   "panels": [
     {
@@ -100,7 +100,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "disableTextWrap": false,
@@ -179,11 +179,11 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 9
       },
-      "id": 1,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [],
@@ -196,16 +196,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "cmHandlesByState{state=\"ADVISED\", instance=\"$Instance\", job=\"$Job\"}",
+          "expr": "http_server_requests_seconds_count{instance=\"$Instance\", job=\"$Job\", status=~\"201|200\", uri=\"/ncmpInventory/v1/ch\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -214,7 +210,7 @@
           "useBackend": false
         }
       ],
-      "title": "ADVISED",
+      "title": "Inventory API calls by URI and STATUS",
       "type": "timeseries"
     },
     {
@@ -279,107 +275,11 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 9
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "cmHandlesByState{state=\"READY\", instance=\"$Instance\", job=\"$Job\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "READY",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 17
       },
-      "id": 2,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [],
@@ -392,12 +292,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "cmHandlesByState{state=\"LOCKED\", instance=\"$Instance\", job=\"$Job\"}",
+          "expr": "sum({error=\"OutOfMemoryError\", instance=\"$Instance\", job=\"$Job\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -406,115 +306,23 @@
           "useBackend": false
         }
       ],
-      "title": "LOCKED",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 17
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "cmHandlesByState{state=\"DELETING\", instance=\"$Instance\", job=\"$Job\"}",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "DELETING",
+      "title": "Out of Memory Errors",
       "type": "timeseries"
     }
   ],
   "preload": false,
   "schemaVersion": 40,
-  "tags": [],
+  "tags": [
+    "CPS",
+    "NCMP",
+    "k6"
+  ],
   "templating": {
     "list": [
       {
         "current": {
-          "text": "172.17.0.1:8799",
-          "value": "172.17.0.1:8799"
+          "text": "129.192.80.24:9998",
+          "value": "129.192.80.24:9998"
         },
         "definition": "label_values(instance)",
         "label": "Instance",
@@ -531,8 +339,8 @@
       },
       {
         "current": {
-          "text": "cps-and-ncmp-endurance",
-          "value": "cps-and-ncmp-endurance"
+          "text": "cps-and-ncmp-kpi",
+          "value": "cps-and-ncmp-kpi"
         },
         "definition": "label_values(job)",
         "label": "job",
@@ -555,8 +363,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "LCM State",
-  "uid": "ae9zcowku03k0d",
-  "version": 1,
+  "title": "Inventory REST Interfaces",
+  "uid": "beao8xrt6qjnkc",
+  "version": 7,
   "weekStart": ""
 }
