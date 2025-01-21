@@ -52,7 +52,7 @@ public class MicroMeterConfig {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("advisedCmHandlesCount"))
                 .tag(STATE_TAG, "ADVISED")
-                .description("Current number of cmhandles in advised state")
+                .description("Current number of cm handles in advised state")
                 .register(meterRegistry);
     }
 
@@ -67,7 +67,7 @@ public class MicroMeterConfig {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("readyCmHandlesCount"))
                 .tag(STATE_TAG, "READY")
-                .description("Current number of cmhandles in ready state")
+                .description("Current number of cm handles in ready state")
                 .register(meterRegistry);
     }
 
@@ -82,7 +82,7 @@ public class MicroMeterConfig {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("lockedCmHandlesCount"))
                 .tag(STATE_TAG, "LOCKED")
-                .description("Current number of cmhandles in locked state")
+                .description("Current number of cm handles in locked state")
                 .register(meterRegistry);
     }
 
@@ -97,7 +97,22 @@ public class MicroMeterConfig {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                         value -> cmHandlesByState.get("deletingCmHandlesCount"))
                 .tag(STATE_TAG, "DELETING")
-                .description("Current number of cmhandles in deleting state")
+                .description("Current number of cm handles in deleting state")
+                .register(meterRegistry);
+    }
+
+    /**
+     * Register gauge metric for cm handles with state 'deleted'.
+     *
+     * @param meterRegistry meter registry
+     * @return cm handle state gauge
+     */
+    @Bean
+    public Gauge deletedCmHandles(final MeterRegistry meterRegistry) {
+        return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
+                        value -> cmHandlesByState.get("deletedCmHandlesCount"))
+                .tag(STATE_TAG, "DELETED")
+                .description("Number of cm handles that have been deleted since the application started")
                 .register(meterRegistry);
     }
 
