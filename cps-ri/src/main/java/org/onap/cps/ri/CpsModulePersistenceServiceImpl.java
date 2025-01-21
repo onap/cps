@@ -71,8 +71,6 @@ import org.opendaylight.yangtools.yang.parser.api.YangSyntaxErrorException;
 import org.opendaylight.yangtools.yang.parser.rfc7950.repo.YangModelDependencyInfo;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.RetryContext;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.retry.support.RetrySynchronizationManager;
 import org.springframework.stereotype.Component;
 
@@ -154,10 +152,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
-    // can occur in case of specific concurrent requests.
-    @Retryable(retryFor = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
-        @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> moduleReferenceNameToContentMap) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
@@ -189,12 +183,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    // A retry is made to store the schema set if it fails because of duplicated yang resource exception that
-    // can occur in case of specific concurrent requests.
-    @Retryable(retryFor = DuplicatedYangResourceException.class, maxAttempts = 5, backoff =
-        @Backoff(random = true, delay = 200, maxDelay = 2000, multiplier = 2))
     @Timed(value = "cps.module.persistence.schemaset.store",
-        description = "Time taken to store a schemaset (list of module references")
+        description = "Time taken to store a schemaset (list of module references)")
     public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
                                           final Map<String, String> newModuleNameToContentMap,
                                           final Collection<ModuleReference> allModuleReferences) {
