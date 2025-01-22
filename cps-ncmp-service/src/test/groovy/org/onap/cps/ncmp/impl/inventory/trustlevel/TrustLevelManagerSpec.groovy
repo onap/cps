@@ -139,7 +139,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is not trusted'
             assert trustLevelPerCmHandleId.get('ch-1', TrustLevel.NONE)
         and: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockAttributeValueChangeEventPublisher.buildAndPublishAvcEvent(*_)
     }
 
     def 'Dmi trust level restored to complete with non trusted CmHandle'() {
@@ -152,7 +152,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is still NONE'
             assert trustLevelPerCmHandleId.get('ch-1') == TrustLevel.NONE
         and: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockAttributeValueChangeEventPublisher.buildAndPublishAvcEvent(*_)
     }
 
     def 'Apply effective trust level among CmHandle and dmi plugin'() {
