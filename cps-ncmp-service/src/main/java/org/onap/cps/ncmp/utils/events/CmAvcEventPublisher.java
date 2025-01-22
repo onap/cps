@@ -38,8 +38,8 @@ public class CmAvcEventPublisher {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 
-    @Value("${app.ncmp.avc.cm-events-topic}")
-    private String avcTopic;
+    @Value("${app.ncmp.avc.inventory-events}")
+    private String ncmpInventoryEventsTopicName;
 
     /**
      * Publish attribute value change event.
@@ -55,7 +55,7 @@ public class CmAvcEventPublisher {
             NcmpEvent.builder().type(AvcEvent.class.getTypeName())
             .data(avcEvent).extensions(extensions).build().asCloudEvent();
 
-        eventsPublisher.publishCloudEvent(avcTopic, eventKey, avcCloudEvent);
+        eventsPublisher.publishCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
     }
 
     private AvcEvent buildAvcEvent(final String attributeName,
