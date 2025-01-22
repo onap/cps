@@ -22,6 +22,30 @@
       },
       "revId": "f07175a07e68840def48702366992c2d8f801fde",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f60f82_3271bc20",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-22T17:03:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "054784b9_8c462ff9",
+      "range": {
+        "startLine": 5,
+        "startChar": 35,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "f07175a07e68840def48702366992c2d8f801fde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
