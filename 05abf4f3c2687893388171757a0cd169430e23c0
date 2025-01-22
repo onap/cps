@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f92569_b43f4364",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "id this a description of the original problem (Jira slogan) rather then what you are doing in this commit? If so I would simply remove it from this commit message",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 97
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "725a6fe6_bdf48a80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "Some suggestions and one or two things to discuss...",
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c598fda6_f370f05b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "NB: prefer the old formatting, especially as there is actually NO change in this but I had to doble check because of the formatting...",
+      "range": {
+        "startLine": 67,
+        "startChar": 81,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591571d5_8e12c21a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "NB: line break(s?) not needed",
+      "range": {
+        "startLine": 83,
+        "startChar": 64,
+        "endLine": 84,
+        "endChar": 37
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6efb443_420228b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "classing names!\nThe first one is a Map, I\u0027m ot sure what else is in the map (all properties in the body?)  but use the standard naming convention for maps \u003cvalues\u003ePer\u003cKey\u003e",
+      "range": {
+        "startLine": 85,
+        "startChar": 84,
+        "endLine": 85,
+        "endChar": 107
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36e98ce0_6293dd8b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "simplify using groovy:\n\ndef responseAsMap \u003d [subJobId:\u0027my-sub-job-id\u0027]",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 56
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd63c2a1_3eaafc89",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:40:08Z",
+      "side": 1,
+      "message": "I dont understand this, why can it not be more strict? Maybe I misunderstand the production code changes related to this. Can we discuss?",
+      "range": {
+        "startLine": 63,
+        "startChar": 46,
+        "endLine": 63,
+        "endChar": 75
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
