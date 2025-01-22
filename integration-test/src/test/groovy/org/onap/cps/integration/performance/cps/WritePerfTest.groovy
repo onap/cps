@@ -53,29 +53,27 @@ class WritePerfTest extends CpsPerfTestBase {
             400        || 16.37            | 500
     }
 
-    def 'Writing bookstore data has exponential time.'() {
-        given: 'an anchor containing a bookstore with a single category'
-            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, WRITE_TEST_ANCHOR)
-            def parentNodeData = '{"bookstore": { "categories": [{ "code": 1, "name": "Test", "books" : [] }] }}'
-            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, parentNodeData, OffsetDateTime.now())
-        and: 'a list of books to add'
-            def booksData = '{"books":[' + (1..totalBooks).collect {'{ "title": "' + it + '" }' }.join(',') + ']}'
-        when: 'books are added'
+    def 'Writing openroadm data has exponential time.'() {
+        given: 'an empty anchor exists for openroadm'
+            cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, WRITE_TEST_ANCHOR)
+        and: 'a list of device nodes to add'
+            def jsonData = generateOpenRoadData(totalNodes)
+        when: 'device nodes are added'
             resourceMeter.start()
-            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
+            cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration and memory used is within limit'
-            recordAndAssertResourceUsage("Writing ${totalBooks} books",
+            recordAndAssertResourceUsage("Writing ${totalNodes} devices",
                     expectedDuration, resourceMeter.totalTimeInSeconds,
                     memoryLimit, resourceMeter.totalMemoryUsageInMB)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalBooks || expectedDuration | memoryLimit
+            totalNodes || expectedDuration | memoryLimit
             800        || 0.38             | 50
-            1600       || 0.95             | 100
-            3200       || 2.71             | 150
-            6400       || 8.08             | 200
+            1600       || 14.0             | 100
+            3200       || 29.0             | 150
+            6400       || 62.0             | 200
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
