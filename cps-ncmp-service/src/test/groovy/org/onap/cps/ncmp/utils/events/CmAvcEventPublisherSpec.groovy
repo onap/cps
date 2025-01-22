@@ -36,7 +36,9 @@ class CmAvcEventPublisherSpec extends MessagingBaseSpec {
     def objectUnderTest = new CmAvcEventPublisher(mockEventsPublisher)
 
     def 'Publish an attribute value change event'() {
-        given: 'the event key'
+        given: 'the topic name'
+            def someTopicName = 'someTopicName'
+        and: 'the event key'
             def someEventKey = 'someEventKey'
         and: 'the name of the attribute being changed'
             def someAttributeName = 'someAttributeName'
@@ -45,7 +47,7 @@ class CmAvcEventPublisherSpec extends MessagingBaseSpec {
         and: 'the new value of the attribute'
             def someNewAttributeValue = 'someNewAttributeValue'
         when: 'an attribute value change event is published'
-            objectUnderTest.publishAvcEvent(someEventKey, someAttributeName, someOldAttributeValue, someNewAttributeValue)
+            objectUnderTest.publishAvcEvent(someTopicName, someEventKey, someAttributeName, someOldAttributeValue, someNewAttributeValue)
         then: 'the cloud event publisher is invoked with the correct data'
             1 * mockEventsPublisher.publishCloudEvent(_, someEventKey,
                 cloudEvent -> {
