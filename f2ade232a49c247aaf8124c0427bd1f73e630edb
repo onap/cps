@@ -68,6 +68,30 @@
       },
       "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d52c75c_5b6b82e1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-22T17:16:22Z",
+      "side": 1,
+      "message": "well, the answer why it was failing is because;\n\nBOOKSTORE_SCHEMA_SET associated to GENERAL_TEST_DATASPACE rather than CPS_PERFORMANCE_TEST_DATASPACE in schema_set table. However, the test is using CPS_PERFORMANCE_TEST_DATASPACE for BOOKSTORE_SCHEMA_SET, which then not exist getting exception and aborting the tests.\n\nI can use bookstore model and fix this test.\n\nThanks for your review.",
+      "parentUuid": "a84ab8f6_33e1f073",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
