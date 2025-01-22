@@ -114,7 +114,6 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             def stopWatch = new StopWatch()
             stopWatch.start()
             deregisterSequenceOfCmHandles(DMI1_URL, totalCmHandles, 1)
-            cpsModuleService.deleteAllUnusedYangModuleData()
             stopWatch.stop()
             println "*** CPS-2478, Deletion of $totalCmHandles cm handles took ${stopWatch.getTotalTimeMillis()} milliseconds"
     }

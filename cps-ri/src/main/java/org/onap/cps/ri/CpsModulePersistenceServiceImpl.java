@@ -227,8 +227,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    public void deleteAllUnusedYangModuleData() {
-        schemaSetRepository.deleteOrphanedSchemaSets();
+    public void deleteAllUnusedYangModuleData(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        schemaSetRepository.deleteOrphanedSchemaSets(dataspaceEntity.getId());
         yangResourceRepository.deleteOrphanedYangResources();
     }
 

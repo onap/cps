@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2023-2024 Nordix Foundation
+.. Copyright (C) 2023-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _dataOperationMessageStatusCodes:
@@ -16,9 +16,9 @@ CPS-NCMP Message Status Codes
     +-----------------+------------------------------------------------------+-----------------------------------+
     | 1               | ACCEPTED                                             | CM Data Notification Subscription |
     +-----------------+------------------------------------------------------+-----------------------------------+
-    | 100             | cm handle id(s) is(are) not found                    | All features                      |
+    | 100             | CM Handle id(s) is(are) not found                    | All features                      |
     +-----------------+------------------------------------------------------+-----------------------------------+
-    | 101             | cm handle(s) not ready                               | Data Operation                    |
+    | 101             | CM Handle(s) not ready                               | Data Operation                    |
     +-----------------+------------------------------------------------------+-----------------------------------+
     | 102             | dmi plugin service is not responding                 | Data Operation                    |
     +-----------------+------------------------------------------------------+-----------------------------------+
@@ -30,9 +30,9 @@ CPS-NCMP Message Status Codes
     +-----------------+------------------------------------------------------+-----------------------------------+
     | 108             | Unknown error                                        | All features                      |
     +-----------------+------------------------------------------------------+-----------------------------------+
-    | 109             | cm-handle already exists                             | Inventory                         |
+    | 109             | CM Handle already exists                             | Inventory                         |
     +-----------------+------------------------------------------------------+-----------------------------------+
-    | 110             | cm-handle has an invalid character(s) in id          | Inventory                         |
+    | 110             | CM Handle has an invalid character(s) in id          | Inventory                         |
     +-----------------+------------------------------------------------------+-----------------------------------+
     | 111             | alternate id already associated                      | Inventory                         |
     +-----------------+------------------------------------------------------+-----------------------------------+

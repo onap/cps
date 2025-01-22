@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -172,6 +172,20 @@ public class AdminRestController implements CpsAdminApi {
     public ResponseEntity<Void> deleteSchemaSet(final String apiVersion,
             final String dataspaceName, final String schemaSetName) {
         cpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Clean the given dataspace of any orphaned (module) data.
+     *
+     * @param apiVersion api version
+     * @param dataspaceName dataspace name
+     *
+     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     */
+    @Override
+    public ResponseEntity<Void> cleanDataspace(final String apiVersion, final String dataspaceName) {
+        cpsModuleService.deleteAllUnusedYangModuleData(dataspaceName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
