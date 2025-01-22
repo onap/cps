@@ -193,14 +193,14 @@ public class TrustLevelManager {
                                                final TrustLevel newEffectiveTrustLevel) {
         if (oldEffectiveTrustLevel.equals(newEffectiveTrustLevel)) {
             log.debug("The Cm Handle: {} has already the same trust level: {}", notificationCandidateCmHandleId,
-                newEffectiveTrustLevel);
+                    newEffectiveTrustLevel);
         } else {
             log.info("The trust level for Cm Handle: {} is now: {} ", notificationCandidateCmHandleId,
-                newEffectiveTrustLevel);
+                    newEffectiveTrustLevel);
             cmAvcEventPublisher.publishAvcEvent(notificationCandidateCmHandleId,
-                AVC_CHANGED_ATTRIBUTE_NAME,
-                oldEffectiveTrustLevel.name(),
-                newEffectiveTrustLevel.name());
+                    AVC_CHANGED_ATTRIBUTE_NAME,
+                    oldEffectiveTrustLevel.name(),
+                    newEffectiveTrustLevel.name());
         }
     }
 
