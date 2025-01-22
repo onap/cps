@@ -38,12 +38,17 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class TrustLevelManager {
+
+
+    @Value("${app.ncmp.avc.inventory-events}")
+    private String ncmpInventoryEventsTopicName;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
     private final IMap<String, TrustLevel> trustLevelPerCmHandleId;
@@ -82,7 +87,8 @@ public class TrustLevelManager {
             }
             trustLevelPerCmHandleIdForCache.put(cmHandleId, initialTrustLevel);
             if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                cmAvcEventPublisher.publishAvcEvent(cmHandleId,
+                cmAvcEventPublisher.publishAvcEvent(ncmpInventoryEventsTopicName,
+                        cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
                         AVC_NO_OLD_VALUE,
                         initialTrustLevel.name());
@@ -197,10 +203,11 @@ public class TrustLevelManager {
         } else {
             log.info("The trust level for Cm Handle: {} is now: {} ", notificationCandidateCmHandleId,
                 newEffectiveTrustLevel);
-            cmAvcEventPublisher.publishAvcEvent(notificationCandidateCmHandleId,
-                AVC_CHANGED_ATTRIBUTE_NAME,
-                oldEffectiveTrustLevel.name(),
-                newEffectiveTrustLevel.name());
+            cmAvcEventPublisher.publishAvcEvent(ncmpInventoryEventsTopicName,
+                    notificationCandidateCmHandleId,
+                    AVC_CHANGED_ATTRIBUTE_NAME,
+                    oldEffectiveTrustLevel.name(),
+                    newEffectiveTrustLevel.name());
         }
     }
 

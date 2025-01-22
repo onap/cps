@@ -20,49 +20,59 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.cmavc
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.builder.CloudEventBuilder
 import io.cloudevents.kafka.CloudEventDeserializer
-import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp.NcmpInEventConsumer
 import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
 import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper
-import org.spockframework.spring.SpringBean
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.DirtiesContext
-import org.testcontainers.spock.Testcontainers
+import spock.lang.Specification
+
 import java.time.Duration
 
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
-@SpringBootTest(classes = [EventsPublisher, CmAvcEventConsumer, ObjectMapper, JsonObjectMapper])
-@Testcontainers
-@DirtiesContext
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class CmAvcEventConsumerSpec extends MessagingBaseSpec {
 
-    @SpringBean
-    EventsPublisher eventsPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
-
-    @SpringBean
-    CmAvcEventConsumer acvEventConsumer = new CmAvcEventConsumer(eventsPublisher)
+    def mockCmAvcEventPublisher = Mock(CmAvcEventPublisher)
+    def objectUnderTest = new CmAvcEventConsumer(mockCmAvcEventPublisher)
+    def logger = Spy(ListAppender<ILoggingEvent>)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
 
-    def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('ncmp-group', CloudEventDeserializer))
+    @Autowired
+    ObjectMapper objectMapper
+
+    void setup() {
+
+        ((Logger) LoggerFactory.getLogger(CmAvcEventConsumer.class)).addAppender(logger)
+        logger.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CmAvcEventConsumer.class)).detachAndStopAllAppenders()
+    }
 
     def 'Consume and forward valid message'() {
-        given: 'consumer has a subscription on a topic'
-            def cmEventsTopicName = 'cm-events'
-            acvEventConsumer.cmEventsTopicName = cmEventsTopicName
-            cloudEventKafkaConsumer.subscribe([cmEventsTopicName] as List<String>)
-        and: 'an event is sent'
+        given: 'avc events destination topic is set'
+            objectUnderTest.cmEventsTopicName = 'cm-events'
+        and: 'an avc event'
             def jsonData = TestUtils.getResourceFileContent('sampleAvcInputEvent.json')
             def testEventKey = 'sample-eventid-key'
             def testEventSent = jsonObjectMapper.convertJsonString(jsonData, AvcEvent.class)
@@ -72,26 +82,11 @@ class CmAvcEventConsumerSpec extends MessagingBaseSpec {
                 .withType('sample-test-type')
                 .withSource(URI.create('sample-test-source'))
                 .withExtension('correlationid', 'test-cmhandle1').build()
-        and: 'event has header information'
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>(cmEventsTopicName, 0, 0, testEventKey, testCloudEventSent)
+        and: 'avc event has header information'
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('someTopic', 0, 0, testEventKey, testCloudEventSent)
         when: 'the event is consumed and forwarded to target topic'
-            acvEventConsumer.consumeAndForward(consumerRecord)
-        and: 'the target topic is polled'
-            def records = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500))
-        then: 'poll returns one record'
-            assert records.size() == 1
-        and: 'target record can be converted to AVC event'
-            def record = records.iterator().next()
-            def cloudEvent = record.value() as CloudEvent
-            def convertedAvcEvent = toTargetEvent(cloudEvent, AvcEvent.class)
-        and: 'the target event has the same key as the source event to maintain the ordering in a partition'
-            assert record.key() == consumerRecord.key()
-        and: 'we have correct headers forwarded where correlation id matches'
-            assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_correlationid') == 'test-cmhandle1'
-        and: 'event id is same between consumed and forwarded'
-            assert KafkaHeaders.getParsedKafkaHeader(record.headers(), 'ce_id') == 'sample-eventid'
-        and: 'the event payload still matches'
-            assert testEventSent == convertedAvcEvent
+            objectUnderTest.consumeAndForward(consumerRecord)
+        then: 'the avc events publisher service is called once with the correct details '
+            1 * mockCmAvcEventPublisher.publishAvcEvent('cm-events', testEventKey, testCloudEventSent)
     }
-
 }

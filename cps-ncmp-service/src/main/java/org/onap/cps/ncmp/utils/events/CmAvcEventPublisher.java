@@ -29,7 +29,6 @@ import org.onap.cps.events.EventsPublisher;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,15 +37,16 @@ public class CmAvcEventPublisher {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 
-    @Value("${app.ncmp.avc.cm-events-topic}")
-    private String avcTopic;
-
     /**
      * Publish attribute value change event.
      *
-     * @param eventKey id of the cmHandle being registered
+     * @param avcTopic              avc event destination topic
+     * @param eventKey              key of event
+     * @param attributeName         name of attribute
+     * @param oldAttributeValue     previous attribute value
+     * @param newAttributeValue     new attribute value
      */
-    public void publishAvcEvent(final String eventKey, final String attributeName,
+    public void publishAvcEvent(final String avcTopic, final String eventKey, final String attributeName,
                                 final String oldAttributeValue, final String newAttributeValue) {
         final AvcEvent avcEvent = buildAvcEvent(attributeName, oldAttributeValue, newAttributeValue);
 
@@ -56,6 +56,19 @@ public class CmAvcEventPublisher {
             .data(avcEvent).extensions(extensions).build().asCloudEvent();
 
         eventsPublisher.publishCloudEvent(avcTopic, eventKey, avcCloudEvent);
+    }
+
+    /**
+     * Publish attribute value change event.
+     *
+     * @param avcTopic    avc event destination topic
+     * @param eventKey    key of event
+     * @param cloudEvent  cloud event
+     */
+    public void publishAvcEvent(final String avcTopic, final String eventKey,
+                                final CloudEvent cloudEvent) {
+        eventsPublisher.publishCloudEvent(avcTopic, eventKey, cloudEvent);
+
     }
 
     private AvcEvent buildAvcEvent(final String attributeName,
@@ -78,4 +91,6 @@ public class CmAvcEventPublisher {
         extensions.put("correlationid", eventKey);
         return extensions;
     }
+
+
 }

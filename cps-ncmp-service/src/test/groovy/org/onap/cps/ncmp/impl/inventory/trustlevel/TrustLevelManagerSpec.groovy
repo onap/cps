@@ -94,7 +94,7 @@ class TrustLevelManagerSpec extends Specification {
         when: 'the update is handled'
             objectUnderTest.updateDmi('my-dmi', ['ch-1'], TrustLevel.NONE)
         then: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'COMPLETE', 'NONE')
+            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(_,'ch-1', 'trustLevel', 'COMPLETE', 'NONE')
         and: 'the dmi in the cache is not trusted'
             assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.NONE
     }
@@ -124,7 +124,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is trusted'
             assert trustLevelPerCmHandleId.get('ch-1', TrustLevel.COMPLETE)
         and: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'NONE', 'COMPLETE')
+            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(_,'ch-1', 'trustLevel', 'NONE', 'COMPLETE')
     }
 
     def 'CmHandle trust level updated with same value'() {

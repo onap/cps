@@ -24,7 +24,7 @@ import io.cloudevents.CloudEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -39,11 +39,10 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class CmAvcEventConsumer {
 
-
     @Value("${app.ncmp.avc.cm-events-topic}")
     private String cmEventsTopicName;
 
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final CmAvcEventPublisher cmAvcEventPublisher;
 
     /**
      * Incoming Cm AvcEvent in the form of Consumer Record, it will be forwarded as is to a target topic.
@@ -58,6 +57,6 @@ public class CmAvcEventConsumer {
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
         final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
         log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
-        eventsPublisher.publishCloudEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
+        cmAvcEventPublisher.publishAvcEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 }
