@@ -16,6 +16,29 @@
       "message": "need agreement on topic names",
       "revId": "d1edccf8f0e239c899cb68e0247ae072b882dcb2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34605d09_051fd4f2",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-22T08:42:33Z",
+      "side": 1,
+      "message": "need agreement on topic names",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 4
+      },
+      "revId": "d1edccf8f0e239c899cb68e0247ae072b882dcb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
