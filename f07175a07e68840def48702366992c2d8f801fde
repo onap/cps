@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054784b9_8c462ff9",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-22T16:01:56Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 5,
+        "startChar": 35,
+        "endLine": 5,
+        "endChar": 39
+      },
+      "revId": "f07175a07e68840def48702366992c2d8f801fde",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
