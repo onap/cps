@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,8 +38,8 @@ public class CmAvcEventPublisher {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 
-    @Value("${app.ncmp.avc.cm-events-topic}")
-    private String avcTopic;
+    @Value("${app.ncmp.avc.inventory-events-topic}")
+    private String ncmpInventoryEventsTopicName;
 
     /**
      * Publish attribute value change event.
@@ -52,10 +52,10 @@ public class CmAvcEventPublisher {
 
         final Map<String, String> extensions = createAvcEventExtensions(eventKey);
         final CloudEvent avcCloudEvent =
-            NcmpEvent.builder().type(AvcEvent.class.getTypeName())
-            .data(avcEvent).extensions(extensions).build().asCloudEvent();
+                NcmpEvent.builder().type(AvcEvent.class.getTypeName())
+                        .data(avcEvent).extensions(extensions).build().asCloudEvent();
 
-        eventsPublisher.publishCloudEvent(avcTopic, eventKey, avcCloudEvent);
+        eventsPublisher.publishCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
     }
 
     private AvcEvent buildAvcEvent(final String attributeName,
