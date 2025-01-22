@@ -40,7 +40,6 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
-import org.onap.cps.api.model.DataNodeBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver

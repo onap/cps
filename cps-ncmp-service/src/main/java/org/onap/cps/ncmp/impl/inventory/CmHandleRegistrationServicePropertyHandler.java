@@ -49,7 +49,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.model.DataNodeBuilder;
+import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;

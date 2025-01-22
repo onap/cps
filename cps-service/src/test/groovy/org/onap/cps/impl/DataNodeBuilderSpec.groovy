@@ -19,10 +19,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.api.model
+package org.onap.cps.impl
 
 import org.onap.cps.TestUtils
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DataMapUtils
 import org.onap.cps.utils.YangParserHelper

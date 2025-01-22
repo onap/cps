@@ -42,7 +42,6 @@ import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.model.DataNodeBuilder;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;

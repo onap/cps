@@ -22,7 +22,7 @@
 
 package org.onap.cps.utils
 
-import org.onap.cps.api.model.DataNodeBuilder
+import org.onap.cps.impl.DataNodeBuilder
 import spock.lang.Specification
 
 class DataMapUtilsSpec extends Specification {

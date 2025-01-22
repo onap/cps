@@ -26,19 +26,18 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter(AccessLevel.PROTECTED)
+@Setter
 @Getter
 @EqualsAndHashCode
 public class DataNode implements Serializable {
 
     private static final long serialVersionUID = 1482619410918597467L;
 
-    DataNode() {}
+    public DataNode() {}
 
     private String dataspace;
     private String schemaSetName;
