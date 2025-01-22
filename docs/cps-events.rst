@@ -16,7 +16,7 @@ CPS Events
    cm-notification-subscriptions.rst
 
 .. note::
-    Legacy async response on a client supplied topic for single cm handle data request are no longer supported. Click link below for the legacy specification.
+    Legacy async response on a client supplied topic for single CM Handle data request are no longer supported. Click link below for the legacy specification.
 
       .. toctree::
          :maxdepth: 0

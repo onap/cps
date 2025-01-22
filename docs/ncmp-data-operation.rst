@@ -15,7 +15,7 @@ Data Operations Endpoint
 Introduction
 ============
 
-For all data operations on cm handle(s), we have a post endpoint:
+For all data operations on CM Handle(s), we have a post endpoint:
 
 - /ncmp/v1/data?topic={client-topic-name} forward request to it's dmi plugin service.
 
@@ -50,7 +50,7 @@ This endpoint executes data operation for given array of operations:
     |                          |             | implementation. For ONAP DMI Plugin it will be RESTConf paths but it can|
     |                          |             | really be anything.                                                     |
     +--------------------------+-------------+-------------------------------------------------------------------------+
-    | targetIds                | Yes         | List of cm handle references                                            |
+    | targetIds                | Yes         | List of CM Handle references                                            |
     +--------------------------+-------------+-------------------------------------------------------------------------+
 
 The status codes used in the events resulting from these operations are defined here:

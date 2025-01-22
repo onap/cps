@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
                 cpsModuleService.deleteSchemaSetsWithCascade(CPS_PERFORMANCE_TEST_DATASPACE, (i..i+100).collect {SCHEMA_SET_PREFIX + it})
             }
             cpsModuleService.deleteSchemaSetsWithCascade(CPS_PERFORMANCE_TEST_DATASPACE, [SCHEMA_SET_PREFIX + '0'])
-            cpsModuleService.deleteAllUnusedYangModuleData()
+            cpsModuleService.deleteAllUnusedYangModuleData(CPS_PERFORMANCE_TEST_DATASPACE)
     }
 
     // This makes a Yang module of approximately target length in bytes by padding the description field with many '*'

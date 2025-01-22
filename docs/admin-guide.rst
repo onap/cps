@@ -12,6 +12,40 @@ CPS Admin Guide
 .. toctree::
    :maxdepth: 1
 
+Regular Maintenance
+===================
+This section details tasks that an administrator of the CPS application should execute on regular basis
+to ensure optimum working of CPS.
+
+Dataspace Clean Up
+------------------
+Certain data in the CPS database might not be explicitly removed after it is no longer required ('orphaned data').
+For example, schema sets and their associated unique module resources no longer used by any anchor because of model upgrades.
+This data would unnecessarily take up space and could eventually affect the performance of the DB if it is not deleted.
+How often this needs to be done depends on how often schema sets are being deprecated.
+Typically once per month should suffice.
+
+To remove orphaned data in a given dataspace use the following post request:
+
+.. code::
+
+    http://<cps-component-service-name>:<cps-port>/v2/admin/dataspaces/<dataspace-name>/actions/clean
+
+for example
+
+.. code-block:: bash
+
+    curl --location --request POST 'http://cps:8080/admin/datsaspaces/bookstore/actions/clean' \
+    --header 'Content-Type: application/json; charset=utf-8'
+
+    Response : HTTP Status 204
+
+For more details refer to the CPS-Core API:  :doc:`design`.
+
+.. note::
+   NCMP has no specific maintenance tasks but it will also build up orphaned data when CM Handles get updated and or deleted.
+   To delete this data execute the above procedure for the dataspace named 'NFP-Operational'.
+
 Logging Configuration
 =====================
 
@@ -210,9 +244,8 @@ Naming Validation
 As part of the Kohn 3.1.0 release, CPS has added validation to the names of the following components:
 
     - Dataspace names
-    - Schema Set names
     - Anchor names
-    - Cm-Handle identifiers
+    - CM Handle identifiers
 
 The following characters along with spaces are no longer valid for naming of these components.
 

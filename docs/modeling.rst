@@ -89,31 +89,31 @@ Note: Although additional-properties are present in the model of the dmi-registr
 Basic Concepts
 --------------
 
-- **CM-Handle** represents an instance a modeled Network Function(node) in ONAP.
+- **CM Handle** represents an instance a modeled Network Function(node) in ONAP.
 
     These are stored as Anchors within CPS-Core.
 
-    - **CM-Handle States** are used to represent the potential states in which a CM-Handle can transition between.
+    - **CM Handle States** are used to represent the potential states in which a CM Handle can transition between.
 
-        The 5 possible CM-Handle states are: ADVISED, READY, LOCKED, DELETING, DELETED
+        The 5 possible CM Handle states are: ADVISED, READY, LOCKED, DELETING, DELETED
 
-        **ADVISED** indicates that a CM-Handle has been registered successfully, and is waiting for the module synchronization process to sync the CM-Handle.
+        **ADVISED** indicates that a CM Handle has been registered successfully, and is waiting for the module synchronization process to sync the CM Handle.
 
-        **READY** indicates that the CM-Handle has been synced successfully.
+        **READY** indicates that the CM Handle has been synced successfully.
 
-        **LOCKED** indicates that the CM-Handle has not synced successfully. A retry mechanism within CPS will set the state back to ADVISED after a set time.
+        **LOCKED** indicates that the CM Handle has not synced successfully. A retry mechanism within CPS will set the state back to ADVISED after a set time.
 
-        **DELETING** indicates that the CM-Handle is currently being deleted.
+        **DELETING** indicates that the CM Handle is currently being deleted.
 
-        **DELETED** indicates that the CM-Handle has been deleted successfully.
+        **DELETED** indicates that the CM Handle has been deleted successfully.
 
-    - **Data-sync state** is the state of the data synchronization process of the CM-Handle
+    - **Data-sync state** is the state of the data synchronization process of the CM Handle
 
         There are 3 possibles states: NONE_REQUESTED, UNSYNCHRONIZED, SYNCHRONIZED
 
         **NONE_REQUESTED** indicates that the data sync is not requested by the user
 
-        **UNSYNCHRONIZED** indicates the cm-handle is waiting for the data sync watchdog operation to carry out the sync process
+        **UNSYNCHRONIZED** indicates the CM Handle is waiting for the data sync watchdog operation to carry out the sync process
 
         **SYNCHRONIZED** indicates the watchdog process has finished the data synchronization successfully
 

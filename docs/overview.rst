@@ -45,7 +45,7 @@ even though CPS-Core could be deployed without the NCMP extension.
 NCMP-DMI-Plugin
 ---------------
 
-The Data-Model-Inventory (DMI) Plugin is a rest interface used to synchronize CM-Handles data between CPS and DMI through the DMI-Plugin.
+The Data-Model-Inventory (DMI) Plugin is a rest interface used to synchronize CM Handles data between CPS and DMI through the DMI-Plugin.
 This is built previously from the CPS-NF-Proxy component.
 
 CPS Project

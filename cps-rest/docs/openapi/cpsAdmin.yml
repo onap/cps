@@ -1,6 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Bell Canada.
-# Modifications Copyright (C) 2021-2022 Nordix Foundation
+# Modifications Copyright (C) 2021-2025 Nordix Foundation
 # Modifications Copyright (C) 2022 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -230,3 +230,23 @@ adminDataspace:
        $ref: 'components.yml#/components/responses/Forbidden'
      '500':
        $ref: 'components.yml#/components/responses/InternalServerError'
+
+adminCleanDataspace:
+  post:
+    description: Clean the dataspace (remove orphaned schema sets and modules)
+    tags:
+      - cps-admin
+    summary: Clean the dataspace
+    operationId: cleanDataspace
+    parameters:
+      - $ref: 'components.yml#/components/parameters/apiVersionInPath'
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+    responses:
+      '204':
+        $ref: 'components.yml#/components/responses/NoContent'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'

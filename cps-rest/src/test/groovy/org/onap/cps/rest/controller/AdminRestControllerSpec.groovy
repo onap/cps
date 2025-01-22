@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
- *  Modifications Copyright (C) 2021-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,15 +23,8 @@
 
 package org.onap.cps.rest.controller
 
-import org.onap.cps.api.CpsAnchorService
-
-import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-
 import org.mapstruct.factory.Mappers
+import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.exceptions.AlreadyDefinedException
@@ -50,6 +43,12 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
+
+import static org.onap.cps.api.parameters.CascadeDeleteAllowed.CASCADE_DELETE_PROHIBITED
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(AdminRestController)
 class AdminRestControllerSpec extends Specification {
@@ -79,7 +78,7 @@ class AdminRestControllerSpec extends Specification {
     def dataspace = new Dataspace(name: dataspaceName)
 
     def 'Create new dataspace with #scenario.'() {
-        when: 'post is invoked'
+        when: 'post is invoked on endpoint for creating a dataspace'
             def response =
                 mvc.perform(
                     post("/cps/api/${apiVersion}/dataspaces")
@@ -97,7 +96,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Create dataspace over existing with same name.'() {
-        given: 'an endpoint'
+        given: 'the endpoint to create a dataspace'
             def createDataspaceEndpoint = "$basePath/v1/dataspaces"
         and: 'the service method throws an exception indicating the dataspace is already defined'
             def thrownException = new AlreadyDefinedException(dataspaceName, new RuntimeException())
@@ -115,13 +114,24 @@ class AdminRestControllerSpec extends Specification {
     def 'Get a dataspace.'() {
         given: 'service method returns a dataspace'
             mockCpsDataspaceService.getDataspace(dataspaceName) >> dataspace
-        and: 'an endpoint'
+        and: 'the endpoint for getting a dataspace by name'
             def getDataspaceEndpoint = "$basePath/v1/admin/dataspaces/$dataspaceName"
         when: 'get dataspace API is invoked'
             def response = mvc.perform(get(getDataspaceEndpoint)).andReturn().response
         then: 'the correct dataspace is returned'
             response.status == HttpStatus.OK.value()
             response.getContentAsString().contains(dataspaceName)
+    }
+
+    def 'Clean a dataspace.'() {
+        given: 'service method returns a dataspace'
+            mockCpsDataspaceService.getDataspace(dataspaceName) >> dataspace
+        and: 'the endpoint for cleaning a dataspace'
+            def postCleanDbEndpoint = "$basePath/v1/admin/dataspaces/$dataspaceName/actions/clean"
+        when: 'post clean-db API is invoked'
+            def response = mvc.perform(post(postCleanDbEndpoint)).andReturn().response
+        then: 'no content is returned'
+            response.status == HttpStatus.NO_CONTENT.value()
     }
 
     def 'Get all dataspaces.'() {
@@ -173,8 +183,7 @@ class AdminRestControllerSpec extends Specification {
                                     .param('schema-set-name', schemaSetName))
                             .andReturn().response
         then: 'associated service method is invoked with expected parameters'
-            1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _) >>
-                    { args -> yangResourceMapCapture = args[2] }
+            1 * mockCpsModuleService.createSchemaSet(dataspaceName, schemaSetName, _) >> { args -> yangResourceMapCapture = args[2] }
             yangResourceMapCapture['assembly.yang'] == "fake assembly content 1\n"
             yangResourceMapCapture['component.yang'] == "fake component content 1\n"
         and: 'response code indicates success'
@@ -208,7 +217,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Create schema set from zip archive having #caseDescriptor.'() {
-        given: 'an endpoint'
+        given: 'the endpoint to create a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'zip archive having #caseDescriptor is uploaded with create schema set request'
             def response =
@@ -228,7 +237,7 @@ class AdminRestControllerSpec extends Specification {
     def 'Create schema set from file with unsupported filename extension.'() {
         given: 'file with unsupported filename extension (.doc)'
             def multipartFile = createMultipartFile("filename.doc", "content")
-        and: 'an endpoint'
+        and: 'the endpoint to create a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def response =
@@ -242,7 +251,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Create schema set from #fileType file with IOException occurrence on processing.'() {
-        given: 'an endpoint'
+        given: 'the endpoint to create a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'file uploaded with schema set create request'
             def multipartFile = createMultipartFileForIOException(fileType)
@@ -259,7 +268,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Delete schema set.'() {
-        given: 'an endpoint'
+        given: 'the endpoint for deleting a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
             def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
@@ -274,7 +283,7 @@ class AdminRestControllerSpec extends Specification {
             def thrownException = new SchemaSetInUseException(dataspaceName, schemaSetName)
             mockCpsModuleService.deleteSchemaSet(dataspaceName, schemaSetName, CASCADE_DELETE_PROHIBITED) >>
                     { throw thrownException }
-        and: 'an endpoint'
+        and: 'the endpoint for deleting a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'delete schema set endpoint is invoked'
             def response = mvc.perform(delete(schemaSetEndpoint)).andReturn().response
@@ -286,7 +295,7 @@ class AdminRestControllerSpec extends Specification {
         given: 'service method returns a new schema set'
             mockCpsModuleService.getSchemaSet(dataspaceName, schemaSetName) >>
                     new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName)
-        and: 'an endpoint'
+        and: 'the endpoint for getting a schema set'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets/$schemaSetName"
         when: 'get schema set API is invoked'
             def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
@@ -300,7 +309,7 @@ class AdminRestControllerSpec extends Specification {
             mockCpsModuleService.getSchemaSets(dataspaceName) >>
                 [new SchemaSet(name: schemaSetName, dataspaceName: dataspaceName),
                 new SchemaSet(name: "test-schemaset", dataspaceName: dataspaceName)]
-        and: 'an endpoint'
+        and: 'the  endpoint for getting all schema sets'
             def schemaSetEndpoint = "$basePath/v1/dataspaces/$dataspaceName/schema-sets"
         when: 'get schema sets API is invoked'
             def response = mvc.perform(get(schemaSetEndpoint)).andReturn().response
@@ -315,7 +324,7 @@ class AdminRestControllerSpec extends Specification {
             def requestParams = new LinkedMultiValueMap<>()
             requestParams.add('schema-set-name', schemaSetName)
             requestParams.add('anchor-name', anchorName)
-        when: 'post is invoked'
+        when: 'post is invoked on the create anchors endpoint'
             def response =
                     mvc.perform(
                             post("/cps/api/${apiVersion}/dataspaces/my_dataspace/anchors")
@@ -332,10 +341,10 @@ class AdminRestControllerSpec extends Specification {
             'V2 API' | 'v2'       || ''
     }
 
-    def 'Get existing anchor.'() {
-        given: 'service method returns a list of anchors'
+    def 'Get existing anchors.'() {
+        given: 'service method returns a list of (one) anchors'
             mockCpsAnchorService.getAnchors(dataspaceName) >> [anchor]
-        and: 'an endpoint'
+        and: 'the endpoint for getting all anchors'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors"
         when: 'get all anchors API is invoked'
             def response = mvc.perform(get(anchorEndpoint)).andReturn().response
@@ -348,7 +357,7 @@ class AdminRestControllerSpec extends Specification {
         given: 'service method returns an anchor'
             mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName)
-        and: 'an endpoint'
+        and: 'the endpoint for getting an anchor'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
         when: 'get anchor API is invoked'
             def response = mvc.perform(get(anchorEndpoint)).andReturn().response
@@ -361,7 +370,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Delete anchor.'() {
-        given: 'an endpoint'
+        given: 'the endpoint for deleting an anchor'
             def anchorEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName"
         when: 'delete method is invoked on anchor endpoint'
             def response = mvc.perform(delete(anchorEndpoint)).andReturn().response
@@ -372,7 +381,7 @@ class AdminRestControllerSpec extends Specification {
     }
 
     def 'Delete dataspace.'() {
-        given: 'an endpoint'
+        given: 'the endpoint for deleting a dataspace'
             def dataspaceEndpoint = "$basePath/v1/dataspaces"
         when: 'delete dataspace endpoint is invoked'
             def response = mvc.perform(delete(dataspaceEndpoint)

@@ -15,7 +15,7 @@ CM Handle Lifecycle Management (LCM) Events
 Introduction
 ============
 
-LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the cm handle state occurs.
+LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the CM Handle state occurs.
 
   **3 possible event types:**
 
@@ -55,7 +55,7 @@ Event payload varies based on the type of event.
 
 **CREATE**
 
-Event payload for this event contains the properties of the new cm handle created.
+Event payload for this event contains the properties of the new CM Handle created.
 
 *Create event payload prototype*
 
@@ -77,7 +77,7 @@ Event payload for this event contains the properties of the new cm handle create
 
 **UPDATE**
 
-Event payload for this event contains the difference in state and properties of the cm handle.
+Event payload for this event contains the difference in state and properties of the CM Handle.
 
 *Update event payload prototype*
 
@@ -106,7 +106,7 @@ Event payload for this event contains the difference in state and properties of 
 
 **DELETE**
 
-Event payload for this event contains the identifier of the deleted cm handle.
+Event payload for this event contains the identifier of the deleted CM Handle.
 
 *Delete event payload prototype*
 

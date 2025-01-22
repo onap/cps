@@ -83,8 +83,8 @@ public interface SchemaSetRepository extends JpaRepository<SchemaSetEntity, Inte
      */
     @Modifying
     @Query(value = """
-           DELETE FROM schema_set WHERE NOT EXISTS
-           (SELECT 1 FROM anchor WHERE anchor.schema_set_id = schema_set.id)
+           DELETE FROM schema_set WHERE schema_set.dataspace_id = :dataspaceId AND
+           NOT EXISTS (SELECT 1 FROM anchor WHERE anchor.schema_set_id = schema_set.id)
            """, nativeQuery = true)
-    void deleteOrphanedSchemaSets();
+    void deleteOrphanedSchemaSets(@Param("dataspaceId") final int dataspaceId);
 }
