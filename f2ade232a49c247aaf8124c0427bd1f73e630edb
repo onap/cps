@@ -92,6 +92,30 @@
       },
       "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf92d32_52deea6b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-22T17:22:04Z",
+      "side": 1,
+      "message": "Yes, this test should definitely use bookstore model, while the above test uses openroadm. The idea is to show that writing using different models has different time complexity.",
+      "parentUuid": "3d52c75c_5b6b82e1",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
