@@ -1,0 +1,11 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Code-Review+1: Toine Siebelink <toine.siebelink@est.tech>
+Code-Review+1: Gerard Nugent <gerard.nugent@est.tech>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Code-Review+2: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-by: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-at: Wed, 22 Jan 2025 14:26:37 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/139971
+Project: cps
+Branch: refs/heads/master
