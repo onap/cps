@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30516496_7889e987",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:53:11Z",
+      "side": 1,
+      "message": "The main slogan and the actual description are saying different things so what are we doing in this commit?!",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4740fdea_98c61459",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:53:11Z",
+      "side": 1,
+      "message": "it hints at what you mean but not very clear...",
+      "range": {
+        "startLine": 10,
+        "startChar": 3,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84ab8f6_33e1f073",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:53:11Z",
+      "side": 1,
+      "message": "OK, I can see that the openroadm model is more heavy for performance test but I still would like to understand why the test was failing first... Ie fix the test first and then another commit to change the model (for some tests)",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "f2ade232a49c247aaf8124c0427bd1f73e630edb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
