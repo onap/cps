@@ -105,7 +105,8 @@ app:
             cm-subscription-dmi-in: ${CM_SUBSCRIPTION_DMI_IN_TOPIC:ncmp-dmi-cm-avc-subscription}
             cm-subscription-dmi-out: ${CM_SUBSCRIPTION_DMI_OUT_TOPIC:dmi-ncmp-cm-avc-subscription}
             cm-subscription-ncmp-out: ${CM_SUBSCRIPTION_NCMP_OUT_TOPIC:subscription-response}
-            cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
+            cm-device-trust-level-topic: ${DEVICE_TRUST_LEVEL_TOPIC:cm-device-trust-level-events}
+            cm-trust-level-topic: ${CM_TRUST_LEVEL_TOPIC:cm-trust-level-events}
     lcm:
         events:
             topic: ${LCM_EVENTS_TOPIC:ncmp-events}

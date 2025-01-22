@@ -38,15 +38,12 @@ public class CmAvcEventPublisher {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 
-    @Value("${app.ncmp.avc.cm-events-topic}")
-    private String avcTopic;
-
     /**
      * Publish attribute value change event.
      *
      * @param eventKey id of the cmHandle being registered
      */
-    public void publishAvcEvent(final String eventKey, final String attributeName,
+    public void publishAvcEvent(final String avcTopic, final String eventKey, final String attributeName,
                                 final String oldAttributeValue, final String newAttributeValue) {
         final AvcEvent avcEvent = buildAvcEvent(attributeName, oldAttributeValue, newAttributeValue);
 
