@@ -46,6 +46,30 @@
       },
       "revId": "abda1a004dade823015dbb84e29b1a4400ff2f31",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bebd2e20_27d6d1ca",
+        "filename": "cps-rest/docs/openapi/cpsAdmin.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-22T16:54:51Z",
+      "side": 1,
+      "message": "I was sure I updated that...\nOh, I think I need to do a mvn install to udpate both version of this doc",
+      "parentUuid": "4f8b596b_7b605477",
+      "range": {
+        "startLine": 236,
+        "startChar": 54,
+        "endLine": 236,
+        "endChar": 61
+      },
+      "revId": "abda1a004dade823015dbb84e29b1a4400ff2f31",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
