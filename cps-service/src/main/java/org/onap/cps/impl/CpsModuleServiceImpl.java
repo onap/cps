@@ -175,8 +175,9 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     }
 
     @Override
-    public void deleteAllUnusedYangModuleData() {
-        cpsModulePersistenceService.deleteAllUnusedYangModuleData();
+    public void deleteAllUnusedYangModuleData(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsModulePersistenceService.deleteAllUnusedYangModuleData(dataspaceName);
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

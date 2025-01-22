@@ -330,6 +330,65 @@ paths:
       summary: Get a dataspace
       tags:
       - cps-admin
+  /{apiVersion}/admin/dataspaces/{dataspace-name}/actions/clean:
+    post:
+      description: Clean the dataspace (remove orphaned modules)
+      operationId: cleanDataspace
+      parameters:
+      - description: apiVersion
+        in: path
+        name: apiVersion
+        required: true
+        schema:
+          default: v2
+          enum:
+          - v1
+          - v2
+          type: string
+      - description: dataspace-name
+        in: path
+        name: dataspace-name
+        required: true
+        schema:
+          example: my-dataspace
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Clean the dataspace
+      tags:
+      - cps-admin
   /v1/dataspaces/{dataspace-name}/anchors:
     post:
       deprecated: true

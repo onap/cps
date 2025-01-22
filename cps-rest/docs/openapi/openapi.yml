@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2024 Nordix Foundation
+#  Copyright (C) 2021-2025 Nordix Foundation
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
 #  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
@@ -60,6 +60,9 @@ paths:
 
   /{apiVersion}/admin/dataspaces/{dataspace-name}:
     $ref: 'cpsAdmin.yml#/adminDataspace'
+
+  /{apiVersion}/admin/dataspaces/{dataspace-name}/actions/clean:
+    $ref: 'cpsAdmin.yml#/adminCleanDataspace'
 
   /v1/dataspaces/{dataspace-name}/anchors:
     $ref: 'cpsAdminV1Deprecated.yml#/anchorsByDataspace'

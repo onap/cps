@@ -254,9 +254,9 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Delete all unused yang module data.'() {
         when: 'deleting unused yang module data'
-            objectUnderTest.deleteAllUnusedYangModuleData()
+            objectUnderTest.deleteAllUnusedYangModuleData('some-dataspace-name')
         then: 'it is delegated to the module persistence service'
-            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData()
+            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData('some-dataspace-name')
     }
 
     def 'Schema set exists.'() {

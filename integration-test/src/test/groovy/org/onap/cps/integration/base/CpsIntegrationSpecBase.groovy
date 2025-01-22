@@ -164,7 +164,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
         if (!initialized) {
             cpsDataspaceService.createDataspace(GENERAL_TEST_DATASPACE)
             createStandardBookStoreSchemaSet(GENERAL_TEST_DATASPACE)
-            cpsAnchorService.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'owner-of-bookstore-schema-set-do-not-delete')
             initialized = true
         }
         mockDmiServer1.setDispatcher(dmiDispatcher1)
@@ -184,7 +183,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         mockDmiServer1.shutdown()
         mockDmiServer2.shutdown()
         mockPolicyServer.shutdown()
-        cpsModuleService.deleteAllUnusedYangModuleData()
+        cpsModuleService.deleteAllUnusedYangModuleData('NFP-Operational')
     }
 
     def static readResourceDataFile(filename) {

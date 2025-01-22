@@ -61,8 +61,6 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def setup() { objectUnderTest = cpsModuleService }
 
-    def cleanup() { objectUnderTest.deleteAllUnusedYangModuleData() }
-
     /*
         C R E A T E   S C H E M A   S E T   U S E - C A S E S
      */
