@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ba69422_73d81338",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-23T14:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "738d4095_2c414dfb",
+      "range": {
+        "startLine": 91,
+        "startChar": 52,
+        "endLine": 91,
+        "endChar": 84
+      },
+      "revId": "c036e027a7b8f4f88c77977da1d87898d90b49c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62205b6d_e303e0ff",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-01-23T11:59:15Z",
       "side": 1,
       "message": "you can update this test slogan",
+      "range": {
+        "startLine": 79,
+        "startChar": 52,
+        "endLine": 79,
+        "endChar": 96
+      },
+      "revId": "c036e027a7b8f4f88c77977da1d87898d90b49c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d2e2f4c_b8da1879",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleUpdateSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-23T14:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62205b6d_e303e0ff",
       "range": {
         "startLine": 79,
         "startChar": 52,
