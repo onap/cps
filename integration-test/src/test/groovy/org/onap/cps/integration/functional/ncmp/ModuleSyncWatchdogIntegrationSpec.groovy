@@ -80,10 +80,10 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             def totalCmHandles = numberOfTags * cmHandlesPerTag
             def offset = 1
             def minimumBatches = totalCmHandles / 100
-            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-A', cmHandlesPerTag, offset)
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-A', cmHandlesPerTag, offset, ModuleNameStrategy.OVERLAPPING)
         and: 'register anther 250 cm handles with module set tag cps-2478-B'
             offset += cmHandlesPerTag
-            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-B', cmHandlesPerTag, offset)
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'cps-2478-B', cmHandlesPerTag, offset, ModuleNameStrategy.OVERLAPPING)
         and: 'clear any previous instrumentation'
             meterRegistry.clear()
         when: 'sync all advised cm handles'
@@ -104,7 +104,6 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
         and: 'one call to DMI per module set tag to get module references (may be more due to parallel processing of batches)'
             def dmiModuleRetrievalTimer = meterRegistry.get('cps.ncmp.inventory.module.references.from.dmi').timer()
             assert dmiModuleRetrievalTimer.count() >= numberOfTags && dmiModuleRetrievalTimer.count() <= minimumBatches
-
         and: 'log the relevant instrumentation'
             logInstrumentation(dmiModuleRetrievalTimer, 'get modules from DMI   ')
             logInstrumentation(dbSchemaSetStorageTimer, 'store schema sets      ')
