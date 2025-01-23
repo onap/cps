@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2022 Nordix Foundation
+.. Copyright (C) 2021-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _adminGuide:
@@ -191,6 +191,16 @@ Prometheus Metrics can be checked at the following endpoint
 .. code::
 
     http://<cps-component-service-name>:8080/actuator/prometheus
+
+Heap Dump and Thread Dump
+-------------------------
+
+On demand heapdump and threaddump generation using the below endpoints.
+
+.. code::
+
+    http://<cps-component-service-name>:8080/actuator/heapdump
+    http://<cps-component-service-name>:8080/actuator/threaddump
 
 Hazelcast
 ---------
