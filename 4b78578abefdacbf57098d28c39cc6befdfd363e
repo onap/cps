@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bebfca6_56522bf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:35:05Z",
+      "side": 1,
+      "message": "Lets meet on Monday including Lee-Anjella and go trough all the names again\nstarting at the Diagram on our wiki, then the schemas and finally the classes involved in producing or consuming these vents",
+      "revId": "4b78578abefdacbf57098d28c39cc6befdfd363e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9343dc4e_948f8d30",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:35:05Z",
+      "side": 1,
+      "message": "I prefer if this included LCM",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 85
+      },
+      "revId": "4b78578abefdacbf57098d28c39cc6befdfd363e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265eafd4_6f2843f8",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:35:05Z",
+      "side": 1,
+      "message": "to specfics\nI think this i LCM too but should include it is the cloud version",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "4b78578abefdacbf57098d28c39cc6befdfd363e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
