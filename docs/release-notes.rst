@@ -40,6 +40,7 @@ Bug Fixes
 
 Features
 --------
+    - `CPS-2249 <https://lf-onap.atlassian.net/browse/CPS-2249>`_ NCMP to support Conflict Handling.
 
 
 ..      ====================
@@ -68,14 +69,12 @@ Release Data
 
 Bug Fixes
 ---------
-3.5.5
     - `CPS-2509 <https://lf-onap.atlassian.net/browse/CPS-2509>`_ Fix module endpoints using alternate identifier.
     - `CPS-2517 <https://lf-onap.atlassian.net/browse/CPS-2517>`_ Make Content-Type header default to JSON for CPS APIs.
     - `CPS-2530 <https://lf-onap.atlassian.net/browse/CPS-2530>`_ NCMP Modules API giving empty response on READY CM Handles if two sub systems discovered in parallel.
 
 Features
 --------
-3.5.5
     - `CPS-2009 <https://lf-onap.atlassian.net/browse/CPS-2009>`_ Update legacy NCMP APIs interfaces to support alternate id.
     - `CPS-2082 <https://lf-onap.atlassian.net/browse/CPS-2082>`_ Support XML content type to data node APIs in cps-core.
     - `CPS-2433 <https://lf-onap.atlassian.net/browse/CPS-2433>`_ Remove traces of unmaintained CPS-TBDMT repository.
@@ -111,12 +110,10 @@ Release Data
 
 Bug Fixes
 ---------
-3.5.4
-    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM Handle Module Sync.
+    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM-handle Module Sync.
 
 Features
 --------
-3.5.4
     - `CPS-2408 <https://lf-onap.atlassian.net/browse/CPS-2408>`_ One Hazelcast instance per JVM to manage the distributed data structures.
 
 Version: 3.5.3
@@ -141,7 +138,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.5.3
     - `CPS-2353 <https://lf-onap.atlassian.net/browse/CPS-2353>`_ Slow cmHandle registration when we use moduleSetTag, alternateId and dataProducerIdentifier
     - `CPS-2395 <https://lf-onap.atlassian.net/browse/CPS-2395>`_ Retry mechanism (with back off algorithm) is removed with more frequent watchdog poll
     - `CPS-2409 <https://lf-onap.atlassian.net/browse/CPS-2409>`_ Return NONE for get effective trust level api if the trust level caches empty (restart case)
@@ -150,9 +146,6 @@ Bug Fixes
 
 Features
 --------
-3.5.3
-    - `CPS-2247 <https://lf-onap.atlassian.net/browse/CPS-2247>`_ Policy Executor: Invoke Policy Executor and handle 'deny' response
-    - `CPS-2412 <https://lf-onap.atlassian.net/browse/CPS-2412>`_ Policy Executor: handle errors
     - `CPS-2417 <https://lf-onap.atlassian.net/browse/CPS-2417>`_ Remove Hazelcast cache for prefix resolver
 
 
@@ -178,14 +171,12 @@ Release Data
 
 Bug Fixes
 ---------
-3.5.2
     - `CPS-2306 <https://lf-onap.atlassian.net/browse/CPS-2306>`_ Update response message for data validation failure and make it consistent across APIs
     - `CPS-2319 <https://lf-onap.atlassian.net/browse/CPS-2319>`_ Fix "Create a node" and "Add List Elements" APIs response code
     - `CPS-2372 <https://lf-onap.atlassian.net/browse/CPS-2372>`_ Blank alternate ID overwrites existing one
 
 Features
 --------
-3.5.2
     - `CPS-1812 <https://lf-onap.atlassian.net/browse/CPS-1812>`_ CM Data Subscriptions ( Create, Delete and Merging ) with positive scenarios
     - `CPS-2326 <https://lf-onap.atlassian.net/browse/CPS-2326>`_ Uplift liquibase-core dependency to 4.28.0
     - `CPS-2353 <https://lf-onap.atlassian.net/browse/CPS-2353>`_ Improve registration performance with moduleSetTag
@@ -213,12 +204,10 @@ Release Data
 
 Bug Fixes
 ---------
-3.5.1
     - `CPS-2302 <https://lf-onap.atlassian.net/browse/CPS-2302>`_ Fix handling of special characters in moduleSetTag.
 
 Features
 --------
-3.5.1
     - `CPS-2121 <https://lf-onap.atlassian.net/browse/CPS-2121>`_ Enabled http client prometheus metrics and manage high cardinality using URL template.
     - `CPS-2289 <https://lf-onap.atlassian.net/browse/CPS-2289>`_ Support for CPS Path Query in NCMP Inventory CM Handle Search.
 
@@ -242,13 +231,8 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Bug Fixes
----------
-3.5.0
-
 Features
 --------
-3.5.0
     - `CPS-989 <https://lf-onap.atlassian.net/browse/CPS-989>`_ Replace RestTemplate with WebClient.
     - `CPS-2172 <https://lf-onap.atlassian.net/browse/CPS-2172>`_ Support for OpenTelemetry Tracing.
 
@@ -278,12 +262,10 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.9
     - `CPS-2211 <https://lf-onap.atlassian.net/browse/CPS-2211>`_ Toggle switch to disable CPS Core change events if not used by application. Set CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED environment variable for the same.
 
 Features
 --------
-3.4.9
     - `CPS-1836 <https://lf-onap.atlassian.net/browse/CPS-1836>`_ Delta between anchor and JSON payload.
 
 Version: 3.4.8
@@ -308,14 +290,10 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.8
     - `CPS-2186 <https://lf-onap.atlassian.net/browse/CPS-2186>`_ Report async task failures to client topic during data operations request
     - `CPS-2190 <https://lf-onap.atlassian.net/browse/CPS-2190>`_ Improve performance of NCMP module searches
     - `CPS-2194 <https://lf-onap.atlassian.net/browse/CPS-2194>`_ Added defaults for CPS and DMI username and password
     - `CPS-2204 <https://lf-onap.atlassian.net/browse/CPS-2204>`_ Added error handling for yang module upgrade operation
-
-Features
---------
 
 Version: 3.4.7
 ==============
@@ -339,12 +317,10 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.7
     - `CPS-2150 <https://lf-onap.atlassian.net/browse/CPS-2150>`_ Fix for Async task execution failed by TimeoutException.
 
 Features
 --------
-3.4.7
     - `CPS-2061 <https://lf-onap.atlassian.net/browse/CPS-2061>`_ Liquibase Steps Condensing and Cleanup.
     - `CPS-2101 <https://lf-onap.atlassian.net/browse/CPS-2101>`_ Uplift Spring Boot to 3.2.4 version.
 
@@ -370,7 +346,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.6
     - `CPS-2126 <https://lf-onap.atlassian.net/browse/CPS-2126>`_ Passing HTTP Authorization Bearer Token to DMI Plugins.
 
 
@@ -406,10 +381,6 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Bug Fixes
----------
-3.4.5
-
 
 Features
 --------
@@ -438,7 +409,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.4
     - `CPS-2027 <https://lf-onap.atlassian.net/browse/CPS-2027>`_ Upgrade Yang modules using module set tag functionalities fix
 
 Features
@@ -469,7 +439,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.3
     - `CPS-2000 <https://lf-onap.atlassian.net/browse/CPS-2000>`_ Fix for Schema object cache not being distributed.
     - `CPS-2027 <https://lf-onap.atlassian.net/browse/CPS-2027>`_ Fixes for upgrade yang modules using module set tag.
     - `CPS-2070 <https://lf-onap.atlassian.net/browse/CPS-2070>`_ Add retry interval for Kafka consumer.
@@ -505,11 +474,6 @@ Release Data
 | **Release date**                     | 2024 January 11                                        |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-
-Bug Fixes
----------
-3.4.2
-
 
 Features
 --------
@@ -556,7 +520,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.1
     - `CPS-1979 <https://lf-onap.atlassian.net/browse/CPS-1979>`_ Bug fix for Invalid topic name suffix.
 
 Features
@@ -594,7 +557,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.4.0
     - `CPS-1956 <https://lf-onap.atlassian.net/browse/CPS-1956>`_ Bug fix for No yang resources stored during cmhandle discovery.
 
 ..      ========================
@@ -623,12 +585,8 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.9
     - `CPS-1923 <https://lf-onap.atlassian.net/browse/CPS-1923>`_ CPS and NCMP changed management endpoint and port from /manage to /actuator and port same as cps application port.
     - `CPS-1933 <https://lf-onap.atlassian.net/browse/CPS-1933>`_ Setting up the class loader explicitly in hazelcast config.
-
-Features
---------
 
 Version: 3.3.8
 ==============
@@ -649,10 +607,6 @@ Release Data
 | **Release date**                     | 2023 September 29                                      |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-
-Bug Fixes
----------
-3.3.8
 
 Features
 --------
@@ -680,7 +634,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.7
     - `CPS-1866 <https://lf-onap.atlassian.net/browse/CPS-1866>`_ Fix ClassDefNotFoundError in opendaylight Yang parser
 
 Features
@@ -713,7 +666,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.6
     - `CPS-1841 <https://lf-onap.atlassian.net/browse/CPS-1841>`_ Update of top-level data node fails with exception
     - `CPS-1842 <https://lf-onap.atlassian.net/browse/CPS-1842>`_ Replace event-id with correlation-id for data read operation cloud event
 
@@ -743,10 +695,6 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Bug Fixes
----------
-3.3.5
-
 Features
 --------
     - `CPS-1760 <https://lf-onap.atlassian.net/browse/CPS-1760>`_ Improve handling of special characters in Cps Paths
@@ -771,10 +719,6 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Bug Fixes
----------
-3.3.4
-
 Features
 --------
     - `CPS-1767 <https://lf-onap.atlassian.net/browse/CPS-1767>`_ Upgrade CPS to java 17
@@ -798,10 +742,6 @@ Release Data
 | **Release date**                     | 2023 June 30                                           |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-
-Bug Fixes
----------
-3.3.3
 
 Features
 --------
@@ -831,7 +771,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.3.2
     - `CPS-1716 <https://lf-onap.atlassian.net/browse/CPS-1716>`_ NCMP: Java Heap OutOfMemory errors and slow registration in case of 20k cmhandles
 
 Features
@@ -862,11 +801,6 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
-Bug Fixes
----------
-3.3.1
-    - None
-
 Features
 --------
     - `CPS-1272 <https://lf-onap.atlassian.net/browse/CPS-1272>`_ Add Contains operation to CPS Path
@@ -894,11 +828,6 @@ Release Data
 | **Release date**                     | 2023 April 20                                          |
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
-
-Bug Fixes
----------
-3.3.0
-    - None
 
 Features
 --------
@@ -931,7 +860,6 @@ Release Data
 
 Bug Fixes
 ---------
-3.2.6
     - `CPS-1526 <https://lf-onap.atlassian.net/browse/CPS-1526>`_ Fix response message for PATCH operation
     - `CPS-1563 <https://lf-onap.atlassian.net/browse/CPS-1563>`_ Fix 500 response error on id-searches with empty parameters
 
@@ -961,12 +889,7 @@ Release Data
 
 Bug Fixes
 ---------
-3.2.5
     - `CPS-1537 <https://lf-onap.atlassian.net/browse/CPS-1537>`_ Introduce control switch for model loader functionality.
-
-Features
---------
-    - None
 
 Version: 3.2.4
 ==============
