@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5564e5e7_c3359b9a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:47:08Z",
+      "side": 1,
+      "message": "we currently deliberately log the whole exception incl stacktrace for troubleshooting purposes. Once the fix is proven to work we will minimize logging at info/waning level but probably leave a stacktrace logging at debug level",
+      "parentUuid": "e6ff12b6_0a514408",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 68
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fce310d_1720bc5a",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 3
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d006680_c02c2040",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:47:08Z",
+      "side": 1,
+      "message": "we currently deliberately log the whole exception incl stacktrace for troubleshooting purposes. Once the fix is proven to work we will minimize logging at info/waning level but probably leave a stacktrace logging at debug level",
+      "parentUuid": "8fce310d_1720bc5a",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 121,
+        "endChar": 73
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c88df796_34b380f2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
         "patchSetId": 3
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-23T15:51:54Z",
       "side": 1,
       "message": "NB:\n\n log.error(\"Duplicate Yang Resource \u0027{}\u0027 encountered while creating Schema Set \u0027{}\u0027 for CM Handle \u0027{}\u0027. \"\n                + \"CM Handle will be LOCKED for retry. Exception details: {}\",\n                duplicatedYangResourceException.getName(),\n                schemaSetName,\n                yangModelCmHandle.getId(),\n                duplicatedYangResourceException.getMessage());",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 127,
+        "endChar": 53
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4957a76_b62ea8eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:47:08Z",
+      "side": 1,
+      "message": "we currently deliberately log the whole exception incl stacktrace for troubleshooting purposes. Once the fix is proven to work we will minimize logging at info/waning level but probably leave a stacktrace logging at debug level",
+      "parentUuid": "c88df796_34b380f2",
       "range": {
         "startLine": 123,
         "startChar": 15,
@@ -129,6 +201,24 @@
       "writtenOn": "2025-01-23T15:51:54Z",
       "side": 1,
       "message": "and: \u0027the anchor creation is attempted once\u0027\n        1 * mockCpsAnchorService.createAnchor(*_)",
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8f95898_4a8a9787",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-23T16:47:08Z",
+      "side": 1,
+      "message": "i think that is alraedy tested in other tests, no need to repeat..",
+      "parentUuid": "440e1237_3dc94505",
       "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
