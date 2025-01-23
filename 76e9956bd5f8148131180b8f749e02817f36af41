@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e20156_1c2b03fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-23T11:58:16Z",
+      "side": 1,
+      "message": "Sonar failing here because of no coverage.\n(also there is a CSIT failure)",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 5
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
