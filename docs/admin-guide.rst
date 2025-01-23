@@ -226,6 +226,16 @@ Prometheus Metrics can be checked at the following endpoint
 
     http://<cps-component-service-name>:8080/actuator/prometheus
 
+Heap Dump and Thread Dump
+-------------------------
+
+On demand heap dump and thread dump generation using the below endpoints.
+
+.. code::
+
+    http://<cps-component-service-name>:8080/actuator/heapdump
+    http://<cps-component-service-name>:8080/actuator/threaddump
+
 Hazelcast
 ---------
 
