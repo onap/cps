@@ -1,0 +1,429 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ccd4ea_cf1a5fa2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "You can now update commit message to include the jira number for fix: CPS-2571",
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "376d5c65_9ee43650",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "Good commit, the integration-test (including the performance test) works well on my local machine. This also will fix the bug ticket : CPS-2571\nSome NB comments; more than 8 thus -1 until get addressed.",
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b0ba218_311438a7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: modules and schema set",
+      "range": {
+        "startLine": 179,
+        "startChar": 50,
+        "endLine": 179,
+        "endChar": 56
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0930323a_21889a28",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: clean dataspace API is invoked with a HTTP POST operation",
+      "range": {
+        "startLine": 131,
+        "startChar": 15,
+        "endLine": 131,
+        "endChar": 43
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d2fba8_64556e2a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: create anchor API is invoked with a HTTP POST operation",
+      "range": {
+        "startLine": 327,
+        "startChar": 15,
+        "endLine": 327,
+        "endChar": 61
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c501e0_0d845189",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsModuleServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: data \"ONLY\" belong to the some-dataspace-name",
+      "range": {
+        "startLine": 255,
+        "startChar": 39,
+        "endLine": 255,
+        "endChar": 44
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f06431_7a207c53",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492b61b2_8e3fa411",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: HTTP post",
+      "range": {
+        "startLine": 28,
+        "startChar": 63,
+        "endLine": 28,
+        "endChar": 67
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fef4466_f9770d47",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: created/updated",
+      "range": {
+        "startLine": 46,
+        "startChar": 102,
+        "endLine": 46,
+        "endChar": 109
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49658b01_2a7b0aeb",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: modules and schema sets",
+      "range": {
+        "startLine": 335,
+        "startChar": 56,
+        "endLine": 335,
+        "endChar": 63
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e063fae9_1a0fac48",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB:2023-2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f45f1b_034c89bd",
+        "filename": "docs/cps-events.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b397c47f_81951708",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e472cde6_830f955a",
+        "filename": "docs/cps-scheduled-processes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2022-2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37901ab3_88098531",
+        "filename": "docs/modeling.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "Nb: 2025",
+      "range": {
+        "startLine": 4,
+        "startChar": 36,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3674d473_aa1bfd48",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda02bfd_e4673efe",
+        "filename": "docs/overview.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: you can update the Copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36266edd_367511eb",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b443e382_9849dec4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/AnchorServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-23T10:26:21Z",
+      "side": 1,
+      "message": "NB: redundant space",
+      "range": {
+        "startLine": 71,
+        "startChar": 106,
+        "endLine": 71,
+        "endChar": 107
+      },
+      "revId": "1518126c9150246baea5ce1a1c3a28af168ff962",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
