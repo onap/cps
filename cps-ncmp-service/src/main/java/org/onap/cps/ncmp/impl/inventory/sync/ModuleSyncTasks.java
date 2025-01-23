@@ -114,7 +114,7 @@ public class ModuleSyncTasks {
             compositeState.setLockReason(null);
             return CmHandleState.READY;
         } catch (final Exception e) {
-            log.warn("Processing of {} failed,reason : {}.", yangModelCmHandle.getId(), e.getMessage());
+            log.warn("Processing of {} failed,reason : ", yangModelCmHandle.getId(), e);
             final LockReasonCategory lockReasonCategory = inUpgrade
                     ? LockReasonCategory.MODULE_UPGRADE_FAILED
                     : LockReasonCategory.MODULE_SYNC_FAILED;
