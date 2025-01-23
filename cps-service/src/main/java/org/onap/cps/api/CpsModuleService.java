@@ -164,8 +164,11 @@ public interface CpsModuleService {
     Collection<ModuleReference> identifyNewModuleReferences(Collection<ModuleReference> moduleReferencesToCheck);
 
     /**
-     * Remove any Yang Resource Modules and Schema Sets from the DB that are no longer referenced by any anchor.
+     * Remove any Yang Resource Modules and Schema Sets from the given dataspace that are no longer referenced
+     * by any anchor.
+     *
+     * @param dataspaceName     dataspace name
      */
-    void deleteAllUnusedYangModuleData();
+    void deleteAllUnusedYangModuleData(String dataspaceName);
 
 }

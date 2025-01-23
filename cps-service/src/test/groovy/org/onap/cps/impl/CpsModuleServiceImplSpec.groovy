@@ -252,11 +252,11 @@ class CpsModuleServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('some-dataspace-name', 'some-anchor-name')
     }
 
-    def 'Delete all unused yang module data.'() {
+    def 'Delete unused yang module data for a dataspace.'() {
         when: 'deleting unused yang module data'
-            objectUnderTest.deleteAllUnusedYangModuleData()
-        then: 'it is delegated to the module persistence service'
-            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData()
+            objectUnderTest.deleteAllUnusedYangModuleData('some-dataspace-name')
+        then: 'it is delegated to the module persistence service with the correct parameters'
+            1 * mockCpsModulePersistenceService.deleteAllUnusedYangModuleData('some-dataspace-name')
     }
 
     def 'Schema set exists.'() {

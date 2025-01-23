@@ -146,9 +146,11 @@ public interface CpsModulePersistenceService {
                                                                              String moduleName, String moduleRevision);
 
     /**
-     * Remove any unused Yang Resource Modules and Schema Sets.
+     * Remove any unused Yang Resource Modules and Schema Sets from the given dataspace.
+     *
+     * @param dataspaceName  dataspace name
      */
-    void deleteAllUnusedYangModuleData();
+    void deleteAllUnusedYangModuleData(String dataspaceName);
 
     /**
      * Identify new module references from those returned by a node compared to what is in CPS already.

@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2024 Nordix Foundation
+.. Copyright (C) 2021-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _release_notes:
@@ -71,7 +71,7 @@ Bug Fixes
 3.5.5
     - `CPS-2509 <https://lf-onap.atlassian.net/browse/CPS-2509>`_ Fix module endpoints using alternate identifier.
     - `CPS-2517 <https://lf-onap.atlassian.net/browse/CPS-2517>`_ Make Content-Type header default to JSON for CPS APIs.
-    - `CPS-2530 <https://lf-onap.atlassian.net/browse/CPS-2530>`_ NCMP Modules API giving empty response on READY cm handles if two sub systems discovered in parallel.
+    - `CPS-2530 <https://lf-onap.atlassian.net/browse/CPS-2530>`_ NCMP Modules API giving empty response on READY CM Handles if two sub systems discovered in parallel.
 
 Features
 --------
@@ -82,7 +82,7 @@ Features
     - `CPS-2436 <https://lf-onap.atlassian.net/browse/CPS-2436>`_ CM Avc Event to publish source key to target key while forwarding.
     - `CPS-2445 <https://lf-onap.atlassian.net/browse/CPS-2445>`_ Expose CPS and NCMP version information using git plugin.
     - `CPS-2451 <https://lf-onap.atlassian.net/browse/CPS-2451>`_ Removing oparent from CPS-NCMP and ONAP DMI Plugin repository.
-    - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Optimized Cm Handle Registration and De-Registration use case.
+    - `CPS-2478 <https://lf-onap.atlassian.net/browse/CPS-2478>`_ Optimized CM Handle Registration and De-Registration use case.
     - `CPS-2507 <https://lf-onap.atlassian.net/browse/CPS-2507>`_ Upgrade liquibase to 4.30.0 version.
 
 Performance
@@ -112,7 +112,7 @@ Release Data
 Bug Fixes
 ---------
 3.5.4
-    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM-handle Module Sync.
+    - `CPS-2403 <https://lf-onap.atlassian.net/browse/CPS-2403>`_ Improve lock handling and queue management during CM Handle Module Sync.
 
 Features
 --------
@@ -220,7 +220,7 @@ Features
 --------
 3.5.1
     - `CPS-2121 <https://lf-onap.atlassian.net/browse/CPS-2121>`_ Enabled http client prometheus metrics and manage high cardinality using URL template.
-    - `CPS-2289 <https://lf-onap.atlassian.net/browse/CPS-2289>`_ Support for CPS Path Query in NCMP Inventory Cm Handle Search.
+    - `CPS-2289 <https://lf-onap.atlassian.net/browse/CPS-2289>`_ Support for CPS Path Query in NCMP Inventory CM Handle Search.
 
 Version: 3.5.0
 ==============
@@ -530,7 +530,7 @@ Known Limitations, Issues and Workarounds
 For upgrading, CPS uses Liquibase for database upgrades. In order to enable Hibernate write batching
 (`CPS-1795 <https://lf-onap.atlassian.net/browse/CPS-1795>`_), a change to the database entity ID generation is required.
 As such, *this release does not fully support In-Service Software Upgrade* - CPS will not store new DataNodes and
-NCMP will not register new CM-handles during an upgrade with old and new versions of CPS running concurrently.
+NCMP will not register new CM Handles during an upgrade with old and new versions of CPS running concurrently.
 Other operations (read, update, delete) are not impacted.
 
 
@@ -805,7 +805,7 @@ Bug Fixes
 
 Features
 --------
-    - `CPS-1515 <https://lf-onap.atlassian.net/browse/CPS-1515>`_ Support Multiple CM-Handles for NCMP Get Operation
+    - `CPS-1515 <https://lf-onap.atlassian.net/browse/CPS-1515>`_ Support Multiple CM Handles for NCMP Get Operation
     - `CPS-1675 <https://lf-onap.atlassian.net/browse/CPS-1675>`_ Persistence write performance improvement(s)
     - `CPS-1745 <https://lf-onap.atlassian.net/browse/CPS-1745>`_ Upgrade to Openapi 3.0.3
 
@@ -1265,7 +1265,7 @@ Features
    - `CPS-869 <https://lf-onap.atlassian.net/browse/CPS-869>`_  Apply Standardized logging fields to adhere to ONAP Best practice REQ-1072
    - `CPS-870 <https://lf-onap.atlassian.net/browse/CPS-870>`_  Align CPS-Core output with SDN-C output (add module name)
    - `CPS-875 <https://lf-onap.atlassian.net/browse/CPS-875>`_  CM Handle State: Watchdog-process that syncs 'ADVISED' CM Handles
-   - `CPS-877 <https://lf-onap.atlassian.net/browse/CPS-877>`_  CM Handle State: Exclude any CM-Handles from queries/operations that are not in state 'READY'
+   - `CPS-877 <https://lf-onap.atlassian.net/browse/CPS-877>`_  CM Handle State: Exclude any CM Handles from queries/operations that are not in state 'READY'
    - `CPS-899 <https://lf-onap.atlassian.net/browse/CPS-899>`_  Start and stop sessions on Java API
    - `CPS-909 <https://lf-onap.atlassian.net/browse/CPS-909>`_  Separate NCMP endpoint for ch/{cm-handle}/properties and ch/{cm-handle}/state
    - `CPS-917 <https://lf-onap.atlassian.net/browse/CPS-917>`_  Structured Errors response for passthrough use-cases in NCMP
@@ -1278,7 +1278,7 @@ Features
    - `CPS-1099 <https://lf-onap.atlassian.net/browse/CPS-1099>`_  Expose simplified 'external' lock reason enum state over REST interface
    - `CPS-1101 <https://lf-onap.atlassian.net/browse/CPS-1101>`_  Introducing the DELETING and DELETED Cmhandle State
    - `CPS-1102 <https://lf-onap.atlassian.net/browse/CPS-1102>`_  Register the Cmhandle Sends Advised State notification.
-   - `CPS-1133 <https://lf-onap.atlassian.net/browse/CPS-1133>`_  Enable/Disable Data Sync for Cm Handle
+   - `CPS-1133 <https://lf-onap.atlassian.net/browse/CPS-1133>`_  Enable/Disable Data Sync for CM Handle
    - `CPS-1136 <https://lf-onap.atlassian.net/browse/CPS-1136>`_  DMI Audit Support (get all CM Handles for a registered DMI)
 
 
@@ -1379,27 +1379,27 @@ Features
    - `CPS-559 <https://lf-onap.atlassian.net/browse/CPS-559>`_  Define response objects (schemas) in cps-ncmp
    - `CPS-636 <https://lf-onap.atlassian.net/browse/CPS-636>`_  Update operation for datastore pass through running
    - `CPS-638 <https://lf-onap.atlassian.net/browse/CPS-638>`_  Delete operation for datastore pass through running
-   - `CPS-677 <https://lf-onap.atlassian.net/browse/CPS-677>`_  Support 'public' Cm Handle Properties
-   - `CPS-741 <https://lf-onap.atlassian.net/browse/CPS-741>`_  Re sync after removing cm handles
+   - `CPS-677 <https://lf-onap.atlassian.net/browse/CPS-677>`_  Support 'public' CM Handle Properties
+   - `CPS-741 <https://lf-onap.atlassian.net/browse/CPS-741>`_  Re sync after removing CM Handles
    - `CPS-777 <https://lf-onap.atlassian.net/browse/CPS-777>`_  Ensure all DMI operations use POST method
    - `CPS-780 <https://lf-onap.atlassian.net/browse/CPS-780>`_  Add examples for parameters, request and response in openapi yaml for cps-core
    - `CPS-789 <https://lf-onap.atlassian.net/browse/CPS-789>`_ CPS Data Updated Event Schema V2 to support delete operation
    - `CPS-791 <https://lf-onap.atlassian.net/browse/CPS-791>`_ CPS-Core sends delete notification event
-   - `CPS-817 <https://lf-onap.atlassian.net/browse/CPS-817>`_  Create Endpoint For Get Cm Handles (incl. public properties) By Name
+   - `CPS-817 <https://lf-onap.atlassian.net/browse/CPS-817>`_  Create Endpoint For Get CM Handles (incl. public properties) By Name
    - `CPS-837 <https://lf-onap.atlassian.net/browse/CPS-837>`_  Add Remove and Update properties (DMI and Public) as part of CM Handle Registration update
 
 Bug Fixes
 ---------
 
-   - `CPS-762 <https://lf-onap.atlassian.net/browse/CPS-762>`_ Query cm handles for module names returns incorrect cm handle identifiers
+   - `CPS-762 <https://lf-onap.atlassian.net/browse/CPS-762>`_ Query CM Handles for module names returns incorrect CM Handle identifiers
    - `CPS-788 <https://lf-onap.atlassian.net/browse/CPS-788>`_ Yang Resource formatting is incorrect
-   - `CPS-783 <https://lf-onap.atlassian.net/browse/CPS-783>`_ Remove cm handle does not completely remove all cm handle information
+   - `CPS-783 <https://lf-onap.atlassian.net/browse/CPS-783>`_ Remove CM Handle does not completely remove all CM Handle information
    - `CPS-841 <https://lf-onap.atlassian.net/browse/CPS-841>`_ Upgrade log4j to 2.17.1 as recommended by ONAP SECCOM
    - `CPS-856 <https://lf-onap.atlassian.net/browse/CPS-856>`_ Retry mechanism not working for concurrent CmHandle registration
    - `CPS-867 <https://lf-onap.atlassian.net/browse/CPS-867>`_ Database port made configurable through env variable DB_PORT
    - `CPS-886 <https://lf-onap.atlassian.net/browse/CPS-886>`_ Fragment handling decreasing performance for large number of cmHandles
    - `CPS-887 <https://lf-onap.atlassian.net/browse/CPS-887>`_ Increase performance of cmHandle registration for large number of schema sets in DB
-   - `CPS-892 <https://lf-onap.atlassian.net/browse/CPS-892>`_ Fixed the response code during CM-Handle Registration from 201 CREATED to 204 NO_CONTENT
+   - `CPS-892 <https://lf-onap.atlassian.net/browse/CPS-892>`_ Fixed the response code during CM Handle Registration from 201 CREATED to 204 NO_CONTENT
    - `CPS-893 <https://lf-onap.atlassian.net/browse/CPS-893>`_ NCMP Java API depends on NCMP-Rest-API (cyclic) through json properties on Java API
 
 Known Limitations, Issues and Workarounds
@@ -1407,9 +1407,9 @@ Known Limitations, Issues and Workarounds
 
 *System Limitations*
 
-Null can no longer be passed within the dmi plugin service names when registering a cm handle, as part of
+Null can no longer be passed within the dmi plugin service names when registering a CM Handle, as part of
 `CPS-837 <https://lf-onap.atlassian.net/browse/CPS-837>`_ null is now used to indicate if a property should be removed as part
-of cm handle registration.
+of CM Handle registration.
 
 The Absolute path to list with integer key will not work. Please refer `CPS-961 <https://lf-onap.atlassian.net/browse/CPS-961>`_
 for more information.

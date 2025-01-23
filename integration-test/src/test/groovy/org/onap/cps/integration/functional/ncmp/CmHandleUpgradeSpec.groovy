@@ -79,7 +79,6 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
         cleanup: 'deregister CM-handle and remove all associated module resources'
             deregisterCmHandle(DMI1_URL, cmHandleId)
-            cpsModuleService.deleteAllUnusedYangModuleData()
 
         where: 'following module set tags are used'
             initialModuleSetTag | updatedModuleSetTag
