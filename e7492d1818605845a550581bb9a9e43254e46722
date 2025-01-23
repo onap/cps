@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2079c46e_f1716da6",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:23:55Z",
+      "side": 1,
+      "message": "You may use the restconf style here too. ManagedElement[@id\u003dNRNode1]...",
+      "parentUuid": "207a1c36_b2dac224",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 63
+      },
+      "revId": "e7492d1818605845a550581bb9a9e43254e46722",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e27aa26c_3aa6f5ae",
         "filename": "k6-tests/ncmp/common/passthrough-crud.js",
         "patchSetId": 3
