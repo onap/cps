@@ -23,7 +23,6 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
@@ -347,7 +346,7 @@ public class CmHandleRegistrationService {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
             .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeCreated, AlternateIdChecker.Operation.CREATE);
         cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(
-            rejectedCmHandleIds, ALTERNATE_ID_ALREADY_ASSOCIATED));
+            rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST));
         return rejectedCmHandleIds;
     }
 
