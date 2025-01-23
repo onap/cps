@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ff12b6_0a514408",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "NB: \n\nlog.warn(\"Anchor already exists for CM Handle ID \u0027{}\u0027, Schema Set \u0027{}\u0027. Ignoring exception: {}, Exception details:\", cmHandleId, schemaSetName, alreadyDefinedException.getMessage(), alreadyDefinedException);",
+      "range": {
+        "startLine": 76,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 68
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fce310d_1720bc5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "NB:\n\nlog.warn(\"Schema Set \u0027{}\u0027 for CM Handle \u0027{}\u0027 already exists. Ignoring exception: {}, Exception details:\", schemaSetName, yangModelCmHandle.getId(),                alreadyDefinedException.getMessage());",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 121,
+        "endChar": 73
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c88df796_34b380f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "NB:\n\n log.error(\"Duplicate Yang Resource \u0027{}\u0027 encountered while creating Schema Set \u0027{}\u0027 for CM Handle \u0027{}\u0027. \"\n                + \"CM Handle will be LOCKED for retry. Exception details: {}\",\n                duplicatedYangResourceException.getName(),\n                schemaSetName,\n                yangModelCmHandle.getId(),\n                duplicatedYangResourceException.getMessage());",
+      "range": {
+        "startLine": 123,
+        "startChar": 15,
+        "endLine": 127,
+        "endChar": 53
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e38e66_51bade27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 109,
+        "startChar": 14,
+        "endLine": 109,
+        "endChar": 18
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4194418_e27208a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "AlreadyDefinedException",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 29
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "440e1237_3dc94505",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "and: \u0027the anchor creation is attempted once\u0027\n        1 * mockCpsAnchorService.createAnchor(*_)",
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "523fa89d_7881c831",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:51:54Z",
+      "side": 1,
+      "message": "DMI",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 18
+      },
+      "revId": "49601871eda58a5a66763f15ff13bf32102abacb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
