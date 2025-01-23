@@ -90,21 +90,45 @@ class ModuleSyncServiceSpec extends Specification {
             'without' | ''
     }
 
-    def 'Attempt Sync models for a cm handle with existing schema set (#originalException).'() {
+    def 'Sync models for a cm handle with already defined exception upon schema set creation.'() {
         given: 'a cm handle to be synced'
             def yangModelCmHandle = createAdvisedCmHandle('existing tag')
         and: 'dmi returns no new yang resources'
             mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
         and: 'already defined exception occurs when creating schema (existing)'
+            mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw AlreadyDefinedException.forSchemaSet('', '', null)  }
+        when: 'module sync is triggered'
+            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'the exception is ignored'
+            noExceptionThrown()
+    }
+
+    def 'Sync models for a cm handle with already defined exception upon anchor set creation.'() {
+        given: 'a cm handle to be synced'
+            def yangModelCmHandle = createAdvisedCmHandle('existing tag')
+        and: 'dmi returns no new yang resources'
+            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+        and: 'already defined exception occurs when creating schema (existing)'
+            mockCpsAnchorService.createAnchor(*_) >> { throw AlreadyDefinedException.forAnchor('', '', null)  }
+        when: 'module sync is triggered'
+            objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
+        then: 'the exception is ignored'
+            noExceptionThrown()
+    }
+
+    def 'Attempt Sync models for a cm handle with duplicate yang resources exception).'() {
+        given: 'a cm handle to be synced'
+            def yangModelCmHandle = createAdvisedCmHandle('existing tag')
+        and: 'dmi returns no new yang resources'
+            mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
+        and: 'duplicate yang resource exception occurs when creating schema'
+            def originalException = new DuplicatedYangResourceException('', '', null)
             mockCpsModuleService.createSchemaSetFromModules(*_) >> { throw originalException  }
         when: 'module sync is triggered'
             objectUnderTest.syncAndCreateSchemaSetAndAnchor(yangModelCmHandle)
         then: 'same exception is thrown up'
             def thrownException = thrown(Exception)
             assert thrownException == originalException
-        where: 'following exceptions occur'
-            originalException << [AlreadyDefinedException.forSchemaSet('', '', null),
-                                  new DuplicatedYangResourceException('', '', null) ]
     }
 
     def 'Model upgrade without using Module Set Tags (legacy) where the modules are in database.'() {
