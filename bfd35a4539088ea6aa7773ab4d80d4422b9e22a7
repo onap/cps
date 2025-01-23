@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ab1f92_5c6372d9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "NB:         \n\n /**\n * Cleans the specified dataspace of any orphaned module data.\n *\n * This method removes all unused Yang module data associated with the given dataspace.\n *\n * @param apiVersion   the API version of the request\n * @param dataspaceName the name of the dataspace to clean\n * @return a {@link ResponseEntity} with {@link HttpStatus#NO_CONTENT} if the operation succeeds\n */",
+      "range": {
+        "startLine": 178,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 7
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9fff6c3_9f3135a4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "Use ResponseEntity.noContent().build() for better readability:\n\nreturn ResponseEntity.noContent().build();",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 59
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "108849e5_c99af7b7",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "NB : This section outlines the tasks that an administrator of the CPS application should perform regularly to maintain optimal performance.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 0
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21cdb98d_e36ec540",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "NB : Orphaned data can accumulate in the CPS database when resources such as schema sets and their associated modules are no longer used by any anchors (e.g., after model upgrades). \n\nIf not removed, this data may unnecessarily consume storage space and degrade database performance over time. The frequency of clean-up depends on how often schema sets are deprecated, but typically, performing this task **once a month** should suffice.",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "953b27fd_0fb1c2ec",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "NB:  To remove orphaned data in a specific dataspace, use the following `POST` request:",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 76
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2149e818_27dcf38c",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-23T15:16:53Z",
+      "side": 1,
+      "message": "enum: [v1, v2]",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "bfd35a4539088ea6aa7773ab4d80d4422b9e22a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
