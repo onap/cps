@@ -191,21 +191,16 @@ Any spring supported property can be configured by providing in ``config.additio
 | Property                                  | Description                                                                                             | Default Value                 |
 +===========================================+=========================================================================================================+===============================+
 | config.appUserName                        | User name used by cps-core service to configure the authentication for REST API it exposes.             | ``cpsuser``                   |
-|                                           |                                                                                                         |                               |
 |                                           | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.appUserPassword                    | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
-|                                           |                                                                                                         |                               |
 |                                           | If not defined, the password is generated when deploying the application.                               |                               |
-|                                           |                                                                                                         |                               |
 |                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgUserName                | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgUserPassword            | Internal password used by cps-core to connect to its own database.                                      | Not defined                   |
-|                                           |                                                                                                         |                               |
 |                                           | If not defined, the password is generated when deploying the application.                               |                               |
-|                                           |                                                                                                         |                               |
 |                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | postgres.config.pgDatabase                | Database name used by cps-core                                                                          | ``cpsdb``                     |
@@ -225,28 +220,24 @@ Any spring supported property can be configured by providing in ``config.additio
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                    | Kafka security protocol.                                                                                | ``SASL_PLAINTEXT``            |
 | spring.kafka.security.protocol            | Some possible values are:                                                                               |                               |
-|                                           |                                                                                                         |                               |
 |                                           | * ``PLAINTEXT``                                                                                         |                               |
 |                                           | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
 |                                           | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                    | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
 | spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
-| sasl.mechanism                            |                                                                                                         |                               |
-|                                           | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
+| sasl.mechanism                            | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
 |                                           | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                    | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
 | spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
-| sasl.jaas.config                          |                                                                                                         |                               |
-|                                           | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
+| sasl.jaas.config                          | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
 |                                           |   for PLAINTEXT                                                                                         |                               |
 |                                           | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
 |                                           |   for SSL                                                                                               |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                    | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
 | spring.kafka.ssl.trust-store-type         | Some possible values are:                                                                               |                               |
-|                                           |                                                                                                         |                               |
 |                                           | * ``JKS``                                                                                               |                               |
 +-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
 | config.eventPublisher.                    | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
@@ -294,67 +285,77 @@ Any spring supported property can be configured by providing in ``config.additio
 Additional CPS-NCMP Customizations
 ==================================
 
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| Property                                        | Description                                                                                             | Default Value |
-+=================================================+=========================================================================================================+===============+
-| config.dmiPluginUserName                        | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin service.                | ``dmiuser``   |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.dmiPluginUserPassword                    | Internal password used by cps-core to connect to ncmp-dmi-plugin service.                               | Not defined   |
-|                                                 |                                                                                                         |               |
-|                                                 | If not defined, the password is generated when deploying the application.                               |               |
-|                                                 |                                                                                                         |               |
-|                                                 | See also :ref:`cps_common_credentials_retrieval`.                                                       |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.ncmp.timers                              | Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing. | ``5000``      |
-| .advised-modules-sync.sleep-time-ms             |                                                                                                         |               |
-|                                                 |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.ncmp.timers                              | Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.   | ``30000``     |
-| .cm-handle-data-sync.sleep-time-ms              |                                                                                                         |               |
-|                                                 |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Maximum size (in MB) of the in-memory buffer for HTTP response data.                                    | ``16``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .maximumInMemorySizeInMegabytes                 |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Maximum number of simultaneous connections allowed in the connection pool.                              | ``100``       |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .maximumConnectionsTotal                        |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Maximum number of pending requests when the connection pool is full.                                    | ``50``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .pendingAcquireMaxCount                         |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP Client.       | ``30``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .connectionTimeoutInSeconds                     |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Timeout (in seconds) for reading data from the server after the connection is established.              | ``30``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .readTimeoutInSeconds                           |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Timeout (in seconds) for writing data to the server.                                                    | ``30``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .writeTimeoutInSeconds                          |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
-| config.additional.ncmp                          | Total timeout (in seconds) for receiving a complete response, including all processing stages.          | ``60``        |
-| .[app]                                          |                                                                                                         |               |
-| .httpclient                                     |                                                                                                         |               |
-| .[services]                                     |                                                                                                         |               |
-| .responseTimeoutInSeconds                       |                                                                                                         |               |
-+-------------------------------------------------+---------------------------------------------------------------------------------------------------------+---------------+
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| Property                                        | Description                                                                           | Default Value                   |
++=================================================+=======================================================================================+=================================+
+| config.dmiPluginUserName                        | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin       | ``dmiuser``                     |
+|                                                 | service.                                                                              |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.dmiPluginUserPassword                    | Internal password used by cps-core to connect to ncmp-dmi-plugin service.             | Not defined                     |
+|                                                 | If not defined, the password is generated when deploying the application.             |                                 |
+|                                                 | See also :ref:`cps_common_credentials_retrieval`.                                     |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.ncmp.timers                              | Specifies the delay in milliseconds in which the module sync watch dog will wake again| ``5000``                        |
+| .advised-modules-sync.sleep-time-ms             | after finishing.                                                                      |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.ncmp.timers                              | Specifies the delay in milliseconds in which the data sync watch dog will wake again  | ``30000``                       |
+| .cm-handle-data-sync.sleep-time-ms              | after finishing.                                                                      |                                 |
+|                                                 |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Maximum size (in MB) of the in-memory buffer for HTTP response data.                  | ``16``                          |
+| .[app]                                          |                                                                                       |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .maximumInMemorySizeInMegabytes                 |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Maximum number of simultaneous connections allowed in the connection pool.            | ``100``                         |
+| .[app]                                          |                                                                                       |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .maximumConnectionsTotal                        |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Maximum number of pending requests when the connection pool is full.                  | ``50``                          |
+| .[app]                                          |                                                                                       |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .pendingAcquireMaxCount                         |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Specifies the maximum time in seconds, to wait for establishing a connection for the  | ``30``                          |
+| .[app]                                          | HTTP Client.                                                                          |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .connectionTimeoutInSeconds                     |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Timeout (in seconds) for reading data from the server after the connection is         | ``30``                          |
+| .[app]                                          | established.                                                                          |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .readTimeoutInSeconds                           |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Timeout (in seconds) for writing data to the server.                                  | ``30``                          |
+| .[app]                                          |                                                                                       |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .writeTimeoutInSeconds                          |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp                          | Total timeout (in seconds) for receiving a complete response, including all processing| ``60``                          |
+| .[app]                                          | stages.                                                                               |                                 |
+| .httpclient                                     |                                                                                       |                                 |
+| .[services]                                     |                                                                                       |                                 |
+| .responseTimeoutInSeconds                       |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp.policy-executor          | Enables or disables the policy-executor feature.                                      | ``false``                       |
+| .enabled                                        |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp.policy-executor          | The default (fallback) decision in case a problem with the external service occurs.   | ``allow``                       |
+| .defaultDecision                                |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp.policy-executor          | The server address for the external policy executor service.                          | ``http://policy-executor-stub`` |
+| .server.address                                 |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| config.additional.ncmp.policy-executor          | The port used for the external policy executor service.                               | ``8093``                        |
+| .server.port                                    |                                                                                       |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
 
 .. note::
 
