@@ -21,9 +21,12 @@
 package org.onap.cps.config;
 
 import com.hazelcast.map.IMap;
+import io.github.mweirauch.micrometer.jvm.extras.ProcessMemoryMetrics;
+import io.github.mweirauch.micrometer.jvm.extras.ProcessThreadMetrics;
 import io.micrometer.core.aop.TimedAspect;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.binder.MeterBinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +42,16 @@ public class MicroMeterConfig {
     @Bean
     public TimedAspect timedAspect(final MeterRegistry meterRegistry) {
         return new TimedAspect(meterRegistry);
+    }
+
+    @Bean
+    public MeterBinder processMemoryMetrics() {
+        return new ProcessMemoryMetrics();
+    }
+
+    @Bean
+    public MeterBinder processThreadMetrics() {
+        return new ProcessThreadMetrics();
     }
 
     /**

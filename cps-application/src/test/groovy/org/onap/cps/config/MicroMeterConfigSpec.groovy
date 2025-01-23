@@ -31,8 +31,15 @@ class MicroMeterConfigSpec extends Specification {
     def simpleMeterRegistry = new SimpleMeterRegistry()
 
     def 'Creating a timed aspect.'() {
-        expect: ' a timed aspect can be created'
+        expect: 'a timed aspect can be created'
             assert objectUnderTest.timedAspect(simpleMeterRegistry) != null
+    }
+
+    def 'Creating JVM process metrics.'() {
+        expect: 'process memory metrics can be created'
+            assert objectUnderTest.processMemoryMetrics() != null
+        and: 'process thread metrics can be created'
+            assert objectUnderTest.processThreadMetrics() != null
     }
 
     def 'Creating gauges for cm handle states.'() {
