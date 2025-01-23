@@ -1,5 +1,121 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714d73a0_5d8111b5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:40:35Z",
+      "side": 1,
+      "message": "ManagedElement\u003dNRNode1/GNBDUFunction\u003d1/NRCellDU\u003dcell1",
+      "range": {
+        "startLine": 367,
+        "startChar": 20,
+        "endLine": 367,
+        "endChar": 51
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f136f5_c35855e2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:40:35Z",
+      "side": 1,
+      "message": "(This comment is applicable all places where @gNBId is used.)\n\nThis is not the id of the GNBDUFunction MO. All 3gpp components must have the key named simply \"id\". GNBDUFunction is no exception.\nIt is defined so:\n\n augment \"/me3gpp:ManagedElement\" {\n\n    list GNBDUFunction {\n      key id;\n\n\nYou can check it in: https://forge.3gpp.org/rep/sa5/MnS/-/blob/Rel-19/yang-models/_3gpp-nr-nrm-gnbdufunction.yang",
+      "range": {
+        "startLine": 577,
+        "startChar": 50,
+        "endLine": 577,
+        "endChar": 55
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f593a8d_20c8d86e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:40:35Z",
+      "side": 1,
+      "message": "it should be forward slash (fix it in all the following samples too)",
+      "range": {
+        "startLine": 613,
+        "startChar": 32,
+        "endLine": 613,
+        "endChar": 33
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6268357e_d417b4bf",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:40:35Z",
+      "side": 1,
+      "message": "if you use restconf style options here I suggest filter instead of depth. That is more valuable.",
+      "range": {
+        "startLine": 629,
+        "startChar": 12,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72fd65f4_18588b86",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8121
+      },
+      "writtenOn": "2025-01-23T14:40:35Z",
+      "side": 1,
+      "message": "As discussed. The \"id\" and \"attributes\" are payload of write requests.\nThe cmHandleProperties examples were ok. They don\u0027t need changes.",
+      "range": {
+        "startLine": 111,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 17
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
