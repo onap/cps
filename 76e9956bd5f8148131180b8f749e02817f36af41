@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "232f046d_ba128bb6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-23T12:50:51Z",
+      "side": 1,
+      "message": "As discussed , we dont combine flow 12 and 13b in the same publisher.",
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e31860_4ca093fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-23T12:50:51Z",
+      "side": 1,
+      "message": "this one is used to send the inventory events ( trustlevel changes )",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 31
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5e168f9_1f43f8d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-23T12:50:51Z",
+      "side": 1,
+      "message": "this is used for forwarding the notifications ( currently unfiltered or subscribed to all changes way )",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55e20156_1c2b03fc",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
         "patchSetId": 3
