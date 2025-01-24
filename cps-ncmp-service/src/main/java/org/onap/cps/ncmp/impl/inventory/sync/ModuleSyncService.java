@@ -36,7 +36,6 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
-import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.ContentType;
@@ -73,8 +72,8 @@ public class ModuleSyncService {
         try {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            log.warn("Ignoring (anchor) already exist exception for {}. Exception details: ",
-                yangModelCmHandle.getId(), alreadyDefinedException);
+            log.warn("Ignoring (Anchor) already exists exception for {}. Exception details: {}", cmHandleId,
+                    alreadyDefinedException.getDetails());
         }
     }
 
@@ -105,9 +104,10 @@ public class ModuleSyncService {
 
     private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String schemaSetName) {
         if (isNewSchemaSet(schemaSetName)) {
+            final String cmHandleId = yangModelCmHandle.getId();
             final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
             try {
-                log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, yangModelCmHandle.getId());
+                log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, cmHandleId);
                 cpsModuleService.createSchemaSetFromModules(
                     NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
                     schemaSetName,
@@ -117,15 +117,8 @@ public class ModuleSyncService {
                 log.info("Successfully created Schema Set {} for CM Handle {}", schemaSetName,
                     yangModelCmHandle.getId());
             } catch (final AlreadyDefinedException alreadyDefinedException) {
-                log.warn("Ignoring already exist (schema set) exception for {}. Exception details: ",
-                     yangModelCmHandle.getId(), alreadyDefinedException);
-            } catch (final DuplicatedYangResourceException duplicatedYangResourceException) {
-                log.warn("Duplicate Yang Resource {} creation for {}. "
-                        + "CM Handle will be LOCKED (for retry). Exception details: ",
-                    duplicatedYangResourceException.getName(),
-                    yangModelCmHandle.getId(),
-                    duplicatedYangResourceException);
-                throw duplicatedYangResourceException;
+                log.warn("Ignoring (Schema Set) already exists exception for {}. Exception details: {}", cmHandleId,
+                        alreadyDefinedException.getDetails());
             }
         }
     }
