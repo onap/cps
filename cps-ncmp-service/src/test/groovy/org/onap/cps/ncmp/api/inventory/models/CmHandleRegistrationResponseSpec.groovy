@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2023-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ import spock.lang.Specification
 
 import java.util.stream.Collectors
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
 
@@ -89,14 +88,14 @@ class CmHandleRegistrationResponseSpec extends Specification {
     }
 
     def 'Failed cm-handle registration based on cm handle id and registration error'() {
-        when: 'the failure response is created with "alternate id already associated" error code for 1 cm handle'
+        when: 'the failure response is created with "cm-handle already exists" error code for 1 cm handle'
             def cmHandleRegistrationResponses =
-                    CmHandleRegistrationResponse.createFailureResponses(['ch 1'], ALTERNATE_ID_ALREADY_ASSOCIATED)
+                    CmHandleRegistrationResponse.createFailureResponses(['ch 1'], CM_HANDLE_ALREADY_EXIST)
         then: 'the response with expected values'
             assert cmHandleRegistrationResponses[0].cmHandle == 'ch 1'
             assert cmHandleRegistrationResponses[0].status == Status.FAILURE
-            assert cmHandleRegistrationResponses[0].ncmpResponseStatus == ALTERNATE_ID_ALREADY_ASSOCIATED
-            assert cmHandleRegistrationResponses[0].errorText == 'alternate id already associated'
+            assert cmHandleRegistrationResponses[0].ncmpResponseStatus == CM_HANDLE_ALREADY_EXIST
+            assert cmHandleRegistrationResponses[0].errorText == 'cm-handle already exists'
     }
 
 }
