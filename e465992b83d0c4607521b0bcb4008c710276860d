@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d95d8ab8_fcc52fac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-24T11:23:38Z",
+      "side": 1,
+      "message": "also take care of the copyright year as well.",
+      "revId": "e465992b83d0c4607521b0bcb4008c710276860d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b6b17b_e22dc763",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-24T11:23:38Z",
+      "side": 1,
+      "message": "?? code from previous patch.",
+      "range": {
+        "startLine": 142,
+        "startChar": 55,
+        "endLine": 142,
+        "endChar": 82
+      },
+      "revId": "e465992b83d0c4607521b0bcb4008c710276860d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b93241_8985bf2f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-24T11:23:38Z",
+      "side": 1,
+      "message": "?? code from previous patch.",
+      "range": {
+        "startLine": 155,
+        "startChar": 55,
+        "endLine": 155,
+        "endChar": 82
+      },
+      "revId": "e465992b83d0c4607521b0bcb4008c710276860d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
