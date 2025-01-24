@@ -152,6 +152,8 @@ security:
         password: ${CPS_PASSWORD:cpsr0cks!}
 
 cps:
+    monitoring:
+        micrometer-jvm-extras: false
     tracing:
         sampler:
             jaeger_remote:

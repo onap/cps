@@ -28,6 +28,7 @@ import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.binder.MeterBinder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,11 +46,13 @@ public class MicroMeterConfig {
     }
 
     @Bean
+    @ConditionalOnProperty("cps.monitoring.micrometer-jvm-extras")
     public MeterBinder processMemoryMetrics() {
         return new ProcessMemoryMetrics();
     }
 
     @Bean
+    @ConditionalOnProperty("cps.monitoring.micrometer-jvm-extras")
     public MeterBinder processThreadMetrics() {
         return new ProcessThreadMetrics();
     }

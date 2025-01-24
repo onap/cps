@@ -68,6 +68,7 @@ services:
       ONAP_OTEL_EXPORTER_ENDPOINT: http://jaeger-service:4317
       POLICY_SERVICE_ENABLED: 'false'
       POLICY_SERVICE_DEFAULT_DECISION: 'deny from env'
+      CPS_MONITORING_MICROMETER_JVM_EXTRAS: 'true'
       JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
       ### DEBUG: Uncomment next line to enable java debugging
       ### JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
