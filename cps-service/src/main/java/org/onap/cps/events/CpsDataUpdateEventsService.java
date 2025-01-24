@@ -55,20 +55,24 @@ public class CpsDataUpdateEventsService {
     @Value("${notification.enabled:false}")
     private boolean notificationsEnabled;
 
+    @Value("${app.cps.data-updated.delta-notification:false}")
+    private boolean deltaNotificationEnabled;
+
     /**
      * Publish the cps data update event with header to the public topic.
      *
      * @param anchor Anchor of the updated data
+     * @param deltaReport delta report
      * @param xpath  xpath of the updated data
      * @param operation operation performed on the data
      * @param observedTimestamp timestamp when data was updated.
      */
     @Timed(value = "cps.dataupdate.events.publish", description = "Time taken to publish Data Update event")
-    public void publishCpsDataUpdateEvent(final Anchor anchor, final String xpath,
+    public void publishCpsDataUpdateEvent(final Anchor anchor, final String deltaReport, final String xpath,
                                           final Operation operation, final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
             final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
-                    observedTimestamp, xpath, operation);
+                    observedTimestamp, xpath, deltaReport, operation);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
             final Map<String, String> extensions = createUpdateEventExtensions(updateEventId);
             final CloudEvent cpsDataUpdatedEventAsCloudEvent =
@@ -86,16 +90,19 @@ public class CpsDataUpdateEventsService {
     }
 
     private CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
-                                                          final String xpath,
-                                                          final Operation rootNodeOperation) {
+                                                          final String xpath, final String deltaReport,
+                                                          final Operation operation) {
         final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
         final Data updateEventData = new Data();
         updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
         updateEventData.setAnchorName(anchor.getName());
         updateEventData.setSchemaSetName(anchor.getSchemaSetName());
-        updateEventData.setOperation(getRootNodeOperation(xpath, rootNodeOperation));
+        updateEventData.setOperation(operation);
         updateEventData.setXpath(xpath);
+        if (deltaNotificationEnabled) {
+            updateEventData.setDelta(deltaReport);
+        }
         cpsDataUpdatedEvent.setData(updateEventData);
         return cpsDataUpdatedEvent;
     }
@@ -104,17 +111,5 @@ public class CpsDataUpdateEventsService {
         final Map<String, String> extensions = new HashMap<>();
         extensions.put("correlationid", eventKey);
         return extensions;
-    }
-
-    private Operation getRootNodeOperation(final String xpath, final Operation operation) {
-        return isRootXpath(xpath) || isRootContainerNodeXpath(xpath) ? operation : Operation.UPDATE;
-    }
-
-    private static boolean isRootXpath(final String xpath) {
-        return "/".equals(xpath) || "".equals(xpath);
-    }
-
-    private static boolean isRootContainerNodeXpath(final String xpath) {
-        return 0 == xpath.lastIndexOf('/');
     }
 }
