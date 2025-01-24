@@ -186,7 +186,7 @@ public class CmHandleRegistrationService {
             processTrustLevels(ncmpServiceCmHandles, succeededCmHandleIds);
 
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponsesFromXpaths(
+            failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createConflictResponsesFromXpaths(
                 alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST));
         } catch (final Exception exception) {
             final Collection<String> cmHandleIds =
@@ -345,7 +345,7 @@ public class CmHandleRegistrationService {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
             .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeCreated, AlternateIdChecker.Operation.CREATE);
-        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(
+        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createConflictResponses(
             rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST));
         return rejectedCmHandleIds;
     }

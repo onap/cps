@@ -76,8 +76,8 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             def dmiPluginRegistrationResponse =
                     objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
 
-        then: 'registration gives failure response, due to cm-handle already existing'
-            assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createFailureResponse('ch-1', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST)]
+        then: 'registration gives conflict response, due to cm-handle already existing'
+            assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createConflictResponse('ch-1', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST)]
 
         and: 'the CM-handle still has the old alternate ID'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').alternateId == 'original'

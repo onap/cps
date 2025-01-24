@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
@@ -103,9 +104,13 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);
-        return allRegistrationsSuccessful(failedRegistrationErrorResponse)
-            ? new ResponseEntity<>(HttpStatus.OK)
-            : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        if (allRegistrationsSuccessful(failedRegistrationErrorResponse)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return isRegistrationFailureOnlyDueToConflict(failedRegistrationErrorResponse)
+                ? new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.CONFLICT)
+                : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     private boolean allRegistrationsSuccessful(
@@ -114,6 +119,26 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
                 && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty()
                 && dmiPluginRegistrationErrorResponse.getFailedUpgradeCmHandles().isEmpty();
+    }
+
+    private boolean isRegistrationFailureOnlyDueToConflict(
+        final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse) {
+        return hasOnlyConflictRegistrationFailures(dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles())
+            || hasOnlyConflictRegistrationFailures(dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles())
+            || hasOnlyConflictRegistrationFailures(dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles())
+            || hasOnlyConflictRegistrationFailures(dmiPluginRegistrationErrorResponse.getFailedUpgradeCmHandles());
+    }
+
+    private boolean hasOnlyConflictRegistrationFailures(
+        final List<CmHandlerRegistrationErrorResponse> cmHandlerRegistrationErrorResponses) {
+        for (final CmHandlerRegistrationErrorResponse cmHandlerRegistrationErrorResponse:
+            cmHandlerRegistrationErrorResponses) {
+            if (!cmHandlerRegistrationErrorResponse.getErrorCode().equals(
+                NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST.getCode())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
@@ -134,7 +159,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private List<CmHandlerRegistrationErrorResponse> getFailedResponses(
             final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
         return cmHandleRegistrationResponseList.stream()
-                .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
+                .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE
+                    || cmHandleRegistrationResponse.getStatus() == Status.CONFLICT)
                 .map(this::toCmHandleRegistrationErrorResponse).collect(Collectors.toList());
     }
 

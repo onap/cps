@@ -254,7 +254,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         and: 'all cm-handles creation fails'
             response.createdCmHandles.each {
                 assert it.cmHandle == 'cmhandle2'
-                assert it.status == Status.FAILURE
+                assert it.status == Status.CONFLICT
                 assert it.ncmpResponseStatus == CM_HANDLE_ALREADY_EXIST
                 assert it.errorText == 'cm-handle already exists'
             }
@@ -271,15 +271,15 @@ class CmHandleRegistrationServiceSpec extends Specification {
         then: 'a failure response is received'
             response.createdCmHandles.size() == 1
             with(response.createdCmHandles[0]) {
-                assert it.status == Status.FAILURE
+                assert it.status == status
                 assert it.cmHandle ==  'cmhandle'
                 assert it.ncmpResponseStatus == expectedError
                 assert it.errorText == expectedErrorText
             }
         where:
-            scenario                                        | exception                                                                      || expectedError           | expectedErrorText
-            'cm-handle already exist'                       | AlreadyDefinedException.forDataNodes(["path[@id='cmhandle']"], 'some-context') || CM_HANDLE_ALREADY_EXIST | 'cm-handle already exists'
-            'unknown exception while registering cm-handle' | new RuntimeException('Failed')                                                 || UNKNOWN_ERROR           | 'Failed'
+            scenario                                        | exception                                                                      || expectedError           | status          | expectedErrorText
+            'cm-handle already exist'                       | AlreadyDefinedException.forDataNodes(["path[@id='cmhandle']"], 'some-context') || CM_HANDLE_ALREADY_EXIST | Status.CONFLICT | 'cm-handle already exists'
+            'unknown exception while registering cm-handle' | new RuntimeException('Failed')                                                 || UNKNOWN_ERROR           | Status.FAILURE  | 'Failed'
     }
 
     def 'Update CM-Handle: Update Operation Response is added to the response'() {

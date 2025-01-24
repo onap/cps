@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -76,49 +76,7 @@ public class CmHandleRegistrationResponse {
     }
 
     /**
-     * Create a failure response of cm handle registration based on xpath and registration error.
-     * Conditions:
-     * - the xpath should be valid according to the cps path, otherwise xpath is not included in the response.
-     *
-     * @param failedXpaths the failed xpaths
-     * @param ncmpResponseStatus type of the registration error
-     * @return collection of cm handle registration response
-     */
-    public static List<CmHandleRegistrationResponse> createFailureResponsesFromXpaths(
-        final Collection<String> failedXpaths, final NcmpResponseStatus ncmpResponseStatus) {
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
-        for (final String xpath : failedXpaths) {
-            try {
-                final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
-                cmHandleRegistrationResponses
-                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                log.warn("Unexpected xpath {}", xpath);
-            }
-        }
-        return cmHandleRegistrationResponses;
-    }
-
-    /**
-     * Create a failure response of cm handle registration based on cm handle id and registration error.
-     *
-     * @param failedCmHandleIds the failed cm handle ids
-     * @param ncmpResponseStatus type of the registration error
-     * @return collection of cm handle registration response
-     */
-    public static List<CmHandleRegistrationResponse> createFailureResponses(
-            final Collection<String> failedCmHandleIds, final NcmpResponseStatus ncmpResponseStatus) {
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
-            new ArrayList<>(failedCmHandleIds.size());
-        for (final String failedCmHandleId : failedCmHandleIds) {
-            cmHandleRegistrationResponses.add(
-                CmHandleRegistrationResponse.createFailureResponse(failedCmHandleId, ncmpResponseStatus));
-        }
-        return cmHandleRegistrationResponses;
-    }
-
-    /**
-     * Creates a failure response based on other exception.
+     * Creates failure responses based on other exception.
      *
      * @param cmHandleIds list of failed cmHandleIds
      * @param exception   exception caught during the registration
@@ -141,7 +99,65 @@ public class CmHandleRegistrationResponse {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Creates a conflict response based on registration error.
+     *
+     * @param cmHandleId          cmHandleId
+     * @param ncmpResponseStatus registration error code and status
+     * @return CmHandleRegistrationResponse
+     */
+    public static CmHandleRegistrationResponse createConflictResponse(final String cmHandleId,
+                                                                     final NcmpResponseStatus ncmpResponseStatus) {
+        return CmHandleRegistrationResponse.builder().cmHandle(cmHandleId)
+            .status(Status.CONFLICT)
+            .ncmpResponseStatus(ncmpResponseStatus)
+            .errorText(ncmpResponseStatus.getMessage())
+            .build();
+    }
+
+    /**
+     * Create conflict responses of cm handle registration based on cm handle id and registration error.
+     *
+     * @param conflictingCmHandleIds the failed cm handle ids
+     * @param ncmpResponseStatus type of the registration error
+     * @return collection of cm handle registration response
+     */
+    public static List<CmHandleRegistrationResponse> createConflictResponses(
+        final Collection<String> conflictingCmHandleIds, final NcmpResponseStatus ncmpResponseStatus) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
+            new ArrayList<>(conflictingCmHandleIds.size());
+        for (final String conflictingCmHandleId : conflictingCmHandleIds) {
+            cmHandleRegistrationResponses.add(
+                CmHandleRegistrationResponse.createConflictResponse(conflictingCmHandleId, ncmpResponseStatus));
+        }
+        return cmHandleRegistrationResponses;
+    }
+
+    /**
+     * Create conflict responses of cm handle registrations based on xpath and registration error.
+     * Conditions:
+     * - the xpath should be valid according to the cps path, otherwise xpath is not included in the response.
+     *
+     * @param failedXpaths the failed xpaths
+     * @param ncmpResponseStatus type of the registration error
+     * @return collection of cm handle registration response
+     */
+    public static List<CmHandleRegistrationResponse> createConflictResponsesFromXpaths(
+        final Collection<String> failedXpaths, final NcmpResponseStatus ncmpResponseStatus) {
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
+        for (final String xpath : failedXpaths) {
+            try {
+                final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
+                cmHandleRegistrationResponses
+                    .add(CmHandleRegistrationResponse.createConflictResponse(cmHandleId, ncmpResponseStatus));
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                log.warn("Unexpected xpath {}", xpath);
+            }
+        }
+        return cmHandleRegistrationResponses;
+    }
+
     public enum Status {
-        SUCCESS, FAILURE;
+        SUCCESS, FAILURE, CONFLICT;
     }
 }
