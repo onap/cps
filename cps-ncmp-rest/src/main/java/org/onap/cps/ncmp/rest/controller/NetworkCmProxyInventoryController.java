@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -103,9 +103,13 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 ncmpRestInputMapper.toDmiPluginRegistration(restDmiPluginRegistration));
         final DmiPluginRegistrationErrorResponse failedRegistrationErrorResponse =
             getFailureRegistrationResponse(dmiPluginRegistrationResponse);
-        return allRegistrationsSuccessful(failedRegistrationErrorResponse)
-            ? new ResponseEntity<>(HttpStatus.OK)
-            : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        if (allRegistrationsSuccessful(failedRegistrationErrorResponse)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return registrationFailureOrConflict(failedRegistrationErrorResponse)
+                ? new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.CONFLICT)
+                : new ResponseEntity<>(failedRegistrationErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     private boolean allRegistrationsSuccessful(
@@ -114,6 +118,25 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 && dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles().isEmpty()
                 && dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles().isEmpty()
                 && dmiPluginRegistrationErrorResponse.getFailedUpgradeCmHandles().isEmpty();
+    }
+
+    private boolean registrationFailureOrConflict(
+        final DmiPluginRegistrationErrorResponse dmiPluginRegistrationErrorResponse) {
+        return !hasRegistrationFailed(dmiPluginRegistrationErrorResponse.getFailedCreatedCmHandles())
+            || !hasRegistrationFailed(dmiPluginRegistrationErrorResponse.getFailedUpdatedCmHandles())
+            || !hasRegistrationFailed(dmiPluginRegistrationErrorResponse.getFailedRemovedCmHandles())
+            || !hasRegistrationFailed(dmiPluginRegistrationErrorResponse.getFailedUpgradeCmHandles());
+    }
+
+    private boolean hasRegistrationFailed(
+        final List<CmHandlerRegistrationErrorResponse> cmHandlerRegistrationErrorResponses) {
+        for (final CmHandlerRegistrationErrorResponse cmHandlerRegistrationErrorResponse:
+            cmHandlerRegistrationErrorResponses) {
+            if (!cmHandlerRegistrationErrorResponse.getErrorCode().equals("109")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private DmiPluginRegistrationErrorResponse getFailureRegistrationResponse(
@@ -134,7 +157,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
     private List<CmHandlerRegistrationErrorResponse> getFailedResponses(
             final List<CmHandleRegistrationResponse> cmHandleRegistrationResponseList) {
         return cmHandleRegistrationResponseList.stream()
-                .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE)
+                .filter(cmHandleRegistrationResponse -> cmHandleRegistrationResponse.getStatus() == Status.FAILURE
+                    || cmHandleRegistrationResponse.getStatus() == Status.CONFLICT)
                 .map(this::toCmHandleRegistrationErrorResponse).collect(Collectors.toList());
     }
 

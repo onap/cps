@@ -178,9 +178,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert dmiPluginRegistrationResponse.createdCmHandles.sort { it.cmHandle } == [
                 CmHandleRegistrationResponse.createSuccessResponse('ch-3'),
                 CmHandleRegistrationResponse.createSuccessResponse('ch-4'),
-                CmHandleRegistrationResponse.createFailureResponse('ch-5', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST),
+                CmHandleRegistrationResponse.createConflictResponse('ch-5', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST),
                 CmHandleRegistrationResponse.createSuccessResponse('ch-6'),
-                CmHandleRegistrationResponse.createFailureResponse('ch-7', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST),
+                CmHandleRegistrationResponse.createConflictResponse('ch-7', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST),
             ]
 
         cleanup: 'deregister CM handles'
