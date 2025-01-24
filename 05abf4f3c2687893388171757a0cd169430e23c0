@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8767d6b4_78ad9987",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c598fda6_f370f05b",
+      "range": {
+        "startLine": 67,
+        "startChar": 81,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "591571d5_8e12c21a",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-01-22T16:40:08Z",
       "side": 1,
       "message": "NB: line break(s?) not needed",
+      "range": {
+        "startLine": 83,
+        "startChar": 64,
+        "endLine": 84,
+        "endChar": 37
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31b3288a_0f6db1b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "591571d5_8e12c21a",
       "range": {
         "startLine": 83,
         "startChar": 64,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c6c0fcc_9809fee3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6efb443_420228b8",
+      "range": {
+        "startLine": 85,
+        "startChar": 84,
+        "endLine": 85,
+        "endChar": 107
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36e98ce0_6293dd8b",
@@ -133,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1203abed_6bb82c9f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36e98ce0_6293dd8b",
+      "range": {
+        "startLine": 32,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 56
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd63c2a1_3eaafc89",
@@ -146,6 +242,30 @@
       "writtenOn": "2025-01-22T16:40:08Z",
       "side": 1,
       "message": "I dont understand this, why can it not be more strict? Maybe I misunderstand the production code changes related to this. Can we discuss?",
+      "range": {
+        "startLine": 63,
+        "startChar": 46,
+        "endLine": 63,
+        "endChar": 75
+      },
+      "revId": "05abf4f3c2687893388171757a0cd169430e23c0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40bf1ff5_61efe238",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 1,
+      "message": "I had a quick chat with Levente about this. The dmiServiceName is created using the DmiDispatcher. The port number for this isn\u0027t a constant. It will vary every time we deploy. We might be able to work around this for something more robust.",
+      "parentUuid": "bd63c2a1_3eaafc89",
       "range": {
         "startLine": 63,
         "startChar": 46,

@@ -22,6 +22,30 @@
       },
       "revId": "14745d17d3e751ead0817bfbc42acf5ee45e627f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c083cb20_a59add41",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-01-24T11:41:14Z",
+      "side": 0,
+      "message": "This is the response from DMI not the response from NCMP. The response from DMI only contains the subJobId.",
+      "parentUuid": "4a1d4cf1_9434bfa7",
+      "range": {
+        "startLine": 116,
+        "startChar": 55,
+        "endLine": 116,
+        "endChar": 139
+      },
+      "revId": "14745d17d3e751ead0817bfbc42acf5ee45e627f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
