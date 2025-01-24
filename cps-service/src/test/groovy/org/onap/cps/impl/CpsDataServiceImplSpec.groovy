@@ -31,6 +31,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.exceptions.ConcurrencyException
+import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
@@ -56,7 +57,7 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Operation.DELETE
+import static org.onap.cps.events.model.Data.Operation.REMOVE
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -577,8 +578,7 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
         and: 'a data update event is sent for each anchor'
-            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
-            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
+            2 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, '', '/', REMOVE, observedTimestamp)
     }
 
     def "Validating #scenario when dry run is enabled."() {
@@ -643,14 +643,27 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'publisher set to throw an exception'
-            mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
+            mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, _, _, _, _) >> { throw new Exception("publishing failed")}
         and: 'an update event is performed'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
         then: 'the exception is not bubbled up'
             noExceptionThrown()
-        and: "the exception message is logged"
+        and: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
             assert logs.contains('Failed to send message to notification service')
+    }
+
+    def 'Exception is thrown while generating update delta report for notification.'(){
+        given: 'Exception in getting data nodes'
+            mockCpsDataPersistenceService.getDataNodes('testDataspace', 'testAnchor', '/test/xpath', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
+                    { throw new  DataNodeNotFoundException('testDataspace', 'testAnchor', '/test/xpath')}
+        when: 'generate update delta report is executed'
+            objectUnderTest.generateUpdateDeltaReport('testDataspace', 'testAnchor', '/test/xpath', [new DataNodeBuilder().withXpath('/xpath').build()])
+        then: 'the exception is not bubbled up'
+            noExceptionThrown()
+        and: 'the exception message is logged'
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains('Failed to generate delta report')
     }
     def setupSchemaSetMocks(String... yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
