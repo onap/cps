@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8134c9_cf7a5e4c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-24T15:02:32Z",
+      "side": 1,
+      "message": "Bad name: it\u0027s very ambiguous whether true or false means conflict.\nI think we need a JavaDoc or a better name like _isRegistrationFailureOnlyDueToConflict_",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 49
+      },
+      "revId": "a85cbcd7ad2e6a9bae5eee4513513e53cd9bf6ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db6aa2e1_1f2c2efb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-24T15:02:32Z",
+      "side": 1,
+      "message": "Needs a better name",
+      "range": {
+        "startLine": 131,
+        "startChar": 20,
+        "endLine": 131,
+        "endChar": 41
+      },
+      "revId": "a85cbcd7ad2e6a9bae5eee4513513e53cd9bf6ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3bf319f_41f544d9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-24T15:02:32Z",
+      "side": 1,
+      "message": "CM_HANDLE_ALREADY_EXIST.code()",
+      "range": {
+        "startLine": 135,
+        "startChar": 74,
+        "endLine": 135,
+        "endChar": 79
+      },
+      "revId": "a85cbcd7ad2e6a9bae5eee4513513e53cd9bf6ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
