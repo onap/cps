@@ -22,6 +22,29 @@
       },
       "revId": "176080b4ab658729cf8469b4041dba8bc523abba",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d9597f7_3d075f68",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-24T11:08:48Z",
+      "side": 1,
+      "message": "Nb. Should be separate words, \"Heap Dump and Thread Dump\"",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 23
+      },
+      "revId": "176080b4ab658729cf8469b4041dba8bc523abba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
