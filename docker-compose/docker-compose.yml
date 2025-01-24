@@ -200,6 +200,7 @@ services:
       - ./config/grafana/provisioning/:/etc/grafana/provisioning/
       - ./config/grafana/jvm-micrometer-dashboard.json:/var/lib/grafana/dashboards/jvm-micrometer-dashboard.json
       - ./config/grafana/inventory-dashboard.json:/var/lib/grafana/dashboards/inventory-dashboard.json
+      - ./config/grafana/data-dashboard.json:/var/lib/grafana/dashboards/data-dashboard.json
       - grafana:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
