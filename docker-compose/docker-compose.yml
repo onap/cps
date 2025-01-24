@@ -80,7 +80,7 @@ services:
       resources:
         limits:
           cpus: '3'
-          memory: 2G
+          memory: 3G
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
