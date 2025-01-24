@@ -80,9 +80,9 @@ public class CmHandleRegistrationServicePropertyHandler {
             final Collection<NcmpServiceCmHandle> updatedNcmpServiceCmHandles) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
             .getIdsOfCmHandlesWithRejectedAlternateId(updatedNcmpServiceCmHandles, AlternateIdChecker.Operation.UPDATE);
-        final List<CmHandleRegistrationResponse> failureResponses =
-            CmHandleRegistrationResponse.createFailureResponses(rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST);
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failureResponses);
+        final List<CmHandleRegistrationResponse> conflictResponses =
+            CmHandleRegistrationResponse.createConflictResponses(rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST);
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(conflictResponses);
         for (final NcmpServiceCmHandle updatedNcmpServiceCmHandle : updatedNcmpServiceCmHandles) {
             final String cmHandleId = updatedNcmpServiceCmHandle.getCmHandleId();
             if (!rejectedCmHandleIds.contains(cmHandleId)) {
