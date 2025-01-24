@@ -39,6 +39,10 @@
             "xpath": {
               "description": "xpath of the updated content",
               "type": "string"
+            },
+            "updatedData": {
+              "description": "delta report of the updated data",
+              "type": "string"
             }
           },
           "required": [

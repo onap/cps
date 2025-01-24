@@ -118,6 +118,7 @@ app:
         data-updated:
             change-event-notifications-enabled: ${CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED:true}
             topic: ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}
+            delta-notification: ${CPS_DELTA_NOTIFICATION_ENABLED:true}
 
 
 

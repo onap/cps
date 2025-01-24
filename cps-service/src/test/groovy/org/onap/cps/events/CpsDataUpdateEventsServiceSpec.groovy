@@ -47,15 +47,15 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
     def 'Create and Publish cps update event where events are #scenario'() {
         given: 'an anchor, operation and observed timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
-            def operation = operationInRequest
             def observedTimestamp = OffsetDateTime.now()
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = true
+            objectUnderTest.deltaNotificationEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
+            objectUnderTest.publishCpsDataUpdateEvent(anchor,'', xpath, operationInRequest, observedTimestamp)
         then: 'the event contains the required attributes'
             1 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
@@ -64,6 +64,8 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
                     assert cpsDataUpdatedEvent.getExtension('correlationid') == 'dataspace01:anchor01'
                     assert cpsDataUpdatedEvent.type == 'org.onap.cps.events.model.CpsDataUpdatedEvent'
                     assert cpsDataUpdatedEvent.source.toString() == 'CPS'
+                    def actualAnchor = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.anchorName
+                    assert actualAnchor == 'anchor01'
                     def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.operation
                     assert actualEventOperation == expectedOperation
                 }
@@ -76,8 +78,8 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
         'root xpath and delete operation'          | '/'          | DELETE              || DELETE
         'not root xpath and update operation'      | 'test'       | UPDATE              || UPDATE
         'root node xpath and create operation'     | '/test'      | CREATE              || CREATE
-        'non root node xpath and update operation' | '/test/path' | CREATE              || UPDATE
-        'non root node xpath and delete operation' | '/test/path' | DELETE              || UPDATE
+        'non root node xpath and update operation' | '/test/path' | CREATE              || CREATE
+        'non root node xpath and delete operation' | '/test/path' | DELETE              || DELETE
     }
 
     def 'publish cps update event when #scenario'() {
@@ -91,7 +93,7 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)
+            objectUnderTest.publishCpsDataUpdateEvent(anchor, '', '/', operation, observedTimestamp)
         then: 'the event contains the required attributes'
             expectedCallToPublisher * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
         where: 'below scenarios are present'
@@ -114,7 +116,7 @@ class CpsDataUpdateEventsServiceSpec extends Specification {
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to publish data update event'
             objectUnderTest.topicName = "cps-core-event"
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', operation, observedTimestamp)
+            objectUnderTest.publishCpsDataUpdateEvent(anchor, '', '/', operation, observedTimestamp)
         then: 'the event is published'
             1 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
