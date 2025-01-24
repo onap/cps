@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796517b6_ebdc4c9a",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-24T10:57:26Z",
+      "side": 1,
+      "message": "NB:2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "176080b4ab658729cf8469b4041dba8bc523abba",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
