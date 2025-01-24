@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -23,7 +23,6 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_READY;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
@@ -183,7 +182,7 @@ public class CmHandleRegistrationService {
             processTrustLevels(ncmpServiceCmHandles, succeededCmHandleIds);
 
         } catch (final AlreadyDefinedException alreadyDefinedException) {
-            failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponsesFromXpaths(
+            failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createConflictResponsesFromXpaths(
                 alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST));
         } catch (final Exception exception) {
             final Collection<String> cmHandleIds =
@@ -345,8 +344,8 @@ public class CmHandleRegistrationService {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
             .getIdsOfCmHandlesWithRejectedAlternateId(cmHandlesToBeCreated, AlternateIdChecker.Operation.CREATE);
-        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponses(
-            rejectedCmHandleIds, ALTERNATE_ID_ALREADY_ASSOCIATED));
+        cmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createConflictResponses(
+            rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST));
         return rejectedCmHandleIds;
     }
 

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -76,8 +76,8 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             def dmiPluginRegistrationResponse =
                     objectUnderTest.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate]))
 
-        then: 'registration gives failure response, due to alternate ID being already associated'
-            assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createFailureResponse('ch-1', NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED)]
+        then: 'registration gives conflict response, due to alternate ID being already associated'
+            assert dmiPluginRegistrationResponse.updatedCmHandles == [CmHandleRegistrationResponse.createConflictResponse('ch-1', NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST)]
 
         and: 'the CM-handle still has the old alternate ID'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-1').alternateId == 'original'

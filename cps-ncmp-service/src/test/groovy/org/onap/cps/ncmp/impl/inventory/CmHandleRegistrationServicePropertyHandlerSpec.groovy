@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2024 TechMahindra Ltd.
  * ================================================================================
@@ -231,8 +231,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             0 * mockCpsDataService.updateNodeLeaves(*_)
         and:  'the alternate id checker rejects the given cm handle (override default setup behavior)'
             mockAlternateIdChecker.getIdsOfCmHandlesWithRejectedAlternateId(*_) >> [cmHandleId]
-        and: 'the response shows a failure for the given cm handle id'
-            assert response[0].status == Status.FAILURE
+        and: 'the response shows a conflict for the given cm handle id'
+            assert response[0].status == Status.CONFLICT
             assert response[0].cmHandle == cmHandleId
     }
 

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -22,8 +22,8 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.ncmp.api.NcmpResponseStatus.ALTERNATE_ID_ALREADY_ASSOCIATED;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
+import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.DMI_PROPERTY;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
@@ -80,9 +80,9 @@ public class CmHandleRegistrationServicePropertyHandler {
             final Collection<NcmpServiceCmHandle> updatedNcmpServiceCmHandles) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
             .getIdsOfCmHandlesWithRejectedAlternateId(updatedNcmpServiceCmHandles, AlternateIdChecker.Operation.UPDATE);
-        final List<CmHandleRegistrationResponse> failureResponses =
-            CmHandleRegistrationResponse.createFailureResponses(rejectedCmHandleIds, ALTERNATE_ID_ALREADY_ASSOCIATED);
-        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failureResponses);
+        final List<CmHandleRegistrationResponse> conflictResponses =
+            CmHandleRegistrationResponse.createConflictResponses(rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST);
+        final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(conflictResponses);
         for (final NcmpServiceCmHandle updatedNcmpServiceCmHandle : updatedNcmpServiceCmHandles) {
             final String cmHandleId = updatedNcmpServiceCmHandle.getCmHandleId();
             if (!rejectedCmHandleIds.contains(cmHandleId)) {
