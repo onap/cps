@@ -32,12 +32,16 @@
               "type": "string",
               "enum": [
                 "CREATE",
-                "UPDATE",
-                "DELETE"
+                "REPLACE",
+                "REMOVE"
               ]
             },
             "xpath": {
               "description": "xpath of the updated content",
+              "type": "string"
+            },
+            "delta": {
+              "description": "delta report of the updated data",
               "type": "string"
             }
           },

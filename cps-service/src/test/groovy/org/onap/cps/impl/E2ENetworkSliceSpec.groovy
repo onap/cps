@@ -23,14 +23,17 @@
 
 package org.onap.cps.impl
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
+import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
@@ -41,6 +44,7 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsModulePersistenceService = Mock(CpsModulePersistenceService)
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
+    def mockCpsDeltaService = Mock(CpsDeltaService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
@@ -48,7 +52,9 @@ class E2ENetworkSliceSpec extends Specification {
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
+            mockCpsDeltaService, dataNodeFactory, mockCpsValidator, yangParser, jsonObjectMapper)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
