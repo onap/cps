@@ -22,6 +22,30 @@
       },
       "revId": "6fb1e85fd1cdb20cb8f64f81c188c29c0391ab2a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2b8a969_d9eed688",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-26T16:59:40Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a3cf0298_09c66258",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "6fb1e85fd1cdb20cb8f64f81c188c29c0391ab2a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91bbd339_c6f734f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-26T16:59:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "232f046d_ba128bb6",
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83e31860_4ca093fa",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-01-23T12:50:51Z",
       "side": 1,
       "message": "this one is used to send the inventory events ( trustlevel changes )",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 31
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b56cd31e_7d094c5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-26T16:59:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83e31860_4ca093fa",
       "range": {
         "startLine": 49,
         "startChar": 16,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3882d3f9_3e65276b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-26T16:59:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a5e168f9_1f43f8d3",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55e20156_1c2b03fc",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-01-23T11:58:16Z",
       "side": 1,
       "message": "Sonar failing here because of no coverage.\n(also there is a CSIT failure)",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 5
+      },
+      "revId": "76e9956bd5f8148131180b8f749e02817f36af41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "247cc241_ad2d9524",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-26T16:59:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55e20156_1c2b03fc",
       "range": {
         "startLine": 67,
         "startChar": 7,
