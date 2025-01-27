@@ -110,6 +110,30 @@
       },
       "revId": "8ef2400744c93c1c13f8ac1ae7eae1c0969989f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fe6238_e8b2ee2b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-27T17:26:54Z",
+      "side": 1,
+      "message": "exception.details includes the type of object(s) that were already defined",
+      "parentUuid": "40114a4c_049a380c",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 58
+      },
+      "revId": "8ef2400744c93c1c13f8ac1ae7eae1c0969989f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
