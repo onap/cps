@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2d03a1_f4418151",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T14:50:22Z",
+      "side": 1,
+      "message": "(comma), returns",
+      "range": {
+        "startLine": 18,
+        "startChar": 109,
+        "endLine": 18,
+        "endChar": 110
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021aab37_19727474",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T14:50:22Z",
+      "side": 1,
+      "message": "comma",
+      "range": {
+        "startLine": 18,
+        "startChar": 27,
+        "endLine": 18,
+        "endChar": 28
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5caa7f_74eb28a3",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T14:50:22Z",
+      "side": 1,
+      "message": "nb: can remove like in your given screenshot",
+      "range": {
+        "startLine": 19,
+        "startChar": 96,
+        "endLine": 19,
+        "endChar": 101
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a490345_aee918a7",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T14:50:22Z",
+      "side": 1,
+      "message": "comma",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 11
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
