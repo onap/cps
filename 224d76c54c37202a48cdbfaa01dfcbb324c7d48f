@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc32246_52a76b41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-27T14:34:44Z",
+      "side": 1,
+      "message": "I double checked the approach of using the spring default way of exposing the environment vars of the properties present in the yaml file.\nAPP_NCMP_AVC_INVENTORY_EVENTS can be used for the override.",
+      "revId": "224d76c54c37202a48cdbfaa01dfcbb324c7d48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b41665c_58b32a76",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-27T14:34:44Z",
+      "side": 1,
+      "message": "try the below approach.\n1. use the hardcoded topic name.\n2. use the spring way of overriding the topic parameter. Here for this case it would be APP_NCMP_AVC_INVENTORY_EVENTS and set it to a different value.",
+      "range": {
+        "startLine": 109,
+        "startChar": 30,
+        "endLine": 109,
+        "endChar": 82
+      },
+      "revId": "224d76c54c37202a48cdbfaa01dfcbb324c7d48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
