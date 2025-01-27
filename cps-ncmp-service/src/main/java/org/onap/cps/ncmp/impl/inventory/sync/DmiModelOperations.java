@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,13 +61,14 @@ public class DmiModelOperations {
      * Retrieves module references.
      *
      * @param yangModelCmHandle the yang model cm handle
+     * @param targetModuleSetTag module set tag to send to dmi
      * @return module references
      */
     @Timed(value = "cps.ncmp.inventory.module.references.from.dmi",
         description = "Time taken to get all module references for a cm handle from dmi")
-    public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle) {
-        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder()
-                .moduleSetTag(yangModelCmHandle.getModuleSetTag()).build();
+    public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle,
+                                                     final String targetModuleSetTag) {
+        final DmiRequestBody dmiRequestBody = DmiRequestBody.builder().moduleSetTag(targetModuleSetTag).build();
         dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
@@ -79,18 +80,20 @@ public class DmiModelOperations {
      * Retrieve yang resources from dmi for any modules that CPS-NCMP hasn't cached before.
      *
      * @param yangModelCmHandle the yangModelCmHandle
+     * @param targetModuleSetTag module set tag to send to dmi
      * @param newModuleReferences the unknown module references
      * @return yang resources as map of module name to yang(re)source
      */
     @Timed(value = "cps.ncmp.inventory.yang.resources.from.dmi",
         description = "Time taken to get list of yang resources from dmi")
     public Map<String, String> getNewYangResourcesFromDmi(final YangModelCmHandle yangModelCmHandle,
+                                                          final String targetModuleSetTag,
                                                           final Collection<ModuleReference> newModuleReferences) {
         if (newModuleReferences.isEmpty()) {
             return Collections.emptyMap();
         }
         final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(newModuleReferences,
-                yangModelCmHandle.getDmiProperties(), yangModelCmHandle.getModuleSetTag());
+                yangModelCmHandle.getDmiProperties(), targetModuleSetTag);
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
             jsonWithDataAndDmiProperties,
@@ -123,13 +126,13 @@ public class DmiModelOperations {
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
                                                              final List<YangModelCmHandle.Property> dmiProperties,
-                                                             final String moduleSetTag) {
+                                                             final String targetModuleSetTag) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(newModuleReferences);
         final JsonObject data = new JsonObject();
         data.add("modules", moduleReferencesAsJson);
         final JsonObject jsonRequestObject = new JsonObject();
-        if (!moduleSetTag.isEmpty()) {
-            jsonRequestObject.addProperty("moduleSetTag", moduleSetTag);
+        if (!targetModuleSetTag.isEmpty()) {
+            jsonRequestObject.addProperty("moduleSetTag", targetModuleSetTag);
         }
         jsonRequestObject.add("data", data);
         jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));

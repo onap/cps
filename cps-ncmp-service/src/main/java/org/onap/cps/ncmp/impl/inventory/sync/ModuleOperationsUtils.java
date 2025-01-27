@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -189,7 +189,12 @@ public class ModuleOperationsUtils {
                 .getLockReasonCategory()));
     }
 
-    public static String getTargetModuleSetTagFromLockReason(final CompositeState.LockReason lockReason) {
+    public static String getTargetModuleSetTagForUpgrade(final YangModelCmHandle yangModelCmHandle) {
+        final CompositeState.LockReason lockReason = yangModelCmHandle.getCompositeState().getLockReason();
+        return getTargetModuleSetTagFromLockReason(lockReason);
+    }
+
+    private static String getTargetModuleSetTagFromLockReason(final CompositeState.LockReason lockReason) {
         return getLockedCompositeStateDetails(lockReason).getOrDefault(MODULE_SET_TAG_KEY, "");
     }
 
