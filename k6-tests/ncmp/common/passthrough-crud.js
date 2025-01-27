@@ -29,7 +29,7 @@ import {
 
 export function passthroughRead(useAlternateId) {
     const cmHandleReference = getRandomCmHandleReference(useAlternateId);
-    const resourceIdentifier = 'NRCellDU/attributes/cellLocalId';
+    const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1/NRCellDU=cell1';
     const datastoreName = 'ncmp-datastore:passthrough-operational';
     const includeDescendants = true;
     const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
@@ -38,7 +38,7 @@ export function passthroughRead(useAlternateId) {
 
 export function passthroughWrite(useAlternateId) {
     const cmHandleReference = getRandomCmHandleReference(useAlternateId);
-    const resourceIdentifier = 'NRCellDU/attributes/cellLocalId';
+    const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1/NRCellDU=cell1';
     const datastoreName = 'ncmp-datastore:passthrough-running';
     const includeDescendants = false;
     const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
@@ -54,7 +54,7 @@ export function legacyBatchRead(cmHandleIds) {
     const payload = JSON.stringify({
         "operations": [
             {
-                "resourceIdentifier": "NRCellDU/attributes/cellLocalId",
+                "resourceIdentifier": "ManagedElement=NRNode1/GNBDUFunction=1",
                 "targetIds": cmHandleIds,
                 "datastore": "ncmp-datastore:passthrough-operational",
                 "options": "(fields=NRCellDU/attributes/cellLocalId)",
