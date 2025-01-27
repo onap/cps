@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d73ed2_f29fbeca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T08:29:52Z",
+      "side": 1,
+      "message": "agree on daniel with method namings",
+      "revId": "a85cbcd7ad2e6a9bae5eee4513513e53cd9bf6ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d8134c9_cf7a5e4c",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-01-24T15:02:32Z",
       "side": 1,
       "message": "Bad name: it\u0027s very ambiguous whether true or false means conflict.\nI think we need a JavaDoc or a better name like _isRegistrationFailureOnlyDueToConflict_",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 49
+      },
+      "revId": "a85cbcd7ad2e6a9bae5eee4513513e53cd9bf6ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ed6ee99_3bdb9928",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T08:29:52Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "3d8134c9_cf7a5e4c",
       "range": {
         "startLine": 123,
         "startChar": 20,
