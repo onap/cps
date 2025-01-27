@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8346cb_1dbc7501",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-27T14:10:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2079c46e_f1716da6",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 63
+      },
+      "revId": "e7492d1818605845a550581bb9a9e43254e46722",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e27aa26c_3aa6f5ae",
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "639f6626_fcbcb7a9",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-27T14:10:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e27aa26c_3aa6f5ae",
+      "range": {
+        "startLine": 41,
+        "startChar": 32,
+        "endLine": 41,
+        "endChar": 63
+      },
+      "revId": "e7492d1818605845a550581bb9a9e43254e46722",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20ecbb82_4203f462",
@@ -101,6 +149,30 @@
       "writtenOn": "2025-01-23T14:13:13Z",
       "side": 1,
       "message": "resourceIdentifer refers to the object where the search starts from. This request will search for NRCellDUs and return their cellLocalId. The resourceIdentifier should be: ManagedElement\u003dNRNode1/GNBDUFunction\u003d1",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 70
+      },
+      "revId": "e7492d1818605845a550581bb9a9e43254e46722",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b731693f_18343fdb",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-27T14:10:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "20ecbb82_4203f462",
       "range": {
         "startLine": 57,
         "startChar": 39,
