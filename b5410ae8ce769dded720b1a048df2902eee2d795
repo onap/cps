@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17782487_f50979cb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T10:43:09Z",
+      "side": 1,
+      "message": "response",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 215,
+        "endChar": 23
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec89ce5_3cf6a42c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T10:43:09Z",
+      "side": 1,
+      "message": "contains only the failed cm handles?",
+      "range": {
+        "startLine": 219,
+        "startChar": 14,
+        "endLine": 219,
+        "endChar": 61
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b500bd_9297383b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-27T10:43:09Z",
+      "side": 1,
+      "message": "should this be conflictResponse?",
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
