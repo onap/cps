@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b99dd73_54d8a1ad",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "flipped the returned boolean and removed negation here",
+      "parentUuid": "dc843fba_09602d5f",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eedc59a6_a117a345",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 3
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a90a8994_96aa6b60",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Kept the negation but switched the true/false return. If negation is removed method won\u0027t work as intended.",
+      "parentUuid": "eedc59a6_a117a345",
+      "range": {
+        "startLine": 136,
+        "startChar": 16,
+        "endLine": 136,
+        "endChar": 17
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17782487_f50979cb",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
         "patchSetId": 3
@@ -77,6 +125,30 @@
       "writtenOn": "2025-01-27T10:43:09Z",
       "side": 1,
       "message": "response",
+      "range": {
+        "startLine": 215,
+        "startChar": 15,
+        "endLine": 215,
+        "endChar": 23
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbe4fcf_ec677ea7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17782487_f50979cb",
       "range": {
         "startLine": 215,
         "startChar": 15,
@@ -123,6 +195,30 @@
       "writtenOn": "2025-01-27T11:54:25Z",
       "side": 1,
       "message": "NB: I would move this method below the createConflictResponses API to keep all conflict APIs together kinda grouped.",
+      "range": {
+        "startLine": 87,
+        "startChar": 53,
+        "endLine": 87,
+        "endChar": 86
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8b15300_02a57441",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21ae8554_026d2417",
       "range": {
         "startLine": 87,
         "startChar": 53,
@@ -196,6 +292,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e33bd44_e967e056",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce54fd63_f0779ffc",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "568b24ba_8f695b6f",
@@ -209,6 +329,30 @@
       "writtenOn": "2025-01-27T11:54:25Z",
       "side": 1,
       "message": "conflict",
+      "range": {
+        "startLine": 60,
+        "startChar": 25,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96d9089b_b2077c93",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "568b24ba_8f695b6f",
       "range": {
         "startLine": 60,
         "startChar": 25,
@@ -242,6 +386,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71420ce4_0960e178",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7829207_d4a837f1",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 32
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bc2c880_561b0e8e",
@@ -265,6 +433,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5c20fc_61bab9ae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bc2c880_561b0e8e",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 93
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7e32c2d_6648cbce",
@@ -278,6 +470,30 @@
       "writtenOn": "2025-01-27T11:54:25Z",
       "side": 1,
       "message": "conflicting",
+      "range": {
+        "startLine": 83,
+        "startChar": 75,
+        "endLine": 83,
+        "endChar": 85
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b34cda_21f30140",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponseSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-01-27T14:19:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7e32c2d_6648cbce",
       "range": {
         "startLine": 83,
         "startChar": 75,
