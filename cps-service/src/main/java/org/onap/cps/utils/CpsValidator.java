@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.impl.utils;
+package org.onap.cps.utils;
 
 import org.onap.cps.api.parameters.PaginationOption;
 

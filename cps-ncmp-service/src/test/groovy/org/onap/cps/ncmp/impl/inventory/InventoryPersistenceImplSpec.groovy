@@ -35,7 +35,7 @@ import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.api.parameters.FetchDescendantsOption
-import org.onap.cps.impl.utils.CpsValidator
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState

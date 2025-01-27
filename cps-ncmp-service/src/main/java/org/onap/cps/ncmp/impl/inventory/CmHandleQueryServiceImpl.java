@@ -38,7 +38,6 @@ import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.impl.utils.CpsValidator;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
@@ -46,6 +45,7 @@ import org.onap.cps.ncmp.impl.inventory.models.ModelledDmiServiceLeaves;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelCacheConfig;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

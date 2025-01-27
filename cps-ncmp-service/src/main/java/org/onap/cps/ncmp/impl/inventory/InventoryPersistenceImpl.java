@@ -45,13 +45,13 @@ import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.impl.utils.CpsValidator;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Component;
 

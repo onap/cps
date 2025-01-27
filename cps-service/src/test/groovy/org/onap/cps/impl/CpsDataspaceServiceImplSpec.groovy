@@ -21,7 +21,7 @@
 package org.onap.cps.impl
 
 
-import org.onap.cps.impl.utils.CpsValidator
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsAdminPersistenceService
 import org.onap.cps.api.model.Dataspace
 import spock.lang.Specification

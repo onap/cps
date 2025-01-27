@@ -24,9 +24,9 @@ import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.model.Anchor;
-import org.onap.cps.impl.utils.CpsValidator;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
 
 @Service

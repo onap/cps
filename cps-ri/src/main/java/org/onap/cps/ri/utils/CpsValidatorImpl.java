@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.parameters.PaginationOption;
-import org.onap.cps.impl.utils.CpsValidator;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 
 @Slf4j
