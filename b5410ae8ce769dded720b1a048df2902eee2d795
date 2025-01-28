@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8956e06e_b580e279",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T09:11:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5b99dd73_54d8a1ad",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eedc59a6_a117a345",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "Kept the negation but switched the true/false return. If negation is removed method won\u0027t work as intended.",
       "parentUuid": "eedc59a6_a117a345",
+      "range": {
+        "startLine": 136,
+        "startChar": 16,
+        "endLine": 136,
+        "endChar": 17
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f07a399_eecddd6e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T09:11:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a90a8994_96aa6b60",
       "range": {
         "startLine": 136,
         "startChar": 16,
@@ -301,6 +349,30 @@
       "writtenOn": "2025-01-27T11:54:25Z",
       "side": 1,
       "message": "NB: I would move this method below the createFailureResponse API for readability purposes.",
+      "range": {
+        "startLine": 109,
+        "startChar": 53,
+        "endLine": 109,
+        "endChar": 75
+      },
+      "revId": "b5410ae8ce769dded720b1a048df2902eee2d795",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1a697eb_069c31ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/CmHandleRegistrationResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T09:11:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7bc410b0_8212381a",
       "range": {
         "startLine": 109,
         "startChar": 53,
