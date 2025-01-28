@@ -54,6 +54,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0fa5f94_bdd594b8",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-28T16:15:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c6cb701_b6032135",
+      "revId": "8823b04bb54266a0a1bb1d693d7d5f729339d6ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04fd5fd6_28e6e6c2",
@@ -84,6 +102,24 @@
       "writtenOn": "2025-01-28T16:15:08Z",
       "side": 1,
       "message": "\u0027return\u0027 is correct: NCMP will ... return",
+      "parentUuid": "04fd5fd6_28e6e6c2",
+      "revId": "8823b04bb54266a0a1bb1d693d7d5f729339d6ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9fe265b_5b354936",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-28T16:15:23Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "04fd5fd6_28e6e6c2",
       "revId": "8823b04bb54266a0a1bb1d693d7d5f729339d6ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
