@@ -21,10 +21,10 @@
 package org.onap.cps.ncmp.impl.data.async
 
 import org.mapstruct.factory.Mappers
-import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
-import org.onap.cps.ncmp.event.model.EventContent
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
-import org.onap.cps.ncmp.event.model.ResponseData
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.DmiAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.EventContent
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.NcmpAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.ResponseData
 import spock.lang.Specification
 
 class NcmpAsyncRequestResponseEventMapperSpec extends Specification {

@@ -25,8 +25,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.mapstruct.factory.Mappers
 import org.onap.cps.events.EventsPublisher
-import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.DmiAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.NcmpAsyncRequestResponseEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper

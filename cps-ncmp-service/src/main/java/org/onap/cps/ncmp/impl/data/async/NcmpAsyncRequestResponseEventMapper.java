@@ -28,8 +28,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
-import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent;
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent;
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.DmiAsyncRequestResponseEvent;
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.NcmpAsyncRequestResponseEvent;
 
 /**
  * Mapper for converting DmiAsyncRequestResponseEvent to NcmpAsyncRequestResponseEvent.

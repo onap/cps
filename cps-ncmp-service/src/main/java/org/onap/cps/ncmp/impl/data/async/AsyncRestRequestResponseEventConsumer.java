@@ -23,8 +23,8 @@ package org.onap.cps.ncmp.impl.data.async;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.events.EventsPublisher;
-import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent;
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent;
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.DmiAsyncRequestResponseEvent;
+import org.onap.cps.ncmp.event.model.ncmp.asyncm2m.NcmpAsyncRequestResponseEvent;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -50,7 +50,8 @@ public class AsyncRestRequestResponseEventConsumer {
             topics = "${app.ncmp.async-m2m.topic}",
             filter = "includeNonCloudEventsOnly",
             groupId = "ncmp-async-rest-request-event-group",
-            properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent"})
+            properties = {"spring.json.value.default.type="
+                    + "org.onap.cps.ncmp.event.model.ncmp.asyncm2m.DmiAsyncRequestResponseEvent"})
     public void consumeAndForward(final DmiAsyncRequestResponseEvent dmiAsyncRequestResponseEvent) {
         log.debug("Consuming event {} ...", dmiAsyncRequestResponseEvent);
         final NcmpAsyncRequestResponseEvent ncmpAsyncRequestResponseEvent =
