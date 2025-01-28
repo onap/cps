@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c6cb701_b6032135",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-28T10:30:07Z",
+      "side": 1,
+      "message": "Already we have https://lf-onap.atlassian.net/browse/CPS-2596 to address it",
+      "parentUuid": "8359b867_f66458bf",
+      "revId": "8823b04bb54266a0a1bb1d693d7d5f729339d6ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04fd5fd6_28e6e6c2",
         "filename": "docs/policy-executor.rst",
         "patchSetId": 2
