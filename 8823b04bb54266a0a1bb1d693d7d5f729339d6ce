@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8359b867_f66458bf",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-28T10:07:44Z",
+      "side": 1,
+      "message": "not part of your patch now but this config.additional prefix was true when we used OOM charts.\nwe can do a cleanup as a separate ticket and provide the override patch to our application yml file.",
+      "revId": "8823b04bb54266a0a1bb1d693d7d5f729339d6ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04fd5fd6_28e6e6c2",
         "filename": "docs/policy-executor.rst",
         "patchSetId": 2
