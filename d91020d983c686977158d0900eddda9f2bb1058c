@@ -16,6 +16,115 @@
       "message": "looks fine to me.",
       "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ac3bed_fb2e8c6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T13:46:40Z",
+      "side": 1,
+      "message": "Some NB suggestions..",
+      "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dcefe16_d2fc36da",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T13:46:40Z",
+      "side": 1,
+      "message": "NB: you can do only one static import for this",
+      "range": {
+        "startLine": 197,
+        "startChar": 83,
+        "endLine": 197,
+        "endChar": 93
+      },
+      "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59975c7_a79cb9c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T13:46:40Z",
+      "side": 1,
+      "message": "NB: can be an constant like EMTPY_MODULE_SET_TAG\u003d\"\";",
+      "range": {
+        "startLine": 198,
+        "startChar": 91,
+        "endLine": 198,
+        "endChar": 93
+      },
+      "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db155e4d_f12b3548",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T13:46:40Z",
+      "side": 1,
+      "message": "NB: you can pass empty string here \"\" since it will be run only when targetModuleSetTag.isEmpty() . This can improve the readability.\n\nEven more you can have a stataic variable called EMPYT_MODULE_SET_TAG \u003d \"\", then you can use it there.",
+      "range": {
+        "startLine": 91,
+        "startChar": 78,
+        "endLine": 91,
+        "endChar": 96
+      },
+      "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c02f46_ac325640",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-28T13:46:40Z",
+      "side": 1,
+      "message": "NB: Static not needed",
+      "range": {
+        "startLine": 150,
+        "startChar": 12,
+        "endLine": 150,
+        "endChar": 18
+      },
+      "revId": "d91020d983c686977158d0900eddda9f2bb1058c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
