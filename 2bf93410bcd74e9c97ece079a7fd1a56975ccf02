@@ -47,6 +47,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b07f390_ebcee852",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-28T13:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021aab37_19727474",
+      "range": {
+        "startLine": 18,
+        "startChar": 27,
+        "endLine": 18,
+        "endChar": 28
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c4aff1_88623aa9",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-28T13:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f2d03a1_f4418151",
+      "range": {
+        "startLine": 18,
+        "startChar": 109,
+        "endLine": 18,
+        "endChar": 110
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf5caa7f_74eb28a3",
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "750a087c_b6561c25",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-28T13:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf5caa7f_74eb28a3",
+      "range": {
+        "startLine": 19,
+        "startChar": 96,
+        "endLine": 19,
+        "endChar": 101
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a490345_aee918a7",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-01-27T14:50:22Z",
       "side": 1,
       "message": "comma",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 11
+      },
+      "revId": "2bf93410bcd74e9c97ece079a7fd1a56975ccf02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c2b964_f811f249",
+        "filename": "docs/policy-executor.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-01-28T13:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a490345_aee918a7",
       "range": {
         "startLine": 23,
         "startChar": 10,
