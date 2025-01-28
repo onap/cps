@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5de716_325c9965",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-01-28T16:56:33Z",
+      "side": 1,
+      "message": "You missed oen schema that has no property associated with it. Priyank and I discussed and agreed:\nCan you move schemas/async/data-operation-event-schema-1.0.0.json\ninto schemas/ncmp.async-m2m",
+      "revId": "9d7e5bfc7c0a91aa01c06d92c807d825daba8ecd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
