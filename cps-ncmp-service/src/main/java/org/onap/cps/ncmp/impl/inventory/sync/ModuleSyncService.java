@@ -66,9 +66,9 @@ public class ModuleSyncService {
      */
     public void syncAndCreateSchemaSetAndAnchor(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleId = yangModelCmHandle.getId();
-        final String moduleSetTag = yangModelCmHandle.getModuleSetTag();
-        final String schemaSetName = getSchemaSetName(cmHandleId, moduleSetTag);
-        syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName);
+        final String targetModuleSetTag = yangModelCmHandle.getModuleSetTag();
+        final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, targetModuleSetTag);
+        syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
         try {
             cpsAnchorService.createAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName, cmHandleId);
         } catch (final AlreadyDefinedException alreadyDefinedException) {
@@ -85,27 +85,27 @@ public class ModuleSyncService {
     public void syncAndUpgradeSchemaSet(final YangModelCmHandle yangModelCmHandle) {
         final String cmHandleId = yangModelCmHandle.getId();
         final String sourceModuleSetTag = yangModelCmHandle.getModuleSetTag();
-        final String targetModuleSetTag = ModuleOperationsUtils.getTargetModuleSetTagFromLockReason(
-                yangModelCmHandle.getCompositeState().getLockReason());
+        final String targetModuleSetTag = ModuleOperationsUtils.getTargetModuleSetTagForUpgrade(yangModelCmHandle);
+        final String schemaSetName = getSchemaSetNameForModuleSetTag(cmHandleId, targetModuleSetTag);
         if (sourceModuleSetTag.isEmpty() && targetModuleSetTag.isEmpty()) {
-            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
+            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle, targetModuleSetTag);
             cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                    cmHandleId, moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
+                    schemaSetName, moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
         } else {
-            final String targetSchemaSetName = getSchemaSetName(cmHandleId, targetModuleSetTag);
-            syncAndCreateSchemaSet(yangModelCmHandle, targetSchemaSetName);
-            cpsAnchorService.updateAnchorSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
-                    targetSchemaSetName);
+            syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
+            cpsAnchorService.updateAnchorSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, schemaSetName);
             setCmHandleModuleSetTag(yangModelCmHandle, targetModuleSetTag);
             log.info("Upgrading schema set for CM handle ID: {}, Source Tag: {}, Target Tag: {}",
                 cmHandleId, sourceModuleSetTag, targetModuleSetTag);
         }
     }
 
-    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle, final String schemaSetName) {
+    private void syncAndCreateSchemaSet(final YangModelCmHandle yangModelCmHandle,
+                                        final String schemaSetName,
+                                        final String targetModuleSetTag) {
         if (isNewSchemaSet(schemaSetName)) {
             final String cmHandleId = yangModelCmHandle.getId();
-            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle);
+            final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle, targetModuleSetTag);
             try {
                 log.info("Creating Schema Set {} for CM Handle {}", schemaSetName, cmHandleId);
                 cpsModuleService.createSchemaSetFromModules(
@@ -127,13 +127,14 @@ public class ModuleSyncService {
         return !cpsModuleService.schemaSetExists(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, schemaSetName);
     }
 
-    private ModuleDelta getModuleDelta(final YangModelCmHandle yangModelCmHandle) {
+    private ModuleDelta getModuleDelta(final YangModelCmHandle yangModelCmHandle,
+                                       final String targetModuleSetTag) {
         final Collection<ModuleReference> allModuleReferences =
-            dmiModelOperations.getModuleReferences(yangModelCmHandle);
+            dmiModelOperations.getModuleReferences(yangModelCmHandle, targetModuleSetTag);
         final Collection<ModuleReference> newModuleReferences =
                 cpsModuleService.identifyNewModuleReferences(allModuleReferences);
         final Map<String, String> newYangResources = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                newModuleReferences);
+                targetModuleSetTag, newModuleReferences);
         log.debug("Module delta calculated for CM handle ID: {}. All references: {}. New modules: {}",
             yangModelCmHandle.getId(), allModuleReferences, newYangResources.keySet());
         return new ModuleDelta(allModuleReferences, newYangResources);
@@ -146,7 +147,7 @@ public class ModuleSyncService {
                 jsonForUpdate, OffsetDateTime.now(), ContentType.JSON);
     }
 
-    private static String getSchemaSetName(final String cmHandleId, final String moduleSetTag) {
+    private static String getSchemaSetNameForModuleSetTag(final String cmHandleId, final String moduleSetTag) {
         return moduleSetTag.isEmpty() ? cmHandleId : moduleSetTag;
     }
 

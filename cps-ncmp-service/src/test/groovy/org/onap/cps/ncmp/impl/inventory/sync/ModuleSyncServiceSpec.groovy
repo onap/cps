@@ -39,6 +39,8 @@ import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_U
 
 class ModuleSyncServiceSpec extends Specification {
 
+    def NO_MODULE_SET_TAG = ''
+
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockDmiModelOperations = Mock(DmiModelOperations)
     def mockCpsAnchorService = Mock(CpsAnchorService)
@@ -53,9 +55,9 @@ class ModuleSyncServiceSpec extends Specification {
             def yangModelCmHandle = createAdvisedCmHandle(moduleSetTag)
         and: 'DMI operations returns some module references'
             def moduleReferences =  [ new ModuleReference('module1','1'), new ModuleReference('module2','2') ]
-            mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle, moduleSetTag) >> moduleReferences
         and: 'DMI-Plugin returns resource(s) for "new" module(s)'
-            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, identifiedNewModuleReferences) >> newModuleNameContentToMap
+            mockDmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, moduleSetTag, identifiedNewModuleReferences) >> newModuleNameContentToMap
         and: 'the module service identifies #identifiedNewModuleReferences.size() new modules'
             mockCpsModuleService.identifyNewModuleReferences(moduleReferences) >> identifiedNewModuleReferences
         when: 'module sync is triggered'
@@ -140,8 +142,8 @@ class ModuleSyncServiceSpec extends Specification {
             def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'', '', '')
         and: 'DMI operations returns some module references for upgraded cm handle'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
-            mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
-            mockDmiModelOperations.getNewYangResourcesFromDmi(_, []) >> [:]
+            mockDmiModelOperations.getModuleReferences(yangModelCmHandle, NO_MODULE_SET_TAG) >> moduleReferences
+            mockDmiModelOperations.getNewYangResourcesFromDmi(_, NO_MODULE_SET_TAG, []) >> [:]
         and: 'none of these module references are new (all already known to the system)'
             mockCpsModuleService.identifyNewModuleReferences(_) >> []
         when: 'module sync is triggered'
@@ -163,7 +165,7 @@ class ModuleSyncServiceSpec extends Specification {
             mockCpsModuleService.schemaSetExists(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, tagTo) >> schemaExists
         and: 'DMI operations returns some module references for upgraded cm handle'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
-            expectedCallsToDmi * mockDmiModelOperations.getModuleReferences(yangModelCmHandle) >> moduleReferences
+            expectedCallsToDmi * mockDmiModelOperations.getModuleReferences(yangModelCmHandle, tagTo) >> moduleReferences
         and: 'dmi returns no new yang resources'
             mockDmiModelOperations.getNewYangResourcesFromDmi(*_) >> [:]
         and: 'none of these module references are new (all already known to the system)'
