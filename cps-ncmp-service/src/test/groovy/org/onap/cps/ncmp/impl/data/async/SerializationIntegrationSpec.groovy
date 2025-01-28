@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.config.KafkaConfig
-import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
-import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.async_m2m.DmiAsyncRequestResponseEvent
+import org.onap.cps.ncmp.event.model.ncmp.async_m2m.NcmpAsyncRequestResponseEvent
 import org.onap.cps.ncmp.events.async1_0_0.Data
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.events.async1_0_0.Response

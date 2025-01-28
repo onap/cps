@@ -332,7 +332,7 @@ paths:
       - cps-admin
   /{apiVersion}/admin/dataspaces/{dataspace-name}/actions/clean:
     post:
-      description: Clean the dataspace (remove orphaned modules)
+      description: Clean the dataspace (remove orphaned schema sets and modules)
       operationId: cleanDataspace
       parameters:
       - description: apiVersion
