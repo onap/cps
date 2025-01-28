@@ -26,7 +26,7 @@ import com.hazelcast.core.Hazelcast
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.impl.utils.CpsValidator
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState

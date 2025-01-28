@@ -28,7 +28,7 @@ import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.events.CpsDataUpdateEventsService
-import org.onap.cps.impl.utils.CpsValidator
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.api.model.Anchor
