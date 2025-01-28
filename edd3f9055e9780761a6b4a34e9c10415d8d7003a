@@ -33,6 +33,24 @@
       "message": "dont merge before the release creation as we have to communicate to our client abt the newly introduced topic.",
       "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e4e31d5_f125c493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-28T14:35:17Z",
+      "side": 1,
+      "message": "but the changes are all fine for me.\njust giving -1 to prevent accidental merge.",
+      "parentUuid": "04fcef69_6acaa8d9",
+      "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
