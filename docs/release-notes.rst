@@ -37,10 +37,13 @@ Release Data
 
 Bug Fixes
 ---------
+    - `CPS-2563 <https://lf-onap.atlassian.net/browse/CPS-2563>`_ Fix for internal error code during duplicated registration.
+    - `CPS-2576 <https://lf-onap.atlassian.net/browse/CPS-2576>`_ Fix for cm handle stuck in LOCKED state during registration.
 
 Features
 --------
     - `CPS-2249 <https://lf-onap.atlassian.net/browse/CPS-2249>`_ NCMP to support Conflict Handling.
+    - `CPS-2540 <https://lf-onap.atlassian.net/browse/CPS-2540>`_ One schemaset per module set tag.
 
 
 ..      ====================
