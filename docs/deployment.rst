@@ -386,15 +386,11 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | dataSyncSemaphores                 | Watchdog process to sync data from the nodes.             |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | moduleSyncWorkQueue                | Queue used internally for workers to pick the task.       |
-+--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerCmHandle              | Stores the trust level per CM Handle id                   |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerDmiPlugin             | Stores the trust level for the dmi-plugins.               |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | cpsAndNcmpLock                     | Cps and NCMP distributed lock for various use cases.      |
-+--------------+------------------------------------+-----------------------------------------------------------+
 
-Total number of caches : 7
+Total number of caches : 5

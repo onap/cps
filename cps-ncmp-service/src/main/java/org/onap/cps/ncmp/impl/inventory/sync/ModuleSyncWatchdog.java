@@ -21,12 +21,11 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
-import static org.onap.cps.ncmp.impl.cache.CpsAndNcmpLockConfig.MODULE_SYNC_WORK_QUEUE_LOCK_NAME;
-
 import com.hazelcast.map.IMap;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.BlockingQueue;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
@@ -43,12 +42,12 @@ import org.springframework.stereotype.Service;
 public class ModuleSyncWatchdog {
 
     private final ModuleOperationsUtils moduleOperationsUtils;
-    private final BlockingQueue<String> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
     private final AsyncTaskExecutor asyncTaskExecutor;
-    private final IMap<String, String> cpsAndNcmpLock;
     private final Sleeper sleeper;
+
+    private List<String> moduleSyncWorkQueue = Collections.emptyList();
 
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
     private static final long PREVENT_CPU_BURN_WAIT_TIME_MILLIS = 10;
@@ -72,7 +71,7 @@ public class ModuleSyncWatchdog {
             if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
                 final Collection<String> nextBatch = prepareNextBatch();
                 log.info("Processing module sync batch of {}. {} batch(es) active.",
-                    nextBatch.size(), batchCounter.get());
+                        nextBatch.size(), batchCounter.get());
                 if (!nextBatch.isEmpty()) {
                     asyncTaskExecutor.executeTask(() ->
                             moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
@@ -91,16 +90,10 @@ public class ModuleSyncWatchdog {
      * So it can be tested without the queue being emptied immediately as the main public method does.
      */
     public void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty() && cpsAndNcmpLock.tryLock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME)) {
-            log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
-            try {
-                populateWorkQueue();
-                if (moduleSyncWorkQueue.isEmpty()) {
-                    setPreviouslyLockedCmHandlesToAdvised();
-                }
-            } finally {
-                cpsAndNcmpLock.unlock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME);
-                log.debug("Lock released by thread : {}", Thread.currentThread().getName());
+        if (moduleSyncWorkQueue.isEmpty()) {
+            populateWorkQueue();
+            if (moduleSyncWorkQueue.isEmpty()) {
+                setPreviouslyLockedCmHandlesToAdvised();
             }
         }
     }
@@ -112,13 +105,9 @@ public class ModuleSyncWatchdog {
         } else {
             log.info("Fetched {} advised CM handles from DB. Adding them to the work queue.",
                     advisedCmHandleIds.size());
-            advisedCmHandleIds.forEach(cmHandleId -> {
-                if (moduleSyncWorkQueue.offer(cmHandleId)) {
-                    log.info("CM handle {} added to the work queue.", cmHandleId);
-                } else {
-                    log.warn("Failed to add CM handle {} to the work queue.", cmHandleId);
-                }
-            });
+            moduleSyncWorkQueue = new ArrayList<>(advisedCmHandleIds);
+            Collections.shuffle(moduleSyncWorkQueue);
+            moduleSyncWorkQueue.forEach(cmHandleId -> log.info("CM handle {} added to the work queue.", cmHandleId));
             log.info("Work queue contains {} items.", moduleSyncWorkQueue.size());
         }
     }
@@ -136,11 +125,9 @@ public class ModuleSyncWatchdog {
     }
 
     private Collection<String> prepareNextBatch() {
-        final Collection<String> nextBatchCandidates = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
-        final Collection<String> nextBatch = new HashSet<>(MODULE_SYNC_BATCH_SIZE);
-        moduleSyncWorkQueue.drainTo(nextBatchCandidates, MODULE_SYNC_BATCH_SIZE);
-        log.info("nextBatchCandidates size : {}", nextBatchCandidates.size());
-        for (final String cmHandleId : nextBatchCandidates) {
+        final Collection<String> nextBatch = new ArrayList<>(MODULE_SYNC_BATCH_SIZE);
+        while (nextBatch.size() < MODULE_SYNC_BATCH_SIZE && !moduleSyncWorkQueue.isEmpty()) {
+            final String cmHandleId = moduleSyncWorkQueue.remove(moduleSyncWorkQueue.size() - 1);
             final boolean alreadyAddedToInProgressMap = VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP.equals(
                     moduleSyncStartedOnCmHandles.putIfAbsent(cmHandleId, VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP));
             if (alreadyAddedToInProgressMap) {

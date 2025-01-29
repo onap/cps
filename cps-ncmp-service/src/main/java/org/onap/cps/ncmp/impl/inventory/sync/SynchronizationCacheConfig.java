@@ -21,9 +21,7 @@
 package org.onap.cps.ncmp.impl.inventory.sync;
 
 import com.hazelcast.config.MapConfig;
-import com.hazelcast.config.QueueConfig;
 import com.hazelcast.map.IMap;
-import java.util.concurrent.BlockingQueue;
 import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,20 +35,9 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     public static final int MODULE_SYNC_STARTED_TTL_SECS = 600;
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
-    private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
     private static final MapConfig moduleSyncStartedConfig =
             createMapConfigWithTimeToLiveInSeconds("moduleSyncStartedConfig", MODULE_SYNC_STARTED_TTL_SECS);
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
-
-    /**
-     * Module Sync Distributed Queue Instance.
-     *
-     * @return queue of cm handle ids that need module sync
-     */
-    @Bean
-    public BlockingQueue<String> moduleSyncWorkQueue() {
-        return getOrCreateHazelcastInstance(commonQueueConfig).getQueue("moduleSyncWorkQueue");
-    }
 
     /**
      * Module Sync started (and maybe finished) on cm handles (ids).

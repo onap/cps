@@ -21,8 +21,8 @@
 
 package org.onap.cps.integration.base
 
-import com.hazelcast.map.IMap
 import okhttp3.mockwebserver.MockWebServer
+import java.time.OffsetDateTime
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
@@ -60,9 +60,6 @@ import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
-
-import java.time.OffsetDateTime
-import java.util.concurrent.BlockingQueue
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -102,9 +99,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
     SessionManager sessionManager
 
     @Autowired
-    ParameterizedCmHandleQueryService networkCmProxyCmHandleQueryService
-
-    @Autowired
     NetworkCmProxyFacade networkCmProxyFacade
 
     @Autowired
@@ -117,19 +111,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     ModuleSyncWatchdog moduleSyncWatchdog
 
     @Autowired
-    ModuleSyncService moduleSyncService
-
-    @Autowired
-    BlockingQueue<String> moduleSyncWorkQueue
-
-    @Autowired
-    IMap<String, String> cpsAndNcmpLock
-
-    @Autowired
     JsonObjectMapper jsonObjectMapper
-
-    @Autowired
-    InventoryPersistence inventoryPersistence
 
     @Autowired
     AlternateIdMatcher alternateIdMatcher

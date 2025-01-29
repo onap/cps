@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.impl.inventory.sync
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
-import java.util.concurrent.BlockingQueue
 import java.util.concurrent.TimeUnit
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -36,9 +35,6 @@ import spock.util.concurrent.PollingConditions
 class SynchronizationCacheConfigSpec extends Specification {
 
     @Autowired
-    BlockingQueue<String> moduleSyncWorkQueue
-
-    @Autowired
     IMap<String, Object> moduleSyncStartedOnCmHandles
 
     @Autowired
@@ -49,9 +45,7 @@ class SynchronizationCacheConfigSpec extends Specification {
     }
 
     def 'Embedded (hazelcast) Caches for Module and Data Sync.'() {
-        expect: 'system is able to create an instance of the Module Sync Work Queue'
-            assert null != moduleSyncWorkQueue
-        and: 'system is able to create an instance of a map to hold cm handles which have started (and maybe finished) module sync'
+        expect: 'system is able to create an instance of a map to hold cm handles which have started (and maybe finished) module sync'
             assert null != moduleSyncStartedOnCmHandles
         and: 'system is able to create an instance of a map to hold data sync semaphores'
             assert null != dataSyncSemaphores
@@ -63,16 +57,11 @@ class SynchronizationCacheConfigSpec extends Specification {
     def 'Verify configs for Distributed objects'(){
         given: 'hazelcast common config'
             def hzConfig = Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').config
-        and: 'the Module Sync Work Queue config'
-            def moduleSyncDefaultWorkQueueConfig =  hzConfig.queueConfigs.get('defaultQueueConfig')
         and: 'the Module Sync Started Cm Handle Map config'
             def moduleSyncStartedOnCmHandlesMapConfig =  hzConfig.mapConfigs.get('moduleSyncStartedConfig')
         and: 'the Data Sync Semaphores Map config'
             def dataSyncSemaphoresMapConfig =  hzConfig.mapConfigs.get('dataSyncSemaphoresConfig')
-        expect: 'system created instance with correct config of Module Sync Work Queue'
-            assert moduleSyncDefaultWorkQueueConfig.backupCount == 1
-            assert moduleSyncDefaultWorkQueueConfig.asyncBackupCount == 0
-        and: 'Module Sync Started Cm Handle Map has the correct settings'
+        expect: 'Module Sync Started Cm Handle Map has the correct settings'
             assert moduleSyncStartedOnCmHandlesMapConfig.backupCount == 1
             assert moduleSyncStartedOnCmHandlesMapConfig.asyncBackupCount == 0
         and: 'Data Sync Semaphore Map has the correct settings'
