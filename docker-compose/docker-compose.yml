@@ -202,6 +202,7 @@ services:
       - ./config/grafana/jvm-micrometer-dashboard.json:/var/lib/grafana/dashboards/jvm-micrometer-dashboard.json
       - ./config/grafana/inventory-dashboard.json:/var/lib/grafana/dashboards/inventory-dashboard.json
       - ./config/grafana/data-dashboard.json:/var/lib/grafana/dashboards/data-dashboard.json
+      - ./config/grafana/postgresql-statistics-dashboard.json:/var/lib/grafana/dashboards/postgresql-statistics-dashboard.json
       - grafana:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -229,6 +230,17 @@ services:
     restart: unless-stopped
     profiles:
       - tracing
+
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://${DB_USERNAME:-cps}:${DB_PASSWORD:-cps}@${DB_CONTAINER_NAME:-dbpostgresql}:5432/postgres?sslmode=disable
+    ports:
+      - ${POSTGRES_EXPORTER_PORT_RANGE:-9187-9188}:9187
+    depends_on:
+      - dbpostgresql
+    profiles:
+      - monitoring
 
 volumes:
   grafana:

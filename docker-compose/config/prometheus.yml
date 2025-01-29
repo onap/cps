@@ -21,3 +21,9 @@ scrape_configs:
     - targets:
         - '172.17.0.1:8798'
         - '172.17.0.1:8799'
+
+- job_name: 'postgres'
+  static_configs:
+    - targets:
+        - '172.17.0.1:9187'
+        - '172.17.0.1:9188'
