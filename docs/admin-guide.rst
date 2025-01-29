@@ -246,6 +246,9 @@ Hazelcast cluster state and health check can be seen using the below endpoints
     http://<cps-component-service-name>:<member-port>/hazelcast/health
     http://<cps-component-service-name>:<member-port>/hazelcast/rest/management/cluster/state
 
+.. note::
+The above endpoints will be removed from hazelcast community version in the future release.
+
 See also : :ref:`cps_common_distributed_datastructures`
 
 Naming Validation

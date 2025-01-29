@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -130,6 +130,10 @@ public class HazelcastCacheConfig {
         }
     }
 
+    /*Note: Need to keep this for the meantime as Hazelcast community version 5.5 has marked RestApiConfig
+    for removal in future version and we have clients relying on these endpoints.
+    https://lf-onap.atlassian.net/browse/CPS-2599 created to address the issue. */
+    @SuppressWarnings("squid:S5738")
     protected void exposeClusterInformation(final Config config) {
         config.getNetworkConfig().getRestApiConfig().setEnabled(true)
                 .enableGroups(RestEndpointGroup.HEALTH_CHECK, RestEndpointGroup.CLUSTER_READ);
