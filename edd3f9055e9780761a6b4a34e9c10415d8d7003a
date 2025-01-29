@@ -51,6 +51,29 @@
       "parentUuid": "04fcef69_6acaa8d9",
       "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad372ca_67e18f15",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T15:02:11Z",
+      "side": 1,
+      "message": "Spring Boot Naming Convention for Environment Variables:\n\n${APP_NCMP_AVC_INVENTORY_EVENTS_TOPIC:ncmp-inventory-events}",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 57
+      },
+      "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
