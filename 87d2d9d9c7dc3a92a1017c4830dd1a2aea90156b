@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "237c8c1c_8c082541",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DmiSubJobRequestHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T14:44:52Z",
+      "side": 1,
+      "message": "Can we use TypeReference\u003cMap\u003cString, String\u003e\u003e() for Safe Deserialization here ?\n\nAvoids raw type conversion  :\n\nfinal Map\u003cString, String\u003e responseMap \u003d jsonObjectMapper.convertToValueType(\n                    responseEntity.getBody(), new TypeReference\u003cMap\u003cString, String\u003e\u003e() {});",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 77
+      },
+      "revId": "87d2d9d9c7dc3a92a1017c4830dd1a2aea90156b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45390636_4df9afd4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T14:44:52Z",
+      "side": 1,
+      "message": "single quotes",
+      "range": {
+        "startLine": 263,
+        "startChar": 157,
+        "endLine": 263,
+        "endChar": 180
+      },
+      "revId": "87d2d9d9c7dc3a92a1017c4830dd1a2aea90156b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde173b9_b152a19a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T14:44:52Z",
+      "side": 1,
+      "message": "single quotes",
+      "range": {
+        "startLine": 62,
+        "startChar": 43,
+        "endLine": 62,
+        "endChar": 60
+      },
+      "revId": "87d2d9d9c7dc3a92a1017c4830dd1a2aea90156b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49c7493d_b5d83d7d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T14:44:52Z",
+      "side": 1,
+      "message": "single quotes",
+      "range": {
+        "startLine": 63,
+        "startChar": 57,
+        "endLine": 63,
+        "endChar": 76
+      },
+      "revId": "87d2d9d9c7dc3a92a1017c4830dd1a2aea90156b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e991ce_f37f1e98",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/WriteSubJobSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-01-29T14:44:52Z",
+      "side": 1,
+      "message": "single quotes",
+      "range": {
+        "startLine": 64,
+        "startChar": 49,
+        "endLine": 64,
+        "endChar": 72
+      },
+      "revId": "87d2d9d9c7dc3a92a1017c4830dd1a2aea90156b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
