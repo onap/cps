@@ -28,16 +28,16 @@ import java.util.Collections;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class DataNode implements Serializable {
 
     private static final long serialVersionUID = 1482619410918597467L;
-
-    public DataNode() {}
 
     private String dataspace;
     private String schemaSetName;
