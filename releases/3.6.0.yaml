@@ -1,0 +1,4 @@
+distribution_type: maven
+log_dir: cps-maven-stage-master/957/
+project: cps
+version: 3.6.0
