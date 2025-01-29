@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e871753_8bcfe771",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-01-29T08:10:55Z",
+      "side": 1,
+      "message": "These APIs are admin related APIs and not related to delta feature.",
+      "parentUuid": "5b8a21e2_f48bcb40",
+      "range": {
+        "startLine": 295,
+        "startChar": 4,
+        "endLine": 319,
+        "endChar": 5
+      },
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "966cb0a5_2113187f",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-01-27T14:05:16Z",
       "side": 1,
       "message": "not used and doesnt add any value as well.",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0f1a6e9_750976fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-01-29T08:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "966cb0a5_2113187f",
       "range": {
         "startLine": 53,
         "startChar": 32,
@@ -81,6 +129,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a965fc1b_1379a270",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsNotificationSubscriptionPersistenceService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-01-29T08:10:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "046af1a3_cd32f67e",
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5aac5c40_a0a90748",
@@ -104,6 +170,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e592b5_39062eda",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-01-29T08:10:55Z",
+      "side": 1,
+      "message": "No Problems, It can be submitted in separate patch",
+      "parentUuid": "5aac5c40_a0a90748",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 5
+      },
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6c92e61_48f3b1e0",
@@ -117,6 +207,24 @@
       "writtenOn": "2025-01-27T14:05:16Z",
       "side": 1,
       "message": "i think i need a refresher on the xpath as query parameter here for the below operations ( GET , POST and DELETE )\nlets discuss it in our meeting tomorrow.",
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5731cae0_68431976",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-01-29T08:10:55Z",
+      "side": 1,
+      "message": "I will demo and explain the usages of xpath",
+      "parentUuid": "b6c92e61_48f3b1e0",
       "revId": "47224e95ae93bc155741186fae11a9483b99b264",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
