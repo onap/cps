@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a64e0d2_e79d72e0",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-29T12:12:46Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "a6a90c010bbfd80304b6d443912affa5fe850bf4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c59ea698_37c9dd52",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/DataNode.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-29T12:12:46Z",
+      "side": 1,
+      "message": "NB: May be also possbile to have @Data lombok for both. Then a single import would be enough to hande for both get \u0026 set operations",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "a6a90c010bbfd80304b6d443912affa5fe850bf4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0132cc3_95b2542d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/DeltaReport.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-29T12:12:46Z",
+      "side": 1,
+      "message": "NB: you can insert EST copyright here",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "a6a90c010bbfd80304b6d443912affa5fe850bf4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22ae5c5_693b5da1",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/model/DeltaReport.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-29T12:12:46Z",
+      "side": 1,
+      "message": "NB: @Data annotation can replace both at once, I think.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 7
+      },
+      "revId": "a6a90c010bbfd80304b6d443912affa5fe850bf4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b3455b_2f72a409",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-01-29T12:12:46Z",
+      "side": 1,
+      "message": "NB: endpoints below",
+      "range": {
+        "startLine": 242,
+        "startChar": 7,
+        "endLine": 242,
+        "endChar": 22
+      },
+      "revId": "a6a90c010bbfd80304b6d443912affa5fe850bf4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
