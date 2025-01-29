@@ -238,6 +238,8 @@ On demand heap dump and thread dump generation using the below endpoints.
 
 Hazelcast
 ---------
+.. note::
+   The below endpoints will be removed from hazelcast community version in the future release.
 
 Hazelcast cluster state and health check can be seen using the below endpoints
 

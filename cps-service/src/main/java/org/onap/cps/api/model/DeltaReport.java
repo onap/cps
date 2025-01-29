@@ -24,18 +24,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class DeltaReport {
 
     public static final String CREATE_ACTION = "create";
     public static final String REMOVE_ACTION = "remove";
     public static final String REPLACE_ACTION = "replace";
-
-    public DeltaReport() {}
 
     private String action;
     private String xpath;
