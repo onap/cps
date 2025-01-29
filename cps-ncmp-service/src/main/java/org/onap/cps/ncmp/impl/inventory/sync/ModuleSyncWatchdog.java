@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,13 +27,9 @@ import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.utils.Sleeper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -46,16 +42,10 @@ public class ModuleSyncWatchdog {
     private final BlockingQueue<String> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
-    private final AsyncTaskExecutor asyncTaskExecutor;
     private final IMap<String, String> cpsAndNcmpLock;
-    private final Sleeper sleeper;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 100;
-    private static final long PREVENT_CPU_BURN_WAIT_TIME_MILLIS = 10;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
-    private static final long ASYNC_TASK_TIMEOUT_IN_MILLISECONDS = TimeUnit.MINUTES.toMillis(5);
-    @Getter
-    private AtomicInteger batchCounter = new AtomicInteger(1);
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -69,18 +59,11 @@ public class ModuleSyncWatchdog {
         log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();
         while (!moduleSyncWorkQueue.isEmpty()) {
-            if (batchCounter.get() <= asyncTaskExecutor.getAsyncTaskParallelismLevel()) {
-                final Collection<String> nextBatch = prepareNextBatch();
-                log.info("Processing module sync batch of {}. {} batch(es) active.",
-                    nextBatch.size(), batchCounter.get());
-                if (!nextBatch.isEmpty()) {
-                    asyncTaskExecutor.executeTask(() ->
-                            moduleSyncTasks.performModuleSync(nextBatch, batchCounter),
-                        ASYNC_TASK_TIMEOUT_IN_MILLISECONDS);
-                    batchCounter.getAndIncrement();
-                }
-            } else {
-                preventBusyWait();
+            final Collection<String> nextBatch = prepareNextBatch();
+            if (!nextBatch.isEmpty()) {
+                log.info("Processing module sync batch of {}. 1 batch(es) active.", nextBatch.size());
+                moduleSyncTasks.performModuleSync(nextBatch);
+                log.info("Processing module sync batch finished. 0 batch(es) active.");
             }
         }
     }
@@ -152,14 +135,5 @@ public class ModuleSyncWatchdog {
         }
         log.info("nextBatch size : {}", nextBatch.size());
         return nextBatch;
-    }
-
-    private void preventBusyWait() {
-        try {
-            log.debug("Busy waiting now");
-            sleeper.haveALittleRest(PREVENT_CPU_BURN_WAIT_TIME_MILLIS);
-        } catch (final InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
     }
 }
