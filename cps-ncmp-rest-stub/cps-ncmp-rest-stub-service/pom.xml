@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.onap.cps</groupId>
         <artifactId>cps-ncmp-rest-stub</artifactId>
-        <version>3.6.0-SNAPSHOT</version>
+        <version>3.6.0</version>
     </parent>
     <artifactId>cps-ncmp-rest-stub-service</artifactId>
 
