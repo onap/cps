@@ -74,6 +74,30 @@
       },
       "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16761589_cce6dc72",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-01-30T16:19:55Z",
+      "side": 1,
+      "message": "I thought we said we can omit these from now on, and rely on the Spring Boot environment variables. So it would be that name (APP_NCMP_AVC_INVENTORY_EVENTS_TOPIC), but we get that for free.",
+      "parentUuid": "3ad372ca_67e18f15",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 57
+      },
+      "revId": "edd3f9055e9780761a6b4a34e9c10415d8d7003a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
