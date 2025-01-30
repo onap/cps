@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation.
+ *  Copyright (C) 2024-2025 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,8 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.testcontainers.containers.KafkaContainer;
-import org.testcontainers.utility.DockerImageName;
+import org.testcontainers.kafka.ConfluentKafkaContainer;
 
 /**
  * The Apache Kafka test container wrapper.
@@ -35,14 +34,14 @@ import org.testcontainers.utility.DockerImageName;
  * Avoid unnecessary resource and time consumption.
  */
 @Slf4j
-public class KafkaTestContainer extends KafkaContainer {
+public class KafkaTestContainer extends ConfluentKafkaContainer {
 
-    private static final String IMAGE_NAME_AND_VERSION = "registry.nordix.org/onaptest/confluentinc/cp-kafka:6.2.1";
+    private static final String IMAGE_NAME_AND_VERSION = "confluentinc/cp-kafka:7.8.0";
 
     private static volatile KafkaTestContainer kafkaTestContainer;
 
     private KafkaTestContainer() {
-        super(DockerImageName.parse(IMAGE_NAME_AND_VERSION).asCompatibleSubstituteFor("confluentinc/cp-kafka"));
+        super(IMAGE_NAME_AND_VERSION);
     }
 
     /**
