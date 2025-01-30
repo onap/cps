@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03bf7a95_15819dec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-30T13:28:59Z",
+      "side": 1,
+      "message": "also we need to update our wiki pages after this change.",
+      "revId": "a596097b7ea6bc3a2d536d44bb97afb85169dbf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f523101_1e1bcd29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/async/NcmpAsyncRequestResponseEventMapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-01-30T13:28:59Z",
+      "side": 1,
+      "message": "these are unwelcomed changes.\nLets not change the generated java file location.\nu can use the javaType construct in the schema file to do it in a backward compatible way.",
+      "range": {
+        "startLine": 31,
+        "startChar": 37,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "a596097b7ea6bc3a2d536d44bb97afb85169dbf6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
