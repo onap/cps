@@ -236,20 +236,6 @@ On demand heap dump and thread dump generation using the below endpoints.
     http://<cps-component-service-name>:8080/actuator/heapdump
     http://<cps-component-service-name>:8080/actuator/threaddump
 
-Hazelcast
----------
-.. note::
-   The below endpoints will be removed from hazelcast community version in the future release.
-
-Hazelcast cluster state and health check can be seen using the below endpoints
-
-.. code::
-
-    http://<cps-component-service-name>:<member-port>/hazelcast/health
-    http://<cps-component-service-name>:<member-port>/hazelcast/rest/management/cluster/state
-
-See also : :ref:`cps_common_distributed_datastructures`
-
 Naming Validation
 -----------------
 

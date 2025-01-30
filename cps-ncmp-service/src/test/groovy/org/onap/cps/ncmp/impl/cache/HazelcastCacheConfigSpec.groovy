@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@
 
 package org.onap.cps.ncmp.impl.cache
 
-import com.hazelcast.config.Config
-import com.hazelcast.config.RestEndpointGroup
+
 import com.hazelcast.core.Hazelcast
 import spock.lang.Specification
 
@@ -58,19 +57,6 @@ class HazelcastCacheConfigSpec extends Specification {
             'Map Config'   | HazelcastCacheConfig.createMapConfig('my map config')     || true            | false             | false
             'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config') || false           | true              | false
             'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')     || false           | false             | true
-    }
-
-    def 'Verify Hazelcast Cluster Information'() {
-        given: 'a test configuration'
-            def testConfig = new Config()
-        when: 'cluster information is exposed'
-            objectUnderTest.exposeClusterInformation(testConfig)
-        then: 'REST api configs are enabled'
-            assert testConfig.networkConfig.restApiConfig.enabled
-        and: 'only health check and cluster read are enabled'
-            def enabledGroups = testConfig.networkConfig.restApiConfig.enabledGroups
-            assert enabledGroups.size() == 2
-            assert enabledGroups.containsAll([RestEndpointGroup.CLUSTER_READ, RestEndpointGroup.HEALTH_CHECK])
     }
 
 }

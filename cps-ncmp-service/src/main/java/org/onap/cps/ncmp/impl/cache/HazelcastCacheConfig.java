@@ -25,7 +25,6 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
 import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.config.QueueConfig;
-import com.hazelcast.config.RestEndpointGroup;
 import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
@@ -61,7 +60,6 @@ public class HazelcastCacheConfig {
         config.setClusterName(clusterName);
         config.setClassLoader(Dataspace.class.getClassLoader());
         configureDataStructures(namedConfig, config);
-        exposeClusterInformation(config);
         updateDiscoveryMode(config);
         return config;
     }
@@ -128,15 +126,6 @@ public class HazelcastCacheConfig {
             config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
                 .setProperty("service-name", cacheKubernetesServiceName);
         }
-    }
-
-    /*Note: Need to keep this for the meantime as Hazelcast community version 5.5 has marked RestApiConfig
-    for removal in future version and we have clients relying on these endpoints.
-    https://lf-onap.atlassian.net/browse/CPS-2599 created to address the issue. */
-    @SuppressWarnings("squid:S5738")
-    protected void exposeClusterInformation(final Config config) {
-        config.getNetworkConfig().getRestApiConfig().setEnabled(true)
-                .enableGroups(RestEndpointGroup.HEALTH_CHECK, RestEndpointGroup.CLUSTER_READ);
     }
 
 }
