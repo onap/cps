@@ -109,15 +109,13 @@ DMI Service 1 (POST): `http://{dmi-host-name}:{dmi-port}/dmi/v1/data?topic=my-to
             {
                 "id": "ec2e9495679a43c58659c07d87025e72",
                 "cmHandleProperties": {
-                    "id": "123",
-                    "attributes":{"userLabel":"test"}
+                    "neType": "RadioNode"
                 }
             },
             {
                 "id": "0df4d39af6514d99b816758148389cfd",
                 "cmHandleProperties": {
-                    "id": "123",
-                    "attributes":{"userLabel":"test"}
+                    "neType": "RadioNode"
                 }
             }
         ]
@@ -139,15 +137,13 @@ DMI Service 2 (POST) : `http://{dmi-host-name}:{dmi-port}/dmi/v1/data?topic=my-t
             {
                 "id": "836bb62201f34a7aa056a47bd95a81ed",
                 "cmHandleProperties": {
-                    "id": "123",
-                    "attributes":{"userLabel":"test"}
+                    "neType": "RadioNode"
                 }
             },
             {
                 "id": "202acb75b4a54e43bb1ff8c0c17a8e08",
                 "cmHandleProperties": {
-                    "id": "123",
-                    "attributes":{"userLabel":"test"}
+                    "neType": "RadioNode"
                 }
             }
         ]

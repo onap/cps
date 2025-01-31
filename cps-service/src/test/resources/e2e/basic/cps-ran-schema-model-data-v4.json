@@ -18,7 +18,7 @@
         ],
         "GNBCUCPFunction": [
           {
-            "idGNBCUCPFunction": "cucpserver1",
+            "id": "cucpserver1",
             "attributes": {
               "gNBCUName": "cucpserver1",
               "gNBIdLength": 32,
@@ -26,91 +26,91 @@
             },
             "NRCellCU": [
               {
-                "idNRCellCU": "15826",
+                "id": "15826",
                 "attributes": {
                   "cellLocalId": 15826
                 }
               },
               {
-                "idNRCellCU": "15825",
+                "id": "15825",
                 "attributes": {
                   "cellLocalId": 15825
                 }
               },
               {
-                "idNRCellCU": "13999",
+                "id": "13999",
                 "attributes": {
                   "cellLocalId": 13999
                 }
               },
               {
-                "idNRCellCU": "15426",
+                "id": "15426",
                 "attributes": {
                   "cellLocalId": 15426
                 }
               },
               {
-                "idNRCellCU": "15425",
+                "id": "15425",
                 "attributes": {
                   "cellLocalId": 15425
                 }
               },
               {
-                "idNRCellCU": "15689",
+                "id": "15689",
                 "attributes": {
                   "cellLocalId": 15689
                 }
               },
               {
-                "idNRCellCU": "15687",
+                "id": "15687",
                 "attributes": {
                   "cellLocalId": 15687
                 }
               },
               {
-                "idNRCellCU": "15289",
+                "id": "15289",
                 "attributes": {
                   "cellLocalId": 15289
                 }
               },
               {
-                "idNRCellCU": "15176",
+                "id": "15176",
                 "attributes": {
                   "cellLocalId": 15176
                 }
               },
               {
-                "idNRCellCU": "14000",
+                "id": "14000",
                 "attributes": {
                   "cellLocalId": 14000
                 }
               },
               {
-                "idNRCellCU": "15155",
+                "id": "15155",
                 "attributes": {
                   "cellLocalId": 15155
                 }
               },
               {
-                "idNRCellCU": "15174",
+                "id": "15174",
                 "attributes": {
                   "cellLocalId": 15174
                 }
               },
               {
-                "idNRCellCU": "15175",
+                "id": "15175",
                 "attributes": {
                   "cellLocalId": 15175
                 }
               },
               {
-                "idNRCellCU": "15296",
+                "id": "15296",
                 "attributes": {
                   "cellLocalId": 15296
                 }
               },
               {
-                "idNRCellCU": "15290",
+                "id": "15290",
                 "attributes": {
                   "cellLocalId": 15290
                 }
@@ -283,7 +283,7 @@
         ],
         "GNBCUCPFunction": [
           {
-            "idGNBCUCPFunction": "cucpserver2",
+            "id": "cucpserver2",
             "attributes": {
               "gNBCUName": "cucpserver2",
               "gNBIdLength": 32,
@@ -291,91 +291,91 @@
             },
             "NRCellCU": [
               {
-                "idNRCellCU": "13905",
+                "id": "13905",
                 "attributes": {
                   "cellLocalId": 13905
                 }
               },
               {
-                "idNRCellCU": "11569",
+                "id": "11569",
                 "attributes": {
                   "cellLocalId": 11569
                 }
               },
               {
-                "idNRCellCU": "14427",
+                "id": "14427",
                 "attributes": {
                   "cellLocalId": 14427
                 }
               },
               {
-                "idNRCellCU": "15549",
+                "id": "15549",
                 "attributes": {
                   "cellLocalId": 15549
                 }
               },
               {
-                "idNRCellCU": "10896",
+                "id": "10896",
                 "attributes": {
                   "cellLocalId": 10896
                 }
               },
               {
-                "idNRCellCU": "14656",
+                "id": "14656",
                 "attributes": {
                   "cellLocalId": 14656
                 }
               },
               {
-                "idNRCellCU": "10897",
+                "id": "10897",
                 "attributes": {
                   "cellLocalId": 10897
                 }
               },
               {
-                "idNRCellCU": "11568",
+                "id": "11568",
                 "attributes": {
                   "cellLocalId": 11568
                 }
               },
               {
-                "idNRCellCU": "13910",
+                "id": "13910",
                 "attributes": {
                   "cellLocalId": 13910
                 }
               },
               {
-                "idNRCellCU": "15548",
+                "id": "15548",
                 "attributes": {
                   "cellLocalId": 15548
                 }
               },
               {
-                "idNRCellCU": "11561",
+                "id": "11561",
                 "attributes": {
                   "cellLocalId": 11561
                 }
               },
               {
-                "idNRCellCU": "11562",
+                "id": "11562",
                 "attributes": {
                   "cellLocalId": 11562
                 }
               },
               {
-                "idNRCellCU": "14655",
+                "id": "14655",
                 "attributes": {
                   "cellLocalId": 14655
                 }
               },
               {
-                "idNRCellCU": "15361",
+                "id": "15361",
                 "attributes": {
                   "cellLocalId": 15361
                 }
               },
               {
-                "idNRCellCU": "15360",
+                "id": "15360",
                 "attributes": {
                   "cellLocalId": 15360
                 }
