@@ -12,7 +12,7 @@
           {
             "idGNBCUUPFunction": "1111",
             "attributes": {
-              "gNBId": 98763
+              "id": 98763
             }
           }
         ],
@@ -22,7 +22,7 @@
             "attributes": {
               "gNBCUName": "cucpserver1",
               "gNBIdLength": 32,
-              "gNBId": 98763
+              "id": 98763
             },
             "NRCellCU": [
               {
@@ -277,7 +277,7 @@
           {
             "idGNBCUUPFunction": "2222",
             "attributes": {
-              "gNBId": 98763
+              "id": 98763
             }
           }
         ],
@@ -287,7 +287,7 @@
             "attributes": {
               "gNBCUName": "cucpserver2",
               "gNBIdLength": 32,
-              "gNBId": 98763
+              "id": 98763
             },
             "NRCellCU": [
               {

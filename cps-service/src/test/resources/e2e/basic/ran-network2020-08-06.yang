@@ -901,7 +901,7 @@ module ran-network {
       description
         "The physical location (e.g. an address) of an entity";
     }
-    leaf gNBId {
+    leaf id {
           type int64 { range "0..4294967295"; }
           config false;
           description "Identifies a gNB within a PLMN. The gNB Identifier (gNB ID)
@@ -1036,7 +1036,7 @@ module ran-network {
         "URL for the GNBDUFunction. String representing IP addr:port";
     }
 
-    leaf gNBId {
+    leaf id {
       type int64 {
         range "0..4294967295";
       }
@@ -1481,7 +1481,7 @@ module ran-network {
       reference
         "'gNB-CU-UP ID' in subclause 9.3.1.15 of 3GPP TS 38.463";
     }
-    leaf gNBId {
+    leaf id {
       type int32 {
         range "22..32";
       }
@@ -1526,7 +1526,7 @@ module ran-network {
         standardized (like RRMPolicyRatio) or as vendor specific, by inheriting from the
         abstract RRMPolicy_ IOC. For details see subclause 4.3.36.";
     }
-    leaf gNBId {
+    leaf id {
       type int64 {
         range "0..4294967295";
       }
