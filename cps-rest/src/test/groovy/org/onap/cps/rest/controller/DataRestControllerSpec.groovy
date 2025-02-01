@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -342,11 +342,10 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         and: 'the response contains the datanode in json array format'
-            response.getContentAsString() == '[{"parent-1":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}},' +
-                '{"parent-2":{"leaf":"value"}}]'
+            response.getContentAsString() == '[{"parent-1":[{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}],"parent-2":[{"leaf":"value"}]}]'
         and: 'the json array contains expected number of data trees'
             def numberOfDataTrees = new JsonSlurper().parseText(response.getContentAsString()).iterator().size()
-            assert numberOfDataTrees == 2
+            assert numberOfDataTrees == 1
     }
 
     def 'Get all the data trees using V2 without Content-Type defaults to json'() {
@@ -362,8 +361,7 @@ class DataRestControllerSpec extends Specification {
         then: 'a success response is returned'
             response.status == HttpStatus.OK.value()
         and: 'the response contains the datanode in json array format'
-            response.getContentAsString() == '[{"parent-1":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}},' +
-                    '{"parent-2":{"leaf":"value"}}]'
+            response.getContentAsString() == '[{"parent-1":[{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}],"parent-2":[{"leaf":"value"}]}]'
     }
 
     def 'Get all the data trees as XML with root node xPath using V2'() {

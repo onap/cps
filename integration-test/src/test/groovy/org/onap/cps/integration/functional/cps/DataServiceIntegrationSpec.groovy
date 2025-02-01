@@ -26,7 +26,6 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
-import org.onap.cps.api.exceptions.CpsAdminException
 import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
