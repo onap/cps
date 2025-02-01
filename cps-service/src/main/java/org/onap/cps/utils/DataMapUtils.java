@@ -3,7 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -106,6 +106,20 @@ public class DataMapUtils {
                         mapping(DataMapUtils::toDataMap, toUnmodifiableList())
                     ))
             ).build();
+    }
+
+    /**
+     * Converts a collection of DataNode into a grouped map for JSON response.
+     *
+     * @param dataNode data node object.
+     * @param prefix prefix
+     * @param groupedLists a map represents key and values are lists of map representing a dataNode.
+     */
+    public static void toDataMapsWithIdentifier(final DataNode dataNode, final String prefix,
+                                     final Map<String, List<Map<String, Object>>> groupedLists) {
+        final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> nodeData = toDataMap(dataNode);
+        groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
     }
 
     private static Map<String, Object> containerElementsAsMap(final Collection<DataNode> dataNodes) {
