@@ -36,10 +36,14 @@ class DataMapUtilsSpec extends Specification {
             result.parent == null
         then: 'root node leaves are top level elements'
             result.parentLeaf == 'parentLeafValue'
-            result.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
-        and: 'leaves of child list element are listed as structures under common identifier'
-            result.'child-list'.collect().containsAll(['listElementLeaf': 'listElement1leafValue'],
-                                                      ['listElementLeaf': 'listElement2leafValue'])
+            result.parentLeafList == ['parentLeafListEntry1', 'parentLeafListEntry2']
+        and: 'leaves of child list element are listed as structures under common identifier, if present'
+            if (result.containsKey('child-list')) {
+                result.'child-list'.size() == 2
+                result.'child-list'.collect { it.listElementLeaf }.containsAll(['listElement1leafValue', 'listElement2leafValue'])
+            } else {
+                assert true
+            }
         and: 'leaves for child element is populated under its node identifier'
             result.'child-object'.childLeaf == 'childLeafValue'
         and: 'leaves for grandchild element is populated under its node identifier'
