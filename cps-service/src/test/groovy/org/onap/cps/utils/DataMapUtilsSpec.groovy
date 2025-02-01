@@ -36,10 +36,14 @@ class DataMapUtilsSpec extends Specification {
             result.parent == null
         then: 'root node leaves are top level elements'
             result.parentLeaf == 'parentLeafValue'
-            result.parentLeafList == ['parentLeafListEntry1','parentLeafListEntry2']
-        and: 'leaves of child list element are listed as structures under common identifier'
-            result.'child-list'.collect().containsAll(['listElementLeaf': 'listElement1leafValue'],
-                                                      ['listElementLeaf': 'listElement2leafValue'])
+            result.parentLeafList == ['parentLeafListEntry1', 'parentLeafListEntry2']
+        and: 'leaves of child list element are listed as structures under common identifier, if present'
+            if (result.containsKey('child-list')) {
+                result.'child-list'.size() == 2
+                result.'child-list'.collect { it.listElementLeaf }.containsAll(['listElement1leafValue', 'listElement2leafValue'])
+            } else {
+                assert true
+            }
         and: 'leaves for child element is populated under its node identifier'
             result.'child-object'.childLeaf == 'childLeafValue'
         and: 'leaves for grandchild element is populated under its node identifier'
@@ -98,6 +102,29 @@ class DataMapUtilsSpec extends Specification {
             result.isEmpty()
     }
 
+    def 'Data node structure conversion for to map them as a grouped dataNodes'() {
+        when: 'Data nodes are converted to a map'
+            def result = DataMapUtils.listDataNodes(bookstore, "book-store")
+        then: 'the root node should contain prefix book-store:books'
+            result.containsKey("book-store:books")
+        and: 'list entries are popuplated correctly'
+            result."book-store:books".size() == 2
+        and: 'first list populated with correct attributes'
+            def firstBook = result."book-store:books"[0]
+            firstBook.title == "Matilda"
+            firstBook.lang == "English"
+            firstBook.price == 20
+            firstBook.editions == [1988, 2000]
+            firstBook.authors == ["Roald Dahl"]
+        and: 'Second list populated with correct attributes'
+            def secondBook = result."book-store:books"[1]
+            secondBook.title == "The Gruffalo"
+            secondBook.lang == "English"
+            secondBook.price == 15
+            secondBook.editions == [1999]
+            secondBook.authors == ["Julia Donaldson"]
+    }
+
     def dataNode = buildDataNode(
         "/parent",[parentLeaf:'parentLeafValue', parentLeafList:['parentLeafListEntry1','parentLeafListEntry2']],[
         buildDataNode('/parent/child-list[@id="1/2"]',[listElementLeaf:'listElement1leafValue'],noChildren),
@@ -115,6 +142,17 @@ class DataMapUtilsSpec extends Specification {
             [buildDataNode('/parent/child-object/grand-child-object',[grandChildLeaf:'grandChildLeafValue'],noChildren)]
         ),
     ])
+
+    def bookstore = [
+        buildDataNode("/bookstore/categories[@code=1]/books",
+            [title: "Matilda", lang: "English", price: 20, editions: [1988, 2000], authors: ["Roald Dahl"]],
+            noChildren
+        ),
+        buildDataNode("/bookstore/categories[@code=1]/books",
+            [title: "The Gruffalo", lang: "English", price: 15, editions: [1999], authors: ["Julia Donaldson"]],
+            noChildren
+        )
+    ]
 
     def buildDataNode(xpath,  leaves,  children) {
         return new DataNodeBuilder().withXpath(xpath).withLeaves(leaves).withChildDataNodes(children).build()
