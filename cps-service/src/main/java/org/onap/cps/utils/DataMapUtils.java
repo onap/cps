@@ -3,7 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
@@ -38,9 +39,13 @@ import lombok.NoArgsConstructor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DataMapUtils {
+
+    @Autowired
+    private static PrefixResolver prefixResolver;
 
     /**
      * Converts DataNode structure into a map including the root node identifier for a JSON response.
@@ -106,6 +111,24 @@ public class DataMapUtils {
                         mapping(DataMapUtils::toDataMap, toUnmodifiableList())
                     ))
             ).build();
+    }
+
+    /**
+     * Converts a collection of DataNode into a grouped map for JSON response.
+     *
+     * @param dataNodes collection of DataNodes.
+     * @return a map representing the hierarchical structure of data nodes.
+     */
+    public static Map<String, Object> listDataNodes(final Collection<DataNode> dataNodes, final String prefix) {
+        final Map<String, List<Map<String, Object>>> groupedLists = new LinkedHashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+            final Map<String, Object> nodeData = toDataMap(dataNode);
+            groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
+        }
+        final Map<String, Object> groupedData = new LinkedHashMap<>();
+        groupedLists.forEach((key, value) -> groupedData.put(key, value));
+        return groupedData;
     }
 
     private static Map<String, Object> containerElementsAsMap(final Collection<DataNode> dataNodes) {

@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2024 Nordix Foundation
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +30,6 @@ import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -143,14 +142,11 @@ public class DataRestController implements CpsDataApi {
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
                 fetchDescendantsOption);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataMaps.add(dataMap);
-        }
-        return buildResponseEntity(dataMaps, contentType);
+        final String prefix = prefixResolver.getPrefix(anchor, xpath);
+        final Map<String, Object> dataMap = DataMapUtils.listDataNodes(dataNodes, prefix);
+        final List<Map<String, Object>> responseData = List.of(dataMap);
+        return buildResponseEntity(responseData, contentType);
     }
 
     @Override
