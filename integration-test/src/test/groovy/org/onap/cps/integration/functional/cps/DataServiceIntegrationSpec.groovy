@@ -26,7 +26,6 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
-import org.onap.cps.api.exceptions.CpsAdminException
 import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
@@ -672,8 +671,9 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     }
 
     def 'Get delta between anchor and payload returns empty response when JSON payload is identical to anchor data'() {
-        when: 'attempt to get delta report between anchor and JSON payload (replacing the string Easons with Easons-1 because the data in JSON file is modified, to append anchor number, during the setup process of the integration tests)'
-            def jsonPayload = readResourceDataFile('bookstore/bookstoreData.json').replace('Easons', 'Easons-1')
+        when: 'attempt to get delta report between anchor and JSON payload (ensure matching replacement)'
+            def jsonPayload = readResourceDataFile('bookstore/bookstoreData.json')
+            jsonPayload = jsonPayload.replace('Easons', 'Easons-' + BOOKSTORE_ANCHOR_3[-1])
             def result = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, '/', [:], jsonPayload, INCLUDE_ALL_DESCENDANTS)
         then: 'delta report is empty'
             assert result.isEmpty()
