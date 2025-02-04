@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3bdda27_d7e6e27c",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-02-04T14:38:26Z",
+      "side": 1,
+      "message": "build getting errors here\n[ERROR] Error parsing content\n09:32:42 com.fasterxml.jackson.dataformat.yaml.snakeyaml.error.MarkedYAMLException: while scanning a double-quoted scalar\n09:32:42  in \u0027reader\u0027, line 619, column 33:\n09:32:42                 resourceIdentifier: \"\\GNBDUFun",
+      "range": {
+        "startLine": 619,
+        "startChar": 3,
+        "endLine": 619,
+        "endChar": 76
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
