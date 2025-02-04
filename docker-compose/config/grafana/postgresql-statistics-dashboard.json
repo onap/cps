@@ -107,7 +107,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_static{app=\"$app\"}",
+          "expr": "pg_static{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -184,7 +184,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_max_connections{app=\"$app\"}",
+          "expr": "pg_settings_max_connections{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -261,7 +261,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_shared_buffers_bytes{app=\"$app\"}",
+          "expr": "pg_settings_shared_buffers_bytes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -338,7 +338,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_effective_cache_size_bytes{app=\"$app\"}",
+          "expr": "pg_settings_effective_cache_size_bytes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -415,7 +415,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_maintenance_work_mem_bytes{app=\"$app\"}",
+          "expr": "pg_settings_maintenance_work_mem_bytes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -492,7 +492,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_work_mem_bytes{app=\"$app\"}",
+          "expr": "pg_settings_work_mem_bytes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -570,7 +570,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_max_wal_size_bytes{app=\"$app\"}",
+          "expr": "pg_settings_max_wal_size_bytes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -647,7 +647,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_random_page_cost{app=\"$app\"}",
+          "expr": "pg_settings_random_page_cost{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -724,7 +724,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_seq_page_cost{app=\"$app\"}",
+          "expr": "pg_settings_seq_page_cost{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -801,7 +801,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_max_worker_processes{app=\"$app\"}",
+          "expr": "pg_settings_max_worker_processes{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -878,7 +878,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_settings_max_parallel_workers{app=\"$app\"}",
+          "expr": "pg_settings_max_parallel_workers{instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -989,7 +989,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "editorMode": "code",
-          "expr": "pg_database_size_bytes{app=\"$app\", datname=\"$db\"}",
+          "expr": "pg_database_size_bytes{instance=\"$instance\", datname=\"$db\"}",
           "legendFormat": "size",
           "range": true,
           "refId": "A"
@@ -1098,7 +1098,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_stat_activity_count{app=\"$app\", datname=\"$db\"}",
+          "expr": "pg_stat_activity_count{instance=\"$instance\", datname=\"$db\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1191,7 +1191,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_xact_commit{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_xact_commit{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1201,7 +1201,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_xact_rollback{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_xact_rollback{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1299,7 +1299,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_tup_fetched{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_tup_fetched{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1309,7 +1309,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_tup_returned{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_tup_returned{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1407,7 +1407,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_tup_inserted{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_tup_inserted{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1417,7 +1417,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_tup_updated{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_tup_updated{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1427,7 +1427,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_tup_deleted{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_tup_deleted{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1525,7 +1525,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_stat_activity_max_tx_duration{app=\"$app\", datname=\"$db\"}",
+          "expr": "pg_stat_activity_max_tx_duration{instance=\"$instance\", datname=\"$db\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1619,7 +1619,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_stat_database_blks_hit{app=\"$app\", datname=\"$db\"} / (pg_stat_database_blks_read{app=\"$app\", datname=\"$db\"} + pg_stat_database_blks_hit{app=\"$app\", datname=\"$db\"})",
+          "expr": "pg_stat_database_blks_hit{instance=\"$instance\", datname=\"$db\"} / (pg_stat_database_blks_read{instance=\"$instance\", datname=\"$db\"} + pg_stat_database_blks_hit{instance=\"$instance\", datname=\"$db\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1730,7 +1730,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_buffers_backend_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_buffers_backend_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1740,7 +1740,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_buffers_alloc_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_buffers_alloc_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1750,7 +1750,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_buffers_backend_fsync_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_buffers_backend_fsync_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1760,7 +1760,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_buffers_checkpoint_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_buffers_checkpoint_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1770,7 +1770,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_buffers_clean_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_buffers_clean_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1863,7 +1863,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_conflicts{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_conflicts{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1873,7 +1873,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_deadlocks{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_deadlocks{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -1972,7 +1972,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "pg_locks_count{app=\"$app\", datname=\"$db\"}",
+          "expr": "pg_locks_count{instance=\"$instance\", datname=\"$db\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2066,7 +2066,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_database_temp_bytes{app=\"$app\", datname=\"$db\"}[5m])",
+          "expr": "irate(pg_stat_database_temp_bytes{instance=\"$instance\", datname=\"$db\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2164,7 +2164,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_checkpoint_write_time_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_checkpoint_write_time_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2174,7 +2174,7 @@
         {
           "datasource": "PBFA97CFB590B2093",
           "exemplar": true,
-          "expr": "irate(pg_stat_bgwriter_checkpoint_sync_time_total{app=\"$app\"}[5m])",
+          "expr": "irate(pg_stat_bgwriter_checkpoint_sync_time_total{instance=\"$instance\"}[5m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2198,13 +2198,13 @@
           "value": ""
         },
         "datasource": "PBFA97CFB590B2093",
-        "definition": "label_values(pg_up, app)",
+        "definition": "label_values(pg_up, instance)",
         "includeAll": false,
-        "label": "App",
-        "name": "app",
+        "label": "instance",
+        "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(pg_up, app)",
+          "query": "label_values(pg_up, instance)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -2217,13 +2217,13 @@
           "value": "cpsdb"
         },
         "datasource": "PBFA97CFB590B2093",
-        "definition": "label_values(pg_stat_database_tup_fetched{datname!~\"template.*|postgres\",app=\"$app\"},datname)",
+        "definition": "label_values(pg_stat_database_tup_fetched{datname!~\"template.*|postgres\",instance=\"$instance\"},datname)",
         "includeAll": false,
         "label": "Database",
         "name": "db",
         "options": [],
         "query": {
-          "query": "label_values(pg_stat_database_tup_fetched{datname!~\"template.*|postgres\",app=\"$app\"},datname)",
+          "query": "label_values(pg_stat_database_tup_fetched{datname!~\"template.*|postgres\",instance=\"$instance\"},datname)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
