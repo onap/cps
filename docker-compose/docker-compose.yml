@@ -96,7 +96,7 @@ services:
 
   ### if kafka is not required comment out zookeeper and kafka ###
   zookeeper:
-    image: confluentinc/cp-zookeeper:6.2.1
+    image: confluentinc/cp-zookeeper:7.8.0
     container_name: ${ZOOKEEPER_CONTAINER_NAME:-zookeeper}
     ports:
       - ${ZOOKEEPER_PORT:-2181}:2181
@@ -104,7 +104,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
-    image: confluentinc/cp-kafka:6.2.1
+    image: confluentinc/cp-kafka:7.8.0
     container_name: ${KAFKA_CONTAINER_NAME:-kafka}
     ports:
       - ${KAFKA_PORT:-9092}:9092
