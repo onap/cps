@@ -1,0 +1,10 @@
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Code-Review+2: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Submitted-by: Daniel Hanrahan <daniel.hanrahan@est.tech>
+Submitted-at: Tue, 04 Feb 2025 16:46:41 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/140117
+Project: cps
+Branch: refs/heads/master
