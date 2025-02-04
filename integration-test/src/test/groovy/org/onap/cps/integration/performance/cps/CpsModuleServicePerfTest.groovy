@@ -47,15 +47,15 @@ class CpsModuleServicePerfTest extends CpsPerfTestBase {
 
     def 'Store new schema set with many modules'() {
         when: 'a new schema set with 200 modules is stored'
-            def newYangResourcesNameToContentMap = [:]
+            def newYangResourceContentPerName = [:]
             (1..200).each {
                 def year = 2000 + it
                 def resourceName = "module${it}".toString()
                 def moduleName = "stores${it}"
                 def content = NEW_RESOURCE_CONTENT.replace('2020',String.valueOf(year)).replace('stores',moduleName)
-                newYangResourcesNameToContentMap.put(resourceName, content)
+                newYangResourceContentPerName.put(resourceName, content)
             }
-            objectUnderTest.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet', newYangResourceContentPerName)
         then: 'the schema set is persisted correctly'
             def result =  cpsModuleService.getSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet')
             result.moduleReferences.size() == 200

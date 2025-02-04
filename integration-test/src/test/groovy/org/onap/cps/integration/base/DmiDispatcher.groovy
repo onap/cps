@@ -29,6 +29,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 
 import java.util.regex.Matcher
+import java.util.stream.Collectors
 
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
@@ -81,7 +82,7 @@ class DmiDispatcher extends Dispatcher {
             // get module resources for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/moduleResources$':
                 def cmHandleId = Matcher.lastMatcher[0][1]
-                return getModuleResourcesResponse(cmHandleId)
+                return getModuleResourcesResponse(request, cmHandleId)
 
             // pass-through data operation for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/data/ds/(.*)$':
@@ -124,8 +125,13 @@ class DmiDispatcher extends Dispatcher {
         return mockResponseWithBody(HttpStatus.OK, moduleReferences)
     }
 
-    def getModuleResourcesResponse(cmHandleId) {
-        def moduleResources = '[' + getModuleNamesForCmHandle(cmHandleId).collect {
+    def getModuleResourcesResponse(request, cmHandleId) {
+        def moduleResourcesRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+        def requestedModuleNames = moduleResourcesRequest.get('data').get('modules').collect{it.get('name')}
+        def candidateModuleNames = getModuleNamesForCmHandle(cmHandleId)
+        def moduleNames = candidateModuleNames.stream().filter(candidate -> requestedModuleNames.contains(candidate)).toList()
+
+        def moduleResources = '[' + moduleNames.collect {
             MODULE_RESOURCES_RESPONSE_TEMPLATE.replaceAll("<MODULE_NAME>", it)
         }.join(',') + ']'
         return mockResponseWithBody(HttpStatus.OK, moduleResources)

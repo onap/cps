@@ -53,8 +53,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         }
         """
 
-    def newYangResourcesNameToContentMap = [:]
-    def moduleReferences = []
+    def yangResourceContentPerName = [:]
+    def allModuleReferences = []
     def noNewModules = [:]
     def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
     def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
@@ -67,9 +67,9 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Create new schema set from yang resources with #scenario'() {
         given: 'a new schema set with #numberOfModules modules'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfNewModules)
+            populateYangResourceContentPerNameAndAllModuleReferences(numberOfNewModules)
         when: 'the new schema set is created'
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', yangResourceContentPerName)
         then: 'the number of module references has increased by #numberOfNewModules'
             def yangResourceModuleReferences = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1)
             originalNumberOfModuleReferences + numberOfNewModules == yangResourceModuleReferences.size()
@@ -93,39 +93,43 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Create new schema set from modules with #scenario'() {
         given: 'a new schema set with #numberOfNewModules modules'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfNewModules)
+            populateYangResourceContentPerNameAndAllModuleReferences(numberOfNewModules)
         and: 'add existing module references (optional)'
-            moduleReferences.addAll(existingModuleReferences)
+            allModuleReferences.addAll(existingModuleReferences)
         when: 'the new schema set is created'
             def schemaSetName = "NewSchemaWith${numberOfNewModules}Modules"
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, yangResourceContentPerName, allModuleReferences)
         and: 'associated with a new anchor'
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
         then: 'the new anchor has the correct number of modules'
             def yangResourceModuleReferences = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'newAnchor')
             assert expectedNumberOfModulesForAnchor == yangResourceModuleReferences.size()
+        and: 'the schema set has the correct number of modules too'
+            def dataspaceEntity = dataspaceRepository.getByName(FUNCTIONAL_TEST_DATASPACE_1)
+            def schemaSetEntity = schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName)
+            assert expectedNumberOfModulesForAnchor == schemaSetEntity.yangResources.size()
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ schemaSetName.toString() ])
         where: 'the following module references are provided'
             scenario                        | numberOfNewModules | existingModuleReferences                          || expectedNumberOfModulesForAnchor
             'empty schema set'              | 0                  | [ ]                                               || 0
-            'one existing module'           | 0                  | [bookStoreModuleReference ]                       || 1
+            'one existing module'           | 0                  | [ bookStoreModuleReference ]                      || 1
             'two new modules'               | 2                  | [ ]                                               || 2
-            'two new modules, one existing' | 2                  | [bookStoreModuleReference ]                       || 3
+            'two new modules, one existing' | 2                  | [ bookStoreModuleReference ]                      || 3
             'over max batch size #modules'  | 101                | [ ]                                               || 101
             'two valid, one invalid module' | 2                  | [ new ModuleReference('NOT EXIST','IRRELEVANT') ] || 2
     }
 
     def 'Duplicate schema content.'() {
         given: 'a map of yang resources'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(1)
+            populateYangResourceContentPerNameAndAllModuleReferences(1)
         when: 'a new schema set is created'
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema1', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema1', yangResourceContentPerName)
         then: 'the dataspace has one new module (reference)'
             def numberOfModuleReferencesAfterFirstSchemaSetHasBeenAdded = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).size()
             assert numberOfModuleReferencesAfterFirstSchemaSetHasBeenAdded == originalNumberOfModuleReferences + 1
         when: 'a second new schema set is created'
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema2', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema2', yangResourceContentPerName)
         then: 'the dataspace has no additional module (reference)'
             assert numberOfModuleReferencesAfterFirstSchemaSetHasBeenAdded  == objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).size()
         cleanup:
@@ -134,8 +138,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Attempt to create schema set, error scenario: #scenario.'() {
         when: 'attempt to store schema set #schemaSetName in dataspace #dataspaceName'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(0)
-            objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, newYangResourcesNameToContentMap)
+            populateYangResourceContentPerNameAndAllModuleReferences(0)
+            objectUnderTest.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName)
         then: 'an #expectedException is thrown'
             thrown(expectedException)
         where: 'the following data is used'
@@ -146,7 +150,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Attempt to create duplicate schema set from modules.'() {
         when: 'attempt to store duplicate schema set from modules'
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, newYangResourcesNameToContentMap, [])
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET, yangResourceContentPerName, [])
         then: 'an Already Defined Exception is thrown'
             thrown(AlreadyDefinedException)
     }
@@ -192,12 +196,12 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Identifying new module references with #scenario'() {
         when: 'identifyNewModuleReferences is called'
-            def result = objectUnderTest.identifyNewModuleReferences(moduleReferences)
+            def result = objectUnderTest.identifyNewModuleReferences(allModuleReferences)
         then: 'the correct module references are returned'
             assert result.size() == expectedResult.size()
             assert result.containsAll(expectedResult)
         where: 'the following data is used'
-            scenario                                | moduleReferences                                                       || expectedResult
+            scenario                                | allModuleReferences                                                    || expectedResult
             'just new module references'            | [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')] || [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')]
             'one new module,one existing reference' | [new ModuleReference('new1', 'r1'), bookStoreModuleReference]          || [new ModuleReference('new1', 'r1')]
             'no new module references'              | [bookStoreModuleReference]                                             || []
@@ -216,8 +220,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Retrieve all schema sets.'() {
         given: 'an extra schema set is stored'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(1)
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema1', newYangResourcesNameToContentMap)
+            populateYangResourceContentPerNameAndAllModuleReferences(1)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema1', yangResourceContentPerName)
         when: 'all schema sets are retrieved'
             def result = objectUnderTest.getSchemaSets(FUNCTIONAL_TEST_DATASPACE_1)
         then: 'the result contains all expected schema sets'
@@ -233,8 +237,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Delete schema sets with(out) cascade.'() {
         given: 'a schema set'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(1)
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', newYangResourcesNameToContentMap)
+            populateYangResourceContentPerNameAndAllModuleReferences(1)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', yangResourceContentPerName)
         and: 'optionally create anchor for the schema set'
             if (associateWithAnchor) {
                 cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', 'newAnchor')
@@ -261,11 +265,11 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Delete schema sets with shared resources.'() {
         given: 'a new schema set'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(1)
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet1', newYangResourcesNameToContentMap)
+            populateYangResourceContentPerNameAndAllModuleReferences(1)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet1', yangResourceContentPerName)
         and: 'another schema set which shares one yang resource (module)'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences(2)
-            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet2', newYangResourcesNameToContentMap)
+            populateYangResourceContentPerNameAndAllModuleReferences(2)
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet2', yangResourceContentPerName)
         when: 'all schema sets are retrieved'
             def moduleRevisions = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).revision
         then: 'both modules (revisions) are present'
@@ -299,23 +303,23 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         U P G R A D E
      */
 
-    def 'Upgrade schema set (with existing and new modules, no matching module set tag in NCMP)'() {
+    def 'Upgrade schema set [with existing and new modules, no matching module set tag in NCMP]'() {
         given: 'an anchor and schema set with 2 modules (to be upgraded)'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences('original', 2)
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
+            populateYangResourceContentPerNameAndAllModuleReferences('original', 2)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', yangResourceContentPerName, allModuleReferences)
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
             def yangResourceModuleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert yangResourceModuleReferencesBeforeUpgrade.size() == 2
             assert yangResourceModuleReferencesBeforeUpgrade.containsAll([new ModuleReference('original_0','2000-01-01'),new ModuleReference('original_1','2001-01-01')])
         and: 'two new 2 modules (from node)'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences('new', 2)
+            populateYangResourceContentPerNameAndAllModuleReferences('new', 2)
             def newModuleReferences = [new ModuleReference('new_0','2000-01-01'),new ModuleReference('new_1','2001-01-01')]
         and: 'a list of all module references (normally retrieved from node)'
-            def allModuleReferences = []
-            allModuleReferences.add(bookStoreModuleReference)
-            allModuleReferences.addAll(newModuleReferences)
+            def allOtherModuleReferences = []
+            allOtherModuleReferences.add(bookStoreModuleReference)
+            allOtherModuleReferences.addAll(newModuleReferences)
         when: 'the schema set is upgraded'
-            objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, allModuleReferences)
+            objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', yangResourceContentPerName, allOtherModuleReferences)
         then: 'the new anchor has the correct new and existing modules'
             def yangResourceModuleReferencesAfterUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert yangResourceModuleReferencesAfterUpgrade.size() == 3
@@ -325,18 +329,19 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['targetSchema'])
     }
 
-    def 'Upgrade existing schema set from another anchor (used in NCMP for matching module set tag)'() {
+    def 'Upgrade existing schema set from another anchor [used in NCMP for matching module set tag]'() {
         given: 'an anchor and schema set with 1 module (target)'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences('target', 1)
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
+            populateYangResourceContentPerNameAndAllModuleReferences('target', 1)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', yangResourceContentPerName, allModuleReferences)
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
             def moduleReferencesBeforeUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert moduleReferencesBeforeUpgrade.size() == 1
         and: 'another anchor and schema set with 2 other modules (source for upgrade)'
-            populateNewYangResourcesNameToContentMapAndAllModuleReferences('source', 2)
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', newYangResourcesNameToContentMap, [])
+            populateYangResourceContentPerNameAndAllModuleReferences('source', 2)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', yangResourceContentPerName, allModuleReferences)
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', 'sourceAnchor')
-            assert objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor').size() == 2
+            def yangResourcesModuleReferences = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')
+            assert yangResourcesModuleReferences.size() == 2
         when: 'the target schema is upgraded using the module references from the source anchor'
             def moduleReferencesFromSourceAnchor = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')
             objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', noNewModules, moduleReferencesFromSourceAnchor)
@@ -354,17 +359,19 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         H E L P E R   M E T H O D S
      */
 
-    def populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfModules) {
-        populateNewYangResourcesNameToContentMapAndAllModuleReferences('name', numberOfModules)
+    def populateYangResourceContentPerNameAndAllModuleReferences(numberOfModules) {
+        populateYangResourceContentPerNameAndAllModuleReferences('name', numberOfModules)
     }
 
-    def populateNewYangResourcesNameToContentMapAndAllModuleReferences(namePrefix, numberOfModules) {
+    def populateYangResourceContentPerNameAndAllModuleReferences(namePrefix, numberOfModules) {
+        yangResourceContentPerName.clear()
+        allModuleReferences.clear()
         numberOfModules.times {
             def uniqueName = namePrefix + '_' + it
             def uniqueRevision = String.valueOf(2000 + it) + '-01-01'
-            moduleReferences.add(new ModuleReference(uniqueName, uniqueRevision))
+            allModuleReferences.add(new ModuleReference(uniqueName, uniqueRevision))
             def uniqueContent = NEW_RESOURCE_CONTENT.replace(NEW_RESOURCE_REVISION, uniqueRevision).replace('module test_module', 'module '+uniqueName)
-            newYangResourcesNameToContentMap.put(uniqueRevision, uniqueContent)
+            yangResourceContentPerName.put(uniqueName, uniqueContent)
         }
     }
 

@@ -40,7 +40,7 @@ class YangParserSpec extends Specification {
     def objectUnderTest = new YangParser(mockYangParserHelper, mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
 
     def anchor = new Anchor(dataspaceName: 'my dataspace', schemaSetName: 'my schema')
-    def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+    def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
     def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
     def mockSchemaContext = Mock(SchemaContext)
     def containerNodeFromYangUtils = Mock(ContainerNode)
@@ -91,9 +91,9 @@ class YangParserSpec extends Specification {
 
     def 'Parsing data with yang resource to context map.'() {
         given: 'the schema source set for the yang resource map is returned'
-            mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) >> mockYangTextSchemaSourceSet
+            mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
         when: 'parsing some json data'
-            def result = objectUnderTest.parseData(ContentType.JSON, 'some json', yangResourcesNameToContentMap, noParent)
+            def result = objectUnderTest.parseData(ContentType.JSON, 'some json', yangResourceContentPerName, noParent)
         then: 'the yang parser helper always returns a container node'
             1 * mockYangParserHelper.parseData(ContentType.JSON, 'some json', mockSchemaContext, noParent, validateAndParse) >> containerNodeFromYangUtils
         and: 'the result is the same container node as return from yang utils'

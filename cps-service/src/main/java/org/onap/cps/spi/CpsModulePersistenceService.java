@@ -36,34 +36,37 @@ public interface CpsModulePersistenceService {
     /**
      * Stores Schema Set.
      *
-     * @param dataspaceName                 dataspace name
-     * @param schemaSetName                 schema set name
-     * @param yangResourcesNameToContentMap YANG resources (files) map where key is a name and value is content
+     * @param dataspaceName               dataspace name
+     * @param schemaSetName               schema set name
+     * @param yangResourceContentPerName a map of YANG resources map where key is a name and value is content
      */
-    void storeSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourcesNameToContentMap);
+    void createSchemaSet(String dataspaceName, String schemaSetName, Map<String, String> yangResourceContentPerName);
 
     /**
      * Stores a new schema set from new modules and existing modules.
      *
-     * @param dataspaceName             Dataspace name
-     * @param schemaSetName             Schema set name
-     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param allModuleReferences       All YANG resources module references
+     * @param dataspaceName                   dataspace name
+     * @param schemaSetName                   Schema set name
+     * @param newYangResourceContentPerName   a map of only the new YANG resources
+     *                                        the key is a name and value is its content
+     * @param allModuleReferences             all YANG resources module references
      */
-    void storeSchemaSetFromModules(String dataspaceName, String schemaSetName,
-        Map<String, String> newModuleNameToContentMap, Collection<ModuleReference> allModuleReferences);
+    void createSchemaSetFromNewAndExistingModules(String dataspaceName, String schemaSetName,
+                                                  Map<String, String> newYangResourceContentPerName,
+                                                  Collection<ModuleReference> allModuleReferences);
 
     /**
      * Update an existing schema set from new modules and existing modules.
      *
-     * @param dataspaceName             Dataspace name
+     * @param dataspaceName             dataspace name
      * @param schemaSetName             Schema set name
-     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param allModuleReferences       All YANG resources module references
+     * @param newModuleNameToContentMap a map of only the new YANG resources
+     *                                  the key is a module name and value is its content
+     * @param allModuleReferences       all YANG resources module references
      */
-    void updateSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                    final Map<String, String> newModuleNameToContentMap,
-                                    final Collection<ModuleReference> allModuleReferences);
+    void updateSchemaSetFromNewAndExistingModules(String dataspaceName, String schemaSetName,
+                                                  Map<String, String> newModuleNameToContentMap,
+                                                  Collection<ModuleReference> allModuleReferences);
 
     /**
      * Checks whether a schema set exists in the specified dataspace.
