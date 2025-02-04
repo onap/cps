@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c29019ae_f1694bbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-02-04T14:44:18Z",
+      "side": 1,
+      "message": "need to update wiki reference as resource identifier is still different https://lf-onap.atlassian.net/wiki/spaces/DW/pages/28082248/CPS-2339+Make+Test+Documentation+examples+More+Realistic",
+      "revId": "53be001c283800b0cd83a662ba0589f3abc6f136",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
