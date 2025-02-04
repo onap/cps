@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2d14b9_6f8b2154",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-04T14:20:48Z",
+      "side": 1,
+      "message": "fine by me. \nI just had a doubt regarding an external team directly relying on the folder structure and files to generate the java classes.\nAlso we need to do some wiki updates.",
+      "revId": "abb2045f4ed82ac2969cb97f2330cdb06ebc259f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
