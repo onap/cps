@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023-2025 TechMahindra Ltd
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -27,7 +27,6 @@ import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.api.exceptions.CpsPathException
-import spock.lang.Ignore
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
@@ -57,7 +56,6 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             'the AND is used where result does not exist' | '//books[@lang="English" and @price=1000]' || 0                  | []
     }
 
-    @Ignore  // TODO will be implemented in CPS-2416
     def 'Query data leaf using CPS path for #scenario.'() {
         when: 'query data leaf for bookstore container'
             def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class)
@@ -70,7 +68,6 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             'non-existing path'       | '/non-existing/@title'                        || 0
     }
 
-    @Ignore
     def 'Query data leaf with type #leafType using CPS path.'() {
         given: 'a cps path query for two books, returning only #leafName'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/@' + leafName
@@ -85,7 +82,6 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             'editions'  | List.class    || [[1988, 2000], [2006]]
     }
 
-    @Ignore
     def 'Query data leaf using CPS path with ancestor axis.'() {
         given: 'a cps path query that will return the names of the categories of two books'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/ancestor::categories/@name'

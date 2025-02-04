@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,11 +73,10 @@ class CpsQueryServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath("some-dataspace", "/cps-path")
     }
 
-    // TODO will be implemented in CPS-2416
     def 'Query data leaf.'() {
         when: 'a query for a specific leaf is executed'
             objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
         then: 'solution is not implemented yet'
-            thrown(UnsupportedOperationException)
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
     }
 }
