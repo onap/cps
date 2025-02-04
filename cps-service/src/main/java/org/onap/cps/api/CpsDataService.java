@@ -314,13 +314,13 @@ public interface CpsDataService {
      * @param dataspaceName                     source dataspace name
      * @param sourceAnchorName                  source anchor name
      * @param xpath                             xpath
-     * @param yangResourcesNameToContentMap     YANG resources (files) map where key is a name and value is content
+     * @param yangResourceContentPerName     YANG resources (files) map where key is a name and value is content
      * @param targetData                        target data to be compared in JSON string format
      * @param fetchDescendantsOption            defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
      * @return                                  list containing {@link DeltaReport} objects
      */
     List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
-                                                          Map<String, String> yangResourcesNameToContentMap,
+                                                          Map<String, String> yangResourceContentPerName,
                                                           String targetData,
                                                           FetchDescendantsOption fetchDescendantsOption);
 

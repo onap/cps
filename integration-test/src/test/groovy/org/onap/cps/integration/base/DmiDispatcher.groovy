@@ -80,6 +80,7 @@ class DmiDispatcher extends Dispatcher {
 
             // get module resources for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/moduleResources$':
+                //TODO: Toine, add code to filter only the wanted modules
                 def cmHandleId = Matcher.lastMatcher[0][1]
                 return getModuleResourcesResponse(cmHandleId)
 

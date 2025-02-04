@@ -26,7 +26,7 @@ package org.onap.cps.ri;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableList;
 import io.micrometer.core.annotation.Timed;
 import jakarta.transaction.Transactional;
 import java.io.ByteArrayInputStream;
@@ -35,8 +35,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -103,9 +103,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {
-        final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
+        final Collection<YangResourceModuleReference> yangResourceModuleReferences =
             yangResourceRepository.findAllModuleReferencesByDataspace(dataspaceName);
-        return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
+        return yangResourceModuleReferences.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
             .collect(Collectors.toList());
     }
 
@@ -150,19 +150,11 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    public void storeSchemaSet(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> moduleReferenceNameToContentMap) {
-        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(moduleReferenceNameToContentMap);
-        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
-        schemaSetEntity.setName(schemaSetName);
-        schemaSetEntity.setDataspace(dataspaceEntity);
-        schemaSetEntity.setYangResources(yangResourceEntities);
-        try {
-            schemaSetRepository.save(schemaSetEntity);
-        } catch (final DataIntegrityViolationException e) {
-            throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
-        }
+    public void createSchemaSet(final String dataspaceName, final String schemaSetName,
+                                final Map<String, String> yangResourceContentPerName) {
+        createSchemaSetFromNewAndExistingModules(dataspaceName, schemaSetName, Collections.emptyList(),
+            yangResourceContentPerName
+        );
     }
 
     @Override
@@ -183,16 +175,19 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     @Transactional
     @Timed(value = "cps.module.persistence.schemaset.store",
         description = "Time taken to store a schemaset (list of module references)")
-    public void storeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                          final Map<String, String> newModuleNameToContentMap,
-                                          final Collection<ModuleReference> allModuleReferences) {
-        storeSchemaSet(dataspaceName, schemaSetName, newModuleNameToContentMap);
+    public void createSchemaSetFromNewAndExistingModules(final String dataspaceName, final String schemaSetName,
+                                                         final Collection<ModuleReference> allModuleReferences,
+                                                         final Map<String, String> newYangResourceContentPerModule) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final SchemaSetEntity schemaSetEntity =
-                schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final List<Integer> allYangResourceIds =
-            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
-        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntity.getId(), allYangResourceIds);
+        final SchemaSetEntity schemaSetEntity = new SchemaSetEntity();
+        schemaSetEntity.setName(schemaSetName);
+        schemaSetEntity.setDataspace(dataspaceEntity);
+        schemaSetEntity.setYangResources(synchronizeYangResources(newYangResourceContentPerModule, allModuleReferences));
+        try {
+            schemaSetRepository.save(schemaSetEntity);
+        } catch (final DataIntegrityViolationException e) {
+            throw AlreadyDefinedException.forSchemaSet(schemaSetName, dataspaceName, e);
+        }
     }
 
     @Override
@@ -213,14 +208,14 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    public void updateSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                           final Map<String, String> newModuleNameToContentMap,
-                                           final Collection<ModuleReference> allModuleReferences) {
+    public void updateSchemaSetFromNewAndExistingModules(final String dataspaceName, final String schemaSetName,
+                                                         final Collection<ModuleReference> allModuleReferences,
+                                                         final Map<String, String> newModuleNameToContentMap) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final SchemaSetEntity schemaSetEntity =
-            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        storeAndLinkNewModules(newModuleNameToContentMap, schemaSetEntity);
-        updateAllModuleReferences(allModuleReferences, schemaSetEntity.getId());
+                schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        schemaSetEntity.setYangResources(synchronizeYangResources(newModuleNameToContentMap, allModuleReferences));
+        schemaSetRepository.save(schemaSetEntity);
     }
 
     @Override
@@ -237,8 +232,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         return moduleReferenceRepository.identifyNewModuleReferences(moduleReferencesToCheck);
     }
 
-    private Set<YangResourceEntity> synchronizeYangResources(
-        final Map<String, String> moduleReferenceNameToContentMap) {
+    private List<YangResourceEntity> synchronizeYangResources(final Map<String, String> moduleReferenceNameToContentMap,
+                                                             final Collection<ModuleReference> allModuleReferences) {
         final Map<String, YangResourceEntity> checksumToEntityMap = moduleReferenceNameToContentMap.entrySet().stream()
             .map(entry -> {
                 final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
@@ -275,10 +270,16 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             }
         }
 
-        return ImmutableSet.<YangResourceEntity>builder()
-            .addAll(existingYangResourceEntities)
-            .addAll(newYangResourceEntities)
-            .build();
+        if (allModuleReferences.isEmpty()) {
+            return ImmutableList.<YangResourceEntity>builder()
+                .addAll(existingYangResourceEntities)
+                .addAll(newYangResourceEntities)
+                .build();
+        }
+        return allModuleReferences.stream().map(moduleReference ->
+                yangResourceRepository.findByModuleNameAndRevision(moduleReference.getModuleName(),
+                        moduleReference.getRevision()))
+                .toList();
     }
 
     private static Map<String, String> createModuleNameAndRevisionMap(final String sourceName, final String source) {
@@ -390,22 +391,6 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private static SchemaSet toSchemaSet(final SchemaSetEntity schemaSetEntity) {
         return SchemaSet.builder().name(schemaSetEntity.getName())
                 .dataspaceName(schemaSetEntity.getDataspace().getName()).build();
-    }
-
-    private void storeAndLinkNewModules(final Map<String, String> newModuleNameToContentMap,
-                                        final SchemaSetEntity schemaSetEntity) {
-        final Set<YangResourceEntity> yangResourceEntities
-            = new HashSet<>(synchronizeYangResources(newModuleNameToContentMap));
-        schemaSetEntity.setYangResources(yangResourceEntities);
-        schemaSetRepository.save(schemaSetEntity);
-    }
-
-    private void updateAllModuleReferences(final Collection<ModuleReference> allModuleReferences,
-                                           final Integer schemaSetEntityId) {
-        yangResourceRepository.deleteSchemaSetYangResourceForSchemaSetId(schemaSetEntityId);
-        final List<Integer> allYangResourceIds =
-            yangResourceRepository.getResourceIdsByModuleReferences(allModuleReferences);
-        yangResourceRepository.insertSchemaSetIdYangResourceId(schemaSetEntityId, allYangResourceIds);
     }
 
 }

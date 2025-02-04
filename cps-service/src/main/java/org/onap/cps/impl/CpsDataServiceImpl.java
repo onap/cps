@@ -230,7 +230,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                 final String sourceAnchorName, final String xpath,
-                                                                final Map<String, String> yangResourcesNameToContentMap,
+                                                                final Map<String, String> yangResourceContentPerName,
                                                                 final String targetData,
                                                                 final FetchDescendantsOption fetchDescendantsOption) {
 
@@ -243,7 +243,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                 new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
 
         final Collection<DataNode> targetDataNodes =
-                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourcesNameToContentMap, targetData));
+                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
 
         return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
     }
@@ -380,12 +380,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
-                                                      final Map<String, String> yangResourcesNameToContentMap,
+                                                      final Map<String, String> yangResourceContentPerName,
                                                       final String targetData) {
-        if (yangResourcesNameToContentMap.isEmpty()) {
+        if (yangResourceContentPerName.isEmpty()) {
             return buildDataNodesWithAnchorAndXpath(sourceAnchor, xpath, targetData, ContentType.JSON);
         } else {
-            return buildDataNodesWithYangResourceAndXpath(yangResourcesNameToContentMap, xpath,
+            return buildDataNodesWithYangResourceAndXpath(yangResourceContentPerName, xpath,
                     targetData, ContentType.JSON);
         }
     }
@@ -454,12 +454,12 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private Collection<DataNode> buildDataNodesWithParentNodeXpath(
-                                          final Map<String, String> yangResourcesNameToContentMap, final String xpath,
+                                          final Map<String, String> yangResourceContentPerName, final String xpath,
                                           final String nodeData, final ContentType contentType) {
 
         if (isRootNodeXpath(xpath)) {
             final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    yangResourcesNameToContentMap, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
+                    yangResourceContentPerName, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
             final Collection<DataNode> dataNodes = new DataNodeBuilder()
                     .withContainerNode(containerNode)
                     .buildCollection();
@@ -470,7 +470,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(xpath);
         final ContainerNode containerNode =
-                yangParser.parseData(contentType, nodeData, yangResourcesNameToContentMap, normalizedParentNodeXpath);
+                yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
                 .withParentNodeXpath(normalizedParentNodeXpath)
                 .withContainerNode(containerNode)
@@ -496,18 +496,18 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     private Collection<DataNode> buildDataNodesWithYangResourceAndXpath(
-                                            final Map<String, String> yangResourcesNameToContentMap, final String xpath,
+                                            final Map<String, String> yangResourceContentPerName, final String xpath,
                                             final String nodeData, final ContentType contentType) {
         if (!isRootNodeXpath(xpath)) {
             final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
             if (parentNodeXpath.isEmpty()) {
-                return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, ROOT_NODE_XPATH,
+                return buildDataNodesWithParentNodeXpath(yangResourceContentPerName, ROOT_NODE_XPATH,
                         nodeData, contentType);
             }
-            return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, parentNodeXpath,
+            return buildDataNodesWithParentNodeXpath(yangResourceContentPerName, parentNodeXpath,
                     nodeData, contentType);
         }
-        return buildDataNodesWithParentNodeXpath(yangResourcesNameToContentMap, xpath, nodeData, contentType);
+        return buildDataNodesWithParentNodeXpath(yangResourceContentPerName, xpath, nodeData, contentType);
     }
 
     private static boolean isRootNodeXpath(final String xpath) {

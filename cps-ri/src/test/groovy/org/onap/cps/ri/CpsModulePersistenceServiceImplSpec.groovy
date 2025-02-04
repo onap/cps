@@ -79,7 +79,7 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
             mockYangResourceRepository.saveAll(_) >> { throw dbException }
         when: 'attempt to store schema set '
             def newYangResourcesNameToContentMap = [(yangResourceName):yangResourceContent]
-            objectUnderTest.storeSchemaSet('my-dataspace', 'my-schema-set', newYangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet('my-dataspace', 'my-schema-set', newYangResourcesNameToContentMap)
         then: 'an #expectedThrownException is thrown'
             def e = thrown(expectedThrownException)
             assert e.getMessage().contains(expectedThrownExceptionMessage)
@@ -96,7 +96,7 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
         def schemaSetEntity = new SchemaSetEntity(id: 1)
             mockSchemaSetRepository.getByDataspaceAndName(_, _) >> schemaSetEntity
         when: 'schema set update is requested'
-            objectUnderTest.updateSchemaSetFromModules('my-dataspace', 'my-schemaset', [:], [new ModuleReference('some module name', 'some revision name')])
+            objectUnderTest.updateSchemaSetFromNewAndExistingModules('my-dataspace', 'my-schemaset', [new ModuleReference('some module name', 'some revision name')], [:])
         then: 'no exception is thrown '
             noExceptionThrown()
     }

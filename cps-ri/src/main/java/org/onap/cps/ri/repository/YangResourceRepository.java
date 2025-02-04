@@ -32,8 +32,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Integer>,
-    YangResourceNativeRepository, SchemaSetYangResourceRepository {
+public interface YangResourceRepository extends JpaRepository<YangResourceEntity, Integer> {
+
+    YangResourceEntity findByModuleNameAndRevision(@Param("moduleName") String moduleName,
+                                                   @Param("revision") String revision);
 
     List<YangResourceEntity> findAllByChecksumIn(Collection<String> checksums);
 
@@ -86,10 +88,6 @@ public interface YangResourceRepository extends JpaRepository<YangResourceEntity
     Set<YangResourceEntity> findAllModuleDefinitionsByDataspaceAndAnchorAndModule(
             @Param("dataspaceName") String dataspaceName, @Param("anchorName") String anchorName,
             @Param("moduleName") String moduleName, @Param("revision") String revision);
-
-    @Modifying
-    @Query(value = "DELETE FROM schema_set_yang_resources WHERE schema_set_id = :schemaSetId", nativeQuery = true)
-    void deleteSchemaSetYangResourceForSchemaSetId(@Param("schemaSetId") int schemaSetId);
 
     @Modifying
     @Query(value = """

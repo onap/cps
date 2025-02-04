@@ -74,7 +74,7 @@ class E2ENetworkSliceSpec extends Specification {
         when: 'Create schema set method is invoked'
             cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            1 * mockModuleStoreService.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping model can be parsed by CPS.'() {
@@ -84,7 +84,7 @@ class E2ENetworkSliceSpec extends Specification {
         when: 'Create schema set method is invoked'
             cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            1 * mockModuleStoreService.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed by CPS.'() {

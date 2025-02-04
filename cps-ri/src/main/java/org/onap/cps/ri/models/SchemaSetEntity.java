@@ -32,7 +32,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -67,5 +67,5 @@ public class SchemaSetEntity implements Serializable {
     @JoinTable(name = "schema_set_yang_resources",
         joinColumns = @JoinColumn(name = "schema_set_id"),
         inverseJoinColumns = @JoinColumn(name = "yang_resource_id"))
-    private Set<YangResourceEntity> yangResources;
+    private List<YangResourceEntity> yangResources;
 }

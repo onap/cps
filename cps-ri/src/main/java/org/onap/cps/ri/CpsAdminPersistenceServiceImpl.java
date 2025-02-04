@@ -91,10 +91,9 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
-        final var schemaSetEntity =
-            schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
-        final var anchorEntity = AnchorEntity.builder()
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final SchemaSetEntity schemaSetEntity = schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName);
+        final AnchorEntity anchorEntity = AnchorEntity.builder()
             .name(anchorName)
             .dataspace(dataspaceEntity)
             .schemaSet(schemaSetEntity)
@@ -114,7 +113,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
 
     @Override
     public Collection<Anchor> getAnchors(final String dataspaceName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final Collection<AnchorEntity> anchorEntities = anchorRepository.findAllByDataspace(dataspaceEntity);
         return anchorEntities.stream().map(CpsAdminPersistenceServiceImpl::toAnchor).collect(Collectors.toSet());
     }
@@ -154,14 +153,14 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     @Transactional
     @Override
     public void deleteAnchor(final String dataspaceName, final String anchorName) {
-        final var anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         anchorRepository.delete(anchorEntity);
     }
 
     @Transactional
     @Override
     public void deleteAnchors(final String dataspaceName, final Collection<String> anchorNames) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         anchorRepository.deleteAllByDataspaceAndNameIn(dataspaceEntity, anchorNames);
     }
 
@@ -178,7 +177,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {
-        final var dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         return anchorRepository.getByDataspaceAndName(dataspaceEntity, anchorName);
     }
 

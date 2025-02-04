@@ -56,7 +56,7 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
+            1 * mockCpsModulePersistenceService.createSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
@@ -68,7 +68,7 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
+            1 * mockCpsModulePersistenceService.createSchemaSetFromNewAndExistingModules('someDataspaceName', 'someSchemaSetName', listOfExistingModulesModuleReference, [newModule: 'newContent'])
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName')
     }
@@ -85,7 +85,7 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Create schema set with duplicate yang resource exception in persistence layer.'() {
         given: 'the persistence layer throws an duplicated yang resource exception'
             def originalException = new DuplicatedYangResourceException('name', '123', null)
-            mockCpsModulePersistenceService.storeSchemaSet(*_) >> { throw originalException }
+            mockCpsModulePersistenceService.createSchemaSet(*_) >> { throw originalException }
         when: 'attempt to create schema set'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', [:])
         then: 'the same duplicated yang resource exception is thrown (up)'

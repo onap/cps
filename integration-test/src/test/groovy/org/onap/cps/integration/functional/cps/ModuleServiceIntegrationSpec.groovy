@@ -54,7 +54,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         """
 
     def newYangResourcesNameToContentMap = [:]
-    def moduleReferences = []
+    def allModuleReferences = []
     def noNewModules = [:]
     def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
     def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
@@ -67,6 +67,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Create new schema set from yang resources with #scenario'() {
         given: 'a new schema set with #numberOfModules modules'
+            cpsModuleService.deleteAllUnusedYangModuleData(FUNCTIONAL_TEST_DATASPACE_1)
             populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfNewModules)
         when: 'the new schema set is created'
             objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchemaSet', newYangResourcesNameToContentMap)
@@ -95,15 +96,19 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a new schema set with #numberOfNewModules modules'
             populateNewYangResourcesNameToContentMapAndAllModuleReferences(numberOfNewModules)
         and: 'add existing module references (optional)'
-            moduleReferences.addAll(existingModuleReferences)
+            allModuleReferences.addAll(existingModuleReferences)
         when: 'the new schema set is created'
             def schemaSetName = "NewSchemaWith${numberOfNewModules}Modules"
-            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, moduleReferences)
+            objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, newYangResourcesNameToContentMap, allModuleReferences)
         and: 'associated with a new anchor'
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, schemaSetName, 'newAnchor')
         then: 'the new anchor has the correct number of modules'
             def yangResourceModuleReferences = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'newAnchor')
             assert expectedNumberOfModulesForAnchor == yangResourceModuleReferences.size()
+        and: 'the schema set has the correct number of modules too'
+            def dataspaceEntity = dataspaceRepository.getByName(FUNCTIONAL_TEST_DATASPACE_1)
+            def schemaSetEntity = schemaSetRepository.getByDataspaceAndName(dataspaceEntity, schemaSetName)
+            assert expectedNumberOfModulesForAnchor == schemaSetEntity.yangResources.size()
         cleanup:
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ schemaSetName.toString() ])
         where: 'the following module references are provided'
@@ -192,12 +197,12 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Identifying new module references with #scenario'() {
         when: 'identifyNewModuleReferences is called'
-            def result = objectUnderTest.identifyNewModuleReferences(moduleReferences)
+            def result = objectUnderTest.identifyNewModuleReferences(allModuleReferences)
         then: 'the correct module references are returned'
             assert result.size() == expectedResult.size()
             assert result.containsAll(expectedResult)
         where: 'the following data is used'
-            scenario                                | moduleReferences                                                       || expectedResult
+            scenario                                | allModuleReferences || expectedResult
             'just new module references'            | [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')] || [new ModuleReference('new1', 'r1'), new ModuleReference('new2', 'r1')]
             'one new module,one existing reference' | [new ModuleReference('new1', 'r1'), bookStoreModuleReference]          || [new ModuleReference('new1', 'r1')]
             'no new module references'              | [bookStoreModuleReference]                                             || []
@@ -325,8 +330,9 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['targetSchema'])
     }
 
-    def 'Upgrade existing schema set from another anchor (used in NCMP for matching module set tag)'() {
+    def 'Upgrade existing schema set from another anchor [used in NCMP for matching module set tag]'() {
         given: 'an anchor and schema set with 1 module (target)'
+            cpsModuleService.deleteAllUnusedYangModuleData(FUNCTIONAL_TEST_DATASPACE_1)
             populateNewYangResourcesNameToContentMapAndAllModuleReferences('target', 1)
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', newYangResourcesNameToContentMap, [])
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', 'targetAnchor')
@@ -336,7 +342,8 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             populateNewYangResourcesNameToContentMapAndAllModuleReferences('source', 2)
             objectUnderTest.createSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', newYangResourcesNameToContentMap, [])
             cpsAnchorService.createAnchor(FUNCTIONAL_TEST_DATASPACE_1, 'sourceSchema', 'sourceAnchor')
-            assert objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor').size() == 2
+            def yangResourcesModuleReferences = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')
+            assert yangResourcesModuleReferences.size() == 2
         when: 'the target schema is upgraded using the module references from the source anchor'
             def moduleReferencesFromSourceAnchor = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'sourceAnchor')
             objectUnderTest.upgradeSchemaSetFromModules(FUNCTIONAL_TEST_DATASPACE_1, 'targetSchema', noNewModules, moduleReferencesFromSourceAnchor)
@@ -362,9 +369,9 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         numberOfModules.times {
             def uniqueName = namePrefix + '_' + it
             def uniqueRevision = String.valueOf(2000 + it) + '-01-01'
-            moduleReferences.add(new ModuleReference(uniqueName, uniqueRevision))
+            allModuleReferences.add(new ModuleReference(uniqueName, uniqueRevision))
             def uniqueContent = NEW_RESOURCE_CONTENT.replace(NEW_RESOURCE_REVISION, uniqueRevision).replace('module test_module', 'module '+uniqueName)
-            newYangResourcesNameToContentMap.put(uniqueRevision, uniqueContent)
+            newYangResourcesNameToContentMap.put(uniqueName, uniqueContent)
         }
     }
 
