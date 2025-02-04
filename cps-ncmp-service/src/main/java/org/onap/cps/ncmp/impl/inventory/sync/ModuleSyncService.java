@@ -56,7 +56,7 @@ public class ModuleSyncService {
     @AllArgsConstructor
     private static final class ModuleDelta {
         Collection<ModuleReference> allModuleReferences;
-        Map<String, String> newModuleNameToContentMap;
+        Map<String, String> newYangResourceContentPerName;
     }
 
     /**
@@ -90,7 +90,7 @@ public class ModuleSyncService {
         if (sourceModuleSetTag.isEmpty() && targetModuleSetTag.isEmpty()) {
             final ModuleDelta moduleDelta = getModuleDelta(yangModelCmHandle, targetModuleSetTag);
             cpsModuleService.upgradeSchemaSetFromModules(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                    schemaSetName, moduleDelta.newModuleNameToContentMap, moduleDelta.allModuleReferences);
+                    schemaSetName, moduleDelta.newYangResourceContentPerName, moduleDelta.allModuleReferences);
         } else {
             syncAndCreateSchemaSet(yangModelCmHandle, schemaSetName, targetModuleSetTag);
             cpsAnchorService.updateAnchorSchemaSet(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, schemaSetName);
@@ -111,7 +111,7 @@ public class ModuleSyncService {
                 cpsModuleService.createSchemaSetFromModules(
                     NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
                     schemaSetName,
-                    moduleDelta.newModuleNameToContentMap,
+                    moduleDelta.newYangResourceContentPerName,
                     moduleDelta.allModuleReferences
                 );
                 log.info("Successfully created Schema Set {} for CM Handle {}", schemaSetName,
@@ -133,11 +133,11 @@ public class ModuleSyncService {
             dmiModelOperations.getModuleReferences(yangModelCmHandle, targetModuleSetTag);
         final Collection<ModuleReference> newModuleReferences =
                 cpsModuleService.identifyNewModuleReferences(allModuleReferences);
-        final Map<String, String> newYangResources = dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle,
-                targetModuleSetTag, newModuleReferences);
+        final Map<String, String> newYangResourceContentPerName =
+            dmiModelOperations.getNewYangResourcesFromDmi(yangModelCmHandle, targetModuleSetTag, newModuleReferences);
         log.debug("Module delta calculated for CM handle ID: {}. All references: {}. New modules: {}",
-            yangModelCmHandle.getId(), allModuleReferences, newYangResources.keySet());
-        return new ModuleDelta(allModuleReferences, newYangResources);
+            yangModelCmHandle.getId(), allModuleReferences, newYangResourceContentPerName.keySet());
+        return new ModuleDelta(allModuleReferences, newYangResourceContentPerName);
     }
 
     private void setCmHandleModuleSetTag(final YangModelCmHandle yangModelCmHandle, final String newModuleSetTag) {

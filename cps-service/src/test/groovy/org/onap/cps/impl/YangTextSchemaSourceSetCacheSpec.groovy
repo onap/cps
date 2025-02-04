@@ -65,13 +65,13 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
         given: 'cache is empty'
             yangResourceCacheImpl.clear()
         and: 'a schema set exists'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def expectedYangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def expectedYangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
         when: 'schema-set information is asked'
             def result = objectUnderTest.get('my-dataspace', 'my-schemaset')
         then: 'information fetched from cps module persistence'
             1 * mockModuleStoreService.getYangSchemaResources('my-dataspace', 'my-schemaset')
-                    >> yangResourcesNameToContentMap
+                    >> yangResourceContentPerName
         and: 'stored in the cache'
             def cachedValue = getCachedValue('my-dataspace', 'my-schemaset')
             assert cachedValue.getModuleReferences() == expectedYangTextSchemaSourceSet.getModuleReferences()
@@ -83,8 +83,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
 
     def 'Cache Hit: Respond from cache'() {
         given: 'a schema set exists'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def expectedYangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def expectedYangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
         and: 'stored in cache'
             yangResourceCacheImpl.put(getCacheKey('my-dataspace', 'my-schemaset'), expectedYangTextSchemaSourceSet)
         when: 'schema-set information is asked'
@@ -97,8 +97,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
 
     def 'Cache Update: when no data exist in the cache'() {
         given: 'a schema set exists'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
         when: 'cache is updated'
             objectUnderTest.updateCache('my-dataspace', 'my-schemaset', yangTextSchemaSourceSet)
         then: 'cached value is same as expected'
@@ -110,8 +110,8 @@ class YangTextSchemaSourceSetCacheSpec extends Specification {
 
     def 'Cache Evict:with invalid #scenario'() {
         given: 'a schema set exists in cache'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def yangTextSchemaSourceSet = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
             yangResourceCacheImpl.put(getCacheKey('my-dataspace', 'my-schemaset'), yangTextSchemaSourceSet)
             def cachedValue = getCachedValue('my-dataspace', 'my-schemaset')
             assert cachedValue.getModuleReferences() == yangTextSchemaSourceSet.getModuleReferences()

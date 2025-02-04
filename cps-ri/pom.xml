@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (C) 2020-2021 Pantheon.tech
   Modifications Copyright (C) 2020-2021 Bell Canada
-  Modifications Copyright (C) 2020-2024 Nordix Foundation
+  Modifications Copyright (C) 2020-2025 Nordix Foundation
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
     <artifactId>cps-ri</artifactId>
 
     <properties>
-        <minimum-coverage>0.29</minimum-coverage>
+        <minimum-coverage>0.31</minimum-coverage>
         <!-- Additional coverage is provided by integration-test module -->
     </properties>
 
