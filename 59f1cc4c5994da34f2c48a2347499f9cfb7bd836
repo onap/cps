@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a79c34f_bcd471c4",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-04T13:52:33Z",
+      "side": 0,
+      "message": "Check if this parameter is described in RTD",
+      "revId": "59f1cc4c5994da34f2c48a2347499f9cfb7bd836",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
