@@ -44,6 +44,7 @@ import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ri.repository.DataspaceRepository
+import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -100,6 +101,12 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     SessionManager sessionManager
+
+    @Autowired
+    DataspaceRepository dataspaceRepository
+
+    @Autowired
+    SchemaSetRepository schemaSetRepository
 
     @Autowired
     ParameterizedCmHandleQueryService networkCmProxyCmHandleQueryService
@@ -204,18 +211,18 @@ abstract class CpsIntegrationSpecBase extends Specification {
         return nodeCount
     }
 
-    def getBookstoreYangResourcesNameToContentMap() {
+    def getBookstoreyangResourceContentPerName() {
         def bookstoreModelFileContent = readResourceDataFile('bookstore/bookstore.yang')
         def bookstoreTypesFileContent = readResourceDataFile('bookstore/bookstore-types.yang')
         return [bookstore: bookstoreModelFileContent, bookstoreTypes: bookstoreTypesFileContent]
     }
 
     def createStandardBookStoreSchemaSet(targetDataspace) {
-        cpsModuleService.createSchemaSet(targetDataspace, BOOKSTORE_SCHEMA_SET, getBookstoreYangResourcesNameToContentMap())
+        cpsModuleService.createSchemaSet(targetDataspace, BOOKSTORE_SCHEMA_SET, getBookstoreyangResourceContentPerName())
     }
 
     def createStandardBookStoreSchemaSet(targetDataspace, targetSchemaSet) {
-        cpsModuleService.createSchemaSet(targetDataspace, targetSchemaSet, getBookstoreYangResourcesNameToContentMap())
+        cpsModuleService.createSchemaSet(targetDataspace, targetSchemaSet, getBookstoreyangResourceContentPerName())
     }
 
     def dataspaceExists(dataspaceName) {

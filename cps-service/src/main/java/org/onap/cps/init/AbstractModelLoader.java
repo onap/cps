@@ -77,7 +77,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new schema set failed as schema set already exists");
         } catch (final Exception exception) {
-            log.error("Creating schema set failed: {} ", exception.getMessage());
+            log.error("Creating schema set {} failed: {} ", schemaSetName, exception.getMessage());
             throw new ModelOnboardingException("Creating schema set failed", exception.getMessage());
         }
     }

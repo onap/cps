@@ -57,21 +57,21 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Timed(value = "cps.module.service.schemaset.create",
         description = "Time taken to create (and store) a schemaset")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
-        final Map<String, String> yangResourcesNameToContentMap) {
+        final Map<String, String> yangResourceContentPerName) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        cpsModulePersistenceService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap);
+        cpsModulePersistenceService.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName);
         final YangTextSchemaSourceSet yangTextSchemaSourceSet =
-            timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap);
+            timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName);
         yangTextSchemaSourceSetCache.updateCache(dataspaceName, schemaSetName, yangTextSchemaSourceSet);
     }
 
     @Override
     public void createSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                           final Map<String, String> newModuleNameToContentMap,
+                                           final Map<String, String> yangResourceContentPerName,
                                            final Collection<ModuleReference> allModuleReferences) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        cpsModulePersistenceService.storeSchemaSetFromModules(dataspaceName, schemaSetName,
-            newModuleNameToContentMap, allModuleReferences);
+        cpsModulePersistenceService.createSchemaSetFromNewAndExistingModules(dataspaceName, schemaSetName,
+            yangResourceContentPerName, allModuleReferences);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     @Override
     public SchemaSet getSchemaSet(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        final var yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
+        final YangTextSchemaSourceSet yangTextSchemaSourceSet = yangTextSchemaSourceSetCache
             .get(dataspaceName, schemaSetName);
         return SchemaSet.builder().name(schemaSetName).dataspaceName(dataspaceName)
             .moduleReferences(yangTextSchemaSourceSet.getModuleReferences()).build();
@@ -130,14 +130,13 @@ public class CpsModuleServiceImpl implements CpsModuleService {
 
     @Override
     public void upgradeSchemaSetFromModules(final String dataspaceName, final String schemaSetName,
-                                            final Map<String, String> newModuleNameToContentMap,
+                                            final Map<String, String> newYangResourceContentPerModule,
                                             final Collection<ModuleReference> allModuleReferences) {
         cpsValidator.validateNameCharacters(dataspaceName);
-        cpsModulePersistenceService.updateSchemaSetFromModules(dataspaceName, schemaSetName,
-                newModuleNameToContentMap, allModuleReferences);
+        cpsModulePersistenceService.updateSchemaSetFromNewAndExistingModules(dataspaceName, schemaSetName,
+            newYangResourceContentPerModule, allModuleReferences);
         yangTextSchemaSourceSetCache.removeFromCache(dataspaceName, schemaSetName);
     }
-
 
     @Override
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName) {

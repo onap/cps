@@ -56,7 +56,7 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'Create schema set method is invoked'
             objectUnderTest.createSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
+            1 * mockCpsModulePersistenceService.createSchemaSet('someDataspace', 'schemaSetName@with Special!Characters', [:])
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace')
     }
@@ -68,16 +68,16 @@ class CpsModuleServiceImplSpec extends Specification {
         when: 'create schema set from modules method is invoked'
             objectUnderTest.createSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         then: 'processing is delegated to persistence service'
-            1 * mockCpsModulePersistenceService.storeSchemaSetFromModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
+            1 * mockCpsModulePersistenceService.createSchemaSetFromNewAndExistingModules('someDataspaceName', 'someSchemaSetName', [newModule: 'newContent'], listOfExistingModulesModuleReference)
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspaceName')
     }
 
     def 'Create schema set from invalid resources'() {
         given: 'Invalid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('invalid.yang')
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('invalid.yang')
         when: 'Create schema set method is invoked'
-            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourcesNameToContentMap)
+            objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', yangResourceContentPerName)
         then: 'Model validation exception is thrown'
             thrown(ModelValidationException)
     }
@@ -85,7 +85,7 @@ class CpsModuleServiceImplSpec extends Specification {
     def 'Create schema set with duplicate yang resource exception in persistence layer.'() {
         given: 'the persistence layer throws an duplicated yang resource exception'
             def originalException = new DuplicatedYangResourceException('name', '123', null)
-            mockCpsModulePersistenceService.storeSchemaSet(*_) >> { throw originalException }
+            mockCpsModulePersistenceService.createSchemaSet(*_) >> { throw originalException }
         when: 'attempt to create schema set'
             objectUnderTest.createSchemaSet('someDataspace', 'someSchemaSet', [:])
         then: 'the same duplicated yang resource exception is thrown (up)'
@@ -98,9 +98,9 @@ class CpsModuleServiceImplSpec extends Specification {
 
     def 'Get schema set by name and dataspace.'() {
         given: 'an already present schema set'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
         and: 'yang resource cache returns the expected schema set'
-            mockYangTextSchemaSourceSetCache.get('someDataspace', 'schemaSetName@with Special!Characters') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'schemaSetName@with Special!Characters') >> YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
         when: 'get schema set method is invoked'
             def result = objectUnderTest.getSchemaSet('someDataspace', 'schemaSetName@with Special!Characters')
         then: 'the correct schema set is returned'

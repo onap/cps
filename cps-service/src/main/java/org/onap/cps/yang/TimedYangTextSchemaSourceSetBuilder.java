@@ -30,8 +30,8 @@ public class TimedYangTextSchemaSourceSetBuilder {
     @Timed(value = "cps.yangtextschemasourceset.build",
         description = "Time taken to build a yang text schema source set")
     public YangTextSchemaSourceSet getYangTextSchemaSourceSet(
-        final Map<String, String> yangResourcesNameToContentMap) {
-        return YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap);
+        final Map<String, String> yangResourceContentPerName) {
+        return YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName);
     }
 
 }
