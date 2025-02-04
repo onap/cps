@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852e65e0_0a23b44d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-04T13:28:42Z",
+      "side": 1,
+      "message": "Some NB comments",
+      "revId": "59fa1bffe797d2e03212f6037aee732b51e1cb92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e3fb11_0f90ad71",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-04T13:28:42Z",
+      "side": 1,
+      "message": "NB: You can extract it into a CONSTANT with a meaningfull name.",
+      "range": {
+        "startLine": 248,
+        "startChar": 103,
+        "endLine": 248,
+        "endChar": 107
+      },
+      "revId": "59fa1bffe797d2e03212f6037aee732b51e1cb92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daa6f56f_307c9f04",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-04T13:28:42Z",
+      "side": 1,
+      "message": "outdated. You can say \u0027query data leaf delegated to data persistence service\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 46
+      },
+      "revId": "59fa1bffe797d2e03212f6037aee732b51e1cb92",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
