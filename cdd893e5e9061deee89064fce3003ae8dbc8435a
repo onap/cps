@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c55deb_beb24ea2",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6f136f5_c35855e2",
+      "range": {
+        "startLine": 577,
+        "startChar": 50,
+        "endLine": 577,
+        "endChar": 55
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f593a8d_20c8d86e",
@@ -116,6 +140,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a050ab6f_11f0a826",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b6bbac_bf3de8ab",
+      "range": {
+        "startLine": 36,
+        "startChar": 67,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bb717ec_5e20d7a6",
@@ -152,6 +200,30 @@
       "writtenOn": "2025-01-23T15:03:09Z",
       "side": 1,
       "message": "id",
+      "range": {
+        "startLine": 153,
+        "startChar": 67,
+        "endLine": 153,
+        "endChar": 72
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05ceaa3b_2318b9df",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40b09d98_db4d8bc8",
       "range": {
         "startLine": 153,
         "startChar": 67,
@@ -865,6 +937,30 @@
       "writtenOn": "2025-01-23T14:40:35Z",
       "side": 1,
       "message": "As discussed. The \"id\" and \"attributes\" are payload of write requests.\nThe cmHandleProperties examples were ok. They don\u0027t need changes.",
+      "range": {
+        "startLine": 111,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 17
+      },
+      "revId": "cdd893e5e9061deee89064fce3003ae8dbc8435a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a27defdd_390c87d3",
+        "filename": "docs/ncmp-data-operation.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72fd65f4_18588b86",
       "range": {
         "startLine": 111,
         "startChar": 17,
