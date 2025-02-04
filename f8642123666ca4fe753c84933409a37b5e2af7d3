@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f02b477_b89c0454",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-04T14:28:40Z",
+      "side": 1,
+      "message": "its not a queue now.\nEither change the name or if we need Queuing capability then can see use of ArrayBlockingQueue ( or any other impl of BlockingQueue )\nIf u do something abt this comment then other code would also change.",
+      "range": {
+        "startLine": 50,
+        "startChar": 25,
+        "endLine": 50,
+        "endChar": 44
+      },
+      "revId": "f8642123666ca4fe753c84933409a37b5e2af7d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
