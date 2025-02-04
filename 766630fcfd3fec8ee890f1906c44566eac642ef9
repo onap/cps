@@ -20,6 +20,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "619abe94_7a886b78",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "Csaba requested \"ManagedElement\u003dNRNode1/GNBDUFunction\u003d1/NRCellDU\u003dcell1\"",
+      "range": {
+        "startLine": 367,
+        "startChar": 18,
+        "endLine": 367,
+        "endChar": 59
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23168336_3de2345e",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "Forward slash does NOT have to be escaped",
+      "range": {
+        "startLine": 585,
+        "startChar": 18,
+        "endLine": 585,
+        "endChar": 20
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a61812_be001476",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "Forward slash does NOT have to be escaped \n\n(wont repeat)",
+      "range": {
+        "startLine": 587,
+        "startChar": 18,
+        "endLine": 587,
+        "endChar": 20
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb5d6ffc_141c290f",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "Use forward slash in all resourceIdentifier examples\n(wont repeat)",
+      "range": {
+        "startLine": 613,
+        "startChar": 33,
+        "endLine": 613,
+        "endChar": 35
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3bdda27_d7e6e27c",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -36,6 +128,98 @@
         "startChar": 3,
         "endLine": 619,
         "endChar": 76
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b3b104_b261c861",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "maybe remove this example?",
+      "range": {
+        "startLine": 620,
+        "startChar": 5,
+        "endLine": 622,
+        "endChar": 68
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c6b85ac_cbf7443c",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "Csaba suggested \u0027filter\u0027 check RestConf defintions for exact format",
+      "range": {
+        "startLine": 629,
+        "startChar": 48,
+        "endLine": 629,
+        "endChar": 53
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c39dd7_ba7dd311",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "I have seen \"fields\" option with , separator and / separators. Its a RestConf concept I am pretty sure it needs to be ,  But you can loop of RestConf definition of fields option..\nThis applies to many examples in multipel commits!",
+      "range": {
+        "startLine": 641,
+        "startChar": 29,
+        "endLine": 641,
+        "endChar": 41
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54c28e6_47aed2b6",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-04T17:49:22Z",
+      "side": 1,
+      "message": "All resource ids should use forward / in examples (no escaping need so single / will do)",
+      "range": {
+        "startLine": 302,
+        "startChar": 34,
+        "endLine": 302,
+        "endChar": 37
       },
       "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
