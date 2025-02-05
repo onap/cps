@@ -227,6 +227,24 @@
       "parentUuid": "b6c92e61_48f3b1e0",
       "revId": "47224e95ae93bc155741186fae11a9483b99b264",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ba9f72_0e770237",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-05T13:56:19Z",
+      "side": 1,
+      "message": "demo provided.\nand this file will be updated based on the previous suggestions.\nso will review it one more time.",
+      "parentUuid": "5731cae0_68431976",
+      "revId": "47224e95ae93bc155741186fae11a9483b99b264",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

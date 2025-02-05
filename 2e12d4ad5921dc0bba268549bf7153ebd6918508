@@ -16,6 +16,29 @@
       "message": "Addressed review comments. please recheck",
       "revId": "2e12d4ad5921dc0bba268549bf7153ebd6918508",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df04d3cf_011a6d72",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-05T13:56:19Z",
+      "side": 1,
+      "message": "the service layer can as well return these.\nWe dont have to do it in the controller layer.\nIf we move this logic to service layer then u wont need to inject PrefixResolver and JsonObjectMapper here in controller layer.\nCheck if feasible.",
+      "range": {
+        "startLine": 310,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 9
+      },
+      "revId": "2e12d4ad5921dc0bba268549bf7153ebd6918508",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
