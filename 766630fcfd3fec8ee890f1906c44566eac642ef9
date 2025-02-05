@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b60148e1_a939bfdc",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "As per latest update from Csaba : \"all resourceIdentifiers can be just upto the GNBDUFunction\"",
+      "parentUuid": "619abe94_7a886b78",
+      "range": {
+        "startLine": 367,
+        "startChar": 18,
+        "endLine": 367,
+        "endChar": 59
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23168336_3de2345e",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-02-04T17:49:22Z",
       "side": 1,
       "message": "Forward slash does NOT have to be escaped",
+      "range": {
+        "startLine": 585,
+        "startChar": 18,
+        "endLine": 585,
+        "endChar": 20
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62d8dd7_7b6516f9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "23168336_3de2345e",
       "range": {
         "startLine": 585,
         "startChar": 18,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cfb006_b6632269",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34a61812_be001476",
+      "range": {
+        "startLine": 587,
+        "startChar": 18,
+        "endLine": 587,
+        "endChar": 20
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb5d6ffc_141c290f",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-02-04T17:49:22Z",
       "side": 1,
       "message": "Use forward slash in all resourceIdentifier examples\n(wont repeat)",
+      "range": {
+        "startLine": 613,
+        "startChar": 33,
+        "endLine": 613,
+        "endChar": 35
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddded931_2c3be0a8",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb5d6ffc_141c290f",
       "range": {
         "startLine": 613,
         "startChar": 33,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "490d9e4b_d552be29",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3bdda27_d7e6e27c",
+      "range": {
+        "startLine": 619,
+        "startChar": 3,
+        "endLine": 619,
+        "endChar": 76
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38b3b104_b261c861",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-02-04T17:49:22Z",
       "side": 1,
       "message": "maybe remove this example?",
+      "range": {
+        "startLine": 620,
+        "startChar": 5,
+        "endLine": 622,
+        "endChar": 68
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b2c9246_9c950ab6",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-05T11:52:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38b3b104_b261c861",
       "range": {
         "startLine": 620,
         "startChar": 5,
