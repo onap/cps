@@ -39,14 +39,16 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
     def uniqueId = 'ch-unique-id-for-create-test'
 
-    static KafkaConsumer kafkaConsumer
+    KafkaConsumer kafkaConsumer
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
-        subscribeAndClearPreviousMessages()
+        kafkaConsumer = KafkaTestContainer.getConsumer('test-group', StringDeserializer.class)
+        kafkaConsumer.subscribe(['ncmp-events'])
+        kafkaConsumer.poll(Duration.ofMillis(500))
     }
 
-    def cleanupSpec() {
+    def cleanup() {
         kafkaConsumer.unsubscribe()
         kafkaConsumer.close()
     }
@@ -67,7 +69,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'CM-handle is initially in ADVISED state'
             assert CmHandleState.ADVISED == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
 
-        then: 'the module sync watchdog is triggered'
+        when: 'module sync is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state after module sync'
@@ -76,21 +78,14 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
 
-        then: 'get the latest messages'
-            def consumerRecords = getLatestConsumerRecords()
-
-        and: 'both converted messages are for the correct cm handle'
-            def notificationMessages = []
-            for (def consumerRecord : consumerRecords) {
-                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
-            }
-            assert notificationMessages.event.cmHandleId == [ uniqueId, uniqueId ]
+        then: 'get the LCM event messages from Kafka'
+            def lcmEventMessages = pollLcmEvents(kafkaConsumer, Duration.ofSeconds(1))
 
         and: 'the oldest event is about the update to ADVISED state'
-            notificationMessages[0].event.newValues.cmHandleState.value() == 'ADVISED'
+            assertLcmEvent(lcmEventMessages.first(), uniqueId, null, 'ADVISED')
 
         and: 'the next event is about update to READY state'
-            notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
+            assertLcmEvent(lcmEventMessages.last(), uniqueId, 'ADVISED', 'READY')
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
@@ -215,22 +210,21 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
     }
 
-    def subscribeAndClearPreviousMessages() {
-        kafkaConsumer = KafkaTestContainer.getConsumer('test-group', StringDeserializer.class)
-        kafkaConsumer.subscribe(['ncmp-events'])
-        kafkaConsumer.poll(Duration.ofMillis(500))
+    def pollLcmEvents(KafkaConsumer kafkaConsumer, Duration pollDuration) {
+        kafkaConsumer.poll(pollDuration).collect {
+            jsonObjectMapper.convertJsonString(it.value().toString(), LcmEvent)
+        }
     }
 
-    def getLatestConsumerRecords() {
-        def consumerRecords = []
-        def retryAttempts = 10
-        while (consumerRecords.size() < 2) {
-            retryAttempts--
-            consumerRecords.addAll(kafkaConsumer.poll(Duration.ofMillis(100)))
-            if (retryAttempts == 0)
-                break
+    def assertLcmEvent(lcmEvent, expectedCmHandleId, expectedOldState, expectedNewState) {
+        assert lcmEvent.event.cmHandleId == expectedCmHandleId
+        assert lcmEvent.event.newValues.cmHandleState.value() == expectedNewState
+        if (expectedOldState == null) {  // Null is allowed for new CM-handles going from non-existing to ADVISED state.
+            assert lcmEvent.event.oldValues == null
+        } else {
+            assert lcmEvent.event.oldValues.cmHandleState.value() == expectedOldState
         }
-        return consumerRecords
+        return true
     }
 
 }
