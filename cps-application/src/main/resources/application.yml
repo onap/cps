@@ -248,10 +248,6 @@ ncmp:
         trust-level:
             dmi-availability-watchdog-ms: 30000
 
-    modules-sync-watchdog:
-        async-executor:
-            parallelism-level: 10
-
     model-loader:
         maximum-attempt-count: 20
 

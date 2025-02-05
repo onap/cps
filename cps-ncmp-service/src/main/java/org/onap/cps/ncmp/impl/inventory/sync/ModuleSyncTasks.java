@@ -24,8 +24,6 @@ import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
@@ -51,12 +49,8 @@ public class ModuleSyncTasks {
      * Perform module sync on a batch of cm handles.
      *
      * @param cmHandleIds                  a batch of cm handle ids to perform module sync on
-     * @param batchCounter                 the number of batches currently being processed, will be decreased when
-     *                                     task is finished or fails
-     * @return completed future to handle post-processing
      */
-    public CompletableFuture<Void> performModuleSync(final Collection<String> cmHandleIds,
-                                                     final AtomicInteger batchCounter) {
+    public void performModuleSync(final Collection<String> cmHandleIds) {
         final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(cmHandleIds.size());
         try {
             for (final String cmHandleId : cmHandleIds) {
@@ -74,11 +68,8 @@ public class ModuleSyncTasks {
                 }
             }
         } finally {
-            batchCounter.getAndDecrement();
             lcmEventsCmHandleStateHandler.updateCmHandleStateBatch(cmHandleStatePerCmHandle);
-            log.info("Processing module sync batch finished. {} batch(es) active.", batchCounter.get());
         }
-        return CompletableFuture.completedFuture(null);
     }
 
     /**

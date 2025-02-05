@@ -77,10 +77,6 @@ ncmp:
         trust-level:
             dmi-availability-watchdog-ms: 30000
 
-    modules-sync-watchdog:
-        async-executor:
-            parallelism-level: 3
-
     policy-executor:
         enabled: true
         defaultDecision: "some default decision"

@@ -39,8 +39,6 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
-import java.util.concurrent.atomic.AtomicInteger
-
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_SYNC_FAILED
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE
 import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_UPGRADE_FAILED
@@ -70,8 +68,6 @@ class ModuleSyncTasksSpec extends Specification {
             .getOrCreateHazelcastInstance(new Config('hazelcastInstanceName'))
             .getMap('mapInstanceName')
 
-    def batchCount = new AtomicInteger(5)
-
     def objectUnderTest = new ModuleSyncTasks(mockInventoryPersistence, mockSyncUtils, mockModuleSyncService,
             mockLcmEventsCmHandleStateHandler, moduleSyncStartedOnCmHandles)
 
@@ -87,7 +83,7 @@ class ModuleSyncTasksSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-1') >> cmHandle1
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-2') >> cmHandle2
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2'])
         then: 'module sync service is invoked for each cm handle'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-2' }
@@ -95,8 +91,6 @@ class ModuleSyncTasksSpec extends Specification {
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle-1', 'cm-handle-2'], CmHandleState.READY)
             }
-        and: 'batch count is decremented by one'
-            assert batchCount.get() == 4
     }
 
     def 'Handle CM handle failure during #scenario and log MODULE_UPGRADE lock reason'() {
@@ -108,15 +102,13 @@ class ModuleSyncTasksSpec extends Specification {
             mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { throw new Exception('some exception') }
             mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { throw new Exception('some exception') }
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync(['cm-handle'], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle'])
         then: 'lock reason is updated with number of attempts'
             1 * mockSyncUtils.updateLockReasonWithAttempts(_, expectedLockReasonCategory, 'some exception')
         and: 'the state handler is called to update the state to LOCKED'
             1 * mockLcmEventsCmHandleStateHandler.updateCmHandleStateBatch(_) >> { args ->
                 assertBatch(args, ['cm-handle'], CmHandleState.LOCKED)
             }
-        and: 'batch count is decremented by one'
-            assert batchCount.get() == 4
         where:
             scenario         | lockReasonCategory    | lockReasonDetails                              || expectedLockReasonCategory
             'module sync'    | MODULE_SYNC_FAILED    | 'some lock details'                            || MODULE_SYNC_FAILED
@@ -132,7 +124,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'a cm handle in advised state'
             mockInventoryPersistence.getYangModelCmHandle('cm-handle-3') >> cmHandleByIdAndState('cm-handle-3', CmHandleState.ADVISED)
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2', 'cm-handle-3'], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1', 'cm-handle-2', 'cm-handle-3'])
         then: 'no exception is thrown'
             noExceptionThrown()
         and: 'the deleted cm-handle did not sync'
@@ -176,7 +168,7 @@ class ModuleSyncTasksSpec extends Specification {
         and: 'entry in progress map for other cm handle'
             moduleSyncStartedOnCmHandles.put('other-cm-handle', 'started')
         when: 'module sync poll is executed'
-            objectUnderTest.performModuleSync(['cm-handle-1'], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle-1'])
         then: 'module sync service is invoked for cm handle'
             1 * mockModuleSyncService.syncAndCreateSchemaSetAndAnchor(_) >> { args -> assert args[0].id == 'cm-handle-1' }
         and: 'the entry for other cm handle is still in the progress map'
@@ -201,7 +193,7 @@ class ModuleSyncTasksSpec extends Specification {
             cmHandle.compositeState.setLockReason(CompositeState.LockReason.builder().lockReasonCategory(lockReasonCategory).build())
             mockInventoryPersistence.getYangModelCmHandle('cm-handle') >> cmHandle
         when: 'module sync is executed'
-            objectUnderTest.performModuleSync(['cm-handle'], batchCount)
+            objectUnderTest.performModuleSync(['cm-handle'])
         then: 'the module sync service should attempt to sync and upgrade the CM handle'
             1 * mockModuleSyncService.syncAndUpgradeSchemaSet(_) >> { args ->
                 assert args[0].id == 'cm-handle'
