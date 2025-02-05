@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b53b070e_8d230bed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-05T15:28:39Z",
+      "side": 1,
+      "message": "as discussed during the standup , this patch will have a 5% degrade in performance but we also free up resources n terms of thread , which as well needs coordination.\n\nlooks fine to me.",
+      "revId": "e08721866f0792ea830d05c415758ce98a7a9b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

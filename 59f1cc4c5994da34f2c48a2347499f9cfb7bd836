@@ -34,6 +34,29 @@
       "parentUuid": "1a79c34f_bcd471c4",
       "revId": "59f1cc4c5994da34f2c48a2347499f9cfb7bd836",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f53794_a390e1be",
+        "filename": "cps-ncmp-service/src/test/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-05T15:28:39Z",
+      "side": 0,
+      "message": "was ericsson using this parameter.\nI somehow have doubts regarding this. maybe double check if u think the same.",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 32
+      },
+      "revId": "59f1cc4c5994da34f2c48a2347499f9cfb7bd836",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
