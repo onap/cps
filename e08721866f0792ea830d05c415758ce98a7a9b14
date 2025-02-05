@@ -16,6 +16,29 @@
       "message": "as discussed during the standup , this patch will have a 5% degrade in performance but we also free up resources n terms of thread , which as well needs coordination.\n\nlooks fine to me.",
       "revId": "e08721866f0792ea830d05c415758ce98a7a9b14",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee4d378_ed2d8b83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-05T18:17:47Z",
+      "side": 1,
+      "message": "NB: this could be cleaned up",
+      "range": {
+        "startLine": 64,
+        "startChar": 62,
+        "endLine": 64,
+        "endChar": 80
+      },
+      "revId": "e08721866f0792ea830d05c415758ce98a7a9b14",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
