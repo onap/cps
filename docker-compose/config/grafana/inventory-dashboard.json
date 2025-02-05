@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -100,7 +100,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -196,7 +196,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -292,7 +292,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -313,9 +313,9 @@
   "preload": false,
   "schemaVersion": 40,
   "tags": [
-    "CPS",
-    "NCMP",
-    "k6"
+    "lcm-state",
+    "inventory",
+    "ncmp"
   ],
   "templating": {
     "list": [
@@ -365,6 +365,6 @@
   "timezone": "browser",
   "title": "Inventory REST Interfaces",
   "uid": "beao8xrt6qjnkc",
-  "version": 7,
+  "version": 1,
   "weekStart": ""
 }
