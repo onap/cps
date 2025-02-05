@@ -22,14 +22,24 @@ set appropriately. For example, given a database with 2GB of memory, 512MB is a 
 CPS and NCMP Configuration
 ==========================
 
-JVM Memory Allocation
+CPU and Memory Requirements
+---------------------------
 
-Allocating 75% of the container's memory to the JVM heap ensures efficient memory management.
-This helps the JVM make the best use of the allocated resources while leaving enough memory for other processes.
+The following are minimum requirements for NCMP:
+
+* For 20,000 CM-handles: 2 CPUs and 2 GB RAM per instance, with 70% heap allocation.
+* For 50,000 CM-handles: 3 CPUs and 3 GB RAM per instance, with 70% heap allocation.
+
+JVM Memory Allocation
+^^^^^^^^^^^^^^^^^^^^^
+
+When running with 2 GB or more memory per instance, allocating 70% of the JVM memory to the heap ensures efficient
+memory management. It is not recommended to go above 70%.
 
 .. code-block:: yaml
 
-    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0"
+    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
+
 
 Load balancer configuration
 ===========================
