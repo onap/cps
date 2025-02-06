@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246534a3_6d3e3f84",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-06T13:40:10Z",
+      "side": 1,
+      "message": ".toList()",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34d0877_5b78f71c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-06T13:40:10Z",
+      "side": 1,
+      "message": "newModuleContentPerName",
+      "range": {
+        "startLine": 205,
+        "startChar": 83,
+        "endLine": 205,
+        "endChar": 108
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b183bf0_c423b6f7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-06T13:40:10Z",
+      "side": 1,
+      "message": "newModuleContentPerName",
+      "range": {
+        "startLine": 210,
+        "startChar": 33,
+        "endLine": 210,
+        "endChar": 58
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce5c6e6_37618eae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-06T13:40:10Z",
+      "side": 1,
+      "message": "getYangResourceEntities executes a query for each ModuleReference. Consider replacing it with a bulk query to reduce database calls.\n\nSomthing like below:\n\nprivate Set\u003cYangResourceEntity\u003e getYangResourceEntities(final Collection\u003cModuleReference\u003e moduleReferences) {\n    Set\u003cString\u003e moduleNames \u003d moduleReferences.stream()\n            .map(ModuleReference::getModuleName)\n            .collect(Collectors.toSet());\n\n    return yangResourceRepository.findAllByModuleNames(moduleNames);\n}\n\nThis reduces database queries from N calls to a single batch query.",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 5
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
