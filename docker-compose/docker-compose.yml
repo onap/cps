@@ -239,8 +239,6 @@ services:
       - ${POSTGRES_EXPORTER_PORT_RANGE:-9187-9188}:9187
     depends_on:
       - dbpostgresql
-    profiles:
-      - monitoring
 
 volumes:
   grafana:
