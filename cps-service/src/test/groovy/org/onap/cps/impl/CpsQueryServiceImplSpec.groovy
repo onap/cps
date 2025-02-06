@@ -31,6 +31,7 @@ import spock.lang.Specification
 class CpsQueryServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsValidator = Mock(CpsValidator)
+    def NO_LIMIT = 0
 
     def objectUnderTest = new CpsQueryServiceImpl(mockCpsDataPersistenceService, mockCpsValidator)
 
@@ -42,12 +43,26 @@ class CpsQueryServiceImplSpec extends Specification {
         when: 'queryDataNodes is invoked'
             objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
+            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, NO_LIMIT)
         and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
                                        FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
+    }
+
+    def 'Query data nodes by cps path with limit.'() {
+        given: 'a dataspace name, an anchor name and a cps path'
+            def dataspaceName = 'some-dataspace'
+            def anchorName = 'some-anchor'
+            def cpsPath = '/cps-path'
+            def fetchDescendantsOption = FetchDescendantsOption.OMIT_DESCENDANTS
+        when: 'queryDataNodes (with limit) is invoked'
+            objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, 1)
+        then: 'the persistence service is called once with the correct parameters'
+            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, 1)
+        and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
     def 'Query data nodes across all anchors by cps path with #fetchDescendantsOption.'() {

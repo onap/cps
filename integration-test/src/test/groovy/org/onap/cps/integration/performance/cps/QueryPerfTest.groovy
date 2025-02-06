@@ -103,5 +103,4 @@ class QueryPerfTest extends CpsPerfTestBase {
             'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.11           | 8           | 1 + OPENROADM_DEVICES_PER_ANCHOR
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.34           | 400         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
-
 }

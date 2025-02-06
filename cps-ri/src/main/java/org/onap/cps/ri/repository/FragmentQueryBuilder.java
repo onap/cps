@@ -46,18 +46,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class FragmentQueryBuilder {
     private static final String DESCENDANT_PATH = "//";
+    public static final Integer NO_LIMIT = 0;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     /**
-     * Create a sql query to retrieve by anchor(id) and cps path.
+     * Create a sql query to retrieve by anchor(id) and cps path with an optional limit on results.
      *
      * @param anchorEntity the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @param limit limit of returned entities (if the limit is less than 1 the method returns all related entities)
      * @return a executable query object
      */
-    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
+    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
+                                                      final CpsPathQuery cpsPathQuery,
+                                                      final Integer limit) {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
@@ -65,6 +69,7 @@ public class FragmentQueryBuilder {
         addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
         addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addLimitSuffix(sqlStringBuilder, queryParameters, limit);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -216,6 +221,15 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
             queryParameters.put("pageSize", paginationOption.getPageSize());
             queryParameters.put("offset", offset);
+        }
+    }
+
+    private static void addLimitSuffix(final StringBuilder sqlStringBuilder,
+                                       final Map<String, Object> queryParameters,
+                                       final Integer queryResultLimit) {
+        if (queryResultLimit > 0) {
+            sqlStringBuilder.append(" LIMIT :limit");
+            queryParameters.put("limit", queryResultLimit);
         }
     }
 
