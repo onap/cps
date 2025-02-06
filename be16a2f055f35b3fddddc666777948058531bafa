@@ -259,6 +259,30 @@
       },
       "revId": "be16a2f055f35b3fddddc666777948058531bafa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0688d5_cde72f77",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-06T16:44:14Z",
+      "side": 1,
+      "message": "I think it\u0027s a bad idea. Premature optimization. I\u0027m not convinced a bulk request here will be more performant at all. Now that we only create one schemaset per moduleSetTag, and we know there are only 20 module-sets at most, this will give no performance benefit, while introducing a ton of complexity \u0026 possible bugs.\n\nThe correct way to write high-performance code is to do a simple implementation first, then benchmark and identify bottlenecks e.g. using @Timed metrics.\nOften it may be 1% of the code that will take 99% of the processing time.",
+      "parentUuid": "6552c5a6_e4bf59e6",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 5
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
