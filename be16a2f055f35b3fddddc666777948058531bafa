@@ -307,6 +307,30 @@
       },
       "revId": "be16a2f055f35b3fddddc666777948058531bafa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ef7c66_720f355e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:57:09Z",
+      "side": 1,
+      "message": "i did think it would eb a long sequence statement alright as soem of the existing queries in the same repository class",
+      "parentUuid": "92f3ea31_c4353201",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 5
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
