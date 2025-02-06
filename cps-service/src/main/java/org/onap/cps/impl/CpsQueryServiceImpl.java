@@ -46,8 +46,22 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     public Collection<DataNode> queryDataNodes(final String dataspaceName, final String anchorName,
                                                final String cpsPath,
                                                final FetchDescendantsOption fetchDescendantsOption) {
-        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, NO_LIMIT);
+    }
+
+    @Override
+    @Timed(value = "cps.data.service.datanode.query",
+            description = "Time taken to query data nodes with a limit on results")
+    public Collection<DataNode> queryDataNodes(final String dataSpaceName, final String anchorName,
+                                               final String cpsPath,
+                                               final FetchDescendantsOption fetchDescendantsOption,
+                                               final int queryResultLimit) {
+        cpsValidator.validateNameCharacters(dataSpaceName, anchorName);
+        return cpsDataPersistenceService.queryDataNodes(dataSpaceName,
+                                                        anchorName,
+                                                        cpsPath,
+                                                        fetchDescendantsOption,
+                                                        queryResultLimit);
     }
 
     @Override

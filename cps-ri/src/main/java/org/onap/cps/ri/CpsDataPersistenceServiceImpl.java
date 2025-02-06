@@ -23,6 +23,7 @@
 
 package org.onap.cps.ri;
 
+import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -223,10 +224,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
+        return queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, NO_LIMIT);
+    }
+
+    @Override
+    public List<DataNode> queryDataNodes(final String dataspaceName,
+                                         final String anchorName,
+                                         final String cpsPath,
+                                         final FetchDescendantsOption fetchDescendantsOption,
+                                         final int queryResultLimit) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         final Collection<FragmentEntity> fragmentEntities =
-                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
+                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 

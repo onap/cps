@@ -51,13 +51,18 @@ public class FragmentQueryBuilder {
     private EntityManager entityManager;
 
     /**
-     * Create a sql query to retrieve by anchor(id) and cps path.
+     * Create a sql query to retrieve by anchor(id) and cps path with an optional queryResultLimit on results.
      *
      * @param anchorEntity the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @param queryResultLimit queryResultLimit number of returned entities
+     *              (if the queryResultLimit is less than 1 the method returns all related entities)
+     *
      * @return a executable query object
      */
-    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity, final CpsPathQuery cpsPathQuery) {
+    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
+                                                      final CpsPathQuery cpsPathQuery,
+                                                      final int queryResultLimit) {
         final StringBuilder sqlStringBuilder = new StringBuilder();
         final Map<String, Object> queryParameters = new HashMap<>();
 
@@ -65,6 +70,7 @@ public class FragmentQueryBuilder {
         addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
         addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
         addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addLimitClause(sqlStringBuilder, queryParameters, queryResultLimit);
 
         return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
     }
@@ -216,6 +222,15 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
             queryParameters.put("pageSize", paginationOption.getPageSize());
             queryParameters.put("offset", offset);
+        }
+    }
+
+    private static void addLimitClause(final StringBuilder sqlStringBuilder,
+                                       final Map<String, Object> queryParameters,
+                                       final int queryResultLimit) {
+        if (queryResultLimit > 0) {
+            sqlStringBuilder.append(" LIMIT :queryResultLimit");
+            queryParameters.put("queryResultLimit", queryResultLimit);
         }
     }
 
