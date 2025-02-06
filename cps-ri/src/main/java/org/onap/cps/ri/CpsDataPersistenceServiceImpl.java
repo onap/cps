@@ -231,6 +231,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    public List<DataNode> queryDataNodes(final String dataspaceName,
+                                         final String anchorName,
+                                         final String cpsPath,
+                                         final FetchDescendantsOption fetchDescendantsOption,
+                                         final Integer limit) {
+        final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
+        final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
+        final Collection<FragmentEntity> fragmentEntities =
+                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery, limit);
+        return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
+    }
+
+    @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
                                     final Class<T> targetClass) {
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);

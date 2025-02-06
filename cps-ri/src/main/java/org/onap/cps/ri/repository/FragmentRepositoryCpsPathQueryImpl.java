@@ -49,6 +49,18 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     }
 
     @Override
+    public List<FragmentEntity> findByAnchorAndCpsPath(final AnchorEntity anchorEntity,
+                                                       final CpsPathQuery cpsPathQuery,
+                                                       final Integer limit) {
+        final Query query = fragmentQueryBuilder
+                                        .getQueryForAnchorAndCpsPathWithLimit(anchorEntity, cpsPathQuery, limit);
+        final List<FragmentEntity> fragmentEntities = query.getResultList();
+        log.debug("Fetched {} fragment entities by anchor and cps path with the limit of {}.",
+                  fragmentEntities.size(), limit);
+        return fragmentEntities;
+    }
+
+    @Override
     @Transactional
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                           final CpsPathQuery cpsPathQuery, final List<Long> anchorIds) {

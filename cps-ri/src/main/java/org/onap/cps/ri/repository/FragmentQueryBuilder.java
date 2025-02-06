@@ -70,6 +70,29 @@ public class FragmentQueryBuilder {
     }
 
     /**
+     * Create a sql query to retrieve by anchor(id) and cps path.
+     *
+     * @param anchorEntity the anchor
+     * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @param limit limit of returned entities (if < 1 returns all)
+     * @return a executable query object
+     */
+    public Query getQueryForAnchorAndCpsPathWithLimit(final AnchorEntity anchorEntity,
+                                                      final CpsPathQuery cpsPathQuery,
+                                                      final Integer limit) {
+        final StringBuilder sqlStringBuilder = new StringBuilder();
+        final Map<String, Object> queryParameters = new HashMap<>();
+
+        addSearchPrefix(cpsPathQuery, sqlStringBuilder);
+        addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
+        addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
+        addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addLimitSuffix(sqlStringBuilder, queryParameters, limit);
+
+        return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
+    }
+
+    /**
      * Create a sql query to retrieve by cps path.
      *
      * @param dataspaceEntity the dataspace
@@ -216,6 +239,15 @@ public class FragmentQueryBuilder {
             sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
             queryParameters.put("pageSize", paginationOption.getPageSize());
             queryParameters.put("offset", offset);
+        }
+    }
+
+    private static void addLimitSuffix(final StringBuilder sqlStringBuilder,
+                                       final Map<String, Object> queryParameters,
+                                       final Integer limit) {
+        if (limit  > 0) {
+            sqlStringBuilder.append(" LIMIT :limit");
+            queryParameters.put("pageSize", limit);
         }
     }
 

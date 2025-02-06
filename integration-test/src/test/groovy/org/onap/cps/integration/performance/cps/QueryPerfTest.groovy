@@ -104,4 +104,18 @@ class QueryPerfTest extends CpsPerfTestBase {
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.34           | 400         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
+    def 'Query with limit when #scenario.' () {
+        when:
+            resourceMeter.start()
+            def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm3', '//openroadm-device[@ne-state="inservice"]/ancestor::openroadm-devices', fetchDescendantsOption, 2)
+            resourceMeter.stop()
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+        then: 'the expected number of nodes is returned'
+            assert countDataNodesInTree(result) == expectedNumberOfDataNodes
+        and: 'all data is read within #durationLimit ms and memory used is within limit'
+            recordAndAssertResourceUsage("Query ancestors with ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        where: 'the following parameters are used'
+            scenario             | fetchDescendantsOption  || durationLimit  | memoryLimit | expectedNumberOfDataNodes
+            'no descendants'     | OMIT_DESCENDANTS        || 0.09           | 3           | 1
+    }
 }
