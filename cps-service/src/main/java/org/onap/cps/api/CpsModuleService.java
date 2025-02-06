@@ -40,21 +40,21 @@ public interface CpsModuleService {
      *
      * @param dataspaceName                 dataspace name
      * @param schemaSetName                 schema set name
-     * @param yangResourcesNameToContentMap yang resources (files) as a mep where key is resource name
+     * @param yangResourceContentPerName yang resources (files) as a mep where key is resource name
      *                                      and value is content
      */
     void createSchemaSet(String dataspaceName, String schemaSetName,
-                         Map<String, String> yangResourcesNameToContentMap);
+                         Map<String, String> yangResourceContentPerName);
 
     /**
      * Create or upgrade a schema set from new modules and existing modules or only existing modules.
-     * @param dataspaceName             Dataspace name
-     * @param schemaSetName             schema set name
-     * @param newModuleNameToContentMap YANG resources map where key is a module name and value is content
-     * @param allModuleReferences       All YANG resource module references
+     * @param dataspaceName              Dataspace name
+     * @param schemaSetName              schema set name
+     * @param yangResourceContentPerName YANG resources map where key is a name and value is content
+     * @param allModuleReferences        All YANG resource module references
      */
     void createSchemaSetFromModules(String dataspaceName, String schemaSetName,
-                                    Map<String, String> newModuleNameToContentMap,
+                                    Map<String, String> yangResourceContentPerName,
                                     Collection<ModuleReference> allModuleReferences);
 
     /**

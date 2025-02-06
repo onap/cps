@@ -248,10 +248,10 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Get delta between anchor and payload with user provided schema #scenario'() {
         given: 'user provided schema set '
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            setupSchemaSetMocksForDelta(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between an anchor and a JSON payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourcesNameToContentMap, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'dataspacename and anchor names are validated'
             1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
         and: 'source data nodes are fetched using appropriate persistence layer method'
@@ -285,10 +285,10 @@ class CpsDataServiceImplSpec extends Specification {
 
     def 'Delta between anchor and payload error scenario #scenario'() {
         given: 'schema set for given anchor and dataspace references bookstore model'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            setupSchemaSetMocksForDelta(yangResourcesNameToContentMap)
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            setupSchemaSetMocksForDelta(yangResourceContentPerName)
         when: 'attempt to get delta between anchor and payload'
-            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourcesNameToContentMap, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
         then: 'expected exception is thrown'
             thrown(DataValidationException)
         where: 'following parameters were used'
@@ -654,11 +654,11 @@ class CpsDataServiceImplSpec extends Specification {
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
 
-    def setupSchemaSetMocksForDelta(Map<String, String> yangResourcesNameToContentMap) {
+    def setupSchemaSetMocksForDelta(Map<String, String> yangResourceContentPerName) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
-        mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) >> mockYangTextSchemaSourceSet
+        mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
         mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
 

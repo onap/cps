@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -77,7 +77,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
         } catch (final AlreadyDefinedException alreadyDefinedException) {
             log.warn("Creating new schema set failed as schema set already exists");
         } catch (final Exception exception) {
-            log.error("Creating schema set failed: {} ", exception.getMessage());
+            log.error("Creating schema set {} failed: {} ", schemaSetName, exception.getMessage());
             throw new ModelOnboardingException("Creating schema set failed", exception.getMessage());
         }
     }

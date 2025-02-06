@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 Nordix Foundation.
+ * Copyright (C) 2024-2025 Nordix Foundation.
  * Modifications Copyright (C) 2024 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -71,17 +71,17 @@ public class YangParser {
     /**
      * Parses data into (normalized) ContainerNode according to schema context for the given yang resource.
      *
-     * @param nodeData                         data string
-     * @param yangResourcesNameToContentMap    yang resource to content map
-     * @return                                 the NormalizedNode object
+     * @param nodeData                    data string
+     * @param yangResourceContentPerName  yang resource content per name
+     * @return                            the NormalizedNode object
      */
     @Timed(value = "cps.utils.yangparser.nodedata.with.parent.with.yangResourceMap.parse",
             description = "Time taken to parse node data with a parent")
     public ContainerNode parseData(final ContentType contentType,
                                    final String nodeData,
-                                   final Map<String, String> yangResourcesNameToContentMap,
+                                   final Map<String, String> yangResourceContentPerName,
                                    final String parentNodeXpath) {
-        final SchemaContext schemaContext = getSchemaContext(yangResourcesNameToContentMap);
+        final SchemaContext schemaContext = getSchemaContext(yangResourceContentPerName);
         return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_AND_PARSE);
     }
 
@@ -114,8 +114,8 @@ public class YangParser {
             anchor.getSchemaSetName()).getSchemaContext();
     }
 
-    private SchemaContext getSchemaContext(final Map<String, String> yangResourcesNameToContentMap) {
-        return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap)
+    private SchemaContext getSchemaContext(final Map<String, String> yangResourceContentPerName) {
+        return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName)
                 .getSchemaContext();
     }
 

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2024 Nordix Foundation.
+ * Copyright (C) 2021-2025 Nordix Foundation.
  * Modifications Copyright (C) 2021-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
@@ -66,32 +66,32 @@ class E2ENetworkSliceSpec extends Specification {
 
     def 'E2E model can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'ietf/ietf-inet-types@2013-07-15.yang',
                     'ietf/ietf-yang-types@2013-07-15.yang',
                     'e2e/basic/ran-network2020-08-06.yang'
             )
         when: 'Create schema set method is invoked'
-            cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            1 * mockModuleStoreService.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName)
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping model can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
         when: 'Create schema set method is invoked'
-            cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            cpsModuleServiceImpl.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName)
         then: 'Parameters are validated and processing is delegated to persistence service'
-            1 * mockModuleStoreService.storeSchemaSet(dataspaceName, schemaSetName, yangResourcesNameToContentMap)
+            1 * mockModuleStoreService.createSchemaSet(dataspaceName, schemaSetName, yangResourceContentPerName)
     }
 
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed by CPS.'() {
         given: 'Valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
             def dataNodeStored
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-Cavsta-Data.txt')
@@ -99,7 +99,7 @@ class E2ENetworkSliceSpec extends Specification {
             mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >>
                     new Anchor().builder().name(anchorName).schemaSetName(schemaSetName).dataspaceName(dataspaceName).build()
             mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >>
-                    YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+                    YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
             mockModuleStoreService.getYangSchemaResources(dataspaceName, schemaSetName) >> schemaContext
         when: 'saveData method is invoked'
             cpsDataServiceImpl.saveData(dataspaceName, anchorName, jsonData, noTimestamp)
@@ -123,15 +123,15 @@ class E2ENetworkSliceSpec extends Specification {
     def 'E2E Coverage Area-Tracking Area & TA-Cell mapping data can be parsed for RAN inventory.'() {
         def dataNodeStored
         given: 'valid yang resource as name-to-content map'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'e2e/basic/cps-ran-inventory@2021-01-28.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.json')
         and : 'all the further dependencies are mocked '
             mockCpsAnchorService.getAnchor('someDataspace', 'someAnchor') >>
                     new Anchor().builder().name('someAnchor').schemaSetName('someSchemaSet').dataspaceName(dataspaceName).build()
-            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap)
+            mockYangTextSchemaSourceSetCache.get('someDataspace', 'someSchemaSet') >> YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName)
             mockModuleStoreService.getYangSchemaResources('someDataspace', 'someSchemaSet') >> schemaContext
         when: 'saveData method is invoked'
             cpsDataServiceImpl.saveData('someDataspace', 'someAnchor', jsonData, noTimestamp)
@@ -161,7 +161,7 @@ class E2ENetworkSliceSpec extends Specification {
 
     def 'E2E RAN Schema Model.'(){
         given: 'yang resources'
-            def yangResourcesNameToContentMap = TestUtils.getYangResourcesAsMap(
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'ietf/ietf-inet-types@2013-07-15.yang',
                     'ietf/ietf-yang-types@2013-07-15.yang',
                     'e2e/basic/cps-ran-schema-model@2021-05-19.yang'
@@ -169,7 +169,7 @@ class E2ENetworkSliceSpec extends Specification {
         and : 'json data'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-schema-model-data-v4.json')
         expect: 'schema context is built with no exception indicating the schema set being valid '
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
         and: 'data is parsed with no exception indicating the model match'
             new YangParserHelper().parseData(ContentType.JSON, jsonData, schemaContext, '', false) != null
     }
