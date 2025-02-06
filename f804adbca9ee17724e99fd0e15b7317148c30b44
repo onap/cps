@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd31da3b_d2300e90",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-06T12:41:49Z",
+      "side": 1,
+      "message": "no..in the meeting we agreed and wrote this.\nNow I think it should be just inventory-event.\nurn:cps:org.onap.cps.ncmp.events:inventory-event:1.0.0\n\nif we agree then I can right away implement in my patch.",
+      "parentUuid": "68f77cf1_0416b431",
+      "range": {
+        "startLine": 28,
+        "startChar": 68,
+        "endLine": 28,
+        "endChar": 80
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5640b508_ef875694",
         "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-06T12:08:19Z",
       "side": 1,
       "message": "I though we agreed to make this more generic?! as the schema is designed to take any attribute change..",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04381109_f0e36caf",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-06T12:41:49Z",
+      "side": 1,
+      "message": "this schema will be used by ericsson to publish the device heartbeat information in relation to the trust level.\nWe agreed the dataschema name with ericsson in the meeting before.",
+      "parentUuid": "5640b508_ef875694",
       "range": {
         "startLine": 29,
         "startChar": 14,
@@ -65,6 +113,53 @@
         "startChar": 25,
         "endLine": 56,
         "endChar": 39
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a5d087_c60fa5ef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-06T12:41:49Z",
+      "side": 1,
+      "message": "the scope of my patch is to take care abt the dataschema field present in the header section of the cloud event. We discussed to revisit them and streamline the same as per the discussion and decision we recorded here https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16554840/CPS-2425+Event+Schemas+in+ONAP#Agreed-Event-Schema-Names\n\nThe scope of study that Anjella is doing is to streamline the events diagram flow that we have. Give relevant names over there ( once we agree to the name there ) , then the schema json file can be renamed based on our decisions. @Anjella correct me if I am missing anything.\n\nAlso as a first step we already did the folder structure change ( which Sean proposed )",
+      "parentUuid": "55e26291_10152ae0",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a557e86f_da012de7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-06T12:41:49Z",
+      "side": 1,
+      "message": "avcCloudEvent : this we can agree and change as this is local to us.\n\nBut we cant change for eg. [ AvcEvent avcEvent \u003d ...] on line #53 as this would be a backward incompatible change.",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 38
       },
       "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
