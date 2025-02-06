@@ -37,14 +37,21 @@ import org.onap.cps.ri.models.FragmentEntity;
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
     private final FragmentQueryBuilder fragmentQueryBuilder;
+    public static final Integer NO_LIMIT = 0;
 
     @Override
     @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final AnchorEntity anchorEntity,
-                                                       final CpsPathQuery cpsPathQuery) {
-        final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery);
+                                                       final CpsPathQuery cpsPathQuery,
+                                                       final int queryResultLimit) {
+        final Query query = fragmentQueryBuilder
+                                        .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery,
+                                                queryResultLimit);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
+        if (queryResultLimit > 0) {
+            log.debug("Result limited to {} entries", queryResultLimit);
+        }
         return fragmentEntities;
     }
 

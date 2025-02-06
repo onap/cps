@@ -457,4 +457,17 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         and: 'the queried nodes have expected bookstore names'
             assert result.anchorName.toSet() == [BOOKSTORE_ANCHOR_1, BOOKSTORE_ANCHOR_2].toSet()
     }
+
+    def 'Query with a limit of #limit.' () {
+        when:
+            def result = objectUnderTest.queryDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories', OMIT_DESCENDANTS, limit)
+        then: 'the expected number of nodes is returned'
+            assert countDataNodesInTree(result) == expectedNumberOfResults
+        where: 'the following parameters are used'
+            limit || expectedNumberOfResults
+            1     || 1
+            2     || 2
+            0     || 5
+            -1    || 5
+    }
 }

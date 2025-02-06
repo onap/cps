@@ -186,6 +186,23 @@ public interface CpsDataPersistenceService {
                                   String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
+     * Get a datanode by cps path.
+     *
+     * @param dataspaceName          dataspace name
+     * @param anchorName             anchor name
+     * @param cpsPath                cps path
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
+     * @param queryResultLimit       limits the number of returned entities (if less than 1 returns all)
+     *
+     * @return the data nodes found i.e. 0 or more data nodes
+     */
+    List<DataNode> queryDataNodes(String dataspaceName,
+                                  String anchorName,
+                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption,
+                                  int queryResultLimit);
+
+    /**
      * Get data leaf for the given dataspace and anchor by cps path.
      *
      * @param dataspaceName          dataspace name
