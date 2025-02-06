@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 13,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -101,7 +101,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -197,7 +197,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -219,9 +219,9 @@
   "refresh": "5s",
   "schemaVersion": 40,
   "tags": [
-    "CPS",
-    "NCMP",
-    "k6"
+    "ncmp",
+    "data",
+    "api"
   ],
   "templating": {
     "list": [
@@ -271,6 +271,6 @@
   "timezone": "browser",
   "title": "Data REST Interfaces",
   "uid": "aeavdgvjyt2iob",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }
