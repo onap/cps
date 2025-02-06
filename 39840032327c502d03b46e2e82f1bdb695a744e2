@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f30a1ee_b5a340ad",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-06T11:54:22Z",
+      "side": 1,
+      "message": "Nb, a few files are still 2024",
+      "range": {
+        "startLine": 3,
+        "startChar": 22,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "39840032327c502d03b46e2e82f1bdb695a744e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d2480f_4039863b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-06T11:54:22Z",
+      "side": 1,
+      "message": "Nice",
+      "revId": "39840032327c502d03b46e2e82f1bdb695a744e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
