@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b10a0353_a5a8a062",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T17:18:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cd31da3b_d2300e90",
+      "range": {
+        "startLine": 28,
+        "startChar": 68,
+        "endLine": 28,
+        "endChar": 80
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5640b508_ef875694",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "this schema will be used by ericsson to publish the device heartbeat information in relation to the trust level.\nWe agreed the dataschema name with ericsson in the meeting before.",
       "parentUuid": "5640b508_ef875694",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 25
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c12064b_6229ec99",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T17:18:10Z",
+      "side": 1,
+      "message": "ok. I think it  is a bad design to make it so specific but too late now to change back...",
+      "parentUuid": "04381109_f0e36caf",
       "range": {
         "startLine": 29,
         "startChar": 14,
@@ -270,6 +318,54 @@
       "writtenOn": "2025-02-06T12:41:49Z",
       "side": 1,
       "message": "avcCloudEvent : this we can agree and change as this is local to us.\n\nBut we cant change for eg. [ AvcEvent avcEvent \u003d ...] on line #53 as this would be a backward incompatible change.",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8fef3b_01483963",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T17:18:10Z",
+      "side": 1,
+      "message": "what do you think @Lee Anjella?",
+      "parentUuid": "a5a5d087_c60fa5ef",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d99a0b_eafb3ded",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T17:18:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a557e86f_da012de7",
       "range": {
         "startLine": 56,
         "startChar": 25,
