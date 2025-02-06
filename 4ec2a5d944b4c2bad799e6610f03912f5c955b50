@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c25648e8_b5aef4ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "4ec2a5d944b4c2bad799e6610f03912f5c955b50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41647170_c5643c72",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-02-06T16:14:51Z",
       "side": 1,
       "message": "nb: map",
+      "range": {
+        "startLine": 43,
+        "startChar": 70,
+        "endLine": 43,
+        "endChar": 73
+      },
+      "revId": "4ec2a5d944b4c2bad799e6610f03912f5c955b50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9cdd9d6_fffaa632",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "well spotted :-D , I\u0027\u0027 do a search for mep the next time I make a change :-)",
+      "parentUuid": "41647170_c5643c72",
       "range": {
         "startLine": 43,
         "startChar": 70,

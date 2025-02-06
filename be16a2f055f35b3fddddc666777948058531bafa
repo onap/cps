@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "406061af_9c982c95",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246534a3_6d3e3f84",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f34d0877_5b78f71c",
@@ -84,6 +108,30 @@
       "writtenOn": "2025-02-06T16:12:19Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "f34d0877_5b78f71c",
+      "range": {
+        "startLine": 205,
+        "startChar": 83,
+        "endLine": 205,
+        "endChar": 108
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56cd06b0_12417d39",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "newYangResourcesPerName",
       "parentUuid": "f34d0877_5b78f71c",
       "range": {
         "startLine": 205,
@@ -142,6 +190,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c56c53_90ccc528",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "newYangResourcesPerName",
+      "parentUuid": "0b183bf0_c423b6f7",
+      "range": {
+        "startLine": 210,
+        "startChar": 33,
+        "endLine": 210,
+        "endChar": 58
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ce5c6e6_37618eae",
@@ -155,6 +227,30 @@
       "writtenOn": "2025-02-06T13:40:10Z",
       "side": 1,
       "message": "getYangResourceEntities executes a query for each ModuleReference. Consider replacing it with a bulk query to reduce database calls.\n\nSomthing like below:\n\nprivate Set\u003cYangResourceEntity\u003e getYangResourceEntities(final Collection\u003cModuleReference\u003e moduleReferences) {\n    Set\u003cString\u003e moduleNames \u003d moduleReferences.stream()\n            .map(ModuleReference::getModuleName)\n            .collect(Collectors.toSet());\n\n    return yangResourceRepository.findAllByModuleNames(moduleNames);\n}\n\nThis reduces database queries from N calls to a single batch query.",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 5
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6552c5a6_e4bf59e6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-06T16:24:22Z",
+      "side": 1,
+      "message": "good idea but out of scope for this bug. I\u0027ll take it as a separate improvement in  a separate commit is that OK ?",
+      "parentUuid": "6ce5c6e6_37618eae",
       "range": {
         "startLine": 392,
         "startChar": 4,
