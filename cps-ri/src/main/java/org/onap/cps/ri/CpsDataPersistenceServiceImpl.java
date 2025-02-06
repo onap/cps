@@ -74,6 +74,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService {
 
+    public static Integer NO_LIMIT = 0;
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
     private final FragmentRepository fragmentRepository;
@@ -223,10 +224,19 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
                                          final FetchDescendantsOption fetchDescendantsOption) {
+        return queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, NO_LIMIT);
+    }
+
+    @Override
+    public List<DataNode> queryDataNodes(final String dataspaceName,
+                                         final String anchorName,
+                                         final String cpsPath,
+                                         final FetchDescendantsOption fetchDescendantsOption,
+                                         final int queryResultLimit) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         final Collection<FragmentEntity> fragmentEntities =
-                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery);
+                fragmentRepository.findByAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 

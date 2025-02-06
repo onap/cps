@@ -45,6 +45,20 @@ public interface CpsQueryService {
     Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
                                         String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
+    /**
+     * Retrieves a collection of data nodes based on the specified CPS path query.
+     *
+     * @param dataspaceName the name of the dataspace (must not be null or empty)
+     * @param anchorName the name of the anchor (must not be null or empty)
+     * @param cpsPath the CPS path used for querying (must not be null or empty)
+     * @param fetchDescendantsOption specifies whether to include descendant nodes in the output
+     * @param queryResultLimit the maximum number of data nodes to return; if less than 1, returns all matching nodes
+     *
+     * @return a collection of matching {@link DataNode} instances (can be empty if no nodes are found)
+     */
+    Collection<DataNode> queryDataNodes(String dataspaceName, String anchorName,
+                                        String cpsPath, FetchDescendantsOption fetchDescendantsOption,
+                                        int queryResultLimit);
 
     /**
      * Get data leaf for the given dataspace and anchor by cps path.
