@@ -283,6 +283,30 @@
       },
       "revId": "be16a2f055f35b3fddddc666777948058531bafa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f3ea31_c4353201",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-06T16:46:41Z",
+      "side": 1,
+      "message": "Plus the proposed solution is incorrect: it does not factor in module revision. It should be:\n\n    findAllByModuleNamesAndRevisions(moduleReferences)\n\nwhich is vastly more complex to implement.",
+      "parentUuid": "db0688d5_cde72f77",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 5
+      },
+      "revId": "be16a2f055f35b3fddddc666777948058531bafa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
