@@ -22,6 +22,30 @@
       },
       "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a03ce908_bd128acb",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-07T15:18:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f18e223_0da3418a",
+      "range": {
+        "startLine": 75,
+        "startChar": 3,
+        "endLine": 75,
+        "endChar": 13
+      },
+      "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
