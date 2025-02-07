@@ -498,6 +498,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00e0b823_6e585707",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-02-07T14:52:14Z",
+      "side": 1,
+      "message": "yes this is fine, scope is for schema - other changes need agreement",
+      "parentUuid": "0a8fef3b_01483963",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8dc0e4cb_bb40b940",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
         "patchSetId": 5
