@@ -20,6 +20,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bfa3ab8_b18fd540",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-07T16:58:21Z",
+      "side": 1,
+      "message": "Separation of Concerns\n\nDataSourceProperties → Handles database connection settings\nJpaProperties → Handles Hibernate-related settings",
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20fc787f_e7c1b5cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-07T16:58:21Z",
+      "side": 1,
+      "message": "import com.zaxxer.hikari.HikariDataSource;\nimport lombok.RequiredArgsConstructor;\nimport lombok.extern.slf4j.Slf4j;\nimport org.hibernate.cfg.Configuration;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\nimport javax.sql.DataSource;\n\n@Slf4j\n@Configuration\n@RequiredArgsConstructor\npublic class HibernateConfig {\n\n    private final DataSourceProperties dataSourceProperties;\n    private final JpaProperties jpaProperties;\n\n    /**\n     * Configures Hibernate with properties from application.yml\n     */\n    @Bean\n    public Configuration hibernateConfiguration() {\n        log.info(\"Initializing Hibernate Configuration...\");\n\n        Configuration configuration \u003d new Configuration();\n        configuration.setProperty(\"hibernate.connection.url\", dataSourceProperties.getUrl());\n        configuration.setProperty(\"hibernate.connection.driver_class\", dataSourceProperties.getDriverClassName());\n        configuration.setProperty(\"hibernate.connection.username\", dataSourceProperties.getUsername());\n        configuration.setProperty(\"hibernate.connection.password\", dataSourceProperties.getPassword());\n        configuration.setProperty(\"hibernate.dialect\", jpaProperties.getDialect());\n        configuration.setProperty(\"hibernate.show_sql\", String.valueOf(jpaProperties.isShowSql()));\n        configuration.setProperty(\"hibernate.format_sql\", String.valueOf(jpaProperties.isFormatSql()));\n        configuration.setProperty(\"hibernate.jdbc.batch_size\", String.valueOf(jpaProperties.getJdbcBatchSize()));\n        configuration.setProperty(\"hibernate.id.new_generator_mappings\", String.valueOf(jpaProperties.isNewGeneratorMappings()));\n\n        log.info(\"Hibernate Configuration initialized successfully.\");\n        return configuration;\n    }\n\n    /**\n     * Configures a DataSource bean using HikariCP.\n     */\n    @Bean\n    public DataSource dataSource() {\n        log.info(\"Configuring DataSource...\");\n        HikariDataSource dataSource \u003d new HikariDataSource();\n        dataSource.setJdbcUrl(dataSourceProperties.getUrl());\n        dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());\n        dataSource.setUsername(dataSourceProperties.getUsername());\n        dataSource.setPassword(dataSourceProperties.getPassword());\n        log.info(\"DataSource configured successfully.\");\n        return dataSource;\n    }\n}",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44576c6c_c3233c4a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-07T16:58:21Z",
+      "side": 1,
+      "message": "import lombok.Getter;\nimport lombok.Setter;\nimport org.springframework.boot.context.properties.ConfigurationProperties;\nimport org.springframework.stereotype.Component;\n\n@Getter\n@Setter\n@Component\n@ConfigurationProperties(prefix \u003d \"spring.jpa.properties.hibernate\")\npublic class JpaProperties {\n    private String dialect;\n    private boolean showSql;\n    private boolean formatSql;\n    private int jdbcBatchSize;\n    private boolean newGeneratorMappings;\n}",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 55,
+        "endChar": 33
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffd9c9b4_8839aa61",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/HibernateConfigSpec.groovy",
         "patchSetId": 2
