@@ -22,6 +22,8 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
+import java.time.OffsetDateTime
+import java.util.concurrent.BlockingQueue
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -60,10 +62,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.util.concurrent.PollingConditions
-
-import java.time.OffsetDateTime
-import java.util.concurrent.BlockingQueue
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
@@ -160,7 +158,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
     static NO_ALTERNATE_ID = ''
     static GENERAL_TEST_DATASPACE = 'generalTestDataspace'
     static BOOKSTORE_SCHEMA_SET = 'bookstoreSchemaSet'
-    static MODULE_SYNC_WAIT_TIME_IN_SECONDS = 2
 
     static initialized = false
     def now = OffsetDateTime.now()
@@ -262,9 +259,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def registerCmHandle(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {
         registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId)
         moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
-        new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-            CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
-        })
+        CmHandleState.READY == networkCmProxyInventoryFacade.getCmHandleCompositeState(cmHandleId).cmHandleState
     }
 
     def registerCmHandleWithoutWaitForReady(dmiPlugin, cmHandleId, moduleSetTag, alternateId) {

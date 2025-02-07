@@ -72,7 +72,7 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
     /** this test has intermittent failures, due to race conditions
      *  Ignored but left here as it might be valuable to further optimization investigations.
      **/
-    @Ignore
+    //@Ignore
     def 'CPS-2478 Highlight (and improve) module sync inefficiencies.'() {
         given: 'register 250 cm handles with module set tag cps-2478-A'
             def numberOfTags = 2
@@ -101,7 +101,7 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             })
         and: 'log the relevant instrumentation'
             def dmiModuleRetrievalTimer = meterRegistry.get('cps.ncmp.inventory.module.references.from.dmi').timer()
-            def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schemaset.store').timer()
+            def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schemaset.createFromNewAndExistingModules').timer()
             def dbStateUpdateTimer = meterRegistry.get('cps.ncmp.cmhandle.state.update.batch').timer()
             logInstrumentation(dmiModuleRetrievalTimer, 'get modules from DMI   ')
             logInstrumentation(dbSchemaSetStorageTimer, 'store schema sets      ')
@@ -145,10 +145,8 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
         when: 'advised cm handles are processed on 2 threads (exactly one batch for each)'
             objectUnderTest.moduleSyncAdvisedCmHandles()
             executorService.execute(moduleSyncAdvisedCmHandles)
-        then: 'wait till all cm handles have been processed'
-            new PollingConditions().within(10, () -> {
-                assert getNumberOfProcessedCmHandles() == 200
-            })
+        then: 'all cm handles have been processed'
+            assert getNumberOfProcessedCmHandles() == 200
         then: 'at least 1 cm handle is in state LOCKED'
             assert cmHandlesByState.get('lockedCmHandlesCount') >= 1
         cleanup: 'remove all test cm handles'

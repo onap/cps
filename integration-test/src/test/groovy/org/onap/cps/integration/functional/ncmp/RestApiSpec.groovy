@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.MediaType
-import spock.util.concurrent.PollingConditions
 
 class RestApiSpec extends CpsIntegrationSpecBase {
 
@@ -47,13 +46,11 @@ class RestApiSpec extends CpsIntegrationSpecBase {
         and: 'the module sync watchdog is triggered'
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
         then: 'CM-handles go to READY state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                (1..3).each {
-                    mvc.perform(get('/ncmp/v1/ch/ch-'+it))
-                            .andExpect(status().isOk())
-                            .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
-                }
-            })
+            (1..3).each {
+                mvc.perform(get('/ncmp/v1/ch/ch-'+it))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath('$.state.cmHandleState').value('READY'))
+            }
     }
 
     def 'Search for CM Handles by module using REST API.'() {
