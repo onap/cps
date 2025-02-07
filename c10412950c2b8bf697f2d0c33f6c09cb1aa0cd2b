@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47bcf85e_db111806",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-07T17:45:25Z",
+      "side": 1,
+      "message": "I disagree. The concern is to populate HibernateConfiguration from application.yml.\n\nThis way is a lot of extra code for a simple problem: we would be going from a single class containing a single bean to 4 different classes.\n(The fourth class is needed because \"new_generator_mappings\" is not directly under \"spring.jpa.properties.hibernate\")",
+      "parentUuid": "7bfa3ab8_b18fd540",
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20fc787f_e7c1b5cd",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
         "patchSetId": 2
