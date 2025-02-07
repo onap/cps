@@ -60,6 +60,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "094ce073_9666bf19",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-07T17:02:21Z",
+      "side": 1,
+      "message": "import lombok.Getter;\nimport lombok.Setter;\nimport org.springframework.boot.context.properties.ConfigurationProperties;\nimport org.springframework.stereotype.Component;\n\n@Getter\n@Setter\n@Component\n@ConfigurationProperties(prefix \u003d \"spring.datasource\")\npublic class DataSourceProperties {\n    private String url;\n    private String driverClassName;\n    private String username;\n    private String password;\n}",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44576c6c_c3233c4a",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
         "patchSetId": 2
