@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,11 @@
 
 package org.onap.cps.ri.utils;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
@@ -31,9 +33,12 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CpsSessionFactory {
+
+    private final Configuration hibernateConfiguration;
 
     private SessionFactory sessionFactory = null;
 
@@ -58,7 +63,7 @@ public class CpsSessionFactory {
 
     private SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            sessionFactory = new org.hibernate.cfg.Configuration().configure("hibernate.cfg.xml")
+            sessionFactory = hibernateConfiguration
                     .addAnnotatedClass(AnchorEntity.class)
                     .addAnnotatedClass(DataspaceEntity.class)
                     .addAnnotatedClass(SchemaSetEntity.class)
