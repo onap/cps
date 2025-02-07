@@ -82,6 +82,7 @@ services:
         limits:
           cpus: '3'
           memory: 3G
+    memswap_limit: 3G
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
