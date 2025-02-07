@@ -46,6 +46,52 @@
       },
       "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9211c6_863f366e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-07T15:36:05Z",
+      "side": 1,
+      "message": "NB: can be removed totaly!",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 13
+      },
+      "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "113af18e_6a83eabd",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-07T15:36:05Z",
+      "side": 1,
+      "message": "NB: maybe rename accordingly!",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 39
+      },
+      "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
