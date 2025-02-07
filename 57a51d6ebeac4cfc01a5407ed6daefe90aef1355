@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f01906ac_84c347e4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-07T15:43:01Z",
+      "side": 1,
+      "message": "I plan to do proper clean up of this test suite in the next patch for removing Hazelcast from the module sync - since many tests need to be updated here.",
+      "parentUuid": "9c9211c6_863f366e",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 13
+      },
+      "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "113af18e_6a83eabd",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "writtenOn": "2025-02-07T15:36:05Z",
       "side": 1,
       "message": "NB: maybe rename accordingly!",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 39
+      },
+      "revId": "57a51d6ebeac4cfc01a5407ed6daefe90aef1355",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1ec4c66_1c90bb5d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/ModuleSyncWatchdogIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-07T15:43:01Z",
+      "side": 1,
+      "message": "Ack. Will clean up in the next patch.",
+      "parentUuid": "113af18e_6a83eabd",
       "range": {
         "startLine": 104,
         "startChar": 16,
