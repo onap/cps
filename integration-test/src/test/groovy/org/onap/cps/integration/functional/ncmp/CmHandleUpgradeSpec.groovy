@@ -27,7 +27,6 @@ import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.UpgradedCmHandles
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
-import spock.util.concurrent.PollingConditions
 
 class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
 
@@ -67,9 +66,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'CM-handle goes to READY state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
-            })
+            assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == updatedModuleSetTag
@@ -111,9 +108,7 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         and: 'CM-handle goes to READY state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
-            })
+            assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == updatedModuleSetTag
@@ -170,11 +165,9 @@ class CmHandleUpgradeSpec extends CpsIntegrationSpecBase {
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_UPGRADE_FAILED'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(cmHandleId)
-                assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
-                assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE_FAILED
-            })
+            def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState(cmHandleId)
+            assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
+            assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_UPGRADE_FAILED
 
         and: 'the CM-handle has same moduleSetTag as before'
             assert objectUnderTest.getNcmpServiceCmHandle(cmHandleId).moduleSetTag == 'oldTag'

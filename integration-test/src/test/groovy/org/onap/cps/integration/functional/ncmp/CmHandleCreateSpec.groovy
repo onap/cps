@@ -20,6 +20,7 @@
 
 package org.onap.cps.integration.functional.ncmp
 
+import java.time.Duration
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
@@ -32,9 +33,6 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
-import spock.util.concurrent.PollingConditions
-
-import java.time.Duration
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
@@ -73,9 +71,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to READY state after module sync'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
-            })
+            assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState(uniqueId).cmHandleState
 
         and: 'the CM-handle has expected modules'
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
@@ -113,11 +109,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handle goes to LOCKED state with reason MODULE_SYNC_FAILED'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState('ch-1')
-                assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
-                assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_SYNC_FAILED
-            })
+            def cmHandleCompositeState = objectUnderTest.getCmHandleCompositeState('ch-1')
+            assert cmHandleCompositeState.cmHandleState == CmHandleState.LOCKED
+            assert cmHandleCompositeState.lockReason.lockReasonCategory == LockReasonCategory.MODULE_SYNC_FAILED
 
         and: 'CM-handle has no modules'
             assert objectUnderTest.getYangResourcesModuleReferences('ch-1').empty
@@ -141,9 +135,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'the CM-handle goes to READY state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-3').cmHandleState
-            })
+            assert CmHandleState.READY == objectUnderTest.getCmHandleCompositeState('ch-3').cmHandleState
 
         and: 'the CM-handle has expected moduleSetTag'
             assert objectUnderTest.getNcmpServiceCmHandle('ch-3').moduleSetTag == 'B'
@@ -200,9 +192,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         then: 'CM-handles go to LOCKED state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
-            })
+            assert objectUnderTest.getCmHandleCompositeState('ch-1').cmHandleState == CmHandleState.LOCKED
 
         when: 'DMI is available for retry'
             dmiDispatcher1.moduleNamesPerCmHandleId = ['ch-1': ['M1', 'M2'], 'ch-2': ['M1', 'M2']]
@@ -212,11 +202,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             2.times { moduleSyncWatchdog.moduleSyncAdvisedCmHandles() }
 
         then: 'Both CM-handles go to READY state'
-            new PollingConditions().within(MODULE_SYNC_WAIT_TIME_IN_SECONDS, () -> {
-                ['ch-1', 'ch-2'].each { cmHandleId ->
-                    assert objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState == CmHandleState.READY
-                }
-            })
+            ['ch-1', 'ch-2'].each { cmHandleId ->
+                assert objectUnderTest.getCmHandleCompositeState(cmHandleId).cmHandleState == CmHandleState.READY
+            }
 
         and: 'Both CM-handles have expected modules'
             ['ch-1', 'ch-2'].each { cmHandleId ->
