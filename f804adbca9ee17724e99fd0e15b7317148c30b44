@@ -166,6 +166,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "178351ca_3c4520ab",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e40a3596_8fb95eb0",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 36
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c857fc7f_45f4f336",
@@ -179,6 +203,30 @@
       "writtenOn": "2025-02-06T13:58:42Z",
       "side": 1,
       "message": "Avoid .concat() for String concatenation → Use String.format() or String.join() for better readability and performance.\n\nString correlationId \u003d String.join(\"#\", subscriptionId, dmiPluginName);",
+      "range": {
+        "startLine": 63,
+        "startChar": 23,
+        "endLine": 63,
+        "endChar": 109
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f84f8ccd_9dedf660",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c857fc7f_45f4f336",
       "range": {
         "startLine": 63,
         "startChar": 23,
@@ -212,6 +260,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88d1f91a_8e601ac5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4e38b43_69af4c04",
+      "range": {
+        "startLine": 62,
+        "startChar": 7,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aef2161c_6425e953",
@@ -235,6 +307,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e5c37f_b4f9f377",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef2161c_6425e953",
+      "range": {
+        "startLine": 127,
+        "startChar": 15,
+        "endLine": 130,
+        "endChar": 66
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4022374e_589fb02b",
@@ -248,6 +344,30 @@
       "writtenOn": "2025-02-06T13:58:42Z",
       "side": 1,
       "message": "Method Chaining Alignment as suggested before.",
+      "range": {
+        "startLine": 62,
+        "startChar": 15,
+        "endLine": 64,
+        "endChar": 39
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f5599f2_89ea52be",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DataOperationEventCreator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4022374e_589fb02b",
       "range": {
         "startLine": 62,
         "startChar": 15,
@@ -389,6 +509,30 @@
       "writtenOn": "2025-02-06T13:58:42Z",
       "side": 1,
       "message": "Method Chaining Alignment as suggested before.",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 86
+      },
+      "revId": "f804adbca9ee17724e99fd0e15b7317148c30b44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8a01cd_ad5f8427",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/CmAvcEventPublisher.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-07T09:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dc0e4cb_bb40b940",
       "range": {
         "startLine": 57,
         "startChar": 15,
