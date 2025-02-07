@@ -22,6 +22,30 @@
       },
       "revId": "85b8a41a73b8384012c082c077167d2709ef9680",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa1a4e9_2342124a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-07T16:03:26Z",
+      "side": 0,
+      "message": "Yes, but the tests directly call moduleSyncAdvisedCmHandles() - which has no multithreading. Also the integration-tests set a large initial delay for the watchdog time. This makes everything the tests synchronous.",
+      "parentUuid": "8865820e_5781c143",
+      "range": {
+        "startLine": 116,
+        "startChar": 44,
+        "endLine": 116,
+        "endChar": 75
+      },
+      "revId": "85b8a41a73b8384012c082c077167d2709ef9680",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
