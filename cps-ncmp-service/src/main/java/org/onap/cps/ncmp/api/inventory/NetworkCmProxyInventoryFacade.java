@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import reactor.core.publisher.Flux;
 
 public interface NetworkCmProxyInventoryFacade {
 
@@ -96,9 +97,9 @@ public interface NetworkCmProxyInventoryFacade {
      * Retrieve cm handles with details for the given query parameters.
      *
      * @param cmHandleQueryApiParameters cm handle query parameters
-     * @return cm handles with details
+     * @return cm handle objects as a reactive stream (flux)
      */
-    Collection<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Flux<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Retrieve cm handle ids for the given query parameters.

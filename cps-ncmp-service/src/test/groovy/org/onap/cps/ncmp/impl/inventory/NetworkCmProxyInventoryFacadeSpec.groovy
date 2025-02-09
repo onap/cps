@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -40,6 +40,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.utils.JsonObjectMapper
+import reactor.core.publisher.Flux
 import spock.lang.Specification
 
 class NetworkCmProxyInventoryFacadeSpec extends Specification {
@@ -249,11 +250,10 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'query cm handle method returns two cm handles'
             mockParameterizedCmHandleQueryService.queryCmHandles(
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
-                >> [new NcmpServiceCmHandle(cmHandleId: 'ch-0'), new NcmpServiceCmHandle(cmHandleId: 'ch-1')]
-        and: 'a trust level for cm handles'
-            1 * mockTrustLevelManager.applyEffectiveTrustLevels(_) >> { args -> args[0].forEach{it.currentTrustLevel = TrustLevel.COMPLETE } }
+                >> Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'ch-0', currentTrustLevel: TrustLevel.COMPLETE),
+                                      new NcmpServiceCmHandle(cmHandleId: 'ch-1', currentTrustLevel: TrustLevel.COMPLETE)])
         when: 'execute cm handle search is called'
-            def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters)
+            def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters).collectList().block()
         then: 'result consists of the two cm handles returned by the CPS Data Service'
             assert result.size() == 2
             assert result[0].cmHandleId == 'ch-0'
