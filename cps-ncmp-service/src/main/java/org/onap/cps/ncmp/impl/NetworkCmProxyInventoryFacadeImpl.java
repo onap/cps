@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -52,6 +52,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 @Service
 @RequiredArgsConstructor
@@ -118,15 +119,12 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
-    public Collection<NcmpServiceCmHandle> executeCmHandleSearch(
+    public Flux<NcmpServiceCmHandle> executeCmHandleSearch(
             final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
-                cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles =
-                parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
-        trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
-        return ncmpServiceCmHandles;
+        return parameterizedCmHandleQueryService.queryCmHandlesAsFlux(cmHandleQueryServiceParameters);
     }
 
     @Override

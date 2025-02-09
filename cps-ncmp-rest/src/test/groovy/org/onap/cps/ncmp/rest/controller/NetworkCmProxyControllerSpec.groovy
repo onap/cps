@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,6 +59,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import spock.lang.Shared
 import spock.lang.Specification
@@ -275,7 +276,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             cmHandle2.alternateId = 'someAlternateId'
             cmHandle2.moduleSetTag = 'someModuleSetTag'
             cmHandle2.dataProducerIdentifier = 'someDataProducerIdentifier'
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
+            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([cmHandle1, cmHandle2])
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'response status returns OK'
@@ -352,7 +353,7 @@ class NetworkCmProxyControllerSpec extends Specification {
             cmHandle2.cmHandleId = 'ch-2'
             cmHandle2.publicProperties = [color: 'green']
             cmHandle2.currentTrustLevel = TrustLevel.NONE
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> [cmHandle1, cmHandle2]
+            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([cmHandle1, cmHandle2])
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'an empty cm handle identifier is returned'

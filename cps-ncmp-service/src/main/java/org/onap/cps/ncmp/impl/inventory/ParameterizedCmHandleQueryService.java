@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.inventory;
 import java.util.Collection;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import reactor.core.publisher.Flux;
 
 public interface ParameterizedCmHandleQueryService {
     /**
@@ -62,19 +63,12 @@ public interface ParameterizedCmHandleQueryService {
      *      public properties
      *      modules
      *      cps-path
+     *      trust level
      *
      * @param cmHandleQueryServiceParameters the cm handle query parameters
      * @return collection of cm handles
      */
-    Collection<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
-
-    /**
-     * Get all cm handle objects.
-     * Note: it is similar to all the queries above but simply no conditions and hence not 'parameterized'
-     *
-     * @return collection of cm handles
-     */
-    Collection<NcmpServiceCmHandle> getAllCmHandles();
+    Flux<NcmpServiceCmHandle> queryCmHandlesAsFlux(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
     /**
      * Retrieves all {@code NcmpServiceCmHandle} instances without their associated properties.
