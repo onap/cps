@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation.
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,8 +52,7 @@ public class FragmentPrefetchRepositoryImpl implements FragmentPrefetchRepositor
             return proxiedFragmentEntities;
         }
 
-        final List<Long> fragmentEntityIds = proxiedFragmentEntities.stream()
-                .map(FragmentEntity::getId).collect(Collectors.toList());
+        final List<Long> fragmentEntityIds = proxiedFragmentEntities.stream().map(FragmentEntity::getId).toList();
 
         final Map<Long, AnchorEntity> anchorEntityPerId = proxiedFragmentEntities.stream()
                 .map(FragmentEntity::getAnchor)
@@ -69,19 +68,20 @@ public class FragmentPrefetchRepositoryImpl implements FragmentPrefetchRepositor
             final Collection<Long> fragmentEntityIds,
             final Map<Long, AnchorEntity> anchorEntityPerId,
             final int maxDepth) {
-        final String sql
-                = "WITH RECURSIVE parent_search AS ("
-                + "    SELECT id, 0 AS depth "
-                + "    FROM fragment "
-                + "    WHERE id = ANY (?) "
-                + "  UNION "
-                + "    SELECT child.id, depth + 1 "
-                + "    FROM fragment child INNER JOIN parent_search parent ON child.parent_id = parent.id"
-                + "    WHERE depth < ?"
-                + ") "
-                + "SELECT fragment.id, anchor_id AS anchorId, xpath, parent_id AS parentId, "
-                + "       CAST(attributes AS TEXT) AS attributes "
-                + "FROM fragment INNER JOIN parent_search ON fragment.id = parent_search.id";
+        final String sql = """
+                WITH RECURSIVE fragment_hierarchy AS (
+                    SELECT id, anchor_id, xpath, parent_id, attributes, 0 AS depth
+                    FROM fragment
+                    WHERE id = ANY(?)
+                  UNION
+                    SELECT child.id, child.anchor_id, child.xpath, child.parent_id, child.attributes, depth + 1
+                    FROM fragment child
+                    INNER JOIN fragment_hierarchy parent ON child.parent_id = parent.id
+                    WHERE depth < ?
+                )
+                SELECT id, anchor_id AS anchorId, xpath, parent_id AS parentId, attributes
+                FROM fragment_hierarchy;
+                """;
 
         final PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             final Connection connection = preparedStatement.getConnection();
