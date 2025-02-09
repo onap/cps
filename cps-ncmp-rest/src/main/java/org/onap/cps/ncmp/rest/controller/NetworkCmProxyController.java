@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
@@ -262,10 +262,9 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
-        final Collection<NcmpServiceCmHandle> cmHandles = networkCmProxyInventoryFacade
-                .executeCmHandleSearch(cmHandleQueryApiParameters);
         final List<RestOutputCmHandle> restOutputCmHandles =
-                cmHandles.stream().map(this::toRestOutputCmHandle).collect(Collectors.toList());
+                networkCmProxyInventoryFacade.executeCmHandleSearch(cmHandleQueryApiParameters)
+                        .map(this::toRestOutputCmHandle).collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
     }
 
