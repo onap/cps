@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "598fb053_430d995e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-10T10:50:17Z",
+      "side": 1,
+      "message": "Hi Sourabh, can you explain the intent of this comment/codeblock",
+      "parentUuid": "20fc787f_e7c1b5cd",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "094ce073_9666bf19",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
         "patchSetId": 2
@@ -89,6 +113,30 @@
       "writtenOn": "2025-02-07T17:02:21Z",
       "side": 1,
       "message": "import lombok.Getter;\nimport lombok.Setter;\nimport org.springframework.boot.context.properties.ConfigurationProperties;\nimport org.springframework.stereotype.Component;\n\n@Getter\n@Setter\n@Component\n@ConfigurationProperties(prefix \u003d \"spring.datasource\")\npublic class DataSourceProperties {\n    private String url;\n    private String driverClassName;\n    private String username;\n    private String password;\n}",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc1496a_a426be97",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/config/HibernateConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-10T10:50:17Z",
+      "side": 1,
+      "message": "you mean you can group proreties together this way and reduce the number of annotations etc?",
+      "parentUuid": "094ce073_9666bf19",
       "range": {
         "startLine": 30,
         "startChar": 3,
@@ -117,6 +165,52 @@
         "startChar": 3,
         "endLine": 55,
         "endChar": 33
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab20bfa5_85b0d68e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/utils/CpsSessionFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-10T10:50:17Z",
+      "side": 1,
+      "message": "NB: the method does more now then just getting a factory\ngetSessionFactoryWithHibernateConfiguration()",
+      "range": {
+        "startLine": 64,
+        "startChar": 27,
+        "endLine": 64,
+        "endChar": 44
+      },
+      "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0821dc_b82f4334",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/HibernateConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-10T10:50:17Z",
+      "side": 1,
+      "message": "find replace \" with \u0027 :-D",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 9
       },
       "revId": "c10412950c2b8bf697f2d0c33f6c09cb1aa0cd2b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
