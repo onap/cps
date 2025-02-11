@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc10df8d_f4c1f2ac",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T15:28:14Z",
+      "side": 1,
+      "message": "it might depend on our dependency rules but yes we should try to minimize",
+      "parentUuid": "c0c0b83c_62ea3df0",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "3deead3c2dc2acdd007549094c8ba86dff56bed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad360f1c_66294e62",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
         "patchSetId": 4

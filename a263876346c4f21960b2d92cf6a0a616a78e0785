@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a0aa035_332c7366",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T15:28:14Z",
+      "side": 1,
+      "message": "i think you are right :-)",
+      "parentUuid": "d3f56f29_b74cfcf0",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 45
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2547c53b_75e03ec4",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
         "patchSetId": 3
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I\u0027m wondering should we have single public constant in CpsQueryService interface, and get rid of the private constants. If not, then at least make all the constants private in the impl classes.",
       "parentUuid": "2547c53b_75e03ec4",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c452c027_6c9af40b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T15:28:14Z",
+      "side": 1,
+      "message": "I missed that yest the public constant should be declared in the interface\nBut I dont think the RI impl can depend on it (I forget our exact dependency rules which I asked Levaete to check when I first suggest this constant)",
+      "parentUuid": "0cf99166_8a203eaa",
       "range": {
         "startLine": 40,
         "startChar": 4,
