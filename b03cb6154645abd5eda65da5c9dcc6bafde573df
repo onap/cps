@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dfd4f6d_6462bd59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-11T09:54:26Z",
+      "side": 1,
+      "message": "Looks good, small NB comments",
+      "revId": "b03cb6154645abd5eda65da5c9dcc6bafde573df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f6f9751_f967f079",
+        "filename": "cps-ncmp-events/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-11T09:54:26Z",
+      "side": 1,
+      "message": "NB: Update Copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 24,
+        "endLine": 4,
+        "endChar": 25
+      },
+      "revId": "b03cb6154645abd5eda65da5c9dcc6bafde573df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8af42b2c_4c3ced10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-11T09:54:26Z",
+      "side": 1,
+      "message": "NB: Include copyright, not important for test classes",
+      "revId": "b03cb6154645abd5eda65da5c9dcc6bafde573df",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
