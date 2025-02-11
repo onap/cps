@@ -23,11 +23,14 @@ package org.onap.cps.integration.performance.ncmp
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 
 import java.util.stream.Collectors
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
@@ -36,7 +39,14 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
     CpsQueryService objectUnderTest
     ResourceMeter resourceMeter = new ResourceMeter()
 
-    def setup() { objectUnderTest = cpsQueryService }
+    def setup() { objectUnderTest = cpsQueryService
+        dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'alternateId')
+    }
+
+    def cleanup() {
+        deregisterCmHandle(DMI1_URL, 'ch-1')
+    }
 
     def 'JVM warmup.'() {
         when: 'the JVM is warmed up'
@@ -51,7 +61,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
         then: 'resource usage is as expected'
             recordAndAssertResourceUsage('JVM warmup for CmHandleQueryPerfTest',
-                    30, resourceMeter.totalTimeInSeconds,
+                    80, resourceMeter.totalTimeInSeconds,
                     300, resourceMeter.totalMemoryUsageInMB)
     }
 
@@ -75,43 +85,55 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
     }
 
     def 'CM-handle is looked up by id.'() {
+        given:
+            def url = '/ncmp/v1/ch/ch-1'
         when: 'CM-handles are looked up by cm-handle-id 100 times'
             int count = 0
             resourceMeter.start()
-            (1..100).each {
-                count += cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS).size()
+            (1..1000).each {
+                if(mvc.perform(get(url)
+                        .queryParam('resourceIdentifier', 'my-resource-id')
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andReturn().response.status == HttpStatus.OK.value()) {
+                    count++
+                }
             }
             resourceMeter.stop()
         then:
-            assert count == 100
+            assert count == 1000
         and: 'average performance is as expected'
-            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
+            def averageResponseTime = resourceMeter.totalTimeInSeconds / 1000
             recordAndAssertResourceUsage('Look up CM-handle by id',
                     expectedAverageResponseTime, averageResponseTime,
-                    15, resourceMeter.totalMemoryUsageInMB)
+                    200, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 8 * MILLISECONDS
+            expectedAverageResponseTime = 50 * MILLISECONDS
     }
 
     def 'CM-handle is looked up by alternate-id.'() {
+        given:
+            def url = '/ncmp/v1/ch/alternateId'
         when: 'CM-handles are looked up by alternate-id 100 times'
             int count = 0
             resourceMeter.start()
-            (1..100).each {
-                count += cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS).size()
+            (1..1000).each {
+                if(mvc.perform(get(url)
+                        .queryParam('resourceIdentifier', 'my-resource-id')
+                        .contentType(MediaType.APPLICATION_JSON))
+                        .andReturn().response.status == HttpStatus.OK.value()) {
+                    count++
+                }
             }
             resourceMeter.stop()
         then:
-            assert count == 100
+            assert count == 1000
         and: 'average performance is as expected'
-            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
+            def averageResponseTime = resourceMeter.totalTimeInSeconds / 1000
             recordAndAssertResourceUsage('Look up CM-handle by alternate-id',
                     expectedAverageResponseTime, averageResponseTime,
-                    15, resourceMeter.totalMemoryUsageInMB)
+                    200, resourceMeter.totalMemoryUsageInMB)
         where:
-            expectedAverageResponseTime = 20 * MILLISECONDS
+            expectedAverageResponseTime = 50 * MILLISECONDS
     }
 
     def 'A batch of CM-handles is looked up by alternate-id.'() {
@@ -148,7 +170,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
             recordAndAssertResourceUsage('Look up CM-handles by module-set-tag',
                     expectedAverageResponseTime, averageResponseTime,
-                    500, resourceMeter.totalMemoryUsageInMB)
+                    1200, resourceMeter.totalMemoryUsageInMB)
         where:
             expectedAverageResponseTime = 438 * MILLISECONDS
     }
