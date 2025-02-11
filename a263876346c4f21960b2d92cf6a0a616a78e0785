@@ -72,6 +72,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b2076e6_d57bf532",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T17:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a0aa035_332c7366",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 45
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2547c53b_75e03ec4",
@@ -169,6 +193,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "233afdc9_dd994636",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T17:03:57Z",
+      "side": 1,
+      "message": "yes, exactly like that as Daniel says. i add the constant to the IF.",
+      "parentUuid": "849dd0b5_ed899909",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ac7d23b_b247b609",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
         "patchSetId": 3
@@ -180,6 +228,30 @@
       "writtenOn": "2025-02-11T15:08:47Z",
       "side": 1,
       "message": "NF: extract out myLimit \u003d 123 for readabilty and use less common value",
+      "range": {
+        "startLine": 61,
+        "startChar": 103,
+        "endLine": 61,
+        "endChar": 104
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee7822fe_dda9de87",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T17:03:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac7d23b_b247b609",
       "range": {
         "startLine": 61,
         "startChar": 103,
