@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13143de0_bcc078fe",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T17:14:38Z",
+      "side": 1,
+      "message": "NB: dataSpace should be with lower case s",
+      "range": {
+        "startLine": 55,
+        "startChar": 60,
+        "endLine": 55,
+        "endChar": 69
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e4c54d_04fc5106",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T17:14:38Z",
+      "side": 1,
+      "message": "NB: prefer to hard code exacted value in testware\n(this wil prevent/make it harder to accidental change in defined value which might be backward incompatible change)",
+      "range": {
+        "startLine": 45,
+        "startChar": 121,
+        "endLine": 45,
+        "endChar": 145
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
