@@ -106,6 +106,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e7a8162_bbc24a3f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-11T10:46:26Z",
+      "side": 1,
+      "message": "/**\n * Constructs an SQL query to retrieve fragment entities based on an anchor ID and CPS path criteria.\n *\n * @param anchorEntity  the anchor entity used as a search criterion (must not be null)\n * @param cpsPathQuery  the CPS path query, which will be transformed into SQL conditions (must not be null)\n * @param limit         the maximum number of results to return; if \u003c 1, retrieves all matching entities\n * @return an executable {@link Query} object for retrieving {@link FragmentEntity} instances\n */",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 7
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e2435c9_3f4a368e",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
         "patchSetId": 1
@@ -122,6 +145,52 @@
         "startChar": 21,
         "endLine": 248,
         "endChar": 22
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57b5796b_80534a38",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-11T10:46:26Z",
+      "side": 1,
+      "message": "Null Safety: Prevents potential NullPointerException by checking limit !\u003d null:\n\nif (limit !\u003d null \u0026\u0026 limit \u003e 0)",
+      "range": {
+        "startLine": 248,
+        "startChar": 8,
+        "endLine": 248,
+        "endChar": 23
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "656de430_38a9b1a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-11T10:46:26Z",
+      "side": 1,
+      "message": "Ensuring consistency in parameter naming. do you meant \"limit\" here?",
+      "range": {
+        "startLine": 250,
+        "startChar": 33,
+        "endLine": 250,
+        "endChar": 41
       },
       "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -175,6 +244,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22e63cb7_f9a8afd8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-11T10:46:26Z",
+      "side": 1,
+      "message": "Validation: Handles limit values \u003c\u003d 0 safely. Is it worth to have ? :\n\nif (limit !\u003d null \u0026\u0026 limit \u003c\u003d 0) {\n        log.warn(\"Invalid limit value: {}. Returning an empty list.\", limit);\n        return Collections.emptyList();\n    }",
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f8bc1e7_efc23d06",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
         "patchSetId": 1
@@ -191,6 +277,29 @@
         "startChar": 80,
         "endLine": 58,
         "endChar": 92
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e5a23c_3d7e96de",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-11T10:46:26Z",
+      "side": 1,
+      "message": "/**\n * Retrieves a collection of data nodes based on the specified CPS path query.\n *\n * @param dataspaceName          the name of the dataspace (must not be null or empty)\n * @param anchorName             the name of the anchor (must not be null or empty)\n * @param cpsPath                the CPS path used for querying (must not be null or empty)\n * @param fetchDescendantsOption specifies whether to include descendant nodes in the output\n * @param limit                  the maximum number of data nodes to return; if less than 1, returns all matching nodes\n * @return a collection of matching {@link DataNode} instances (can be empty if no nodes are found)\n */",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 7
       },
       "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
