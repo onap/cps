@@ -226,6 +226,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1023a0a3_c481813a",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T17:37:01Z",
+      "side": 1,
+      "message": "same answer as before",
+      "parentUuid": "06298a80_c1314795",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 56
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80e4c54d_04fc5106",
