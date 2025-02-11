@@ -152,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb71827_df1c0155",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15051492_608a45ae",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 65
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e7a8162_bbc24a3f",
@@ -165,6 +189,30 @@
       "writtenOn": "2025-02-11T10:46:26Z",
       "side": 1,
       "message": "/**\n * Constructs an SQL query to retrieve fragment entities based on an anchor ID and CPS path criteria.\n *\n * @param anchorEntity  the anchor entity used as a search criterion (must not be null)\n * @param cpsPathQuery  the CPS path query, which will be transformed into SQL conditions (must not be null)\n * @param limit         the maximum number of results to return; if \u003c 1, retrieves all matching entities\n * @return an executable {@link Query} object for retrieving {@link FragmentEntity} instances\n */",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 7
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5cfcec_ac980588",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e7a8162_bbc24a3f",
       "range": {
         "startLine": 72,
         "startChar": 4,
@@ -221,6 +269,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d659e6_b08fffc9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57b5796b_80534a38",
+      "range": {
+        "startLine": 248,
+        "startChar": 8,
+        "endLine": 248,
+        "endChar": 23
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "775643c7_beecab2e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e2435c9_3f4a368e",
+      "range": {
+        "startLine": 248,
+        "startChar": 21,
+        "endLine": 248,
+        "endChar": 22
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "656de430_38a9b1a1",
@@ -234,6 +330,30 @@
       "writtenOn": "2025-02-11T10:46:26Z",
       "side": 1,
       "message": "Ensuring consistency in parameter naming. do you meant \"limit\" here?",
+      "range": {
+        "startLine": 250,
+        "startChar": 33,
+        "endLine": 250,
+        "endChar": 41
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00aafe7c_afa1d85c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "656de430_38a9b1a1",
       "range": {
         "startLine": 250,
         "startChar": 33,
@@ -369,6 +489,24 @@
       "side": 1,
       "message": "if the value is smaller than 1 the method should return every data node. the null check is a valid idea tho",
       "parentUuid": "22e63cb7_f9a8afd8",
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba5ca8c0_7268af2d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a7e1d50_f5955213",
       "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
