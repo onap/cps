@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -150,7 +150,7 @@ public class DmiRestClient {
      *
      * @param urlTemplateParameters   The URL template parameters for the DMI data job status endpoint.
      * @param authorization           The authorization token to be added to the request headers.
-     * @return A Mono emitting the status of the data job as a String.
+     * @return A Mono emitting the status of the data job in JSON format.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
     public Mono<String> getDataJobStatus(final UrlTemplateParameters urlTemplateParameters,
@@ -160,8 +160,7 @@ public class DmiRestClient {
                 .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
                 .retrieve()
-                .bodyToMono(JsonNode.class)
-                .map(jsonNode -> jsonNode.path("status").asText())
+                .bodyToMono(String.class)
                 .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
     }
 
