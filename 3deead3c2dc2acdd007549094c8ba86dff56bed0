@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f17f9581_a99bd563",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T17:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc10df8d_f4c1f2ac",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "3deead3c2dc2acdd007549094c8ba86dff56bed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad360f1c_66294e62",
@@ -61,6 +85,30 @@
       "writtenOn": "2025-02-11T15:21:10Z",
       "side": 1,
       "message": "Personally I\u0027d go with \u0027maxResults\u0027 everywhere.\n\nmaxResults is consistent with JPA/Hibernate naming conventions, where you have methods like query.setMaxResults.\n\n(FYI an alternate implementation here is to use query.setMaxResults(10) instead of explicitly adding LIMIT 10, but either is fine)",
+      "range": {
+        "startLine": 59,
+        "startChar": 14,
+        "endLine": 59,
+        "endChar": 19
+      },
+      "revId": "3deead3c2dc2acdd007549094c8ba86dff56bed0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1a8571_73e8270d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T17:05:18Z",
+      "side": 1,
+      "message": "decided to stick with the current naming with Toine",
+      "parentUuid": "ad360f1c_66294e62",
       "range": {
         "startLine": 59,
         "startChar": 14,
