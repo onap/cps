@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0022909_013f1268",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "NB: limit number of",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead2fd28_1ee0f379",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "NB: its called a \u0027clause\u0027 according to the docs...\naddLimitClause",
+      "range": {
+        "startLine": 227,
+        "startChar": 34,
+        "endLine": 227,
+        "endChar": 38
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "239f3e0f_22065b84",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "just wondering: why not use primitive int  (then you really dont have to worry about null)",
+      "range": {
+        "startLine": 47,
+        "startChar": 61,
+        "endLine": 47,
+        "endChar": 69
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92163a67_1183a259",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "no need to handle  null\n(would required unit test too)",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f0fedc5_c963d0d0",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "maybe avoid (some) duplication like so\n\nlog.debug(\"Fetched {} fragment entities by anchor and cps path.\", fragmentEntities.size());\nif (queryResult\u003e0) {\n   log.debug(\"Result limited to {} entries\", ...);\n}",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 98
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d460ad4d_2d913cb2",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "change to int everywhere",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e27ed6_7041c74c",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "limits\n\n(imagine a query returns 5 entries and the limit is 10, it woudln\u0027t return 10 now would it :-) )",
+      "range": {
+        "startLine": 196,
+        "startChar": 37,
+        "endLine": 196,
+        "endChar": 45
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a0802f3_6da8d32f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "no need for scenario column.\nInstead on line 461 say\n\u0027query with a limit of #limit.\u0027\n\n(scenarios are usually used to express more complicated things then just a number)",
+      "range": {
+        "startLine": 467,
+        "startChar": 12,
+        "endLine": 467,
+        "endChar": 28
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25ff966a_caddafb7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T14:27:05Z",
+      "side": 1,
+      "message": "remove, test with -1 instead (just to humor me :-) )",
+      "range": {
+        "startLine": 471,
+        "startChar": 12,
+        "endLine": 471,
+        "endChar": 40
+      },
+      "revId": "e40b9bd2e71f47f9637899010c2d3449a93277de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
