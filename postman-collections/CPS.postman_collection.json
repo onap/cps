@@ -1,0 +1,1705 @@
+{
+  "info": {
+    "_postman_id": "284e78f0-74c9-45f5-bdd5-25869a51028c",
+    "name": "CPS",
+    "description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26733783"
+  },
+  "item": [
+    {
+      "name": "CPS-Core",
+      "item": [
+        {
+          "name": "CPS-Admin",
+          "item": [
+            {
+              "name": "Create a dataspace",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataspace-name",
+                      "value": "my-store"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get a dataspace",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces/my-store",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "admin",
+                    "dataspaces",
+                    "my-store"
+                  ]
+                },
+                "description": "Read a dataspace given a dataspace name"
+              },
+              "response": []
+            },
+            {
+              "name": "Get all dataspaces",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "admin",
+                    "dataspaces"
+                  ]
+                },
+                "description": "Read all dataspaces"
+              },
+              "response": []
+            },
+            {
+              "name": "Delete a dataspace",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces?dataspace-name=my-store",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataspace-name",
+                      "value": "my-store"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create a schema set",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "cps/postman-collections/bookstore.zip"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets?schema-set-name=stores-module",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "schema-sets"
+                  ],
+                  "query": [
+                    {
+                      "key": "schema-set-name",
+                      "value": "stores-module"
+                    }
+                  ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+              },
+              "response": []
+            },
+            {
+              "name": "Get a schema set",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "schema-sets",
+                    "stores-module"
+                  ]
+                },
+                "description": "Read a schema set given a schema set name and a dataspace"
+              },
+              "response": []
+            },
+            {
+              "name": "Get schema sets",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "schema-sets"
+                  ]
+                },
+                "description": "Read all schema sets, given a dataspace"
+              },
+              "response": []
+            },
+            {
+              "name": "Delete a schema set",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "/home/jeff/Downloads/bookstore-model.yang"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "schema-sets",
+                    "stores-module"
+                  ]
+                },
+                "description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
+              },
+              "response": []
+            },
+            {
+              "name": "Create an anchor",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors?schema-set-name=stores-module&anchor-name=bookstore-anchor",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors"
+                  ],
+                  "query": [
+                    {
+                      "key": "schema-set-name",
+                      "value": "stores-module"
+                    },
+                    {
+                      "key": "anchor-name",
+                      "value": "bookstore-anchor"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get an anchor",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor"
+                  ]
+                },
+                "description": "Read all anchors, given a dataspace"
+              },
+              "response": []
+            },
+            {
+              "name": "Get anchors",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors"
+                  ]
+                },
+                "description": "Read all anchors, given a dataspace"
+              },
+              "response": []
+            },
+            {
+              "name": "Delete an anchor",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "description": "Some endpoints of CPS-ADMIN not mentioned in the CPS-CORE folder"
+        },
+        {
+          "name": "CPS-Data",
+          "item": [
+            {
+              "name": "Create DataNodes",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookstore-address\": [\n    {\n      \"bookstore-name\": \"Easons\",\n      \"address\": \"Dublin,Ireland\",\n      \"postal-code\": \"D02HA21\"\n    }\n  ],\n  \"bookstore\": {\n    \"bookstore-name\": \"Easons\",\n    \"premises\": {\n      \"addresses\": [\n        {\n          \"house-number\": 2,\n          \"street\": \"Main Street\",\n          \"town\": \"Maynooth\",\n          \"county\": \"Kildare\"\n        },\n        {\n          \"house-number\": 24,\n          \"street\": \"Grafton Street\",\n          \"town\": \"Dublin\",\n          \"county\": \"Dublin\"\n        }\n      ]\n    },\n    \"categories\": [\n      {\n        \"code\": 1,\n        \"name\": \"Children\",\n        \"books\" : [\n          {\n            \"title\": \"Matilda\",\n            \"lang\": \"English\",\n            \"authors\": [\"Roald Dahl\"],\n            \"editions\": [1988, 2000],\n            \"price\": 20\n          },\n          {\n            \"title\": \"The Gruffalo\",\n            \"lang\": \"English\",\n            \"authors\": [\"Julia Donaldson\"],\n            \"editions\": [1999],\n            \"price\": 15\n          }\n        ]\n      },\n      {\n        \"code\": 2,\n        \"name\": \"Thriller\",\n        \"books\" : [\n          {\n            \"title\": \"Annihilation\",\n            \"lang\": \"English\",\n            \"authors\": [\"Jeff VanderMeer\"],\n            \"editions\": [2014],\n            \"price\": 15\n          }\n        ]\n      },\n      {\n        \"code\": 3,\n        \"name\": \"Comedy\",\n        \"books\" : [\n          {\n            \"title\": \"Good Omens\",\n            \"lang\": \"English\",\n            \"authors\": [\"Neil Gaiman\", \"Terry Pratchett\"],\n            \"editions\": [2006],\n            \"price\": 13\n          },\n          {\n            \"title\": \"The Colour of Magic\",\n            \"lang\": \"English\",\n            \"authors\": [\"Terry Pratchett\"],\n            \"editions\": [1983],\n            \"price\": 12\n          },\n          {\n            \"title\": \"The Light Fantastic\",\n            \"lang\": \"English\",\n            \"authors\": [\"Terry Pratchett\"],\n            \"editions\": [1986],\n            \"price\": 14\n          },\n          {\n            \"title\": \"A Book with No Language\",\n            \"lang\": \"\",\n            \"authors\": [\"Joe Bloggs\"],\n            \"editions\": [2023],\n            \"price\": 20\n          }\n        ]\n      },\n      {\n        \"code\": 4,\n        \"name\": \"Computing\",\n        \"books\" : [\n          {\n            \"title\": \"Debian GNU/Linux\",\n            \"lang\": \"German\",\n            \"authors\": [\"Peter H. Ganten\", \"Wulf Alex\"],\n            \"editions\": [2007, 2013, 2021],\n            \"price\": 39\n          },\n          {\n            \"title\": \"Logarithm tables\",\n            \"lang\": \"N/A\",\n            \"authors\": [\"Joe Bloggs\"],\n            \"editions\": [2009],\n            \"price\": 11\n          }\n        ]\n      },\n      {\n        \"code\": 5,\n        \"name\": \"Discount books\",\n        \"books\" : [\n          {\n            \"title\": \"Book 1\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 1\n          },\n          {\n            \"title\": \"Book 2\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 2\n          },\n          {\n            \"title\": \"Book 3\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 3\n          },\n          {\n            \"title\": \"Book 4\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 4\n          },\n          {\n            \"title\": \"Book 5\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 5\n          },\n          {\n            \"title\": \"Book 6\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 6\n          },\n          {\n            \"title\": \"Book 7\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 7\n          },\n          {\n            \"title\": \"Book 8\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 8\n          },\n          {\n            \"title\": \"Book 9\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 9\n          },\n          {\n            \"title\": \"Book 10\",\n            \"lang\": \"blah\",\n            \"authors\": [],\n            \"editions\": [],\n            \"price\": 10\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Root Node All Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/&descendants=all",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "node"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "all"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Node Categories No Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/categories&descendants=none",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "node"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/bookstore/categories"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "none"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Node Categories with code 2 Direct Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/categories[@code='2']&descendants=direct",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "node"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/bookstore/categories[@code='2']"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "direct"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Node Premises All Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/premises&descendants=all",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "node"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/bookstore/premises"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "all"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Node Premises Direct Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/node?xpath=/bookstore/premises&descendants=1",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "node"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/bookstore/premises"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Patch Nodes",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"bookstore\": {\r\n        \"bookstore-name\": \"Chapters\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Put Nodes",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "\r\n    {\r\n        \"premises\": {\r\n            \"addresses\": [\r\n                {\r\n                    \"town\": \"Maynooth\",\r\n                    \"county\": \"Kildare\",\r\n                    \"street\": \"Main Street\",\r\n                    \"house-number\": 2\r\n                },\r\n                {\r\n                    \"town\": \"Dublin\",\r\n                    \"county\": \"Dublin\",\r\n                    \"street\": \"Grafton Street\",\r\n                    \"house-number\": 24\r\n                },\r\n                {\r\n                    \"house-number\": 13,\r\n                    \"street\": \"Church Street\",\r\n                    \"town\": \"Athlone\",\r\n                    \"county\": \"Westmeath\"\r\n                }\r\n            ]\r\n        }\r\n    }\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/bookstore",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/bookstore"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete DataNodes",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes?xpath=/",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes"
+                  ],
+                  "query": [
+                    {
+                      "key": "xpath",
+                      "value": "/"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "CPS-Query",
+          "item": [
+            {
+              "name": "Query Path Leaf Condition All Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=/bookstore/categories[@name=\"Discount books\"]&descendants=-1",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes",
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "key": "cps-path",
+                      "value": "/bookstore/categories[@name=\"Discount books\"]"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "-1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Query Path Ancestor No Descendants",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes/query?cps-path=//books[@lang=\"German\"]/ancestor::categories&descendants=0",
+                  "protocol": "http",
+                  "host": [
+                    "{{CPS_HOST}}"
+                  ],
+                  "port": "{{CPS_PORT}}",
+                  "path": [
+                    "cps",
+                    "api",
+                    "v2",
+                    "dataspaces",
+                    "my-store",
+                    "anchors",
+                    "bookstore-anchor",
+                    "nodes",
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "key": "cps-path",
+                      "value": "//books[@lang=\"German\"]/ancestor::categories"
+                    },
+                    {
+                      "key": "descendants",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ],
+      "description": "CPS-Core endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-core)\n\nTo perform this functionality execute the API calls in order to create a dataspace, schema set (file is provided), anchor, and data node. Then GET the nodes to retrieve the information. The APIs in CPS-ADMIN can be used after initial POST requests.\n\nbookstore-model.yang can be found at cps/postman-collections/bookstore-model.yang"
+    },
+    {
+      "name": "CPS-NCMP-Inventory",
+      "item": [
+        {
+          "name": "CM Handle Registration (Discovery)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmpInventory",
+                "v1",
+                "ch"
+              ]
+            },
+            "description": "DMI notifies NCMP of new CM handles"
+          },
+          "response": []
+        },
+        {
+          "name": "CM Handle Deletion",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\" ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmpInventory",
+                "v1",
+                "ch"
+              ]
+            },
+            "description": "DMI notifies NCMP of new CM handles"
+          },
+          "response": []
+        },
+        {
+          "name": "Get all CM Handle references for a registered DMI plugin",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmpInventory",
+                "v1",
+                "ch",
+                "cmHandles"
+              ],
+              "query": [
+                {
+                  "key": "dmi-plugin-identifier",
+                  "value": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092"
+                },
+                {
+                  "key": "outputAlternateId",
+                  "value": "true",
+                  "description": "Returns alternate ids rather then cm handle ids",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query for CM handle IDs",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searches",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmpInventory",
+                "v1",
+                "ch",
+                "searches"
+              ],
+              "query": [
+                {
+                  "key": "outputAlternateId",
+                  "value": "true",
+                  "description": "Returns alternate ids rather then cm handle ids",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch all module references (name and revision) for a given cm handle",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "modules"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get module definitions",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "modules",
+                "definitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Execute cm handle search using the available conditions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "searches"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve CM Handle details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "Subnetwork%3DEurope%2CManagedElement%3DX1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get CM handle properties",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1/properties",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "Subnetwork%3DEurope%2CManagedElement%3DX1",
+                "properties"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Execute cm handle query a given set of query parameters",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/id-searches",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "id-searches"
+              ],
+              "query": [
+                {
+                  "key": "outputAlternateId",
+                  "value": "true",
+                  "description": "Returns alternate ids rather then cm handle ids",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get CM handle state",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1/state",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "Subnetwork%3DEurope%2CManagedElement%3DX1",
+                "state"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change dataSync state to Enabled/Disabled",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data-sync?dataSyncEnabled=false",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data-sync"
+              ],
+              "query": [
+                {
+                  "key": "dataSyncEnabled",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "CPS-NCMP-Inventory endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp-inventory)"
+    },
+    {
+      "name": "CPS-NCMP-DATA",
+      "item": [
+        {
+          "name": "Create resource data from pass-through running for cm handle",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ietf-network:networks\": {\r\n        \"network\": [\r\n            {\r\n                \"network-types\": {},\r\n                \"network-id\": \"otn-hc\",\r\n                \"node\": [\r\n                    {\r\n                        \"node-id\": \"D1\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"1-0-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"1-2-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"1-3-1\"\r\n                            }\r\n                        ]\r\n                    },\r\n                    {\r\n                        \"node-id\": \"D2\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"2-0-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"2-1-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"2-3-1\"\r\n                            }\r\n                        ]\r\n                    },\r\n                    {\r\n                        \"node-id\": \"D3\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"3-1-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"3-2-1\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ],\r\n                \"ietf-network-topology:link\": [\r\n                    {\r\n                        \"link-id\": \"D1,1-2-1,D2,2-1-1\",\r\n                        \"source\": {\r\n                            \"source-node\": \"D1\",\r\n                            \"source-tp\": \"1-2-1\"\r\n                        },\r\n                        \"destination\": {\r\n                            \"dest-node\": \"D2\",\r\n                            \"dest-tp\": \"2-1-1\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"link-id\": \"D2,2-1-1,D1,1-2-1\",\r\n                        \"source\": {\r\n                            \"source-node\": \"D2\",\r\n                            \"source-tp\": \"2-1-1\"\r\n                        },\r\n                        \"destination\": {\r\n                            \"dest-node\": \"D1\",\r\n                            \"dest-tp\": \"1-2-1\"\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=NRCellDU/attributes/cellLocalId",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running"
+              ],
+              "query": [
+                {
+                  "key": "resourceIdentifier",
+                  "value": "NRCellDU/attributes/cellLocalId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get resource data for cm handle",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=NRCellDU/attributes/cellLocalId",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running"
+              ],
+              "query": [
+                {
+                  "key": "resourceIdentifier",
+                  "value": "NRCellDU/attributes/cellLocalId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query resource data for a given cm handle",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running/query",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running",
+                "query"
+              ],
+              "query": [
+                {
+                  "key": "options",
+                  "value": "{  \"options\": \"(depth=3)\"}",
+                  "disabled": true
+                },
+                {
+                  "key": "topic",
+                  "value": "{  \"topic\": \"my-topic-name\"}",
+                  "disabled": true
+                },
+                {
+                  "key": "include-descendants",
+                  "value": "true",
+                  "disabled": true
+                },
+                {
+                  "key": "cps-path",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update resource data from pass-through running for a cm handle",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ietf-network:networks\": {\r\n        \"network\": [\r\n            {\r\n                \"network-types\": {},\r\n                \"network-id\": \"otn-hc\",\r\n                \"node\": [\r\n                    {\r\n                        \"node-id\": \"D1\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"1-0-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"1-2-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"1-3-1\"\r\n                            }\r\n                        ]\r\n                    },\r\n                    {\r\n                        \"node-id\": \"D2\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"2-0-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"2-1-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"2-3-1\"\r\n                            }\r\n                        ]\r\n                    },\r\n                    {\r\n                        \"node-id\": \"D3\",\r\n                        \"termination-point\": [\r\n                            {\r\n                                \"tp-id\": \"3-1-1\"\r\n                            },\r\n                            {\r\n                                \"tp-id\": \"3-2-1\"\r\n                            }\r\n                        ]\r\n                    }\r\n                ],\r\n                \"ietf-network-topology:link\": [\r\n                    {\r\n                        \"link-id\": \"D1,1-2-1,D2,2-1-1\",\r\n                        \"source\": {\r\n                            \"source-node\": \"D1\",\r\n                            \"source-tp\": \"1-2-1\"\r\n                        },\r\n                        \"destination\": {\r\n                            \"dest-node\": \"D2\",\r\n                            \"dest-tp\": \"2-1-1\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"link-id\": \"D2,2-1-1,D1,1-2-1\",\r\n                        \"source\": {\r\n                            \"source-node\": \"D2\",\r\n                            \"source-tp\": \"2-1-1\"\r\n                        },\r\n                        \"destination\": {\r\n                            \"dest-node\": \"D1\",\r\n                            \"dest-tp\": \"1-2-1\"\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=NRCellDU/attributes/cellLocalId",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running"
+              ],
+              "query": [
+                {
+                  "key": "resourceIdentifier",
+                  "value": "NRCellDU/attributes/cellLocalId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Patch resource data from pass-through running",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"ietf-restconf:yang-patch\": {\r\n    \"patch-id\": \"patch-1\",\r\n    \"edit\": [\r\n      {\r\n        \"edit-id\": \"edit1\",\r\n        \"operation\": \"merge\",\r\n        \"target\": \"/\",\r\n        \"value\": {\r\n          \"test:bookstore\": {\r\n            \"bookstore-name\": \"Chapters\",\r\n            \"categories\": [\r\n              {\r\n                \"code\": \"01\",\r\n                \"name\": \"Science\",\r\n                \"books\": [\r\n                  {\r\n                    \"authors\": [\r\n                      \"Author1\",\r\n                      \"Author2\"\r\n                    ]\r\n                  }\r\n                ]\r\n              },\r\n              {\r\n                \"code\": \"02\",\r\n                \"name\": \"Arts\",\r\n                \"books\": [\r\n                  {\r\n                    \"authors\": [\r\n                      \"Author3\"\r\n                    ]\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        }\r\n      },\r\n      {\r\n        \"edit-id\": \"edit2\",\r\n        \"operation\": \"merge\",\r\n        \"target\": \"/\",\r\n        \"value\": {\r\n          \"test:bookstore\": {\r\n            \"bookstore-name\": \"Novels\",\r\n            \"categories\": [\r\n              {\r\n                \"code\": \"03\",\r\n                \"name\": \"History\",\r\n                \"books\": [\r\n                  {\r\n                    \"authors\": [\r\n                      \"Iain M. Banks\",\r\n                      \"Ursula K. Le Guin\"\r\n                    ]\r\n                  }\r\n                ]\r\n              },\r\n              {\r\n                \"code\": \"04\",\r\n                \"name\": \"Fiction\",\r\n                \"books\": [\r\n                  {\r\n                    \"authors\": [\r\n                      \"Philip Pullman\"\r\n                    ]\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          }\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=NRCellDU/attributes/cellLocalId",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running"
+              ],
+              "query": [
+                {
+                  "key": "resourceIdentifier",
+                  "value": "NRCellDU/attributes/cellLocalId"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Execute a data operation for group of cm handle references",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"operations\": [\r\n    {\r\n      \"resourceIdentifier\": \"NRCellDU/attributes/cellLocalId\",\r\n      \"targetIds\": [\r\n        \"cm-handle-1\",\"cm-handle-2\"\r\n      ],\r\n      \"datastore\": \"ncmp-datastore:passthrough-operational\",\r\n      \"options\": \"(fields=NRCellDU/attributes/cellLocalId)\",\r\n      \"operationId\": \"12\",\r\n      \"operation\": \"read\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/data?topic=batch-read-topic",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "data"
+              ],
+              "query": [
+                {
+                  "key": "topic",
+                  "value": "batch-read-topic"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete resource data",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=NRCellDU/attributes/cellLocalId",
+              "protocol": "http",
+              "host": [
+                "{{CPS_HOST}}"
+              ],
+              "port": "{{CPS_PORT}}",
+              "path": [
+                "ncmp",
+                "v1",
+                "ch",
+                "cm-handle-1",
+                "data",
+                "ds",
+                "ncmp-datastore:passthrough-running"
+              ],
+              "query": [
+                {
+                  "key": "resourceIdentifier",
+                  "value": "NRCellDU/attributes/cellLocalId"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "CPS-NCMP endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp)"
+    },
+    {
+      "name": "NCMP-DMI-Stub",
+      "item": [
+        {
+          "name": "Execute a data operation for group of cm handle ids by supplied operation details",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"operations\":\n    [\n        {\n            \"resourceIdentifier\": \"NRCellDU/attributes/cellLocalId\",\n            \"datastore\": \"ncmp-datastore:passthrough-operational\",\n            \"options\": \"some option\",\n            \"operationId\": \"12\",\n            \"cmHandles\": [\n                {\n                    \"id\": \"cmHandle123\",\n                    \"cmHandleProperties\": {\n                        \"myProp\": \"some value\",\n                        \"otherProp\": \"other value\"\n                    }\n                },\n                {\n                    \"id\": \"cmHandle123\",\n                    \"cmHandleProperties\": {\n                        \"myProp\": \"some value\",\n                        \"otherProp\": \"other value\"\n                    }\n                }\n            ],\n            \"operation\": \"read\"\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/data?topic=ncmp-async-m2m&requestId=4753fc1f-7de2-449a-b306-a6204b5370b33",
+              "protocol": "http",
+              "host": [
+                "{{DMI_HOST}}"
+              ],
+              "port": "{{DMI_PORT}}",
+              "path": [
+                "dmi",
+                "v1",
+                "data"
+              ],
+              "query": [
+                {
+                  "key": "topic",
+                  "value": "ncmp-async-m2m"
+                },
+                {
+                  "key": "requestId",
+                  "value": "4753fc1f-7de2-449a-b306-a6204b5370b33"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve module resources for one or more modules",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm-bookStore/moduleResources",
+              "protocol": "http",
+              "host": [
+                "{{DMI_HOST}}"
+              ],
+              "port": "{{DMI_PORT}}",
+              "path": [
+                "dmi",
+                "v1",
+                "ch",
+                "cm-bookStore",
+                "moduleResources"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all modules for given cm handle",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm-bookStore/modules",
+              "protocol": "http",
+              "host": [
+                "{{DMI_HOST}}"
+              ],
+              "port": "{{DMI_PORT}}",
+              "path": [
+                "dmi",
+                "v1",
+                "ch",
+                "cm-bookStore",
+                "modules"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "NCMP-DMI-Stub endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html#offered-apis)\n\n**To utilise NCMP-DMI-Stub begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`"
+    }
+  ]
+}
