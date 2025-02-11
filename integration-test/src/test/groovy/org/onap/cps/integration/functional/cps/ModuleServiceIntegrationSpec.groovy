@@ -21,8 +21,6 @@
 package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.exceptions.ModelValidationException
@@ -30,6 +28,8 @@ import org.onap.cps.api.exceptions.SchemaSetInUseException
 import org.onap.cps.api.exceptions.SchemaSetNotFoundException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
+import org.onap.cps.api.parameters.CascadeDeleteAllowed
+import org.onap.cps.integration.base.FunctionalSpecBase
 
 class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -132,7 +132,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema2', yangResourceContentPerName)
         then: 'the dataspace has no additional module (reference)'
             assert numberOfModuleReferencesAfterFirstSchemaSetHasBeenAdded  == objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).size()
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, [ 'newSchema1', 'newSchema2'])
     }
 
@@ -216,6 +216,9 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             assert result.name == 'bookstoreSchemaSet'
             assert result.moduleReferences.size() == 2
             assert result.moduleReferences.containsAll(bookStoreModuleReferenceWithNamespace, bookStoreTypesModuleReferenceWithNamespace)
+        and: 'the yang resource is stored with the normalized filename'
+            def fileName = cpsModulePersistenceService.getYangSchemaResources(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_SCHEMA_SET).keySet()[0]
+            assert fileName == 'bookstore-types@2024-01-30.yang'
     }
 
     def 'Retrieve all schema sets.'() {
@@ -227,9 +230,48 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'the result contains all expected schema sets'
             assert result.name.size() == 2
             assert result.name.containsAll('bookstoreSchemaSet', 'newSchema1')
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchema1'])
     }
+
+    def 'Create schema set with duplicate module filename [CPS-138].'() {
+        given: 'store the original number of sets and modules'
+            def numberOfSchemaSets = objectUnderTest.getSchemaSets(FUNCTIONAL_TEST_DATASPACE_1).size()
+            def numberOfModuleReferences = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).size()
+        and: 'create a new schema set using a module with filename identical to a previously stored module (e.g. bookstore)'
+            populateYangResourceContentPerNameAndAllModuleReferences('otherModule', 1)
+            def otherModuleContent = yangResourceContentPerName.values()[0]
+            def mapWithDuplicateName = ['bookstore' : otherModuleContent]
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema', mapWithDuplicateName)
+        when: 'the yang resource details are retrieved'
+            def yangSchemaResources = cpsModulePersistenceService.getYangSchemaResources(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema')
+        then: 'the file name of the resource has been normalized'
+            def fileName = yangSchemaResources.keySet()[0]
+            assert fileName == 'otherModule_0@2000-01-01.yang'
+        and: 'the yang resource has the correct content'
+            assert yangSchemaResources.get(fileName) == otherModuleContent
+        and: 'the number of schema sets and modules has increased as expected'
+            assert objectUnderTest.getSchemaSets(FUNCTIONAL_TEST_DATASPACE_1).size() == numberOfSchemaSets + 1
+            assert objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).size() == numberOfModuleReferences + 1
+        cleanup: 'the data created in this test'
+            objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchema'])
+    }
+
+    def 'Create schema set with RFC-6020 filename pattern but incorrect details [CPS-138].'() {
+        given: 'create a new schema set using a module with filename identical to a previously stored module (e.g. bookstore)'
+            populateYangResourceContentPerNameAndAllModuleReferences('otherModule', 1)
+            def otherModuleContent = yangResourceContentPerName.values()[0]
+            def mapIncorrectName = ['wrongModuleAndRevision@1999-08-08.yang': otherModuleContent]
+            objectUnderTest.createSchemaSet(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema', mapIncorrectName)
+        when: 'the yang resource details are retrieved'
+            def yangSchemaResources = cpsModulePersistenceService.getYangSchemaResources(FUNCTIONAL_TEST_DATASPACE_1, 'newSchema')
+        then: 'the file name of the resource has been normalized'
+            def fileName = yangSchemaResources.keySet()[0]
+            assert fileName == 'otherModule_0@2000-01-01.yang'
+        cleanup: 'the data created in this test'
+            objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchema'])
+    }
+
 
     /*
         D E L E T E   S C H E M A   S E T   U S E - C A S E S
@@ -253,7 +295,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         then: 'check if the dataspace still contains the new schema set or not'
             def remainingSchemaSetNames = objectUnderTest.getSchemaSets(FUNCTIONAL_TEST_DATASPACE_1).name
             assert remainingSchemaSetNames.contains('newSchemaSet') == expectSchemaSetStillPresent
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchemaSet'])
         where: 'the following options are used'
             associateWithAnchor | cascadeDeleteAllowedOption                     || expectSchemaSetStillPresent
@@ -284,7 +326,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             def remainingModuleRevisions = objectUnderTest.getYangResourceModuleReferences(FUNCTIONAL_TEST_DATASPACE_1).revision
             assert remainingModuleRevisions.contains('2000-01-01')
             assert !remainingModuleRevisions.contains('2001-01-01')
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['newSchemaSet1'])
     }
 
@@ -325,7 +367,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
             assert yangResourceModuleReferencesAfterUpgrade.size() == 3
             assert yangResourceModuleReferencesAfterUpgrade.contains(bookStoreModuleReference)
             assert yangResourceModuleReferencesAfterUpgrade.containsAll(newModuleReferences);
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['targetSchema'])
     }
 
@@ -351,7 +393,7 @@ class ModuleServiceIntegrationSpec extends FunctionalSpecBase {
         and: 'the associated target anchor has the same module references (without namespace but that is a legacy issue)'
             def anchorModuleReferencesAfterUpgrade = objectUnderTest.getYangResourcesModuleReferences(FUNCTIONAL_TEST_DATASPACE_1, 'targetAnchor')
             assert anchorModuleReferencesAfterUpgrade.containsAll([new ModuleReference('source_0','2000-01-01'),new ModuleReference('source_1','2001-01-01')]);
-        cleanup:
+        cleanup: 'the data created in this test'
             objectUnderTest.deleteSchemaSetsWithCascade(FUNCTIONAL_TEST_DATASPACE_1, ['sourceSchema', 'targetSchema'])
     }
 

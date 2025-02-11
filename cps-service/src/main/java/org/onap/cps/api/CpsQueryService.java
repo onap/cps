@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ import org.onap.cps.api.parameters.PaginationOption;
  */
 public interface CpsQueryService {
 
-    public static int NO_LIMIT = 0;
+    int NO_LIMIT = 0;
 
     /**
      * Get data nodes for the given dataspace and anchor by cps path.

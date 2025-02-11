@@ -24,6 +24,7 @@
 package org.onap.cps.ri;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
@@ -260,10 +261,12 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
                 final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
                             entry.getValue());
                 final YangResourceEntity yangResourceEntity = new YangResourceEntity();
-                yangResourceEntity.setFileName(entry.getKey());
                 yangResourceEntity.setContent(entry.getValue());
-                yangResourceEntity.setModuleName(moduleNameAndRevisionMap.get("moduleName"));
-                yangResourceEntity.setRevision(moduleNameAndRevisionMap.get("revision"));
+                final String moduleName = moduleNameAndRevisionMap.get("moduleName");
+                final String revision = moduleNameAndRevisionMap.get("revision");
+                yangResourceEntity.setModuleName(moduleName);
+                yangResourceEntity.setRevision(revision);
+                yangResourceEntity.setFileName(moduleName + "@" + revision + RFC6020_YANG_FILE_EXTENSION);
                 yangResourceEntity.setChecksum(checksum);
                 return yangResourceEntity;
             })
