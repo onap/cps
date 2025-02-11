@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "849dd0b5_ed899909",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-11T15:47:16Z",
+      "side": 1,
+      "message": "I think the rules say that other packages can\u0027t depend on RI, but RI can depend on others. Like RI already uses public api stuff like FetchDescendantsOption",
+      "parentUuid": "c452c027_6c9af40b",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "a263876346c4f21960b2d92cf6a0a616a78e0785",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ac7d23b_b247b609",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
         "patchSetId": 3
