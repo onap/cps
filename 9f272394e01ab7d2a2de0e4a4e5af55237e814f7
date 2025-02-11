@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34adc875_6657373a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ab99397_bf0c2a15",
+      "range": {
+        "startLine": 224,
+        "startChar": 26,
+        "endLine": 224,
+        "endChar": 40
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8200c32_391a5088",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-02-11T10:24:37Z",
       "side": 1,
       "message": "NB: Add @Timed  like above: ... .querywithLimit",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 11
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b7b4d0_214fe438",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8200c32_391a5088",
       "range": {
         "startLine": 234,
         "startChar": 4,
@@ -219,6 +267,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f42458c3_2d59fa14",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48b6a957_44715037",
+      "range": {
+        "startLine": 43,
+        "startChar": 32,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b07be81_5757a90c",
@@ -232,6 +304,30 @@
       "writtenOn": "2025-02-11T10:24:37Z",
       "side": 1,
       "message": "should this be transactional too?",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea05eab6_1034df31",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b07be81_5757a90c",
       "range": {
         "startLine": 51,
         "startChar": 5,
@@ -261,6 +357,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a7e1d50_f5955213",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "if the value is smaller than 1 the method should return every data node. the null check is a valid idea tho",
+      "parentUuid": "22e63cb7_f9a8afd8",
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f8bc1e7_efc23d06",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
         "patchSetId": 1
@@ -272,6 +386,30 @@
       "writtenOn": "2025-02-11T10:24:37Z",
       "side": 1,
       "message": "(query result was limited to {} entries)\nif we use the concept of NO_LIMIT \u003d -1 you might need and if else statement and have 2 version of logginf here",
+      "range": {
+        "startLine": 58,
+        "startChar": 80,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a427c5e_cce3fcb9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f8bc1e7_efc23d06",
       "range": {
         "startLine": 58,
         "startChar": 80,
@@ -295,6 +433,30 @@
       "writtenOn": "2025-02-11T10:46:26Z",
       "side": 1,
       "message": "/**\n * Retrieves a collection of data nodes based on the specified CPS path query.\n *\n * @param dataspaceName          the name of the dataspace (must not be null or empty)\n * @param anchorName             the name of the anchor (must not be null or empty)\n * @param cpsPath                the CPS path used for querying (must not be null or empty)\n * @param fetchDescendantsOption specifies whether to include descendant nodes in the output\n * @param limit                  the maximum number of data nodes to return; if less than 1, returns all matching nodes\n * @return a collection of matching {@link DataNode} instances (can be empty if no nodes are found)\n */",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 7
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07b8b717_a28f6b3b",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-02-11T13:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e5a23c_3d7e96de",
       "range": {
         "startLine": 48,
         "startChar": 4,
