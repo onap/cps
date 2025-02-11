@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
@@ -77,7 +78,7 @@ public final class YangTextSchemaSourceSetBuilder {
      * @return the YangTextSchemaSourceSet
      */
     public YangTextSchemaSourceSet build() {
-        final var schemaContext = generateSchemaContext(yangModelMap.build());
+        final SchemaContext schemaContext = generateSchemaContext(yangModelMap.build());
         return new YangTextSchemaSourceSetImpl(schemaContext);
     }
 
@@ -113,9 +114,7 @@ public final class YangTextSchemaSourceSetBuilder {
 
         @Override
         public List<ModuleReference> getModuleReferences() {
-            return schemaContext.getModules().stream()
-                .map(YangTextSchemaSourceSetImpl::toModuleReference)
-                .collect(Collectors.toList());
+            return schemaContext.getModules().stream().map(YangTextSchemaSourceSetImpl::toModuleReference).toList();
         }
 
         private static ModuleReference toModuleReference(final Module module) {
@@ -164,12 +163,11 @@ public final class YangTextSchemaSourceSetBuilder {
 
     private static List<YangTextSchemaSource> forResources(final Map<String, String> yangResourceNameToContent) {
         return yangResourceNameToContent.entrySet().stream()
-            .map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue()))
-            .collect(Collectors.toList());
+            .map(entry -> toYangTextSchemaSource(entry.getKey(), entry.getValue())).toList();
     }
 
     private static YangTextSchemaSource toYangTextSchemaSource(final String sourceName, final String source) {
-        final var revisionSourceIdentifier =
+        final RevisionSourceIdentifier revisionSourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
         return new YangTextSchemaSource(revisionSourceIdentifier) {
@@ -192,7 +190,7 @@ public final class YangTextSchemaSourceSetBuilder {
     }
 
     private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {
-        final var matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
+        final Matcher matcher = RFC6020_RECOMMENDED_FILENAME_PATTERN.matcher(sourceName);
         if (matcher.matches()) {
             return RevisionSourceIdentifier.create(matcher.group(1), Revision.of(matcher.group(2)));
         }

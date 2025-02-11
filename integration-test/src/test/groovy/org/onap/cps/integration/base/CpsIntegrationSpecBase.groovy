@@ -48,6 +48,7 @@ import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
+import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -99,6 +100,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     SessionManager sessionManager
+
+    @Autowired
+    CpsModulePersistenceService cpsModulePersistenceService
 
     @Autowired
     DataspaceRepository dataspaceRepository

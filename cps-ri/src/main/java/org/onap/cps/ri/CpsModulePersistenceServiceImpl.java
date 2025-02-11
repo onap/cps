@@ -24,6 +24,7 @@
 package org.onap.cps.ri;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
@@ -253,25 +254,24 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private static Map<String, YangResourceEntity> getYangResourceEntityPerChecksum(
         final Map<String, String> yangResourceContentPerName) {
-        final Map<String, YangResourceEntity> yangResourceEntityPerChecksum =
-            yangResourceContentPerName.entrySet().stream()
-            .map(entry -> {
-                final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
-                final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
-                            entry.getValue());
-                final YangResourceEntity yangResourceEntity = new YangResourceEntity();
-                yangResourceEntity.setFileName(entry.getKey());
-                yangResourceEntity.setContent(entry.getValue());
-                yangResourceEntity.setModuleName(moduleNameAndRevisionMap.get("moduleName"));
-                yangResourceEntity.setRevision(moduleNameAndRevisionMap.get("revision"));
-                yangResourceEntity.setChecksum(checksum);
-                return yangResourceEntity;
-            })
-            .collect(Collectors.toMap(
-                YangResourceEntity::getChecksum,
-                entity -> entity
-            ));
-        return yangResourceEntityPerChecksum;
+        return yangResourceContentPerName.entrySet().stream().map(entry -> {
+            final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
+            final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
+                        entry.getValue());
+            final YangResourceEntity yangResourceEntity = new YangResourceEntity();
+            yangResourceEntity.setContent(entry.getValue());
+            final String moduleName = moduleNameAndRevisionMap.get("moduleName");
+            final String revision = moduleNameAndRevisionMap.get("revision");
+            yangResourceEntity.setModuleName(moduleName);
+            yangResourceEntity.setRevision(revision);
+            yangResourceEntity.setFileName(moduleName + "@" + revision + RFC6020_YANG_FILE_EXTENSION);
+            yangResourceEntity.setChecksum(checksum);
+            return yangResourceEntity;
+        })
+    .collect(Collectors.toMap(
+        YangResourceEntity::getChecksum,
+        entity -> entity
+    ));
     }
 
     private void createAndSaveSchemaSetEntity(final String dataspaceName,
