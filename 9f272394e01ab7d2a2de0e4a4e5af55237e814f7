@@ -33,6 +33,167 @@
       "message": "recheck",
       "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab99397_bf0c2a15",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "should this method call the new method with a  special constant NO_LIMIT \u003d -1 to avoid code duplication",
+      "range": {
+        "startLine": 224,
+        "startChar": 26,
+        "endLine": 224,
+        "endChar": 40
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8200c32_391a5088",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "NB: Add @Timed  like above: ... .querywithLimit",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 11
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15051492_608a45ae",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": ", cps path and limit",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 65
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e2435c9_3f4a368e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "use NO_LIMIT constant (might need to define it in 2 different interfaces, think of your dependency rules!",
+      "range": {
+        "startLine": 248,
+        "startChar": 21,
+        "endLine": 248,
+        "endChar": 22
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b6a957_44715037",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "maybe this method can be removed if we use the concept of NO_LIMIT \u003d -1",
+      "range": {
+        "startLine": 43,
+        "startChar": 32,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b07be81_5757a90c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "should this be transactional too?",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f8bc1e7_efc23d06",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-11T10:24:37Z",
+      "side": 1,
+      "message": "(query result was limited to {} entries)\nif we use the concept of NO_LIMIT \u003d -1 you might need and if else statement and have 2 version of logginf here",
+      "range": {
+        "startLine": 58,
+        "startChar": 80,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "9f272394e01ab7d2a2de0e4a4e5af55237e814f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
