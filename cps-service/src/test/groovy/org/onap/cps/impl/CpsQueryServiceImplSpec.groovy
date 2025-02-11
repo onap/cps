@@ -21,7 +21,7 @@
 
 package org.onap.cps.impl
 
-
+import org.onap.cps.api.CpsQueryService
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.api.parameters.FetchDescendantsOption
@@ -42,12 +42,27 @@ class CpsQueryServiceImplSpec extends Specification {
         when: 'queryDataNodes is invoked'
             objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption)
+            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, CpsQueryService.NO_LIMIT)
         and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'all fetch descendants options are supported'
             fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
                                        FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
+    }
+
+    def 'Query data nodes by cps path with limit.'() {
+        given: 'a dataspace name, an anchor name and a cps path'
+            def dataspaceName = 'some-dataspace'
+            def anchorName = 'some-anchor'
+            def cpsPath = '/cps-path'
+            def fetchDescendantsOption = FetchDescendantsOption.OMIT_DESCENDANTS
+            def myLimit = 123
+        when: 'queryDataNodes (with limit) is invoked'
+            objectUnderTest.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, myLimit)
+        then: 'the persistence service is called once with the correct parameters'
+            1 * mockCpsDataPersistenceService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, myLimit)
+        and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
     def 'Query data nodes across all anchors by cps path with #fetchDescendantsOption.'() {
