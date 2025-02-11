@@ -154,11 +154,14 @@ services:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.7.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
+    depends_on:
+      - sdnc
+      - pnf-simulator
     environment:
       CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
-      CPS_CORE_HOST: ${CPS_CORE_HOST:-cps-and-ncmp}
-      CPS_CORE_PORT: ${CPS_CORE_PORT:-8080}
+      CPS_CORE_HOST: nginx
+      CPS_CORE_PORT: 80
       CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
       CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
       SDNC_HOST: ${SDNC_HOST:-sdnc}
@@ -200,6 +203,98 @@ services:
       - dmi-service
     healthcheck:
       test: wget -q -O - http://localhost:8092/actuator/health/readiness | grep -q '{"status":"UP"}' || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  sdnc:
+    container_name: sdnc
+    image: onap/sdnc-image:${SDNC_VERSION:-2.2.3}
+    entrypoint: /opt/onap/sdnc/bin/startODL.sh
+    ports:
+      - 8181:8181
+    depends_on:
+      sdnc-db:
+        condition: service_healthy
+    hostname: sdnc
+    links:
+      - sdnc-db:dbhost
+      - sdnc-db:sdnctldb01
+      - sdnc-db:sdnctldb02
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
+      - SDNC_CONFIG_DIR=/opt/onap/sdnc/data/properties
+      - SDNC_BIN=/opt/onap/sdnc/bin
+      - ODL_CERT_DIR=/opt/opendaylight/certs
+      - ODL_ADMIN_USERNAME=${ODL_USER:-admin}
+      - ODL_ADMIN_PASSWORD=${ODL_PASSWORD:-Kp8bJ4SXszM0WXlhak3eHlcse2gAw84vaoGGmJvUy2U}
+      - SDNC_DB_INIT=true
+      - SQL_CRYPTKEY=${SQL_CRYPTKEY:-fakECryptKey}
+    volumes:
+      - ./config/sdnc/certs/certs.properties:/opt/opendaylight/certs/certs.properties
+      - ./config/sdnc/certs/keys0.zip:/opt/opendaylight/certs/keys0.zip
+    profiles:
+      - dmi-service
+    healthcheck:
+      test: "wget -q -O - --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' http://localhost:8181/restconf/operational/network-topology:network-topology || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 6
+      start_period: 60s
+
+  sdnc-sidecar: # This container runs a script to mount the PNFDemo node to SDNC, needed for CSITs.
+    container_name: sdnc-sidecar
+    image: alpine:latest
+    volumes:
+      - ./config/sdnc/check_sdnc_mount_node.sh:/root/check_sdnc_mount_node.sh
+    command: sh /root/check_sdnc_mount_node.sh
+    depends_on:
+      sdnc:
+        condition: service_healthy
+      pnf-simulator:
+        condition: service_healthy
+    profiles:
+      - dmi-service
+    # Note: This container does not need a health-check as it immediately exits with status 0 or 1.
+
+  sdnc-db:
+    container_name: sdnc-db
+    image: mariadb:10.5
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=${MYSQL_USER:-sdnc}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-sdncdb}
+    profiles:
+      - dmi-service
+    healthcheck:
+      test: healthcheck.sh --connect --innodb_initialized || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  pnf-simulator:
+    container_name: pnf-simulator
+    image: blueonap/netconf-pnp-simulator:v2.8.6
+    restart: always
+    ports:
+      - 830:830
+      - 6513:6513
+    volumes:
+      - ./config/pnfsim/netconf-config:/config/modules/stores
+      - ./config/pnfsim/tls:/config/tls
+    profiles:
+      - dmi-service
+    healthcheck:
+      test: nc -z 127.0.0.1 6513 || exit 1
       interval: 10s
       timeout: 10s
       retries: 3
