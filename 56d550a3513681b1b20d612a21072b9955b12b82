@@ -1,6 +1,161 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "196da702_919be138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "With some question and copyright updates, otherwise good.",
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed229e1e_1bc3dc4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "NB: can add Nordix modification copyrights",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 59
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d55d0e_46afdf1d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ce336bb_7d488ddb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQuery.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e40dd91_04e56f8d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "Nb: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4174b929_43044a3d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "NB: Not needed by default all variable in interfaces public static final",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d73556_c187616f",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsQueryService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "Question: I wonder if you can use the method above by adding queryResultLimit. Then you can simply provide it when given otherwise you can set it to ZERO in places where the interface above called from.\n\nYou can ignore this question if the existing tests are gettin complex.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 62
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13143de0_bcc078fe",
@@ -19,6 +174,29 @@
         "startChar": 60,
         "endLine": 55,
         "endChar": 69
+      },
+      "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06298a80_c1314795",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-11T17:32:06Z",
+      "side": 1,
+      "message": "NB: Same question being asked applicaple to this method duplication as well.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 56
       },
       "revId": "56d550a3513681b1b20d612a21072b9955b12b82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
