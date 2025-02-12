@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1fa99f2d_766987c3",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-12T17:41:59Z",
+      "side": 1,
+      "message": "Spot on!\n\nWithout --quiet-pull, you will see large amounts of useless logging:\n\n    15:33:54  686a76acd3c2 Downloading [\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e                       ]  316.6MB/581MB\n    15:33:54  686a76acd3c2 Downloading [\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e                       ]  324.6MB/581MB\n    15:33:55  686a76acd3c2 Downloading [\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e                      ]  333.6MB/581MB\n    15:33:55  686a76acd3c2 Downloading [\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003e                     ]  346.5MB/581MB",
+      "parentUuid": "aac2f537_f777fbee",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9425b5e6_e1e89292",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 10
@@ -78,6 +102,30 @@
       "writtenOn": "2025-02-12T15:22:58Z",
       "side": 1,
       "message": "don\u0027t see those two new options here",
+      "range": {
+        "startLine": 21,
+        "startChar": 48,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de5f6068_f418657e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-12T17:41:59Z",
+      "side": 1,
+      "message": "Same as other comment above: --quiet-pull is only needed on pipeline jobs. It\u0027s works fine on command-line.",
+      "parentUuid": "9425b5e6_e1e89292",
       "range": {
         "startLine": 21,
         "startChar": 48,
@@ -113,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a045631_9689d812",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-12T17:41:59Z",
+      "side": 1,
+      "message": "When there is only one container running, so we use PORT. We only use PORT_RANGE for cps-and-ncmp because we run multiple instance. See configs of all the other containers above.",
+      "parentUuid": "24e609f7_0500ccea",
+      "range": {
+        "startLine": 273,
+        "startChar": 28,
+        "endLine": 273,
+        "endChar": 32
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "680f8619_208671b8",
         "filename": "docker-compose/env/endurance.env",
         "patchSetId": 10
@@ -124,6 +196,30 @@
       "writtenOn": "2025-02-12T15:22:58Z",
       "side": 1,
       "message": "maybe say something in commit message about this",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 27
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ba1454_6b95b838",
+        "filename": "docker-compose/env/endurance.env",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-12T17:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "680f8619_208671b8",
       "range": {
         "startLine": 3,
         "startChar": 0,
@@ -147,6 +243,24 @@
       "writtenOn": "2025-02-12T15:22:58Z",
       "side": 1,
       "message": "says somethign in commit message about this",
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fccb0af4_863458ee",
+        "filename": "docker-compose/env/kpi.env",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-12T17:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5f0c9f7_d2efcbb5",
       "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
