@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c3dc82a_85cd1c37",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-12T17:33:20Z",
+      "side": 1,
+      "message": "--quiet-pull\n1. Silences output related to pulling images unless an error occurs.\n2. Useful in scripts where we don’t want unnecessary logs.\n\n--detach (or -d)\n1. Runs containers in the background (detached mode).\n2. Without this flag, logs will be shown in the terminal, and the process will block.\n\n--wait\n1. This tells Docker Compose to wait until all containers are healthy before returning control to the script.\n2. It relies on the healthcheck configuration in our docker-compose.yml\n\nNote:\nIf a container does not become healthy, the command fails, preventing issues later in the script.",
+      "parentUuid": "aac2f537_f777fbee",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9425b5e6_e1e89292",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 10
