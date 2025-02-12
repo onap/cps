@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -168,13 +168,12 @@ class DmiRestClientSpec extends Specification {
     def 'DMI GET Operation for DMI Data Service '() {
         given: 'the Data web client returns a valid response entity for the expected parameters'
             mockDataServicesWebClient.get() >> mockRequestBody
-            def jsonNode = jsonObjectMapper.convertJsonString('{"status":"some status"}', JsonNode.class)
-            ((ObjectNode) jsonNode).put('status', 'some status')
-            mockResponse.bodyToMono(JsonNode.class) >> Mono.just(jsonNode)
+            def result = '{"status":"some status"}'
+            mockResponse.bodyToMono(String.class) >> Mono.just(result)
         when: 'GET operation is invoked for Data Service'
             def response = objectUnderTest.getDataJobStatus(urlTemplateParameters, NO_AUTH_HEADER).block()
         then: 'the response equals to the expected value'
-            assert response == 'some status'
+            assert response == '{"status":"some status"}'
     }
 
     def 'Get data job result from DMI.'() {
