@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d95c82a3_6f8964ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "Some NB otherwise good commit!",
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc58bec_46a4e1f6",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: This suppose to be under the main copyright statement above like on line 4 ?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 58
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a594126b_8352692e",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: I see you individually added health check for both dmi plugin, then this function is no more needed!\n\nAs discussed this ll be removed in next commit...",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 1
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398701a8_2d522188",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: A health checks already added for both services, over docker-compose so these funcions no more needed!\n\nAgreed on a call and ll be removed in next commit",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 45
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade96f1a_797a0305",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: not needed",
+      "range": {
+        "startLine": 21,
+        "startChar": 93,
+        "endLine": 21,
+        "endChar": 96
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69589b3_8f94e9a1",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: not needed 😄",
+      "range": {
+        "startLine": 25,
+        "startChar": 105,
+        "endLine": 25,
+        "endChar": 108
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "590b8ba9_fb589f71",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-12T14:21:44Z",
+      "side": 1,
+      "message": "NB: 2024-2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "77a455beeddb9c667776cdce769858d5a1ffb312",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
