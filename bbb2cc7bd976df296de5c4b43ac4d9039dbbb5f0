@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f11fc2d_0b769505",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "I\u0027m not the best persons to review this. TO many unknowns for me.\nI have some questions though. My main issue is that this commit does much more then it says on the tin, so please just update what is says on the tin :-D",
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aac2f537_f777fbee",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "just curious, what do these two new options do exactly, why did you add them?",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9425b5e6_e1e89292",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "don\u0027t see those two new options here",
+      "range": {
+        "startLine": 21,
+        "startChar": 48,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e609f7_0500ccea",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "not mentioned in commit message, why was this changed?",
+      "range": {
+        "startLine": 273,
+        "startChar": 28,
+        "endLine": 273,
+        "endChar": 32
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "680f8619_208671b8",
+        "filename": "docker-compose/env/endurance.env",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "maybe say something in commit message about this",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 27
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f0c9f7_d2efcbb5",
+        "filename": "docker-compose/env/kpi.env",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-12T15:22:58Z",
+      "side": 1,
+      "message": "says somethign in commit message about this",
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
