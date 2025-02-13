@@ -325,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ec016ea_be571969",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "Agreed to keep depth",
+      "parentUuid": "3c6b85ac_cbf7443c",
+      "range": {
+        "startLine": 629,
+        "startChar": 48,
+        "endLine": 629,
+        "endChar": 53
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16c39dd7_ba7dd311",
         "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
         "patchSetId": 1
@@ -336,6 +360,30 @@
       "writtenOn": "2025-02-04T17:49:22Z",
       "side": 1,
       "message": "I have seen \"fields\" option with , separator and / separators. Its a RestConf concept I am pretty sure it needs to be ,  But you can loop of RestConf definition of fields option..\nThis applies to many examples in multipel commits!",
+      "range": {
+        "startLine": 641,
+        "startChar": 29,
+        "endLine": 641,
+        "endChar": 41
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbff099f_596e4b86",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c39dd7_ba7dd311",
       "range": {
         "startLine": 641,
         "startChar": 29,

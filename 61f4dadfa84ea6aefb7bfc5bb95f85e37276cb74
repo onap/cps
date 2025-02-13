@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72a9a964_3d60936c",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "\u0027/ManagedElement\u003dNRNode1/GNBDUFunction\u003d1\u0027",
+      "range": {
+        "startLine": 367,
+        "startChar": 19,
+        "endLine": 367,
+        "endChar": 59
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5272a0c7_5300e6d6",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "next level:\n   ..attributes:\n       ....gNBId: 12345\n       ....gNBIdLength: 32\n       ....gNBDUName: \"DU-1\"",
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7fcecb_d5d91aa3",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "keep only one example : /ManagedElement\u003dnode1/GNBDUFunction\u003d1",
+      "range": {
+        "startLine": 605,
+        "startChar": 15,
+        "endLine": 606,
+        "endChar": 92
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c8035f_ddb9fff9",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "keep only one example : /ManagedElement\u003dnode1/GNBDUFunction\u003d1",
+      "range": {
+        "startLine": 611,
+        "startChar": 7,
+        "endLine": 622,
+        "endChar": 68
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2543024b_d06d1844",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "attributes(gNBId;gNBDUName)",
+      "range": {
+        "startLine": 630,
+        "startChar": 45,
+        "endLine": 630,
+        "endChar": 57
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f63d14_0e140539",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "attributes(gNBId;gNBDUName)",
+      "range": {
+        "startLine": 631,
+        "startChar": 46,
+        "endLine": 631,
+        "endChar": 58
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83e1250_e432d7d4",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "attributes(gNBId;gNBDUName)",
+      "range": {
+        "startLine": 641,
+        "startChar": 29,
+        "endLine": 641,
+        "endChar": 41
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22fa171d_c2d50f33",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "attributes(gNBId;gNBDUName)",
+      "range": {
+        "startLine": 644,
+        "startChar": 37,
+        "endLine": 644,
+        "endChar": 49
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4144adf0_113ac9b4",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model-data-v4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "gNBId",
+      "range": {
+        "startLine": 15,
+        "startChar": 15,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "443deabf_0ad970ea",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model-data-v4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "id\n\ndo apply for all the places",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f62fa0_780d0957",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model-data-v4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "same as above all the places",
+      "range": {
+        "startLine": 25,
+        "startChar": 15,
+        "endLine": 25,
+        "endChar": 17
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad917b9_4d727ab2",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model-data-v4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "id\n\ndo apply for all the places",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "263cf408_64e513ef",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "gNBId \n\ndo correct all the places",
+      "range": {
+        "startLine": 857,
+        "startChar": 9,
+        "endLine": 857,
+        "endChar": 12
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "614be8c9_950dfc2f",
+        "filename": "cps-service/src/test/resources/e2e/basic/ran-network2020-08-06.yang",
+        "patchSetId": 3
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T11:16:33Z",
+      "side": 1,
+      "message": "gNBId\n\ndo correct all the places",
+      "range": {
+        "startLine": 904,
+        "startChar": 9,
+        "endLine": 904,
+        "endChar": 12
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
