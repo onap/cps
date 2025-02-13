@@ -30,6 +30,7 @@ import {
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
+import { sendKafkaMessages } from './common/produce-avc-event.js';
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -217,6 +218,10 @@ export function legacyBatchProduceScenario() {
     const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, 0);
     const response = legacyBatchRead(nextBatchOfCmHandleIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+export function produceAvcEventsScenario() {
+    sendKafkaMessages();
 }
 
 export function legacyBatchConsumeScenario() {
