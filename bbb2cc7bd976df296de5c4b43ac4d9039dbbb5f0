@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bb2fd09_0a6f363e",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T11:06:07Z",
+      "side": 1,
+      "message": "great, thanks for the detailed explanation. Everyday is a schoolday :-D",
+      "parentUuid": "1fa99f2d_766987c3",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9425b5e6_e1e89292",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 10
@@ -160,6 +184,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc84f03_9ab3a948",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T11:06:07Z",
+      "side": 1,
+      "message": "I understand now I have seen those \u003d\u003d\u003d\u003e bars moving on command line they work fine then but they contaminate logs unnecessary",
+      "parentUuid": "2737d3aa_02cb7d98",
+      "range": {
+        "startLine": 21,
+        "startChar": 48,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24e609f7_0500ccea",
@@ -197,6 +245,30 @@
       "side": 1,
       "message": "When there is only one container running, so we use PORT. We only use PORT_RANGE for cps-and-ncmp because we run multiple instance. See configs of all the other containers above.",
       "parentUuid": "24e609f7_0500ccea",
+      "range": {
+        "startLine": 273,
+        "startChar": 28,
+        "endLine": 273,
+        "endChar": 32
+      },
+      "revId": "bbb2cc7bd976df296de5c4b43ac4d9039dbbb5f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f0570b5_998948d8",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T11:06:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a045631_9689d812",
       "range": {
         "startLine": 273,
         "startChar": 28,
