@@ -45,6 +45,149 @@
       },
       "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59941eba_754fca7c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "incorrect package for this one.\nshould be in org.onap.cps.impl",
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bba40e4_97f962b6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "NB: can remove extra line",
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3425fb8_4e9922c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "NB: legacy. this piece of code is duplicated at few places. Maybe we should make it reusable.\nI need to take some action for this.\nU can ignore this comment for now.",
+      "range": {
+        "startLine": 80,
+        "startChar": 1,
+        "endLine": 90,
+        "endChar": 24
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3248dbc_77fade94",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "NB: when I made comment about the xpath. we can extract them out as private static final string variables and then can use the String.format to substitute the values , same applies for others as well.",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 96
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4021fd4_0fdf785f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "NB: extra space.",
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c0b9ab_5a290e13",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "mockPrefixResolver",
+      "range": {
+        "startLine": 58,
+        "startChar": 9,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f029c422_152e5b91",
+        "filename": "cps-service/src/test/resources/cps-notification-subscriptions@2024-07-03.yang",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T15:30:13Z",
+      "side": 1,
+      "message": "NB: this leaf list is added just to make the schema flexible to accomodate the subscription id. Although we are not storing any subscription id for now\n OR I would suggest we can store it with a subscription id. with your use case u will just have one master subscription which you will be creating , modifying , deleting and retreiving details from . ??",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
