@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,12 +18,14 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { crypto } from 'k6/experimental/webcrypto';
-import { check } from 'k6';
-import { Writer, SchemaRegistry, SCHEMA_TYPE_STRING } from 'k6/x/kafka';
+import {crypto} from 'k6/experimental/webcrypto';
+import {check} from 'k6';
+import {Writer, SchemaRegistry, SCHEMA_TYPE_STRING} from 'k6/x/kafka';
 
 const testEventPayload = JSON.stringify(JSON.parse(open('../../resources/sampleAvcInputEvent.json')));
 const schemaRegistry = new SchemaRegistry();
+let messagesSent = 0;
+
 const kafkaProducer = new Writer({
     brokers: ['localhost:9092'],
     topic: 'dmi-cm-events',
@@ -33,26 +35,9 @@ const kafkaProducer = new Writer({
     requestTimeout: 30000
 });
 
-const TOTAL_MESSAGES = 100000;
-const VIRTUAL_USERS = 1000;
-
-export const options = {
-    setupTimeout: '1m',
-    teardownTimeout: '1m',
-    scenarios: {
-        produceKafkaMessages: {
-            executor: 'shared-iterations',
-            exec: 'sendKafkaMessages',
-            vus: VIRTUAL_USERS,
-            iterations: TOTAL_MESSAGES,
-            maxDuration: '10m',
-        }
-    }
-};
-
+// Utility function to get a random network element
 const getRandomNetworkElement = () => {
-    const networkElementIds = Array.from({ length: 10 }, (_, i) => `neType-${i + 1}`);
-    return networkElementIds[Math.floor(Math.random() * networkElementIds.length)];
+    return `neType-${Math.floor(Math.random() * 10) + 1}`;
 };
 
 function getCloudEventHeaders() {
@@ -68,7 +53,9 @@ function getCloudEventHeaders() {
     };
 }
 
+// Function to send Kafka messages at a controlled throughput
 export function sendKafkaMessages() {
+
     const cloudEventHeaders = getCloudEventHeaders();
     const networkElementId = getRandomNetworkElement();
 
@@ -85,8 +72,8 @@ export function sendKafkaMessages() {
     };
 
     try {
-        kafkaProducer.produce({ messages: [avcCloudEvent] });
-
+        kafkaProducer.produce({messages: [avcCloudEvent]});
+        messagesSent++;
         const isMessageSent = check(kafkaProducer, {
             'Message sent successfully': (producer) => producer != null,
         });
@@ -94,12 +81,12 @@ export function sendKafkaMessages() {
         if (!isMessageSent) {
             console.error('Failed to send message:', avcCloudEvent);
         }
-
     } catch (error) {
-        console.error('Error during message production:', error, avcCloudEvent);
+        console.error(`Error during message production: ${error.message}`, avcCloudEvent);
     }
 }
 
+// Teardown function
 export function teardown() {
     kafkaProducer.close();
 }
