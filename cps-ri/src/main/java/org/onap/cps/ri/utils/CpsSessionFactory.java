@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,22 +20,20 @@
 
 package org.onap.cps.ri.utils;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.onap.cps.ri.models.AnchorEntity;
-import org.onap.cps.ri.models.DataspaceEntity;
-import org.onap.cps.ri.models.SchemaSetEntity;
-import org.onap.cps.ri.models.YangResourceEntity;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@RequiredArgsConstructor
 public class CpsSessionFactory {
 
-    private SessionFactory sessionFactory = null;
+    private final SessionFactory sessionFactory;
 
     /**
      * Open a session from session factory.
@@ -44,7 +42,7 @@ public class CpsSessionFactory {
      * @throws HibernateException hibernate exception
      */
     public Session openSession() throws HibernateException {
-        return getSessionFactory().openSession();
+        return sessionFactory.openSession();
     }
 
     /**
@@ -53,18 +51,6 @@ public class CpsSessionFactory {
      * @throws HibernateException hibernate exception
      */
     public void closeSessionFactory() throws HibernateException {
-        getSessionFactory().close();
-    }
-
-    private SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            sessionFactory = new org.hibernate.cfg.Configuration().configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(AnchorEntity.class)
-                    .addAnnotatedClass(DataspaceEntity.class)
-                    .addAnnotatedClass(SchemaSetEntity.class)
-                    .addAnnotatedClass(YangResourceEntity.class)
-                    .buildSessionFactory();
-        }
-        return sessionFactory;
+        sessionFactory.close();
     }
 }
