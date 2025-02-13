@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56cc328f_850b1d9a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T09:45:07Z",
+      "side": 1,
+      "message": "i dont think this is needed now since you moved the relevant code to the service layer.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 42
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff5e5d06_53ead4d7",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-13T09:45:07Z",
+      "side": 1,
+      "message": "NB: an",
+      "range": {
+        "startLine": 448,
+        "startChar": 16,
+        "endLine": 448,
+        "endChar": 19
+      },
+      "revId": "d11bb2f88ab1344267117d14a8986ac5c11a2816",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
