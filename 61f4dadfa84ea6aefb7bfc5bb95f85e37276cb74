@@ -555,6 +555,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bba8817_efa120ac",
+        "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model-data-v4.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T18:20:41Z",
+      "side": 1,
+      "message": "cant apply id for \"idNRCellCU\"\n\nhttps://jenkins.nordix.org/job/onap-cps-master-verify-java/10304/consoleFull\n\nat org.onap.cps.impl.E2ENetworkSliceSpec.E2E RAN Schema Model.(E2ENetworkSliceSpec.groovy:174)\nCaused by: org.onap.cps.api.exceptions.DataValidationException: Data Validation Failed\n\tat org.onap.cps.utils.YangParserHelper.parseJsonData(YangParserHelper.java:139)\n\tat org.onap.cps.utils.YangParserHelper.parseData(YangParserHelper.java:94)\n\t... 1 more\nCaused by: java.lang.IllegalStateException: Schema node with name id was not found under (org:onap:ccsdk:features:sdnr:northbound:cps-ran-schema-model?revision\u003d2021-05-19)NRCellCU.",
+      "parentUuid": "044a4ab3_e2318ad7",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "61f4dadfa84ea6aefb7bfc5bb95f85e37276cb74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "263cf408_64e513ef",
         "filename": "cps-service/src/test/resources/e2e/basic/cps-ran-schema-model@2021-05-19.yang",
         "patchSetId": 3
