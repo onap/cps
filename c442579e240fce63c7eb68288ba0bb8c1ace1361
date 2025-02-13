@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13610b7d_442a5bbc",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "This doesn\u0027t work:\n\n    WARN[0000] The \"POSTGRES_DB\" variable is not set. Defaulting to a blank string. \n    WARN[0000] The \"POSTGRES_USER\" variable is not set. Defaulting to a blank string.\n\nIt think the existing one is good enough, it does fail e.g. if DB has bad config file.",
+      "parentUuid": "8e3f84cb_23bf1774",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 38
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30be981b_118d28d0",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 12
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "Reduce timeout (from 60s to 30s)\n\nIf the database doesn’t respond within 30 seconds, it’s likely unresponsive.\n60 seconds is excessive—containers should fail fast and retry instead.",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fff3cb8_fa57c882",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Agree 60 seconds is excessive for production use, but we need to give allowances for the CSIT pipeline. The infrastructure is not very fast. And for CPS/NCMP containers, I\u0027ve given it 90 seconds, because I\u0027ve seen it timeout after 60.",
+      "parentUuid": "30be981b_118d28d0",
       "range": {
         "startLine": 52,
         "startChar": 5,
@@ -64,6 +112,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0224c85e_b3adc396",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done. Added start_period to all containers.",
+      "parentUuid": "8a977e98_d6e03b18",
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9500008_dbbe3239",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "|| exit 1\"\n\nEnsure Failure on Healthcheck Failure\n\n|| exit 1 → Explicitly fails the health check if grep does not find \"status\":\"UP\".\nWithout exit 1, Docker may not properly detect failure.",
+      "range": {
+        "startLine": 92,
+        "startChar": 119,
+        "endLine": 92,
+        "endChar": 120
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be6dc71_03941017",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done for all containers.",
+      "parentUuid": "d9500008_dbbe3239",
       "range": {
         "startLine": 92,
         "startChar": 119,
@@ -110,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc022176_562e4bab",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done. But I had to give it a cps url to avoid 404.",
+      "parentUuid": "119b1010_0cf9b644",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "413ec5d2_1e8bb3c3",
@@ -123,6 +237,24 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "Add start_period: 15s",
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50239b62_b079db30",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "413ec5d2_1e8bb3c3",
       "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -150,6 +282,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1923a81b_d7f4cbd3",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c09ff3cd_2364920d",
+      "range": {
+        "startLine": 137,
+        "startChar": 27,
+        "endLine": 137,
+        "endChar": 82
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e945a3d_587525db",
@@ -163,6 +319,24 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "Add start_period: 20s",
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d20ff792_b3a30b9d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e945a3d_587525db",
       "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -190,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "264f6d6b_f57b94ee",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "524cec9a_d8af8bf0",
+      "range": {
+        "startLine": 167,
+        "startChar": 119,
+        "endLine": 167,
+        "endChar": 120
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00ac1535_bca84c81",
@@ -203,6 +401,24 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "Add start_period: 20s",
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09435d4_e337458c",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00ac1535_bca84c81",
       "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -230,6 +446,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c68e1b_1ebaad28",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5757d03f_fe02127e",
+      "range": {
+        "startLine": 191,
+        "startChar": 119,
+        "endLine": 191,
+        "endChar": 120
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e2354a9_fed70fb6",
@@ -247,6 +487,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f10d057_ce956d9b",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2354a9_fed70fb6",
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "602dd8d4_bbc94af7",
@@ -260,6 +518,30 @@
       "writtenOn": "2025-02-12T17:56:39Z",
       "side": 1,
       "message": "Should we add --fail here?\n\nWith --fail, curl instead exits with a non-zero status and prints no output.",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1d3cb0f_1c4e1b6f",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-13T10:23:46Z",
+      "side": 1,
+      "message": "Nice suggestion, but I would do --fail-with-body so we actually see the error message. I tried this and endurance failed! I raised a bug ticket CPS-2642.",
+      "parentUuid": "602dd8d4_bbc94af7",
       "range": {
         "startLine": 30,
         "startChar": 13,
