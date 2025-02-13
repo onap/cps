@@ -66,6 +66,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "657b2582_a7aa1cd7",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "move top top in this folder\nmaybe the patch and put as well but whatever you prefer\nin any case leave delete at the end",
+      "range": {
+        "startLine": 827,
+        "startChar": 16,
+        "endLine": 827,
+        "endChar": 32
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc5e20e_929325b5",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "rename to CPS-NCMP-DATA (and move below inventory)",
+      "range": {
+        "startLine": 1024,
+        "startChar": 12,
+        "endLine": 1024,
+        "endChar": 20
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f414e20_c6126d6c",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "all below are actions on metadata ie cm handle queries for modules, state etc. and SHoudl go in inventory folder in my opinion",
+      "range": {
+        "startLine": 1312,
+        "startChar": 13,
+        "endLine": 1312,
+        "endChar": 85
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb1d3fe_5009980b",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "complex attribute wont work",
+      "range": {
+        "startLine": 1402,
+        "startChar": 203,
+        "endLine": 1402,
+        "endChar": 220
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dac8fb0_f0bb0527",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "3 issues:\n1) complex attribute wont work\n2) search only works on  PUBLIC properties so update registration details\n3) do have a bug, I cannot search with 2 properties?!",
+      "range": {
+        "startLine": 1496,
+        "startChar": 204,
+        "endLine": 1496,
+        "endChar": 226
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d996ff7_751b51cc",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1617,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "put this above NCMP as tyou need to create inventory firrst",
+      "range": {
+        "startLine": 1617,
+        "startChar": 12,
+        "endLine": 1617,
+        "endChar": 31
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0723a108_f9594bb8",
         "filename": "postman-collections/CPS.postman_collection.json",
         "patchSetId": 1
@@ -105,6 +243,29 @@
         "startChar": 423,
         "endLine": 1626,
         "endChar": 476
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ada49d_b6d8eae7",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1650,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T16:13:36Z",
+      "side": 1,
+      "message": "just gets cm handles (no state)",
+      "range": {
+        "startLine": 1650,
+        "startChar": 14,
+        "endLine": 1650,
+        "endChar": 33
       },
       "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
