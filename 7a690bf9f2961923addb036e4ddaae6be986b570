@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b7cc67_750ec86e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/utils/CpsSessionFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T17:18:18Z",
+      "side": 1,
+      "message": "Since CpsSessionFactory is essentially just a wrapper around SessionFactory with single-line methods, it doesn\u0027t provide much value beyond what SessionFactory already offers.\n\nReasons to Remove CpsSessionFactory\n\n1. Direct Injection of SessionFactory\n\nSpring Boot (with Hibernate) already manages SessionFactory as a bean.\nWe can inject SessionFactory wherever needed and call openSession() or close() directly.\n\n2. Unnecessary Singleton Scope\n\nSessionFactory is already a singleton when managed by Spring. Wrapping it inside another singleton (CpsSessionFactory) adds no real benefit.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "7a690bf9f2961923addb036e4ddaae6be986b570",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
