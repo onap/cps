@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e455a693_96ff8512",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T10:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13610b7d_442a5bbc",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 38
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30be981b_118d28d0",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Agree 60 seconds is excessive for production use, but we need to give allowances for the CSIT pipeline. The infrastructure is not very fast. And for CPS/NCMP containers, I\u0027ve given it 90 seconds, because I\u0027ve seen it timeout after 60.",
       "parentUuid": "30be981b_118d28d0",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab024b94_32b3fab0",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T10:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fff3cb8_fa57c882",
       "range": {
         "startLine": 52,
         "startChar": 5,
@@ -542,6 +590,30 @@
       "side": 1,
       "message": "Nice suggestion, but I would do --fail-with-body so we actually see the error message. I tried this and endurance failed! I raised a bug ticket CPS-2642.",
       "parentUuid": "602dd8d4_bbc94af7",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "c442579e240fce63c7eb68288ba0bb8c1ace1361",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca046664_3e01aa01",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T10:58:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1d3cb0f_1c4e1b6f",
       "range": {
         "startLine": 30,
         "startChar": 13,
