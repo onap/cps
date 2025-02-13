@@ -18,12 +18,20 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { crypto } from 'k6/experimental/webcrypto';
-import { check } from 'k6';
-import { Writer, SchemaRegistry, SCHEMA_TYPE_STRING } from 'k6/x/kafka';
+import {crypto} from 'k6/experimental/webcrypto';
+import {check} from 'k6';
+import {Writer, SchemaRegistry, SCHEMA_TYPE_STRING} from 'k6/x/kafka';
 
 const testEventPayload = JSON.stringify(JSON.parse(open('../../resources/sampleAvcInputEvent.json')));
 const schemaRegistry = new SchemaRegistry();
+const AVC_EVENTS_PER_SECOND = 500; // Configurable messages per second
+let messagesSent = 0;
+
+
+if (AVC_EVENTS_PER_SECOND <= 0) {
+    console.warn("⚠️ Warning: AVC_EVENTS_PER_SECOND was set too low. must be greater than 0.");
+}
+
 const kafkaProducer = new Writer({
     brokers: ['localhost:9092'],
     topic: 'dmi-cm-events',
@@ -33,26 +41,26 @@ const kafkaProducer = new Writer({
     requestTimeout: 30000
 });
 
-const TOTAL_MESSAGES = 100000;
-const VIRTUAL_USERS = 1000;
-
 export const options = {
     setupTimeout: '1m',
     teardownTimeout: '1m',
     scenarios: {
         produceKafkaMessages: {
-            executor: 'shared-iterations',
+            executor: 'constant-arrival-rate',
+            rate: AVC_EVENTS_PER_SECOND,
+            timeUnit: '1s',
+            duration: '60m',
+            preAllocatedVUs: 10,
+            maxVUs: 6000,  // ⚠️ Reduce from 7000 to prevent resource overload
             exec: 'sendKafkaMessages',
-            vus: VIRTUAL_USERS,
-            iterations: TOTAL_MESSAGES,
-            maxDuration: '10m',
+            gracefulStop: '10s' // Stop test gracefully
         }
     }
 };
 
+// Utility function to get a random network element
 const getRandomNetworkElement = () => {
-    const networkElementIds = Array.from({ length: 10 }, (_, i) => `neType-${i + 1}`);
-    return networkElementIds[Math.floor(Math.random() * networkElementIds.length)];
+    return `neType-${Math.floor(Math.random() * 10) + 1}`;
 };
 
 function getCloudEventHeaders() {
@@ -68,7 +76,13 @@ function getCloudEventHeaders() {
     };
 }
 
+// Function to send Kafka messages at a controlled throughput
 export function sendKafkaMessages() {
+
+    if (AVC_EVENTS_PER_SECOND === 0) {
+        return;
+    }
+
     const cloudEventHeaders = getCloudEventHeaders();
     const networkElementId = getRandomNetworkElement();
 
@@ -85,8 +99,8 @@ export function sendKafkaMessages() {
     };
 
     try {
-        kafkaProducer.produce({ messages: [avcCloudEvent] });
-
+        kafkaProducer.produce({messages: [avcCloudEvent]});
+        messagesSent++;
         const isMessageSent = check(kafkaProducer, {
             'Message sent successfully': (producer) => producer != null,
         });
@@ -94,12 +108,12 @@ export function sendKafkaMessages() {
         if (!isMessageSent) {
             console.error('Failed to send message:', avcCloudEvent);
         }
-
     } catch (error) {
-        console.error('Error during message production:', error, avcCloudEvent);
+        console.error(`Error during message production: ${error.message}`, avcCloudEvent);
     }
 }
 
+// Teardown function
 export function teardown() {
     kafkaProducer.close();
 }
