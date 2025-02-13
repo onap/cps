@@ -16,6 +16,52 @@
       "message": "why is the patch like so ? \n\nFrom the description of the ticket it\u0027s supposed to be divided",
       "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0723a108_f9594bb8",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1620,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T13:14:14Z",
+      "side": 1,
+      "message": "CM Handle registration (discovery)\nPlease add de-registration (of 1 handle as well)",
+      "range": {
+        "startLine": 1620,
+        "startChar": 14,
+        "endLine": 1620,
+        "endChar": 49
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d5acc5_68fb4d2e",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-13T13:14:14Z",
+      "side": 1,
+      "message": "This part faisl as we discovred :-) \ndont use complex attributes. Check te latest with Sourabh for realistic examples",
+      "range": {
+        "startLine": 1626,
+        "startChar": 423,
+        "endLine": 1626,
+        "endChar": 476
+      },
+      "revId": "1d017af8bd9036f039742ea030970ad0b01bc5db",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
