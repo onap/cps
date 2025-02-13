@@ -147,6 +147,16 @@
       "exec": "legacyBatchConsumeScenario",
       "vus": 1,
       "iterations": 1
+    },
+    "produceKafkaMessages": {
+      "executor": "constant-arrival-rate",
+      "rate": 500,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 10,
+      "maxVUs": 1000,
+      "exec": "produceAvcEventsScenario",
+      "gracefulStop": "10s"
     }
   },
   "thresholds": {
