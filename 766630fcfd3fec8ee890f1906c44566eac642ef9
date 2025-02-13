@@ -347,6 +347,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b08697_f20fef56",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T18:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec016ea_be571969",
+      "range": {
+        "startLine": 629,
+        "startChar": 48,
+        "endLine": 629,
+        "endChar": 53
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16c39dd7_ba7dd311",
@@ -407,6 +431,30 @@
       "writtenOn": "2025-02-04T17:49:22Z",
       "side": 1,
       "message": "All resource ids should use forward / in examples (no escaping need so single / will do)",
+      "range": {
+        "startLine": 302,
+        "startChar": 34,
+        "endLine": 302,
+        "endChar": 37
+      },
+      "revId": "766630fcfd3fec8ee890f1906c44566eac642ef9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cddd56f_7b0541f6",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-13T18:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d54c28e6_47aed2b6",
       "range": {
         "startLine": 302,
         "startChar": 34,
