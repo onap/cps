@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903dc973_6917cba1",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-14T14:14:04Z",
+      "side": 1,
+      "message": "Nb. This could be much lower, e.g. 10 max",
+      "range": {
+        "startLine": 156,
+        "startChar": 28,
+        "endLine": 157,
+        "endChar": 21
+      },
+      "revId": "6593226d930d7ff1419e7418c9e47a24d211a079",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
