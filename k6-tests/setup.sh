@@ -26,6 +26,12 @@ docker-compose \
   --profile dmi-stub \
   up --quiet-pull --detach --wait || exit 1
 
+  if [[ "$testProfile" == "kpi" ]]; then
+    ACTUATOR_PORT=8883
+  elif [[ "$testProfile" == "endurance" ]]; then
+    ACTUATOR_PORT=8884
+  fi
+
 echo "Build information:"
-curl http://localhost:8883/actuator/info
+curl http://localhost:$ACTUATOR_PORT/actuator/info
 echo
