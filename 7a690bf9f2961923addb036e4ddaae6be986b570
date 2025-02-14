@@ -46,6 +46,30 @@
       },
       "revId": "7a690bf9f2961923addb036e4ddaae6be986b570",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56557d72_9220f280",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/utils/CpsSessionFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-14T11:01:51Z",
+      "side": 1,
+      "message": "Understood. The immediate goal is to resolve the issue with CpsSessionFactory, and we can discuss refactoring later. That said, since SessionManager is the only class using CpsSessionFactory, replacing it directly with SessionFactory seems like a small and straightforward change. This could simplify things now rather than revisiting it later. Let me know what you think!",
+      "parentUuid": "39cebdf3_fb41afbb",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "7a690bf9f2961923addb036e4ddaae6be986b570",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
