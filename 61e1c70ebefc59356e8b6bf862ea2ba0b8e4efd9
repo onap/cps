@@ -22,6 +22,30 @@
       },
       "revId": "61e1c70ebefc59356e8b6bf862ea2ba0b8e4efd9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d2f1604_803e26cd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/utils/CpsSessionFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-14T12:13:09Z",
+      "side": 0,
+      "message": "I see main hibernate.cfg.xml is removed, but there is also an integration test version of this file.",
+      "parentUuid": "069c7ab9_b292e621",
+      "range": {
+        "startLine": 61,
+        "startChar": 77,
+        "endLine": 61,
+        "endChar": 97
+      },
+      "revId": "61e1c70ebefc59356e8b6bf862ea2ba0b8e4efd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
