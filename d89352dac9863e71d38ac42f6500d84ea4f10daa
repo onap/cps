@@ -16,6 +16,282 @@
       "message": "recheck",
       "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0b17b5f_de24ed18",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "before this section add a not to choose the \u0027CPS Environment\u0027 include with this collection in postman:",
+      "range": {
+        "startLine": 5,
+        "startChar": 621,
+        "endLine": 5,
+        "endChar": 623
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6b59bd_425d13ac",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "NV: Consider proper title casing for all (consistency)",
+      "range": {
+        "startLine": 526,
+        "startChar": 43,
+        "endLine": 526,
+        "endChar": 52
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceaf23f1_7d25dafd",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "Category by key and direct",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 55
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2686236_b92181d4",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "Please change structure ie use subfodlers like so:\nCPS-NCMP\n -Inventory\n -Data",
+      "range": {
+        "startLine": 832,
+        "startChar": 16,
+        "endLine": 832,
+        "endChar": 34
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1f5727_ae0c7fb6",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "Der-registration",
+      "range": {
+        "startLine": 866,
+        "startChar": 29,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b468501_dac7142a",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "remove (redundant term)",
+      "range": {
+        "startLine": 897,
+        "startChar": 57,
+        "endLine": 897,
+        "endChar": 58
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2beeffd6_46bdd01d",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "dont think you need this part",
+      "range": {
+        "startLine": 1066,
+        "startChar": 45,
+        "endLine": 1066,
+        "endChar": 74
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9a3e97_acb84f22",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "maybe vary with and with alt-id. Do mention Alt-id in title where you use it...",
+      "range": {
+        "startLine": 1142,
+        "startChar": 66,
+        "endLine": 1142,
+        "endChar": 107
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62d6109f_648bea02",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "ID search\nPut directly above other cm handle search",
+      "range": {
+        "startLine": 1160,
+        "startChar": 37,
+        "endLine": 1160,
+        "endChar": 43
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "262091a5_d8cea03b",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 1160,
+        "startChar": 43,
+        "endLine": 1160,
+        "endChar": 74
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c13a31_4cb55b36",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "Set CM Handle \u0027dataSync\u0027 Flag",
+      "range": {
+        "startLine": 1246,
+        "startChar": 19,
+        "endLine": 1246,
+        "endChar": 60
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c73338_f9db8275",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1296,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T11:53:25Z",
+      "side": 1,
+      "message": "Apply consistent casing of CM Handle",
+      "range": {
+        "startLine": 1296,
+        "startChar": 70,
+        "endLine": 1296,
+        "endChar": 79
+      },
+      "revId": "d89352dac9863e71d38ac42f6500d84ea4f10daa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
