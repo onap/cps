@@ -79,7 +79,7 @@ services:
       JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
       ### DEBUG: Uncomment next line to enable java debugging
       # JAVA_TOOL_OPTIONS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
-    restart: unless-stopped
+    restart: no
     depends_on:
       - dbpostgresql
     deploy:
