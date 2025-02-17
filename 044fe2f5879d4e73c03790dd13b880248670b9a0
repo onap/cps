@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "48db6a17_95e0da91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-17T15:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28751520_06e4c13f",
+      "range": {
+        "startLine": 11,
+        "startChar": 10,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5b190951_608196a8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f06a7b9_907c174d",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-17T15:45:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13e463d4_5968056a",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 15
+      },
+      "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad7c1893_711b4152",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-02-17T15:23:10Z",
       "side": 1,
       "message": "NB: Why dont we follow logs in real-time instead of printing static logs ?\nlike : docker logs -f \"$CONTAINER_ID\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a91f716a_eda89b36",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-17T15:45:54Z",
+      "side": 1,
+      "message": "In order not to mix the jenkins logs and the container logs, the container logs being printed after the tests finished.",
+      "parentUuid": "ad7c1893_711b4152",
       "range": {
         "startLine": 24,
         "startChar": 10,
