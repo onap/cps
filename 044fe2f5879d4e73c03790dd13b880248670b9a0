@@ -39,6 +39,52 @@
       "message": "looks fine to me.",
       "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e463d4_5968056a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-17T15:23:10Z",
+      "side": 1,
+      "message": "NB: We don’t need to set restart: no explicitly, because Docker Compose defaults to no restart policy if we don’t specify one.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 15
+      },
+      "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7c1893_711b4152",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-17T15:23:10Z",
+      "side": 1,
+      "message": "NB: Why dont we follow logs in real-time instead of printing static logs ?\nlike : docker logs -f \"$CONTAINER_ID\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "044fe2f5879d4e73c03790dd13b880248670b9a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
