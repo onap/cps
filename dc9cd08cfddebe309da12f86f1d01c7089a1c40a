@@ -16,6 +16,24 @@
       "message": "cps-ncmp-iventory\n1. Fetch all module references - response empty\n2. Get module definitions - response empty\n\ncps-ncmp-data\n1. Query resource data for a given cm handle - datastore not supported.",
       "revId": "dc9cd08cfddebe309da12f86f1d01c7089a1c40a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "846fb736_17ac05b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-17T13:54:56Z",
+      "side": 1,
+      "message": "cps-ncmp-inventory\n\nFetch all module references - response empty\nGet module definitions - response empty\n\n\nI had that problem first too but after a few minutes it did work...\nmight be worth test a bit more...",
+      "parentUuid": "d8cefc6a_b61321ec",
+      "revId": "dc9cd08cfddebe309da12f86f1d01c7089a1c40a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
