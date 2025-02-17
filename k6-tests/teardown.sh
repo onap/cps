@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024 Nordix Foundation.
+# Copyright 2024-2025 Nordix Foundation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +17,12 @@
 
 echo '================================== docker info =========================='
 docker ps -a
+
+echo '================================== CPS-NCMP Logs ========================'
+for CONTAINER_ID in $(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}"); do
+    echo "CPS-NCMP Logs for container: $CONTAINER_ID"
+    docker logs "$CONTAINER_ID"
+done
 
 testProfile=$1
 docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"

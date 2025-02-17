@@ -59,7 +59,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
             onboardOrUpgradeModel();
         } catch (final Exception modelOnboardUpException) {
             log.error("Exiting application due to failure in onboarding model: {} ",
-                    modelOnboardUpException.getMessage());
+                modelOnboardUpException.getMessage());
             SpringApplication.exit(applicationStartedEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
         }
     }
