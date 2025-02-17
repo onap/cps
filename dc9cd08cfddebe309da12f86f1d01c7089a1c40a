@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8cefc6a_b61321ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-17T12:13:52Z",
+      "side": 1,
+      "message": "cps-ncmp-iventory\n1. Fetch all module references - response empty\n2. Get module definitions - response empty\n\ncps-ncmp-data\n1. Query resource data for a given cm handle - datastore not supported.",
+      "revId": "dc9cd08cfddebe309da12f86f1d01c7089a1c40a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
