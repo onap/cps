@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modification Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.api.exceptions.AlreadyDefinedException
@@ -70,6 +71,17 @@ class AbstractModelLoaderSpec extends Specification {
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
     }
+
+    def 'Application started event handles duplicated yang resource exception'() {
+        given: 'a duplicated yang resource exception is thrown during model onboarding'
+            objectUnderTest.onboardOrUpgradeModel() >> { throw new DuplicatedYangResourceException('my-yang-resource', 'my-yang-resource-checksum', null) }
+        when: 'the application is started'
+            objectUnderTest.onApplicationEvent(new ApplicationStartedEvent(new SpringApplication(), null, applicationContext, null))
+        then: 'the correct exception message is logged'
+            def logs = loggingListAppender.list.toString()
+            assert logs.contains('Ignoring yang resource duplication exception. Assuming model was created by another instance')
+    }
+
 
     def 'Application started event handles startup exception'() {
         given: 'a startup exception is thrown during model onboarding'
