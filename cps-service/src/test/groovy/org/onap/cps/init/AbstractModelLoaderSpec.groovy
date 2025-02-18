@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  Modification Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.api.exceptions.AlreadyDefinedException
@@ -115,6 +116,16 @@ class AbstractModelLoaderSpec extends Specification {
             objectUnderTest.createSchemaSet('some dataspace','new name','cps-notification-subscriptions@2024-07-03.yang')
         then: 'the operation is delegated to the module service'
             1 * mockCpsModuleService.createSchemaSet('some dataspace','new name',_)
+    }
+
+    def 'Creating a schema set handles duplicated yang resource exception'() {
+        given: 'module service throws duplicated yang resource exception'
+            mockCpsModuleService.createSchemaSet(*_) >> { throw new DuplicatedYangResourceException('my-yang-resource', 'my-yang-resource-checksum', null) }
+        when: 'attempt to create a schema set'
+            objectUnderTest.createSchemaSet('some dataspace','some schema set','cps-notification-subscriptions@2024-07-03.yang')
+        then: 'exception is ignored, and correct exception message is logged'
+            noExceptionThrown()
+            assertLogContains('Ignoring yang resource duplication exception. Assuming model was created by another instance')
     }
 
     def 'Creating a schema set handles already defined exception.'() {
