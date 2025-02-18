@@ -27,8 +27,11 @@ To import the CPS collections and environment:
 4. The collections and environment should now be imported
 5. Set the current environment to "CPS Environment" (usually at the top right. Default is "No Environment") This will provide the necessary variables such as "CPS_HOST" and "CPS_PORT" to allow the requests to be run
 
+## Using collections in Postman
+A how-to guide is provided in the CPS collection. To access this guide click on the parent CPS folder icon at the top of the collection and follow the provided instructions.
+
 ## Running the collections
-To run the requests in the collections simply select the request and click send. "Create Schema Set" in "CPS-CORE" requires a file to send the request. Example files are provided: "bookstore.yang" and "bookstore-types.yang" (these files must be zipped before adding them to the request)
+To run the requests in the collections in CPS-CORE simply select the request and click send. "Create Schema Set" in "CPS-CORE" requires a file to send the request. Example files are provided: "bookstore.yang" and "bookstore-types.yang" (these files must be zipped before adding them to the request)
 
 ## Notes
 When exporting postman collections tabs are used for spacing, so replacing all the tabs is necessary
