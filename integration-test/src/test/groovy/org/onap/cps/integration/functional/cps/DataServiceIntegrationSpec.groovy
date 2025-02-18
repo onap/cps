@@ -22,17 +22,16 @@
 package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
-import org.onap.cps.api.exceptions.CpsAdminException
 import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DeltaReport
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
@@ -608,10 +607,10 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             assert sourceData == expectedSourceValue
             assert targetData == expectedTargetValue
         where: 'following data was used'
-            scenario                           | sourceAnchor       | targetAnchor       | xpath                                                     || expectedSourceValue              | expectedTargetValue
-            'leaf is updated in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'                                              || [['bookstore-name': 'Easons-1']] | [['bookstore-name': 'Crossword Bookstores']]
-            'leaf is removed in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || [[price:1]]                      | null
-            'leaf is added in target anchor'   | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || null                             | [[price:1]]
+            scenario                           | sourceAnchor       | targetAnchor       | xpath                                                     || expectedSourceValue           | expectedTargetValue
+            'leaf is updated in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'                                              || ['bookstore-name': 'Easons-1']| ['bookstore-name': 'Crossword Bookstores']
+            'leaf is removed in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || [price:1]                     | null
+            'leaf is added in target anchor'   | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | "/bookstore/categories[@code='5']/books[@title='Book 1']" || null                          | [price:1]
     }
 
     def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
@@ -633,10 +632,10 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchors where source and target data nodes have leaves and child data nodes'() {
         given: 'parent node xpath and expected data in delta report'
             def parentNodeXpath = "/bookstore/categories[@code='1']"
-            def expectedSourceDataInParentNode = [['name':'Children']]
-            def expectedTargetDataInParentNode = [['name':'Kids']]
-            def expectedSourceDataInChildNode = [[['lang' : 'English']],[['price':20, 'editions':[1988, 2000]]]]
-            def expectedTargetDataInChildNode = [[['lang':'English/German']], [['price':200, 'editions':[1988, 2000, 2023]]]]
+            def expectedSourceDataInParentNode = ['name':'Children']
+            def expectedTargetDataInParentNode = ['name':'Kids']
+            def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
+            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[1988, 2000, 2023]]]
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS, false)
             def deltaReportEntities = getDeltaReportEntities(result)
