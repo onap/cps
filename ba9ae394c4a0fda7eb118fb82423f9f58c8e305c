@@ -16,6 +16,23 @@
       "message": "Ready for Review",
       "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d54a57_38a62fa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-18T13:52:32Z",
+      "side": 1,
+      "message": "there is some internal refactoring going on DataRestController so you might to watch out those changes and the effect it has on this patch.",
+      "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
