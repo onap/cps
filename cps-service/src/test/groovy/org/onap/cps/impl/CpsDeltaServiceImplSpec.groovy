@@ -73,6 +73,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     static def targetDataNodeWithChild = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-target-data'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-target-data'])])]
     static def targetDataNodeWithXpath = [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-target-data'])]
     static def targetDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
+    static def childDataNode = [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-target-data'])]
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
 
@@ -121,10 +122,10 @@ class CpsDeltaServiceImplSpec extends Specification {
             deltaReport[0].sourceData == expectedSourceData
             deltaReport[0].targetData == expectedTargetData
         where: 'following data was used'
-            scenario               | sourceDataNodes | targetDataNodes || expectedAction | expectedSourceData                            | expectedTargetData
-            'Data node is added'   | []              | targetDataNode  || 'create'       | null                                          | ['parent-leaf': 'parent-leaf-as-target-data']
-            'Data node is removed' | sourceDataNode  | []              || 'remove'       | ['parent-leaf': 'parent-leaf-as-source-data'] | null
-            'Data node is updated' | sourceDataNode  | targetDataNode  || 'replace'      | ['parent-leaf': 'parent-leaf-as-source-data'] |['parent-leaf': 'parent-leaf-as-target-data']
+            scenario               | sourceDataNodes | targetDataNodes || expectedAction | expectedSourceData                                      | expectedTargetData
+            'Data node is added'   | []              | targetDataNode  || 'create'       | null                                                    | ['parent-leaf':'parent-leaf-as-target-data']
+            'Data node is removed' | sourceDataNode  | []              || 'remove'       | ['parent-leaf':'parent-leaf-as-source-data']            | null
+            'Data node is updated' | sourceDataNode  | targetDataNode  || 'replace'      | ['parent':['parent-leaf':'parent-leaf-as-source-data']] | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
     }
 
     def 'Delta Report between parent nodes containing child nodes where #scenario with grouping of data nodes disabled'() {
@@ -149,10 +150,49 @@ class CpsDeltaServiceImplSpec extends Specification {
             assert deltaReport[1].sourceData == expectedSourceDataForChild
             assert deltaReport[1].targetData == expectedTargetDataForChild
         where: 'the following data is used'
-            scenario               | sourceDataNodes         | targetDataNodes         || expectedAction | expectedSourceDataForParent                   | expectedTargetDataForParent                   | expectedSourceDataForChild                  | expectedTargetDataForChild
-            'Data node is added'   | []                      | targetDataNodeWithChild || 'create'       | null                                          | ['parent-leaf': 'parent-leaf-as-target-data'] | null                                        | ['child-leaf': 'child-leaf-as-target-data']
-            'Data node is removed' | sourceDataNodeWithChild | []                      || 'remove'       | ['parent-leaf': 'parent-leaf-as-source-data'] | null                                          | ['child-leaf': 'child-leaf-as-source-data'] | null
-            'Data node is updated' | sourceDataNodeWithChild | targetDataNodeWithChild || 'replace'      | ['parent-leaf': 'parent-leaf-as-source-data'] | ['parent-leaf': 'parent-leaf-as-target-data'] | ['child-leaf': 'child-leaf-as-source-data'] | ['child-leaf': 'child-leaf-as-target-data']
+            scenario               | sourceDataNodes         | targetDataNodes         || expectedAction | expectedSourceDataForParent                             | expectedTargetDataForParent                              | expectedSourceDataForChild                            | expectedTargetDataForChild
+            'Data node is added'   | []                      | targetDataNodeWithChild || 'create'       | null                                                    | ['parent-leaf': 'parent-leaf-as-target-data']            | null                                                  | ['child-leaf': 'child-leaf-as-target-data']
+            'Data node is removed' | sourceDataNodeWithChild | []                      || 'remove'       | ['parent-leaf': 'parent-leaf-as-source-data']           | null                                                     | ['child-leaf': 'child-leaf-as-source-data']           | null
+            'Data node is updated' | sourceDataNodeWithChild | targetDataNodeWithChild || 'replace'      | ['parent':['parent-leaf':'parent-leaf-as-source-data']] | ['parent':['parent-leaf': 'parent-leaf-as-target-data']] | ['child':['child-leaf': 'child-leaf-as-source-data']] | ['child':['child-leaf': 'child-leaf-as-target-data']]
+    }
+
+    def 'Get Delta Report between data nodes with grouping enabled when #scenario'() {
+        given: 'xpath and source data node'
+            def xpath = '/parent'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, true)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        and: 'cps data service is invoked again to return target data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+        and: 'the delta report contains expected "create" action'
+            assert deltaReport[0].action == expectedAction
+        and: 'the delta report contains expected xpath'
+            assert deltaReport[0].xpath == '/parent'
+        and: 'the delta report does not contain any source data'
+            assert deltaReport[0].sourceData == expectedSourceData
+        and: 'the delta report contains expected target data, with child data node information included under same delta report entry'
+            assert deltaReport[0].targetData == expectedTargetData
+        where: 'following data was used'
+            scenario                                   | sourceDataNodes         | targetDataNodes           || expectedAction | expectedSourceData                                                                                            | expectedTargetData
+            'Added data node with parent node xpath'   | []                      | targetDataNodeWithChild   || 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
+            'Added data node with xpath'               | []                      | childDataNode             || 'create'       | null                                                                                                          | ['child':['child-leaf': 'child-leaf-as-target-data']]
+            'Removed data node with parent node xpath' | sourceDataNodeWithChild | []                        || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
+            'Removed data node with xpath'             | sourceDataNodeWithChild | []                        || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
+            'Data node with parent node xpath updated' | sourceDataNodeWithChild | targetDataNodeWithChild   || 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
+    }
+
+    def 'Delta Report between identical nodes, with grouping enabled'() {
+        given: 'parent node xpath'
+            def xpath = '/parent'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, true)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
+        and: 'cps data service is invoked again to return target data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
+        and: 'the delta report contains expected details for parent node and child node'
+            assert deltaReport.isEmpty()
     }
 
     def 'Delta report between leaves, #scenario'() {
@@ -172,11 +212,11 @@ class CpsDeltaServiceImplSpec extends Specification {
         assert deltaReport[0].sourceData == expectedSourceData
         assert deltaReport[0].targetData == expectedTargetData
     where: 'the following data was used'
-        scenario                                           | sourceDataNodes                  | targetDataNodes                  || expectedSourceData                                           | expectedTargetData
-        'source and target data nodes have leaves'         | sourceDataNode                   | targetDataNode                   || ['parent-leaf': 'parent-leaf-as-source-data']                | ['parent-leaf': 'parent-leaf-as-target-data']
-        'only source data node has leaves'                 | sourceDataNode                   | targetDataNodeWithoutLeafData    || ['parent-leaf': 'parent-leaf-as-source-data']                | null
-        'only target data node has leaves'                 | sourceDataNodeWithoutLeafData    | targetDataNode                   || null                                                         | ['parent-leaf': 'parent-leaf-as-target-data']
-        'source and target data node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'] | ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target']
+        scenario                                           | sourceDataNodes                  | targetDataNodes                   || expectedSourceData                                                    | expectedTargetData
+        'source and target data nodes have leaves'         | sourceDataNode                   | targetDataNode                   || ['parent':['parent-leaf':'parent-leaf-as-source-data']]                 | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
+        'only source data node has leaves'                 | sourceDataNode                   | targetDataNodeWithoutLeafData    || ['parent':['parent-leaf':'parent-leaf-as-source-data']]                 | null
+        'only target data node has leaves'                 | sourceDataNodeWithoutLeafData    | targetDataNode       || null                                                                  | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
+        'source and target data node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['parent':['leaf-1':'leaf-1-in-source', 'leaf-2':'leaf-2-in-source']] | ['parent':['leaf-1':'leaf-1-in-target', 'leaf-2':'leaf-2-in-target']]
     }
 
     def 'Get delta between data nodes for updated data, where source and target data nodes have no leaves '() {
@@ -210,10 +250,10 @@ class CpsDeltaServiceImplSpec extends Specification {
             deltaReport[0].getSourceData().equals(expectedSourceData)
             deltaReport[0].getTargetData().equals(expectedTargetData)
         where: 'following data was used'
-            scenario          | xpath                                 | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                    | expectedSourceData          | expectedTargetData
-            'root node xpath' | '/'                                   | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
-            'parent xpath'    | '/bookstore'                          | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
-            'non-root xpath'  | '/bookstore/categories[@code=\'02\']' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']'| ['name':'Kids']             | ['name':'Child']
+            scenario          | xpath                                 | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                    | expectedSourceData                            | expectedTargetData
+            'root node xpath' | '/'                                   | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
+            'parent xpath'    | '/bookstore'                          | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
+            'non-root xpath'  | '/bookstore/categories[@code=\'02\']' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']'| ['categories':[['code':'02', 'name':'Kids']]] | ['categories':[['code':'02', 'name':'Child']]]
     }
 
     def 'Get delta between anchor and payload by using schema from anchor #scenario'() {
@@ -233,10 +273,10 @@ class CpsDeltaServiceImplSpec extends Specification {
             deltaReport[0].getSourceData().equals(expectedSourceData)
             deltaReport[0].getTargetData().equals(expectedTargetData)
         where: 'following data was used'
-             scenario         | xpath                                 | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                     | expectedSourceData          | expectedTargetData
-            'root node xpath' | '/'                                   | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
-            'parent xpath'    | '/bookstore'                          | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
-            'non-root xpath'  | '/bookstore/categories[@code=\'02\']' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']' | ['name':'Kids']             | ['name':'Child']
+             scenario         | xpath                                 | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                     | expectedSourceData                            | expectedTargetData
+            'root node xpath' | '/'                                   | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
+            'parent xpath'    | '/bookstore'                          | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore':['bookstore-name':'Easons']]     | ['bookstore':['bookstore-name':'My Store']]
+            'non-root xpath'  | '/bookstore/categories[@code=\'02\']' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']' | ['categories':[['code':'02', 'name':'Kids']]] | ['categories':[['code':'02', 'name':'Child']]]
     }
 
     def 'Delta between anchor and payload error scenario #scenario'() {
