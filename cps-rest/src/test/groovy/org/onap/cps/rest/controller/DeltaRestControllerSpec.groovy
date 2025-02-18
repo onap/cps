@@ -90,7 +90,7 @@ class DeltaRestControllerSpec extends Specification {
         given: 'the service returns a list containing delta reports'
             def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
             def xpath = 'some xpath'
-            mockCpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName, 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
+            mockCpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName, 'targetAnchor', xpath, OMIT_DESCENDANTS, false) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(get(dataNodeBaseEndpointV2)
@@ -108,7 +108,7 @@ class DeltaRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS, false) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
@@ -128,7 +128,7 @@ class DeltaRestControllerSpec extends Specification {
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
         and: 'the service layer returns a list containing delta reports'
-            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS, false) >> [deltaReports]
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
