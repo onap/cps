@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06cd5576_c214eb07",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-02-18T16:25:11Z",
+      "side": 1,
+      "message": "this information is already logged before (when it occured). Here we need to log something like this:\n\"Ignoring yang resource duplication exception. Assuming model create by another instance\"",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 72
+      },
+      "revId": "e62be78289631da38e64c19c82b4d36fe0cd5f44",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
