@@ -67,6 +67,22 @@ public class DataMapUtils {
                 .put("dataNodes", dataMaps).build();
     }
 
+    /**
+     * Return a list of data nodes.
+     *
+     * @param dataNode     data node object
+     * @param prefix       prefix
+     * @param groupedLists map to store the grouped data nodes
+     */
+
+    public static void listDataNodes(final DataNode dataNode, final String prefix,
+            final Map<String, List<Map<String, Object>>> groupedLists) {
+        final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+        final Map<String, Object> nodeData = toDataMap(dataNode);
+        groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
+    }
+
+
     private static List<Map<String, Object>> toDataNodesWithIdentifier(final List<DataNode> dataNodeList,
                                                                        final String prefix) {
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodeList.size());
