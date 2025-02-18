@@ -34,6 +34,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -57,9 +58,11 @@ public abstract class AbstractModelLoader implements ModelLoader {
     public void onApplicationEvent(final ApplicationStartedEvent applicationStartedEvent) {
         try {
             onboardOrUpgradeModel();
-        } catch (final Exception modelOnboardUpException) {
+        } catch (final DuplicatedYangResourceException duplicatedYangResourceException) {
+            log.warn("Ignoring yang resource duplication exception. Assuming model create by another instance");
+        } catch (final Exception exception) {
             log.error("Exiting application due to failure in onboarding model: {} ",
-                    modelOnboardUpException.getMessage());
+                exception.getMessage());
             SpringApplication.exit(applicationStartedEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
         }
     }
