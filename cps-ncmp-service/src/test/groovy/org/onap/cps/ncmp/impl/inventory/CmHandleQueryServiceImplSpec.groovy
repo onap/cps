@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,21 +86,22 @@ class CmHandleQueryServiceImplSpec extends Specification {
     }
 
     def 'Query cm handles on trust level'() {
-        given: 'query properties for trust level COMPLETE'
-            def trustLevelPropertyQueryPairs = ['trustLevel' : TrustLevel.COMPLETE.toString()]
+        given: 'query properties for #trustLevel'
+            def trustLevelPropertyQueryPairs = ['trustLevel' : trustLevel.toString()]
         and: 'the dmi cache has been initialised and "knows" about my-dmi-plugin-identifier'
-            trustLevelPerDmiPlugin.put('my-dmi-plugin-identifier', TrustLevel.COMPLETE)
+            trustLevelPerDmiPlugin.put('my-dmi-plugin-identifier', trustLevel)
         and: 'the DataNodes queried for a given cpsPath are returned from the persistence service'
             mockResponses()
         when: 'the query is run'
             def result = objectUnderTest.queryCmHandlesByTrustLevel(trustLevelPropertyQueryPairs, outputAlternateId)
         then: 'the result contain trusted cmHandle reference'
-            assert result.size() == 1
-            assert result[0] == expectedCmHandleReference
+            assert result.size() == resultSize
+            assert result.containsAll(expectedCmHandleReference)
         where: 'the following data is used'
-            senario               | outputAlternateId | expectedCmHandleReference
-            'output cmHandleId'   |  false            | 'PNFDemo'
-            'output AlternateId'  |  true             | 'alt-PNFDemo'
+            senario                                     | outputAlternateId | expectedCmHandleReference                      | trustLevel           | resultSize
+            'output cmHandleId for trustLevel Complete' |  false            | ['PNFDemo']                                    | TrustLevel.COMPLETE  | 1
+            'output alternateId for trustLevel Complete'|  true             | ['alt-PNFDemo']                                | TrustLevel.COMPLETE  | 1
+            'output alternateId for trustLevel Complete'|  true             | ['alt-PNFDemo2', 'alt-PNFDemo', 'alt-PNFDemo4']| TrustLevel.NONE      | 3
     }
 
     def 'Query CmHandles using empty public properties query pair.'() {
@@ -143,8 +144,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cmHandleState = state
         and: 'the persistence service returns a list of data nodes'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
-                    OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
+                NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
+                OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are compared by state'
             def result = objectUnderTest.cmHandleHasState('some-cm-handle', cmHandleState)
         then: 'the returned result matches the expected result from the persistence service'
@@ -160,8 +161,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cmHandleState = CmHandleState.READY
         and: 'cps data service returns a list of data nodes'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
-                    OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
+                NCMP_DMI_REGISTRY_PARENT + '/cm-handles[@id=\'some-cm-handle\']/state',
+                OMIT_DESCENDANTS) >> [new DataNode(leaves: ['cm-handle-state': 'READY'])]
         when: 'cm handles are fetched by state and id'
             def result = objectUnderTest.getCmHandleState('some-cm-handle')
         then: 'the returned result is a list of data nodes returned by cps data service'
@@ -200,8 +201,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cpsPath = "//cm-handles[@alternate-id='1']"
         and: 'cps data service returns a valid data node'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    cpsPath, INCLUDE_ALL_DESCENDANTS)
-                    >> Arrays.asList(cmHandleDataNode)
+                cpsPath, INCLUDE_ALL_DESCENDANTS)
+                >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
             def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
         then: 'the returned result is a list of data nodes returned by cps data service'
@@ -223,18 +224,8 @@ class CmHandleQueryServiceImplSpec extends Specification {
             'output is for cm handle ids'   | false             || ['PNFDemo', 'PNFDemo2', 'PNFDemo4']
     }
 
-    def 'Get all alternateIds by dmi plugin identifier'() {
-        given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
-            mockResponses()
-        when: 'cm Handles are fetched for a given dmi plugin identifier'
-            def result = objectUnderTest.getCmHandleReferencesMapByDmiPluginIdentifier('my-dmi-plugin-identifier').values()
-        then: 'result is the correct size'
-            assert result.size() == 3
-        and: 'result contains the correct alternate Ids'
-            assert result.containsAll('alt-PNFDemo', 'alt-PNFDemo2', 'alt-PNFDemo4')
-    }
-
     void mockResponses() {
+
         mockCpsQueryService.queryDataNodes(_, _, '//public-properties[@name=\"Contact\" and @value=\"newemailforstore@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo, pnfDemo2, pnfDemo4]
         mockCpsQueryService.queryDataNodes(_, _, '//public-properties[@name=\"wont_match\" and @value=\"wont_match\"]/ancestor::cm-handles', _) >> []
         mockCpsQueryService.queryDataNodes(_, _, '//public-properties[@name=\"Contact2\" and @value=\"newemailforstore2@bookstore.com\"]/ancestor::cm-handles', _) >> [pnfDemo4]
@@ -244,6 +235,16 @@ class CmHandleQueryServiceImplSpec extends Specification {
         mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo2]
         mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo, pnfDemo4]
         mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']', OMIT_DESCENDANTS) >> [pnfDemo2, pnfDemo4]
+
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@id', _) >> [pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
+
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo2.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-data-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@dmi-model-service-name=\'my-dmi-plugin-identifier\']/@alternate-id', _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo\']/@alternate-id', _) >> [pnfDemo.getLeaves().get('alternate-id')]
+        mockCpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'PNFDemo2\' or @id=\'PNFDemo\' or @id=\'PNFDemo4\']/@alternate-id', _) >> [pnfDemo2.getLeaves().get('alternate-id'), pnfDemo.getLeaves().get('alternate-id'), pnfDemo4.getLeaves().get('alternate-id')]
     }
 
     def static createDataNode(dataNodeId) {

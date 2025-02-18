@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -109,13 +109,5 @@ public interface CmHandleQueryService {
      */
     Collection<String> getCmHandleReferencesByDmiPluginIdentifier(String dmiPluginIdentifier,
                                                                   boolean outputAlternateId);
-
-    /**
-     * Get map of cmHandle references by DMI plugin identifier.
-     *
-     * @param dmiPluginIdentifier DMI plugin identifier
-     * @return map of cmHandle references key:CmHandleId Value:AlternateId
-     */
-    Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(String dmiPluginIdentifier);
 
 }
