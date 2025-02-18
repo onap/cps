@@ -446,7 +446,7 @@ class DataRestControllerSpec extends Specification {
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":[{\"some key\":\"some value\"}],\"targetData\":[{\"some key\":\"some value\"}]}]")
+            assert response.contentAsString.contains("[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
     }
 
     def 'Get delta between anchor and JSON payload with multipart file'() {
