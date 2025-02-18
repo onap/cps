@@ -29,19 +29,29 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDeltaService;
+import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class CpsDeltaServiceImpl implements CpsDeltaService {
 
+    private final PrefixResolver prefixResolver;
+    private final CpsAnchorService cpsAnchorService;
+
     private static final String ROOT_NODE_XPATH = "/";
+
 
     @Override
     public List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
@@ -50,6 +60,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
         final List<DeltaReport> deltaReport = new ArrayList<>();
         if (groupingEnabled) {
+            deltaReport.addAll(getCondensedDeltaReports(sourceDataNodes, targetDataNodes));
             deltaReport.addAll(getCondensedAddedDeltaReports(sourceDataNodes, targetDataNodes));
         } else {
             final Map<String, DataNode> xpathToSourceDataNodes = convertToXPathToDataNodesMap(sourceDataNodes);
@@ -72,7 +83,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return xpathToDataNode;
     }
 
-    private static List<DeltaReport> getRemovedAndUpdatedDeltaReports(
+    private List<DeltaReport> getRemovedAndUpdatedDeltaReports(
                                                                 final Map<String, DataNode> xpathToSourceDataNodes,
                                                                 final Map<String, DataNode> xpathToTargetDataNodes) {
         final List<DeltaReport> removedAndUpdatedDeltaReportEntries = new ArrayList<>();
@@ -99,31 +110,36 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return removedDeltaReportEntries;
     }
 
-    private static List<DeltaReport> getUpdatedDeltaReports(final String xpath, final DataNode sourceDataNode,
+    private List<DeltaReport> getUpdatedDeltaReports(final String xpath, final DataNode sourceDataNode,
                                                             final DataNode targetDataNode) {
         final List<DeltaReport> updatedDeltaReportEntries = new ArrayList<>();
-        final Map<Map<String, Serializable>, Map<String, Serializable>> updatedLeavesAsSourceDataToTargetData =
-                getUpdatedLeavesBetweenSourceAndTargetDataNode(sourceDataNode.getLeaves(), targetDataNode.getLeaves());
+        final Map<DataNode, DataNode> updatedLeavesAsSourceDataToTargetData =
+                getUpdatedLeavesBetweenSourceAndTargetDataNode(xpath, sourceDataNode, targetDataNode);
         addUpdatedLeavesToDeltaReport(xpath, updatedLeavesAsSourceDataToTargetData, updatedDeltaReportEntries);
         return updatedDeltaReportEntries;
     }
 
-    private static Map<Map<String, Serializable>,
-            Map<String, Serializable>> getUpdatedLeavesBetweenSourceAndTargetDataNode(
-                                                            final Map<String, Serializable> leavesOfSourceDataNode,
-                                                            final Map<String, Serializable> leavesOfTargetDataNode) {
-        final Map<Map<String, Serializable>, Map<String, Serializable>> updatedLeavesAsSourceDataToTargetData =
+    private static Map<DataNode, DataNode> getUpdatedLeavesBetweenSourceAndTargetDataNode( final String xpath,
+                                                            final DataNode sourceDataNode,
+                                                            final DataNode targetDataNode) {
+        final Map<DataNode, DataNode> updatedLeavesAsSourceDataToTargetData =
                 new LinkedHashMap<>();
-        final Map<String, Serializable> sourceDataInDeltaReport = new LinkedHashMap<>();
-        final Map<String, Serializable> targetDataInDeltaReport = new LinkedHashMap<>();
-        processLeavesPresentInSourceAndTargetDataNode(leavesOfSourceDataNode, leavesOfTargetDataNode,
+        final Map<String, Serializable> sourceDataInDeltaReport = new HashMap<>();
+        final Map<String, Serializable> targetDataInDeltaReport = new HashMap<>();
+        final DataNode sourceDataNodeInDelta = sourceDataNode;
+        final DataNode targetDataNodeInDelta = targetDataNode;
+        processLeavesPresentInSourceAndTargetDataNode(sourceDataNode.getLeaves(), targetDataNode.getLeaves(),
                 sourceDataInDeltaReport, targetDataInDeltaReport);
-        processLeavesUniqueInTargetDataNode(leavesOfSourceDataNode, leavesOfTargetDataNode,
+        processLeavesUniqueInTargetDataNode(sourceDataNode.getLeaves(), targetDataNode.getLeaves(),
                 sourceDataInDeltaReport, targetDataInDeltaReport);
         final boolean isUpdatedDataInDeltaReport =
                 !sourceDataInDeltaReport.isEmpty() || !targetDataInDeltaReport.isEmpty();
         if (isUpdatedDataInDeltaReport) {
-            updatedLeavesAsSourceDataToTargetData.put(sourceDataInDeltaReport, targetDataInDeltaReport);
+            sourceDataNodeInDelta.setLeaves(sourceDataInDeltaReport);
+            sourceDataNodeInDelta.setChildDataNodes(Collections.emptyList());
+            targetDataNodeInDelta.setLeaves(targetDataInDeltaReport);
+            targetDataNodeInDelta.setChildDataNodes(Collections.emptyList());
+            updatedLeavesAsSourceDataToTargetData.put(sourceDataNodeInDelta, targetDataNodeInDelta);
         }
         return updatedLeavesAsSourceDataToTargetData;
     }
@@ -175,18 +191,17 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         }
     }
 
-    private static void addUpdatedLeavesToDeltaReport(final String xpath,
-                                                      final Map<Map<String, Serializable>, Map<String,
-                                                              Serializable>> updatedLeavesAsSourceDataToTargetData,
+    private void addUpdatedLeavesToDeltaReport(final String xpath,
+                                                      final Map<DataNode, DataNode> updatedLeavesAsSourceDataToTargetData,
                                                       final List<DeltaReport> updatedDeltaReportEntries) {
-        for (final Map.Entry<Map<String, Serializable>, Map<String, Serializable>> entry:
-                updatedLeavesAsSourceDataToTargetData.entrySet()) {
-            final Collection<Map<String, Serializable>> sourceData = entry.getKey().isEmpty()
-                    ? Collections.emptyList() : Collections.singletonList(entry.getKey());
-            final Collection<Map<String, Serializable>> targetData = entry.getValue().isEmpty()
-                    ? Collections.emptyList() : Collections.singletonList(entry.getValue());
+        for (final Map.Entry<DataNode, DataNode> entry: updatedLeavesAsSourceDataToTargetData.entrySet()) {
+            final DataNode sourceDataNode = entry.getKey();
+            final DataNode targetDataNode = entry.getValue();
+            final Map<String,Serializable> dataForDeltaSource = getCondensedLeavesDataForDeltaReport(Collections.singletonList(sourceDataNode));
+            final Map<String,Serializable> dataForDeltaTarget = getCondensedLeavesDataForDeltaReport(Collections.singletonList(targetDataNode));
             final DeltaReport updatedDataForDeltaReport = new DeltaReportBuilder().actionReplace()
-                    .withXpath(xpath).withSourceData(sourceData).withTargetData(targetData).build();
+                    .withXpath(xpath).withSourceData(Collections.singletonList(dataForDeltaSource))
+                    .withTargetData(Collections.singletonList(dataForDeltaTarget)).build();
             updatedDeltaReportEntries.add(updatedDataForDeltaReport);
         }
     }
@@ -207,23 +222,67 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return addedDeltaReportEntries;
     }
 
-    private static List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> sourceDataNodes,
+    private List<DeltaReport> getCondensedDeltaReports(final Collection<DataNode> sourceDataNodes,
+            final Collection<DataNode> targetDataNodes) {
+
+        final List<DeltaReport> deltaReportEntries = new ArrayList<>();
+        final Map<String, DataNode> xpathToTargetDataNodes = convertToXPathToFirstLevelDataNodesMap(targetDataNodes);
+        final Collection<Map<String, Serializable>> sourceDataInDeltaReport = new ArrayList<>();
+        String xpath = "";
+        final List<DataNode> removedDataNodes = new ArrayList<>();
+        for (final DataNode sourceDataNode : sourceDataNodes) {
+            xpath = sourceDataNode.getXpath();
+            final DataNode targetDataNode = xpathToTargetDataNodes.get(xpath);
+            if (targetDataNode == null) {
+                removedDataNodes.add(sourceDataNode);
+            } else {
+                deltaReportEntries.addAll(getUpdatedDeltaReports(xpath, sourceDataNode, targetDataNode));
+                getCondensedDeltaReportsForChildDataNodes(sourceDataNode, targetDataNode, deltaReportEntries);
+            }
+        }
+        if (!sourceDataNodes.isEmpty() && !removedDataNodes.isEmpty()) {
+            sourceDataInDeltaReport.add(getCondensedLeavesDataForDeltaReport(removedDataNodes));
+            final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+            final String xpathForDeltaReport = parentNodeXpath.isEmpty() ? ROOT_NODE_XPATH : parentNodeXpath;
+            final DeltaReport removedDeltaReportEntries = new DeltaReportBuilder().actionRemove()
+                                                                  .withXpath(xpathForDeltaReport)
+                                                                  .withSourceData(sourceDataInDeltaReport).build();
+            deltaReportEntries.add(removedDeltaReportEntries);
+        }
+        return deltaReportEntries;
+    }
+
+    private void getCondensedDeltaReportsForChildDataNodes(final DataNode sourceDataNode,
+            final DataNode targetDataNode,
+            final List<DeltaReport> deltaReportEntries) {
+        final Collection<DataNode> childrenOfSourceDataNodes = sourceDataNode.getChildDataNodes();
+        final Collection<DataNode> childrenOfTargetDataNodes = targetDataNode.getChildDataNodes();
+        if (!childrenOfSourceDataNodes.isEmpty() || !childrenOfTargetDataNodes.isEmpty()) {
+            deltaReportEntries.addAll(getCondensedDeltaReports(childrenOfSourceDataNodes, childrenOfTargetDataNodes));
+            deltaReportEntries.addAll(
+                    getCondensedAddedDeltaReports(childrenOfSourceDataNodes, childrenOfTargetDataNodes));
+        }
+    }
+
+    private List<DeltaReport> getCondensedAddedDeltaReports(final Collection<DataNode> sourceDataNodes,
             final Collection<DataNode> targetDataNodes) {
 
         final List<DeltaReport> addedDeltaReportEntries = new ArrayList<>();
         final Map<String, DataNode> xpathToSourceDataNodes = convertToXPathToFirstLevelDataNodesMap(sourceDataNodes);
         final Collection<Map<String, Serializable>> targetDataInDeltaReport = new ArrayList<>();
         String xpath = "";
+        final List<DataNode> addedNodes = new ArrayList<>();
         if (!targetDataNodes.isEmpty()) {
             for (final DataNode targetDataNode : targetDataNodes) {
                 xpath = targetDataNode.getXpath();
                 final DataNode sourceDataNode = xpathToSourceDataNodes.get(xpath);
                 if (sourceDataNode == null) {
-                    targetDataInDeltaReport.addAll(getCondensedLeavesDataForDeltaReport(targetDataNode));
+                    addedNodes.add(targetDataNode);
                 }
             }
         }
-        if (!targetDataInDeltaReport.isEmpty()) {
+        if (!addedNodes.isEmpty()) {
+            targetDataInDeltaReport.add(getCondensedLeavesDataForDeltaReport(addedNodes));
             final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
             final String xpathForDeltaReport = parentNodeXpath.isEmpty() ? ROOT_NODE_XPATH : parentNodeXpath;
             addedDeltaReportEntries.add(new DeltaReportBuilder().actionCreate().withXpath(xpathForDeltaReport)
@@ -232,20 +291,19 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return addedDeltaReportEntries;
     }
 
-    private static Collection<Map<String, Serializable>> getCondensedLeavesDataForDeltaReport(final DataNode dataNode) {
-        final Collection<Map<String, Object>> leavesData = Collections.singleton(DataMapUtils.toDataMap(dataNode));
-        final Collection<Map<String, Serializable>> serializableLeaves = new ArrayList<>();
-        for (final Map<String, Object> leaf : leavesData) {
-            final Map<String, Serializable> leafDataToSerializableMap = new HashMap<>();
-            for (final Map.Entry<String, Object> entry : leaf.entrySet()) {
-                leafDataToSerializableMap.put(entry.getKey(), (Serializable) entry.getValue());
-            }
-            serializableLeaves.add(leafDataToSerializableMap);
+    private Map<String, Serializable> getCondensedLeavesDataForDeltaReport(final List<DataNode> dataNode) {
+        //get anchorName and prefix from List of data nodes
+        final String anchorName = dataNode.get(0).getAnchorName();
+        final String prefix = prefixResolver.getPrefix(cpsAnchorService.getAnchor(dataNode.get(0).getDataspace(), anchorName), dataNode.get(0).getXpath());
+        final Map<String, Object> leavesData = DataMapUtils.listDataNodes(dataNode, prefix);
+        final Map<String, Serializable> leafDataToSerializableMap = new HashMap<>();
+        for (final Map.Entry<String, Object> entry : leavesData.entrySet()) {
+            leafDataToSerializableMap.put(entry.getKey(), (Serializable) entry.getValue());
         }
-        return serializableLeaves;
+        return leafDataToSerializableMap;
     }
 
-    private static Map<String, DataNode> convertToXPathToFirstLevelDataNodesMap(final Collection<DataNode> dataNodes) {
+    private Map<String, DataNode> convertToXPathToFirstLevelDataNodesMap(final Collection<DataNode> dataNodes) {
         final Map<String, DataNode> xpathToDataNode = new LinkedHashMap<>();
         for (final DataNode dataNode : dataNodes) {
             xpathToDataNode.put(dataNode.getXpath(), dataNode);

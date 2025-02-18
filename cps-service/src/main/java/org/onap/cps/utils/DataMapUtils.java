@@ -31,6 +31,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
@@ -66,6 +67,17 @@ public class DataMapUtils {
         return ImmutableMap.<String, Object>builder().put("anchorName", anchorName)
                 .put("dataNodes", dataMaps).build();
     }
+
+    public static Map<String, Object> listDataNodes(final Collection<DataNode> dataNodes, final String prefix) {
+        final Map<String, List<Map<String, Object>>> groupedLists = new LinkedHashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            final String parentNodeName = getNodeIdentifierWithPrefix(dataNode.getXpath(), prefix);
+            final Map<String, Object> nodeData = toDataMap(dataNode);
+            groupedLists.computeIfAbsent(parentNodeName, key -> new ArrayList<>()).add(nodeData);
+        }
+        return new LinkedHashMap<>(groupedLists);
+    }
+
 
     private static List<Map<String, Object>> toDataNodesWithIdentifier(final List<DataNode> dataNodeList,
                                                                        final String prefix) {
