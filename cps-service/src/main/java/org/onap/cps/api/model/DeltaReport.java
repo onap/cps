@@ -23,6 +23,7 @@ package org.onap.cps.api.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,6 @@ public class DeltaReport {
 
     private String action;
     private String xpath;
-    private Collection<Map<String, Serializable>> sourceData;
-    private Collection<Map<String, Serializable>> targetData;
+    private Map<String, List<Map<String, Object>>> sourceData;
+    private Map<String, List<Map<String, Object>>> targetData;
 }
