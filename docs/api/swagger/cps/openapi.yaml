@@ -2600,19 +2600,19 @@ components:
       - action: create
         xpath: "/bookstore/categories/[@code=3]"
         target-data:
-          code: "3,"
+        - code: "3,"
           name: kidz
       - action: remove
         xpath: "/bookstore/categories/[@code=1]"
         source-data:
-          code: "1,"
+        - code: "1,"
           name: Fiction
       - action: replace
         xpath: "/bookstore/categories/[@code=2]"
         source-data:
-          name: Funny
+        - name: Funny
         target-data:
-          name: Comic
+        - name: Comic
     dataSampleAcrossAnchors:
       value:
       - anchorName: bookstore1
