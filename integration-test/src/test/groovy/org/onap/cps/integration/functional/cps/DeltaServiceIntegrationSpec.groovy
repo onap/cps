@@ -128,13 +128,13 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
         and: 'the payload has expected leaf values'
             def sourceData = result[0].getSourceData()
             def targetData = result[0].getTargetData()
-            assert sourceData == expectedSourceValue
-            assert targetData == expectedTargetValue
+            assert sourceData.equals(expectedSourceValue)
+            assert targetData.equals(expectedTargetValue)
         where: 'following data was used'
-            scenario                           | sourceAnchor       | targetAnchor       | xpath                                                         || expectedSourceValue            | expectedTargetValue
-            'leaf is updated in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'                                                  || ['bookstore-name': 'Easons-1'] | ['bookstore-name': 'Crossword Bookstores']
-            'leaf is removed in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore/categories[@code=\'5\']/books[@title=\'Book 1\']' || [price:1]                      | null
-            'leaf is added in target anchor'   | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | '/bookstore/categories[@code=\'5\']/books[@title=\'Book 1\']' || null                           | [price:1]
+            scenario                           | sourceAnchor       | targetAnchor       | xpath                                                         || expectedSourceValue                         | expectedTargetValue
+            'leaf is updated in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore'                                                  || ['bookstore':['bookstore-name':'Easons-1']] | ['bookstore':['bookstore-name': 'Crossword Bookstores']]
+            'leaf is removed in target anchor' | BOOKSTORE_ANCHOR_3 | BOOKSTORE_ANCHOR_5 | '/bookstore/categories[@code=\'5\']/books[@title=\'Book 1\']' || ['books':[['price':1, 'title':'Book 1']]]   | null
+            'leaf is added in target anchor'   | BOOKSTORE_ANCHOR_5 | BOOKSTORE_ANCHOR_3 | '/bookstore/categories[@code=\'5\']/books[@title=\'Book 1\']' || null                                        | ['books':[['title':'Book 1', 'price':1]]]
     }
 
     def 'Get delta between anchors when child data nodes under existing parent data nodes are updated: #scenario'() {
@@ -156,10 +156,10 @@ class DeltaServiceIntegrationSpec extends FunctionalSpecBase {
     def 'Get delta between anchors where source and target data nodes have leaves and child data nodes'() {
         given: 'parent node xpath and expected data in delta report'
             def parentNodeXpath = '/bookstore/categories[@code=\'1\']'
-            def expectedSourceDataInParentNode = ['name':'Children']
-            def expectedTargetDataInParentNode = ['name':'Kids']
-            def expectedSourceDataInChildNode = [['lang' : 'English'],['price':20, 'editions':[1988, 2000]]]
-            def expectedTargetDataInChildNode = [['lang':'English/German'], ['price':200, 'editions':[1988, 2000, 2023]]]
+            def expectedSourceDataInParentNode = ['categories':[['code':'1', 'name':'Children']]]
+            def expectedTargetDataInParentNode = ['categories':[['code':'1', 'name':'Kids']]]
+            def expectedSourceDataInChildNode = [['books':[['lang':'English', 'title':'The Gruffalo']]], ['books':[['editions':[1988, 2000], 'price':20, 'title':'Matilda']]]]
+            def expectedTargetDataInChildNode = [['books':[['lang':'English/German', 'title':'The Gruffalo']]], ['books':[['price':200, 'editions':[1988, 2000, 2023], 'title':'Matilda']]]]
         when: 'attempt to get delta between leaves of existing data nodes'
             def result = objectUnderTest.getDeltaByDataspaceAndAnchors(FUNCTIONAL_TEST_DATASPACE_3, BOOKSTORE_ANCHOR_3, BOOKSTORE_ANCHOR_5, parentNodeXpath, INCLUDE_ALL_DESCENDANTS, NO_GROUPING)
             def deltaReportEntities = getDeltaReportEntities(result)
