@@ -22,8 +22,6 @@
 package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.integration.base.FunctionalSpecBase
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.exceptions.CpsPathException
@@ -31,6 +29,8 @@ import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.utils.ContentType
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
