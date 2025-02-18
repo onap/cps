@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,13 +62,13 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
 
     @Override
     public Collection<String> queryCmHandleReferenceIds(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
-        final boolean outputAlternateId) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
+            final boolean outputAlternateId) {
         return executeQueries(cmHandleQueryServiceParameters, outputAlternateId,
-            this::executeCpsPathQuery,
-            this::queryCmHandlesByPublicProperties,
-            this::executeModuleNameQuery,
-            this::queryCmHandlesByTrustLevel);
+                this::executeCpsPathQuery,
+                this::queryCmHandlesByPublicProperties,
+                this::executeModuleNameQuery,
+                this::queryCmHandlesByTrustLevel);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
 
     @Override
     public Collection<NcmpServiceCmHandle> queryCmHandles(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
+            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
 
         if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
             return getAllCmHandles();
@@ -111,15 +111,11 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         }
 
         final String dmiPluginIdentifierValue = dmiPropertyQueryPairs
-            .get(PropertyType.DMI_PLUGIN.getYangContainerName());
+                .get(PropertyType.DMI_PLUGIN.getYangContainerName());
 
-        if (outputAlternateId) {
-            return
-                cmHandleQueryService.getCmHandleReferencesMapByDmiPluginIdentifier(dmiPluginIdentifierValue).values();
-        } else {
-            return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifierValue,
-                outputAlternateId);
-        }
+        return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(
+                dmiPluginIdentifierValue, outputAlternateId);
+
     }
 
     private Collection<String> queryCmHandlesByPrivateProperties(
@@ -175,7 +171,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     private Collection<String> executeCpsPathQuery(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
         final Map<String, String> cpsPathCondition
-            = getCpsPathCondition(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
+                = getCpsPathCondition(cmHandleQueryServiceParameters.getCmHandleQueryParameters());
         if (!validateCpsPathConditionProperties(cpsPathCondition)) {
             return Collections.emptySet();
         }
@@ -185,8 +181,8 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         }
         try {
             cpsPathQueryResult = collectCmHandleReferencesFromDataNodes(
-                cmHandleQueryService.queryCmHandleAncestorsByCpsPath(cpsPathCondition.get("cpsPath"), OMIT_DESCENDANTS),
-                outputAlternateId);
+                    cmHandleQueryService.queryCmHandleAncestorsByCpsPath(cpsPathCondition.get("cpsPath"),
+                            OMIT_DESCENDANTS), outputAlternateId);
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
                     pathParsingException);
@@ -211,7 +207,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Map<String, String> getPropertyPairs(final List<ConditionProperties> conditionProperties,
-                                                       final String queryProperty) {
+                                                 final String queryProperty) {
         final Map<String, String> result = new HashMap<>();
         getConditions(conditionProperties, queryProperty).forEach(result::putAll);
         return result;
@@ -229,18 +225,18 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
 
     private Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
         final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
-            .iterator().next();
+                .iterator().next();
         return collectCmHandleReferencesFromDataNodes(dataNode.getChildDataNodes(), outputAlternateId);
     }
 
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
         final Collection<YangModelCmHandle> yangModelcmHandles
-            = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
+                = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
 
         final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelcmHandles.size());
 
         yangModelcmHandles.forEach(yangModelcmHandle ->
-            ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
+                ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
         );
         return ncmpServiceCmHandles;
     }
@@ -252,15 +248,15 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
                                               final boolean outputAlternateId,
                                               final BiFunction<CmHandleQueryServiceParameters, Boolean,
-                                                  Collection<String>>... queryFunctions) {
+                                                      Collection<String>>... queryFunctions) {
         if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
             return getAllCmHandleReferences(outputAlternateId);
         }
         Collection<String> combinedQueryResult = NO_QUERY_TO_EXECUTE;
         for (final BiFunction<CmHandleQueryServiceParameters, Boolean,
-            Collection<String>> queryFunction : queryFunctions) {
+                Collection<String>> queryFunction : queryFunctions) {
             final Collection<String> queryResult = queryFunction.apply(cmHandleQueryServiceParameters,
-                outputAlternateId);
+                    outputAlternateId);
             if (noEntriesFoundCanStopQuerying(queryResult)) {
                 return Collections.emptySet();
             }
@@ -288,13 +284,13 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<String> collectCmHandleReferencesFromDataNodes(final Collection<DataNode> dataNodes,
-                                                               final boolean outputAlternateId) {
+                                                                      final boolean outputAlternateId) {
         if (outputAlternateId) {
             return dataNodes.stream().map(dataNode ->
-                (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
+                    (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
         } else {
             return dataNodes.stream().map(dataNode ->
-                (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
+                    (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
         }
     }
 }
