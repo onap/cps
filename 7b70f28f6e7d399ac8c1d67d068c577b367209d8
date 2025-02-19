@@ -18,6 +18,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d533be7b_248c014f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T16:14:59Z",
+      "side": 1,
+      "message": "Some minor improvment and NB comments",
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780740a6_f68c1207",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T16:14:59Z",
+      "side": 1,
+      "message": "Eliminated Redundant Code: Used String.format() to improve readability and reduce repeated string concatenation.\n \n String cpsPath \u003d String.format(\"%s/cm-handles[@%s\u003d\u0027%s\u0027]/@alternate-id\",\n            NCMP_DMI_REGISTRY_PARENT, dmiProperty, dmiPluginIdentifier);",
+      "range": {
+        "startLine": 210,
+        "startChar": 45,
+        "endLine": 212,
+        "endChar": 66
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292192f0_d902543b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T16:14:59Z",
+      "side": 1,
+      "message": "Eliminated Redundant Code: Used String.format() to improve readability and reduce repeated string concatenation.",
+      "range": {
+        "startLine": 218,
+        "startChar": 45,
+        "endLine": 220,
+        "endChar": 56
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64d9bbba_e31838fb",
@@ -89,6 +152,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "405ddd7c_4c086751",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T16:14:59Z",
+      "side": 1,
+      "message": "NB: Use String.format() to improve readability\n \n \n return cmHandleIds.stream()\n            .map(cmHandleId -\u003e String.format(\"@%s\u003d\u0027%s\u0027\", attributeName, \n                      cmHandleId))\n            .collect(Collectors.joining(\" or \"));",
+      "parentUuid": "64cc8f01_91b1c585",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 55
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f907be2_8b459463",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
         "patchSetId": 2
@@ -100,6 +187,30 @@
       "writtenOn": "2025-02-19T15:31:41Z",
       "side": 1,
       "message": "Nb. Could use something like this, and remove resultSize parameter:\n\n    assert result.toSet() \u003d\u003d expectedCmHandleReference.toSet()",
+      "range": {
+        "startLine": 97,
+        "startChar": 61,
+        "endLine": 99,
+        "endChar": 64
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2bd0b3_b90bad71",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T16:14:59Z",
+      "side": 1,
+      "message": "NB: Use groovy way\n\nassert result as Set \u003d\u003d expectedCmHandleReference as Set",
+      "parentUuid": "7f907be2_8b459463",
       "range": {
         "startLine": 97,
         "startChar": 61,
