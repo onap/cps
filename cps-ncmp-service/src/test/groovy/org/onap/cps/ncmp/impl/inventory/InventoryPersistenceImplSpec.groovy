@@ -34,7 +34,6 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -179,7 +178,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         and: 'cps data service returns a valid data node'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get cm handle state is invoked'
             def result = objectUnderTest.getCmHandleState(cmHandleId)
         then: 'result has returned the correct cm handle state'
@@ -302,7 +301,7 @@ class InventoryPersistenceImplSpec extends Specification {
         given: 'expected xPath to get cmHandle data node'
             def expectedXPath = '/dmi-registry/cm-handles[@id=\'sample cmHandleId\']'
         when: 'the method to get data nodes is called'
-            objectUnderTest.getCmHandleDataNodeByCmHandleId('sample cmHandleId')
+            objectUnderTest.getCmHandleDataNodeByCmHandleId('sample cmHandleId', INCLUDE_ALL_DESCENDANTS)
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
@@ -382,21 +381,21 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'CM handle exists'() {
         given: 'data service returns a datanode with correct cm handle id'
-            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, OMIT_DESCENDANTS) >> [dataNode]
         expect: 'cm handle exists for given cm handle id'
             assert true == objectUnderTest.isExistingCmHandleId(cmHandleId)
     }
 
     def 'CM handle does not exist, empty dataNode collection returned'() {
         given: 'data service returns an empty datanode'
-            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, INCLUDE_ALL_DESCENDANTS) >> []
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, OMIT_DESCENDANTS) >> []
         expect: 'false is returned for non-existent cm handle'
             assert false == objectUnderTest.isExistingCmHandleId(cmHandleId)
     }
 
     def 'CM handle does not exist, exception thrown'() {
         given: 'data service throws an exception'
-            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry/cm-handles[@id='non-existent-cm-handle']", INCLUDE_ALL_DESCENDANTS) >> {throw new DataNodeNotFoundException('','')}
+            mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry/cm-handles[@id='non-existent-cm-handle']", OMIT_DESCENDANTS) >> {throw new DataNodeNotFoundException('','')}
         expect: 'false is returned for non-existent cm handle'
             assert false == objectUnderTest.isExistingCmHandleId('non-existent-cm-handle')
     }

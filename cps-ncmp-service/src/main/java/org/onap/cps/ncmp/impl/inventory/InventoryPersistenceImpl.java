@@ -117,7 +117,8 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
-        final DataNode dataNode = getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
+        final DataNode dataNode =
+            getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS).iterator().next();
         return YangDataConverter.toYangModelCmHandle(dataNode);
     }
 
@@ -185,8 +186,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<DataNode> getCmHandleDataNodeByCmHandleId(final String cmHandleId) {
-        return this.getDataNode(getXPathForCmHandleById(cmHandleId));
+    public Collection<DataNode> getCmHandleDataNodeByCmHandleId(final String cmHandleId,
+                                                                final FetchDescendantsOption fetchDescendantsOption) {
+        return this.getDataNode(getXPathForCmHandleById(cmHandleId), fetchDescendantsOption);
     }
 
     @Override
@@ -233,7 +235,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public boolean isExistingCmHandleId(final String cmHandleId) {
         try {
-            return  !getCmHandleDataNodeByCmHandleId(cmHandleId).isEmpty();
+            return  !getCmHandleDataNodeByCmHandleId(cmHandleId, OMIT_DESCENDANTS).isEmpty();
         } catch (final DataNodeNotFoundException exception) {
             return false;
         }

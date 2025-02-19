@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,6 +27,7 @@ import java.util.Map;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
@@ -125,9 +126,11 @@ public interface InventoryPersistence extends NcmpPersistence {
      * Get data node with the given cm handle id.
      *
      * @param cmHandleId cmHandle ID
+     * @param fetchDescendantsOption fetchDescendantsOption
      * @return data node
      */
-    Collection<DataNode> getCmHandleDataNodeByCmHandleId(String cmHandleId);
+    Collection<DataNode> getCmHandleDataNodeByCmHandleId(String cmHandleId,
+                                                         FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get yang model cm handle with the given alternate id.

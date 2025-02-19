@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 Nordix Foundation
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2024 TechMahindra Ltd.
  * ================================================================================
@@ -38,6 +38,7 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
@@ -79,7 +80,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
 
     def 'Update CM Handle Public Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> cmHandleDataNodeAsCollection
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNodeAsCollection
         and: 'an update cm handle request with public properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: updatedPublicProperties)]
         when: 'update data node leaves is called with the update request'
@@ -101,7 +102,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
 
     def 'Update DMI Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
-            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> cmHandleDataNodeAsCollection
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNodeAsCollection
         and: 'an update cm handle request with DMI properties updates'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: updatedDmiProperties)]
         when: 'update data node leaves is called with the update request'
@@ -125,7 +126,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def 'Update CM Handle Properties, remove all properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId], childDataNodes: originalPropertyDataNodes)
-            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [cmHandleDataNode]
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [cmHandleDataNode]
         and: 'an update cm handle request that removes all public properties(existing and non-existing)'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp3': null, 'publicProp4': null])]
         when: 'update data node leaves is called with the update request'
@@ -204,7 +205,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
         and: 'a data node found'
             def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
-            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [dataNode]
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'cm handle properties is updated'
             def response = objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'the update is delegated to cps data service with correct parameters'
@@ -224,7 +225,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             def updatedNcmpServiceCmHandles = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
         and: 'a data node found'
             def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
-            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId) >> [dataNode]
+            mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'attempt to update the cm handle'
             def response = objectUnderTest.updateCmHandleProperties(updatedNcmpServiceCmHandles)
         then: 'the update is NOT delegated to cps data service'

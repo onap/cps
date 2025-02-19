@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
@@ -88,7 +89,7 @@ public class CmHandleRegistrationServicePropertyHandler {
             if (!rejectedCmHandleIds.contains(cmHandleId)) {
                 try {
                     final DataNode existingCmHandleDataNode = inventoryPersistence
-                            .getCmHandleDataNodeByCmHandleId(cmHandleId).iterator().next();
+                            .getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS).iterator().next();
                     processUpdates(existingCmHandleDataNode, updatedNcmpServiceCmHandle);
                     cmHandleRegistrationResponses.add(CmHandleRegistrationResponse.createSuccessResponse(cmHandleId));
                 } catch (final DataNodeNotFoundException e) {
