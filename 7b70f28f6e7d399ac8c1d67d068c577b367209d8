@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717fc05f_c5992f26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-19T15:31:41Z",
+      "side": 1,
+      "message": "A few Non blockers",
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d9bbba_e31838fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-19T15:31:41Z",
+      "side": 1,
+      "message": "These methods could be refactored together, using a parameter for @id vs @alternate-id",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 5
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc42116d_0cbc5f08",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-19T15:31:41Z",
+      "side": 1,
+      "message": "Nb. Parameter is always \"id\"?",
+      "range": {
+        "startLine": 232,
+        "startChar": 82,
+        "endLine": 232,
+        "endChar": 110
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64cc8f01_91b1c585",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-19T15:31:41Z",
+      "side": 1,
+      "message": "Nb. Slightly simpler:\n\n    return cmHandleIds.stream()\n        .map(cmHandleId -\u003e \"@id\u003d\u0027\" + cmHandleId + \"\u0027\")\n        .collect(Collectors.joining(\" or \"));",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 55
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f907be2_8b459463",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-02-19T15:31:41Z",
+      "side": 1,
+      "message": "Nb. Could use something like this, and remove resultSize parameter:\n\n    assert result.toSet() \u003d\u003d expectedCmHandleReference.toSet()",
+      "range": {
+        "startLine": 97,
+        "startChar": 61,
+        "endLine": 99,
+        "endChar": 64
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
