@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb027ef5_5eb63754",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T15:35:35Z",
+      "side": 1,
+      "message": "NB: \"Ignoring duplicate Yang resource exception. Assuming model was created by another instance.\"",
+      "range": {
+        "startLine": 62,
+        "startChar": 21,
+        "endLine": 62,
+        "endChar": 110
+      },
+      "revId": "9decb4d9ad9a8dd929d48c477b1090bcdb0c3343",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d616b570_d35aba2a",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-19T15:35:35Z",
+      "side": 1,
+      "message": "NB: Extracted Exit Logic\n\nMoves application exit logic to a separate method (exitApplication) for better readability and reusability.\n\nexitApplication(applicationStartedEvent);\n\n\nprivate void exitApplication(ApplicationStartedEvent event) {\n    SpringApplication.exit(event.getApplicationContext(), () -\u003e EXIT_CODE_ON_ERROR);\n}",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 110
+      },
+      "revId": "9decb4d9ad9a8dd929d48c477b1090bcdb0c3343",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
