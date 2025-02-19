@@ -20,9 +20,11 @@
 
 package org.onap.cps.integration.functional.ncmp
 
+import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import spock.lang.Ignore
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
@@ -31,6 +33,8 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
     def setup() {
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
     }
+
+    def resourceMeter = new ResourceMeter()
 
     def 'Pass-through data operations using #scenario as reference.'() {
         given: 'a cm handle with an alternate id'
@@ -51,6 +55,26 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
             'standard id'      | 'dont care' | 'ch-1'
             'alt-id with ='    | 'alt=1'     | 'alt=1'
             'alt-id without =' | 'alt-1'     | 'alt-1'
+    }
+
+    /**
+     * This test is used just for local performance tests to compare alternate and CM handle ids performance
+     * **/
+    @Ignore
+    def 'performance'() {
+        given: 'register 1,000 cm handles (with alternative ids)'
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 1000, 1)
+        when: 'perform a 1,000 lookups by alternate id'
+            resourceMeter.start()
+            (1..1000).each {
+                networkCmProxyInventoryFacade.getNcmpServiceCmHandle("alt=${it}")
+            }
+            resourceMeter.stop()
+        then:
+            assert resourceMeter.totalTimeInSeconds > 0
+            println "*** CPS-2605 Execution time: ${resourceMeter.totalTimeInSeconds} ms"
+        cleanup: 'deregister'
+            deregisterSequenceOfCmHandles(DMI1_URL, 1000, 1)
     }
 
 }
