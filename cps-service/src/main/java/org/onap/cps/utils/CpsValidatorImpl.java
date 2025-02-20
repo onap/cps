@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ri.utils;
+package org.onap.cps.utils;
 
 import com.google.common.collect.Lists;
 import java.util.Arrays;
@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.parameters.PaginationOption;
-import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -35,7 +34,18 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CpsValidatorImpl implements CpsValidator {
 
-    private static final char[] UNSUPPORTED_NAME_CHARACTERS = "!\" #$%&'()*+,./\\:;<=>?@[]^`{|}~".toCharArray();
+    private static final char[] UNSUPPORTED_NAME_CHARACTERS = "=!\" #$%&'()*+,./\\:;<>?@[]^`{|}~".toCharArray();
+
+    @Override
+    public boolean isValidName(final String name) {
+        final Collection<Character> charactersOfName = Lists.charactersOf(name);
+        for (final char unsupportedCharacter : UNSUPPORTED_NAME_CHARACTERS) {
+            if (charactersOfName.contains(unsupportedCharacter)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public void validateNameCharacters(final String... names) {

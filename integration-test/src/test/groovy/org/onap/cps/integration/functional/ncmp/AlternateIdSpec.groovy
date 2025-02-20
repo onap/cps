@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -30,16 +30,13 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
-        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'alternateId')
     }
 
-    def cleanup() {
-        deregisterCmHandle(DMI1_URL, 'ch-1')
-    }
-
-    def 'AlternateId in pass-through data operations should return OK status.'() {
-        given: 'the URL for the pass-through data request'
-            def url = '/ncmp/v1/ch/alternateId/data/ds/ncmp-datastore:passthrough-running'
+    def 'Pass-through data operations using #scenario as reference.'() {
+        given: 'a cm handle with an alternate id'
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, alternateId)
+        and: 'the URL for the pass-through data request'
+            def url = "/ncmp/v1/ch/${cmHandleReference}/data/ds/ncmp-datastore:passthrough-running"
         when: 'a pass-through data request is sent to NCMP'
             def response = mvc.perform(get(url)
                     .queryParam('resourceIdentifier', 'my-resource-id')
@@ -47,8 +44,13 @@ class AlternateIdSpec extends CpsIntegrationSpecBase {
                     .andReturn().response
         then: 'response status is Ok'
             assert response.status == HttpStatus.OK.value()
+        cleanup: 'remove the test cm handle'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
+        where: 'the following ids are used'
+            scenario           | alternateId | cmHandleReference
+            'standard id'      | 'dont care' | 'ch-1'
+            'alt-id with ='    | 'alt=1'     | 'alt=1'
+            'alt-id without =' | 'alt-1'     | 'alt-1'
     }
-
-
 
 }

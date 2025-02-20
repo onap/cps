@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +34,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
-import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
@@ -79,7 +78,7 @@ public class DmiDataOperations {
      * This method fetches the resource data from the operational data store for a given CM handle
      * identifier on the specified resource using the DMI client.
      *
-     * @param cmResourceAddress Target datastore, CM handle, and resource identifier.
+     * @param cmResourceAddress Target datastore, CM handle reference, and resource identifier.
      * @param options           Options query string.
      * @param topic             Topic name for triggering asynchronous responses.
      * @param requestId         Request ID for asynchronous responses.
@@ -94,7 +93,8 @@ public class DmiDataOperations {
                                                                final String topic,
                                                                final String requestId,
                                                                final String authorization) {
-        final YangModelCmHandle yangModelCmHandle = resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress);
+        final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(
+            cmResourceAddress.resolveCmHandleReferenceToId());
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
@@ -157,22 +157,22 @@ public class DmiDataOperations {
      * This method creates the resource data from pass-through running data store for given cm handle
      * identifier on given resource using dmi client.
      *
-     * @param cmHandleId    network resource identifier
-     * @param resourceId    resource identifier
-     * @param operationType operation enum
-     * @param requestData   the request data
-     * @param dataType      data type
-     * @param authorization contents of Authorization header, or null if not present
+     * @param cmHandleReference network resource identifier
+     * @param resourceId        resource identifier
+     * @param operationType     operation enum
+     * @param requestData       the request data
+     * @param dataType          data type
+     * @param authorization     contents of Authorization header, or null if not present
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandleId,
+    public ResponseEntity<Object> writeResourceDataPassThroughRunningFromDmi(final String cmHandleReference,
                                                                              final String resourceId,
                                                                              final OperationType operationType,
                                                                              final String requestData,
                                                                              final String dataType,
                                                                              final String authorization) {
         final CmResourceAddress cmResourceAddress =
-                new CmResourceAddress(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleId, resourceId);
+                new CmResourceAddress(PASSTHROUGH_RUNNING.getDatastoreName(), cmHandleReference, resourceId);
 
         final YangModelCmHandle yangModelCmHandle =
             getYangModelCmHandle(cmResourceAddress.resolveCmHandleReferenceToId());
@@ -279,16 +279,6 @@ public class DmiDataOperations {
                                 return Mono.empty();
                             });
                 }).subscribe();
-    }
-
-    private YangModelCmHandle resolveYangModelCmHandleFromCmHandleReference(final CmResourceAddress cmResourceAddress) {
-        String cmHandleId = cmResourceAddress.getCmHandleReference();
-        try {
-            return getYangModelCmHandle(cmHandleId);
-        } catch (final DataValidationException ignored) {
-            cmHandleId = cmResourceAddress.resolveCmHandleReferenceToId();
-            return getYangModelCmHandle(cmHandleId);
-        }
     }
 
     private String createDmiDataOperationRequestAsJsonString(

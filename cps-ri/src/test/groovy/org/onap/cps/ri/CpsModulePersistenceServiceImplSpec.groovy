@@ -20,6 +20,7 @@
 package org.onap.cps.ri
 
 import org.hibernate.exception.ConstraintViolationException
+import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.SchemaSetEntity
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.ModuleReferenceRepository
@@ -99,6 +100,34 @@ class CpsModulePersistenceServiceImplSpec extends Specification {
             objectUnderTest.updateSchemaSetFromNewAndExistingModules('my-dataspace', 'my-schemaset', [:], [new ModuleReference('some module name', 'some revision name')])
         then: 'no exception is thrown '
             noExceptionThrown()
+    }
+
+    def 'Get yang schema resources.' () {
+        given: 'mocked methods for dataspace and schema set repositories'
+            mockDataspaceRepository.getByName('someDataspaceName') >> new DataspaceEntity()
+            mockSchemaSetRepository.getByDataspaceAndName(_,_) >> new SchemaSetEntity(yangResources: [])
+        when: 'the get yang schema resources method is called'
+            def result = objectUnderTest.getYangSchemaResources('someDataspaceName', 'someSchemaSetName')
+        then: 'an empty map is returned'
+            assert result.isEmpty()
+    }
+
+    def 'Get yang module references with just dataspace name.' () {
+        given: 'mocked method return yang resource repository'
+            mockYangResourceRepository.findAllModuleReferencesByDataspace('someDataspaceName') >> []
+        when: 'the get yang resource module reference method is called with 1 parameter'
+            def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName')
+        then: 'an empty collection is returned'
+            assert result.isEmpty()
+    }
+
+    def 'Get yang module references with dataspace name and anchor.' () {
+        given: 'mocked method return yang resource repository'
+            mockYangResourceRepository.findAllModuleReferencesByDataspaceAndAnchor('someDataspaceName', 'someAnchorName') >> []
+        when: 'the get yang resource module reference method is called with 2 parameters'
+            def result = objectUnderTest.getYangResourceModuleReferences('someDataspaceName','someAnchorName')
+        then: 'an empty collection is returned'
+            assert result.isEmpty()
     }
 
 }

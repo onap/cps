@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -24,12 +24,16 @@ import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.utils.CpsValidatorImpl
 import spock.lang.Specification
 
 class AlternateIdMatcherSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence)
+
+    def cpsValidator = new CpsValidatorImpl()
+
+    def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence, cpsValidator)
 
     def setup() {
         given: 'cm handle in the registry with alternate id /a/b'
