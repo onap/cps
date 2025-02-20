@@ -16,6 +16,24 @@
       "message": "i think we should also catch DuplicatedYangResourceException here as well.\nreason : if during schema set the yang resource is already present then it throws DuplicatedYangResourceException and if not handled here , it will be rethrown as ModelOnboardingException(\"Creating schema set failed ... ) which will ultimately result in exiting the application.",
       "revId": "870cfc1fcdcc53db8cc9d38847be35d9309b52da",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dad54ac_aca50c6d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-20T16:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79d312eb_d584688f",
+      "revId": "870cfc1fcdcc53db8cc9d38847be35d9309b52da",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
