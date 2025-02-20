@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,21 +20,32 @@
 
 package org.onap.cps.utils;
 
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.parameters.PaginationOption;
 
 public interface CpsValidator {
 
     /**
+     * Validate characters in name within cps.
+     *
+     * @param name name to be validated
+     * @return true if name is valid
+     */
+    boolean isValidName(final String name);
+
+    /**
      * Validate characters in names within cps.
      *
-     * @param names names of data to be validated
+     * @param names names to be validated
+     * @throws DataValidationException for any name that is not valid.
      */
     void validateNameCharacters(final String... names);
 
     /**
      * Validate characters in names within cps.
      *
-     * @param names names of data to be validated
+     * @param names names  to be validated
+     * @throws DataValidationException for any name that is not valid.
      */
     void validateNameCharacters(final Iterable<String> names);
 

@@ -281,7 +281,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         def modulePrefix = moduleNameStrategy.OVERLAPPING.equals(moduleNameStrategy) ? 'same' : moduleSetTag
         def moduleReferences = (1..200).collect {  "${modulePrefix}Module${it}" }
         (1..numberOfCmHandles).each {
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: NO_ALTERNATE_ID)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: "alt=${id}")
             cmHandles.add(ncmpServiceCmHandle)
             dmiDispatcher1.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
             dmiDispatcher2.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences

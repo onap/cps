@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,8 +22,6 @@
 package org.onap.cps.ncmp.impl.data
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.exceptions.DataNodeNotFoundException
-import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
@@ -86,6 +84,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def 'call get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
+            alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
             mockYangModelCmHandleRetrieval(dmiProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = Mono.just(new ResponseEntity<Object>('{some-key:some-value}', HttpStatus.OK))
@@ -205,33 +204,6 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             CmHandleState.READY   || false
             CmHandleState.ADVISED || true
     }
-
-    def 'Resolving cm handle references with cm handle id.'() {
-        given: 'a resource address with a cm handle id'
-            def cmResourceAddress = new CmResourceAddress('some store', 'cm-handle-id', 'some resource')
-        and: 'the given cm handle id is available in the inventory'
-            mockInventoryPersistence.getYangModelCmHandle('cm-handle-id') >> yangModelCmHandle
-        expect: 'resolving the cm handle id returns the cm handle'
-            assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
-    }
-
-    def 'Resolving cm handle references with alternate id #scenario.'() {
-        given: 'a resource with a alternate id'
-            def cmResourceAddress = new CmResourceAddress('some store', alternateId, 'some resource')
-        and: 'the alternate id cannot be found in the inventory directly and that results in an exception'
-            mockInventoryPersistence.getYangModelCmHandle(alternateId) >>  { throw errorThrownDuringCmHandleIdSearch }
-        and: 'the alternate id can be matched to a cm handle id'
-            alternateIdMatcher.getCmHandleId(alternateId) >> 'cm-handle-id'
-        and: 'that cm handle id is available in the inventory'
-            mockInventoryPersistence.getYangModelCmHandle('cm-handle-id') >> yangModelCmHandle
-        expect: 'resolving that cm handle id returns the cm handle'
-            assert objectUnderTest.resolveYangModelCmHandleFromCmHandleReference(cmResourceAddress) == yangModelCmHandle
-        where: 'the following alternate ids are used'
-            scenario                                  | alternateId     | errorThrownDuringCmHandleIdSearch
-            'alternate id with no special characters' | 'alternate-id'  | new DataNodeNotFoundException('','')
-            'alternate id with special characters'    | 'alternate#id'  | new DataValidationException('','')
-    }
-
 
     def extractDataValue(actualDataOperationCloudEvent) {
         return toTargetEvent(actualDataOperationCloudEvent, DataOperationEvent).data.responses[0]

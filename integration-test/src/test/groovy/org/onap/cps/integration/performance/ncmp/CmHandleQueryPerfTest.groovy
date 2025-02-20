@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
                 cpsDataService.getDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
                         '/dmi-registry/cm-handles[@id="cm-' + it + '"]', OMIT_DESCENDANTS)
                 objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS)
+                        '/dmi-registry/cm-handles[@alternate-id="alt=' + it + '"]', OMIT_DESCENDANTS)
             }
             resourceMeter.stop()
         then: 'resource usage is as expected'
@@ -100,7 +100,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             resourceMeter.start()
             (1..100).each {
                 count += cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
-                        '/dmi-registry/cm-handles[@alternate-id="alt-' + it + '"]', OMIT_DESCENDANTS).size()
+                        '/dmi-registry/cm-handles[@alternate-id="alt=' + it + '"]', OMIT_DESCENDANTS).size()
             }
             resourceMeter.stop()
         then:
@@ -116,7 +116,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
     def 'A batch of CM-handles is looked up by alternate-id.'() {
         given: 'a CPS Path Query to look up 100 alternate-ids in a single operation'
-            def cpsPathQuery = '/dmi-registry/cm-handles[' + (1..100).collect { "@alternate-id='alt-${it}'" }.join(' or ') + ']'
+            def cpsPathQuery = '/dmi-registry/cm-handles[' + (1..100).collect { "@alternate-id='alt=${it}'" }.join(' or ') + ']'
         when: 'CM-handles are looked up by alternate-ids in a single query'
             resourceMeter.start()
             def count = cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPathQuery, OMIT_DESCENDANTS).size()
