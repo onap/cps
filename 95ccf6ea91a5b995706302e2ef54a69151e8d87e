@@ -22,6 +22,30 @@
       },
       "revId": "95ccf6ea91a5b995706302e2ef54a69151e8d87e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ac4971c_91f4e262",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-20T17:09:03Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "6417e9cc_8244cf88",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "95ccf6ea91a5b995706302e2ef54a69151e8d87e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
