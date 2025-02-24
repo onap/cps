@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -47,6 +47,10 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.charset.StandardCharsets
+import java.nio.file.StandardOpenOption
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -111,10 +115,22 @@ class DataRestControllerSpec extends Specification {
     @Shared
     static MultipartFile multipartYangFile = new MockMultipartFile("file", 'filename.yang', "text/plain", 'content'.getBytes())
 
+    @Shared
+    Path jsonFile
+
+    @Shared
+    MockMultipartFile multipartJsonFile
 
     def setup() {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
+        jsonFile = Files.createTempFile("requestBody", ".json")
+        Files.write(jsonFile, requestBodyJson.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE)
+        multipartJsonFile = new MockMultipartFile("json", jsonFile.fileName.toString(), "application/json", Files.readAllBytes(jsonFile))
+    }
+
+    def cleanup() {
+        Files.deleteIfExists(jsonFile)
     }
 
     def 'Create a node: #scenario.'() {
@@ -458,7 +474,7 @@ class DataRestControllerSpec extends Specification {
             def response =
                     mvc.perform(multipart(endpoint)
                             .file(multipartYangFile)
-                            .param("json", requestBodyJson)
+                            .file(multipartJsonFile)
                             .param('xpath', xpath)
                             .contentType(MediaType.MULTIPART_FORM_DATA))
                             .andReturn().response
@@ -478,7 +494,7 @@ class DataRestControllerSpec extends Specification {
         when: 'get delta request is performed using REST API'
             def response =
                     mvc.perform(multipart(endpoint)
-                            .param("json", requestBodyJson)
+                            .file(multipartJsonFile)
                             .param('xpath', xpath)
                             .contentType(MediaType.MULTIPART_FORM_DATA))
                             .andReturn().response
@@ -486,6 +502,45 @@ class DataRestControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
             assert response.contentAsString.contains("[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]")
+    }
+
+    def 'Get delta between anchor and JSON payload Return 400 BAD Request'() {
+        given: 'xpath, endpoint and empty json payload'
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
+            def emptyJsonFile = new MockMultipartFile("json", "empty.json", "application/json", new byte[0])
+        when: 'get delta request is performed using REST API with empty JSON file'
+            def response =
+                mvc.perform(multipart(endpoint)
+                         .file(emptyJsonFile)
+                         .file(multipartYangFile)
+                         .param('xpath', xpath)
+                         .contentType(MediaType.MULTIPART_FORM_DATA))
+                         .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+    }
+
+    def 'Get delta between anchor and JSON payload Return 500 Internal Server Error'() {
+        given: 'xpath, endpoint and a JSON file'
+            def xpath = 'some xpath'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
+            def invalidMultipartJsonFile = Mock(MockMultipartFile)
+            invalidMultipartJsonFile.getName() >> "json"
+            invalidMultipartJsonFile.getOriginalFilename() >> "invalid.json"
+            invalidMultipartJsonFile.getContentType() >> "application/json"
+            invalidMultipartJsonFile.getBytes() >> { throw new IOException() }
+        when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(multipart(endpoint)
+                         .file(invalidMultipartJsonFile)
+                         .file(multipartYangFile)
+                         .param('xpath', xpath)
+                         .contentType(MediaType.MULTIPART_FORM_DATA))
+                         .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.INTERNAL_SERVER_ERROR.value()
+            assert response.contentAsString.contains("Error reading JSON file")
     }
 
     def 'Update data node leaves: #scenario.'() {
