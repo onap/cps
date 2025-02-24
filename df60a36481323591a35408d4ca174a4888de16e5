@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "410a9ee0_60bf4dc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T11:32:53Z",
+      "side": 1,
+      "message": "few comments still left to address.",
+      "revId": "df60a36481323591a35408d4ca174a4888de16e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf749831_09da600e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T11:32:53Z",
+      "side": 1,
+      "message": "notificationSubscriptionAsJson",
+      "range": {
+        "startLine": 293,
+        "startChar": 46,
+        "endLine": 293,
+        "endChar": 75
+      },
+      "revId": "df60a36481323591a35408d4ca174a4888de16e5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

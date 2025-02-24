@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c15a4ac_2d99c285",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T11:32:53Z",
+      "side": 1,
+      "message": "Create CPS notification subscription. I think u missed it?\n\nfollow for GET and DELETE operation as well.",
+      "parentUuid": "b6f3aa2c_181c8a30",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 44
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72f5be4c_2f8418b8",
@@ -525,6 +549,30 @@
       "side": 1,
       "message": "will check after refactoring of cps-core code",
       "parentUuid": "5ddf8ce0_acacedd3",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc86245_de74ee64",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T11:32:53Z",
+      "side": 1,
+      "message": "we can take care of this as part of a separate patch. \nM sure we are also trying to refactor some bits in some other code.\nThis to be reviewed again.",
+      "parentUuid": "4e5124b4_3287fce3",
       "range": {
         "startLine": 126,
         "startChar": 1,
