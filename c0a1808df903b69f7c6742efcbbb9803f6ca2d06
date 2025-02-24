@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f776f1d4_45cd62d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Addressed review comments.",
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1992aec6_69540c7c",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "NB: insert word \u0027to\u0027\nSubscribe to cps notifications\nOR (maybe better, and like what you have in summary, not sure if we need both)\nCreate cps notification subscription",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 44
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f3aa2c_181c8a30",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1992aec6_69540c7c",
       "range": {
         "startLine": 116,
         "startChar": 17,
@@ -47,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84fa730_95f438e0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/AdminRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72f5be4c_2f8418b8",
+      "range": {
+        "startLine": 290,
+        "startChar": 96,
+        "endLine": 290,
+        "endChar": 104
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "046024ae_dd4bf43a",
@@ -60,6 +125,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "suffix with _FORMAT to distinguish from the local variable once formatted with String.format()",
+      "range": {
+        "startLine": 59,
+        "startChar": 32,
+        "endLine": 59,
+        "endChar": 61
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "938c625e_959d5428",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "046024ae_dd4bf43a",
       "range": {
         "startLine": 59,
         "startChar": 32,
@@ -93,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14893d4d_ae260727",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fcd41f1_0e013d8b",
+      "range": {
+        "startLine": 60,
+        "startChar": 32,
+        "endLine": 60,
+        "endChar": 59
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9067cc8b_aef3823c",
@@ -106,6 +219,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "suffix with _FORMAT",
+      "range": {
+        "startLine": 61,
+        "startChar": 32,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d174f6_7481bc32",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9067cc8b_aef3823c",
       "range": {
         "startLine": 61,
         "startChar": 32,
@@ -139,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "998286e3_a81dca21",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1e1b6af_b4f6afaf",
+      "range": {
+        "startLine": 65,
+        "startChar": 60,
+        "endLine": 65,
+        "endChar": 68
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e54a9b7e_04c5f5ac",
@@ -152,6 +313,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "NB: \u0027e\u0027 or \u0027DataNodeNotFoundException \u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 49,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0b1e20_2bc66d51",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e54a9b7e_04c5f5ac",
       "range": {
         "startLine": 109,
         "startChar": 49,
@@ -185,6 +370,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acafdebc_41077e78",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "138a6159_ae679678",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e238e615_8a49cef5",
@@ -208,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93fdae33_8c170b1b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e238e615_8a49cef5",
+      "range": {
+        "startLine": 120,
+        "startChar": 22,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ecc66cf_83a30bc4",
@@ -221,6 +454,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "negate here ie add !",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 43
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d43aa750_32aceca2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ecc66cf_83a30bc4",
       "range": {
         "startLine": 122,
         "startChar": 15,
@@ -256,6 +513,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e5124b4_3287fce3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "will check after refactoring of cps-core code",
+      "parentUuid": "5ddf8ce0_acacedd3",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fbb0d42_3e2eb384",
         "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
         "patchSetId": 13
@@ -267,6 +548,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "common to multiple test, use setup() closure",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 95
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f4fbe71_bda4b969",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fbb0d42_3e2eb384",
       "range": {
         "startLine": 54,
         "startChar": 12,
@@ -294,6 +599,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f19688_27771dac",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "668c2317_835fac2c",
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3f55c28_e7487fec",
@@ -307,6 +630,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "please use groovy map constructor\n\ne.g def anchor \u003d new Anchor(name: anchorName, dataspaceName: dataspaceName, schemaSetName: schemaSetName) \n\n(example from org.onap.cps.rest.controller.AdminRestControllerSpec)",
+      "range": {
+        "startLine": 47,
+        "startChar": 56,
+        "endLine": 48,
+        "endChar": 116
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a82c7f8_0028b23f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3f55c28_e7487fec",
       "range": {
         "startLine": 47,
         "startChar": 56,
@@ -340,6 +687,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "864bbbe1_52240cb9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a61c811c_f8a3e0a0",
+      "range": {
+        "startLine": 60,
+        "startChar": 20,
+        "endLine": 60,
+        "endChar": 21
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f320a1b3_7138de3f",
@@ -353,6 +724,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "just just string literals",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4620368_4ae8b177",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "here we need to provide predefined xpath for notification subscription root node",
+      "parentUuid": "f320a1b3_7138de3f",
       "range": {
         "startLine": 61,
         "startChar": 16,
@@ -386,6 +781,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7730b1_49914a20",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae1ba144_b0c9a0b2",
+      "range": {
+        "startLine": 78,
+        "startChar": 39,
+        "endLine": 78,
+        "endChar": 56
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9559a36_bd79be59",
@@ -399,6 +818,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 37
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecb79f7c_5f080f54",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9559a36_bd79be59",
       "range": {
         "startLine": 81,
         "startChar": 12,
@@ -432,6 +875,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "023ac374_17aaaa5e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc0e949f_0433c35e",
+      "range": {
+        "startLine": 87,
+        "startChar": 69,
+        "endLine": 87,
+        "endChar": 74
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef269296_5547629d",
@@ -445,6 +912,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "misleading the format is not relevant. but you do want to check it so use words like \u0027my\u0027.e.g. just say \u0027/my/path\u0027 (because you want to verify it has been passed on\n\n(use \u0027some\u0027 when you don\u0027t care/test about the value/ like on line 87",
+      "range": {
+        "startLine": 94,
+        "startChar": 26,
+        "endLine": 94,
+        "endChar": 59
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "191835d9_95b91a44",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef269296_5547629d",
       "range": {
         "startLine": 94,
         "startChar": 26,
@@ -478,6 +969,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dedeab7_cd92d47a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a8e819a_164b6e3c",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43421587_449a3912",
@@ -491,6 +1006,30 @@
       "writtenOn": "2025-02-17T15:17:40Z",
       "side": 1,
       "message": "i think you can use groovy contructor here too, se line #48",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 42
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194a2e2c_08120c86",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "we are only using DataNodeBuilder in all tests",
+      "parentUuid": "43421587_449a3912",
       "range": {
         "startLine": 107,
         "startChar": 21,
@@ -532,6 +1071,24 @@
       "side": 1,
       "message": "this is auto generated",
       "parentUuid": "ef9a6603_e50e88ed",
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4133c651_8ad78d6f",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 3180,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-24T09:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fa54be2_a70d32ed",
       "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
