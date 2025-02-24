@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ca62954_f8a885fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T16:04:03Z",
+      "side": 1,
+      "message": "comment applies for GET , UPDATE and DELETE.",
+      "revId": "28589e014529f04340eec200f66c02839d087bc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b97ce2a_e6abf492",
+        "filename": "cps-rest/docs/openapi/cpsAdminV2.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-24T16:04:03Z",
+      "side": 1,
+      "message": "some confusion over here.\nWe want the word CPS to be part of the description and summary.\n\nmaybe the details present in description and summary caused the confusion.",
+      "range": {
+        "startLine": 93,
+        "startChar": 17,
+        "endLine": 93,
+        "endChar": 46
+      },
+      "revId": "28589e014529f04340eec200f66c02839d087bc5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
