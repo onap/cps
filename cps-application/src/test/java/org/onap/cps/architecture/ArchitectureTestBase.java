@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ public class ArchitectureTestBase {
                                                             "java..",
                                                             "lombok..",
                                                             "org.apache..",
+                                                            "org.aspectj..",
                                                             "org.mapstruct..",
                                                             "org.opendaylight..",
                                                             "org.slf4j..",
