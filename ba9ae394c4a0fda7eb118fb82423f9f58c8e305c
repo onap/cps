@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26a8011_4d02dfda",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-02-24T13:35:24Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "6fecf337_b10d9d0c",
+      "range": {
+        "startLine": 147,
+        "startChar": 53,
+        "endLine": 147,
+        "endChar": 65
+      },
+      "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4b27814_2008223a",
@@ -71,6 +95,24 @@
       "writtenOn": "2025-02-24T11:55:08Z",
       "side": 1,
       "message": "toDataMapsWithIdentifier because it does not only group list nodes.",
+      "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa12aa1_04758b0b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-02-24T13:35:24Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "b4b27814_2008223a",
       "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -98,6 +140,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df382622_78124f3a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapUtils.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-02-24T13:35:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e44e52f_af9265de",
+      "range": {
+        "startLine": 118,
+        "startChar": 23,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c85aeec0_238667a5",
@@ -111,6 +177,30 @@
       "writtenOn": "2025-02-24T11:55:08Z",
       "side": 1,
       "message": "No need of if-else block.\nresult.containsKey(\u0027child-list\u0027)\n            result.\u0027child-list\u0027.size() \u003d\u003d 2\n            result.\u0027child-list\u0027.collect { it.listElementLeaf }.containsAll([\u0027listElement1leafValue\u0027, \u0027listElement2leafValue\u0027])\nis sufficient",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "ba9ae394c4a0fda7eb118fb82423f9f58c8e305c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671c0da3_71da12b7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DataMapUtilsSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-02-24T13:35:24Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c85aeec0_238667a5",
       "range": {
         "startLine": 41,
         "startChar": 12,
