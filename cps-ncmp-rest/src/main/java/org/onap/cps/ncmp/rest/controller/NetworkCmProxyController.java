@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 highstreet technologies GmbH
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  ================================================================================
@@ -57,6 +57,7 @@ import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper;
+import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
@@ -256,6 +257,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 12
+    @CountCmHandleSearchExecution(methodName = "searchCmHandles", interfaceName = "CPS-E-05")
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
@@ -276,6 +278,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return                          collection of cm handle ids
      */
     @Override
+    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-E-05")
     public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
                                                           final Boolean outputAlternateId) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
