@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2024 Nordix Foundation
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,8 @@ import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -213,11 +215,20 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
-                                                                      final Object jsonPayload,
+                                                                      final MultipartFile jsonFile,
                                                                       final String xpath,
                                                                       final MultipartFile multipartFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
+        if (jsonFile == null || jsonFile.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("JSON file is required.");
+        }
+        final String targetData;
+        try {
+            targetData = new String(jsonFile.getBytes(), StandardCharsets.UTF_8);
+        } catch (final IOException exception) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error reading JSON file: " + exception.getMessage());
+        }
         final Map<String, String> yangResourceMap;
         if (multipartFile == null) {
             yangResourceMap = Collections.emptyMap();
@@ -226,7 +237,7 @@ public class DataRestController implements CpsDataApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
                 cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
+                xpath, yangResourceMap, targetData, fetchDescendantsOption));
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
