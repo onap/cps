@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15111696_7793bd36",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/MicroMeterConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T09:31:29Z",
+      "side": 1,
+      "message": "NB: CM_HANDLE_STATE_GAUGE or cmHandleStateGauge (as its not defined as static here)",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "8f4243850e935843af728f1ee3da58e34789b920",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
