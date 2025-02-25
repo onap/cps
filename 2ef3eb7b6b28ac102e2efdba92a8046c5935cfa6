@@ -16,6 +16,46 @@
       "message": "addressed review comments",
       "revId": "2ef3eb7b6b28ac102e2efdba92a8046c5935cfa6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ebcd74_1de67a07",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/AdminRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T16:53:23Z",
+      "side": 1,
+      "message": "NB: endpoint.\njust to be consistent everywhere.",
+      "range": {
+        "startLine": 446,
+        "startChar": 16,
+        "endLine": 446,
+        "endChar": 24
+      },
+      "revId": "2ef3eb7b6b28ac102e2efdba92a8046c5935cfa6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a8d1f7_47137220",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T16:53:23Z",
+      "side": 1,
+      "message": "are u changing this manually??\ncoz i see a difference in the summary and description in this file.\nOR are you not committing the openapi file changes??",
+      "revId": "2ef3eb7b6b28ac102e2efdba92a8046c5935cfa6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
