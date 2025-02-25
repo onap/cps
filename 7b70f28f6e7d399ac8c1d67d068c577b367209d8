@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a9d7b6_a1660601",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "Some NB comments shared...",
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "780740a6_f68c1207",
@@ -146,6 +163,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a35b8e0d_f40e31eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "I think so, yes. Intellij is also complaining about the same warning!",
+      "parentUuid": "dc42116d_0cbc5f08",
+      "range": {
+        "startLine": 232,
+        "startChar": 82,
+        "endLine": 232,
+        "endChar": 110
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64cc8f01_91b1c585",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
         "patchSetId": 2
@@ -193,6 +234,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21fa1bbd_604a5720",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "NB: can be extracted into a constant!",
+      "range": {
+        "startLine": 184,
+        "startChar": 95,
+        "endLine": 184,
+        "endChar": 102
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f907be2_8b459463",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
         "patchSetId": 2
@@ -233,6 +297,75 @@
         "startChar": 61,
         "endLine": 99,
         "endChar": 64
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df384565_01319aed",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "NB: ||",
+      "range": {
+        "startLine": 101,
+        "startChar": 148,
+        "endLine": 101,
+        "endChar": 149
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6caba49_5f4b3ab1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "alternateIds",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 104,
+        "endChar": 31
+      },
+      "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4edde7b8_f8e7736a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-25T15:44:07Z",
+      "side": 1,
+      "message": "None",
+      "range": {
+        "startLine": 104,
+        "startChar": 47,
+        "endLine": 104,
+        "endChar": 55
       },
       "revId": "7b70f28f6e7d399ac8c1d67d068c577b367209d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
