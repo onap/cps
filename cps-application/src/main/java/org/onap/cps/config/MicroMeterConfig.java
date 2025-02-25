@@ -37,7 +37,7 @@ import org.springframework.context.annotation.Configuration;
 public class MicroMeterConfig {
 
     private static final String STATE_TAG = "state";
-    private static final String CM_HANDLE_STATE_GAUGE = "cmHandlesByState";
+    private static final String CM_HANDLE_STATE_GAUGE = "cps_ncmp_inventory_cm_handles_by_state";
     final IMap<String, Integer> cmHandlesByState;
 
     @Bean

@@ -29,6 +29,7 @@ class MicroMeterConfigSpec extends Specification {
     def cmHandlesByState = Mock(IMap)
     def objectUnderTest = new MicroMeterConfig(cmHandlesByState)
     def simpleMeterRegistry = new SimpleMeterRegistry()
+    def CMHANDLE_STATE_GAUGE = "cps_ncmp_inventory_cm_handles_by_state"
 
     def 'Creating a timed aspect.'() {
         expect: 'a timed aspect can be created'
@@ -53,7 +54,7 @@ class MicroMeterConfigSpec extends Specification {
              objectUnderTest.deletedCmHandles(simpleMeterRegistry)
         then: 'each state has the correct value when queried'
             ['ADVISED', 'READY', 'LOCKED', 'DELETING', 'DELETED'].each { state ->
-                def gaugeValue = simpleMeterRegistry.get('cmHandlesByState').tag('state',state).gauge().value()
+                def gaugeValue = simpleMeterRegistry.get(CMHANDLE_STATE_GAUGE).tag('state',state).gauge().value()
                 assert gaugeValue == 1
             }
     }
