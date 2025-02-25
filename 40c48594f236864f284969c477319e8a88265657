@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa3779f_4bf4a3ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducer.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T16:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e88ddfd3_efea73c4",
+      "range": {
+        "startLine": 124,
+        "startChar": 29,
+        "endLine": 124,
+        "endChar": 64
+      },
+      "revId": "40c48594f236864f284969c477319e8a88265657",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ec1181b_55973450",
@@ -87,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7162fb_013c6531",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DataOperationEventCreator.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T16:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ec1181b_55973450",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "40c48594f236864f284969c477319e8a88265657",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1591f7c_26061ff8",
@@ -100,6 +148,30 @@
       "writtenOn": "2025-02-25T12:09:52Z",
       "side": 1,
       "message": "NB: redundant import since nothing is logged.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 6
+      },
+      "revId": "40c48594f236864f284969c477319e8a88265657",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8e24b0_70933622",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/utils/DataOperationEventCreator.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-25T16:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1591f7c_26061ff8",
       "range": {
         "startLine": 41,
         "startChar": 0,
