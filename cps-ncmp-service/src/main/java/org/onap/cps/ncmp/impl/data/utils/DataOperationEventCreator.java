@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.impl.data.utils;
 
+import static org.onap.cps.ncmp.events.NcmpEventDataSchema.BATCH_RESPONSE_V1;
+
 import io.cloudevents.CloudEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.events.async1_0_0.Data;
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent;
@@ -36,7 +37,6 @@ import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
 import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.util.MultiValueMap;
 
-@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DataOperationEventCreator {
 
@@ -57,8 +57,13 @@ public class DataOperationEventCreator {
         final Data data = createPayloadFromDataOperationResponses(cmHandleIdsPerResponseCodesPerOperation);
         dataOperationEvent.setData(data);
         final Map<String, String> extensions = createDataOperationExtensions(requestId, clientTopic);
-        return NcmpEvent.builder().type(DataOperationEvent.class.getName())
-                .data(dataOperationEvent).extensions(extensions).build().asCloudEvent();
+        return NcmpEvent.builder()
+                       .type(DataOperationEvent.class.getName())
+                       .data(dataOperationEvent)
+                       .dataSchema(BATCH_RESPONSE_V1.getDataSchema())
+                       .extensions(extensions)
+                       .build()
+                       .asCloudEvent();
     }
 
     private static Data createPayloadFromDataOperationResponses(final MultiValueMap<DmiDataOperation,
