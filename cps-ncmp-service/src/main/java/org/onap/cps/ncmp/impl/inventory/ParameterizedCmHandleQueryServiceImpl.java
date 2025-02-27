@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateModuleNameConditionProperties;
@@ -228,9 +227,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
-        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
-            .iterator().next();
-        return collectCmHandleReferencesFromDataNodes(dataNode.getChildDataNodes(), outputAlternateId);
+        return cmHandleQueryService.getAllCmHandleReferences(outputAlternateId);
     }
 
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {

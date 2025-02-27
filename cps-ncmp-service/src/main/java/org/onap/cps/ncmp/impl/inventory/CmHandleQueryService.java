@@ -118,4 +118,14 @@ public interface CmHandleQueryService {
      */
     Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(String dmiPluginIdentifier);
 
+    /**
+     * Retrieves all CM handle references from the NCMP Inventory.
+     * Each CM handle reference represents a unique configuration management handle
+     * that can be identified by either its standard cm handle id or an alternate id.
+     *
+     * @param outputAlternateId If {@code true}, returns alternate ids; if {@code false}, returns standard cm handle ids
+     * @return collection of cm handle references. Returns an empty collection if no references are found.
+     */
+    Collection<String> getAllCmHandleReferences(boolean outputAlternateId);
+
 }
