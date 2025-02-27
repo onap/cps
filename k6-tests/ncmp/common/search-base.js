@@ -51,7 +51,7 @@ const SEARCH_PARAMETERS_PER_SCENARIO = {
         "cmHandleQueryParameters": [
             {
                 "conditionName": "hasAllProperties",
-                "conditionParameters": [{"Color": "yellow"}]
+                "conditionParameters": [{"systemName": "ncmp"}]
             }
         ]
     },
