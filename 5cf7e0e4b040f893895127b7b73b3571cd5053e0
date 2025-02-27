@@ -16,6 +16,52 @@
       "message": "addressed review comments",
       "revId": "5cf7e0e4b040f893895127b7b73b3571cd5053e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25653970_80bf5f2e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsNotificationService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-27T10:51:32Z",
+      "side": 1,
+      "message": "NB: notificationSubscriptionAsJson as done in the impl class.",
+      "range": {
+        "startLine": 28,
+        "startChar": 47,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "5cf7e0e4b040f893895127b7b73b3571cd5053e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a4a176_0a325c8a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-27T10:51:32Z",
+      "side": 1,
+      "message": "the notification is enabled\u0027",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 142,
+        "endChar": 45
+      },
+      "revId": "5cf7e0e4b040f893895127b7b73b3571cd5053e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
