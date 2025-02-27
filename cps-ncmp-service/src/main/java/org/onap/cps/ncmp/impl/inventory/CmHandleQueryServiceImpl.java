@@ -52,8 +52,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class CmHandleQueryServiceImpl implements CmHandleQueryService {
-
-    private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private static final String ALTERNATE_ID = "alternate-id";
     private final CpsDataService cpsDataService;
@@ -161,17 +159,6 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return selectedCmHandleReferences;
     }
 
-    private Collection<String> collectCmHandleReferencesFromDataNodes(final Collection<DataNode> dataNodes,
-                                                                      final boolean outputAlternateId) {
-        if (outputAlternateId) {
-            return dataNodes.stream().map(dataNode ->
-                    (String) dataNode.getLeaves().get(ALTERNATE_ID)).collect(Collectors.toSet());
-        } else {
-            return dataNodes.stream().map(dataNode ->
-                    (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
-        }
-    }
-
     private Collection<String> queryCmHandleAnyProperties(
             final Map<String, String> propertyQueryPairs,
             final PropertyType propertyType, final boolean outputAlternateId) {
@@ -180,17 +167,11 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         }
         Collection<String> cmHandleReferences = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : propertyQueryPairs.entrySet()) {
-            final String cpsPath = DESCENDANT_PATH + propertyType.getYangContainerName() + "[@name=\""
-                    + publicPropertyQueryPair.getKey()
-                    + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
-
-            final Collection<DataNode> dataNodes = queryCmHandleAncestorsByCpsPath(cpsPath,
-                    OMIT_DESCENDANTS);
+            final Collection<String> cmHandleReferencesToRetain = getCmHandleReferencesByProperties(propertyType,
+                    publicPropertyQueryPair.getKey(), publicPropertyQueryPair.getValue(), outputAlternateId);
             if (cmHandleReferences == null) {
-                cmHandleReferences = collectCmHandleReferencesFromDataNodes(dataNodes, outputAlternateId);
+                cmHandleReferences = cmHandleReferencesToRetain;
             } else {
-                final Collection<String> cmHandleReferencesToRetain;
-                cmHandleReferencesToRetain = collectCmHandleReferencesFromDataNodes(dataNodes, outputAlternateId);
                 cmHandleReferences.retainAll(cmHandleReferencesToRetain);
             }
             if (cmHandleReferences.isEmpty()) {
@@ -217,6 +198,16 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
     }
 
+    private Collection<String> getCmHandleReferencesByProperties(final PropertyType propertyType,
+                                                                 final String propertyName,
+                                                                 final String propertyValue,
+                                                                 final boolean outputAlternateId) {
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String cpsPath = String.format("//%s[@name='%s' and @value='%s']%s/@%s",
+                propertyType.getYangContainerName(), propertyName, propertyValue, ANCESTOR_CM_HANDLES, attributeName);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+    }
+
     private String createFormattedQueryString(final Collection<String> cmHandleIds) {
         return cmHandleIds.stream()
                 .map(cmHandleId -> "@id='" + cmHandleId + "'")
@@ -230,5 +221,4 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, OMIT_DESCENDANTS).iterator().next();
     }
-
 }
