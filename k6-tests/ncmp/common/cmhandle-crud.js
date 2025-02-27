@@ -56,12 +56,16 @@ function createCmHandlePayload(cmHandleIds) {
             "alternateId": cmHandleId.replace('ch-', 'Subnetwork=Europe,ManagedElement='),
             "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
             "cmHandleProperties": {
-                "id": "123"
+                "systemId": "2"
             },
             "publicCmHandleProperties": {
-                "Color": "yellow",
-                "Size": "small",
-                "Shape": "cube"
+                "segmentId": "2",
+                "networkSegment": "Region=NorthAmerica",
+                "deviceIdentifier": "Element=RadioBaseStation_5G_999",
+                "hardwareVersion": "HW-AlphaX9",
+                "softwareVersion": "Firmware_77B",
+                "syncStatus": "ACTIVE",
+                "nodeCategory": "VirtualNode"
             }
         })),
     };
