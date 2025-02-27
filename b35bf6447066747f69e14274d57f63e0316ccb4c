@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03e7d076_4d564e94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:13:15Z",
+      "side": 1,
+      "message": "One one comment else looks good",
+      "revId": "b35bf6447066747f69e14274d57f63e0316ccb4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6393e3ef_bae669ad",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:13:15Z",
+      "side": 1,
+      "message": "Code Readability: Simplifies variable usage.:\n\nfinal Collection\u003cString\u003e cmHandleReferencesToRetain \u003d getCmHandleReferencesByProperties(propertyType,\n                    publicPropertyQueryPair.getKey(), publicPropertyQueryPair.getValue(), outputAlternateId);",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 109
+      },
+      "revId": "b35bf6447066747f69e14274d57f63e0316ccb4c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
