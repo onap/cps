@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c219bc_09f1876d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "/**\n * Retrieves all CM handle references from the NCMP Inventory.\n *\n * Each CM handle reference represents a unique configuration management handle \n * that can be identified by either its standard CM Handle ID or an Alternate ID.\n *\n * @param useAlternateId If {@code true}, returns Alternate IDs; \n *                       if {@code false}, returns standard CM Handle IDs.\n * @return A collection of CM handle references. Returns an empty collection if no references are found.\n */",
+      "range": {
+        "startLine": 121,
+        "startChar": 3,
+        "endLine": 126,
+        "endChar": 7
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "273d9f2c_b5e7846c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "Renamed outputAlternateId → useAlternateId for better readability.:\n\nuseAlternateId",
+      "range": {
+        "startLine": 127,
+        "startChar": 56,
+        "endLine": 127,
+        "endChar": 73
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d93825_f83c6f68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "Renamed outputAlternateId → useAlternateId for clarity.",
+      "range": {
+        "startLine": 162,
+        "startChar": 69,
+        "endLine": 162,
+        "endChar": 86
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a05365_04205c93",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "Readability: Uses String.format for a structured XPath expression.:\n\nString.format(\"%s/@%s\", NCMP_DMI_REGISTRY_PARENT, attributeName);",
+      "range": {
+        "startLine": 164,
+        "startChar": 31,
+        "endLine": 164,
+        "endChar": 79
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3af4804_d1a10c9b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "def cmHandles \u003d dmiRegistry.childDataNodes ?: []",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 35
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c7b8c2_3d735c36",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "def attributeName \u003d useAlternateId ? \u0027alternate-id\u0027 : \u0027id\u0027",
+      "range": {
+        "startLine": 259,
+        "startChar": 7,
+        "endLine": 264,
+        "endChar": 9
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90da2511_acf6e65d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:27:38Z",
+      "side": 1,
+      "message": "return cmHandles.collect { it.leaves?.get(attributeName) }.findAll { it !\u003d null }",
+      "range": {
+        "startLine": 265,
+        "startChar": 7,
+        "endLine": 268,
+        "endChar": 33
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
