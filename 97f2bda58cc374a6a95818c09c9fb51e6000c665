@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2719006_fcbec30d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:00:45Z",
+      "side": 1,
+      "message": "NB: .map(cmHandleId -\u003e String.format(\"@id\u003d\u0027%s\u0027\", cmHandleId))",
+      "range": {
+        "startLine": 222,
+        "startChar": 21,
+        "endLine": 222,
+        "endChar": 61
+      },
+      "revId": "97f2bda58cc374a6a95818c09c9fb51e6000c665",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
