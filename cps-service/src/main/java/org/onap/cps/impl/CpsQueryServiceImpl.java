@@ -66,9 +66,10 @@ public class CpsQueryServiceImpl implements CpsQueryService {
 
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final Class<T> targetClass) {
+                                    final Class<T> targetClass, final FetchDescendantsOption fetchDescendantsOption) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath, targetClass);
+        return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath,
+                targetClass, fetchDescendantsOption);
     }
 
     @Override
