@@ -157,7 +157,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
         and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, FetchDescendantsOption.DIRECT_CHILDREN_ONLY) >> [dmiRegistry]
+            cmHandleQueries.getAllCmHandleReferences(outputAlternateId) >> getCmHandleReferencesForDmiRegistry(outputAlternateId)
         when: 'the query is executed for both cm handle ids'
             def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles are returned'
@@ -251,5 +251,15 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         def dataNodes =[]
         dataNodeIds.each{ dataNodes << new DataNode(xpath: "/dmi-registry/cm-handles[@id='${it}']", leaves: ['id':it, 'alternate-id':'alt-' + it]) }
         return dataNodes
+    }
+
+    def getCmHandleReferencesForDmiRegistry(outputAlternateId) {
+        def cmHandles = dmiRegistry.childDataNodes ?: []
+        def cmHandleReferences = []
+        def attributeName = outputAlternateId ? 'alternate-id' : 'id'
+        cmHandles.each { cmHandle ->
+            cmHandleReferences.add(cmHandle.leaves.get(attributeName))
+        }
+        return cmHandleReferences.findAll { cmHandleReference -> cmHandleReference != null }
     }
 }
