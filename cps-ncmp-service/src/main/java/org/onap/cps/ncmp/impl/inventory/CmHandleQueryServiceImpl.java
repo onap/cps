@@ -138,9 +138,18 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cmHandleReferences;
     }
 
+    @Override
+    public Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String cpsPath = String.format("%s/@%s", NCMP_DMI_REGISTRY_PARENT, attributeName);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
+                String.class, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+    }
+
     private Collection<String> getCmHandleReferencesByTrustLevel(final TrustLevel targetTrustLevel,
                                                                  final boolean outputAlternateId) {
         final Collection<String> selectedCmHandleReferences = new HashSet<>();
+
         for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
             final String dmiPluginIdentifier = mapEntry.getKey();
             final TrustLevel dmiTrustLevel = mapEntry.getValue();
@@ -206,7 +215,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
         final String cpsPath = String.format("%s/cm-handles[@%s='%s']/@%s",
                 NCMP_DMI_REGISTRY_PARENT, dmiProperty, dmiPluginIdentifier, attributeName);
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
+                String.class, OMIT_DESCENDANTS);
     }
 
     private Collection<String> getAlternateIdsByCmHandleIds(final Collection<String> cmHandleIds) {
@@ -214,7 +224,8 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         final String cpsPath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles["
                 + createFormattedQueryString(cmHandleIds) + "]/@alternate-id";
 
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
+                String.class, OMIT_DESCENDANTS);
     }
 
     private String createFormattedQueryString(final Collection<String> cmHandleIds) {
