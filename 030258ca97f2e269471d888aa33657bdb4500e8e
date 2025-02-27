@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e55cee62_6c635567",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2e4f055_c484fc20",
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2d6858a_594cb761",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-02-26T11:18:33Z",
       "side": 1,
       "message": "NB:2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a63515e_2d5929f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/DmiDataOperationsSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2d6858a_594cb761",
       "range": {
         "startLine": 3,
         "startChar": 23,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "980101dd_90996501",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d096bf5_14ddcac4",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45bac4a7_c9b65784",
@@ -94,6 +160,30 @@
       "writtenOn": "2025-02-26T11:18:33Z",
       "side": 1,
       "message": "How this test case pass I really wonder!\n\nI am getting exception on my local:\nCannot cast object \u0027\u0027 with class \u0027java.lang.String\u0027 to class \u0027org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle\n\nBecause the line 80 should return YangModelCmHandle but not \u0027\u0027",
+      "range": {
+        "startLine": 85,
+        "startChar": 62,
+        "endLine": 85,
+        "endChar": 64
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563a5cb0_4dc52fbc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45bac4a7_c9b65784",
       "range": {
         "startLine": 85,
         "startChar": 62,
@@ -121,6 +211,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d350a8cb_285b0eae",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f48255c_29dcd79f",
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a3b147a_37faad88",
@@ -134,6 +242,30 @@
       "writtenOn": "2025-02-26T11:18:33Z",
       "side": 1,
       "message": "NB: 2025",
+      "range": {
+        "startLine": 4,
+        "startChar": 36,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf062490_5f94f120",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a3b147a_37faad88",
       "range": {
         "startLine": 4,
         "startChar": 36,
@@ -161,6 +293,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a6c59dc_f58556e6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fcb4d0e_0cbd038f",
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4bef8b8_f4b90065",
@@ -174,6 +324,30 @@
       "writtenOn": "2025-02-26T11:18:33Z",
       "side": 1,
       "message": "Javadoc should be properly used like below, and should be after @param annotation.\n\n@throws DataValidationException if any name is invalid",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9228de3b_5afbaf70",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4bef8b8_f4b90065",
       "range": {
         "startLine": 37,
         "startChar": 7,
@@ -207,6 +381,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6e4837d_257c7a6a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f17cfbcc_43a9f6bd",
+      "range": {
+        "startLine": 45,
+        "startChar": 7,
+        "endLine": 45,
+        "endChar": 52
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37291bb4_9b196ae5",
@@ -220,6 +418,30 @@
       "writtenOn": "2025-02-26T11:18:33Z",
       "side": 1,
       "message": "redundant import since nothing is logged",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "030258ca97f2e269471d888aa33657bdb4500e8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc1f1256_8672208f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-02-27T11:51:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37291bb4_9b196ae5",
       "range": {
         "startLine": 32,
         "startChar": 0,
