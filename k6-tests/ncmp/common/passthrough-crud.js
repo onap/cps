@@ -67,7 +67,7 @@ export function legacyBatchRead(cmHandleIds) {
 }
 
 function getRandomCmHandleReference(useAlternateId) {
-    const prefix = useAlternateId ? 'Subnetwork=Europe,ManagedElement=' : 'ch-';
+    const prefix = useAlternateId ? 'Region=NorthAmerica,Segment=' : 'ch-';
     return `${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
 

@@ -51,19 +51,30 @@ export function waitForAllCmHandlesToBeReady() {
 function createCmHandlePayload(cmHandleIds) {
     return {
         "dmiPlugin": DMI_PLUGIN_URL,
-        "createdCmHandles": cmHandleIds.map((cmHandleId, index) => ({
-            "cmHandle": cmHandleId,
-            "alternateId": cmHandleId.replace('ch-', 'Subnetwork=Europe,ManagedElement='),
-            "moduleSetTag": MODULE_SET_TAGS[index % MODULE_SET_TAGS.length],
-            "cmHandleProperties": {
-                "id": "123"
-            },
-            "publicCmHandleProperties": {
-                "Color": "yellow",
-                "Size": "small",
-                "Shape": "cube"
-            }
-        })),
+        "createdCmHandles": cmHandleIds.map((cmHandleId, index) => {
+            // Ensure unique networkSegment within range 1-10
+            let networkSegmentId = Math.floor(Math.random() * 10) + 1; // Random between 1-10
+            let moduleTag = MODULE_SET_TAGS[index % MODULE_SET_TAGS.length];
+
+            return {
+                "cmHandle": cmHandleId,
+                "alternateId": cmHandleId.replace('ch-', 'Region=NorthAmerica,Segment='),
+                "moduleSetTag": moduleTag,
+                "cmHandleProperties": {
+                    "segmentId": index++, // Incremental segmentId
+                    "networkSegment": `Region=NorthAmerica,Segment=${networkSegmentId}`, // Unique within range 1-10
+                    "deviceIdentifier": `Element=RadioBaseStation_5G_${index + 1000}`, // Unique per cmHandle
+                    "hardwareVersion": `HW-${moduleTag}`, // Shares uniqueness with moduleSetTag
+                    "softwareVersion": `Firmware_${moduleTag}`, // Shares uniqueness with moduleSetTag
+                    "syncStatus": "ACTIVE",
+                    "nodeCategory": "VirtualNode"
+                },
+                "publicCmHandleProperties": {
+                    "systemId": index++, // Incremental systemId
+                    "systemName": "ncmp"
+                }
+            };
+        }),
     };
 }
 
