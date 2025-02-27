@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
@@ -53,7 +52,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
-    private static final String DESCENDANT_PATH = "//";
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private static final String ALTERNATE_ID = "alternate-id";
     private final CpsDataService cpsDataService;
@@ -184,36 +182,19 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return selectedCmHandleReferences;
     }
 
-    private Collection<String> collectCmHandleReferencesFromDataNodes(final Collection<DataNode> dataNodes,
-                                                               final boolean outputAlternateId) {
-        if (outputAlternateId) {
-            return dataNodes.stream().map(dataNode ->
-                (String) dataNode.getLeaves().get(ALTERNATE_ID)).collect(Collectors.toSet());
-        } else {
-            return dataNodes.stream().map(dataNode ->
-                (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
-        }
-    }
-
-    private Collection<String> queryCmHandleAnyProperties(
-        final Map<String, String> propertyQueryPairs,
-        final PropertyType propertyType, final boolean outputAlternateId) {
+    private Collection<String> queryCmHandleAnyProperties(final Map<String, String> propertyQueryPairs,
+                                                          final PropertyType propertyType,
+                                                          final boolean outputAlternateId) {
         if (propertyQueryPairs.isEmpty()) {
             return Collections.emptySet();
         }
         Collection<String> cmHandleReferences = null;
         for (final Map.Entry<String, String> publicPropertyQueryPair : propertyQueryPairs.entrySet()) {
-            final String cpsPath = DESCENDANT_PATH + propertyType.getYangContainerName() + "[@name=\""
-                + publicPropertyQueryPair.getKey()
-                + "\" and @value=\"" + publicPropertyQueryPair.getValue() + "\"]";
-
-            final Collection<DataNode> dataNodes = queryCmHandleAncestorsByCpsPath(cpsPath,
-                    OMIT_DESCENDANTS);
+            final Collection<String> cmHandleReferencesToRetain = getCmHandleReferencesByProperties(propertyType,
+                    publicPropertyQueryPair.getKey(), publicPropertyQueryPair.getValue(), outputAlternateId);
             if (cmHandleReferences == null) {
-                cmHandleReferences = collectCmHandleReferencesFromDataNodes(dataNodes, outputAlternateId);
+                cmHandleReferences = cmHandleReferencesToRetain;
             } else {
-                final Collection<String> cmHandleReferencesToRetain;
-                cmHandleReferencesToRetain = collectCmHandleReferencesFromDataNodes(dataNodes, outputAlternateId);
                 cmHandleReferences.retainAll(cmHandleReferencesToRetain);
             }
             if (cmHandleReferences.isEmpty()) {
@@ -221,6 +202,16 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             }
         }
         return cmHandleReferences;
+    }
+
+    private Collection<String> getCmHandleReferencesByProperties(final PropertyType propertyType,
+                                                                 final String propertyName,
+                                                                 final String propertyValue,
+                                                                 final boolean outputAlternateId) {
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String cpsPath = String.format("//%s[@name='%s' and @value='%s']%s/@%s",
+                propertyType.getYangContainerName(), propertyName, propertyValue, ANCESTOR_CM_HANDLES, attributeName);
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
     }
 
     private Collection<DataNode> getCmHandlesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
