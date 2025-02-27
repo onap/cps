@@ -158,6 +158,13 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cmHandleReferencesMap;
     }
 
+    @Override
+    public Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String cpsPath = NCMP_DMI_REGISTRY_PARENT + "/@" + attributeName;
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+    }
+
     private Collection<String> getCmHandleReferencesByTrustLevel(final TrustLevel targetTrustLevel,
                                                                  final boolean outputAlternateId) {
         final Collection<String> selectedCmHandleReferences = new HashSet<>();
