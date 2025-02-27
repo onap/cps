@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3b295d8_488e35b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:30:26Z",
+      "side": 1,
+      "message": "Ensured cmHandles Is Not null using ?: [] (safe fallback).",
+      "parentUuid": "b3af4804_d1a10c9b",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 35
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1c7b8c2_3d735c36",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
         "patchSetId": 1
@@ -152,6 +176,30 @@
       "writtenOn": "2025-02-27T11:27:38Z",
       "side": 1,
       "message": "return cmHandles.collect { it.leaves?.get(attributeName) }.findAll { it !\u003d null }",
+      "range": {
+        "startLine": 265,
+        "startChar": 7,
+        "endLine": 268,
+        "endChar": 33
+      },
+      "revId": "f905076325da4aa6a40b7b700c81601bfc984d7e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b9ce05_3481fcb2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-27T11:30:26Z",
+      "side": 1,
+      "message": "Filtered Out null Values using .findAll { it !\u003d null } to prevent null references in the result.",
+      "parentUuid": "90da2511_acf6e65d",
       "range": {
         "startLine": 265,
         "startChar": 7,
