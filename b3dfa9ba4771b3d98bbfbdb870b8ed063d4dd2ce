@@ -16,6 +16,1069 @@
       "message": "recheck",
       "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d2df84_17de92d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "Looks good overall. some minor improvment in geoovy tests",
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39dd607_dc4e7944",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: extractCmHandleId – Suggests extracting the ID from some reference.",
+      "range": {
+        "startLine": 97,
+        "startChar": 30,
+        "endLine": 97,
+        "endChar": 58
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1dea349_a3a7e070",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "Improved Readability – Method names better describe their function.\n\nNB:    getCmHandleIdFromInventory",
+      "range": {
+        "startLine": 75,
+        "startChar": 19,
+        "endLine": 75,
+        "endChar": 45
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e044ba6_ec05c7a0",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should return empty map when no Yang schema resources are found",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e1b42f9_705c0a47",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: mocked repositories returning no schema resources",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 72
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10938811_0553e9bb",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "def dataspaceName \u003d \u0027someDataspaceName\u0027  and re-use same var at line number 109 while calling getYangSchemaResources method",
+      "range": {
+        "startLine": 106,
+        "startChar": 46,
+        "endLine": 106,
+        "endChar": 65
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c5a357c_39a6f83b",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "getYangSchemaResources",
+      "range": {
+        "startLine": 108,
+        "startChar": 19,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63212c20_96709d14",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should return empty collection when no Yang module references exist for dataspace",
+      "range": {
+        "startLine": 114,
+        "startChar": 9,
+        "endLine": 114,
+        "endChar": 61
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "055adedc_d9264e70",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: mocked repository returning an empty list for module references",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 61
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec53899_c0ef6be6",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "As suggested above def dataspaceName \u003d \u0027someDataspaceName\u0027",
+      "range": {
+        "startLine": 116,
+        "startChar": 74,
+        "endLine": 116,
+        "endChar": 93
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a67db2e_a7a491fd",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "getYangResourceModuleReferences",
+      "range": {
+        "startLine": 117,
+        "startChar": 19,
+        "endLine": 117,
+        "endChar": 53
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a421e8_b7346bad",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "dataspaceName",
+      "range": {
+        "startLine": 118,
+        "startChar": 73,
+        "endLine": 118,
+        "endChar": 92
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20b54bab_21eed492",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should return empty collection when no Yang module references exist for dataspace and anchor",
+      "range": {
+        "startLine": 123,
+        "startChar": 9,
+        "endLine": 123,
+        "endChar": 67
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ad7e66_0324f66c",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: mocked repository returning an empty list for module references with dataspace and anchor",
+      "range": {
+        "startLine": 124,
+        "startChar": 16,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ca9cd2f_5454e999",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "def dataspaceName \u003d \u0027someDataspaceName\u0027 As suggested previously",
+      "range": {
+        "startLine": 125,
+        "startChar": 83,
+        "endLine": 125,
+        "endChar": 102
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246c7867_ce24c141",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "dataspace and anchor",
+      "range": {
+        "startLine": 126,
+        "startChar": 76,
+        "endLine": 126,
+        "endChar": 88
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dea51bd_4b452f4f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "getYangResourceModuleReferences",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 53
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61dfa757_069792f3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "dataspaceName",
+      "range": {
+        "startLine": 127,
+        "startChar": 73,
+        "endLine": 127,
+        "endChar": 92
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0e48132_b66dd099",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB:   \n\n/**\n * Validates whether the given name contains only permitted characters within CPS.\n *\n * @param name the name to validate\n * @return {@code true} if the name is valid, {@code false} otherwise\n */",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 7
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95bb1431_1c0a7fad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB:\n\n/**\n * Validates that the given names contain only permitted characters within CPS.\n *\n * @param names the names to validate\n * @throws DataValidationException if any name is invalid\n */",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 7
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a750d59_e1e54117",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB:\n\n/**\n * Validates that the given names contain only permitted characters within CPS.\n *\n * @param names an iterable collection of names to validate\n * @throws DataValidationException if any name is invalid\n */",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 7
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fd55e5_18669eb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "Try Code below for Improved Performance – O(1) lookups instead of O(n) for each character.\n\nprivate static final Set\u003cCharacter\u003e UNSUPPORTED_NAME_CHARACTERS \u003d \n        \"\u003d!\\\" #$%\u0026\u0027()*+,./\\\\:;\u003c\u003e?@[]^`{|}~\".chars()\n        .mapToObj(unsupportedCharacter -\u003e (char) unsupportedCharacter)\n        .collect(Collectors.toSet());\n\n@Override\npublic boolean isValidName(final String name) {\n    for (char unsupportedCharacters: name.toCharArray()) {\n        if (UNSUPPORTED_NAME_CHARACTERS.contains(unsupportedCharacters)) {\n            return false;\n        }\n    }\n    return true;\n}",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e24e1b_1c95169a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should not throw exception for valid pagination options",
+      "range": {
+        "startLine": 69,
+        "startChar": 9,
+        "endLine": 69,
+        "endChar": 42
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5349aa1_65181284",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: a valid pagination option is validated",
+      "range": {
+        "startLine": 70,
+        "startChar": 15,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "740860c2_22a2d087",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "paginationOption",
+      "range": {
+        "startLine": 71,
+        "startChar": 53,
+        "endLine": 71,
+        "endChar": 59
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d6bd191_e57581ea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: valid pagination options",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 57
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddda6a58_1fe51ab8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "paginationOption",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 19
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4fe84be_71d6e2e6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should return expected result for name validation",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 40
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5316f0_60afc682",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: validation returns the correct boolean result",
+      "range": {
+        "startLine": 89,
+        "startChar": 17,
+        "endLine": 89,
+        "endChar": 59
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3165acd8_bcd6710a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/CpsValidatorImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "various names are tested",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 40
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e627f4e_1b7e093b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should perform pass-through data operations using #scenario as reference",
+      "range": {
+        "startLine": 35,
+        "startChar": 9,
+        "endLine": 35,
+        "endChar": 67
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0e8afb3_554e797e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: ID",
+      "range": {
+        "startLine": 36,
+        "startChar": 46,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6a5c6bd_6cf8e073",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: CM",
+      "range": {
+        "startLine": 36,
+        "startChar": 18,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013906a8_52c01aea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: CM",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d761ba08_bce58861",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: IDs",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a918be_8493a9f7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "/**\n * Performance test for alternate ID lookups.\n * Does not depend on common performance test data.\n */",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 3
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d044b246_8275925f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "def cmHandleCount \u003d 1,000",
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89613d4a_bffc25c5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: should measure performance of alternate ID lookups",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 41
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac83deb_ec07f020",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "1,000 CM handles registered with alternate IDs",
+      "range": {
+        "startLine": 34,
+        "startChar": 16,
+        "endLine": 34,
+        "endChar": 64
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bca84f0_1c999050",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "performing 1,000 lookups by alternate ID",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 54
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb9a807_23c01fce",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: cmHandleCount",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b9a9b6a_4eef201c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: Better Readability – Extracts id as a variable for clarity.\n \n  (1..cmHandleCount).each { id -\u003e",
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62c1053_3819dc1e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "make use of descriptive variable as id",
+      "range": {
+        "startLine": 39,
+        "startChar": 76,
+        "endLine": 39,
+        "endChar": 78
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7223dfb4_df8ad290",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: record the execution time. Not asserted, See",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 68
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d42c2215_2cfde47b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "Logging Instead of println – Better for structured test results.\n\nlog.info(",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 20
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb45a25_eb1dd377",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "NB: CM",
+      "range": {
+        "startLine": 44,
+        "startChar": 34,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eb8ad6b_baceb685",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-02-28T12:46:29Z",
+      "side": 1,
+      "message": "cmHandleCount",
+      "range": {
+        "startLine": 45,
+        "startChar": 52,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
