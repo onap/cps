@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,11 +18,10 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ri.utils
+package org.onap.cps.utils
 
-
-import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.parameters.PaginationOption
 import spock.lang.Specification
 
 class CpsValidatorImplSpec extends Specification {
@@ -60,19 +59,38 @@ class CpsValidatorImplSpec extends Specification {
 
     def 'Validating a list of names with invalid names.'() {
         given: 'a list of names with an invalid name'
-            def names = ['valid-name', 'name with spaces']
+            def names = ['valid-name', 'invalid name with spaces']
         when: 'a list of strings is validated'
             objectUnderTest.validateNameCharacters(names)
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }
 
-    def 'Validate Pagination option with invalid page index and size.'() {
+    def 'Validate valid pagination options'() {
+        when: 'the pagination option is validated'
+            objectUnderTest.validatePaginationOption(option)
+        then: 'no exception occurs'
+            noExceptionThrown()
+        where: 'the following pagination options are used'
+            option << [null, new PaginationOption(1,2)]
+    }
+
+    def 'Validate invalid pagination.'() {
         when: 'the pagination option is validated using invalid options'
             objectUnderTest.validatePaginationOption(new PaginationOption(-5, -2))
         then: 'a data validation exception is thrown'
             def exceptionThrown = thrown(DataValidationException)
         and: 'the error was encountered at the following index in #scenario'
-            assert exceptionThrown.getDetails().contains("Invalid page index or size")
+            assert exceptionThrown.getDetails().contains('Invalid page index or size')
+    }
+
+
+    def 'Validation with boolean result.'() {
+        expect: 'validation returns expected boolean result'
+            assert objectUnderTest.isValidName(name) == expectedResult
+        where: 'following names are used'
+            name           || expectedResult
+            'valid-name'   || true
+            'invalid name' || false
     }
 }

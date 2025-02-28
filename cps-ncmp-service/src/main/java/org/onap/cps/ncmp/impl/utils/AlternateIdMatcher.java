@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,6 +34,7 @@ import org.springframework.stereotype.Service;
 public class AlternateIdMatcher {
 
     private final InventoryPersistence inventoryPersistence;
+    private final CpsValidator cpsValidator;
 
     /**
      * Get yang model cm handle that matches longest alternate id by removing elements
@@ -64,11 +66,22 @@ public class AlternateIdMatcher {
      * @return cm handle id string
      */
     public String getCmHandleId(final String cmHandleReference) {
+        if (cpsValidator.isValidName(cmHandleReference)) {
+            return getCmHandleIdTryingStandardIdFirst(cmHandleReference);
+        }
+        return getCmHandleIdByAlternateId(cmHandleReference);
+    }
+
+    private String getCmHandleIdByAlternateId(final String cmHandleReference) {
+        // Please note: because of cm handle id validation rules this case does NOT need to try by (standard) id
+        return inventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference).getId();
+    }
+
+    private String getCmHandleIdTryingStandardIdFirst(final String cmHandleReference) {
         if (inventoryPersistence.isExistingCmHandleId(cmHandleReference)) {
             return cmHandleReference;
-        } else {
-            return inventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference).getId();
         }
+        return inventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference).getId();
     }
 
     private String getParentPath(final String path, final String separator) {
