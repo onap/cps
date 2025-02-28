@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83cb055e_9fbb50dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-02-28T14:31:27Z",
+      "side": 1,
+      "message": "It seems the change return the node succesfuly for the endpoint below:\n\n/ncmp/v1/ch/searches\n\nbut can not work for the endpoint below (returning an empty set in CSIT):\n\n/ncmp/v1/ch/id-searches",
+      "revId": "587bac1d99259a0d3f69104915e6a4a8c6ec8bb1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1009abd1_68df8531",
