@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aad4c314_aa3e7318",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsNotificationService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-02-28T08:50:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25653970_80bf5f2e",
+      "range": {
+        "startLine": 28,
+        "startChar": 47,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "5cf7e0e4b040f893895127b7b73b3571cd5053e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58a4a176_0a325c8a",
