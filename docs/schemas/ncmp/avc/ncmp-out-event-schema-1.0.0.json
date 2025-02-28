@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "urn:cps:org.onap.cps.ncmp.events:cm-notification-subscription-ncmp-out-event-schema:1.0.0",
+  "$id": "urn:cps:org.onap.ncmp.events.subscription:1.0.0",
   "$ref": "#/definitions/NcmpOutEvent",
   "definitions": {
     "NcmpOutEvent": {
@@ -28,25 +28,19 @@
           "description": "The unique subscription id"
         },
         "acceptedTargets": {
-          "type": "array",
-          "description": "List of accepted targets",
-          "items": {
-            "type": "string"
-          }
+          "type": "object",
+          "existingJavaType": "java.util.Collection<String>",
+          "description": "Unique Collection of accepted targets"
         },
         "rejectedTargets": {
-          "type": "array",
-          "description": "List of rejected targets",
-          "items": {
-            "type": "string"
-          }
+          "type": "object",
+          "existingJavaType": "java.util.Collection<String>",
+          "description": "Unique Collection of rejected targets"
         },
         "pendingTargets": {
-          "type": "array",
-          "description": "List of pending targets",
-          "items": {
-            "type": "string"
-          }
+          "type": "object",
+          "existingJavaType": "java.util.Collection<String>",
+          "description": "Unique Collection of pending targets"
         }
       },
       "required": [

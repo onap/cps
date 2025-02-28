@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2023 Nordix Foundation
+.. Copyright (C) 2023-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _asyncEvents:
@@ -17,7 +17,7 @@ Introduction
 
 Async events are triggered when a valid topic has been detected in a passthrough operation.
 
-:download:`NCMP request response event schema <schemas/ncmp-async-request-response-event-schema-v1.json>`
+:download:`NCMP request response event schema <schemas/ncmp/async-m2m/ncmp-async-request-response-event-schema-v1.json>`
 
 Event header
 ^^^^^^^^^^^^
