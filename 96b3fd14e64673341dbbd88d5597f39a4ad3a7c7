@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed046f75_2884cba5",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-02-28T15:51:48Z",
+      "side": 1,
+      "message": "does it have to be 500 to generate 500 messages per second ??? or am i missing something ??",
+      "range": {
+        "startLine": 153,
+        "startChar": 14,
+        "endLine": 153,
+        "endChar": 17
+      },
+      "revId": "96b3fd14e64673341dbbd88d5597f39a4ad3a7c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
