@@ -30,17 +30,17 @@
         "acceptedTargets": {
           "type": "object",
           "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of accepted targets"
+          "description": "Collection of accepted targets"
         },
         "rejectedTargets": {
           "type": "object",
           "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of rejected targets"
+          "description": "Collection of rejected targets"
         },
         "pendingTargets": {
           "type": "object",
           "existingJavaType": "java.util.Collection<String>",
-          "description": "Unique Collection of pending targets"
+          "description": "Collection of pending targets"
         }
       },
       "required": [

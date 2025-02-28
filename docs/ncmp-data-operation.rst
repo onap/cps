@@ -152,4 +152,4 @@ DMI Service 2 (POST) : `http://{dmi-host-name}:{dmi-port}/dmi/v1/data?topic=my-t
 
 Above examples are for illustration purposes only. Please refer to link below for latest schema.
 
-:download:`Data operation event schema <schemas/data-operation-event-schema-1.0.0.json>`
+:download:`Data operation event schema <schemas/ncmp/async-m2m/data-operation-event-schema-1.0.0.json>`

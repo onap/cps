@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2024 Nordix Foundation
+.. Copyright (C) 2024-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cmNotificationSubscriptions:
@@ -21,11 +21,11 @@ The CM Subscription flow is event driven and adheres to the CNCF Cloud Events Sp
 
 Event to create and delete a subscription.
 
-:download:`CM Subscription Event Schema <schemas/ncmp-in-event-schema-1.0.0.json>`
+:download:`CM Subscription Event Schema <schemas/ncmp/avc/ncmp-in-event-schema-1.0.0.json>`
 
 Event to receive status of participants in a subscription.
 
-:download:`CM Subscription Response Event Schema <schemas/ncmp-out-event-schema-1.0.0.json>`
+:download:`CM Subscription Response Event Schema <schemas/ncmp/avc/ncmp-out-event-schema-1.0.0.json>`
 
 CM Subscriptions Creation
 -------------------------
@@ -52,7 +52,7 @@ CM Notifications are triggered by any change in the network, provided the client
 
 The CM Notification Event follows the structure outlined in the schema below:
 
-:download:`CM Data Notification Event Schema <schemas/dmidataavc/avc-event-schema-1.0.0.json>`
+:download:`CM Data Notification Event Schema <schemas/dmi/cm-events/avc-event-schema-1.0.0.json>`
 
 **Note.** NCMP uses the CM Notification event key from the source topic to forward notifications to the client, ensuring that the order of notifications within a topic partition is maintained during forwarding.
 **Note.** If the notification key from the source topic is null, NCMP cannot guarantee the order of events within a topic partition when forwarding.
