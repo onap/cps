@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2023 Nordix Foundation
+.. Copyright (C) 2023-2025 Nordix Foundation
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _dataOperationEvents:
@@ -15,7 +15,7 @@ Please refer to the `cloud events <https://cloudevents.io/>`_ for more details.
 Data operation response events
 ******************************
 
-:download:`Data operation event schema <schemas/data-operation-event-schema-1.0.0.json>`
+:download:`Data operation event schema <schemas/ncmp/async-m2m/data-operation-event-schema-1.0.0.json>`
 
 Event headers example
 ^^^^^^^^^^^^^^^^^^^^^

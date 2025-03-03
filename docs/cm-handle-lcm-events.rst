@@ -27,7 +27,8 @@ CM Handle  LCM Event Schema
 ---------------------------
 The current published LCM event is based on the following schema:
 
-:download:`Life cycle management event schema <schemas/lcm-event-schema-v1.json>`
+:download:`Life cycle management event header <schemas/lcm/lcm-event-header-v1.json>`
+:download:`Life cycle management event schema <schemas/lcm/lcm-event-schema-v1.json>`
 
 CM Handle LCM Event structure
 -----------------------------

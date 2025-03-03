@@ -39,6 +39,18 @@
           "description": "cmHandle id",
           "type": "string"
         },
+        "alternateId": {
+          "description": "alternative id for cmHandle (e.g. 3GPP FDN)",
+          "type": "string"
+        },
+        "moduleSetTag": {
+          "description": "module set tag for cmHandle",
+          "type": "string"
+        },
+        "dataProducerIdentifier": {
+          "description": "data producer identifier for cmHandle",
+          "type": "string"
+        },
         "oldValues": {
           "$ref": "#/definitions/Values"
         },
@@ -55,7 +67,7 @@
     "LcmEvent": {
       "description": "The payload for LCM event",
       "type": "object",
-      "javaType" : "org.onap.ncmp.cmhandle.event.lcm.LcmEvent",
+      "javaType" : "org.onap.cps.ncmp.events.lcm.v1.LcmEvent",
       "properties": {
         "eventId": {
           "description": "The unique id identifying the event",
