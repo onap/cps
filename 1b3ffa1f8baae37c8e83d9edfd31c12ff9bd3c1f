@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6868c1e_42fd08cc",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T14:12:25Z",
+      "side": 1,
+      "message": "i doubted about that one, if its only internal for now it shoudl be removed",
+      "parentUuid": "6dc73344_cfce47aa",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 105
+      },
+      "revId": "1b3ffa1f8baae37c8e83d9edfd31c12ff9bd3c1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "192cee97_6002e300",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4
