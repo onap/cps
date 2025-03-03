@@ -585,6 +585,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96955e2c_dec24646",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-03T12:04:09Z",
+      "side": 1,
+      "message": "Yes, this is duplicated in CpsDataServiceImpl, while the prefixResolver code on lines 84-91 is duplicated in 3 other classes! (Note there is already a task CPS-2634 to refactor the prefixResolver code in the Rest controller.)",
+      "parentUuid": "1fc86245_de74ee64",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fbb0d42_3e2eb384",
         "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
         "patchSetId": 13
