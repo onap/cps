@@ -27,11 +27,13 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.events.trustlevel.DeviceTrustLevel;
 import org.onap.cps.ncmp.utils.events.CloudEventMapper;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class DeviceTrustLevelMessageConsumer {
 
     private static final String CLOUD_EVENT_ID_HEADER_NAME = "ce_id";
