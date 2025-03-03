@@ -39,6 +39,75 @@
       },
       "revId": "752d122031ed71bf34439149568473ead05b0c1b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2fb96fa_d0efb83a",
+        "filename": "docs/schemas/ncmp/avc/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T11:13:58Z",
+      "side": 1,
+      "message": "NB: the collection isnt really unique. I would just remove this word",
+      "range": {
+        "startLine": 33,
+        "startChar": 26,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "752d122031ed71bf34439149568473ead05b0c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848fc606_c1feb522",
+        "filename": "docs/schemas/ncmp/avc/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T11:13:58Z",
+      "side": 1,
+      "message": "NB: the collection isnt really unique. I would just remove this word",
+      "range": {
+        "startLine": 38,
+        "startChar": 26,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "752d122031ed71bf34439149568473ead05b0c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "371fc4b8_5a18ca70",
+        "filename": "docs/schemas/ncmp/avc/ncmp-out-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T11:13:58Z",
+      "side": 1,
+      "message": "NB: the collection isnt really unique. I would just remove this word",
+      "range": {
+        "startLine": 43,
+        "startChar": 26,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "752d122031ed71bf34439149568473ead05b0c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
