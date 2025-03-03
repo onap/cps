@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "192cee97_6002e300",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-03T13:56:34Z",
+      "side": 1,
+      "message": "NB: we can as well have a Performance section here.\nAlso a summary of what performance improvement should be beneficial.",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "1b3ffa1f8baae37c8e83d9edfd31c12ff9bd3c1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
