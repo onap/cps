@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dc73344_cfce47aa",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-03T14:09:05Z",
+      "side": 1,
+      "message": "I would remove this - it\u0027s a subtask of a feature not yet fully complete (e.g. rest controller and documentation not yet done)",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 105
+      },
+      "revId": "1b3ffa1f8baae37c8e83d9edfd31c12ff9bd3c1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "192cee97_6002e300",
         "filename": "docs/release-notes.rst",
         "patchSetId": 4
