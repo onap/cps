@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fea085aa_abd0c193",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T11:42:23Z",
+      "side": 1,
+      "message": "fix alignment ( See OSlo)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "98d997c297d6f9be18b051e4be6e9efe60c2267c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9bcfe75_63f0b916",
         "filename": "docs/release-notes.rst",
         "patchSetId": 1
