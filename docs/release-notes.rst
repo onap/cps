@@ -11,9 +11,9 @@ CPS Release Notes
 .. contents::
     :depth: 2
 ..
-..      ====================
+..      =====================
 ..      * * *   PARIS   * * *
-..      ====================
+..      =====================
 
 Version: 3.6.1
 ==============
@@ -37,6 +37,8 @@ Release Data
 
 Features
 --------
+    - `CPS-2394 <https://lf-onap.atlassian.net/browse/CPS-2394>`_ Query data nodes with limit
+    - Several performance improvements
 
 Version: 3.6.0
 ==============
