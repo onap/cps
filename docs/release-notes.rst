@@ -37,6 +37,11 @@ Release Data
 
 Features
 --------
+    - `CPS-2616 <https://lf-onap.atlassian.net/browse/CPS-2616>`_ Increase initial module processing delay to 3 mins
+    - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Simple implementation of attribute-axis
+    - `CPS-2394 <https://lf-onap.atlassian.net/browse/CPS-2394>`_ Query data nodes with limit
+    - `CPS-138 <https://lf-onap.atlassian.net/browse/CPS-138>`_ Store yang resources with recommended RFC-6020 file-name
+    - `CPS-2605 <https://lf-onap.atlassian.net/browse/CPS-2605>`_ Change order of CM Handle Reference lookup depending on special character
 
 Version: 3.6.0
 ==============
