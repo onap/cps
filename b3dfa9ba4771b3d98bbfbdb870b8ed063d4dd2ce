@@ -100,6 +100,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "962950ee_7b8b61e6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T10:57:21Z",
+      "side": 1,
+      "message": "should not have been mocked",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 49
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e044ba6_ec05c7a0",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
         "patchSetId": 2
@@ -111,6 +134,30 @@
       "writtenOn": "2025-02-28T12:46:29Z",
       "side": 1,
       "message": "NB: should return empty map when no Yang schema resources are found",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f329731d_0dbf9023",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T10:57:21Z",
+      "side": 1,
+      "message": "No these details are (and should) be in the label below",
+      "parentUuid": "3e044ba6_ec05c7a0",
       "range": {
         "startLine": 104,
         "startChar": 9,
@@ -169,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0309a317_68799eaa",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T10:57:21Z",
+      "side": 1,
+      "message": "we always prefer trin literals unless a var improves readability",
+      "parentUuid": "10938811_0553e9bb",
+      "range": {
+        "startLine": 106,
+        "startChar": 46,
+        "endLine": 106,
+        "endChar": 65
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c5a357c_39a6f83b",
         "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
         "patchSetId": 2
@@ -180,6 +251,30 @@
       "writtenOn": "2025-02-28T12:46:29Z",
       "side": 1,
       "message": "getYangSchemaResources",
+      "range": {
+        "startLine": 108,
+        "startChar": 19,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3074ad_820e287a",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsModulePersistenceServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T10:57:21Z",
+      "side": 1,
+      "message": "no we should use english instead of method names",
+      "parentUuid": "8c5a357c_39a6f83b",
       "range": {
         "startLine": 108,
         "startChar": 19,
@@ -525,6 +620,30 @@
       "writtenOn": "2025-02-28T12:46:29Z",
       "side": 1,
       "message": "Try Code below for Improved Performance – O(1) lookups instead of O(n) for each character.\n\nprivate static final Set\u003cCharacter\u003e UNSUPPORTED_NAME_CHARACTERS \u003d \n        \"\u003d!\\\" #$%\u0026\u0027()*+,./\\\\:;\u003c\u003e?@[]^`{|}~\".chars()\n        .mapToObj(unsupportedCharacter -\u003e (char) unsupportedCharacter)\n        .collect(Collectors.toSet());\n\n@Override\npublic boolean isValidName(final String name) {\n    for (char unsupportedCharacters: name.toCharArray()) {\n        if (UNSUPPORTED_NAME_CHARACTERS.contains(unsupportedCharacters)) {\n            return false;\n        }\n    }\n    return true;\n}",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "b3dfa9ba4771b3d98bbfbdb870b8ed063d4dd2ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00392a78_b51c9808",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/CpsValidatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-03T10:57:21Z",
+      "side": 1,
+      "message": "streams are almost always slower for insignificant number iterations as we use here and also no good for readability",
+      "parentUuid": "50fd55e5_18669eb4",
       "range": {
         "startLine": 35,
         "startChar": 3,
