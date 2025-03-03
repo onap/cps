@@ -16,6 +16,23 @@
       "message": "addressed review comments",
       "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24dfe2cd_fd40ffa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-03T10:09:15Z",
+      "side": 1,
+      "message": "fine by me now.",
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
