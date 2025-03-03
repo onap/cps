@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f46eb3_7129d56a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-03-03T10:23:40Z",
+      "side": 1,
+      "message": "Looks good, just one minor NB",
+      "revId": "752d122031ed71bf34439149568473ead05b0c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffffb0a_71da5347",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-03-03T10:23:40Z",
+      "side": 1,
+      "message": "NB: I\u0027d put this in bold same for schema below",
+      "range": {
+        "startLine": 30,
+        "startChar": 39,
+        "endLine": 30,
+        "endChar": 45
+      },
+      "revId": "752d122031ed71bf34439149568473ead05b0c1b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
