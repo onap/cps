@@ -57,6 +57,21 @@ and CPS-NCMP-Inventory using the drop down table in the top right:
 
   http://<hostname>:<port>/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
+Notes
+-----
+
+Input Size limitations
+++++++++++++++++++++++
+
+Depending on HTTP severs used the request size is typically limited.
+This affects the maximum amount of data in a single request. Nginx has a default limit of 1MB.
+This would mean, for example, that a registration request is limited to approximately 3,000 cm handles (depending on the length of cm handle ids and other properties involved).
+When needed update your configuration to increase the maximum request size for REST request. e.g:
+
+.. code-block:: bash
+
+  client_max_body_size 2m
+
 Consumed APIs
 =============
 
