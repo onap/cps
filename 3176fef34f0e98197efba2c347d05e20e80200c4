@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de4bfbe_26c258dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Addressed review comments",
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4869157b_39425f23",
@@ -48,6 +65,30 @@
       "writtenOn": "2025-03-04T09:02:17Z",
       "side": 1,
       "message": "still misleading and incorrect xpath syntax i would prefer if you just use \u0027/some/path\u0027# or \u0027path/to/subscription\u0027",
+      "range": {
+        "startLine": 93,
+        "startChar": 35,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "731923a6_a2a7cefb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4869157b_39425f23",
       "range": {
         "startLine": 93,
         "startChar": 35,
@@ -81,6 +122,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ac9dcbc_5e10f968",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edce8e2b_eb02ad91",
+      "range": {
+        "startLine": 102,
+        "startChar": 25,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d77425f_1bad5dac",
@@ -94,6 +159,30 @@
       "writtenOn": "2025-03-04T09:02:17Z",
       "side": 1,
       "message": "(legacy?) typo, maybe to a a replace all (p)ersistance -\u003e (p)ersistence  (deliberately excluding the p or any other prefix!",
+      "range": {
+        "startLine": 103,
+        "startChar": 21,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd77f74_76f4f66b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d77425f_1bad5dac",
       "range": {
         "startLine": 103,
         "startChar": 21,
@@ -127,6 +216,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7552f780_55b9293f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "453d8b16_bca78dd4",
+      "range": {
+        "startLine": 106,
+        "startChar": 78,
+        "endLine": 106,
+        "endChar": 134
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2111b5f6_f4c3b82b",
@@ -150,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9dfef05_759828a1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2111b5f6_f4c3b82b",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 81
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50030b88_b55dafc5",
@@ -163,6 +300,30 @@
       "writtenOn": "2025-03-04T09:02:17Z",
       "side": 1,
       "message": "this data has been mocked on line 106 above, no point in verifiying mocked data",
+      "range": {
+        "startLine": 110,
+        "startChar": 58,
+        "endLine": 110,
+        "endChar": 106
+      },
+      "revId": "3176fef34f0e98197efba2c347d05e20e80200c4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17444dc0_76a0439c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 18
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-04T12:34:23Z",
+      "side": 1,
+      "message": "data from persistence service is transformed to list of data nodes.",
+      "parentUuid": "50030b88_b55dafc5",
       "range": {
         "startLine": 110,
         "startChar": 58,
