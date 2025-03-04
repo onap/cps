@@ -35,9 +35,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
 
-    def mockCpsValidator = Mock(CpsValidatorImpl)
-
-    def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence, mockCpsValidator)
+    def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence, new CpsValidatorImpl())
 
     def setup() {
         given: 'cm handle in the registry with alternate id /a/b'
@@ -76,18 +74,22 @@ class AlternateIdMatcherSpec extends Specification {
             'no match at all'          | '/x/y'
     }
 
-    def 'Get cmHandle id from passed cmHandleReference (cmHandleId scenario)' () {
-        when: 'a cmHandleCmReference is passed in'
+    def 'Get cm handle id from a cm handle reference that is a #scenario id.' () {
+        given: 'inventory persistence service confirms the reference exists as an id or not (#isExistingCmHandleId)'
+            mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> isExistingCmHandleId
+        when: 'getting a cm handle id from the reference'
             def result = objectUnderTest.getCmHandleId(cmHandleReference)
-        then: 'the inventory persistence service returns a cm handle (or not)'
-            mockCpsValidator.isValidName(cmHandleReference) >> existingCmHandleIdAndValidatorResponse
-            mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> existingCmHandleIdAndValidatorResponse
-            mockInventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference) >> alternateIdGetResponse
-        and: 'correct result is returned'
-            assert result == cmHandleReference
+        then: 'a call to find the cm handle by alternate id is only made when needed'
+            if (isExistingCmHandleId) {
+                0 * mockInventoryPersistence.getYangModelCmHandleByAlternateId(*_)
+            } else {
+                1 * mockInventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference) >> new YangModelCmHandle(id: 'ch-id-2')
+            }
+        and: 'the expected cm handle id is returned'
+            assert result == expectedCmHandleId
         where: 'the following parameters are used'
-            cmHandleReference | existingCmHandleIdAndValidatorResponse | alternateIdGetResponse
-            'ch-1'            |  true                                  |  null
-            'alt=1'           |  false                                 |  new YangModelCmHandle(id: 'alt=1')
+            scenario    | cmHandleReference | isExistingCmHandleId || expectedCmHandleId
+            'standard'  | 'ch-id-1'         | true                 || 'ch-id-1'
+            'alternate' | 'alt-id=1'        | false                || 'ch-id-2'
     }
 }
