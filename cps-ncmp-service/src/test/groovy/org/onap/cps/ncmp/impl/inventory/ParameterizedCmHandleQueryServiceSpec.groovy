@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -206,7 +206,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithDmiPlugin', [['some-key': 'some-value']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
-            partiallyMockedCmHandleQueries.getCmHandleReferencesMapByDmiPluginIdentifier(*_) >> [:]
+            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(_,_) >> []
         when: 'the query executed'
             def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, true)
         then: 'the expected number of results are returned.'
