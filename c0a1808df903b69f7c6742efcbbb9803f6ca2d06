@@ -609,6 +609,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb464a50_dbc41791",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsNotificationServiceImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T09:02:17Z",
+      "side": 1,
+      "message": "ok, just dont forget about CPS-2634...\n(I might assign it to myself now)",
+      "parentUuid": "96955e2c_dec24646",
+      "range": {
+        "startLine": 126,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fbb0d42_3e2eb384",
         "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
         "patchSetId": 13
@@ -736,6 +760,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8073b51b_109e23a5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T09:02:17Z",
+      "side": 1,
+      "message": "or a normal constructor :-D  is good too",
+      "parentUuid": "9a82c7f8_0028b23f",
+      "range": {
+        "startLine": 47,
+        "startChar": 56,
+        "endLine": 48,
+        "endChar": 116
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a61c811c_f8a3e0a0",
@@ -820,6 +868,30 @@
       "side": 1,
       "message": "here we need to provide predefined xpath for notification subscription root node",
       "parentUuid": "f320a1b3_7138de3f",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 37
+      },
+      "revId": "c0a1808df903b69f7c6742efcbbb9803f6ca2d06",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "285a81cf_7ced241c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T09:02:17Z",
+      "side": 1,
+      "message": "NB: i meant just use string literals.\nThere is no need to define a variable. Especially in testware if it the name does not add value",
+      "parentUuid": "e4620368_4ae8b177",
       "range": {
         "startLine": 61,
         "startChar": 16,
