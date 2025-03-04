@@ -271,7 +271,7 @@ paths:
       - description: |
           The `resourceIdentifier` parameter specifies the target resource in the GNBDUFunctionConfig model.
              For ONAP DMI Plugin, the format will follow RESTConf paths. Examples:
-               - All GNBDUFunctions: `/ManagedElement=NRNode1/GNBDUFunction=1`
+               - All GNBDUFunctions: `/ManagedElement=node1/GNBDUFunction=1`
         examples:
           sample 1:
             value:
@@ -1719,7 +1719,7 @@ components:
     DataOperationRequest:
       example:
         operations:
-        - resourceIdentifier: '/ManagedElement=NRNode1/GNBDUFunction=1'
+        - resourceIdentifier: /ManagedElement=NRNode1/GNBDUFunction=1
           targetIds:
           - "[\"da310eecdb8d44c2acc0ddaae01174b1\",\"c748c58f8e0b438f9fd1f28370b17d47\"\
             ]"
