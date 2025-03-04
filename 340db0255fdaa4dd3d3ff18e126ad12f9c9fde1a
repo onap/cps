@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "282a8e96_facf665b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T08:36:28Z",
+      "side": 1,
+      "message": "NB: I would have created an overloaded version of the method instead and made the old method delegate to the new one with ALL_DESCENDANTS option",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 104
+      },
+      "revId": "340db0255fdaa4dd3d3ff18e126ad12f9c9fde1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ee822e_d1e645b5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/AlternateIdSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T08:36:28Z",
+      "side": 1,
+      "message": "If you rebase I think you can remove this test\nas we have this already in (better) location: ../integration/performance/ncmp/AlternateIdPerfTest.groovy",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "340db0255fdaa4dd3d3ff18e126ad12f9c9fde1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
