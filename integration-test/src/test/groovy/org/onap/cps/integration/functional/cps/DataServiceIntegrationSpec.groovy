@@ -521,6 +521,43 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    def 'Update leaf nodes of parent and child node fails for child data nodes'() {
+        given: 'Updated json for bookstore data'
+            def jsonData =  '{"categories":{"code":1,"name":"Kids","books":[{"title":"Matilda","lang":"English/French","price":1000}]}}'
+        when: 'update is performed for leaves'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore", jsonData, now, ContentType.JSON)
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]", INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values of parent are updated'
+            assert result[0].leaves['name'] == 'Kids'
+        and: 'the leaf values of child nodes are not updated (failing condition)'
+            def childNodes = result.childDataNodes.get(0)
+            assert childNodes[1].leaves['title'] == 'Matilda'
+            assert childNodes[1].leaves['lang'] == 'English/French'
+            assert childNodes[1].leaves['price'] == 1000
+        cleanup:
+            restoreBookstoreDataAnchor(2)
+    }
+
+    def 'Update leaf nodes of parent and child node fails for parent data node'() {
+        given: 'Updated json for bookstore data'
+            def jsonData =  '{"code":1,"name":"Kids","books":[{"title":"Matilda","lang":"English/French","price":1000}]}'
+        when: 'update is performed'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
+        then: 'the updated data nodes are retrieved'
+            def result = cpsDataService.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code=1]", INCLUDE_ALL_DESCENDANTS)
+        and: 'the leaf values of expected child are updated'
+            def childNodes = result.childDataNodes.get(0)
+            assert childNodes.size() == 2
+            assert childNodes[1].leaves['title'] == 'Matilda'
+            assert childNodes[1].leaves['lang'] == 'English/French'
+            assert childNodes[1].leaves['price'] == 1000
+        and: 'the leaf values of parent are not updated (failing condition)'
+            assert result[0].leaves['name'] == 'Kids'
+        cleanup:
+            restoreBookstoreDataAnchor(2)
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
@@ -532,4 +569,5 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
     def countXmlDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_4, BOOKSTORE_ANCHOR_6, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
+
 }

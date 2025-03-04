@@ -276,6 +276,22 @@ class CpsDataServiceImplSpec extends Specification {
             1     | '/last-container'
     }
 
+    def 'Update a data node and its child data node fails to send child data for update'()  {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('bookstore.yang')
+            def jsonData = '{"categories":[{"code":3,"name":"Funny","books":[{"title":"Good Omens","lang":"English"}]}]}'
+        when: 'update data method is invoked with json data and parent node xpath'
+            objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/bookstore', jsonData, observedTimestamp, ContentType.JSON)
+        then: 'the persistence service method is invoked for the parent node, but it only has data of parent node'
+            1 * mockCpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName,
+                {
+                    updatedDataNodesPerXPath -> !updatedDataNodesPerXPath.keySet().containsAll(["/bookstore/categories[@code='3']", "/bookstore/categories[@code='3']/books[@title='Good Omens']"])
+                        updatedDataNodesPerXPath.keySet().size() == 1
+                })
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+    }
+
     def 'Update Bookstore node leaves and child.' () {
         given: 'a DMI registry model'
             setupSchemaSetMocks('bookstore.yang')
