@@ -16,6 +16,98 @@
       "message": "sp. servers",
       "revId": "ae51cae694a772483f0c1a77019619d3176561d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8887329_8d722c85",
+        "filename": "docs/design.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-04T16:52:48Z",
+      "side": 1,
+      "message": "NB: a comma woud be nice to have.",
+      "range": {
+        "startLine": 66,
+        "startChar": 29,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "ae51cae694a772483f0c1a77019619d3176561d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3798afb1_525c2d14",
+        "filename": "docs/design.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-04T16:52:48Z",
+      "side": 1,
+      "message": "NB: more or less same as first sentence in different words... thus redundant.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 59
+      },
+      "revId": "ae51cae694a772483f0c1a77019619d3176561d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7c4deca_97c1f31b",
+        "filename": "docs/design.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-04T16:52:48Z",
+      "side": 1,
+      "message": "This means",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 15
+      },
+      "revId": "ae51cae694a772483f0c1a77019619d3176561d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0944b3df_84984da1",
+        "filename": "docs/design.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-04T16:52:48Z",
+      "side": 1,
+      "message": "NB: comma would be nice to have",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 12
+      },
+      "revId": "ae51cae694a772483f0c1a77019619d3176561d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
