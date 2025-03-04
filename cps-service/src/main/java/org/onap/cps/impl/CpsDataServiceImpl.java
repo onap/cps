@@ -159,16 +159,31 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     @Timed(value = "cps.data.service.datanode.leaves.update",
         description = "Time taken to update a batch of leaf data nodes")
-    public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String parentNodeXpath,
+    public void updateNodeLeaves(final String dataspaceName, final String anchorName, final String xpath,
         final String nodeData, final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
         final Collection<DataNode> dataNodesInPatch =
                 buildDataNodesWithParentNodeXpath(anchor, parentNodeXpath, nodeData, contentType);
-        final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = dataNodesInPatch.stream()
-                .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves));
+        if (dataNodesInPatch.size() > 1) {
+            throw new DataValidationException("Multiple data nodes",
+                    "Multiple data nodes are not allowed for leaf update operation");
+        }
+        final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = getXpathToUpdatedLeaves(dataNodesInPatch);
         cpsDataPersistenceService.batchUpdateDataLeaves(dataspaceName, anchorName, xpathToUpdatedLeaves);
         sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
+    }
+
+    private Map<String, Map<String, Serializable>> getXpathToUpdatedLeaves(final Collection<DataNode> dataNodesInPatch) {
+        final Map<String, Map<String, Serializable>> xpathToUpdatedLeaves = new HashMap<>();;
+        for (final DataNode dataNode : dataNodesInPatch) {
+            xpathToUpdatedLeaves.put(dataNode.getXpath(), dataNode.getLeaves());
+            if (!dataNode.getChildDataNodes().isEmpty()) {
+                xpathToUpdatedLeaves.putAll(getXpathToUpdatedLeaves(dataNode.getChildDataNodes()));
+            }
+        }
+        return xpathToUpdatedLeaves;
     }
 
     @Override
