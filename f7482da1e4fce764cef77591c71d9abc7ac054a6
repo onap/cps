@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd3ad02_d8f1f30a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T17:08:21Z",
+      "side": 1,
+      "message": "2 final suggestions",
+      "revId": "f7482da1e4fce764cef77591c71d9abc7ac054a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e56845_89a3ba49",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T17:08:21Z",
+      "side": 1,
+      "message": "Just use plural instead of list\nnotificationSubscriptions or in test its often much clearer to use \u0027result\u0027\n\ndef result \u003d objectUnderTest.someMethod(..)",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 45
+      },
+      "revId": "f7482da1e4fce764cef77591c71d9abc7ac054a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a498074_e5184b39",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-04T17:08:21Z",
+      "side": 1,
+      "message": "this still sounds more like describe  mocked behavior\nsince \u0027the cps notification service\u0027 is the-object-under-test you dont need to mentioned it.\n\nI think you should say something like this: \n\n\u0027the result is a json representation of the data node(s) returned by the data persistence service\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 74
+      },
+      "revId": "f7482da1e4fce764cef77591c71d9abc7ac054a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
