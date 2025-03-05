@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b770441_3d163cf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-05T16:42:04Z",
+      "side": 1,
+      "message": "I Arpit, this is a very good piece of refactoring!\nIt is overlapping with something I was doing and I think we should combine our efforts. I sed you more details in Slack.\nPlease check before you continue!",
+      "revId": "d45e2bc3e98f8c4b7b9cdfb15f42052ec9b36aa0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
