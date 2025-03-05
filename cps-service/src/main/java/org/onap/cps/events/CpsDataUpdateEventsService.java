@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 TechMahindra Ltd.
+ * Copyright (C) 2024-2025 TechMahindra Ltd.
  * Copyright (C) 2024 Nordix Foundation.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.events.model.CpsDataUpdatedEvent;
 import org.onap.cps.events.model.Data;
@@ -42,6 +43,8 @@ import org.springframework.stereotype.Service;
 public class CpsDataUpdateEventsService {
 
     private final EventsPublisher<CpsDataUpdatedEvent> eventsPublisher;
+
+    private final CpsNotificationService cpsNotificationService;
 
     @Value("${app.cps.data-updated.topic:cps-data-updated-events}")
     private String topicName;
@@ -63,7 +66,7 @@ public class CpsDataUpdateEventsService {
     @Timed(value = "cps.dataupdate.events.publish", description = "Time taken to publish Data Update event")
     public void publishCpsDataUpdateEvent(final Anchor anchor, final String xpath,
                                           final Operation operation, final OffsetDateTime observedTimestamp) {
-        if (notificationsEnabled && cpsChangeEventNotificationsEnabled) {
+        if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
             final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
                     observedTimestamp, xpath, operation);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
@@ -76,6 +79,10 @@ public class CpsDataUpdateEventsService {
             log.debug("State of Overall Notifications : {} and Cps Change Event Notifications : {}",
                     notificationsEnabled, cpsChangeEventNotificationsEnabled);
         }
+    }
+
+    private boolean isNotificationEnabledForAnchor(final Anchor anchor) {
+        return cpsNotificationService.isNotificationEnabled(anchor.getDataspaceName(), anchor.getName());
     }
 
     private CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
