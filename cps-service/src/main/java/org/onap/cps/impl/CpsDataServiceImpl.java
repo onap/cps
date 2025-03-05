@@ -24,6 +24,9 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.cpspath.parser.CpsPathUtil.PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -62,8 +65,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataServiceImpl implements CpsDataService {
 
-    private static final String ROOT_NODE_XPATH = "/";
-    private static final String PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH = "";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
     private static final String NO_DATA_NODES = "No data nodes.";
 
@@ -84,8 +85,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.root.save",
-        description = "Time taken to save a root data node")
+    @Timed(value = "cps.data.service.datanode.root.save", description = "Time taken to save a root data node")
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
                          final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -103,8 +103,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.child.save",
-        description = "Time taken to save a child data node")
+    @Timed(value = "cps.data.service.datanode.child.save", description = "Time taken to save a child data node")
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                          final String nodeData, final OffsetDateTime observedTimestamp,
                          final ContentType contentType) {
@@ -136,8 +135,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.get",
-            description = "Time taken to get data nodes for an xpath")
+    @Timed(value = "cps.data.service.datanode.get", description = "Time taken to get data nodes for an xpath")
     public Collection<DataNode> getDataNodes(final String dataspaceName, final String anchorName,
                                              final String xpath,
                                              final FetchDescendantsOption fetchDescendantsOption) {
@@ -146,8 +144,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.batch.get",
-        description = "Time taken to get a batch of data nodes")
+    @Timed(value = "cps.data.service.datanode.batch.get", description = "Time taken to get a batch of data nodes")
     public Collection<DataNode> getDataNodesForMultipleXpaths(final String dataspaceName, final String anchorName,
                                                               final Collection<String> xpaths,
                                                               final FetchDescendantsOption fetchDescendantsOption) {
@@ -277,8 +274,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.list.update",
-        description = "Time taken to update a list")
+    @Timed(value = "cps.data.service.list.update", description = "Time taken to update a list")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final String nodeData, final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -289,8 +285,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.list.batch.update",
-        description = "Time taken to update a batch of lists")
+    @Timed(value = "cps.data.service.list.batch.update", description = "Time taken to update a batch of lists")
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
             final Collection<DataNode> dataNodes, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -300,8 +295,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.delete",
-        description = "Time taken to delete a datanode")
+    @Timed(value = "cps.data.service.datanode.delete", description = "Time taken to delete a datanode")
     public void deleteDataNode(final String dataspaceName, final String anchorName, final String dataNodeXpath,
                                final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -311,8 +305,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.batch.delete",
-        description = "Time taken to delete a batch of datanodes")
+    @Timed(value = "cps.data.service.datanode.batch.delete", description = "Time taken to delete a batch of datanodes")
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final Collection<String> dataNodeXpaths, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -348,8 +341,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.list.delete",
-        description = "Time taken to delete a list or list element")
+    @Timed(value = "cps.data.service.list.delete", description = "Time taken to delete a list or list element")
     public void deleteListOrListElement(final String dataspaceName, final String anchorName, final String listNodeXpath,
         final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -365,6 +357,17 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH :
                 CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
+    }
+
+    @Override
+    public Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor,
+                                                                  final String parentNodeXpath,
+                                                                  final String nodeData,
+                                                                  final ContentType contentType) {
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+            yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
+        return convertContainerNodeToDataNodes(normalizedParentNodeXpath, containerNode);
     }
 
     private Collection<DataNode> rebuildSourceDataNodes(final String xpath, final Anchor sourceAnchor,
@@ -426,23 +429,18 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor, final String parentNodeXpath,
-                                                                 final String nodeData, final ContentType contentType) {
-
-        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    anchor, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
-            final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                    .withContainerNode(containerNode)
-                    .buildCollection();
-            if (dataNodes.isEmpty()) {
-                throw new DataValidationException(NO_DATA_NODES, "No data nodes provided");
-            }
-            return dataNodes;
-        }
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Map<String, String> yangResourceContentPerName,
+                                                                   final String parentNodeXpath,
+                                                                   final String nodeData,
+                                                                   final ContentType contentType) {
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
-            yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
+            yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
+        return convertContainerNodeToDataNodes(normalizedParentNodeXpath, containerNode);
+    }
+
+    private static Collection<DataNode> convertContainerNodeToDataNodes(final String normalizedParentNodeXpath,
+                                                                        final ContainerNode containerNode) {
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
@@ -453,38 +451,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(
-                                          final Map<String, String> yangResourceContentPerName, final String xpath,
-                                          final String nodeData, final ContentType contentType) {
-
-        if (isRootNodeXpath(xpath)) {
-            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    yangResourceContentPerName, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
-            final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                    .withContainerNode(containerNode)
-                    .buildCollection();
-            if (dataNodes.isEmpty()) {
-                throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
-            }
-            return dataNodes;
-        }
-        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(xpath);
-        final ContainerNode containerNode =
-                yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
-        final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                .withParentNodeXpath(normalizedParentNodeXpath)
-                .withContainerNode(containerNode)
-                .buildCollection();
-        if (dataNodes.isEmpty()) {
-            throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
-        }
-        return dataNodes;
-    }
-
     private Collection<DataNode> buildDataNodesWithAnchorAndXpath(final Anchor anchor, final String xpath,
                                                                   final String nodeData,
                                                                   final ContentType contentType) {
-
         if (!isRootNodeXpath(xpath)) {
             final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
             if (parentNodeXpath.isEmpty()) {

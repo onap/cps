@@ -24,19 +24,12 @@ import spock.lang.Specification
 
 class CpsPathUtilSpec extends Specification {
 
-    def 'Normalized xpaths for list index values using #scenario'() {
-        when: 'xpath with #scenario is parsed'
-            def result = CpsPathUtil.getNormalizedXpath(xpath)
-        then: 'normalized path uses single quotes for leave values'
-            assert result == "/parent/child[@common-leaf-name='123']"
-        where: 'the following xpaths are used'
-            scenario        | xpath
-            'no quotes'     | '/parent/child[@common-leaf-name=123]'
-            'double quotes' | '/parent/child[@common-leaf-name="123"]'
-            'single quotes' | "/parent/child[@common-leaf-name='123']"
+    def 'Normalized xpath for root.'() {
+        expect: 'xpath with #scenario is parsed'
+            assert CpsPathUtil.getNormalizedXpath('/') == ''
     }
 
-    def 'Normalized parent paths of absolute paths'() {
+    def 'Normalized parent paths of absolute paths.'() {
         when: 'a given cps path is parsed'
             def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
         then: 'the result is the expected parent path'
@@ -54,7 +47,7 @@ class CpsPathUtilSpec extends Specification {
             '/parent/child/name[text()="value"]'  || '/parent'
     }
 
-    def 'Normalized parent paths of descendant paths'() {
+    def 'Normalized parent paths of descendant paths.'() {
         when: 'a given cps path is parsed'
             def result = CpsPathUtil.getNormalizedParentXpath(cpsPath)
         then: 'the result is the expected parent path'
@@ -72,7 +65,7 @@ class CpsPathUtilSpec extends Specification {
             '//parent/child/name[text()="value"]'  || '//parent'
     }
 
-    def 'Get node ID sequence for given xpath'() {
+    def 'Get node ID sequence for given xpath with #scenario.'() {
         when: 'a given xpath with #scenario is parsed'
             def result = CpsPathUtil.getXpathNodeIdSequence(xpath)
         then: 'the result is the expected node ID sequence'
@@ -89,7 +82,7 @@ class CpsPathUtilSpec extends Specification {
             'does not include ancestor node' | '/parent/child/ancestor::grandparent' || ["parent","child"]
     }
 
-    def 'Recognizing (absolute) xpaths to List elements'() {
+    def 'Recognizing (absolute) xpaths to List elements.'() {
         expect: 'check for list returns the correct values'
             assert CpsPathUtil.isPathToListElement(xpath) == expectList
         where: 'the following xpaths are used'
@@ -101,7 +94,7 @@ class CpsPathUtilSpec extends Specification {
             '/parent/ancestor::grandparent[@id=1]' || false
     }
 
-    def 'Parsing Exception'() {
+    def 'Parsing Exception.'() {
         when: 'a invalid xpath is parsed'
             CpsPathUtil.getNormalizedXpath('///')
         then: 'a path parsing exception is thrown'

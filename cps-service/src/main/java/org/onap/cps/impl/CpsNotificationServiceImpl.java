@@ -27,18 +27,16 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.PrefixResolver;
-import org.onap.cps.utils.YangParser;
-import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -48,9 +46,9 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     private final CpsAnchorService cpsAnchorService;
 
-    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final CpsDataService cpsDataService;
 
-    private final YangParser yangParser;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
 
     private final PrefixResolver prefixResolver;
 
@@ -65,10 +63,9 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
     public void createNotificationSubscription(final String notificationSubscriptionAsJson, final String xpath) {
 
         final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, ANCHOR_NAME);
-        final Collection<DataNode> dataNodes =
-                buildDataNodesWithParentNodeXpath(anchor, xpath, notificationSubscriptionAsJson, ContentType.JSON);
-        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, ANCHOR_NAME, xpath,
-                dataNodes);
+        final Collection<DataNode> dataNodes = cpsDataService
+            .buildDataNodesWithParentNodeXpath(anchor, xpath,notificationSubscriptionAsJson, ContentType.JSON);
+        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, ANCHOR_NAME, xpath, dataNodes);
     }
 
     @Override
@@ -123,18 +120,4 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
         return !isNotificationEnabledForXpath(xpathForAnchors);
     }
 
-
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor, final String parentNodeXpath,
-                                                                   final String nodeData,
-                                                                   final ContentType contentType) {
-
-        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
-        final ContainerNode containerNode =
-                yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
-        final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                .withParentNodeXpath(normalizedParentNodeXpath)
-                .withContainerNode(containerNode)
-                .buildCollection();
-        return dataNodes;
-    }
 }

@@ -28,6 +28,7 @@ import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -329,12 +330,25 @@ public interface CpsDataService {
      * Validates JSON or XML data by parsing it using the schema associated to an anchor within the given dataspace.
      * Validation is performed without persisting the data.
      *
-     * @param dataspaceName     the name of the dataspace where the anchor is located.
-     * @param anchorName        the name of the anchor used to validate the data.
-     * @param parentNodeXpath   the xpath of the parent node where the data is to be validated.
-     * @param nodeData          the JSON or XML data to be validated.
-     * @param contentType       the content type of the data (e.g., JSON or XML).
+     * @param dataspaceName   the name of the dataspace where the anchor is located.
+     * @param anchorName      the name of the anchor used to validate the data.
+     * @param parentNodeXpath the xpath of the parent node where the data is to be validated.
+     * @param nodeData        the JSON or XML data to be validated.
+     * @param contentType     the content type of the data (e.g., JSON or XML).
      */
     void validateData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
                                  ContentType contentType);
+
+    /**
+     * Create a collection of data nodes from JSON or XML data using the schema for the given anchor
+     * @param anchor          the anchor which has the relevant schema
+     * @param parentNodeXpath the xpath of the parent node where the data is
+     * @param nodeData        JSON or XML data to be converted in data nodes
+     * @param contentType     the content type of the data (e.g., JSON or XML).
+     *
+     * @return a collection of datanodes
+     */
+    Collection<DataNode> buildDataNodesWithParentNodeXpath(Anchor anchor, String parentNodeXpath, String nodeData,
+                                                           ContentType contentType);
+
 }

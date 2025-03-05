@@ -22,21 +22,15 @@ package org.onap.cps.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
-import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
-import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
-import org.onap.cps.utils.YangParser
-import org.onap.cps.TestUtils
-import org.onap.cps.utils.YangParserHelper
-import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
-import org.onap.cps.yang.YangTextSchemaSourceSet
-import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.springframework.test.context.ContextConfiguration
-
 import spock.lang.Specification
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
@@ -49,43 +43,20 @@ class CpsNotificationServiceImplSpec extends Specification {
 
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
-    def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
-    def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
-    def  mockPrefixResolver = Mock(PrefixResolver)
-    def objectUnderTest = new CpsNotificationServiceImpl(mockCpsAnchorService, mockCpsDataPersistenceService, yangParser, mockPrefixResolver)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockPrefixResolver = Mock(PrefixResolver)
+    def objectUnderTest = new CpsNotificationServiceImpl(mockCpsAnchorService, mockCpsDataService, mockCpsDataPersistenceService, mockPrefixResolver)
 
     def 'add notification subscription for list of dataspaces'() {
         given: 'details for notification subscription and subscription root node xpath'
-            def notificationSubscriptionAsjson = '{"dataspace":[{"name":"ds01"},{"name":"ds02"}]}'
+            def notificationSubscriptionAsjson = 'some json'
             def xpath = '/dataspaces'
-        and: 'schema set for given anchor and dataspace references notification subscription model'
-            setupSchemaSetMocks('cps-notification-subscriptions@2024-07-03.yang')
         and: 'anchor is provided'
             mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
         when: 'create notification subscription is called'
             objectUnderTest.createNotificationSubscription(notificationSubscriptionAsjson, xpath)
-        then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.addListElements('CPS-Admin', 'cps-notification-subscriptions', xpath, { dataNodeCollection ->
-                {
-                    assert dataNodeCollection.size() == 2
-                    assert dataNodeCollection.collect { it.getXpath() }
-                            .containsAll(['/dataspaces/dataspace[@name=\'ds01\']', '/dataspaces/dataspace[@name=\'ds02\']'])
-                }
-            })
-    }
-
-    def 'add notification subscription fails with exception'() {
-        given: 'details for notification subscription'
-            def jsonData = '{"dataspace":[{"name":"ds01"},{"name":"ds02"}]}'
-        and: 'schema set for given anchor and dataspace references invalid data model'
-            setupSchemaSetMocks('test-tree.yang')
-        and: 'anchor is provided'
-            mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
-        when: 'create notification subscription is called'
-            objectUnderTest.createNotificationSubscription(jsonData, '/somepath')
-        then: 'data validation exception is thrown '
-            thrown(DataValidationException)
+        then: 'the cps data service is called with the correct parameters'
+            1 * mockCpsDataService.buildDataNodesWithParentNodeXpath(anchor, xpath, notificationSubscriptionAsjson, ContentType.JSON)
     }
 
     def 'delete notification subscription for given xpath'() {
@@ -156,11 +127,4 @@ class CpsNotificationServiceImplSpec extends Specification {
             assert !isNotificationEnabled
     }
 
-    def setupSchemaSetMocks(String... yangResources) {
-        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
-        mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
-        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
-    }
 }
