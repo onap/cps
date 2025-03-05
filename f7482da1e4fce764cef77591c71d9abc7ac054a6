@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a762cdd_85266502",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-05T05:51:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03e56845_89a3ba49",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 45
+      },
+      "revId": "f7482da1e4fce764cef77591c71d9abc7ac054a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a498074_e5184b39",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-03-04T17:08:21Z",
       "side": 1,
       "message": "this still sounds more like describe  mocked behavior\nsince \u0027the cps notification service\u0027 is the-object-under-test you dont need to mentioned it.\n\nI think you should say something like this: \n\n\u0027the result is a json representation of the data node(s) returned by the data persistence service\u0027",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 74
+      },
+      "revId": "f7482da1e4fce764cef77591c71d9abc7ac054a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6466188f_86ed95f6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsNotificationServiceImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-03-05T05:51:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a498074_e5184b39",
       "range": {
         "startLine": 109,
         "startChar": 15,
