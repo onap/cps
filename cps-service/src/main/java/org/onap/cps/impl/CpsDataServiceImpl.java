@@ -24,6 +24,9 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.cpspath.parser.CpsPathUtil.PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH;
+import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -62,8 +65,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataServiceImpl implements CpsDataService {
 
-    private static final String ROOT_NODE_XPATH = "/";
-    private static final String PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH = "";
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
     private static final String NO_DATA_NODES = "No data nodes.";
 
@@ -426,23 +427,28 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor, final String parentNodeXpath,
-                                                                 final String nodeData, final ContentType contentType) {
-
-        if (ROOT_NODE_XPATH.equals(parentNodeXpath)) {
-            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    anchor, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
-            final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                    .withContainerNode(containerNode)
-                    .buildCollection();
-            if (dataNodes.isEmpty()) {
-                throw new DataValidationException(NO_DATA_NODES, "No data nodes provided");
-            }
-            return dataNodes;
-        }
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor,
+                                                                   final String parentNodeXpath,
+                                                                   final String nodeData,
+                                                                   final ContentType contentType) {
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
             yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
+        return convertContainerNodeToDataNodes(normalizedParentNodeXpath, containerNode);
+    }
+
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Map<String, String> yangResourceContentPerName,
+                                                                   final String parentNodeXpath,
+                                                                   final String nodeData,
+                                                                   final ContentType contentType) {
+        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
+        final ContainerNode containerNode =
+            yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
+        return convertContainerNodeToDataNodes(normalizedParentNodeXpath, containerNode);
+    }
+
+    private static Collection<DataNode> convertContainerNodeToDataNodes(final String normalizedParentNodeXpath,
+                                                                        final ContainerNode containerNode) {
         final Collection<DataNode> dataNodes = new DataNodeBuilder()
             .withParentNodeXpath(normalizedParentNodeXpath)
             .withContainerNode(containerNode)
@@ -453,38 +459,9 @@ public class CpsDataServiceImpl implements CpsDataService {
         return dataNodes;
     }
 
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(
-                                          final Map<String, String> yangResourceContentPerName, final String xpath,
-                                          final String nodeData, final ContentType contentType) {
-
-        if (isRootNodeXpath(xpath)) {
-            final ContainerNode containerNode = yangParser.parseData(contentType, nodeData,
-                    yangResourceContentPerName, PARENT_NODE_XPATH_FOR_ROOT_NODE_XPATH);
-            final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                    .withContainerNode(containerNode)
-                    .buildCollection();
-            if (dataNodes.isEmpty()) {
-                throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
-            }
-            return dataNodes;
-        }
-        final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(xpath);
-        final ContainerNode containerNode =
-                yangParser.parseData(contentType, nodeData, yangResourceContentPerName, normalizedParentNodeXpath);
-        final Collection<DataNode> dataNodes = new DataNodeBuilder()
-                .withParentNodeXpath(normalizedParentNodeXpath)
-                .withContainerNode(containerNode)
-                .buildCollection();
-        if (dataNodes.isEmpty()) {
-            throw new DataValidationException(NO_DATA_NODES, "Data nodes were not found under the xpath " + xpath);
-        }
-        return dataNodes;
-    }
-
     private Collection<DataNode> buildDataNodesWithAnchorAndXpath(final Anchor anchor, final String xpath,
                                                                   final String nodeData,
                                                                   final ContentType contentType) {
-
         if (!isRootNodeXpath(xpath)) {
             final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
             if (parentNodeXpath.isEmpty()) {
