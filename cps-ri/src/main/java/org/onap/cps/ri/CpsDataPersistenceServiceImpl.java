@@ -242,7 +242,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final Class<T> targetClass) {
+                                    final Class<T> targetClass, final int queryResultLimit) {
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         if (!cpsPathQuery.hasAttributeAxis()) {
             throw new IllegalArgumentException(
@@ -251,7 +251,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
         final List<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
-                FetchDescendantsOption.OMIT_DESCENDANTS);
+                FetchDescendantsOption.OMIT_DESCENDANTS, queryResultLimit);
         return dataNodes.stream()
                 .map(dataNode -> {
                     final Object attributeValue = dataNode.getLeaves().get(attributeName);

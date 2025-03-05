@@ -92,6 +92,6 @@ class CpsQueryServiceImplSpec extends Specification {
         when: 'a query for a specific leaf is executed'
             objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
         then: 'solution is not implemented yet'
-            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class, 0)
     }
 }

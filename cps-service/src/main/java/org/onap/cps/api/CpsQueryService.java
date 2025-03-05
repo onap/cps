@@ -74,6 +74,19 @@ public interface CpsQueryService {
     <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
 
     /**
+     * Get data leaf for the given dataspace and anchor by cps path.
+     *
+     * @param dataspaceName      dataspace name
+     * @param anchorName         anchor name
+     * @param cpsPath            cps path
+     * @param targetClass        class of the expected data type
+     * @param queryResultLimit   the maximum number of data nodes to return; if less than 1, returns all matching nodes
+     * @return a collection of data objects of expected type
+     */
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass,
+                             int queryResultLimit);
+
+    /**
      * Get data nodes for the given dataspace across all anchors by cps path.
      *
      * @param dataspaceName dataspace name
