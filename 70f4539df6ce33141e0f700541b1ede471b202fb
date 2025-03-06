@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7cb105_e34b671c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-06T15:51:04Z",
+      "side": 1,
+      "message": "Typo: should be called makeRandomBatchOfCmHandleIds\nk6 test will fail because of this",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 38
+      },
+      "revId": "70f4539df6ce33141e0f700541b1ede471b202fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "951fb53c_71732da1",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-06T15:51:04Z",
+      "side": 1,
+      "message": "Needs CM-handle prefix: \u0027ch-\u0027 + randomNum\nAnd maybe call it #cmHandleIds# instead of \u0027numbers\u0027",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "70f4539df6ce33141e0f700541b1ede471b202fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
