@@ -46,13 +46,15 @@ class CpsNotificationServiceImplSpec extends Specification {
     def anchorName = 'cps-notification-subscriptions'
     def schemaSetName = 'cps-notification-subscriptions'
     def anchor = new Anchor(anchorName, dataspaceName, schemaSetName)
+    def someDataNode = new DataNodeBuilder().withXpath('/xpath-1').build()
 
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
-    def  mockPrefixResolver = Mock(PrefixResolver)
+    def mockPrefixResolver = Mock(PrefixResolver)
+
     def objectUnderTest = new CpsNotificationServiceImpl(mockCpsAnchorService, mockCpsDataPersistenceService, yangParser, mockPrefixResolver)
 
     def 'add notification subscription for list of dataspaces'() {
@@ -112,8 +114,7 @@ class CpsNotificationServiceImplSpec extends Specification {
 
     def 'is notification enabled for given anchor'() {
         given: 'data nodes available for given anchor'
-            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                    [new DataNodeBuilder().withXpath('/xpath-1').build()]
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> [someDataNode]
         when: 'is notification enabled is called'
             boolean isNotificationEnabled = objectUnderTest.isNotificationEnabled(dataspaceName, anchorName)
         then: 'the notification is enabled'
@@ -130,26 +131,49 @@ class CpsNotificationServiceImplSpec extends Specification {
             assert !isNotificationEnabled
     }
 
+    def 'is notification enabled for given anchor because all anchors are enabled'() {
+        given: 'data nodes not available for given anchor'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']/anchors/anchor[@name='anchor-01']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
+                {  throw new DataNodeNotFoundException(dataspaceName, anchorName) }
+        and: 'data nodes not available for any specific anchor'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']/anchors", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
+                { throw new DataNodeNotFoundException(dataspaceName, anchorName) }
+        when: 'is notification enabled is called'
+            boolean isNotificationEnabled = objectUnderTest.isNotificationEnabled('ds01', 'anchor-01')
+        then: 'the notification is enabled'
+            assert isNotificationEnabled
+    }
+
     def 'is notification enabled for all anchors in a dataspace'() {
         given: 'data nodes available for given dataspace'
             mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                    [new DataNodeBuilder().withXpath('/xpath-1').build()]
+                    [someDataNode]
         and: 'data nodes not available for any specific anchor'
             mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']/anchors", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                    {  throw new DataNodeNotFoundException(dataspaceName, anchorName) }
+                    { throw new DataNodeNotFoundException(dataspaceName, anchorName) }
         when: 'is notification enabled is called'
             boolean isNotificationEnabled = objectUnderTest.notificationEnabledForAllAnchors('ds01')
         then: 'the notification is enabled'
             assert isNotificationEnabled
     }
 
-    def 'is notification disabled for all anchors in a dataspace'() {
+    def 'is notification disabled for a dataspace'() {
+        given: 'No data nodes available for given dataspace'
+            mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
+                { throw new DataNodeNotFoundException(dataspaceName, anchorName) }
+        when: 'is notification enabled is called'
+            boolean isNotificationEnabled = objectUnderTest.notificationEnabledForAllAnchors('ds01')
+        then: 'the notification is disabled'
+            assert !isNotificationEnabled
+    }
+
+    def 'is notification disabled for some anchors in a dataspace'() {
         given: 'data nodes available for given dataspace'
             mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                [new DataNodeBuilder().withXpath('/xpath-1').build()]
+                [someDataNode]
         and: 'data nodes also available for any specific anchor'
             mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, "/dataspaces/dataspace[@name='ds01']/anchors", FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >>
-                    [new DataNodeBuilder().withXpath('/xpath-1').build()]
+                    [someDataNode]
         when: 'is notification enabled is called'
             boolean isNotificationEnabled = objectUnderTest.notificationEnabledForAllAnchors('ds01')
         then: 'the notification is disabled'

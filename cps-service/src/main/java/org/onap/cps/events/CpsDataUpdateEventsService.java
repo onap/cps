@@ -49,7 +49,7 @@ public class CpsDataUpdateEventsService {
     @Value("${app.cps.data-updated.topic:cps-data-updated-events}")
     private String topicName;
 
-    @Value("${app.cps.data-updated.change-event-notifications-enabled:true}")
+    @Value("${app.cps.data-updated.change-event-notifications-enabled:false}")
     private boolean cpsChangeEventNotificationsEnabled;
 
     @Value("${notification.enabled:false}")

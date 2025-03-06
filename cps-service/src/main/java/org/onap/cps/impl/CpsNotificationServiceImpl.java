@@ -20,6 +20,8 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +33,6 @@ import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.exceptions.DataNodeNotFoundException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
@@ -66,9 +67,8 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
         final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, ANCHOR_NAME);
         final Collection<DataNode> dataNodes =
-                buildDataNodesWithParentNodeXpath(anchor, xpath, notificationSubscriptionAsJson, ContentType.JSON);
-        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, ANCHOR_NAME, xpath,
-                dataNodes);
+            buildDataNodesWithParentNodeXpath(anchor, xpath, notificationSubscriptionAsJson);
+        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, ANCHOR_NAME, xpath, dataNodes);
     }
 
     @Override
@@ -79,8 +79,7 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
     @Override
     public List<Map<String, Object>> getNotificationSubscription(final String xpath) {
         final Collection<DataNode> dataNodes =
-                cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath,
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+                cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
         final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
         final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, ANCHOR_NAME);
         for (final DataNode dataNode: dataNodes) {
@@ -94,7 +93,7 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
     @Override
     public boolean isNotificationEnabled(final String dataspaceName, final String anchorName) {
         return (isNotificationEnabledForAnchor(dataspaceName, anchorName)
-                || notificationEnabledForAllAnchors(dataspaceName));
+            || notificationEnabledForAllAnchors(dataspaceName));
     }
 
     private boolean isNotificationEnabledForAnchor(final String dataspaceName, final String anchorName) {
@@ -104,8 +103,7 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     private boolean isNotificationEnabledForXpath(final String xpath) {
         try {
-            cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath,
-                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);
+            cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
         } catch (final DataNodeNotFoundException e) {
             return false;
         }
@@ -114,8 +112,8 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     private boolean notificationEnabledForAllAnchors(final String dataspaceName) {
         final String dataspaceSubscriptionXpath = String.format(DATASPACE_SUBSCRIPTION_XPATH_FORMAT, dataspaceName);
-        return (isNotificationEnabledForXpath(dataspaceSubscriptionXpath)
-                && noIndividualAnchorEnabledInDataspace(dataspaceName));
+        return isNotificationEnabledForXpath(dataspaceSubscriptionXpath)
+            && noIndividualAnchorEnabledInDataspace(dataspaceName);
     }
 
     private boolean noIndividualAnchorEnabledInDataspace(final String dataspaceName) {
@@ -123,18 +121,15 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
         return !isNotificationEnabledForXpath(xpathForAnchors);
     }
 
-
-    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor, final String parentNodeXpath,
-                                                                   final String nodeData,
-                                                                   final ContentType contentType) {
-
+    private Collection<DataNode> buildDataNodesWithParentNodeXpath(final Anchor anchor,
+                                                                   final String parentNodeXpath,
+                                                                   final String nodeData) {
         final String normalizedParentNodeXpath = CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         final ContainerNode containerNode =
-                yangParser.parseData(contentType, nodeData, anchor, normalizedParentNodeXpath);
-        final Collection<DataNode> dataNodes = new DataNodeBuilder()
+                yangParser.parseData(ContentType.JSON, nodeData, anchor, normalizedParentNodeXpath);
+        return new DataNodeBuilder()
                 .withParentNodeXpath(normalizedParentNodeXpath)
                 .withContainerNode(containerNode)
                 .buildCollection();
-        return dataNodes;
     }
 }

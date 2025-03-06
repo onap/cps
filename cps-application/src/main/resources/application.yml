@@ -117,10 +117,8 @@ app:
             topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
     cps:
         data-updated:
-            change-event-notifications-enabled: ${CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED:true}
+            change-event-notifications-enabled: ${CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED:false}
             topic: ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}
-
-
 
 notification:
     enabled: true
