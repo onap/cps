@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78cd1c7e_a2776c9c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-06T17:10:37Z",
+      "side": 1,
+      "message": "in this case normal constructor is shorted and therefore preferred\n(i did consider same :-) )",
+      "parentUuid": "55fa8125_680ffcef",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 81
+      },
+      "revId": "e012d12fecc6be54ab386e4fd73be0baed53cf1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84510b33_23898bc9",
         "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-06T16:51:44Z",
       "side": 1,
       "message": "NB Shouldn\u0027t we try \"with\" for setting properties here like below: \n\n\nobjectUnderTest.with {\n        notificationsEnabled \u003d notificationsEnabled\n        cpsChangeEventNotificationsEnabled \u003d cpsChangeEventNotificationsEnabled\n    }",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 99
+      },
+      "revId": "e012d12fecc6be54ab386e4fd73be0baed53cf1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76cdcad_bc505fec",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-06T17:10:37Z",
+      "side": 1,
+      "message": "i like the fact there are two block ie separate descriptions",
+      "parentUuid": "84510b33_23898bc9",
       "range": {
         "startLine": 107,
         "startChar": 12,
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-06T16:51:44Z",
       "side": 1,
       "message": "anchor.name",
+      "range": {
+        "startLine": 111,
+        "startChar": 64,
+        "endLine": 111,
+        "endChar": 74
+      },
+      "revId": "e012d12fecc6be54ab386e4fd73be0baed53cf1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5af793c_e9b62d50",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-06T17:10:37Z",
+      "side": 1,
+      "message": "thought about it for a few seconds, but its important to see this test is using a different anchor(name) then all the other tests! so for readability (and it is shorter) I prefer as is..",
+      "parentUuid": "b0203888_2bb86cf4",
       "range": {
         "startLine": 111,
         "startChar": 64,
