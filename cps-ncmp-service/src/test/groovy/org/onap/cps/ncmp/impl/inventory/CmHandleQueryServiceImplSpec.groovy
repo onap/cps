@@ -131,7 +131,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cmHandleState = CmHandleState.ADVISED
         and: 'the persistence service returns a list of data nodes'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                "//state[@cm-handle-state='ADVISED']", OMIT_DESCENDANTS) >> sampleDataNodes
+                "//state[@cm-handle-state='ADVISED']", OMIT_DESCENDANTS, 0) >> sampleDataNodes
         when: 'cm handles are fetched by state'
             def result = objectUnderTest.queryCmHandleIdsByState(cmHandleState)
         then: 'the returned result matches the result from the persistence service'
@@ -171,7 +171,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
     def 'Retrieve Cm Handles By Operational Sync State : UNSYNCHRONIZED'() {
         given: 'cps data service returns a list of data nodes'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                '//state/datastores/operational[@sync-state="'+'UNSYNCHRONIZED'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS) >> sampleDataNodes
+                '//state/datastores/operational[@sync-state="'+'UNSYNCHRONIZED'+'"]/ancestor::cm-handles', OMIT_DESCENDANTS, 0) >> sampleDataNodes
         when: 'cm handles are fetched by the UNSYNCHRONIZED operational sync state'
             def result = objectUnderTest.queryCmHandlesByOperationalSyncState(DataStoreSyncState.UNSYNCHRONIZED)
         then: 'the returned result is a list of data nodes returned by cps data service'
@@ -184,7 +184,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cpsPath = "//state[@cm-handle-state='LOCKED']"
         and: 'cps data service returns a valid data node for cm handle ancestor'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS)
+                cpsPath + '/ancestor::cm-handles', INCLUDE_ALL_DESCENDANTS, 0)
                 >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
             def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)
@@ -198,7 +198,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
             def cpsPath = "//cm-handles[@alternate-id='1']"
         and: 'cps data service returns a valid data node'
             mockCpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                cpsPath, INCLUDE_ALL_DESCENDANTS)
+                cpsPath, INCLUDE_ALL_DESCENDANTS, 0)
                 >> Arrays.asList(cmHandleDataNode)
         when: 'get cm handles by cps path is invoked'
             def result = objectUnderTest.queryCmHandleAncestorsByCpsPath(cpsPath, INCLUDE_ALL_DESCENDANTS)

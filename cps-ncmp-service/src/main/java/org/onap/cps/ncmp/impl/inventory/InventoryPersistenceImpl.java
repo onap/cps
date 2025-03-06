@@ -144,7 +144,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
         final Collection<DataNode> cmHandlesAsDataNodes =
             cmHandleQueryService.queryNcmpRegistryByCpsPath(
-                cpsPathForCmHandlesByReferences, INCLUDE_ALL_DESCENDANTS);
+                cpsPathForCmHandlesByReferences, INCLUDE_ALL_DESCENDANTS, cmHandleReferences.size());
 
         return YangDataConverter.toYangModelCmHandles(cmHandlesAsDataNodes);
     }
@@ -193,7 +193,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public YangModelCmHandle getYangModelCmHandleByAlternateId(final String alternateId) {
         final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
         final Collection<DataNode> dataNodes = cmHandleQueryService
-            .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS);
+            .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS, 1);
         if (dataNodes.isEmpty()) {
             throw new CmHandleNotFoundException(alternateId);
         }
@@ -207,7 +207,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         }
         final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
         final Collection<DataNode> dataNodes = cmHandleQueryService.queryNcmpRegistryByCpsPath(
-            cpsPathForCmHandlesByAlternateIds, INCLUDE_ALL_DESCENDANTS);
+            cpsPathForCmHandlesByAlternateIds, INCLUDE_ALL_DESCENDANTS, alternateIds.size());
         return YangDataConverter.toYangModelCmHandles(dataNodes);
     }
 
