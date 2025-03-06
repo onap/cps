@@ -48,6 +48,19 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 }
 
 /**
+ * Generates an unordered batch of CM-handle IDs based on batch size.
+ * @returns {string[]} Array of CM-handle IDs, for example ['ch-8', 'ch-2' ... 'ch-32432']
+ */
+export function makeRandomBatchOfCmHandleIds() {
+    const cmHandleIds = new Set();
+    while (cmHandleIds.size < LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE) {
+        const randomNum = Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1;
+        cmHandleIds.add('ch-' + randomNum);
+    }
+    return Array.from(cmHandleIds)
+}
+
+/**
  * Helper function to perform POST requests with JSON payload and content type.
  * @param {string} url - The URL to send the POST request to.
  * @param {Object} payload - The JSON payload to send in the POST request.
