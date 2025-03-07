@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25177cc9_585cd77f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-07T07:24:50Z",
+      "side": 1,
+      "message": "Asked a doubt and a suggestion 😊",
+      "revId": "7d3229e13201365d9cf0fc1a8cc591be8f65dade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "689a6a9d_49b6ce3f",
+        "filename": "cps-path-parser/src/main/java/org/onap/cps/cpspath/parser/CpsPathUtil.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-07T07:24:50Z",
+      "side": 1,
+      "message": "NB: Renamed it to NO_PARENT_PATH to keep it consistent with identical variable in CpsPathBuilder.java",
+      "range": {
+        "startLine": 43,
+        "startChar": 31,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "7d3229e13201365d9cf0fc1a8cc591be8f65dade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef3bc517_a810022e",
