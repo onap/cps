@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2023 Nordix Foundation.
+# Copyright 2023-2025 Nordix Foundation.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -75,13 +75,13 @@ function generate_report() {
   grep --invert-match "^#" $TEMP_DIR/metrics-raw.txt | sort | sed 's/,[}]/}\t/' >$TEMP_DIR/metrics-all.txt
 
   # Extract useful metrics.
-  grep -E "^cps_|^spring_data_" $TEMP_DIR/metrics-all.txt >$TEMP_DIR/metrics-cps.txt
+  grep -E "^cps_|^spring_data_|^http_server_|^http_client_|^tasks_scheduled_execution_|^spring_kafka_template_|^spring_kafka_listener_" $TEMP_DIR/metrics-all.txt >$TEMP_DIR/metrics-cps.txt
 
   # Extract into columns.
-  grep "_count" $TEMP_DIR/metrics-cps.txt | sed 's/_count//' | cut -f 1 >$TEMP_DIR/column1.txt
-  grep "_count" $TEMP_DIR/metrics-cps.txt | cut -f 2 >$TEMP_DIR/column2.txt
-  grep "_sum"   $TEMP_DIR/metrics-cps.txt | cut -f 2 >$TEMP_DIR/column3.txt
-  grep "_max"   $TEMP_DIR/metrics-cps.txt | cut -f 2 >$TEMP_DIR/column4.txt
+  grep "_count" $TEMP_DIR/metrics-cps.txt | sed 's/_count//' | cut -d ' ' -f 1 >$TEMP_DIR/column1.txt
+  grep "_count" $TEMP_DIR/metrics-cps.txt | cut -d ' ' -f 2 >$TEMP_DIR/column2.txt
+  grep "_sum"   $TEMP_DIR/metrics-cps.txt | cut -d ' ' -f 2 >$TEMP_DIR/column3.txt
+  grep "_max"   $TEMP_DIR/metrics-cps.txt | cut -d ' ' -f 2 >$TEMP_DIR/column4.txt
 
   # Combine columns into report.
   paste $TEMP_DIR/column{1,2,3,4}.txt >$TEMP_DIR/report.txt
