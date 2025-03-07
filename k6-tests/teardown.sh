@@ -18,11 +18,9 @@
 echo '================================== docker info =========================='
 docker ps -a
 
-echo '================================== CPS-NCMP Logs ========================'
-for CONTAINER_ID in $(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}"); do
-    echo "CPS-NCMP Logs for container: $CONTAINER_ID"
-    docker logs "$CONTAINER_ID"
-done
+# Zip and store logs for the containers
+chmod +x make-logs.sh
+./make-logs.sh
 
 testProfile=$1
 docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"
