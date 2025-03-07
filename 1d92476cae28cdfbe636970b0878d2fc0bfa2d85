@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a65e9a_6fe4982c",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-07T17:02:38Z",
+      "side": 1,
+      "message": "NB: just a personal preference but I wish this argument to be the last parameter. Havent seen Class param in between.",
+      "range": {
+        "startLine": 245,
+        "startChar": 36,
+        "endLine": 245,
+        "endChar": 62
+      },
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
