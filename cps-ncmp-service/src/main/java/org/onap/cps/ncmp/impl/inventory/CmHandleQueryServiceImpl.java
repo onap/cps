@@ -26,6 +26,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
+import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -61,7 +62,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final Map<String, TrustLevel> trustLevelPerDmiPlugin;
 
     @Qualifier(TrustLevelCacheConfig.TRUST_LEVEL_PER_CM_HANDLE)
-    private final Map<String, TrustLevel> trustLevelPerCmHandleId;
+    private final IMap<String, TrustLevel> trustLevelPerCmHandleId;
 
     private final CpsValidator cpsValidator;
 
@@ -144,12 +145,14 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
             final TrustLevel dmiTrustLevel = mapEntry.getValue();
             final Collection<String> candidateCmHandleIds = getCmHandleReferencesByDmiPluginIdentifier(
                     dmiPluginIdentifier, false);
-            for (final String candidateCmHandleId : candidateCmHandleIds) {
-                final TrustLevel candidateCmHandleTrustLevel = trustLevelPerCmHandleId.get(candidateCmHandleId);
+            final Set<String> candidateCmHandleIdsSet = new HashSet<>(candidateCmHandleIds);
+            final Map<String, TrustLevel> trustLevelPerCmHandleIdInBatch =
+                trustLevelPerCmHandleId.getAll(candidateCmHandleIdsSet);
+            for (final Map.Entry<String, TrustLevel> canidateCmHandleId : trustLevelPerCmHandleIdInBatch.entrySet()) {
                 final TrustLevel effectiveTrustlevel =
-                        candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+                    canidateCmHandleId.getValue().getEffectiveTrustLevel(dmiTrustLevel);
                 if (targetTrustLevel.equals(effectiveTrustlevel)) {
-                    selectedCmHandleReferences.add(candidateCmHandleId);
+                    selectedCmHandleReferences.add(canidateCmHandleId.getKey());
                 }
             }
         }
