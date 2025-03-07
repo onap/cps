@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ba8db2_e9caf1e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-07T14:01:41Z",
+      "side": 1,
+      "message": "NB: queryResultLimit → resultLimit (More concise and intuitive)",
+      "range": {
+        "startLine": 94,
+        "startChar": 56,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "a0591f8876706785580ce6071e2b23fc3641b943",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572cb9a5_40708f38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-07T14:01:41Z",
+      "side": 1,
+      "message": "NB: ✅ Use int (primitive):\n\n1. As we always expect a value (i.e., it should never be null).\n2. Want better performance (since int avoids unnecessary object creation).\n3. Integer introduces unboxing overhead.",
+      "range": {
+        "startLine": 57,
+        "startChar": 25,
+        "endLine": 57,
+        "endChar": 33
+      },
+      "revId": "a0591f8876706785580ce6071e2b23fc3641b943",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
