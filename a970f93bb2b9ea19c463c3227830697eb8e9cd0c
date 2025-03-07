@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb08d2b9_6ff5fba0",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-07T14:11:06Z",
+      "side": 1,
+      "message": "index + 1",
+      "range": {
+        "startLine": 64,
+        "startChar": 33,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "a970f93bb2b9ea19c463c3227830697eb8e9cd0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d515420_ce47a09c",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-07T14:11:06Z",
+      "side": 1,
+      "message": "index + 1",
+      "range": {
+        "startLine": 73,
+        "startChar": 32,
+        "endLine": 73,
+        "endChar": 40
+      },
+      "revId": "a970f93bb2b9ea19c463c3227830697eb8e9cd0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
