@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -103,4 +103,22 @@ class QueryPerfTest extends CpsPerfTestBase {
             'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.11           | 8           | 1 + OPENROADM_DEVICES_PER_ANCHOR
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.34           | 400         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
+
+    def 'Query data leaf with #scenario.'() {
+        when: 'query data leaf is called'
+            resourceMeter.start()
+            def result = objectUnderTest.queryDataLeaf(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, String)
+            resourceMeter.stop()
+            def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+        then: 'the expected number of results is returned'
+            assert result.size() == expectedNumberOfValues
+        and: 'all data is read within #durationLimit ms  and memory used is within limit'
+            recordAndAssertResourceUsage("Query data leaf ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        where: 'the following parameters are used'
+            scenario                     | cpsPath                                             || durationLimit  | memoryLimit  | expectedNumberOfValues
+            'unique leaf value'          | '/openroadm-devices/openroadm-device/@device-id'    || 0.10           | 8            | OPENROADM_DEVICES_PER_ANCHOR
+            'common leaf value'          | '/openroadm-devices/openroadm-device/@ne-state'     || 0.05           | 1            | 1
+            'non-existing data leaf'     | '/openroadm-devices/openroadm-device/@non-existing' || 0.05           | 1            | 0
+    }
+
 }
