@@ -45,6 +45,30 @@
       },
       "revId": "8a43b80ffcce0815283e908b78a6c187138fda3c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe717f3d_53aa77ca",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T11:53:11Z",
+      "side": 1,
+      "message": "now that you had mentioned it, I realized it was unnecessary. Because buildDataNodesWithYangResourceXpathAndNodeData first called CpsPathUtil.getNormalizedParentXpath(xpath) then it called buildDataNodesWithYangResourceParentXpathAndNodeData where I called CpsPathUtil.getNormalizedXpath(parentNodeXpath) again. And just to handle this the following check was needed.\nBut now since the logic is more granular, I was further able to simplify the code, and this complex check is not required. We just need to check if it\u0027s root node xpath or not.",
+      "parentUuid": "eaf7b644_4e78f20f",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 115
+      },
+      "revId": "8a43b80ffcce0815283e908b78a6c187138fda3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
