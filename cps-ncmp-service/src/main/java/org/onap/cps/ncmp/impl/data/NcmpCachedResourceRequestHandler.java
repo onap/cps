@@ -47,7 +47,8 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
      */
     public Collection<DataNode> executeRequest(final String cmHandleId, final String resourceIdentifier,
                                                  final boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
+        final FetchDescendantsOption fetchDescendantsOption
+            = FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
         return networkCmProxyQueryService.queryResourceDataOperational(cmHandleId, resourceIdentifier,
             fetchDescendantsOption);
     }
@@ -59,7 +60,8 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final String requestId,
                                                       final boolean includeDescendants,
                                                       final String authorization) {
-        final FetchDescendantsOption fetchDescendantsOption = getFetchDescendantsOption(includeDescendants);
+        final FetchDescendantsOption fetchDescendantsOption
+            = FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
 
         final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.getDatastoreName(),
             cmResourceAddress.resolveCmHandleReferenceToId(),
@@ -68,8 +70,4 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
         return Mono.justOrEmpty(dataNode);
     }
 
-    private static FetchDescendantsOption getFetchDescendantsOption(final boolean includeDescendants) {
-        return includeDescendants ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-            : FetchDescendantsOption.OMIT_DESCENDANTS;
-    }
 }
