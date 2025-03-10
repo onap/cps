@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be56aa1_9aa6d6fd",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T15:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0ed5d9b_45f36e5d",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e054636_74db3134",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-03-10T13:26:09Z",
       "side": 1,
       "message": "as agreed, change to 14 days",
+      "range": {
+        "startLine": 43,
+        "startChar": 58,
+        "endLine": 43,
+        "endChar": 60
+      },
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a7c1b7c_2c2a3d6a",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T15:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e054636_74db3134",
       "range": {
         "startLine": 43,
         "startChar": 58,
