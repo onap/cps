@@ -63,8 +63,8 @@ public class QueryRestController implements CpsQueryApi {
                                                                          final String anchorName,
                                                                          final String cpsPath,
                                                                          final Boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
         return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
                 fetchDescendantsOption, ContentType.JSON);
     }

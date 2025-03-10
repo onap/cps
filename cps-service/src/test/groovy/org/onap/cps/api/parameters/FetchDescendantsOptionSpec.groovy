@@ -25,6 +25,10 @@ package org.onap.cps.api.parameters
 import org.onap.cps.api.exceptions.DataValidationException
 import spock.lang.Specification
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+
 class FetchDescendantsOptionSpec extends Specification {
 
     def 'Has next descendant for fetch descendant option: #scenario'() {
@@ -105,11 +109,22 @@ class FetchDescendantsOptionSpec extends Specification {
         expect: 'each fetch descendant option has the correct String value'
             assert fetchDescendantsOption.toString() == expectedStringValue
         where: 'the following option is used'
-            fetchDescendantsOption                         || expectedStringValue
-            FetchDescendantsOption.OMIT_DESCENDANTS        || 'OmitDescendants'
-            FetchDescendantsOption.DIRECT_CHILDREN_ONLY    || 'DirectChildrenOnly'
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS || 'IncludeAllDescendants'
-            new FetchDescendantsOption(2)                  || 'Depth=2'
+            fetchDescendantsOption        || expectedStringValue
+            OMIT_DESCENDANTS              || 'OmitDescendants'
+            DIRECT_CHILDREN_ONLY          || 'DirectChildrenOnly'
+            INCLUDE_ALL_DESCENDANTS       || 'IncludeAllDescendants'
+            new FetchDescendantsOption(2) || 'Depth=2'
+    }
+
+    def 'Convert include-descendants boolean to fetch descendants option with : #includeDescendants'() {
+        when: 'convert boolean #includeDescendants'
+            def result = FetchDescendantsOption.getFetchDescendantsOption(includeDescendants)
+        then: 'result is the expected option'
+            assert result == expectedFetchDescendantsOption
+        where: 'following parameters are used'
+            includeDescendants || expectedFetchDescendantsOption
+            true               || INCLUDE_ALL_DESCENDANTS
+            false              || OMIT_DESCENDANTS
     }
 
 }
