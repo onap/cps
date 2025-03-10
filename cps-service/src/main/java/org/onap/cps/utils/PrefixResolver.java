@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation.
+ *  Copyright (C) 2022-2025 Nordix Foundation.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -47,25 +47,29 @@ public class PrefixResolver {
      * @return the prefix of the module the top level element of given xpath
      */
     public String getPrefix(final Anchor anchor, final String xpath) {
+        return getPrefix(anchor.getDataspaceName(), anchor.getSchemaSetName(), xpath);
+    }
+
+    private String getPrefix(final String dataspaceName, final String schemaSetName, final String xpath) {
         final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(xpath);
         if (cpsPathQuery.getCpsPathPrefixType() != CpsPathPrefixType.ABSOLUTE) {
             return "";
         }
-        final String topLevelContainerName = cpsPathQuery.getContainerNames().get(0);
 
+        final String topLevelContainerName = cpsPathQuery.getContainerNames().get(0);
         final YangTextSchemaSourceSet yangTextSchemaSourceSet =
-                yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(), anchor.getSchemaSetName());
+            yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName);
         final SchemaContext schemaContext = yangTextSchemaSourceSet.getSchemaContext();
 
         return schemaContext.getChildNodes().stream()
-                .filter(DataNodeContainer.class::isInstance)
-                .map(SchemaNode::getQName)
-                .filter(qname -> qname.getLocalName().equals(topLevelContainerName))
-                .findFirst()
-                .map(QName::getModule)
-                .flatMap(schemaContext::findModule)
-                .map(Module::getPrefix)
-                .orElse("");
+            .filter(DataNodeContainer.class::isInstance)
+            .map(SchemaNode::getQName)
+            .filter(qname -> qname.getLocalName().equals(topLevelContainerName))
+            .findFirst()
+            .map(QName::getModule)
+            .flatMap(schemaContext::findModule)
+            .map(Module::getPrefix)
+            .orElse("");
     }
 
 }
