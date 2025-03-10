@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8222d67f_92fceeba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T16:56:34Z",
+      "side": 1,
+      "message": "Good commit but seems a legacy issue where a slogan copied and pasted for all the test cases ;)",
+      "revId": "91829a0be9ab2892aaa9d0ba8f328a94761bc556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d3998d3_db62bd97",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T16:56:34Z",
+      "side": 1,
+      "message": "Second too",
+      "range": {
+        "startLine": 81,
+        "startChar": 53,
+        "endLine": 81,
+        "endChar": 55
+      },
+      "revId": "91829a0be9ab2892aaa9d0ba8f328a94761bc556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7ffc2d9_60b5e466",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T16:56:34Z",
+      "side": 1,
+      "message": "I thinks this should be second too ;) maybe better to checkt others too. since a few of them may need to changed.",
+      "range": {
+        "startLine": 98,
+        "startChar": 53,
+        "endLine": 98,
+        "endChar": 55
+      },
+      "revId": "91829a0be9ab2892aaa9d0ba8f328a94761bc556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec239fac_7d9ffb80",
@@ -19,6 +82,29 @@
         "startChar": 55,
         "endLine": 115,
         "endChar": 57
+      },
+      "revId": "91829a0be9ab2892aaa9d0ba8f328a94761bc556",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1c5fb8_8c2dd6a6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T16:56:34Z",
+      "side": 1,
+      "message": "I think this is second not ms ;(",
+      "range": {
+        "startLine": 115,
+        "startChar": 53,
+        "endLine": 115,
+        "endChar": 55
       },
       "revId": "91829a0be9ab2892aaa9d0ba8f328a94761bc556",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
