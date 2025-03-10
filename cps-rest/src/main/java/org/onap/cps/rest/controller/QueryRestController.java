@@ -23,23 +23,15 @@
 package org.onap.cps.rest.controller;
 
 import io.micrometer.core.annotation.Timed;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsQueryService;
-import org.onap.cps.api.model.Anchor;
-import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.utils.ContentType;
-import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.onap.cps.utils.PrefixResolver;
 import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,27 +43,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class QueryRestController implements CpsQueryApi {
 
-    private final CpsQueryService cpsQueryService;
-    private final CpsAnchorService cpsAnchorService;
+    private final CpsFacade cpsFacade;
     private final JsonObjectMapper jsonObjectMapper;
-    private final PrefixResolver prefixResolver;
 
     @Override
-    @Timed(value = "cps.data.controller.datanode.query.v1",
-            description = "Time taken to query data nodes")
+    @Timed(value = "cps.data.controller.datanode.query.v1", description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPath(final String dataspaceName,
                                                                          final String anchorName,
                                                                          final String cpsPath,
                                                                          final Boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
-                fetchDescendantsOption, ContentType.JSON);
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
+        final List<Map<String, Object>> dataNodesAsMaps
+            = cpsFacade.executeAnchorQuery(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMaps, ContentType.JSON);
     }
 
     @Override
-    @Timed(value = "cps.data.controller.datanode.query.v2",
-            description = "Time taken to query data nodes")
+    @Timed(value = "cps.data.controller.datanode.query.v2", description = "Time taken to query data nodes")
     public ResponseEntity<Object> getNodesByDataspaceAndAnchorAndCpsPathV2(final String dataspaceName,
                                                                            final String anchorName,
                                                                            final String cpsPath,
@@ -80,8 +69,9 @@ public class QueryRestController implements CpsQueryApi {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
-        return executeNodesByDataspaceQueryAndCreateResponse(dataspaceName, anchorName, cpsPath,
-                fetchDescendantsOption, contentType);
+        final List<Map<String, Object>> dataNodesAsMaps
+            = cpsFacade.executeAnchorQuery(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMaps, contentType);
     }
 
     @Override
@@ -96,65 +86,21 @@ public class QueryRestController implements CpsQueryApi {
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
         final PaginationOption paginationOption = (pageIndex == null || pageSize == null)
                 ? PaginationOption.NO_PAGINATION : new PaginationOption(pageIndex, pageSize);
-        final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodesAcrossAnchors(dataspaceName,
-                cpsPath, fetchDescendantsOption, paginationOption);
-        final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
-        String prefix = null;
-        final Map<String, List<DataNode>> dataNodesPerAnchor = groupDataNodesPerAnchor(dataNodes);
-        for (final Map.Entry<String, List<DataNode>> dataNodesPerAnchorEntry : dataNodesPerAnchor.entrySet()) {
-            final String anchorName = dataNodesPerAnchorEntry.getKey();
-            if (prefix == null) {
-                final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-                prefix = prefixResolver.getPrefix(anchor, dataNodesPerAnchorEntry.getValue().get(0).getXpath());
-            }
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifierAndAnchor(
-                    dataNodesPerAnchorEntry.getValue(), anchorName, prefix);
-            dataNodesAsListOfMaps.add(dataMap);
-        }
-        final Integer totalPages = getTotalPages(dataspaceName, cpsPath, paginationOption);
-        return ResponseEntity.ok().header("total-pages",
-                totalPages.toString()).body(jsonObjectMapper.asJsonString(dataNodesAsListOfMaps));
+        final List<Map<String, Object>> dataNodesAsMaps
+            = cpsFacade.executeDataspaceQuery(dataspaceName, cpsPath, fetchDescendantsOption, paginationOption);
+
+        final int totalPages = cpsFacade.countAnchorsInDataspaceQuery(dataspaceName, cpsPath, paginationOption);
+        return ResponseEntity.ok().header("total-pages", String.valueOf(totalPages))
+                .body(jsonObjectMapper.asJsonString(dataNodesAsMaps));
     }
 
-    private Integer getTotalPages(final String dataspaceName, final String cpsPath,
-                                  final PaginationOption paginationOption) {
-        if (paginationOption == PaginationOption.NO_PAGINATION) {
-            return 1;
-        }
-        final int totalAnchors =  cpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
-        return totalAnchors <= paginationOption.getPageSize() ? 1
-                : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
-    }
-
-    private static Map<String, List<DataNode>> groupDataNodesPerAnchor(final Collection<DataNode> dataNodes) {
-        return dataNodes.stream().collect(Collectors.groupingBy(DataNode::getAnchorName));
-    }
-
-    private ResponseEntity<Object> executeNodesByDataspaceQueryAndCreateResponse(final String dataspaceName,
-             final String anchorName, final String cpsPath, final FetchDescendantsOption fetchDescendantsOption,
-                                                                                 final ContentType contentType) {
-        final Collection<DataNode> dataNodes =
-            cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
-        final List<Map<String, Object>> dataNodesAsListOfMaps = new ArrayList<>(dataNodes.size());
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        String prefix = null;
-        for (final DataNode dataNode : dataNodes) {
-            if (prefix == null) {
-                prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            }
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataNodesAsListOfMaps.add(dataMap);
-        }
-        return buildResponseEntity(dataNodesAsListOfMaps, contentType);
-    }
-
-    private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsListOfMaps,
+    private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataNodesAsMaps,
                                                final ContentType contentType) {
         final String responseData;
         if (ContentType.XML.equals(contentType)) {
-            responseData = XmlFileUtils.convertDataMapsToXml(dataNodesAsListOfMaps);
+            responseData = XmlFileUtils.convertDataMapsToXml(dataNodesAsMaps);
         } else {
-            responseData = jsonObjectMapper.asJsonString(dataNodesAsListOfMaps);
+            responseData = jsonObjectMapper.asJsonString(dataNodesAsMaps);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
