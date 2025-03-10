@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f32604_18a7085e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T17:07:07Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40a65e9a_6fe4982c",
@@ -36,6 +53,98 @@
         "startChar": 36,
         "endLine": 245,
         "endChar": 62
+      },
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c4bcc4_d7954bbf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsQueryServiceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T17:07:07Z",
+      "side": 1,
+      "message": "NB: Would you like to update this slogan?",
+      "range": {
+        "startLine": 94,
+        "startChar": 14,
+        "endLine": 94,
+        "endChar": 47
+      },
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea5edde_b324e825",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T17:07:07Z",
+      "side": 1,
+      "message": "NB: would be nice to have a slogan",
+      "range": {
+        "startLine": 462,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 12
+      },
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d6c9bef_ec43b577",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T17:07:07Z",
+      "side": 1,
+      "message": "NB: would be nice to have a slogan",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 12
+      },
+      "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce998e3_5df5ba59",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-10T17:07:07Z",
+      "side": 1,
+      "message": "NB: data leafs",
+      "range": {
+        "startLine": 477,
+        "startChar": 38,
+        "endLine": 477,
+        "endChar": 43
       },
       "revId": "1d92476cae28cdfbe636970b0878d2fc0bfa2d85",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
