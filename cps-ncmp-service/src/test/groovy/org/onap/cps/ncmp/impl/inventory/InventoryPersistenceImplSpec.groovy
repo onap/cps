@@ -164,7 +164,7 @@ class InventoryPersistenceImplSpec extends Specification {
     def "Retrieve multiple YangModelCmHandles using cm handle references"() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId, 'alternate-id':alternateId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2,'alternate-id':alternateId2])]
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, INCLUDE_ALL_DESCENDANTS) >> dataNodes
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, INCLUDE_ALL_DESCENDANTS, _) >> dataNodes
         when: 'retrieving the yang modelled cm handle'
             def results = objectUnderTest.getYangModelCmHandlesFromCmHandleReferences([cmHandleId, cmHandleId2])
         then: 'verify both have returned and cmhandleIds are correct'
@@ -311,7 +311,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def expectedXPath = '/dmi-registry/cm-handles[@alternate-id=\'alternate id\']'
             def expectedDataNode = new DataNode(xpath: expectedXPath, leaves: [id: 'id', alternateId: 'alternate id'])
         and: 'query service is invoked with expected xpath'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS) >> [expectedDataNode]
+            mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS, _) >> [expectedDataNode]
             mockYangDataConverter.toYangModelCmHandle(expectedDataNode) >> new YangModelCmHandle(id: 'id')
         expect: 'getting the yang model cm handle'
             assert objectUnderTest.getYangModelCmHandleByAlternateId('alternate id') == new YangModelCmHandle(id: 'id')

@@ -54,6 +54,7 @@ import org.springframework.stereotype.Component;
 public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
     private static final String ALTERNATE_ID = "alternate-id";
+    private static final Integer NO_LIMIT = 0;
     private final CpsDataService cpsDataService;
     private final CpsQueryService cpsQueryService;
 
@@ -99,8 +100,15 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     @Override
     public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
                                                            final FetchDescendantsOption fetchDescendantsOption) {
+        return queryNcmpRegistryByCpsPath(cpsPath, fetchDescendantsOption, NO_LIMIT);
+    }
+
+    @Override
+    public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
+                                                           final FetchDescendantsOption fetchDescendantsOption,
+                                                           final int queryResultLimit) {
         return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
-                fetchDescendantsOption);
+                fetchDescendantsOption, queryResultLimit);
     }
 
     @Override
