@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2021-2023 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -26,23 +26,24 @@ package org.onap.cps.rest.exceptions
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
-import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsFacade
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataspaceInUseException
 import org.onap.cps.api.exceptions.ModelValidationException
 import org.onap.cps.api.exceptions.NotFoundInDataspaceException
 import org.onap.cps.api.exceptions.SchemaSetInUseException
-import org.onap.cps.api.exceptions.DataspaceInUseException
+import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.spockframework.spring.SpringBean
@@ -63,6 +64,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @WebMvcTest
 class CpsRestExceptionHandlerSpec extends Specification {
+
+    @SpringBean
+    CpsFacade mockCpsFacade = Stub()
 
     @SpringBean
     CpsDataspaceService mockCpsAdminService = Stub()
@@ -86,10 +90,10 @@ class CpsRestExceptionHandlerSpec extends Specification {
     CpsRestInputMapper cpsRestInputMapper = Stub()
 
     @SpringBean
-    PrefixResolver prefixResolver = Mock()
+    PrefixResolver prefixResolver = Stub()
 
     @SpringBean
-    CpsNotificationService mockCpsNotificationService = Mock()
+    CpsNotificationService mockCpsNotificationService = Stub()
 
     @Autowired
     MockMvc mvc

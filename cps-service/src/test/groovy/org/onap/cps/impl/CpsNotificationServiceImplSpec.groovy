@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2025 TechMahindra Ltd.
+ * Modifications Copyright (C) 2025 Nordix Foundation
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +22,22 @@
 package org.onap.cps.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
-import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.spi.CpsDataPersistenceService
+import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
-import org.onap.cps.TestUtils
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.springframework.test.context.ContextConfiguration
-
 import spock.lang.Specification
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
@@ -53,9 +54,9 @@ class CpsNotificationServiceImplSpec extends Specification {
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
-    def mockPrefixResolver = Mock(PrefixResolver)
+    def dataMapper = new DataMapper(mockCpsAnchorService, Mock(PrefixResolver))
 
-    def objectUnderTest = new CpsNotificationServiceImpl(mockCpsAnchorService, mockCpsDataPersistenceService, yangParser, mockPrefixResolver)
+    def objectUnderTest = new CpsNotificationServiceImpl(mockCpsAnchorService, mockCpsDataPersistenceService, yangParser, dataMapper)
 
     def 'add notification subscription for list of dataspaces'() {
         given: 'details for notification subscription and subscription root node xpath'

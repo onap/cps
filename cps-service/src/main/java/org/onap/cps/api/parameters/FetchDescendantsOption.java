@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2025 Nordix Foundation
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +24,7 @@ package org.onap.cps.api.parameters;
 import com.google.common.base.Strings;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
 
@@ -44,6 +45,12 @@ public class FetchDescendantsOption {
     private static final Pattern FETCH_DESCENDANTS_OPTION_PATTERN =
         Pattern.compile("^$|^all$|^none$|^direct$|^[0-9]+$|^-1$|^1$");
 
+    /**
+     * Get depth.
+     *
+     * @return depth: -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants
+     */
+    @Getter
     private final int depth;
 
     private final String optionName;
@@ -76,15 +83,7 @@ public class FetchDescendantsOption {
     }
 
     /**
-     * Get depth.
-     * @return depth: -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants
-     */
-    public int getDepth() {
-        return depth;
-    }
-
-    /**
-     * get fetch descendants option for given descendant.
+     * Convert fetch descendants option from string to enum with depth.
      *
      * @param fetchDescendantsOptionAsString fetch descendants option string
      * @return fetch descendants option for given descendant
@@ -99,9 +98,20 @@ public class FetchDescendantsOption {
         } else if ("1".equals(fetchDescendantsOptionAsString) || "direct".equals(fetchDescendantsOptionAsString)) {
             return FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
         } else {
-            final Integer depth = Integer.valueOf(fetchDescendantsOptionAsString);
+            final int depth = Integer.parseInt(fetchDescendantsOptionAsString);
             return new FetchDescendantsOption(depth);
         }
+    }
+
+    /**
+     * Convert include all-descendants boolean parameter to FetchDescendantsOption enum.
+     *
+     * @param includedDescendantsOptionAsBoolean fetch descendants option as Boolean
+     * @return fetch descendants option for given descendant
+     */
+    public static FetchDescendantsOption getFetchDescendantsOption(final Boolean includedDescendantsOptionAsBoolean) {
+        return Boolean.TRUE.equals(includedDescendantsOptionAsBoolean)
+            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
     }
 
     @Override
