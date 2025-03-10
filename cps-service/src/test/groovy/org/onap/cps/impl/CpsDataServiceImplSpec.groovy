@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
@@ -30,17 +30,18 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDeltaService
-import org.onap.cps.events.CpsDataUpdateEventsService
-import org.onap.cps.utils.CpsValidator
-import org.onap.cps.spi.CpsDataPersistenceService
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.ConcurrencyException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.events.CpsDataUpdateEventsService
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.CpsValidator
+import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
@@ -68,10 +69,11 @@ class CpsDataServiceImplSpec extends Specification {
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
+    def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService,
-            dataNodeFactory, mockCpsValidator, yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+            dataNodeFactory, mockCpsValidator, yangParser, mockCpsDeltaService, dataMapper, jsonObjectMapper)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
