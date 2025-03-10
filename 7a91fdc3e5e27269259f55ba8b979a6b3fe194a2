@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7efbde61_5034d9bb",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-10T18:48:21Z",
+      "side": 1,
+      "message": "I didn\u0027t realize we would be pulling back this code... this code has a problem where the pipeline job hangs indefinitely, without ever timing out.... which is much worse than an occasional failure.\n\nWe will have to rethink the solution, probably by keeping the healthcheck, but adjusting the parameters.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "7a91fdc3e5e27269259f55ba8b979a6b3fe194a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
