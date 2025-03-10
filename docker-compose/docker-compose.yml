@@ -91,11 +91,10 @@ services:
           memory: 3G
     memswap_limit: 3G
     healthcheck:
-      test: wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{"status":"UP"}' || exit 1
+      test: ["CMD", "sh", "-c", "sleep 90 && wget -q -O - http://localhost:8080/actuator/health/readiness | grep -q '{\"status\":\"UP\"}' || exit 1"]
       interval: 10s
       timeout: 10s
       retries: 3
-      start_period: 60s
 
   nginx:
     container_name: ${NGINX_CONTAINER_NAME:-nginx-loadbalancer}
