@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "099319b6_c9b4b816",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64c05d24_13acda2f",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a350643a_7d7b699a",
@@ -41,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a207e356_2e7b3b95",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a350643a_7d7b699a",
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74997b68_f4a0845c",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-03-10T11:36:31Z",
       "side": 1,
       "message": "NB: move it before the setup and cleanup script ??",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 116
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf41442_ea83a905",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74997b68_f4a0845c",
       "range": {
         "startLine": 66,
         "startChar": 4,
@@ -87,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c959e451_4e4cc749",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed0ddb47_7a476d38",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "969f6d97_575f8c14",
@@ -100,6 +190,30 @@
       "writtenOn": "2025-03-10T11:36:31Z",
       "side": 1,
       "message": "NB: nodes",
+      "range": {
+        "startLine": 177,
+        "startChar": 20,
+        "endLine": 177,
+        "endChar": 26
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51d22b5c_fc47c8ab",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "969f6d97_575f8c14",
       "range": {
         "startLine": 177,
         "startChar": 20,
