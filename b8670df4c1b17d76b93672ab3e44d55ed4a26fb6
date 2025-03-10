@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0b1d1bd_2d2ad2bf",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-10T17:01:11Z",
+      "side": 1,
+      "message": "NB: cmHandleQueryParameters is redundent here into Java 8+ version\n\nif (args.length \u003d\u003d 0 || !(args[0] instanceof CmHandleQueryParameters)) {",
+      "range": {
+        "startLine": 61,
+        "startChar": 77,
+        "endLine": 61,
+        "endChar": 100
+      },
+      "revId": "b8670df4c1b17d76b93672ab3e44d55ed4a26fb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cab898_65c5b473",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-10T17:01:11Z",
+      "side": 1,
+      "message": "NB: Removes Unnecessary Object Creation (TreeSet replaced with sorted() in the stream)\n\n\nString conditionTag \u003d Optional.ofNullable(params.getCmHandleQueryParameters())\n                .filter(conditionTypes-\u003e !conditionTypes.isEmpty())\n                .map(conditionTypes-\u003e conditionTypes.stream()\n                        .map(ConditionProperties::getConditionName)\n                        .sorted()\n                        .collect(Collectors.joining(\"_\")))\n                .orElse(NO_CONDITION);",
+      "range": {
+        "startLine": 66,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 111
+      },
+      "revId": "b8670df4c1b17d76b93672ab3e44d55ed4a26fb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
