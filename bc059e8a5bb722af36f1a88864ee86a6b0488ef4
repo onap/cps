@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ecc1f7f_a719fb2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:20:27Z",
+      "side": 1,
+      "message": "Need minor feedback",
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5315897_55d21d48",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T12:20:27Z",
+      "side": 1,
+      "message": "Should we change this? Because NO_DATA_NODES \u003d \"No data nodes\"\nI have already removed the static variable because of only one occurrence. But if the message is to be modified do let me know. 😊",
+      "range": {
+        "startLine": 100,
+        "startChar": 46,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
