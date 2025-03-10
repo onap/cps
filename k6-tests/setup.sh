@@ -26,11 +26,23 @@ docker-compose \
   --profile dmi-stub \
   up --quiet-pull --detach --wait || exit 1
 
-  if [[ "$testProfile" == "kpi" ]]; then
-    ACTUATOR_PORT=8883
-  elif [[ "$testProfile" == "endurance" ]]; then
-    ACTUATOR_PORT=8884
-  fi
+echo "Waiting for CPS to start..."
+READY_MESSAGE="Inventory Model updated successfully"
+
+# Get the container IDs of the cps-and-ncmp replicas
+CONTAINER_IDS=$(docker ps --filter "name=cps-and-ncmp" --format "{{.ID}}")
+
+# Check the logs for each container
+for CONTAINER_ID in $CONTAINER_IDS; do
+    echo "Checking logs for container: $CONTAINER_ID"
+    docker logs "$CONTAINER_ID" -f | grep -m 1 "$READY_MESSAGE" >/dev/null && echo "CPS is ready in container: $CONTAINER_ID" || true
+done
+
+if [[ "$testProfile" == "kpi" ]]; then
+  ACTUATOR_PORT=8883
+elif [[ "$testProfile" == "endurance" ]]; then
+  ACTUATOR_PORT=8884
+fi
 
 echo "Build information:"
 curl --silent --show-error http://localhost:$ACTUATOR_PORT/actuator/info
