@@ -39,6 +39,30 @@
       },
       "revId": "d45e2bc3e98f8c4b7b9cdfb15f42052ec9b36aa0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cafc33_f5c1e295",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-10T10:50:40Z",
+      "side": 1,
+      "message": "Haha I asked the same question in your patch https://gerrit.onap.org/r/c/cps/+/140385/2/cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy I think you had removed it to test some changes locally. So, I will add the test back 😄",
+      "parentUuid": "52a1d01c_c70b5b33",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 5
+      },
+      "revId": "d45e2bc3e98f8c4b7b9cdfb15f42052ec9b36aa0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
