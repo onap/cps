@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,7 +23,6 @@ package org.onap.cps.impl;
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +36,7 @@ import org.onap.cps.api.model.DataNode;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
-import org.onap.cps.utils.DataMapUtils;
-import org.onap.cps.utils.PrefixResolver;
+import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.YangParser;
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode;
 import org.springframework.stereotype.Service;
@@ -53,10 +52,10 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     private final YangParser yangParser;
 
-    private final PrefixResolver prefixResolver;
+    private final DataMapper dataMapper;
 
     private static final String ADMIN_DATASPACE = "CPS-Admin";
-    private static final String ANCHOR_NAME = "cps-notification-subscriptions";
+    private static final String CPS_SUBSCRIPTION_ANCHOR_NAME = "cps-notification-subscriptions";
     private static final String DATASPACE_SUBSCRIPTION_XPATH_FORMAT = "/dataspaces/dataspace[@name='%s']";
     private static final String ANCHORS_SUBSCRIPTION_XPATH_FORMAT = "/dataspaces/dataspace[@name='%s']/anchors";
     private static final String ANCHOR_SUBSCRIPTION_XPATH_FORMAT =
@@ -65,29 +64,22 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
     @Override
     public void createNotificationSubscription(final String notificationSubscriptionAsJson, final String xpath) {
 
-        final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, ANCHOR_NAME);
+        final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME);
         final Collection<DataNode> dataNodes =
             buildDataNodesWithParentNodeXpath(anchor, xpath, notificationSubscriptionAsJson);
-        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, ANCHOR_NAME, xpath, dataNodes);
+        cpsDataPersistenceService.addListElements(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath, dataNodes);
     }
 
     @Override
     public void deleteNotificationSubscription(final String xpath) {
-        cpsDataPersistenceService.deleteDataNode(ADMIN_DATASPACE, ANCHOR_NAME, xpath);
+        cpsDataPersistenceService.deleteDataNode(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath);
     }
 
     @Override
     public List<Map<String, Object>> getNotificationSubscription(final String xpath) {
-        final Collection<DataNode> dataNodes =
-                cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
-        final Anchor anchor = cpsAnchorService.getAnchor(ADMIN_DATASPACE, ANCHOR_NAME);
-        for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataMaps.add(dataMap);
-        }
-        return dataMaps;
+        final Collection<DataNode> dataNodes = cpsDataPersistenceService
+            .getDataNodes(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
+        return dataMapper.toDataMaps(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, dataNodes);
     }
 
     @Override
@@ -103,7 +95,8 @@ public class CpsNotificationServiceImpl implements CpsNotificationService {
 
     private boolean isNotificationEnabledForXpath(final String xpath) {
         try {
-            cpsDataPersistenceService.getDataNodes(ADMIN_DATASPACE, ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
+            cpsDataPersistenceService
+                .getDataNodes(ADMIN_DATASPACE, CPS_SUBSCRIPTION_ANCHOR_NAME, xpath, INCLUDE_ALL_DESCENDANTS);
         } catch (final DataNodeNotFoundException e) {
             return false;
         }

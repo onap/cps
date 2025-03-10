@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
@@ -26,6 +26,7 @@ package org.onap.cps.impl;
 
 import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
+import static org.onap.cps.utils.ContentType.JSON;
 
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
@@ -53,9 +54,8 @@ import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
-import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.onap.cps.utils.PrefixResolver;
 import org.onap.cps.utils.YangParser;
 import org.springframework.stereotype.Service;
 
@@ -74,13 +74,13 @@ public class CpsDataServiceImpl implements CpsDataService {
     private final CpsValidator cpsValidator;
     private final YangParser yangParser;
     private final CpsDeltaService cpsDeltaService;
+    private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
-    private final PrefixResolver prefixResolver;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
         final OffsetDateTime observedTimestamp) {
-        saveData(dataspaceName, anchorName, nodeData, observedTimestamp, ContentType.JSON);
+        saveData(dataspaceName, anchorName, nodeData, observedTimestamp, JSON);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                          final String nodeData, final OffsetDateTime observedTimestamp) {
-        saveData(dataspaceName, anchorName, parentNodeXpath, nodeData, observedTimestamp, ContentType.JSON);
+        saveData(dataspaceName, anchorName, parentNodeXpath, nodeData, observedTimestamp, JSON);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates = dataNodeFactory
                 .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, dataNodeUpdatesAsJson,
-                        ContentType.JSON);
+                        JSON);
         for (final DataNode dataNodeUpdate : dataNodeUpdates) {
             processDataNodeUpdate(anchor, dataNodeUpdate);
         }
@@ -369,54 +369,42 @@ public class CpsDataServiceImpl implements CpsDataService {
         yangParser.validateData(contentType, nodeData, anchor, xpath);
     }
 
-    private Collection<DataNode> rebuildSourceDataNodes(final String xpath, final Anchor sourceAnchor,
+    private Collection<DataNode> rebuildSourceDataNodes(final String xpath,
+                                                        final Anchor sourceAnchor,
                                                         final Collection<DataNode> sourceDataNodes) {
-
         final Collection<DataNode> sourceDataNodesRebuilt = new ArrayList<>();
         if (sourceDataNodes != null) {
             final String sourceDataNodesAsJson = getDataNodesAsJson(sourceAnchor, sourceDataNodes);
-            sourceDataNodesRebuilt.addAll(dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(
-                    sourceAnchor, xpath, sourceDataNodesAsJson, ContentType.JSON));
+            final Collection<DataNode> dataNodes = dataNodeFactory
+                    .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
+            sourceDataNodesRebuilt.addAll(dataNodes);
         }
         return sourceDataNodesRebuilt;
     }
 
-    private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
+    private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor,
+                                                      final String xpath,
                                                       final Map<String, String> yangResourceContentPerName,
                                                       final String targetData) {
         if (yangResourceContentPerName.isEmpty()) {
-            return dataNodeFactory
-                    .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, ContentType.JSON);
-        } else {
-            return dataNodeFactory
-                    .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath,
-                            targetData, ContentType.JSON);
+            return dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
         }
+        return dataNodeFactory
+            .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
     }
 
     private String getDataNodesAsJson(final Anchor anchor, final Collection<DataNode> dataNodes) {
-
-        final List<Map<String, Object>> prefixToDataNodes = prefixResolver(anchor, dataNodes);
-        final Map<String, Object> targetDataAsJsonObject = getNodeDataAsJsonString(prefixToDataNodes);
+        final List<Map<String, Object>> dataNodesAsMaps = dataMapper.toDataMaps(anchor, dataNodes);
+        final Map<String, Object> targetDataAsJsonObject = getNodeDataAsJsonString(dataNodesAsMaps);
         return jsonObjectMapper.asJsonString(targetDataAsJsonObject);
     }
 
     private Map<String, Object> getNodeDataAsJsonString(final List<Map<String, Object>> prefixToDataNodes) {
-        final Map<String, Object>  nodeDataAsJson = new HashMap<>();
+        final Map<String, Object> nodeDataAsJson = new HashMap<>();
         for (final Map<String, Object> prefixToDataNode : prefixToDataNodes) {
             nodeDataAsJson.putAll(prefixToDataNode);
         }
         return nodeDataAsJson;
-    }
-
-    private List<Map<String, Object>> prefixResolver(final Anchor anchor, final Collection<DataNode> dataNodes) {
-        final List<Map<String, Object>> prefixToDataNodes = new ArrayList<>(dataNodes.size());
-        for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            final Map<String, Object> prefixToDataNode = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            prefixToDataNodes.add(prefixToDataNode);
-        }
-        return prefixToDataNodes;
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
@@ -428,8 +416,10 @@ public class CpsDataServiceImpl implements CpsDataService {
         }
     }
 
-    private void sendDataUpdatedEvent(final Anchor anchor, final String xpath,
-                                      final Operation operation, final OffsetDateTime observedTimestamp) {
+    private void sendDataUpdatedEvent(final Anchor anchor,
+                                      final String xpath,
+                                      final Operation operation,
+                                      final OffsetDateTime observedTimestamp) {
         try {
             cpsDataUpdateEventsService.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
         } catch (final Exception exception) {

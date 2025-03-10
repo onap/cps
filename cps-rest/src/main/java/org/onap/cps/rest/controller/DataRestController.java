@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
@@ -30,24 +30,19 @@ import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.model.Anchor;
-import org.onap.cps.api.model.DataNode;
+import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.utils.ContentType;
-import org.onap.cps.utils.DataMapUtils;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.onap.cps.utils.PrefixResolver;
 import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,10 +59,9 @@ public class DataRestController implements CpsDataApi {
     private static final String ISO_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
 
+    private final CpsFacade cpsFacade;
     private final CpsDataService cpsDataService;
-    private final CpsAnchorService cpsAnchorService;
     private final JsonObjectMapper jsonObjectMapper;
-    private final PrefixResolver prefixResolver;
 
     @Override
     public ResponseEntity<String> createNode(final String apiVersion,
@@ -116,24 +110,20 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
-    @Timed(value = "cps.data.controller.datanode.get.v1",
-            description = "Time taken to get data node")
+    @Timed(value = "cps.data.controller.datanode.get.v1", description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchor(final String dataspaceName,
                                                               final String anchorName,
                                                               final String xpath,
                                                               final Boolean includeDescendants) {
-        final FetchDescendantsOption fetchDescendantsOption = Boolean.TRUE.equals(includeDescendants)
-            ? FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS : FetchDescendantsOption.OMIT_DESCENDANTS;
-        final DataNode dataNode = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-            fetchDescendantsOption).iterator().next();
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-        return new ResponseEntity<>(DataMapUtils.toDataMapWithIdentifier(dataNode, prefix), HttpStatus.OK);
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
+        final Map<String, Object> dataNodeAsMap =
+            cpsFacade.getFirstDataNodeByAnchor(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return new ResponseEntity<>(dataNodeAsMap, HttpStatus.OK);
     }
 
     @Override
-    @Timed(value = "cps.data.controller.datanode.get.v2",
-            description = "Time taken to get data node")
+    @Timed(value = "cps.data.controller.datanode.get.v2", description = "Time taken to get data node")
     public ResponseEntity<Object> getNodeByDataspaceAndAnchorV2(final String dataspaceName, final String anchorName,
                                                                 final String xpath,
                                                                 final String fetchDescendantsOptionAsString,
@@ -141,16 +131,9 @@ public class DataRestController implements CpsDataApi {
         final ContentType contentType = ContentType.fromString(contentTypeInHeader);
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
-        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
-                fetchDescendantsOption);
-        final List<Map<String, Object>> dataMaps = new ArrayList<>(dataNodes.size());
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        for (final DataNode dataNode: dataNodes) {
-            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
-            final Map<String, Object> dataMap = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
-            dataMaps.add(dataMap);
-        }
-        return buildResponseEntity(dataMaps, contentType);
+        final List<Map<String, Object>> dataNodesAsMaps =
+            cpsFacade.getDataNodesByAnchor(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMaps, contentType);
     }
 
     @Override

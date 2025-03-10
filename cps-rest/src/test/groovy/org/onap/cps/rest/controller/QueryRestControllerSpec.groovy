@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
@@ -24,12 +24,9 @@
 package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.api.CpsQueryService
+import org.onap.cps.api.CpsFacade
 import org.onap.cps.api.parameters.PaginationOption
-import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
-import org.onap.cps.utils.PrefixResolver
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -39,25 +36,19 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
 
     @SpringBean
-    CpsQueryService mockCpsQueryService = Mock()
-
-    @SpringBean
-    CpsAnchorService mockCpsAnchorService = Mock()
+    CpsFacade mockCpsFacade = Mock()
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-
-    @SpringBean
-    PrefixResolver prefixResolver = Mock()
 
     @Autowired
     MockMvc mvc
@@ -65,190 +56,78 @@ class QueryRestControllerSpec extends Specification {
     @Value('${rest.api.cps-base-path}')
     def basePath
 
-    def dataspaceName = 'my_dataspace'
-    def anchorName = 'my_anchor'
-    def cpsPath = 'some cps-path'
-    def dataNodeEndpointV2
+    def dataNodeAsMap = ['prefixedPath':[path:[leaf:'value']]]
 
-    def setup() {
-         dataNodeEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
-    }
-
-    def 'Query data node by cps path for the given dataspace and anchor with #scenario.'() {
-        given: 'service method returns a list containing a data node'
-            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
-                    .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, expectedCpsDataServiceOption) >> [dataNode1, dataNode1]
-        and: 'the query endpoint'
-            def dataNodeEndpoint = "$basePath/v1/dataspaces/$dataspaceName/anchors/$anchorName/nodes/query"
+    def 'Query data node (v1) by cps path for the given dataspace and anchor with #scenario.'() {
+        given: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v1/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
         when: 'query data nodes API is invoked'
-            def response =
-                    mvc.perform(
-                            get(dataNodeEndpoint)
-                                    .param('cps-path', cpsPath)
-                                    .param('include-descendants', includeDescendantsOption))
-                            .andReturn().response
+            def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', 'my/path').param('include-descendants', includeDescendantsOption))
+                .andReturn().response
+        then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
+            1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', 'my/path', expectedCpsDataServiceOption) >> [dataNodeAsMap]
         then: 'the response contains the the datanode in json format'
-            response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
         where: 'the following options for include descendants are provided in the request'
             scenario                    | includeDescendantsOption || expectedCpsDataServiceOption
             'no descendants by default' | ''                       || OMIT_DESCENDANTS
-            'no descendant explicitly'  | 'false'                  || OMIT_DESCENDANTS
             'descendants'               | 'true'                   || INCLUDE_ALL_DESCENDANTS
     }
 
-    def 'Query data node v2 API by cps path for the given dataspace and anchor with #scenario and media type JSON'() {
-        given: 'service method returns a list containing a data node'
-            def dataNode = new DataNodeBuilder().withXpath('/xpath')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption ->
-                assert descendantsOption.depth == expectedDepth
-            }) >> [dataNode, dataNode]
+    def 'Query data node (v2) by cps path for given dataspace and anchor with #scenario'() {
+        given: 'the query endpoint'
+            def dataNodeEndpointV2  = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
         when: 'query data nodes API is invoked'
-            def response =
-                mvc.perform(
-                    get(dataNodeEndpointV2)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .param('cps-path', cpsPath)
-                        .param('descendants', includeDescendantsOptionString))
+            def response = mvc.perform(get(dataNodeEndpointV2).contentType(contentType).param('cps-path', 'my/path') .param('descendants', includeDescendantsOptionString))
                     .andReturn().response
-        then: 'the response contains the datanode in the expected JSON format'
+        then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
+            1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', 'my/path',
+                { descendantsOption -> assert descendantsOption.depth == expectedDepth }) >> [dataNodeAsMap]
+        and: 'the response contains the datanode in the expected format'
             assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
+            assert response.getContentAsString() == expectedOutput
         where: 'the following options for include descendants are provided in the request'
-            scenario          | includeDescendantsOptionString || expectedDepth
-            'direct children' | 'direct'                       || 1
-            'descendants'     | '2'                            || 2
+            scenario               | includeDescendantsOptionString | contentType                || expectedDepth || expectedOutput
+            'direct children JSON' | 'direct'                       | MediaType.APPLICATION_JSON || 1             || '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            'descendants JSON'     | '2'                            | MediaType.APPLICATION_JSON || 2             || '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+            'descendants XML'      | '2'                            | MediaType.APPLICATION_XML  || 2             || '<prefixedPath><path><leaf>value</leaf></path></prefixedPath>'
     }
 
-    def 'Query data node v2 API by cps path for the given dataspace and anchor with #scenario and media type XML'() {
-        given: 'service method returns a list containing a data node'
-            def dataNode = new DataNodeBuilder().withXpath('/xpath')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            mockCpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, { descendantsOption ->
-                assert descendantsOption.depth == expectedDepth
-            }) >> [dataNode, dataNode]
+    def 'Query data node by cps path for given dataspace across all anchors'() {
+        given: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/my_dataspace/nodes/query"
+        and: 'the  cps service facade will say there are 123 pages '
+            mockCpsFacade.countAnchorsInDataspaceQuery('my_dataspace', 'my/path', new PaginationOption(2,5) ) >> 123
         when: 'query data nodes API is invoked'
-            def response =
-                mvc.perform(
-                    get(dataNodeEndpointV2)
-                        .contentType(MediaType.APPLICATION_XML)
-                        .param('cps-path', cpsPath)
-                        .param('descendants', includeDescendantsOptionString))
-                    .andReturn().response
-        then: 'the response contains the datanode in the expected XML format'
-            assert response.status == HttpStatus.OK.value()
-            assert response.getContentAsString().contains('<xpath><leaf>value</leaf><leafList>leaveListElement1</leafList><leafList>leaveListElement2</leafList></xpath>')
-        where: 'the following options for include descendants are provided in the request'
-            scenario          | includeDescendantsOptionString || expectedDepth
-            'direct children' | 'direct'                       || 1
-            'descendants'     | '2'                            || 2
-    }
-
-    def 'Query data node by cps path for the given dataspace across all anchors with #scenario.'() {
-        given: 'service method returns a list containing a data node from different anchors'
-            def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-            def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor_2')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
-        and: 'second data node for the same anchor'
-            def dataNode3 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor_2')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement5', 'leaveListElement6']]).build()
-        and: 'the query endpoint'
-            def dataspaceName = 'my_dataspace'
-            def cpsPath = 'some/cps/path'
-            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
-            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
-                expectedCpsDataServiceOption, PaginationOption.NO_PAGINATION) >> [dataNode1, dataNode2, dataNode3]
-            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> 2
-        when: 'query data nodes API is invoked'
-            def response =
-                mvc.perform(
-                        get(dataNodeEndpoint)
-                                .param('cps-path', cpsPath)
-                                .param('descendants', includeDescendantsOptionString))
+            def response = mvc.perform(
+                        get(dataNodeEndpoint).param('cps-path', 'my/path').param('pageIndex', String.valueOf(2)).param('pageSize', String.valueOf(5)))
                         .andReturn().response
-        then: 'the response contains the the datanode in json format'
-            response.status == HttpStatus.OK.value()
-            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
-            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
-            response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement5","leaveListElement6"]}}')
-        where: 'the following options for include descendants are provided in the request'
-            scenario                    | includeDescendantsOptionString || expectedCpsDataServiceOption
-            'no descendants by default' | ''                             || OMIT_DESCENDANTS
-            'no descendant explicitly'  | 'none'                         || OMIT_DESCENDANTS
-            'descendants'               | 'all'                          || INCLUDE_ALL_DESCENDANTS
-            'direct children'           | 'direct'                       || DIRECT_CHILDREN_ONLY
+        then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
+            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, new PaginationOption(2,5)) >> [dataNodeAsMap]
+        then: 'the response is OK and contains the the datanode in json format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+        and: 'the header indicates the correct number of pages'
+            assert response.getHeaderValue('total-pages') == '123'
     }
 
-    def 'Query data node by cps path for the given dataspace across all anchors with pagination #scenario.'() {
-        given: 'service method returns a list containing a data node from different anchors'
-        def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-        def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor_2')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
-        and: 'the query endpoint'
-            def dataspaceName = 'my_dataspace'
-            def cpsPath = 'some/cps/path'
-            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
-            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
-                INCLUDE_ALL_DESCENDANTS, new PaginationOption(pageIndex,pageSize)) >> [dataNode1, dataNode2]
-            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> totalAnchors
+    def 'Query data node across all anchors with pagination option with #scenario i.e. no pagination.'() {
+        given: 'the query endpoint'
+            def dataNodeEndpoint = "$basePath/v2/dataspaces/my_dataspace/nodes/query"
+        and: 'the  cps service facade will say there is 1 page '
+            mockCpsFacade.countAnchorsInDataspaceQuery('my_dataspace', 'my/path', NO_PAGINATION ) >> 1
         when: 'query data nodes API is invoked'
-            def response =
-                mvc.perform(
-                        get(dataNodeEndpoint)
-                                .param('cps-path', cpsPath)
-                                .param('descendants', "all")
-                                .param('pageIndex', String.valueOf(pageIndex))
-                                .param('pageSize', String.valueOf(pageSize)))
-                        .andReturn().response
-        then: 'the response contains the the datanode in json format'
+            def response = mvc.perform(get(dataNodeEndpoint).param('cps-path', 'my/path').param(parameterName, '1'))
+                .andReturn().response
+        then: 'the call is delegated to the cps service facade which returns a list containing one data node as a map'
+            1 * mockCpsFacade.executeDataspaceQuery('my_dataspace', 'my/path', OMIT_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [dataNodeAsMap]
+        then: 'the response is OK and contains the datanode in json format'
             assert response.status == HttpStatus.OK.value()
-            assert Integer.valueOf(response.getHeaderValue("total-pages")) == expectedTotalPageSize
-            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
-            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
-        where: 'the following options for include descendants are provided in the request'
-            scenario                     | pageIndex | pageSize | totalAnchors || expectedTotalPageSize
-            '1st page with all anchors'  | 1         | 3        | 3            || 1
-            '1st page with less anchors' | 1         | 2        | 3            || 2
-    }
-
-    def 'Query data node across all anchors with pagination option with #scenario.'() {
-        given: 'service method returns a list containing a data node from different anchors'
-        def dataNode1 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement1', 'leaveListElement2']]).build()
-        def dataNode2 = new DataNodeBuilder().withXpath('/xpath')
-                .withAnchor('my_anchor_2')
-                .withLeaves([leaf: 'value', leafList: ['leaveListElement3', 'leaveListElement4']]).build()
-        and: 'the query endpoint'
-            def dataspaceName = 'my_dataspace'
-            def cpsPath = 'some/cps/path'
-            def dataNodeEndpoint = "$basePath/v2/dataspaces/$dataspaceName/nodes/query"
-            mockCpsQueryService.queryDataNodesAcrossAnchors(dataspaceName, cpsPath,
-                INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION) >> [dataNode1, dataNode2]
-            mockCpsQueryService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath) >> 2
-        when: 'query data nodes API is invoked'
-            def response =
-                mvc.perform(
-                        get(dataNodeEndpoint)
-                                .param('cps-path', cpsPath)
-                                .param('descendants', "all")
-                                .param(parameterName, "1"))
-                        .andReturn().response
-        then: 'the response contains the the datanode in json format'
-            assert response.status == HttpStatus.OK.value()
-            assert Integer.valueOf(response.getHeaderValue("total-pages")) == 1
-            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement1","leaveListElement2"]}}')
-            assert response.getContentAsString().contains('{"xpath":{"leaf":"value","leafList":["leaveListElement3","leaveListElement4"]}}')
-        where:
+            assert response.getContentAsString() == '[{"prefixedPath":{"path":{"leaf":"value"}}}]'
+        and: 'the header indicates the correct number of pages'
+            assert response.getHeaderValue('total-pages') == '1'
+        where: 'only the following rest parameter is used'
             scenario           | parameterName
             'only page size'   | 'pageSize'
             'only page index'  | 'pageIndex'
