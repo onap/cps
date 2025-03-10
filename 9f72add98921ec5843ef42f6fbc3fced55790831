@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b64e57f_15afc8b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T12:06:33Z",
+      "side": 1,
+      "message": "why not we keep the files separate and not pollute our cps-ncmp file and just include the sdnc one??\n\nsomething like this.\nhttps://docs.docker.com/reference/compose-file/include/#:~:text\u003dA%20Compose%20application%20can%20declare,separately%20or%20shared%20with%20others.\n\nmaybe try this out.",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d70f552_71686191",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T12:06:33Z",
+      "side": 1,
+      "message": "any reason to hardcode these value ??",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
