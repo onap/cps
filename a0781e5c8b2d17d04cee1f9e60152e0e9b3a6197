@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75ec580_741aa1f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:47:27Z",
+      "side": 1,
+      "message": "fine by me.\nso now we just keep last 7 days logs and remove the rest of them.",
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
