@@ -16,6 +16,29 @@
       "message": "I Arpit, this is a very good piece of refactoring!\nIt is overlapping with something I was doing and I think we should combine our efforts. I sed you more details in Slack.\nPlease check before you continue!",
       "revId": "d45e2bc3e98f8c4b7b9cdfb15f42052ec9b36aa0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a1d01c_c70b5b33",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T09:37:29Z",
+      "side": 1,
+      "message": "why did you remove this test?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 5
+      },
+      "revId": "d45e2bc3e98f8c4b7b9cdfb15f42052ec9b36aa0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

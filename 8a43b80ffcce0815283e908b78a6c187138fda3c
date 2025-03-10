@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaf7b644_4e78f20f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T09:37:29Z",
+      "side": 1,
+      "message": "are both really needed. Have you got unit test covering all branches for this?\nI ran and check the coverage report locally, all branches are covered here :-D",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 115
+      },
+      "revId": "8a43b80ffcce0815283e908b78a6c187138fda3c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
