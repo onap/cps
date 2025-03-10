@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c05d24_13acda2f",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathUtilSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:36:31Z",
+      "side": 1,
+      "message": "no scenario here.",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a350643a_7d7b699a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:36:31Z",
+      "side": 1,
+      "message": "I dont think we need javadocs to be part of both interface and impl class.\nOn interface only should be fine.\nApplies for all the methods below.",
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74997b68_f4a0845c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:36:31Z",
+      "side": 1,
+      "message": "NB: move it before the setup and cleanup script ??",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 116
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed0ddb47_7a476d38",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:36:31Z",
+      "side": 1,
+      "message": "scenario is not used. maybe update the slogan to accomodate this.",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 20
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "969f6d97_575f8c14",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-10T11:36:31Z",
+      "side": 1,
+      "message": "NB: nodes",
+      "range": {
+        "startLine": 177,
+        "startChar": 20,
+        "endLine": 177,
+        "endChar": 26
+      },
+      "revId": "2376984700e3848354a9f33247148454a09c42b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
