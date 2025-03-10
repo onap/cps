@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5371946b_d9f495e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T16:42:50Z",
+      "side": 1,
+      "message": "I think we agreed on queryResultLimit before",
+      "parentUuid": "43ba8db2_e9caf1e9",
+      "range": {
+        "startLine": 94,
+        "startChar": 56,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "a0591f8876706785580ce6071e2b23fc3641b943",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "572cb9a5_40708f38",
