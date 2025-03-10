@@ -16,6 +16,69 @@
       "message": "fine by me.\nso now we just keep last 7 days logs and remove the rest of them.",
       "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b93653_6208e18e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T13:26:09Z",
+      "side": 1,
+      "message": "just change retention of zip files to 14 days",
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0ed5d9b_45f36e5d",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T13:26:09Z",
+      "side": 1,
+      "message": "as agreed, change to 2 weeks",
+      "range": {
+        "startLine": 42,
+        "startChar": 25,
+        "endLine": 42,
+        "endChar": 31
+      },
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e054636_74db3134",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-10T13:26:09Z",
+      "side": 1,
+      "message": "as agreed, change to 14 days",
+      "range": {
+        "startLine": 43,
+        "startChar": 58,
+        "endLine": 43,
+        "endChar": 60
+      },
+      "revId": "a0781e5c8b2d17d04cee1f9e60152e0e9b3a6197",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
