@@ -59,7 +59,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements InventoryPersistence {
 
-    private static final int CMHANDLE_BATCH_SIZE = 100;
+    private static final int CMHANDLE_BATCH_SIZE = 300;
 
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;

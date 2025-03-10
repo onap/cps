@@ -44,7 +44,7 @@ public class ModuleSyncWatchdog {
     private final ModuleSyncTasks moduleSyncTasks;
     private final IMap<String, String> cpsAndNcmpLock;
 
-    private static final int MODULE_SYNC_BATCH_SIZE = 100;
+    private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
 
     /**

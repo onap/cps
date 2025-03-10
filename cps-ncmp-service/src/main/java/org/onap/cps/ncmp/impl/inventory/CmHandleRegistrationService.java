@@ -71,7 +71,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CmHandleRegistrationService {
 
-    private static final int DELETE_BATCH_SIZE = 100;
+    private static final int DELETE_BATCH_SIZE = 300;
 
     private final CmHandleRegistrationServicePropertyHandler cmHandleRegistrationServicePropertyHandler;
     private final InventoryPersistence inventoryPersistence;
