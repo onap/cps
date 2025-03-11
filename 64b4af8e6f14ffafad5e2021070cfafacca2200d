@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf01d16_7ebfe76e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:54:32Z",
+      "side": 1,
+      "message": "overall comment; ok test but this test is to developer-oriented, talks about methods, parent and child instead of user oriented ie talk about category and books. See my suggestions below.\n\nI think it is better to to do a Groovy Integration test here: org/onap/cps/integration/functional/cps\n\nThe (failing!) integration test can show the missing data (book I assume) afterward and the problem would be more clear!\n\nThis UNIT test helps showing where exactly the problem is but maybe it is not needed once the problem is solved and the integration test is in place",
+      "range": {
+        "startLine": 352,
+        "startChar": 3,
+        "endLine": 352,
+        "endChar": 92
+      },
+      "revId": "64b4af8e6f14ffafad5e2021070cfafacca2200d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3119767f_3d1184e5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:54:32Z",
+      "side": 1,
+      "message": "and: \u0027json data for a new category with a new book\u0027",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 355,
+        "endChar": 121
+      },
+      "revId": "64b4af8e6f14ffafad5e2021070cfafacca2200d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba8d1573_224d6a4c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:54:32Z",
+      "side": 1,
+      "message": "update the data with the new category and the new book",
+      "range": {
+        "startLine": 356,
+        "startChar": 15,
+        "endLine": 356,
+        "endChar": 81
+      },
+      "revId": "64b4af8e6f14ffafad5e2021070cfafacca2200d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa461ac_c2e5fcc9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:54:32Z",
+      "side": 1,
+      "message": "only the category (parent) is being updated, but not the book (child)",
+      "range": {
+        "startLine": 358,
+        "startChar": 15,
+        "endLine": 358,
+        "endChar": 113
+      },
+      "revId": "64b4af8e6f14ffafad5e2021070cfafacca2200d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a355d363_10e4e4cd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:54:32Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 82
+      },
+      "revId": "64b4af8e6f14ffafad5e2021070cfafacca2200d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
