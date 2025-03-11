@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d5e009_3a270ccb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "Some NB comments otherwise good.",
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a565630b_8b53c64b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: extra space 😊",
+      "range": {
+        "startLine": 48,
+        "startChar": 108,
+        "endLine": 48,
+        "endChar": 109
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dffb4869_2125c88c",
@@ -19,6 +59,144 @@
         "startChar": 56,
         "endLine": 64,
         "endChar": 79
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acbd961_9a7d40d2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: you can format the code using since it is a bit difficult to read.",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 60
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb940994_b8627173",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CountCmHandleSearchExecution.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "the CPS interface name of the method being called.",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 54
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38a8cb2d_be2df3ea",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CountCmHandleSearchExecution.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: CPS interface name",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5ed7231_06ef26a3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: cpsInterface",
+      "range": {
+        "startLine": 41,
+        "startChar": 71,
+        "endLine": 41,
+        "endChar": 84
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a094ba4_4fe65290",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: you can use assert",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "987eb102_a198c4bb",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T16:38:01Z",
+      "side": 1,
+      "message": "NB: you can use assert",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 25
       },
       "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
