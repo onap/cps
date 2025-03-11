@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f99f55c3_3caaa416",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-11T16:01:45Z",
+      "side": 1,
+      "message": "Nb. Pre-existing problem, but this should be called selectedCmHandleIds.\nNote that the alternate id output is handled separately on line 160.",
+      "range": {
+        "startLine": 142,
+        "startChar": 33,
+        "endLine": 142,
+        "endChar": 59
+      },
+      "revId": "66c9f9ae1be8ee95aad1299683f66fba15a18f0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f0dbb7_3b6a89ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-11T16:01:45Z",
+      "side": 1,
+      "message": "Nb. Could be simplified a bit:\n\n    trustLevelPerCmHandleIdInBatch.forEach((cmHandleId, trustLevel) -\u003e {\n        final TrustLevel effectiveTrustLevel \u003d trustLevel.getEffectiveTrustLevel(dmiTrustLevel);\n        if (targetTrustLevel.equals(effectiveTrustLevel)) {\n            selectedCmHandleReferences.add(cmHandleId);\n        }\n    });",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 1
+      },
+      "revId": "66c9f9ae1be8ee95aad1299683f66fba15a18f0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
