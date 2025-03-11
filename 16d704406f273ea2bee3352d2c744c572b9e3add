@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b93759c_1c270e1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB:\n\nMethods Grouped by Complexity:\nSimplest methods first (fewer parameters, more general use).\nMore complex methods later (additional constraints like parent XPaths or YANG resources).\n\n\nSimplest Method: buildDataNodesWithAnchorAndXpath (Single XPath).\nMore Specific Methods: buildDataNodesWithAnchorAndParentXpath.\nBulk Methods: buildDataNodesWithAnchorAndXpaths.\nMost Complex (YANG Integration): buildDataNodesWithYangResources.",
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "538cebc0_c45a099d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: DataNodeFactory (Better represents a factory that builds DataNode objects rather than just a service.)\n\nMore intuitive, represents object creation based on diff. params",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc95cc1_90ae0143",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: createDataNodesWithAnchorAndXpaths",
+      "range": {
+        "startLine": 39,
+        "startChar": 25,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e36b68_d3ef943d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: createDataNodesWithAnchorAndXpath",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9392e4ba_81f49319",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: createDataNodesWithAnchorAndParentXpath",
+      "range": {
+        "startLine": 64,
+        "startChar": 25,
+        "endLine": 64,
+        "endChar": 71
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e4b06a_a45501aa",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: createDataNodesWithYangResources",
+      "range": {
+        "startLine": 78,
+        "startChar": 25,
+        "endLine": 78,
+        "endChar": 71
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc6945f_4f4096b4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "NB: DataNodeFactoryImpl",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 40
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8ebd71b_73f27885",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "convertToDataNodes",
+      "range": {
+        "startLine": 91,
+        "startChar": 40,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b1bdc4_e8968c68",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "isRootNode",
+      "range": {
+        "startLine": 104,
+        "startChar": 27,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d81cd40_fec64e42",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "Use single quotes at all required places",
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b8c057_da59c825",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "Use single quotes",
+      "range": {
+        "startLine": 81,
+        "startChar": 66,
+        "endLine": 81,
+        "endChar": 78
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34dceff5_b97805da",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeBuilderServiceSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T12:29:01Z",
+      "side": 1,
+      "message": "Use single quotes",
+      "range": {
+        "startLine": 81,
+        "startChar": 27,
+        "endLine": 81,
+        "endChar": 30
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
