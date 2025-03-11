@@ -33,6 +33,52 @@
       "message": "recheck",
       "revId": "892ec07725c380fe46da06917cb8834805df660e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae335dcd_6249ca30",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:25:38Z",
+      "side": 1,
+      "message": "i thought about this word when I was suggesting a message: but I dont think the word \u0027valid\u0027 should be included here. It implies there is such a thing as \u0027invalid\u0027 nodes...",
+      "range": {
+        "startLine": 98,
+        "startChar": 95,
+        "endLine": 98,
+        "endChar": 101
+      },
+      "revId": "892ec07725c380fe46da06917cb8834805df660e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfff2b4_bc42d82a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T10:25:38Z",
+      "side": 1,
+      "message": "insert a space so the path does not get concatenated",
+      "range": {
+        "startLine": 99,
+        "startChar": 22,
+        "endLine": 99,
+        "endChar": 23
+      },
+      "revId": "892ec07725c380fe46da06917cb8834805df660e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
