@@ -46,6 +46,30 @@
       },
       "revId": "7a91fdc3e5e27269259f55ba8b979a6b3fe194a2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5d64671_1c17954a",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-11T13:36:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4558670_5421e108",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 4
+      },
+      "revId": "7a91fdc3e5e27269259f55ba8b979a6b3fe194a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
