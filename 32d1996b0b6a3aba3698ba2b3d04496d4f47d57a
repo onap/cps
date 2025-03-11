@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb2cf7b_24bfc1ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:31:11Z",
+      "side": 1,
+      "message": "I see you (were asked to) renamed the builder service to factory which is probably a good idea..\none tiny missed renaming",
+      "revId": "32d1996b0b6a3aba3698ba2b3d04496d4f47d57a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bec853bf_e7b0c9d5",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeFactory.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:31:11Z",
+      "side": 1,
+      "message": "yes factory is probably a better name..",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 32
+      },
+      "revId": "32d1996b0b6a3aba3698ba2b3d04496d4f47d57a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba14a528_3b3c3e43",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:31:11Z",
+      "side": 1,
+      "message": "NB update variabel name too",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 31
+      },
+      "revId": "32d1996b0b6a3aba3698ba2b3d04496d4f47d57a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af242d49_b43d76f5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/DataNodeFactorySpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:31:11Z",
+      "side": 1,
+      "message": "yep, I missed the single quotes :-)",
+      "range": {
+        "startLine": 81,
+        "startChar": 27,
+        "endLine": 81,
+        "endChar": 30
+      },
+      "revId": "32d1996b0b6a3aba3698ba2b3d04496d4f47d57a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
