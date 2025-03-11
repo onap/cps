@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af3473fe_99b94afc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "Suggestion: validateData can be moved to CpsValidator as it just validates any data passed to it.",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 39
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f1e9b64_d335b78d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "Fetch Descendants operation can be moved to CpsFacade as well. it\u0027s only use is during retreval of data nodes which is now moved to CpsFacade.",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 81
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b3b4293_0a28f593",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 97
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd95150_d20fba7d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/parameters/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "should be Boolean referring to Boolean wrapper class. Same for the boolean in the 120",
+      "range": {
+        "startLine": 119,
+        "startChar": 37,
+        "endLine": 119,
+        "endChar": 44
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0509546c_6b7900c8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "NB: Get one data node, the \"then\" block then clarifies it\u0027s the first data node",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25b3e32a_cda868d7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T12:46:31Z",
+      "side": 1,
+      "message": "NB: Get all data nodes or Get multiple data nodes",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
