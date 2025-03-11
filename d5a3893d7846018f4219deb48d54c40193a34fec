@@ -68,6 +68,30 @@
       },
       "revId": "d5a3893d7846018f4219deb48d54c40193a34fec",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c62234_696feb2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/parameters/FetchDescendantsOption.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T10:59:16Z",
+      "side": 1,
+      "message": "Ignore this as we already have isNullOrEmpty check there",
+      "parentUuid": "44793489_76ba7b6e",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 79
+      },
+      "revId": "d5a3893d7846018f4219deb48d54c40193a34fec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
