@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "160dbaba_37b62fc6",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T10:55:29Z",
+      "side": 1,
+      "message": "NB : Short, precise, and conveys that it retrieves a single data node.\n\ngetFirstDataNode",
+      "range": {
+        "startLine": 38,
+        "startChar": 24,
+        "endLine": 38,
+        "endChar": 51
+      },
+      "revId": "d5a3893d7846018f4219deb48d54c40193a34fec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76880eb_e3ceded7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T10:55:29Z",
+      "side": 1,
+      "message": "NB : Clear that it retrieves multiple data nodes.\n\ngetAllDataNodes",
+      "range": {
+        "startLine": 52,
+        "startChar": 30,
+        "endLine": 52,
+        "endChar": 58
+      },
+      "revId": "d5a3893d7846018f4219deb48d54c40193a34fec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44793489_76ba7b6e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/parameters/FetchDescendantsOption.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T10:55:29Z",
+      "side": 1,
+      "message": "Suggestion: There can a scenario where user may send null value for fetchDescendantsOptionAsString as this method is directly called by controller without any validation. We should fallback to default 0 in case of null\n\nfinal int depth \u003d isValidfetchDescendantsOption(fetchDescendantsOptionAsString) \n    ? Integer.parseInt(fetchDescendantsOptionAsString) \n    : 0; // Default to 0 if not a valid number\n\nprivate static boolean isValidfetchDescendantsOption(String fetchDescendantsOptionAsString) {\n    return fetchDescendantsOptionAsString!\u003d null \u0026\u0026 fetchDescendantsOptionAsString.matches(\"\\\\d+\");\n}",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 79
+      },
+      "revId": "d5a3893d7846018f4219deb48d54c40193a34fec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
