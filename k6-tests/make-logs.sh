@@ -17,7 +17,7 @@
 
 SERVICE_NAME="cps-and-ncmp"
 TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-LOG_DIR="logs"
+LOG_DIR="${WORKSPACE:-.}/logs"
 TEMP_DIR="$LOG_DIR/temp_$TIMESTAMP"
 ZIP_FILE="$LOG_DIR/${SERVICE_NAME}_logs_$TIMESTAMP.zip"
 
