@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a13a8b_b1b69b44",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "CpsValidator is a component currently that does NOT use other services\ncpsDataService.validateData does a lot more check involving other services too.\nAlso this was not really in the scope of my refactoring",
+      "parentUuid": "af3473fe_99b94afc",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 39
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f1e9b64_d335b78d",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-11T12:46:31Z",
       "side": 1,
       "message": "Fetch Descendants operation can be moved to CpsFacade as well. it\u0027s only use is during retreval of data nodes which is now moved to CpsFacade.",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 81
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "246c3952_f8aaaa9e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "the REST layer is responsible for converting REST parameters (strings) to the correct datatypes required for the java interface (and converting output to the required output)\nso NO, this does belong here",
+      "parentUuid": "5f1e9b64_d335b78d",
       "range": {
         "startLine": 118,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69892313_20948d2d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "this does belong here",
+      "parentUuid": "1b3b4293_0a28f593",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 97
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfd95150_d20fba7d",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-03-11T12:46:31Z",
       "side": 1,
       "message": "should be Boolean referring to Boolean wrapper class. Same for the boolean in the 120",
+      "range": {
+        "startLine": 119,
+        "startChar": 37,
+        "endLine": 119,
+        "endChar": 44
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb27279b_262924b7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/api/parameters/FetchDescendantsOptionSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "descriptions are \u0027english\u0027 intended to explain to a PO type reader, not a developer. Difference between Boolean and boolean is moot and only of interest for developers",
+      "parentUuid": "cfd95150_d20fba7d",
       "range": {
         "startLine": 119,
         "startChar": 37,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50190805_fb423366",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0509546c_6b7900c8",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 33
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25b3e32a_cda868d7",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-03-11T12:46:31Z",
       "side": 1,
       "message": "NB: Get all data nodes or Get multiple data nodes",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "40fc75a4675d0a52d2643dab415bb658a5ff02fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f190501_303a9699",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T16:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25b3e32a_cda868d7",
       "range": {
         "startLine": 56,
         "startChar": 9,
