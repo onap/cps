@@ -412,6 +412,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ff16d0_15f33d24",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-11T14:10:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e624126f_468a86ed",
+      "range": {
+        "startLine": 104,
+        "startChar": 27,
+        "endLine": 104,
+        "endChar": 42
+      },
+      "revId": "16d704406f273ea2bee3352d2c744c572b9e3add",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d81cd40_fec64e42",
