@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6edd88ad_0bb41a1b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a565630b_8b53c64b",
+      "range": {
+        "startLine": 48,
+        "startChar": 108,
+        "endLine": 48,
+        "endChar": 109
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dffb4869_2125c88c",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-03-11T14:19:20Z",
       "side": 1,
       "message": "(CmHandleQueryParameters) args[0]",
+      "range": {
+        "startLine": 64,
+        "startChar": 56,
+        "endLine": 64,
+        "endChar": 79
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a56a076_8c74caa4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "having a named variable is a better choice in my opinion compared to type casting.",
+      "parentUuid": "dffb4869_2125c88c",
       "range": {
         "startLine": 64,
         "startChar": 56,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27942db9_58618cda",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8acbd961_9a7d40d2",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 60
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb940994_b8627173",
@@ -110,6 +182,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25cb0f0d_0590ed17",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CountCmHandleSearchExecution.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb940994_b8627173",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 54
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38a8cb2d_be2df3ea",
@@ -123,6 +219,30 @@
       "writtenOn": "2025-03-11T16:38:01Z",
       "side": 1,
       "message": "NB: CPS interface name",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13543de0_283358c8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CountCmHandleSearchExecution.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38a8cb2d_be2df3ea",
       "range": {
         "startLine": 42,
         "startChar": 19,
@@ -179,6 +299,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01bad79e_5f8b7de1",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a094ba4_4fe65290",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "987eb102_a198c4bb",
@@ -192,6 +336,30 @@
       "writtenOn": "2025-03-11T16:38:01Z",
       "side": 1,
       "message": "NB: you can use assert",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 25
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d73c0f_603ab8f7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-11T20:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "987eb102_a198c4bb",
       "range": {
         "startLine": 100,
         "startChar": 12,
