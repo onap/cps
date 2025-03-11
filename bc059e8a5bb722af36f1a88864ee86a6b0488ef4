@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcde18cf_f21ca710",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ae6871c_62ee7680",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d330e8f_be7d81fb",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-03-11T08:30:48Z",
       "side": 1,
       "message": "NB. if parameters don\u0027t fit on one line I prefer to list them underneath eachother like on line 64-67",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 78
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cca9b9b_7e726fd9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d330e8f_be7d81fb",
       "range": {
         "startLine": 41,
         "startChar": 12,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "042cd97a_b9ddf4f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56dc430d_897e37cd",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 64
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c98aa74_661d6454",
@@ -117,6 +189,30 @@
       "writtenOn": "2025-03-11T08:30:48Z",
       "side": 1,
       "message": "NB. if parameters don\u0027t fit on one line I prefer to list them underneath eachother like on line 64-67",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 64
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a205478f_c6bd8ad7",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c98aa74_661d6454",
       "range": {
         "startLine": 79,
         "startChar": 12,
@@ -174,6 +270,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80760495_8ee08b9d",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c228aa44_b7e59f1c",
+      "range": {
+        "startLine": 100,
+        "startChar": 46,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b09dfcec_cee5d424",
@@ -197,6 +317,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58d8260_1af8b805",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b09dfcec_cee5d424",
+      "range": {
+        "startLine": 111,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 65
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af3ce166_4431b243",
@@ -210,6 +354,30 @@
       "writtenOn": "2025-03-11T08:30:48Z",
       "side": 1,
       "message": "NB: insert and: block to describe this part of the test setup",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 24
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f181fe_c55b27df",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-11T10:22:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af3ce166_4431b243",
       "range": {
         "startLine": 143,
         "startChar": 12,
