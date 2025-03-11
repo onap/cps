@@ -18,6 +18,115 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e867f1c2_dedc9234",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "looking very good! Some very minor suggestions and an answer to your question provided below",
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae6871c_62ee7680",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB: remove redundant empty line",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d330e8f_be7d81fb",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB. if parameters don\u0027t fit on one line I prefer to list them underneath eachother like on line 64-67",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 78
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56dc430d_897e37cd",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB. if parameters don\u0027t fit on one line I prefer to list them underneath eachother like on line 64-67",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 53,
+        "endChar": 64
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c98aa74_661d6454",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/DataNodeBuilderService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB. if parameters don\u0027t fit on one line I prefer to list them underneath eachother like on line 64-67",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 64
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5315897_55d21d48",
@@ -36,6 +145,76 @@
         "startChar": 46,
         "endLine": 100,
         "endChar": 85
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c228aa44_b7e59f1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DataNodeBuilderServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "yes its a bit silly. Also NO_DATA_NODES Is only used once (now) so no need for a constant\nsuggestion:\n(\"No data nodes\", \"the request did not return any valid data nodes\")\nyou might incorporate the parent path like so but I\u0027m not suer if it always makes sense...\n(\"No data nodes\", \"the request did not return any valid data nodes for \" +  normalizedParentNodeXpath)",
+      "parentUuid": "e5315897_55d21d48",
+      "range": {
+        "startLine": 100,
+        "startChar": 46,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b09dfcec_cee5d424",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB: insert and: block to describe this part of the test setup",
+      "range": {
+        "startLine": 111,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 65
+      },
+      "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af3ce166_4431b243",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-11T08:30:48Z",
+      "side": 1,
+      "message": "NB: insert and: block to describe this part of the test setup",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 24
       },
       "revId": "bc059e8a5bb722af36f1a88864ee86a6b0488ef4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
