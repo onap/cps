@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dffbb241_1d660302",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "just to make sure if annotation is used at other places then incorrect parameter then it shoudnt fail and just returns.\n( just a guard ) 😊\nBut yes its backed by tests.",
+      "parentUuid": "66b09a85_594bf8fb",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a19cd78_67394780",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-12T17:13:09Z",
       "side": 1,
       "message": "since you use and in the description you might as well split it into a separate and: block....",
+      "range": {
+        "startLine": 58,
+        "startChar": 47,
+        "endLine": 58,
+        "endChar": 68
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e228fbbd_dae6979f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a19cd78_67394780",
       "range": {
         "startLine": 58,
         "startChar": 47,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9132abb_ad347bbe",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea6728fd_ad6812bf",
+      "range": {
+        "startLine": 64,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "218e6332_c7bbdd78",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-03-12T17:13:09Z",
       "side": 1,
       "message": "since you use and in the description you might as well split it into a separate and: block....",
+      "range": {
+        "startLine": 75,
+        "startChar": 61,
+        "endLine": 75,
+        "endChar": 82
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f271a83_d64991d0",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "218e6332_c7bbdd78",
       "range": {
         "startLine": 75,
         "startChar": 61,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75519622_168b6948",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3caf54bf_fd6519be",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6464fd3d_c50112e1",
@@ -139,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56484977_0fc70c6c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6464fd3d_c50112e1",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 53
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a4c1bd5_bc30ffdd",
@@ -152,6 +296,30 @@
       "writtenOn": "2025-03-12T17:13:09Z",
       "side": 1,
       "message": "For Groovy closure types should not be needed",
+      "range": {
+        "startLine": 125,
+        "startChar": 20,
+        "endLine": 125,
+        "endChar": 57
+      },
+      "revId": "23290b7fcff11f7c6c2a6e12b6d103780194ea6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b12acc71_5a919f77",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounterSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T17:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a4c1bd5_bc30ffdd",
       "range": {
         "startLine": 125,
         "startChar": 20,
