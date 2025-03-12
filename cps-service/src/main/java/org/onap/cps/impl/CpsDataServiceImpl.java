@@ -31,21 +31,17 @@ import static org.onap.cps.utils.ContentType.JSON;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.events.CpsDataUpdateEventsService;
@@ -53,8 +49,6 @@ import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
-import org.onap.cps.utils.DataMapper;
-import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.YangParser;
 import org.springframework.stereotype.Service;
 
@@ -72,9 +66,6 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     private final CpsValidator cpsValidator;
     private final YangParser yangParser;
-    private final CpsDeltaService cpsDeltaService;
-    private final DataMapper dataMapper;
-    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public void saveData(final String dataspaceName, final String anchorName, final String nodeData,
@@ -205,44 +196,6 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.get.delta", description = "Time taken to get delta between anchors")
-    public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
-                                                           final String sourceAnchorName,
-                                                           final String targetAnchorName, final String xpath,
-                                                           final FetchDescendantsOption fetchDescendantsOption) {
-
-        final Collection<DataNode> sourceDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
-                sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
-        final Collection<DataNode> targetDataNodes = getDataNodesForMultipleXpaths(dataspaceName,
-                targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
-
-        return cpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes);
-    }
-
-    @Override
-    @Timed(value = "cps.data.service.get.deltaBetweenAnchorAndPayload",
-            description = "Time taken to get delta between anchor and a payload")
-    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
-                                                                final String sourceAnchorName, final String xpath,
-                                                                final Map<String, String> yangResourceContentPerName,
-                                                                final String targetData,
-                                                                final FetchDescendantsOption fetchDescendantsOption) {
-
-        final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
-
-        final Collection<DataNode> sourceDataNodes = getDataNodes(dataspaceName,
-                sourceAnchorName, xpath, fetchDescendantsOption);
-
-        final Collection<DataNode> sourceDataNodesRebuilt =
-                new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
-
-        final Collection<DataNode> targetDataNodes =
-                new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
-
-        return cpsDeltaService.getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
-    }
-
-    @Override
     @Timed(value = "cps.data.service.datanode.descendants.update",
         description = "Time taken to update a data node and descendants")
     public void updateDataNodeAndDescendants(final String dataspaceName, final String anchorName,
@@ -355,31 +308,6 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH :
                 CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
-    }
-
-    private Collection<DataNode> rebuildSourceDataNodes(final String xpath,
-                                                        final Anchor sourceAnchor,
-                                                        final Collection<DataNode> sourceDataNodes) {
-        final Collection<DataNode> sourceDataNodesRebuilt = new ArrayList<>();
-        if (sourceDataNodes != null) {
-            final Map<String, Object> sourceDataNodesAsMap = dataMapper.toFlatDataMap(sourceAnchor, sourceDataNodes);
-            final String sourceDataNodesAsJson = jsonObjectMapper.asJsonString(sourceDataNodesAsMap);
-            final Collection<DataNode> dataNodes = dataNodeFactory
-                    .createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, sourceDataNodesAsJson, JSON);
-            sourceDataNodesRebuilt.addAll(dataNodes);
-        }
-        return sourceDataNodesRebuilt;
-    }
-
-    private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor,
-                                                      final String xpath,
-                                                      final Map<String, String> yangResourceContentPerName,
-                                                      final String targetData) {
-        if (yangResourceContentPerName.isEmpty()) {
-            return dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(sourceAnchor, xpath, targetData, JSON);
-        }
-        return dataNodeFactory
-            .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {

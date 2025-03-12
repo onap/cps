@@ -23,10 +23,8 @@
 
 package org.onap.cps.impl
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.events.CpsDataUpdateEventsService
 import org.onap.cps.spi.CpsDataPersistenceService
@@ -34,7 +32,6 @@ import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.DataMapper
-import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
@@ -50,15 +47,13 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, timedYangTextSchemaSourceSetBuilder)
-    def mockCpsDeltaService = Mock(CpsDeltaService)
     def dataMapper = new DataMapper(mockCpsAnchorService, Mock(PrefixResolver))
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
 
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser, mockCpsDeltaService, dataMapper, jsonObjectMapper)
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser, dataMapper)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'

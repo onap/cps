@@ -95,6 +95,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
     @SpringBean
     CpsNotificationService mockCpsNotificationService = Stub()
 
+    @SpringBean
+    CpsDeltaService cpsDeltaService = Mock()
+
     @Autowired
     MockMvc mvc
 
