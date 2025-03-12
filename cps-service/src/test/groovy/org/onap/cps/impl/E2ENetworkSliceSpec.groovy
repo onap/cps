@@ -49,9 +49,6 @@ class E2ENetworkSliceSpec extends Specification {
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, timedYangTextSchemaSourceSetBuilder)
-    def mockCpsDeltaService = Mock(CpsDeltaService)
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def mockPrefixResolver = Mock(PrefixResolver)
 
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockModuleStoreService,
             mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
@@ -59,7 +56,7 @@ class E2ENetworkSliceSpec extends Specification {
     def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
     def cpsDataServiceImpl = new CpsDataServiceImpl(mockDataStoreService, mockDataUpdateEventsService, mockCpsAnchorService, dataNodeFactory, mockCpsValidator,
-            yangParser, mockCpsDeltaService, jsonObjectMapper, mockPrefixResolver)
+            yangParser)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'

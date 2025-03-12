@@ -429,65 +429,6 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains('"child"')
     }
 
-    def 'Get delta between two anchors'() {
-        given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
-            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                mvc.perform(get(endpoint)
-                    .param('target-anchor-name', 'targetAnchor')
-                    .param('xpath', xpath))
-                    .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
-    }
-
-    def 'Get delta between anchor and JSON payload with multipart file'() {
-        given: 'sample delta report, xpath, yang model file and json payload'
-            def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
-        and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                    mvc.perform(multipart(endpoint)
-                            .file(multipartYangFile)
-                            .param("json", requestBodyJson)
-                            .param('xpath', xpath)
-                            .contentType(MediaType.MULTIPART_FORM_DATA))
-                            .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"create\",\"xpath\":\"some xpath\"}]")
-    }
-
-    def 'Get delta between anchor and JSON payload without multipart file'() {
-        given: 'sample delta report, xpath, and json payload'
-            def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
-        and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                    mvc.perform(multipart(endpoint)
-                            .param("json", requestBodyJson)
-                            .param('xpath', xpath)
-                            .contentType(MediaType.MULTIPART_FORM_DATA))
-                            .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]")
-    }
-
     def 'Update data node leaves: #scenario.'() {
         given: 'endpoint to update a node '
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
