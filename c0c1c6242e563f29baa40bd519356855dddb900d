@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7505decd_339e4e03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-12T16:10:56Z",
+      "side": 1,
+      "message": "agreed that minor comment will be addressed as part of performance fix\n(we need to increase sample size to 10,000 anyway)",
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "65d5aebe_24e7be0e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
         "patchSetId": 1
