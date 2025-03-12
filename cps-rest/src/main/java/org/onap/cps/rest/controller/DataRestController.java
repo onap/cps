@@ -24,15 +24,12 @@
 
 package org.onap.cps.rest.controller;
 
-import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
-
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +38,6 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.utils.ContentType;
@@ -53,7 +49,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
@@ -208,44 +203,6 @@ public class DataRestController implements CpsDataApi {
         cpsDataService
             .deleteListOrListElement(dataspaceName, anchorName, listElementXpath, toOffsetDateTime(observedTimestamp));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @Override
-    public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
-                                                                      final String sourceAnchorName,
-                                                                      final Object jsonPayload,
-                                                                      final String xpath,
-                                                                      final MultipartFile multipartFile) {
-        final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
-        final Map<String, String> yangResourceMap;
-        if (multipartFile == null) {
-            yangResourceMap = Collections.emptyMap();
-        } else {
-            yangResourceMap = extractYangResourcesMap(multipartFile);
-        }
-        final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
-                cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
-
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
-    }
-
-    @Override
-    @Timed(value = "cps.data.controller.get.delta",
-            description = "Time taken to get delta between anchors")
-    public ResponseEntity<Object> getDeltaByDataspaceAndAnchors(final String dataspaceName,
-                                                                final String sourceAnchorName,
-                                                                final String targetAnchorName,
-                                                                final String xpath,
-                                                                final String descendants) {
-        final FetchDescendantsOption fetchDescendantsOption =
-                FetchDescendantsOption.getFetchDescendantsOption(descendants);
-
-        final List<DeltaReport> deltaBetweenAnchors =
-                cpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
-                        targetAnchorName, xpath, fetchDescendantsOption);
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
     private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
