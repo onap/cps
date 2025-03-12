@@ -91,6 +91,29 @@
       },
       "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba9d5053_206b8b63",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-12T14:03:13Z",
+      "side": 1,
+      "message": "Nb. Our standard way to report output in groovy performance tests is:\n\n    recordAndAssertResourceUsage(\"writeDataJob\",\n         durationLimit, resourceMeter.totalTimeInSeconds,\n         memoryLimit, resourceMeter.totalMemoryUsageInMB)\n\nThis is needed if we want to plot it later. (Also durationLimit allows us to record the current performance.)",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
