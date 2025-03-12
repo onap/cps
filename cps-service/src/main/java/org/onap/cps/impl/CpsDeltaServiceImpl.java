@@ -20,23 +20,79 @@
 
 package org.onap.cps.impl;
 
+import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsAnchorService;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
+import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
+import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.DataMapUtils;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.PrefixResolver;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class CpsDeltaServiceImpl implements CpsDeltaService {
+
+    private final CpsAnchorService cpsAnchorService;
+    private final CpsDataService cpsDataService;
+    private final JsonObjectMapper jsonObjectMapper;
+    private final PrefixResolver prefixResolver;
+
+    @Override
+    @Timed(value = "cps.data.service.get.delta",
+        description = "Time taken to get delta between anchors")
+    public List<DeltaReport> getDeltaByDataspaceAndAnchors(final String dataspaceName,
+                                                           final String sourceAnchorName,
+                                                           final String targetAnchorName, final String xpath,
+                                                           final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+            targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+
+        return getDeltaReports(sourceDataNodes, targetDataNodes);
+    }
+
+    @Timed(value = "cps.data.service.get.deltaBetweenAnchorAndPayload",
+        description = "Time taken to get delta between anchor and a payload")
+    @Override
+    public List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
+                                                                 final String sourceAnchorName, final String xpath,
+                                                                 final Map<String, String> yangResourceContentPerName,
+                                                                 final String targetData,
+                                                                 final FetchDescendantsOption fetchDescendantsOption) {
+
+        final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
+
+        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodes(dataspaceName,
+            sourceAnchorName, xpath, fetchDescendantsOption);
+
+        final Collection<DataNode> sourceDataNodesRebuilt =
+            new ArrayList<>(rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes));
+
+        final Collection<DataNode> targetDataNodes =
+            new ArrayList<>(buildTargetDataNodes(sourceAnchor, xpath, yangResourceContentPerName, targetData));
+
+        return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes);
+    }
 
     @Override
     public List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
@@ -198,5 +254,58 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
             addedDeltaReportEntries.add(addedDataForDeltaReport);
         }
         return addedDeltaReportEntries;
+    }
+
+    private Collection<DataNode> rebuildSourceDataNodes(final String xpath, final Anchor sourceAnchor,
+                                                        final Collection<DataNode> sourceDataNodes) {
+
+        final Collection<DataNode> sourceDataNodesRebuilt = new ArrayList<>();
+        if (sourceDataNodes != null) {
+            final String sourceDataNodesAsJson = getDataNodesAsJson(sourceAnchor, sourceDataNodes);
+//            sourceDataNodesRebuilt.addAll(
+//                //TODO:
+//                //buildDataNodesWithAnchorAndXpath(sourceAnchor, xpath, sourceDataNodesAsJson, ContentType.JSON)
+//            );
+        }
+        return sourceDataNodesRebuilt;
+    }
+
+    private Collection<DataNode> buildTargetDataNodes(final Anchor sourceAnchor, final String xpath,
+                                                      final Map<String, String> yangResourceContentPerName,
+                                                      final String targetData) {
+        if (yangResourceContentPerName.isEmpty()) {
+            //TODO
+            //return buildDataNodesWithAnchorAndXpath(sourceAnchor, xpath, targetData, ContentType.JSON);
+        } else {
+            //TODO
+            //return buildDataNodesWithYangResourceAndXpath(yangResourceContentPerName, xpath,
+                targetData, ContentType.JSON);
+        }
+        return null;
+    }
+
+    private String getDataNodesAsJson(final Anchor anchor, final Collection<DataNode> dataNodes) {
+
+        final List<Map<String, Object>> prefixToDataNodes = prefixResolver(anchor, dataNodes);
+        final Map<String, Object> targetDataAsJsonObject = getNodeDataAsJsonString(prefixToDataNodes);
+        return jsonObjectMapper.asJsonString(targetDataAsJsonObject);
+    }
+
+    private Map<String, Object> getNodeDataAsJsonString(final List<Map<String, Object>> prefixToDataNodes) {
+        final Map<String, Object>  nodeDataAsJson = new HashMap<>();
+        for (final Map<String, Object> prefixToDataNode : prefixToDataNodes) {
+            nodeDataAsJson.putAll(prefixToDataNode);
+        }
+        return nodeDataAsJson;
+    }
+
+    private List<Map<String, Object>> prefixResolver(final Anchor anchor, final Collection<DataNode> dataNodes) {
+        final List<Map<String, Object>> prefixToDataNodes = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode: dataNodes) {
+            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
+            final Map<String, Object> prefixToDataNode = DataMapUtils.toDataMapWithIdentifier(dataNode, prefix);
+            prefixToDataNodes.add(prefixToDataNode);
+        }
+        return prefixToDataNodes;
     }
 }
