@@ -272,16 +272,26 @@ abstract class CpsIntegrationSpecBase extends Specification {
     }
 
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset) {
-        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE)
+        registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE, { id -> "alt=${id}" })
     }
 
-    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy ) {
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy) {
+        registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, moduleNameStrategy, { id -> "alt=${id}" })
+    }
+
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy, Closure<String> alternateIdGenerator) {
+        registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, moduleNameStrategy, alternateIdGenerator)
+    }
+
+    def registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy, Closure<String> alternateIdGenerator) {
         def cmHandles = []
         def id = offset
         def modulePrefix = moduleNameStrategy.OVERLAPPING.equals(moduleNameStrategy) ? 'same' : moduleSetTag
-        def moduleReferences = (1..200).collect {  "${modulePrefix}Module${it}" }
+        def moduleReferences = (1..200).collect { "${modulePrefix}Module${it}" }
+
         (1..numberOfCmHandles).each {
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: "alt=${id}")
+            def alternateId = alternateIdGenerator(id)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: "ch-${id}", moduleSetTag: moduleSetTag, alternateId: alternateId)
             cmHandles.add(ncmpServiceCmHandle)
             dmiDispatcher1.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
             dmiDispatcher2.moduleNamesPerCmHandleId[ncmpServiceCmHandle.cmHandleId] = moduleReferences
