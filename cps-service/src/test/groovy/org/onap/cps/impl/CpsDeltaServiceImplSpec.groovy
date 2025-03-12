@@ -20,13 +20,48 @@
 
 package org.onap.cps.impl
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.TestUtils
+import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.DataMapper
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.YangParser
+import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
+import org.onap.cps.yang.YangTextSchemaSourceSet
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import spock.lang.Shared
 import spock.lang.Specification
 
-class CpsDeltaServiceImplSpec extends Specification{
+class CpsDeltaServiceImplSpec extends Specification {
 
-    def objectUnderTest = new CpsDeltaServiceImpl()
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
+    def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
+    def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
+    def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
+    def dataMapper = Mock(DataMapper)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper)
 
+    static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': "Easons"])]
+    static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code="02"]', leaves: ['code': "02", 'name': 'Kids'])]
+    static def bookstoreDataAsMapForParentNode = [bookstore: ['bookstore-name': "Easons"]]
+    static def bookstoreDataAsMapForChildNode = [categories: ['code': "02", 'name': 'Kids']]
+    static def bookstoreJsonForParentNode = '{"bookstore":{"bookstore-name":"My Store"}}'
+    static def bookstoreJsonForChildNode = '{"categories":[{"name":"Child","code":"02"}]}'
 
     static def sourceDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-source'])]
     static def sourceDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
@@ -35,72 +70,195 @@ class CpsDeltaServiceImplSpec extends Specification{
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
 
-    def 'Get delta between data nodes for REMOVED data'() {
-        when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNodeWithLeafData, [])
-        then: 'the delta report contains expected "remove" action'
-            assert result[0].action.equals('remove')
-        and : 'the delta report contains the expected xpath'
-            assert result[0].xpath == '/parent'
-        and: 'the delta report contains expected source data'
-            assert result[0].sourceData == ['parent-leaf': 'parent-payload-in-source']
-        and: 'the delta report contains no target data'
-            assert  result[0].targetData == null
+    def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
+    def loggingListAppender
+    def applicationContext = new AnnotationConfigApplicationContext()
+
+    @Shared
+    static def ANCHOR_NAME_1 = 'some-anchor-1'
+    static def ANCHOR_NAME_2 = 'some-anchor-2'
+    static def INCLUDE_ALL_DESCENDANTS = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+    def dataspaceName = 'some-dataspace'
+    def schemaSetName = 'some-schema-set'
+    def anchor1 = Anchor.builder().name(ANCHOR_NAME_1).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+    def anchor2 = Anchor.builder().name(ANCHOR_NAME_2).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+
+    def setup() {
+        mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
+        mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
+        logger.setLevel(Level.DEBUG)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
+        applicationContext.refresh()
     }
 
-    def 'Get delta between data nodes for ADDED data'() {
-        when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports([], targetDataNodeWithLeafData)
-        then: 'the delta report contains expected "create" action'
-            assert result[0].action.equals('create')
-        and: 'the delta report contains expected xpath'
-            assert result[0].xpath == '/parent'
-        and: 'the delta report contains no source data'
-            assert result[0].sourceData == null
-        and: 'the delta report contains expected target data'
-            assert result[0].targetData == ['parent-leaf': 'parent-payload-in-target']
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CpsDataServiceImpl.class)).detachAndStopAllAppenders()
+        applicationContext.close()
     }
 
-    def 'Delta Report between leaves for parent and child nodes'() {
-        given: 'Two data nodes'
+    def 'Get Delta between 2 anchors for #scenario'() {
+        given: 'xpath to get delta'
+            def xpath = '/'
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        and: 'cps data service is invoked again to return target data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+        and: 'the delta report contains the expected information'
+            deltaReport.size() == 1
+            deltaReport[0].action.equals(expectedAction)
+            deltaReport[0].xpath.equals('/parent')
+            deltaReport[0].sourceData == expectedSourceData
+            deltaReport[0].targetData == expectedTargetData
+        where: 'following data was used'
+            scenario               | sourceDataNodes            | targetDataNodes            || expectedAction | expectedSourceData                          | expectedTargetData
+            'Data node is added'   | []                         | targetDataNodeWithLeafData || 'create'       | null                                        | ['parent-leaf': 'parent-payload-in-target']
+            'Data node is removed' | sourceDataNodeWithLeafData | []                         || 'remove'       | ['parent-leaf': 'parent-payload-in-source'] | null
+            'Data node is updated' | sourceDataNodeWithLeafData | targetDataNodeWithLeafData || 'replace'      | ['parent-leaf': 'parent-payload-in-source'] |['parent-leaf': 'parent-payload-in-target']
+    }
+
+    def 'Delta Report between parent nodes containing child nodes'() {
+        given: 'Two data nodes and xpath'
+            def xpath = '/'
             def sourceDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload'])])]
             def targetDataNode  = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-updated'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-payload-updated'])])]
-        when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
-        then: 'the delta report contains expected details for parent node'
-            assert result[0].action.equals('replace')
-            assert result[0].xpath == '/parent'
-            assert result[0].sourceData == ['parent-leaf': 'parent-payload']
-            assert result[0].targetData == ['parent-leaf': 'parent-payload-updated']
+        when: 'attempt to get delta between 2 anchors'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNode
+        and: 'cps data service is invoked again to return target data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNode
+        and: 'the delta report contains expected details for parent node'
+            assert deltaReport[0].action.equals('replace')
+            assert deltaReport[0].xpath == '/parent'
+            assert deltaReport[0].sourceData == ['parent-leaf': 'parent-payload']
+            assert deltaReport[0].targetData == ['parent-leaf': 'parent-payload-updated']
         and: 'the delta report contains expected details for child node'
-            assert result[1].action.equals('replace')
-            assert result[1].xpath == '/parent/child'
-            assert result[1].sourceData == ['child-leaf': 'child-payload']
-            assert result[1].targetData == ['child-leaf': 'child-payload-updated']
+            assert deltaReport[1].action.equals('replace')
+            assert deltaReport[1].xpath == '/parent/child'
+            assert deltaReport[1].sourceData == ['child-leaf': 'child-payload']
+            assert deltaReport[1].targetData == ['child-leaf': 'child-payload-updated']
     }
 
     def 'Delta report between leaves, #scenario'() {
-        when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNode, targetDataNode)
-        then: 'the delta report contains expected "replace" action'
-            assert result[0].action.equals('replace')
-        and: 'the delta report contains expected xpath'
-            assert result[0].xpath == '/parent'
-        and: 'the delta report contains expected source and target data'
-            assert result[0].sourceData == expectedSourceData
-            assert result[0].targetData == expectedTargetData
-        where: 'the following data was used'
-            scenario                                           | sourceDataNode                   | targetDataNode                   || expectedSourceData                                           | expectedTargetData
-            'source and target data nodes have leaves'         | sourceDataNodeWithLeafData       | targetDataNodeWithLeafData       || ['parent-leaf': 'parent-payload-in-source']                  | ['parent-leaf': 'parent-payload-in-target']
-            'only source data node has leaves'                 | sourceDataNodeWithLeafData       | targetDataNodeWithoutLeafData    || ['parent-leaf': 'parent-payload-in-source']                  | null
-            'only target data node has leaves'                 | sourceDataNodeWithoutLeafData    | targetDataNodeWithLeafData       || null                                                         | ['parent-leaf': 'parent-payload-in-target']
-            'source and target dsta node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'] | ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target']
+    given: 'xpath to fetch delta between two anchors'
+        def xpath = '/'
+    when: 'attempt to get delta between 2 anchors'
+        def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+    then: 'cps data service is invoked and returns source data nodes'
+        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNode
+    and: 'cps data service is invoked again to return target data nodes'
+        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNode
+    and: 'the delta report contains expected "replace" action'
+        assert deltaReport[0].action.equals('replace')
+    and: 'the delta report contains expected xpath'
+        assert deltaReport[0].xpath == '/parent'
+    and: 'the delta report contains expected source and target data'
+        assert deltaReport[0].sourceData == expectedSourceData
+        assert deltaReport[0].targetData == expectedTargetData
+    where: 'the following data was used'
+        scenario                                           | sourceDataNode                   | targetDataNode                   || expectedSourceData                                           | expectedTargetData
+        'source and target data nodes have leaves'         | sourceDataNodeWithLeafData       | targetDataNodeWithLeafData       || ['parent-leaf': 'parent-payload-in-source']                  | ['parent-leaf': 'parent-payload-in-target']
+        'only source data node has leaves'                 | sourceDataNodeWithLeafData       | targetDataNodeWithoutLeafData    || ['parent-leaf': 'parent-payload-in-source']                  | null
+        'only target data node has leaves'                 | sourceDataNodeWithoutLeafData    | targetDataNodeWithLeafData       || null                                                         | ['parent-leaf': 'parent-payload-in-target']
+        'source and target dsta node with multiple leaves' | sourceDataNodeWithMultipleLeaves | targetDataNodeWithMultipleLeaves || ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'] | ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target']
     }
 
     def 'Get delta between data nodes for updated data, where source and target data nodes have no leaves '() {
+        given: 'xpath to get delta between anchors'
+            def xpath = '/'
         when: 'attempt to get delta between 2 data nodes'
-            def result = objectUnderTest.getDeltaReports(sourceDataNodeWithoutLeafData, targetDataNodeWithoutLeafData)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
+        and: 'cps data service is invoked again to return target data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
         then: 'the delta report is empty'
-            assert result.isEmpty()
+            assert deltaReport.isEmpty()
+    }
+
+    def 'Get delta between anchor and payload with user provided schema #scenario'() {
+        given: 'user provided schema set '
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            setupSchemaSetMocksForDelta(yangResourceContentPerName)
+        when: 'attempt to get delta between an anchor and a JSON payload'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
+            dataMapper.toFlatDataMap(anchor1, sourceDataNodes) >> sourceDataNodesAsMap
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
+        and: 'data node factory method is invoked to build target data nodes using user provided schema'
+            dataNodeFactory.createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, jsonData, ContentType.JSON)
+        and: 'delta report contains expected xpath, action, source and target data'
+            deltaReport[0].getXpath() == expectedNodeXpath
+            deltaReport[0].getAction().equals('replace')
+            deltaReport[0].getSourceData().equals(expectedSourceData)
+            deltaReport[0].getTargetData().equals(expectedTargetData)
+        where: 'following data was used'
+            scenario          | xpath                               | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                    | expectedSourceData          | expectedTargetData
+            'root node xpath' | '/'                                 | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
+            'parent xpath'    | '/bookstore'                        | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                         | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
+            'non-root xpath'  | '/bookstore/categories[@code="02"]' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']'| ['name':'Kids']             | ['name':'Child']
+    }
+
+    def 'Get delta between anchor and payload by using schema from anchor #scenario'() {
+        given: 'schema set for a given dataspace and anchor'
+            setupSchemaSetMocks("bookstore.yang")
+        when: 'attempt to get delta between an anchor and a JSON payload'
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS)
+        then: 'cps data service is invoked and returns source data nodes'
+            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
+            dataMapper.toFlatDataMap(anchor1, sourceDataNodes) >> sourceDataNodesAsMap
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
+        and: 'data node factory method is invoked to build target data nodes using schema details fetched from anchor name'
+            dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonData, ContentType.JSON)
+        and: 'delta report contains expected xpath, action, source and target data'
+            deltaReport[0].getXpath() == expectedNodeXpath
+            deltaReport[0].getAction().equals('replace')
+            deltaReport[0].getSourceData().equals(expectedSourceData)
+            deltaReport[0].getTargetData().equals(expectedTargetData)
+        where: 'following data was used'
+             scenario         | xpath                               | sourceDataNodes                  | sourceDataNodesAsMap            | jsonData                   || expectedNodeXpath                     | expectedSourceData          | expectedTargetData
+            'root node xpath' | '/'                                 | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
+            'parent xpath'    | '/bookstore'                        | bookstoreDataNodeWithParentXpath | bookstoreDataAsMapForParentNode | bookstoreJsonForParentNode || '/bookstore'                          | ['bookstore-name':'Easons'] | ['bookstore-name':'My Store']
+            'non-root xpath'  | '/bookstore/categories[@code="02"]' | bookstoreDataNodeWithChildXpath  | bookstoreDataAsMapForChildNode  | bookstoreJsonForChildNode  || '/bookstore/categories[@code=\'02\']' | ['name':'Kids']             | ['name':'Child']
+    }
+
+    def 'Delta between anchor and payload error scenario #scenario'() {
+        given: 'schema set for given anchor and dataspace references bookstore model'
+            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+            setupSchemaSetMocksForDelta(yangResourceContentPerName)
+        when: 'attempt to get delta between anchor and payload'
+            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+        then: 'expected exception is thrown'
+            thrown(DataValidationException)
+        where: 'following parameters were used'
+            scenario                                   | xpath                               | jsonData
+            'invalid json data with root node xpath'   | '/'                                 | '{"some-key": "some-value"'
+            'empty json data with root node xpath'     | '/'                                 | '{}'
+            'invalid json data with parent node xpath' | '/bookstore'                        | '{"some-key": "some-value"'
+            'empty json data with parent node xpath'   | '/bookstore'                        | '{}'
+            'empty json data with xpath'               | "/bookstore/categories[@code='02']" | '{}'
+    }
+
+    def setupSchemaSetMocks(String... yangResources) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+        mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+    }
+
+    def setupSchemaSetMocksForDelta(Map<String, String> yangResourceContentPerName) {
+        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+        mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
+        mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
+        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
 }

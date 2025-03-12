@@ -44,6 +44,8 @@ tags:
     description: cps Admin
   - name: cps-data
     description: cps Data
+  - name: cps-delta
+    description: cps Delta
 paths:
 
   /v1/dataspaces:
@@ -104,7 +106,7 @@ paths:
     $ref: 'cpsData.yml#/listElementByDataspaceAndAnchor'
 
   /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/delta:
-    $ref: 'cpsDataV2.yml#/delta'
+    $ref: 'cpsDelta.yml#/delta'
 
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQueryV1Deprecated.yml#/nodesByDataspaceAndAnchorAndCpsPath'
