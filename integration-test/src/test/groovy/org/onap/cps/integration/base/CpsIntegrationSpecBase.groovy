@@ -22,6 +22,8 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
+import org.onap.cps.api.CpsDeltaService
+
 import java.time.OffsetDateTime
 import java.util.concurrent.BlockingQueue
 import okhttp3.mockwebserver.MockWebServer
@@ -91,6 +93,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     CpsDataService cpsDataService
+
+    @Autowired
+    CpsDeltaService cpsDeltaService
 
     @Autowired
     CpsModuleService cpsModuleService
