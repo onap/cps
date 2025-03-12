@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "722a6e24_66e7286f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-12T16:11:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5844430d_ef1dc81f",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 52
+      },
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14f11546_59e56108",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-03-12T14:00:44Z",
       "side": 1,
       "message": "NB: no need for these to be defined as name variables",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 46
+      },
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56840802_7ed2dff2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-12T16:11:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14f11546_59e56108",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8990f9bb_25c2c20c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-12T16:11:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9d7a7028_33c96d59",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 44
+      },
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba9d5053_206b8b63",
@@ -123,6 +195,30 @@
       "writtenOn": "2025-03-12T14:03:13Z",
       "side": 1,
       "message": "Nb. Our standard way to report output in groovy performance tests is:\n\n    recordAndAssertResourceUsage(\"writeDataJob\",\n         durationLimit, resourceMeter.totalTimeInSeconds,\n         memoryLimit, resourceMeter.totalMemoryUsageInMB)\n\nThis is needed if we want to plot it later. (Also durationLimit allows us to record the current performance.)",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "c0c1c6242e563f29baa40bd519356855dddb900d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fec18e8a_9b24e120",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-12T16:11:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba9d5053_206b8b63",
       "range": {
         "startLine": 65,
         "startChar": 12,
