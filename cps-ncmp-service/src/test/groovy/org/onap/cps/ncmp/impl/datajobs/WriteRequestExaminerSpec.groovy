@@ -23,24 +23,27 @@ package org.onap.cps.ncmp.impl.datajobs
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import spock.lang.Specification
 
 class WriteRequestExaminerSpec extends Specification {
 
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
-    def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher)
+    def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
+    def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher, mockParameterizedCmHandleQueryService)
 
     def setup() {
-        def ch1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
-        def ch2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p1', dmiProperties: [])
-        def ch3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', dataProducerIdentifier: 'p2', dmiProperties: [])
-        def ch4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', dataProducerIdentifier: 'p1', dmiProperties: [])
-        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn1', '/') >> ch1
-        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn2', '/') >> ch2
-        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn3', '/') >> ch3
-        mockAlternateIdMatcher.getYangModelCmHandleByLongestMatchingAlternateId('fdn4', '/') >> ch4
+        def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch1', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn1', dataProducerIdentifier: 'p1')
+        def ch2 = new NcmpServiceCmHandle(cmHandleId: 'ch2', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn2', dataProducerIdentifier: 'p1')
+        def ch3 = new NcmpServiceCmHandle(cmHandleId: 'ch3', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn3', dataProducerIdentifier: 'p2')
+        def ch4 = new NcmpServiceCmHandle(cmHandleId: 'ch4', dmiServiceName: 'dmiB', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn4', dataProducerIdentifier: 'p1')
+        def cmHandlePerAlternateId = ['fdn1': ch1, 'fdn2': ch2, 'fdn3': ch3, 'fdn4': ch4]
+        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn1', '/', cmHandlePerAlternateId) >> ch1
+        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn2', '/', cmHandlePerAlternateId) >> ch2
+        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn3', '/', cmHandlePerAlternateId) >> ch3
+        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn4', '/', cmHandlePerAlternateId) >> ch4
+        mockParameterizedCmHandleQueryService.getAllCmHandlesWithoutProperties() >> [ch1, ch2, ch3, ch4]
     }
 
     def 'Create a map of dmi write requests per producer key with #scenario.'() {
@@ -83,9 +86,9 @@ class WriteRequestExaminerSpec extends Specification {
 
     def 'Validate the creation of a ProducerKey with correct dmiservicename.'() {
         given: 'yangModelCmHandles with service name: "#dmiServiceName" and data service name: "#dataServiceName"'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dataServiceName, '', new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'), '', '', 'dpi1')
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(dmiServiceName: dmiServiceName, dmiDataServiceName: dataServiceName, dataProducerIdentifier: 'dpi1')
         when: 'the ProducerKey is created'
-            def result = objectUnderTest.createProducerKey(yangModelCmHandle).toString()
+            def result = objectUnderTest.createProducerKey(ncmpServiceCmHandle).toString()
         then: 'we get the ProducerKey with the correct service name'
             assert result == expectedProducerKey
         where: 'the following services are registered'

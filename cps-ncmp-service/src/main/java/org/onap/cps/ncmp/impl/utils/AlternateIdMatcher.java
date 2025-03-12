@@ -20,12 +20,12 @@
 
 package org.onap.cps.ncmp.impl.utils;
 
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.utils.CpsValidator;
 import org.springframework.stereotype.Service;
 
@@ -37,24 +37,26 @@ public class AlternateIdMatcher {
     private final CpsValidator cpsValidator;
 
     /**
-     * Get yang model cm handle that matches longest alternate id by removing elements
+     * Get cm handle that matches longest alternate id by removing elements
      * (as defined by the separator string) from right to left.
      * If alternate id contains a hash then all elements after that hash are ignored.
      *
-     * @param alternateId alternate ID
-     * @param separator   a string that separates each element from the next.
-     * @return yang model cm handle
+     * @param alternateId            alternate ID
+     * @param separator              a string that separates each element from the next.
+     * @param cmHandlePerAlternateId all CM-handles by alternate ID
+     * @return ncmp service cm handle
      */
-    public YangModelCmHandle getYangModelCmHandleByLongestMatchingAlternateId(final String alternateId,
-                                                                              final String separator) {
+    public NcmpServiceCmHandle getCmHandleByLongestMatchingAlternateId(
+            final String alternateId, final String separator,
+            final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId) {
         final String[] splitPath = alternateId.split("#", 2);
         String bestMatch = splitPath[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
-            try {
-                return inventoryPersistence.getYangModelCmHandleByAlternateId(bestMatch);
-            } catch (final CmHandleNotFoundException ignored) {
-                bestMatch = getParentPath(bestMatch, separator);
+            final NcmpServiceCmHandle ncmpServiceCmHandle = cmHandlePerAlternateId.get(bestMatch);
+            if (ncmpServiceCmHandle != null) {
+                return ncmpServiceCmHandle;
             }
+            bestMatch = getParentPath(bestMatch, separator);
         }
         throw new NoAlternateIdMatchFoundException(alternateId);
     }

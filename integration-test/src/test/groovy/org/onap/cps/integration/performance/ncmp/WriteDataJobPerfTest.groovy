@@ -27,6 +27,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.springframework.beans.factory.annotation.Autowired
+import spock.lang.Ignore
 
 /**
  * This test does not depend on common performance test data. Hence it just extends the integration spec base.
@@ -49,21 +50,18 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
         return new DataJobWriteRequest(writeOperations)
     }
 
+    @Ignore  // CPS-2691
     def 'Performance test for writeDataJob method'() {
-        given: 'register 1,000 cm handles (with alternative ids)'
-        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 1000, 1, ModuleNameStrategy.UNIQUE, { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
-            def authorization = 'my authorization header'
-            def numberOfWriteOperations = 1000
-            def dataJobWriteRequest = populateDataJobWriteRequests(numberOfWriteOperations)
-            def myDataJobMetadata = new DataJobMetadata('d1', '', '')
-            def dataJobId = 'my-data-job-id'
+        given: 'register 10_000 cm handles (with alternative ids)'
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 10_000, 1, ModuleNameStrategy.UNIQUE, { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
+            def dataJobWriteRequest = populateDataJobWriteRequests(10_000)
         when: 'sending a write job to NCMP with dynamically generated write operations'
             resourceMeter.start()
-            dataJobService.writeDataJob(authorization, dataJobId, myDataJobMetadata, dataJobWriteRequest)
+            dataJobService.writeDataJob('', '', new DataJobMetadata('d1', '', ''), dataJobWriteRequest)
             resourceMeter.stop()
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2691'
             println "*** CPS-2691 Execution time: ${resourceMeter.totalTimeInSeconds} seconds"
         cleanup: 'deregister test cm handles'
-            deregisterSequenceOfCmHandles(DMI1_URL, 1000, 1)
+            deregisterSequenceOfCmHandles(DMI1_URL, 10_000, 1)
     }
 }

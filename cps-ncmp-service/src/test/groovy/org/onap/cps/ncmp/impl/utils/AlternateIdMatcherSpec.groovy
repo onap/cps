@@ -20,7 +20,7 @@
 
 package org.onap.cps.ncmp.impl.utils
 
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -37,16 +37,12 @@ class AlternateIdMatcherSpec extends Specification {
 
     def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence, new CpsValidatorImpl())
 
-    def setup() {
-        given: 'cm handle in the registry with alternate id /a/b'
-            mockInventoryPersistence.getYangModelCmHandleByAlternateId('/a/b') >> new YangModelCmHandle()
-        and: 'no other cm handle'
-            mockInventoryPersistence.getYangModelCmHandleByAlternateId(_) >> { throw new CmHandleNotFoundException('') }
-    }
-
     def 'Finding longest alternate id matches.'() {
+        given: 'a cm handle with alternate id /a/b in the cached map of all cm handles'
+            def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch1', alternateId: '/a/b')
+            def cmHandlePerAlternateId = ['/a/b': ch1]
         expect: 'querying for alternate id a matching result found'
-            assert objectUnderTest.getYangModelCmHandleByLongestMatchingAlternateId(targetAlternateId, '/') != null
+            assert objectUnderTest.getCmHandleByLongestMatchingAlternateId(targetAlternateId, '/', cmHandlePerAlternateId) != null
         where: 'the following parameters are used'
             scenario                                | targetAlternateId
             'exact match'                           | '/a/b'
@@ -61,7 +57,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Attempt to find longest alternate id match without any matches.'() {
         when: 'attempt to find alternateId'
-            objectUnderTest.getYangModelCmHandleByLongestMatchingAlternateId(targetAlternateId, '/')
+            objectUnderTest.getCmHandleByLongestMatchingAlternateId(targetAlternateId, '/', [:])
         then: 'no alternate id match found exception thrown'
             def thrown = thrown(NoAlternateIdMatchFoundException)
         and: 'the exception has the relevant details from the error response'

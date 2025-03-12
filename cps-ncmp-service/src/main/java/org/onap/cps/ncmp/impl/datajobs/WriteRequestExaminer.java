@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 package org.onap.cps.ncmp.impl.datajobs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,9 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
+import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,7 @@ import org.springframework.stereotype.Service;
 public class WriteRequestExaminer {
 
     private final AlternateIdMatcher alternateIdMatcher;
+    private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
     private static final String PATH_SEPARATOR = "/";
 
     /**
@@ -52,25 +55,35 @@ public class WriteRequestExaminer {
      * @return {@code Map} map of Dmi Write Operations per Producer Key
      */
     public Map<ProducerKey, List<DmiWriteOperation>> splitDmiWriteOperationsFromRequest(
-            final String dataJobId,
-            final DataJobWriteRequest dataJobWriteRequest) {
+            final String dataJobId, final DataJobWriteRequest dataJobWriteRequest) {
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey = new HashMap<>();
+        final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId = getAllNcmpServiceCmHandlesWithoutProperties();
         for (final WriteOperation writeOperation : dataJobWriteRequest.data()) {
-            examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation);
+            examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation, cmHandlePerAlternateId);
         }
         return dmiWriteOperationsPerProducerKey;
     }
 
+    private Map<String, NcmpServiceCmHandle> getAllNcmpServiceCmHandlesWithoutProperties() {
+        final Map<String, NcmpServiceCmHandle> ncmpServiceCmHandles = new HashMap<>();
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle
+                : parameterizedCmHandleQueryService.getAllCmHandlesWithoutProperties()) {
+            ncmpServiceCmHandles.put(ncmpServiceCmHandle.getAlternateId(), ncmpServiceCmHandle);
+        }
+        return ncmpServiceCmHandles;
+    }
+
     private void examineWriteOperation(final String dataJobId,
                                        final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey,
-                                       final WriteOperation writeOperation) {
+                                       final WriteOperation writeOperation,
+                                       final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId) {
         log.debug("data job id for write operation is: {}", dataJobId);
-        final YangModelCmHandle yangModelCmHandle = alternateIdMatcher
-                .getYangModelCmHandleByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = alternateIdMatcher
+                .getCmHandleByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR, cmHandlePerAlternateId);
 
-        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, yangModelCmHandle);
+        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, ncmpServiceCmHandle);
 
-        final ProducerKey producerKey = createProducerKey(yangModelCmHandle);
+        final ProducerKey producerKey = createProducerKey(ncmpServiceCmHandle);
         final List<DmiWriteOperation> dmiWriteOperations;
         if (dmiWriteOperationsPerProducerKey.containsKey(producerKey)) {
             dmiWriteOperations = dmiWriteOperationsPerProducerKey.get(producerKey);
@@ -81,27 +94,20 @@ public class WriteRequestExaminer {
         dmiWriteOperations.add(dmiWriteOperation);
     }
 
-    private ProducerKey createProducerKey(final YangModelCmHandle yangModelCmHandle) {
-        return new ProducerKey(yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA),
-                yangModelCmHandle.getDataProducerIdentifier());
+    private ProducerKey createProducerKey(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String dmiDataServiceName =
+                DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA, ncmpServiceCmHandle);
+        return new ProducerKey(dmiDataServiceName, ncmpServiceCmHandle.getDataProducerIdentifier());
     }
 
     private DmiWriteOperation createDmiWriteOperation(final WriteOperation writeOperation,
-                                                      final YangModelCmHandle yangModelCmHandle) {
+                                                      final NcmpServiceCmHandle ncmpServiceCmHandle) {
         return new DmiWriteOperation(
                 writeOperation.path(),
                 writeOperation.op(),
-                yangModelCmHandle.getModuleSetTag(),
+                ncmpServiceCmHandle.getModuleSetTag(),
                 writeOperation.value(),
                 writeOperation.operationId(),
-                getPrivatePropertiesFromDataNode(yangModelCmHandle));
+                Collections.emptyMap()); // TODO: Private properties will be removed as part of CPS-2693.
     }
-
-    private Map<String, String> getPrivatePropertiesFromDataNode(final YangModelCmHandle yangModelCmHandle) {
-        final Map<String, String> cmHandleDmiProperties = new LinkedHashMap<>();
-        yangModelCmHandle.getDmiProperties()
-                .forEach(dmiProperty -> cmHandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));
-        return cmHandleDmiProperties;
-    }
-
 }
