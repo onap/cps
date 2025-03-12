@@ -29,6 +29,7 @@ import groovy.json.JsonSlurper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.CpsFacade
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsNotificationService
@@ -94,6 +95,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsNotificationService mockCpsNotificationService = Stub()
+
+    @SpringBean
+    CpsDeltaService cpsDeltaService = Stub()
 
     @Autowired
     MockMvc mvc
