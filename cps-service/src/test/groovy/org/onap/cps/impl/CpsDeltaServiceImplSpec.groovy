@@ -20,13 +20,35 @@
 
 package org.onap.cps.impl
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.TestUtils
+import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.DataNodeFactory
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.yang.YangTextSchemaSourceSet
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import spock.lang.Shared
 import spock.lang.Specification
 
 class CpsDeltaServiceImplSpec extends Specification{
 
-    def objectUnderTest = new CpsDeltaServiceImpl()
-
+    def mockCpsAnchorService = Mock(CpsAnchorService)
+    def mockCpsDataService = Mock(CpsDataService)
+    def mockDataNodeFactory = Mock(DataNodeFactory)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def mockPrefixResolver = Mock(PrefixResolver)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, mockDataNodeFactory, jsonObjectMapper, mockPrefixResolver)
 
     static def sourceDataNodeWithLeafData = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-payload-in-source'])]
     static def sourceDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
@@ -34,6 +56,33 @@ class CpsDeltaServiceImplSpec extends Specification{
     static def targetDataNodeWithoutLeafData = [new DataNode(xpath: '/parent')]
     static def sourceDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-source', 'leaf-2': 'leaf-2-in-source'])]
     static def targetDataNodeWithMultipleLeaves = [new DataNode(xpath: '/parent', leaves: ['leaf-1': 'leaf-1-in-target', 'leaf-2': 'leaf-2-in-target'])]
+
+    def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
+    def loggingListAppender
+    def applicationContext = new AnnotationConfigApplicationContext()
+
+    @Shared
+    static def ANCHOR_NAME_1 = 'some-anchor-1'
+    @Shared
+    static def ANCHOR_NAME_2 = 'some-anchor-2'
+    def dataspaceName = 'some-dataspace'
+    def anchorName = 'some-anchor'
+    def schemaSetName = 'some-schema-set'
+    def anchor = Anchor.builder().name(anchorName).dataspaceName(dataspaceName).schemaSetName(schemaSetName).build()
+
+    def setup() {
+        mockCpsAnchorService.getAnchor(dataspaceName, anchorName) >> anchor
+        logger.setLevel(Level.DEBUG)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
+        applicationContext.refresh()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CpsDataServiceImpl.class)).detachAndStopAllAppenders()
+        applicationContext.close()
+    }
 
     def 'Get delta between data nodes for REMOVED data'() {
         when: 'attempt to get delta between 2 data nodes'
@@ -103,4 +152,91 @@ class CpsDeltaServiceImplSpec extends Specification{
         then: 'the delta report is empty'
             assert result.isEmpty()
     }
+//
+//    def 'Get delta between 2 anchors'() {
+//        given: 'some xpath, source and target data nodes'
+//            def xpath = '/xpath'
+//            def sourceDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+//            def targetDataNodes = [new DataNodeBuilder().withXpath(xpath).build()]
+//        when: 'attempt to get delta between 2 anchors'
+//            def result = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+//        then: 'the dataspace and anchor names are validated'
+//            2 * mockCpsValidator.validateNameCharacters(_)
+//        and: 'data nodes are fetched using appropriate persistence layer method'
+//            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+//            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+//        and: 'appropriate delta service method is invoked once with correct source and target data nodes'
+//            1 * mockCpsDeltaService.getDeltaReports(sourceDataNodes, targetDataNodes)
+//    }
+//
+//    def 'Get delta between anchor and payload with user provided schema #scenario'() {
+//        given: 'user provided schema set '
+//            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+//            setupSchemaSetMocksForDelta(yangResourceContentPerName)
+//        when: 'attempt to get delta between an anchor and a JSON payload'
+//            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+//        then: 'dataspacename and anchor names are validated'
+//            1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
+//        and: 'source data nodes are fetched using appropriate persistence layer method'
+//            1 * mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+//        and: 'appropriate delta service method is invoked once with correct source and target data nodes'
+//            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath})
+//        where: 'following data was used'
+//            scenario             | xpath                               | sourceDataNodes                                                                                          | jsonData                                       || expectedNodeXpath
+//            'root node xpath'    | '/'                                 | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
+//            'parent xpath'       | '/bookstore'                        | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
+//            'non-root xpath'     | '/bookstore/categories[@code="02"]' | [new DataNodeBuilder().withXpath('/bookstore/categories[@code="02"]').withLeaves(["code":"02"]).build()] | '{"categories":[{"name":"kids","code":"02"}]}' || '/bookstore/categories[@code=\'02\']'
+//    }
+//
+//    def 'Get delta between anchor and payload by using schema from anchor #scenario'() {
+//        given: 'schema set for a given dataspace and anchor'
+//            setupSchemaSetMocks("bookstore.yang")
+//        when: 'attempt to get delta between an anchor and a JSON payload'
+//            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+//        then: 'dataspacename and anchor names are validated'
+//            1 * mockCpsValidator.validateNameCharacters(['some-dataspace', 'some-anchor'])
+//        and: 'source data nodes are fetched using appropriate persistence layer method'
+//            1 * mockCpsDataPersistenceService.getDataNodes(dataspaceName, anchorName, xpath, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+//        and: 'appropriate delta service method is invoked once with correct source and target data nodes'
+//            1 * mockCpsDeltaService.getDeltaReports({sourceDataNodesRebuilt -> sourceDataNodesRebuilt.xpath[0] == expectedNodeXpath}, {targetDataNodes -> targetDataNodes.xpath[0] == expectedNodeXpath})
+//        where: 'following data was used'
+//            scenario          | xpath                               | sourceDataNodes                                                                                          | jsonData                                       || expectedNodeXpath
+//            'root node xpath' | '/'                                 | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
+//            'parent xpath'    | '/bookstore'                        | [new DataNodeBuilder().withXpath('/bookstore').build()]                                                  | '{"bookstore":{"bookstore-name":"Easons"}}'    || '/bookstore'
+//            'non-root xpath'  | '/bookstore/categories[@code="02"]' | [new DataNodeBuilder().withXpath('/bookstore/categories[@code="02"]').withLeaves(["code":"02"]).build()] | '{"categories":[{"name":"kids","code":"02"}]}' || '/bookstore/categories[@code=\'02\']'
+//    }
+//
+//    def 'Delta between anchor and payload error scenario #scenario'() {
+//        given: 'schema set for given anchor and dataspace references bookstore model'
+//            def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('bookstore.yang')
+//            setupSchemaSetMocksForDelta(yangResourceContentPerName)
+//        when: 'attempt to get delta between anchor and payload'
+//            objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, yangResourceContentPerName, jsonData, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS)
+//        then: 'expected exception is thrown'
+//            thrown(DataValidationException)
+//        where: 'following parameters were used'
+//            scenario                                   | xpath                               | jsonData
+//            'invalid json data with root node xpath'   | '/'                                 | '{"some-key": "some-value"'
+//            'empty json data with root node xpath'     | '/'                                 | '{}'
+//            'invalid json data with parent node xpath' | '/bookstore'                        | '{"some-key": "some-value"'
+//            'empty json data with parent node xpath'   | '/bookstore'                        | '{}'
+//            'empty json data with xpath'               | "/bookstore/categories[@code='02']" | '{}'
+//    }
+//
+//    def setupSchemaSetMocks(String... yangResources) {
+//        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+//        mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
+//        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
+//        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+//        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+//    }
+//
+//    def setupSchemaSetMocksForDelta(Map<String, String> yangResourceContentPerName) {
+//        def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
+//        mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
+//        mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
+//        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
+//        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+//    }
+
 }
