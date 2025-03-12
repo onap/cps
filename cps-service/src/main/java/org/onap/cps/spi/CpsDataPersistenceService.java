@@ -208,10 +208,12 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName          dataspace name
      * @param anchorName             anchor name
      * @param cpsPath                cps path
+     * @param queryResultLimit       limits the number of returned entities (if less than 1 returns all)
      * @param targetClass            class of the expected data type
      * @return a collection of data objects of expected type
      */
-    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, int queryResultLimit,
+                             Class<T> targetClass);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.

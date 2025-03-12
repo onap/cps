@@ -77,8 +77,8 @@ class CpsQueryServiceImplSpec extends Specification {
         and: 'the CpsValidator is called on the dataspaceName, schemaSetName and anchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName)
         where: 'all fetch descendants options are supported'
-        fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
-                                   FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
+            fetchDescendantsOption << [FetchDescendantsOption.OMIT_DESCENDANTS, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS,
+                                       FetchDescendantsOption.DIRECT_CHILDREN_ONLY, new FetchDescendantsOption(10)]
     }
 
     def 'Query total anchors for dataspace and cps path.'() {
@@ -91,7 +91,7 @@ class CpsQueryServiceImplSpec extends Specification {
     def 'Query data leaf.'() {
         when: 'a query for a specific leaf is executed'
             objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
-        then: 'solution is not implemented yet'
-            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+        then: 'the persistence service is called once with the correct parameters'
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', 0, Object.class)
     }
 }
