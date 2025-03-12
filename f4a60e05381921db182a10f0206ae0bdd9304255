@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df5a3453_f7872a37",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-12T14:04:20Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "1a56a076_8c74caa4",
+      "range": {
+        "startLine": 64,
+        "startChar": 56,
+        "endLine": 64,
+        "endChar": 79
+      },
+      "revId": "f4a60e05381921db182a10f0206ae0bdd9304255",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8acbd961_9a7d40d2",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/CmHandleSearchExecutionCounter.java",
         "patchSetId": 4
