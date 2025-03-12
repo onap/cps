@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2023-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,10 +26,8 @@ package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DataNode;
-import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.utils.ContentType;
 
@@ -59,6 +57,8 @@ public interface CpsDataService {
      */
     void saveData(String dataspaceName, String anchorName, String nodeData, OffsetDateTime observedTimestamp,
                   ContentType contentType);
+    //give another comment
+    //hi
 
     /**
      * Persists child data fragment under existing data node for the given anchor and dataspace.
@@ -292,38 +292,6 @@ public interface CpsDataService {
      * @param timeoutInMilliseconds lock attempt timeout in milliseconds
      */
     void lockAnchor(String sessionID, String dataspaceName, String anchorName, Long timeoutInMilliseconds);
-
-    /**
-     * Retrieves the delta between two anchors by xpath within a dataspace.
-     *
-     * @param dataspaceName          dataspace name
-     * @param sourceAnchorName       source anchor name
-     * @param targetAnchorName       target anchor name
-     * @param xpath                  xpath
-     * @param fetchDescendantsOption defines the scope of data to fetch: either single node or all the descendant
-     *                               nodes (recursively) as well
-     * @return                       list containing {@link DeltaReport} objects
-     */
-    List<DeltaReport> getDeltaByDataspaceAndAnchors(String dataspaceName, String sourceAnchorName,
-                                                    String targetAnchorName, String xpath,
-                                                    FetchDescendantsOption fetchDescendantsOption);
-
-    /**
-     * Retrieves the delta between an anchor and JSON payload by xpath, using dataspace name and anchor name.
-     *
-     * @param dataspaceName                     source dataspace name
-     * @param sourceAnchorName                  source anchor name
-     * @param xpath                             xpath
-     * @param yangResourceContentPerName     YANG resources (files) map where key is a name and value is content
-     * @param targetData                        target data to be compared in JSON string format
-     * @param fetchDescendantsOption            defines the scope of data to fetch: defaulted to INCLUDE_ALL_DESCENDANTS
-     * @return                                  list containing {@link DeltaReport} objects
-     */
-    List<DeltaReport> getDeltaByDataspaceAnchorAndPayload(String dataspaceName, String sourceAnchorName, String xpath,
-                                                          Map<String, String> yangResourceContentPerName,
-                                                          String targetData,
-                                                          FetchDescendantsOption fetchDescendantsOption);
-
 
     /**
      * Validates JSON or XML data by parsing it using the schema associated to an anchor within the given dataspace.

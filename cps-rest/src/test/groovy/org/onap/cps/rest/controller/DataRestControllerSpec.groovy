@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
-import org.onap.cps.impl.DeltaReportBuilder
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
@@ -52,7 +51,6 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
@@ -107,10 +105,6 @@ class DataRestControllerSpec extends Specification {
     @Shared
     static DataNode dataNodeWithChild = new DataNodeBuilder().withXpath('/parent')
         .withChildDataNodes([new DataNodeBuilder().withXpath("/parent/child").build()]).build()
-
-    @Shared
-    static MultipartFile multipartYangFile = new MockMultipartFile("file", 'filename.yang', "text/plain", 'content'.getBytes())
-
 
     def setup() {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
@@ -427,65 +421,6 @@ class DataRestControllerSpec extends Specification {
             assert response.contentAsString.contains('parent')
         and: 'the response contains child is true'
             assert response.contentAsString.contains('"child"')
-    }
-
-    def 'Get delta between two anchors'() {
-        given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/sourceAnchor/delta"
-            mockCpsDataService.getDeltaByDataspaceAndAnchors(dataspaceName, 'sourceAnchor', 'targetAnchor', xpath, OMIT_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                mvc.perform(get(endpoint)
-                    .param('target-anchor-name', 'targetAnchor')
-                    .param('xpath', xpath))
-                    .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]")
-    }
-
-    def 'Get delta between anchor and JSON payload with multipart file'() {
-        given: 'sample delta report, xpath, yang model file and json payload'
-            def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
-        and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, ['filename.yang':'content'], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                    mvc.perform(multipart(endpoint)
-                            .file(multipartYangFile)
-                            .param("json", requestBodyJson)
-                            .param('xpath', xpath)
-                            .contentType(MediaType.MULTIPART_FORM_DATA))
-                            .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"create\",\"xpath\":\"some xpath\"}]")
-    }
-
-    def 'Get delta between anchor and JSON payload without multipart file'() {
-        given: 'sample delta report, xpath, and json payload'
-            def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
-            def xpath = 'some xpath'
-            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/delta"
-        and: 'the service layer returns a list containing delta reports'
-            mockCpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, anchorName, xpath, [:], expectedJsonData, INCLUDE_ALL_DESCENDANTS) >> [deltaReports]
-        when: 'get delta request is performed using REST API'
-            def response =
-                    mvc.perform(multipart(endpoint)
-                            .param("json", requestBodyJson)
-                            .param('xpath', xpath)
-                            .contentType(MediaType.MULTIPART_FORM_DATA))
-                            .andReturn().response
-        then: 'expected response code is returned'
-            assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains("[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]")
     }
 
     def 'Update data node leaves: #scenario.'() {
