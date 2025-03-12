@@ -101,6 +101,13 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
+    @Override
+    public Collection<NcmpServiceCmHandle> getAllCmHandlesWithoutProperties() {
+        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
+                .iterator().next();
+        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
+    }
+
     private Collection<String> queryCmHandlesByDmiPlugin(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
         final Map<String, String> dmiPropertyQueryPairs =
