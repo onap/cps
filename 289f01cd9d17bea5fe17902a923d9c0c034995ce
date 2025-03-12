@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c475f989_9f7729c0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T10:04:43Z",
+      "side": 1,
+      "message": "can also use jsonObjectMapper for this ???",
+      "range": {
+        "startLine": 227,
+        "startChar": 25,
+        "endLine": 227,
+        "endChar": 81
+      },
+      "revId": "289f01cd9d17bea5fe17902a923d9c0c034995ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e9b4dd_7bc78b11",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-12T10:04:43Z",
+      "side": 1,
+      "message": "this can be part of a method.",
+      "range": {
+        "startLine": 222,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 9
+      },
+      "revId": "289f01cd9d17bea5fe17902a923d9c0c034995ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
