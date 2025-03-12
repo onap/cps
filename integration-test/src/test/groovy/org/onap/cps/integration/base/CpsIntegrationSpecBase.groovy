@@ -28,6 +28,7 @@ import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
@@ -91,6 +92,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     CpsDataService cpsDataService
+
+    @Autowired
+    CpsDeltaService cpsDeltaService
 
     @Autowired
     CpsModuleService cpsModuleService
