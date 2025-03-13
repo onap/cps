@@ -94,6 +94,23 @@ class QueryRestControllerSpec extends Specification {
             'descendants XML'      | '2'                            | MediaType.APPLICATION_XML  || 2             || '<prefixedPath><path><leaf>value</leaf></path></prefixedPath>'
     }
 
+    def 'Query data node (v2) by cps path for given dataspace and anchor with attribute-axis and #scenario'() {
+        given: 'the query endpoint'
+            def dataNodeEndpointV2  = "$basePath/v2/dataspaces/my_dataspace/anchors/my_anchor/nodes/query"
+        when: 'query data nodes API is invoked'
+            def response = mvc.perform(get(dataNodeEndpointV2).contentType(contentType).param('cps-path', '/my/path/@myAttribute').param('descendants', '0'))
+                    .andReturn().response
+        then: 'the call is delegated to the cps service facade which returns a list containing two attributes as maps'
+            1 * mockCpsFacade.executeAnchorQuery('my_dataspace', 'my_anchor', '/my/path/@myAttribute', OMIT_DESCENDANTS) >> [['myAttribute':'value1'], ['myAttribute':'value2']]
+        and: 'the response contains the datanode in the expected format'
+            assert response.status == HttpStatus.OK.value()
+            assert response.getContentAsString() == expectedOutput
+        where: 'the following options for content type are provided in the request'
+            scenario | contentType                || expectedOutput
+            'JSON'   | MediaType.APPLICATION_JSON || '[{"myAttribute":"value1"},{"myAttribute":"value2"}]'
+            'XML'    | MediaType.APPLICATION_XML  || '<myAttribute>value1</myAttribute><myAttribute>value2</myAttribute>'
+    }
+
     def 'Query data node by cps path for given dataspace across all anchors'() {
         given: 'the query endpoint'
             def dataNodeEndpoint = "$basePath/v2/dataspaces/my_dataspace/nodes/query"

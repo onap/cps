@@ -23,6 +23,7 @@ package org.onap.cps.impl;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
@@ -30,6 +31,8 @@ import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
+import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.utils.DataMapper;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +69,13 @@ public class CpsFacadeImpl implements CpsFacade {
                                                         final String anchorName,
                                                         final String cpsPath,
                                                         final FetchDescendantsOption fetchDescendantsOption) {
+        final CpsPathQuery cpsPathQuery = CpsPathUtil.getCpsPathQuery(cpsPath);
+        if (cpsPathQuery.hasAttributeAxis()) {
+            final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
+            final Set<Object> attributeValues =
+                    cpsQueryService.queryDataLeaf(dataspaceName, anchorName, cpsPath, Object.class);
+            return dataMapper.toAttributeMaps(attributeName, attributeValues);
+        }
         final Collection<DataNode> dataNodes =
             cpsQueryService.queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
