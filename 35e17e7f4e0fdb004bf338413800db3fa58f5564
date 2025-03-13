@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb45794_0c316c5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-13T17:57:19Z",
+      "side": 1,
+      "message": "please resolve the merge conflict.\nand now the refactoring related to CPS rest interface is merged , check if you need to change any code.",
+      "revId": "35e17e7f4e0fdb004bf338413800db3fa58f5564",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
