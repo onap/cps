@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b820e805_27c23504",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-13T16:59:18Z",
+      "side": 1,
+      "message": "maybe I will suggest an alternate solution using EntryProcessor.\nI think it can be more performant in this case.\n\nWill ping u separately for the solution.",
+      "range": {
+        "startLine": 150,
+        "startChar": 40,
+        "endLine": 150,
+        "endChar": 46
+      },
+      "revId": "1841c88fa433beb787e173410ef815e24e669ffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
