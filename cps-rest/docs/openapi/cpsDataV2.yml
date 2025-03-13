@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (c) 2022-2024 TechMahindra Ltd.
+# Copyright (c) 2022-2025 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -102,15 +102,8 @@ delta:
             type: object
             properties:
               json:
-                type: object
-                example:
-                  test:bookstore:
-                    bookstore-name: Chapters
-                    categories:
-                      - code: 01
-                        name: SciFi
-                      - code: 02
-                        name: kids
+                type: string
+                format: binary
               file:
                 type: string
                 format: binary

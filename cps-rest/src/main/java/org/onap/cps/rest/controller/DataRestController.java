@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2025 Nordix Foundation
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,8 +26,12 @@ package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
@@ -38,6 +42,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsFacade;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDataApi;
@@ -58,6 +63,7 @@ public class DataRestController implements CpsDataApi {
     private static final String ROOT_XPATH = "/";
     private static final String ISO_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
     private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private final CpsFacade cpsFacade;
     private final CpsDataService cpsDataService;
@@ -196,11 +202,11 @@ public class DataRestController implements CpsDataApi {
     @Override
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
-                                                                      final Object jsonPayload,
+                                                                      final MultipartFile jsonFile,
                                                                       final String xpath,
                                                                       final MultipartFile multipartFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
+        final String targetData = extractJsonContent(jsonFile);
         final Map<String, String> yangResourceMap;
         if (multipartFile == null) {
             yangResourceMap = Collections.emptyMap();
@@ -209,7 +215,7 @@ public class DataRestController implements CpsDataApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
                 cpsDataService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
+                xpath, yangResourceMap, targetData, fetchDescendantsOption));
 
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
@@ -240,6 +246,19 @@ public class DataRestController implements CpsDataApi {
             responseData = jsonObjectMapper.asJsonString(dataMaps);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+    private static String extractJsonContent(final MultipartFile jsonFile) {
+        if (jsonFile == null || jsonFile.isEmpty()) {
+            throw new DataValidationException("JSON file is required.", "Invalid JSON file");
+        }
+        try {
+            final String jsonContent = new String(jsonFile.getBytes(), StandardCharsets.UTF_8);
+            final JsonNode jsonNode = objectMapper.readTree(jsonContent);
+            return jsonNode.toString();
+        } catch (final IOException exception) {
+            throw new RuntimeException("Error reading JSON file", exception);
+        }
     }
 
     private static boolean isRootXpath(final String xpath) {
