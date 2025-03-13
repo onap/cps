@@ -75,13 +75,24 @@ class CpsFacadeImplSpec extends Specification {
 
     def 'Execute anchor query.'() {
         given: 'the cps query service returns two data nodes'
-           mockCpsQueryService.queryDataNodes('my dataspace', 'my anchor', 'my cps path', myFetchDescendantsOption) >> [ dataNode1, dataNode2]
+           mockCpsQueryService.queryDataNodes('my dataspace', 'my anchor', '//books', myFetchDescendantsOption) >> [ dataNode1, dataNode2]
         when: 'get data node by dataspace and anchor'
-            def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', 'my cps path', myFetchDescendantsOption)
+            def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '//books', myFetchDescendantsOption)
         then: 'all nodes (from the query service result) are returned'
             assert result.size() == 2
             assert result[0].keySet()[0] == 'prefix1:path1'
             assert result[1].keySet()[0] == 'prefix2:path2'
+    }
+
+    def 'Execute anchor query with attribute-axis.'() {
+        given: 'the cps query service returns two attribute values'
+            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '//books/@title', Object) >> ['Dune', 'Matilda']
+        when: 'get data node by dataspace and anchor'
+            def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '//books/@title', myFetchDescendantsOption)
+        then: 'attribute values (from the query service result) are returned'
+            assert result.size() == 2
+            assert result[0] == ['title': 'Dune']
+            assert result[1] == ['title': 'Matilda']
     }
 
     def 'Execute dataspace query.'() {

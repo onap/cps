@@ -107,6 +107,17 @@ public class DataMapper {
     }
 
     /**
+     * Converts list of attributes values to a list of data maps.
+     * @param attributeName   attribute name
+     * @param attributeValues attribute values
+     * @return a list of maps representing the attribute values
+     */
+    public List<Map<String, Object>> toAttributeMaps(final String attributeName,
+                                                     final Collection<Object> attributeValues) {
+        return attributeValues.stream().map(attributeValue -> Map.of(attributeName, attributeValue)).toList();
+    }
+
+    /**
      * Convert a collection of data nodes to a data map.
      *
      * @param anchor        the anchor
