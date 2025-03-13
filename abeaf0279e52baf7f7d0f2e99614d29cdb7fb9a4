@@ -45,6 +45,30 @@
       },
       "revId": "abeaf0279e52baf7f7d0f2e99614d29cdb7fb9a4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f68aae44_24528cff",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-13T15:24:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d9a0638_8f39e539",
+      "range": {
+        "startLine": 324,
+        "startChar": 39,
+        "endLine": 324,
+        "endChar": 75
+      },
+      "revId": "abeaf0279e52baf7f7d0f2e99614d29cdb7fb9a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
