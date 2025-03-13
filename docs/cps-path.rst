@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2023 Nordix Foundation
+.. Copyright (C) 2021-2025 Nordix Foundation
 .. Modifications Copyright (C) 2023 TechMahindra Ltd
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -183,7 +183,7 @@ General Notes
 Query Syntax
 ============
 
-``( <absolute-path> | <descendant-path> ) [ <leaf-conditions> ] [ <text()-condition> ] [ <contains()-condition> ] [ <ancestor-axis> ]``
+``( <absolute-path> | <descendant-path> ) [ <leaf-conditions> ] [ <text()-condition> ] [ <contains()-condition> ] [ <ancestor-axis> ] [ <attribute-axis> ]``
 
 Each CPS path expression need to start with an 'absolute' or 'descendant' xpath.
 
@@ -310,3 +310,20 @@ The ancestor axis can be added to any CPS path query but has to be the last part
 **Limitations**
   - Ancestor list elements can only be addressed using the list key leaf.
   - List elements with compound keys are not supported.
+
+attribute-axis
+--------------
+
+The attribute axis can be added to a CPS path query at the end. It will return only distinct values of a specified leaf.
+
+**Syntax**: ``<cps-path> ( '/@' <leaf-name> )?``
+  - ``cps-path``: Any CPS path query.
+  - ``leaf-name``: The name of the leaf (attribute) for which values should be returned.
+
+**Examples**
+  - ``//categories/@name`` returning ``[{"name":"Kids"},{"name":"SciFi"}]``
+  - ``//categories[@code='1']/books/@price`` returning ``[{"price":5}]``
+  - ``//books/ancestor::bookstore/@bookstore-name`` returning ``[{"bookstore-name": "Chapters"}]``
+
+**Notes**
+  - Only unique values will be returned. For example, if 3 books have a price of 5, then 5 will only be returned once.
