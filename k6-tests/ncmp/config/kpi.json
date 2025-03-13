@@ -6,44 +6,24 @@
     "containerUpTimeInSeconds": 300
   },
   "scenarios": {
-    "passthrough_read_scenario": {
-      "executor": "constant-arrival-rate",
-      "exec": "passthroughReadScenario",
-      "rate": 5,
-      "timeUnit": "1s",
-      "duration": "15m",
-      "preAllocatedVUs": 5,
-      "startTime": "0ms"
-    },
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "passthroughReadAltIdScenario",
-      "rate": 5,
+      "rate": 25,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
+      "preAllocatedVUs": 10,
       "startTime": "200ms"
-    },
-
-    "passthrough_write_scenario": {
-      "executor": "constant-arrival-rate",
-      "exec": "passthroughWriteScenario",
-      "rate": 5,
-      "timeUnit": "1s",
-      "duration": "15m",
-      "preAllocatedVUs": 5,
-      "startTime": "400ms"
     },
     "passthrough_write_alt_id_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "passthroughWriteAltIdScenario",
-      "rate": 5,
+      "rate": 13,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 5,
+      "preAllocatedVUs": 10,
       "startTime": "600ms"
     },
-
     "cm_handle_id_search_nofilter_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleIdSearchNoFilterScenario",
@@ -89,7 +69,6 @@
       "preAllocatedVUs": 1,
       "startTime": "1600ms"
     },
-
     "cm_handle_search_nofilter_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "cmHandleSearchNoFilterScenario",
@@ -135,7 +114,6 @@
       "preAllocatedVUs": 1,
       "startTime": "12s"
     },
-
     "legacy_batch_produce_scenario": {
       "executor": "shared-iterations",
       "exec": "legacyBatchProduceScenario",
@@ -163,8 +141,6 @@
     "http_req_failed": ["rate == 0"],
     "cmhandles_created_per_second": ["avg >= 22"],
     "cmhandles_deleted_per_second": ["avg >= 22"],
-    "ncmp_overhead_passthrough_read": ["avg <= 40"],
-    "ncmp_overhead_passthrough_write": ["avg <= 40"],
     "ncmp_overhead_passthrough_read_alt_id": ["avg <= 40"],
     "ncmp_overhead_passthrough_write_alt_id": ["avg <= 40"],
     "id_search_nofilter_duration": ["avg <= 2000"],

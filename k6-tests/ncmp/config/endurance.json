@@ -6,28 +6,16 @@
     "containerUpTimeInSeconds": 420
   },
   "scenarios": {
-    "passthrough_read_scenario": {
-      "executor": "constant-vus",
-      "exec": "passthroughReadScenario",
-      "vus": 2,
-      "duration": "2h"
-    },
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-vus",
       "exec": "passthroughReadAltIdScenario",
-      "vus": 2,
-      "duration": "2h"
-    },
-    "passthrough_write_scenario": {
-      "executor": "constant-vus",
-      "exec": "passthroughWriteScenario",
-      "vus": 2,
+      "vus": 4,
       "duration": "2h"
     },
     "passthrough_write_alt_id_scenario": {
       "executor": "constant-vus",
       "exec": "passthroughWriteAltIdScenario",
-      "vus": 2,
+      "vus": 4,
       "duration": "2h"
     },
     "cm_handle_id_search_nofilter_scenario": {
