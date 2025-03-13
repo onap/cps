@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fd9a568_365b4430",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/QueryRestControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "copy \u0026 paste error :-)",
+      "range": {
+        "startLine": 108,
+        "startChar": 37,
+        "endLine": 108,
+        "endChar": 61
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e2d1e28_2f5103ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsFacadeImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "no need for else (as you have return above it)",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daa99784_1c0a1bcd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "maybe you need a more realistic (valid) path but can you stil keep it more abstract/generic like \u0027/my/path\u0027 ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 76,
+        "endLine": 78,
+        "endChar": 83
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c12137_898f826a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 80,
+        "startChar": 90,
+        "endLine": 80,
+        "endChar": 97
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66aeabf0_6e7bff74",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "NB (opinion): i would prefer \u0027myAttribute\u0027,\u0027someValue\u0027",
+      "range": {
+        "startLine": 89,
+        "startChar": 105,
+        "endLine": 89,
+        "endChar": 122
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c420a04_a182d85a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "NB: this is maybe a matter of opinion nut as you are mocking te output I don\u0027t think you need to have an exact path\nmaybw as a compromise: \u0027/path/with/attribute/axis/@myAttribute\u0027",
+      "range": {
+        "startLine": 89,
+        "startChar": 76,
+        "endLine": 89,
+        "endChar": 90
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b28c39ab_980e31fc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T14:24:28Z",
+      "side": 1,
+      "message": "using attribute axis\n\n(I think only the most relevant parameter for the test at hand needs to be mentioned)",
+      "range": {
+        "startLine": 90,
+        "startChar": 29,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "0a127069df70a461524d773a5b1cdc4150497781",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
