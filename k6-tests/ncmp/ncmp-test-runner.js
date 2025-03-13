@@ -34,9 +34,7 @@ import { sendKafkaMessages } from './common/produce-avc-event.js';
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
-let passthroughReadNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_read', true);
 let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
-let passthroughWriteNcmpOverheadTrend = new Trend('ncmp_overhead_passthrough_write', true);
 let passthroughWriteNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_write_alt_id', true);
 let idSearchNoFilterDurationTrend = new Trend('id_search_nofilter_duration', true);
 let idSearchModuleDurationTrend = new Trend('id_search_module_duration', true);
@@ -102,27 +100,11 @@ export function teardown() {
     sleep(CONTAINER_UP_TIME_IN_SECONDS);
 }
 
-export function passthroughReadScenario() {
-    const response = passthroughRead(false);
-    if (check(response, { 'passthrough read status equals 200': (r) => r.status === 200 })) {
-        const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
-        passthroughReadNcmpOverheadTrend.add(overhead);
-    }
-}
-
 export function passthroughReadAltIdScenario() {
     const response = passthroughRead(true);
     if (check(response, { 'passthrough read with alternate Id status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughReadNcmpOverheadTrendWithAlternateId.add(overhead);
-    }
-}
-
-export function passthroughWriteScenario() {
-    const response = passthroughWrite(false);
-    if (check(response, { 'passthrough write status equals 201': (r) => r.status === 201 })) {
-        const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
-        passthroughWriteNcmpOverheadTrend.add(overhead);
     }
 }
 

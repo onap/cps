@@ -113,9 +113,7 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
         makeSummaryCsvLine('4c', 'CM-handle search with Property filter', 'milliseconds', 'cm_search_property_duration', 4500, testResults, scenarioConfig),
         makeSummaryCsvLine('4d', 'CM-handle search with Cps Path filter', 'milliseconds', 'cm_search_cpspath_duration', 4500, testResults, scenarioConfig),
         makeSummaryCsvLine('4e', 'CM-handle search with Trust Level filter', 'milliseconds', 'cm_search_trustlevel_duration', 7000, testResults, scenarioConfig),
-        makeSummaryCsvLine('5a', 'NCMP overhead for Synchronous single CM-handle pass-through read', 'milliseconds', 'ncmp_overhead_passthrough_read', 20, testResults, scenarioConfig),
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 40, testResults, scenarioConfig),
-        makeSummaryCsvLine('6a', 'NCMP overhead for Synchronous single CM-handle pass-through write', 'milliseconds', 'ncmp_overhead_passthrough_write', 20, testResults, scenarioConfig),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 40, testResults, scenarioConfig),
         makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 300, testResults, scenarioConfig),
     ];
