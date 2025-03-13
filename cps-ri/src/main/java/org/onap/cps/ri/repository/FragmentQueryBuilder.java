@@ -124,7 +124,7 @@ public class FragmentQueryBuilder {
 
     private Query getQuery(final String sql, final Map<String, Object> queryParameters, final Class<?> returnType) {
         final Query query = entityManager.createNativeQuery(sql, returnType);
-        setQueryParameters(query, queryParameters);
+        queryParameters.forEach(query::setParameter);
         return query;
     }
 
@@ -351,12 +351,6 @@ public class FragmentQueryBuilder {
     private static <V> String substitute(final String template, final Map<String, V> valueMap) {
         final StringSubstitutor stringSubstitutor = new StringSubstitutor(valueMap);
         return stringSubstitutor.replace(template);
-    }
-
-    private static void setQueryParameters(final Query query, final Map<String, Object> queryParameters) {
-        for (final Map.Entry<String, Object> queryParameter : queryParameters.entrySet()) {
-            query.setParameter(queryParameter.getKey(), queryParameter.getValue());
-        }
     }
 
 }
