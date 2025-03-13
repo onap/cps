@@ -70,6 +70,30 @@
       },
       "revId": "1841c88fa433beb787e173410ef815e24e669ffc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6216783f_a8f31e85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-13T17:29:33Z",
+      "side": 1,
+      "message": "amm.. i would right away agree on the simplicity. current code is simple.\nBut would need to see for myself abt the approach I am thinking.\nI am ok to get this thing merged on the basis of simplicity.",
+      "parentUuid": "c121627e_5a7a08fd",
+      "range": {
+        "startLine": 150,
+        "startChar": 40,
+        "endLine": 150,
+        "endChar": 46
+      },
+      "revId": "1841c88fa433beb787e173410ef815e24e669ffc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
