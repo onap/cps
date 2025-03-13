@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07d3836_4f717282",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T15:17:10Z",
+      "side": 1,
+      "message": "oops",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "abeaf0279e52baf7f7d0f2e99614d29cdb7fb9a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d9a0638_8f39e539",
+        "filename": "docs/cps-path.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T15:17:10Z",
+      "side": 1,
+      "message": "NNB: none of the other examples contain output. I guess you want to explain the output format? Maybe add a separate not about the output being a list of named attributes with an example?",
+      "range": {
+        "startLine": 324,
+        "startChar": 39,
+        "endLine": 324,
+        "endChar": 75
+      },
+      "revId": "abeaf0279e52baf7f7d0f2e99614d29cdb7fb9a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
