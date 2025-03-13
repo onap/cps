@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8c4472_323ba60d",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T09:19:10Z",
+      "side": 1,
+      "message": "agreed, even more it belongs in DataMapper!\nSo I  moved it there and simplified the code accordingly",
+      "parentUuid": "72b5b80b_64c9280c",
+      "range": {
+        "startLine": 402,
+        "startChar": 32,
+        "endLine": 402,
+        "endChar": 55
+      },
+      "revId": "fa39b437e44b0484dac4d5a0db3fe81f940f84b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42054921_e6f811f0",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-12T18:01:55Z",
       "side": 1,
       "message": "NB performance issue: This anchor lookup will hit the database each time in the loop. But I think we only need the Anchor so that we have the SchemaSet name for PrefixResolver.\n\nThe DataNode object already has that information, including SchemaSet, Dataspace, Anchor, etc. This could be used to simplify this entire class: we could pass the DataNode directly to the PrefixResolver. In turn, all these methods would reduce to a single one, without any performance overhead:\n\n    List\u003cMap\u003cString, Object\u003e\u003e toDataMaps(Collection\u003cDataNode\u003e dataNodes);",
+      "range": {
+        "startLine": 98,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 88
+      },
+      "revId": "fa39b437e44b0484dac4d5a0db3fe81f940f84b8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab3adbf2_19c27bf5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-13T09:19:10Z",
+      "side": 1,
+      "message": "agreed but out of scope of the refactoring user story!\nI created at Tech Debt Story for it:\nhttps://lf-onap.atlassian.net/browse/CPS-2695",
+      "parentUuid": "42054921_e6f811f0",
       "range": {
         "startLine": 98,
         "startChar": 12,
