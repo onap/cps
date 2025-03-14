@@ -59,9 +59,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Override
     @Transactional
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                          final CpsPathQuery cpsPathQuery, final List<Long> anchorIds) {
+                                                          final CpsPathQuery cpsPathQuery) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
+                .getQueryForDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;
@@ -69,7 +69,19 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
 
     @Override
     @Transactional
-    public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
+    public List<FragmentEntity> findByAnchorIdsAndCpsPath(final List<Long> anchorIds,
+                                                          final CpsPathQuery cpsPathQuery) {
+        final Query query = new FragmentQueryBuilder(entityManager)
+                .getQueryForAnchorIdsAndCpsPath(anchorIds, cpsPathQuery);
+        final List<FragmentEntity> fragmentEntities = query.getResultList();
+        log.debug("Fetched {} fragment entities by cps path across some anchors.", fragmentEntities.size());
+        return fragmentEntities;
+    }
+
+    @Override
+    @Transactional
+    public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
+                                                 final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
         final Query query = new FragmentQueryBuilder(entityManager)
                 .getQueryForAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);

@@ -269,17 +269,16 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                                                       final PaginationOption paginationOption) {
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
-        final List<Long> anchorIds;
+        final Collection<FragmentEntity> fragmentEntities;
         if (paginationOption == NO_PAGINATION) {
-            anchorIds = Collections.emptyList();
+            fragmentEntities = fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
         } else {
-            anchorIds = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
+            final List<Long> anchorIds = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
             if (anchorIds.isEmpty()) {
                 return Collections.emptyList();
             }
+            fragmentEntities = fragmentRepository.findByAnchorIdsAndCpsPath(anchorIds, cpsPathQuery);
         }
-        final Collection<FragmentEntity> fragmentEntities =
-                fragmentRepository.findByDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
         return createDataNodesFromFragmentEntities(fetchDescendantsOption, fragmentEntities);
     }
 

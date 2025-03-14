@@ -33,8 +33,9 @@ public interface FragmentRepositoryCpsPathQuery {
     List<FragmentEntity> findByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery,
                                                 int queryResultLimit);
 
-    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity,
-                                                   CpsPathQuery cpsPathQuery, List<Long> anchorIds);
+    List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery);
+
+    List<FragmentEntity> findByAnchorIdsAndCpsPath(List<Long> anchorIds, CpsPathQuery cpsPathQuery);
 
     List<Long> findAnchorIdsForPagination(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery,
                                           PaginationOption paginationOption);

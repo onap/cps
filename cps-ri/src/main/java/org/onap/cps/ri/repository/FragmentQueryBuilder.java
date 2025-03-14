@@ -50,7 +50,7 @@ public class FragmentQueryBuilder {
     private final Map<String, Object> queryParameters = new HashMap<>();
 
     /**
-     * Create a sql query to retrieve by anchor(id) and cps path with an optional queryResultLimit on results.
+     * Create a sql query to retrieve by anchor and cps path with an optional limit on results.
      *
      * @param anchorEntity the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
@@ -71,21 +71,31 @@ public class FragmentQueryBuilder {
     }
 
     /**
-     * Create a sql query to retrieve by cps path.
+     * Create a sql query to retrieve by dataspace and cps path.
      *
      * @param dataspaceEntity the dataspace
      * @param cpsPathQuery the cps path query to be transformed into a sql query
      * @return a executable query object
      */
     public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                final CpsPathQuery cpsPathQuery,
-                                                final List<Long> anchorIdsForPagination) {
+                                                final CpsPathQuery cpsPathQuery) {
         addSearchPrefix(cpsPathQuery);
-        if (anchorIdsForPagination.isEmpty()) {
-            addWhereClauseForDataspace(dataspaceEntity);
-        } else {
-            addWhereClauseForAnchorIds(anchorIdsForPagination);
-        }
+        addWhereClauseForDataspace(dataspaceEntity);
+        addNodeSearchConditions(cpsPathQuery, true);
+        addSearchSuffix(cpsPathQuery);
+        return getQuery(FragmentEntity.class);
+    }
+
+    /**
+     * Create a sql query to retrieve by anchors and cps path.
+     *
+     * @param anchorIds    IDs of anchors to search
+     * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @return a executable query object
+     */
+    public Query getQueryForAnchorIdsAndCpsPath(final List<Long> anchorIds, final CpsPathQuery cpsPathQuery) {
+        addSearchPrefix(cpsPathQuery);
+        addWhereClauseForAnchorIds(anchorIds);
         addNodeSearchConditions(cpsPathQuery, true);
         addSearchSuffix(cpsPathQuery);
         return getQuery(FragmentEntity.class);
