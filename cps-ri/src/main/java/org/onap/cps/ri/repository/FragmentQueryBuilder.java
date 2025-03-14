@@ -23,6 +23,7 @@ package org.onap.cps.ri.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,8 +35,6 @@ import org.onap.cps.api.exceptions.CpsPathException;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.ri.models.AnchorEntity;
-import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
 
@@ -48,64 +47,75 @@ public class FragmentQueryBuilder {
     private final StringBuilder sqlStringBuilder = new StringBuilder();
     private final Map<String, Object> queryParameters = new HashMap<>();
 
+    private CpsPathQuery cpsPathQuery;
+    private Integer dataspaceId;
+    private List<Long> anchorIds = Collections.emptyList();
+
     /**
-     * Create a sql query to retrieve by anchor and cps path.
+     * Sets the CpsPathQuery for the FragmentQueryBuilder.
      *
-     * @param anchorEntity the anchor
-     * @param cpsPathQuery the cps path query to be transformed into a sql query
-     * @return a executable query object
+     * @param cpsPathQuery the CpsPathQuery to set
+     * @return the updated FragmentQueryBuilder instance
      */
-    public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
-                                             final CpsPathQuery cpsPathQuery) {
-        addSearchPrefix(cpsPathQuery);
-        addWhereClauseForAnchor(anchorEntity);
-        addNodeSearchConditions(cpsPathQuery, false);
-        addSearchSuffix(cpsPathQuery);
-        return getQuery(FragmentEntity.class);
+    public FragmentQueryBuilder cpsPathQuery(final CpsPathQuery cpsPathQuery) {
+        this.cpsPathQuery = cpsPathQuery;
+        return this;
     }
 
     /**
-     * Create a sql query to retrieve by dataspace and cps path.
+     * Sets the dataspace ID for the FragmentQueryBuilder.
      *
-     * @param dataspaceEntity the dataspace
-     * @param cpsPathQuery the cps path query to be transformed into a sql query
-     * @return a executable query object
+     * @param dataspaceId the dataspace ID to set
+     * @return the updated FragmentQueryBuilder instance
      */
-    public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                final CpsPathQuery cpsPathQuery) {
-        addSearchPrefix(cpsPathQuery);
-        addWhereClauseForDataspace(dataspaceEntity);
-        addNodeSearchConditions(cpsPathQuery, true);
-        addSearchSuffix(cpsPathQuery);
-        return getQuery(FragmentEntity.class);
+    public FragmentQueryBuilder inDataspace(final Integer dataspaceId) {
+        this.dataspaceId = dataspaceId;
+        return this;
     }
 
     /**
-     * Create a sql query to retrieve by anchors and cps path.
+     * Sets a single anchor ID for the FragmentQueryBuilder.
      *
-     * @param anchorIds    IDs of anchors to search
-     * @param cpsPathQuery the cps path query to be transformed into a sql query
+     * @param anchorId the anchor ID to set
+     * @return the updated FragmentQueryBuilder instance
+     */
+    public FragmentQueryBuilder inAnchor(final Long anchorId) {
+        this.anchorIds = Collections.singletonList(anchorId);
+        return this;
+    }
+
+    /**
+     * Sets multiple anchor IDs for the FragmentQueryBuilder.
+     *
+     * @param anchorIds the list of anchor IDs to set
+     * @return the updated FragmentQueryBuilder instance
+     */
+    public FragmentQueryBuilder inAnchors(final List<Long> anchorIds) {
+        this.anchorIds = anchorIds;
+        return this;
+    }
+
+    /**
+     * Create a sql query based on the configured FragmentQueryBuilder.
+     *
      * @return a executable query object
      */
-    public Query getQueryForAnchorIdsAndCpsPath(final List<Long> anchorIds, final CpsPathQuery cpsPathQuery) {
-        addSearchPrefix(cpsPathQuery);
-        addWhereClauseForAnchorIds(anchorIds);
-        addNodeSearchConditions(cpsPathQuery, true);
-        addSearchSuffix(cpsPathQuery);
+    public Query build() {
+        addSearchPrefix();
+        addWhereClause();
+        addNodeSearchConditions();
+        addSearchSuffix();
         return getQuery(FragmentEntity.class);
     }
 
     /**
      * Get query for dataspace and cps path, returning anchor ids.
-     * @param dataspaceEntity data space entity
-     * @param cpsPathQuery cps path query
-     * @return query for given dataspace, cps path and pagination parameters
+     * @return a executable query object
      */
-    public Query getQueryForAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
-                                                   final CpsPathQuery cpsPathQuery) {
+    public Query buildQueryForAnchorIdsForPagination() {
         sqlStringBuilder.append("SELECT distinct(fragment.anchor_id) FROM fragment");
-        addWhereClauseForDataspace(dataspaceEntity);
-        addNodeSearchConditions(cpsPathQuery, true);
+        addWhereClauseForDataspace();
+        addNodeSearchConditions();
         sqlStringBuilder.append(" ORDER BY fragment.anchor_id");
         return getQuery(Long.class);
     }
@@ -116,28 +126,41 @@ public class FragmentQueryBuilder {
         return query;
     }
 
-    private void addWhereClauseForAnchor(final AnchorEntity anchorEntity) {
+    private boolean queryingAcrossAnchors() {
+        return anchorIds.size() != 1;
+    }
+
+    private void addWhereClause() {
+        switch (anchorIds.size()) {
+            case 0 -> addWhereClauseForDataspace();
+            case 1 -> addWhereClauseForAnchor();
+            default -> addWhereClauseForAnchors();
+        }
+    }
+
+    private void addWhereClauseForAnchor() {
+        final Long anchorId = anchorIds.get(0);
         sqlStringBuilder.append(" WHERE anchor_id = :anchorId");
-        queryParameters.put("anchorId", anchorEntity.getId());
+        queryParameters.put("anchorId", anchorId);
     }
 
-    private void addWhereClauseForAnchorIds(final List<Long> anchorIdsForPagination) {
-        sqlStringBuilder.append(" WHERE anchor_id IN (:anchorIdsForPagination)");
-        queryParameters.put("anchorIdsForPagination", anchorIdsForPagination);
+    private void addWhereClauseForAnchors() {
+        sqlStringBuilder.append(" WHERE anchor_id IN (:anchorIds)");
+        queryParameters.put("anchorIds", anchorIds);
     }
 
-    private void addWhereClauseForDataspace(final DataspaceEntity dataspaceEntity) {
+    private void addWhereClauseForDataspace() {
         sqlStringBuilder.append(" JOIN anchor ON anchor.id = fragment.anchor_id WHERE dataspace_id = :dataspaceId");
-        queryParameters.put("dataspaceId", dataspaceEntity.getId());
+        queryParameters.put("dataspaceId", dataspaceId);
     }
 
-    private void addNodeSearchConditions(final CpsPathQuery cpsPathQuery, final boolean acrossAnchors) {
-        addAbsoluteParentXpathSearchCondition(cpsPathQuery, acrossAnchors);
+    private void addNodeSearchConditions() {
+        addAbsoluteParentXpathSearchCondition();
         sqlStringBuilder.append(" AND ");
         addXpathSearchCondition(cpsPathQuery, "baseXpath");
         addLeafConditions(cpsPathQuery);
-        addTextFunctionCondition(cpsPathQuery);
-        addContainsFunctionCondition(cpsPathQuery);
+        addTextFunctionCondition();
+        addContainsFunctionCondition();
     }
 
     private void addXpathSearchCondition(final CpsPathQuery cpsPathQuery, final String parameterName) {
@@ -171,12 +194,12 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private void addAbsoluteParentXpathSearchCondition(final CpsPathQuery cpsPathQuery, final boolean acrossAnchors) {
+    private void addAbsoluteParentXpathSearchCondition() {
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             if (cpsPathQuery.getNormalizedParentPath().isEmpty()) {
                 sqlStringBuilder.append(" AND parent_id IS NULL");
             } else {
-                if (acrossAnchors) {
+                if (queryingAcrossAnchors()) {
                     sqlStringBuilder.append(" AND parent_id IN (SELECT id FROM fragment WHERE xpath = :parentXpath)");
                 } else {
                     sqlStringBuilder.append(" AND parent_id = (SELECT id FROM fragment WHERE xpath = :parentXpath"
@@ -225,7 +248,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private void addTextFunctionCondition(final CpsPathQuery cpsPathQuery) {
+    private void addTextFunctionCondition() {
         if (cpsPathQuery.hasTextFunctionCondition()) {
             sqlStringBuilder.append(" AND (");
             sqlStringBuilder.append("attributes @> jsonb_build_object(:textLeafName, :textValue)");
@@ -244,7 +267,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private void addContainsFunctionCondition(final CpsPathQuery cpsPathQuery) {
+    private void addContainsFunctionCondition() {
         if (cpsPathQuery.hasContainsFunctionCondition()) {
             sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
             queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
@@ -253,7 +276,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private void addSearchPrefix(final CpsPathQuery cpsPathQuery) {
+    private void addSearchPrefix() {
         if (cpsPathQuery.hasAncestorAxis()) {
             sqlStringBuilder.append("""
                 WITH RECURSIVE ancestors AS (
@@ -265,7 +288,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private void addSearchSuffix(final CpsPathQuery cpsPathQuery) {
+    private void addSearchSuffix() {
         if (cpsPathQuery.hasAncestorAxis()) {
             sqlStringBuilder.append("""
                           )
