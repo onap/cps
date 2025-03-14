@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation.
+ *  Copyright (C) 2021-2025 Nordix Foundation.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,8 @@
 
 package org.onap.cps.ri.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -36,15 +38,16 @@ import org.onap.cps.ri.models.FragmentEntity;
 @Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
 
-    private final FragmentQueryBuilder fragmentQueryBuilder;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     @Transactional
     public List<FragmentEntity> findByAnchorAndCpsPath(final AnchorEntity anchorEntity,
                                                        final CpsPathQuery cpsPathQuery,
                                                        final int queryResultLimit) {
-        final Query query = fragmentQueryBuilder
-                                        .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
+        final Query query = new FragmentQueryBuilder(entityManager)
+                .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         if (queryResultLimit > 0) {
@@ -57,8 +60,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Transactional
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                           final CpsPathQuery cpsPathQuery, final List<Long> anchorIds) {
-        final Query query = fragmentQueryBuilder.getQueryForDataspaceAndCpsPath(
-                dataspaceEntity, cpsPathQuery, anchorIds);
+        final Query query = new FragmentQueryBuilder(entityManager)
+                .getQueryForDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery, anchorIds);
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;
@@ -68,8 +71,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Transactional
     public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
-        final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
-                dataspaceEntity, cpsPathQuery, paginationOption);
+        final Query query = new FragmentQueryBuilder(entityManager)
+                .getQueryForAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
         return query.getResultList();
     }
 

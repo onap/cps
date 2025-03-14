@@ -22,7 +22,6 @@
 package org.onap.cps.ri.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,15 +39,15 @@ import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
-import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-@Component
 public class FragmentQueryBuilder {
     private static final String DESCENDANT_PATH = "//";
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    private final StringBuilder sqlStringBuilder = new StringBuilder();
+    private final Map<String, Object> queryParameters = new HashMap<>();
 
     /**
      * Create a sql query to retrieve by anchor(id) and cps path with an optional queryResultLimit on results.
@@ -61,18 +60,14 @@ public class FragmentQueryBuilder {
      * @return a executable query object
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
-                                                      final CpsPathQuery cpsPathQuery,
-                                                      final int queryResultLimit) {
-        final StringBuilder sqlStringBuilder = new StringBuilder();
-        final Map<String, Object> queryParameters = new HashMap<>();
-
-        addSearchPrefix(cpsPathQuery, sqlStringBuilder);
-        addWhereClauseForAnchor(anchorEntity, sqlStringBuilder, queryParameters);
-        addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, false);
-        addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
-        addLimitClause(sqlStringBuilder, queryParameters, queryResultLimit);
-
-        return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
+                                             final CpsPathQuery cpsPathQuery,
+                                             final int queryResultLimit) {
+        addSearchPrefix(cpsPathQuery);
+        addWhereClauseForAnchor(anchorEntity);
+        addNodeSearchConditions(cpsPathQuery, false);
+        addSearchSuffix(cpsPathQuery);
+        addLimitClause(queryResultLimit);
+        return getQuery(FragmentEntity.class);
     }
 
     /**
@@ -85,19 +80,15 @@ public class FragmentQueryBuilder {
     public Query getQueryForDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                 final CpsPathQuery cpsPathQuery,
                                                 final List<Long> anchorIdsForPagination) {
-        final StringBuilder sqlStringBuilder = new StringBuilder();
-        final Map<String, Object> queryParameters = new HashMap<>();
-
-        addSearchPrefix(cpsPathQuery, sqlStringBuilder);
+        addSearchPrefix(cpsPathQuery);
         if (anchorIdsForPagination.isEmpty()) {
-            addWhereClauseForDataspace(dataspaceEntity, sqlStringBuilder, queryParameters);
+            addWhereClauseForDataspace(dataspaceEntity);
         } else {
-            addWhereClauseForAnchorIds(anchorIdsForPagination, sqlStringBuilder, queryParameters);
+            addWhereClauseForAnchorIds(anchorIdsForPagination);
         }
-        addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, true);
-        addSearchSuffix(cpsPathQuery, sqlStringBuilder, queryParameters);
-
-        return getQuery(sqlStringBuilder.toString(), queryParameters, FragmentEntity.class);
+        addNodeSearchConditions(cpsPathQuery, true);
+        addSearchSuffix(cpsPathQuery);
+        return getQuery(FragmentEntity.class);
     }
 
     /**
@@ -110,61 +101,45 @@ public class FragmentQueryBuilder {
     public Query getQueryForAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
                                                    final CpsPathQuery cpsPathQuery,
                                                    final PaginationOption paginationOption) {
-        final StringBuilder sqlStringBuilder = new StringBuilder();
-        final Map<String, Object> queryParameters = new HashMap<>();
-
         sqlStringBuilder.append("SELECT distinct(fragment.anchor_id) FROM fragment");
-        addWhereClauseForDataspace(dataspaceEntity, sqlStringBuilder, queryParameters);
-        addNodeSearchConditions(cpsPathQuery, sqlStringBuilder, queryParameters, true);
+        addWhereClauseForDataspace(dataspaceEntity);
+        addNodeSearchConditions(cpsPathQuery, true);
         sqlStringBuilder.append(" ORDER BY fragment.anchor_id");
-        addPaginationCondition(sqlStringBuilder, queryParameters, paginationOption);
-
-        return getQuery(sqlStringBuilder.toString(), queryParameters, Long.class);
+        addPaginationCondition(paginationOption);
+        return getQuery(Long.class);
     }
 
-    private Query getQuery(final String sql, final Map<String, Object> queryParameters, final Class<?> returnType) {
-        final Query query = entityManager.createNativeQuery(sql, returnType);
+    private Query getQuery(final Class<?> returnType) {
+        final Query query = entityManager.createNativeQuery(sqlStringBuilder.toString(), returnType);
         queryParameters.forEach(query::setParameter);
         return query;
     }
 
-    private static void addWhereClauseForAnchor(final AnchorEntity anchorEntity,
-                                                final StringBuilder sqlStringBuilder,
-                                                final Map<String, Object> queryParameters) {
+    private void addWhereClauseForAnchor(final AnchorEntity anchorEntity) {
         sqlStringBuilder.append(" WHERE anchor_id = :anchorId");
         queryParameters.put("anchorId", anchorEntity.getId());
     }
 
-    private static void addWhereClauseForAnchorIds(final List<Long> anchorIdsForPagination,
-                                                   final StringBuilder sqlStringBuilder,
-                                                   final Map<String, Object> queryParameters) {
+    private void addWhereClauseForAnchorIds(final List<Long> anchorIdsForPagination) {
         sqlStringBuilder.append(" WHERE anchor_id IN (:anchorIdsForPagination)");
         queryParameters.put("anchorIdsForPagination", anchorIdsForPagination);
     }
 
-    private static void addWhereClauseForDataspace(final DataspaceEntity dataspaceEntity,
-                                                   final StringBuilder sqlStringBuilder,
-                                                   final Map<String, Object> queryParameters) {
+    private void addWhereClauseForDataspace(final DataspaceEntity dataspaceEntity) {
         sqlStringBuilder.append(" JOIN anchor ON anchor.id = fragment.anchor_id WHERE dataspace_id = :dataspaceId");
         queryParameters.put("dataspaceId", dataspaceEntity.getId());
     }
 
-    private static void addNodeSearchConditions(final CpsPathQuery cpsPathQuery,
-                                                final StringBuilder sqlStringBuilder,
-                                                final Map<String, Object> queryParameters,
-                                                final boolean acrossAnchors) {
-        addAbsoluteParentXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, acrossAnchors);
+    private void addNodeSearchConditions(final CpsPathQuery cpsPathQuery, final boolean acrossAnchors) {
+        addAbsoluteParentXpathSearchCondition(cpsPathQuery, acrossAnchors);
         sqlStringBuilder.append(" AND ");
-        addXpathSearchCondition(cpsPathQuery, sqlStringBuilder, queryParameters, "baseXpath");
-        addLeafConditions(cpsPathQuery, sqlStringBuilder);
-        addTextFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
-        addContainsFunctionCondition(cpsPathQuery, sqlStringBuilder, queryParameters);
+        addXpathSearchCondition(cpsPathQuery, "baseXpath");
+        addLeafConditions(cpsPathQuery);
+        addTextFunctionCondition(cpsPathQuery);
+        addContainsFunctionCondition(cpsPathQuery);
     }
 
-    private static void addXpathSearchCondition(final CpsPathQuery cpsPathQuery,
-                                                final StringBuilder sqlStringBuilder,
-                                                final Map<String, Object> queryParameters,
-                                                final String parameterName) {
+    private void addXpathSearchCondition(final CpsPathQuery cpsPathQuery, final String parameterName) {
         queryParameters.put(parameterName, escapeXpathForSqlLike(cpsPathQuery));
         final String sqlForXpathLikeContainerOrList = """
                 (
@@ -195,10 +170,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addAbsoluteParentXpathSearchCondition(final CpsPathQuery cpsPathQuery,
-                                                              final StringBuilder sqlStringBuilder,
-                                                              final Map<String, Object> queryParameters,
-                                                              final boolean acrossAnchors) {
+    private void addAbsoluteParentXpathSearchCondition(final CpsPathQuery cpsPathQuery, final boolean acrossAnchors) {
         if (CpsPathPrefixType.ABSOLUTE.equals(cpsPathQuery.getCpsPathPrefixType())) {
             if (cpsPathQuery.getNormalizedParentPath().isEmpty()) {
                 sqlStringBuilder.append(" AND parent_id IS NULL");
@@ -214,9 +186,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addPaginationCondition(final StringBuilder sqlStringBuilder,
-                                               final Map<String, Object> queryParameters,
-                                               final PaginationOption paginationOption) {
+    private void addPaginationCondition(final PaginationOption paginationOption) {
         if (PaginationOption.NO_PAGINATION != paginationOption) {
             final Integer offset = (paginationOption.getPageIndex() - 1) * paginationOption.getPageSize();
             sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
@@ -225,9 +195,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addLimitClause(final StringBuilder sqlStringBuilder,
-                                       final Map<String, Object> queryParameters,
-                                       final int queryResultLimit) {
+    private void addLimitClause(final int queryResultLimit) {
         if (queryResultLimit > 0) {
             sqlStringBuilder.append(" LIMIT :queryResultLimit");
             queryParameters.put("queryResultLimit", queryResultLimit);
@@ -242,7 +210,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addLeafConditions(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+    private void addLeafConditions(final CpsPathQuery cpsPathQuery) {
         if (cpsPathQuery.hasLeafConditions()) {
             sqlStringBuilder.append(" AND (");
             final Queue<String> booleanOperatorsQueue = new LinkedList<>(cpsPathQuery.getBooleanOperators());
@@ -272,9 +240,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addTextFunctionCondition(final CpsPathQuery cpsPathQuery,
-                                                 final StringBuilder sqlStringBuilder,
-                                                 final Map<String, Object> queryParameters) {
+    private void addTextFunctionCondition(final CpsPathQuery cpsPathQuery) {
         if (cpsPathQuery.hasTextFunctionCondition()) {
             sqlStringBuilder.append(" AND (");
             sqlStringBuilder.append("attributes @> jsonb_build_object(:textLeafName, :textValue)");
@@ -293,9 +259,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addContainsFunctionCondition(final CpsPathQuery cpsPathQuery,
-                                                     final StringBuilder sqlStringBuilder,
-                                                     final Map<String, Object> queryParameters) {
+    private void addContainsFunctionCondition(final CpsPathQuery cpsPathQuery) {
         if (cpsPathQuery.hasContainsFunctionCondition()) {
             sqlStringBuilder.append(" AND attributes ->> :containsLeafName LIKE CONCAT('%',:containsValue,'%') ");
             queryParameters.put("containsLeafName", cpsPathQuery.getContainsFunctionConditionLeafName());
@@ -304,7 +268,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addSearchPrefix(final CpsPathQuery cpsPathQuery, final StringBuilder sqlStringBuilder) {
+    private void addSearchPrefix(final CpsPathQuery cpsPathQuery) {
         if (cpsPathQuery.hasAncestorAxis()) {
             sqlStringBuilder.append("""
                 WITH RECURSIVE ancestors AS (
@@ -316,9 +280,7 @@ public class FragmentQueryBuilder {
         }
     }
 
-    private static void addSearchSuffix(final CpsPathQuery cpsPathQuery,
-                                        final StringBuilder sqlStringBuilder,
-                                        final Map<String, Object> queryParameters) {
+    private void addSearchSuffix(final CpsPathQuery cpsPathQuery) {
         if (cpsPathQuery.hasAncestorAxis()) {
             sqlStringBuilder.append("""
                           )
@@ -332,19 +294,17 @@ public class FragmentQueryBuilder {
 
             final String ancestorPath = DESCENDANT_PATH + cpsPathQuery.getAncestorSchemaNodeIdentifier();
             final CpsPathQuery ancestorCpsPathQuery = CpsPathUtil.getCpsPathQuery(ancestorPath);
-            addAncestorNodeSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters);
+            addAncestorNodeSearchCondition(ancestorCpsPathQuery);
         }
     }
 
-    private static void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery,
-                                                       final StringBuilder sqlStringBuilder,
-                                                       final Map<String, Object> queryParameters) {
+    private void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery) {
         if (ancestorCpsPathQuery.hasLeafConditions()) {
             final String pathWithoutSlashes = ancestorCpsPathQuery.getNormalizedXpath().substring(2);
             queryParameters.put("ancestorXpath", "%/" + EscapeUtils.escapeForSqlLike(pathWithoutSlashes));
             sqlStringBuilder.append(" xpath LIKE :ancestorXpath");
         } else {
-            addXpathSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters, "ancestorXpath");
+            addXpathSearchCondition(ancestorCpsPathQuery, "ancestorXpath");
         }
     }
 
