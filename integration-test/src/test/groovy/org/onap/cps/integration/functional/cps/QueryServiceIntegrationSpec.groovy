@@ -251,6 +251,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             scenario                                    | cpsPath                                               || expectedXPaths
             'multiple list-ancestors'                   | '//books/ancestor::categories'                        || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]
             'one ancestor with list value'              | '//books/ancestor::categories[@code="1"]'             || ["/bookstore/categories[@code='1']"]
+            'one ancestor with non-key list value'      | '//books/ancestor::categories[@name="Children"]'      || ["/bookstore/categories[@code='1']"]
             'top ancestor'                              | '//books/ancestor::bookstore'                         || ["/bookstore"]
             'list with index value in the xpath prefix' | '//categories[@code="1"]/books/ancestor::bookstore'   || ["/bookstore"]
             'ancestor with parent list'                 | '//books/ancestor::bookstore/categories'              || ["/bookstore/categories[@code='1']", "/bookstore/categories[@code='2']", "/bookstore/categories[@code='3']", "/bookstore/categories[@code='4']", "/bookstore/categories[@code='5']"]

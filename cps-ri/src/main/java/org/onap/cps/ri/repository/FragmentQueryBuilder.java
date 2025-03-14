@@ -284,13 +284,8 @@ public class FragmentQueryBuilder {
     }
 
     private void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery) {
-        if (ancestorCpsPathQuery.hasLeafConditions()) {
-            final String pathWithoutSlashes = ancestorCpsPathQuery.getNormalizedXpath().substring(2);
-            queryParameters.put("ancestorXpath", "%/" + EscapeUtils.escapeForSqlLike(pathWithoutSlashes));
-            sqlStringBuilder.append(" xpath LIKE :ancestorXpath");
-        } else {
-            addXpathSearchCondition(ancestorCpsPathQuery, "ancestorXpath");
-        }
+        addXpathSearchCondition(ancestorCpsPathQuery, "ancestorXpath");
+        addLeafConditions(ancestorCpsPathQuery);
     }
 
     private static <V> String substitute(final String template, final Map<String, V> valueMap) {
