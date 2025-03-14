@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1bbdce_5d761e37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-14T13:34:14Z",
+      "side": 1,
+      "message": "Blocker: Missing jira ticket",
+      "revId": "b57a9e195a6527abe5c6924a3618cfc4a2f40973",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5d65943_0fc63516",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-14T13:34:14Z",
+      "side": 1,
+      "message": "Don\u0027t forget to also update the DMI stub to remove the limit on the number of parallel connections. With these 25 reads + 13 writes + 1 legacy async, we might exceed configured connection limit of 25 in DMI stub, which would degrade performance in our tests.\nSimplest thing would be to remove the jetty connection limit.",
+      "revId": "b57a9e195a6527abe5c6924a3618cfc4a2f40973",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
