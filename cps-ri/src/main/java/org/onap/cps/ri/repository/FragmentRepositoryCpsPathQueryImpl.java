@@ -47,7 +47,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                                                        final CpsPathQuery cpsPathQuery,
                                                        final int queryResultLimit) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery);
+                .cpsPathQuery(cpsPathQuery)
+                .inAnchor(anchorEntity.getId())
+                .build();
         if (queryResultLimit > 0) {
             query.setMaxResults(queryResultLimit);
             log.debug("Result limited to {} entries", queryResultLimit);
@@ -62,7 +64,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
                                                           final CpsPathQuery cpsPathQuery) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForDataspaceAndCpsPath(dataspaceEntity, cpsPathQuery);
+                .cpsPathQuery(cpsPathQuery)
+                .inDataspace(dataspaceEntity.getId())
+                .build();
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;
@@ -73,7 +77,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     public List<FragmentEntity> findByAnchorIdsAndCpsPath(final List<Long> anchorIds,
                                                           final CpsPathQuery cpsPathQuery) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForAnchorIdsAndCpsPath(anchorIds, cpsPathQuery);
+                .cpsPathQuery(cpsPathQuery)
+                .inAnchors(anchorIds)
+                .build();
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across some anchors.", fragmentEntities.size());
         return fragmentEntities;
@@ -85,7 +91,9 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                                                  final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForAnchorIdsForPagination(dataspaceEntity, cpsPathQuery);
+                .cpsPathQuery(cpsPathQuery)
+                .inDataspace(dataspaceEntity.getId())
+                .buildQueryForAnchorIdsForPagination();
         if (PaginationOption.NO_PAGINATION != paginationOption) {
             final int offset = (paginationOption.getPageIndex() - 1) * paginationOption.getPageSize();
             query.setFirstResult(offset);
