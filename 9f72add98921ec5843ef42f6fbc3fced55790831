@@ -33,6 +33,41 @@
       "message": "any reason to hardcode these value ??",
       "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1eb6678_e7f969c6",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-14T18:15:37Z",
+      "side": 1,
+      "message": "Basically most variables in the test.properties file were unused. And the values defined here will likely not change in future now that everything is running in same docker network (internal host/ports are used). I can bring back test.properties file if you prefer.",
+      "parentUuid": "7d70f552_71686191",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aedbf371_562ddfa4",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-14T18:15:37Z",
+      "side": 1,
+      "message": "Priyank left previous comment about splitting SDNC and PNFsim into a different docker-compose file to avoid polluting this file. I disagree on a few grounds:\n- SDNC is a *direct* dependency of ONAP DMI Plugin. It is very hard to troubleshoot issues without being able to run the components together. Splitting SDNC from DMI Plugin makes no sense to me.\n- There are many components other here like jaeger-gui, kafka-ui, grafana, etc. which are not directly needed, and yet they do not pollute the main file?\n\nWe can discuss further with the team to agree a solution, but I prefer having everything docker-related in the main file, or at least in docker-compose folder.",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
