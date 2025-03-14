@@ -47,12 +47,13 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                                                        final CpsPathQuery cpsPathQuery,
                                                        final int queryResultLimit) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery, queryResultLimit);
-        final List<FragmentEntity> fragmentEntities = query.getResultList();
-        log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
+                .getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery);
         if (queryResultLimit > 0) {
+            query.setMaxResults(queryResultLimit);
             log.debug("Result limited to {} entries", queryResultLimit);
         }
+        final List<FragmentEntity> fragmentEntities = query.getResultList();
+        log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         return fragmentEntities;
     }
 
@@ -84,7 +85,12 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                                                  final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
         final Query query = new FragmentQueryBuilder(entityManager)
-                .getQueryForAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, paginationOption);
+                .getQueryForAnchorIdsForPagination(dataspaceEntity, cpsPathQuery);
+        if (PaginationOption.NO_PAGINATION != paginationOption) {
+            final int offset = (paginationOption.getPageIndex() - 1) * paginationOption.getPageSize();
+            query.setFirstResult(offset);
+            query.setMaxResults(paginationOption.getPageSize());
+        }
         return query.getResultList();
     }
 

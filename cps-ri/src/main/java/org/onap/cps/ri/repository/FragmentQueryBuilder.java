@@ -31,7 +31,6 @@ import java.util.Queue;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.StringSubstitutor;
 import org.onap.cps.api.exceptions.CpsPathException;
-import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
@@ -50,23 +49,18 @@ public class FragmentQueryBuilder {
     private final Map<String, Object> queryParameters = new HashMap<>();
 
     /**
-     * Create a sql query to retrieve by anchor and cps path with an optional limit on results.
+     * Create a sql query to retrieve by anchor and cps path.
      *
      * @param anchorEntity the anchor
      * @param cpsPathQuery the cps path query to be transformed into a sql query
-     * @param queryResultLimit queryResultLimit number of returned entities
-     *              (if the queryResultLimit is less than 1 the method returns all related entities)
-     *
      * @return a executable query object
      */
     public Query getQueryForAnchorAndCpsPath(final AnchorEntity anchorEntity,
-                                             final CpsPathQuery cpsPathQuery,
-                                             final int queryResultLimit) {
+                                             final CpsPathQuery cpsPathQuery) {
         addSearchPrefix(cpsPathQuery);
         addWhereClauseForAnchor(anchorEntity);
         addNodeSearchConditions(cpsPathQuery, false);
         addSearchSuffix(cpsPathQuery);
-        addLimitClause(queryResultLimit);
         return getQuery(FragmentEntity.class);
     }
 
@@ -102,20 +96,17 @@ public class FragmentQueryBuilder {
     }
 
     /**
-     * Get query for dataspace, cps path, page index and page size.
+     * Get query for dataspace and cps path, returning anchor ids.
      * @param dataspaceEntity data space entity
      * @param cpsPathQuery cps path query
-     * @param paginationOption pagination option
      * @return query for given dataspace, cps path and pagination parameters
      */
     public Query getQueryForAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
-                                                   final CpsPathQuery cpsPathQuery,
-                                                   final PaginationOption paginationOption) {
+                                                   final CpsPathQuery cpsPathQuery) {
         sqlStringBuilder.append("SELECT distinct(fragment.anchor_id) FROM fragment");
         addWhereClauseForDataspace(dataspaceEntity);
         addNodeSearchConditions(cpsPathQuery, true);
         sqlStringBuilder.append(" ORDER BY fragment.anchor_id");
-        addPaginationCondition(paginationOption);
         return getQuery(Long.class);
     }
 
@@ -193,22 +184,6 @@ public class FragmentQueryBuilder {
                 }
                 queryParameters.put("parentXpath", cpsPathQuery.getNormalizedParentPath());
             }
-        }
-    }
-
-    private void addPaginationCondition(final PaginationOption paginationOption) {
-        if (PaginationOption.NO_PAGINATION != paginationOption) {
-            final Integer offset = (paginationOption.getPageIndex() - 1) * paginationOption.getPageSize();
-            sqlStringBuilder.append(" LIMIT :pageSize OFFSET :offset");
-            queryParameters.put("pageSize", paginationOption.getPageSize());
-            queryParameters.put("offset", offset);
-        }
-    }
-
-    private void addLimitClause(final int queryResultLimit) {
-        if (queryResultLimit > 0) {
-            sqlStringBuilder.append(" LIMIT :queryResultLimit");
-            queryParameters.put("queryResultLimit", queryResultLimit);
         }
     }
 
