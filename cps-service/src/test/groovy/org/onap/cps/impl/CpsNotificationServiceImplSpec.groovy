@@ -110,7 +110,7 @@ class CpsNotificationServiceImplSpec extends Specification {
         when: 'delete notification subscription is called'
             def result =  objectUnderTest.getNotificationSubscription(xpath)
         then: 'the result is a json representation of the data node(s) returned by the data persistence service'
-            assert result.get(0).toString() == '{path={leaf=dataspace, leafList=[ds01, ds02]}}'
+            assert result.get(0).toString() == '[path:[[leaf:dataspace, leafList:[ds01, ds02]]]]'
     }
 
     def 'is notification enabled for given anchor'() {

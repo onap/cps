@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,9 +69,10 @@ class CpsFacadeImplSpec extends Specification {
         when: 'get data node by dataspace and anchor'
             def result = objectUnderTest.getDataNodesByAnchor('my dataspace', 'my anchor', 'my path', myFetchDescendantsOption)
         then: 'all nodes (from the data service result) are returned'
-            assert result.size() == 2
-            assert result[0].keySet()[0] == 'prefix1:path1'
-            assert result[1].keySet()[0] == 'prefix2:path2'
+            assert result.size() == 1
+            assert result[0]  instanceof Map
+            assert result[0].containsKey('prefix1:path1')
+            assert result[0].containsKey('prefix2:path2')
     }
 
     def 'Execute anchor query.'() {
@@ -79,9 +81,9 @@ class CpsFacadeImplSpec extends Specification {
         when: 'get data node by dataspace and anchor'
             def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '/my/path', myFetchDescendantsOption)
         then: 'all nodes (from the query service result) are returned'
-            assert result.size() == 2
-            assert result[0].keySet()[0] == 'prefix1:path1'
-            assert result[1].keySet()[0] == 'prefix2:path2'
+            assert result.size() == 1
+            assert result[0].containsKey('prefix1:path1')
+            assert result[0].containsKey('prefix2:path2')
     }
 
     def 'Execute anchor query with attribute-axis.'() {
