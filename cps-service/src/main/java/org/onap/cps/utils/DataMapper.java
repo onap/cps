@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation.
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@ package org.onap.cps.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +66,7 @@ public class DataMapper {
     public List<Map<String, Object>> toDataMaps(final String dataspaceName, final String anchorName,
                                                 final Collection<DataNode> dataNodes) {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        return toDataMaps(anchor, dataNodes);
+        return toDataMapsWithIdentifier(anchor, dataNodes);
     }
 
     /**
@@ -104,6 +106,24 @@ public class DataMapper {
             dataNodesAsMaps.add(dataNodeAsMap);
         }
         return dataNodesAsMaps;
+    }
+
+    /**
+     * Convert a collection of data nodes to a list of data maps with Identifier.
+     *
+     * @param anchor        the anchor
+     * @param dataNodes     the data nodes to convert
+     * @return a list of maps representing the data nodes
+     */
+
+    public List<Map<String, Object>> toDataMapsWithIdentifier(final Anchor anchor,
+                                                              final Collection<DataNode> dataNodes) {
+        final Map<String, List<Map<String, Object>>> dataMaps = new HashMap<>();
+        for (final DataNode dataNode : dataNodes) {
+            final String prefix = prefixResolver.getPrefix(anchor, dataNode.getXpath());
+            DataMapUtils.toDataMapsWithIdentifier(dataNode, prefix, dataMaps);
+        }
+        return  List.of(Collections.unmodifiableMap(new HashMap<>(dataMaps)));
     }
 
     /**
