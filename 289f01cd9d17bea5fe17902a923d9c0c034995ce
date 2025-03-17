@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "452796ba_8408cd98",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-17T07:49:31Z",
+      "side": 1,
+      "message": "Used ObjectMapper so that in can able to call this method. let me know if any changes needed",
+      "parentUuid": "c475f989_9f7729c0",
+      "range": {
+        "startLine": 227,
+        "startChar": 25,
+        "endLine": 227,
+        "endChar": 81
+      },
+      "revId": "289f01cd9d17bea5fe17902a923d9c0c034995ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23e9b4dd_7bc78b11",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-12T10:04:43Z",
       "side": 1,
       "message": "this can be part of a method.",
+      "range": {
+        "startLine": 222,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 9
+      },
+      "revId": "289f01cd9d17bea5fe17902a923d9c0c034995ce",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "454dd9ed_271e8585",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-17T07:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23e9b4dd_7bc78b11",
       "range": {
         "startLine": 222,
         "startChar": 8,
