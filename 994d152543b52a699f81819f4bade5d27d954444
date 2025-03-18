@@ -34,6 +34,126 @@
       "parentUuid": "ae20d4d6_23d4f711",
       "revId": "994d152543b52a699f81819f4bade5d27d954444",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d917c759_96b308c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "Sourabh , Halil and Myself did a group review of the same and we came up with the below comments.\nSummary : Doing it using the Spring way would be easier and efficient , if you have any other thoughts we can have a discussion around it.",
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5566b07_30ac68d8",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "Should be managed by Spring boot. Bring back the component here.",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f660ad0_c15d29a1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "Annotate with  @PersistenceContext",
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce959a48_16ed9e80",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "should also be managed by Spring",
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89470789_d4ceb22e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "no need of this here.\nJust inject the FragmentQueryBuilder here and use below.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 40
+      },
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "063c7f38_9ed8bdb7",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T16:41:23Z",
+      "side": 1,
+      "message": "fragmentQueryBuilder injected above.",
+      "range": {
+        "startLine": 49,
+        "startChar": 28,
+        "endLine": 49,
+        "endChar": 67
+      },
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
