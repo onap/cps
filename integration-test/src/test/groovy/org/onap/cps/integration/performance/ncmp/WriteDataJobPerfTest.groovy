@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Nordix Foundation
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Ignore
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executors
 
 /**
  * This test does not depend on common performance test data. Hence it just extends the integration spec base.
@@ -36,8 +38,6 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
 
     @Autowired
     DataJobService dataJobService
-
-    def resourceMeter = new ResourceMeter()
 
     def populateDataJobWriteRequests(int numberOfWriteOperations) {
         def writeOperations = []
@@ -53,15 +53,60 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
     @Ignore  // CPS-2691
     def 'Performance test for writeDataJob method'() {
         given: 'register 10_000 cm handles (with alternative ids)'
-        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 10_000, 1, ModuleNameStrategy.UNIQUE, { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
+            registerTestCmHandles(10_000)
             def dataJobWriteRequest = populateDataJobWriteRequests(10_000)
         when: 'sending a write job to NCMP with dynamically generated write operations'
-            resourceMeter.start()
-            dataJobService.writeDataJob('', '', new DataJobMetadata('d1', '', ''), dataJobWriteRequest)
-            resourceMeter.stop()
+            def executionResult = executeWriteJob('d1', dataJobWriteRequest)
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2691'
-            println "*** CPS-2691 Execution time: ${resourceMeter.totalTimeInSeconds} seconds"
+            println "*** CPS-2691 Execution time: ${executionResult.executionTime} seconds | Memory usage: ${executionResult.memoryUsage} MB"
         cleanup: 'deregister test cm handles'
-            deregisterSequenceOfCmHandles(DMI1_URL, 10_000, 1)
+            deregisterTestCmHandles(10_000)
+    }
+
+    @Ignore  // CPS-2692
+    def 'Performance test for writeDataJob method with 10 parallel requests'() {
+        given: 'register 10_000 cm handles (with alternative ids)'
+            registerTestCmHandles(1_000)
+        when: 'sending 10 parallel write jobs to NCMP'
+            def executionResults = executeParallelWriteJobs(10, 1_000)
+        then: 'record execution times'
+            executionResults.eachWithIndex { result, index ->
+                logExecutionResults("CPS-2691 Job-${index + 1}", result)
+            }
+        cleanup: 'deregister test cm handles'
+            deregisterSequenceOfCmHandles(DMI1_URL, 1_000, 1)
+    }
+
+    def registerTestCmHandles(numberOfCmHandles) {
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(
+                DMI1_URL, "tagA", numberOfCmHandles, 1, ModuleNameStrategy.UNIQUE,
+                { "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" }
+        )
+    }
+
+    def executeParallelWriteJobs(numberOfJobs, numberOfWriteOperations) {
+        def executorService = Executors.newFixedThreadPool(numberOfJobs)
+        def futures = (0..<numberOfJobs).collect { jobId ->
+            CompletableFuture.supplyAsync({ -> executeWriteJob(jobId, populateDataJobWriteRequests(numberOfWriteOperations)) }, executorService)
+        }
+        def executionResults = futures.collect { it.join() }
+        executorService.shutdown()
+        return executionResults
+    }
+
+    def executeWriteJob(jobId, dataJobWriteRequest) {
+        def localMeter = new ResourceMeter()
+        localMeter.start()
+        dataJobService.writeDataJob('', '', new DataJobMetadata("job-${jobId}", '', ''), dataJobWriteRequest)
+        localMeter.stop()
+        ['executionTime': localMeter.totalTimeInSeconds, 'memoryUsage': localMeter.totalMemoryUsageInMB]
+    }
+
+    def logExecutionResults(jobId, result) {
+        println "*** ${jobId} Execution time: ${result.executionTime} seconds | Memory usage: ${result.memoryUsage} MB"
+    }
+
+    def deregisterTestCmHandles(numberOfCmHandles) {
+        deregisterSequenceOfCmHandles(DMI1_URL, numberOfCmHandles, 1)
     }
 }
