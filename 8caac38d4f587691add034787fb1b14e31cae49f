@@ -46,6 +46,30 @@
       },
       "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b6f09a_2af6ef6a",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T15:39:38Z",
+      "side": 1,
+      "message": "Agree with you, DO NOT use @Transactional if executing a single SQL query per method call.",
+      "parentUuid": "13d360cb_02a83693",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
