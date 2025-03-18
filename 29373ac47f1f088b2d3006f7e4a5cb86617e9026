@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d27683c_4bd20b71",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-03-18T15:06:31Z",
+      "side": 1,
+      "message": "NB: Just \u00275\u0027 is needed now",
+      "range": {
+        "startLine": 116,
+        "startChar": 29,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6b16efc_4ffa6e28",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-03-18T15:06:31Z",
+      "side": 1,
+      "message": "NB: same as previous comment",
+      "range": {
+        "startLine": 117,
+        "startChar": 29,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
