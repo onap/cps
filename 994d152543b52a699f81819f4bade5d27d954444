@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae20d4d6_23d4f711",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-18T13:47:06Z",
+      "side": 1,
+      "message": "NB: You have now two EntityManager: one for FragmentRepositoryCpsPathQueryImpl and another for FragmentQueryBuilder. \n\nInterestingly, one (FragmentRepositoryCpsPathQueryImpl) is annotated with @PersistenceContext while the other one (FragmentQueryBuilder) not.\n\nIn the original implementation there was only one EntityManager annotated with @PersistenceContext.\n\nI got confused about the usage of EntityManager. Can you please explain why we have two EntityManager with \u0026 without @PersistenceContext.",
+      "revId": "994d152543b52a699f81819f4bade5d27d954444",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
