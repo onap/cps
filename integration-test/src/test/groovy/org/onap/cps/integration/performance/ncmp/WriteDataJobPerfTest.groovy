@@ -28,6 +28,10 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Ignore
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.stream.Collectors
 
 /**
  * This test does not depend on common performance test data. Hence it just extends the integration spec base.
@@ -53,7 +57,8 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
     @Ignore  // CPS-2691
     def 'Performance test for writeDataJob method'() {
         given: 'register 10_000 cm handles (with alternative ids)'
-        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 10_000, 1, ModuleNameStrategy.UNIQUE, { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
+            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 10_000, 1, ModuleNameStrategy.UNIQUE,
+                { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
             def dataJobWriteRequest = populateDataJobWriteRequests(10_000)
         when: 'sending a write job to NCMP with dynamically generated write operations'
             resourceMeter.start()
@@ -61,7 +66,51 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
             resourceMeter.stop()
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2691'
             println "*** CPS-2691 Execution time: ${resourceMeter.totalTimeInSeconds} seconds"
+            println "*** CPS-2691 Memory usage: ${resourceMeter.totalMemoryUsageInMB} MB"
         cleanup: 'deregister test cm handles'
             deregisterSequenceOfCmHandles(DMI1_URL, 10_000, 1)
+    }
+
+     @Ignore  // CPS-2692
+    def 'Performance test for writeDataJob method with 10 parallel requests'() {
+        given: 'register 10_000 cm handles (with alternative ids)'
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, "tagA", 1_000, 1, ModuleNameStrategy.UNIQUE,
+                { it -> "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${it}/ManagedElement=MyManagedElement${it}" })
+
+        when: 'sending 10 parallel write jobs to NCMP'
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        List<CompletableFuture<Map<String, Double>>> futures = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            int jobId = i;
+            CompletableFuture<Map<String, Double>> future = CompletableFuture.supplyAsync(() -> {
+                DataJobWriteRequest dataJobWriteRequest = populateDataJobWriteRequests(1_000);
+
+                ResourceMeter localMeter = new ResourceMeter();
+                localMeter.start();
+                dataJobService.writeDataJob('', '', new DataJobMetadata("job-${jobId}", '', ''), dataJobWriteRequest);
+                localMeter.stop();
+
+                Map<String, Double> result = new HashMap<>();
+                result.put('executionTime', localMeter.totalTimeInSeconds);
+                result.put('memoryUsage', localMeter.totalMemoryUsageInMB);
+
+                return result;
+            }, executorService) as CompletableFuture<Map<String, Double>>;
+            futures.add(future);
+        }
+        // Wait for all requests to complete and gather execution times
+        List<Map<String, Double>> executionResults = futures.stream()
+                .map(future -> (Map<String, Double>) future.join())
+                .collect(Collectors.toList());
+        then: 'record execution times'
+        for (int i = 0; i < executionResults.size(); i++) {
+            Map<String, Double> result = executionResults.get(i)
+            println "*** CPS-2691 Job-${(i + 1)} Execution time: ${result.get('executionTime')} seconds"
+            println "*** CPS-2691 Job-${(i + 1)} Execution time: ${result.get('memoryUsage')} MB"
+        }
+        cleanup: 'deregister test cm handles'
+        executorService.shutdown()
+        deregisterSequenceOfCmHandles(DMI1_URL, 1_000, 1)
     }
 }

@@ -29,7 +29,7 @@ public abstract class ServiceConfig {
     private String connectionProviderName = "";
     private int maximumInMemorySizeInMegabytes = 1;
     private int maximumConnectionsTotal = 1;
-    private int pendingAcquireMaxCount = 1;
+    private int pendingAcquireMaxCount = 10;
     private Integer connectionTimeoutInSeconds = 1;
     private long readTimeoutInSeconds = 1;
     private long writeTimeoutInSeconds = 1;
