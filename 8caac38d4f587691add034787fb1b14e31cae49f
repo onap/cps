@@ -22,6 +22,30 @@
       },
       "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d360cb_02a83693",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-18T15:04:43Z",
+      "side": 1,
+      "message": "I wonder if we even need transactions at all? We only execute a single SQL query in each case, what do you think?",
+      "parentUuid": "03fd8c8f_56078f4f",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
