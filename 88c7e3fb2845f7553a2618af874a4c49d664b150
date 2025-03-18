@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0e79b34_aac232f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-18T15:53:40Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "39653504_6a3cd4a1",
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3a3d86d_4d1c818d",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-03-18T10:57:06Z",
       "side": 1,
       "message": "any specific reason to use LinkedHashMap instead of HashMap?",
+      "range": {
+        "startLine": 121,
+        "startChar": 68,
+        "endLine": 121,
+        "endChar": 81
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7075a357_2beb4d4d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-18T15:53:40Z",
+      "side": 1,
+      "message": "To maintain insertion order",
+      "parentUuid": "c3a3d86d_4d1c818d",
       "range": {
         "startLine": 121,
         "startChar": 68,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e156933e_5716d808",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-18T15:53:40Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "014bd03a_e8903e14",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 22
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1c025c9_9c50c994",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-03-18T10:51:24Z",
       "side": 1,
       "message": "I see a very similar method on line #79\nSee if its the duplicate and you can reuse the same.",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a05e17_b9a93cd7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-18T15:53:40Z",
+      "side": 1,
+      "message": "toDataMaps- Returns a List\u003cMap\u003cString, Object\u003e\u003e, where each entry represents a single DataNode, Each DataNode is individually processed and converted into a Map\u003cString, Object\u003e, with its identifier as the key and its data as the value.\n\ntoDataMapsWithIdentifier- Returns a List\u003cMap\u003cString, List\u003cMap\u003cString, Object\u003e\u003e\u003e\u003e, where data nodes are grouped under their identifier. Instead of treating each DataNode separately, it groups nodes based on their parent identifier",
+      "parentUuid": "b1c025c9_9c50c994",
       "range": {
         "startLine": 119,
         "startChar": 4,
