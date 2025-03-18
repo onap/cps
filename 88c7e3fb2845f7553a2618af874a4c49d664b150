@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3a3d86d_4d1c818d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-18T10:57:06Z",
+      "side": 1,
+      "message": "any specific reason to use LinkedHashMap instead of HashMap?",
+      "range": {
+        "startLine": 121,
+        "startChar": 68,
+        "endLine": 121,
+        "endChar": 81
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014bd03a_e8903e14",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-03-18T10:57:06Z",
+      "side": 1,
+      "message": "NB: can use Collections.unmodifiableList",
+      "range": {
+        "startLine": 126,
+        "startChar": 15,
+        "endLine": 126,
+        "endChar": 22
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1c025c9_9c50c994",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
         "patchSetId": 16
