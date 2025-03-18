@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f196e08_8a7349a2",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T11:54:40Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

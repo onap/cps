@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1470c8f_c8cc07f7",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T11:54:40Z",
+      "side": 1,
+      "message": "Prefer to have test.properties. (Can be discussed with team)",
+      "parentUuid": "c1eb6678_e7f969c6",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aedbf371_562ddfa4",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "writtenOn": "2025-03-14T18:15:37Z",
       "side": 1,
       "message": "Priyank left previous comment about splitting SDNC and PNFsim into a different docker-compose file to avoid polluting this file. I disagree on a few grounds:\n- SDNC is a *direct* dependency of ONAP DMI Plugin. It is very hard to troubleshoot issues without being able to run the components together. Splitting SDNC from DMI Plugin makes no sense to me.\n- There are many components other here like jaeger-gui, kafka-ui, grafana, etc. which are not directly needed, and yet they do not pollute the main file?\n\nWe can discuss further with the team to agree a solution, but I prefer having everything docker-related in the main file, or at least in docker-compose folder.",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d78e33_26c4cb9c",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T11:54:40Z",
+      "side": 1,
+      "message": "NB: Our docker-compose.yml file has grown significantly, making it harder to maintain and understand. Here are some strategies to split and organize it effectively but as a part of seperate JITA task:\n\n\nExample Structure:\n\ndocker-compose/\n│── docker-compose.base.yml       # Common services (database, nginx, kafka, zookeeper)\n│── docker-compose.cps.yml        # CPS-related services\n│── docker-compose.dmi.yml        # DMI-related services\n│── docker-compose.sdnc.yml       # SDNC-related services\n│── docker-compose.override.yml   # Optional overrides for local development\n\n\nProfiles are already being used (dmi-service, dmi-stub, monitoring, etc.), but they can be structured better.\n\nCreate a base profile for essential services (dbpostgresql, nginx, kafka, zookeeper).\nDefine feature-specific profiles (dmi-service, cps, sdnc).\nUse overrides for testing if required.\n\n\n(Can be discussed with team)",
+      "parentUuid": "aedbf371_562ddfa4",
       "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
