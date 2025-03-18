@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39653504_6a3cd4a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T10:51:24Z",
+      "side": 1,
+      "message": "u have to provide more information abt the what inconsistency we are trying to solve.\nif its in a wiki page , can describe it in short or just link the wiki page.",
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c025c9_9c50c994",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T10:51:24Z",
+      "side": 1,
+      "message": "I see a very similar method on line #79\nSee if its the duplicate and you can reuse the same.",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
