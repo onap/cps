@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb100cba_0586d639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T11:28:52Z",
+      "side": 1,
+      "message": "also we might need to update the postman collection we already have.\nand since this is backward compatible change I assume DT is OK with this change.",
+      "revId": "deaf86f286c069f58df921cda98a25d14353ef6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2b280f6_1025416e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-18T11:28:52Z",
+      "side": 1,
+      "message": "No. we cant do this.\nWe already have JsonObjectMapper dependency.\nIf something is not present in that then maybe implement it over there and use that.\n\nAlso u dont need a static instance of the same. You can have a non static method to use the jsonObjectMapper as is.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "deaf86f286c069f58df921cda98a25d14353ef6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
