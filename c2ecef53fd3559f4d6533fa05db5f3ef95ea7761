@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4713a4e4_0cf7a05d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 0,
+      "message": "appendWhereClauseForSingleAnchor",
+      "range": {
+        "startLine": 119,
+        "startChar": 17,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "c2ecef53fd3559f4d6533fa05db5f3ef95ea7761",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

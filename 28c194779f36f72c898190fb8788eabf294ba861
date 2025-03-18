@@ -1,0 +1,372 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f87e3aa_b9b72894",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "withinDataspace",
+      "range": {
+        "startLine": 71,
+        "startChar": 32,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4319845_2a44dc27",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "withinAnchor",
+      "range": {
+        "startLine": 82,
+        "startChar": 32,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21fd1809_1a171e77",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "withinAnchors",
+      "range": {
+        "startLine": 93,
+        "startChar": 32,
+        "endLine": 93,
+        "endChar": 41
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b8a7bad_94b0306b",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "buildAnchorIdsPaginationQuery",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 52
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f160e0cc_f6a9ef80",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "createQuery",
+      "range": {
+        "startLine": 124,
+        "startChar": 18,
+        "endLine": 124,
+        "endChar": 26
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a797f39f_3a833d4e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendWhereClause",
+      "range": {
+        "startLine": 134,
+        "startChar": 17,
+        "endLine": 134,
+        "endChar": 31
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df3832da_1867778f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendWhereClauseForMultipleAnchors",
+      "range": {
+        "startLine": 142,
+        "startChar": 17,
+        "endLine": 142,
+        "endChar": 40
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28caa6ad_9fc50073",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendWhereClauseForDataspace",
+      "range": {
+        "startLine": 153,
+        "startChar": 17,
+        "endLine": 153,
+        "endChar": 43
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2f56e59_6e3125e2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendNodeSearchConditions",
+      "range": {
+        "startLine": 158,
+        "startChar": 17,
+        "endLine": 158,
+        "endChar": 40
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42f9fbb9_a23ca7b3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendXpathSearchCondition",
+      "range": {
+        "startLine": 167,
+        "startChar": 17,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f3337a3_180698ea",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendAbsoluteParentXpathCondition",
+      "range": {
+        "startLine": 198,
+        "startChar": 17,
+        "endLine": 198,
+        "endChar": 54
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37bbbb3f_b606cb7d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendTextFunctionCondition",
+      "range": {
+        "startLine": 252,
+        "startChar": 17,
+        "endLine": 252,
+        "endChar": 41
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b639705f_97fbea44",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendContainsFunctionCondition",
+      "range": {
+        "startLine": 271,
+        "startChar": 17,
+        "endLine": 271,
+        "endChar": 45
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d75d4c_a146f1a9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendAncestorNodeSearchCondition",
+      "range": {
+        "startLine": 310,
+        "startChar": 17,
+        "endLine": 310,
+        "endChar": 47
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d37bda1_5a475eb9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendXpathSearchCondition",
+      "range": {
+        "startLine": 311,
+        "startChar": 8,
+        "endLine": 311,
+        "endChar": 31
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4516ae95_07579436",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:16:58Z",
+      "side": 1,
+      "message": "appendLeafConditions",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 312,
+        "endChar": 25
+      },
+      "revId": "28c194779f36f72c898190fb8788eabf294ba861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
