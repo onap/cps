@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03fd8c8f_56078f4f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T12:11:09Z",
+      "side": 1,
+      "message": "Use @Transactional(readOnly \u003d true) for read-only operations. It optimizes performance by avoiding unnecessary transaction overhead and potential write locks.\n\n\nUse @Transactional (without readOnly \u003d true) only if the method modifies data (insert, update, delete).\n\nSame for all other methods in this class.",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
