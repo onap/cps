@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da74e936_ec56d2c3",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-18T13:28:44Z",
+      "side": 1,
+      "message": "NB:\n\nHere findByAnchorAndCpsPath method handles both builds the query and applies the limit.\n\nBetter approach: Move setMaxResults(queryResultLimit) logic to FragmentQueryBuilder, keeping this method focused on just fetching data.\n\nThis improves separation of concerns—query construction should happen in FragmentQueryBuilder, while findByAnchorAndCpsPath should only call and return the result.\n\nWe should ask team for their opinion as this approach",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 32
+      },
+      "revId": "7544f345fc0477429f3514eab6bd5b6ab5114e54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
