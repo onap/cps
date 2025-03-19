@@ -161,17 +161,6 @@ class InventoryPersistenceImplSpec extends Specification {
             assert results.size() == 0
     }
 
-    def "Retrieve multiple YangModelCmHandles using cm handle references"() {
-        given: 'the cps data service returns 2 data nodes from the DMI registry'
-            def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId, 'alternate-id':alternateId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2,'alternate-id':alternateId2])]
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(_, INCLUDE_ALL_DESCENDANTS, _) >> dataNodes
-        when: 'retrieving the yang modelled cm handle'
-            def results = objectUnderTest.getYangModelCmHandlesFromCmHandleReferences([cmHandleId, cmHandleId2])
-        then: 'verify both have returned and cmhandleIds are correct'
-            assert results.size() == 2
-            assert results.id.containsAll([cmHandleId, cmHandleId2])
-    }
-
     def 'Get a Cm Handle Composite State'() {
         given: 'a valid cm handle id'
             def cmHandleId = 'Some-Cm-Handle'

@@ -138,19 +138,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<YangModelCmHandle> getYangModelCmHandlesFromCmHandleReferences(
-        final Collection<String> cmHandleReferences) {
-
-        final String cpsPathForCmHandlesByReferences = getCpsPathForCmHandlesByReferences(cmHandleReferences);
-
-        final Collection<DataNode> cmHandlesAsDataNodes =
-            cmHandleQueryService.queryNcmpRegistryByCpsPath(
-                cpsPathForCmHandlesByReferences, INCLUDE_ALL_DESCENDANTS, cmHandleReferences.size());
-
-        return YangDataConverter.toYangModelCmHandles(cmHandlesAsDataNodes);
-    }
-
-    @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleId(final String cmHandleId) {
         return cpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
