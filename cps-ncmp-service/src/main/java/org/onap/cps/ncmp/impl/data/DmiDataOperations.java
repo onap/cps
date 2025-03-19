@@ -50,6 +50,7 @@ import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -69,6 +70,7 @@ import reactor.core.publisher.Mono;
 public class DmiDataOperations {
 
     private final InventoryPersistence inventoryPersistence;
+    private final AlternateIdMatcher alternateIdMatcher;
     private final JsonObjectMapper jsonObjectMapper;
     private final DmiProperties dmiProperties;
     private final DmiRestClient dmiRestClient;
@@ -140,10 +142,10 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Set<String> cmHandlesReferences = getDistinctCmHandleReferences(dataOperationRequest);
+        final Set<String> cmHandleIds = getDistinctCmHandleIds(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
-            = inventoryPersistence.getYangModelCmHandlesFromCmHandleReferences(cmHandlesReferences);
+            = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
 
         final Map<String, List<DmiDataOperation>> operationsOutPerDmiServiceName
                 = DmiDataOperationsHelper.processPerDefinitionInDataOperationsRequest(topicParamInQuery,
@@ -248,10 +250,11 @@ public class DmiDataOperations {
         }
     }
 
-    private static Set<String> getDistinctCmHandleReferences(final DataOperationRequest dataOperationRequest) {
+    private Set<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
-                .flatMap(dataOperationDefinition ->
-                        dataOperationDefinition.getCmHandleReferences().stream()).collect(Collectors.toSet());
+                .flatMap(def -> def.getCmHandleReferences().stream())
+                .map(alternateIdMatcher::getCmHandleId)
+                .collect(Collectors.toSet());
     }
 
     private void asyncSendMultipleRequest(final String requestId, final String topicParamInQuery,
