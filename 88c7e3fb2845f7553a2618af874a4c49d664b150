@@ -131,6 +131,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8ac971_ba528f44",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-19T14:30:17Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "5ada14b3_f7264b76",
+      "range": {
+        "startLine": 121,
+        "startChar": 68,
+        "endLine": 121,
+        "endChar": 81
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "014bd03a_e8903e14",
@@ -239,6 +263,30 @@
       "side": 1,
       "message": "Ahh. the method signature is same for both the case i.e List\u003cMap\u003cString,Object\u003e\u003e instead of List\u003cMap\u003cString, List\u003cMap\u003cString, Object\u003e\u003e\u003e\u003e",
       "parentUuid": "a5a05e17_b9a93cd7",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "88c7e3fb2845f7553a2618af874a4c49d664b150",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12766b00_cd0eed4a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-03-19T14:30:17Z",
+      "side": 1,
+      "message": "Yeah, using List\u003cMap\u003cString, List\u003cMap\u003cString, Object\u003e\u003e\u003e\u003e would make the grouping explicit, but it would also changes in how the data is accessed. Now, the method returns List\u003cMap\u003cString, Object\u003e\u003e to keep it consistent with how other methods of the code handle individual DataNodes. Changing this would make updating all the calling code to handle grouped data instead of a flat list.",
+      "parentUuid": "14128fcc_e9f0265e",
       "range": {
         "startLine": 119,
         "startChar": 4,
