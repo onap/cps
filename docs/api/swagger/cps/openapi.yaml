@@ -3181,15 +3181,8 @@ components:
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
         json:
-          example:
-            test:bookstore:
-              bookstore-name: Chapters
-              categories:
-              - code: 1
-                name: SciFi
-              - code: 2
-                name: kids
-          type: object
+          format: binary
+          type: string
         file:
           format: binary
           type: string
