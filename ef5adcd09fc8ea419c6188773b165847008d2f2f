@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7a0bd88_95f92a3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-19T17:32:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03618b32_d64dd6c1",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 91
+      },
+      "revId": "ef5adcd09fc8ea419c6188773b165847008d2f2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abbe2503_549bc3ac",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-19T17:00:17Z",
       "side": 1,
       "message": "doesn\u0027t need to be explicitly mentioned in commit message\n(unless the commit is only about changing testware)",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "ef5adcd09fc8ea419c6188773b165847008d2f2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c917fb7c_8a145ebb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-19T17:32:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abbe2503_549bc3ac",
       "range": {
         "startLine": 10,
         "startChar": 4,
