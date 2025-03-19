@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c067f82_1c0d5533",
+        "filename": "k6-tests/ncmp/register-cmhandles-only.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-19T17:18:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47e61f57_3bec25f6",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "e65a617b2a3ba9b055306300abd699a4709a751a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7cc638d_d608ba55",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7834c508_46dbda73",
+        "filename": "k6-tests/ncmp/register-cmhandles-only.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-19T17:18:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7cc638d_d608ba55",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 22
+      },
+      "revId": "e65a617b2a3ba9b055306300abd699a4709a751a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ba3ced6_34c9bcb2",
@@ -60,6 +108,24 @@
       "writtenOn": "2025-03-19T16:01:47Z",
       "side": 1,
       "message": "NB: For more readability I would move JSDoc upon the function.",
+      "revId": "e65a617b2a3ba9b055306300abd699a4709a751a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "540f33e1_f6f07a0a",
+        "filename": "k6-tests/ncmp/register-cmhandles-only.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-19T17:18:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ba3ced6_34c9bcb2",
       "revId": "e65a617b2a3ba9b055306300abd699a4709a751a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
