@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66811ff1_e040f22d",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-19T13:23:18Z",
+      "side": 1,
+      "message": "Agreed in A/C to keep 5b and 6b to avoid losing previous plot data",
+      "parentUuid": "0d27683c_4bd20b71",
+      "range": {
+        "startLine": 116,
+        "startChar": 29,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6b16efc_4ffa6e28",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-18T15:06:31Z",
       "side": 1,
       "message": "NB: same as previous comment",
+      "range": {
+        "startLine": 117,
+        "startChar": 29,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d28d365_7cee2dbf",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-19T13:23:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a6b16efc_4ffa6e28",
       "range": {
         "startLine": 117,
         "startChar": 29,
