@@ -109,7 +109,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def 'Execute (async) data operation from DMI service.'() {
         given: 'collection of yang model cm Handles and data operation request'
-            mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
+            mockYangModelCmHandleRetrievalByCmHandleId([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
@@ -126,7 +126,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def 'Execute (async) data operation from DMI service with Exception.'() {
         given: 'collection of yang model cm Handles and data operation request'
-            mockYangModelCmHandleCollectionRetrieval([yangModelCmHandleProperty])
+            mockYangModelCmHandleRetrievalByCmHandleId([yangModelCmHandleProperty])
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
