@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82b7c8c6_32f0330f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-19T16:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e659d5a_6901eeb2",
+      "revId": "7f4fad96058c344706af3cf626b1039a41ba0e05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14f442be_f2b798f6",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-03-19T15:47:56Z",
       "side": 1,
       "message": "def ?!\nI presume this short for  dataOperationDefinition\nI can of steam (like other iterations) I think it is also OK to use the term \u0027it\u0027 if you want to keep it shorted (and sometime that is more readable)",
+      "range": {
+        "startLine": 255,
+        "startChar": 25,
+        "endLine": 255,
+        "endChar": 28
+      },
+      "revId": "7f4fad96058c344706af3cf626b1039a41ba0e05",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aeb3af9_0615cc6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-19T16:36:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14f442be_f2b798f6",
       "range": {
         "startLine": 255,
         "startChar": 25,
