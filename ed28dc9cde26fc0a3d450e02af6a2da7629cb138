@@ -1,6 +1,115 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2da62d_59462ee1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-19T15:52:06Z",
+      "side": 1,
+      "message": "nothing really blockign but test should be clean up a bit more",
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf24b9b9_10045529",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-19T15:52:06Z",
+      "side": 1,
+      "message": "NB: use Groovy I think you can do something like (1..10).each",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c399d475_ebd30e59",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-19T15:52:06Z",
+      "side": 1,
+      "message": "use groovy\n def results \u003d [executionTime:localMeter.totalTimeInSeconds, memoryUsage:localMeter.totalMemoryUsageInMB]",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aebf7258_058c4724",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-19T15:52:06Z",
+      "side": 1,
+      "message": "extract method/closure",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 30
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831f8811_b34e1a9c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-19T15:52:06Z",
+      "side": 1,
+      "message": "I think this can be simplified using Groovy",
+      "range": {
+        "startLine": 103,
+        "startChar": 3,
+        "endLine": 105,
+        "endChar": 46
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17678e1c_f400b41f",
