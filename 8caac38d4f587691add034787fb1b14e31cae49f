@@ -70,6 +70,30 @@
       },
       "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d668d13_0cb04920",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-19T10:09:34Z",
+      "side": 1,
+      "message": "If reading while writing, consider @Transactional with isolation level:\n \nIf one method writes data while another reads it at the same time, we might face dirty reads, non-repeatable reads, or phantom reads.\n\nSolution: Adjust the transaction isolation level (e.g., READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE).\n\n@Transactional(isolation \u003d Isolation.READ_COMMITTED)\n\n🔹 READ_COMMITTED: Ensures only committed changes are visible.\n🔹 REPEATABLE_READ: Prevents non-repeatable reads but allows phantom reads.\n🔹 SERIALIZABLE: Fully isolates transactions (but can reduce performance).\n\nWe can have a quick call and resolve it.",
+      "parentUuid": "e8b6f09a_2af6ef6a",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
