@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1c52f49_edb03730",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-19T13:50:46Z",
+      "side": 1,
+      "message": "Updated during the daily standup. (according to the A/C at #3)",
+      "parentUuid": "0d27683c_4bd20b71",
+      "range": {
+        "startLine": 116,
+        "startChar": 29,
+        "endLine": 116,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6b16efc_4ffa6e28",
@@ -84,6 +108,30 @@
       "writtenOn": "2025-03-19T13:23:18Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "a6b16efc_4ffa6e28",
+      "range": {
+        "startLine": 117,
+        "startChar": 29,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "29373ac47f1f088b2d3006f7e4a5cb86617e9026",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f07d2473_b3b01aef",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-19T13:50:46Z",
+      "side": 1,
+      "message": "Updated during the daily standup. (according to the A/C at #3)",
       "parentUuid": "a6b16efc_4ffa6e28",
       "range": {
         "startLine": 117,
