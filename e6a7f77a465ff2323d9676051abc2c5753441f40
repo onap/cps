@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72cac884_99d6fac5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T13:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2393632c_d61f093f",
+      "range": {
+        "startLine": 151,
+        "startChar": 55,
+        "endLine": 151,
+        "endChar": 79
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81c3668e_41ab4406",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-03-20T10:19:59Z",
       "side": 1,
       "message": "Remove this new option",
+      "range": {
+        "startLine": 153,
+        "startChar": 30,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34153f49_5157b275",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T13:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81c3668e_41ab4406",
       "range": {
         "startLine": 153,
         "startChar": 30,
@@ -135,6 +183,30 @@
       "side": 1,
       "message": "\u0027leaves\u0027 by definition cannot have descendants that\u0027s why they are called leaves 😊",
       "parentUuid": "4a1063aa_ad2af3ff",
+      "range": {
+        "startLine": 247,
+        "startChar": 36,
+        "endLine": 247,
+        "endChar": 87
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0623bf_f95c846f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T13:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1e91a49_4cc19ce1",
       "range": {
         "startLine": 247,
         "startChar": 36,
