@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f56bf1a1_e4e42260",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:16:34Z",
+      "side": 1,
+      "message": "NB: also Open Infra should be used?",
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01fc6a3d_ae23da91",
         "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
         "patchSetId": 2
