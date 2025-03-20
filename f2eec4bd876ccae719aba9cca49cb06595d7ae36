@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c8f8d1_560ca5b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 19
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-20T10:14:27Z",
+      "side": 1,
+      "message": "also can you link the proposal page here just for reference.",
+      "revId": "f2eec4bd876ccae719aba9cca49cb06595d7ae36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e1d71b_c86d0f29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-20T10:14:27Z",
+      "side": 1,
+      "message": "m afraid changing this would have side affects on some other endpoints and check if it will result in some backward compatibility issues.",
+      "revId": "f2eec4bd876ccae719aba9cca49cb06595d7ae36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a9bbf5_72b84ee9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-20T10:14:27Z",
+      "side": 1,
+      "message": "NB: if u call this method from the existing method then the callers of toDataMaps will also be affected. right?\n\nOR would u rather directly call the toDataMapsWithIdentifier since it is already a public method ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 59
+      },
+      "revId": "f2eec4bd876ccae719aba9cca49cb06595d7ae36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
