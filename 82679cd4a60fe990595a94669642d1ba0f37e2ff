@@ -22,6 +22,29 @@
       },
       "revId": "82679cd4a60fe990595a94669642d1ba0f37e2ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e0eb7d6_e8a78a4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-20T14:58:19Z",
+      "side": 1,
+      "message": "NB: Not needed since not visible on the test output whereas the one on line 224 does the same job.",
+      "range": {
+        "startLine": 227,
+        "startChar": 55,
+        "endLine": 227,
+        "endChar": 70
+      },
+      "revId": "82679cd4a60fe990595a94669642d1ba0f37e2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
