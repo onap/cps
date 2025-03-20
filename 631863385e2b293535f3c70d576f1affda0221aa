@@ -69,6 +69,30 @@
       },
       "revId": "631863385e2b293535f3c70d576f1affda0221aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7eb387_5cf8bf23",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-20T18:30:56Z",
+      "side": 1,
+      "message": "i think not using spaces is a hangover from systems language that don\u0027t accept spaces in certain values. Its like develop condition and we end up needless using separators like - or _ \nBut that just my opinio..\n\nMore impottantly the version with spaces was what was proposed and agreed during the meeting with the stakeholders...",
+      "parentUuid": "0cd70fd2_7a9103b0",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
