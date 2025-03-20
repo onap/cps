@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59f38a53_2fa5cc40",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-20T12:33:01Z",
+      "side": 1,
+      "message": "10.times { i -\u003e \n    // code to execute\n}",
+      "parentUuid": "cf24b9b9_10045529",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c399d475_ebd30e59",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
         "patchSetId": 1
@@ -88,6 +112,30 @@
       "writtenOn": "2025-03-19T15:52:06Z",
       "side": 1,
       "message": "use groovy\n def results \u003d [executionTime:localMeter.totalTimeInSeconds, memoryUsage:localMeter.totalMemoryUsageInMB]",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31a839df_d85fa4a3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-20T12:33:01Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c399d475_ebd30e59",
       "range": {
         "startLine": 94,
         "startChar": 16,
@@ -121,6 +169,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c5c7a06_dfb068e6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-20T12:33:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aebf7258_058c4724",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 30
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "831f8811_b34e1a9c",
@@ -144,6 +216,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "440c88d0_ff8e73ab",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-20T12:33:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "831f8811_b34e1a9c",
+      "range": {
+        "startLine": 103,
+        "startChar": 3,
+        "endLine": 105,
+        "endChar": 46
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17678e1c_f400b41f",
@@ -157,6 +253,30 @@
       "writtenOn": "2025-03-19T13:24:36Z",
       "side": 1,
       "message": "Nb. Memory usage",
+      "range": {
+        "startLine": 110,
+        "startChar": 49,
+        "endLine": 110,
+        "endChar": 63
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "587c0a84_d7edfbd4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-20T12:33:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "17678e1c_f400b41f",
       "range": {
         "startLine": 110,
         "startChar": 49,
