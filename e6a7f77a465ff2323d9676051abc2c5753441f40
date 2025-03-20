@@ -68,6 +68,30 @@
       },
       "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1e91a49_4cc19ce1",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-20T11:10:19Z",
+      "side": 1,
+      "message": "\u0027leaves\u0027 by definition cannot have descendants that\u0027s why they are called leaves 😊",
+      "parentUuid": "4a1063aa_ad2af3ff",
+      "range": {
+        "startLine": 247,
+        "startChar": 36,
+        "endLine": 247,
+        "endChar": 87
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
