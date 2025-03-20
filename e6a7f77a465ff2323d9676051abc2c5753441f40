@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e16aecf2_c169e0b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:12:28Z",
+      "side": 1,
+      "message": "NB: no need to be capital C",
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b85306c3_bf78e91a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:12:28Z",
+      "side": 1,
+      "message": "NB: copyright should be changed to new",
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2393632c_d61f093f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
         "patchSetId": 1
@@ -43,6 +77,23 @@
         "endLine": 153,
         "endChar": 73
       },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e24b045_df58b061",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:12:28Z",
+      "side": 1,
+      "message": "No point in having a one liner method. use the inside method call instead",
       "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
