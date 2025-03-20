@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14c7d278_95c79bb2",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-20T16:44:34Z",
+      "side": 1,
+      "message": "use new copyright!",
+      "range": {
+        "startLine": 3,
+        "startChar": 40,
+        "endLine": 3,
+        "endChar": 47
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca076ebe_04e180a6",
         "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
         "patchSetId": 1
