@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca076ebe_04e180a6",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-20T16:43:44Z",
+      "side": 1,
+      "message": "NB: 24-initial-database-tag ? if team agrees.",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
