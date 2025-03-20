@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2393632c_d61f093f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T10:19:59Z",
+      "side": 1,
+      "message": "cpsPath should include cm-handles, e.g.\n\n    /dmi-registry/cm-handles/@alternate-id",
+      "range": {
+        "startLine": 151,
+        "startChar": 55,
+        "endLine": 151,
+        "endChar": 79
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c3668e_41ab4406",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T10:19:59Z",
+      "side": 1,
+      "message": "Remove this new option",
+      "range": {
+        "startLine": 153,
+        "startChar": 30,
+        "endLine": 153,
+        "endChar": 73
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1063aa_ad2af3ff",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-20T10:19:59Z",
+      "side": 1,
+      "message": "Remove this option. Later, there will be a native SQL implementation of this API, and we will not be able to access descendants.",
+      "range": {
+        "startLine": 247,
+        "startChar": 36,
+        "endLine": 247,
+        "endChar": 87
+      },
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
