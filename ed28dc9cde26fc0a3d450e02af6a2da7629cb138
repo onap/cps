@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc010660_10ced800",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ServiceConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:01:36Z",
+      "side": 1,
+      "message": "Copyright should be changed (?)\n\ne.g. \n  Copyright 2025 OpenInfra Foundation Europe. All rights reserved.\nor\n  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89d3b056_6a918888",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-03-20T12:01:36Z",
+      "side": 1,
+      "message": "Copyright should be changed (?)\n\ne.g. \n  Copyright 2025 OpenInfra Foundation Europe. All rights reserved.\nor\n  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.",
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf24b9b9_10045529",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
         "patchSetId": 1
