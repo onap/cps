@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da69a1ba_f49a65dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-20T11:56:49Z",
+      "side": 1,
+      "message": "A few thought shared... \n\nAlso, I tested it locally working well...",
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f196e08_8a7349a2",
@@ -19,6 +36,52 @@
         "startChar": 16,
         "endLine": 3,
         "endChar": 25
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01fc6a3d_ae23da91",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-20T11:56:49Z",
+      "side": 1,
+      "message": "NB: Do you think this entire health check script is really needed? \n\nI see you already have a embedded health-check for sdnc via docker-compose.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b8d2d73_23378330",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-20T11:56:49Z",
+      "side": 1,
+      "message": "NB: Can\u0027t remember does it really necessary?\n\nI think, the dmi-stub should only be running with dmi-stub profile. (both dmi is not needed for CSIT, right?",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 19
       },
       "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
