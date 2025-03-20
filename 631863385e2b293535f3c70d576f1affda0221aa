@@ -45,6 +45,30 @@
       },
       "revId": "631863385e2b293535f3c70d576f1affda0221aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd70fd2_7a9103b0",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-20T16:48:47Z",
+      "side": 1,
+      "message": "NB: Agree with you we should not give a space. Since I didn\u0027t see any tag name with spaces on this page:\n\nhttps://docs.liquibase.com/change-types/tag-database.html#yaml_example",
+      "parentUuid": "ca076ebe_04e180a6",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
