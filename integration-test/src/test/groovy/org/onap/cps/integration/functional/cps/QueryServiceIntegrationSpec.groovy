@@ -21,17 +21,17 @@
 
 package org.onap.cps.integration.functional.cps
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
+
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.api.exceptions.CpsPathException
-
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
 class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -58,7 +58,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query data leaf using CPS path for #scenario.'() {
         when: 'query data leaf for bookstore container'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class)
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, Object.class, OMIT_DESCENDANTS)
         then: 'the result contains the expected number of leaf values'
             assert result.size() == expectedUniqueBooksTitles
         where:
@@ -72,7 +72,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a cps path query for two books, returning only #leafName'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/@' + leafName
         when: 'query data leaf for bookstore container'
-            def results = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, leafType)
+            def results = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, leafType, OMIT_DESCENDANTS)
         then: 'the result contains the expected leaf values'
             assert results == expectedResults as Set
         where:
@@ -86,7 +86,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
         given: 'a cps path query that will return the names of the categories of two books'
             def cpsPath = '//books[@title="Matilda" or @title="Good Omens"]/ancestor::categories/@name'
         when: 'query data leaf for bookstore container'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class)
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, cpsPath, String.class, OMIT_DESCENDANTS)
         then: 'the result contains the expected leaf values'
             assert result == ['Children', 'Comedy'] as Set
     }
@@ -473,7 +473,7 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 
     def 'Query data leaf with a limit of #limit.' () {
         when: 'a query for data leaf is executed with a result limit'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories/@name', limit, String)
+            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories/@name', limit, String, OMIT_DESCENDANTS)
         then: 'the expected number of leaf values is returned'
             assert result.size() == expectedNumberOfResults
         where: 'the following parameters are used'

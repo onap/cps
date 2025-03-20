@@ -20,13 +20,13 @@
 
 package org.onap.cps.integration.performance.cps
 
-import org.onap.cps.api.CpsQueryService
-import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.onap.cps.api.parameters.PaginationOption
-
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+
+import org.onap.cps.api.CpsQueryService
+import org.onap.cps.integration.performance.base.CpsPerfTestBase
+import org.onap.cps.api.parameters.PaginationOption
 
 class QueryPerfTest extends CpsPerfTestBase {
 
@@ -107,7 +107,7 @@ class QueryPerfTest extends CpsPerfTestBase {
     def 'Query data leaf with #scenario.'() {
         when: 'query data leaf is called'
             resourceMeter.start()
-            def result = objectUnderTest.queryDataLeaf(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, String)
+            def result = objectUnderTest.queryDataLeaf(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', cpsPath, String, OMIT_DESCENDANTS)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of results is returned'

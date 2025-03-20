@@ -24,6 +24,7 @@
 package org.onap.cps.ri;
 
 import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -242,7 +243,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final int queryResultLimit, final Class<T> targetClass) {
+                                    final int queryResultLimit, final Class<T> targetClass,
+                                    final FetchDescendantsOption fetchDescendantsOption) {
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         if (!cpsPathQuery.hasAttributeAxis()) {
             throw new IllegalArgumentException(
@@ -250,8 +252,11 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
-        final List<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
-                FetchDescendantsOption.OMIT_DESCENDANTS, queryResultLimit);
+        Collection<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
+                fetchDescendantsOption, queryResultLimit);
+        if (fetchDescendantsOption.equals(DIRECT_CHILDREN_ONLY)) {
+            dataNodes = dataNodes.iterator().next().getChildDataNodes();
+        }
         return dataNodes.stream()
                 .map(dataNode -> {
                     final Object attributeValue = dataNode.getLeaves().get(attributeName);

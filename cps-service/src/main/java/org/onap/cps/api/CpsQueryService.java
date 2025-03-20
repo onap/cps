@@ -69,9 +69,12 @@ public interface CpsQueryService {
      * @param anchorName             anchor name
      * @param cpsPath                cps path
      * @param targetClass            class of the expected data type
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
      * @return a collection of data objects of expected type
      */
-    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath,
+                             Class<T> targetClass, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get data leaf for the given dataspace and anchor by cps path.
@@ -81,10 +84,12 @@ public interface CpsQueryService {
      * @param cpsPath            cps path
      * @param queryResultLimit   the maximum number of data nodes to return; if less than 1, returns all matching nodes
      * @param targetClass        class of the expected data type
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
      * @return a collection of data objects of expected type
      */
     <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, int queryResultLimit,
-                             Class<T> targetClass);
+                             Class<T> targetClass, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get data nodes for the given dataspace across all anchors by cps path.

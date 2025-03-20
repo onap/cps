@@ -90,8 +90,8 @@ class CpsQueryServiceImplSpec extends Specification {
 
     def 'Query data leaf.'() {
         when: 'a query for a specific leaf is executed'
-            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class)
+            objectUnderTest.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', Object.class, FetchDescendantsOption.OMIT_DESCENDANTS)
         then: 'the persistence service is called once with the correct parameters'
-            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', 0, Object.class)
+            1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', 0, Object.class, FetchDescendantsOption.OMIT_DESCENDANTS)
     }
 }

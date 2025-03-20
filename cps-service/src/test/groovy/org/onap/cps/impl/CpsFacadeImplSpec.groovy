@@ -20,6 +20,9 @@
 
 package org.onap.cps.impl
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
+
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
@@ -28,9 +31,6 @@ import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.PrefixResolver
 import spock.lang.Specification
-
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
 class CpsFacadeImplSpec extends Specification {
 
@@ -86,7 +86,7 @@ class CpsFacadeImplSpec extends Specification {
 
     def 'Execute anchor query with attribute-axis.'() {
         given: 'the cps query service returns two attribute values'
-            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object) >> ['value1', 'value2']
+            mockCpsQueryService.queryDataLeaf('my dataspace', 'my anchor', '/my/path/@myAttribute', Object, _) >> ['value1', 'value2']
         when: 'get data using attribute axis'
             def result = objectUnderTest.executeAnchorQuery('my dataspace', 'my anchor', '/my/path/@myAttribute', myFetchDescendantsOption)
         then: 'attribute values (from the query service result) are returned'

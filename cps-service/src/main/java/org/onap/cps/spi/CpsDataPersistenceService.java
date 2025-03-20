@@ -210,10 +210,12 @@ public interface CpsDataPersistenceService {
      * @param cpsPath                cps path
      * @param queryResultLimit       limits the number of returned entities (if less than 1 returns all)
      * @param targetClass            class of the expected data type
+     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
+     *                               included in the output
      * @return a collection of data objects of expected type
      */
     <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, int queryResultLimit,
-                             Class<T> targetClass);
+                             Class<T> targetClass, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.
