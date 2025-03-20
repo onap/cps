@@ -21,17 +21,17 @@
 
 package org.onap.cps.integration.functional.cps
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
+import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
+
 import java.time.OffsetDateTime
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.api.exceptions.CpsPathException
-
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
-import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
-import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 
 class QueryServiceIntegrationSpec extends FunctionalSpecBase {
 

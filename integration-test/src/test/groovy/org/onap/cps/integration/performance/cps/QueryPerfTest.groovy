@@ -20,13 +20,13 @@
 
 package org.onap.cps.integration.performance.cps
 
-import org.onap.cps.api.CpsQueryService
-import org.onap.cps.integration.performance.base.CpsPerfTestBase
-import org.onap.cps.api.parameters.PaginationOption
-
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+
+import org.onap.cps.api.CpsQueryService
+import org.onap.cps.integration.performance.base.CpsPerfTestBase
+import org.onap.cps.api.parameters.PaginationOption
 
 class QueryPerfTest extends CpsPerfTestBase {
 
