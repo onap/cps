@@ -93,6 +93,30 @@
       },
       "revId": "631863385e2b293535f3c70d576f1affda0221aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db953437_fce2901b",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-20T20:18:39Z",
+      "side": 1,
+      "message": "Just thinking : if this tag feature needs to be used per release then we can also think abt using the release version that also follows the semantic versioning.\nmaybe v3.6.2 or can as well prefix of suffix with release version. that is my thought.\n\nBut if we already agreed with stakeholder then I can live with this as well 😊",
+      "parentUuid": "ff7eb387_5cf8bf23",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
