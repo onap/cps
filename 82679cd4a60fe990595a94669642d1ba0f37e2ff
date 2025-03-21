@@ -69,6 +69,30 @@
       },
       "revId": "82679cd4a60fe990595a94669642d1ba0f37e2ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45000a7a_01f2af5e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-21T13:33:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e0eb7d6_e8a78a4c",
+      "range": {
+        "startLine": 227,
+        "startChar": 55,
+        "endLine": 227,
+        "endChar": 70
+      },
+      "revId": "82679cd4a60fe990595a94669642d1ba0f37e2ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
