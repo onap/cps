@@ -24,6 +24,7 @@
 package org.onap.cps.ri;
 
 import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -250,8 +251,8 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
 
         final String attributeName = cpsPathQuery.getAttributeAxisAttributeName();
-        final List<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
-                FetchDescendantsOption.OMIT_DESCENDANTS, queryResultLimit);
+        final Collection<DataNode> dataNodes = queryDataNodes(dataspaceName, anchorName, cpsPath,
+                OMIT_DESCENDANTS, queryResultLimit);
         return dataNodes.stream()
                 .map(dataNode -> {
                     final Object attributeValue = dataNode.getLeaves().get(attributeName);

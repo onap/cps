@@ -233,9 +233,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
-        final DataNode dataNode = inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY)
-                .iterator().next();
-        return collectCmHandleReferencesFromDataNodes(dataNode.getChildDataNodes(), outputAlternateId);
+        return cmHandleQueryService.getAllCmHandleReferences(outputAlternateId);
     }
 
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
