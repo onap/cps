@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "981f88c5_6dee216e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ServiceConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T10:12:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58dcca45_86023397",
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89d3b056_6a918888",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "agreed",
       "parentUuid": "89d3b056_6a918888",
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1916d95_9778f0a3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T10:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea5fd74_6f67bdba",
       "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -135,6 +171,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b128ee21_be43e925",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T10:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59f38a53_2fa5cc40",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c399d475_ebd30e59",
@@ -172,6 +232,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "c399d475_ebd30e59",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "ed28dc9cde26fc0a3d450e02af6a2da7629cb138",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a79c870_f7473a46",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T10:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31a839df_d85fa4a3",
       "range": {
         "startLine": 94,
         "startChar": 16,
