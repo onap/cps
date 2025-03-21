@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2025 Nordix Foundation.
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,12 @@
 
 package org.onap.cps.config
 
-import com.hazelcast.map.IMap
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
 import spock.lang.Specification
 
 class MicroMeterConfigSpec extends Specification {
 
-    def cmHandlesByState = Mock(IMap)
-    def objectUnderTest = new MicroMeterConfig(cmHandlesByState)
+    def objectUnderTest = new MicroMeterConfig()
     def simpleMeterRegistry = new SimpleMeterRegistry()
 
     def 'Creating a timed aspect.'() {
@@ -40,22 +38,6 @@ class MicroMeterConfigSpec extends Specification {
             assert objectUnderTest.processMemoryMetrics() != null
         and: 'process thread metrics can be created'
             assert objectUnderTest.processThreadMetrics() != null
-    }
-
-    def 'Creating gauges for cm handle states.'() {
-        given: 'cache returns value for each state'
-            cmHandlesByState.get(_) >> 1
-        when: 'gauges for each state are created'
-             objectUnderTest.advisedCmHandles(simpleMeterRegistry)
-             objectUnderTest.readyCmHandles(simpleMeterRegistry)
-             objectUnderTest.lockedCmHandles(simpleMeterRegistry)
-             objectUnderTest.deletingCmHandles(simpleMeterRegistry)
-             objectUnderTest.deletedCmHandles(simpleMeterRegistry)
-        then: 'each state has the correct value when queried'
-            ['ADVISED', 'READY', 'LOCKED', 'DELETING', 'DELETED'].each { state ->
-                def gaugeValue = simpleMeterRegistry.get(objectUnderTest.CM_HANDLE_STATE_GAUGE).tag('state',state).gauge().value()
-                assert gaugeValue == 1
-            }
     }
 
 }
