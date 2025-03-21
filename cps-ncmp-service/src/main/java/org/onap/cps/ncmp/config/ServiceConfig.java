@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation.
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public abstract class ServiceConfig {
     private String connectionProviderName = "";
     private int maximumInMemorySizeInMegabytes = 1;
     private int maximumConnectionsTotal = 1;
-    private int pendingAcquireMaxCount = 1;
+    private int pendingAcquireMaxCount = 10;
     private Integer connectionTimeoutInSeconds = 1;
     private long readTimeoutInSeconds = 1;
     private long writeTimeoutInSeconds = 1;
