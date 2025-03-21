@@ -206,6 +206,30 @@
       },
       "revId": "631863385e2b293535f3c70d576f1affda0221aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d911e7_021e660e",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T11:44:58Z",
+      "side": 1,
+      "message": "Ok based on comments hereby and the chat (talked earlier), I am providing +1 .",
+      "parentUuid": "52f48259_7091a823",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
