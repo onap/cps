@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c3843c_11ce43fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-21T13:33:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e16aecf2_c169e0b4",
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b85306c3_bf78e91a",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-20T12:12:28Z",
       "side": 1,
       "message": "NB: copyright should be changed to new",
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd87610_031437f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-21T13:33:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b85306c3_bf78e91a",
       "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -142,6 +178,24 @@
       "writtenOn": "2025-03-20T12:12:28Z",
       "side": 1,
       "message": "No point in having a one liner method. use the inside method call instead",
+      "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "132890bc_303f8915",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-21T13:33:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e24b045_df58b061",
       "revId": "e6a7f77a465ff2323d9676051abc2c5753441f40",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
