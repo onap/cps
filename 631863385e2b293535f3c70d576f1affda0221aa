@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "526dc952_cdf5e1f3",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T09:57:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14c7d278_95c79bb2",
+      "range": {
+        "startLine": 3,
+        "startChar": 40,
+        "endLine": 3,
+        "endChar": 47
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca076ebe_04e180a6",
@@ -150,6 +174,30 @@
       "side": 1,
       "message": "NB: I think a db tag will hardly ever be changed. Since the CPS team changes db schema/model(like tables, indexes, etc.) rarely.\n\nThus no suffix/prefix is needed. However, we can accommodate a versioning once (as suggested in the link above I shared) by starting it with a value like version_1.0\n\nAlso, we can ask E/// about their version format.",
       "parentUuid": "db953437_fce2901b",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52f48259_7091a823",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-21T09:57:35Z",
+      "side": 1,
+      "message": "As it is proposed and agreed during the meeting with the stakeholders not going to change.",
+      "parentUuid": "3ec9748a_caaafd3c",
       "range": {
         "startLine": 30,
         "startChar": 17,
