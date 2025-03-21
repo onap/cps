@@ -134,6 +134,30 @@
       },
       "revId": "631863385e2b293535f3c70d576f1affda0221aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ec9748a_caaafd3c",
+        "filename": "cps-ri/src/main/resources/changelog/changelog-master.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T09:52:50Z",
+      "side": 1,
+      "message": "NB: I think a db tag will hardly ever be changed. Since the CPS team changes db schema/model(like tables, indexes, etc.) rarely.\n\nThus no suffix/prefix is needed. However, we can accommodate a versioning once (as suggested in the link above I shared) by starting it with a value like version_1.0\n\nAlso, we can ask E/// about their version format.",
+      "parentUuid": "db953437_fce2901b",
+      "range": {
+        "startLine": 30,
+        "startChar": 17,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "631863385e2b293535f3c70d576f1affda0221aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
