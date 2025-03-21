@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9cab264_69dd45ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T12:07:21Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "f691784a5da199886dde1308616bad344fd0d6cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fd98d9_23660bd2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T12:07:21Z",
+      "side": 1,
+      "message": "NB: alternate",
+      "range": {
+        "startLine": 55,
+        "startChar": 49,
+        "endLine": 55,
+        "endChar": 60
+      },
+      "revId": "f691784a5da199886dde1308616bad344fd0d6cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38e11826_e45c00bc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T12:07:21Z",
+      "side": 1,
+      "message": "NB: alternate",
+      "range": {
+        "startLine": 68,
+        "startChar": 49,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "f691784a5da199886dde1308616bad344fd0d6cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38730a08_17e93353",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-21T12:07:21Z",
+      "side": 1,
+      "message": "NB: 2692",
+      "range": {
+        "startLine": 74,
+        "startChar": 41,
+        "endLine": 74,
+        "endChar": 45
+      },
+      "revId": "f691784a5da199886dde1308616bad344fd0d6cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
