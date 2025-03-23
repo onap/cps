@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2024-2025 TechMahindra Ltd.
- * Copyright (C) 2024 Nordix Foundation.
+ * Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CpsDataUpdateEventsService {
+public class CpsDataUpdateEventsProducer {
 
     private final EventsPublisher<CpsDataUpdatedEvent> eventsPublisher;
 

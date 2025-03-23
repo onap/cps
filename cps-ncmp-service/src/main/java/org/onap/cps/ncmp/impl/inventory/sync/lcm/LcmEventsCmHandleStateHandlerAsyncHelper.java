@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2024 Nordix Foundation
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import org.springframework.stereotype.Service;
 public class LcmEventsCmHandleStateHandlerAsyncHelper {
 
     private final LcmEventsCreator lcmEventsCreator;
-    private final LcmEventsService lcmEventsService;
+    private final LcmEventsProducer lcmEventsProducer;
 
     /**
      * Publish LcmEvent in batches and in asynchronous manner.
@@ -58,7 +58,7 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
                         existingNcmpServiceCmHandle);
         final LcmEvent lcmEvent =
                 lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsService.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+        lcmEventsProducer.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
     }
 
     private static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {

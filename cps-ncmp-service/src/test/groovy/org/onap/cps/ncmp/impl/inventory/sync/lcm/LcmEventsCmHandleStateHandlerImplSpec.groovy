@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,10 +55,10 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockLcmEventsCreator = Mock(LcmEventsCreator)
-    def mockLcmEventsService = Mock(LcmEventsService)
+    def mockLcmEventsProducer = Mock(LcmEventsProducer)
     def mockCmHandleStateMonitor = Mock(CmHandleStateMonitor)
 
-    def lcmEventsCmHandleStateHandlerAsyncHelper = new LcmEventsCmHandleStateHandlerAsyncHelper(mockLcmEventsCreator, mockLcmEventsService)
+    def lcmEventsCmHandleStateHandlerAsyncHelper = new LcmEventsCmHandleStateHandlerAsyncHelper(mockLcmEventsCreator, mockLcmEventsProducer)
     def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, lcmEventsCmHandleStateHandlerAsyncHelper, mockCmHandleStateMonitor)
 
     def cmHandleId = 'cmhandle-id-1'
@@ -83,7 +83,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             assert loggingEvent.level == Level.INFO
             assert loggingEvent.formattedMessage == "${cmHandleId} is now in ${toCmHandleState} state"
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
         where: 'state change parameters are provided'
             stateChange           | fromCmHandleState | toCmHandleState
             'ADVISED to READY'    | ADVISED           | READY
@@ -100,7 +100,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'CM-handle is saved using inventory persistence'
             1 * mockInventoryPersistence.saveCmHandleBatch(List.of(yangModelCmHandle))
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
         and: 'a log entry is written'
             assert getLogMessage(0) == "${cmHandleId} is now in ADVISED state"
     }
@@ -120,7 +120,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
         and: 'a log entry is written'
             assert getLogMessage(0) == "${cmHandleId} is now in ADVISED state"
     }
@@ -142,7 +142,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                 }
             }
         and: 'event service is called to publish event'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
         and: 'a log entry is written'
             assert getLogMessage(0) == "${cmHandleId} is now in READY state"
     }
@@ -158,7 +158,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'method to persist cm handle state is called once'
             1 * mockInventoryPersistence.saveCmHandleStateBatch(Map.of(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState()))
         and: 'the method to publish Lcm event is called once'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
     }
 
     def 'Update cmHandle state to DELETING to DELETED' (){
@@ -170,7 +170,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'the cm handle state is as expected'
             yangModelCmHandle.getCompositeState().getCmHandleState() == DELETED
         and: 'the method to publish Lcm event is called once'
-            1 * mockLcmEventsService.publishLcmEvent(cmHandleId, _, _)
+            1 * mockLcmEventsProducer.publishLcmEvent(cmHandleId, _, _)
     }
 
     def 'No state change and no event to be published'() {
@@ -182,7 +182,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
             1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
         and: 'no event will be published'
-            0 * mockLcmEventsService.publishLcmEvent(*_)
+            0 * mockLcmEventsProducer.publishLcmEvent(*_)
         and: 'no log entries are written'
             assert logger.list.empty
     }
@@ -201,7 +201,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'no state updates are persisted'
             1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsProducer.publishLcmEvent(_, _, _)
         and: 'two log entries are written'
             assert getLogMessage(0) == 'cmhandle1 is now in ADVISED state'
             assert getLogMessage(1) == 'cmhandle2 is now in ADVISED state'
@@ -221,7 +221,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'no new handles are persisted'
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsProducer.publishLcmEvent(_, _, _)
         and: 'two log entries are written'
             assert getLogMessage(0) == 'cmhandle1 is now in READY state'
             assert getLogMessage(1) == 'cmhandle2 is now in DELETING state'
@@ -237,7 +237,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'no new handles are persisted'
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
         and: 'event service is called to publish events'
-            2 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            2 * mockLcmEventsProducer.publishLcmEvent(_, _, _)
         and: 'two log entries are written'
             assert getLogMessage(0) == 'cmhandle1 is now in DELETED state'
             assert getLogMessage(1) == 'cmhandle2 is now in DELETED state'
@@ -253,7 +253,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         then: 'the exception is not handled'
             thrown(RuntimeException)
         and: 'no events are published'
-            0 * mockLcmEventsService.publishLcmEvent(_, _, _)
+            0 * mockLcmEventsProducer.publishLcmEvent(_, _, _)
         and: 'no log entries are written'
             assert logger.list.empty
     }

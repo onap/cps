@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
@@ -37,7 +37,7 @@ import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.parameters.FetchDescendantsOption
-import org.onap.cps.events.CpsDataUpdateEventsService
+import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
@@ -66,13 +66,13 @@ class CpsDataServiceImplSpec extends Specification {
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
     def mockCpsDeltaService = Mock(CpsDeltaService);
-    def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
+    def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockDataUpdateEventsService, mockCpsAnchorService,
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
             dataNodeFactory, mockCpsValidator, yangParser, mockCpsDeltaService, dataMapper, jsonObjectMapper)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
@@ -577,8 +577,8 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
         and: 'a data update event is sent for each anchor'
-            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
-            1 * mockDataUpdateEventsService.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
+            1 * mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
+            1 * mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
     }
 
     def "Validating #scenario when dry run is enabled."() {
@@ -643,7 +643,7 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'publisher set to throw an exception'
-            mockDataUpdateEventsService.publishCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
+            mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
         and: 'an update event is performed'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
         then: 'the exception is not bubbled up'
