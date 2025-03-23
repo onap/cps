@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +34,13 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.kafka.KafkaException
 import spock.lang.Specification
 
-class LcmEventsServiceSpec extends Specification {
+class LcmEventsProducerSpec extends Specification {
 
     def mockLcmEventsPublisher = Mock(EventsPublisher)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new LcmEventsService(mockLcmEventsPublisher, mockJsonObjectMapper, meterRegistry)
+    def objectUnderTest = new LcmEventsProducer(mockLcmEventsPublisher, mockJsonObjectMapper, meterRegistry)
 
     def 'Create and Publish lcm event where events are #scenario'() {
         given: 'a cm handle id, Lcm Event, and headers'

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
+import org.onap.cps.ncmp.utils.events.InventoryEventProducer
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
@@ -39,7 +39,7 @@ class TrustLevelManagerSpec extends Specification {
     IMap<String, TrustLevel>  trustLevelPerDmiPlugin
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
+    def mockAttributeValueChangeEventPublisher = Mock(InventoryEventProducer)
 
     def setup() {
         hazelcastInstance = Hazelcast.newHazelcastInstance()

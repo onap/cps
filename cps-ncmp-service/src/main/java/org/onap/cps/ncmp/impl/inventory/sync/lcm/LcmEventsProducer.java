@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,10 +44,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LcmEventsService {
+public class LcmEventsProducer {
 
     private static final Tag TAG_METHOD = Tag.of("method", "publishLcmEvent");
-    private static final Tag TAG_CLASS = Tag.of("class", LcmEventsService.class.getName());
+    private static final Tag TAG_CLASS = Tag.of("class", LcmEventsProducer.class.getName());
     private static final String UNAVAILABLE_CM_HANDLE_STATE = "N/A";
     private final EventsPublisher<LcmEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
