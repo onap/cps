@@ -35,7 +35,7 @@ import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.TimeUnit
 
-@SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
+@SpringBootTest(classes =[DataOperationEventConsumer, DmiAsyncRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration

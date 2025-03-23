@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-public class AsyncRestRequestResponseEventConsumer {
+public class DmiAsyncRequestResponseEventConsumer {
 
     private final EventsPublisher<NcmpAsyncRequestResponseEvent> eventsPublisher;
     private final NcmpAsyncRequestResponseEventMapper ncmpAsyncRequestResponseEventMapper;

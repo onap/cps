@@ -30,10 +30,10 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
-class CmAvcEventPublisherSpec extends MessagingBaseSpec {
+class InventoryEventProducerSpec extends MessagingBaseSpec {
 
     def mockEventsPublisher = Mock(EventsPublisher<CloudEvent>)
-    def objectUnderTest = new CmAvcEventPublisher(mockEventsPublisher)
+    def objectUnderTest = new InventoryEventProducer(mockEventsPublisher)
 
     def 'Publish an attribute value change event'() {
         given: 'the event key'

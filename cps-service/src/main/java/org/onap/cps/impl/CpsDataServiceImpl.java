@@ -48,7 +48,7 @@ import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.events.CpsDataUpdateEventsService;
+import org.onap.cps.events.CpsDataUpdateEventsProducer;
 import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.ContentType;
@@ -66,7 +66,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     private static final long DEFAULT_LOCK_TIMEOUT_IN_MILLISECONDS = 300L;
 
     private final CpsDataPersistenceService cpsDataPersistenceService;
-    private final CpsDataUpdateEventsService cpsDataUpdateEventsService;
+    private final CpsDataUpdateEventsProducer cpsDataUpdateEventsProducer;
     private final CpsAnchorService cpsAnchorService;
     private final DataNodeFactory dataNodeFactory;
 
@@ -396,7 +396,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                                       final Operation operation,
                                       final OffsetDateTime observedTimestamp) {
         try {
-            cpsDataUpdateEventsService.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
+            cpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
         } catch (final Exception exception) {
             log.error("Failed to send message to notification service", exception);
         }

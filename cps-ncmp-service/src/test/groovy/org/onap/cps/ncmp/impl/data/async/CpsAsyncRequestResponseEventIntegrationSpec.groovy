@@ -38,7 +38,7 @@ import org.testcontainers.spock.Testcontainers
 
 import java.time.Duration
 
-@SpringBootTest(classes = [EventsPublisher, AsyncRestRequestResponseEventConsumer, ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [EventsPublisher, DmiAsyncRequestResponseEventConsumer, ObjectMapper, JsonObjectMapper])
 @Testcontainers
 @DirtiesContext
 class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBaseSpec {
@@ -53,8 +53,8 @@ class NcmpAsyncRequestResponseEventProducerIntegrationSpec extends MessagingBase
             Mappers.getMapper(NcmpAsyncRequestResponseEventMapper.class)
 
     @SpringBean
-    AsyncRestRequestResponseEventConsumer ncmpAsyncRequestResponseEventConsumer =
-            new AsyncRestRequestResponseEventConsumer(cpsAsyncRequestResponseEventPublisher,
+    DmiAsyncRequestResponseEventConsumer ncmpAsyncRequestResponseEventConsumer =
+            new DmiAsyncRequestResponseEventConsumer(cpsAsyncRequestResponseEventPublisher,
                     ncmpAsyncRequestResponseEventMapper)
 
     @Autowired

@@ -27,7 +27,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
+import org.onap.cps.ncmp.utils.events.InventoryEventProducer
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
@@ -39,7 +39,7 @@ class TrustLevelManagerSpec extends Specification {
     IMap<String, TrustLevel>  trustLevelPerDmiPlugin
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
+    def mockAttributeValueChangeEventPublisher = Mock(InventoryEventProducer)
 
     def setup() {
         hazelcastInstance = Hazelcast.newHazelcastInstance()

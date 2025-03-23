@@ -39,7 +39,7 @@ import org.springframework.test.annotation.DirtiesContext
 import org.testcontainers.spock.Testcontainers
 import spock.util.concurrent.PollingConditions
 
-@SpringBootTest(classes =[DataOperationEventConsumer, AsyncRestRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
+@SpringBootTest(classes =[DataOperationEventConsumer, DmiAsyncRequestResponseEventConsumer, RecordFilterStrategies, KafkaConfig])
 @DirtiesContext
 @Testcontainers
 @EnableAutoConfiguration

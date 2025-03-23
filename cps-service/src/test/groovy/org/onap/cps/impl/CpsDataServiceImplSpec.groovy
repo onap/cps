@@ -37,7 +37,7 @@ import org.onap.cps.api.exceptions.SessionManagerException
 import org.onap.cps.api.exceptions.SessionTimeoutException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.parameters.FetchDescendantsOption
-import org.onap.cps.events.CpsDataUpdateEventsService
+import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
@@ -66,7 +66,7 @@ class CpsDataServiceImplSpec extends Specification {
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
     def mockCpsDeltaService = Mock(CpsDeltaService);
-    def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsService)
+    def mockDataUpdateEventsService = Mock(CpsDataUpdateEventsProducer)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)

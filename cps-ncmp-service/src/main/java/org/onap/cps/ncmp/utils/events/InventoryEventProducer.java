@@ -36,7 +36,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CmAvcEventPublisher {
+public class InventoryEventProducer {
 
     private final EventsPublisher<CloudEvent> eventsPublisher;
 

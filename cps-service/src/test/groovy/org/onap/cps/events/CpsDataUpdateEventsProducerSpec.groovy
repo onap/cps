@@ -39,12 +39,12 @@ import static org.onap.cps.events.model.Data.Operation.DELETE
 import static org.onap.cps.events.model.Data.Operation.UPDATE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
-class CpsDataUpdateEventsServiceSpec extends Specification {
+class CpsDataUpdateEventsProducerSpec extends Specification {
     def mockEventsPublisher = Mock(EventsPublisher)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
 
-    def objectUnderTest = new CpsDataUpdateEventsService(mockEventsPublisher, mockCpsNotificationService)
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsPublisher, mockCpsNotificationService)
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
