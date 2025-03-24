@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "387fda19_54ab95ac",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-24T07:58:34Z",
+      "side": 1,
+      "message": "agree to keep test.properties",
+      "parentUuid": "b1470c8f_c8cc07f7",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aedbf371_562ddfa4",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 1
