@@ -234,6 +234,20 @@ class CmHandleQueryServiceImplSpec extends Specification {
             'output is cm handle ids'   | false             || ['PNFDemo', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4', 'PNFDemo5']
     }
 
+    def 'Get all cm handle references by cps path'() {
+        when: 'the all cm handle references is retrieved via cps path'
+            objectUnderTest.getCmHandleReferencesByCpsPath(sampleCpsPath, outputAlternateId)
+        then: 'query service to query data leaf is called once with the correct cps path as parameter'
+            1 * mockCpsQueryService.queryDataLeaf(_, _, expectedCpsPathForQuery,_)
+        where:
+            scenario                                                     | sampleCpsPath                     | outputAlternateId || expectedCpsPathForQuery
+            'cps path suffixes with cm-handles and outputs alternateId'   | '/some/path/ending/in/cm-handles'  | true            || '/some/path/ending/in/cm-handles/@alternate-id'
+            'cps path suffixes without cm-handles and outputs alternateId'| '/some/path/NotEnding/incmhandles'| true             || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@alternate-id'
+            'cps path suffixes with cm-handles and outputs cmHandleId'    | '/some/path/ending/in/cm-handles'  | false           || '/some/path/ending/in/cm-handles/@id'
+            'cps path suffixes without cm-handles and outputs cmhandleId' | '/some/path/NotEnding/incmhandles'| false            || '/some/path/NotEnding/incmhandles/ancestor::cm-handles/@id'
+
+    }
+
     void mockResponses() {
 
         mockCpsQueryService.queryDataLeaf(_, _, '//public-properties[@name=\'Contact\' and @value=\'newemailforstore@bookstore.com\']/ancestor::cm-handles/@id', _) >> [pnfDemo.getLeaves().get('id'), pnfDemo2.getLeaves().get('id'), pnfDemo4.getLeaves().get('id')]
@@ -260,6 +274,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
         mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@alternate-id', _) >> getAllCmHandleReferences(true)
         mockCpsQueryService.queryDataLeaf(_, _, '/dmi-registry/cm-handles/@id', _) >> getAllCmHandleReferences(false)
+
 
     }
 

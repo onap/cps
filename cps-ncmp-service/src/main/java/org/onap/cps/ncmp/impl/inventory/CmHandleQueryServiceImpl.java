@@ -152,6 +152,25 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
     }
 
+    @Override
+    public Collection<String> getCmHandleReferencesByCpsPath(final String cpsPath, final boolean outputAlternateId) {
+        final String cpsPathInQuery;
+        final String cpsPathInQueryWithAttribute;
+        if (CpsPathUtil.getCpsPathQuery(cpsPath).getXpathPrefix().endsWith("/cm-handles")) {
+            cpsPathInQuery = cpsPath;
+        } else {
+            cpsPathInQuery = cpsPath + ANCESTOR_CM_HANDLES;
+        }
+
+        if (outputAlternateId) {
+            cpsPathInQueryWithAttribute = cpsPathInQuery + "/@alternate-id";
+        } else {
+            cpsPathInQueryWithAttribute = cpsPathInQuery + "/@id";
+        }
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPathInQueryWithAttribute, String.class);
+    }
+
     private Collection<String> getCmHandleReferencesByTrustLevel(final TrustLevel targetTrustLevel,
                                                                  final boolean outputAlternateId) {
         final Collection<String> selectedCmHandleReferences = new HashSet<>();

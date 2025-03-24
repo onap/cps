@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.inventory;
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateModuleNameConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
@@ -189,9 +188,8 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
             return NO_QUERY_TO_EXECUTE;
         }
         try {
-            cpsPathQueryResult = collectCmHandleReferencesFromDataNodes(
-                    cmHandleQueryService.queryCmHandleAncestorsByCpsPath(cpsPathCondition.get("cpsPath"),
-                            OMIT_DESCENDANTS), outputAlternateId);
+            cpsPathQueryResult = cmHandleQueryService.getCmHandleReferencesByCpsPath(cpsPathCondition.get("cpsPath"),
+                    outputAlternateId);
         } catch (final PathParsingException pathParsingException) {
             throw new DataValidationException(pathParsingException.getMessage(), pathParsingException.getDetails(),
                     pathParsingException);

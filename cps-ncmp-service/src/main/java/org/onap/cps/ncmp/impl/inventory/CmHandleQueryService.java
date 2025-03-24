@@ -130,4 +130,13 @@ public interface CmHandleQueryService {
      */
     Collection<String> getAllCmHandleReferences(boolean outputAlternateId);
 
+    /**
+     * Retrieves all Cm handle references by cps path.
+     *
+     * @param cpsPath cps path for which the cmHandle is requested
+     * @param outputAlternateId If {@code true}, returns alternate ids; if {@code false}, returns standard cm handle ids
+     * @return collection of cm handle references. Returns an empty collection if no references are found.
+     */
+    Collection<String> getCmHandleReferencesByCpsPath(String cpsPath, boolean outputAlternateId);
+
 }
