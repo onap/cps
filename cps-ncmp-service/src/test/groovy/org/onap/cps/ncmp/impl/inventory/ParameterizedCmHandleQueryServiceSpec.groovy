@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -49,16 +49,16 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
-        and: 'the query get the cm handle datanodes excluding all descendants returns a datanode'
-            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id', 'alternate-id':'some-alternate-id'])]
+        and: 'the query get the cm handle references'
+            cmHandleQueries.getCmHandleReferencesByCpsPath('/some/cps/path', outputAlternateId) >> cmHandleReferences.asCollection()
         when: 'the query is executed for cm handle ids'
             def result = objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles ids are returned'
             assert result == expectedCmhandleReference
         where: 'the following data is used'
-            senario                   | outputAlternateId || expectedCmhandleReference
-            'output CmHandle Ids'     | false             || ['some-cmhandle-id'] as Set
-            'output Alternate Ids'    | true              || ['some-alternate-id'] as Set
+            senario                   | outputAlternateId | cmHandleReferences           || expectedCmhandleReference
+            'output CmHandle Ids'     | false             | ['some-cmhandle-id'] as Set  || ['some-cmhandle-id'] as Set
+            'output Alternate Ids'    | true              | ['some-alternate-id'] as Set || ['some-alternate-id'] as Set
     }
 
     def 'Query cm handle where  cps path itself is ancestor axis.'() {
@@ -66,16 +66,16 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
-        and: 'the query get the cm handle data nodes excluding all descendants returns a datanode'
-            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> [new DataNode(leaves: ['id':'some-cmhandle-id', 'alternate-id':'some-alternate-id'])]
+        and: 'the query get the cm handle references'
+            cmHandleQueries.getCmHandleReferencesByCpsPath('/some/cps/path', outputAlternateId) >> cmHandleReferences.asCollection()
         when: 'the query is executed for cm handle ids'
             def result = objectUnderTest.queryCmHandleIdsForInventory(cmHandleQueryParameters, outputAlternateId)
         then: 'the correct expected cm handles ids are returned'
             assert result == expectedCmhandleReference
         where: 'the following data is used'
-            senario                    | outputAlternateId || expectedCmhandleReference
-            'outputAlternate is false' | false             || ['some-cmhandle-id'] as Set
-            'outputAlternate is true'  | true              || ['some-alternate-id'] as Set
+            senario                    | outputAlternateId | cmHandleReferences          || expectedCmhandleReference
+            'outputAlternate is false' | false             | ['some-cmhandle-id'] as Set || ['some-cmhandle-id'] as Set
+            'outputAlternate is true'  | true              | ['some-alternate-id'] as Set|| ['some-alternate-id'] as Set
     }
 
     def 'Cm handle ids query with error: #scenario.'() {
@@ -84,7 +84,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('cmHandleWithCpsPath', [['cpsPath' : '/some/cps/path']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'cmHandleQueries throws a path parsing exception'
-            cmHandleQueries.queryCmHandleAncestorsByCpsPath('/some/cps/path', FetchDescendantsOption.OMIT_DESCENDANTS) >> { throw thrownException }
+            cmHandleQueries.getCmHandleReferencesByCpsPath('/some/cps/path', _) >> { throw thrownException }
         when: 'the query is executed for cm handle ids'
             objectUnderTest.queryCmHandleReferenceIds(cmHandleQueryParameters, false)
         then: 'a data validation exception is thrown'
