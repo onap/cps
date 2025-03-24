@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.ncmp.impl.datajobs;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +106,6 @@ public class WriteRequestExaminer {
                 writeOperation.op(),
                 ncmpServiceCmHandle.getModuleSetTag(),
                 writeOperation.value(),
-                writeOperation.operationId(),
-                Collections.emptyMap()); // TODO: Private properties will be removed as part of CPS-2693.
+                writeOperation.operationId());
     }
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation.
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@
 
 package org.onap.cps.ncmp.api.datajobs.models;
 
-import java.util.Map;
-
 /**
  * Describes the write data job operation to be forwarded to dmi.
  *
@@ -32,12 +30,10 @@ import java.util.Map;
  * @param moduleSetTag       The module set tag of the CM Handle.
  * @param value              The value to be written depends on the type of operation.
  * @param operationId        Unique identifier of the operation within the request.
- * @param privateProperties  Contains the private properties of a Cm Handle.
  */
 public record DmiWriteOperation(
         String path,
         String op,
         String moduleSetTag,
         Object value,
-        String operationId,
-        Map<String, String> privateProperties) {}
+        String operationId) {}
