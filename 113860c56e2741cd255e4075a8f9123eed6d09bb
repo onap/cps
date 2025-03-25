@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b348ab0_fe809f4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-03-25T12:30:07Z",
+      "side": 1,
+      "message": "Do all these files need licence updates?",
+      "revId": "113860c56e2741cd255e4075a8f9123eed6d09bb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
