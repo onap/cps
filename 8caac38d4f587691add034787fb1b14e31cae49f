@@ -94,6 +94,30 @@
       },
       "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b948a6_8fb7fae6",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepositoryCpsPathQueryImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-25T17:04:00Z",
+      "side": 1,
+      "message": "As transaction handling is out of scope of this refactoring commit, I created a new ticket for this: https://lf-onap.atlassian.net/browse/CPS-2720\nCan you remove -1 based on this?",
+      "parentUuid": "9d668d13_0cb04920",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "8caac38d4f587691add034787fb1b14e31cae49f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
