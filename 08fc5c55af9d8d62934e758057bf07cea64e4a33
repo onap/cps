@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f61ec93_6b65fcc7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T13:29:58Z",
+      "side": 1,
+      "message": "now it wont be part of the payload. so do we have to change the method name as well. @Arpit looking for your opinion as well as you originally introduced it.",
+      "range": {
+        "startLine": 203,
+        "startChar": 70,
+        "endLine": 203,
+        "endChar": 98
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e420ce7_f1e9f989",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T13:29:58Z",
+      "side": 1,
+      "message": "also is it possible to have XML data as well.?? is it in scope?",
+      "range": {
+        "startLine": 207,
+        "startChar": 34,
+        "endLine": 207,
+        "endChar": 52
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328c7ac4_d49b9c6e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T13:29:58Z",
+      "side": 1,
+      "message": "is this needed or we can direcly return jsonContent directly ??",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70db79b4_c941e28d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T13:29:58Z",
+      "side": 1,
+      "message": "NB: in groovy make sure we use single quote instead of double quote.",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
