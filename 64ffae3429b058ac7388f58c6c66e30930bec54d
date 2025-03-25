@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd7d6e7a_b5df5b47",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T11:51:34Z",
+      "side": 1,
+      "message": "can be set to false here as well.",
+      "range": {
+        "startLine": 122,
+        "startChar": 65,
+        "endLine": 122,
+        "endChar": 69
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e932cc5d_4e43f2f1",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
         "patchSetId": 8
@@ -19,6 +42,53 @@
         "startChar": 87,
         "endLine": 94,
         "endChar": 53
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c807c6_f40e777c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T11:51:34Z",
+      "side": 1,
+      "message": "agree with you.",
+      "parentUuid": "e932cc5d_4e43f2f1",
+      "range": {
+        "startLine": 92,
+        "startChar": 87,
+        "endLine": 94,
+        "endChar": 53
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "661b3ea4_77362274",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T11:51:34Z",
+      "side": 1,
+      "message": "@Daniel : additional call to the DB. we might need to see how it impacts our performance ( for the update and replace operation inorder to fetch the current state )",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 81
       },
       "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
