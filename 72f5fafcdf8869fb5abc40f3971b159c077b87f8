@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "699fd361_7f9b9887",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T11:58:11Z",
+      "side": 1,
+      "message": "can there be a test to see handling of nullpointerexception?",
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543b2e41_e3b9a63b",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/CmHandleStateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T11:58:11Z",
+      "side": 1,
+      "message": "the other class in the same folder is called \u0027MicroMeterConfig\u0027 \nthis class is also under \u0027MicroMeter\u0027but only defines the Gauges\nyou might want to change the name of one or the other to avoid confusion",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
