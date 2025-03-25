@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a9f9b15_f847aa03",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "768c5318_5115efae",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dc19911_b3757bd5",
@@ -87,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "196ff8b4_0213464d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/async/CpsAsyncRequestResponseEventIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed378437_5af0a4b1",
+      "range": {
+        "startLine": 55,
+        "startChar": 41,
+        "endLine": 55,
+        "endChar": 78
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d07e89d5_c8eeb2c4",
@@ -100,6 +148,30 @@
       "writtenOn": "2025-03-25T12:55:15Z",
       "side": 1,
       "message": "update this .",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 28
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46e08334_cc2bcace",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d07e89d5_c8eeb2c4",
       "range": {
         "startLine": 58,
         "startChar": 8,
@@ -133,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a5a9c32_f3c53b0f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManagerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "mockInventoryEventProducer",
+      "parentUuid": "4f2d8462_815f2bba",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 46
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5bcd2c2_4cef992b",
@@ -146,6 +242,30 @@
       "writtenOn": "2025-03-25T12:55:15Z",
       "side": 1,
       "message": "update copyright here as well.",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7f850ef_9d8dbd4c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5bcd2c2_4cef992b",
       "range": {
         "startLine": 3,
         "startChar": 4,
@@ -179,6 +299,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c67c13c_b68fa134",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDataServiceImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8ca8bea_32710dcf",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 35
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0068e31f_1fa24adf",
@@ -192,6 +336,30 @@
       "writtenOn": "2025-03-25T12:55:15Z",
       "side": 1,
       "message": "update",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb588e59_0c266734",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/E2ENetworkSliceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-25T14:33:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0068e31f_1fa24adf",
       "range": {
         "startLine": 59,
         "startChar": 8,
