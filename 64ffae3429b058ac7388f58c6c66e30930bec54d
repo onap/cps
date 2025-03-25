@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "839ac0c2_7d751f68",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-25T11:53:49Z",
+      "side": 1,
+      "message": "this would contain the delta report now.\nAnd it should contain less amount of data as it is delta.",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 19
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e932cc5d_4e43f2f1",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
         "patchSetId": 8
