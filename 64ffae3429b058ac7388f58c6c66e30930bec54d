@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e932cc5d_4e43f2f1",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-25T11:34:08Z",
+      "side": 1,
+      "message": "Converting dataNodes to JSON here may have a negative performance impact, which would not be needed if delta notification is turned off. I think it would be better to just pass the dataNodes here, and do the JSON conversion in CpsDataUpdateEventsService. So here it might be:\n\n    sendDataUpdatedEvent(anchor, ROOT_NODE_XPATH, dataNodes, Operation.CREATE, observedTimestamp);",
+      "range": {
+        "startLine": 92,
+        "startChar": 87,
+        "endLine": 94,
+        "endChar": 53
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
