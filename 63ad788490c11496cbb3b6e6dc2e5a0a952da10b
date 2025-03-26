@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705f7d2e_053d1074",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentQueryBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T14:19:12Z",
+      "side": 1,
+      "message": "This targetClass can be removed:\n- it is always FragmentEntity without attribute axis\n- it is always String (json) with attribute axis",
+      "range": {
+        "startLine": 66,
+        "startChar": 60,
+        "endLine": 66,
+        "endChar": 71
+      },
+      "revId": "63ad788490c11496cbb3b6e6dc2e5a0a952da10b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
