@@ -39,6 +39,30 @@
       },
       "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "902dca90_2f43813d",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/CmHandleStateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T12:59:34Z",
+      "side": 1,
+      "message": "Do you have any suggestion?",
+      "parentUuid": "543b2e41_e3b9a63b",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
