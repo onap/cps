@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a60bc4e_3fe6c36b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-26T12:21:47Z",
+      "side": 1,
+      "message": "just few NBs. if any blocking comments then u can address my comments.",
+      "revId": "332098e4859a60b5edbd2dc4ffb0e1b3a701985c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e201a94_513be2bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-26T12:21:47Z",
+      "side": 1,
+      "message": "NB: cm handle",
+      "range": {
+        "startLine": 136,
+        "startChar": 45,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "332098e4859a60b5edbd2dc4ffb0e1b3a701985c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff2b08c_4a23a337",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-26T12:21:47Z",
+      "side": 1,
+      "message": "can also use ternary operator to reduce the number of lines if u wish.\n\neg:\nString cpsPathInQuery \u003d cpsPath.endsWith(\"/cm-handles\") ? cpsPath : cpsPath + ANCESTOR_CM_HANDLES;",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 9
+      },
+      "revId": "332098e4859a60b5edbd2dc4ffb0e1b3a701985c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eddd1544_a4ddce5f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-26T12:21:47Z",
+      "side": 1,
+      "message": "same comment as above.",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 9
+      },
+      "revId": "332098e4859a60b5edbd2dc4ffb0e1b3a701985c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
