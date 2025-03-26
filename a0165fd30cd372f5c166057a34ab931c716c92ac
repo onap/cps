@@ -56,6 +56,30 @@
       },
       "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a59875_f43271c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerAsyncHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T14:15:00Z",
+      "side": 1,
+      "message": "as discussed, we agreed on the following\nNouns/Classes: Producer (\u0026 Consumer)\nVerbs/Methods: send (\u0026 receive)\n\nie. the terms Publisher/publish should no longer be used",
+      "parentUuid": "ebf934f9_3b016ee8",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
