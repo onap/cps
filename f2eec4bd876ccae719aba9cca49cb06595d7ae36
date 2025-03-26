@@ -56,6 +56,29 @@
       },
       "revId": "f2eec4bd876ccae719aba9cca49cb06595d7ae36",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebc915a_14da5ca3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-03-26T17:27:08Z",
+      "side": 1,
+      "message": "Daniel pointed out that this also affects the query api and if this is the case then we will have further impact and would need to analyze the same.",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 57
+      },
+      "revId": "f2eec4bd876ccae719aba9cca49cb06595d7ae36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
