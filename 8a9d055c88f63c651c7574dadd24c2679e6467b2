@@ -34,6 +34,24 @@
       "parentUuid": "97430306_333ae4ee",
       "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3ea5d4_f8e829c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T16:12:43Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m mistaken. The Monitor actually initializes the values which need to be returned by the Gauge. So the correct flow is:\n\n    CmHandleStateGaugeConfig depends on CmHandleStateMonitor depends on AdminCacheConfig\n\nwhich is what is implemented.",
+      "parentUuid": "97430306_333ae4ee",
+      "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
