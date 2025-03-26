@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a609ab5_163cc3ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T17:01:20Z",
+      "side": 1,
+      "message": "NB: Just a question. Having manager here and applying trust level in this class ok. However, can not see the logic (where trust levels were applied) before that needs to be removed?\n\nThus, could be applying trust level twice?",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "5cb2bcce3907c7a11d34a2c01ccab6e7e81736d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cc5f399_cc61de15",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T17:01:20Z",
+      "side": 1,
+      "message": "NB: not needed since, there is a static import for toNcmpServiceCmHandle",
+      "range": {
+        "startLine": 245,
+        "startChar": 41,
+        "endLine": 245,
+        "endChar": 59
+      },
+      "revId": "5cb2bcce3907c7a11d34a2c01ccab6e7e81736d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
