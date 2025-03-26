@@ -52,6 +52,24 @@
       "parentUuid": "97430306_333ae4ee",
       "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072e247b_2d484a6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T16:12:57Z",
+      "side": 1,
+      "message": "The points where NullPointerException was coming from:\n\nGauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,\nvalue -\u003e cmHandlesByState.get(\"advisedCmHandlesCount\")",
+      "parentUuid": "5a6e45a4_5982ae65",
+      "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
