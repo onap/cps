@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62fb1118_0af5bf0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/NetworkCmProxyInventoryFacade.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T12:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24b388e7_efb1fa39",
+      "range": {
+        "startLine": 100,
+        "startChar": 15,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "e9c1697d666b126fb1cab4a8efae1a9b5e1f2a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb73aef6_209860c1",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-03-25T16:35:58Z",
       "side": 1,
       "message": "NB: change to/add \u0027as a reactive stream (flux)\u0027",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 26
+      },
+      "revId": "e9c1697d666b126fb1cab4a8efae1a9b5e1f2a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e5c705_47973396",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T12:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb73aef6_209860c1",
       "range": {
         "startLine": 69,
         "startChar": 15,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd8cd48f_3902fc4f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T12:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1b3a4a_b7ca0ca4",
+      "range": {
+        "startLine": 71,
+        "startChar": 30,
+        "endLine": 71,
+        "endChar": 50
+      },
+      "revId": "e9c1697d666b126fb1cab4a8efae1a9b5e1f2a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85215d55_98c9ea3a",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-03-25T16:35:58Z",
       "side": 1,
       "message": "NB: as per my comment on the previous. But it might depend if we have to method varaiations or not...",
+      "range": {
+        "startLine": 92,
+        "startChar": 15,
+        "endLine": 92,
+        "endChar": 44
+      },
+      "revId": "e9c1697d666b126fb1cab4a8efae1a9b5e1f2a95",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22732bf_5712e665",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T12:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85215d55_98c9ea3a",
       "range": {
         "startLine": 92,
         "startChar": 15,
