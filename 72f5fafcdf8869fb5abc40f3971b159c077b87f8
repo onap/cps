@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "df8782af_5d370d61",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:17:46Z",
+      "side": 1,
+      "message": "... to allow control order of bean initialization...",
+      "range": {
+        "startLine": 13,
+        "startChar": 59,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "699fd361_7f9b9887",
@@ -60,6 +83,76 @@
         "startChar": 13,
         "endLine": 34,
         "endChar": 33
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4faf3449_5e0a0807",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/CmHandleStateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:17:46Z",
+      "side": 1,
+      "message": "this is the config of the Gauge! not of the state...\nso my suggestion CmHandleStateGaugeConfig \n\nI am also a bit surprised about the location of this class, should it not be defined in a NCMP module e.g. src/main/java/org/onap/cps/ncmp/config",
+      "parentUuid": "902dca90_2f43813d",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02a696d0_86275691",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/CmHandleStateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:17:46Z",
+      "side": 1,
+      "message": "a test value (123)",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d3eebc_dfdad9ac",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/CmHandleStateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:17:46Z",
+      "side": 1,
+      "message": "use 123 as a more obvious test value",
+      "range": {
+        "startLine": 35,
+        "startChar": 39,
+        "endLine": 35,
+        "endChar": 40
       },
       "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
