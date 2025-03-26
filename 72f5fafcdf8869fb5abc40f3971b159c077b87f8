@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "18b1baab_b64c400c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T15:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df8782af_5d370d61",
+      "range": {
+        "startLine": 13,
+        "startChar": 59,
+        "endLine": 13,
+        "endChar": 68
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "699fd361_7f9b9887",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -112,6 +136,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9805c1ad_8df83510",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/CmHandleStateConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T15:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4faf3449_5e0a0807",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 33
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02a696d0_86275691",
@@ -135,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0dda533_7e1b9f4e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/CmHandleStateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T15:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02a696d0_86275691",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23d3eebc_dfdad9ac",
@@ -148,6 +220,30 @@
       "writtenOn": "2025-03-26T13:17:46Z",
       "side": 1,
       "message": "use 123 as a more obvious test value",
+      "range": {
+        "startLine": 35,
+        "startChar": 39,
+        "endLine": 35,
+        "endChar": 40
+      },
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a965e771_212aa10e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/CmHandleStateConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T15:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d3eebc_dfdad9ac",
       "range": {
         "startLine": 35,
         "startChar": 39,
