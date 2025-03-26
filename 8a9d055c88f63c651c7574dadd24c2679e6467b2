@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97430306_333ae4ee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-26T16:02:13Z",
+      "side": 1,
+      "message": "The dependencies seem backwards. It seems like it should be:\n\n    CmHandleStateMonitor depends on CmHandleStateGaugeConfig depends on AdminCacheConfig",
+      "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
