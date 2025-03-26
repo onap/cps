@@ -97,6 +97,30 @@
       },
       "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eed62ef_d7a82c35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerAsyncHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-26T15:02:16Z",
+      "side": 1,
+      "message": "to be handled on subsequent refactoring patch under https://lf-onap.atlassian.net/browse/CPS-2726",
+      "parentUuid": "ebf934f9_3b016ee8",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

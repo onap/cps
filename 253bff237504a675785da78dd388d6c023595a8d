@@ -88,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ec1242f_6f54091e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/utils/events/InventoryEventProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-03-26T15:02:16Z",
+      "side": 1,
+      "message": "agreed to do EventsProducer with methods that specifies \u0027send\u0027 instead of \u0027publish\u0027 , to do on a subsequent patch under same ticket",
+      "parentUuid": "5dc19911_b3757bd5",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 33
+      },
+      "revId": "253bff237504a675785da78dd388d6c023595a8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed378437_5af0a4b1",
