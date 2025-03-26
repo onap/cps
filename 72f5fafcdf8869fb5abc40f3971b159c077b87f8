@@ -65,6 +65,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a01442_58a3cf3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T15:33:23Z",
+      "side": 1,
+      "message": "Test added: Controlling order of bean initialization",
+      "parentUuid": "699fd361_7f9b9887",
+      "revId": "72f5fafcdf8869fb5abc40f3971b159c077b87f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "543b2e41_e3b9a63b",
