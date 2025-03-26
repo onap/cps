@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -150,6 +150,25 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
         final String cpsPath = String.format("%s/cm-handles/@%s", NCMP_DMI_REGISTRY_PARENT, attributeName);
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+    }
+
+    @Override
+    public Collection<String> getCmHandleReferencesByCpsPath(final String cpsPath, final boolean outputAlternateId) {
+        final String cpsPathInQuery;
+        final String cpsPathInQueryWithAttribute;
+        if (CpsPathUtil.getCpsPathQuery(cpsPath).getXpathPrefix().endsWith("/cm-handles")) {
+            cpsPathInQuery = cpsPath;
+        } else {
+            cpsPathInQuery = cpsPath + ANCESTOR_CM_HANDLES;
+        }
+
+        if (outputAlternateId) {
+            cpsPathInQueryWithAttribute = cpsPathInQuery + "/@alternate-id";
+        } else {
+            cpsPathInQueryWithAttribute = cpsPathInQuery + "/@id";
+        }
+        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                cpsPathInQueryWithAttribute, String.class);
     }
 
     private Collection<String> getCmHandleReferencesByTrustLevel(final TrustLevel targetTrustLevel,

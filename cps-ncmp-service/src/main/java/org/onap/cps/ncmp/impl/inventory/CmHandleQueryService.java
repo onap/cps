@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -129,5 +129,14 @@ public interface CmHandleQueryService {
      * @return collection of cm handle references. Returns an empty collection if no references are found.
      */
     Collection<String> getAllCmHandleReferences(boolean outputAlternateId);
+
+    /**
+     * Retrieves all Cm handle references by cps path.
+     *
+     * @param cpsPath cps path for which the cmHandle is requested
+     * @param outputAlternateId If {@code true}, returns alternate ids; if {@code false}, returns standard cm handle ids
+     * @return collection of cm handle references. Returns an empty collection if no references are found.
+     */
+    Collection<String> getCmHandleReferencesByCpsPath(String cpsPath, boolean outputAlternateId);
 
 }
