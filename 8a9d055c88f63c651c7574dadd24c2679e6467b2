@@ -16,6 +16,24 @@
       "message": "The dependencies seem backwards. It seems like it should be:\n\n    CmHandleStateMonitor depends on CmHandleStateGaugeConfig depends on AdminCacheConfig",
       "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6e45a4_5982ae65",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleStateMonitor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T16:11:45Z",
+      "side": 1,
+      "message": "I don\u0027t agree.\n\ninitialiseCmHandleStateMonitor method in CmHandleStateMonitor, should run before CmHandleStateGaugeConfig is created so that cmHandlesByState map being populated with stateMetricKey. \n\ncmHandlesByState.putIfAbsent(stateMetricKey, cmHandleCountForState);\n\nAfter this methot being run, the gauges should kick off to create the beans by looking up cmHandlesByState. \n\n\nGauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,\n                value -\u003e cmHandlesByState.get(\"advisedCmHandlesCount\")",
+      "parentUuid": "97430306_333ae4ee",
+      "revId": "8a9d055c88f63c651c7574dadd24c2679e6467b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
