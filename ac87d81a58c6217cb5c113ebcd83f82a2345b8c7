@@ -45,6 +45,29 @@
       },
       "revId": "ac87d81a58c6217cb5c113ebcd83f82a2345b8c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c6d8eb_a913548b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/QueryServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-26T16:37:16Z",
+      "side": 1,
+      "message": "NB: can be extracted into a local variable like e.g. cpsPathWithoutLeafName\u003d\u0027//books\u0027",
+      "range": {
+        "startLine": 97,
+        "startChar": 91,
+        "endLine": 97,
+        "endChar": 100
+      },
+      "revId": "ac87d81a58c6217cb5c113ebcd83f82a2345b8c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
