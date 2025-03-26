@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
+import io.cloudevents.core.v1.CloudEventBuilder
 import org.onap.cps.events.EventsPublisher
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
@@ -33,7 +34,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
-@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
+@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper, CloudEventBuilder])
 @ContextConfiguration(classes = [CpsApplicationContext])
 class NcmpOutEventProducerSpec extends Specification {
 
