@@ -16,6 +16,46 @@
       "message": "fine for me now.",
       "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60d26f13_c25bfe22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:24:32Z",
+      "side": 1,
+      "message": "maybe give me a call to discuss the naming issue",
+      "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf934f9_3b016ee8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerAsyncHelper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-26T13:24:32Z",
+      "side": 1,
+      "message": "seeing those names side-by-side makes clear it is not obvious who does what?!\nie what is the difference between \u0027producing\u0027 something and \u0027creating\u0027 something ?!\ncan we define better names or may just combine the 2 classes into one?!\n\n\ni think the problem term is really \u0027producing\u0027 I know they always use it with events but I think it is misleading. Sender or Publisher is more intuitive. But is that leads to other conflicts or breaks naming conventions maybe we should combine these 2 classes as I mentioned before",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "a0165fd30cd372f5c166057a34ab931c716c92ac",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
