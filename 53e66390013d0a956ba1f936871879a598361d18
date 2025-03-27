@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb89c55_435e01f7",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T16:58:26Z",
+      "side": 1,
+      "message": "NB, i am nitpicking here. But this description is a bit misleading. If it was a unit test (describing and asserting the behavior) I definitely would want you to update it!\nBasically you only verify the number of ids not what kind of ids they are (which is fine for a performance test)\n\nsuggestion: \u0027returned the correct number of ids\u0027",
+      "range": {
+        "startLine": 122,
+        "startChar": 57,
+        "endLine": 122,
+        "endChar": 88
+      },
+      "revId": "53e66390013d0a956ba1f936871879a598361d18",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
