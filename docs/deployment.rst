@@ -308,6 +308,9 @@ Additional CPS-NCMP Customizations
 | config.ncmp.timers                              | Specifies the delay in milliseconds in which the module sync watch dog will wake again| ``5000``                        |
 | .advised-modules-sync.sleep-time-ms             | after finishing.                                                                      |                                 |
 +-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+| ncmp.timers                                     | Specifies the delay in milliseconds in which the module sync watch dog will wake up   | ``40000``                       |
+| .advised-modules-sync.initial-delay-ms          | for the first time.                                                                   |                                 |
++-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
 | config.ncmp.timers                              | Specifies the delay in milliseconds in which the data sync watch dog will wake again  | ``30000``                       |
 | .cm-handle-data-sync.sleep-time-ms              | after finishing.                                                                      |                                 |
 |                                                 |                                                                                       |                                 |
