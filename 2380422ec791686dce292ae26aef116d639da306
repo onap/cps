@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6168c2_2ef82c25",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T17:09:33Z",
+      "side": 1,
+      "message": "why is this needed?",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 21
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65f03aeb_c122cf6f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T17:09:33Z",
+      "side": 1,
+      "message": "add a note it is for testing purposes only",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 88
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f504857d_5cc744d9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T17:09:33Z",
+      "side": 1,
+      "message": "subJobWriteResponses",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
