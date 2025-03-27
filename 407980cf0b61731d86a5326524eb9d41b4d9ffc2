@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf625f90_db768295",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T13:01:22Z",
+      "side": 1,
+      "message": "coudl we move ProvMNS specific schemas to a separate file?",
+      "range": {
+        "startLine": 375,
+        "startChar": 4,
+        "endLine": 375,
+        "endChar": 20
+      },
+      "revId": "407980cf0b61731d86a5326524eb9d41b4d9ffc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7d811c_dbaef848",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-provmns.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-03-27T13:01:22Z",
+      "side": 1,
+      "message": "it theer any point having duplicate  summary and description\ndid you copy and past this form standard?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 47
+      },
+      "revId": "407980cf0b61731d86a5326524eb9d41b4d9ffc2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
