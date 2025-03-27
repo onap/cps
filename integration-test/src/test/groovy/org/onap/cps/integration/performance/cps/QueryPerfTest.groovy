@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -116,9 +116,9 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("Query data leaf ${scenario}", durationLimit, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpsPath                                             || durationLimit  | memoryLimit  | expectedNumberOfValues
-            'unique leaf value'          | '/openroadm-devices/openroadm-device/@device-id'    || 0.10           | 8            | OPENROADM_DEVICES_PER_ANCHOR
-            'common leaf value'          | '/openroadm-devices/openroadm-device/@ne-state'     || 0.05           | 1            | 1
-            'non-existing data leaf'     | '/openroadm-devices/openroadm-device/@non-existing' || 0.05           | 1            | 0
+            'unique leaf value'          | '/openroadm-devices/openroadm-device/@device-id'    || 0.05           | 0.1          | OPENROADM_DEVICES_PER_ANCHOR
+            'common leaf value'          | '/openroadm-devices/openroadm-device/@ne-state'     || 0.02           | 0.1          | 1
+            'non-existing data leaf'     | '/openroadm-devices/openroadm-device/@non-existing' || 0.01           | 0.1          | 0
     }
 
 }
