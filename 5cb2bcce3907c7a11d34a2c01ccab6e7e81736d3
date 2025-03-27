@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c139b14d_5b7b2357",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-27T09:13:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a6d45df1_d9279bb1",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "5cb2bcce3907c7a11d34a2c01ccab6e7e81736d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cc5f399_cc61de15",
@@ -61,6 +85,30 @@
       "writtenOn": "2025-03-26T17:01:20Z",
       "side": 1,
       "message": "NB: not needed since, there is a static import for toNcmpServiceCmHandle",
+      "range": {
+        "startLine": 245,
+        "startChar": 41,
+        "endLine": 245,
+        "endChar": 59
+      },
+      "revId": "5cb2bcce3907c7a11d34a2c01ccab6e7e81736d3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f017960d_2dfc4e5b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-03-27T09:13:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9cc5f399_cc61de15",
       "range": {
         "startLine": 245,
         "startChar": 41,
