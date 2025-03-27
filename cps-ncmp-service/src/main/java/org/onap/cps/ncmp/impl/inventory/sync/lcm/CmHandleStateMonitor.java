@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 Nordix Foundation.
+ * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,14 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@DependsOn("adminCacheConfig")
 @Slf4j
 public class CmHandleStateMonitor {
     private static final String METRIC_POSTFIX = "CmHandlesCount";
