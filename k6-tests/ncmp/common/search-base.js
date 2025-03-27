@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ export function executeCmHandleIdSearch(scenario) {
 function executeSearchRequest(searchType, scenario) {
     const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
     const payload = JSON.stringify(searchParameters);
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}?outputAlternateId=true`;
     return performPostRequest(url, payload, searchType);
 }
 
