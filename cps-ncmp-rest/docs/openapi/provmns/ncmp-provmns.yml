@@ -1,0 +1,143 @@
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2025 OpenInfra Foundation Europe
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+MOIOperations:
+
+  put:
+    tags:
+      - network-cm-proxy-provmns
+    summary: Replaces a complete single resource or creates it if it does not exist
+    description: >-
+      With HTTP PUT a complete resource is replaced or created if it does not
+      exist. The target resource is identified by the target URI.
+    operationId: createMOI
+    parameters:
+      - $ref: 'components.yaml#/components/parameters/className'
+      - $ref: 'components.yaml#/components/parameters/idInPath'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            - $ref: '#/components/schemas/Resource'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+  get:
+    tags:
+      - network-cm-proxy-provmns
+    summary: Reads one or multiple resources
+    description: >-
+      With HTTP GET resources are read. The resources to be retrieved are
+      identified with the target URI. The attributes and fields parameter
+      of the query components allow to select the resource properties to be returned.
+    operationId: getMOIAttributes
+    parameters:
+      - $ref: '#/components/parameters/classNameInPath'
+      - $ref: '#/components/parameters/idInPath'
+      - $ref: '#/components/parameters/scopeInQuery'
+      - $ref: '#/components/parameters/filterInQuery'
+      - $ref: '#/components/parameters/attributesInQuery'
+      - $ref: '#/components/parameters/fieldsInQuery'
+      - $ref: '#/components/parameters/dataNodeSelectorInQuery'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              dataSampleResponse:
+                $ref: 'components.yaml#/components/examples/dataSampleResponse'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+  patch:
+    tags:
+      - network-cm-proxy-provmns
+    summary: Patches one or multiple resources
+    description: >-
+      With HTTP PATCH resources are created, updated or deleted. The resources
+      to be modified are identified with the target URI (base resource) and
+      the patch document included in the request message body.
+
+    operationId: changeMOIs
+    parameters:
+      - $ref: '#/components/parameters/classNameInPath'
+      - $ref: '#/components/parameters/idInPath'
+    requestBody:
+      required: true
+      content:
+        application/merge-patch+json:
+          schema:
+            $ref: '#/components/schemas/Resource'
+        application/3gpp-merge-patch+json:
+          schema:
+            $ref: '#/components/schemas/Resource'
+    responses:
+      200:
+        $ref: 'components.yaml#/components/responses/Ok'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
+
+  delete:
+    tags:
+      - network-cm-proxy-provmns
+    summary: Deletes one resource
+    description: >-
+      With HTTP DELETE one resource is deleted. The resources to be deleted is
+      identified with the target URI.
+    operationId: deleteMOIs
+    parameters:
+      - $ref: '#/components/parameters/classNameInPath'
+      - $ref: '#/components/parameters/idInPath'
+    responses:
+      204:
+        $ref: 'components.yaml#/components/responses/NoContent'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      404:
+        $ref: 'components.yaml#/components/responses/NotFound'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'
+      502:
+        $ref: 'components.yaml#/components/responses/BadGateway'
