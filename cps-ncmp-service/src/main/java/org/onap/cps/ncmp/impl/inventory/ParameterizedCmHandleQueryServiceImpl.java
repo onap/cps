@@ -48,16 +48,20 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 @Service
 @RequiredArgsConstructor
 public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHandleQueryService {
 
+    private static final int FLUX_BUFFER_SIZE = 1000;
     private static final Collection<String> NO_QUERY_TO_EXECUTE = null;
     private final CmHandleQueryService cmHandleQueryService;
     private final InventoryPersistence inventoryPersistence;
+    private final TrustLevelManager trustLevelManager;
 
     @Override
     public Collection<String> queryCmHandleReferenceIds(
@@ -82,21 +86,9 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     @Override
-    public Collection<NcmpServiceCmHandle> queryCmHandles(
-            final CmHandleQueryServiceParameters cmHandleQueryServiceParameters) {
-
-        if (cmHandleQueryServiceParameters.getCmHandleQueryParameters().isEmpty()) {
-            return getAllCmHandles();
-        }
-
-        final Collection<String> cmHandleIds = queryCmHandleReferenceIds(cmHandleQueryServiceParameters, false);
-
+    public Flux<NcmpServiceCmHandle> queryCmHandles(final CmHandleQueryServiceParameters queryParameters) {
+        final Collection<String> cmHandleIds = queryCmHandleReferenceIds(queryParameters, false);
         return getNcmpServiceCmHandles(cmHandleIds);
-    }
-
-    @Override
-    public Collection<NcmpServiceCmHandle> getAllCmHandles() {
-        return toNcmpServiceCmHandles(inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT));
     }
 
     @Override
@@ -234,7 +226,14 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return cmHandleQueryService.getAllCmHandleReferences(outputAlternateId);
     }
 
-    private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
+    private Flux<NcmpServiceCmHandle> getNcmpServiceCmHandles(final Collection<String> cmHandleIds) {
+        return Flux.fromIterable(cmHandleIds)
+                .buffer(FLUX_BUFFER_SIZE)
+                .map(this::getNcmpServiceCmHandleBatch)
+                .flatMap(Flux::fromIterable);
+    }
+
+    private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandleBatch(final Collection<String> cmHandleIds) {
         final Collection<YangModelCmHandle> yangModelcmHandles
                 = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
 
@@ -243,6 +242,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         yangModelcmHandles.forEach(yangModelcmHandle ->
                 ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
         );
+        trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
         return ncmpServiceCmHandles;
     }
 

@@ -29,6 +29,7 @@ import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT
@@ -38,11 +39,12 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
     def cmHandleQueries = Mock(CmHandleQueryService)
     def partiallyMockedCmHandleQueries = Spy(CmHandleQueryService)
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockTrustLevelManager = Mock(TrustLevelManager)
 
     def dmiRegistry = new DataNode(xpath: NCMP_DMI_REGISTRY_PARENT, childDataNodes: createDataNodeList(['PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4']))
 
-    def objectUnderTest = new ParameterizedCmHandleQueryServiceImpl(cmHandleQueries, mockInventoryPersistence)
-    def objectUnderTestWithPartiallyMockedQueries = new ParameterizedCmHandleQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence)
+    def objectUnderTest = new ParameterizedCmHandleQueryServiceImpl(cmHandleQueries, mockInventoryPersistence, mockTrustLevelManager)
+    def objectUnderTestWithPartiallyMockedQueries = new ParameterizedCmHandleQueryServiceImpl(partiallyMockedCmHandleQueries, mockInventoryPersistence, mockTrustLevelManager)
 
     def 'Query cm handle ids with cpsPath.'() {
         given: 'a cmHandleWithCpsPath condition property'
@@ -141,7 +143,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties('hasAllModules', [['moduleName': 'some-module-name']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         when: 'the query is executed for cm handle ids'
-            def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters).collectList().block()
         then: 'the inventory service is called with the correct module names'
             1 * mockInventoryPersistence.getCmHandleReferencesWithGivenModules(['some-module-name'], false) >> ['ch1']
         and: 'the inventory service is called with teh correct if and returns a yang model cm handle'
@@ -171,10 +173,12 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
     def 'Query cm handle details when the query is empty.'() {
         given: 'We use an empty query'
             def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
-        and: 'the inventory persistence returns the dmi registry datanode with just ids'
-            mockInventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT) >> [dmiRegistry]
+        and: 'the inventory persistence returns the cm handle ids of all cm handles'
+            cmHandleQueries.getAllCmHandleReferences(false) >> getCmHandleReferencesForDmiRegistry(false)
+        and: 'the inventory persistence returns the cm handle details when requested'
+            mockInventoryPersistence.getYangModelCmHandles(_) >> dmiRegistry.childDataNodes.collect { new YangModelCmHandle(id: it.leaves.get("id").toString(), dmiProperties: [], publicProperties: []) }
         when: 'the query is executed for both cm handle details'
-            def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters)
+            def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters).collectList().block()
         then: 'the correct cm handles are returned'
             assert result.size() == 4
             assert result.cmHandleId.containsAll('PNFDemo1', 'PNFDemo2', 'PNFDemo3', 'PNFDemo4')
