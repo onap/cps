@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.ncmp.utils.events.NcmpEvent;
@@ -51,7 +51,7 @@ public class NcmpOutEventProducer {
     @Value("${ncmp.timers.subscription-forwarding.dmi-response-timeout-ms}")
     private Integer dmiOutEventTimeoutInMs;
 
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final EventsProducer<CloudEvent> eventsProducer;
     private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiCacheHandler dmiCacheHandler;
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -59,7 +59,7 @@ public class NcmpOutEventProducer {
             new ConcurrentHashMap<>();
 
     /**
-     * Publish the event to the client who requested the subscription with key as subscription id and event is Cloud
+     * Send the event to the client who requested the subscription with key as subscription id and event is Cloud
      * Event compliant.
      *
      * @param subscriptionId   Cm Subscription Id
@@ -67,23 +67,23 @@ public class NcmpOutEventProducer {
      * @param ncmpOutEvent     Cm Notification Subscription Event for the
      *                         client
      * @param isScheduledEvent Determines if the event is to be scheduled
-     *                         or published now
+     *                         or send now
      */
-    public void publishNcmpOutEvent(final String subscriptionId, final String eventType,
-            final NcmpOutEvent ncmpOutEvent, final boolean isScheduledEvent) {
+    public void sendNcmpOutEvent(final String subscriptionId, final String eventType,
+                                 final NcmpOutEvent ncmpOutEvent, final boolean isScheduledEvent) {
 
         final String taskKey = subscriptionId.concat(eventType);
 
         if (isScheduledEvent && !scheduledTasksPerSubscriptionIdAndEventType.containsKey(taskKey)) {
-            final ScheduledFuture<?> scheduledFuture = scheduleAndPublishNcmpOutEvent(subscriptionId, eventType);
+            final ScheduledFuture<?> scheduledFuture = scheduleAndSendNcmpOutEvent(subscriptionId, eventType);
             scheduledTasksPerSubscriptionIdAndEventType.putIfAbsent(taskKey, scheduledFuture);
             log.debug("Scheduled the Cm Subscription Event for subscriptionId : {} and eventType : {}", subscriptionId,
                     eventType);
         } else {
             cancelScheduledTask(taskKey);
             if (ncmpOutEvent != null) {
-                publishNcmpOutEventNow(subscriptionId, eventType, ncmpOutEvent);
-                log.debug("Published Cm Subscription Event on demand for subscriptionId : {} and eventType : {}",
+                sendNcmpOutEventNow(subscriptionId, eventType, ncmpOutEvent);
+                log.debug("Sent Cm Subscription Event on demand for subscriptionId : {} and eventType : {}",
                         subscriptionId, eventType);
             }
         }
@@ -109,9 +109,9 @@ public class NcmpOutEventProducer {
                        .asCloudEvent();
     }
 
-    private ScheduledFuture<?> scheduleAndPublishNcmpOutEvent(final String subscriptionId, final String eventType) {
+    private ScheduledFuture<?> scheduleAndSendNcmpOutEvent(final String subscriptionId, final String eventType) {
         final NcmpOutEventPublishingTask ncmpOutEventPublishingTask =
-                new NcmpOutEventPublishingTask(ncmpOutEventTopic, subscriptionId, eventType, eventsPublisher,
+                new NcmpOutEventPublishingTask(ncmpOutEventTopic, subscriptionId, eventType, eventsProducer,
                         ncmpOutEventMapper, dmiCacheHandler);
         return scheduledExecutorService.schedule(ncmpOutEventPublishingTask, dmiOutEventTimeoutInMs,
                 TimeUnit.MILLISECONDS);
@@ -125,11 +125,11 @@ public class NcmpOutEventProducer {
         }
     }
 
-    private void publishNcmpOutEventNow(final String subscriptionId, final String eventType,
-            final NcmpOutEvent ncmpOutEvent) {
+    private void sendNcmpOutEventNow(final String subscriptionId, final String eventType,
+                                     final NcmpOutEvent ncmpOutEvent) {
         final CloudEvent ncmpOutEventAsCloudEvent =
                 buildAndGetNcmpOutEventAsCloudEvent(subscriptionId, eventType, ncmpOutEvent);
-        eventsPublisher.publishCloudEvent(ncmpOutEventTopic, subscriptionId, ncmpOutEventAsCloudEvent);
+        eventsProducer.sendCloudEvent(ncmpOutEventTopic, subscriptionId, ncmpOutEventAsCloudEvent);
         dmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId);
     }
 

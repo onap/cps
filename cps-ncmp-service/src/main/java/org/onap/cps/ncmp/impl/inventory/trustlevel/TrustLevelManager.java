@@ -68,7 +68,7 @@ public class TrustLevelManager {
     }
 
     /**
-     * Add cmHandles to the cache and publish notification for initial trust level of cmHandles if it is NONE.
+     * Add cmHandles to the cache and send notification for initial trust level of cmHandles if it is NONE.
      *
      * @param cmHandlesToBeCreated a list of cmHandles being created
      */
@@ -82,7 +82,7 @@ public class TrustLevelManager {
             }
             trustLevelPerCmHandleIdForCache.put(cmHandleId, initialTrustLevel);
             if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                inventoryEventProducer.publishAvcEvent(cmHandleId,
+                inventoryEventProducer.sendAvcEvent(cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
                         AVC_NO_OLD_VALUE,
                         initialTrustLevel.name());
@@ -92,7 +92,7 @@ public class TrustLevelManager {
     }
 
     /**
-     * Updates trust level of dmi plugin in the cache and publish notification for trust level of cmHandles if it
+     * Updates trust level of dmi plugin in the cache and sends notification for trust level of cmHandles if it
      * has changed.
      *
      * @param dmiServiceName        dmi service name
@@ -113,7 +113,7 @@ public class TrustLevelManager {
     }
 
     /**
-     * Updates trust level of device in the cache and publish notification for trust level of device if it has
+     * Updates trust level of device in the cache and send notification for trust level of device if it has
      * changed.
      *
      * @param cmHandleId            cm handle id
@@ -197,7 +197,7 @@ public class TrustLevelManager {
         } else {
             log.info("The trust level for Cm Handle: {} is now: {} ", notificationCandidateCmHandleId,
                     newEffectiveTrustLevel);
-            inventoryEventProducer.publishAvcEvent(notificationCandidateCmHandleId,
+            inventoryEventProducer.sendAvcEvent(notificationCandidateCmHandleId,
                     AVC_CHANGED_ATTRIBUTE_NAME,
                     oldEffectiveTrustLevel.name(),
                     newEffectiveTrustLevel.name());

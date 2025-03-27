@@ -40,18 +40,18 @@ import static org.onap.cps.events.model.Data.Operation.UPDATE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
-    def mockEventsPublisher = Mock(EventsPublisher)
+    def mockEventsProducer = Mock(EventsProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
 
-    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsPublisher, mockCpsNotificationService)
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService)
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         objectUnderTest.topicName = 'cps-core-event'
     }
 
-    def 'Create and Publish cps update event where events are #scenario.'() {
+    def 'Create and send cps update event where events are #scenario.'() {
         given: 'an anchor, operation and observed timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def operation = operationInRequest
@@ -60,10 +60,10 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
-        when: 'service is called to publish data update event'
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
+        when: 'service is called to send data update event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
         then: 'the event contains the required attributes'
-            1 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
+            1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
                 {
                     def cpsDataUpdatedEvent = (args[2] as CloudEvent)
@@ -86,7 +86,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         'non root node xpath and delete operation' | '/test/path' | DELETE              || UPDATE
     }
 
-    def 'Publish cps update event when no timestamp provided.'() {
+    def 'Send cps update event when no timestamp provided.'() {
         given: 'an anchor, operation and null timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def observedTimestamp = null
@@ -94,13 +94,13 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
-        when: 'service is called to publish data update event'
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', CREATE, observedTimestamp)
-        then: 'the event is published'
-            1 * mockEventsPublisher.publishCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+        when: 'service is called to send data update event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, observedTimestamp)
+        then: 'the event is sent'
+            1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
 
-    def 'Enabling and disabling publish cps update events.'() {
+    def 'Enabling and disabling sending cps update events.'() {
         given: 'a different anchor'
             def anchor = new Anchor('anchor02', 'some dataspace', 'some schema');
         and: 'notificationsEnabled is #notificationsEnabled'
@@ -109,12 +109,12 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
         and: 'notification service enabled is: #cpsNotificationServiceisNotificationEnabled'
             mockCpsNotificationService.isNotificationEnabled(_, 'anchor02') >> cpsNotificationServiceisNotificationEnabled
-        when: 'service is called to publish data update event'
-            objectUnderTest.publishCpsDataUpdateEvent(anchor, '/', CREATE, null)
-        then: 'the event is only published when all related flags are true'
-            expectedCallsToPublisher * mockEventsPublisher.publishCloudEvent(*_)
+        when: 'service is called to send data update event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, null)
+        then: 'the event is only sent when all related flags are true'
+            expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
         where: 'the following flags are used'
-            notificationsEnabled | cpsChangeEventNotificationsEnabled | cpsNotificationServiceisNotificationEnabled  || expectedCallsToPublisher
+            notificationsEnabled | cpsChangeEventNotificationsEnabled | cpsNotificationServiceisNotificationEnabled  || expectedCallsToProducer
             false                | true                               | true                                         || 0
             true                 | false                              | true                                         || 0
             true                 | true                               | false                                        || 0

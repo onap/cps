@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
@@ -38,12 +38,12 @@ public class NcmpOutEventPublishingTask implements Runnable {
     private final String topicName;
     private final String subscriptionId;
     private final String eventType;
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final EventsProducer<CloudEvent> eventsProducer;
     private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiCacheHandler dmiCacheHandler;
 
     /**
-     * Delegating the responsibility of publishing NcmpOutEvent as a separate task which will
+     * Delegating the responsibility of sending NcmpOutEvent as a separate task which will
      * be called after a specified delay.
      */
     @Override
@@ -52,7 +52,7 @@ public class NcmpOutEventPublishingTask implements Runnable {
                 dmiCacheHandler.get(subscriptionId);
         final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEvent(subscriptionId,
                 dmiSubscriptionsPerDmi);
-        eventsPublisher.publishCloudEvent(topicName, subscriptionId,
+        eventsProducer.sendCloudEvent(topicName, subscriptionId,
                 buildAndGetNcmpOutEventAsCloudEvent(subscriptionId, eventType, ncmpOutEvent));
         dmiCacheHandler.removeAcceptedAndRejectedDmiSubscriptionEntries(subscriptionId);
     }
