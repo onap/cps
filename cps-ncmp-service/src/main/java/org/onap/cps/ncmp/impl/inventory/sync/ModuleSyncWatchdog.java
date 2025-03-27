@@ -53,7 +53,7 @@ public class ModuleSyncWatchdog {
      * This method will only finish when there are no more 'ADVISED' cm handles in the DB.
      * This method is triggered on a configurable interval (ncmp.timers.advised-modules-sync.sleep-time-ms)
      */
-    @Scheduled(initialDelayString = "${test.ncmp.timers.advised-modules-sync.initial-delay-ms:0}",
+    @Scheduled(initialDelayString = "${ncmp.timers.advised-modules-sync.initial-delay-ms:40000}",
                fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
     public void moduleSyncAdvisedCmHandles() {
         log.debug("Processing module sync watchdog waking up.");

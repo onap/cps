@@ -180,8 +180,10 @@ ncmp:
 
   timers:
     advised-modules-sync:
+      initial-delay-ms: 600000
       sleep-time-ms: 1000000
     cm-handle-data-sync:
+      initial-delay-ms: 600000
       sleep-time-ms: 30000
     subscription-forwarding:
       dmi-response-timeout-ms: 30000
