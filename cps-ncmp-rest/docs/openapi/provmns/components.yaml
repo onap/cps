@@ -1,0 +1,316 @@
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2025 OpenInfra Foundation Europe
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+components:
+  schemas:
+    # Common Schemas
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    # DMI Server Exception Schema
+    DmiErrorMessage:
+      title: DMI Error Message
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Bad Gateway Error Message NCMP'
+        dmi-response:
+          type: object
+          properties:
+            http-code:
+              type: integer
+              example: 400
+            body:
+              type: string
+              example: Bad Request
+
+    #ProvMns Schemas
+    ScopeType:
+      type: string
+      enum:
+        - BASE_ONLY
+        - BASE_NTH_LEVEL
+        - BASE_SUBTREE
+        - BASE_ALL
+    Scope:
+      type: object
+      properties:
+        scopeType:
+          $ref: '#/components/schemas/ScopeType'
+        scopeLevel:
+          type: integer
+    Resource:
+      type: object
+      properties:
+        id:
+          type: string
+        objectClass:
+          type: string
+        objectInstance:
+          type: string
+        attributes:
+          type: object
+      additionalProperties:
+        type: array
+        items:
+          type: object
+      required:
+        - id
+
+  examples:
+    dataSampleResponse:
+      summary: Sample response
+      description: Sample response with GNBDUFunction configuration
+      value:
+        gnbdu3gpp:GNBDUFunction:
+          id: 12345
+          attributes:
+            gNBId: 5
+            gNBIdLength: 32
+            gNBDUId: 67890
+            gNBDUName: "DU-1"
+          rimRSReportConf:
+            reportIndicator: "enabled"
+            reportInterval: 1000
+            nrofRIMRSReportInfo: 5
+            maxPropagationDelay: 32767
+            RimRSReportInfoList:
+              - detectedSetID: 1
+                propagationDelay: 20
+                functionalityOfRIMRS: "RS1"
+              - detectedSetID: 2
+                propagationDelay: 15
+                functionalityOfRIMRS: "RS2"
+          configurable5QISetRef: "/5QISet-001"
+          dynamic5QISetRef: "/Dynamic5QISet-001"
+
+  parameters:
+    scopeInQuery:
+      name: scope
+      in: query
+      description: >-
+        This parameter extends the set of targeted resources beyond the base
+        resource identified with the path component of the URI. No scoping
+        mechanism is specified in the present document.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Scope'
+      style: form
+      explode: true
+      examples:
+        sample 1:
+          value:
+            scope:
+              scopeType: "BASE_ONLY"
+              scopeLevel: 0
+    filterInQuery:
+      name: filter
+      in: query
+      description: >-
+        This parameter reduces the targeted set of resources by applying a
+        filter to the scoped set of resource representations. Only resource
+        representations for which the filter construct evaluates to "true"
+        are targeted.
+      required: false
+      schema:
+        type: string
+        enum:
+          - AND
+          - OR
+          - NOT
+      examples:
+        sample 1:
+          value:
+            filter: AND
+    attributesInQuery:
+      name: attributes
+      in: query
+      description: This parameter specifies the attributes of the scoped resources that are returned.
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      examples:
+        sample 1:
+          value:
+            attributes: ["",""]
+    fieldsInQuery:
+      name: fields
+      in: query
+      description: This parameter specifies the attribute field of the scoped resources that are returned.
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      examples:
+        sample 1:
+          value:
+            attributes: ["",""]
+    dataNodeSelectorInQuery:
+      name: dataNodeSelector
+      in: query
+      description: >-
+        This parameter contains an expression allowing to conditionally
+        select data nodes.
+      required: false
+      schema:
+        type: string
+      examples:
+        sample 1:
+          value:
+            dataNodeSelector:
+    uriLDNFirstPartInPath:
+      name: URI-LDN-first-part
+      in: path
+      required: true
+      schema:
+        type: string
+        example: SubNetwork=Europe
+    classNameInPath:
+      name: className
+      in: path
+      required: true
+      schema:
+        type: string
+        example: ManagedElement
+    idInPath:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: LTE01dg2ERBS00001
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Not found error message
+            details: Not found error details
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 401
+            message: Unauthorized error message
+            details: Unauthorized error details
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 403
+            message: Forbidden error message
+            details: Forbidden error details
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Bad request error message
+            details: Bad request error details
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 409
+            message: Conflict error message
+            details: Conflict error details
+    PayloadTooLarge:
+      description: The request is larger than the server is willing or able to process
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 413
+            message: Payload Too Large error message
+            details: Payload Too Large error details
+    NotImplemented:
+      description: The given path has not been implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 501
+            message: Not implemented error message
+            details: Not implemented error details
+    Ok:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+    Created:
+      description: Created
+      content: { }
+    NoContent:
+      description: No Content
+      content: { }
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/DmiErrorMessage"
+          example:
+            message: "Bad Gateway Error Message NCMP"
+            dmi-response:
+              http-code: 400
+              body: "Bad Request"
