@@ -372,6 +372,40 @@ components:
             description: targeted cm handle references, maximum of 200 supported. If this limit is exceeded the request will be refused.
             example: [ "da310eecdb8d44c2acc0ddaae01174b1","c748c58f8e0b438f9fd1f28370b17d47" ]
 
+    #ProvMns Schemas
+    ScopeType:
+      type: string
+      enum:
+        - BASE_ONLY
+        - BASE_NTH_LEVEL
+        - BASE_SUBTREE
+        - BASE_ALL
+    Scope:
+      type: object
+      properties:
+        scopeType:
+          $ref: '#/components/schemas/ScopeType'
+        scopeLevel:
+          type: integer
+    Resource:
+      type: object
+      properties:
+        id:
+          type: string
+        objectClass:
+          type: string
+        objectInstance:
+          type: string
+        attributes:
+          type: object
+      additionalProperties:
+        type: array
+        items:
+          type: object
+      required:
+        - id
+
+
   examples:
     dataSampleRequest:
       summary: Sample request
@@ -650,6 +684,77 @@ components:
         sample 1:
           value:
             topic: my-topic-name
+    scopeInQuery:
+      name: scope
+      in: query
+      description: optional scope (resource identifier) parameter in query.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Scope'
+      style: form
+      explode: true
+      examples:
+        sample 1:
+          value:
+            scope:
+              scopeType: "BASE_ONLY"
+              scopeLevel: 0
+    filterInQuery:
+      name: filter
+      in: query
+      description: query (options) parameter in query.
+      required: false
+      schema:
+        type: string
+        enum:
+          - AND
+          - OR
+          - NOT
+      examples:
+        sample 1:
+          value:
+            filter: AND
+    attributesInQuery:
+      name: attributes
+      in: query
+      description: This parameter specifies the attributes of the scoped resources that are returned.
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      examples:
+        sample 1:
+          value:
+            attributes: ["",""]
+    fieldsInQuery:
+      name: fields
+      in: query
+      description: This parameter specifies the attribute field of the scoped resources that are returned.
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+      examples:
+        sample 1:
+          value:
+            attributes: ["",""]
+    dataNodeSelectorInQuery:
+      name: dataNodeSelector
+      in: query
+      description: fields parameter in query.
+      required: true
+      schema:
+        type: string
+      examples:
+        sample 1:
+          value:
+            dataNodeSelector:
     contentParamInHeader:
       name: Content-Type
       in: header
@@ -674,6 +779,22 @@ components:
       schema:
         type: string
         example: ncmp-datastore:running
+    classNameInPath:
+      name: className
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: ManagedElement
+    idInPath:
+      name: id
+      in: path
+      description: The identifier for a network function, network element, subnetwork or any other cm object by managed Network CM Proxy
+      required: true
+      schema:
+        type: string
+        example: LTE01dg2ERBS00001
 
   responses:
     NotFound:
