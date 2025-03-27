@@ -119,7 +119,7 @@ export function passthroughWriteAltIdScenario() {
 export function cmHandleIdSearchNoFilterScenario() {
     const response = executeCmHandleIdSearch('no-filter');
     if (check(response, { 'CM handle ID no-filter search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID no-filter search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID no-filter search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchNoFilterDurationTrend.add(response.timings.duration);
     }
 }
@@ -135,7 +135,7 @@ export function cmHandleSearchNoFilterScenario() {
 export function cmHandleIdSearchModuleScenario() {
     const response = executeCmHandleIdSearch('module');
     if (check(response, { 'CM handle ID module search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID module search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID module search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchModuleDurationTrend.add(response.timings.duration);
     }
 }
@@ -151,7 +151,7 @@ export function cmHandleSearchModuleScenario() {
 export function cmHandleIdSearchPropertyScenario() {
     const response = executeCmHandleIdSearch('property');
     if (check(response, { 'CM handle ID property search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID property search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID property search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchPropertyDurationTrend.add(response.timings.duration);
     }
 }
@@ -167,7 +167,7 @@ export function cmHandleSearchPropertyScenario() {
 export function cmHandleIdSearchCpsPathScenario() {
     const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
     if (check(response, { 'CM handle ID cps path search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID cps path search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID cps path search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchCpsPathDurationTrend.add(response.timings.duration);
     }
 }
@@ -183,7 +183,7 @@ export function cmHandleSearchCpsPathScenario() {
 export function cmHandleIdSearchTrustLevelScenario() {
     const response = executeCmHandleIdSearch('trust-level');
     if (check(response, { 'CM handle ID trust level search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID trust level search returned expected CM-handles': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID trust level search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchTrustLevelDurationTrend.add(response.timings.duration);
     }
 }

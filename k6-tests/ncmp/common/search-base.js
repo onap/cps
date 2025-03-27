@@ -31,7 +31,7 @@ export function executeCmHandleIdSearch(scenario) {
 function executeSearchRequest(searchType, scenario) {
     const searchParameters = SEARCH_PARAMETERS_PER_SCENARIO[scenario];
     const payload = JSON.stringify(searchParameters);
-    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}`;
+    const url = `${NCMP_BASE_URL}/ncmp/v1/ch/${searchType}?outputAlternateId=true`;
     return performPostRequest(url, payload, searchType);
 }
 
