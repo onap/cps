@@ -102,6 +102,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     @SpringBean
     NcmpPassthroughResourceRequestHandler StubbedNcmpPassthroughResourceRequestHandler = Stub()
 
+    @SpringBean
+    DataJobControllerForTest stubbedDataJobControllerForTest = Stub()
+
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
 
