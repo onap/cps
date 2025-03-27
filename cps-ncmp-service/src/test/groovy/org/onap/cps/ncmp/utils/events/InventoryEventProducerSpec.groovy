@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2023-2024 Nordix Foundation.
+ * Copyright (c) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
-class CmAvcEventPublisherSpec extends MessagingBaseSpec {
+class InventoryEventProducerSpec extends MessagingBaseSpec {
 
     def mockEventsPublisher = Mock(EventsPublisher<CloudEvent>)
-    def objectUnderTest = new CmAvcEventPublisher(mockEventsPublisher)
+    def objectUnderTest = new InventoryEventProducer(mockEventsPublisher)
 
     def 'Publish an attribute value change event'() {
         given: 'the event key'

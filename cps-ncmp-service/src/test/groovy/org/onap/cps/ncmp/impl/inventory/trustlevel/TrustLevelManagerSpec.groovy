@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.utils.events.CmAvcEventPublisher
+import org.onap.cps.ncmp.utils.events.InventoryEventProducer
 import spock.lang.Specification
 
 class TrustLevelManagerSpec extends Specification {
@@ -39,13 +39,13 @@ class TrustLevelManagerSpec extends Specification {
     IMap<String, TrustLevel>  trustLevelPerDmiPlugin
 
     def mockInventoryPersistence = Mock(InventoryPersistence)
-    def mockAttributeValueChangeEventPublisher = Mock(CmAvcEventPublisher)
+    def mockInventoryEventProducer = Mock(InventoryEventProducer)
 
     def setup() {
         hazelcastInstance = Hazelcast.newHazelcastInstance()
         trustLevelPerCmHandleId = hazelcastInstance.getMap("trustLevelPerCmHandle")
         trustLevelPerDmiPlugin = hazelcastInstance.getMap("trustLevelPerCmHandle")
-        objectUnderTest = new TrustLevelManager(trustLevelPerCmHandleId, trustLevelPerDmiPlugin, mockInventoryPersistence, mockAttributeValueChangeEventPublisher)
+        objectUnderTest = new TrustLevelManager(trustLevelPerCmHandleId, trustLevelPerDmiPlugin, mockInventoryPersistence, mockInventoryEventProducer)
     }
 
     def cleanup() {
@@ -71,7 +71,7 @@ class TrustLevelManagerSpec extends Specification {
         when: 'method to register to the cache is called'
             objectUnderTest.registerCmHandles(cmHandleModelsToBeCreated)
         then: 'no notification sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockInventoryEventProducer.publishAvcEvent(*_)
         and: 'both cm handles are in the cache and are trusted'
             assert trustLevelPerCmHandleId.get('ch-1') == TrustLevel.COMPLETE
             assert trustLevelPerCmHandleId.get('ch-2') == TrustLevel.COMPLETE
@@ -83,7 +83,7 @@ class TrustLevelManagerSpec extends Specification {
         when: 'method to register to the cache is called'
             objectUnderTest.registerCmHandles(cmHandleModelsToBeCreated)
         then: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            1 * mockInventoryEventProducer.publishAvcEvent(*_)
     }
 
     def 'Dmi trust level updated'() {
@@ -94,7 +94,7 @@ class TrustLevelManagerSpec extends Specification {
         when: 'the update is handled'
             objectUnderTest.updateDmi('my-dmi', ['ch-1'], TrustLevel.NONE)
         then: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'COMPLETE', 'NONE')
+            1 * mockInventoryEventProducer.publishAvcEvent('ch-1', 'trustLevel', 'COMPLETE', 'NONE')
         and: 'the dmi in the cache is not trusted'
             assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.NONE
     }
@@ -107,7 +107,7 @@ class TrustLevelManagerSpec extends Specification {
         when: 'the update is handled'
             objectUnderTest.updateDmi('my-dmi', ['ch-1'], TrustLevel.COMPLETE)
         then: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockInventoryEventProducer.publishAvcEvent(*_)
         and: 'the dmi in the cache is trusted'
             assert trustLevelPerDmiPlugin.get('my-dmi') == TrustLevel.COMPLETE
     }
@@ -124,7 +124,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is trusted'
             assert trustLevelPerCmHandleId.get('ch-1', TrustLevel.COMPLETE)
         and: 'notification is sent'
-            1 * mockAttributeValueChangeEventPublisher.publishAvcEvent('ch-1', 'trustLevel', 'NONE', 'COMPLETE')
+            1 * mockInventoryEventProducer.publishAvcEvent('ch-1', 'trustLevel', 'NONE', 'COMPLETE')
     }
 
     def 'CmHandle trust level updated with same value'() {
@@ -139,7 +139,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is not trusted'
             assert trustLevelPerCmHandleId.get('ch-1', TrustLevel.NONE)
         and: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockInventoryEventProducer.publishAvcEvent(*_)
     }
 
     def 'Dmi trust level restored to complete with non trusted CmHandle'() {
@@ -152,7 +152,7 @@ class TrustLevelManagerSpec extends Specification {
         then: 'the cm handle in the cache is still NONE'
             assert trustLevelPerCmHandleId.get('ch-1') == TrustLevel.NONE
         and: 'no notification is sent'
-            0 * mockAttributeValueChangeEventPublisher.publishAvcEvent(*_)
+            0 * mockInventoryEventProducer.publishAvcEvent(*_)
     }
 
     def 'Apply effective trust level among CmHandle and dmi plugin'() {
