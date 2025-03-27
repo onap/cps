@@ -42,7 +42,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataUpdateEventsProducer {
 
-    private final EventsPublisher<CpsDataUpdatedEvent> eventsPublisher;
+    private final EventsProducer<CpsDataUpdatedEvent> eventsPublisher;
 
     private final CpsNotificationService cpsNotificationService;
 

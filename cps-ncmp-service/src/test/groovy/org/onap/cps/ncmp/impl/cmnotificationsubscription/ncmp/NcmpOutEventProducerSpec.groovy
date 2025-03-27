@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.v1.CloudEventBuilder
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.cache.DmiCacheHandler
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.Data
@@ -38,7 +38,7 @@ import spock.lang.Specification
 @ContextConfiguration(classes = [CpsApplicationContext])
 class NcmpOutEventProducerSpec extends Specification {
 
-    def mockEventsPublisher = Mock(EventsPublisher)
+    def mockEventsPublisher = Mock(EventsProducer)
     def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
     def mockDmiCacheHandler = Mock(DmiCacheHandler)
 

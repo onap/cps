@@ -40,7 +40,7 @@ import static org.onap.cps.events.model.Data.Operation.UPDATE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
-    def mockEventsPublisher = Mock(EventsPublisher)
+    def mockEventsPublisher = Mock(EventsProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
 

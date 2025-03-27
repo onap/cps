@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.data.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
@@ -46,7 +46,7 @@ import spock.util.concurrent.PollingConditions
 class SerializationIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
-    EventsPublisher mockEventsPublisher = Mock()
+    EventsProducer mockEventsPublisher = Mock()
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub() { toNcmpAsyncEvent(_) >> new NcmpAsyncRequestResponseEvent(eventId: 'my-event-id', eventTarget: 'some client topic')}

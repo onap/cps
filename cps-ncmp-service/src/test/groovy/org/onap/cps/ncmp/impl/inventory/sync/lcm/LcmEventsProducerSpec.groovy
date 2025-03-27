@@ -25,7 +25,7 @@ import static org.onap.cps.ncmp.events.lcm.v1.Values.CmHandleState.READY
 
 import io.micrometer.core.instrument.Tag
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.events.lcm.v1.Event
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
@@ -36,7 +36,7 @@ import spock.lang.Specification
 
 class LcmEventsProducerSpec extends Specification {
 
-    def mockLcmEventsPublisher = Mock(EventsPublisher)
+    def mockLcmEventsPublisher = Mock(EventsProducer)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def meterRegistry = new SimpleMeterRegistry()
 

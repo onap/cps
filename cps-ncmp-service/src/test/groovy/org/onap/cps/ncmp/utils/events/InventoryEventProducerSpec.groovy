@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.utils.events
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
@@ -32,7 +32,7 @@ import org.springframework.test.context.ContextConfiguration
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class InventoryEventProducerSpec extends MessagingBaseSpec {
 
-    def mockEventsPublisher = Mock(EventsPublisher<CloudEvent>)
+    def mockEventsPublisher = Mock(EventsProducer<CloudEvent>)
     def objectUnderTest = new InventoryEventProducer(mockEventsPublisher)
 
     def 'Publish an attribute value change event'() {

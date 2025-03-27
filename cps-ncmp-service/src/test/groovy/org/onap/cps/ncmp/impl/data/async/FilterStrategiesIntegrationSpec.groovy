@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.impl.data.async
 
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.utils.events.ConsumerBaseSpec
@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit
 class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
-    EventsPublisher mockEventsPublisher = Mock()
+    EventsProducer mockEventsPublisher = Mock()
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub()

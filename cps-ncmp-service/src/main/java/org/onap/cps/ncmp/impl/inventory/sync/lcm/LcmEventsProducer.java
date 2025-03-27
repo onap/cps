@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
@@ -49,7 +49,7 @@ public class LcmEventsProducer {
     private static final Tag TAG_METHOD = Tag.of("method", "publishLcmEvent");
     private static final Tag TAG_CLASS = Tag.of("class", LcmEventsProducer.class.getName());
     private static final String UNAVAILABLE_CM_HANDLE_STATE = "N/A";
-    private final EventsPublisher<LcmEvent> eventsPublisher;
+    private final EventsProducer<LcmEvent> eventsPublisher;
     private final JsonObjectMapper jsonObjectMapper;
     private final MeterRegistry meterRegistry;
 

@@ -40,7 +40,7 @@ import org.springframework.util.SerializationUtils;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventsPublisher<T> {
+public class EventsProducer<T> {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
