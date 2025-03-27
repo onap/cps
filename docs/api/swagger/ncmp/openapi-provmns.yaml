@@ -1,0 +1,652 @@
+openapi: 3.0.3
+info:
+  description: NCMP ProvMns API
+  title: NCMP ProvMns API
+  version: 3.6.0
+servers:
+- url: /ProvMnS
+paths:
+  /v1/{URI-LDN-first-part}/{className}={id}:
+    delete:
+      description: With HTTP DELETE one resource is deleted. The resources to be deleted
+        is identified with the target URI.
+      operationId: deleteMOIs
+      parameters:
+      - in: path
+        name: URI-LDN-first-part
+        required: true
+        schema:
+          example: SubNetwork=Europe
+          type: string
+      - in: path
+        name: className
+        required: true
+        schema:
+          example: ManagedElement
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          example: LTE01dg2ERBS00001
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Not found error message
+                details: Not found error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: The specified resource was not found
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+        "502":
+          content:
+            application/json:
+              example:
+                message: Bad Gateway Error Message NCMP
+                dmi-response:
+                  http-code: 400
+                  body: Bad Request
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+          description: Bad Gateway
+      summary: Deletes one resource
+      tags:
+      - network-cm-proxy-provmns
+    get:
+      description: With HTTP GET resources are read. The resources to be retrieved
+        are identified with the target URI. The attributes and fields parameter of
+        the query components allow to select the resource properties to be returned.
+      operationId: getMOIAttributes
+      parameters:
+      - in: path
+        name: URI-LDN-first-part
+        required: true
+        schema:
+          example: SubNetwork=Europe
+          type: string
+      - in: path
+        name: className
+        required: true
+        schema:
+          example: ManagedElement
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          example: LTE01dg2ERBS00001
+          type: string
+      - description: optional scope (resource identifier) parameter in query.
+        examples:
+          sample 1:
+            value:
+              scope:
+                scopeType: BASE_ONLY
+                scopeLevel: 0
+        explode: true
+        in: query
+        name: scope
+        required: false
+        schema:
+          $ref: '#/components/schemas/Scope'
+        style: form
+      - description: query (options) parameter in query.
+        examples:
+          sample 1:
+            value:
+              filter: AND
+        in: query
+        name: filter
+        required: false
+        schema:
+          enum:
+          - AND
+          - OR
+          - NOT
+          type: string
+      - description: This parameter specifies the attributes of the scoped resources
+          that are returned.
+        examples:
+          sample 1:
+            value:
+              attributes:
+              - ""
+              - ""
+        explode: false
+        in: query
+        name: attributes
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: This parameter specifies the attribute field of the scoped resources
+          that are returned.
+        examples:
+          sample 1:
+            value:
+              attributes:
+              - ""
+              - ""
+        explode: false
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: fields parameter in query.
+        examples:
+          sample 1:
+            value:
+              dataNodeSelector: null
+        in: query
+        name: dataNodeSelector
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSampleResponse:
+                  $ref: '#/components/examples/dataSampleResponse'
+                  value: null
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+        "502":
+          content:
+            application/json:
+              example:
+                message: Bad Gateway Error Message NCMP
+                dmi-response:
+                  http-code: 400
+                  body: Bad Request
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+          description: Bad Gateway
+      summary: Reads one or multiple resources
+      tags:
+      - network-cm-proxy-provmns
+    patch:
+      description: "With HTTP PATCH resources are created, updated or deleted. The\
+        \ resources to be modified are identified with the target URI (base resource)\
+        \ and the patch document included in the request message body."
+      operationId: changeMOIs
+      parameters:
+      - in: path
+        name: URI-LDN-first-part
+        required: true
+        schema:
+          example: SubNetwork=Europe
+          type: string
+      - in: path
+        name: className
+        required: true
+        schema:
+          example: ManagedElement
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          example: LTE01dg2ERBS00001
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+          application/3gpp-merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+        "502":
+          content:
+            application/json:
+              example:
+                message: Bad Gateway Error Message NCMP
+                dmi-response:
+                  http-code: 400
+                  body: Bad Request
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+          description: Bad Gateway
+      summary: Patches one or multiple resources
+      tags:
+      - network-cm-proxy-provmns
+    put:
+      description: With HTTP PUT a complete resource is replaced or created if it
+        does not exist. The target resource is identified by the target URI.
+      operationId: createMOI
+      parameters:
+      - in: path
+        name: URI-LDN-first-part
+        required: true
+        schema:
+          example: SubNetwork=Europe
+          type: string
+      - in: path
+        name: className
+        required: true
+        schema:
+          example: ManagedElement
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          example: LTE01dg2ERBS00001
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resource'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+        "502":
+          content:
+            application/json:
+              example:
+                message: Bad Gateway Error Message NCMP
+                dmi-response:
+                  http-code: 400
+                  body: Bad Request
+              schema:
+                $ref: '#/components/schemas/DmiErrorMessage'
+          description: Bad Gateway
+      summary: Replaces a complete single resource or creates it if it does not exist
+      tags:
+      - network-cm-proxy-provmns
+components:
+  examples:
+    dataSampleResponse:
+      description: Sample response with GNBDUFunction configuration
+      summary: Sample response
+      value:
+        gnbdu3gpp:GNBDUFunction:
+          id: 12345
+          attributes:
+            gNBId: 5
+            gNBIdLength: 32
+            gNBDUId: 67890
+            gNBDUName: DU-1
+          rimRSReportConf:
+            reportIndicator: enabled
+            reportInterval: 1000
+            nrofRIMRSReportInfo: 5
+            maxPropagationDelay: 32767
+            RimRSReportInfoList:
+            - detectedSetID: 1
+              propagationDelay: 20
+              functionalityOfRIMRS: RS1
+            - detectedSetID: 2
+              propagationDelay: 15
+              functionalityOfRIMRS: RS2
+          configurable5QISetRef: /5QISet-001
+          dynamic5QISetRef: /Dynamic5QISet-001
+  parameters:
+    uriLDNFirstPartInPath:
+      in: path
+      name: URI-LDN-first-part
+      required: true
+      schema:
+        example: SubNetwork=Europe
+        type: string
+    classNameInPath:
+      in: path
+      name: className
+      required: true
+      schema:
+        example: ManagedElement
+        type: string
+    idInPath:
+      in: path
+      name: id
+      required: true
+      schema:
+        example: LTE01dg2ERBS00001
+        type: string
+    scopeInQuery:
+      description: optional scope (resource identifier) parameter in query.
+      examples:
+        sample 1:
+          value:
+            scope:
+              scopeType: BASE_ONLY
+              scopeLevel: 0
+      explode: true
+      in: query
+      name: scope
+      required: false
+      schema:
+        $ref: '#/components/schemas/Scope'
+      style: form
+    filterInQuery:
+      description: query (options) parameter in query.
+      examples:
+        sample 1:
+          value:
+            filter: AND
+      in: query
+      name: filter
+      required: false
+      schema:
+        enum:
+        - AND
+        - OR
+        - NOT
+        type: string
+    attributesInQuery:
+      description: This parameter specifies the attributes of the scoped resources
+        that are returned.
+      examples:
+        sample 1:
+          value:
+            attributes:
+            - ""
+            - ""
+      explode: false
+      in: query
+      name: attributes
+      required: false
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
+    fieldsInQuery:
+      description: This parameter specifies the attribute field of the scoped resources
+        that are returned.
+      examples:
+        sample 1:
+          value:
+            attributes:
+            - ""
+            - ""
+      explode: false
+      in: query
+      name: fields
+      required: false
+      schema:
+        items:
+          type: string
+        type: array
+      style: form
+    dataNodeSelectorInQuery:
+      description: fields parameter in query.
+      examples:
+        sample 1:
+          value:
+            dataNodeSelector: null
+      in: query
+      name: dataNodeSelector
+      required: true
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      content:
+        application/json:
+          example:
+            status: 400
+            message: Bad request error message
+            details: Bad request error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Bad Request
+    Forbidden:
+      content:
+        application/json:
+          example:
+            status: 403
+            message: Forbidden error message
+            details: Forbidden error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Forbidden
+    InternalServerError:
+      content:
+        application/json:
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occurred
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: Internal Server Error
+    BadGateway:
+      content:
+        application/json:
+          example:
+            message: Bad Gateway Error Message NCMP
+            dmi-response:
+              http-code: 400
+              body: Bad Request
+          schema:
+            $ref: '#/components/schemas/DmiErrorMessage'
+      description: Bad Gateway
+    Ok:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: OK
+    NoContent:
+      content: {}
+      description: No Content
+    NotFound:
+      content:
+        application/json:
+          example:
+            status: 400
+            message: Not found error message
+            details: Not found error details
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+      description: The specified resource was not found
+  schemas:
+    Scope:
+      properties:
+        scopeType:
+          $ref: '#/components/schemas/ScopeType'
+        scopeLevel:
+          type: integer
+      type: object
+    ScopeType:
+      enum:
+      - BASE_ONLY
+      - BASE_NTH_LEVEL
+      - BASE_SUBTREE
+      - BASE_ALL
+      type: string
+    ErrorMessage:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+      title: Error
+      type: object
+    DmiErrorMessage:
+      properties:
+        message:
+          example: Bad Gateway Error Message NCMP
+          type: string
+        dmi-response:
+          $ref: '#/components/schemas/DmiErrorMessage_dmi_response'
+      title: DMI Error Message
+      type: object
+    Resource:
+      additionalProperties:
+        items:
+          type: object
+        type: array
+      properties:
+        id:
+          type: string
+        objectClass:
+          type: string
+        objectInstance:
+          type: string
+        attributes:
+          type: object
+      required:
+      - id
+      type: object
+    DmiErrorMessage_dmi_response:
+      properties:
+        http-code:
+          example: 400
+          type: integer
+        body:
+          example: Bad Request
+          type: string
+      type: object
