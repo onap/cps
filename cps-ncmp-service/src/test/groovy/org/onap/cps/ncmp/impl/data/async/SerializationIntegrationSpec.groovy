@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.impl.data.async
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.core.builder.CloudEventBuilder
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.KafkaConfig
 import org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent
 import org.onap.cps.ncmp.event.model.NcmpAsyncRequestResponseEvent
@@ -46,7 +46,7 @@ import spock.util.concurrent.PollingConditions
 class SerializationIntegrationSpec extends ConsumerBaseSpec {
 
     @SpringBean
-    EventsPublisher mockEventsPublisher = Mock()
+    EventsProducer mockEventsProducer = Mock()
 
     @SpringBean
     NcmpAsyncRequestResponseEventMapper mapper = Stub() { toNcmpAsyncEvent(_) >> new NcmpAsyncRequestResponseEvent(eventId: 'my-event-id', eventTarget: 'some client topic')}
@@ -60,34 +60,34 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
     def 'Forwarding DataOperation Event Data.'() {
         given: 'a data operation cloud event'
             def cloudEvent = createCloudEvent()
-        and: 'a flag to track the publish cloud event call'
-            def publishCloudEventMethodCalled = false
-        and: 'the (mocked) events publisher will use the flag to indicate if it is called and will capture the cloud event'
-            mockEventsPublisher.publishCloudEvent('some client topic', 'some-correlation-id', cloudEvent) >> {
-                publishCloudEventMethodCalled = true
+        and: 'a flag to track the send cloud event call'
+            def sendCloudEventMethodCalled = false
+        and: 'the (mocked) events producer will use the flag to indicate if it is called and will capture the cloud event'
+            mockEventsProducer.sendCloudEvent('some client topic', 'some-correlation-id', cloudEvent) >> {
+                sendCloudEventMethodCalled = true
             }
         when: 'send the event'
             cloudEventKafkaTemplate.send(topic, cloudEvent)
         then: 'the event has been forwarded'
             new PollingConditions().within(1) {
-                assert publishCloudEventMethodCalled == true
+                assert sendCloudEventMethodCalled == true
             }
     }
 
     def 'Forwarding AsyncRestRequestResponse Event Data.'() {
         given: 'async request response legacy event'
             def dmiAsyncRequestResponseEvent = new DmiAsyncRequestResponseEvent(eventId: 'my-event-id',eventTarget: 'some client topic')
-        and: 'a flag to track the publish event call'
-            def publishEventMethodCalled = false
-        and: 'the (mocked) events publisher will use the flag to indicate if it is called and will capture the event'
-            mockEventsPublisher.publishEvent(*_) >> {
-                publishEventMethodCalled = true
+        and: 'a flag to track the send event call'
+            def sendEventMethodCalled = false
+        and: 'the (mocked) events producer will use the flag to indicate if it is called and will capture the event'
+            mockEventsProducer.sendEvent(*_) >> {
+                sendEventMethodCalled = true
             }
         when: 'send the event'
             legacyEventKafkaTemplate.send(topic, dmiAsyncRequestResponseEvent)
         then: 'the event has been forwarded'
             new PollingConditions().within(1) {
-                assert publishEventMethodCalled == true
+                assert sendEventMethodCalled == true
             }
     }
 

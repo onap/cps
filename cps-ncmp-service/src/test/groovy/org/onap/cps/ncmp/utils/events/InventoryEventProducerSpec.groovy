@@ -22,7 +22,7 @@ package org.onap.cps.ncmp.utils.events
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent
@@ -32,10 +32,10 @@ import org.springframework.test.context.ContextConfiguration
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class InventoryEventProducerSpec extends MessagingBaseSpec {
 
-    def mockEventsPublisher = Mock(EventsPublisher<CloudEvent>)
-    def objectUnderTest = new InventoryEventProducer(mockEventsPublisher)
+    def mockEventsProducer = Mock(EventsProducer<CloudEvent>)
+    def objectUnderTest = new InventoryEventProducer(mockEventsProducer)
 
-    def 'Publish an attribute value change event'() {
+    def 'Send an attribute value change event'() {
         given: 'the event key'
             def someEventKey = 'someEventKey'
         and: 'the name of the attribute being changed'
@@ -44,10 +44,10 @@ class InventoryEventProducerSpec extends MessagingBaseSpec {
             def someOldAttributeValue = 'someOldAttributeValue'
         and: 'the new value of the attribute'
             def someNewAttributeValue = 'someNewAttributeValue'
-        when: 'an attribute value change event is published'
-            objectUnderTest.publishAvcEvent(someEventKey, someAttributeName, someOldAttributeValue, someNewAttributeValue)
-        then: 'the cloud event publisher is invoked with the correct data'
-            1 * mockEventsPublisher.publishCloudEvent(_, someEventKey,
+        when: 'an attribute value change event is sent'
+            objectUnderTest.sendAvcEvent(someEventKey, someAttributeName, someOldAttributeValue, someNewAttributeValue)
+        then: 'the cloud event producer is invoked with the correct data'
+            1 * mockEventsProducer.sendCloudEvent(_, someEventKey,
                 cloudEvent -> {
                     def actualAvcs = CloudEventMapper.toTargetEvent(cloudEvent, AvcEvent.class).data.attributeValueChange
                     def expectedAvc = new Avc(attributeName: someAttributeName,

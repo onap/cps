@@ -82,7 +82,7 @@ public class TrustLevelManager {
             }
             trustLevelPerCmHandleIdForCache.put(cmHandleId, initialTrustLevel);
             if (TrustLevel.NONE.equals(initialTrustLevel)) {
-                inventoryEventProducer.publishAvcEvent(cmHandleId,
+                inventoryEventProducer.sendAvcEvent(cmHandleId,
                         AVC_CHANGED_ATTRIBUTE_NAME,
                         AVC_NO_OLD_VALUE,
                         initialTrustLevel.name());
@@ -197,7 +197,7 @@ public class TrustLevelManager {
         } else {
             log.info("The trust level for Cm Handle: {} is now: {} ", notificationCandidateCmHandleId,
                     newEffectiveTrustLevel);
-            inventoryEventProducer.publishAvcEvent(notificationCandidateCmHandleId,
+            inventoryEventProducer.sendAvcEvent(notificationCandidateCmHandleId,
                     AVC_CHANGED_ATTRIBUTE_NAME,
                     oldEffectiveTrustLevel.name(),
                     newEffectiveTrustLevel.name());

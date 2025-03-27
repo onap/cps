@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Avc;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.AvcEvent;
 import org.onap.cps.ncmp.events.avc.ncmp_to_client.Data;
@@ -38,18 +38,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InventoryEventProducer {
 
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final EventsProducer<CloudEvent> eventsProducer;
 
     @Value("${app.ncmp.avc.inventory-events-topic}")
     private String ncmpInventoryEventsTopicName;
 
     /**
-     * Publish attribute value change event.
+     * Send attribute value change event.
      *
      * @param eventKey id of the cmHandle being registered
      */
-    public void publishAvcEvent(final String eventKey, final String attributeName,
-                                final String oldAttributeValue, final String newAttributeValue) {
+    public void sendAvcEvent(final String eventKey, final String attributeName,
+                             final String oldAttributeValue, final String newAttributeValue) {
         final AvcEvent avcEvent = buildAvcEvent(attributeName, oldAttributeValue, newAttributeValue);
 
         final Map<String, String> extensions = createAvcEventExtensions(eventKey);
@@ -61,7 +61,7 @@ public class InventoryEventProducer {
                                                  .build()
                                                  .asCloudEvent();
 
-        eventsPublisher.publishCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
+        eventsProducer.sendCloudEvent(ncmpInventoryEventsTopicName, eventKey, avcCloudEvent);
     }
 
     private AvcEvent buildAvcEvent(final String attributeName,

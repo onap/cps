@@ -309,7 +309,7 @@ public class DmiDataOperations {
             cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                     Map.of(dmiClientRequestException.getNcmpResponseStatus(), cmHandleIds));
         });
-        DmiDataOperationsHelper.publishErrorMessageToClientTopic(topicName, requestId,
+        DmiDataOperationsHelper.sendErrorMessageToClientTopic(topicName, requestId,
                 cmHandleIdsPerResponseCodesPerOperation);
     }
 }

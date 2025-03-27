@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024-2025 Nordix Foundation.
+ * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.dmi
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.v1.CloudEventBuilder
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.Data
@@ -38,11 +38,11 @@ import spock.lang.Specification
 @ContextConfiguration(classes = [CpsApplicationContext])
 class DmiInEventProducerSpec extends Specification {
 
-    def mockEventsPublisher = Mock(EventsPublisher)
+    def mockEventsProducer = Mock(EventsProducer)
 
-    def objectUnderTest = new DmiInEventProducer(mockEventsPublisher)
+    def objectUnderTest = new DmiInEventProducer(mockEventsProducer)
 
-    def 'Create and Publish Cm Notification Subscription DMI In Event'() {
+    def 'Create and Send Cm Notification Subscription DMI In Event'() {
         given: 'a cm subscription for a dmi plugin'
             def subscriptionId = 'test-subscription-id'
             def dmiPluginName = 'test-dmiplugin'
@@ -50,10 +50,10 @@ class DmiInEventProducerSpec extends Specification {
             def dmiInEvent = new DmiInEvent(data: new Data(cmHandles: [new CmHandle(cmhandleId: 'test-1', privateProperties: [:])]))
         and: 'also we have target topic for dmiPlugin'
             objectUnderTest.dmiInEventTopic = 'dmiplugin-test-topic'
-        when: 'the event is published'
-            objectUnderTest.publishDmiInEvent(subscriptionId, dmiPluginName, eventType, dmiInEvent)
+        when: 'the event is sent'
+            objectUnderTest.sendDmiInEvent(subscriptionId, dmiPluginName, eventType, dmiInEvent)
         then: 'the event contains the required attributes'
-            1 * mockEventsPublisher.publishCloudEvent(_, _, _) >> {
+            1 * mockEventsProducer.sendCloudEvent(_, _, _) >> {
                 args ->
                     {
                         assert args[0] == 'dmiplugin-test-topic'

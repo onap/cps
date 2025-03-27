@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
@@ -46,7 +46,7 @@ import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext])
+@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext])
 class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
 
     def static clientTopic = 'my-topic-name'
@@ -56,7 +56,7 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @SpringBean
-    EventsPublisher eventPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventsProducer eventProducer = new EventsProducer<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     def 'Process per data operation request with #serviceName.'() {
         given: 'data operation request with 3 operations'
@@ -106,7 +106,7 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
             assert cmHandlesInRequestBody[0].moduleSetTag == 'module-set-tag1'
     }
 
-    def 'Process per data operation request with non-ready, non-existing cm handle and publish event to client specified topic'() {
+    def 'Process per data operation request with non-ready, non-existing cm handle and send event to client specified topic'() {
         given: 'consumer subscribing to client topic'
             def cloudEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('test-1', CloudEventDeserializer))
             cloudEventKafkaConsumer.subscribe([clientTopic])

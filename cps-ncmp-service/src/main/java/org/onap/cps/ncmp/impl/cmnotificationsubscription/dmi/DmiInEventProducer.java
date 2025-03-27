@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import static org.onap.cps.ncmp.events.NcmpEventDataSchema.SUBSCRIPTIONS_V1;
 import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
 import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,22 +37,22 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class DmiInEventProducer {
 
-    private final EventsPublisher<CloudEvent> eventsPublisher;
+    private final EventsProducer<CloudEvent> eventsProducer;
 
     @Value("${app.ncmp.avc.cm-subscription-dmi-in}")
     private String dmiInEventTopic;
 
     /**
-     * Publish the event to the provided dmi plugin with key as subscription id and the event is in Cloud Event format.
+     * Send the event to the provided dmi plugin with key as subscription id and the event is in Cloud Event format.
      *
      * @param subscriptionId Cm Subscription Id
      * @param dmiPluginName  Dmi Plugin Name
      * @param eventType      Type of event
      * @param dmiInEvent     Cm Notification Subscription event for Dmi
      */
-    public void publishDmiInEvent(final String subscriptionId, final String dmiPluginName,
-            final String eventType, final DmiInEvent dmiInEvent) {
-        eventsPublisher.publishCloudEvent(dmiInEventTopic, subscriptionId,
+    public void sendDmiInEvent(final String subscriptionId, final String dmiPluginName,
+                               final String eventType, final DmiInEvent dmiInEvent) {
+        eventsProducer.sendCloudEvent(dmiInEventTopic, subscriptionId,
                 buildAndGetDmiInEventAsCloudEvent(subscriptionId, dmiPluginName, eventType, dmiInEvent));
 
     }

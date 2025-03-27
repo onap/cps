@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import java.util.Set;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.DataOperationDefinition;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
@@ -114,7 +114,7 @@ public class DmiDataOperationsHelper {
                     DmiDataOperation.buildDmiDataOperationRequestBodyWithoutCmHandles(dataOperationDefinitionIn),
                     CM_HANDLES_NOT_READY, nonReadyCmHandleReferences);
         }
-        publishErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleReferencesPerResponseCodesPerOperation);
+        sendErrorMessageToClientTopic(topicParamInQuery, requestId, cmHandleReferencesPerResponseCodesPerOperation);
         return dmiDataOperationsOutPerDmiServiceName;
     }
 
@@ -127,24 +127,24 @@ public class DmiDataOperationsHelper {
     }
 
     /**
-     * Creates data operation cloud event and publish it to client topic.
+     * Creates data operation cloud event and send it to client topic.
      *
      * @param clientTopic                              client given topic
      * @param requestId                                unique identifier per request
      * @param cmHandleIdsPerResponseCodesPerOperation  list of cm handle ids per operation with response code
      */
-    public static void publishErrorMessageToClientTopic(final String clientTopic,
-                                                         final String requestId,
-                                                         final MultiValueMap<DmiDataOperation,
+    public static void sendErrorMessageToClientTopic(final String clientTopic,
+                                                     final String requestId,
+                                                     final MultiValueMap<DmiDataOperation,
                                                                  Map<NcmpResponseStatus, List<String>>>
                                                                     cmHandleIdsPerResponseCodesPerOperation) {
         if (!cmHandleIdsPerResponseCodesPerOperation.isEmpty()) {
             final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
                     requestId, cmHandleIdsPerResponseCodesPerOperation);
-            final EventsPublisher<CloudEvent> eventsPublisher = CpsApplicationContext.getCpsBean(EventsPublisher.class);
-            log.warn("publishing error message to client topic: {} ,requestId: {}, data operation cloud event id: {}",
+            final EventsProducer<CloudEvent> eventsProducer = CpsApplicationContext.getCpsBean(EventsProducer.class);
+            log.warn("sending error message to client topic: {} ,requestId: {}, data operation cloud event id: {}",
                     clientTopic, requestId, dataOperationCloudEvent.getId());
-            eventsPublisher.publishCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
+            eventsProducer.sendCloudEvent(clientTopic, requestId, dataOperationCloudEvent);
         }
     }
 

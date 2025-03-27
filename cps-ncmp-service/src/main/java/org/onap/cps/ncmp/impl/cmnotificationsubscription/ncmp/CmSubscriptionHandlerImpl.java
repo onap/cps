@@ -122,7 +122,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     }
 
     private void scheduleNcmpOutEventResponse(final String subscriptionId, final String eventType) {
-        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, eventType, null, true);
+        ncmpOutEventProducer.sendNcmpOutEvent(subscriptionId, eventType, null, true);
     }
 
     private void rejectAndPublishCreateRequest(final String subscriptionId, final List<Predicate> predicates) {
@@ -131,7 +131,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
                         .collect(Collectors.toSet());
         final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEventForRejectedRequest(subscriptionId,
                 new ArrayList<>(subscriptionTargetFilters));
-        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, "subscriptionCreateResponse", ncmpOutEvent, false);
+        ncmpOutEventProducer.sendNcmpOutEvent(subscriptionId, "subscriptionCreateResponse", ncmpOutEvent, false);
     }
 
     private void acceptAndPublishDeleteRequest(final String subscriptionId) {
@@ -143,7 +143,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         }
         final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEvent(subscriptionId,
                 dmiCacheHandler.get(subscriptionId));
-        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, "subscriptionDeleteResponse", ncmpOutEvent,
+        ncmpOutEventProducer.sendNcmpOutEvent(subscriptionId, "subscriptionDeleteResponse", ncmpOutEvent,
                 false);
     }
 
@@ -166,7 +166,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     private void publishDmiInEventPerDmi(final String subscriptionId, final String dmiPluginName,
                                          final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
         final DmiInEvent dmiInEvent = dmiInEventMapper.toDmiInEvent(dmiCmSubscriptionPredicates);
-        dmiInEventProducer.publishDmiInEvent(subscriptionId, dmiPluginName,
+        dmiInEventProducer.sendDmiInEvent(subscriptionId, dmiPluginName,
                 "subscriptionCreateRequest", dmiInEvent);
     }
 
@@ -183,7 +183,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
             final DmiInEvent dmiInEvent =
                     dmiInEventMapper.toDmiInEvent(
                             dmiCmSubscriptionDetails.getDmiCmSubscriptionPredicates());
-            dmiInEventProducer.publishDmiInEvent(subscriptionId,
+            dmiInEventProducer.sendDmiInEvent(subscriptionId,
                     dmiPluginName, "subscriptionDeleteRequest", dmiInEvent);
         });
     }

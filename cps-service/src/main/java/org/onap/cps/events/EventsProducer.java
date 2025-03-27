@@ -34,13 +34,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.SerializationUtils;
 
 /**
- * EventsPublisher to publish events.
+ * EventsProducer to send events.
  */
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventsPublisher<T> {
+public class EventsProducer<T> {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
@@ -51,49 +51,49 @@ public class EventsPublisher<T> {
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
 
     /**
-     * Generic CloudEvent publisher.
+     * Generic CloudEvent sender.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
      */
-    public void publishCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
+    public void sendCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
         final CompletableFuture<SendResult<String, CloudEvent>> eventFuture =
                 cloudEventKafkaTemplate.send(topicName, eventKey, event);
         eventFuture.whenComplete((result, e) -> {
             if (e == null) {
-                log.debug("Successfully published event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
+                log.debug("Successfully sent event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
                         result.getProducerRecord().value());
 
             } else {
-                log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
+                log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
             }
         });
     }
 
     /**
-     * Generic Event publisher.
+     * Generic Event sender.
      * Note: Cloud events should be used. This will be addressed as part of  https://lf-onap.atlassian.net/browse/CPS-1717.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
      */
-    public void publishEvent(final String topicName, final String eventKey, final T event) {
+    public void sendEvent(final String topicName, final String eventKey, final T event) {
         final CompletableFuture<SendResult<String, T>> eventFuture =
                 legacyKafkaEventTemplate.send(topicName, eventKey, event);
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
-     * Generic Event Publisher with headers.
+     * Generic Event sender with headers.
      *
      * @param topicName    valid topic name
      * @param eventKey     message key
      * @param eventHeaders event headers
      * @param event        message payload
      */
-    public void publishEvent(final String topicName, final String eventKey, final Headers eventHeaders, final T event) {
+    public void sendEvent(final String topicName, final String eventKey, final Headers eventHeaders, final T event) {
 
         final ProducerRecord<String, T> producerRecord =
                 new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
@@ -102,27 +102,27 @@ public class EventsPublisher<T> {
     }
 
     /**
-     * Generic Event Publisher with headers.
+     * Generic Event sender with headers.
      *
      * @param topicName    valid topic name
      * @param eventKey     message key
      * @param eventHeaders map of event headers
      * @param event        message payload
      */
-    public void publishEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
-            final T event) {
+    public void sendEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
+                          final T event) {
 
-        publishEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
+        sendEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
     }
 
     private void handleLegacyEventCallback(final String topicName,
             final CompletableFuture<SendResult<String, T>> eventFuture) {
         eventFuture.whenComplete((result, e) -> {
             if (e == null) {
-                log.debug("Successfully published event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
+                log.debug("Successfully sent event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
                         result.getProducerRecord().value());
             } else {
-                log.error("Unable to publish event to topic : {} due to {}", topicName, e.getMessage());
+                log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
             }
         });
     }

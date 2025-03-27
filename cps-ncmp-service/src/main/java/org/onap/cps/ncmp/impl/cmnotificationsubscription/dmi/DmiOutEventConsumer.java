@@ -105,7 +105,7 @@ public class DmiOutEventConsumer {
     private void handleEventsStatusPerDmi(final String subscriptionId, final String eventType) {
         final Map<String, DmiCmSubscriptionDetails> dmiSubscriptionsPerDmi = dmiCacheHandler.get(subscriptionId);
         final NcmpOutEvent ncmpOutEvent = ncmpOutEventMapper.toNcmpOutEvent(subscriptionId, dmiSubscriptionsPerDmi);
-        ncmpOutEventProducer.publishNcmpOutEvent(subscriptionId, eventType, ncmpOutEvent, false);
+        ncmpOutEventProducer.sendNcmpOutEvent(subscriptionId, eventType, ncmpOutEvent, false);
     }
 
     private boolean checkStatusCodeAndMessage(final NcmpResponseStatus ncmpResponseStatus,

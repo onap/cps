@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2024 Nordix Foundation
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import io.cloudevents.kafka.impl.KafkaHeaders
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.header.internals.RecordHeaders
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
@@ -45,16 +45,16 @@ import java.time.Duration
 
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
-@SpringBootTest(classes = [EventsPublisher, DataOperationEventConsumer, RecordFilterStrategies, JsonObjectMapper, ObjectMapper])
+@SpringBootTest(classes = [EventsProducer, DataOperationEventConsumer, RecordFilterStrategies, JsonObjectMapper, ObjectMapper])
 @Testcontainers
 @DirtiesContext
 class DataOperationEventConsumerSpec extends MessagingBaseSpec {
 
     @SpringBean
-    EventsPublisher asyncDataOperationEventPublisher = new EventsPublisher<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventsProducer asyncDataOperationEventProducer = new EventsProducer<CloudEvent>(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     @SpringBean
-    DataOperationEventConsumer objectUnderTest = new DataOperationEventConsumer(asyncDataOperationEventPublisher)
+    DataOperationEventConsumer objectUnderTest = new DataOperationEventConsumer(asyncDataOperationEventProducer)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -66,13 +66,13 @@ class DataOperationEventConsumerSpec extends MessagingBaseSpec {
     def static clientTopic = 'client-topic'
     def static dataOperationType = 'org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent'
 
-    def 'Consume and publish event to client specified topic'() {
+    def 'Consume and send event to client specified topic'() {
         given: 'consumer subscribing to client topic'
             cloudEventKafkaConsumer.subscribe([clientTopic])
         and: 'consumer record for data operation event'
             def consumerRecordIn = createConsumerRecord(dataOperationType)
-        when: 'the data operation event is consumed and published to client specified topic'
-            objectUnderTest.consumeAndPublish(consumerRecordIn)
+        when: 'the data operation event is consumed and sent to client specified topic'
+            objectUnderTest.consumeAndSend(consumerRecordIn)
         and: 'the client specified topic is polled'
             def consumerRecordOut = cloudEventKafkaConsumer.poll(Duration.ofMillis(1500))[0]
         then: 'verify cloud compliant headers'
@@ -84,7 +84,7 @@ class DataOperationEventConsumerSpec extends MessagingBaseSpec {
             assert KafkaHeaders.getParsedKafkaHeader(consumerRecordOutHeaders, 'ce_destination') == clientTopic
         and: 'map consumer record to expected event type'
             def dataOperationResponseEvent = toTargetEvent(consumerRecordOut.value(), DataOperationEvent.class)
-        and: 'verify published response data properties'
+        and: 'verify sent response data properties'
             def response = dataOperationResponseEvent.data.responses[0]
             response.operationId == 'some-operation-id'
             response.statusCode == 'any-success-status-code'

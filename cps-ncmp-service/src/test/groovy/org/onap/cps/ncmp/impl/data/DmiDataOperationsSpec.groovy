@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.impl.data
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
@@ -57,7 +57,7 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
-@ContextConfiguration(classes = [EventsPublisher, CpsApplicationContext, DmiProperties, DmiDataOperations, PolicyExecutor])
+@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext, DmiProperties, DmiDataOperations, PolicyExecutor])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def NO_TOPIC = null
@@ -74,7 +74,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     DmiDataOperations objectUnderTest
 
     @SpringBean
-    EventsPublisher eventsPublisher = Stub()
+    EventsProducer eventsProducer = Stub()
 
     @SpringBean
     PolicyExecutor policyExecutor = Mock()
@@ -130,9 +130,9 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             def dataOperationBatchRequestJsonData = TestUtils.getResourceFileContent('dataOperationRequest.json')
             def dataOperationRequest = spiedJsonObjectMapper.convertJsonString(dataOperationBatchRequestJsonData, DataOperationRequest.class)
             dataOperationRequest.dataOperationDefinitions[0].cmHandleReferences = [cmHandleId]
-        and: 'the published cloud event will be captured'
+        and: 'the sent cloud event will be captured'
             def actualDataOperationCloudEvent = null
-            eventsPublisher.publishCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
+            eventsProducer.sendCloudEvent('my-topic-name', 'my-request-id', _) >> { args -> actualDataOperationCloudEvent = args[2] }
         and: 'a DMI client request exception is thrown when DMI service is called'
             mockDmiRestClient.asynchronousPostOperationWithJsonData(*_) >> { Mono.error(new DmiClientRequestException(123, '', '', UNKNOWN_ERROR)) }
         when: 'attempt to get resource data for group of cm handles is invoked'

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.events.EventsPublisher;
+import org.onap.cps.events.EventsProducer;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
@@ -38,7 +38,7 @@ import org.springframework.kafka.KafkaException;
 import org.springframework.stereotype.Service;
 
 /**
- * LcmEventsProducer to call the publisher and publish on the dedicated topic.
+ * LcmEventsProducer to call the producer and send on the dedicated topic.
  */
 
 @Slf4j
@@ -49,7 +49,7 @@ public class LcmEventsProducer {
     private static final Tag TAG_METHOD = Tag.of("method", "publishLcmEvent");
     private static final Tag TAG_CLASS = Tag.of("class", LcmEventsProducer.class.getName());
     private static final String UNAVAILABLE_CM_HANDLE_STATE = "N/A";
-    private final EventsPublisher<LcmEvent> eventsPublisher;
+    private final EventsProducer<LcmEvent> eventsProducer;
     private final JsonObjectMapper jsonObjectMapper;
     private final MeterRegistry meterRegistry;
 
@@ -74,7 +74,7 @@ public class LcmEventsProducer {
             try {
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
-                eventsPublisher.publishEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
+                eventsProducer.sendEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
             } finally {

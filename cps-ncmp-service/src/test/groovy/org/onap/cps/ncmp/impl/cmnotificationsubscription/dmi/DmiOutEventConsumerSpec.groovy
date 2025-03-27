@@ -109,7 +109,7 @@ class DmiOutEventConsumerSpec extends MessagingBaseSpec {
         and: 'correct number of calls to map the ncmp out event'
             1 * mockNcmpOutEventMapper.toNcmpOutEvent('sub-1', _)
         and: 'correct number of calls to publish the ncmp out event to client'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
         where: 'the following parameters are used'
             scenario          | subscriptionStatus | statusCode || expectedCacheCalls | expectedPersistenceCalls
             'Accepted Status' | ACCEPTED           | '1'        || 1                  | 1

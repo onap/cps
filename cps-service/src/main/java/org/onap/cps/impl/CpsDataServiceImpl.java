@@ -396,7 +396,7 @@ public class CpsDataServiceImpl implements CpsDataService {
                                       final Operation operation,
                                       final OffsetDateTime observedTimestamp) {
         try {
-            cpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
+            cpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp);
         } catch (final Exception exception) {
             log.error("Failed to send message to notification service", exception);
         }
