@@ -23,6 +23,8 @@ package org.onap.cps.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -118,6 +120,17 @@ public class JsonObjectMapper {
             log.error("Parsing error occurred while converting JSON content to Json Node.");
             throw new DataValidationException("Parsing error occurred while converting "
                     + "JSON content to Json Node.", e.getMessage());
+        }
+    }
+
+    public <T> List<T> convertToJsonArray(final String jsonContent, final Class<T> valueType) {
+        try {
+            final CollectionType collectionType = objectMapper.getTypeFactory().constructCollectionType(List.class, valueType);
+            return objectMapper.readValue(jsonContent, collectionType);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting JSON content to specific class type.");
+            throw new DataValidationException("Parsing error occurred while converting "
+                + "JSON content to specific class type.", e.getMessage());
         }
     }
 }

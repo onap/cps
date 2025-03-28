@@ -20,6 +20,7 @@
 
 package org.onap.cps.api;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DeltaReport;
@@ -62,5 +63,6 @@ public interface CpsDeltaService {
                                                           String targetData,
                                                           FetchDescendantsOption fetchDescendantsOption);
 
-
+    void applyDelta (String dataspaceName, String anchorName, String xpath, String deltaReport,
+                     OffsetDateTime offsetDateTime);
 }
