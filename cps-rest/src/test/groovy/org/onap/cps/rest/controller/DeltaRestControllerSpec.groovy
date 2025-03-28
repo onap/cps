@@ -40,6 +40,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(DeltaRestController)
 class DeltaRestControllerSpec extends Specification {
@@ -128,5 +129,19 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
             assert response.contentAsString.contains("[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]")
+    }
+
+    def 'Apply delta report in JSON format on an anchor'() {
+        given: 'sample delta report, xpath, and json payload'
+            def deltaReports = 'some delta report'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/applyDelta"
+        when: 'apply delta request is performed using REST API'
+            def response =
+                mvc.perform(post(endpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(deltaReports)
+                ).andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.CREATED.value()
     }
 }
