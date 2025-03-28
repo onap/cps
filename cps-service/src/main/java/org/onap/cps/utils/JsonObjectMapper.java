@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,8 @@ package org.onap.cps.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -118,6 +121,26 @@ public class JsonObjectMapper {
             log.error("Parsing error occurred while converting JSON content to Json Node.");
             throw new DataValidationException("Parsing error occurred while converting "
                     + "JSON content to Json Node.", e.getMessage());
+        }
+    }
+
+    /**
+     * Deserialize JSON content from given JSON content String to List of specific class type.
+     *
+     * @param jsonContent            JSON content
+     * @param collectionEntryType    compatible Object class type
+     * @param <T>                    type parameter
+     * @return                       a list of specific class type 'T'
+     */
+    public <T> List<T> convertToJsonArray(final String jsonContent, final Class<T> collectionEntryType) {
+        try {
+            final CollectionType collectionType =
+                objectMapper.getTypeFactory().constructCollectionType(List.class, collectionEntryType);
+            return objectMapper.readValue(jsonContent, collectionType);
+        } catch (final JsonProcessingException e) {
+            log.error("Parsing error occurred while converting JSON content to specific class type.");
+            throw new DataValidationException("Parsing error occurred while converting "
+                + "JSON content to specific class type.", e.getMessage());
         }
     }
 }
