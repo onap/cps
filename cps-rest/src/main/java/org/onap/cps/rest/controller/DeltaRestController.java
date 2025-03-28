@@ -48,7 +48,6 @@ public class DeltaRestController implements CpsDeltaApi {
     private final CpsDeltaService cpsDeltaService;
     private final JsonObjectMapper jsonObjectMapper;
 
-
     @Timed(value = "cps.delta.controller.get.delta",
         description = "Time taken to get delta between anchors")
     @Override
@@ -88,4 +87,13 @@ public class DeltaRestController implements CpsDeltaApi {
                 xpath, yangResourceMap, targetData, fetchDescendantsOption, groupDataNodes));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<String> applyDelta(final String dataspaceName,
+                                             final String anchorName,
+                                             final String deltaReport) {
+        cpsDeltaService.applyDelta(dataspaceName, anchorName, deltaReport);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }

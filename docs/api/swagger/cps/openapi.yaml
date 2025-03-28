@@ -2384,6 +2384,76 @@ paths:
       summary: Get delta between an anchor and JSON payload
       tags:
       - cps-delta
+  /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/applyDelta:
+    post:
+      description: Use the delta report to perform batch operations on an anchor in
+        a dataspace.
+      operationId: applyDelta
+      parameters:
+      - description: dataspace-name
+        in: path
+        name: dataspace-name
+        required: true
+        schema:
+          example: my-dataspace
+          type: string
+      - description: source-anchor-name
+        in: path
+        name: source-anchor-name
+        required: true
+        schema:
+          example: my-anchor
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              dataSample:
+                $ref: '#/components/examples/deltaReportSample'
+            schema:
+              type: string
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                example: my-resource
+                type: string
+          description: Created
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Apply delta to an anchor
+      tags:
+      - cps-delta
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       deprecated: true
