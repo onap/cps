@@ -24,13 +24,17 @@ import static org.onap.cps.utils.ContentType.JSON;
 
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -49,6 +53,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CpsDeltaServiceImpl implements CpsDeltaService {
+
+    private static final String XPATH_REGEX =
+        "@([a-zA-Z_][a-zA-Z0-9_\\-.]*)=(?:\"([^\"]*)\"|'([^']*)'|(.*))\\]$";
+        //"@([a-zA-Z_][a-zA-Z0-9_\\-.]*)=(?:\"([^\"]*)\"|'([^']*)'|([^\\]\\s]+))\\]$";
 
     private final CpsAnchorService cpsAnchorService;
     private final CpsDataService cpsDataService;
@@ -195,9 +203,9 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                             final Map<String, Serializable> sourceDataInDeltaReport,
                                                             final Map<String, Serializable> targetDataInDeltaReport) {
         final Map<String, Serializable> uniqueLeavesOfTargetDataNode =
-                new LinkedHashMap<>(leavesOfTargetDataNode);
+            new LinkedHashMap<>(leavesOfTargetDataNode);
         uniqueLeavesOfTargetDataNode.keySet().removeAll(leavesOfSourceDataNode.keySet());
-        for (final Map.Entry<String, Serializable> entry: uniqueLeavesOfTargetDataNode.entrySet()) {
+        for (final Map.Entry<String, Serializable> entry : uniqueLeavesOfTargetDataNode.entrySet()) {
             final String key = entry.getKey();
             final Serializable targetLeaf = entry.getValue();
             final Serializable sourceLeaf = leavesOfSourceDataNode.get(key);
@@ -275,5 +283,68 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
             return dataNodeFactory
                 .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
         }
+    }
+
+    @Override
+    public void applyDelta(final String dataspaceName, final String anchorName, final String xpathForAnchor,
+                           final String deltaReportData, final OffsetDateTime offsetDateTime) {
+
+        final List<DeltaReport> deltaReports = jsonObjectMapper.convertToJsonArray(deltaReportData, DeltaReport.class);
+        for (final DeltaReport deltaReport: deltaReports) {
+            final String action = deltaReport.getAction();
+            final String xpath = deltaReport.getXpath();
+            if (action.equals(DeltaReport.REPLACE_ACTION)) {
+                final String updatedData = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+                updateDataNodesUsingDelta(dataspaceName, anchorName, xpath, updatedData, offsetDateTime);
+            } else if (action.equals(DeltaReport.REMOVE_ACTION)) {
+                deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, deltaReport, offsetDateTime);
+            } else {
+                //call create
+                final String addData = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+                cpsDataService.saveListElements(dataspaceName, anchorName, xpath, addData, offsetDateTime, JSON);
+            }
+        }
+    }
+
+    private void updateDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
+                                           final String updatedData, final OffsetDateTime offsetDateTime) {
+        final Map<String, Serializable> keyLeaf = new HashMap<>();
+        if (xpath.endsWith("]")) {
+            keyLeaf.putAll(getKeyLeaf(xpath));
+        }
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final Collection<DataNode> updatedNodes = dataNodeFactory
+            .createDataNodesWithAnchorXpathAndNodeData(anchor, xpath, updatedData, JSON);
+        for (final DataNode updatedNode : updatedNodes) {
+            updatedNode.getLeaves().putAll(keyLeaf);
+        }
+        final String updatedDataAsJson = jsonObjectMapper.asJsonString(updatedNodes);
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName, xpath, updatedDataAsJson, offsetDateTime);
+    }
+
+    private Map<String, Serializable> getKeyLeaf(String xpath) {
+        final Pattern regex = Pattern.compile(XPATH_REGEX);
+        final Matcher matchXpath = regex.matcher(xpath);
+        final Map<String, Serializable> keyLeaf = new LinkedHashMap<>();
+        if (matchXpath.find()) {
+            final String key = matchXpath.group(1);
+            final Serializable value = matchXpath.group(2) != null ? matchXpath.group(2) :
+                matchXpath.group(3) != null ? matchXpath.group(3) : matchXpath.group(4);
+            keyLeaf.put(key, value);
+        }
+        return keyLeaf;
+    }
+
+    private void deleteDataNodesUsingDelta (final String dataspaceName, final String anchorName, final String xpathFromDeltaReport,
+                                            final DeltaReport deltaReport, final OffsetDateTime offsetDateTime) {
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final String deleteData = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
+        final Collection<DataNode> dataNodesToDelete =
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpathFromDeltaReport, deleteData, JSON);
+        final Collection<String> xpaths = new ArrayList<>();
+        dataNodesToDelete.forEach(dataNodeToDelete -> {
+            xpaths.add(dataNodeToDelete.getXpath());
+        });
+        cpsDataService.deleteDataNodes(dataspaceName, anchorName, xpaths, offsetDateTime);
     }
 }
