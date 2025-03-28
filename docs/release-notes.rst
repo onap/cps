@@ -38,6 +38,7 @@ Release Data
 Features
 --------
     - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Implement XPath Attribute Axis in CPS
+    - `CPS-2712 <https://lf-onap.atlassian.net/browse/CPS-2712>`_ Use Flux streaming/buffering for CM-handle searches
 
 Version: 3.6.1
 ==============
