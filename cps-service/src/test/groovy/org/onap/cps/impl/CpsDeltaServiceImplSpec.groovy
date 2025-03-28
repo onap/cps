@@ -36,6 +36,7 @@ import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.utils.deltareport.DeltaReportExecutor
 import org.onap.cps.utils.deltareport.DeltaReportGenerator
 import org.onap.cps.utils.deltareport.DeltaReportHelper
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
@@ -54,6 +55,7 @@ class CpsDeltaServiceImplSpec extends Specification {
 
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockCpsDataService = Mock(CpsDataService)
+    def mockDeltaReportExecutor = Mock(DeltaReportExecutor)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
@@ -64,7 +66,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     def deltaReportHelper = new DeltaReportHelper()
     def deltaReportGenerator = new DeltaReportGenerator(deltaReportHelper)
     def groupedDeltaReportGenerator = new GroupedDeltaReportGenerator(deltaReportHelper)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockDeltaReportExecutor, mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
@@ -334,7 +336,16 @@ class CpsDeltaServiceImplSpec extends Specification {
             'removed' | bookstoreDataNodesWithChildXpathAndNoLeaves | bookstoreDataNodeWithChildXpath             || null                                             | ['categories': [['code': '02', 'name': 'Kids']]]
     }
 
-    def setupSchemaSetMocks(String... yangResources) {
+    def 'Apply changes from a delta report to an anchor'() {
+        given: 'delta report as JSON string'
+            def deltaReportJson = '[{"action":"replace","xpath":"/bookstore","sourceData":{"bookstore":{"bookstore-name":"Easons"}},"targetData":{"bookstore":{"bookstore-name":"My Store"}}}]'
+        when: 'an attempt to apply the delta report to the anchor'
+            objectUnderTest.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+        then: 'utility class to apply the delta report is invoked with expected parameters'
+            1 * mockDeltaReportExecutor.applyChangesInDeltaReport(dataspaceName, ANCHOR_NAME_1, deltaReportJson)
+    }
+
+    def setupSchemaSetMocks(yangResources) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
@@ -342,7 +353,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
 
-    def setupSchemaSetMocksForDelta(Map<String, String> yangResourceContentPerName) {
+    def setupSchemaSetMocksForDelta(yangResourceContentPerName) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
         mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
