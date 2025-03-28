@@ -89,6 +89,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdae8c55_3281c389",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "387fda19_54ab95ac",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aedbf371_562ddfa4",
@@ -120,6 +138,24 @@
       "side": 1,
       "message": "NB: Our docker-compose.yml file has grown significantly, making it harder to maintain and understand. Here are some strategies to split and organize it effectively but as a part of seperate JITA task:\n\n\nExample Structure:\n\ndocker-compose/\n│── docker-compose.base.yml       # Common services (database, nginx, kafka, zookeeper)\n│── docker-compose.cps.yml        # CPS-related services\n│── docker-compose.dmi.yml        # DMI-related services\n│── docker-compose.sdnc.yml       # SDNC-related services\n│── docker-compose.override.yml   # Optional overrides for local development\n\n\nProfiles are already being used (dmi-service, dmi-stub, monitoring, etc.), but they can be structured better.\n\nCreate a base profile for essential services (dbpostgresql, nginx, kafka, zookeeper).\nDefine feature-specific profiles (dmi-service, cps, sdnc).\nUse overrides for testing if required.\n\n\n(Can be discussed with team)",
       "parentUuid": "aedbf371_562ddfa4",
+      "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70fe3fce_24f0f35a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "I have create tech debt JIRA ticket for this: https://lf-onap.atlassian.net/browse/CPS-2730",
+      "parentUuid": "64d78e33_26c4cb9c",
       "revId": "9f72add98921ec5843ef42f6fbc3fced55790831",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

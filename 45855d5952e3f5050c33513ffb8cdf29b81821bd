@@ -58,6 +58,48 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ea5034_f6e157b8",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f196e08_8a7349a2",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8260e235_06a65fd4",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f56bf1a1_e4e42260",
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01fc6a3d_ae23da91",
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d436f6c_3004badf",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "Yes, the healthcheck for SDNC only makes sure it is running. This script mounts the PNFSim node to SDNC, and returns 0 or 1 depending on it succeeded. The test will fail if this step fails.",
+      "parentUuid": "01fc6a3d_ae23da91",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b8d2d73_23378330",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 2
@@ -94,6 +160,30 @@
       "writtenOn": "2025-03-20T11:56:49Z",
       "side": 1,
       "message": "NB: Can\u0027t remember does it really necessary?\n\nI think, the dmi-stub should only be running with dmi-stub profile. (both dmi is not needed for CSIT, right?",
+      "range": {
+        "startLine": 203,
+        "startChar": 6,
+        "endLine": 203,
+        "endChar": 19
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6024c8b4_0786667f",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-03-28T12:02:57Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "6b8d2d73_23378330",
       "range": {
         "startLine": 203,
         "startChar": 6,
