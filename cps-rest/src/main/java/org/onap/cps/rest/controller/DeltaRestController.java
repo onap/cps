@@ -23,11 +23,15 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 import io.micrometer.core.annotation.Timed;
+import jakarta.validation.ValidationException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -45,9 +49,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class DeltaRestController implements CpsDeltaApi {
 
+    private static final String ISO_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
+
     private final CpsDeltaService cpsDeltaService;
     private final JsonObjectMapper jsonObjectMapper;
-
 
     @Timed(value = "cps.delta.controller.get.delta",
         description = "Time taken to get delta between anchors")
@@ -88,4 +94,25 @@ public class DeltaRestController implements CpsDeltaApi {
                 xpath, yangResourceMap, targetData, fetchDescendantsOption, groupDataNodes));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<String> applyDelta(final String dataspaceName,
+                                             final String anchorName,
+                                             final String deltaReport,
+                                             final String observedTimestamp) {
+
+        cpsDeltaService.applyDelta(dataspaceName, anchorName, deltaReport, toOffsetDateTime(observedTimestamp));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {
+        try {
+            return StringUtils.isEmpty(datetTimestamp)
+                ? null : OffsetDateTime.parse(datetTimestamp, ISO_TIMESTAMP_FORMATTER);
+        } catch (final Exception exception) {
+            throw new ValidationException(
+                String.format("observed-timestamp must be in '%s' format", ISO_TIMESTAMP_FORMAT));
+        }
+    }
+
 }

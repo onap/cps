@@ -20,6 +20,7 @@
 
 package org.onap.cps.api;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DeltaReport;
@@ -70,5 +71,15 @@ public interface CpsDeltaService {
                                                           FetchDescendantsOption fetchDescendantsOption,
                                                           boolean groupDataNodes);
 
-
+    /**
+     * Applies the delta report to an anchor. The delta report contains the difference between two anchors or
+     * configurations.
+     *
+     * @param dataspaceName     dataspace name
+     * @param anchorName        anchor name where the delta report is to be applied
+     * @param deltaReportString delta report in JSON string format
+     * @param observedTimestamp observedTimestamp
+     */
+    void applyDelta(String dataspaceName, String anchorName,
+                    String deltaReportString, OffsetDateTime observedTimestamp);
 }

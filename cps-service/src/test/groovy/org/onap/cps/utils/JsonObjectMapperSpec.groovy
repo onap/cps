@@ -136,4 +136,26 @@ class JsonObjectMapperSpec extends Specification {
         then: 'a data validation exception is thrown'
             thrown(DataValidationException)
     }
+
+    def 'Convert JSON content to a list of specific class type'() {
+        given: 'A JSON array string and a target class type'
+            def jsonContent = '[{"key":"value1"}, {"key":"value2"}]'
+        when: 'The JSON content is converted to a list of the target class type'
+            def result = jsonObjectMapper.convertToJsonArray(jsonContent, Map)
+        then: 'The result is a list of the target class type'
+            result instanceof List
+            result.size() == 2
+            result[0].key == 'value1'
+            result[1].key == 'value2'
+    }
+
+    def 'Throw exception when JSON content is invalid for list conversion'() {
+        given: 'An invalid JSON array string and a target class type'
+            def jsonContent = '[{"key":"value1", {"key":"value2"}'
+        when: 'The JSON content is converted to a list of the target class type'
+            jsonObjectMapper.convertToJsonArray(jsonContent, Map)
+        then: 'A DataValidationException is thrown'
+            def thrown = thrown(DataValidationException)
+            thrown.message.contains('Parsing error occurred while converting JSON content to specific class type.')
+    }
 }
