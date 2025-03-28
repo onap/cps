@@ -40,6 +40,7 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.deltareport.ApplyDeltaReport;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDeltaServiceImpl implements CpsDeltaService {
 
+    private final ApplyDeltaReport applyDeltaReport;
     private final CpsAnchorService cpsAnchorService;
     private final CpsDataService cpsDataService;
     private final DataNodeFactory dataNodeFactory;
@@ -95,6 +97,19 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         return getDeltaReports(sourceDataNodesRebuilt, targetDataNodes, groupDataNodes);
     }
 
+    /**
+     * Apply the delta report to the data nodes.
+     *
+     * @param dataspaceName      name of the dataspace
+     * @param anchorName         name of the anchor
+     * @param deltaReportString  JSON string representing the delta report
+     */
+    @Override
+    public void applyDeltaOnAnchor(final String dataspaceName, final String anchorName,
+                                   final String deltaReportString) {
+        applyDeltaReport.applyDeltaOnAnchor(dataspaceName, anchorName, deltaReportString);
+    }
+
     private List<DeltaReport> getDeltaReports(final Collection<DataNode> sourceDataNodes,
                                               final Collection<DataNode> targetDataNodes,
                                               final boolean groupDataNodes) {
@@ -134,4 +149,5 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                 .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
         }
     }
+
 }
