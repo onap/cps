@@ -35,6 +35,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
+
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
@@ -44,6 +45,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(DeltaRestController)
 class DeltaRestControllerSpec extends Specification {
@@ -176,5 +178,19 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.BAD_REQUEST.value()
         then: 'the response contains expected error message'
             assert response.contentAsString.contains("Parsing error occurred while converting JSON content to Json Node")
+    }
+
+    def 'Apply delta report in JSON format on an anchor'() {
+        given: 'sample delta report, xpath, and json payload'
+            def deltaReports = 'some delta report'
+            def applyDeltaEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/applyChangesInDeltaReport"
+        when: 'apply delta request is performed using REST API'
+            def response =
+                mvc.perform(post(applyDeltaEndpointV2)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(deltaReports)
+                ).andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.CREATED.value()
     }
 }
