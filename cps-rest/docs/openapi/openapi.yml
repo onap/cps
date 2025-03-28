@@ -106,6 +106,9 @@ paths:
   /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/delta:
     $ref: 'cpsDelta.yml#/delta'
 
+  /v2/dataspaces/{dataspace-name}/anchors/{source-anchor-name}/applyDelta:
+    $ref: 'cpsDelta.yml#/applyDelta'
+
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     $ref: 'cpsQueryV1Deprecated.yml#/nodesByDataspaceAndAnchorAndCpsPath'
 
