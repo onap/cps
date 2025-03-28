@@ -94,3 +94,32 @@ delta:
         $ref: 'components.yml#/components/responses/Forbidden'
       '500':
         $ref: 'components.yml#/components/responses/InternalServerError'
+
+applyDelta:
+  post:
+    description: Use the delta report to perform batch operations on an anchor in a dataspace.
+    tags:
+      - cps-delta
+    summary: Apply delta to an anchor
+    operationId: applyDeltaV2
+    parameters:
+      - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
+      - $ref: 'components.yml#/components/parameters/sourceAnchorNameInPath'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: string
+          examples:
+            dataSample:
+              $ref: 'components.yml#/components/examples/deltaReportSample'
+    responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
+      '400':
+        $ref: 'components.yml#/components/responses/BadRequest'
+      '403':
+        $ref: 'components.yml#/components/responses/Forbidden'
+      '500':
+        $ref: 'components.yml#/components/responses/InternalServerError'
