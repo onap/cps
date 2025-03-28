@@ -158,10 +158,11 @@ public class CpsDataServiceImpl implements CpsDataService {
     @Override
     @Timed(value = "cps.data.service.datanode.leaves.descendants.leaves.update",
         description = "Time taken to update data node leaves and existing descendants leaves")
-    public void updateNodeLeavesAndExistingDescendantLeaves(final String dataspaceName, final String anchorName,
-        final String parentNodeXpath,
-        final String dataNodeUpdatesAsJson,
-        final OffsetDateTime observedTimestamp) {
+    public void updateNodeLeavesAndExistingDescendantLeaves(final String dataspaceName,
+                                                            final String anchorName,
+                                                            final String parentNodeXpath,
+                                                            final String dataNodeUpdatesAsJson,
+                                                            final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodeUpdates = dataNodeFactory
