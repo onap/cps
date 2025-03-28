@@ -49,7 +49,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class,
+@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class, DeltaRestController.class,
     DeltaRestController.class, QueryRestController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class CpsRestExceptionHandler {
