@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.model.DeltaReport
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.DataMapper
@@ -44,6 +45,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Shared
 import spock.lang.Specification
+
+import java.time.OffsetDateTime
 
 class CpsDeltaServiceImplSpec extends Specification {
 
@@ -244,6 +247,44 @@ class CpsDeltaServiceImplSpec extends Specification {
             'invalid json data with parent node xpath' | '/bookstore'                          | '{"some-key": "some-value"'
             'empty json data with parent node xpath'   | '/bookstore'                          | '{}'
             'empty json data with xpath'               | '/bookstore/categories[@code=\'02\']' | '{}'
+    }
+
+    def 'Perform delete operation on existing data under an anchor using delta report'() {
+        given: 'schema mocks, delta report in JSON format and observed time stamp'
+            setupSchemaSetMocks('bookstore.yang')
+            def deltaReportJson = '[{"action":"remove","xpath":"/bookstore/categories[@code=\'1\']","sourceData":{"book-store:books":[{"price":20,"title":"Matilda"}]}}]'
+            def observedTimestamp = OffsetDateTime.now()
+        and: 'delta report constructed from JSON'
+            def deltaReport = new DeltaReportBuilder().actionRemove().withXpath('/bookstore/categories[@code=\'1\']').withSourceData(['book-store:books': [['price': 20, 'title': 'Matilda']]]).build()
+        and: 'source data nodes from delta report'
+            def sourceData = jsonObjectMapper.asJsonString(deltaReport.getSourceData())
+        and: 'expected data nodes'
+            def dataNodes = new DataNodeBuilder().withXpath('/bookstore/categories[@code=\'1\']/books[@title=\'Matilda\']').buildCollection()
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyDelta(dataspaceName, ANCHOR_NAME_1, deltaReportJson, observedTimestamp)
+        then: 'the delta report in JSON format is converted to a list of DeltaReport objects'
+            jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
+        and: 'data nodes are built from the source data of delta report'
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor1, deltaReport.getXpath(), sourceData, ContentType.JSON) >> dataNodes
+        and: 'cps data service is invoked to delete data nodes by using their xpaths'
+            1 * mockCpsDataService.deleteDataNodes(dataspaceName, ANCHOR_NAME_1,  { xpaths -> xpaths == ["/bookstore/categories[@code='1']/books[@title='Matilda']"] }, observedTimestamp)
+    }
+
+    def 'Perform create operation on existing data under an anchor using delta report'() {
+        given: 'schema mocks, delta report in JSON format and observed time stamp'
+            setupSchemaSetMocks('bookstore.yang')
+            def deltaReportJson = '[{"action":"create","xpath":"/bookstore/categories[@code=\'1\']","targetData":{"book-store:books":[{"price":20,"title":"Matilda"}]}}]'
+            def observedTimestamp = OffsetDateTime.now()
+        and: 'delta report constructed from JSON'
+            def deltaReport = new DeltaReportBuilder().actionCreate().withXpath('/bookstore/categories[@code=\'1\']').withTargetData(['book-store:books': [['price': 20, 'title': 'Matilda']]]).build()
+        and: 'target data nodes from delta report'
+            def targetData = jsonObjectMapper.asJsonString(deltaReport.getTargetData())
+        when: 'attempt to apply delta using the delta report'
+            objectUnderTest.applyDelta(dataspaceName, ANCHOR_NAME_1, deltaReportJson, observedTimestamp)
+        then: 'the delta report in JSON format is converted to a list of DeltaReport objects'
+            jsonObjectMapper.convertToJsonArray(deltaReportJson, DeltaReport) >> [deltaReport]
+        and: 'cps data service is invoked to create data nodes by using their xpaths'
+            1 * mockCpsDataService.saveListElements(dataspaceName, ANCHOR_NAME_1, deltaReport.getXpath(), targetData, observedTimestamp, ContentType.JSON)
     }
 
     def setupSchemaSetMocks(String... yangResources) {
