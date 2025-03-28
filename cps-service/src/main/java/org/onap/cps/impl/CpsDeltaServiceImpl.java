@@ -23,11 +23,13 @@ package org.onap.cps.impl;
 import static org.onap.cps.utils.ContentType.JSON;
 
 import io.micrometer.core.annotation.Timed;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
@@ -38,11 +40,13 @@ import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
 import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -133,5 +137,60 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
             return dataNodeFactory
                 .createDataNodesWithYangResourceXpathAndNodeData(yangResourceContentPerName, xpath, targetData, JSON);
         }
+    }
+
+    /**
+     * Apply the delta report to the data nodes.
+     *
+     * @param dataspaceName      name of the dataspace
+     * @param anchorName         name of the anchor
+     * @param deltaReportString  JSON string representing the delta report
+     */
+    @Override
+    @Transactional
+    public void applyDelta(final String dataspaceName, final String anchorName, final String deltaReportString) {
+
+        final List<DeltaReport> deltaReports =
+            jsonObjectMapper.convertToJsonArray(deltaReportString, DeltaReport.class);
+        for (final DeltaReport deltaReport: deltaReports) {
+            final String action = deltaReport.getAction();
+            final String xpath = deltaReport.getXpath();
+            if (action.equals(DeltaReport.REPLACE_ACTION)) {
+                final String updatedData = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+                updateDataNodesUsingDelta(dataspaceName, anchorName, xpath, updatedData);
+            } else if (action.equals(DeltaReport.REMOVE_ACTION)) {
+                deleteDataNodesUsingDelta(dataspaceName, anchorName, xpath, deltaReport);
+            } else {
+                addDataNodesUsingDelta(dataspaceName, anchorName, xpath, deltaReport);
+            }
+        }
+    }
+
+    private void updateDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
+                                           final String updatedData) {
+        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
+            CpsPathUtil.getNormalizedParentXpath(xpath), updatedData, OffsetDateTime.now());
+    }
+
+    private void deleteDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
+                                           final DeltaReport deltaReport) {
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final String deleteData = jsonObjectMapper.asJsonString(deltaReport.getSourceData());
+        final Collection<DataNode> dataNodesToDelete =
+            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, deleteData, JSON);
+        final Collection<String> xpathsToDelete = dataNodesToDelete.stream()
+            .map(DataNode::getXpath).collect(Collectors.toList());
+        cpsDataService.deleteDataNodes(dataspaceName, anchorName, xpathsToDelete, OffsetDateTime.now());
+    }
+
+    private void addDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
+                                        final DeltaReport deltaReport) {
+        final String addData = jsonObjectMapper.asJsonString(deltaReport.getTargetData());
+        final String xpathToSave = isRootListNodeXpath(xpath) ? CpsPathUtil.ROOT_NODE_XPATH : xpath;
+        cpsDataService.saveListElements(dataspaceName, anchorName, xpathToSave, addData, OffsetDateTime.now(), JSON);
+    }
+
+    private boolean isRootListNodeXpath(final String xpath) {
+        return CpsPathUtil.getNormalizedParentXpath(xpath).isEmpty() && CpsPathUtil.isPathToListElement(xpath);
     }
 }
