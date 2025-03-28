@@ -38,6 +38,7 @@ import org.onap.cps.api.exceptions.ModelValidationException;
 import org.onap.cps.api.exceptions.NotFoundInDataspaceException;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
+import org.onap.cps.rest.controller.DeltaRestController;
 import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.springframework.http.HttpMethod;
@@ -48,7 +49,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
-@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class,
+@RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class, DeltaRestController.class,
     QueryRestController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class CpsRestExceptionHandler {
