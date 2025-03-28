@@ -23,6 +23,7 @@ package org.onap.cps.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.impl.DeltaReportBuilder
+import org.onap.cps.utils.DateTimeUtility
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -44,6 +45,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(DeltaRestController)
 class DeltaRestControllerSpec extends Specification {
@@ -176,5 +178,41 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.BAD_REQUEST.value()
         then: 'the response contains expected error message'
             assert response.contentAsString.contains("Parsing error occurred while converting JSON content to Json Node")
+    }
+
+    def 'Apply delta report in JSON format on an anchor'() {
+        given: 'sample delta report, xpath, and json payload'
+            def deltaReports = 'some delta report'
+            def endpoint = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/applyDelta"
+        when: 'apply delta request is performed using REST API'
+            def response =
+                mvc.perform(post(endpoint)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(deltaReports)
+                ).andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.CREATED.value()
+    }
+
+    def 'Apply delta report in JSON format on an anchor with #scenario'() {
+        given: 'sample delta report, xpath, and json payload'
+            def deltaReports = 'some delta report'
+            def endpoint = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/applyDelta"
+        when: 'apply delta request is performed using REST API'
+            def postRequestBuilder = post(endpoint)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(deltaReports)
+            if (observedTimestamp != null)
+                postRequestBuilder.param('observed-timestamp', observedTimestamp)
+            def response = mvc.perform(postRequestBuilder).andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == expectedResponse.value()
+        then: 'the cps data service was called with the correct parameters when needed'
+            expectedApiCount * mockCpsDeltaService.applyDelta(dataspaceName, anchorName, deltaReports, { it == DateTimeUtility.toOffsetDateTime(observedTimestamp) })
+        where: 'following information was used'
+            scenario                     | observedTimestamp              | expectedResponse       | expectedApiCount
+            'valid observed timestamp'   | '2021-03-03T23:59:59.999-0400' | HttpStatus.CREATED     | 1
+            'without observed timestamp' | null                           | HttpStatus.CREATED     | 1
+            'invalid observed timestamp' | 'invalid'                      | HttpStatus.BAD_REQUEST | 0
     }
 }
