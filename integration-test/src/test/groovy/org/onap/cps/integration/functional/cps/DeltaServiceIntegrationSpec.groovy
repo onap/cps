@@ -21,6 +21,9 @@
 package org.onap.cps.integration.functional.cps
 
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.api.exceptions.AnchorNotFoundException
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DeltaReport
 import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.base.FunctionalSpecBase
