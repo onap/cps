@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a531452_8aa9ebc9",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-28T15:33:46Z",
+      "side": 1,
+      "message": "To use the @Hidden annotation from io.swagger.v3.oas.annotations.Hidden to hide an internal REST endpoint for a write job operation as it will be hidden from Swagger/OpenAPI documentation.",
+      "parentUuid": "8f6168c2_2ef82c25",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 21
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80fd3806_f2897072",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-28T13:47:54Z",
       "side": 1,
       "message": "I\u0027d prefer if this was /do-not-use/datajob\nSo full URL would be /do-not-use/datajob/{dataJobId}/write",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 26
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e8b4e6d_260248a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-28T15:33:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "80fd3806_f2897072",
       "range": {
         "startLine": 46,
         "startChar": 17,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a840f55_b85dcae6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-28T15:33:46Z",
+      "side": 1,
+      "message": "Added",
+      "parentUuid": "65f03aeb_c122cf6f",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 88
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f504857d_5cc744d9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
         "patchSetId": 2
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99f454d7_861af2ed",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-28T15:33:46Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "f504857d_5cc744d9",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "759970bf_23ca5ce1",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/controller/DataJobControllerSpec.groovy",
         "patchSetId": 2
@@ -106,6 +202,30 @@
       "writtenOn": "2025-03-28T13:47:54Z",
       "side": 1,
       "message": "It\u0027s very strange that this test fails while other similar tests pass. It\u0027s likely dependencies, but it\u0027s worth noting that we don\u0027t use Spring MVC, we use WebFlux and WebClient. Rewriting the test using WebTestClient works:\n\n    @SpringBootTest(classes \u003d [DataJobController])\n    @EnableAutoConfiguration\n    @AutoConfigureWebTestClient\n    class DataJobControllerSpec extends Specification {\n    \n        @Autowired\n        WebTestClient webTestClient\n    \n        @SpringBean\n        DataJobService mockDataJobService \u003d Mock()\n    \n        @SpringBean\n        ObjectMapper objectMapper \u003d new ObjectMapper()\n    \n        @SpringBean\n        JsonObjectMapper jsonObjectMapper \u003d new JsonObjectMapper(objectMapper)\n    \n        def \u0027successful writeDataJob call responds with OK\u0027() {\n            given: \u0027a valid DataJobWriteRequest having authorization, dataJobId, and request payload\u0027\n                def authorization \u003d \u0027\u0027\n                def dataJobId \u003d \u0027job123\u0027\n                def dataJobMetadata \u003d new DataJobMetadata(\u0027any-destination\u0027, \u0027application/vnd.3gpp.object-tree-hierarchical+json\u0027, \u0027application/3gpp-json-patch+json\u0027)\n                def writeOperations \u003d [\n                        new WriteOperation(\u0027/path/to/node\u0027, \u0027create\u0027, \u0027op123\u0027, \u0027value1\u0027),\n                        new WriteOperation(\u0027/path/to/anotherNode\u0027, \u0027update\u0027, \u0027op124\u0027, 42)\n                ]\n                def dataJobWriteRequest \u003d new DataJobWriteRequest(writeOperations)\n                def requestPayloadAsString \u003d objectMapper.writeValueAsString(new DataJobRequest(dataJobMetadata, dataJobWriteRequest))\n    \n            when: \u0027write data job API is called\u0027\n                def result \u003d webTestClient.post()\n                        .uri(\"/donotuse/${dataJobId}/write\")\n                        .header(\u0027Authorization\u0027, authorization)\n                        .contentType(MediaType.APPLICATION_JSON)\n                        .bodyValue(requestPayloadAsString)\n                        .exchange()\n    \n            then: \u0027Response is 200 OK\u0027\n                result.expectStatus().isOk()\n    \n            and: \u0027Ensure the service method is called once with expected parameters\u0027\n                1 * mockDataJobService.writeDataJob(authorization, dataJobId, dataJobMetadata, dataJobWriteRequest)\n        }\n    }",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab36428_261f6e1c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/controller/DataJobControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-03-28T15:33:46Z",
+      "side": 1,
+      "message": "Great 😊",
+      "parentUuid": "759970bf_23ca5ce1",
       "range": {
         "startLine": 58,
         "startChar": 0,
