@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
@@ -36,8 +37,9 @@ class DataJobServiceImplSpec extends Specification {
 
     def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
     def mockDmiSubJobRequestHandler = Mock(DmiSubJobRequestHandler)
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer)
+    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockJsonObjectMapper)
 
     def myDataJobMetadata = new DataJobMetadata('', '', '')
     def authorization = 'my authorization header'
