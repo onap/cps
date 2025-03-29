@@ -60,6 +60,8 @@ public class WriteRequestExaminer {
         for (final WriteOperation writeOperation : dataJobWriteRequest.data()) {
             examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation, cmHandlePerAlternateId);
         }
+        log.info("dmiWriteOperationsPerProducerKey size is: {} after splitting for Data Job ID: : {}",
+                dmiWriteOperationsPerProducerKey.size(), dataJobId);
         return dmiWriteOperationsPerProducerKey;
     }
 
