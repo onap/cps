@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobReadRequest
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.ReadOperation
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
@@ -36,8 +37,9 @@ class DataJobServiceImplSpec extends Specification {
 
     def mockWriteRequestExaminer = Mock(WriteRequestExaminer)
     def mockDmiSubJobRequestHandler = Mock(DmiSubJobRequestHandler)
+    def mockJsonObjectMapper = Mock(JsonObjectMapper)
 
-    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer)
+    def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockJsonObjectMapper)
 
     def myDataJobMetadata = new DataJobMetadata('', '', '')
     def authorization = 'my authorization header'
@@ -45,7 +47,7 @@ class DataJobServiceImplSpec extends Specification {
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     def setup() {
-        setupLogger()
+        setupLogger(Level.DEBUG)
     }
 
     def cleanup() {
@@ -62,22 +64,32 @@ class DataJobServiceImplSpec extends Specification {
             assert loggingEvent.formattedMessage.contains('data job id for read operation is: my-job-id')
     }
 
-    def 'Write data-job request.'() {
+    def 'Write data-job request and verify logging when info enabled.'() {
         given: 'data job metadata and write request'
             def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('', '', '', null)])
-        and: 'a map of producer key and dmi 3gpp write operation'
+        and: 'a map of producer key and DMI 3GPP write operations'
             def dmiWriteOperationsPerProducerKey = [:]
-        when: 'write data job request is processed'
+        and: 'mocking the splitDmiWriteOperationsFromRequest method to return the expected data'
+            mockWriteRequestExaminer.splitDmiWriteOperationsFromRequest(_, _) >> dmiWriteOperationsPerProducerKey
+        and: 'mocking the sendRequestsToDmi method to simulate empty sub-job responses from the DMI request handler'
+            mockDmiSubJobRequestHandler.sendRequestsToDmi(authorization, 'my-job-id', myDataJobMetadata, dmiWriteOperationsPerProducerKey) >> []
+        when: 'the write data job request is processed'
             objectUnderTest.writeDataJob(authorization, 'my-job-id', myDataJobMetadata, dataJobWriteRequest)
         then: 'the examiner service is called and a map is returned'
             1 * mockWriteRequestExaminer.splitDmiWriteOperationsFromRequest('my-job-id', dataJobWriteRequest) >> dmiWriteOperationsPerProducerKey
-        and: 'the dmi request handler is called with the result from the examiner'
-            1 * mockDmiSubJobRequestHandler.sendRequestsToDmi(authorization, 'my-job-id', myDataJobMetadata, dmiWriteOperationsPerProducerKey)
+        and: 'debug log messages are captured when debug level is enabled'
+            with(logger.list.find { it.level == Level.DEBUG }) {
+                assert it.formattedMessage.contains("Initiating WRITE operation for Data Job ID: my-job-id")
+            }
+        and: 'info log messages are captured when debug level is enabled'
+            with(logger.list.find { it.level == Level.INFO }) {
+                assert it.formattedMessage.contains("Data Job ID: my-job-id - Total operations received: 1")
+            }
     }
 
-    def setupLogger() {
+    def setupLogger(Level level) {
         def setupLogger = ((Logger) LoggerFactory.getLogger(DataJobServiceImpl.class))
-        setupLogger.setLevel(Level.DEBUG)
+        setupLogger.setLevel(level)
         setupLogger.addAppender(logger)
         logger.start()
     }
