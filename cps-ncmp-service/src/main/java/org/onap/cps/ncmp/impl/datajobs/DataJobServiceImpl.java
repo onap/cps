@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -54,14 +54,16 @@ public class DataJobServiceImpl implements DataJobService {
                                                   final String dataJobId,
                                                   final DataJobMetadata dataJobMetadata,
                                                   final DataJobWriteRequest dataJobWriteRequest) {
-        log.info("data job id for write operation is: {}", dataJobId);
+
+        log.info("Data Job ID: {} - Total operations received: {}", dataJobId, dataJobWriteRequest.data().size());
 
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey =
                 writeRequestExaminer.splitDmiWriteOperationsFromRequest(dataJobId, dataJobWriteRequest);
 
-        return dmiSubJobClient.sendRequestsToDmi(authorization,
-                                                 dataJobId,
-                                                 dataJobMetadata,
-                                                 dmiWriteOperationsPerProducerKey);
+        final List<SubJobWriteResponse> subJobWriteResponses = dmiSubJobClient.sendRequestsToDmi(authorization,
+                dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey);
+
+        log.info("Data Job ID: {} - Sent {} sub-job(s) to DMI for processing.", dataJobId, subJobWriteResponses.size());
+        return subJobWriteResponses;
     }
 }
