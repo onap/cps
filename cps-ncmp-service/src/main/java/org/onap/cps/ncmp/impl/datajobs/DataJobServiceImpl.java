@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -40,6 +41,7 @@ public class DataJobServiceImpl implements DataJobService {
 
     private final DmiSubJobRequestHandler dmiSubJobClient;
     private final WriteRequestExaminer writeRequestExaminer;
+    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public void readDataJob(final String authorization,
@@ -54,14 +56,25 @@ public class DataJobServiceImpl implements DataJobService {
                                                   final String dataJobId,
                                                   final DataJobMetadata dataJobMetadata,
                                                   final DataJobWriteRequest dataJobWriteRequest) {
-        log.info("data job id for write operation is: {}", dataJobId);
+
+        log.info("Data Job ID: {} - Total operations received: {}", dataJobId, dataJobWriteRequest.data().size());
+        logJsonRepresentation("Initiating WRITE operation for Data Job ID: " + dataJobId, dataJobWriteRequest);
 
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey =
                 writeRequestExaminer.splitDmiWriteOperationsFromRequest(dataJobId, dataJobWriteRequest);
 
-        return dmiSubJobClient.sendRequestsToDmi(authorization,
-                                                 dataJobId,
-                                                 dataJobMetadata,
-                                                 dmiWriteOperationsPerProducerKey);
+        final List<SubJobWriteResponse> subJobWriteResponses = dmiSubJobClient.sendRequestsToDmi(authorization,
+                dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey);
+
+        log.info("Data Job ID: {} - Received {} sub-job(s) from DMI.", dataJobId, subJobWriteResponses.size());
+        logJsonRepresentation("Finalized subJobWriteResponses for Data Job ID: " + dataJobId, subJobWriteResponses);
+        return subJobWriteResponses;
+    }
+
+    private void logJsonRepresentation(final String description, final Object object) {
+        if (log.isDebugEnabled()) {
+            final String objectAsJsonString = jsonObjectMapper.asJsonString(object);
+            log.debug("{} (JSON): {}", description, objectAsJsonString);
+        }
     }
 }
