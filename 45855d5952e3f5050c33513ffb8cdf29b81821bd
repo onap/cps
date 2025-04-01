@@ -147,6 +147,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "617d34dc_312a3b0b",
+        "filename": "docker-compose/config/sdnc/check_sdnc_mount_node.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-01T10:46:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7d436f6c_3004badf",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "45855d5952e3f5050c33513ffb8cdf29b81821bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b8d2d73_23378330",
