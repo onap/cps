@@ -234,6 +234,30 @@
       },
       "revId": "2380422ec791686dce292ae26aef116d639da306",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093f70b7_71bd84b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/controller/DataJobControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T11:12:55Z",
+      "side": 1,
+      "message": "we do not need a contract test as this is not an official contract :-) \n Simple delegation test will do here.",
+      "parentUuid": "2ab36428_261f6e1c",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
