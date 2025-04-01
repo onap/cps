@@ -112,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e91d9e_fef807f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T13:11:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8af01437_ab588cc7",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e89c5224_9f1cd1f6",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "json logging is not required",
       "parentUuid": "72242558_01d88c0f",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 16
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a7eaf4e_0b56c703",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T13:11:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b263f69c_25a652b2",
       "range": {
         "startLine": 88,
         "startChar": 12,
