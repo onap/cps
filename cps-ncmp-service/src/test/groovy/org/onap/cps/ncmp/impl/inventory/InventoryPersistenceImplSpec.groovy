@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -336,15 +336,15 @@ class InventoryPersistenceImplSpec extends Specification {
     }
 
     def 'Get Alternate Ids for CM Handles that has given module names'() {
-        given: 'A Collection of data nodes'
-            def dataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']", leaves: ['id': 'ch-1', 'alternate-id': 'alt-1'])]
-        when: 'the methods to get dataNodes is called and returns correct values'
+        given: 'cps anchor service returns a CM-handle ID for the given module name'
             mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name']) >> ['ch-1']
-            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ["/dmi-registry/cm-handles[@id='ch-1']"], INCLUDE_ALL_DESCENDANTS) >> dataNodes
-        and: 'the method returns a result'
+        and: 'cps data service returns some data nodes for the given CM-handle ID'
+            def dataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']", leaves: ['id': 'ch-1', 'alternate-id': 'alt-1'])]
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ["/dmi-registry/cm-handles[@id='ch-1']"], OMIT_DESCENDANTS) >> dataNodes
+        when: 'the method to get cm-handle references by modules is called (outputting alternate IDs)'
             def result = objectUnderTest.getCmHandleReferencesWithGivenModules(['sample-module-name'], true)
         then: 'the result contains the correct alternate Id'
-            assert result == ['alt-1'] as HashSet
+            assert result == ['alt-1'] as Set
     }
 
     def 'Replace list content'() {
