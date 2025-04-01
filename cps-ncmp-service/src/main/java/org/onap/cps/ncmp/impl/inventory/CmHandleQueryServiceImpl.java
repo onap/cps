@@ -29,10 +29,10 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
@@ -54,6 +54,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private static final String ANCESTOR_CM_HANDLES = "/ancestor::cm-handles";
+    public static final String CM_HANDLE_ID = "id";
     private static final String ALTERNATE_ID = "alternate-id";
     private static final Integer NO_LIMIT = 0;
     private final CpsDataService cpsDataService;
@@ -147,7 +148,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
 
     @Override
     public Collection<String> getAllCmHandleReferences(final boolean outputAlternateId) {
-        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("%s/cm-handles/@%s", NCMP_DMI_REGISTRY_PARENT, attributeName);
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
     }
@@ -177,20 +178,23 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         for (final Map.Entry<String, TrustLevel> mapEntry : trustLevelPerDmiPlugin.entrySet()) {
             final String dmiPluginIdentifier = mapEntry.getKey();
             final TrustLevel dmiTrustLevel = mapEntry.getValue();
-            final Collection<String> candidateCmHandleIds = getCmHandleReferencesByDmiPluginIdentifier(
-                    dmiPluginIdentifier, false);
-            final Set<String> candidateCmHandleIdsSet = new HashSet<>(candidateCmHandleIds);
+            final Map<String, String> candidateCmHandleReferences =
+                    getCmHandleReferencesMapByDmiPluginIdentifier(dmiPluginIdentifier);
             final Map<String, TrustLevel> trustLevelPerCmHandleIdInBatch =
-                trustLevelPerCmHandleId.getAll(candidateCmHandleIdsSet);
-            trustLevelPerCmHandleIdInBatch.forEach((cmHandleId, trustLevel) -> {
-                final TrustLevel effectiveTrustLevel = trustLevel.getEffectiveTrustLevel(dmiTrustLevel);
-                if (targetTrustLevel.equals(effectiveTrustLevel)) {
-                    selectedCmHandleReferences.add(cmHandleId);
+                    trustLevelPerCmHandleId.getAll(candidateCmHandleReferences.keySet());
+            for (final Map.Entry<String, String> candidateCmHandleReference : candidateCmHandleReferences.entrySet()) {
+                final TrustLevel candidateCmHandleTrustLevel =
+                        trustLevelPerCmHandleIdInBatch.get(candidateCmHandleReference.getKey());
+                final TrustLevel effectiveTrustlevel =
+                        candidateCmHandleTrustLevel.getEffectiveTrustLevel(dmiTrustLevel);
+                if (targetTrustLevel.equals(effectiveTrustlevel)) {
+                    if (outputAlternateId) {
+                        selectedCmHandleReferences.add(candidateCmHandleReference.getValue());
+                    } else {
+                        selectedCmHandleReferences.add(candidateCmHandleReference.getKey());
+                    }
                 }
-            });
-        }
-        if (outputAlternateId) {
-            return getAlternateIdsByCmHandleIds(selectedCmHandleReferences);
+            }
         }
         return selectedCmHandleReferences;
     }
@@ -220,34 +224,41 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private Set<String> getIdsByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
                                                                   final String dmiProperty,
                                                                   final boolean outputAlternateId) {
-        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("%s/cm-handles[@%s='%s']/@%s",
                 NCMP_DMI_REGISTRY_PARENT, dmiProperty, dmiPluginIdentifier, attributeName);
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
     }
 
-    private Collection<String> getAlternateIdsByCmHandleIds(final Collection<String> cmHandleIds) {
+    private Collection<DataNode> getDataNodesByDmiPluginIdentifierAndDmiProperty(final String dmiPluginIdentifier,
+                                                                                 final String dmiProperty) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@" + dmiProperty + "='" + dmiPluginIdentifier + "']",
+                OMIT_DESCENDANTS);
+    }
 
-        final String cpsPath = NCMP_DMI_REGISTRY_PARENT + "/cm-handles["
-                + createFormattedQueryString(cmHandleIds) + "]/@alternate-id";
-
-        return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
+    private Map<String, String> getCmHandleReferencesMapByDmiPluginIdentifier(final String dmiPluginIdentifier) {
+        final Map<String, String> cmHandleReferencesMap = new HashMap<>();
+        for (final ModelledDmiServiceLeaves modelledDmiServiceLeaf : ModelledDmiServiceLeaves.values()) {
+            final Collection<DataNode> cmHandlesAsDataNodes = getDataNodesByDmiPluginIdentifierAndDmiProperty(
+                    dmiPluginIdentifier, modelledDmiServiceLeaf.getLeafName());
+            for (final DataNode cmHandleAsDataNode : cmHandlesAsDataNodes) {
+                final String cmHandleId = cmHandleAsDataNode.getLeaves().get(CM_HANDLE_ID).toString();
+                final String alternateId = cmHandleAsDataNode.getLeaves().get(ALTERNATE_ID).toString();
+                cmHandleReferencesMap.put(cmHandleId, alternateId);
+            }
+        }
+        return cmHandleReferencesMap;
     }
 
     private Collection<String> getCmHandleReferencesByProperties(final PropertyType propertyType,
                                                                  final String propertyName,
                                                                  final String propertyValue,
                                                                  final boolean outputAlternateId) {
-        final String attributeName = outputAlternateId ? ALTERNATE_ID : "id";
+        final String attributeName = outputAlternateId ? ALTERNATE_ID : CM_HANDLE_ID;
         final String cpsPath = String.format("//%s[@name='%s' and @value='%s']%s/@%s",
                 propertyType.getYangContainerName(), propertyName, propertyValue, ANCESTOR_CM_HANDLES, attributeName);
         return cpsQueryService.queryDataLeaf(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath, String.class);
-    }
-
-    private String createFormattedQueryString(final Collection<String> cmHandleIds) {
-        return cmHandleIds.stream()
-                .map(cmHandleId -> "@id='" + cmHandleId + "'")
-                .collect(Collectors.joining(" or "));
     }
 
     private DataNode getCmHandleState(final String cmHandleId) {
