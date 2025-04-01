@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "795c4f5b_22440a1e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T12:43:05Z",
+      "side": 1,
+      "message": "should bein the REST layer and then I also don\u0027t think you will need the new import",
+      "revId": "9e67a902e340538575b8e5fd9051cd6bd31bca96",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
