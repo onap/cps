@@ -16,6 +16,47 @@
       "message": "we did agree to do add initialDelayString for DataSyncWatchdog if I recall it correctly.",
       "revId": "2d59b1db2ca540a0689a3d5e09507a8d48555f41",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7abf6f07_7231602d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:30:00Z",
+      "side": 1,
+      "message": "indeed,we did agree to add it there too",
+      "parentUuid": "721db74e_ce080e1d",
+      "revId": "2d59b1db2ca540a0689a3d5e09507a8d48555f41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825df601_23fc3e22",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:30:00Z",
+      "side": 1,
+      "message": "is this mentioned in the RTD ie does the RTD need to be updated?!",
+      "range": {
+        "startLine": 238,
+        "startChar": 8,
+        "endLine": 238,
+        "endChar": 29
+      },
+      "revId": "2d59b1db2ca540a0689a3d5e09507a8d48555f41",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
