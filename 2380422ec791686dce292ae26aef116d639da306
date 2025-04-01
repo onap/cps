@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30f823d0_7ba49e40",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/datajobs/models/DataJobRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-01T15:39:20Z",
+      "side": 1,
+      "message": "NB: can also be done using java records.\n\npublic record DataJobRequest(\n    @JsonProperty(\"dataJobMetadata\") DataJobMetadata dataJobMetadata,\n    @JsonProperty(\"dataJobWriteRequest\") DataJobWriteRequest dataJobWriteRequest\n)",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 1
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80fd3806_f2897072",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
         "patchSetId": 2
