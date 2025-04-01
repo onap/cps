@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8df39daa_8caa48f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T10:46:18Z",
+      "side": 1,
+      "message": "DO add request json logging at DEBUG level as per my previous comments",
+      "revId": "674bedce00f09e8aea35c0e91db440465b82be54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65f2345_eee38614",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T10:46:18Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 66,
+        "startChar": 55,
+        "endLine": 66,
+        "endChar": 58
+      },
+      "revId": "674bedce00f09e8aea35c0e91db440465b82be54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f67f87_c4f729e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T10:46:18Z",
+      "side": 1,
+      "message": "Received",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "674bedce00f09e8aea35c0e91db440465b82be54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0195434_503bfe07",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T10:46:18Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 66,
+        "startChar": 62,
+        "endLine": 66,
+        "endChar": 76
+      },
+      "revId": "674bedce00f09e8aea35c0e91db440465b82be54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
