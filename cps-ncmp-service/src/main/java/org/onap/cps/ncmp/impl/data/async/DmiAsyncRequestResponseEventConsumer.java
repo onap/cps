@@ -50,6 +50,7 @@ public class DmiAsyncRequestResponseEventConsumer {
             topics = "${app.ncmp.async-m2m.topic}",
             filter = "includeNonCloudEventsOnly",
             groupId = "ncmp-async-rest-request-event-group",
+            containerFactory = "legacyEventConcurrentKafkaListenerContainerFactory",
             properties = {"spring.json.value.default.type=org.onap.cps.ncmp.event.model.DmiAsyncRequestResponseEvent"})
     public void consumeAndForward(final DmiAsyncRequestResponseEvent dmiAsyncRequestResponseEvent) {
         log.debug("Consuming event {} ...", dmiAsyncRequestResponseEvent);

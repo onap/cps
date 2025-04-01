@@ -44,7 +44,7 @@ class MessagingBaseSpec extends Specification {
 
     static kafkaTestContainer = new ConfluentKafkaContainer("confluentinc/cp-kafka:7.8.0")
 
-    def legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, String>(eventProducerConfigProperties(JsonSerializer)))
+    def legacyEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, ?>(eventProducerConfigProperties(JsonSerializer)))
 
     def cloudEventKafkaTemplate = new KafkaTemplate<>(new DefaultKafkaProducerFactory<String, CloudEvent>(eventProducerConfigProperties(CloudEventSerializer)))
 
