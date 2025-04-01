@@ -166,6 +166,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b50b833_5f320cea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T14:57:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a840f55_b85dcae6",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 88
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f504857d_5cc744d9",
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "done",
       "parentUuid": "f504857d_5cc744d9",
+      "range": {
+        "startLine": 72,
+        "startChar": 40,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3daf8b9e_8ec9caee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/controller/DataJobController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T14:57:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99f454d7_861af2ed",
       "range": {
         "startLine": 72,
         "startChar": 40,
@@ -274,6 +322,30 @@
       "side": 1,
       "message": "we do not need a contract test as this is not an official contract :-) \n Simple delegation test will do here.",
       "parentUuid": "2ab36428_261f6e1c",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "2380422ec791686dce292ae26aef116d639da306",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5d9d397_6ed3b55f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/controller/DataJobControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T14:57:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "093f70b7_71bd84b3",
       "range": {
         "startLine": 58,
         "startChar": 0,
