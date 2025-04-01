@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0487b298_b23140a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "some clean up in names needed\nseem redundant logging can be removed\nchange level of logging of details to \u0027debug\u0027\nADD: logging og response ie count the number of replies in the response and log that if we don\u0027t already...",
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca733ef1_815fc36c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "NB: does this not fit on one line?!",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 50
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b5f151_7908da56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "I don\u0027t think we should look at this we should compare the count in request compare to the count in response. Which I don\u0027t think we ca do unless we cache/store the job details. And we definitly do not want to do somethign that extensive!",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89c5224_9f1cd1f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "change to warning",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 20
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72242558_01d88c0f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "change to debug level",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 16
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90af274f_b0922095",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "do not shorten names: Operations",
+      "range": {
+        "startLine": 91,
+        "startChar": 26,
+        "endLine": 91,
+        "endChar": 29
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a30e086_ca63ffd9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "do not shorten names: datJobWriteRequest",
+      "range": {
+        "startLine": 91,
+        "startChar": 70,
+        "endLine": 91,
+        "endChar": 77
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4311f0_dc5a0ce2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-01T09:25:48Z",
+      "side": 1,
+      "message": "no needed",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 68
+      },
+      "revId": "ca4b01629aa2f5ebf560387a205ada862d7d8583",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
