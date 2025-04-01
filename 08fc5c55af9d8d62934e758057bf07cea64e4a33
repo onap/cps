@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "369f25d7_d7f1b822",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-01T04:26:09Z",
+      "side": 1,
+      "message": "As of now json data, XML is not supported",
+      "parentUuid": "9e420ce7_f1e9f989",
+      "range": {
+        "startLine": 207,
+        "startChar": 34,
+        "endLine": 207,
+        "endChar": 52
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "328c7ac4_d49b9c6e",
@@ -70,6 +94,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83872cc0_95814eef",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-01T04:26:09Z",
+      "side": 1,
+      "message": "jsonContent doesn\u0027t check for validation if invalid json then jsonNode perform validation checks.",
+      "parentUuid": "328c7ac4_d49b9c6e",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70db79b4_c941e28d",
@@ -83,6 +131,30 @@
       "writtenOn": "2025-03-25T13:29:58Z",
       "side": 1,
       "message": "NB: in groovy make sure we use single quote instead of double quote.",
+      "range": {
+        "startLine": 107,
+        "startChar": 40,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa74a51_877ea17b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-01T04:26:09Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "70db79b4_c941e28d",
       "range": {
         "startLine": 107,
         "startChar": 40,
