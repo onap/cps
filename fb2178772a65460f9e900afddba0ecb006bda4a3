@@ -16,6 +16,24 @@
       "message": "NB: Just a reminder to update copyright",
       "revId": "fb2178772a65460f9e900afddba0ecb006bda4a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d91fce3_27997362",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-01T10:01:38Z",
+      "side": 1,
+      "message": "You right, I totally forgot to update the copyrights. Thanks",
+      "parentUuid": "503ba135_07527e39",
+      "revId": "fb2178772a65460f9e900afddba0ecb006bda4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
