@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -146,7 +146,8 @@ public interface InventoryPersistence extends NcmpPersistence {
      * @param cmHandleIds collection of cmHandle IDs
      * @return collection of data nodes
      */
-    Collection<DataNode> getCmHandleDataNodes(Collection<String> cmHandleIds);
+    Collection<DataNode> getCmHandleDataNodes(Collection<String> cmHandleIds,
+                                              FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * get CM handles that has given module names.

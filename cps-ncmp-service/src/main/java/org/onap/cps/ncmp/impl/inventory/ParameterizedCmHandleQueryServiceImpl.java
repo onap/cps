@@ -288,14 +288,4 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         }
     }
 
-    private Collection<String> collectCmHandleReferencesFromDataNodes(final Collection<DataNode> dataNodes,
-                                                                      final boolean outputAlternateId) {
-        if (outputAlternateId) {
-            return dataNodes.stream().map(dataNode ->
-                    (String) dataNode.getLeaves().get("alternate-id")).collect(Collectors.toSet());
-        } else {
-            return dataNodes.stream().map(dataNode ->
-                    (String) dataNode.getLeaves().get("id")).collect(Collectors.toSet());
-        }
-    }
 }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -134,7 +133,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                         dataValidationException.getMessage());
             }
         });
-        return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds));
+        return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, INCLUDE_ALL_DESCENDANTS));
     }
 
     @Override
@@ -201,22 +200,22 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds) {
+    public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
+                                                     final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
-        return this.getDataNodes(xpaths);
+        return this.getDataNodes(xpaths, fetchDescendantsOption);
     }
 
     @Override
     public Collection<String> getCmHandleReferencesWithGivenModules(final Collection<String> moduleNamesForQuery,
                                                                     final boolean outputAlternateId) {
-        if (outputAlternateId) {
-            final Collection<String> cmHandleIds =
+        final Collection<String> cmHandleIds =
                 cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
-            return getAlternateIdsFromDataNodes(getCmHandleDataNodes(cmHandleIds));
-        } else {
-            return cpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, moduleNamesForQuery);
+        if (outputAlternateId) {
+            return getAlternateIdsFromDataNodes(getCmHandleDataNodes(cmHandleIds, OMIT_DESCENDANTS));
         }
+        return cmHandleIds;
     }
 
     @Override
@@ -239,12 +238,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private static String getCpsPathForCmHandlesByAlternateIds(final Collection<String> alternateIds) {
         return alternateIds.stream().collect(Collectors.joining("' or @alternate-id='",
                 NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='", "']"));
-    }
-
-    private String getCpsPathForCmHandlesByReferences(final Collection<String> cmHandleReferences) {
-        return cmHandleReferences.stream()
-            .flatMap(id -> Stream.of("@id='" + id + "'", "@alternate-id='" + id + "'"))
-            .collect(Collectors.joining(" or ", NCMP_DMI_REGISTRY_PARENT + "/cm-handles[", "]"));
     }
 
     private static String createStateJsonData(final String state) {

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -340,7 +340,7 @@ class InventoryPersistenceImplSpec extends Specification {
             def dataNodes = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']", leaves: ['id': 'ch-1', 'alternate-id': 'alt-1'])]
         when: 'the methods to get dataNodes is called and returns correct values'
             mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name']) >> ['ch-1']
-            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ["/dmi-registry/cm-handles[@id='ch-1']"], INCLUDE_ALL_DESCENDANTS) >> dataNodes
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ["/dmi-registry/cm-handles[@id='ch-1']"], OMIT_DESCENDANTS) >> dataNodes
         and: 'the method returns a result'
             def result = objectUnderTest.getCmHandleReferencesWithGivenModules(['sample-module-name'], true)
         then: 'the result contains the correct alternate Id'
