@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee49bc00_8c348d5a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-01T14:57:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d2e52fc4_8af5e772",
+      "range": {
+        "startLine": 80,
+        "startChar": 14,
+        "endLine": 80,
+        "endChar": 73
+      },
+      "revId": "32c9a70ee56b1713be42daafba75a303dfaf884c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e55c3994_7aa232a5",
