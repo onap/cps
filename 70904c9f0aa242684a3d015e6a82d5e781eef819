@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbff6d9d_109a95de",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-04-02T12:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad8fba78_2497fe50",
+      "range": {
+        "startLine": 242,
+        "startChar": 12,
+        "endLine": 242,
+        "endChar": 32
+      },
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f59a9429_ab5fd685",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-04-02T12:07:34Z",
       "side": 1,
       "message": "NB: this thing no longer applies if we dont consider OOM.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 183
+      },
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b90922_bfe015fb",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-04-02T12:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f59a9429_ab5fd685",
       "range": {
         "startLine": 198,
         "startChar": 0,
