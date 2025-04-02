@@ -63,6 +63,30 @@
       },
       "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50645daf_addeea8e",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-02T15:27:14Z",
+      "side": 1,
+      "message": "The spacing fixed it for me locally without removing the paragraph",
+      "parentUuid": "a842cba8_a1b77e04",
+      "range": {
+        "startLine": 240,
+        "startChar": 46,
+        "endLine": 240,
+        "endChar": 47
+      },
+      "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
