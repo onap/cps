@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c573cf4_064ff548",
+        "filename": "integration-test/src/test/resources/application-module-sync-delayed.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-02T14:18:49Z",
+      "side": 1,
+      "message": "It\u0027s currently unused",
+      "parentUuid": "b50ed351_38a114e1",
+      "revId": "62482b24479d4e478f97a94b2557a5dbebc7ca4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff609b6b_f562e2b0",
         "filename": "integration-test/src/test/resources/application.yml",
         "patchSetId": 6
@@ -31,6 +49,30 @@
       "writtenOn": "2025-04-02T14:07:05Z",
       "side": 1,
       "message": "for testing purposes this needs to be changed to 0 (original default value in Java) so that DURING test all cm handles get module synced quickly!",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 30
+      },
+      "revId": "62482b24479d4e478f97a94b2557a5dbebc7ca4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d45a8c4_ec7d45fa",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-02T14:18:49Z",
+      "side": 1,
+      "message": "Hmm, I thought we explicitly run module sync everywhere, e.g.\n\n        when: \u0027sync all advised cm handles\u0027\n            objectUnderTest.moduleSyncAdvisedCmHandles()\n\nIt doesn\u0027t really matter since the sleep time is 1 million",
+      "parentUuid": "ff609b6b_f562e2b0",
       "range": {
         "startLine": 183,
         "startChar": 24,
