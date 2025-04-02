@@ -5,7 +5,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021-2025 Nordix Foundation.
+# Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 
 ###################### setup env ############################
 # Set env variables for docker compose
-export LOCAL_IP=$((ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+') || hostname -I | awk '{print $1}')
+export LOCAL_IP=localhost
 
 source $WORKSPACE/plans/cps/test.properties
 export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
@@ -33,14 +33,17 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 cd $CPS_HOME/docker-compose
 
 # start CPS/NCMP, DMI Plugin, and PostgreSQL containers with docker compose, waiting for all containers to be healthy
-docker-compose --profile dmi-service up -d --quiet-pull --wait || exit 1
-
-###################### setup sdnc #######################################
-source $WORKSPACE/plans/cps/sdnc/sdnc_setup.sh
-
-###################### setup pnfsim #####################################
-docker-compose -f $WORKSPACE/plans/cps/pnfsim/docker-compose.yml up -d
+docker-compose --profile dmi-service --profile dmi-stub up -d --quiet-pull --wait || exit 1
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES
-ROBOT_VARIABLES="-v CPS_CORE_HOST:$CPS_CORE_HOST -v CPS_CORE_PORT:$CPS_CORE_PORT -v DMI_HOST:$LOCAL_IP -v DMI_PORT:$DMI_PORT -v DMI_VERSION:$DMI_VERSION -v DMI_CSIT_STUB_HOST:$LOCAL_IP -v DMI_CSIT_STUB_PORT:$DMI_DEMO_STUB_PORT -v DMI_AUTH_ENABLED:$DMI_AUTH_ENABLED -v DATADIR_CPS_CORE:$WORKSPACE/data/cps-core -v DATADIR_NCMP:$WORKSPACE/data/ncmp -v DATADIR_SUBS_NOTIFICATION:$WORKSPACE/data/subscription-notification --exitonfailure"
+ROBOT_VARIABLES="\
+-v CPS_CORE_HOST:$CPS_CORE_HOST \
+-v CPS_CORE_PORT:$CPS_CORE_PORT \
+-v DMI_HOST:$DMI_HOST \
+-v DMI_PORT:$DMI_PORT \
+-v DMI_CSIT_STUB_HOST:$DMI_DEMO_STUB_HOST \
+-v DMI_CSIT_STUB_PORT:$DMI_DEMO_STUB_PORT \
+-v DATADIR_CPS_CORE:$WORKSPACE/data/cps-core \
+-v DATADIR_NCMP:$WORKSPACE/data/ncmp \
+-v DATADIR_SUBS_NOTIFICATION:$WORKSPACE/data/subscription-notification"
