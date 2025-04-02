@@ -46,6 +46,29 @@
       },
       "revId": "79224f575edf24f41d960898d06b24e1f2b287a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e531883e_e7a770a4",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-02T15:51:48Z",
+      "side": 1,
+      "message": "JS way: [...alternateIds]",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 35
+      },
+      "revId": "79224f575edf24f41d960898d06b24e1f2b287a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
