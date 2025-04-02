@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e80aaaa_b3049aab",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-02T14:26:37Z",
+      "side": 1,
+      "message": "These lines trigger an error about blockquotes.\nYou need to put to two spaces before \"for PLAINTEXT\" and \"for SSL\":\n\n    | * ``org.apache.kafka.common.\n    |   for PLAINTEXT\n    | * ``org.apache.kafka.common.\n    |   for SSL\n     ^^ new spaces here",
+      "range": {
+        "startLine": 241,
+        "startChar": 183,
+        "endLine": 245,
+        "endChar": 183
+      },
+      "revId": "62482b24479d4e478f97a94b2557a5dbebc7ca4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b50ed351_38a114e1",
         "filename": "integration-test/src/test/resources/application-module-sync-delayed.yml",
         "patchSetId": 6
