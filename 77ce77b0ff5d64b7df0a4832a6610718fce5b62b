@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad2a899_799d9759",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-02T12:37:37Z",
+      "side": 1,
+      "message": "NB: i still see double quotes in groovy tests. But remaining things looks fine to me.",
+      "revId": "77ce77b0ff5d64b7df0a4832a6610718fce5b62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
