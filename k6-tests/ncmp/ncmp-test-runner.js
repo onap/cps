@@ -23,7 +23,7 @@ import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
 import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfCmHandleIds,
+    makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfAlternateIds,
     LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, REGISTRATION_BATCH_SIZE, LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS,
     KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS, testConfig
 } from './common/utils.js';
@@ -183,7 +183,7 @@ export function cmHandleSearchCpsPathScenario() {
 export function cmHandleIdSearchTrustLevelScenario() {
     const response = executeCmHandleIdSearch('trust-level');
     if (check(response, { 'CM handle ID trust level search status equals 200': (r) => r.status === 200 })
-     && check(response, { 'CM handle ID trust level search returned the correct number of ids': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
+     && check(response, { 'CM handle ID trust level search returned the correct number of cm handle references': (r) => r.json('#') === TOTAL_CM_HANDLES })) {
         idSearchTrustLevelDurationTrend.add(response.timings.duration);
     }
 }
@@ -197,8 +197,8 @@ export function cmHandleSearchTrustLevelScenario() {
 }
 
 export function legacyBatchProduceScenario() {
-    const nextBatchOfCmHandleIds = makeRandomBatchOfCmHandleIds();
-    const response = legacyBatchRead(nextBatchOfCmHandleIds);
+    const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
+    const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
 }
 
