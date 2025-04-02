@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
+import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 import http from 'k6/http';
 
 export const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`));
@@ -48,16 +49,30 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 }
 
 /**
- * Generates an unordered batch of CM-handle IDs based on batch size.
- * @returns {string[]} Array of CM-handle IDs, for example ['ch-8', 'ch-2' ... 'ch-32432']
+ * Generates an unordered batch of Alternate IDs.
+ * The batch size is determined by `LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE`,
+ * and the IDs are generated within the range of `TOTAL_CM_HANDLES`.
+ *
+ * @returns {string[]} Array of Alternate IDs, for example,
+ * ['Region=NorthAmerica,Segment=8', 'Region=NorthAmerica,Segment=2' ... 'Region=NorthAmerica,Segment=32432']
  */
-export function makeRandomBatchOfCmHandleIds() {
-    const cmHandleIds = new Set();
-    while (cmHandleIds.size < LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE) {
-        const randomNum = Math.floor(Math.random() * TOTAL_CM_HANDLES) + 1;
-        cmHandleIds.add('ch-' + randomNum);
+export function makeRandomBatchOfAlternateIds() {
+    const alternateIds = new Set();
+    while (alternateIds.size < LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE) {
+        const prefix = 'Region=NorthAmerica,Segment=';
+        alternateIds.add(`${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`);
     }
-    return Array.from(cmHandleIds)
+    return Array.from(alternateIds)
+}
+
+/**
+ * Generates a random CM Handle reference based on the provided flag.
+ * @param useAlternateId
+ * @returns {string} CM Handle reference representing a CM handle ID or an alternate ID.
+ */
+export function getRandomCmHandleReference(useAlternateId) {
+    const prefix = useAlternateId ? 'Region=NorthAmerica,Segment=' : 'ch-';
+    return `${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
 
 /**

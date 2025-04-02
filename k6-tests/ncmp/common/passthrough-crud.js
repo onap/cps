@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,13 +18,12 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 import {
     performPostRequest,
     performGetRequest,
     NCMP_BASE_URL,
     LEGACY_BATCH_TOPIC_NAME,
-    TOTAL_CM_HANDLES,
+    getRandomCmHandleReference,
 } from './utils.js';
 
 export function passthroughRead(useAlternateId) {
@@ -64,11 +63,6 @@ export function legacyBatchRead(cmHandleIds) {
         ]
     });
     return performPostRequest(url, payload, 'batchRead');
-}
-
-function getRandomCmHandleReference(useAlternateId) {
-    const prefix = useAlternateId ? 'Region=NorthAmerica,Segment=' : 'ch-';
-    return `${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
 
 function generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants) {
