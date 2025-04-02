@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab858d04_191ef892",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DataJobControllerForTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-02T13:16:49Z",
+      "side": 1,
+      "message": "Nb. I\u0027d prefer if we used something like \"/do-not-use/dataJobs\".\nSo instead of:\n    /do-not-use/{dataJobId}/write\nhave\n    /do-not-use/dataJobs/{dataJobId}/write\nWe might want to add other operations later to this \"do-not-use\" interface.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "d91eb0b3a8acb5fdd40c225df4fab4c24254125e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
