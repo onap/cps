@@ -22,6 +22,30 @@
       },
       "revId": "d91eb0b3a8acb5fdd40c225df4fab4c24254125e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a6acd9_9b80c43b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/DataJobControllerForTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-02T16:18:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab858d04_191ef892",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "d91eb0b3a8acb5fdd40c225df4fab4c24254125e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
