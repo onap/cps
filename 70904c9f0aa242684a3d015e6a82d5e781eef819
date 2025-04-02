@@ -16,6 +16,52 @@
       "message": "recheck",
       "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8fba78_2497fe50",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-02T11:31:39Z",
+      "side": 1,
+      "message": "as per previous comments from me and Priyank we agreed to add an initial delay to data sync too.\nI suggest you do that in a separate commit",
+      "range": {
+        "startLine": 242,
+        "startChar": 12,
+        "endLine": 242,
+        "endChar": 32
+      },
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cf8439b_1ae9bd51",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-02T11:31:39Z",
+      "side": 1,
+      "message": "thanks for removing that config. prefix everywhere!",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 13
+      },
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
