@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ecd0cc_adf03ca1",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 17
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-02T10:13:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af325bb5_2d61c3aa",
+      "range": {
+        "startLine": 70,
+        "startChar": 26,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "1b35002b498da4921ece54d8e14e1613af494829",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59897de8_50bb0282",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-04-01T11:10:18Z",
       "side": 1,
       "message": "NB: extra line",
+      "revId": "1b35002b498da4921ece54d8e14e1613af494829",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b90fa8b_e930acd1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-02T10:13:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59897de8_50bb0282",
       "revId": "1b35002b498da4921ece54d8e14e1613af494829",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
