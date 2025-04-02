@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e030be_d0403df8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-02T12:07:34Z",
+      "side": 1,
+      "message": "sry i think we should be taking changes to deployment.rst as a separate commit as many changes needs to be done..\nhavent commented on all the properties but many of the properties are respect to OOM. and if we agree to not consider OOM then many of the properties will be cleaned up.",
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8fba78_2497fe50",
@@ -36,6 +53,29 @@
         "startChar": 12,
         "endLine": 242,
         "endChar": 32
+      },
+      "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59a9429_ab5fd685",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-02T12:07:34Z",
+      "side": 1,
+      "message": "NB: this thing no longer applies if we dont consider OOM.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 183
       },
       "revId": "70904c9f0aa242684a3d015e6a82d5e781eef819",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
