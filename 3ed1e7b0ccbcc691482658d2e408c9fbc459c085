@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "3ed1e7b0ccbcc691482658d2e408c9fbc459c085",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc166ab9_bfa69ce5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-02T10:52:43Z",
+      "side": 1,
+      "message": "NB: use single quote in groovy rather than double quotes.\nGeneral comment for all the groovy tests.",
+      "revId": "3ed1e7b0ccbcc691482658d2e408c9fbc459c085",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
