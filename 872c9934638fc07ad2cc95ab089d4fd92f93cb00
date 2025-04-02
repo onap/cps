@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3cdf3bf_e9c2e986",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-02T15:34:27Z",
+      "side": 1,
+      "message": "All looks good but the copy rights",
+      "revId": "872c9934638fc07ad2cc95ab089d4fd92f93cb00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
