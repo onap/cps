@@ -55,7 +55,8 @@ public class DataSyncWatchdog {
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
      * 'UNSYNCHRONIZED'.
      */
-    @Scheduled(fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
+    @Scheduled(initialDelayString = "${ncmp.timers.cm-handle-data-sync.initial-delay-ms:40000}",
+            fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
     public void executeUnSynchronizedReadyCmHandlePoll() {
         moduleOperationsUtils.getUnsynchronizedReadyCmHandles().forEach(unSynchronizedReadyCmHandle -> {
             final String cmHandleId = unSynchronizedReadyCmHandle.getId();
