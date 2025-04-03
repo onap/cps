@@ -38,7 +38,7 @@ Release Data
 Features
 --------
     - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Implement XPath Attribute Axis in CPS
-    - `CPS-2712 <https://lf-onap.atlassian.net/browse/CPS-2712>`_ Use Flux streaming/buffering for CM-handle searches
+    - `CPS-2169 <https://lf-onap.atlassian.net/browse/CPS-2712>`_ Support 50K CM Handles (performance improvements)
 
 Version: 3.6.1
 ==============
@@ -62,7 +62,6 @@ Release Data
 
 Features
 --------
-    - `CPS-2394 <https://lf-onap.atlassian.net/browse/CPS-2394>`_ Query data nodes with limit
     - Several performance improvements
 
 Version: 3.6.0
@@ -93,8 +92,6 @@ Bug Fixes
 Features
 --------
     - `CPS-2249 <https://lf-onap.atlassian.net/browse/CPS-2249>`_ NCMP to support Conflict Handling.
-    - `CPS-2540 <https://lf-onap.atlassian.net/browse/CPS-2540>`_ One schemaset per module set tag.
-
 
 ..      ====================
 ..      * * *   OSLO   * * *
