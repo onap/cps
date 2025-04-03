@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce1c9c71_a22ed94e",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-03T09:32:04Z",
+      "side": 1,
+      "message": "I worried about randomIntBetween function which is an external lib. if it relies on a shared number generator, then the calls from different part at the same time might influence each other results.\n\nI tested it locally twice today (making a call from one method to another), and the tests got failed with the error:\n\nERRO[0077] {\"value\":{\"code\":3001,\"message\":\"Unable to read messages.\",\"original_error\":{}}}  source\u003dconsole\n\nBased on my local test result, I suggest keep this code as is.",
+      "parentUuid": "c169f1c1_6488e857",
+      "range": {
+        "startLine": 61,
+        "startChar": 73,
+        "endLine": 63,
+        "endChar": 78
+      },
+      "revId": "79224f575edf24f41d960898d06b24e1f2b287a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e531883e_e7a770a4",
         "filename": "k6-tests/ncmp/common/utils.js",
         "patchSetId": 1
