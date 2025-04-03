@@ -16,6 +16,24 @@
       "message": "NB: i still see double quotes in groovy tests. But remaining things looks fine to me.",
       "revId": "77ce77b0ff5d64b7df0a4832a6610718fce5b62b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5148eb05_03d1f0c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T04:56:40Z",
+      "side": 1,
+      "message": "yes, there are some double quotes, I removed a few more unnecessary ones but there are some double quotes in the JSON strings used for testing, around the attribute name and values. These are expected values with double quotes.",
+      "parentUuid": "1ad2a899_799d9759",
+      "revId": "77ce77b0ff5d64b7df0a4832a6610718fce5b62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
