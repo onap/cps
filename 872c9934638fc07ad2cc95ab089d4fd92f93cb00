@@ -16,6 +16,29 @@
       "message": "All looks good but the copy rights",
       "revId": "872c9934638fc07ad2cc95ab089d4fd92f93cb00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18d311e9_0610216a",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-03T10:44:36Z",
+      "side": 1,
+      "message": "i think u missed one of my comments on the usage of this additional word as well.\nthis property only makes sense with OOM. in CPS-NCMP we have no way of overriding it this way. Thats why I was saying that we do this change separately coz i think some discussion/analysis is needed and unnecessary coz of this the patch is getting comments.\n\nI am also ok to +1 based on these changes and we handle the remaining things in a separate patch.",
+      "range": {
+        "startLine": 275,
+        "startChar": 2,
+        "endLine": 275,
+        "endChar": 13
+      },
+      "revId": "872c9934638fc07ad2cc95ab089d4fd92f93cb00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
