@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2025 Nordix Foundation
+.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _release_notes:
@@ -38,7 +38,7 @@ Release Data
 Features
 --------
     - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Implement XPath Attribute Axis in CPS
-    - `CPS-2712 <https://lf-onap.atlassian.net/browse/CPS-2712>`_ Use Flux streaming/buffering for CM-handle searches
+    - `CPS-2169 <https://lf-onap.atlassian.net/browse/CPS-2169>`_ Support 50K CM Handles (performance improvements)
 
 Version: 3.6.1
 ==============
@@ -62,7 +62,6 @@ Release Data
 
 Features
 --------
-    - `CPS-2394 <https://lf-onap.atlassian.net/browse/CPS-2394>`_ Query data nodes with limit
     - Several performance improvements
 
 Version: 3.6.0
@@ -93,8 +92,6 @@ Bug Fixes
 Features
 --------
     - `CPS-2249 <https://lf-onap.atlassian.net/browse/CPS-2249>`_ NCMP to support Conflict Handling.
-    - `CPS-2540 <https://lf-onap.atlassian.net/browse/CPS-2540>`_ One schemaset per module set tag.
-
 
 ..      ====================
 ..      * * *   OSLO   * * *
