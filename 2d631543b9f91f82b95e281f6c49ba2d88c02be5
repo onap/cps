@@ -135,6 +135,30 @@
       },
       "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "850ab295_42b460cc",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-04-03T12:07:16Z",
+      "side": 1,
+      "message": "i restored the paragraph but this time both the local and the remote tox allowed it to pass. very strange because now it seems like neither the spacing or the paragraph caused the failure",
+      "parentUuid": "9a899756_986c969a",
+      "range": {
+        "startLine": 240,
+        "startChar": 46,
+        "endLine": 240,
+        "endChar": 47
+      },
+      "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
