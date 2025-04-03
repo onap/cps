@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1da8992f_12eb4510",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "In delta report we call it action so this should be renamed everywhere to ensure consistency.",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0763ae2_7cbc588b",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "Is the casing important? Delta report uses lower case for these operations.\nNB: why are we setting these values through the schema? The same can be fetched from the delta report.",
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "241fb9cb_1762f358",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "modified content",
+      "range": {
+        "startLine": 40,
+        "startChar": 43,
+        "endLine": 40,
+        "endChar": 50
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f93e4e_d30cfa41",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "Just delta report is fine, mentioning updated data would mean it only contains updated data and no new added or deleted data",
+      "range": {
+        "startLine": 44,
+        "startChar": 43,
+        "endLine": 44,
+        "endChar": 62
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112b6fe1_61d0fd13",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "the parameters can be reordered to match that of publishCpsDataUpdateEvent",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146e44e5_30f2c84b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "previousDataNodes as it is collection of multiple nodes",
+      "range": {
+        "startLine": 167,
+        "startChar": 35,
+        "endLine": 167,
+        "endChar": 51
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd5fbc1_b577a6f6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "I was not part of previous reviews and hence this might come as a big change suggestion. But this step of generating delta should be done for all operations, i.e. save and delete. Because delta feature is designed in such a way that it will create a report without source and target data in respective cases.\nAnd instead of returning entire delta report as JSON string we can make use of delta report to fetch the operation value and xpath. ensuring consistent result in the notifications. \nThis would also avoid duplication of information because right now we explicitly set operation values here and then the same values repeat in the delta report.",
+      "range": {
+        "startLine": 170,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 34
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e42392_347ab8ac",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "previousDataNodes",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 51
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad4b6638_79adff2d",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "NB: why is delta not generated here before sending to notification service?",
+      "range": {
+        "startLine": 277,
+        "startChar": 16,
+        "endLine": 277,
+        "endChar": 45
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a3528a1_1e5315b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "NB: same question, why are we not generating delta here? Is it because delta feature does not handle update and replace as separate cases? If so then this can be an enhancement to delta report.",
+      "range": {
+        "startLine": 302,
+        "startChar": 16,
+        "endLine": 302,
+        "endChar": 34
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "668fd7a3_326535c8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "previousDataNodes",
+      "range": {
+        "startLine": 306,
+        "startChar": 35,
+        "endLine": 306,
+        "endChar": 51
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc2104b_75b365ae",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "NB: same suggestion, we can generate delta then extract information from it to send to notification service. Same applies to all delete operations below",
+      "range": {
+        "startLine": 315,
+        "startChar": 16,
+        "endLine": 315,
+        "endChar": 30
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf8d779_4770c097",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "NB: make parameters aligned with calling method: anchor, xpath, deltaReport, operation, observedTimeStamp",
+      "range": {
+        "startLine": 425,
+        "startChar": 39,
+        "endLine": 425,
+        "endChar": 64
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d4392f_cf18a1ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-03T13:38:35Z",
+      "side": 1,
+      "message": "generateDeltaReport and can be used with all the operations above to ensure consistency. And I would return List\u003cDeltaReport\u003e so I can make use of the getters and then fetch the values from delta report like deltareport.getAction() to set operations in notification service.",
+      "range": {
+        "startLine": 432,
+        "startChar": 19,
+        "endLine": 432,
+        "endChar": 44
+      },
+      "revId": "b139d660ce4c0ddf3d4a4b0338bada82157b9198",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
