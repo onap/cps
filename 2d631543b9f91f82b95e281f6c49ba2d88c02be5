@@ -87,6 +87,30 @@
       },
       "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79788939_e9dea517",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-03T11:23:32Z",
+      "side": 1,
+      "message": "I would prefer if you could restore the paragraph. But t is not blocking for me. If you DO restore it remove the bit about helm charts please like so:\n\nThe following table lists some properties that can be configured in the deployment. This list is not exhaustive.",
+      "parentUuid": "50645daf_addeea8e",
+      "range": {
+        "startLine": 240,
+        "startChar": 46,
+        "endLine": 240,
+        "endChar": 47
+      },
+      "revId": "2d631543b9f91f82b95e281f6c49ba2d88c02be5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

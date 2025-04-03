@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07b3f8ce_01efa1f8",
+        "filename": "integration-test/src/test/resources/application-module-sync-delayed.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-03T11:23:32Z",
+      "side": 1,
+      "message": "we checked yesterday, it IS used in CpsIntegrationSpecBase\n@ActiveProfiles(\u0027module-sync-delayed\u0027)",
+      "parentUuid": "3c573cf4_064ff548",
+      "revId": "62482b24479d4e478f97a94b2557a5dbebc7ca4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff609b6b_f562e2b0",
         "filename": "integration-test/src/test/resources/application.yml",
         "patchSetId": 6
@@ -144,6 +162,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "8d45a8c4_ec7d45fa",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 30
+      },
+      "revId": "62482b24479d4e478f97a94b2557a5dbebc7ca4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "833b8f42_36cabb4f",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-03T11:23:32Z",
+      "side": 1,
+      "message": "I am not 100% sure, maybe it doesn\u0027t matter",
+      "parentUuid": "59dc2d83_11df4917",
       "range": {
         "startLine": 183,
         "startChar": 24,
