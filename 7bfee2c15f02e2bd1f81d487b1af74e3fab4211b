@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9e338c_d2420586",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-04T11:12:12Z",
+      "side": 1,
+      "message": "Nb. These new methods could go in a new class e.g. AlternateIdMapHelper?",
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9743354_6fe3200e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-04T11:12:12Z",
+      "side": 1,
+      "message": "Needs unit test.",
+      "range": {
+        "startLine": 205,
+        "startChar": 31,
+        "endLine": 205,
+        "endChar": 61
+      },
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef9f5b75_5163376b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AlternateIdCacheDataLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-04T11:12:12Z",
+      "side": 1,
+      "message": "This class has no tests! Needs unit tests at least.",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
