@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c52c6e42_6f6f13ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-04T10:46:10Z",
+      "side": 1,
+      "message": "i will run it on my local and get back to u.",
+      "revId": "74b008f9307487c5a3c5fce91b9af65d78fd8daf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4285fa0_223a22db",
+        "filename": "docs/api/swagger/ncmp/openapi-provmns.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-04T10:46:10Z",
+      "side": 1,
+      "message": "we were thinking abt calling it CpsProvMnS or something similar.\nMaybe a discussion with the team is required on this.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "74b008f9307487c5a3c5fce91b9af65d78fd8daf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
