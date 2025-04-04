@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5c99aa_500452ac",
+        "filename": "cps-dependencies/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-04T13:57:37Z",
+      "side": 1,
+      "message": "NB: Same as below",
+      "range": {
+        "startLine": 5,
+        "startChar": 35,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "2176105ab72a9ca1be972834d6b4750b1afea494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dd1e5aa_c44545dc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/MessagingBaseSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-04T13:57:37Z",
+      "side": 1,
+      "message": "NB: Same as below",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "2176105ab72a9ca1be972834d6b4750b1afea494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993b8c57_d400c44d",
+        "filename": "cps-parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-04T13:57:37Z",
+      "side": 1,
+      "message": "NB: 2025 OpenInfra Foundation Europe. All rights reserved.",
+      "range": {
+        "startLine": 6,
+        "startChar": 35,
+        "endLine": 6,
+        "endChar": 58
+      },
+      "revId": "2176105ab72a9ca1be972834d6b4750b1afea494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
