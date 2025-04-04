@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9b47f9_6da76a9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-04T14:02:02Z",
+      "side": 1,
+      "message": "need to see the behavior of transitive dependency this upgrade will be bring along.",
+      "revId": "2176105ab72a9ca1be972834d6b4750b1afea494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf5c99aa_500452ac",
