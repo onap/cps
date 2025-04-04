@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2025 Nordix Foundation
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -137,6 +137,20 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.get.v3", description = "Time taken to get data node")
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV3(final String dataspaceName, final String anchorName,
+                                                                final String xpath,
+                                                                final String fetchDescendantsOptionAsString,
+                                                                final String contentTypeInHeader) {
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
+        final Map<String, Object> dataNodesAsMap =
+            cpsFacade.getDataNodesByAnchorV3(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMap, contentType);
+    }
+
+    @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
                                                    final String anchorName, final String nodeData,
                                                    final String parentNodeXpath, final Boolean dryRunEnabled,
@@ -231,8 +245,7 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
     }
 
-    private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
-                                               final ContentType contentType) {
+    private ResponseEntity<Object> buildResponseEntity(final Object dataMaps, final ContentType contentType) {
         final String responseData;
         if (ContentType.XML.equals(contentType)) {
             responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);

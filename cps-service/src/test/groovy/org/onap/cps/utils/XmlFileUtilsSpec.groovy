@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
  *  Modifications Copyright (c) 2023-2024 Nordix Foundation
- *  Modifications Copyright (C) 2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ class XmlFileUtilsSpec extends Specification {
             assert result == expectedXmlOutput
         where:
             scenario                              | dataMaps                                                                                                                                 || expectedXmlOutput
-            'single XML branch'                   | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': ['Sparrow', 'Owl']]]]]                                                   || '<branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds><birds>Owl</birds></nest></branch>'
+            'single XML branch'                   | ['branch': ['name': 'Left']]                                                   || '<branch><name>Left</name></branch>'
             'nested XML branch'                   | [['test-tree': [branch: [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]]                                                       || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
             'list of branch within a test tree'   | [['test-tree': [branch: [[name: 'Left', nest: [name: 'Small', birds: 'Sparrow']], [name: 'Right', nest: [name: 'Big', birds: 'Owl']]]]]] || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch><branch><name>Right</name><nest><name>Big</name><birds>Owl</birds></nest></branch></test-tree>'
             'list of birds under a nest'          | [['nest': ['name': 'Small', 'birds': ['Sparrow']]]]                                                                                      || '<nest><name>Small</name><birds>Sparrow</birds></nest>'
@@ -100,6 +100,14 @@ class XmlFileUtilsSpec extends Specification {
             'list containing null values'    | [['branch': [null, null, null]]]                                                            || '<branch/><branch/><branch/>'
             'nested map with null values'    | [['test-tree': [branch: [name: 'Left', nest: null]]]]                                       || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
             'mixed list with null values'    | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': [null, 'Sparrow', null]]]]] || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds><birds/></nest></branch>'
+    }
+
+    def 'Converting data maps to xml with unsupported input type'() {
+        when: 'a non-Map and non-List object is passed'
+            convertDataMapsToXml("invalid")
+        then: 'an IllegalArgumentException is thrown'
+            def exception = thrown(IllegalArgumentException)
+           assert exception.message == "Unsupported data type for XML conversion"
     }
 
     def 'Converting data maps to xml with no data'() {

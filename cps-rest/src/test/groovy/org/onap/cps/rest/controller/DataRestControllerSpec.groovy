@@ -4,7 +4,7 @@
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -71,6 +71,7 @@ class DataRestControllerSpec extends Specification {
 
     def dataNodeBaseEndpointV1
     def dataNodeBaseEndpointV2
+    def dataNodeBaseEndpointV3
     def dataspaceName = 'my_dataspace'
     def anchorName = 'my_anchor'
     def noTimestamp = null
@@ -93,6 +94,7 @@ class DataRestControllerSpec extends Specification {
     def setup() {
         dataNodeBaseEndpointV1 = "$basePath/v1/dataspaces/$dataspaceName"
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName"
+        dataNodeBaseEndpointV3 = "$basePath/v3/dataspaces/$dataspaceName"
     }
 
     def 'Create a node: #scenario.'() {
@@ -306,6 +308,29 @@ class DataRestControllerSpec extends Specification {
             scenario | contentType                || expectedResult
             'XML'    | MediaType.APPLICATION_XML  || '<mocked>result1</mocked><mocked>result2</mocked>'
             'JSON'   | MediaType.APPLICATION_JSON || '[{"mocked":"result1"},{"mocked":"result2"}]'
+    }
+
+    def 'Get data node with #scenario using V3. output type #scenario.'() {
+        given: 'the service returns data nodes with #scenario'
+            def xpath = 'some xPath'
+            def endpoint = "$dataNodeBaseEndpointV3/anchors/$anchorName/node"
+        when: 'V2 of get request is performed through REST API'
+            def response =
+                mvc.perform(get(endpoint)
+                    .contentType(contentType)
+                    .param('xpath', xpath)
+                    .param('descendants', 'all'))
+                    .andReturn().response
+        then: 'the cps service facade is called with the correct parameters and returns some data'
+            1 * mockCpsFacade.getDataNodesByAnchorV3(dataspaceName, anchorName, xpath, INCLUDE_ALL_DESCENDANTS) >> [books: [[title: 'Book 1'], [title: 'Book 2']]]
+        and: 'a success response is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response is in the expected format'
+            assert response.contentAsString == expectedResult
+        where: 'the following content types are used'
+            scenario | contentType                || expectedResult
+            'XML'    | MediaType.APPLICATION_XML  || '<books><title>Book 1</title></books><books><title>Book 2</title></books>'
+            'JSON'   | MediaType.APPLICATION_JSON || '{"books":[{"title":"Book 1"},{"title":"Book 2"}]}'
     }
 
     def 'Get delta between two anchors.'() {

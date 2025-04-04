@@ -73,6 +73,14 @@ class CpsFacadeImplSpec extends Specification {
             assert result[1].keySet()[0] == 'prefix2:path2'
     }
 
+    def 'Get multiple data nodes V3.'() {
+        when: 'get data node by dataspace and anchor'
+            def result = objectUnderTest.getDataNodesByAnchorV3('my dataspace', 'my anchor', 'my path', myFetchDescendantsOption)
+        then: 'all nodes (from the data service result) are returned'
+            assert result.size() == 2
+        println(result)
+    }
+
     def 'Execute anchor query.'() {
         given: 'the cps query service returns two data nodes'
            mockCpsQueryService.queryDataNodes('my dataspace', 'my anchor', '/my/path', myFetchDescendantsOption) >> [ dataNode1, dataNode2]
