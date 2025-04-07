@@ -31,11 +31,11 @@ import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.DELETING
 import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
-class LcmEventsCreatorSpec extends Specification {
+class LcmEventsProducerHelperSpec extends Specification {
 
     LcmEventHeaderMapper lcmEventsHeaderMapper = Mappers.getMapper(LcmEventHeaderMapper)
 
-    def objectUnderTest = new LcmEventsCreator(lcmEventsHeaderMapper)
+    def objectUnderTest = new LcmEventsProducerHelper(lcmEventsHeaderMapper)
     def cmHandleId = 'test-cm-handle'
 
     def 'Map the LcmEvent for #operation'() {

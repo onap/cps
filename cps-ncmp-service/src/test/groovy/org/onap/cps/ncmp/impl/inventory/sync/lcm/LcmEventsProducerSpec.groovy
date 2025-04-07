@@ -43,7 +43,7 @@ class LcmEventsProducerSpec extends Specification {
     def objectUnderTest = new LcmEventsProducer(mockLcmEventsProducer, mockJsonObjectMapper, meterRegistry)
 
     def 'Create and send lcm event where events are #scenario'() {
-        given: 'a cm handle id, Lcm Event, and headers'
+        given: 'a cm handle id and Lcm Event'
             def cmHandleId = 'test-cm-handle-id'
             def eventId = UUID.randomUUID().toString()
             def event = getEventWithCmHandleState(ADVISED, READY)
@@ -55,8 +55,8 @@ class LcmEventsProducerSpec extends Specification {
         and: 'lcm event header is transformed to headers map'
             mockJsonObjectMapper.convertToValueType(lcmEventHeader, Map.class) >> ['eventId': eventId, 'eventCorrelationId': cmHandleId]
         when: 'service is called to send lcm event'
-            objectUnderTest.publishLcmEvent('test-cm-handle-id', lcmEvent, lcmEventHeader)
-        then: 'publisher is called #expectedTimesMethodCalled times'
+            objectUnderTest.sendLcmEvent('test-cm-handle-id', lcmEvent, lcmEventHeader)
+        then: 'producer is called #expectedTimesMethodCalled times'
             expectedTimesMethodCalled * mockLcmEventsProducer.sendEvent(_, cmHandleId, _, lcmEvent) >> {
                 args -> {
                     def eventHeaders = (args[2] as Map<String,Object>)
@@ -67,7 +67,7 @@ class LcmEventsProducerSpec extends Specification {
                 }
             }
         and: 'metrics are recorded with correct tags'
-            def timer = meterRegistry.find('cps.ncmp.lcm.events.publish').timer()
+            def timer = meterRegistry.find('cps.ncmp.lcm.events.send').timer()
             if (notificationsEnabled) {
                 assert timer != null
                 assert timer.count() == expectedTimesMethodCalled
@@ -90,14 +90,14 @@ class LcmEventsProducerSpec extends Specification {
             def lcmEvent = new LcmEvent(event: event, eventId: eventId, eventCorrelationId: cmHandleId)
             def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
             objectUnderTest.notificationsEnabled = true
-        when: 'publisher set to throw an exception'
-            mockLcmEventsProducer.sendEvent(_, _, _, _) >> { throw new KafkaException('publishing failed')}
+        when: 'producer set to throw an exception'
+            mockLcmEventsProducer.sendEvent(_, _, _, _) >> { throw new KafkaException('sending failed')}
         and: 'an event is publised'
-            objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
+            objectUnderTest.sendLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
         then: 'the exception is just logged and not bubbled up'
             noExceptionThrown()
         and: 'metrics are recorded with error tags'
-            def timer = meterRegistry.find('cps.ncmp.lcm.events.publish').timer()
+            def timer = meterRegistry.find('cps.ncmp.lcm.events.send').timer()
             assert timer != null
             assert timer.count() == 1
             def expectedTags = [Tag.of('oldCmHandleState', 'N/A'), Tag.of('newCmHandleState', 'N/A')]

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,30 +30,78 @@ import com.google.common.collect.Maps;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.AccessLevel;
+import java.util.UUID;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
+import org.onap.cps.ncmp.events.lcm.v1.Event;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
+import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.events.lcm.v1.Values;
+import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter;
+import org.springframework.stereotype.Component;
 
 /**
- * LcmEventsCreatorHelper has helper methods to create LcmEvent.
- * Determine the lcm event type i.e create,update and delete.
- * Based on lcm event type create the LcmEvent payload.
+ * LcmEventsProducerHelper to create LcmEvent based on relevant operation.
  */
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class LcmEventsCreatorHelper {
+@Component
+@RequiredArgsConstructor
+public class LcmEventsProducerHelper {
+
+    private final LcmEventHeaderMapper lcmEventHeaderMapper;
 
     /**
-     * Determining the event type based on the composite state.
+     * Populate Lifecycle Management Event.
      *
-     * @param targetNcmpServiceCmHandle   target ncmpServiceCmHandle
-     * @param existingNcmpServiceCmHandle existing ncmpServiceCmHandle
-     * @return Event Type
+     * @param cmHandleId                  cm handle identifier
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
+     * @return Populated LcmEvent
      */
-    public static LcmEventType determineEventType(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+    public LcmEvent populateLcmEvent(final String cmHandleId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return createLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
+    /**
+     * Populate Lifecycle Management Event Header.
+     *
+     * @param cmHandleId                  cm handle identifier
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
+     * @return Populated LcmEventHeader
+     */
+    public LcmEventHeader populateLcmEventHeader(final String cmHandleId,
+            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return createLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
+    private LcmEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final LcmEventType lcmEventType =
+                determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final LcmEvent lcmEvent = lcmEventHeader(cmHandleId, lcmEventType);
+        lcmEvent.setEvent(
+                lcmEventPayload(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, lcmEventType));
+        return lcmEvent;
+    }
+
+    private LcmEventHeader createLcmEventHeader(final String cmHandleId,
+            final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final LcmEventType lcmEventType =
+                determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final LcmEvent lcmEventWithHeaderInformation = lcmEventHeader(cmHandleId, lcmEventType);
+        return lcmEventHeaderMapper.toLcmEventHeader(lcmEventWithHeaderInformation);
+    }
+
+    private static LcmEventType determineEventType(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                                   final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
         if (existingNcmpServiceCmHandle.getCompositeState() == null) {
             return CREATE;
@@ -63,15 +111,7 @@ public class LcmEventsCreatorHelper {
         return UPDATE;
     }
 
-    /**
-     * Determine the cmhandle value difference pair.Contains the difference in the form of oldValues and newValues.
-     *
-     * @param targetNcmpServiceCmHandle   target ncmpServiceCmHandle
-     * @param existingNcmpServiceCmHandle existing ncmpServiceCmHandle
-     * @param lcmEventType                lcm event type
-     * @return Lcm Event Value difference pair
-     */
-    public static LcmEventsCreator.CmHandleValuesHolder determineEventValues(
+    private static CmHandleValuesHolder determineEventValues(
             final NcmpServiceCmHandle targetNcmpServiceCmHandle, final NcmpServiceCmHandle existingNcmpServiceCmHandle,
             final LcmEventType lcmEventType) {
 
@@ -80,13 +120,42 @@ public class LcmEventsCreatorHelper {
         } else if (UPDATE == lcmEventType) {
             return determineUpdateEventValues(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
         }
-        return new LcmEventsCreator.CmHandleValuesHolder();
+        return new CmHandleValuesHolder();
 
     }
 
-    private static LcmEventsCreator.CmHandleValuesHolder determineCreateEventValues(
+    private Event lcmEventPayload(final String eventCorrelationId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle, final LcmEventType lcmEventType) {
+        final Event event = new Event();
+        event.setCmHandleId(eventCorrelationId);
+        event.setAlternateId(targetNcmpServiceCmHandle.getAlternateId());
+        event.setModuleSetTag(targetNcmpServiceCmHandle.getModuleSetTag());
+        event.setDataProducerIdentifier(targetNcmpServiceCmHandle.getDataProducerIdentifier());
+        final CmHandleValuesHolder cmHandleValuesHolder =
+                determineEventValues(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle,
+                        lcmEventType);
+        event.setOldValues(cmHandleValuesHolder.getOldValues());
+        event.setNewValues(cmHandleValuesHolder.getNewValues());
+
+        return event;
+    }
+
+    private LcmEvent lcmEventHeader(final String eventCorrelationId, final LcmEventType lcmEventType) {
+        final LcmEvent lcmEvent = new LcmEvent();
+        lcmEvent.setEventId(UUID.randomUUID().toString());
+        lcmEvent.setEventCorrelationId(eventCorrelationId);
+        lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());
+        lcmEvent.setEventSource("org.onap.ncmp");
+        lcmEvent.setEventType(lcmEventType.getEventType());
+        lcmEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");
+        lcmEvent.setEventSchemaVersion("1.0");
+        return lcmEvent;
+    }
+
+
+    private static CmHandleValuesHolder determineCreateEventValues(
             final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder = new LcmEventsCreator.CmHandleValuesHolder();
+        final CmHandleValuesHolder cmHandleValuesHolder = new CmHandleValuesHolder();
         cmHandleValuesHolder.setNewValues(new Values());
         cmHandleValuesHolder.getNewValues().setDataSyncEnabled(getDataSyncEnabledFlag(ncmpServiceCmHandle));
         cmHandleValuesHolder.getNewValues()
@@ -95,7 +164,7 @@ public class LcmEventsCreatorHelper {
         return cmHandleValuesHolder;
     }
 
-    private static LcmEventsCreator.CmHandleValuesHolder determineUpdateEventValues(
+    private static CmHandleValuesHolder determineUpdateEventValues(
             final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
@@ -107,7 +176,7 @@ public class LcmEventsCreatorHelper {
                 arePublicCmHandlePropertiesEqual(targetNcmpServiceCmHandle.getPublicProperties(),
                         existingNcmpServiceCmHandle.getPublicProperties());
 
-        final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder = new LcmEventsCreator.CmHandleValuesHolder();
+        final CmHandleValuesHolder cmHandleValuesHolder = new CmHandleValuesHolder();
 
         if (hasDataSyncFlagEnabledChanged || hasCmHandleStateChanged || (!arePublicCmHandlePropertiesEqual)) {
             cmHandleValuesHolder.setOldValues(new Values());
@@ -134,8 +203,8 @@ public class LcmEventsCreatorHelper {
     }
 
     private static void setDataSyncEnabledFlag(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle,
-            final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder) {
+                                               final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                               final CmHandleValuesHolder cmHandleValuesHolder) {
 
         cmHandleValuesHolder.getOldValues().setDataSyncEnabled(getDataSyncEnabledFlag(existingNcmpServiceCmHandle));
         cmHandleValuesHolder.getNewValues().setDataSyncEnabled(getDataSyncEnabledFlag(targetNcmpServiceCmHandle));
@@ -143,8 +212,8 @@ public class LcmEventsCreatorHelper {
     }
 
     private static void setCmHandleStateChange(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle,
-            final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder) {
+                                               final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                               final CmHandleValuesHolder cmHandleValuesHolder) {
         cmHandleValuesHolder.getOldValues()
                 .setCmHandleState(mapCmHandleStateToLcmEventCmHandleState(existingNcmpServiceCmHandle));
         cmHandleValuesHolder.getNewValues()
@@ -152,8 +221,8 @@ public class LcmEventsCreatorHelper {
     }
 
     private static void setPublicCmHandlePropertiesChange(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle,
-            final LcmEventsCreator.CmHandleValuesHolder cmHandleValuesHolder) {
+                                                          final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                                          final CmHandleValuesHolder cmHandleValuesHolder) {
 
         final Map<String, Map<String, String>> publicCmHandlePropertiesDifference =
                 getPublicCmHandlePropertiesDifference(targetNcmpServiceCmHandle.getPublicProperties(),
@@ -175,7 +244,7 @@ public class LcmEventsCreatorHelper {
     }
 
     private static boolean hasDataSyncEnabledFlagChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+                                                         final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
         final Boolean targetDataSyncFlag = targetNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
         final Boolean existingDataSyncFlag = existingNcmpServiceCmHandle.getCompositeState().getDataSyncEnabled();
@@ -188,14 +257,14 @@ public class LcmEventsCreatorHelper {
     }
 
     private static boolean hasCmHandleStateChanged(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+                                                   final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
 
         return targetNcmpServiceCmHandle.getCompositeState().getCmHandleState()
-                       != existingNcmpServiceCmHandle.getCompositeState().getCmHandleState();
+                != existingNcmpServiceCmHandle.getCompositeState().getCmHandleState();
     }
 
     private static boolean arePublicCmHandlePropertiesEqual(final Map<String, String> targetCmHandleProperties,
-            final Map<String, String> existingCmHandleProperties) {
+                                                            final Map<String, String> existingCmHandleProperties) {
         if (targetCmHandleProperties.size() != existingCmHandleProperties.size()) {
             return false;
         }
@@ -222,6 +291,16 @@ public class LcmEventsCreatorHelper {
         oldAndNewPropertiesDifferenceMap.put("newValues", newValues);
 
         return oldAndNewPropertiesDifferenceMap;
+    }
+
+
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    static class CmHandleValuesHolder {
+
+        private Values oldValues;
+        private Values newValues;
     }
 
 }
