@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20bde47_f1bceb14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-07T10:23:21Z",
+      "side": 1,
+      "message": "merging this now and this is just code refactoring and doesnt impact any functionality.\nif there are further opinions from the team we can take it as a separate task.",
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
