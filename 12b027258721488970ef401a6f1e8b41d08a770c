@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a08df3_94879c1f",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0e8ef9a_914b6c01",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 69
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e4531dd_d6d5d752",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "249e4a6f_f76276e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e4531dd_d6d5d752",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6af3c418_9d0a87bb",
@@ -94,6 +142,30 @@
       "writtenOn": "2025-03-28T22:49:26Z",
       "side": 1,
       "message": "NB: copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63975608_8ac084b7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6af3c418_9d0a87bb",
       "range": {
         "startLine": 3,
         "startChar": 27,
@@ -140,6 +212,30 @@
       "writtenOn": "2025-04-01T15:03:43Z",
       "side": 1,
       "message": "agreed, missed this one, make suer to do a Project (at least module)-wide search on the word \u0027publish\u0027",
+      "parentUuid": "844858bb_643b8a00",
+      "range": {
+        "startLine": 63,
+        "startChar": 7,
+        "endLine": 63,
+        "endChar": 17
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a201ac2_d436cf90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Ack",
       "parentUuid": "844858bb_643b8a00",
       "range": {
         "startLine": 63,
@@ -221,6 +317,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6f88fd_db4ae06b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "ddnt change as mentioned in header, will be in a different patch",
+      "parentUuid": "e3dd98bb_7c18a68f",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c53cb67_5ea5b079",
@@ -244,6 +364,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f10b24c5_614dcd46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3c53cb67_5ea5b079",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 45
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f4ee0f9_b392aed7",
@@ -257,6 +401,30 @@
       "writtenOn": "2025-04-01T15:03:43Z",
       "side": 1,
       "message": "sends",
+      "range": {
+        "startLine": 95,
+        "startChar": 58,
+        "endLine": 95,
+        "endChar": 66
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdd946b8_532cc9fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f4ee0f9_b392aed7",
       "range": {
         "startLine": 95,
         "startChar": 58,
@@ -303,6 +471,30 @@
       "writtenOn": "2025-04-01T15:03:43Z",
       "side": 1,
       "message": "i will stop checking too make suer to do that search :-)",
+      "parentUuid": "42cf31d0_62594bb0",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 48
+      },
+      "revId": "12b027258721488970ef401a6f1e8b41d08a770c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc7fb11b_75439191",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/dmi/DmiOutEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-07T08:48:30Z",
+      "side": 1,
+      "message": "missed some but changed most - next patch update",
       "parentUuid": "42cf31d0_62594bb0",
       "range": {
         "startLine": 111,
