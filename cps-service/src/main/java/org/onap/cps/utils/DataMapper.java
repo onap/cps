@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation.
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.impl.DataNodeBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -104,6 +106,30 @@ public class DataMapper {
             dataNodesAsMaps.add(dataNodeAsMap);
         }
         return dataNodesAsMaps;
+    }
+
+    /**
+     * Convert a collection of data nodes to a list of data maps.
+     * List nodes are returned as a map entry where the key is the list node name and the value is
+     * a list of maps, each representing an individual list item. Container nodes are returned as
+     * nested maps under their respective parent node names.
+     *
+     * @param dataspaceName the name dataspace name
+     * @param anchorName    the name of the anchor
+     * @param dataNodes     the data nodes to convert
+     * @return a map reflecting the complete data node structure, where:
+     *                - leaf values are returned as key-value pairs,
+     *                - containers are returned as nested maps,
+     *                - and list nodes are grouped under a single key as a list of map entries.
+     */
+
+    public Map<String, Object> toDataMapForApiV3(final String dataspaceName, final String anchorName,
+                                           final Collection<DataNode> dataNodes) {
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        dataNodes.forEach(dataNode ->
+            dataNode.setModuleNamePrefix(prefixResolver.getPrefix(anchor, dataNode.getXpath())));
+        final DataNode containerNode = new DataNodeBuilder().withChildDataNodes(dataNodes).build();
+        return DataMapUtils.toDataMap(containerNode);
     }
 
     /**

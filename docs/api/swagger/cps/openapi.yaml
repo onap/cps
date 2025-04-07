@@ -19,6 +19,8 @@ tags:
   name: cps-admin
 - description: cps Data
   name: cps-data
+- description: CPS Delta
+  name: cps-delta
 paths:
   /v1/dataspaces:
     post:
@@ -1181,6 +1183,7 @@ paths:
       x-codegen-request-body-name: xpath
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
     get:
+      deprecated: true
       description: Get a node with an option to retrieve all the children for a given
         anchor and dataspace
       operationId: getNodeByDataspaceAndAnchorV2
@@ -1245,6 +1248,112 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleXml'
+                  value: null
+              schema:
+                type: object
+                xml:
+                  name: stores
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad Request
+                details: The provided request is not valid
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Request Forbidden
+                details: This request is forbidden
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Get a node
+      tags:
+      - cps-data
+      x-codegen-request-body-name: xpath
+  /v3/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    get:
+      description: Get a node with an option to retrieve all the children for a given
+        anchor and dataspace
+      operationId: getNodeByDataspaceAndAnchorV3
+      parameters:
+      - description: dataspace-name
+        in: path
+        name: dataspace-name
+        required: true
+        schema:
+          example: my-dataspace
+          type: string
+      - description: anchor-name
+        in: path
+        name: anchor-name
+        required: true
+        schema:
+          example: my-anchor
+          type: string
+      - description: "For more details on xpath, please refer https://docs.onap.org/projects/onap-cps/en/latest/xpath.html"
+        examples:
+          container xpath:
+            value: /shops/bookstore
+          list attributes xpath:
+            value: "/shops/bookstore/categories[@code=1]"
+        in: query
+        name: xpath
+        required: false
+        schema:
+          default: /
+          type: string
+      - description: "Number of descendants to query. Allowed values are 'none', 'all',\
+          \ 'direct', 1 (for direct), -1 (for all), 0 (for none) and any positive\
+          \ number."
+        in: query
+        name: descendants
+        required: false
+        schema:
+          default: none
+          example: "3"
+          type: string
+      - description: Content type in header
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          default: application/json
+          enum:
+          - application/json
+          - application/xml
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSampleForV3'
+                  value: null
+              schema:
+                type: object
+            application/xml:
+              examples:
+                dataSample:
+                  $ref: '#/components/examples/dataSampleXmlForV3'
                   value: null
               schema:
                 type: object
@@ -2185,7 +2294,7 @@ paths:
           description: Internal Server Error
       summary: Get delta between anchors in the same dataspace
       tags:
-      - cps-data
+      - cps-delta
       x-codegen-request-body-name: xpath
     post:
       description: Get delta between an anchor in a dataspace and JSON payload
@@ -2275,7 +2384,7 @@ paths:
           description: Internal Server Error
       summary: Get delta between an anchor and JSON payload
       tags:
-      - cps-data
+      - cps-delta
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       deprecated: true
@@ -2779,6 +2888,43 @@ components:
       value: <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> <bookstore xmlns="org:onap:ccsdk:sample">
         <bookstore-name>Chapters</bookstore-name> <categories> <code>1</code> <name>SciFi</name>
         <code>2</code> <name>kids</name> </categories> </bookstore> </stores>
+    dataSampleForV3:
+      value:
+        test:bookstore:
+          bookstore-name: Chapters
+          categories:
+          - code: 1
+            name: SciFi
+            books:
+            - title: Book 1
+              lang: N/A
+              price: 11
+              editions:
+              - 2009
+            - title: Book 2
+              lang: German
+              price: 39
+              editions:
+              - 2007
+              - 2013
+              - 2021
+          - code: 2
+            name: kids
+            books:
+            - title: Book 3
+              lang: English
+              price: 15
+              editions:
+              - 2010
+    dataSampleXmlForV3:
+      value: <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> <bookstore xmlns="org:onap:ccsdk:sample">
+        <bookstore-name>Chapters</bookstore-name> <categories> <code>1</code> <name>SciFi</name>
+        <books> <title>Book 1</title> <lang>N/A</lang> <price>11</price> <editions>2009</editions>
+        </books> <books> <title>Book 2</title> <lang>German</lang> <price>39</price>
+        <editions>2007</editions> <editions>2013</editions> <editions>2021</editions>
+        </books> </categories> <categories> <code>2</code> <name>kids</name> <books>
+        <title>Book 3</title> <lang>English</lang> <price>15</price> <editions>2010</editions>
+        </books> </categories> </bookstore> </stores>
     deltaReportSample:
       value:
       - action: create
