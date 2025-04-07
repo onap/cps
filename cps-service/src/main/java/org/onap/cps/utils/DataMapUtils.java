@@ -3,7 +3,7 @@
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications (C) 2021-2023 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -101,10 +101,8 @@ public class DataMapUtils {
             .putAll(
                 dataNodes.stream()
                     .filter(dataNode -> isListElement(dataNode.getXpath()))
-                    .collect(groupingBy(
-                        dataNode -> getNodeIdentifier(dataNode.getXpath()),
-                        mapping(DataMapUtils::toDataMap, toUnmodifiableList())
-                    ))
+                    .collect(groupingBy(DataMapUtils::getNodeIdentifierWithPrefix,
+                        mapping(DataMapUtils::toDataMap, toUnmodifiableList())))
             ).build();
     }
 
@@ -114,11 +112,7 @@ public class DataMapUtils {
         }
         return dataNodes.stream()
             .filter(dataNode -> isContainerNode(dataNode.getXpath()))
-            .collect(
-                toUnmodifiableMap(
-                    dataNode -> getNodeIdentifier(dataNode.getXpath()),
-                    DataMapUtils::toDataMap
-                ));
+            .collect(toUnmodifiableMap(DataMapUtils::getNodeIdentifierWithPrefix, DataMapUtils::toDataMap));
     }
 
     private static String getNodeIdentifier(String xpath) {
@@ -135,6 +129,10 @@ public class DataMapUtils {
             return moduleNamePrefix + ":" + getNodeIdentifier(xpath);
         }
         return getNodeIdentifier(xpath);
+    }
+
+    private static String getNodeIdentifierWithPrefix(final DataNode dataNode) {
+        return getNodeIdentifierWithPrefix(dataNode.getXpath(), dataNode.getModuleNamePrefix());
     }
 
     private static boolean isContainerNode(final String xpath) {
