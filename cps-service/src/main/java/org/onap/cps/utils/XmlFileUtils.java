@@ -171,13 +171,19 @@ public class XmlFileUtils {
      * @return XML string representation of the data maps
      */
     @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION")
-    public static String convertDataMapsToXml(final List<Map<String, Object>> dataMaps) {
+    public static String convertDataMapsToXml(final Object dataMaps) {
         try {
             final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
             final Document document = documentBuilder.newDocument();
             final DocumentFragment documentFragment = document.createDocumentFragment();
-            for (final Map<String, Object> dataMap : dataMaps) {
-                createXmlElements(document, documentFragment, dataMap);
+            if (dataMaps instanceof Map) {
+                createXmlElements(document, documentFragment, (Map<String, Object>) dataMaps);
+            } else if (dataMaps instanceof List) {
+                for (final Map<String, Object> dataMap : (List<Map<String, Object>>) dataMaps) {
+                    createXmlElements(document, documentFragment, dataMap);
+                }
+            } else {
+                throw new IllegalArgumentException("Unsupported data type for XML conversion");
             }
             return transformFragmentToString(documentFragment);
         } catch (final DOMException |  NullPointerException | ParserConfigurationException | TransformerException
