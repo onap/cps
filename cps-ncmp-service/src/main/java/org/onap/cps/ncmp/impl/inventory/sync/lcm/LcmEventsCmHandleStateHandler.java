@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public interface LcmEventsCmHandleStateHandler {
     /**
      * Sets the initial state of cmHandles to ADVISED.
      *
-     * @param yangModelCmHandles List of Yang Model Cm Handle.
+     * @param yangModelCmHandles List of Yang Model Cm Handles.
      */
     void initiateStateAdvised(Collection<YangModelCmHandle> yangModelCmHandles);
 }
