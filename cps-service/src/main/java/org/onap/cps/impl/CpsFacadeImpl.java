@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -63,6 +64,17 @@ public class CpsFacadeImpl implements CpsFacade {
             fetchDescendantsOption);
         return dataMapper.toDataMaps(dataspaceName, anchorName, dataNodes);
     }
+
+    @Override
+    public Map<String, Object> getDataNodesByAnchorV3(final String dataspaceName,
+                                                      final String anchorName,
+                                                      final String xpath,
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<DataNode> dataNodes = cpsDataService.getDataNodes(dataspaceName, anchorName, xpath,
+            fetchDescendantsOption);
+        return dataMapper.toDataMapV2(dataspaceName, anchorName, dataNodes);
+    }
+
 
     @Override
     public List<Map<String, Object>> executeAnchorQuery(final String dataspaceName,
