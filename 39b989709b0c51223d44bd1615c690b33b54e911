@@ -33,6 +33,29 @@
       "message": "Ignoring any comments on this one as you said it will be done as a separate patch.",
       "revId": "39b989709b0c51223d44bd1615c690b33b54e911",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81afd08d_9ba38fc7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpOutEventProducerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-07T09:09:41Z",
+      "side": 1,
+      "message": "NB: an alingment issue",
+      "range": {
+        "startLine": 74,
+        "startChar": 61,
+        "endLine": 74,
+        "endChar": 64
+      },
+      "revId": "39b989709b0c51223d44bd1615c690b33b54e911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
