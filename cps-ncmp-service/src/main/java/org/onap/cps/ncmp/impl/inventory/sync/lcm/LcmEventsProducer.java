@@ -46,7 +46,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LcmEventsProducer {
 
-    private static final Tag TAG_METHOD = Tag.of("method", "publishLcmEvent");
+    private static final Tag TAG_METHOD = Tag.of("method", "sendLcmEvent");
     private static final Tag TAG_CLASS = Tag.of("class", LcmEventsProducer.class.getName());
     private static final String UNAVAILABLE_CM_HANDLE_STATE = "N/A";
     private final EventsProducer<LcmEvent> eventsProducer;
@@ -60,14 +60,14 @@ public class LcmEventsProducer {
     private boolean notificationsEnabled;
 
     /**
-     * Publishes an LCM event to the dedicated topic with optional notification headers.
-     * Capture and log KafkaException If an error occurs while publishing the event to Kafka
+     * Sends an LCM event to the dedicated topic with optional notification headers.
+     * Capture and log KafkaException If an error occurs while sending the event to Kafka
      *
      * @param cmHandleId     Cm Handle Id associated with the LCM event
-     * @param lcmEvent       The LCM event object to be published
+     * @param lcmEvent       The LCM event object to be sent
      * @param lcmEventHeader Optional headers associated with the LCM event
      */
-    public void publishLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
+    public void sendLcmEvent(final String cmHandleId, final LcmEvent lcmEvent, final LcmEventHeader lcmEventHeader) {
 
         if (notificationsEnabled) {
             final Timer.Sample timerSample = Timer.start(meterRegistry);
@@ -76,7 +76,7 @@ public class LcmEventsProducer {
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
                 eventsProducer.sendEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
             } catch (final KafkaException e) {
-                log.error("Unable to publish message to topic : {} and cause : {}", topicName, e.getMessage());
+                log.error("Unable to send message to topic : {} and cause : {}", topicName, e.getMessage());
             } finally {
                 recordMetrics(lcmEvent, timerSample);
             }
@@ -96,8 +96,8 @@ public class LcmEventsProducer {
         final String newCmHandleState = extractCmHandleStateValue(lcmEvent.getEvent().getNewValues());
         tags.add(Tag.of("newCmHandleState", newCmHandleState));
 
-        timerSample.stop(Timer.builder("cps.ncmp.lcm.events.publish")
-                .description("Time taken to publish a LCM event")
+        timerSample.stop(Timer.builder("cps.ncmp.lcm.events.send")
+                .description("Time taken to send a LCM event")
                 .tags(tags)
                 .register(meterRegistry));
     }

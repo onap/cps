@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2024 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 /**
- * The implementation of it should handle the persisting of composite state and delegate the request to publish the
+ * The implementation of it should handle the persisting of composite state and delegate the request to send the
  * corresponding lcm event.
  */
 public interface LcmEventsCmHandleStateHandler {

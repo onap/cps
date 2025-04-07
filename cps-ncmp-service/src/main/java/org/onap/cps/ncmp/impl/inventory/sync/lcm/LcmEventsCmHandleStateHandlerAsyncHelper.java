@@ -35,30 +35,31 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LcmEventsCmHandleStateHandlerAsyncHelper {
 
-    private final LcmEventsCreator lcmEventsCreator;
+    private final LcmEventsProducerHelper lcmEventsProducerHelper;
     private final LcmEventsProducer lcmEventsProducer;
 
     /**
-     * Publish LcmEvent in batches and in asynchronous manner.
+     * Send LcmEvent in batches and in asynchronous manner.
      *
      * @param cmHandleTransitionPairs Pair of existing and modified cm handle represented as YangModelCmHandle
      */
     @Async("notificationExecutor")
-    public void publishLcmEventBatchAsynchronously(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
-        cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> publishLcmEvent(
+    public void sendLcmEventBatchAsynchronously(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
+        cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> sendLcmEvent(
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getTargetYangModelCmHandle()),
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
     }
 
-    private void publishLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-                                 final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+    private void sendLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                              final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
         final LcmEventHeader lcmEventHeader =
-                lcmEventsCreator.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
+                lcmEventsProducerHelper.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
                         existingNcmpServiceCmHandle);
         final LcmEvent lcmEvent =
-                lcmEventsCreator.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
-        lcmEventsProducer.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+                lcmEventsProducerHelper.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle,
+                        existingNcmpServiceCmHandle);
+        lcmEventsProducer.sendLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
     }
 
     private static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
