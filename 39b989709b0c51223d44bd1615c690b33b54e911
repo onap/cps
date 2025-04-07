@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75293acf_0269be22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-07T08:56:07Z",
+      "side": 1,
+      "message": "mostly fine for me.\ncompared from the last version.",
+      "revId": "39b989709b0c51223d44bd1615c690b33b54e911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac47240b_fc188739",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-07T08:56:07Z",
+      "side": 1,
+      "message": "Ignoring any comments on this one as you said it will be done as a separate patch.",
+      "revId": "39b989709b0c51223d44bd1615c690b33b54e911",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
