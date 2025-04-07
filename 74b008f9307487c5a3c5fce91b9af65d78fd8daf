@@ -80,6 +80,30 @@
       },
       "revId": "74b008f9307487c5a3c5fce91b9af65d78fd8daf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "620d5612_3f28c926",
+        "filename": "docs/api/swagger/ncmp/openapi-provmns.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-04-07T10:02:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3a38bb6_7c314630",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "74b008f9307487c5a3c5fce91b9af65d78fd8daf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
