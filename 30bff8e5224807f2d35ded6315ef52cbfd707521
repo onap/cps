@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d50fe11_b9a546cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-07T20:45:10Z",
+      "side": 1,
+      "message": "Sean I think you should put the link to the 3gpp schema in the commit message as well. ( the public URL ) so that all can refer the same.",
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68650dd9_8e0876ef",
