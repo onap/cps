@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024 Nordix Foundation.
+ * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -81,11 +81,11 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
         then: 'the subscription cache handler is called once'
             1 * mockDmiCacheHandler.add('test-id', _)
-        and: 'the events handler method to publish DMI event is called correct number of times with the correct parameters'
-            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.publishDmiInEvent(
+        and: 'the events handler method to send DMI event is called correct number of times with the correct parameters'
+            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.sendDmiInEvent(
                 "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
         and: 'we schedule to send the response after configured time from the cache'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
     }
 
     def 'Consume valid and Overlapping Cm Notification Subscription NcmpIn Event'() {
@@ -105,7 +105,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         and: 'the subscription details are updated in the cache'
             1 * mockDmiCacheHandler.updateDmiSubscriptionStatus('test-id', _, ACCEPTED)
         and: 'we schedule to send the response after configured time from the cache'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
     }
 
     def 'Consume valid and but non-unique CmNotificationSubscription create message'() {
@@ -122,10 +122,10 @@ class CmSubscriptionHandlerImplSpec extends Specification {
                 "test-id", _) >> testNcmpOutEvent
         when: 'the valid but non-unique event is consumed'
             objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
-        then: 'the events handler method to publish DMI event is never called'
-            0 * mockDmiInEventProducer.publishDmiInEvent(_, _, _, _)
-        and: 'the events handler method to publish NCMP out event is called once'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
+        then: 'the events handler method to send DMI event is never called'
+            0 * mockDmiInEventProducer.sendDmiInEvent(_, _, _, _)
+        and: 'the events handler method to send NCMP out event is called once'
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
     }
 
     def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
@@ -140,11 +140,11 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             1 * mockInventoryPersistence.getYangModelCmHandle('ch-2') >> new YangModelCmHandle(dmiServiceName: 'dmi-2')
         when: 'the subscription delete request is processed'
             objectUnderTest.processSubscriptionDeleteRequest(subscriptionId)
-        then: 'the method to publish a dmi event is called with correct parameters'
-            1 * mockDmiInEventProducer.publishDmiInEvent(subscriptionId,'dmi-1','subscriptionDeleteRequest',_)
-            1 * mockDmiInEventProducer.publishDmiInEvent(subscriptionId,'dmi-2','subscriptionDeleteRequest',_)
-        and: 'the method to publish nmcp out event is called with correct parameters'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, true)
+        then: 'the method to send a dmi event is called with correct parameters'
+            1 * mockDmiInEventProducer.sendDmiInEvent(subscriptionId,'dmi-1','subscriptionDeleteRequest',_)
+            1 * mockDmiInEventProducer.sendDmiInEvent(subscriptionId,'dmi-2','subscriptionDeleteRequest',_)
+        and: 'the method to send nmcp out event is called with correct parameters'
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, true)
     }
 
     def 'Delete a subscriber for fully overlapping subscriptions'() {
@@ -161,12 +161,12 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             2 * mockDmiCacheHandler.get(subscriptionId) >> ['dmi-1':[:],'dmi-2':[:]]
         when: 'the subscription delete request is processed'
             objectUnderTest.processSubscriptionDeleteRequest(subscriptionId)
-        then: 'the method to publish a dmi event is never called'
-            0 * mockDmiInEventProducer.publishDmiInEvent(_,_,_,_)
+        then: 'the method to send a dmi event is never called'
+            0 * mockDmiInEventProducer.sendDmiInEvent(_,_,_,_)
         and: 'the cache handler is called to remove subscriber from database per dmi'
             1 * mockDmiCacheHandler.removeFromDatabase('test-id', 'dmi-1')
             1 * mockDmiCacheHandler.removeFromDatabase('test-id', 'dmi-2')
-        and: 'the method to publish nmcp out event is called with correct parameters'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, false)
+        and: 'the method to send ncmp out event is called with correct parameters'
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, false)
     }
 }

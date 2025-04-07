@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -309,7 +309,7 @@ public class DmiDataOperations {
             cmHandleIdsPerResponseCodesPerOperation.add(dmiDataOperationRequestBody,
                     Map.of(dmiClientRequestException.getNcmpResponseStatus(), cmHandleIds));
         });
-        DmiDataOperationsHelper.publishErrorMessageToClientTopic(topicName, requestId,
+        DmiDataOperationsHelper.sendErrorMessageToClientTopic(topicName, requestId,
                 cmHandleIdsPerResponseCodesPerOperation);
     }
 }

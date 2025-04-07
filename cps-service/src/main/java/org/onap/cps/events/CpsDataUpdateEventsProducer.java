@@ -42,7 +42,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CpsDataUpdateEventsProducer {
 
-    private final EventsPublisher<CpsDataUpdatedEvent> eventsPublisher;
+    private final EventsProducer<CpsDataUpdatedEvent> eventsProducer;
 
     private final CpsNotificationService cpsNotificationService;
 
@@ -56,16 +56,16 @@ public class CpsDataUpdateEventsProducer {
     private boolean notificationsEnabled;
 
     /**
-     * Publish the cps data update event with header to the public topic.
+     * Send the cps data update event with header to the public topic.
      *
      * @param anchor Anchor of the updated data
      * @param xpath  xpath of the updated data
      * @param operation operation performed on the data
      * @param observedTimestamp timestamp when data was updated.
      */
-    @Timed(value = "cps.dataupdate.events.publish", description = "Time taken to publish Data Update event")
-    public void publishCpsDataUpdateEvent(final Anchor anchor, final String xpath,
-                                          final Operation operation, final OffsetDateTime observedTimestamp) {
+    @Timed(value = "cps.dataupdate.events.publish", description = "Time taken to send Data Update event")
+    public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath,
+                                       final Operation operation, final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
             final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
                     observedTimestamp, xpath, operation);
@@ -74,7 +74,7 @@ public class CpsDataUpdateEventsProducer {
             final CloudEvent cpsDataUpdatedEventAsCloudEvent =
                     CpsEvent.builder().type(CpsDataUpdatedEvent.class.getTypeName()).data(cpsDataUpdatedEvent)
                             .extensions(extensions).build().asCloudEvent();
-            eventsPublisher.publishCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
+            eventsProducer.sendCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
         } else {
             log.debug("State of Overall Notifications : {} and Cps Change Event Notifications : {}",
                     notificationsEnabled, cpsChangeEventNotificationsEnabled);

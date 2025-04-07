@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024 Nordix Foundation.
+ * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -108,8 +108,8 @@ class DmiOutEventConsumerSpec extends MessagingBaseSpec {
             expectedPersistenceCalls * mockDmiCacheHandler.persistIntoDatabasePerDmi('sub-1','test-dmi-plugin-name')
         and: 'correct number of calls to map the ncmp out event'
             1 * mockNcmpOutEventMapper.toNcmpOutEvent('sub-1', _)
-        and: 'correct number of calls to publish the ncmp out event to client'
-            1 * mockNcmpOutEventProducer.publishNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
+        and: 'correct number of calls to send the ncmp out event to client'
+            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('sub-1', 'subscriptionCreateResponse', _, false)
         where: 'the following parameters are used'
             scenario          | subscriptionStatus | statusCode || expectedCacheCalls | expectedPersistenceCalls
             'Accepted Status' | ACCEPTED           | '1'        || 1                  | 1

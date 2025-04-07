@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023-2024 Nordix Foundation
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 /**
  * kafka Configuration for legacy and cloud events.
  *
- * @param <T> valid legacy event to be published over the wire.
+ * @param <T> valid legacy event to be sent over the wire.
  */
 @Configuration
 @EnableKafka

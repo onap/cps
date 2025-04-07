@@ -577,8 +577,8 @@ class CpsDataServiceImplSpec extends Specification {
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
         and: 'a data update event is sent for each anchor'
-            1 * mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
-            1 * mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
+            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
+            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
     }
 
     def "Validating #scenario when dry run is enabled."() {
@@ -639,11 +639,11 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.lockAnchor('some-sessionId', 'some-dataspaceName', 'some-anchorName', 250L)
     }
 
-    def 'Exception is thrown while publishing the notification.'(){
+    def 'Exception is thrown while sending the notification.'(){
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'publisher set to throw an exception'
-            mockCpsDataUpdateEventsProducer.publishCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("publishing failed")}
+        when: 'producer throws an exception while sending event'
+            mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("Sending failed")}
         and: 'an update event is performed'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
         then: 'the exception is not bubbled up'

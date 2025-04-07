@@ -25,7 +25,7 @@ import static org.onap.cps.ncmp.events.lcm.v1.Values.CmHandleState.READY
 
 import io.micrometer.core.instrument.Tag
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry
-import org.onap.cps.events.EventsPublisher
+import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.events.lcm.v1.Event
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader
@@ -36,13 +36,13 @@ import spock.lang.Specification
 
 class LcmEventsProducerSpec extends Specification {
 
-    def mockLcmEventsPublisher = Mock(EventsPublisher)
+    def mockLcmEventsProducer = Mock(EventsProducer)
     def mockJsonObjectMapper = Mock(JsonObjectMapper)
     def meterRegistry = new SimpleMeterRegistry()
 
-    def objectUnderTest = new LcmEventsProducer(mockLcmEventsPublisher, mockJsonObjectMapper, meterRegistry)
+    def objectUnderTest = new LcmEventsProducer(mockLcmEventsProducer, mockJsonObjectMapper, meterRegistry)
 
-    def 'Create and Publish lcm event where events are #scenario'() {
+    def 'Create and send lcm event where events are #scenario'() {
         given: 'a cm handle id, Lcm Event, and headers'
             def cmHandleId = 'test-cm-handle-id'
             def eventId = UUID.randomUUID().toString()
@@ -54,10 +54,10 @@ class LcmEventsProducerSpec extends Specification {
             objectUnderTest.notificationsEnabled = notificationsEnabled
         and: 'lcm event header is transformed to headers map'
             mockJsonObjectMapper.convertToValueType(lcmEventHeader, Map.class) >> ['eventId': eventId, 'eventCorrelationId': cmHandleId]
-        when: 'service is called to publish lcm event'
+        when: 'service is called to send lcm event'
             objectUnderTest.publishLcmEvent('test-cm-handle-id', lcmEvent, lcmEventHeader)
         then: 'publisher is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockLcmEventsPublisher.publishEvent(_, cmHandleId, _, lcmEvent) >> {
+            expectedTimesMethodCalled * mockLcmEventsProducer.sendEvent(_, cmHandleId, _, lcmEvent) >> {
                 args -> {
                     def eventHeaders = (args[2] as Map<String,Object>)
                     assert eventHeaders.containsKey('eventId')
@@ -91,7 +91,7 @@ class LcmEventsProducerSpec extends Specification {
             def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
             objectUnderTest.notificationsEnabled = true
         when: 'publisher set to throw an exception'
-            mockLcmEventsPublisher.publishEvent(_, _, _, _) >> { throw new KafkaException('publishing failed')}
+            mockLcmEventsProducer.sendEvent(_, _, _, _) >> { throw new KafkaException('publishing failed')}
         and: 'an event is publised'
             objectUnderTest.publishLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
         then: 'the exception is just logged and not bubbled up'
