@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (c) 2022-2025 TechMahindra Ltd.
+# Copyright (c) 2025 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ nodeByDataspaceAndAnchor:
     tags:
       - cps-data
     summary: Get a node
-    operationId: getNodeByDataspaceAndAnchorV2
+    operationId: getNodeByDataspaceAndAnchorV3
     parameters:
       - $ref: 'components.yml#/components/parameters/dataspaceNameInPath'
       - $ref: 'components.yml#/components/parameters/anchorNameInPath'
@@ -38,7 +38,7 @@ nodeByDataspaceAndAnchor:
               type: object
             examples:
               dataSample:
-                $ref: 'components.yml#/components/examples/dataSample'
+                $ref: 'components.yml#/components/examples/dataSampleForV3'
           application/xml:
             schema:
               type: object
@@ -46,7 +46,7 @@ nodeByDataspaceAndAnchor:
                 name: stores
             examples:
               dataSample:
-                $ref: 'components.yml#/components/examples/dataSampleXml'
+                $ref: 'components.yml#/components/examples/dataSampleXmlForV3'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
