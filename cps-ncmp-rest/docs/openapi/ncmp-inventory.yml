@@ -148,3 +148,53 @@ searchCmHandleIds:
         $ref: 'components.yaml#/components/responses/Forbidden'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
+
+getCmHandlesByDmiService:
+  post:
+    description: Execute a query in NCMP for some or all Cm Handles associated with the DMI Plugin sending the request. Optionally returning the private properties of the Cm Handles.
+    tags:
+      - network-cm-proxy-inventory
+    summary: Query Cm Handles for a requested DMI Service
+    operationId: getCmHandlesByDmiService
+    parameters:
+      - name: includePrivateProperties
+        in: query
+        description: Whether to include private properties in the response.
+        required: false
+        schema:
+          type: boolean
+      - name: responseSizeLimit
+        in: query
+        description: Maximum number of Cm Handle objects to return in the response.
+        required: false
+        schema:
+          type: integer
+          format: int32
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'components.yaml#/components/schemas/CmHandleQueryParameters'
+          examples:
+            Cm handle properties query:
+              $ref: 'components.yaml#/components/examples/pubPropCmHandleQueryParameters'
+            Cm handle modules query:
+              $ref: 'components.yaml#/components/examples/modulesCmHandleQueryParameters'
+            All cm handle query parameters:
+              $ref: 'components.yaml#/components/examples/allCmHandleQueryParameters'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'components.yaml#/components/schemas/RestOutputCmHandle'
+      400:
+        $ref: 'components.yaml#/components/responses/BadRequest'
+      403:
+        $ref: 'components.yaml#/components/responses/Forbidden'
+      500:
+        $ref: 'components.yaml#/components/responses/InternalServerError'

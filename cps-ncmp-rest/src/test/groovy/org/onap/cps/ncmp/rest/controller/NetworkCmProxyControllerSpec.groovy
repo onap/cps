@@ -49,6 +49,7 @@ import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.spockframework.spring.SpringBean
@@ -114,6 +115,9 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
+
+    @SpringBean
+    RestOutputCmHandleMapper restOutputCmHandleMapper = Mock()
 
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
@@ -282,7 +286,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         then: 'response status returns OK'
             assert response.status == HttpStatus.OK.value()
         and: 'the expected response content is returned'
-            assert response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":null,"moduleSetTag":"someModuleSetTag","alternateId":"someAlternateId","dataProducerIdentifier":"someDataProducerIdentifier"}]'
+            assert response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"publicCmHandleProperties":{},"state":null,"trustLevel":null,"moduleSetTag":"someModuleSetTag","alternateId":"someAlternateId","dataProducerIdentifier":"someDataProducerIdentifier"}]'
     }
 
     def 'Get complete Cm Handle details by Cm Handle Reference.'() {

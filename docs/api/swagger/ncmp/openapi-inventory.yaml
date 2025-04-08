@@ -190,7 +190,115 @@ paths:
       summary: Query for CM Handle IDs
       tags:
       - network-cm-proxy-inventory
+  /v1/ch/cmHandlesByDmiService:
+    post:
+      description: Execute a query in NCMP for some or all Cm Handles associated with
+        the DMI Plugin sending the request. Optionally returning the private properties
+        of the Cm Handles.
+      operationId: getCmHandlesByDmiService
+      parameters:
+      - description: Whether to include private properties in the response.
+        in: query
+        name: includePrivateProperties
+        required: false
+        schema:
+          type: boolean
+      - description: Maximum number of Cm Handle objects to return in the response.
+        in: query
+        name: responseSizeLimit
+        required: false
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Cm handle properties query:
+                $ref: '#/components/examples/pubPropCmHandleQueryParameters'
+              Cm handle modules query:
+                $ref: '#/components/examples/modulesCmHandleQueryParameters'
+              All cm handle query parameters:
+                $ref: '#/components/examples/allCmHandleQueryParameters'
+            schema:
+              $ref: '#/components/schemas/CmHandleQueryParameters'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RestOutputCmHandle'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                status: 400
+                message: Bad request error message
+                details: Bad request error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Bad Request
+        "403":
+          content:
+            application/json:
+              example:
+                status: 403
+                message: Forbidden error message
+                details: Forbidden error details
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Forbidden
+        "500":
+          content:
+            application/json:
+              example:
+                status: 500
+                message: Internal Server Error
+                details: Internal Server Error occurred
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+          description: Internal Server Error
+      summary: Query Cm Handles for a requested DMI Service
+      tags:
+      - network-cm-proxy-inventory
 components:
+  examples:
+    pubPropCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+        - conditionName: hasAllProperties
+          conditionParameters:
+          - Color: yellow
+          - Shape: circle
+          - Size: small
+    modulesCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+        - conditionName: hasAllModules
+          conditionParameters:
+          - moduleName: my-module-1
+          - moduleName: my-module-2
+          - moduleName: my-module-3
+    allCmHandleQueryParameters:
+      value:
+        cmHandleQueryParameters:
+        - conditionName: hasAllModules
+          conditionParameters:
+          - moduleName: my-module-1
+          - moduleName: my-module-2
+          - moduleName: my-module-3
+        - conditionName: hasAllProperties
+          conditionParameters:
+          - Color: yellow
+          - Shape: circle
+          - Size: small
+        - conditionName: cmHandleWithCpsPath
+          conditionParameters:
+          - cpsPath: "//state[@cm-handle-state='ADVISED']"
   parameters:
     dmiPluginIdentifierInQuery:
       description: dmi-plugin-identifier
@@ -372,11 +480,6 @@ components:
       required:
       - cmHandle
       type: object
-    RestCmHandleProperties:
-      additionalProperties:
-        example: my-property
-        type: string
-      type: object
     UpgradedCmHandles:
       example:
         cmHandles:
@@ -401,6 +504,10 @@ components:
       - cmHandles
       type: object
     ErrorMessage:
+      example:
+        details: details
+        message: message
+        status: status
       properties:
         status:
           type: string
@@ -411,6 +518,35 @@ components:
       title: Error
       type: object
     DmiPluginRegistrationErrorResponse:
+      example:
+        failedCreatedCmHandles:
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        failedUpgradeCmHandles:
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        failedRemovedCmHandles:
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        failedUpdatedCmHandles:
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
+        - cmHandle: my-cm-handle
+          errorText: Unknown error. <error-details>
+          errorCode: "00"
       properties:
         failedCreatedCmHandles:
           items:
@@ -430,6 +566,10 @@ components:
           type: array
       type: object
     CmHandlerRegistrationErrorResponse:
+      example:
+        cmHandle: my-cm-handle
+        errorText: Unknown error. <error-details>
+        errorCode: "00"
       properties:
         cmHandle:
           example: my-cm-handle
@@ -510,6 +650,137 @@ components:
         moduleName:
           example: my-module
           type: string
+    RestOutputCmHandle:
+      example:
+        cmHandle: my-cm-handle1
+        alternateId: "Subnetwork=Europe,ManagedElement=X123"
+        dataProducerIdentifier: my-data-producer-identifier
+        publicCmHandleProperties:
+        - key: 3gpp Type
+        - key: 3gpp Type
+        state:
+          dataSyncEnabled: false
+          dataSyncState:
+            running:
+              lastSyncTime: 2022-12-31T20:30:40.000+0000
+              syncState: NONE_REQUESTED
+            operational:
+              lastSyncTime: 2022-12-31T20:30:40.000+0000
+              syncState: NONE_REQUESTED
+          cmHandleState: ADVISED
+          lockReason:
+            reason: LOCKED_MISBEHAVING
+            details: locked due to failure in module sync
+          lastUpdateTime: 2022-12-31T20:30:40.000+0000
+        trustLevel: COMPLETE
+        moduleSetTag: my-module-set-tag
+        privateCmHandleProperties:
+          key: 3gpp Type
+      properties:
+        cmHandle:
+          example: my-cm-handle1
+          type: string
+        publicCmHandleProperties:
+          items:
+            additionalProperties:
+              example: 3gpp Type
+              type: string
+            type: object
+          type: array
+        privateCmHandleProperties:
+          additionalProperties:
+            example: 3gpp Type
+            type: string
+          type: object
+        state:
+          $ref: '#/components/schemas/CmHandleCompositeState'
+        trustLevel:
+          description: Current trust level of the relevant CM handle ID.
+          example: COMPLETE
+          type: string
+        moduleSetTag:
+          example: my-module-set-tag
+          type: string
+        alternateId:
+          example: "Subnetwork=Europe,ManagedElement=X123"
+          type: string
+        dataProducerIdentifier:
+          example: my-data-producer-identifier
+          type: string
+      title: CM handle Details
+      type: object
+    CmHandleCompositeState:
+      example:
+        dataSyncEnabled: false
+        dataSyncState:
+          running:
+            lastSyncTime: 2022-12-31T20:30:40.000+0000
+            syncState: NONE_REQUESTED
+          operational:
+            lastSyncTime: 2022-12-31T20:30:40.000+0000
+            syncState: NONE_REQUESTED
+        cmHandleState: ADVISED
+        lockReason:
+          reason: LOCKED_MISBEHAVING
+          details: locked due to failure in module sync
+        lastUpdateTime: 2022-12-31T20:30:40.000+0000
+      properties:
+        cmHandleState:
+          example: ADVISED
+          type: string
+        lockReason:
+          $ref: '#/components/schemas/lock-reason'
+        lastUpdateTime:
+          example: 2022-12-31T20:30:40.000+0000
+          type: string
+        dataSyncEnabled:
+          example: false
+          type: boolean
+        dataSyncState:
+          $ref: '#/components/schemas/dataStores'
+      type: object
+    lock-reason:
+      example:
+        reason: LOCKED_MISBEHAVING
+        details: locked due to failure in module sync
+      properties:
+        reason:
+          example: LOCKED_MISBEHAVING
+          type: string
+        details:
+          example: locked due to failure in module sync
+          type: string
+      type: object
+    dataStores:
+      example:
+        running:
+          lastSyncTime: 2022-12-31T20:30:40.000+0000
+          syncState: NONE_REQUESTED
+        operational:
+          lastSyncTime: 2022-12-31T20:30:40.000+0000
+          syncState: NONE_REQUESTED
+      properties:
+        operational:
+          $ref: '#/components/schemas/sync-state'
+        running:
+          $ref: '#/components/schemas/sync-state'
+      type: object
+    sync-state:
+      example:
+        lastSyncTime: 2022-12-31T20:30:40.000+0000
+        syncState: NONE_REQUESTED
+      properties:
+        syncState:
+          example: NONE_REQUESTED
+          type: string
+        lastSyncTime:
+          example: 2022-12-31T20:30:40.000+0000
+          type: string
+      type: object
+    CmHandleTrustLevel:
+      description: Current trust level of the relevant CM handle ID.
+      example: COMPLETE
+      type: string
   securitySchemes:
     basicAuth:
       scheme: basic
