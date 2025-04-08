@@ -34,6 +34,7 @@ import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,14 +49,13 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
-import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.DataOperationRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
+import org.onap.cps.ncmp.rest.model.RestOutputPublicCmHandleProperties;
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper;
@@ -308,14 +308,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return cm handle properties
      */
     @Override
-    public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
+    public ResponseEntity<RestOutputPublicCmHandleProperties> getCmHandlePublicPropertiesByCmHandleId(
             final String cmHandleReference) {
-        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        final List<Map<String, String>> cmHandlePublicProperties = new ArrayList<>(1);
         cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleReference));
-        final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
-                new RestOutputCmHandlePublicProperties();
-        restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
-        return ResponseEntity.ok(restOutputCmHandlePublicProperties);
+        final RestOutputPublicCmHandleProperties RestOutputPublicCmHandleProperties =
+                new RestOutputPublicCmHandleProperties();
+        RestOutputPublicCmHandleProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
+        return ResponseEntity.ok(RestOutputPublicCmHandleProperties);
     }
 
     /**
@@ -396,7 +396,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
 
     private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
-        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        final List<Map<String, String>> cmHandlePublicProperties = new ArrayList<>(1);
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
         restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);

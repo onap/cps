@@ -37,6 +37,7 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
 import org.springframework.http.HttpStatus;
@@ -88,6 +89,18 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
             networkCmProxyInventoryFacade.getAllCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier,
                 outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
+    }
+
+    /**
+     * Query Cm Handles by DMI Service.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @return collection of cm handles
+     */
+    @Override
+    public ResponseEntity<List<RestOutputCmHandle>> getCmHandlesByDmiService(final CmHandleQueryParameters
+                                                                                         cmHandleQueryParameters) {
+        return null;
     }
 
     /**

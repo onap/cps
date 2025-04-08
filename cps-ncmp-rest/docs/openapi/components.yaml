@@ -130,9 +130,15 @@ components:
           type: string
           example: my-cm-handle
         cmHandleProperties:
-          $ref: '#/components/schemas/RestCmHandleProperties'
+          type: object
+          additionalProperties:
+            type: string
+            example: my-property
         publicCmHandleProperties:
-          $ref: '#/components/schemas/RestCmHandleProperties'
+          type: object
+          additionalProperties:
+            type: string
+            example: my-property
         moduleSetTag:
           type: string
           example: "my-module-set-tag"
@@ -146,11 +152,6 @@ components:
         dataProducerIdentifier:
           type: string
           example: "my-data-producer-identifier"
-    RestCmHandleProperties:
-      type: object
-      additionalProperties:
-        type: string
-        example: my-property
     #Module upgrade schema
     UpgradedCmHandles:
       required:
@@ -253,7 +254,12 @@ components:
           type: string
           example: my-cm-handle1
         publicCmHandleProperties:
-          $ref: '#/components/schemas/CmHandlePublicProperties'
+          type: object
+          items:
+            type: object
+            additionalProperties:
+              type: string
+              example: '3gpp Type'
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
         trustLevel:
@@ -267,13 +273,6 @@ components:
         dataProducerIdentifier:
           type: string
           example: my-data-producer-identifier
-    CmHandlePublicProperties:
-      type: object
-      items:
-        type: object
-        additionalProperties:
-          type: string
-          example: '3gpp Type'
     CmHandleCompositeState:
       type: object
       properties:
@@ -323,12 +322,16 @@ components:
           type: string
           example: 2022-12-31T20:30:40.000+0000
 
-    RestOutputCmHandlePublicProperties:
+    RestOutputPublicCmHandleProperties:
       type: object
       properties:
         publicCmHandleProperties:
-          $ref: '#/components/schemas/CmHandlePublicProperties'
-
+          type: object
+          items:
+            type: object
+            additionalProperties:
+              type: string
+              example: '3gpp Type'
     RestOutputCmHandleCompositeState:
       type: object
       properties:

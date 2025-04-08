@@ -39,5 +39,8 @@ paths:
   /v1/ch/searches:
     $ref: 'ncmp-inventory.yml#/searchCmHandleIds'
 
+  /v1/ch/cmHandlesByDmiService:
+    $ref: 'ncmp-inventory.yml#/getCmHandlesByDmiService'
+
 security:
   - basicAuth: []
