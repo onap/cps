@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2024 Nordix Foundation.
+ * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
+import com.hazelcast.map.IMap
+import java.util.stream.Collectors
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
@@ -28,16 +30,17 @@ import spock.lang.Specification
 class AlternateIdCheckerSpec extends Specification {
 
     def mockInventoryPersistenceService = Mock(InventoryPersistence)
+    def mockCmHandleIdPerAlternateId = Mock(IMap)
 
-    def objectUnderTest = new AlternateIdChecker(mockInventoryPersistenceService)
+    def objectUnderTest = new AlternateIdChecker(mockInventoryPersistenceService, mockCmHandleIdPerAlternateId)
 
     def 'Check a batch of created cm handles with #scenario.'() {
         given: 'a batch of 2 new cm handles with alternate ids #alt1 and #alt2'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: alt1),
                          new NcmpServiceCmHandle(cmHandleId: 'ch-2', alternateId: alt2)]
-        and: 'the database already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
-            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_ as Collection<String>) >>
-                { args -> args[0].stream().filter(altId -> altAlreadyInDb.contains(altId)).map(altId -> new YangModelCmHandle(alternateId: altId)).toList() }
+        and: 'the alternate ID map already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
+            mockCmHandleIdPerAlternateId.getAll(_) >>
+                { args -> args[0].stream().filter(altId -> altAlreadyInDb.contains(altId)).collect(Collectors.toMap(altId->altId, altId->'dont matter')) }
         when: 'the batch of new cm handles is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.CREATE)
         then: 'the result contains ids of the rejected cm handles'
@@ -55,9 +58,10 @@ class AlternateIdCheckerSpec extends Specification {
     def 'Check a batch of updates to existing cm handles with #scenario.'() {
         given: 'a batch of 1 existing cm handle to update alternate id to #proposedAlt'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'ch-1', alternateId: proposedAlt)]
+        and: 'the alternate ID map already contains cm handle(s) with these alternate ids: #altAlreadyInDb'
+            mockCmHandleIdPerAlternateId.getAll(_) >>
+                { args -> args[0].stream().filter(altId -> altAlreadyInDb == altId).collect(Collectors.toMap(altId->altId, altId->'dont matter')) }
         and: 'the database already contains a cm handle with alternate id: #altAlreadyInDb'
-            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_ as Collection<String>) >>
-                { args -> args[0].stream().filter(altId -> altAlreadyInDb == altId).map(altId -> new YangModelCmHandle(alternateId: altId)).toList() }
             mockInventoryPersistenceService.getYangModelCmHandle(_) >> new YangModelCmHandle(alternateId: altAlreadyInDb)
         when: 'the batch of cm handle updates is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.UPDATE)
@@ -73,8 +77,9 @@ class AlternateIdCheckerSpec extends Specification {
     def 'Check update of non-existing cm handle.'() {
         given: 'a batch of 1 non-existing cm handle to update alternate id'
             def batch = [new NcmpServiceCmHandle(cmHandleId: 'non-existing', alternateId: 'altId')]
+        and: 'the alternate ID map returns some cm handle ids per alternate id '
+            mockCmHandleIdPerAlternateId.getAll(_) >> [:]
         and: 'the database does not contain any cm handles'
-            mockInventoryPersistenceService.getYangModelCmHandleByAlternateIds(_) >> []
             mockInventoryPersistenceService.getYangModelCmHandle(_) >> { throwDataNodeNotFoundException() }
         when: 'the batch of cm handle updates is checked'
             def result = objectUnderTest.getIdsOfCmHandlesWithRejectedAlternateId(batch, AlternateIdChecker.Operation.UPDATE)
