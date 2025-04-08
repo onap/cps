@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "name": "hasAllModules",
+      "conditionParameters": [
+        {
+          "moduleName": "my dmi"
+        }
+      ]
+    }
+  ]
+}

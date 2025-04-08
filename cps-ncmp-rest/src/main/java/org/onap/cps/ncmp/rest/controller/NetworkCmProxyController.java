@@ -34,6 +34,7 @@ import io.micrometer.core.annotation.Timed;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,19 +49,19 @@ import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade;
 import org.onap.cps.ncmp.rest.api.NetworkCmProxyApi;
-import org.onap.cps.ncmp.rest.model.CmHandlePublicProperties;
 import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.DataOperationRequest;
 import org.onap.cps.ncmp.rest.model.RestModuleDefinition;
 import org.onap.cps.ncmp.rest.model.RestModuleReference;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.model.RestOutputCmHandleCompositeState;
-import org.onap.cps.ncmp.rest.model.RestOutputCmHandlePublicProperties;
+import org.onap.cps.ncmp.rest.model.RestOutputPublicCmHandleProperties;
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper;
 import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,6 +82,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     private final DeprecationHelper deprecationHelper;
     private final NcmpRestInputMapper ncmpRestInputMapper;
     private final CmHandleStateMapper cmHandleStateMapper;
+    private final RestOutputCmHandleMapper restOutputCmHandleMapper;
     private final DataOperationRequestMapper dataOperationRequestMapper;
 
     /**
@@ -264,7 +266,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
         final List<RestOutputCmHandle> restOutputCmHandles =
                 networkCmProxyInventoryFacade.executeCmHandleSearch(cmHandleQueryApiParameters)
-                        .map(this::toRestOutputCmHandle).collectList().block();
+                        .map(handle -> restOutputCmHandleMapper
+                                .toRestOutputCmHandle(handle, false)).collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
     }
 
@@ -297,7 +300,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     public ResponseEntity<RestOutputCmHandle> retrieveCmHandleDetailsById(final String cmHandleReference) {
         final NcmpServiceCmHandle ncmpServiceCmHandle
             = networkCmProxyInventoryFacade.getNcmpServiceCmHandle(cmHandleReference);
-        final RestOutputCmHandle restOutputCmHandle = toRestOutputCmHandle(ncmpServiceCmHandle);
+        final RestOutputCmHandle restOutputCmHandle = restOutputCmHandleMapper
+                                       .toRestOutputCmHandle(ncmpServiceCmHandle, false);
         return ResponseEntity.ok(restOutputCmHandle);
     }
 
@@ -308,14 +312,14 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return cm handle properties
      */
     @Override
-    public ResponseEntity<RestOutputCmHandlePublicProperties> getCmHandlePublicPropertiesByCmHandleId(
+    public ResponseEntity<RestOutputPublicCmHandleProperties> getCmHandlePublicPropertiesByCmHandleId(
             final String cmHandleReference) {
-        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
+        final List<Map<String, String>> cmHandlePublicProperties = new ArrayList<>(1);
         cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleReference));
-        final RestOutputCmHandlePublicProperties restOutputCmHandlePublicProperties =
-                new RestOutputCmHandlePublicProperties();
-        restOutputCmHandlePublicProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
-        return ResponseEntity.ok(restOutputCmHandlePublicProperties);
+        final RestOutputPublicCmHandleProperties RestOutputPublicCmHandleProperties =
+                new RestOutputPublicCmHandleProperties();
+        RestOutputPublicCmHandleProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
+        return ResponseEntity.ok(RestOutputPublicCmHandleProperties);
     }
 
     /**
@@ -392,23 +396,6 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
                                                                     final Boolean dataSyncEnabledFlag) {
         networkCmProxyInventoryFacade.setDataSyncEnabled(cmHandleId, dataSyncEnabledFlag);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    private RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
-        final CmHandlePublicProperties cmHandlePublicProperties = new CmHandlePublicProperties();
-        restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
-        cmHandlePublicProperties.add(ncmpServiceCmHandle.getPublicProperties());
-        restOutputCmHandle.setPublicCmHandleProperties(cmHandlePublicProperties);
-        restOutputCmHandle.setState(cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
-                ncmpServiceCmHandle.getCompositeState()));
-        if (ncmpServiceCmHandle.getCurrentTrustLevel() != null) {
-            restOutputCmHandle.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
-        }
-        restOutputCmHandle.setModuleSetTag(ncmpServiceCmHandle.getModuleSetTag());
-        restOutputCmHandle.setAlternateId(ncmpServiceCmHandle.getAlternateId());
-        restOutputCmHandle.setDataProducerIdentifier(ncmpServiceCmHandle.getDataProducerIdentifier());
-        return restOutputCmHandle;
     }
 
     private void validateDataStore(final DatastoreType acceptableDataStoreType, final String requestedDatastoreName) {
