@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2196095a_780813e4",
+        "filename": "cps-ncmp-rest/docs/openapi/provmns/ncmp-provmns.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-04-08T09:37:28Z",
+      "side": 1,
+      "message": "The summaries and descriptions are lifted straight from the 3GPP documentation this can be changed if we feel it is necessary since it is now the NcmpProvMns API or can be left as is.",
+      "parentUuid": "68650dd9_8e0876ef",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e596b59_f8d39b4f",
         "filename": "docs/api/swagger/ncmp/openapi-provmns.yaml",
         "patchSetId": 7
@@ -54,6 +78,30 @@
       "writtenOn": "2025-04-07T20:36:06Z",
       "side": 1,
       "message": "same comment as before",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 59
+      },
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef38485_bf3c7857",
+        "filename": "docs/api/swagger/ncmp/openapi-provmns.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-04-08T09:37:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4e596b59_f8d39b4f",
       "range": {
         "startLine": 11,
         "startChar": 19,
@@ -77,6 +125,30 @@
       "writtenOn": "2025-04-07T20:36:06Z",
       "side": 1,
       "message": "why does this have some format? \"...\\\"",
+      "range": {
+        "startLine": 248,
+        "startChar": 19,
+        "endLine": 250,
+        "endChar": 71
+      },
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fb8751_94fc5508",
+        "filename": "docs/api/swagger/ncmp/openapi-provmns.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-04-08T09:37:28Z",
+      "side": 1,
+      "message": "Appears to be a quirk of the spring generation, I\u0027ll try and resolve this",
+      "parentUuid": "6a88c7b4_dc58719f",
       "range": {
         "startLine": 248,
         "startChar": 19,
