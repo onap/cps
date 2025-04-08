@@ -23,11 +23,11 @@ import {
     performGetRequest,
     NCMP_BASE_URL,
     LEGACY_BATCH_TOPIC_NAME,
-    getRandomCmHandleReference,
+    getRandomAlternateId,
 } from './utils.js';
 
-export function passthroughRead(useAlternateId) {
-    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
+export function passthroughRead() {
+    const cmHandleReference = getRandomAlternateId();
     const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1';
     const datastoreName = 'ncmp-datastore:passthrough-operational';
     const includeDescendants = true;
@@ -35,8 +35,8 @@ export function passthroughRead(useAlternateId) {
     return performGetRequest(url, 'passthroughRead');
 }
 
-export function passthroughWrite(useAlternateId) {
-    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
+export function passthroughWrite() {
+    const cmHandleReference = getRandomAlternateId();
     const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1';
     const datastoreName = 'ncmp-datastore:passthrough-running';
     const includeDescendants = false;
