@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,10 +59,11 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def mockModuleSyncStartedOnCmHandles = Mock(IMap<String, Object>)
     def mockTrustLevelManager = Mock(TrustLevelManager)
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
+    def mockCmHandleIdPerAlternateId = Mock(IMap)
 
     def objectUnderTest = Spy(new CmHandleRegistrationService(
         mockNetworkCmProxyDataServicePropertyHandler, mockInventoryPersistence, mockCpsDataService, mockLcmEventsCmHandleStateHandler,
-        mockModuleSyncStartedOnCmHandles as IMap<String, Object>, mockTrustLevelManager, mockAlternateIdChecker))
+        mockModuleSyncStartedOnCmHandles, mockTrustLevelManager, mockAlternateIdChecker, mockCmHandleIdPerAlternateId))
 
     def setup() {
         // always accept all cm handles

@@ -410,5 +410,7 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cpsAndNcmpLock                     | Cps and NCMP distributed lock for various use cases.      |
 +--------------+------------------------------------+-----------------------------------------------------------+
+| cps-ncmp     | cmHandleIdPerAlternateId           | Stores cm handle ids per alternate ids.                   |
++--------------+------------------------------------+-----------------------------------------------------------+
 
 Total number of caches : 7
