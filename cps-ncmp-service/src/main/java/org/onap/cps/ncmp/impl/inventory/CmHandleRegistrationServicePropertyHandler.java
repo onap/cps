@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
@@ -33,6 +33,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
 import com.google.common.collect.ImmutableMap;
+import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,6 +58,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -70,6 +72,8 @@ public class CmHandleRegistrationServicePropertyHandler {
     private final CpsDataService cpsDataService;
     private final JsonObjectMapper jsonObjectMapper;
     private final AlternateIdChecker alternateIdChecker;
+    @Qualifier("cmHandleIdPerAlternateId")
+    private final IMap<String, String> cmHandleIdPerAlternateId;
 
     /**
      * Iterates over incoming updatedNcmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -125,9 +129,12 @@ public class CmHandleRegistrationServicePropertyHandler {
     }
 
     private void updateAlternateId(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
         if (StringUtils.isNotBlank(newAlternateId)) {
             setAndUpdateCmHandleField(ncmpServiceCmHandle.getCmHandleId(), "alternate-id", newAlternateId);
+            cmHandleIdPerAlternateId.delete(cmHandleId);
+            cmHandleIdPerAlternateId.set(newAlternateId, cmHandleId);
         }
     }
 

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,21 +20,24 @@
 
 package org.onap.cps.ncmp.impl.utils;
 
+import com.hazelcast.map.IMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
-import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
-import org.onap.cps.utils.CpsValidator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AlternateIdMatcher {
 
-    private final InventoryPersistence inventoryPersistence;
-    private final CpsValidator cpsValidator;
+    @Qualifier("cmHandleIdPerAlternateId")
+    private final IMap<String, String> cmHandleIdPerAlternateId;
 
     /**
      * Get cm handle that matches longest alternate id by removing elements
@@ -68,22 +71,15 @@ public class AlternateIdMatcher {
      * @return cm handle id string
      */
     public String getCmHandleId(final String cmHandleReference) {
-        if (cpsValidator.isValidName(cmHandleReference)) {
-            return getCmHandleIdTryingStandardIdFirst(cmHandleReference);
+        final String cmHandleId = cmHandleIdPerAlternateId.get(cmHandleReference);
+        if (cmHandleId == null) {
+            if (cmHandleIdPerAlternateId.containsValue(cmHandleReference)) {
+                return cmHandleReference;
+            } else {
+                throw new CmHandleNotFoundException(cmHandleReference);
+            }
         }
-        return getCmHandleIdByAlternateId(cmHandleReference);
-    }
-
-    private String getCmHandleIdByAlternateId(final String cmHandleReference) {
-        // Please note: because of cm handle id validation rules this case does NOT need to try by (standard) id
-        return inventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference).getId();
-    }
-
-    private String getCmHandleIdTryingStandardIdFirst(final String cmHandleReference) {
-        if (inventoryPersistence.isExistingCmHandleId(cmHandleReference)) {
-            return cmHandleReference;
-        }
-        return inventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference).getId();
+        return cmHandleId;
     }
 
     private String getParentPath(final String path, final String separator) {

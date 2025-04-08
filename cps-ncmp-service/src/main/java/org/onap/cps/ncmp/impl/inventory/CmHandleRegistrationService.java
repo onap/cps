@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -64,6 +64,7 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleOperationsUtils;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandler;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -80,6 +81,8 @@ public class CmHandleRegistrationService {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
+    @Qualifier("cmHandleIdPerAlternateId")
+    private final IMap<String, String> cmHandleIdPerAlternateId;
 
     /**
      * Registration of Created, Removed, Updated or Upgraded CM Handles.
@@ -135,6 +138,27 @@ public class CmHandleRegistrationService {
         }
     }
 
+    /**
+     * Method to add alternate ids to cache by passing in yang model cm handle.
+     * Note: If alternate id does not exist for given cm handle,
+     * then the map is populated with cm handle id as both key and value.
+     *
+     * @param yangModelCmHandles collection of yang model cm handles
+     */
+    public void addAlternateIdsToCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        final Map<String, String> cmHandleIdPerAlternateIdToRegister = new HashMap<>(yangModelCmHandles.size());
+        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+            final String cmHandleId = yangModelCmHandle.getId();
+            final String alternateId = yangModelCmHandle.getAlternateId();
+            if (StringUtils.isNotBlank(alternateId)) {
+                cmHandleIdPerAlternateIdToRegister.put(alternateId, cmHandleId);
+            } else {
+                cmHandleIdPerAlternateIdToRegister.put(cmHandleId, cmHandleId);
+            }
+        }
+        cmHandleIdPerAlternateId.putAll(cmHandleIdPerAlternateIdToRegister);
+    }
+
     protected void processRemovedCmHandles(final DmiPluginRegistration dmiPluginRegistration,
                                            final DmiPluginRegistrationResponse dmiPluginRegistrationResponse) {
         final List<String> toBeRemovedCmHandleIds = dmiPluginRegistration.getRemovedCmHandles();
@@ -168,6 +192,7 @@ public class CmHandleRegistrationService {
         }
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
+        removeAlternateIdsFromCache(yangModelCmHandles);
         dmiPluginRegistrationResponse.setRemovedCmHandles(cmHandleRegistrationResponses);
     }
 
@@ -186,9 +211,11 @@ public class CmHandleRegistrationService {
             processTrustLevels(ncmpServiceCmHandles, succeededCmHandleIds);
 
         } catch (final AlreadyDefinedException alreadyDefinedException) {
+            log.error("Error while creating CM handles", alreadyDefinedException);
             failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse.createFailureResponsesFromXpaths(
                 alreadyDefinedException.getAlreadyDefinedObjectNames(), CM_HANDLE_ALREADY_EXIST));
         } catch (final Exception exception) {
+            log.error("Error while creating CM handles", exception);
             final Collection<String> cmHandleIds =
                 ncmpServiceCmHandles.stream().map(NcmpServiceCmHandle::getCmHandleId).collect(Collectors.toList());
             failedCmHandleRegistrationResponses.addAll(CmHandleRegistrationResponse
@@ -367,6 +394,7 @@ public class CmHandleRegistrationService {
             }
         }
         lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandlesToRegister);
+        addAlternateIdsToCache(yangModelCmHandlesToRegister);
         dmiPluginRegistrationResponse.setCreatedCmHandles(cmHandleRegistrationResponses);
         return succeededCmHandleIds;
     }
@@ -381,6 +409,18 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getModuleSetTag(),
             ncmpServiceCmHandle.getAlternateId(),
             ncmpServiceCmHandle.getDataProducerIdentifier());
+    }
+
+    private void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
+        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+            final String cmHandleId = yangModelCmHandle.getId();
+            final String alternateId = yangModelCmHandle.getAlternateId();
+            if (StringUtils.isNotBlank(alternateId)) {
+                cmHandleIdPerAlternateId.delete(alternateId);
+            } else {
+                cmHandleIdPerAlternateId.delete(cmHandleId);
+            }
+        }
     }
 
 }
