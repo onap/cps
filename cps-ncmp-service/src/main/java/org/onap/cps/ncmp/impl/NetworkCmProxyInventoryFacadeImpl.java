@@ -131,10 +131,10 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
                                                       final boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
-            cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+                cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
         validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
         return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
-            outputAlternateId);
+                outputAlternateId);
     }
 
     @Override

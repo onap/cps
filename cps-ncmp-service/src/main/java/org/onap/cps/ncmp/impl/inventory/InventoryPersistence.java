@@ -125,22 +125,6 @@ public interface InventoryPersistence extends NcmpPersistence {
                                                          FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Get yang model cm handle with the given alternate id.
-     *
-     * @param alternateId alternate ID
-     * @return yang model cm handle
-     */
-    YangModelCmHandle getYangModelCmHandleByAlternateId(String alternateId);
-
-    /**
-     * Get yang model cm handles for the given batch of alternate ids.
-     *
-     * @param alternateIds alternate IDs
-     * @return yang model cm handles
-     */
-    Collection<YangModelCmHandle> getYangModelCmHandleByAlternateIds(Collection<String> alternateIds);
-
-    /**
      * Get collection of data nodes of given cm handles.
      *
      * @param cmHandleIds collection of cmHandle IDs
