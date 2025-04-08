@@ -85,6 +85,24 @@
       "rate": 1,
       "timeUnit": "1s",
       "preAllocatedVUs": 1
+    },
+    "write_large_data_job_scenario": {
+      "executor": "constant-vus",
+      "exec": "writeDataJobScenario",
+      "params": {
+        "dataSize": "large"
+      },
+      "vus": 1,
+      "duration": "2h"
+    },
+    "write_small_data_job_scenario": {
+      "executor": "constant-vus",
+      "exec": "writeDataJobScenario",
+      "params": {
+        "dataSize": "small"
+      },
+      "vus": 1,
+      "duration": "2h"
     }
   }
 }
