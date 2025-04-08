@@ -392,7 +392,7 @@ getCmHandlePropertiesById:
         content:
           application/json:
             schema:
-              $ref: 'components.yaml#/components/schemas/RestOutputCmHandlePublicProperties'
+              $ref: 'components.yaml#/components/schemas/RestOutputPublicCmHandleProperties'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       404:

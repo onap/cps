@@ -209,7 +209,6 @@ paths:
               examples:
                 dataSampleResponse:
                   $ref: '#/components/examples/dataSampleResponse'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -312,7 +311,6 @@ paths:
             examples:
               dataSampleRequest:
                 $ref: '#/components/examples/dataSamplePatchRequest'
-                value: null
             schema:
               type: object
         required: true
@@ -431,14 +429,12 @@ paths:
             examples:
               dataSampleRequest:
                 $ref: '#/components/examples/dataSampleRequest'
-                value: null
             schema:
               type: object
           application/yang-data+json:
             examples:
               dataSampleRequest:
                 $ref: '#/components/examples/dataSampleRequest'
-                value: null
             schema:
               type: object
         required: true
@@ -555,14 +551,12 @@ paths:
             examples:
               dataSampleRequest:
                 $ref: '#/components/examples/dataSampleRequest'
-                value: null
             schema:
               type: object
           application/yang-data+json:
             examples:
               dataSampleRequest:
                 $ref: '#/components/examples/dataSampleRequest'
-                value: null
             schema:
               type: object
         required: true
@@ -796,7 +790,6 @@ paths:
               examples:
                 dataSampleResponse:
                   $ref: '#/components/examples/dataSampleResponse'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -982,19 +975,14 @@ paths:
             examples:
               Cm handle properties query:
                 $ref: '#/components/examples/pubPropCmHandleQueryParameters'
-                value: null
               Cm handle modules query:
                 $ref: '#/components/examples/modulesCmHandleQueryParameters'
-                value: null
               All cm handle query parameters:
                 $ref: '#/components/examples/allCmHandleQueryParameters'
-                value: null
               Cm handle with CPS path state query:
                 $ref: '#/components/examples/cpsPathCmHandleStateQueryParameters'
-                value: null
               Cm handle with data sync flag query:
                 $ref: '#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
-                value: null
             schema:
               $ref: '#/components/schemas/CmHandleQueryParameters'
         required: true
@@ -1113,7 +1101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RestOutputCmHandlePublicProperties'
+                $ref: '#/components/schemas/RestOutputPublicCmHandleProperties'
           description: OK
         "400":
           content:
@@ -1176,19 +1164,14 @@ paths:
             examples:
               Cm handle properties query:
                 $ref: '#/components/examples/pubPropCmHandleQueryParameters'
-                value: null
               Cm handle modules query:
                 $ref: '#/components/examples/modulesCmHandleQueryParameters'
-                value: null
               All cm handle query parameters:
                 $ref: '#/components/examples/allCmHandleQueryParameters'
-                value: null
               Cm handle with CPS path state query:
                 $ref: '#/components/examples/cpsPathCmHandleStateQueryParameters'
-                value: null
               Cm handle with data sync flag query:
                 $ref: '#/components/examples/cpsPathCmHandleDataSyncQueryParameters'
-                value: null
             schema:
               $ref: '#/components/schemas/CmHandleQueryParameters'
         required: true
@@ -1739,6 +1722,10 @@ components:
       description: The request is larger than the server is willing or able to process
   schemas:
     ErrorMessage:
+      example:
+        details: details
+        message: message
+        status: status
       properties:
         status:
           type: string
@@ -1749,6 +1736,11 @@ components:
       title: Error
       type: object
     DmiErrorMessage:
+      example:
+        message: Bad Gateway Error Message NCMP
+        dmi-response:
+          body: Bad Request
+          http-code: 400
       properties:
         message:
           example: Bad Gateway Error Message NCMP
@@ -1963,6 +1955,8 @@ components:
           lastUpdateTime: 2022-12-31T20:30:40.000+0000
         trustLevel: COMPLETE
         moduleSetTag: my-module-set-tag
+        privateCmHandleProperties:
+          key: 3gpp Type
       properties:
         cmHandle:
           example: my-cm-handle1
@@ -1974,6 +1968,11 @@ components:
               type: string
             type: object
           type: array
+        privateCmHandleProperties:
+          additionalProperties:
+            example: 3gpp Type
+            type: string
+          type: object
         state:
           $ref: '#/components/schemas/CmHandleCompositeState'
         trustLevel:
@@ -1991,13 +1990,6 @@ components:
           type: string
       title: CM handle Details
       type: object
-    CmHandlePublicProperties:
-      items:
-        additionalProperties:
-          example: 3gpp Type
-          type: string
-        type: object
-      type: array
     CmHandleCompositeState:
       example:
         dataSyncEnabled: false
@@ -2070,7 +2062,7 @@ components:
       description: Current trust level of the relevant CM handle ID.
       example: COMPLETE
       type: string
-    RestOutputCmHandlePublicProperties:
+    RestOutputPublicCmHandleProperties:
       example:
         publicCmHandleProperties:
         - key: 3gpp Type
@@ -2105,6 +2097,9 @@ components:
           $ref: '#/components/schemas/CmHandleCompositeState'
       type: object
     DmiErrorMessage_dmi_response:
+      example:
+        body: Bad Request
+        http-code: 400
       properties:
         http-code:
           example: 400

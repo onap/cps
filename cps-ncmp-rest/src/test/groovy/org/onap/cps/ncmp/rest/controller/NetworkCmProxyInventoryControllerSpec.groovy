@@ -32,7 +32,9 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -59,6 +61,12 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mock()
+
+    @SpringBean
+    RestOutputCmHandleMapper restOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    DeprecationHelper deprecationHelper = Mock()
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
