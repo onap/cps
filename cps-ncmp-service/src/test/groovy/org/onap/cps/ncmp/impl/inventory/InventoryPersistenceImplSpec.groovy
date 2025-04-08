@@ -35,11 +35,9 @@ import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.utils.CpsValidator
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.impl.utils.YangDataConverter
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
@@ -65,11 +63,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def mockCmHandleQueries = Mock(CmHandleQueryService)
-
-    def mockYangDataConverter = Mock(YangDataConverter)
-
-    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleQueries)
+    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
@@ -293,39 +287,6 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.getCmHandleDataNodeByCmHandleId('sample cmHandleId', INCLUDE_ALL_DESCENDANTS)
         then: 'the data persistence service method to get cmHandle data node is invoked once with expected xPath'
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
-    }
-
-    def 'Get yang model cm handle by alternate id'() {
-        given: 'expected xPath to get cmHandle data node'
-            def expectedXPath = '/dmi-registry/cm-handles[@alternate-id=\'alternate id\']'
-            def expectedDataNode = new DataNode(xpath: expectedXPath, leaves: [id: 'id', alternateId: 'alternate id'])
-        and: 'query service is invoked with expected xpath'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(expectedXPath, OMIT_DESCENDANTS, _) >> [expectedDataNode]
-            mockYangDataConverter.toYangModelCmHandle(expectedDataNode) >> new YangModelCmHandle(id: 'id')
-        expect: 'getting the yang model cm handle'
-            assert objectUnderTest.getYangModelCmHandleByAlternateId('alternate id') == new YangModelCmHandle(id: 'id')
-    }
-
-    def 'Attempt to get non existing yang model cm handle by alternate id'() {
-        given: 'query service is invoked and returns empty collection of data nodes'
-            mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> []
-        when: 'getting the yang model cm handle'
-            objectUnderTest.getYangModelCmHandleByAlternateId('alternate id')
-        then: 'no data found exception thrown'
-            def thrownException = thrown(CmHandleNotFoundException)
-            assert thrownException.getMessage().contains('Cm handle not found')
-            assert thrownException.getDetails().contains('No cm handles found with reference alternate id')
-    }
-
-    def 'Get multiple yang model cm handles by alternate ids #scenario'() {
-        when: 'getting the yang model cm handle with a empty/populated collection of alternate Ids'
-            objectUnderTest.getYangModelCmHandleByAlternateIds(alternateIdCollection)
-        then: 'query service invoked when needed'
-            expectedInvocations * mockCmHandleQueries.queryNcmpRegistryByCpsPath(*_) >> [dataNode]
-        where: 'collections are either empty or populated with alternate ids'
-            scenario               | alternateIdCollection || expectedInvocations
-            'empty collection'     | []                    || 0
-            'populated collection' | ['alt']               || 1
     }
 
     def 'Get CM handle ids for CM Handles that has given module names'() {
