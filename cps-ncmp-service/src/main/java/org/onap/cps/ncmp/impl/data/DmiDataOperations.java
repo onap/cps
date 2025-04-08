@@ -38,6 +38,7 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
@@ -253,7 +254,7 @@ public class DmiDataOperations {
     private Set<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(it -> it.getCmHandleReferences().stream())
-                .map(alternateIdMatcher::getCmHandleId)
+                .map(this::getCmHandleId)
                 .collect(Collectors.toSet());
     }
 
@@ -311,5 +312,13 @@ public class DmiDataOperations {
         });
         DmiDataOperationsHelper.sendErrorMessageToClientTopic(topicName, requestId,
                 cmHandleIdsPerResponseCodesPerOperation);
+    }
+
+    private String getCmHandleId(final String cmHandleReference) {
+        try {
+            return alternateIdMatcher.getCmHandleId(cmHandleReference);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return cmHandleReference;
+        }
     }
 }

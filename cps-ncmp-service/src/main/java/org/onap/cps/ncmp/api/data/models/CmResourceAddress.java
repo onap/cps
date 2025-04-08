@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.api.data.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.config.CpsApplicationContext;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 
@@ -33,8 +34,18 @@ public class CmResourceAddress {
     private final String cmHandleReference;
     private final String resourceIdentifier;
 
+    /**
+     * Method to resolve cm handle reference to id.
+     *
+     * @return cm handle id
+     */
     public String resolveCmHandleReferenceToId() {
         final AlternateIdMatcher alternateIdMatcher = CpsApplicationContext.getCpsBean(AlternateIdMatcher.class);
-        return alternateIdMatcher.getCmHandleId(cmHandleReference);
+        try {
+            return alternateIdMatcher.getCmHandleId(cmHandleReference);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return cmHandleReference;
+        }
+
     }
 }

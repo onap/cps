@@ -89,7 +89,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
         try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            final String cmHandleId = getCmHandleId(cmHandleReference);
             return inventoryPersistence.getYangResourcesModuleReferences(cmHandleId);
         } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
             return Collections.emptyList();
@@ -99,7 +99,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleReference(final String cmHandleReference) {
         try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+            final String cmHandleId = getCmHandleId(cmHandleReference);
             return inventoryPersistence.getModuleDefinitionsByCmHandleId(cmHandleId);
         } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
             return Collections.emptyList();
@@ -110,12 +110,8 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,
                                                                                 final String moduleRevision) {
-        try {
-            final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
-            return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
-        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
-            return Collections.emptyList();
-        }
+        final String cmHandleId = getCmHandleId(cmHandleReference);
+        return inventoryPersistence.getModuleDefinitionsByCmHandleAndModule(cmHandleId, moduleName, moduleRevision);
     }
 
     @Override
@@ -144,7 +140,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public NcmpServiceCmHandle getNcmpServiceCmHandle(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+        final String cmHandleId = getCmHandleId(cmHandleReference);
         final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
                 inventoryPersistence.getYangModelCmHandle(cmHandleId));
         trustLevelManager.applyEffectiveTrustLevel(ncmpServiceCmHandle);
@@ -153,15 +149,23 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
 
     @Override
     public Map<String, String> getCmHandlePublicProperties(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+        final String cmHandleId = getCmHandleId(cmHandleReference);
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         return YangDataConverter.toPropertiesMap(yangModelCmHandle.getPublicProperties());
     }
 
     @Override
     public CompositeState getCmHandleCompositeState(final String cmHandleReference) {
-        final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
+        final String cmHandleId = getCmHandleId(cmHandleReference);
         return inventoryPersistence.getYangModelCmHandle(cmHandleId).getCompositeState();
+    }
+
+    private String getCmHandleId(final String cmHandleReference) {
+        try {
+            return alternateIdMatcher.getCmHandleId(cmHandleReference);
+        } catch (final CmHandleNotFoundException cmHandleNotFoundException) {
+            return cmHandleReference;
+        }
     }
 
 }
