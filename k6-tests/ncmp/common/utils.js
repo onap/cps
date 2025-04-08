@@ -130,6 +130,8 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 40, testResults, scenarioConfig),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 40, testResults, scenarioConfig),
         makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 300, testResults, scenarioConfig),
+        makeSummaryCsvLine('8', 'Write data job scenario - small', 'milliseconds', 'write_small_data_job_duration', 300, testResults, scenarioConfig),
+        makeSummaryCsvLine('9', 'Write data job scenario - large', 'milliseconds', 'write_large_data_job_duration', 300, testResults, scenarioConfig),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }

@@ -31,6 +31,7 @@ import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from '
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendKafkaMessages } from './common/produce-avc-event.js';
+import { executeWriteDataJob } from "./common/write-data-job.js";
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -47,6 +48,8 @@ let cmSearchPropertyDurationTrend = new Trend('cm_search_property_duration', tru
 let cmSearchCpsPathDurationTrend = new Trend('cm_search_cpspath_duration', true);
 let cmSearchTrustLevelDurationTrend = new Trend('cm_search_trustlevel_duration', true);
 let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
+let writeSmallDataJobDurationTrend = new Trend('write_small_data_job_duration', true);
+let writeLargeDataJobDurationTrend = new Trend('write_large_data_job_duration', true);
 
 export const legacyBatchEventReader = new Reader({
     brokers: [KAFKA_BOOTSTRAP_SERVERS],
@@ -200,6 +203,28 @@ export function legacyBatchProduceScenario() {
     const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
     const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+/**
+ * Scenario for writing a large volume of data.
+ */
+export function writeDataJobLargeScenario() {
+    const response = executeWriteDataJob(100000);
+    if (check(response, {'large  writeDataJob response status is 200': (r) => r.status === 200})
+        && check(response, {'large  writeDataJob received expected responses': (r) => r.json('#') === 300000})) {
+        writeLargeDataJobDurationTrend.add(response.timings.duration);
+    }
+}
+
+/**
+ * Scenario for writing a small volume of data.
+ */
+export function writeDataJobSmallScenario() {
+    const response = executeWriteDataJob(100);
+    if (check(response, {'small writeDataJob response status is 200': (r) => r.status === 200})
+        && check(response, {'small writeDataJob received expected responses': (r) => r.json('#') === 300})) {
+        writeSmallDataJobDurationTrend.add(response.timings.duration);
+    }
 }
 
 export function produceAvcEventsScenario() {

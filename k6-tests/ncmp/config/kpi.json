@@ -126,7 +126,7 @@
       "vus": 1,
       "iterations": 1
     },
-    "produceKafkaMessages": {
+    "produce_kafka_messages": {
       "executor": "constant-arrival-rate",
       "rate": 500,
       "timeUnit": "1s",
@@ -135,6 +135,24 @@
       "maxVUs": 10,
       "exec": "produceAvcEventsScenario",
       "gracefulStop": "10s"
+    },
+    "write_large_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobLargeScenario",
+      "rate": 1,
+      "timeUnit": "60s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "6s"
+    },
+    "write_small_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobSmallScenario",
+      "rate": 10,
+      "timeUnit": "5s",
+      "duration": "15m",
+      "preAllocatedVUs": 10,
+      "startTime": "6s"
     }
   },
   "thresholds": {
@@ -153,6 +171,8 @@
     "cm_search_property_duration": ["avg <= 15000"],
     "cm_search_cpspath_duration": ["avg <= 15000"],
     "cm_search_trustlevel_duration": ["avg <= 15000"],
-    "legacy_batch_read_cmhandles_per_second": ["avg >= 150"]
+    "legacy_batch_read_cmhandles_per_second": ["avg >= 150"],
+    "write_large_data_job_duration": ["avg <= 60000"],
+    "write_small_data_job_duration": ["avg <= 60000"]
   }
 }
