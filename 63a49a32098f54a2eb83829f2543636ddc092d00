@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a2406ce_3f5c6709",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-08T09:01:10Z",
+      "side": 1,
+      "message": "I have noted the comments from Toine, and I will address them in the following patch https://gerrit.onap.org/r/c/cps/+/140584 as it is a descendant of this patch.",
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b5c07bc_b4fc6a4e",
