@@ -16,6 +16,98 @@
       "message": "merging this now and this is just code refactoring and doesnt impact any functionality.\nif there are further opinions from the team we can take it as a separate task.",
       "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b5c07bc_b4fc6a4e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-08T08:08:42Z",
+      "side": 1,
+      "message": "NB: add short javadoc to describe the overall service\n(see also CpsDataService)",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d63193a_a0f1f1ca",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-08T08:08:42Z",
+      "side": 1,
+      "message": "no need for else",
+      "range": {
+        "startLine": 274,
+        "startChar": 10,
+        "endLine": 274,
+        "endChar": 16
+      },
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616544a4_0b9c26a4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-08T08:08:42Z",
+      "side": 1,
+      "message": "NB: In Groovy types are not needed",
+      "range": {
+        "startLine": 249,
+        "startChar": 28,
+        "endLine": 249,
+        "endChar": 37
+      },
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7147a6f_0aa6725f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-08T08:08:42Z",
+      "side": 1,
+      "message": "NB: In Groovy types are not needed",
+      "range": {
+        "startLine": 257,
+        "startChar": 36,
+        "endLine": 257,
+        "endChar": 56
+      },
+      "revId": "63a49a32098f54a2eb83829f2543636ddc092d00",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
