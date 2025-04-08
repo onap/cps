@@ -23,24 +23,24 @@ import {
     performGetRequest,
     NCMP_BASE_URL,
     LEGACY_BATCH_TOPIC_NAME,
-    getRandomCmHandleReference,
+    getRandomAlternateId,
 } from './utils.js';
 
-export function passthroughRead(useAlternateId) {
-    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
+export function passthroughRead() {
+    const randomAlternateId = getRandomAlternateId();
     const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1';
     const datastoreName = 'ncmp-datastore:passthrough-operational';
     const includeDescendants = true;
-    const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
+    const url = generatePassthroughUrl(randomAlternateId, datastoreName, resourceIdentifier, includeDescendants);
     return performGetRequest(url, 'passthroughRead');
 }
 
-export function passthroughWrite(useAlternateId) {
-    const cmHandleReference = getRandomCmHandleReference(useAlternateId);
+export function passthroughWrite() {
+    const randomAlternateId = getRandomAlternateId();
     const resourceIdentifier = 'ManagedElement=NRNode1/GNBDUFunction=1';
     const datastoreName = 'ncmp-datastore:passthrough-running';
     const includeDescendants = false;
-    const url = generatePassthroughUrl(cmHandleReference, datastoreName, resourceIdentifier, includeDescendants);
+    const url = generatePassthroughUrl(randomAlternateId, datastoreName, resourceIdentifier, includeDescendants);
     const payload = JSON.stringify({
         "id": "123",
         "attributes": {"userLabel": "test"}
