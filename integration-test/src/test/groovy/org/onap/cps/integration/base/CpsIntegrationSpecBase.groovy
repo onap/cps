@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -21,7 +21,6 @@
 
 package org.onap.cps.integration.base
 
-import com.hazelcast.map.IMap
 import java.time.OffsetDateTime
 import java.util.concurrent.BlockingQueue
 import okhttp3.mockwebserver.MockWebServer
@@ -134,9 +133,6 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     BlockingQueue<String> moduleSyncWorkQueue
-
-    @Autowired
-    IMap<String, String> cpsAndNcmpLock
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
