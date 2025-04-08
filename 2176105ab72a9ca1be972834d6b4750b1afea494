@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee00cc24_fcd9d821",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/async/DmiAsyncRequestResponseEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-08T08:11:31Z",
+      "side": 1,
+      "message": "do we have a TD Jira to move upgrade this ie not use the LEGACY factory anymore?!",
+      "range": {
+        "startLine": 53,
+        "startChar": 31,
+        "endLine": 53,
+        "endChar": 84
+      },
+      "revId": "2176105ab72a9ca1be972834d6b4750b1afea494",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1dd1e5aa_c44545dc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/utils/events/MessagingBaseSpec.groovy",
         "patchSetId": 2
