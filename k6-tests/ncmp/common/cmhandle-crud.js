@@ -55,10 +55,11 @@ function createCmHandlePayload(cmHandleIds) {
             // Ensure unique networkSegment within range 1-10
             let networkSegmentId = Math.floor(Math.random() * 10) + 1; // Random between 1-10
             let moduleTag = MODULE_SET_TAGS[index % MODULE_SET_TAGS.length];
+            const basePath = `/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${index}/ManagedElement=MyManagedElement${index}`;
 
             return {
                 "cmHandle": cmHandleId,
-                "alternateId": cmHandleId.replace('ch-', 'Region=NorthAmerica,Segment='),
+                "alternateId": cmHandleId.replace('ch-', basePath),
                 "moduleSetTag": moduleTag,
                 "cmHandleProperties": {
                     "segmentId": index + 1,
