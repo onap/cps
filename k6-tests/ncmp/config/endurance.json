@@ -5,6 +5,14 @@
     "kafkaBootstrapServer": "localhost:9093",
     "containerUpTimeInSeconds": 420
   },
+  "writeDataJobScenarioParams": {
+    "write_large_data_job_scenario": {
+      "dataSize": "large"
+    },
+    "write_small_data_job_scenario": {
+      "dataSize": "small"
+    }
+  },
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-vus",
@@ -85,6 +93,18 @@
       "rate": 1,
       "timeUnit": "1s",
       "preAllocatedVUs": 1
+    },
+    "write_large_data_job_scenario": {
+      "executor": "constant-vus",
+      "exec": "writeDataJobScenario",
+      "vus": 1,
+      "duration": "2h"
+    },
+    "write_small_data_job_scenario": {
+      "executor": "constant-vus",
+      "exec": "writeDataJobScenario",
+      "vus": 10,
+      "duration": "2h"
     }
   }
 }

@@ -31,7 +31,9 @@ import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from '
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendKafkaMessages } from './common/produce-avc-event.js';
+import { executeWriteDataJob } from "./common/write-data-job.js";
 
+const writeDataJobParams = testConfig.writeDataJobScenarioParams;
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
 let passthroughReadNcmpOverheadTrendWithAlternateId = new Trend('ncmp_overhead_passthrough_read_alt_id', true);
@@ -47,6 +49,8 @@ let cmSearchPropertyDurationTrend = new Trend('cm_search_property_duration', tru
 let cmSearchCpsPathDurationTrend = new Trend('cm_search_cpspath_duration', true);
 let cmSearchTrustLevelDurationTrend = new Trend('cm_search_trustlevel_duration', true);
 let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
+let writeSmallDataJobDurationTrend = new Trend('write_small_data_job_duration', true);
+let writeLargeDataJobDurationTrend = new Trend('write_large_data_job_duration', true);
 
 export const legacyBatchEventReader = new Reader({
     brokers: [KAFKA_BOOTSTRAP_SERVERS],
@@ -200,6 +204,38 @@ export function legacyBatchProduceScenario() {
     const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
     const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+export function writeDataJobScenario() {
+    const writeDataJobScenarioName = __ENV.SCENARIO;
+    const writeDataJobParam = writeDataJobParams[writeDataJobScenarioName];
+    const response = executeWriteDataJob(writeDataJobParam);
+    const isWriteSuccessful = check(response, {
+        'writeDataJob response status is 200': (r) => r.status === 200
+    });
+
+    if (isWriteSuccessful) {
+
+        const jobSize = writeDataJobParam.dataSize;
+        const duration = response.timings.duration;
+
+        if (jobSize === 'small') {
+            writeSmallDataJobDurationTrend.add(duration);
+        } else {
+            writeLargeDataJobDurationTrend.add(duration);
+        }
+
+        try {
+            const subJobWriteResponse = response.json();
+            const subJobCount = Array.isArray(subJobWriteResponse) ? subJobWriteResponse.length : 0;
+
+            check(subJobWriteResponse, {
+                'received at least 1 sub-job response': () => subJobCount > 0
+            });
+        } catch (e) {
+            console.error('Error parsing writeDataJob response:', e.message);
+        }
+    }
 }
 
 export function produceAvcEventsScenario() {

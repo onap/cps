@@ -5,6 +5,14 @@
     "kafkaBootstrapServer": "localhost:9092",
     "containerUpTimeInSeconds": 300
   },
+  "writeDataJobScenarioParams": {
+    "write_large_data_job_scenario": {
+      "dataSize": "large"
+    },
+    "write_small_data_job_scenario": {
+      "dataSize": "small"
+    }
+  },
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
       "executor": "constant-arrival-rate",
@@ -126,7 +134,7 @@
       "vus": 1,
       "iterations": 1
     },
-    "produceKafkaMessages": {
+    "produce_kafka_messages": {
       "executor": "constant-arrival-rate",
       "rate": 500,
       "timeUnit": "1s",
@@ -135,6 +143,24 @@
       "maxVUs": 10,
       "exec": "produceAvcEventsScenario",
       "gracefulStop": "10s"
+    },
+    "write_large_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobScenario",
+      "rate": 1,
+      "timeUnit": "60s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "startTime": "6s"
+    },
+    "write_small_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobScenario",
+      "rate": 10,
+      "timeUnit": "5s",
+      "duration": "15m",
+      "preAllocatedVUs": 10,
+      "startTime": "6s"
     }
   },
   "thresholds": {
