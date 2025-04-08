@@ -137,6 +137,15 @@
       "gracefulStop": "10s"
     }
   },
+  "write_data_job_scenario": {
+    "executor": "constant-arrival-rate",
+    "exec": "writeDataJobScenario",
+    "rate": 1,
+    "timeUnit": "60s",
+    "duration": "15m",
+    "preAllocatedVUs": 1,
+    "startTime": "6s"
+  },
   "thresholds": {
     "http_req_failed": ["rate == 0"],
     "cmhandles_created_per_second": ["avg >= 22"],

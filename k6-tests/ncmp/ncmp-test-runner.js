@@ -31,6 +31,7 @@ import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from '
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendKafkaMessages } from './common/produce-avc-event.js';
+import {executeWriteDataJob} from "./common/write-data-job";
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -200,6 +201,26 @@ export function legacyBatchProduceScenario() {
     const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
     const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+export function writeDataJobScenario() {
+    const response = executeWriteDataJob('WriteDataJob');
+    const statusOk = check(response, {
+        'writeDataJob response status is 200': (r) => r.status === 200
+    });
+
+    if (statusOk) {
+        try {
+            const subJobResponses = response.json();  // Expecting an array of SubJobWriteResponse objects
+            const numberOfSubJobs = Array.isArray(subJobResponses) ? subJobResponses.length : 0;
+
+            check(subJobResponses, {
+                'received at least 1 sub-job response': () => numberOfSubJobs > 0
+            });
+        } catch (e) {
+            console.error('Error parsing writeDataJob response:', e.message);
+        }
+    }
 }
 
 export function produceAvcEventsScenario() {
