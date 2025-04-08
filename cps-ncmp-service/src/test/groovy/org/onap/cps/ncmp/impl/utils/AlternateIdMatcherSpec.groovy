@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,22 +20,16 @@
 
 package org.onap.cps.ncmp.impl.utils
 
+import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
-import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.utils.CpsValidatorImpl
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
-@SpringBootTest
-@ContextConfiguration(classes = [InventoryPersistence])
 class AlternateIdMatcherSpec extends Specification {
 
-    def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockCmHandleIdPerAlternateId = Mock(IMap)
 
-    def objectUnderTest = new AlternateIdMatcher(mockInventoryPersistence, new CpsValidatorImpl())
+    def objectUnderTest = new AlternateIdMatcher(mockCmHandleIdPerAlternateId)
 
     def 'Finding longest alternate id matches.'() {
         given: 'a cm handle with alternate id /a/b in the cached map of all cm handles'
@@ -72,20 +66,14 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Get cm handle id from a cm handle reference that is a #scenario id.' () {
         given: 'inventory persistence service confirms the reference exists as an id or not (#isExistingCmHandleId)'
-            mockInventoryPersistence.isExistingCmHandleId(cmHandleReference) >> isExistingCmHandleId
+            mockCmHandleIdPerAlternateId.getOrDefault(cmHandleReference, cmHandleReference) >> expectedCmHandleId
         when: 'getting a cm handle id from the reference'
             def result = objectUnderTest.getCmHandleId(cmHandleReference)
-        then: 'a call to find the cm handle by alternate id is only made when needed'
-            if (isExistingCmHandleId) {
-                0 * mockInventoryPersistence.getYangModelCmHandleByAlternateId(*_)
-            } else {
-                1 * mockInventoryPersistence.getYangModelCmHandleByAlternateId(cmHandleReference) >> new YangModelCmHandle(id: 'ch-id-2')
-            }
-        and: 'the expected cm handle id is returned'
+        then: 'the expected cm handle id is returned'
             assert result == expectedCmHandleId
         where: 'the following parameters are used'
-            scenario    | cmHandleReference | isExistingCmHandleId || expectedCmHandleId
-            'standard'  | 'ch-id-1'         | true                 || 'ch-id-1'
-            'alternate' | 'alt-id=1'        | false                || 'ch-id-2'
+            scenario    | cmHandleReference || expectedCmHandleId
+            'standard'  | 'ch-id-1'         || 'ch-id-1'
+            'alternate' | 'alt-id=1'        || 'ch-id-2'
     }
 }

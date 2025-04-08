@@ -22,6 +22,7 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 
@@ -45,7 +46,6 @@ import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
-import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -63,7 +63,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
-    private final CmHandleQueryService cmHandleQueryService;
 
     /**
      * initialize an inventory persistence object.
@@ -73,20 +72,16 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
      * @param cpsAnchorService     cps anchor service instance
      * @param cpsModuleService     cps module service instance
      * @param cpsDataService       cps data service instance
-     * @param cmHandleQueryService cm handle query service instance
      */
     public InventoryPersistenceImpl(final CpsValidator cpsValidator,
                                     final JsonObjectMapper jsonObjectMapper,
                                     final CpsAnchorService cpsAnchorService,
                                     final CpsModuleService cpsModuleService,
-                                    final CpsDataService cpsDataService,
-                                    final CmHandleQueryService cmHandleQueryService) {
+                                    final CpsDataService cpsDataService) {
         super(jsonObjectMapper, cpsAnchorService, cpsDataService);
         this.cpsModuleService = cpsModuleService;
         this.cpsValidator = cpsValidator;
-        this.cmHandleQueryService = cmHandleQueryService;
     }
-
 
     @Override
     public CompositeState getCmHandleState(final String cmHandleId) {
@@ -179,28 +174,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public YangModelCmHandle getYangModelCmHandleByAlternateId(final String alternateId) {
-        final String cpsPathForCmHandleByAlternateId = getCpsPathForCmHandleByAlternateId(alternateId);
-        final Collection<DataNode> dataNodes = cmHandleQueryService
-            .queryNcmpRegistryByCpsPath(cpsPathForCmHandleByAlternateId, OMIT_DESCENDANTS, 1);
-        if (dataNodes.isEmpty()) {
-            throw new CmHandleNotFoundException(alternateId);
-        }
-        return YangDataConverter.toYangModelCmHandle(dataNodes.iterator().next());
-    }
-
-    @Override
-    public Collection<YangModelCmHandle> getYangModelCmHandleByAlternateIds(final Collection<String> alternateIds) {
-        if (alternateIds.isEmpty()) {
-            return Collections.emptyList();
-        }
-        final String cpsPathForCmHandlesByAlternateIds = getCpsPathForCmHandlesByAlternateIds(alternateIds);
-        final Collection<DataNode> dataNodes = cmHandleQueryService.queryNcmpRegistryByCpsPath(
-            cpsPathForCmHandlesByAlternateIds, INCLUDE_ALL_DESCENDANTS, alternateIds.size());
-        return YangDataConverter.toYangModelCmHandles(dataNodes);
-    }
-
-    @Override
     public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
                                                      final FetchDescendantsOption fetchDescendantsOption) {
         final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
@@ -228,17 +201,17 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         }
     }
 
+    @Override
+    public Map<String, String> getCmHandleIdPerAlternateId() {
+        return getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY).iterator().next().getChildDataNodes()
+                .stream()
+                .map(YangDataConverter::toYangModelCmHandle)
+                .filter(yangModelCmHandle -> StringUtils.isNotBlank(yangModelCmHandle.getAlternateId()))
+                .collect(Collectors.toMap(YangModelCmHandle::getAlternateId, YangModelCmHandle::getId));
+    }
+
     private static String getXPathForCmHandleById(final String cmHandleId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
-    }
-
-    private static String getCpsPathForCmHandleByAlternateId(final String alternateId) {
-        return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='" + alternateId + "']";
-    }
-
-    private static String getCpsPathForCmHandlesByAlternateIds(final Collection<String> alternateIds) {
-        return alternateIds.stream().collect(Collectors.joining("' or @alternate-id='",
-                NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@alternate-id='", "']"));
     }
 
     private static String createStateJsonData(final String state) {
@@ -248,7 +221,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     private String createCmHandlesJsonData(final List<YangModelCmHandle> yangModelCmHandles) {
         return "{\"cm-handles\":" + jsonObjectMapper.asJsonString(yangModelCmHandles) + "}";
     }
-
 
     private Collection<String> getAlternateIdsForCmHandleIds(final Collection<String> cmHandleIds) {
         final Collection<DataNode> dataNodes = getCmHandleDataNodes(cmHandleIds, OMIT_DESCENDANTS);
