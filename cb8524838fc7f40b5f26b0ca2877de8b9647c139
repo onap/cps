@@ -89,6 +89,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d0af110_33853ea4",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-04-09T09:31:48Z",
+      "side": 1,
+      "message": "Do we need to handle this or is catching it enough?",
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6809658_b9cdfe20",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-04-09T09:31:48Z",
+      "side": 1,
+      "message": "NB Would a separate method to create the writeoperations be more readable?",
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c9ec74b_1d38abed",
         "filename": "k6-tests/ncmp/ncmp-test-runner.js",
         "patchSetId": 1
@@ -106,6 +140,23 @@
         "endLine": 214,
         "endChar": 106
       },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e674003_d567b5f2",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-04-09T09:31:48Z",
+      "side": 1,
+      "message": "subJobWriteREsponse",
       "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
