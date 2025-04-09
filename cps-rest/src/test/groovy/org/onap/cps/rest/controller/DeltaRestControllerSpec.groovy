@@ -22,6 +22,7 @@ package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDeltaService
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.impl.DeltaReportBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -35,6 +36,10 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardOpenOption
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -65,10 +70,21 @@ class DeltaRestControllerSpec extends Specification {
     @Shared
     def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
     @Shared
-    static MultipartFile multipartYangFile = new MockMultipartFile('file', 'filename.yang', 'text/plain', 'content'.getBytes())
+    static MultipartFile multipartYangFile = new MockMultipartFile('yangResourceFile', 'filename.yang', 'text/plain', 'content'.getBytes())
+    @Shared
+    Path jsonFile
+    @Shared
+    MockMultipartFile multipartJsonFile
 
     def setup() {
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/delta"
+        jsonFile = Files.createTempFile('requestBody', '.json')
+        Files.write(jsonFile, requestBodyJson.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE)
+        multipartJsonFile = new MockMultipartFile('jsonFile', jsonFile.fileName.toString(), 'application/json', Files.readAllBytes(jsonFile))
+    }
+
+    def cleanup() {
+        Files.deleteIfExists(jsonFile)
     }
 
     def 'Get delta between two anchors'() {
@@ -88,7 +104,7 @@ class DeltaRestControllerSpec extends Specification {
             assert response.contentAsString.contains('[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]')
     }
 
-    def 'Get delta between anchor and JSON payload with multipart file'() {
+    def 'Get delta between anchor and JSON payload with yangResourceFile'() {
         given: 'sample delta report, xpath, yang model file and json payload'
             def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
@@ -98,7 +114,7 @@ class DeltaRestControllerSpec extends Specification {
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
                     .file(multipartYangFile)
-                    .param('json', requestBodyJson)
+                    .file(multipartJsonFile)
                     .param('xpath', xpath)
                     .contentType(MediaType.MULTIPART_FORM_DATA))
                     .andReturn().response
@@ -108,7 +124,7 @@ class DeltaRestControllerSpec extends Specification {
             assert response.contentAsString.contains('[{\"action\":\"create\",\"xpath\":\"some xpath\"}]')
     }
 
-    def 'Get delta between anchor and JSON payload without multipart file'() {
+    def 'Get delta between anchor and JSON payload without yangResourceFile'() {
         given: 'sample delta report, xpath, and json payload'
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
@@ -117,7 +133,7 @@ class DeltaRestControllerSpec extends Specification {
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
-                    .param('json', requestBodyJson)
+                    .file(multipartJsonFile)
                     .param('xpath', xpath)
                     .contentType(MediaType.MULTIPART_FORM_DATA))
                     .andReturn().response
@@ -125,5 +141,20 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
             assert response.contentAsString.contains('[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]')
+    }
+
+    def 'Get delta between anchor and JSON payload throws IOException'() {
+        given: 'xpath, yang model file and empty json payload'
+            def xpath = 'some xpath'
+            def emptyJsonFile = new MockMultipartFile('jsonFile', 'empty.json', 'application/json', new byte[0])
+        when: 'get delta request is performed using REST API'
+            def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
+                .file(emptyJsonFile)
+                .param('xpath', xpath)
+                .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andReturn()
+                .response
+        then: 'the response contains expected value'
+           assert response.contentAsString.contains("JSON file is required")
     }
 }
