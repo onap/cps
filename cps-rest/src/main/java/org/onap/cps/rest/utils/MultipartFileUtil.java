@@ -3,6 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ package org.onap.cps.rest.utils;
 
 import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableMap;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,7 +37,9 @@ import java.util.zip.ZipInputStream;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.exceptions.ModelValidationException;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -68,12 +72,34 @@ public class MultipartFileUtil {
                 Arrays.asList(YANG_FILE_EXTENSION, ZIP_FILE_EXTENSION)));
     }
 
+    /**
+     * Extracts json content from multipart file instance.
+     *
+     * @param jsonFile the json file uploaded
+     * @return the string representation of the JSON content
+     * @throws DataValidationException if the file is null or empty
+     * @throws CpsException if there is an I/O error while reading the file or parsing it to JSON
+     */
+
+    public static String extractJsonContent(final MultipartFile jsonFile, final JsonObjectMapper jsonObjectMapper) {
+        if (jsonFile == null || jsonFile.isEmpty()) {
+            throw new DataValidationException("JSON file is required", "Invalid JSON file");
+        }
+        try {
+            final String jsonContent = new String(jsonFile.getBytes(), StandardCharsets.UTF_8);
+            final JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonContent);
+            return jsonNode.toString();
+        } catch (final IOException exception) {
+            throw new CpsException("Error reading JSON file", exception.getMessage());
+        }
+    }
+
     private static Map<String, String> extractYangResourcesMapFromZipArchive(final MultipartFile multipartFile) {
         final ImmutableMap.Builder<String, String> yangResourceMapBuilder = ImmutableMap.builder();
         final var zipFileSizeValidator = new ZipFileSizeValidator();
         try (
             final var inputStream = multipartFile.getInputStream();
-            final var zipInputStream = new ZipInputStream(inputStream);
+            final var zipInputStream = new ZipInputStream(inputStream)
         ) {
             ZipEntry zipEntry;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {

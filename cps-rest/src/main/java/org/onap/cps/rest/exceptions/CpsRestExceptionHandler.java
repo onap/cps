@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2023 Nordix Foundation
- *  Modifications Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import org.onap.cps.api.exceptions.ModelValidationException;
 import org.onap.cps.api.exceptions.NotFoundInDataspaceException;
 import org.onap.cps.rest.controller.AdminRestController;
 import org.onap.cps.rest.controller.DataRestController;
+import org.onap.cps.rest.controller.DeltaRestController;
 import org.onap.cps.rest.controller.QueryRestController;
 import org.onap.cps.rest.model.ErrorMessage;
 import org.springframework.http.HttpMethod;
@@ -49,7 +50,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice(assignableTypes = {AdminRestController.class, DataRestController.class,
-    QueryRestController.class})
+    DeltaRestController.class, QueryRestController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class CpsRestExceptionHandler {
 
