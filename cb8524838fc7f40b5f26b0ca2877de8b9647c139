@@ -24,6 +24,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f272a2_6539fa38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T12:09:25Z",
+      "side": 1,
+      "message": "NB: typo here",
+      "range": {
+        "startLine": 18,
+        "startChar": 17,
+        "endLine": 18,
+        "endChar": 25
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "01b7df8e_88ef34d6",
