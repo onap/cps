@@ -63,15 +63,8 @@ delta:
             type: object
             properties:
               json:
-                type: object
-                example:
-                  test:bookstore:
-                    bookstore-name: Chapters
-                    categories:
-                      - code: 01
-                        name: SciFi
-                      - code: 02
-                        name: kids
+                type: string
+                format: binary
               file:
                 type: string
                 format: binary
