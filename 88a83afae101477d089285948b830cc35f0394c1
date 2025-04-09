@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e09c727_b0107a28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T12:24:08Z",
+      "side": 1,
+      "message": "NOTHING left in this class?! \nIs that a mistake or should it be deleted now?",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6a66d32_5e044908",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
         "patchSetId": 1
@@ -36,6 +59,29 @@
         "startChar": 76,
         "endLine": 110,
         "endChar": 80
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe99844d_0eb4af1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T12:24:08Z",
+      "side": 1,
+      "message": "NB: debatable 😕",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 22
       },
       "revId": "88a83afae101477d089285948b830cc35f0394c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
