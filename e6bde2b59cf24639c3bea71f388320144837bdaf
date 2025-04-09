@@ -168,6 +168,29 @@
       },
       "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e511a0b_ed5fa649",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T15:56:12Z",
+      "side": 1,
+      "message": "NB: can we also log the time at which the instance came up.",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
