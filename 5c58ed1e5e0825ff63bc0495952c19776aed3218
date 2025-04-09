@@ -16,6 +16,92 @@
       "message": "recheck",
       "revId": "5c58ed1e5e0825ff63bc0495952c19776aed3218",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a291c65_4fc2eb8b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AlternateIdCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T11:44:02Z",
+      "side": 1,
+      "message": "fix the javadoc.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "5c58ed1e5e0825ff63bc0495952c19776aed3218",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a66c871_4b38b20c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/AlternateIdCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T11:44:02Z",
+      "side": 1,
+      "message": "also we need to make an update to the RTD file where we are listing all our caches.",
+      "revId": "5c58ed1e5e0825ff63bc0495952c19776aed3218",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4953af0b_1945e7cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T11:44:02Z",
+      "side": 1,
+      "message": "this is change of behaviour.. right ?\npreviously we used to throw cmhandle not found exception when either alternate-id or cmhandleid was not found. now if alternate id is not present then cmhandle id is returned. need to check if this is alright ???",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 91
+      },
+      "revId": "5c58ed1e5e0825ff63bc0495952c19776aed3218",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75dd0cbc_77872beb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AlternateIdCacheDataLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T11:44:02Z",
+      "side": 1,
+      "message": "NB: can have potential race condition but i guess thats ok. worst case we query database twice but the map should have unique entries only.\ncan see in the future if it causes any issues.",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 9
+      },
+      "revId": "5c58ed1e5e0825ff63bc0495952c19776aed3218",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
