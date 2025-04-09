@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ea6c7b8_56a54d27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a66d32_5e044908",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "NB: I thinks this is a string:  \"N/A\" but not a null.",
+      "range": {
+        "startLine": 110,
+        "startChar": 76,
+        "endLine": 110,
+        "endChar": 80
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2446604_d6986b0f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "NB: OpenInfra",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678d681e_27b69a34",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "NB: header is created at line 51, thus this is not needed",
+      "range": {
+        "startLine": 46,
+        "startChar": 41,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d254e220_e04d7557",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "NB: OpenInfra",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8546ce2a_f3615637",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-09T09:35:27Z",
+      "side": 1,
+      "message": "NB: are",
+      "range": {
+        "startLine": 28,
+        "startChar": 28,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
