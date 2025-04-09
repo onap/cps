@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f690054_1243008d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T16:00:26Z",
+      "side": 1,
+      "message": "missing unit test, but I think you were already working on that",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd1f6990_3537f751",
@@ -125,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "723effc1_4b85abc0",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T16:00:26Z",
+      "side": 1,
+      "message": "i don\u0027t think that is needed",
+      "parentUuid": "524def0f_c6875f69",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df9ded8d_4d9c085c",
         "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
         "patchSetId": 2
@@ -188,6 +223,30 @@
         "startChar": 12,
         "endLine": 57,
         "endChar": 20
+      },
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a7f574_2a57d6f3",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T16:00:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3e78d91f_9a7d7fb9",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 37
       },
       "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
