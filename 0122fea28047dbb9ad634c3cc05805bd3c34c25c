@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02120fc5_a78a5d7a",
+        "filename": "cps-rest/docs/openapi/cpsDataV2.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T13:52:34Z",
+      "side": 1,
+      "message": "extra copyright not needed. can update the year in the existing copyright.",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 52
+      },
+      "revId": "0122fea28047dbb9ad634c3cc05805bd3c34c25c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
