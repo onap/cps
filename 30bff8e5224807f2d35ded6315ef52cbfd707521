@@ -18,6 +18,69 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd9af78c_b3e96bd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T12:52:46Z",
+      "side": 1,
+      "message": "as discussed we are Blocked until we sort out the legal issues",
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c69c1125_4ebcac80",
+        "filename": "cps-ncmp-rest/docs/openapi/provmns/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T12:52:46Z",
+      "side": 1,
+      "message": "I wonder about us slapping a copyright on something that is 95% copy of something else in open source. \nI just talked to John Keeney about this and we should do it like this: we should PULL in the original ProvmNS yaml into our project (not copy it) and somehow extend it with the bits we need/want to modify.\nI suggest you do NOT continue this story as is but create a new Jira to handle the copyright issue and investigate HOW this should be down correctly",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 71
+      },
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774374e7_68f0e411",
+        "filename": "cps-ncmp-rest/docs/openapi/provmns/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T12:52:46Z",
+      "side": 1,
+      "message": "I presume all of below is a full copy of what was online",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "30bff8e5224807f2d35ded6315ef52cbfd707521",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68650dd9_8e0876ef",
