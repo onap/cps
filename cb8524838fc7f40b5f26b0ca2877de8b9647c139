@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a540b21_71b5fa8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T09:01:08Z",
+      "side": 1,
+      "message": "Add CM Write Data Job Scenario to K6 Test Suite",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b7df8e_88ef34d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T09:01:08Z",
+      "side": 1,
+      "message": "a few suggestions, nothing blocking",
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de527956_5411ede4",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T09:01:08Z",
+      "side": 1,
+      "message": "NB: unnecessary comment",
+      "range": {
+        "startLine": 26,
+        "startChar": 65,
+        "endLine": 26,
+        "endChar": 83
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260ebf21_b8cd3bd2",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T09:01:08Z",
+      "side": 1,
+      "message": "urlOnHiddenEndPoint",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9ec74b_1d38abed",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-09T09:01:08Z",
+      "side": 1,
+      "message": "NB: Liek Java, clean code should not need comments",
+      "range": {
+        "startLine": 214,
+        "startChar": 54,
+        "endLine": 214,
+        "endChar": 106
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
