@@ -23,6 +23,7 @@ package org.onap.cps.rest.controller;
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
 import io.micrometer.core.annotation.Timed;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +33,7 @@ import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDeltaApi;
+import org.onap.cps.rest.utils.MultipartFileUtil;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,21 +71,26 @@ public class DeltaRestController implements CpsDeltaApi {
     @Override
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
-                                                                      final Object jsonPayload,
+                                                                      final MultipartFile jsonFile,
                                                                       final String xpath,
-                                                                      final MultipartFile multipartFile) {
+                                                                      final MultipartFile yangResourceFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
+        final String targetData;
+        try {
+            targetData = MultipartFileUtil.extractJsonContent(jsonFile, jsonObjectMapper);
+        } catch (final IOException exception) {
+            return new ResponseEntity<>("Failed to read JSON file: " + exception.getMessage(), HttpStatus.BAD_REQUEST);
 
+        }
         final Map<String, String> yangResourceMap;
-        if (multipartFile == null) {
+        if (yangResourceFile == null) {
             yangResourceMap = Collections.emptyMap();
         } else {
-            yangResourceMap = extractYangResourcesMap(multipartFile);
+            yangResourceMap = extractYangResourcesMap(yangResourceFile);
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
+                xpath, yangResourceMap, targetData, fetchDescendantsOption));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
-
 }

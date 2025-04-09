@@ -19,6 +19,8 @@ tags:
   name: cps-admin
 - description: cps Data
   name: cps-data
+- description: CPS Delta
+  name: cps-delta
 paths:
   /v1/dataspaces:
     post:
@@ -2185,7 +2187,7 @@ paths:
           description: Internal Server Error
       summary: Get delta between anchors in the same dataspace
       tags:
-      - cps-data
+      - cps-delta
       x-codegen-request-body-name: xpath
     post:
       description: Get delta between an anchor in a dataspace and JSON payload
@@ -2275,7 +2277,7 @@ paths:
           description: Internal Server Error
       summary: Get delta between an anchor and JSON payload
       tags:
-      - cps-data
+      - cps-delta
   /v1/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes/query:
     get:
       deprecated: true
@@ -3180,21 +3182,16 @@ components:
     NotificationSubscriptionsDataSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
-        json:
-          example:
-            test:bookstore:
-              bookstore-name: Chapters
-              categories:
-              - code: 1
-                name: SciFi
-              - code: 2
-                name: kids
-          type: object
-        file:
+        jsonFile:
+          example: "{$ref=components.yml#/components/schemas/JsonFile}"
+          format: binary
+          type: string
+        yangResourceFile:
+          example: "{$ref=components.yml#/components/schemas/MultipartFile}"
           format: binary
           type: string
       required:
-      - json
+      - jsonFile
       type: object
   securitySchemes:
     basicAuth:
