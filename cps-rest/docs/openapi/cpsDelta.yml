@@ -62,21 +62,18 @@ delta:
           schema:
             type: object
             properties:
-              json:
-                type: object
-                example:
-                  test:bookstore:
-                    bookstore-name: Chapters
-                    categories:
-                      - code: 01
-                        name: SciFi
-                      - code: 02
-                        name: kids
-              file:
-                type: string
-                format: binary
+              targetDataAsJsonFile:
+                   type: string
+                   format: binary
+                   example:
+                     $ref: 'components.yml#/components/schemas/TargetDataAsJsonFile'
+              yangResourceFile:
+                    type: string
+                    format: binary
+                    example:
+                      $ref: 'components.yml#/components/schemas/MultipartFile'
             required:
-              - json
+              - targetDataAsJsonFile
     responses:
       '200':
         description: OK
