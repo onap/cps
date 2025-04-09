@@ -22,13 +22,18 @@ package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micrometer.core.annotation.Timed;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsDeltaService;
+import org.onap.cps.api.exceptions.CpsException;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDeltaApi;
@@ -69,11 +74,11 @@ public class DeltaRestController implements CpsDeltaApi {
     @Override
     public ResponseEntity<Object> getDeltaByDataspaceAnchorAndPayload(final String dataspaceName,
                                                                       final String sourceAnchorName,
-                                                                      final Object jsonPayload,
+                                                                      final MultipartFile jsonPayload,
                                                                       final String xpath,
                                                                       final MultipartFile multipartFile) {
         final FetchDescendantsOption fetchDescendantsOption = FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS;
-
+        final String targetData = extractJsonContent(jsonPayload);
         final Map<String, String> yangResourceMap;
         if (multipartFile == null) {
             yangResourceMap = Collections.emptyMap();
@@ -82,8 +87,21 @@ public class DeltaRestController implements CpsDeltaApi {
         }
         final Collection<DeltaReport> deltaReports = Collections.unmodifiableList(
             cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, sourceAnchorName,
-                xpath, yangResourceMap, jsonPayload.toString(), fetchDescendantsOption));
+                xpath, yangResourceMap, targetData, fetchDescendantsOption));
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
+    }
+
+    private String extractJsonContent(final MultipartFile jsonFile) {
+        if (jsonFile == null || jsonFile.isEmpty()) {
+            throw new DataValidationException("JSON file is required", "Invalid JSON file");
+        }
+        try {
+            final String jsonContent = new String(jsonFile.getBytes(), StandardCharsets.UTF_8);
+            final JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonContent);
+            return jsonNode.toString();
+        } catch (final IOException exception) {
+            throw new CpsException("Error reading JSON file", exception.getMessage());
+        }
     }
 
 }
