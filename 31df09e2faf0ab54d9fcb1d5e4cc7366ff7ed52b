@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8345bf6_c374a796",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-09T14:17:53Z",
+      "side": 1,
+      "message": "NB: also can reduce the long commit message.\ncan include in the summary section.",
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70d03cb5_c2beb73c",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
         "patchSetId": 10
