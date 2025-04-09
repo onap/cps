@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1bc7d9c_259f935d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-09T14:46:48Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd1f6990_3537f751",
@@ -55,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06ca013a_3d792160",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-09T14:46:48Z",
+      "side": 1,
+      "message": "Yes @Gerard, applyHostnameBasedStartupDelay() is executed before the Spring context is initialized because it\u0027s called before SpringApplication.run(...) in our main() method.\n\nSpring Boot will only initialize the Liquibase bean after the application context starts — which means applyHostnameBasedStartupDelay() does run before Liquibase is triggered.\n\nSo the delay logic does execute before Liquibase starts.",
+      "parentUuid": "29a8e272_fb3e4043",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d106bc1c_d9ccd100",
         "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
         "patchSetId": 2
@@ -72,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "524def0f_c6875f69",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-09T14:46:48Z",
+      "side": 1,
+      "message": "@Gerard Nope, it\u0027s already covered implicitly via the try-catch block in our method:\n\n\ncatch (final Exception e) {\n   log.warn(\"Startup delay unable to apply delay. Proceeding without delay. {}\", e.getMessage());\n}\n\nBut to be more specific and clearer, we can catch UnknownHostException explicitly, log it separately, and fall back if needed. what do you think?",
+      "parentUuid": "d106bc1c_d9ccd100",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df9ded8d_4d9c085c",
         "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
         "patchSetId": 2
@@ -83,6 +136,30 @@
       "writtenOn": "2025-04-09T09:06:19Z",
       "side": 1,
       "message": "why the square brackets?",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e78d91f_9a7d7fb9",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-09T14:46:48Z",
+      "side": 1,
+      "message": "Not needed. Removed",
+      "parentUuid": "df9ded8d_4d9c085c",
       "range": {
         "startLine": 57,
         "startChar": 22,
