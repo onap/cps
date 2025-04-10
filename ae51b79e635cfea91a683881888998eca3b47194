@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc013c29_b315ea4e",
+        "filename": "cps-rest/docs/openapi/cpsDataV3.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:35:26Z",
+      "side": 1,
+      "message": "x-codegen-request-body-name: xpath it has been used in all yaml files,\nBeacuse Swagger Codegen make code generator to name the request body xpath(Open Api)",
+      "parentUuid": "b79ecefa_c72d49b0",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c804486_f677a69b",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-04-10T08:33:08Z",
       "side": 1,
       "message": "NB: v3 ?",
+      "range": {
+        "startLine": 311,
+        "startChar": 15,
+        "endLine": 311,
+        "endChar": 18
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4a68a1_a4d67bc4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c804486_f677a69b",
       "range": {
         "startLine": 311,
         "startChar": 15,
@@ -81,6 +129,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e917129b_81a65952",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:35:26Z",
+      "side": 1,
+      "message": "tried to do that but it gives checkstyle error so had to positioned here",
+      "parentUuid": "309b0d84_ebedd78a",
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3986f6bd_c680dc19",
@@ -94,6 +160,30 @@
       "writtenOn": "2025-04-10T08:33:08Z",
       "side": 1,
       "message": "NB: not needed.",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f8f76f_139951a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3986f6bd_c680dc19",
       "range": {
         "startLine": 93,
         "startChar": 12,
