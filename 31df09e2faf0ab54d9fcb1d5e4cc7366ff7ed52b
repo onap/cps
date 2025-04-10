@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c8e818_f2089437",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "e8345bf6_c374a796",
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9e32af9_7f49815f",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-04-09T15:08:06Z",
       "side": 1,
       "message": "NB: do we also need to check the extension of the file ( *.json ) ?? Or we just rely on the user that it will provide json content in any file?\n\nfor now any file content is accepted I guess.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf00fc3_2055112d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "As of now it will be fine again we will bring up for support of XML",
+      "parentUuid": "e9e32af9_7f49815f",
       "range": {
         "startLine": 94,
         "startChar": 8,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b830a09_4fa501e6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "06e1995e_c132861a",
+      "range": {
+        "startLine": 102,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 77
+      },
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70d03cb5_c2beb73c",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-04-09T13:52:34Z",
       "side": 1,
       "message": "NB: but here the test has a multipart file. right ??",
+      "range": {
+        "startLine": 127,
+        "startChar": 51,
+        "endLine": 127,
+        "endChar": 73
+      },
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c439b00_1ee5a294",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "70d03cb5_c2beb73c",
       "range": {
         "startLine": 127,
         "startChar": 51,
@@ -110,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b704ca3_174330bc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "2634822f_a9e4b837",
+      "range": {
+        "startLine": 157,
+        "startChar": 42,
+        "endLine": 157,
+        "endChar": 43
+      },
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f2e55ae_495a530e",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-04-09T15:08:06Z",
       "side": 1,
       "message": "this might change if you incorporate my other comment.",
+      "range": {
+        "startLine": 165,
+        "startChar": 58,
+        "endLine": 165,
+        "endChar": 74
+      },
+      "revId": "31df09e2faf0ab54d9fcb1d5e4cc7366ff7ed52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41e1a59_0a9af145",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-10T12:21:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f2e55ae_495a530e",
       "range": {
         "startLine": 165,
         "startChar": 58,
