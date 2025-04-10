@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11d5e357_90a6c7c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T16:22:09Z",
+      "side": 1,
+      "message": "NB: use Groovy \nmockCmHandleIdPerAlternateId.getAll(_) \u003e\u003e [fdnInCache1:\u0027ch-1\u0027,fdnInCache2:\u0027ch-2\u0027]",
+      "range": {
+        "startLine": 38,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "aa6eba93519188e1d17ba48df6de101d3f2b5207",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
