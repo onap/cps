@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee8dc58_6301ffde",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "Resolved the Junit and reverted to 68 %",
+      "parentUuid": "c63fe95a_6122d925",
+      "range": {
+        "startLine": 40,
+        "startChar": 26,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "4ff356cbd9c21bf35095b3876aef8d5d80d5a277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07e33312_59398233",
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0f7ce6f3_fb3c4c62",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07e33312_59398233",
+      "range": {
+        "startLine": 42,
+        "startChar": 18,
+        "endLine": 42,
+        "endChar": 104
+      },
+      "revId": "4ff356cbd9c21bf35095b3876aef8d5d80d5a277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "15a800e3_d381e227",
         "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
         "patchSetId": 3
@@ -60,6 +108,30 @@
       "writtenOn": "2025-04-10T07:15:42Z",
       "side": 1,
       "message": "I like the Icon 😊",
+      "range": {
+        "startLine": 44,
+        "startChar": 18,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "4ff356cbd9c21bf35095b3876aef8d5d80d5a277",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "451d1fe6_718a0941",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "😊",
+      "parentUuid": "15a800e3_d381e227",
       "range": {
         "startLine": 44,
         "startChar": 18,

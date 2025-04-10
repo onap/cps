@@ -105,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4fcfb1_719c340a",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06ca013a_3d792160",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d106bc1c_d9ccd100",
@@ -154,6 +172,24 @@
       "side": 1,
       "message": "i don\u0027t think that is needed",
       "parentUuid": "524def0f_c6875f69",
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fbf51da_2c16a2f5",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "723effc1_4b85abc0",
       "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -247,6 +283,30 @@
         "startChar": 22,
         "endLine": 57,
         "endChar": 37
+      },
+      "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4299ec85_197cb0f0",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T10:39:54Z",
+      "side": 1,
+      "message": "Its available by default",
+      "parentUuid": "4e511a0b_ed5fa649",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 20
       },
       "revId": "e6bde2b59cf24639c3bea71f388320144837bdaf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
