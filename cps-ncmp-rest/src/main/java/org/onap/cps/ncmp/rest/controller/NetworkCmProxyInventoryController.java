@@ -61,7 +61,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * @return                        list of cm handle IDs
      */
     @Override
-    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-NCMP-I-01")
+    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-NCMP-I-01",
+        description = "Search for cm handle ids within CPS-NCMP-I-01 interface")
     public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
                                                           final Boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
