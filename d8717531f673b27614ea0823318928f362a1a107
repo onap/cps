@@ -16,6 +16,23 @@
       "message": "Happy with that",
       "revId": "d8717531f673b27614ea0823318928f362a1a107",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c628d8f_05686a53",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T10:57:28Z",
+      "side": 1,
+      "message": "NB: My last comment regarding logging the time at which the instance came up is not there ( so that we can clearly verify the time difference from the log itself )\n\nAlso I would prefer we have a flag to enable or disable this feature.\nFor now its just we have encountered this problem in our environment and our stakeholders never reported any problem. We shouldnt be impacting anything in their deployment. Also we dont know how this change will behave in their environment.\n\nSo we can have have a flag and exposed as env variable. defaults to false.\nwe can enable in our docker compose deployment for our envs.\nothers can choose to ignore this change.\n\nwhat do you guys think ?",
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
