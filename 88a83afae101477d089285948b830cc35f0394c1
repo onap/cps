@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e298f9b3_34cdb94a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCreatorHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e09c727_b0107a28",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "402376f3_828db635",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb215b55_bbbf04f6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "402376f3_828db635",
+      "range": {
+        "startLine": 99,
+        "startChar": 40,
+        "endLine": 99,
+        "endChar": 64
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6a66d32_5e044908",
@@ -94,6 +142,30 @@
       "writtenOn": "2025-04-09T09:35:27Z",
       "side": 1,
       "message": "NB: I thinks this is a string:  \"N/A\" but not a null.",
+      "range": {
+        "startLine": 110,
+        "startChar": 76,
+        "endLine": 110,
+        "endChar": 80
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6394ace0_8690c720",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "yes, thats what it means. IF value passed is null - it returns default value which is N/A",
+      "parentUuid": "e6a66d32_5e044908",
       "range": {
         "startLine": 110,
         "startChar": 76,
@@ -129,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d56578bb_8f6a67e9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "most patches does this and it seems to be the common now, do we need to separate them?",
+      "parentUuid": "fe99844d_0eb4af1b",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85660293_2bf62328",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelper.java",
         "patchSetId": 1
@@ -140,6 +236,30 @@
       "writtenOn": "2025-04-09T13:00:20Z",
       "side": 1,
       "message": "NB: update the javadoc accordingly now.",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 20
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f1e0d64_1c538473",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85660293_2bf62328",
       "range": {
         "startLine": 48,
         "startChar": 3,
@@ -196,6 +316,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d123ba42_886f8605",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "678d681e_27b69a34",
+      "range": {
+        "startLine": 46,
+        "startChar": 41,
+        "endLine": 46,
+        "endChar": 54
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d254e220_e04d7557",
@@ -219,6 +363,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62ee88c_46acd436",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d254e220_e04d7557",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8546ce2a_f3615637",
@@ -232,6 +400,30 @@
       "writtenOn": "2025-04-09T09:35:27Z",
       "side": 1,
       "message": "NB: are",
+      "range": {
+        "startLine": 28,
+        "startChar": 28,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15afce58_d28cd766",
+        "filename": "docs/cm-handle-lcm-events.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-10T10:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8546ce2a_f3615637",
       "range": {
         "startLine": 28,
         "startChar": 28,
