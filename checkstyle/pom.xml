@@ -2,7 +2,7 @@
 <!--
   ============LICENSE_START=======================================================
   Copyright (C) 2020 Pantheon.tech
-  Modifications Copyright (C) 2023 Nordix Foundation
+  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -53,13 +53,6 @@
         </profile>
     </profiles>
 
-    <properties>
-        <onap.nexus.url>https://nexus.onap.org</onap.nexus.url>
-        <releaseNexusPath>/content/repositories/releases/</releaseNexusPath>
-        <sonar.skip>true</sonar.skip>
-        <snapshotNexusPath>/content/repositories/snapshots/</snapshotNexusPath>
-    </properties>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -97,21 +90,25 @@
                             </successCodes>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>scrape-metrics</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${script.executor}</executable>
+                            <workingDirectory>../checkstyle/src/main/</workingDirectory>
+                            <arguments>
+                                <argument>ScrapeMetrics.py</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>ecomp-releases</id>
-            <name>ECOMP Release Repository</name>
-            <url>${onap.nexus.url}${releaseNexusPath}</url>
-        </repository>
-        <snapshotRepository>
-            <id>ecomp-snapshots</id>
-            <name>ECOMP Snapshot Repository</name>
-            <url>${onap.nexus.url}${snapshotNexusPath}</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>

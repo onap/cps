@@ -257,7 +257,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      */
     @Override
     @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 12
-    @CountCmHandleSearchExecution(methodName = "searchCmHandles", interfaceName = "CPS-E-05")
+    @CountCmHandleSearchExecution(methodName = "searchCmHandles", interfaceName = "CPS-E-05",
+        description = "Search for cm handle ids within CPS-E-05 interface")
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
@@ -277,7 +278,8 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return                          collection of cm handle ids
      */
     @Override
-    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-E-05")
+    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-E-05",
+            description = "Search for cm handle ids within CPS-E-05 interface")
     public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
                                                           final Boolean outputAlternateId) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
