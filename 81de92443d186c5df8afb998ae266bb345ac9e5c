@@ -22,6 +22,30 @@
       },
       "revId": "81de92443d186c5df8afb998ae266bb345ac9e5c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51017353_fd04b1ab",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:14:50Z",
+      "side": 1,
+      "message": "Already chaned it to InstanceStartupDelayManager",
+      "parentUuid": "62e84f8d_ecc177fc",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "81de92443d186c5df8afb998ae266bb345ac9e5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
