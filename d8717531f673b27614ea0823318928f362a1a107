@@ -75,6 +75,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d5d738b_a035520f",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Toine replied: only read teh comment now: unfortunately you are wriong: ou r stakehodlers HAVE reported on this issue, see the linked Jira ticket from Csabe EDer: https://lf-onap.atlassian.net/browse/CPS-2507",
+      "parentUuid": "0c628d8f_05686a53",
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26255466_9bc3e140",
@@ -88,6 +106,30 @@
       "writtenOn": "2025-04-10T11:34:23Z",
       "side": 1,
       "message": "No need to have this in the className and it doesn\u0027t make sense either you are not \u0027delaying the hostname\u0027...\nYour method name included the hostname concept and is very good!",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 21
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ed727a_0af11a96",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "26255466_9bc3e140",
       "range": {
         "startLine": 28,
         "startChar": 13,
@@ -121,6 +163,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d300d0a_2226ecdc",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8fce4f64_1b580e6c",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ba3c764_15a4a4cb",
@@ -134,6 +200,30 @@
       "writtenOn": "2025-04-10T11:34:23Z",
       "side": 1,
       "message": "NB Main Slogan should use Capital and fill stop.\nDelay based on digit at end of hostname.",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0d3cdb2_639a6f46",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ba3c764_15a4a4cb",
       "range": {
         "startLine": 30,
         "startChar": 9,
@@ -167,6 +257,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3b0dc6_2f7771de",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d89fa35_d9e6cd10",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 46
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1c228f7_d7a6dc9d",
@@ -180,6 +294,30 @@
       "writtenOn": "2025-04-10T11:34:23Z",
       "side": 1,
       "message": "use english: \n\u0027the system will sleep for 9 seconds\u0027\n(similar for other test)",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8af231d3_a85b340c",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1c228f7_d7a6dc9d",
       "range": {
         "startLine": 35,
         "startChar": 15,
@@ -213,6 +351,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c635ff30_a577aa4e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0940773_b12a317c",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 53
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d272a438_2546c9bd",
@@ -226,6 +388,30 @@
       "writtenOn": "2025-04-10T11:34:23Z",
       "side": 1,
       "message": "Startup delay when hostname cannot be resolved.",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 52
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d7eb88b_ba96fe5c",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d272a438_2546c9bd",
       "range": {
         "startLine": 48,
         "startChar": 9,
@@ -259,6 +445,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2429e32c_9ccba799",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2beabbda_81530942",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 31
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ce68f8c_748b835f",
@@ -272,6 +482,30 @@
       "writtenOn": "2025-04-10T11:34:23Z",
       "side": 1,
       "message": "to achieve 100% coverage adda test without mocking!\n\n    def \u0027Startup delay with real hostname.\u0027() {\n        when: \u0027start up delay is called\u0027\n            spiedHostnameStartupDelayManager.applyHostnameBasedStartupDelay()\n        then: \u0027the system will sleep some time\u0027\n            1 * spiedHostnameStartupDelayManager.doSleep(_ as Long)\n    }",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f44e9b_49fd02ae",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T13:06:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4ce68f8c_748b835f",
       "range": {
         "startLine": 56,
         "startChar": 0,
