@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7063d20_5f64881e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "it is really good (testware) actually\nI am just nit-pickign on some descriptions.\nAlso I am always eager to get 100% coverage, you were missing one simple test to achieve that...",
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff00d625_f04321be",
+        "filename": "cps-application/src/main/java/org/onap/cps/Application.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "yes for testing you will need to extract it out into a separate class!",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 103
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c628d8f_05686a53",
@@ -31,6 +71,213 @@
       "writtenOn": "2025-04-10T10:57:28Z",
       "side": 1,
       "message": "NB: My last comment regarding logging the time at which the instance came up is not there ( so that we can clearly verify the time difference from the log itself )\n\nAlso I would prefer we have a flag to enable or disable this feature.\nFor now its just we have encountered this problem in our environment and our stakeholders never reported any problem. We shouldnt be impacting anything in their deployment. Also we dont know how this change will behave in their environment.\n\nSo we can have have a flag and exposed as env variable. defaults to false.\nwe can enable in our docker compose deployment for our envs.\nothers can choose to ignore this change.\n\nwhat do you guys think ?",
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26255466_9bc3e140",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "No need to have this in the className and it doesn\u0027t make sense either you are not \u0027delaying the hostname\u0027...\nYour method name included the hostname concept and is very good!",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 21
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fce4f64_1b580e6c",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "objectUnderTest",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba3c764_15a4a4cb",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "NB Main Slogan should use Capital and fill stop.\nDelay based on digit at end of hostname.",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d89fa35_d9e6cd10",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "use english, not method names\n\u0027startup delay is invoked\u0027",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 46
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c228f7_d7a6dc9d",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "use english: \n\u0027the system will sleep for 9 seconds\u0027\n(similar for other test)",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0940773_b12a317c",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "Delay for hostname without digit at the end.",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 53
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d272a438_2546c9bd",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "Startup delay when hostname cannot be resolved.",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 52
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2beabbda_81530942",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "replace with\n\nthen: \u0027system will not sleep\u0027\n 0 * spiedHostnameStartupDelayManager.doSleep(_)",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 31
+      },
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce68f8c_748b835f",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/HostnameStartupDelayManagerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T11:34:23Z",
+      "side": 1,
+      "message": "to achieve 100% coverage adda test without mocking!\n\n    def \u0027Startup delay with real hostname.\u0027() {\n        when: \u0027start up delay is called\u0027\n            spiedHostnameStartupDelayManager.applyHostnameBasedStartupDelay()\n        then: \u0027the system will sleep some time\u0027\n            1 * spiedHostnameStartupDelayManager.doSleep(_ as Long)\n    }",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
       "revId": "d8717531f673b27614ea0823318928f362a1a107",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
