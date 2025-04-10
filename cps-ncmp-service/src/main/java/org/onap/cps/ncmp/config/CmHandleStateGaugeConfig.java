@@ -44,6 +44,8 @@ public class CmHandleStateGaugeConfig {
      * @return cm handle state gauge
      */
     @Bean
+    @TimedCustom(name = "advisedCmHandlesCount",
+        description = "Current number of cm handles in advised state")
     public Gauge advisedCmHandles(final MeterRegistry meterRegistry) {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("advisedCmHandlesCount"))
@@ -59,6 +61,8 @@ public class CmHandleStateGaugeConfig {
      * @return cm handle state gauge
      */
     @Bean
+    @TimedCustom(name = "readyCmHandlesCount",
+        description = "Current number of cm handles in ready state")
     public Gauge readyCmHandles(final MeterRegistry meterRegistry) {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("readyCmHandlesCount"))
@@ -74,6 +78,8 @@ public class CmHandleStateGaugeConfig {
      * @return cm handle state gauge
      */
     @Bean
+    @TimedCustom(name = "lockedCmHandlesCount",
+        description = "Current number of cm handles in locked state")
     public Gauge lockedCmHandles(final MeterRegistry meterRegistry) {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("lockedCmHandlesCount"))
@@ -89,6 +95,8 @@ public class CmHandleStateGaugeConfig {
      * @return cm handle state gauge
      */
     @Bean
+    @TimedCustom(name = "deletingCmHandlesCount",
+        description = "Current number of cm handles in deleting state")
     public Gauge deletingCmHandles(final MeterRegistry meterRegistry) {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("deletingCmHandlesCount"))
@@ -104,6 +112,8 @@ public class CmHandleStateGaugeConfig {
      * @return cm handle state gauge
      */
     @Bean
+    @TimedCustom(name = "deletedCmHandlesCount",
+        description = "Number of cm handles that have been deleted since the application started")
     public Gauge deletedCmHandles(final MeterRegistry meterRegistry) {
         return Gauge.builder(CM_HANDLE_STATE_GAUGE, cmHandlesByState,
                 value -> cmHandlesByState.get("deletedCmHandlesCount"))
