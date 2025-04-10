@@ -46,6 +46,30 @@
       },
       "revId": "323ba907812239eee5b0e62fde711e24d3749aaa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9e7f87_26e13947",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-10T16:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51fb1437_077b5831",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "323ba907812239eee5b0e62fde711e24d3749aaa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
