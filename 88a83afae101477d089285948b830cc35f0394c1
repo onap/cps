@@ -223,6 +223,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd3924d1_7dd15bc2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:11:08Z",
+      "side": 1,
+      "message": "its fine. i was really only joking",
+      "parentUuid": "d56578bb_8f6a67e9",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 22
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85660293_2bf62328",
@@ -307,6 +331,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a2446604_d6986b0f",
+      "range": {
+        "startLine": 3,
+        "startChar": 27,
+        "endLine": 3,
+        "endChar": 44
+      },
+      "revId": "88a83afae101477d089285948b830cc35f0394c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c1263b_d11713fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsProducerHelperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:11:08Z",
+      "side": 1,
+      "message": "NB: not really done?",
+      "parentUuid": "e6059d37_5307eeab",
       "range": {
         "startLine": 3,
         "startChar": 27,
