@@ -93,6 +93,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "125d356f_7dc8caed",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/HostnameStartupDelayManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:07:45Z",
+      "side": 1,
+      "message": "our stakeholder DID report the issue, see https://lf-onap.atlassian.net/browse/CPS-2507 (as referred to from the JIra that proposed this work)",
+      "parentUuid": "0c628d8f_05686a53",
+      "revId": "d8717531f673b27614ea0823318928f362a1a107",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26255466_9bc3e140",
