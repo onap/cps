@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0bdae2_90fff861",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T08:33:08Z",
+      "side": 1,
+      "message": "not so major comments but to be resolved.\nalso in the meantime I will forward the wiki page to the team to have a look.",
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79ecefa_c72d49b0",
+        "filename": "cps-rest/docs/openapi/cpsDataV3.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T08:33:08Z",
+      "side": 1,
+      "message": "NB: why is this needed??",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c804486_f677a69b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T08:33:08Z",
+      "side": 1,
+      "message": "NB: v3 ?",
+      "range": {
+        "startLine": 311,
+        "startChar": 15,
+        "endLine": 311,
+        "endChar": 18
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "309b0d84_ebedd78a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T08:33:08Z",
+      "side": 1,
+      "message": "NB: maybe position this method after the toDataMap so that v1 and v2 and together and improve readability.",
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3986f6bd_c680dc19",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsFacadeImplSpec.groovy",
+        "patchSetId": 21
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-10T08:33:08Z",
+      "side": 1,
+      "message": "NB: not needed.",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "ae51b79e635cfea91a683881888998eca3b47194",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
