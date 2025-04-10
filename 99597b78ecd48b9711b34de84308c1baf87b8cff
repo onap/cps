@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1346cd98_1e205363",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:17:50Z",
+      "side": 1,
+      "message": "not last version and some question about teh testware.",
+      "revId": "99597b78ecd48b9711b34de84308c1baf87b8cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d367aee1_fd5ee985",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:17:50Z",
+      "side": 1,
+      "message": "I see now this is not the latest we just worked on together. I\u0027ll await the next patch...",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 52
+      },
+      "revId": "99597b78ecd48b9711b34de84308c1baf87b8cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2b4a8d_57beaf48",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AlternateIdCacheDataLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:17:50Z",
+      "side": 1,
+      "message": "no need to log this",
+      "range": {
+        "startLine": 53,
+        "startChar": 10,
+        "endLine": 55,
+        "endChar": 9
+      },
+      "revId": "99597b78ecd48b9711b34de84308c1baf87b8cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4112be4b_750e23ee",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/AlternateIdCheckerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:17:50Z",
+      "side": 1,
+      "message": "you got rif of the already in DB part, is it simply not needed anymore?!\n(I always get worried when testware significantly changes when we are just refactoring or optimizing...)",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 98
+      },
+      "revId": "99597b78ecd48b9711b34de84308c1baf87b8cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "444e6bc8_718c52a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-10T13:17:50Z",
+      "side": 1,
+      "message": "can you add a test to handle the new scenario we discussed: Not found?",
+      "range": {
+        "startLine": 69,
+        "startChar": 91,
+        "endLine": 69,
+        "endChar": 113
+      },
+      "revId": "99597b78ecd48b9711b34de84308c1baf87b8cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
