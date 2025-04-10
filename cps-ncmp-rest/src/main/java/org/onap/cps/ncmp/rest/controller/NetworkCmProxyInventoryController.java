@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2022 Bell Canada
- *  Modifications Copyright (C) 2022-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,7 +61,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * @return                        list of cm handle IDs
      */
     @Override
-    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-NCMP-I-01")
+    @CountCmHandleSearchExecution(methodName = "searchCmHandleIds", interfaceName = "CPS-NCMP-I-01",
+        description = "Search for cm handle ids within CPS-NCMP-I-01 interface")
     public ResponseEntity<List<String>> searchCmHandleIds(final CmHandleQueryParameters cmHandleQueryParameters,
                                                           final Boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = ncmpRestInputMapper
