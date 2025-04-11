@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2023-2025 Nordix Foundation
+.. Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _cmHandleLcmEvents:
@@ -15,7 +15,7 @@ CM Handle Lifecycle Management (LCM) Events
 Introduction
 ============
 
-LCM events for CM Handles are published when a CM Handle is created, deleted or another change in the CM Handle state occurs.
+LCM events for CM Handles are sent when a CM Handle is created, deleted or another change in the CM Handle state occurs.
 
   **3 possible event types:**
 
@@ -25,7 +25,7 @@ LCM events for CM Handles are published when a CM Handle is created, deleted or 
 
 CM Handle  LCM Event Schema
 ---------------------------
-The current published LCM event is based on the following schema:
+The current sent LCM events are based on the following schema:
 
 :download:`Life cycle management event header <schemas/lcm/lcm-event-header-v1.json>`
 :download:`Life cycle management event schema <schemas/lcm/lcm-event-schema-v1.json>`

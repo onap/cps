@@ -26,7 +26,7 @@ import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
 /**
- * The implementation of it should handle the persisting of composite state and delegate the request to publish the
+ * The implementation of it should handle the persisting of composite state and delegate the request to send the
  * corresponding lcm event.
  */
 public interface LcmEventsCmHandleStateHandler {
