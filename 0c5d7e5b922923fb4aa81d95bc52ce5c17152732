@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1ae797_7482b991",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-14T15:41:22Z",
+      "side": 1,
+      "message": "should parellism not be handled by \u0027vus\u0027 parameter in the endurance .json file?",
+      "range": {
+        "startLine": 54,
+        "startChar": 37,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "0c5d7e5b922923fb4aa81d95bc52ce5c17152732",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
