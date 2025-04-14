@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f269ae_bc957110",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-14T09:50:06Z",
+      "side": 1,
+      "message": "need to have a discussion around the wiki and then I can open the patch for review with the team.",
+      "revId": "ea155079af28d3b89948f136103e6cbde2263cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
