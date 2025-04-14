@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2024 Nordix Foundation
+#  Copyright (C) 2021-2024 OpenInfra Foundation Europe. All rights reserved.
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
 #  ================================================================================
@@ -86,6 +86,8 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/BadRequest'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      409:
+        $ref: 'components.yaml#/components/responses/Conflict'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
@@ -125,6 +127,8 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/BadRequest'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      409:
+        $ref: 'components.yaml#/components/responses/Conflict'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
@@ -158,6 +162,8 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/BadRequest'
       403:
         $ref: 'components.yaml#/components/responses/Forbidden'
+      409:
+        $ref: 'components.yaml#/components/responses/Conflict'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
@@ -184,6 +190,8 @@ resourceDataForCmHandle:
         $ref: 'components.yaml#/components/responses/Forbidden'
       404:
         $ref: 'components.yaml#/components/responses/NotFound'
+      409:
+        $ref: 'components.yaml#/components/responses/Conflict'
       500:
         $ref: 'components.yaml#/components/responses/InternalServerError'
       502:
