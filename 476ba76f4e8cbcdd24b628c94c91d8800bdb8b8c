@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3fffe28_df131350",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-15T09:01:22Z",
+      "side": 1,
+      "message": "yes. would agree on this.",
+      "parentUuid": "dabf525a_18fa8aae",
+      "range": {
+        "startLine": 93,
+        "startChar": 1,
+        "endLine": 105,
+        "endChar": 5
+      },
+      "revId": "476ba76f4e8cbcdd24b628c94c91d8800bdb8b8c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff700b0a_c5cc3917",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
         "patchSetId": 11
