@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3d80d0_0cc8e1d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-15T07:37:59Z",
+      "side": 1,
+      "message": "Legacy issue, does this allow overriding an OLD non-blank alternate-id?!\n(i\u0027ll check it in the current master code too) but any fix can be outside the scope of this patch",
+      "range": {
+        "startLine": 131,
+        "startChar": 17,
+        "endLine": 131,
+        "endChar": 34
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d188642_a6b25734",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-15T07:37:59Z",
+      "side": 1,
+      "message": "NB: else not needed here",
+      "range": {
+        "startLine": 78,
+        "startChar": 14,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d94aa1d_52e78542",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AlternateIdCacheDataLoaderSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-15T07:37:59Z",
+      "side": 1,
+      "message": "NB: I think because you are NOT using any IMap specific method in this test a normal map will suffice here, using groovy like so: cmHandleIdPerAlternateId \u003d [:]",
+      "range": {
+        "startLine": 34,
+        "startChar": 39,
+        "endLine": 34,
+        "endChar": 49
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
