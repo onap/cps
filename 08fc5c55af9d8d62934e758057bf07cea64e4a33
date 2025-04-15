@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef1dca3_43c1390c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-15T07:50:30Z",
+      "side": 1,
+      "message": "We can keep it as it is for now, we will have to rename it once XML support in delta is being worked on",
+      "parentUuid": "a0f58e40_8f87a7d6",
+      "range": {
+        "startLine": 203,
+        "startChar": 70,
+        "endLine": 203,
+        "endChar": 98
+      },
+      "revId": "08fc5c55af9d8d62934e758057bf07cea64e4a33",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e420ce7_f1e9f989",
