@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e46990b_3fa3abef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T09:31:16Z",
+      "side": 1,
+      "message": "You can disregard previous comment. I realize there is a bug around the legacy batch operation, but it was not caused by this commit. I will create a separate Jir aticket for this.",
+      "parentUuid": "a4d1b194_bbeb21ca",
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d94aa1d_52e78542",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AlternateIdCacheDataLoaderSpec.groovy",
         "patchSetId": 9
