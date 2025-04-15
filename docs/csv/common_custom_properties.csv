@@ -1,0 +1,7 @@
+﻿Property,Description,Default Value
+notification.async.executor.core-pool-size,"Core pool size in asynchronous execution of notification.",2
+notification.async.executor.max-pool-size,"Max pool size in asynchronous execution of notification.",10
+notification.async.executor.queue-capacity,"Queue Capacity in asynchronous execution of notification.",500
+notification.async.executor.wait-for-tasks-to-complete-on-shutdown,"If the executor should wait for the tasks to be completed on shutdown",true
+notification.async.executor.thread-name-prefix,Prefix to be added to the thread name in asynchronous execution of notifications.",Async-
+notification.async.executor.time-out-value-in-ms,"Maximum time allowed by the thread pool executor for execution of one of the threads in milliseconds.",60000
