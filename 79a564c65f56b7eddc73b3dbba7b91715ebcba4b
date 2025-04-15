@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec17513_efa09648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-15T11:01:35Z",
+      "side": 1,
+      "message": "Thanks for your review Anjella, it is valuable. \n\nHi Team, \n\nAnjella and I decided to do these modifications:\n\n1- Renaming @CmHandleStateGaugeMetadata to @NcmpGauge\n2- Add a description field as the third to @CountCmHandleSearchExecution\n3- The output file format would be:\n   @AnnotationScraped: Name\u003d\"\", Description\u003d\"\"",
+      "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d450a9e2_737337f6",
@@ -58,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f97e547_50b9647a",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-15T11:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d450a9e2_737337f6",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d9e08a3_b620df94",
@@ -71,6 +112,30 @@
       "writtenOn": "2025-04-15T10:00:18Z",
       "side": 1,
       "message": "just a thought, can we possibly have the custom gauge annotation start with @Gauge ? so in the future it can follow the same and not much changes is needed for these scripts if it scrapes all that starts @Count, @timed / @Gauge?\n\nlet me know your thought:)",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5073f33b_bcb896e6",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-15T11:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5d9e08a3_b620df94",
       "range": {
         "startLine": 77,
         "startChar": 13,
