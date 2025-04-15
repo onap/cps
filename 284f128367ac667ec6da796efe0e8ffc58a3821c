@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21665e7a_a3072f54",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T17:47:27Z",
+      "side": 1,
+      "message": "Yes, \"exec\" represents the function to execute, so we could execute \"writeDataJobLargeScenario\", and \"writeDataJobSmallScenario\" in the other case.",
+      "parentUuid": "d0cc2a0a_9e447354",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 35
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac415ca2_69ea5199",
         "filename": "k6-tests/ncmp/config/endurance.json",
         "patchSetId": 3
@@ -105,6 +129,29 @@
         "startChar": 15,
         "endLine": 105,
         "endChar": 35
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329deeb3_e0c5dbc9",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T17:47:27Z",
+      "side": 1,
+      "message": "Might be cleaner to just have two different scenarios for small and large, like we do for CM handle searches. Additionally, error reporting is not needed, we suppress k6 error reporting anyway to avoid huge gigabytes of logs. Simpler solution could be:\n\n    export function writeDataJobSmallScenario() {\n        const response \u003d executeWriteDataJob(100);\n        if (check(response, { \u0027small writeDataJob response status is 200\u0027: (r) \u003d\u003e r.status \u003d\u003d\u003d 200 })\n         \u0026\u0026 check(response, { \u0027small writeDataJob received expected responses\u0027: (r) \u003d\u003e r.json(\u0027#\u0027) \u003d\u003d\u003d 100 })) {\n            writeSmallDataJobDurationTrend.add(response.timings.duration);\n        }\n    }\n\n    export function writeDataJobLargeScenario() {\n        const response \u003d executeWriteDataJob(10000);\n        if (check(response, { \u0027large writeDataJob response status is 200\u0027: (r) \u003d\u003e r.status \u003d\u003d\u003d 200 })\n         \u0026\u0026 check(response, { \u0027large writeDataJob received expected responses\u0027: (r) \u003d\u003e r.json(\u0027#\u0027) \u003d\u003d\u003d 10000 })) {\n            writeLargeDataJobDurationTrend.add(response.timings.duration);\n        }\n    }\n\nOf course, common code could be extracted, but I think this is fairly clean given it\u0027s a simple performance test.",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 1
       },
       "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"

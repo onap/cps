@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "587fc485_7e58ee95",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T17:47:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6e627a2_80141927",
+      "range": {
+        "startLine": 30,
+        "startChar": 7,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "0c5d7e5b922923fb4aa81d95bc52ce5c17152732",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa1ae797_7482b991",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Yes! There should be NO async code. await/promise should not be used in k6!\nThis whole method should only do a single write request:\n\n    export function executeParallelWriteOperation() {\n        const dataJobId \u003d generateDataJobId();\n        const dataJobRequest \u003d populateDataJobWriteRequests(numberOfWriteOperations);\n        return executeWriteDataJobRequest(dataJobId, dataJobRequest);\n    }\n\nIf using constant-rate-executor in the json config, just increase the rate to 10 instead of 1.",
       "parentUuid": "aa1ae797_7482b991",
+      "range": {
+        "startLine": 54,
+        "startChar": 37,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "0c5d7e5b922923fb4aa81d95bc52ce5c17152732",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82db813d_796ce2f7",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T17:47:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f133ff4_7aaaa55c",
       "range": {
         "startLine": 54,
         "startChar": 37,
