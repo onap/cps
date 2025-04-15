@@ -49,6 +49,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4d1b194_bbeb21ca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-15T09:15:54Z",
+      "side": 1,
+      "message": "See the code in org.onap.cps.ncmp.impl.data.DmiDataOperations#getDistinctCmHandleIds which is used in legacy batch data operation:\n\n    private Set\u003cString\u003e getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {\n        return dataOperationRequest.getDataOperationDefinitions().stream()\n                .flatMap(it -\u003e it.getCmHandleReferences().stream())\n                .map(alternateIdMatcher::getCmHandleId)\n                .collect(Collectors.toSet());\n    }\n\nIt needs to be updated to ignore the CmHandleNotFoundException.\nEven better, it could use batch lookups with IMap.getAll(keys):\n\n    private Set\u003cString\u003e getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {\n        final Set\u003cString\u003e cmHandleReferences \u003d dataOperationRequest.getDataOperationDefinitions().stream()\n                .flatMap(it -\u003e it.getCmHandleReferences().stream())\n                .collect(Collectors.toSet());\n        return cmHandleIdPerAlternateId.getAll(cmHandleReferences).values();\n    }",
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d94aa1d_52e78542",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AlternateIdCacheDataLoaderSpec.groovy",
         "patchSetId": 9
