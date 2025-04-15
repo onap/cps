@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2025 Nordix Foundation
+.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 .. Modifications Copyright (C) 2021 Bell Canada.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
@@ -139,7 +139,7 @@ Each cps component can be restarted independently by issuing the following comma
 Credentials Retrieval
 =====================
 
-Application and database credentials are kept in Kubernetes secrets. They are defined as external secrets in the
+When using OOM application and database credentials are kept in Kubernetes secrets. They are defined as external secrets in the
 values.yaml file to be used across different components as :
 
 .. container:: ulist
@@ -189,193 +189,36 @@ To get a listing of the cps-core Pods, run the following command:
 .. note::
     The CPS Service will have to be restarted each time a change is made to a configurable property.
 
-Additional CPS-Core Customizations
-==================================
+.. _configuration-properties:
 
-The following table lists some properties that can be configured in the deployment. This list is not exhaustive.
+Configuration Properties
+========================
+The following tables list properties that can be configured in the deployment. This list is not exhaustive.
 
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| Property                                  | Description                                                                                             | Default Value                 |
-+===========================================+=========================================================================================================+===============================+
-| appUserName                               | User name used by cps-core service to configure the authentication for REST API it exposes.             | ``cpsuser``                   |
-|                                           | This is the user name to be used by cps-core REST clients to authenticate themselves.                   |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| appUserPassword                           | Password used by cps-core service to configure the authentication for REST API it exposes.              | Not defined                   |
-|                                           | If not defined, the password is generated when deploying the application.                               |                               |
-|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.pgUserName                       | Internal user name used by cps-core to connect to its own database.                                     | ``cps``                       |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.pgUserPassword                   | Internal password used by cps-core to connect to its own database.                                      | Not defined                   |
-|                                           | If not defined, the password is generated when deploying the application.                               |                               |
-|                                           | See also :ref:`cps_common_credentials_retrieval`.                                                       |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| postgres.pgDatabase                       | Database name used by cps-core                                                                          | ``cpsdb``                     |
-|                                           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| logging.level                             | Logging level set in cps-core                                                                           | info                          |
-|                                           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| useStrimziKafka                           | If targeting a custom kafka cluster, i.e. useStrimziKafka: false, the                                   | true                          |
-|                                           | eventPublisher.spring.kafka values below must be set.                                                   |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka hostname and port                                                                                 | ``<kafka-bootstrap>:9092``    |
-| spring.kafka.bootstrap-servers            |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka consumer client id                                                                                | ``cps-core``                  |
-| spring.kafka.consumer.client-id           |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security protocol.                                                                                | ``SASL_PLAINTEXT``            |
-| spring.kafka.security.protocol            | Some possible values are:                                                                               |                               |
-|                                           | * ``PLAINTEXT``                                                                                         |                               |
-|                                           | * ``SASL_PLAINTEXT``, for authentication                                                                |                               |
-|                                           | * ``SASL_SSL``, for authentication and encryption                                                       |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL mechanism. Required for SASL_PLAINTEXT and SASL_SSL protocols.                      | Not defined                   |
-| spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
-| sasl.mechanism                            | * ``PLAIN``, for PLAINTEXT                                                                              |                               |
-|                                           | * ``SCRAM-SHA-512``, for SSL                                                                            |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL JAAS configuration. Required for SASL_PLAINTEXT and SASL_SSL protocols.             | Not defined                   |
-| spring.kafka.properties.                  | Some possible values are:                                                                               |                               |
-| sasl.jaas.config                          | * ``org.apache.kafka.common.security.plain.PlainLoginModule required username="..." password="...";``,  |                               |
-|                                           | for PLAINTEXT                                                                                           |                               |
-|                                           | * ``org.apache.kafka.common.security.scram.ScramLoginModule required username="..." password="...";``,  |                               |
-|                                           | for SSL                                                                                                 |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL SSL store type. Required for SASL_SSL protocol.                                     | Not defined                   |
-| spring.kafka.ssl.trust-store-type         | Some possible values are:                                                                               |                               |
-|                                           | * ``JKS``                                                                                               |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL SSL store file location. Required for SASL_SSL protocol.                            | Not defined                   |
-| spring.kafka.ssl.trust-store-location     |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL SSL store password. Required for SASL_SSL protocol.                                 | Not defined                   |
-| spring.kafka.ssl.trust-store-password     |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| eventPublisher.                           | Kafka security SASL SSL broker hostname identification verification. Required for SASL_SSL protocol.    | Not defined                   |
-| spring.kafka.properties.                  | Possible value is:                                                                                      |                               |
-| ssl.endpoint.identification.algorithm     |                                                                                                         |                               |
-|                                           | * ``""``, empty string to disable                                                                       |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Core pool size in asynchronous execution of notification.                                               | ``2``                         |
-| notification.async.executor.              |                                                                                                         |                               |
-| core-pool-size                            |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Max pool size in asynchronous execution of notification.                                                | ``1``                         |
-| notification.async.executor.              |                                                                                                         |                               |
-| max-pool-size                             |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Queue Capacity in asynchronous execution of notification.                                               | ``500``                       |
-| notification.async.executor.              |                                                                                                         |                               |
-| queue-capacity                            |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | If the executor should wait for the tasks to be completed on shutdown                                   | ``true``                      |
-| notification.async.executor.              |                                                                                                         |                               |
-| wait-for-tasks-to-complete-on-shutdown    |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Prefix to be added to the thread name in asynchronous execution of notifications.                       | ``Async-``                    |
-| notification.async.executor.              |                                                                                                         |                               |
-| thread-name-prefix                        |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Maximum time allowed by the thread pool executor for execution of one of the threads in milliseconds.   | ``60000``                     |
-| notification.async.executor.              |                                                                                                         |                               |
-| time-out-value-in-ms                      |                                                                                                         |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-| additional.                               | Specifies number of database connections between database and application.                              | ``10``                        |
-| spring.datasource.hikari.                 | This property controls the maximum size that the pool is allowed to reach,                              |                               |
-| maximumPoolSize                           | including both idle and in-use connections.                                                             |                               |
-+-------------------------------------------+---------------------------------------------------------------------------------------------------------+-------------------------------+
-
-.. _additional-cps-ncmp-customizations:
-
-Additional CPS-NCMP Customizations
-==================================
-
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| Property                                        | Description                                                                           | Default Value                   |
-+=================================================+=======================================================================================+=================================+
-| dmiPluginUserName                               | User name used by cps-core to authenticate themselves for using ncmp-dmi-plugin       | ``dmiuser``                     |
-|                                                 | service.                                                                              |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| dmiPluginUserPassword                           | Internal password used by cps-core to connect to ncmp-dmi-plugin service.             | Not defined                     |
-|                                                 | If not defined, the password is generated when deploying the application.             |                                 |
-|                                                 | See also :ref:`cps_common_credentials_retrieval`.                                     |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| ncmp.timers                                     | Specifies the delay in milliseconds in which the module sync watch dog will wake again| ``5000``                        |
-| .advised-modules-sync.sleep-time-ms             | after finishing.                                                                      |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| ncmp.timers                                     | Specifies the delay in milliseconds in which the module sync watch dog will wake up   | ``40000``                       |
-| .advised-modules-sync.initial-delay-ms          | for the first time.                                                                   |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| ncmp.timers                                     | Specifies the delay in milliseconds in which the data sync watch dog will wake again  | ``30000``                       |
-| .cm-handle-data-sync.sleep-time-ms              | after finishing.                                                                      |                                 |
-|                                                 |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| ncmp.timers                                     | Specifies the delay in milliseconds in which the data sync watch dog will wake up     | ``40000``                       |
-| .cm-handle-data-sync.initial-delay-ms           | for the first time.                                                                   |                                 |
-|                                                 |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Maximum size (in MB) of the in-memory buffer for HTTP response data.                  | ``16``                          |
-| .[app]                                          |                                                                                       |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .maximumInMemorySizeInMegabytes                 |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Maximum number of simultaneous connections allowed in the connection pool.            | ``100``                         |
-| .[app]                                          |                                                                                       |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .maximumConnectionsTotal                        |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Maximum number of pending requests when the connection pool is full.                  | ``50``                          |
-| .[app]                                          |                                                                                       |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .pendingAcquireMaxCount                         |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Specifies the maximum time in seconds, to wait for establishing a connection for the  | ``30``                          |
-| .[app]                                          | HTTP Client.                                                                          |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .connectionTimeoutInSeconds                     |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Timeout (in seconds) for reading data from the server after the connection is         | ``30``                          |
-| .[app]                                          | established.                                                                          |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .readTimeoutInSeconds                           |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Timeout (in seconds) for writing data to the server.                                  | ``30``                          |
-| .[app]                                          |                                                                                       |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .writeTimeoutInSeconds                          |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp                                 | Total timeout (in seconds) for receiving a complete response, including all processing| ``60``                          |
-| .[app]                                          | stages.                                                                               |                                 |
-| .httpclient                                     |                                                                                       |                                 |
-| .[services]                                     |                                                                                       |                                 |
-| .responseTimeoutInSeconds                       |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp.policy-executor                 | Enables or disables the policy-executor feature.                                      | ``false``                       |
-| .enabled                                        |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp.policy-executor                 | The default (fallback) decision in case a problem with the external service occurs.   | ``allow``                       |
-| .defaultDecision                                |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp.policy-executor                 | The server address for the external policy executor service.                          | ``http://policy-executor-stub`` |
-| .server.address                                 |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
-| additional.ncmp.policy-executor                 | The port used for the external policy executor service.                               | ``8093``                        |
-| .server.port                                    |                                                                                       |                                 |
-+-------------------------------------------------+---------------------------------------------------------------------------------------+---------------------------------+
+.. csv-table:: 3PP Properties
+   :file: csv/3pp_properties.csv
+   :widths: 20, 50, 30
+   :header-rows: 1
 
 .. note::
+    - The default datasource is defined as ``jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/cpsdb``. So it can also be configured using environment variables to just set the hostname ``DB_HOST`` and port ``DB_PORT``.
+    - The kafka bootstrap-servers can also be overridden with the environment variable ``KAFKA_BOOTSTRAP_SERVER``.
 
-    - [app] : can be 'policy-executor' or 'dmi'.
-    - [services] 'all-services' for 'policy-executor'.
-    - [services] 'data-services' and 'model-services' for 'dmi'.
+.. csv-table:: Common CPS-NCMP Custom Properties
+   :file: csv/common_custom_properties.csv
+   :widths: 20, 50, 30
+   :header-rows: 1
+
+.. csv-table:: NCMP Custom Properties
+   :file: csv/ncmp_custom_properties.csv
+   :widths: 20, 50, 30
+   :header-rows: 1
+
+.. note::
+    - [app]:  can be ``policy-executor`` or ``dmi``.
+    - [services]: ``all-services`` for 'policy-executor'.
+    - [services]: ``data-services`` and 'model-services' for 'dmi'.
+    - All ncmp.policy-executor properties can also be overridden using environment variables: ``POLICY_SERVICE_ENABLED``, ``POLICY_SERVICE_DEFAULT_DECISION``, ``POLICY_SERVICE_URL``, ``POLICY_SERVICE_PORT``
 
 CPS-Core Docker Installation
 ============================

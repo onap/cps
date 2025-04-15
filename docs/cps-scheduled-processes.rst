@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2022-2025 Nordix Foundation
+.. Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 
@@ -20,7 +20,7 @@ The following section is a list of the current scheduled processes running withi
 
 Module Sync
 -----------
-The module sync is a user :ref:`configurable timed process<additional-cps-ncmp-customizations>`,
+The module sync is a user :ref:`configurable timed process<configuration-properties>`,
 which is set to search for CM Handles within CPS with an *'ADVISED'* state.
 Once the CM Handle is processed by the module sync, the CM Handle state is then set to *'READY'*, if the process completes successfully.
 If for any reason the module sync fails, the CM Handle state will then be set to *'LOCKED'*,
@@ -30,7 +30,7 @@ state are processed by the retry mechanism, by setting CM Handle state back to *
 
 Data Sync
 ---------
-The data sync is a user :ref:`configurable timed process<additional-cps-ncmp-customizations>`,
+The data sync is a user :ref:`configurable timed process<configuration-properties>`,
 which is set to search for CM Handles with a sync state of *'UNSYNCHRONIZED'*.
 Once the CM Handle(s) with a sync state of *'UNSYNCHRONIZED'* is processed by the data sync,
 the CM Handle sync state is then set to *'SYNCHRONIZED'*, if the process completes successfully.

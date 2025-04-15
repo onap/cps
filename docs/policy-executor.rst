@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2024-2025 Nordix Foundation
+.. Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL - EVEN THOUGH IT GIVES A WARNING
 .. _policy_executor:
@@ -20,7 +20,7 @@ The details of the interface can be found in the ':ref:`policy_executor_consumed
 
 This feature is available on 'legacy data interface' for operation on a single cm handle: "/v1/ch/{cm-handle}/data/ds/{datastore-name}" and only applies to "ncmp-datastore:passthrough-running".
 
-By default, the feature is not enabled. This is controlled by 'config.additional.ncmp.policy-executor.enabled' and other deployment parameters in the same group to enable it. See :ref:`additional-cps-ncmp-customizations`
+By default, the feature is not enabled. This is controlled by 'config.additional.ncmp.policy-executor.enabled' and other deployment parameters in the same group to enable it. See :ref:`configuration-properties`
 
 .. DO NOT CHANGE THIS LABEL - EVEN THOUGH IT GIVES A WARNING
 .. _policy_executor_consumed_apis:

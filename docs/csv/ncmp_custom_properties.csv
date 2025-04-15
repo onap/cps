@@ -1,0 +1,16 @@
+﻿Property,"Description",Default Value
+ncmp.timers.advised-modules-sync.sleep-time-ms,"Specifies the delay in milliseconds in which the module sync watch dog will wake again after finishing.",5000
+ncmp.timers.advised-modules-sync.initial-delay-ms,"Specifies the delay in milliseconds in which the module sync watch dog will wake up for the first time.",40000
+ncmp.timers.cm-handle-data-sync.sleep-time-ms,"Specifies the delay in milliseconds in which the data sync watch dog will wake again after finishing.",30000
+ncmp.timers.cm-handle-data-sync.initial-delay-ms,"Specifies the delay in milliseconds in which the data sync watch dog will wake up for the first time.",40000
+ncmp.[app].httpclient.[services].maximumInMemorySizeInMegabytes,"Maximum size (in MB) of the in-memory buffer for HTTP response data.",16
+ncmp.[app].httpclient.[services].maximumConnectionsTotal,"Maximum number of simultaneous connections allowed in the connection pool.",100
+ncmp.[app].httpclient.[services].pendingAcquireMaxCount,"Maximum number of pending requests when the connection pool is full.",50
+ncmp.[app].httpclient.[services].connectionTimeoutInSeconds,"Specifies the maximum time in seconds, to wait for establishing a connection for the HTTP client",30
+ncmp.[app].httpclient.[services].readTimeoutInSeconds,"Timeout (in seconds) for reading data from the server after the connection is established.",30
+ncmp.[app].httpclient.[services].writeTimeoutInSeconds,"Timeout (in seconds) for writing data to the server.",30
+ncmp.[app].httpclient.[services].responseTimeoutInSeconds,"Total timeout (in seconds) for receiving a complete response, including all processing stages.",60
+ncmp.policy-executor.enabled,"Enables or disables the policy-executor feature.",false
+ncmp.policy-executor.defaultDecision,"The default (fallback) decision in case a problem with the external service occurs.",allow
+ncmp.policy-executor.server.address,"The server address for the external policy executor service.",``http://policy-executor-stub``
+ncmp.policy-executor.server.port,"The port used for the external policy executor service.",8093

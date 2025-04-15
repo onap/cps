@@ -1,0 +1,9 @@
+﻿Property,Description,Default Value
+logging.level.org.onap.cps,Logging level set in cps & ncmp,INFO
+spring.datasource.username,"Internal user name used by cps-core to connect to its own database.",cps
+spring.datasource.password,"Internal password used by cps-core to connect to its own database. If not defined, the password is generated when deploying the application. See also :ref:`cps_common_credentials_retrieval`.",Not defined
+spring.datasource.url,"URL to database name used by cps-core.", See note below
+spring.datasource.hikari.maximumPoolSize,"Specifies number of database connections between database and application. This property controls the maximum size that the pool is allowed to reach, including both idle and in-use connections.",80
+spring.kafka.bootstrap-servers,"Kafka hostname and port",``localhost:9092``
+spring.kafka.consumer.client-id,"Kafka consumer client id",cps-core
+spring.kafka.security.protocol,"Kafka security protocol. Some possible values are: PLAINTEXT, SASL_PLAINTEXT (for authentication), SASL_SSL (for authentication and encryption)",PLAINTEXT
