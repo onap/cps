@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * Modifications Copyright (C) 2022 Bell Canada
  * Modifications Copyright (C) 2024 TechMahindra Ltd.
  * ================================================================================
@@ -27,6 +27,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
@@ -52,8 +53,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
+    def mockCmHandleIdPerAlternateId = Mock(IMap)
 
-    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker)
+    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -203,6 +205,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def 'Update alternate id of existing CM Handle.'() {
         given: 'cm handles request'
             def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: 'alt-1')]
+        and: 'the cm handle per alternate id cache returns a value'
+            mockCmHandleIdPerAlternateId.get(_) >> 'someId'
         and: 'a data node found'
             def dataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId, 'alternate-id': 'alt-1'])
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [dataNode]
