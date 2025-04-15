@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36ffb61f_27b200d0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/AlternateIdChecker.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-15T10:05:07Z",
+      "side": 1,
+      "message": "i think we have to change this method name coz there is no interaction with the DB now here.",
+      "range": {
+        "startLine": 99,
+        "startChar": 24,
+        "endLine": 99,
+        "endChar": 50
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8a12e10_f8b6de40",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-15T10:05:07Z",
+      "side": 1,
+      "message": "NB: Ok. so the key of the hz-map can be a cmhandleid or an alternate id. do we name the map differently then ??",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 13
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c3d80d0_0cc8e1d4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
         "patchSetId": 9
