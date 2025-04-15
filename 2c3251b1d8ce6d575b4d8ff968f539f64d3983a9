@@ -127,6 +127,30 @@
       },
       "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f64844_f47a45a1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/AlternateIdCacheDataLoaderSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-15T09:45:08Z",
+      "side": 1,
+      "message": "would still need to put \u0027mockCmHandleIdPerAlternateId as IMap\u0027 on the constructor",
+      "parentUuid": "2d94aa1d_52e78542",
+      "range": {
+        "startLine": 34,
+        "startChar": 39,
+        "endLine": 34,
+        "endChar": 49
+      },
+      "revId": "2c3251b1d8ce6d575b4d8ff968f539f64d3983a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
