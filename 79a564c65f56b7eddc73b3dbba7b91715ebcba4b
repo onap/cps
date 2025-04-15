@@ -16,6 +16,52 @@
       "message": "add description on where to read the metrics",
       "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d450a9e2_737337f6",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-15T10:00:18Z",
+      "side": 1,
+      "message": "i wouldnt generalise it to just cm hande state gauge",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d9e08a3_b620df94",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-04-15T10:00:18Z",
+      "side": 1,
+      "message": "just a thought, can we possibly have the custom gauge annotation start with @Gauge ? so in the future it can follow the same and not much changes is needed for these scripts if it scrapes all that starts @Count, @timed / @Gauge?\n\nlet me know your thought:)",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "79a564c65f56b7eddc73b3dbba7b91715ebcba4b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
