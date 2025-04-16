@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -37,9 +37,9 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1']
         dmiDispatcher1.moduleNamesPerCmHandleId['ch-2'] = ['M2']
         dmiDispatcher2.moduleNamesPerCmHandleId['ch-3'] = ['M3']
-        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'p1')
-        registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, 'p2')
-        registerCmHandle(DMI2_URL, 'ch-3', NO_MODULE_SET_TAG, 'p3')
+        registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, '/p1')
+        registerCmHandle(DMI1_URL, 'ch-2', NO_MODULE_SET_TAG, '/p2')
+        registerCmHandle(DMI2_URL, 'ch-3', NO_MODULE_SET_TAG, '/p3')
     }
 
     def cleanup() {
@@ -51,7 +51,7 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
     def 'Create a sub-job write request.'() {
         given: 'the required input data for the write job'
             def authorization = 'my authorization header'
-            def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('p1', '', '', null), new WriteOperation('p2', '', '', null), new WriteOperation('p3', '', '', null)])
+            def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('/p1', '', '', null), new WriteOperation('/p2', '', '', null), new WriteOperation('/p3', '', '', null)])
             def myDataJobMetadata = new DataJobMetadata('d1', '', '')
             def dataJobId = 'my-data-job-id'
         when: 'sending a write job to NCMP with 2 sub-jobs for DMI 1 and 1 sub-job for DMI 2'
@@ -63,13 +63,13 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
             assert response[0].dmiServiceName.startsWith('http://localhost:') || response[0].dmiServiceName().startsWith('http://kubernetes')
             assert response[0].dataProducerId == 'some data producer id'
         and: 'dmi 1 received the correct job details'
-            def receivedSubJobsForDispatcher1 = dmiDispatcher1.receivedSubJobs['?destination=d1']['data'].collect()
+            def receivedSubJobsForDispatcher1 = dmiDispatcher1.receivedSubJobs['d1']['data'].collect()
             assert receivedSubJobsForDispatcher1.size() == 2
-            assert receivedSubJobsForDispatcher1[0]['path'] == 'p1'
-            assert receivedSubJobsForDispatcher1[1]['path'] == 'p2'
+            assert receivedSubJobsForDispatcher1[0]['path'] == '/p1'
+            assert receivedSubJobsForDispatcher1[1]['path'] == '/p2'
         and: 'dmi 2 received the correct job details'
-            def receivedSubJobsForDispatcher2 = dmiDispatcher2.receivedSubJobs['?destination=d1']['data'].collect()
+            def receivedSubJobsForDispatcher2 = dmiDispatcher2.receivedSubJobs['d1']['data'].collect()
             assert receivedSubJobsForDispatcher2.size() == 1
-            assert receivedSubJobsForDispatcher2[0]['path'] == 'p3'
+            assert receivedSubJobsForDispatcher2[0]['path'] == '/p3'
     }
 }

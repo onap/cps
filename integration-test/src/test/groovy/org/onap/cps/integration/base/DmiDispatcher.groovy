@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -27,9 +27,6 @@ import okhttp3.mockwebserver.RecordedRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-
-import java.util.regex.Matcher
-import java.util.stream.Collectors
 
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
@@ -60,6 +57,7 @@ class DmiDispatcher extends Dispatcher {
     def jsonSlurper = new JsonSlurper()
     def moduleNamesPerCmHandleId = [:]
     def receivedSubJobs = [:]
+    def dmiDataOperationRequestBody
     def lastAuthHeaderReceived
     def dmiResourceDataUrl
 
@@ -76,12 +74,12 @@ class DmiDispatcher extends Dispatcher {
         switch (request.path) {
             // get module references for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/modules$':
-                def cmHandleId = Matcher.lastMatcher[0][1]
+                def cmHandleId = request.requestUrl.pathSegments()[3]
                 return getModuleReferencesResponse(cmHandleId)
 
             // get module resources for a CM-handle
             case ~'^/dmi/v1/ch/(.*)/moduleResources$':
-                def cmHandleId = Matcher.lastMatcher[0][1]
+                def cmHandleId = request.requestUrl.pathSegments()[3]
                 return getModuleResourcesResponse(request, cmHandleId)
 
             // pass-through data operation for a CM-handle
@@ -90,8 +88,9 @@ class DmiDispatcher extends Dispatcher {
                 return mockResponseWithBody(HttpStatus.OK, '{}')
 
             // legacy pass-through batch data operation
-            case ~'^/dmi/v1/data$':
-                return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
+            case ~'^/dmi/v1/data\\?requestId=(.*)&topic=(.*)$':
+                dmiDataOperationRequestBody = request.body.readUtf8()
+                return mockResponse(HttpStatus.ACCEPTED)
 
             // get data job status
             case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/status$':
@@ -102,7 +101,7 @@ class DmiDispatcher extends Dispatcher {
                 return mockResponseWithBody(HttpStatus.OK, '{ "result": "some result"}')
 
             // get write sub job response
-            case ~'^/dmi/v1/cmwriteJob(.*)$':
+            case ~'^/dmi/v1/cmwriteJob\\?destination=(.*)$':
                 return mockWriteJobResponse(request)
 
             default:
@@ -111,8 +110,8 @@ class DmiDispatcher extends Dispatcher {
     }
 
     def mockWriteJobResponse(request) {
-        def destination = Matcher.lastMatcher[0][1]
-        def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+        def destination = request.requestUrl.queryParameter('destination')
+        def subJobWriteRequest = jsonSlurper.parseText(request.body.readUtf8())
         this.receivedSubJobs.put(destination, subJobWriteRequest)
         def response = '{"subJobId":"some sub job id"}'
         return mockResponseWithBody(HttpStatus.OK, response)
@@ -126,7 +125,7 @@ class DmiDispatcher extends Dispatcher {
     }
 
     def getModuleResourcesResponse(request, cmHandleId) {
-        def moduleResourcesRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+        def moduleResourcesRequest = jsonSlurper.parseText(request.body.readUtf8())
         def requestedModuleNames = moduleResourcesRequest.get('data').get('modules').collect{it.get('name')}
         def candidateModuleNames = getModuleNamesForCmHandle(cmHandleId)
         def moduleNames = candidateModuleNames.stream().filter(candidate -> requestedModuleNames.contains(candidate)).toList()
