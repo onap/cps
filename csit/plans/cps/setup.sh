@@ -24,6 +24,7 @@
 
 ###################### setup env ############################
 # Set env variables for docker compose
+# export LOCAL_IP=172.27.34.37
 export LOCAL_IP=localhost
 
 source $WORKSPACE/plans/cps/test.properties
