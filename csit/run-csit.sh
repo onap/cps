@@ -219,7 +219,7 @@ echo ROBOT_VARIABLES="${ROBOT_VARIABLES}"
 echo "Starting Robot test suites ${SUITES} ..."
 relax_set
 
-echo "Versioning information:"
+echo "[Run] Versioning information:"
 python3 --version
 pip freeze
 python3 -m robot.run --version || :

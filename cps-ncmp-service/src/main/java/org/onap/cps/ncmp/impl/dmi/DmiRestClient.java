@@ -53,8 +53,9 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class DmiRestClient {
 
+    public static final String NO_AUTHORIZATION = null;
+
     private static final String NOT_SPECIFIED = "";
-    private static final String NO_AUTHORIZATION = null;
 
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;

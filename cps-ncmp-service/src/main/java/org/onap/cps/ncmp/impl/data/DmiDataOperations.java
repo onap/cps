@@ -125,7 +125,7 @@ public class DmiDataOperations {
                 PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", null,
                 null);
         return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
-                null);
+                DmiRestClient.NO_AUTHORIZATION);
     }
 
     /**
