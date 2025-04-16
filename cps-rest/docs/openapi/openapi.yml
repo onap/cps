@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2025 Nordix Foundation
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada.
 #  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
@@ -23,7 +23,7 @@ openapi: 3.0.3
 info:
   title: ONAP Open API v3 Configuration Persistence Service
   description: Configuration Persistence Service is a Model Driven Generic Database
-  version: "3.6.0"
+  version: "3.6.2"
   contact:
      name: ONAP
      url: "https://onap.readthedocs.io"

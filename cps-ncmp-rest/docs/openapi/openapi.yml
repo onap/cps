@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2024 Nordix Foundation
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021 Bell Canada
 #  ================================================================================
@@ -22,7 +22,7 @@ openapi: 3.0.3
 info:
   title: NCMP to CPS Proxy API
   description: NCMP to CPS Proxy API
-  version: "3.6.0"
+  version: "3.6.2"
 servers:
   - url: /ncmp
 components:

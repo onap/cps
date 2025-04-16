@@ -1,7 +1,7 @@
-#  ============LICENSE_START=======================================================
+#  ============LICENSE_START==============================================================
 #  Copyright (C) 2021 Bell Canada
-#  Modifications Copyright (C) 2022-2024 Nordix Foundation
-#  ================================================================================
+#  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
+#  =======================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
@@ -15,13 +15,13 @@
 #  limitations under the License.
 #
 #  SPDX-License-Identifier: Apache-2.0
-#  ============LICENSE_END=========================================================
+#  ============LICENSE_END================================================================
 
 openapi: 3.0.3
 info:
   title: NCMP Inventory API
   description: NCMP Inventory API
-  version: "3.6.0"
+  version: "3.6.2"
 servers:
   - url: /ncmpInventory
 components:
