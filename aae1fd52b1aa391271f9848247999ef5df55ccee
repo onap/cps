@@ -1,0 +1,550 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024b9e82_88f97b50",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "use .*? instead",
+      "range": {
+        "startLine": 52,
+        "startChar": 136,
+        "endLine": 52,
+        "endChar": 141
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69867660_036123bf",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "use .*? instead",
+      "range": {
+        "startLine": 52,
+        "startChar": 102,
+        "endLine": 52,
+        "endChar": 107
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654ad2b9_5326a642",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "as discussed capture name or value\nname|value",
+      "range": {
+        "startLine": 52,
+        "startChar": 88,
+        "endLine": 52,
+        "endChar": 93
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2a9f79_d87d47bf",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "you need to check group [1] first if it equals to \u0027CountCmHandleSearchExecution\u0027 you need to hardcode the name! Sicne the name is NOT in the annotation details",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357445da_e254a91b",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "try-catch not needed",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 7
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8823c369_70dfd095",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "do we HAVE to handle this as this script itself find all teh java files so can we ever get here. at all",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 52
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abde7695_e1ca86d4",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "insert how many metrics you found!\nI think it is import to have a quick visual check in the log how many metric the script found and for now compare that with a manual count using intellij!",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0a3bb94_9386b634",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 43
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ca2e12_f773eb03",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "great to see a test for this too!\nBut can you include a check on the number of metric found please",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "896dfb77_c8cb575f",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 66,
+        "startChar": 42,
+        "endLine": 66,
+        "endChar": 81
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5565050f_241f67e9",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "remove redundant space",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e47569_71734037",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "name",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 30
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab30b818_e801fdf4",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "no needed",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 56
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9116098_608d9afd",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "OK\u003c this is teh same test but now wrapped as a Java file so more like integration test.\nNO need to duplicate, please take aboce comment and apply to this test then remove previous test",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5f3b7f4_2357d596",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "this is NOT present",
+      "range": {
+        "startLine": 93,
+        "startChar": 42,
+        "endLine": 93,
+        "endChar": 80
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9cbdff2_6c1b54a4",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "\u0027some data\u0027 will do",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 64
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221735d2_953b1652",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "remove these test",
+      "range": {
+        "startLine": 127,
+        "startChar": 3,
+        "endLine": 142,
+        "endChar": 0
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd54f7b7_4598f2e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CmHandleStateGaugeConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "For all descriptions copy the one already defined in java code below",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 83
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70313f32_dc7c2e8e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "name",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f577f590_1faf75bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "name",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cd015c_2fded152",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "rename to name!",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "460b9a2d_6d04f465",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "Below file lists all CPS-NCMP custom metrics",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 60
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e504f381_931fa907",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "Change format:\ncps.ncmp.controller.get : Time taken to get resource data from datastore",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 92
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a7e68f7_7480db50",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-16T15:47:44Z",
+      "side": 1,
+      "message": "these you need to hardcode as commented in the Python script!",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
