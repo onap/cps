@@ -28,7 +28,7 @@ export PATH="$(pwd)/bin:$PATH"
 # Download docker-compose.
 if [ ! -x bin/docker-compose ]; then
   echo " Downloading docker-compose"
-  curl -s -L https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-x86_64 > bin/docker-compose
+  curl -s -L https://github.com/docker/compose/releases/download/v2.35.1/docker-compose-linux-x86_64 > bin/docker-compose
   chmod +x bin/docker-compose
 else
   echo " docker-compose already installed"
