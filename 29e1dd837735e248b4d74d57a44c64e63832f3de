@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4830443_8f2aa765",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T12:04:23Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "e6e6bd5d_ff0711f7",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 125
+      },
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6be93b59_50933822",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06412b76_63d7d8e3",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T12:04:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6be93b59_50933822",
+      "range": {
+        "startLine": 101,
+        "startChar": 24,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14e9fa24_7d6a13a1",
@@ -60,6 +108,24 @@
       "writtenOn": "2025-04-16T11:31:17Z",
       "side": 1,
       "message": "Also need to add threshold for the new metrics here, e.g. \n\n    \"write_small_data_job_duration\": [\"avg \u003c\u003d 2000\"]",
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88b4a29_04bf2a68",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T12:04:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "14e9fa24_7d6a13a1",
       "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
