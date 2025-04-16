@@ -61,8 +61,6 @@ services:
       ### DEBUG: Uncomment next line to enable java debugging (ensure 'ports' aligns with 'deploy')
       ### - ${CPS_CORE_DEBUG_PORT:-5005}:5005-
     environment:
-      CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-      CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
       DB_HOST: ${DB_HOST:-dbpostgresql}
       DB_USERNAME: ${DB_USERNAME:-cps}
       DB_PASSWORD: ${DB_PASSWORD:-cps}

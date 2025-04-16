@@ -30,7 +30,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                 Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpBasePath}         /ncmp
 ${netconf}              NETCONF
 
@@ -38,14 +37,12 @@ ${netconf}              NETCONF
 
 Get for Passthrough Operational (CF, RO) with fields & topic
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema)&topic=test-topic
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=200
+    ${response}=         Get On Session     CPS_URL   ${uri}   expected_status=200
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get for Passthrough Operational (CF, RO) with fields
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=ietf-netconf-monitoring:netconf-state&options=(fields=schemas/schema)
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=200
+    ${response}=         Get On Session     CPS_URL   ${uri}   expected_status=200
     ${responseJson}=     Set Variable       ${response.json()}
     ${schemaCount}=      Get length         ${responseJson['ietf-netconf-monitoring:netconf-state']['schemas']}
     Should Be True                          ${schemaCount} >0
@@ -53,15 +50,14 @@ Get for Passthrough Operational (CF, RO) with fields
 
 Create to bookstore using passthrough-running
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${jsonData}=         Get Binary File    ${DATADIR_NCMP}${/}bookstoreCreateExample.json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Verify create to bookstore using passthrough-running
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         Get On Session     CPS_URL   ${uri}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{response.json()['stores:bookstore']['categories']}
         IF   "${item['code']}" == "01"
@@ -76,15 +72,14 @@ Verify create to bookstore using passthrough-running
 
 Update Bookstore using passthrough-running update Category 01 (replace category)
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${jsonData}=         Get Binary File    ${DATADIR_NCMP}${/}bookstoreUpdateExample.json
     ${response}=         PUT On Session     CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   200
 
 Verify update to bookstore using passthrough-running updated category 01
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         Get On Session     CPS_URL   ${uri}
     Should Be Equal As Strings              ${response.status_code}   200
     FOR   ${item}   IN  @{response.json()['stores:categories']}
         IF   "${item['code']}" == "01"
@@ -94,22 +89,20 @@ Verify update to bookstore using passthrough-running updated category 01
 
 Verify update to bookstore using passthrough-running did not remove category 02
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         Get On Session     CPS_URL   ${uri}
     Should Be Equal As Strings              ${response.status_code}   200
     ${schemaCount}=      Get length         ${response.json()['stores:bookstore']['categories']}
     Should Be Equal As Numbers              ${schemaCount}  2
 
 Delete Bookstore using passthrough-running for Category 01
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=01
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         DELETE On Session  CPS_URL   ${uri}   headers=${headers}
     Should Be Equal As Strings              ${response.status_code}   204
 
 Verify delete to bookstore using passthrough-running removed only category 01
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         Get On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         Get On Session     CPS_URL   ${uri}
     ${responseJson}=     Set Variable       ${response.json()['stores:bookstore']['categories']}
     Should Be Equal As Strings              ${response.status_code}   200
     ${schemaCount}=      Get length         ${responseJson}
@@ -122,13 +115,12 @@ Verify delete to bookstore using passthrough-running removed only category 01
 
 Patch will add new category with new book and add a new book to an existing category
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Content-Type=application/yang.patch+json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/yang.patch+json
     ${jsonData}=         Get Binary File    ${DATADIR_NCMP}${/}bookstorePatchExample.json
     ${response}=         PATCH On Session   CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   200
     ${verifyUri}=       Set Variable        ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore/categories=100
-    ${verifyHeaders}=    Create Dictionary  Authorization=${auth}
-    ${verifyResponse}=   Get On Session     CPS_URL   ${verifyUri}   headers=${verifyHeaders}
+    ${verifyResponse}=   Get On Session     CPS_URL   ${verifyUri}
     Should Be Equal As Strings              ${verifyResponse.status_code}   200
     FOR   ${item}   IN  @{verifyResponse.json()['stores:categories']}
         IF   "${item['code']}" == "100"

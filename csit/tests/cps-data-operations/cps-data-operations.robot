@@ -32,7 +32,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                                 Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${topic}                                data-operation-client-topic
 ${ncmpBasePath}                         /ncmp
 ${expectedRequestId}                    ${EMPTY}
@@ -45,11 +44,10 @@ NCMP Data Operation, forwarded to DMI, response on Client Topic
         ${uri}=                          Set Variable        ${ncmpBasePath}/v1/data
         ${dataOperationReqBody}=         Get Binary File     ${DATADIR_CPS_CORE}${/}dataOperationRequest.json
         ${params}=                       Create Dictionary   topic=${topic}
-        ${headers}=                      Create Dictionary   Content-Type=application/json         Authorization=${auth}
+        ${headers}=                      Create Dictionary   Content-Type=application/json
                                          POST On Session     CPS_URL   ncmpInventory/v1/ch         headers=${headers}     data=${newCmHandleRequestBody}
         ${getCmHandleUri}=               Set Variable        ${ncmpBasePath}/v1/ch/CMHandle1
-        ${getCmHandleHeaders}=           Create Dictionary   Authorization=${auth}
-        Wait Until Keyword Succeeds      20sec    200ms       Is CM Handle READY    ${getCmHandleUri}    ${getCmHandleHeaders}    CMHandle1
+        Wait Until Keyword Succeeds      20sec    200ms       Is CM Handle READY    ${getCmHandleUri}    CMHandle1
         ${response}=                     POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}     data=${dataOperationReqBody}
         Set Global Variable              ${expectedRequestId}       ${response.json()}[requestId]
         Should Be Equal As Strings       ${response.status_code}   200
