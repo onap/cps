@@ -1,5 +1,5 @@
 # ============LICENSE_START=======================================================
-# Copyright (C) 2023-2024 Nordix Foundation.
+# Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -134,13 +134,6 @@ springdoc:
         url: /api-docs/cps-ncmp/openapi.yaml
       - name: cps-ncmp-inventory
         url: /api-docs/cps-ncmp/openapi-inventory.yaml
-
-security:
-  # comma-separated uri patterns which do not require authorization
-  permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**,/v3/api-docs/**
-  auth:
-    username: cps
-    password: cpsr0cks!
 
 # Actuator
 management:

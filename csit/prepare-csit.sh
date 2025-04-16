@@ -2,6 +2,7 @@
 #
 # Copyright 2019-2021 © Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
+# Modifications Copyright 2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,8 +52,10 @@ if [ -f ${WORKSPACE}/env.properties ]; then
     source ${WORKSPACE}/env.properties
 fi
 if [ -f ${ROBOT3_VENV}/bin/activate ]; then
+   echo "Activating existing Robot3 Env"
    source ${ROBOT3_VENV}/bin/activate
 else
+    echo "Installing Robot3 Env"
     rm -rf /tmp/ci-management
     rm -f ${WORKSPACE}/env.properties
     cd /tmp
@@ -67,7 +70,7 @@ rm -rf ${ROBOT3_VENV}/src/onap/testsuite
 
 python3 -m pip install --upgrade --extra-index-url="https://nexus3.onap.org/repository/PyPi.staging/simple" 'robotframework-onap==11.0.0.dev17' --pre
 
-echo "Versioning information:"
+echo "[Prepare] Versioning information:"
 python3 --version
 
 echo "Installing confluent kafka library for robot framework:"

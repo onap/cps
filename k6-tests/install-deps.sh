@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024 Nordix Foundation.
+# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ export PATH="$(pwd)/bin:$PATH"
 # Download docker-compose.
 if [ ! -x bin/docker-compose ]; then
   echo " Downloading docker-compose"
-  curl -s -L https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-x86_64 > bin/docker-compose
+  curl -s -L https://github.com/docker/compose/releases/download/v2.35.1/docker-compose-linux-x86_64 > bin/docker-compose
   chmod +x bin/docker-compose
 else
   echo " docker-compose already installed"
