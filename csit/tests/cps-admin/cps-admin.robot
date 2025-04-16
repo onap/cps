@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021 Pantheon.tech.
+# Modifications Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,7 +28,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                 Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${basePath}             /cps/api
 ${dataspaceName}        CSIT-Dataspace
 ${schemaSetName}        CSIT-SchemaSet
@@ -38,8 +38,7 @@ ${ranDataspaceName}     NFP-Operational
 Create Dataspace
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces
     ${params}=          Create Dictionary   dataspace-name=${dataspaceName}
-    ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Create Schema Set from YANG file
@@ -48,8 +47,7 @@ Create Schema Set from YANG file
     ${fileData}=        Get Binary File     ${DATADIR_CPS_CORE}${/}test-tree.yang
     ${fileTuple}=       Create List         test.yang   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
-    ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Create Schema Set from ZIP file
@@ -58,14 +56,12 @@ Create Schema Set from ZIP file
     ${fileData}=        Get Binary File     ${DATADIR_CPS_CORE}${/}yang-resources.zip
     ${fileTuple}=       Create List         test.zip   ${fileData}   application/zip
     &{files}=           Create Dictionary   file=${fileTuple}
-    ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   files=${files}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   201
 
 Get Schema Set info
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/schema-sets/${schemaSetName}
-    ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        Get On Session      CPS_URL   ${uri}   headers=${headers}   expected_status=200
+    ${response}=        Get On Session      CPS_URL   ${uri}   expected_status=200
     ${responseJson}=    Set Variable        ${response.json()}
     Should Be Equal As Strings              ${responseJson['name']}   ${schemaSetName}
     Should Be Equal As Strings              ${responseJson['dataspaceName']}   ${dataspaceName}
@@ -73,6 +69,5 @@ Get Schema Set info
 Create Anchor
     ${uri}=             Set Variable        ${basePath}/v1/dataspaces/${dataspaceName}/anchors
     ${params}=          Create Dictionary   schema-set-name=${schemaSetName}   anchor-name=${anchorName}
-    ${headers}=         Create Dictionary   Authorization=${auth}
-    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
+    ${response}=        POST On Session     CPS_URL   ${uri}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   201

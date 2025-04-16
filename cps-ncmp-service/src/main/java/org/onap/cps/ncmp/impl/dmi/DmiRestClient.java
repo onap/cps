@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,8 +53,9 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class DmiRestClient {
 
+    public static final String NO_AUTHORIZATION = null;
+
     private static final String NOT_SPECIFIED = "";
-    private static final String NO_AUTHORIZATION = null;
 
     private final DmiProperties dmiProperties;
     private final JsonObjectMapper jsonObjectMapper;
