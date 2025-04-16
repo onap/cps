@@ -39,6 +39,30 @@
       },
       "revId": "266e137304e1806a5b520ebd2b3a62d65f3932f4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67a315ba_6741ca9f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-16T16:37:44Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "9a72ffae_30103d25",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 95
+      },
+      "revId": "266e137304e1806a5b520ebd2b3a62d65f3932f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
