@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ Library               ConfluentKafkaLibrary
 Suite Setup           Create Session    CPS_URL    http://${CPS_CORE_HOST}:${CPS_CORE_PORT}
 
 *** Variables ***
-${auth}                                     Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}                    /ncmpInventory
 ${ncmpBasePath}                             /ncmp/v1
 ${dmiUrl}                                   http://${DMI_HOST}:${DMI_PORT}
@@ -41,7 +40,7 @@ ${jsonTrustLevelEventPayload}               {"data":{"attributeValueChange":[{"a
 *** Test Cases ***
 Register data node
     ${uri}=         Set Variable         ${ncmpInventoryBasePath}/v1/ch
-    ${headers}=     Create Dictionary    Content-Type=application/json    Authorization=${auth}
+    ${headers}=     Create Dictionary    Content-Type=application/json
     ${response}=    POST On Session      CPS_URL   ${uri}    headers=${headers}    data=${jsonCreateCmHandles}
     Should Be Equal As Strings           ${response.status_code}    200
 
@@ -62,7 +61,7 @@ Verify notification
 
 Retrieve CM Handle ids where query parameters Match (trust level query)
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonTrustLevelPropertyQueryParameters}
     ${responseJson}=     Set Variable       ${response.json()}
     Should Be Equal As Strings              ${response.status_code}   200

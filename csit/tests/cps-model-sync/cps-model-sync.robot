@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpInventoryBasePath}  /ncmpInventory
 ${ncmpBasePath}           /ncmp
 ${dmiUrl}                 http://${DMI_HOST}:${DMI_PORT}
@@ -42,14 +41,13 @@ ${deletePayload}         {"dmiPlugin":"${dmiUrl}","dmiDataPlugin":"","dmiModelPl
 *** Test Cases ***
 Register data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${createPayload}
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been registered.
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         GET On Session     CPS_URL   ${uri}
     ${responseJson}=     Set Variable       ${response.json()}
     ${schemaCount}=      Get length         ${responseJson}
     Should Be Equal As Strings              ${response.status_code}   200
@@ -61,14 +59,13 @@ Get CM Handle details and confirm it has been registered.
 
 Update data node and sync modules.
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${updatePayload}
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get CM Handle details and confirm it has been updated.
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         GET On Session     CPS_URL   ${uri}
     ${responseJson}=     Set Variable       ${response.json()}
     ${schemaCount}=      Get length         ${responseJson}
     Should Be Equal As Strings              ${response.status_code}   200
@@ -80,13 +77,11 @@ Get CM Handle details and confirm it has been updated.
 
 Check if ietfYang-PNFDemo is READY
     ${uri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo
-    ${headers}=    Create Dictionary  Authorization=${auth}
-    Wait Until Keyword Succeeds       20sec    200ms    Is CM Handle READY    ${uri}    ${headers}    ietfYang-PNFDemo
+    Wait Until Keyword Succeeds       20sec    200ms    Is CM Handle READY    ${uri}    ietfYang-PNFDemo
 
 Get modules for registered data node
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/modules
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}
+    ${response}=         GET On Session     CPS_URL   ${uri}
     Should Be Equal As Strings              ${response.status_code}   200
     ${number_of_items}=    Count Items In JSON Response    ${response}
     Should Be True    ${number_of_items} > 0
@@ -98,20 +93,19 @@ Get modules for registered data node
 
 Delete cm handle
     ${uri}=              Set Variable       ${ncmpInventoryBasePath}/v1/ch
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${deletePayload}
     Should Be Equal As Strings              ${response.status_code}   200
 
 Get cm handle details and confirm it has been deleted
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/CmHandleForDelete
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         GET On Session     CPS_URL   ${uri}   headers=${headers}   expected_status=404
+    ${response}=         GET On Session     CPS_URL   ${uri}   expected_status=404
 
 *** Keywords ***
 
 Is CM Handle READY
-    [Arguments]    ${uri}    ${headers}    ${cmHandle}
-    ${response}=    GET On Session    CPS_URL    ${uri}    headers=${headers}
+    [Arguments]    ${uri}    ${cmHandle}
+    ${response}=    GET On Session    CPS_URL    ${uri}
     Should Be Equal As Strings    ${response.status_code}    200
     ${number_of_items}=    Count Items In JSON Response    ${response}
     Should Be True    ${number_of_items} > 0

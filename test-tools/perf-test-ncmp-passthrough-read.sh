@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024 Nordix Foundation.
+# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,8 +28,6 @@ set -o pipefail # Use last non-zero exit code in a pipeline
 ############################
 CPS_HOST=localhost
 CPS_PORT=8883
-CPS_USERNAME=cpsuser
-CPS_PASSWORD=cpsr0cks!
 PARALLEL_REQUESTS=12
 WARMUP_REQUESTS=600
 MEASUREMENT_REQUESTS=240
@@ -40,7 +38,7 @@ DMI_DATA_DELAY=$(grep 'DATA_FOR_CM_HANDLE_DELAY_MS:' "$SCRIPT_DIR"/../docker-com
 
 function cmHandleExists() {
   local cmHandleId=$1
-  curl --silent --fail --output /dev/null --user "$CPS_USERNAME:$CPS_PASSWORD" --basic "http://$CPS_HOST:$CPS_PORT/ncmp/v1/ch/$cmHandleId"
+  curl --silent --fail --output /dev/null "http://$CPS_HOST:$CPS_PORT/ncmp/v1/ch/$cmHandleId"
 }
 
 function failIfCmHandlesNotFound() {
@@ -66,7 +64,6 @@ function measureAverageResponseTimeInMillis() {
   curl --show-error --fail --fail-early \
     --output /dev/null --write-out '%{time_total}\n' \
     --parallel --parallel-max $PARALLEL_REQUESTS --parallel-immediate \
-    --user "$CPS_USERNAME:$CPS_PASSWORD" --basic \
     --request POST "http://$CPS_HOST:$CPS_PORT/ncmp/v1/ch/ch-[1-$totalRequests]/data/ds/ncmp-datastore%3Apassthrough-operational?resourceIdentifier=x&include-descendants=true" |
     awk '{ sum += $1; n++ } END { if (n > 0) print (sum / n) * 1000; }'
 }

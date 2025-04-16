@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                                     Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpBasePath}                             /ncmp/v1
 ${jsonModuleAndPropertyQueryParameters}     {"cmHandleQueryParameters": [{"conditionName": "hasAllModules", "conditionParameters": [ {"moduleName": "iana-crypt-hash"} ]}, {"conditionName": "hasAllProperties", "conditionParameters": [ {"Contact": "newemailforstore@bookstore.com"} ]}]}
 ${jsonEmptyQueryParameters}                 {}
@@ -39,20 +38,20 @@ ${jsonMissingPropertyQueryParameters}       {"cmHandleQueryParameters": [{"condi
 *** Test Cases ***
 Retrieve CM Handle ids where query parameters Match (module and property query)
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonModuleAndPropertyQueryParameters}
     Should Be Equal As Strings              ${response.status_code}   200
     Should Contain       ${response.json()}    ietfYang-PNFDemo
 
 Retrieve CM Handle ids where query parameters Match (empty query)
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonEmptyQueryParameters}
     Should Be Equal As Strings              ${response.status_code}   200
     Should Contain       ${response.json()}    ietfYang-PNFDemo
 
 Throw 400 when Structure of Request is Incorrect
     ${uri}=              Set Variable       ${ncmpBasePath}/ch/id-searches
-    ${headers}=          Create Dictionary  Content-Type=application/json   Authorization=${auth}
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${response}=         POST On Session    CPS_URL   ${uri}   headers=${headers}   data=${jsonMissingPropertyQueryParameters}    expected_status=400
     Should Be Equal As Strings              ${response}   <Response [400]>

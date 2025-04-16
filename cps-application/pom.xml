@@ -3,7 +3,7 @@
   ============LICENSE_START=======================================================
   Copyright (c) 2021 Pantheon.tech.
   Modifications Copyright (C) 2021 Bell Canada.
-  Modifications Copyright (C) 2021-2024 Nordix Foundation
+  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2022 Deutsche Telekom AG
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +37,6 @@
     <properties>
         <app>org.onap.cps.Application</app>
         <maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-        <minimum-coverage>0.68</minimum-coverage>
         <base.image>${docker.pull.registry}/onap/integration-java17:12.0.0</base.image>
         <image.tag>${project.version}-${maven.build.timestamp}</image.tag>
     </properties>
