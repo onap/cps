@@ -5,7 +5,7 @@
 # Modifications copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
 # Modifications Copyright (C) 2021 Pantheon.tech
 # Modifications Copyright (C) 2021 Bell Canada.
-# Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
+# Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
