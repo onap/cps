@@ -34,11 +34,6 @@ info:
 
 servers:
   - url: /cps/api
-components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
 tags:
   - name: cps-admin
     description: cps Admin
@@ -119,6 +114,3 @@ paths:
 
   /v2/notification-subscription:
     $ref: 'cpsAdminV2.yml#/notificationSubscription'
-
-security:
-  - basicAuth: []
