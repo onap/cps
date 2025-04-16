@@ -24,11 +24,6 @@ info:
   version: "3.6.2"
 servers:
   - url: /ncmpInventory
-components:
-  securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
 paths:
   /v1/ch:
     $ref: 'ncmp-inventory.yml#/updateDmiRegistration'
@@ -38,6 +33,3 @@ paths:
 
   /v1/ch/searches:
     $ref: 'ncmp-inventory.yml#/searchCmHandleIds'
-
-security:
-  - basicAuth: []
