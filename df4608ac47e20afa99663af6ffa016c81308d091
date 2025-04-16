@@ -22,6 +22,30 @@
       },
       "revId": "df4608ac47e20afa99663af6ffa016c81308d091",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121a61cc_83e69a5b",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-16T08:13:33Z",
+      "side": 1,
+      "message": "yes. third party packages.",
+      "parentUuid": "7bb3f539_aea55bf1",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 18
+      },
+      "revId": "df4608ac47e20afa99663af6ffa016c81308d091",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
