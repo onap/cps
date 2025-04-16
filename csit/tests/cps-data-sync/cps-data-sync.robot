@@ -30,7 +30,6 @@ Suite Setup           Create Session      CPS_URL    http://${CPS_CORE_HOST}:${C
 
 *** Variables ***
 
-${auth}                   Basic Y3BzdXNlcjpjcHNyMGNrcyE=
 ${ncmpBasePath}           /ncmp
 
 *** Test Cases ***
@@ -38,8 +37,7 @@ ${ncmpBasePath}           /ncmp
 Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data-sync
     ${params}=           Create Dictionary  dataSyncEnabled=true
-    ${headers}=          Create Dictionary  Authorization=${auth}
-    ${response}=         PUT On Session     CPS_URL   ${uri}   params=${params}   headers=${headers}
+    ${response}=         PUT On Session     CPS_URL   ${uri}   params=${params}
     Should Be Equal As Strings              ${response.status_code}   200
     ${verifyUri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/state
     ${verifyHeaders}=    Create Dictionary  Authorization=${auth}
@@ -48,8 +46,7 @@ Operational state goes to UNSYNCHRONIZED when data sync (flag) is enabled
 
 Operational state goes to SYNCHRONIZED after sometime when data sync (flag) is enabled
     ${uri}=        Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/state
-    ${headers}=    Create Dictionary  Authorization=${auth}
-    Wait Until Keyword Succeeds    40sec    100ms    Is CM Handle State SYNCHRONIZED    ${uri}    ${headers}
+    Wait Until Keyword Succeeds    40sec    100ms    Is CM Handle State SYNCHRONIZED    ${uri}
 
 *** Keywords ***
 
