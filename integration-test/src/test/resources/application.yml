@@ -135,13 +135,6 @@ springdoc:
       - name: cps-ncmp-inventory
         url: /api-docs/cps-ncmp/openapi-inventory.yaml
 
-security:
-  # comma-separated uri patterns which do not require authorization
-  permit-uri: /actuator/**,/swagger-ui.html,/swagger-ui/**,/swagger-resources/**,/api-docs/**,/v3/api-docs/**
-  auth:
-    username: cps
-    password: cpsr0cks!
-
 # Actuator
 management:
   endpoints:
