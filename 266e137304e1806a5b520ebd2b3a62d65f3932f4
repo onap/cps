@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95effa13_bd85a863",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-16T14:42:16Z",
+      "side": 1,
+      "message": "apart from this comment , i think m good.",
+      "revId": "266e137304e1806a5b520ebd2b3a62d65f3932f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a72ffae_30103d25",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-16T14:42:16Z",
+      "side": 1,
+      "message": "instead of instantiating it like this , you can as well accept the reference of jsonObjectMapper from the controller layer where the bean is been injected.\n\npublic static String extractJsonContent(final MultipartFile jsonFile, final JsonObjectMapper jsonObjectMapper) ...",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 95
+      },
+      "revId": "266e137304e1806a5b520ebd2b3a62d65f3932f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
