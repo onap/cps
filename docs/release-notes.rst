@@ -39,6 +39,7 @@ Features
 --------
     - `CPS-2416 <https://lf-onap.atlassian.net/browse/CPS-2416>`_ Implement XPath Attribute Axis in CPS
     - `CPS-2169 <https://lf-onap.atlassian.net/browse/CPS-2169>`_ Support 50K CM Handles (performance improvements)
+    - `CPS-2725 <https://lf-onap.atlassian.net/browse/CPS-2725>`_ Uplift Spring Boot to 3.4.4 version
 
 Version: 3.6.1
 ==============
