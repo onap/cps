@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b663e5ab_ee6cad4f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "modified",
+      "parentUuid": "7a540b21_71b5fa8e",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7f272a2_6539fa38",
@@ -282,6 +306,30 @@
       "writtenOn": "2025-04-09T12:09:01Z",
       "side": 1,
       "message": "NB: { executeWriteDataJob }",
+      "range": {
+        "startLine": 34,
+        "startChar": 7,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "cb8524838fc7f40b5f26b0ca2877de8b9647c139",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d04fb1e9_2d1522db",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "already done",
+      "parentUuid": "6a09284a_a988be57",
       "range": {
         "startLine": 34,
         "startChar": 7,

@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a78001_b9ad27b7",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "Yes requirement is 100,000 modified",
+      "parentUuid": "fc1b30d8_6c0e3860",
+      "range": {
+        "startLine": 33,
+        "startChar": 31,
+        "endLine": 33,
+        "endChar": 69
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29a92335_0038e097",
@@ -78,6 +102,30 @@
       "writtenOn": "2025-04-15T17:14:11Z",
       "side": 1,
       "message": "is this really needed?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 2
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da20e974_93140ba7",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "Nope",
+      "parentUuid": "29a92335_0038e097",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -135,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9603ed5e_08207a26",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "Used 2 functions",
+      "parentUuid": "21665e7a_a3072f54",
+      "range": {
+        "startLine": 99,
+        "startChar": 15,
+        "endLine": 99,
+        "endChar": 35
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac415ca2_69ea5199",
@@ -148,6 +220,30 @@
       "writtenOn": "2025-04-15T17:14:11Z",
       "side": 1,
       "message": "can you not simply define here as writeDataJobScenario(100)",
+      "range": {
+        "startLine": 105,
+        "startChar": 15,
+        "endLine": 105,
+        "endChar": 35
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6f1c864_9d4defda",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "Nope",
+      "parentUuid": "ac415ca2_69ea5199",
       "range": {
         "startLine": 105,
         "startChar": 15,
@@ -195,6 +291,30 @@
       "side": 1,
       "message": "above sounds good enough to me and a lot simpler then before",
       "parentUuid": "329deeb3_e0c5dbc9",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 1
+      },
+      "revId": "284f128367ac667ec6da796efe0e8ffc58a3821c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e0616e_f9915eff",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "Refactored",
+      "parentUuid": "2be66219_071c4b9e",
       "range": {
         "startLine": 208,
         "startChar": 0,

@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "334cf60b_5237bfef",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "d6e627a2_80141927",
+      "range": {
+        "startLine": 30,
+        "startChar": 7,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "0c5d7e5b922923fb4aa81d95bc52ce5c17152732",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa1ae797_7482b991",
@@ -108,6 +132,30 @@
       "writtenOn": "2025-04-15T17:47:27Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "8f133ff4_7aaaa55c",
+      "range": {
+        "startLine": 54,
+        "startChar": 37,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "0c5d7e5b922923fb4aa81d95bc52ce5c17152732",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d929149f_67b0fa29",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-16T11:14:50Z",
+      "side": 1,
+      "message": "corrected",
       "parentUuid": "8f133ff4_7aaaa55c",
       "range": {
         "startLine": 54,
