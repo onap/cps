@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6e6bd5d_ff0711f7",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-16T11:31:17Z",
+      "side": 1,
+      "message": "This will not match any alternate IDs that were set in registration. In cmhandle-crud.js, the alternate ID prefix we use is:\n\n    Region\u003dNorthAmerica,Segment\u003d\n\nNote the longest-match algorithm uses slashes, so we should change cmhandle-crud.js to use FDNs a alternate IDs\n\nAlso note, the generated paths above use ${i}, but for large operation we use 100000 operations, but we don\u0027t have 100000 CM-handles! It would be better to randomly generate a number between 1 and TOTAL_CM_HANDLES",
+      "range": {
+        "startLine": 99,
+        "startChar": 26,
+        "endLine": 99,
+        "endChar": 125
+      },
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6be93b59_50933822",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-16T11:31:17Z",
+      "side": 1,
+      "message": "This creates 3 write operations for each loop iteration. This means the check for the responses will be wrong, since we would get back 300 responses instead of 100.",
+      "range": {
+        "startLine": 101,
+        "startChar": 24,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e9fa24_7d6a13a1",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-16T11:31:17Z",
+      "side": 1,
+      "message": "Also need to add threshold for the new metrics here, e.g. \n\n    \"write_small_data_job_duration\": [\"avg \u003c\u003d 2000\"]",
+      "revId": "29e1dd837735e248b4d74d57a44c64e63832f3de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
