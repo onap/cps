@@ -1,11 +1,12 @@
-# ============LICENSE_START=======================================================
-# Copyright (C) 2021 Pantheon.tech
-# ================================================================================
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
 #
 #        http://www.apache.org/licenses/LICENSE-2.0
+#
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS,
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,7 +16,242 @@
 #  SPDX-License-Identifier: Apache-2.0
 #  ============LICENSE_END=========================================================
 
-security:
-  auth:
-    username: cpsuser
-    password: cpsr0cks!
+# This is a full copy of the real application.yml except that liquibase.enabled is set to false!
+# This is needed te be able to test Application.main () method (coverage and context loading test).
+# Cannot use a custom profile. That would require the test to be a springboot test which is even harder to achieve
+
+rest:
+    api:
+        cps-base-path: /cps/api
+        ncmp-base-path: /ncmp
+        ncmp-inventory-base-path: /ncmpInventory
+
+spring:
+    main:
+        banner-mode: "off"
+    application:
+        name: "cps-application"
+    jpa:
+        show-sql: false
+        ddl-auto: create
+        open-in-view: false
+        properties:
+            hibernate.enable_lazy_load_no_trans: true
+            hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+            # Please ensure these values match those used in integration-test/src/test/resources/application.yml
+            hibernate.id.new_generator_mappings: true
+            hibernate.jdbc.batch_size: 100
+
+    datasource:
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/cpsdb
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+        driverClassName: org.postgresql.Driver
+        hikari:
+            minimumIdle: 5
+            maximumPoolSize: 80
+            idleTimeout: 60000
+            connectionTimeout: 30000
+            leakDetectionThreshold: 30000
+            pool-name: CpsDatabasePool
+
+    cache:
+        type: caffeine
+        cache-names: yangSchema
+        caffeine:
+            spec: maximumSize=10000,expireAfterAccess=10m
+
+    liquibase:
+        enabled: false
+
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB
+
+    kafka:
+        bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+        security:
+            protocol: PLAINTEXT
+        producer:
+            value-serializer: io.cloudevents.kafka.CloudEventSerializer
+            client-id: cps-core
+        consumer:
+            group-id: ${NCMP_CONSUMER_GROUP_ID:ncmp-group}
+            key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            properties:
+                spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+                spring.deserializer.value.delegate.class: io.cloudevents.kafka.CloudEventDeserializer
+                spring.json.use.type.headers: false
+
+    jackson:
+        default-property-inclusion: NON_NULL
+        serialization:
+            FAIL_ON_EMPTY_BEANS: false
+    sql:
+        init:
+            mode: ALWAYS
+app:
+    ncmp:
+        async-m2m:
+            topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
+        avc:
+            cm-subscription-ncmp-in: ${CM_SUBSCRIPTION_NCMP_IN_TOPIC:subscription}
+            cm-subscription-dmi-in: ${CM_SUBSCRIPTION_DMI_IN_TOPIC:ncmp-dmi-cm-avc-subscription}
+            cm-subscription-dmi-out: ${CM_SUBSCRIPTION_DMI_OUT_TOPIC:dmi-ncmp-cm-avc-subscription}
+            cm-subscription-ncmp-out: ${CM_SUBSCRIPTION_NCMP_OUT_TOPIC:subscription-response}
+            cm-events-topic: ${NCMP_CM_EVENTS_TOPIC:cm-events}
+            inventory-events-topic: ncmp-inventory-events
+    lcm:
+        events:
+            topic: ${LCM_EVENTS_TOPIC:ncmp-events}
+    dmi:
+        cm-events:
+            topic: ${DMI_CM_EVENTS_TOPIC:dmi-cm-events}
+        device-heartbeat:
+            topic: ${DMI_DEVICE_HEARTBEAT_TOPIC:dmi-device-heartbeat}
+    cps:
+        data-updated:
+            change-event-notifications-enabled: ${CPS_CHANGE_EVENT_NOTIFICATIONS_ENABLED:false}
+            topic: ${CPS_CHANGE_EVENT_TOPIC:cps-data-updated-events}
+
+notification:
+    enabled: true
+    async:
+        executor:
+            core-pool-size: 2
+            max-pool-size: 10
+            queue-capacity: 500
+            wait-for-tasks-to-complete-on-shutdown: true
+            thread-name-prefix: Async-
+            time-out-value-in-ms: 60000
+
+springdoc:
+    swagger-ui:
+        disable-swagger-default-url: true
+        urlsPrimaryName: cps-core
+        urls:
+            - name: cps-core
+              url: /api-docs/cps-core/openapi.yaml
+            - name: cps-ncmp
+              url: /api-docs/cps-ncmp/openapi.yaml
+            - name: cps-ncmp-inventory
+              url: /api-docs/cps-ncmp/openapi-inventory.yaml
+
+cps:
+    monitoring:
+        micrometer-jvm-extras: false
+    tracing:
+        sampler:
+            jaeger_remote:
+                endpoint: ${ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT:http://onap-otel-collector:14250}
+        exporter:
+            endpoint: ${ONAP_OTEL_EXPORTER_ENDPOINT:http://onap-otel-collector:4317}
+            protocol: ${ONAP_OTEL_EXPORTER_PROTOCOL:grpc}
+        enabled: ${ONAP_TRACING_ENABLED:false}
+        excluded-observation-names: ${ONAP_EXCLUDED_OBSERVATION_NAMES:tasks.scheduled.execution}
+
+# Actuator
+management:
+    tracing:
+        propagation:
+            produce: ${ONAP_PROPAGATOR_PRODUCE:[W3C]}
+        sampling:
+            probability: 1.0
+    endpoints:
+        web:
+            exposure:
+                include: info,health,loggers,prometheus,metrics,heapdump,threaddump
+    endpoint:
+        health:
+            show-details: always
+            # kubernetes probes: liveness and readiness
+            probes:
+                enabled: true
+
+    info:
+        git:
+            enabled: true
+            mode: full
+
+logging:
+    format: json
+    level:
+        org:
+            springframework: INFO
+            onap:
+                cps: INFO
+ncmp:
+    policy-executor:
+        enabled: ${POLICY_SERVICE_ENABLED:false}
+        defaultDecision: ${POLICY_SERVICE_DEFAULT_DECISION:"allow"}
+        server:
+            address: ${POLICY_SERVICE_URL:http://policy-executor-stub}
+            port: ${POLICY_SERVICE_PORT:8093}
+        httpclient:
+            all-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
+                connectionTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
+                writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
+    dmi:
+        httpclient:
+            data-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
+                connectionTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
+                writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
+            model-services:
+                maximumInMemorySizeInMegabytes: 16
+                maximumConnectionsTotal: 100
+                pendingAcquireMaxCount: 50
+                connectionTimeoutInSeconds: 30
+                readTimeoutInSeconds: 30
+                writeTimeoutInSeconds: 30
+                responseTimeoutInSeconds: 60
+        auth:
+            username: ${DMI_USERNAME:cpsuser}
+            password: ${DMI_PASSWORD:cpsr0cks!}
+            enabled: ${DMI_AUTH_ENABLED:true}
+        api:
+            base-path: dmi
+
+    timers:
+        advised-modules-sync:
+            initial-delay-ms: 40000
+            sleep-time-ms: 5000
+        cm-handle-data-sync:
+            initial-delay-ms: 40000
+            sleep-time-ms: 30000
+        subscription-forwarding:
+            dmi-response-timeout-ms: 30000
+        model-loader:
+            retry-time-ms: 1000
+        trust-level:
+            dmi-availability-watchdog-ms: 30000
+
+    model-loader:
+        maximum-attempt-count: 20
+
+# Custom Hazelcast Config.
+hazelcast:
+    cluster-name: ${CPS_NCMP_CACHES_CLUSTER_NAME:"cps-and-ncmp-common-cache-cluster"}
+    instance-config-name: ${CPS_NCMP_INSTANCE_CONFIG_NAME:"cps-and-ncmp-hazelcast-instance-config"}
+    mode:
+        kubernetes:
+            enabled: ${HAZELCAST_MODE_KUBERNETES_ENABLED:false}
+            service-name: ${CPS_NCMP_SERVICE_NAME:"cps-and-ncmp-service"}
+
+otel:
+    exporter:
+        otlp:
+            traces:
+                protocol: ${ONAP_OTEL_EXPORTER_OTLP_TRACES_PROTOCOL:grpc}
