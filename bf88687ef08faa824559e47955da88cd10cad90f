@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c38cf6dc_514bf611",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-16T13:02:24Z",
+      "side": 1,
+      "message": "Mistake in the above loop, should be:\n\n    for (let i \u003d 1; i \u003c\u003d numberOfWriteOperations / 2; i++) {\n\nThen `executeWriteDataJob(100)` will give 100 responses.",
+      "parentUuid": "f47c322a_a78060ad",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 10
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a2c0722_47617a76",
         "filename": "k6-tests/ncmp/ncmp-test-runner.js",
         "patchSetId": 6
