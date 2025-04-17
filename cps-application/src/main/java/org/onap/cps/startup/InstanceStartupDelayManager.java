@@ -29,25 +29,20 @@ import lombok.extern.slf4j.Slf4j;
 public class InstanceStartupDelayManager {
 
     /**
-     * Applies a startup delay based on the host's name to avoid race conditions during schema migration.
-
-     * In environments with multiple instances (e.g., Docker Compose, Kubernetes),
-     * this delay helps avoid simultaneous Liquibase executions that may result in conflicts.
-
+     * Applies a consistent hash-based startup delay based on the host's name
+     * to avoid race conditions during schema migration.
+     * This method is useful in environments with multiple instances
+     * (e.g., Docker Compose, Kubernetes), where simultaneous Liquibase executions
+     * might result in conflicts.
      * Delay logic:
-     * - If the last character of the hostname is a digit, delay = digit * 1000 ms.
-     * - Otherwise, a hash-based fallback delay up to 3000 ms is applied.
+     * - A hash of the hostname is calculated.
+     * - The result is used to derive a delay up to 5000 milliseconds.
+     * - This provides a reasonably distributed delay across instances.
      */
     public void applyHostnameBasedStartupDelay() {
         try {
             final String hostname = getHostName();
-            final char lastCharacterOfHostName = hostname.charAt(hostname.length() - 1);
-            final long startupDelayInMillis;
-            if (Character.isDigit(lastCharacterOfHostName)) {
-                startupDelayInMillis = Character.getNumericValue(lastCharacterOfHostName) * 1_000L;
-            } else {
-                startupDelayInMillis = Math.abs(hostname.hashCode() % 3_000L);
-            }
+            final long startupDelayInMillis = Math.abs(hostname.hashCode() % 5_000L);
             log.info("Startup delay applied for Hostname: {} | Delay: {} ms", hostname, startupDelayInMillis);
             haveALittleSleepInMs(startupDelayInMillis);
         } catch (final InterruptedException e) {
