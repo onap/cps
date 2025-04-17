@@ -261,6 +261,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2414935_54b6e8f4",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-17T11:59:13Z",
+      "side": 1,
+      "message": "I was talking to Daniel about this tesware and we agreed we don\u0027t need (and don\u0027t want to maintain) a unit-like-test.\nhowever it is good idea to test/assert the output of the real script!\n\nI recommend you ASSERT the modification/creation date/time of the output file (should be less then 1 minute ago or something like that)\nAND test the number of lines in the file. it should be an expected number (~57) ie. if an instrumentation gets added this test should fail until its updated!\n\nIt is crucial when the assert fails the build fails too! Not 100% sure how to do that probably return a negative exit code form the script or similar if needed talk to team Kraken about that",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "896dfb77_c8cb575f",
         "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
         "patchSetId": 3
