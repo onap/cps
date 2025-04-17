@@ -546,6 +546,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "283294ad_2bef859d",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T16:00:10Z",
+      "side": 1,
+      "message": "I removed all unnecessary unit test but kept two:\n\n1-The one testing the file content and the unique regex (it is handy for local development, if someone need to modify the regex in future!)\n2-Test if metrics.csv was modified less than 1 minute ago and has 56 lines",
+      "parentUuid": "c2414935_54b6e8f4",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "896dfb77_c8cb575f",

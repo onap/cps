@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7245bbc_99d6ac28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T16:00:10Z",
+      "side": 1,
+      "message": "I don\u0027t know yet, too.\n\nHowever, Toine and I decided to think about it on the next follow up commit.",
+      "parentUuid": "d6a3c34b_f1a0dbc2",
+      "revId": "0a5bf35a1154738f8150cf30d897f879cb7d1abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24945c5a_38b51084",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-04-17T14:40:24Z",
       "side": 1,
       "message": "this is returning object and not just ids.",
+      "range": {
+        "startLine": 261,
+        "startChar": 34,
+        "endLine": 261,
+        "endChar": 47
+      },
+      "revId": "0a5bf35a1154738f8150cf30d897f879cb7d1abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf4cd93_335ab65e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T16:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24945c5a_38b51084",
       "range": {
         "startLine": 261,
         "startChar": 34,
