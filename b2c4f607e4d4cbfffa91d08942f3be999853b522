@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81847d7f_bd88d147",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-17T09:55:00Z",
+      "side": 1,
+      "message": "yes, here we are validating where the payload is present or empty(depends on the user input)which is similar to validation error not a failure in reading file",
+      "parentUuid": "afd1fb71_75f4b885",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 9
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6c64750_ed4465f4",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-04-17T08:58:55Z",
       "side": 1,
       "message": "IOException should be caught when no/empty file is provided. But here you are validating the JSON string using the jsonObjectMapper. So this should be a DataValidationException.\n\n@priyank you can provide inputs here.",
+      "range": {
+        "startLine": 92,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 9
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb6d86e_ae6be449",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-17T09:55:00Z",
+      "side": 1,
+      "message": "jsonFile.getBytes()can throw IO exception, since it is involved in I/O operations i.e, reading uploaded file content so preferred IO exception here.",
+      "parentUuid": "f6c64750_ed4465f4",
       "range": {
         "startLine": 92,
         "startChar": 10,
