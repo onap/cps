@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3639cbb_3ec7d32d",
+        "filename": "checkstyle/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4cbe985_0db523d7",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc75e4eb_44bfd7ec",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-04-17T09:02:26Z",
       "side": 1,
       "message": "should be in docs module!",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd87cc54_ec2341be",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc75e4eb_44bfd7ec",
       "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -110,6 +152,78 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d9555e_98eebc13",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69867660_036123bf",
+      "range": {
+        "startLine": 52,
+        "startChar": 102,
+        "endLine": 52,
+        "endChar": 107
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23c83e5_9539d30e",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024b9e82_88f97b50",
+      "range": {
+        "startLine": 52,
+        "startChar": 136,
+        "endLine": 52,
+        "endChar": 141
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca3682c_49f805ef",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "654ad2b9_5326a642",
+      "range": {
+        "startLine": 52,
+        "startChar": 88,
+        "endLine": 52,
+        "endChar": 93
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d2a9f79_d87d47bf",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "you need to check group [1] first if it equals to \u0027CountCmHandleSearchExecution\u0027 you need to hardcode the name! Sicne the name is NOT in the annotation details",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 23
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d556ed_020fe404",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d2a9f79_d87d47bf",
       "range": {
         "startLine": 56,
         "startChar": 8,
@@ -156,6 +294,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa42293_008982ec",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "357445da_e254a91b",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 7
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8823c369_70dfd095",
@@ -169,6 +331,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "do we HAVE to handle this as this script itself find all teh java files so can we ever get here. at all",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 52
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a2ed9f_eb5e663a",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8823c369_70dfd095",
       "range": {
         "startLine": 76,
         "startChar": 0,
@@ -202,6 +388,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ea6cae4_8a181f4a",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abde7695_e1ca86d4",
+      "range": {
+        "startLine": 93,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a3bb94_9386b634",
@@ -215,6 +425,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 43
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d2cad0d_ac28fb0b",
+        "filename": "checkstyle/src/main/ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0a3bb94_9386b634",
       "range": {
         "startLine": 94,
         "startChar": 0,
@@ -276,6 +510,42 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ce454c_4c8e3c0f",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96ca2e12_f773eb03",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "241fe80c_3b1cd805",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5685731d_c23fba5b",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "896dfb77_c8cb575f",
@@ -289,6 +559,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "remove this",
+      "range": {
+        "startLine": 66,
+        "startChar": 42,
+        "endLine": 66,
+        "endChar": 81
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5041750_54967c10",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "896dfb77_c8cb575f",
       "range": {
         "startLine": 66,
         "startChar": 42,
@@ -322,6 +616,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf33604a_68bb7d05",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5565050f_241f67e9",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26e47569_71734037",
@@ -335,6 +653,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "name",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 30
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a5676eb_5b0a5280",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26e47569_71734037",
       "range": {
         "startLine": 73,
         "startChar": 25,
@@ -368,6 +710,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4adf73c_8797cd35",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab30b818_e801fdf4",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 56
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9116098_608d9afd",
@@ -381,6 +747,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "OK\u003c this is teh same test but now wrapped as a Java file so more like integration test.\nNO need to duplicate, please take aboce comment and apply to this test then remove previous test",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef7ed141_9f73e368",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9116098_608d9afd",
       "range": {
         "startLine": 88,
         "startChar": 7,
@@ -414,6 +804,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42580043_ee7e7769",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f3b7f4_2357d596",
+      "range": {
+        "startLine": 93,
+        "startChar": 42,
+        "endLine": 93,
+        "endChar": 80
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9cbdff2_6c1b54a4",
@@ -427,6 +841,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "\u0027some data\u0027 will do",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 64
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dca467a7_071ec2d1",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9cbdff2_6c1b54a4",
       "range": {
         "startLine": 117,
         "startChar": 12,
@@ -460,6 +898,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a64dceb_5290c3af",
+        "filename": "checkstyle/src/main/test_ScrapeMetrics.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "221735d2_953b1652",
+      "range": {
+        "startLine": 127,
+        "startChar": 3,
+        "endLine": 142,
+        "endChar": 0
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd54f7b7_4598f2e3",
@@ -473,6 +935,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "For all descriptions copy the one already defined in java code below",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 83
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d8f9a4c_be103932",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CmHandleStateGaugeConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd54f7b7_4598f2e3",
       "range": {
         "startLine": 48,
         "startChar": 23,
@@ -506,6 +992,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27907eea_62c8e035",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70313f32_dc7c2e8e",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f577f590_1faf75bb",
@@ -519,6 +1029,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "name",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6583a81_d674d0a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f577f590_1faf75bb",
       "range": {
         "startLine": 37,
         "startChar": 19,
@@ -552,6 +1086,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "092e984f_a97eb975",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63cd015c_2fded152",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 16
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "460b9a2d_6d04f465",
@@ -575,6 +1133,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b5c7e4_dae0d8f2",
+        "filename": "docs/admin-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "460b9a2d_6d04f465",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 60
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1d1299c_5f41dde8",
@@ -588,6 +1170,24 @@
       "writtenOn": "2025-04-17T08:02:16Z",
       "side": 1,
       "message": "Create a CSV file instead, so you can import it into RTS directly,see my latest path: https://gerrit.onap.org/r/c/cps/+/140702/2/docs/deployment.rst\n\nhardcode to write a header line like so:\n\"name\u0027,\"description\"",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f73b6d25_3c4806e1",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1d1299c_5f41dde8",
       "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -639,6 +1239,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c446b6b5_c72d951a",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9a9f7dd_21455ba0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 92
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a7e68f7_7480db50",
@@ -652,6 +1276,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "these you need to hardcode as commented in the Python script!",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62459c10_49217aa8",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-17T14:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a7e68f7_7480db50",
       "range": {
         "startLine": 2,
         "startChar": 0,
