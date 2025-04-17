@@ -503,6 +503,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1d1299c_5f41dde8",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-17T08:02:16Z",
+      "side": 1,
+      "message": "Create a CSV file instead, so you can import it into RTS directly,see my latest path: https://gerrit.onap.org/r/c/cps/+/140702/2/docs/deployment.rst\n\nhardcode to write a header line like so:\n\"name\u0027,\"description\"",
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e504f381_931fa907",
         "filename": "docs/metrics.txt",
         "patchSetId": 3
@@ -514,6 +531,30 @@
       "writtenOn": "2025-04-16T15:47:44Z",
       "side": 1,
       "message": "Change format:\ncps.ncmp.controller.get : Time taken to get resource data from datastore",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 92
+      },
+      "revId": "aae1fd52b1aa391271f9848247999ef5df55ccee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a9f7dd_21455ba0",
+        "filename": "docs/metrics.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-17T08:02:16Z",
+      "side": 1,
+      "message": "Change format to csv:\n\"cps.ncmp.controller.get\",\"Time taken to get resource data from datastore\"",
+      "parentUuid": "e504f381_931fa907",
       "range": {
         "startLine": 1,
         "startChar": 0,
