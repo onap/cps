@@ -33,6 +33,46 @@
       "message": "discussion happened today and team ok to have a V3 of the API to avoid any NBCs.",
       "revId": "ea155079af28d3b89948f136103e6cbde2263cd8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "984861c6_92ece476",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-17T14:25:26Z",
+      "side": 1,
+      "message": "overall its fine by me.",
+      "revId": "ea155079af28d3b89948f136103e6cbde2263cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f99205c_f82fcb67",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-17T14:25:26Z",
+      "side": 1,
+      "message": "NB: fix the copyright.",
+      "range": {
+        "startLine": 5,
+        "startChar": 32,
+        "endLine": 5,
+        "endChar": 36
+      },
+      "revId": "ea155079af28d3b89948f136103e6cbde2263cd8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
