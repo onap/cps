@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a3c34b_f1a0dbc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-17T14:40:24Z",
+      "side": 1,
+      "message": "and how would the script be executed???",
+      "revId": "0a5bf35a1154738f8150cf30d897f879cb7d1abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24945c5a_38b51084",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-17T14:40:24Z",
+      "side": 1,
+      "message": "this is returning object and not just ids.",
+      "range": {
+        "startLine": 261,
+        "startChar": 34,
+        "endLine": 261,
+        "endChar": 47
+      },
+      "revId": "0a5bf35a1154738f8150cf30d897f879cb7d1abd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
