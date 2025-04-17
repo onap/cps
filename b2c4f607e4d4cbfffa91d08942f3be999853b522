@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b482afc8_5ddd5eae",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "NB: yangResourceFile",
+      "range": {
+        "startLine": 75,
+        "startChar": 90,
+        "endLine": 75,
+        "endChar": 103
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd1fb71_75f4b885",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "This block tests for no file provided and empty file.\nAn IOException should be thrown here as this is an operational error.\nANd the unit tests need to be adjusted accordingly.\n@Priyank can you look into this and provide your feedback",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 9
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c64750_ed4465f4",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "IOException should be caught when no/empty file is provided. But here you are validating the JSON string using the jsonObjectMapper. So this should be a DataValidationException.\n\n@priyank you can provide inputs here.",
+      "range": {
+        "startLine": 92,
+        "startChar": 10,
+        "endLine": 94,
+        "endChar": 9
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c4f44c_5948a413",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "NB: and yang resource",
+      "range": {
+        "startLine": 107,
+        "startChar": 51,
+        "endLine": 107,
+        "endChar": 70
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "849d39c9_a69aff99",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "NB: yang resource",
+      "range": {
+        "startLine": 127,
+        "startChar": 59,
+        "endLine": 127,
+        "endChar": 78
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b58040_6fd97541",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "NB: not needed",
+      "range": {
+        "startLine": 146,
+        "startChar": 51,
+        "endLine": 146,
+        "endChar": 81
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10d8eef_03d42e35",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "This is not required. The tests should focus on testing delta rest controller. No need to test behavior of delta service.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 13
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b8bb5d_5126460e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-04-17T08:58:55Z",
+      "side": 1,
+      "message": "I would prefer this to be mocked instead of creating a new instance.\nSomething like:\ndef createInvalidJson() {\n        def multipartFile \u003d Mock(MockMultipartFile)\n        multipartFile.name \u003e\u003e \u0027jsonFile\u0027\n        multipartFile.getBytes() \u003e\u003e { throw new IOException(\"Error reading JSON file\") }\n        multipartFile.getInputStream() \u003e\u003e { throw new IOException(\"Error reading JSON file\") }\n        return multipartFile\n    }",
+      "range": {
+        "startLine": 167,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
