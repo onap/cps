@@ -114,8 +114,7 @@ class LegacyBatchDataOperationSpec extends CpsIntegrationSpecBase {
         where:
             scenario              | cmHandleId     || expectedStatusCode | expectedStatusMessage
             'CM handle not ready' | 'not-ready-ch' || 101                | 'cm handle(s) not ready'
-            // FIXME BUG CPS-2769: CM handle not found causes batch to fail
-            // 'CM handle not found' | 'not-found-ch' || 100                | 'cm handle reference(s) not found'
+            'CM handle not found' | 'not-found-ch' || 100                | 'cm handle reference(s) not found'
     }
 
     def makeDataOperationRequestBody(cmHandleId) {
