@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c66ca7_6d8132b2",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-17T08:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4893ba9e_5992a82c",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 139
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ee8c07c_493da01d",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-16T12:50:04Z",
       "side": 1,
       "message": "Blocker: You need to update this too to match new prefix, otherwise passthrough tests will fail.",
+      "range": {
+        "startLine": 73,
+        "startChar": 36,
+        "endLine": 73,
+        "endChar": 66
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "718871fa_8594e076",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-17T08:21:19Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "1ee8c07c_493da01d",
       "range": {
         "startLine": 73,
         "startChar": 36,
@@ -94,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c50ecf3_d2ab6930",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-17T08:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c38cf6dc_514bf611",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 10
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a2c0722_47617a76",
@@ -117,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb837185_afe6c160",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-17T08:21:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3a2c0722_47617a76",
+      "range": {
+        "startLine": 214,
+        "startChar": 102,
+        "endLine": 214,
+        "endChar": 108
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47265e6a_c6d6bf10",
@@ -130,6 +226,30 @@
       "writtenOn": "2025-04-16T12:50:04Z",
       "side": 1,
       "message": "Similarly, we expect 100 responses.",
+      "range": {
+        "startLine": 225,
+        "startChar": 101,
+        "endLine": 225,
+        "endChar": 104
+      },
+      "revId": "bf88687ef08faa824559e47955da88cd10cad90f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c4e6b1_9f2c3737",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-17T08:21:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47265e6a_c6d6bf10",
       "range": {
         "startLine": 225,
         "startChar": 101,
