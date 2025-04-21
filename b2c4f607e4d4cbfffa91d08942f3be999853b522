@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba940d40_2661303f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b482afc8_5ddd5eae",
+      "range": {
+        "startLine": 75,
+        "startChar": 90,
+        "endLine": 75,
+        "endChar": 103
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afd1fb71_75f4b885",
@@ -189,6 +213,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ffab1d2_ebbc7028",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "k",
+      "parentUuid": "e9c4f44c_5948a413",
+      "range": {
+        "startLine": 107,
+        "startChar": 51,
+        "endLine": 107,
+        "endChar": 70
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "849d39c9_a69aff99",
@@ -202,6 +250,30 @@
       "writtenOn": "2025-04-17T08:58:55Z",
       "side": 1,
       "message": "NB: yang resource",
+      "range": {
+        "startLine": 127,
+        "startChar": 59,
+        "endLine": 127,
+        "endChar": 78
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d25f08_60cced07",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "k",
+      "parentUuid": "849d39c9_a69aff99",
       "range": {
         "startLine": 127,
         "startChar": 59,
@@ -235,6 +307,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "561aaa8a_db83785e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69b58040_6fd97541",
+      "range": {
+        "startLine": 146,
+        "startChar": 51,
+        "endLine": 146,
+        "endChar": 81
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f10d8eef_03d42e35",
@@ -258,6 +354,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f5d063_82eb3c25",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "k",
+      "parentUuid": "f10d8eef_03d42e35",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 13
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60b8bb5d_5126460e",
@@ -271,6 +391,30 @@
       "writtenOn": "2025-04-17T08:58:55Z",
       "side": 1,
       "message": "I would prefer this to be mocked instead of creating a new instance.\nSomething like:\ndef createInvalidJson() {\n        def multipartFile \u003d Mock(MockMultipartFile)\n        multipartFile.name \u003e\u003e \u0027jsonFile\u0027\n        multipartFile.getBytes() \u003e\u003e { throw new IOException(\"Error reading JSON file\") }\n        multipartFile.getInputStream() \u003e\u003e { throw new IOException(\"Error reading JSON file\") }\n        return multipartFile\n    }",
+      "range": {
+        "startLine": 167,
+        "startChar": 12,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "b2c4f607e4d4cbfffa91d08942f3be999853b522",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55463096_1068377a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-04-21T08:01:12Z",
+      "side": 1,
+      "message": "k",
+      "parentUuid": "60b8bb5d_5126460e",
       "range": {
         "startLine": 167,
         "startChar": 12,
