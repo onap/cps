@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca41057_e9e87d8b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T15:51:49Z",
+      "side": 1,
+      "message": "NB: Copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3a6648_8e14ab76",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T15:51:49Z",
+      "side": 1,
+      "message": "NB: Maybe not needed, see below",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4262661e_0ba6f0ac",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T15:51:49Z",
+      "side": 1,
+      "message": "NB: not sure if this is needed",
+      "range": {
+        "startLine": 126,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 15
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
