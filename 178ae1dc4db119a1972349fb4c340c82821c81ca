@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bacf34a3_c213581e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T07:17:47Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4484eee7_db4da74f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T07:17:47Z",
+      "side": 1,
+      "message": "extarct out (into given block) for betert readability",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddec6726_ec2bf87a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T07:17:47Z",
+      "side": 1,
+      "message": "do we really need to check the whole json or could we just check a few significant part with contains... e.g just the operationId...",
+      "range": {
+        "startLine": 82,
+        "startChar": 70,
+        "endLine": 82,
+        "endChar": 429
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "823a7087_04e5ce52",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T07:17:47Z",
+      "side": 1,
+      "message": "declare in given block",
+      "range": {
+        "startLine": 91,
+        "startChar": 29,
+        "endLine": 104,
+        "endChar": 46
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
