@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0a756a_9ad7ebfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-22T10:09:10Z",
+      "side": 1,
+      "message": "exception handling needs to done properly. other changes looks fine to me.",
+      "revId": "3bf7d4eeaa06de5a5fdcc608b3bec500e015175c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d7052d_6ffdbe74",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-22T10:09:10Z",
+      "side": 1,
+      "message": "no. we dont send back the error response like this.\nmaybe use the CpsRestExceptionHandler to handle the error scenario. and also the checked exception needs to be translated to unchecked exception.",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "3bf7d4eeaa06de5a5fdcc608b3bec500e015175c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
