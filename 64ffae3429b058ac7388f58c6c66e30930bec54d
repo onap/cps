@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eefdb26_181a1b13",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-04-22T05:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd7d6e7a_b5df5b47",
+      "range": {
+        "startLine": 122,
+        "startChar": 65,
+        "endLine": 122,
+        "endChar": 69
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "839ac0c2_7d751f68",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-25T11:53:49Z",
       "side": 1,
       "message": "this would contain the delta report now.\nAnd it should contain less amount of data as it is delta.",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 19
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca18ee0_03842ff6",
+        "filename": "cps-events/src/main/resources/schemas/cps.dataupdated/cps-data-updated-event-schema-1.0.0.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-04-22T05:26:15Z",
+      "side": 1,
+      "message": "yes it will be only delta report",
+      "parentUuid": "839ac0c2_7d751f68",
       "range": {
         "startLine": 43,
         "startChar": 12,
@@ -94,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10e38b2d_bf7a90e8",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-04-22T05:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c807c6_f40e777c",
+      "range": {
+        "startLine": 92,
+        "startChar": 87,
+        "endLine": 94,
+        "endChar": 53
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "661b3ea4_77362274",
@@ -107,6 +179,30 @@
       "writtenOn": "2025-03-25T11:51:34Z",
       "side": 1,
       "message": "@Daniel : additional call to the DB. we might need to see how it impacts our performance ( for the update and replace operation inorder to fetch the current state )",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 81
+      },
+      "revId": "64ffae3429b058ac7388f58c6c66e30930bec54d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "658d3eea_46035567",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-04-22T05:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "661b3ea4_77362274",
       "range": {
         "startLine": 167,
         "startChar": 8,
