@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf0d381_41da35f3",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T10:17:20Z",
+      "side": 1,
+      "message": "name (confusingly labeled as \u0027value\u0027 in @Timed)",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124aeb61_30e234f9",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T10:17:20Z",
+      "side": 1,
+      "message": "insert write a header first:\n\"Metric Name\", \"Description\"",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf867e0_6da73a74",
+        "filename": "docs/csv/metrics.csv",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T10:17:20Z",
+      "side": 1,
+      "message": "Missing a header line.\nNeed to hardcode this in the script: output a header first",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 74
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1ae058e_e85608cd",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T10:17:20Z",
+      "side": 1,
+      "message": "use new variable defined above",
+      "range": {
+        "startLine": 93,
+        "startChar": 68,
+        "endLine": 93,
+        "endChar": 70
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681652b1_d837c171",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-22T10:17:20Z",
+      "side": 1,
+      "message": "define variable and explains value like so:\nexpected_number_of_metrics \u003d 56\nexpected_number_of_lines \u003d expected_number_of_metrics + 1 # Header",
+      "range": {
+        "startLine": 93,
+        "startChar": 37,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
