@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "436ac9d4_e64957e1",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T13:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddf0d381_41da35f3",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "124aeb61_30e234f9",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bf7695a_23774729",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T13:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "124aeb61_30e234f9",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbf867e0_6da73a74",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-04-22T10:17:20Z",
       "side": 1,
       "message": "Missing a header line.\nNeed to hardcode this in the script: output a header first",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 74
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "879e7fad_3956c82a",
+        "filename": "docs/csv/metrics.csv",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T13:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf867e0_6da73a74",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -106,6 +178,54 @@
       "writtenOn": "2025-04-22T10:17:20Z",
       "side": 1,
       "message": "define variable and explains value like so:\nexpected_number_of_metrics \u003d 56\nexpected_number_of_lines \u003d expected_number_of_metrics + 1 # Header",
+      "range": {
+        "startLine": 93,
+        "startChar": 37,
+        "endLine": 93,
+        "endChar": 39
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde96e0a_836d006d",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T13:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1ae058e_e85608cd",
+      "range": {
+        "startLine": 93,
+        "startChar": 68,
+        "endLine": 93,
+        "endChar": 70
+      },
+      "revId": "6edeb57b727dac726cf7f0458fcc187b7dd5152d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec78fb3_4706d361",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T13:13:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "681652b1_d837c171",
       "range": {
         "startLine": 93,
         "startChar": 37,
