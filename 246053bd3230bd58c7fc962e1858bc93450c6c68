@@ -16,6 +16,23 @@
       "message": "Need to update CSIT still",
       "revId": "246053bd3230bd58c7fc962e1858bc93450c6c68",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09652be_b6cb0683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-22T10:18:42Z",
+      "side": 1,
+      "message": "so far looks fine to me. will u be doing CSITs and Copyrights in the same commit ?",
+      "revId": "246053bd3230bd58c7fc962e1858bc93450c6c68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
