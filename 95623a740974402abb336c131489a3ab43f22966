@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4078fe50_5e5104e3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T15:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ca41057_e9e87d8b",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d3a6648_8e14ab76",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a90aa10_c067bb3c",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T15:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d3a6648_8e14ab76",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4262661e_0ba6f0ac",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-04-22T15:51:49Z",
       "side": 1,
       "message": "NB: not sure if this is needed",
+      "range": {
+        "startLine": 126,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 15
+      },
+      "revId": "95623a740974402abb336c131489a3ab43f22966",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d432bfd_f23a2f81",
+        "filename": "docs/ScrapeMetrics.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-22T15:58:40Z",
+      "side": 1,
+      "message": "You are right it is redundant, so I remove it along with import.\n\nhttps://docs.python.org/3/library/sys.html#sys.exit",
+      "parentUuid": "4262661e_0ba6f0ac",
       "range": {
         "startLine": 126,
         "startChar": 3,
