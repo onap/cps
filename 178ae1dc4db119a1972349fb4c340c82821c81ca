@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f216457_60f17bf2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-23T10:02:54Z",
+      "side": 1,
+      "message": "It\u0027s used in the test to verify the request was received by DMI. I have renamed it to make this clearer.",
+      "parentUuid": "bacf34a3_c213581e",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4484eee7_db4da74f",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-22T07:17:47Z",
       "side": 1,
       "message": "extarct out (into given block) for betert readability",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b9b9ed2_84ed8bc8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-23T10:02:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4484eee7_db4da74f",
       "range": {
         "startLine": 64,
         "startChar": 30,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07b33d72_d1a3ad6f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-23T10:02:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddec6726_ec2bf87a",
+      "range": {
+        "startLine": 82,
+        "startChar": 70,
+        "endLine": 82,
+        "endChar": 429
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "823a7087_04e5ce52",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-04-22T07:17:47Z",
       "side": 1,
       "message": "declare in given block",
+      "range": {
+        "startLine": 91,
+        "startChar": 29,
+        "endLine": 104,
+        "endChar": 46
+      },
+      "revId": "178ae1dc4db119a1972349fb4c340c82821c81ca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0b4748_cd48978d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-23T10:02:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "823a7087_04e5ce52",
       "range": {
         "startLine": 91,
         "startChar": 29,
