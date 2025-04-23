@@ -171,6 +171,30 @@
       },
       "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b05e6be5_ea84c38d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-23T09:57:16Z",
+      "side": 1,
+      "message": "I prefer toDataMapForApiV3",
+      "parentUuid": "65b88158_03a1700b",
+      "range": {
+        "startLine": 120,
+        "startChar": 40,
+        "endLine": 120,
+        "endChar": 42
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
