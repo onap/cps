@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cfb2f0c_59652054",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CmHandleStateGaugeConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-23T10:25:13Z",
+      "side": 1,
+      "message": "This is not the name of the metric as exposed in Prometheus!\nThe metric name is actually on like 37: \"cps_ncmp_inventory_cm_handles_by_state\"\n\nIn prometheus, the metric looks like this:\n\n    cps_ncmp_inventory_cm_handles_by_state{state\u003dADVISED}\n\nThe same for all the other metrics in this class. It is only a single metric with different state tags.",
+      "range": {
+        "startLine": 47,
+        "startChar": 25,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "4191fffabc90ce76a77c904936c30399164301ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
