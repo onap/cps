@@ -39,6 +39,30 @@
       },
       "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97641ebc_1679fac4",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:08:56Z",
+      "side": 1,
+      "message": "Agree and Noted will fix in upcoming commit...",
+      "parentUuid": "9d16c92b_68fcef66",
+      "range": {
+        "startLine": 58,
+        "startChar": 31,
+        "endLine": 58,
+        "endChar": 85
+      },
+      "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
