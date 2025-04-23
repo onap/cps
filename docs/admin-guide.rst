@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2025 Nordix Foundation
+.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _adminGuide:
@@ -219,6 +219,12 @@ This also includes both the liveliness state and readiness state.
 
 Metrics
 -------
+
+Below table lists all CPS-NCMP custom metrics
+
+.. csv-table::
+    :file: csv/metrics.csv
+    :widths: 50, 50
 
 Prometheus Metrics can be checked at the following endpoint
 
