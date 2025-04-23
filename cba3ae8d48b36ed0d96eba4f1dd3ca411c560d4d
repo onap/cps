@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d16c92b_68fcef66",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T15:54:38Z",
+      "side": 1,
+      "message": "NB: test could (and should) use test specific names like \u0027custom counter name\"\n(AS you do in the first 2 examples)",
+      "range": {
+        "startLine": 58,
+        "startChar": 31,
+        "endLine": 58,
+        "endChar": 85
+      },
+      "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
