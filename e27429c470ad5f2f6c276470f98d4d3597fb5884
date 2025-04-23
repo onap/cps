@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510a0053_77e333a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "some minor suggested but mainly i want to see more and better documentation/examples to highlight what the output will look like in different scenarios",
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0c2fdf_e7ce58cd",
+        "filename": "cps-rest/docs/openapi/cpsDataV3.yml",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "given that this refactoring is about the output format, should we include a new better sample with more details about the exact structure?\nI understand that the sample was incorrect for V2 but correct now for V3. However maybe it wil eb good to a a description to the sample with more details about the structured. Maybe even use multiple example",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 70
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad7316b_39a94579",
+        "filename": "cps-rest/docs/openapi/cpsDataV3.yml",
+        "patchSetId": 23
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 73
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "870e05a4_6641a420",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 23
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "Should we rename this to depcrecated like we did for v now?!",
+      "range": {
+        "startLine": 97,
+        "startChar": 11,
+        "endLine": 97,
+        "endChar": 24
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "185084e5_8c43019e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsFacade.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "NB: Maybe we should describe this a bit more clearly/detailed especially since this is the main reason for this new version!\nincluce what the key is, what that value is etc.",
+      "range": {
+        "startLine": 66,
+        "startChar": 37,
+        "endLine": 66,
+        "endChar": 92
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91723d62_e7bee349",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "again, i think it import to add more details here on the exact use of the map...",
+      "range": {
+        "startLine": 117,
+        "startChar": 15,
+        "endLine": 117,
+        "endChar": 46
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b88158_03a1700b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DataMapper.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-23T09:36:51Z",
+      "side": 1,
+      "message": "This is a bit confusing since the interface is using V3\nsuggestions:\n- toDataMapV3\n- toDataMapForApiV3",
+      "range": {
+        "startLine": 120,
+        "startChar": 40,
+        "endLine": 120,
+        "endChar": 42
+      },
+      "revId": "e27429c470ad5f2f6c276470f98d4d3597fb5884",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
