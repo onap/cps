@@ -16,6 +16,178 @@
       "message": "fine by me.",
       "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a24d97f3_54b84c5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e27fcb_aa419902",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/CmHandleCreateSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: needs to be updated.",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e1585f4_2320a6a8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: would it be nice to have LegacyBatchReadOperationSpec?",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af552f27_a7c689f1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: is it for legacy batch read operation or for pass-through operation? I think it is a bit confusing.",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7112bc8e_430dcaf9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: pass-through is confusing with other existing pass through read \u0026 write tests.",
+      "range": {
+        "startLine": 61,
+        "startChar": 17,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f78aba_e3906c32",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 81,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a42983d_37057462",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: it seems there is no test added that proof of current behaviour which should return 404?",
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c7f151_fc084730",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T16:06:57Z",
+      "side": 1,
+      "message": "NB: this flag also shows it is a read operation that is why the test slogans mentioned above a bit confusing.",
+      "range": {
+        "startLine": 126,
+        "startChar": 42,
+        "endLine": 126,
+        "endChar": 46
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
