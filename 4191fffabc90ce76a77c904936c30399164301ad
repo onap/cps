@@ -22,6 +22,30 @@
       },
       "revId": "4191fffabc90ce76a77c904936c30399164301ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df14c796_05713dca",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CmHandleStateGaugeConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-23T12:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cfb2f0c_59652054",
+      "range": {
+        "startLine": 47,
+        "startChar": 25,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "4191fffabc90ce76a77c904936c30399164301ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
