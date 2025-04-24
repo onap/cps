@@ -63,6 +63,30 @@
       },
       "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b18b4a0_76410ba2",
+        "filename": "docs/test_ScrapeMetrics.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-24T12:16:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97641ebc_1679fac4",
+      "range": {
+        "startLine": 58,
+        "startChar": 31,
+        "endLine": 58,
+        "endChar": 85
+      },
+      "revId": "cba3ae8d48b36ed0d96eba4f1dd3ca411c560d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
