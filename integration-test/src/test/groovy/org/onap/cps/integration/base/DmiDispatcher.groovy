@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -21,15 +21,13 @@
 package org.onap.cps.integration.base
 
 import groovy.json.JsonSlurper
+import java.util.regex.Matcher
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-
-import java.util.regex.Matcher
-import java.util.stream.Collectors
 
 import static org.onap.cps.integration.base.CpsIntegrationSpecBase.readResourceDataFile
 
@@ -60,6 +58,7 @@ class DmiDispatcher extends Dispatcher {
     def jsonSlurper = new JsonSlurper()
     def moduleNamesPerCmHandleId = [:]
     def receivedSubJobs = [:]
+    def receivedDataOperationRequest = [:]
     def lastAuthHeaderReceived
     def dmiResourceDataUrl
 
@@ -90,8 +89,9 @@ class DmiDispatcher extends Dispatcher {
                 return mockResponseWithBody(HttpStatus.OK, '{}')
 
             // legacy pass-through batch data operation
-            case ~'^/dmi/v1/data$':
-                return mockResponseWithBody(HttpStatus.ACCEPTED, '{}')
+            case ~'^/dmi/v1/data\\?requestId=(.*)&topic=(.*)$':
+                receivedDataOperationRequest = jsonSlurper.parseText(request.body.readUtf8())
+                return mockResponse(HttpStatus.ACCEPTED)
 
             // get data job status
             case ~'^/dmi/v1/cmwriteJob/dataProducer/(.*)/dataProducerJob/(.*)/status$':
@@ -112,7 +112,7 @@ class DmiDispatcher extends Dispatcher {
 
     def mockWriteJobResponse(request) {
         def destination = Matcher.lastMatcher[0][1]
-        def subJobWriteRequest = jsonSlurper.parseText(request.getBody().readUtf8())
+        def subJobWriteRequest = jsonSlurper.parseText(request.body.readUtf8())
         this.receivedSubJobs.put(destination, subJobWriteRequest)
         def response = '{"subJobId":"some sub job id"}'
         return mockResponseWithBody(HttpStatus.OK, response)
@@ -126,8 +126,8 @@ class DmiDispatcher extends Dispatcher {
     }
 
     def getModuleResourcesResponse(request, cmHandleId) {
-        def moduleResourcesRequest = jsonSlurper.parseText(request.getBody().readUtf8())
-        def requestedModuleNames = moduleResourcesRequest.get('data').get('modules').collect{it.get('name')}
+        def moduleResourcesRequest = jsonSlurper.parseText(request.body.readUtf8())
+        def requestedModuleNames = moduleResourcesRequest.data.modules.name
         def candidateModuleNames = getModuleNamesForCmHandle(cmHandleId)
         def moduleNames = candidateModuleNames.stream().filter(candidate -> requestedModuleNames.contains(candidate)).toList()
 

@@ -46,7 +46,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
         subscribeAndClearPreviousMessages()
     }
 
-    def cleanupSpec() {
+    def cleanup() {
         kafkaConsumer.unsubscribe()
         kafkaConsumer.close()
     }
