@@ -129,6 +129,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac4025c8_5b83ba61",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-24T10:51:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5dd4254f_fb8850b3",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af552f27_a7c689f1",
@@ -176,6 +200,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e85631e0_b30c8e59",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-24T10:51:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3386dee_93a1a198",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7112bc8e_430dcaf9",
@@ -213,6 +261,30 @@
       "side": 1,
       "message": "The other cases you are talking about are single pass-through operations (working with a single CM-handle), while this is a pass-through batch operation (many CM-handles). For example, see in the payload definition, the datastore is \u0027passthrough-operational\u0027",
       "parentUuid": "7112bc8e_430dcaf9",
+      "range": {
+        "startLine": 61,
+        "startChar": 17,
+        "endLine": 61,
+        "endChar": 29
+      },
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7024ff68_1f56d205",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-24T10:51:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab3d7f3b_10c8629d",
       "range": {
         "startLine": 61,
         "startChar": 17,
@@ -301,6 +373,24 @@
       "side": 1,
       "message": "If you uncomment line 118, then you will see the 404 (which is the bug).\nI kept it as a scenario here, otherwise I would have to add another test.",
       "parentUuid": "5a42983d_37057462",
+      "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7914ee_c2faa8c5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-04-24T10:51:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9817b2ae_afe2d166",
       "revId": "19ff2019b83f40e06ab508aa1e14b52d301ea713",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
