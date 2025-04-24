@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Nordix Foundation
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.cache;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
+import org.onap.cps.ncmp.config.TimedCustom;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,6 +37,8 @@ public class AdminCacheConfig extends HazelcastCacheConfig {
      * @return configured map of cm handles by state.
      */
     @Bean
+    @TimedCustom(name = "cmHandlesByStateCache",
+        description = "Caches the current handles in each state")
     public IMap<String, Integer> cmHandlesByState() {
         return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap(
                 "cmHandlesByState");

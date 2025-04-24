@@ -55,7 +55,7 @@ class TestScrapeMetrics(unittest.TestCase):
             @Timed(value="timed", description="A timed metric")
             public void anotherMethod() {}
 
-            @TimedCustom(name="cps_ncmp_inventory_cm_handles_by_state{state=DELETING}", description="A custom timed metric")
+            @TimedCustom(name="custom counter name", description="A custom timed metric")
             public void anotherMethod() {}
 
             @NotTimed
@@ -65,7 +65,7 @@ class TestScrapeMetrics(unittest.TestCase):
         expected_metrics = [
             '"cm_handle_search_invocation_total","A description does not fit the a single line"',
             '"timed","A timed metric"',
-            '"cps_ncmp_inventory_cm_handles_by_state{state=DELETING}","A custom timed metric"'
+            '"custom counter name","A custom timed metric"'
         ]
         result = scrape_all_metrics_from_file(test_file)
         self.assertEqual(len(result), 3)
