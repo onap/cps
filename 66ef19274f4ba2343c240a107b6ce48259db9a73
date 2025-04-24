@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d8bcfe_8d0ad50e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-24T08:25:55Z",
+      "side": 1,
+      "message": "can also verify the http status code?",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 13
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
