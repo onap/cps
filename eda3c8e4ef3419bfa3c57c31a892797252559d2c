@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "518c1709_9628f201",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-24T10:49:40Z",
+      "side": 1,
+      "message": "you still have to mark the V2 api as deprecated so that it is correctly rendered in the swagger ui which is blocking issue for me.\n\nAlso the example is as per V3 of the API. Good that you enhanced it.\nBut we dont have a valid example of V2 API. maybe include that as a separate patch or the same patch. upto you.",
+      "revId": "eda3c8e4ef3419bfa3c57c31a892797252559d2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
