@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021 Nordix Foundation
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 #  ================================================================================
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
 #  ============LICENSE_END=========================================================
 
 from docutils.parsers.rst import directives
+
+import subprocess
 
 project = "onap"
 release = "master"
@@ -68,6 +70,12 @@ linkcheck_ignore = [
 
 
 html_last_updated_fmt = '%d-%b-%y %H:%M'
+
+# Run ScrapeMetrics.py
+subprocess.run(["python3", "ScrapeMetrics.py"], check=True)
+
+# Run test_ScrapeMetrics.py
+subprocess.run(["python3", "test_ScrapeMetrics.py"], check=True)
 
 
 def setup(app):
