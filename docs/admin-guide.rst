@@ -225,6 +225,7 @@ Below table lists all CPS-NCMP custom metrics
 .. csv-table::
     :file: csv/metrics.csv
     :widths: 50, 50
+    :header-rows: 1
 
 Prometheus Metrics can be checked at the following endpoint
 
