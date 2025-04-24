@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11e31f9_b977bc95",
+        "filename": "csit/install-deps.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-24T16:49:35Z",
+      "side": 1,
+      "message": "Can you also change the version for k6 tests? (k6-tests/install-deps.sh)",
+      "range": {
+        "startLine": 31,
+        "startChar": 65,
+        "endLine": 31,
+        "endChar": 72
+      },
+      "revId": "6f7365f1ea39d7b8a918cd8bdd6eb2533c7a1a5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
