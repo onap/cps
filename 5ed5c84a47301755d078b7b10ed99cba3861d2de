@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7385cc38_147bc88c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-25T09:39:53Z",
+      "side": 1,
+      "message": "fine with me.",
+      "revId": "5ed5c84a47301755d078b7b10ed99cba3861d2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1526e7d_a174fb1c",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-25T09:39:53Z",
+      "side": 1,
+      "message": "NB: we need to increase this line 😊",
+      "range": {
+        "startLine": 3,
+        "startChar": 78,
+        "endLine": 3,
+        "endChar": 82
+      },
+      "revId": "5ed5c84a47301755d078b7b10ed99cba3861d2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781a0b51_023d472c",
+        "filename": "cps-application/src/test/resources/application.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-25T09:39:53Z",
+      "side": 1,
+      "message": "NB: just 2025",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "5ed5c84a47301755d078b7b10ed99cba3861d2de",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
