@@ -26,15 +26,38 @@ class InstanceStartupDelayManagerSpec extends Specification {
 
     def objectUnderTest = Spy(InstanceStartupDelayManager)
 
-    def 'Startup delay with real hostname.'() {
-        given: 'a hostname is resolved'
-            objectUnderTest.getHostName() >> 'hostX'
-        and: 'the expected delay is based on hash code with max of 5,000 ms'
-            def expectedDelay =  Math.abs('hostX'.hashCode() % 5_000)
+    def 'Startup delay with sequenced hostname with #scenario'() {
+        given: 'a sequenced hostname'
+            objectUnderTest.getHostName() >> hostname
+        and: 'the expected delay is based on the sequence number'
+            def expectedDelay = expectedDelayInSeconds * 1_000;
         when: 'startup delay is called'
             objectUnderTest.applyHostnameBasedStartupDelay()
-        then: 'the system will sleep for expected time'
-            1 * objectUnderTest.haveALittleSleepInMs(expectedDelay)
+        then: 'the system will sleep for expected number of seconds as defined by sequence number'
+            1 * objectUnderTest.haveALittleSleepInMs(expectedDelay) >> { /* don't sleep for testing purposes */  }
+        where: ' following sequenced hostnames are used'
+            scenario                      | hostname           || expectedDelayInSeconds
+            'our usual host-name'         | 'cps-and-ncmp-0'   || 0
+            'dash and 1 digit at end'     | 'host-1'           || 1
+            'dash and 2 digits at end'    | 'host-23'          || 23
+            'digits in name'              | 'host-2-34'        || 34
+            'weird name ending in digits' | 't@st : - { " -56' || 56
+    }
+
+    def 'Startup delay with un-sequenced hostname.'() {
+        given: 'a un-sequenced hostname: #hostname'
+            objectUnderTest.getHostName() >> hostname
+        when: 'startup delay is called'
+            objectUnderTest.applyHostnameBasedStartupDelay()
+        then: 'the system will sleep for an expected time based on the hash'
+            1 * objectUnderTest.haveALittleSleepInMs(expectedDelayBasedOnHashInMs) >> { /* don't sleep for testing purposes */  }
+        where: ' following un-sequenced hostnames are used'
+            hostname                                  || expectedDelayBasedOnHashInMs
+            'no_digits_at_all'                        || 784
+            'digits-12-in-the-middle'                 || 1484
+            'non-digit-after-digit-1a'                || 753
+            'dash-after-digit-1-'                     || 7256
+            'three-digits-at-end-is-not-accepted-123' || 9941
     }
 
     def 'Startup delay when hostname cannot be resolved.'() {
@@ -56,3 +79,4 @@ class InstanceStartupDelayManagerSpec extends Specification {
     }
 
 }
+
