@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "b639abf427fb86012fb6358bd5493add3040b02d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af07af97_2b3c8904",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T12:48:31Z",
+      "side": 1,
+      "message": "just minor comment on the logging , otherwise fine by me.",
+      "revId": "b639abf427fb86012fb6358bd5493add3040b02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884a90fa_ffc73a0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T12:48:31Z",
+      "side": 1,
+      "message": "NB: do we still want to atleast log the exception here?",
+      "range": {
+        "startLine": 261,
+        "startChar": 16,
+        "endLine": 261,
+        "endChar": 17
+      },
+      "revId": "b639abf427fb86012fb6358bd5493add3040b02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
