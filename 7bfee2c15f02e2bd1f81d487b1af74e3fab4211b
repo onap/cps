@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "294f9e1a_d0654b22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-28T11:57:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc9e338c_d2420586",
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9743354_6fe3200e",
@@ -41,6 +59,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a7070b_12585b77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-28T11:57:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9743354_6fe3200e",
+      "range": {
+        "startLine": 205,
+        "startChar": 31,
+        "endLine": 205,
+        "endChar": 61
+      },
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef9f5b75_5163376b",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-04-04T11:12:12Z",
       "side": 1,
       "message": "This class has no tests! Needs unit tests at least.",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "7bfee2c15f02e2bd1f81d487b1af74e3fab4211b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aaea169_04dbea38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/AlternateIdCacheDataLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-28T11:57:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef9f5b75_5163376b",
       "range": {
         "startLine": 35,
         "startChar": 13,
