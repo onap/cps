@@ -40,7 +40,7 @@ public class Application {
      * @param args Command-line arguments passed to the application (not used in this implementation).
      */
     public static void main(final String[] args) {
-        instanceStartupDelayManager.applyHostnameBasedStartupDelay();
+        instanceStartupDelayManager.applyHostNameBasedStartupDelay();
         log.info("Initializing Spring Application context...");
         SpringApplication.run(Application.class, args);
         log.info("🚀 APPLICATION STARTED");
