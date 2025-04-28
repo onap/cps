@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,27 +23,34 @@ package org.onap.cps.ncmp.impl.datajobs
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import spock.lang.Specification
 
 class WriteRequestExaminerSpec extends Specification {
 
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
-    def mockParameterizedCmHandleQueryService = Mock(ParameterizedCmHandleQueryService)
-    def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher, mockParameterizedCmHandleQueryService)
+    def mockInventoryPersistence = Mock(InventoryPersistence)
+    def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher, mockInventoryPersistence)
 
     def setup() {
-        def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch1', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn1', dataProducerIdentifier: 'p1')
-        def ch2 = new NcmpServiceCmHandle(cmHandleId: 'ch2', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn2', dataProducerIdentifier: 'p1')
-        def ch3 = new NcmpServiceCmHandle(cmHandleId: 'ch3', dmiServiceName: 'dmiA', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn3', dataProducerIdentifier: 'p2')
-        def ch4 = new NcmpServiceCmHandle(cmHandleId: 'ch4', dmiServiceName: 'dmiB', moduleSetTag: 'someModuleSetTag', alternateId: 'fdn4', dataProducerIdentifier: 'p1')
-        def cmHandlePerAlternateId = ['fdn1': ch1, 'fdn2': ch2, 'fdn3': ch3, 'fdn4': ch4]
-        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn1', '/', cmHandlePerAlternateId) >> ch1
-        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn2', '/', cmHandlePerAlternateId) >> ch2
-        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn3', '/', cmHandlePerAlternateId) >> ch3
-        mockAlternateIdMatcher.getCmHandleByLongestMatchingAlternateId('fdn4', '/', cmHandlePerAlternateId) >> ch4
-        mockParameterizedCmHandleQueryService.getAllCmHandlesWithoutProperties() >> [ch1, ch2, ch3, ch4]
+        def yangModelCmHandle1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', dmiProperties: [],
+            publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: '', dataProducerIdentifier: 'p1')
+        def yangModelCmHandle2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', dmiProperties: [],
+            publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: '', dataProducerIdentifier: 'p1')
+        def yangModelCmHandle3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', dmiProperties: [],
+            publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: '', dataProducerIdentifier: 'p2')
+        def yangModelCmHandle4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', dmiProperties: [],
+            publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: '', dataProducerIdentifier: 'p1')
+        mockInventoryPersistence.getYangModelCmHandle('ch1') >> yangModelCmHandle1
+        mockInventoryPersistence.getYangModelCmHandle('ch2') >> yangModelCmHandle2
+        mockInventoryPersistence.getYangModelCmHandle('ch3') >> yangModelCmHandle3
+        mockInventoryPersistence.getYangModelCmHandle('ch4') >> yangModelCmHandle4
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('fdn1', '/') >> 'ch1'
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('fdn2', '/') >> 'ch2'
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('fdn3', '/') >> 'ch3'
+        mockAlternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('fdn4', '/') >> 'ch4'
     }
 
     def 'Create a map of dmi write requests per producer key with #scenario.'() {

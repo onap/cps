@@ -32,19 +32,20 @@ import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
-import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class WriteRequestExaminer {
+    private static final String PATH_SEPARATOR = "/";
 
     private final AlternateIdMatcher alternateIdMatcher;
-    private final ParameterizedCmHandleQueryService parameterizedCmHandleQueryService;
-    private static final String PATH_SEPARATOR = "/";
+    private final InventoryPersistence inventoryPersistence;
 
     /**
      * Splitting incoming data job write request into Dmi Write Operations by ProducerKey.
@@ -56,30 +57,20 @@ public class WriteRequestExaminer {
     public Map<ProducerKey, List<DmiWriteOperation>> splitDmiWriteOperationsFromRequest(
             final String dataJobId, final DataJobWriteRequest dataJobWriteRequest) {
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey = new HashMap<>();
-        final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId = getAllNcmpServiceCmHandlesWithoutProperties();
         for (final WriteOperation writeOperation : dataJobWriteRequest.data()) {
-            examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation, cmHandlePerAlternateId);
+            examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation);
         }
         return dmiWriteOperationsPerProducerKey;
     }
 
-    private Map<String, NcmpServiceCmHandle> getAllNcmpServiceCmHandlesWithoutProperties() {
-        final Map<String, NcmpServiceCmHandle> ncmpServiceCmHandles = new HashMap<>();
-        for (final NcmpServiceCmHandle ncmpServiceCmHandle
-                : parameterizedCmHandleQueryService.getAllCmHandlesWithoutProperties()) {
-            ncmpServiceCmHandles.put(ncmpServiceCmHandle.getAlternateId(), ncmpServiceCmHandle);
-        }
-        return ncmpServiceCmHandles;
-    }
-
     private void examineWriteOperation(final String dataJobId,
                                        final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey,
-                                       final WriteOperation writeOperation,
-                                       final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId) {
+                                       final WriteOperation writeOperation) {
         log.debug("data job id for write operation is: {}", dataJobId);
-        final NcmpServiceCmHandle ncmpServiceCmHandle = alternateIdMatcher
-                .getCmHandleByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR, cmHandlePerAlternateId);
-
+        final String cmHandleId = alternateIdMatcher
+                .getCmHandleIdByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
+        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
+                inventoryPersistence.getYangModelCmHandle(cmHandleId));
         final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, ncmpServiceCmHandle);
 
         final ProducerKey producerKey = createProducerKey(ncmpServiceCmHandle);

@@ -22,7 +22,6 @@ package org.onap.cps.ncmp.impl.utils
 
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import spock.lang.Specification
 
@@ -33,11 +32,10 @@ class AlternateIdMatcherSpec extends Specification {
     def objectUnderTest = new AlternateIdMatcher(mockCmHandleIdPerAlternateId)
 
     def 'Finding longest alternate id matches.'() {
-        given: 'a cm handle with alternate id /a/b in the cached map of all cm handles'
-            def ch1 = new NcmpServiceCmHandle(cmHandleId: 'ch1', alternateId: '/a/b')
-            def cmHandlePerAlternateId = ['/a/b': ch1]
+        given:
+            mockCmHandleIdPerAlternateId.get('/a/b') >> 'ch1'
         expect: 'querying for alternate id a matching result found'
-            assert objectUnderTest.getCmHandleByLongestMatchingAlternateId(targetAlternateId, '/', cmHandlePerAlternateId) != null
+            assert objectUnderTest.getCmHandleIdByLongestMatchingAlternateId(targetAlternateId, '/') != null
         where: 'the following parameters are used'
             scenario                             | targetAlternateId
             'exact match'                        | '/a/b'
@@ -52,7 +50,7 @@ class AlternateIdMatcherSpec extends Specification {
 
     def 'Attempt to find longest alternate id match without any matches.'() {
         when: 'attempt to find alternateId'
-            objectUnderTest.getCmHandleByLongestMatchingAlternateId(targetAlternateId, '/', [:])
+            objectUnderTest.getCmHandleIdByLongestMatchingAlternateId(targetAlternateId, '/')
         then: 'no alternate id match found exception thrown'
             def thrown = thrown(NoAlternateIdMatchFoundException)
         and: 'the exception has the relevant details from the error response'
