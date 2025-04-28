@@ -23,27 +23,36 @@ package org.onap.cps.startup;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class InstanceStartupDelayManager {
+    private static final Pattern HOSTNAME_WITH_SEQUENCE_PATTERN = Pattern.compile("[^#]+#(\\d)+");
 
     /**
-     * Applies a consistent hash-based startup delay based on the host's name
-     * to avoid race conditions during schema migration.
-     * This method is useful in environments with multiple instances
-     * (e.g., Docker Compose, Kubernetes), where simultaneous Liquibase executions
-     * might result in conflicts.
-     * Delay logic:
-     * - A hash of the hostname is calculated.
-     * - The result is used to derive a delay up to 5000 milliseconds.
-     * - This provides a reasonably distributed delay across instances.
+     * Applies a consistent startup delay based on the host's name to avoid race conditions during liquibase set steps.
+     * This method is useful in environments with multiple instances.
+     * (e.g., Docker Compose, Kubernetes), where simultaneous Liquibase executions might result in conflicts.
+     * Delay calculation:
+     * - For hostnames that match {hostname}#{sequence-number} the delay wil be 1 second times the sequence number.
+     * - For all other names the delay is calculated as the hash code of that name modulus 5000 ms i.e. up to 5,000 ms.
      */
     public void applyHostnameBasedStartupDelay() {
         try {
             final String hostname = getHostName();
-            final long startupDelayInMillis = Math.abs(hostname.hashCode() % 5_000L);
-            log.info("Startup delay applied for Hostname: {} | Delay: {} ms", hostname, startupDelayInMillis);
+            log.info("Host name: {}", hostname);
+            final Matcher matcher = HOSTNAME_WITH_SEQUENCE_PATTERN.matcher(hostname);
+            final long startupDelayInMillis;
+            if (matcher.matches()) {
+                startupDelayInMillis = Integer.valueOf(matcher.group(1)) * 1000L;
+                log.info("Sequenced host name detected, calculated delay = {} ms", startupDelayInMillis);
+            } else {
+                startupDelayInMillis = Math.abs(hostname.hashCode() % 10_000L);
+                log.warn("No Sequenced host name detected (<hostname>#<number>), hash-based delay = {} ms",
+                    startupDelayInMillis);
+            }
             haveALittleSleepInMs(startupDelayInMillis);
         } catch (final InterruptedException e) {
             log.warn("Sleep interrupted, re-interrupting the thread");
