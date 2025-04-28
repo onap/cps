@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25374963_32890647",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T11:44:34Z",
+      "side": 1,
+      "message": "I think the V2 example is not correct still.\nWe respond with List\u003cMap\u003cString, Object\u003e\u003e so plz update accordingly.\nother changes looks fine to me.",
+      "revId": "a8205a8dca36ffba754fdcb27043db06bf918461",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
