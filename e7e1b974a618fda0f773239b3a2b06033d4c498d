@@ -62,6 +62,52 @@
       "message": "NB: copyright",
       "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38117e85_b5638a1e",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-28T12:33:10Z",
+      "side": 1,
+      "message": "I think we could just remove the replicas altogether now",
+      "range": {
+        "startLine": 82,
+        "startChar": 6,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acf3cb14_32c53083",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-28T12:33:10Z",
+      "side": 1,
+      "message": "You\u0027ll also need to override container_name with different names for kpi and endurance, e.g. kpi-cps-and-ncmp-1 and endurance-cps-and-ncmp-1\nOtherwise the two pipeline jobs can\u0027t run at the same time.\n\nAdditionally, the docker log commands in csit and k6 need to updated.",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 24
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
