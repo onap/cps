@@ -26,11 +26,23 @@ class InstanceStartupDelayManagerSpec extends Specification {
 
     def objectUnderTest = Spy(InstanceStartupDelayManager)
 
-    def 'Startup delay with real hostname.'() {
-        given: 'a hostname is resolved'
-            objectUnderTest.getHostName() >> 'hostX'
-        and: 'the expected delay is based on hash code with max of 5,000 ms'
-            def expectedDelay =  Math.abs('hostX'.hashCode() % 5_000)
+    def 'Startup delay with sequenced hostname.'() {
+        given: 'a sequenced hostname'
+            objectUnderTest.getHostName() >> 'host#01'
+        and: 'the expected delay is based on the sequence number'
+            def expectedDelay = 1 * 1_000;
+        when: 'startup delay is called'
+            objectUnderTest.applyHostnameBasedStartupDelay()
+        then: 'the system will sleep for expected time'
+            1 * objectUnderTest.haveALittleSleepInMs(expectedDelay)
+    }
+
+    def 'Startup delay with un-sequenced hostname.'() {
+        given: 'a "random" hostname'
+            def hostName = 'fdb79e38' // PLease do NOT change as this name result in a short delay for this test
+            objectUnderTest.getHostName() >> hostName
+        and: 'the expected delay is based on hash code with max of 10,000 ms'
+            def expectedDelay =  Math.abs(hostName.hashCode() % 10_000)
         when: 'startup delay is called'
             objectUnderTest.applyHostnameBasedStartupDelay()
         then: 'the system will sleep for expected time'
@@ -56,3 +68,4 @@ class InstanceStartupDelayManagerSpec extends Specification {
     }
 
 }
+
