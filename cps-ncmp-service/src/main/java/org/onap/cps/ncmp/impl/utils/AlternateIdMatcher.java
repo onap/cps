@@ -21,12 +21,10 @@
 package org.onap.cps.ncmp.impl.utils;
 
 import com.hazelcast.map.IMap;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,18 +44,16 @@ public class AlternateIdMatcher {
      *
      * @param alternateId            alternate ID
      * @param separator              a string that separates each element from the next.
-     * @param cmHandlePerAlternateId all CM-handles by alternate ID
      * @return ncmp service cm handle
      */
-    public NcmpServiceCmHandle getCmHandleByLongestMatchingAlternateId(
-            final String alternateId, final String separator,
-            final Map<String, NcmpServiceCmHandle> cmHandlePerAlternateId) {
+    public String getCmHandleIdByLongestMatchingAlternateId(
+            final String alternateId, final String separator) {
         final String[] splitPath = alternateId.split("#", 2);
         String bestMatch = splitPath[0];
         while (StringUtils.isNotEmpty(bestMatch)) {
-            final NcmpServiceCmHandle ncmpServiceCmHandle = cmHandlePerAlternateId.get(bestMatch);
-            if (ncmpServiceCmHandle != null) {
-                return ncmpServiceCmHandle;
+            final String cmHandleId = cmHandleIdPerAlternateId.get(bestMatch);
+            if (cmHandleId != null) {
+                return cmHandleId;
             }
             bestMatch = getParentPath(bestMatch, separator);
         }
