@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "328f8a9f_f6f6c15f",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T12:00:43Z",
+      "side": 1,
+      "message": "NB: 10_000 as per the below code now.",
+      "range": {
+        "startLine": 40,
+        "startChar": 91,
+        "endLine": 40,
+        "endChar": 95
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3af9790_4082634e",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T12:00:43Z",
+      "side": 1,
+      "message": "NB: do u think we should double this.\ncps-ncmp-0 : no delay\ncps-ncmp-1 : 2secs delay",
+      "range": {
+        "startLine": 49,
+        "startChar": 75,
+        "endLine": 49,
+        "endChar": 80
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ef248e8_89b3ba6d",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-28T12:00:43Z",
+      "side": 1,
+      "message": "NB: copyright",
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
