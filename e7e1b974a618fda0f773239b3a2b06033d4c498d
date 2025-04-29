@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e900e02c_e38eae95",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "328f8a9f_f6f6c15f",
+      "range": {
+        "startLine": 40,
+        "startChar": 91,
+        "endLine": 40,
+        "endChar": 95
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3af9790_4082634e",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f024ff9_42f921e4",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:03:24Z",
+      "side": 1,
+      "message": "I\u0027m hoping 1 sec is enough.",
+      "parentUuid": "f3af9790_4082634e",
+      "range": {
+        "startLine": 49,
+        "startChar": 75,
+        "endLine": 49,
+        "endChar": 80
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ef248e8_89b3ba6d",
         "filename": "docker-compose/config/nginx/nginx.conf",
         "patchSetId": 3
@@ -60,6 +108,24 @@
       "writtenOn": "2025-04-28T12:00:43Z",
       "side": 1,
       "message": "NB: copyright",
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c49c26_4b82d7ab",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ef248e8_89b3ba6d",
       "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15587fe2_da6fd68a",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:03:24Z",
+      "side": 1,
+      "message": "do need to set this to 0 otherwise an instance of \u0027template\u0027 will be created..",
+      "parentUuid": "38117e85_b5638a1e",
+      "range": {
+        "startLine": 82,
+        "startChar": 6,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "acf3cb14_32c53083",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 3
@@ -100,6 +190,30 @@
       "writtenOn": "2025-04-28T12:33:10Z",
       "side": 1,
       "message": "You\u0027ll also need to override container_name with different names for kpi and endurance, e.g. kpi-cps-and-ncmp-1 and endurance-cps-and-ncmp-1\nOtherwise the two pipeline jobs can\u0027t run at the same time.\n\nAdditionally, the docker log commands in csit and k6 need to updated.",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 24
+      },
+      "revId": "e7e1b974a618fda0f773239b3a2b06033d4c498d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9e4d9f4_a88b4d04",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acf3cb14_32c53083",
       "range": {
         "startLine": 100,
         "startChar": 4,
