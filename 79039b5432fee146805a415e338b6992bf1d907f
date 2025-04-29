@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e9c13ec_747a7bb4",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-04-29T11:32:52Z",
+      "side": 1,
+      "message": "we can enhance this example in a separate patch now.",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "79039b5432fee146805a415e338b6992bf1d907f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
