@@ -30,7 +30,7 @@ import {
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
-import { sendKafkaMessages } from './common/produce-avc-event.js';
+import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -203,7 +203,7 @@ export function legacyBatchProduceScenario() {
 }
 
 export function produceAvcEventsScenario() {
-    sendKafkaMessages();
+    sendBatchOfKafkaMessages(250);
 }
 
 export function legacyBatchConsumeScenario() {

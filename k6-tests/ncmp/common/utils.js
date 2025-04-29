@@ -36,7 +36,6 @@ export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
 export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 100;
 export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
-
 /**
  * Generates a batch of CM-handle IDs based on batch size and number.
  * @param {number} batchSize - Size of each batch.
