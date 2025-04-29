@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd2dbe19_4b0a1183",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "NB: woud like a more specific name\nsugggestion: targetDataAsJsonFile",
+      "range": {
+        "startLine": 73,
+        "startChar": 90,
+        "endLine": 73,
+        "endChar": 98
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bab7c8ff_925fd589",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "multipartFile, follow the classname is better , you still have to confirm the content and confirm tis a valid json file...",
+      "range": {
+        "startLine": 83,
+        "startChar": 64,
+        "endLine": 83,
+        "endChar": 72
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cce6186_408e87be",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "is this possible using REST interface or would it be an invalid request and never get here?\n\nI think null is NOT posisble but empty file is...",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b2e2ab8_5eb07183",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "what would happen if the file does NOT contain valid json?! Still an IO exception?!",
+      "range": {
+        "startLine": 91,
+        "startChar": 17,
+        "endLine": 91,
+        "endChar": 44
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "594829e1_9084c4af",
         "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
         "patchSetId": 16
@@ -48,6 +140,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3cbcd8_9a3c3192",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "so the scenario (and title of tshi test) is something like\n\n\u0027Attempt to get delta with empty file\u0027\n\nwhat happens : IO exception does not need to be i the title, it is in the then part. \n\nPS I would like to see an additional test:\n\u0027Attempt to get delta with file with invalid json\u0027\n(the file content could just be \u0027{\u0027)",
+      "parentUuid": "af0f0d2f_afe61b37",
+      "range": {
+        "startLine": 146,
+        "startChar": 9,
+        "endLine": 146,
+        "endChar": 50
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66d8bcfe_8d0ad50e",
@@ -67,6 +183,70 @@
         "endLine": 157,
         "endChar": 13
       },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11cbb990_9d5a3ebe",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "66d8bcfe_8d0ad50e",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 13
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1112755_b4a6e48e",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "good!",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2dbb82_c63d9ae6",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-04-29T11:31:47Z",
+      "side": 1,
+      "message": "This file is build during mvn install. I dont think it should have changed but it is not your issue. I get SOurabh to look into this...",
       "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
