@@ -89,7 +89,10 @@ paths:
     $ref: 'cpsDataV1Deprecated.yml#/nodeByDataspaceAndAnchor'
 
   /v2/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
-    $ref: 'cpsDataV2.yml#/nodeByDataspaceAndAnchor'
+    $ref: 'cpsDataV2Deprecated.yml#/nodeByDataspaceAndAnchor'
+
+  /v3/dataspaces/{dataspace-name}/anchors/{anchor-name}/node:
+    $ref: 'cpsDataV3.yml#/nodeByDataspaceAndAnchor'
 
   /{apiVersion}/dataspaces/{dataspace-name}/anchors/{anchor-name}/nodes:
     $ref: 'cpsData.yml#/nodesByDataspaceAndAnchor'

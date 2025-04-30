@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 Nordix Foundation
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -54,6 +55,29 @@ public interface CpsFacade {
                                                    String anchorName,
                                                    String xpath,
                                                    FetchDescendantsOption fetchDescendantsOption);
+
+    /**
+     * Get data nodes for a given dataspace, anchor and xpath.
+     * This method ensures that list nodes are returned as a single entry with their list items
+     * grouped under the list node name.
+     *
+     *
+     * @param dataspaceName          the name of the dataspace
+     * @param anchorName             the name of the anchor
+     * @param xpath                  the xpath
+     * @param fetchDescendantsOption control what level of descendants should be returned
+     * @return                       a map where each key represents a data node name (e.g., container or list),
+     *                               and each value is either:
+     *                              - a leaf values as key-value pairs,
+     *                              - a nested map (for containers),
+     *                              - or a list of maps (for lists containing multiple elements)
+     */
+
+    Map<String, Object> getDataNodesByAnchorV3(String dataspaceName,
+                                               String anchorName,
+                                               String xpath,
+                                               FetchDescendantsOption fetchDescendantsOption);
+
 
     /**
      * Query the given anchor using a cps path expression.

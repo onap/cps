@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
  *  Modifications Copyright (C) 2023-2024 Nordix Foundation.
- *  Modifications Copyright (C) 2024 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -171,13 +171,19 @@ public class XmlFileUtils {
      * @return XML string representation of the data maps
      */
     @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION")
-    public static String convertDataMapsToXml(final List<Map<String, Object>> dataMaps) {
+    public static String convertDataMapsToXml(final Object dataMaps) {
         try {
             final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
             final Document document = documentBuilder.newDocument();
             final DocumentFragment documentFragment = document.createDocumentFragment();
-            for (final Map<String, Object> dataMap : dataMaps) {
-                createXmlElements(document, documentFragment, dataMap);
+            if (dataMaps instanceof Map) {
+                createXmlElements(document, documentFragment, (Map<String, Object>) dataMaps);
+            } else if (dataMaps instanceof List) {
+                for (final Map<String, Object> dataMap : (List<Map<String, Object>>) dataMaps) {
+                    createXmlElements(document, documentFragment, dataMap);
+                }
+            } else {
+                throw new IllegalArgumentException("Unsupported data type for XML conversion");
             }
             return transformFragmentToString(documentFragment);
         } catch (final DOMException |  NullPointerException | ParserConfigurationException | TransformerException
