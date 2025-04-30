@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.cmavc;
 
 import io.cloudevents.CloudEvent;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -31,7 +32,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
- * Listener for AVC events based on Cm Subscriptions.
+ * Listener for AVC events based on CM Subscriptions.
  */
 @Component
 @Slf4j
@@ -53,6 +54,7 @@ public class CmAvcEventConsumer {
      */
     @KafkaListener(topics = "${app.dmi.cm-events.topic}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
+    @Timed(value = "cps.ncmp.cmnotifications.consumeandforward", description = "Time taken to forward CM AVC events")
     public void consumeAndForward(
             final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
