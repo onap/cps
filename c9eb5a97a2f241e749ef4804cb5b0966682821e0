@@ -46,6 +46,29 @@
       },
       "revId": "c9eb5a97a2f241e749ef4804cb5b0966682821e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4e6adf_60d0c970",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6742
+      },
+      "writtenOn": "2025-04-30T11:09:32Z",
+      "side": 1,
+      "message": "These are not RFC compliant hostnames. Hostname can only have a-z, 0-9, and \u0027-\u0027.\n\u0027#\u0027 is definitely not allowed, as it has different meaning in a url, e.g. hostname/page#section",
+      "range": {
+        "startLine": 101,
+        "startChar": 14,
+        "endLine": 101,
+        "endChar": 24
+      },
+      "revId": "c9eb5a97a2f241e749ef4804cb5b0966682821e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
