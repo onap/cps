@@ -131,6 +131,20 @@ public class DataRestController implements CpsDataApi {
     }
 
     @Override
+    @Timed(value = "cps.data.controller.datanode.get.v3", description = "Time taken to get data node")
+    public ResponseEntity<Object> getNodeByDataspaceAndAnchorV3(final String dataspaceName, final String anchorName,
+                                                                final String xpath,
+                                                                final String fetchDescendantsOptionAsString,
+                                                                final String contentTypeInHeader) {
+        final ContentType contentType = ContentType.fromString(contentTypeInHeader);
+        final FetchDescendantsOption fetchDescendantsOption =
+            FetchDescendantsOption.getFetchDescendantsOption(fetchDescendantsOptionAsString);
+        final Map<String, Object> dataNodesAsMap =
+            cpsFacade.getDataNodesByAnchorV3(dataspaceName, anchorName, xpath, fetchDescendantsOption);
+        return buildResponseEntity(dataNodesAsMap, contentType);
+    }
+
+    @Override
     public ResponseEntity<Object> updateNodeLeaves(final String apiVersion, final String dataspaceName,
                                                    final String anchorName, final String nodeData,
                                                    final String parentNodeXpath, final Boolean dryRunEnabled,
@@ -187,8 +201,7 @@ public class DataRestController implements CpsDataApi {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    private ResponseEntity<Object> buildResponseEntity(final List<Map<String, Object>> dataMaps,
-                                               final ContentType contentType) {
+    private ResponseEntity<Object> buildResponseEntity(final Object dataMaps, final ContentType contentType) {
         final String responseData;
         if (ContentType.XML.equals(contentType)) {
             responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);
