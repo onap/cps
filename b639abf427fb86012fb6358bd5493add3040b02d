@@ -80,6 +80,30 @@
       },
       "revId": "b639abf427fb86012fb6358bd5493add3040b02d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "205b5b16_eb7deaa0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/DmiDataOperations.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-04-30T10:09:19Z",
+      "side": 1,
+      "message": "NB:Logging Swallowed Exceptions\nEven if the exception is being intentionally ignored, it’s good to at least log it at a debug or trace level for troubleshooting.",
+      "parentUuid": "05960a5b_5b62c760",
+      "range": {
+        "startLine": 261,
+        "startChar": 16,
+        "endLine": 261,
+        "endChar": 17
+      },
+      "revId": "b639abf427fb86012fb6358bd5493add3040b02d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
