@@ -27,10 +27,10 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.READ;
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.exceptions.CpsException;
@@ -38,6 +38,7 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
 import org.onap.cps.ncmp.api.data.models.DataOperationRequest;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.data.models.DmiDataOperation;
@@ -142,7 +143,7 @@ public class DmiDataOperations {
                                            final String requestId,
                                            final String authorization)  {
 
-        final Set<String> cmHandleIds = getDistinctCmHandleIds(dataOperationRequest);
+        final Collection<String> cmHandleIds = getDistinctCmHandleIds(dataOperationRequest);
 
         final Collection<YangModelCmHandle> yangModelCmHandles
             = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
@@ -250,10 +251,22 @@ public class DmiDataOperations {
         }
     }
 
-    private Set<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
+    private Collection<String> getDistinctCmHandleIds(final DataOperationRequest dataOperationRequest) {
+        final Collection<String> distinctCmHandleReferences = getDistinctCmHandleReferences(dataOperationRequest);
+        final Collection<String> resolvedCmHandleIds = new ArrayList<>(distinctCmHandleReferences.size());
+        for (final String cmHandleReference : distinctCmHandleReferences) {
+            try {
+                resolvedCmHandleIds.add(alternateIdMatcher.getCmHandleId(cmHandleReference));
+            } catch (final CmHandleNotFoundException ignored) {
+                // exception ignored as DmiDataOperationsHelper has its own logic for reporting not found handles
+            }
+        }
+        return resolvedCmHandleIds;
+    }
+
+    private Collection<String> getDistinctCmHandleReferences(final DataOperationRequest dataOperationRequest) {
         return dataOperationRequest.getDataOperationDefinitions().stream()
                 .flatMap(it -> it.getCmHandleReferences().stream())
-                .map(alternateIdMatcher::getCmHandleId)
                 .collect(Collectors.toSet());
     }
 
