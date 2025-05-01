@@ -69,6 +69,30 @@
       },
       "revId": "c9eb5a97a2f241e749ef4804cb5b0966682821e0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e623b2_4a24d998",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-01T11:18:11Z",
+      "side": 1,
+      "message": "OK, the regex for using \u0027-\u0027 was a bit trickier and more edge cases, but I have it sorted now. See in new extensive unit test for it :-)",
+      "parentUuid": "bf4e6adf_60d0c970",
+      "range": {
+        "startLine": 101,
+        "startChar": 14,
+        "endLine": 101,
+        "endChar": 24
+      },
+      "revId": "c9eb5a97a2f241e749ef4804cb5b0966682821e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
