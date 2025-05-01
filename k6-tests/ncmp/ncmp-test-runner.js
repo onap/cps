@@ -54,7 +54,7 @@ export const legacyBatchEventReader = new Reader({
 });
 
 export const options = {
-    setupTimeout: '20m',
+    setupTimeout: '30m',
     teardownTimeout: '20m',
     scenarios: testConfig.scenarios,
     thresholds: testConfig.thresholds,
