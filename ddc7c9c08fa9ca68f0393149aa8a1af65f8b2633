@@ -16,6 +16,52 @@
       "message": "I think Daniel asked Halil to also have a look in terms of log creation in the pipeline. filename change. instance and hostname changes affecting anything on the pipeline.",
       "revId": "ddc7c9c08fa9ca68f0393149aa8a1af65f8b2633",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d66a1864_97feccd5",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-01T13:08:25Z",
+      "side": 1,
+      "message": "HostName?",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "ddc7c9c08fa9ca68f0393149aa8a1af65f8b2633",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616caa22_9cc02588",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-01T13:08:25Z",
+      "side": 1,
+      "message": "inconsistent hostname ... hostName",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 47
+      },
+      "revId": "ddc7c9c08fa9ca68f0393149aa8a1af65f8b2633",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
