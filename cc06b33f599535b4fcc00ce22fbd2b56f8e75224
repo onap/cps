@@ -16,6 +16,46 @@
       "message": "looks OK to me but I\u0027m not not great at JS...",
       "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cac6ac1_b18be715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-01T10:40:44Z",
+      "side": 1,
+      "message": "will review again after merge conflict \n\nnote:\nnot sure if it was intended from the start but just noticing now how we have a mix of snake and camel casing in our scripts",
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d36f4d_e6d368ec",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-01T10:40:44Z",
+      "side": 1,
+      "message": "this is okay to be the same for all cm handles for your test?",
+      "range": {
+        "startLine": 64,
+        "startChar": 17,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
