@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ab8b03b_d0f7e066",
+        "filename": "docker-compose/config/nginx/nginx.conf",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-01T12:50:38Z",
+      "side": 1,
+      "message": "now these container names and host names are that is not strictly necessary and in other configurations they might not be. Its important to understand hostname, image name and container name can all be different even if often the same...",
+      "parentUuid": "121ebb56_e54924bc",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 35
+      },
+      "revId": "c9eb5a97a2f241e749ef4804cb5b0966682821e0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf4e6adf_60d0c970",
         "filename": "docker-compose/docker-compose.yml",
         "patchSetId": 5
