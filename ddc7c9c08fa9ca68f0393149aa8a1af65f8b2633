@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf21dfcc_320f27be",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-01T13:34:56Z",
+      "side": 1,
+      "message": "I was thinking about this and although AI agrees that hostname is commonly used as one word, we have used it as two words in most places. So I made sure this patch does that too now :-)",
+      "parentUuid": "d66a1864_97feccd5",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "ddc7c9c08fa9ca68f0393149aa8a1af65f8b2633",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "616caa22_9cc02588",
         "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
         "patchSetId": 6
@@ -54,6 +78,30 @@
       "writtenOn": "2025-05-01T13:08:25Z",
       "side": 1,
       "message": "inconsistent hostname ... hostName",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 47
+      },
+      "revId": "ddc7c9c08fa9ca68f0393149aa8a1af65f8b2633",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6741da4c_37aa40c2",
+        "filename": "cps-application/src/main/java/org/onap/cps/startup/InstanceStartupDelayManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-01T13:34:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616caa22_9cc02588",
       "range": {
         "startLine": 45,
         "startChar": 25,
