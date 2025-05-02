@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import {Writer, SchemaRegistry, SCHEMA_TYPE_STRING} from 'k6/x/kafka';
 
 const testEventPayload = JSON.stringify(JSON.parse(open('../../resources/sampleAvcInputEvent.json')));
 const schemaRegistry = new SchemaRegistry();
-let messagesSent = 0;
 
 const kafkaProducer = new Writer({
     brokers: ['localhost:9092'],
@@ -75,7 +74,6 @@ export function sendBatchOfKafkaMessages(batchSize = 250) {
 
     try {
         kafkaProducer.produce({messages: messages});
-        messagesSent += messages.length;
         const isBatchSent = check(kafkaProducer, {
             ['Batch of ${batchSize} messages sent successfully']: (producer) => producer != null,
         });
