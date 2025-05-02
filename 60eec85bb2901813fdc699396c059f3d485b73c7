@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ef9090_400b6e64",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-02T12:26:04Z",
+      "side": 1,
+      "message": "changed in 140840: Add non blocking comments from previous commit | https://gerrit.onap.org/r/c/cps/+/140840",
+      "parentUuid": "67c8865a_9450a87a",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8055ded_8133a2ac",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af119986_8745daf4",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-02T12:26:04Z",
+      "side": 1,
+      "message": "changed in 140840: Add non blocking comments from previous commit | https://gerrit.onap.org/r/c/cps/+/140840",
+      "parentUuid": "e8055ded_8133a2ac",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d559a8e1_44e8630a",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-05-02T09:49:27Z",
       "side": 1,
       "message": "NB: It seems messagesSent just being updated but never used later. So it seems this is a redundant variable.",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41a67d6_cdaaf377",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-02T12:26:04Z",
+      "side": 1,
+      "message": "changed in 140840: Add non blocking comments from previous commit | https://gerrit.onap.org/r/c/cps/+/140840",
+      "parentUuid": "d559a8e1_44e8630a",
       "range": {
         "startLine": 78,
         "startChar": 8,
