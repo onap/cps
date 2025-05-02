@@ -39,6 +39,52 @@
       },
       "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8055ded_8133a2ac",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T09:49:27Z",
+      "side": 1,
+      "message": "NB: Please see my comments regarding to update this varible below.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d559a8e1_44e8630a",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T09:49:27Z",
+      "side": 1,
+      "message": "NB: It seems messagesSent just being updated but never used later. So it seems this is a redundant variable.",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "60eec85bb2901813fdc699396c059f3d485b73c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
