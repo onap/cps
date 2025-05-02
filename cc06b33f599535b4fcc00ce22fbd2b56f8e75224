@@ -35,6 +35,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "822a8a1d_1db89129",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "Some comments have been made...\n\nOverall good, but nice to have a bit tidy up...",
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa27e778_b78b58b7",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: not needed since there is similar comments on line 56",
+      "range": {
+        "startLine": 57,
+        "startChar": 71,
+        "endLine": 57,
+        "endChar": 93
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09d36f4d_e6d368ec",
@@ -53,6 +93,391 @@
         "startChar": 17,
         "endLine": 64,
         "endChar": 66
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd733861_f23923d6",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: not needed since mentioned on line 56",
+      "range": {
+        "startLine": 67,
+        "startChar": 89,
+        "endLine": 67,
+        "endChar": 116
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f930fe_43658962",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: Not needed",
+      "range": {
+        "startLine": 68,
+        "startChar": 87,
+        "endLine": 68,
+        "endChar": 109
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02b81bc8_8fa7a7ab",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: Not needed",
+      "range": {
+        "startLine": 69,
+        "startChar": 58,
+        "endLine": 69,
+        "endChar": 96
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb9b7a3_d6da5a35",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: Not needed",
+      "range": {
+        "startLine": 70,
+        "startChar": 64,
+        "endLine": 70,
+        "endChar": 102
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6da67b_d52a2b99",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "randomAlternateId",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b4a14e_0035a8b0",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "it has been created twice. Thus I suggest make a constant of it in util.js then import and use.",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 67
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e9f10a_cad69ebf",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "randomAlternateId",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0962ad4_f141b2f0",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: it does not used in multiple places but to have a constant of it in util.js would be nice.",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13123af6_49dafb94",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "Can be used: crypto.randomUUID();",
+      "range": {
+        "startLine": 31,
+        "startChar": 18,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aead86e1_8718c466",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "This function is not needed since used only once",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 1
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724b5f1d_e0d1f6b3",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: please remove redundant spaces",
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8413808_61f9fd09",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: Why did you divide it by 2. I don\u0027t understand.",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 52
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3958289_89a0309c",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: it is not clear what kind of kafka messages produced. \n\nThus I suggest a proper name: produce_avc_event_kafka_messages",
+      "range": {
+        "startLine": 129,
+        "startChar": 5,
+        "endLine": 129,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85ab210_e3aec43e",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "it is not clear what kind of data and where you are writing to.\n\nYou can be more specific e.g.: like A large volume of DCM write operation. The HTTP response code and expected number of reponses are verified.",
+      "range": {
+        "startLine": 209,
+        "startChar": 42,
+        "endLine": 209,
+        "endChar": 47
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f291ad7_c9bf81c3",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: number of responses",
+      "range": {
+        "startLine": 214,
+        "startChar": 67,
+        "endLine": 214,
+        "endChar": 76
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ce4009_2cf8d882",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: Same as above",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 3
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7859e3d8_97a51454",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-02T11:15:01Z",
+      "side": 1,
+      "message": "NB: number of responses",
+      "range": {
+        "startLine": 225,
+        "startChar": 66,
+        "endLine": 225,
+        "endChar": 75
       },
       "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
