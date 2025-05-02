@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72298f32_373c2b13",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-05-02T04:31:03Z",
+      "side": 1,
+      "message": "variable name should be groupingEnabled",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "c54fae12905a7b9ca866f72eb0c500cf00625149",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c931432_fed59b1b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-05-02T04:31:03Z",
+      "side": 1,
+      "message": "variable name same as above",
+      "range": {
+        "startLine": 79,
+        "startChar": 22,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "c54fae12905a7b9ca866f72eb0c500cf00625149",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1a782f_47775233",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-05-02T04:31:03Z",
+      "side": 1,
+      "message": "I think this method is not required. directly use groupingEnabled parameter wherever required",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 5
+      },
+      "revId": "c54fae12905a7b9ca866f72eb0c500cf00625149",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
