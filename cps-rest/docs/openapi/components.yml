@@ -104,21 +104,131 @@ components:
           categories:
             - code: 01
               name: SciFi
+            - books:
+                - title: Book 1
+                  lang: N/A
+                  price: 11
+                  editions:
+                    - 2009
+            - books:
+                - title: Book 2
+                  lang: German
+                  price: 39
+                  editions:
+                    - 2007
+                    - 2013
+                    - 2021
             - code: 02
               name: kids
+            - books:
+                - title: Book 3
+                  lang: English
+                  price: 15
+                  editions:
+                    - 2010
+    dataSampleForV3:
+      value:
+        test:bookstore:
+          bookstore-name: Chapters
+          categories:
+            - code: 01
+              name: SciFi
+              books:
+                - title: Book 1
+                  lang: N/A
+                  price: 11
+                  editions:
+                    - 2009
+                - title: Book 2
+                  lang: German
+                  price: 39
+                  editions:
+                    - 2007
+                    - 2013
+                    - 2021
+            - code: 02
+              name: kids
+              books:
+                - title: Book 3
+                  lang: English
+                  price: 15
+                  editions:
+                    - 2010
     dataSampleXml:
         value:
           <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-            <bookstore xmlns="org:onap:ccsdk:sample">
-              <bookstore-name>Chapters</bookstore-name>
-              <categories>
-                <code>1</code>
-                <name>SciFi</name>
-                <code>2</code>
-                <name>kids</name>
-              </categories>
-            </bookstore>
+              <bookstore xmlns="org:onap:ccsdk:sample">
+                  <bookstore-name>Chapters</bookstore-name>
+                  <categories>
+                      <code>1</code>
+                      <name>SciFi</name>
+                  </categories>
+                  <categories>
+                      <books>
+                          <title>Book 1</title>
+                          <lang>N/A</lang>
+                          <price>11</price>
+                          <editions>2009</editions>
+                      </books>
+                  </categories>
+                  <categories>
+                      <books>
+                          <title>Book 2</title>
+                          <lang>German</lang>
+                          <price>39</price>
+                          <editions>2007</editions>
+                          <editions>2013</editions>
+                          <editions>2021</editions>
+                      </books>
+                  </categories>
+                  <categories>
+                      <code>2</code>
+                      <name>kids
+                      </name>
+                      <books>
+                          <title>Book 3</title>
+                          <lang>English</lang>
+                          <price>15</price>
+                          <editions>2010</editions>
+                      </books>
+                  </categories>
+              </bookstore>
           </stores>
+    dataSampleXmlForV3:
+      value:
+        <stores xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <bookstore xmlns="org:onap:ccsdk:sample">
+                <bookstore-name>Chapters</bookstore-name>
+                <categories>
+                    <code>1</code>
+                    <name>SciFi</name>
+                    <books>
+                        <title>Book 1</title>
+                        <lang>N/A</lang>
+                        <price>11</price>
+                        <editions>2009</editions>
+                    </books>
+                    <books>
+                        <title>Book 2</title>
+                        <lang>German</lang>
+                        <price>39</price>
+                        <editions>2007</editions>
+                        <editions>2013</editions>
+                        <editions>2021</editions>
+                    </books>
+                </categories>
+                <categories>
+                    <code>2</code>
+                    <name>kids</name>
+                    <books>
+                        <title>Book 3</title>
+                        <lang>English</lang>
+                        <price>15</price>
+                        <editions>2010</editions>
+                    </books>
+                </categories>
+            </bookstore>
+        </stores>
     dataSampleAcrossAnchors:
       value:
         - anchorName: bookstore1
