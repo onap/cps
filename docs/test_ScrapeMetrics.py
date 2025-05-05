@@ -91,7 +91,7 @@ class TestScrapeMetrics(unittest.TestCase):
         with open(metrics_file, 'r') as f:
             lines = f.readlines()
 
-        expected_number_of_metrics = 57
+        expected_number_of_metrics = 58
         expected_number_of_lines = expected_number_of_metrics + 1  # Header
         self.assertEqual(len(lines), expected_number_of_lines, f"metrics.csv does not have {expected_number_of_lines} lines.")
 

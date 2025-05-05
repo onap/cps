@@ -5,8 +5,6 @@ info:
   version: 3.6.2
 servers:
 - url: /ncmp
-security:
-- basicAuth: []
 paths:
   /v1/ch/{cm-handle}/data/ds/{datastore-name}:
     delete:
@@ -2113,7 +2111,3 @@ components:
           example: Bad Request
           type: string
       type: object
-  securitySchemes:
-    basicAuth:
-      scheme: basic
-      type: http
