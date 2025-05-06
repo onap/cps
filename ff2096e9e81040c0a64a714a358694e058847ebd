@@ -16,6 +16,29 @@
       "message": "fine by me now.\nbuild passes as well.",
       "revId": "ff2096e9e81040c0a64a714a358694e058847ebd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd9ec03_7293d798",
+        "filename": "cps-rest/docs/openapi/cpsDataV2Deprecated.yml",
+        "patchSetId": 31
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-06T16:02:41Z",
+      "side": 1,
+      "message": "NB, not needed since you have the main copyright for TechMahindra above\n(at least, that\u0027s how we manage the Ericsson copyrights)",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 3,
+        "endChar": 52
+      },
+      "revId": "ff2096e9e81040c0a64a714a358694e058847ebd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
