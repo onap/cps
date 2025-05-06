@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "411f0787_1eccf77e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T08:49:59Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "cd2dbe19_4b0a1183",
+      "range": {
+        "startLine": 73,
+        "startChar": 90,
+        "endLine": 73,
+        "endChar": 98
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bab7c8ff_925fd589",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-04-29T11:31:47Z",
       "side": 1,
       "message": "multipartFile, follow the classname is better , you still have to confirm the content and confirm tis a valid json file...",
+      "range": {
+        "startLine": 83,
+        "startChar": 64,
+        "endLine": 83,
+        "endChar": 72
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f291f1_fa3d4f13",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T08:49:59Z",
+      "side": 1,
+      "message": "we may add XML data as well and convertToJsonNode handles the parsing to it verifies the json data",
+      "parentUuid": "bab7c8ff_925fd589",
       "range": {
         "startLine": 83,
         "startChar": 64,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e41867b_c257bca9",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T08:49:59Z",
+      "side": 1,
+      "message": "yes, jsonfile can be empty only",
+      "parentUuid": "2cce6186_408e87be",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b2e2ab8_5eb07183",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-04-29T11:31:47Z",
       "side": 1,
       "message": "what would happen if the file does NOT contain valid json?! Still an IO exception?!",
+      "range": {
+        "startLine": 91,
+        "startChar": 17,
+        "endLine": 91,
+        "endChar": 44
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b060656_3b4fd7fe",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MultipartFileUtil.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T08:49:59Z",
+      "side": 1,
+      "message": "Invalid Json is handled in the convertToJsonNode method, where a JsonProcessingException is caught and rethrown as a DataValidationException. So instead of an IOException, we receive DatavalidationException, which indicated parsing issue",
+      "parentUuid": "3b2e2ab8_5eb07183",
       "range": {
         "startLine": 91,
         "startChar": 17,
@@ -218,6 +314,30 @@
       "side": 1,
       "message": "agreed",
       "parentUuid": "66d8bcfe_8d0ad50e",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 13
+      },
+      "revId": "66ef19274f4ba2343c240a107b6ce48259db9a73",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6abbf579_ecdeb93d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T08:49:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11cbb990_9d5a3ebe",
       "range": {
         "startLine": 157,
         "startChar": 8,
