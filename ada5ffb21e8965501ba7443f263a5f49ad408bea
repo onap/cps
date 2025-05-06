@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f27470d_c6a7e522",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T11:47:05Z",
+      "side": 1,
+      "message": "rebased the code",
+      "parentUuid": "0b26f137_aa21645b",
+      "range": {
+        "startLine": 12,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "ada5ffb21e8965501ba7443f263a5f49ad408bea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "befd75de_6aaf08c0",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-06T10:37:32Z",
       "side": 1,
       "message": "there is some issue with this file.\nor you are not working on the latest code.\nrebase the code.\ndo a mvn clean install locally.\nand commit the changes the related to openapi files that are generated.",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "ada5ffb21e8965501ba7443f263a5f49ad408bea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7228e00_4e3a471e",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T11:47:05Z",
+      "side": 1,
+      "message": "rebased the code",
+      "parentUuid": "befd75de_6aaf08c0",
       "range": {
         "startLine": 5,
         "startChar": 11,
