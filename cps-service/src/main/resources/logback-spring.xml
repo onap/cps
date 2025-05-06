@@ -1,6 +1,7 @@
 <!--
  ============LICENSE_START=======================================================
  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ Modifications Copyright (C) 2025 TechMahindra Ltd.
  ================================================================================
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -40,11 +41,13 @@
                         "logTypeName": "",
                         "logLevel": "%level",
                         "traceId": "%X{traceId:-}",
+                        "requestId": "%X{requestId:-}",
                         "statusCode": "",
                         "principalId": "${username:-}",
                         "serviceName": "${springAppName:-}",
                         "message": "%message",
                         "spanId": "%X{spanId:-}",
+                        "clientId": "%X{clientId:-}",8
                         "processId": "${PID:-}",
                         "threadName": "%thread",
                         "class": "%logger{40}",
