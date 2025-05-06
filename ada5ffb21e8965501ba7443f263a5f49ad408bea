@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "befd75de_6aaf08c0",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-06T10:37:32Z",
+      "side": 1,
+      "message": "there is some issue with this file.\nor you are not working on the latest code.\nrebase the code.\ndo a mvn clean install locally.\nand commit the changes the related to openapi files that are generated.",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "ada5ffb21e8965501ba7443f263a5f49ad408bea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
