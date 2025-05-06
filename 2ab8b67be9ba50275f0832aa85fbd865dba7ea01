@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4eb4a55_dde88a90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-06T10:52:46Z",
+      "side": 1,
+      "message": "the build is failing as we have a mechanism now to scrape the metrics and expose them in our RTD file.\nyou are introducing a new metric i.e V3 api for get a node so you might have to increase the \"expected_number_of_metrics\" in the test_ScrapeMetrics.py file.",
+      "revId": "2ab8b67be9ba50275f0832aa85fbd865dba7ea01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
