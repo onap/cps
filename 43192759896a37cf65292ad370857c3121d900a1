@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b8160e4_03daa55f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-06T15:50:06Z",
+      "side": 1,
+      "message": "NB: I probably would use a 100ms as a more realistic TTL  which stil should be cleared with 1 second",
+      "range": {
+        "startLine": 109,
+        "startChar": 91,
+        "endLine": 109,
+        "endChar": 93
+      },
+      "revId": "43192759896a37cf65292ad370857c3121d900a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b708027b_85e4f6bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-06T15:50:06Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 118,
+        "startChar": 68,
+        "endLine": 118,
+        "endChar": 69
+      },
+      "revId": "43192759896a37cf65292ad370857c3121d900a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
