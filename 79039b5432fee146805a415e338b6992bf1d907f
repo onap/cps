@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12e1d2bb_46cc9bac",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T12:27:14Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "9e9c13ec_747a7bb4",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "79039b5432fee146805a415e338b6992bf1d907f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dab0530e_9b7fe5f7",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-29T11:37:00Z",
       "side": 1,
       "message": "make suer to rebase correctly, this seem wrong!\n(it was right in patch #23)",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 44
+      },
+      "revId": "79039b5432fee146805a415e338b6992bf1d907f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07948000_4c488696",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T12:27:14Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "dab0530e_9b7fe5f7",
       "range": {
         "startLine": 2,
         "startChar": 27,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23107662_5a2f6e40",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T12:27:14Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "f5f4bf2f_5b242a6d",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "79039b5432fee146805a415e338b6992bf1d907f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36a2d5f4_edc8e0e7",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-04-29T11:37:00Z",
       "side": 1,
       "message": "3.6.2. was correct in path #23",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "79039b5432fee146805a415e338b6992bf1d907f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "add10360_250bac62",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 26
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-05-06T12:27:14Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "36a2d5f4_edc8e0e7",
       "range": {
         "startLine": 12,
         "startChar": 1,
