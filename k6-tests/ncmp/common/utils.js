@@ -58,38 +58,19 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 export function makeRandomBatchOfAlternateIds() {
     const alternateIds = new Set();
     while (alternateIds.size < LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE) {
-        alternateIds.add(getRandomAlternateId());
+        alternateIds.add(getRandomCmHandleReference(true));
     }
     return Array.from(alternateIds)
 }
 
 /**
- * Generates a random CM Handle alternate ID.
- *
- * This function selects a random CM Handle ID between 1 and TOTAL_CM_HANDLES (inclusive)
- * and returns its corresponding alternate ID by invoking `getAlternateId(id)`.
- *
- * @returns {string} A CM Handle alternate ID derived from a randomly selected CM Handle ID.
+ * Generates a random CM Handle reference based on the provided flag.
+ * @param useAlternateId
+ * @returns {string} CM Handle reference representing a CM handle ID or an alternate ID.
  */
-export function getRandomAlternateId() {
-    let randomCmHandleId = randomIntBetween(1, TOTAL_CM_HANDLES);
-    return getAlternateId(randomCmHandleId);
-}
-
-/**
- * Generates an alternate ID path for a CM handle based on its numeric identifier.
- *
- * The path follows the structure used in network models, embedding the numeric ID
- * into both the MeContext and ManagedElement components.
- *
- * Example output:
- *  "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode123/ManagedElement=MyManagedElement123"
- *
- * @param {number} cmHandleNumericId - The numeric identifier extracted from the CM handle ID.
- * @returns {string} The alternate ID path string.
- */
-export function getAlternateId(cmHandleNumericId) {
-    return `/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${cmHandleNumericId}/ManagedElement=MyManagedElement${cmHandleNumericId}`;
+export function getRandomCmHandleReference(useAlternateId) {
+    const prefix = useAlternateId ? 'Region=NorthAmerica,Segment=' : 'ch-';
+    return `${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
 }
 
 /**
@@ -148,8 +129,6 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 18, testResults, scenarioConfig),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 18, testResults, scenarioConfig),
         makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 1750, testResults, scenarioConfig),
-        makeSummaryCsvLine('8', 'Write data job scenario - small', 'milliseconds', 'write_small_data_job_duration', 300, testResults, scenarioConfig),
-        makeSummaryCsvLine('9', 'Write data job scenario - large', 'milliseconds', 'write_large_data_job_duration', 300, testResults, scenarioConfig),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
