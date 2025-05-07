@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "6dbed125ad1e61bab03572993db54c5a78662316",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc72e16_3dc541bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-07T09:40:06Z",
+      "side": 1,
+      "message": "NB: usually milliseconds delay is not recommended.\nhz cannot guarantee that the eviction will happen at the exact ms time.( due to background cleanup happening )\nbut we are polling for 10times more. so we might get away with the issue.",
+      "range": {
+        "startLine": 109,
+        "startChar": 91,
+        "endLine": 109,
+        "endChar": 94
+      },
+      "revId": "6dbed125ad1e61bab03572993db54c5a78662316",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
