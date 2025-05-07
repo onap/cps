@@ -71,7 +71,6 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                                                                 "org.onap.cps.ncmp.utils..",
                                                                 "org.onap.cps.ncmp.config..",
                                                                 "org.onap.cps.ncmp.exceptions..",
-                                                                "org.onap.cps.spi.api..",
                                                                 // Below packages are breaking the agreed dependencies
                                                                 // and need to be removed from this rule.
                                                                 // This will be handled in a separate user story
