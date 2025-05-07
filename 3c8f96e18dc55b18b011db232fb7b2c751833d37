@@ -46,6 +46,30 @@
       },
       "revId": "3c8f96e18dc55b18b011db232fb7b2c751833d37",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cec4dad_70cf5428",
+        "filename": "cps-path-parser/src/test/groovy/org/onap/cps/cpspath/parser/CpsPathQuerySpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-07T09:38:49Z",
+      "side": 1,
+      "message": "Yes, if it is just star it will throw the same parse error. Can add a test but might be just overkill",
+      "parentUuid": "eaf4cd9d_7c8ef32c",
+      "range": {
+        "startLine": 203,
+        "startChar": 31,
+        "endLine": 203,
+        "endChar": 89
+      },
+      "revId": "3c8f96e18dc55b18b011db232fb7b2c751833d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
