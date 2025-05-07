@@ -145,16 +145,15 @@
       "timeUnit": "60s",
       "duration": "15m",
       "preAllocatedVUs": 1,
-      "startTime": "6s"
+      "startTime": "30s"
     },
     "write_small_data_job_scenario": {
       "executor": "constant-arrival-rate",
       "exec": "writeDataJobSmallScenario",
-      "rate": 10,
-      "timeUnit": "5s",
+      "rate": 1,
+      "timeUnit": "60s",
       "duration": "15m",
-      "preAllocatedVUs": 10,
-      "startTime": "6s"
+      "preAllocatedVUs": 10
     }
   },
   "thresholds": {
