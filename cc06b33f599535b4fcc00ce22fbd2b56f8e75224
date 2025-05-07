@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe972a28_0da98f5f",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa27e778_b78b58b7",
+      "range": {
+        "startLine": 57,
+        "startChar": 71,
+        "endLine": 57,
+        "endChar": 93
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09d36f4d_e6d368ec",
@@ -88,6 +112,30 @@
       "writtenOn": "2025-05-01T10:40:44Z",
       "side": 1,
       "message": "this is okay to be the same for all cm handles for your test?",
+      "range": {
+        "startLine": 64,
+        "startChar": 17,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3100809d_066a09f0",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "09d36f4d_e6d368ec",
       "range": {
         "startLine": 64,
         "startChar": 17,
@@ -121,6 +169,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adcc13d9_86953e6c",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cd733861_f23923d6",
+      "range": {
+        "startLine": 67,
+        "startChar": 89,
+        "endLine": 67,
+        "endChar": 116
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7f930fe_43658962",
@@ -134,6 +206,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "NB: Not needed",
+      "range": {
+        "startLine": 68,
+        "startChar": 87,
+        "endLine": 68,
+        "endChar": 109
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df9cf9cd_bb4eea32",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7f930fe_43658962",
       "range": {
         "startLine": 68,
         "startChar": 87,
@@ -167,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4265b16_c0d07451",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "02b81bc8_8fa7a7ab",
+      "range": {
+        "startLine": 69,
+        "startChar": 58,
+        "endLine": 69,
+        "endChar": 96
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bb9b7a3_d6da5a35",
@@ -180,6 +300,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "NB: Not needed",
+      "range": {
+        "startLine": 70,
+        "startChar": 64,
+        "endLine": 70,
+        "endChar": 102
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d3a663_5d9d9971",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4bb9b7a3_d6da5a35",
       "range": {
         "startLine": 70,
         "startChar": 64,
@@ -213,6 +357,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c50956_b5a20bf7",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4a6da67b_d52a2b99",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b4a14e_0035a8b0",
@@ -226,6 +394,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "it has been created twice. Thus I suggest make a constant of it in util.js then import and use.",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 67
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0cce475_72cfadd8",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Both have diff. value for redability its ok to have it here to specific JS file.",
+      "parentUuid": "66b4a14e_0035a8b0",
       "range": {
         "startLine": 32,
         "startChar": 26,
@@ -259,6 +451,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "507c98ec_a8490f13",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d5e9f10a_cad69ebf",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0962ad4_f141b2f0",
@@ -272,6 +488,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "NB: it does not used in multiple places but to have a constant of it in util.js would be nice.",
+      "range": {
+        "startLine": 41,
+        "startChar": 26,
+        "endLine": 41,
+        "endChar": 62
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2fb545_0a9d9d99",
+        "filename": "k6-tests/ncmp/common/passthrough-crud.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f0962ad4_f141b2f0",
       "range": {
         "startLine": 41,
         "startChar": 26,
@@ -305,6 +545,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3c35578_26842bb5",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "13123af6_49dafb94",
+      "range": {
+        "startLine": 31,
+        "startChar": 18,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aead86e1_8718c466",
@@ -318,6 +582,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "This function is not needed since used only once",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 1
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0db0fe84_fc4a6b03",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aead86e1_8718c466",
       "range": {
         "startLine": 56,
         "startChar": 0,
@@ -345,6 +633,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26cbece_beeed03f",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "724b5f1d_e0d1f6b3",
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8413808_61f9fd09",
@@ -358,6 +664,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "NB: Why did you divide it by 2. I don\u0027t understand.",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 52
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "830ec0d9_e0e5a3f3",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "https://gerrit.onap.org/r/c/cps/+/140667/comment/f47c322a_a78060ad/",
+      "parentUuid": "b8413808_61f9fd09",
       "range": {
         "startLine": 98,
         "startChar": 48,
@@ -391,6 +721,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a91c1841_8c40b238",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3958289_89a0309c",
+      "range": {
+        "startLine": 129,
+        "startChar": 5,
+        "endLine": 129,
+        "endChar": 27
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e85ab210_e3aec43e",
@@ -404,6 +758,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "it is not clear what kind of data and where you are writing to.\n\nYou can be more specific e.g.: like A large volume of DCM write operation. The HTTP response code and expected number of reponses are verified.",
+      "range": {
+        "startLine": 209,
+        "startChar": 42,
+        "endLine": 209,
+        "endChar": 47
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20994953_3e17e89f",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e85ab210_e3aec43e",
       "range": {
         "startLine": 209,
         "startChar": 42,
@@ -437,6 +815,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88557b3_d80f0a67",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0f291ad7_c9bf81c3",
+      "range": {
+        "startLine": 214,
+        "startChar": 67,
+        "endLine": 214,
+        "endChar": 76
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ce4009_2cf8d882",
@@ -460,6 +862,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd98be6f_e74664f2",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "56ce4009_2cf8d882",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 3
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7859e3d8_97a51454",
@@ -473,6 +899,30 @@
       "writtenOn": "2025-05-02T11:15:01Z",
       "side": 1,
       "message": "NB: number of responses",
+      "range": {
+        "startLine": 225,
+        "startChar": 66,
+        "endLine": 225,
+        "endChar": 75
+      },
+      "revId": "cc06b33f599535b4fcc00ce22fbd2b56f8e75224",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd5cced_5f31ce40",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-07T09:34:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7859e3d8_97a51454",
       "range": {
         "startLine": 225,
         "startChar": 66,
