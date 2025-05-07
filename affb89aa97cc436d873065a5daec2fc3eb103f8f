@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "256f5756_ec28a498",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-07T09:49:06Z",
+      "side": 1,
+      "message": "NB: missing copyright update",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "affb89aa97cc436d873065a5daec2fc3eb103f8f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
