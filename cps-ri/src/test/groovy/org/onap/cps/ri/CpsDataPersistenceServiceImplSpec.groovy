@@ -243,6 +243,28 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             }})
     }
 
+    def 'Replace data nodes and add new list item '() {
+        given: 'The fragment repository returns existing fragment for known XPath'
+            def existingFragmentEntity = new FragmentEntity(id: 1, xpath: '/bookstore/categories[@code=1]/books[@title="Matilda"]', attributes: '{"title":"Matilda","lang":"English"}', anchor: anchorEntity, childFragments: [] as Set)
+            mockFragmentRepository.findByAnchorAndXpathIn(_, _ as Set) >> [existingFragmentEntity]
+        and: 'some data nodes with include a replace and a new list item'
+            def dataNodeReplace = new DataNode(xpath: '/bookstore/categories[@code=1]/books[@title="Matilda"]', leaves: ['title': 'Matilda', 'lang': 'French'])
+            def dataNodeNew = new DataNode(xpath: '/bookstore/categories[@code=1]/books[@title="Book 2"]', leaves: ['title': 'Book 2', 'lang': 'English'])
+        when: 'the fragment entities are update by the data nodes'
+            def result = objectUnderTest.updateDataNodesAndDescendants('dataspace', 'anchor', [dataNodeReplace, dataNodeNew])
+        then: 'call fragment repository save all method is called with the updated fragments'
+            1 * mockFragmentRepository.saveAll({ fragmentEntities ->
+                {
+                    assert fragmentEntities.size() == 2
+                    def fragmentEntityPerXpath = fragmentEntities.collectEntries { [it.xpath, it] }
+                    assert fragmentEntityPerXpath.get('/bookstore/categories[@code=1]/books[@title="Matilda"]').attributes.contains('"lang":"French"')
+                    assert fragmentEntityPerXpath.get('/bookstore/categories[@code=1]/books[@title="Book 2"]').attributes.contains('"lang":"English"')
+                    true
+                }})
+        and: 'Result confirms new nodes were inserted'
+            assert result
+    }
+
     def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
         def dataNode = new DataNodeBuilder().withXpath(xpath).build()
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])

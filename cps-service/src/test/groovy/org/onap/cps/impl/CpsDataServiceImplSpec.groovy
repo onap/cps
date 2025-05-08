@@ -312,6 +312,21 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
+    def 'Replace data node and add new list item using JSON data: #scenario.'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+        when: 'replace data method is invoked with JSON data that includes a new list item and nested nodes'
+            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
+        then: 'the persistence service method is invoked with correct parameters for existing and new list items'
+            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                { dataNode -> dataNode.xpath == expectedNodeXpath})
+        and: 'the CpsValidator is called on the dataspaceName and AnchorName'
+            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+        where: 'following parameters were used'
+            scenario                        | parentNodeXpath | jsonData                                                                                                               || expectedNodeXpath
+            'replace node and add new list' | '/'             | '{"test-tree": {"branch": [{"name": "Middle", "nest": {"name": "small"}}, {"name": "right", "nest": {"name": "big"}}]}}' || ["/test-tree"]
+    }
+
     def 'Replace data node using singular XML data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
