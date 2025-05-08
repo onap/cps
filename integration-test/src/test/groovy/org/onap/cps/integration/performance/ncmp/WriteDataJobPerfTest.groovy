@@ -36,45 +36,56 @@ import java.util.concurrent.Executors
  */
 class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
 
+    def NETWORK_SIZE = 1_000  // Increase to 40_000 for more realistic tests!
+
     @Autowired
     DataJobService dataJobService
 
-    def populateDataJobWriteRequests(int numberOfWriteOperations) {
-        def writeOperations = []
-        for (int i = 1; i <= numberOfWriteOperations; i++) {
-            def basePath = "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${i}/ManagedElement=MyManagedElement${i}"
-            writeOperations.add(new WriteOperation("${basePath}/SomeChild=child-1", 'operation1', '1', null))
-            writeOperations.add(new WriteOperation("${basePath}/SomeChild=child-2", 'operation2', '2', null))
-            writeOperations.add(new WriteOperation(basePath, 'operation3', '3', null))
-        }
-        return new DataJobWriteRequest(writeOperations)
+    def setup() {
+        registerTestCmHandles(NETWORK_SIZE)
     }
 
-    @Ignore  // CPS-2691
-    def 'Performance test for writeDataJob method'() {
-        given: 'register 10_000 cm handles (with alternate ids)'
-            registerTestCmHandles(10_000)
-            def dataJobWriteRequest = populateDataJobWriteRequests(10_000)
+    def cleanup() {
+        deregisterSequenceOfCmHandles(DMI1_URL, NETWORK_SIZE, 1)
+    }
+
+    @Ignore  // CPS-2691 / CPS-2692
+    def 'Performance test Large cm write data job.'() {
+        given: '3 large cm write data jobs'
+            def dataJobWriteRequest1 = populateDataJobWriteRequests(NETWORK_SIZE, 0)
+            def dataJobWriteRequest2 = populateDataJobWriteRequests(NETWORK_SIZE, 0)
+            def dataJobWriteRequest3 = populateDataJobWriteRequests(NETWORK_SIZE, 0)
+        when: 'sending a write jobs to NCMP with dynamically generated write operations'
+            def executionResult1 = executeWriteJob('d1', dataJobWriteRequest1)
+            def executionResult2 = executeWriteJob('d1', dataJobWriteRequest2)
+            def executionResult3 = executeWriteJob('d1', dataJobWriteRequest3)
+        then: 'record the results (about 3-4 seconds). Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2691'
+            println "*** CPS-2691 (L) Execution time run 1: ${executionResult1.executionTime} seconds | Memory usage: ${executionResult1.memoryUsage} MB"
+            println "*** CPS-2691 (L) Execution time run 2: ${executionResult2.executionTime} seconds | Memory usage: ${executionResult2.memoryUsage} MB"
+            println "*** CPS-2691 (L) Execution time run 3: ${executionResult3.executionTime} seconds | Memory usage: ${executionResult3.memoryUsage} MB"
+    }
+
+    def 'Performance test Small cm write data job.'() {
+        given: 'a small'
+            def dataJobWriteRequest = populateDataJobWriteRequests(100, 0)
         when: 'sending a write job to NCMP with dynamically generated write operations'
             def executionResult = executeWriteJob('d1', dataJobWriteRequest)
-        then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2691'
-            println "*** CPS-2691 Execution time: ${executionResult.executionTime} seconds | Memory usage: ${executionResult.memoryUsage} MB"
-        cleanup: 'deregister test cm handles'
-            deregisterTestCmHandles(10_000)
+        then: 'record the result (about 2-3 second). Not asserted, TO BE be recorded in https://lf-onap.atlassian.net/browse/CPS-2743'
+            println "*** CPS-2691 (S) Execution time: ${executionResult.executionTime} seconds | Memory usage: ${executionResult.memoryUsage} MB"
     }
 
     @Ignore  // CPS-2692
-    def 'Performance test for writeDataJob method with 10 parallel requests'() {
-        given: 'register 10_000 cm handles (with alternate ids)'
-            registerTestCmHandles(1_000)
-        when: 'sending 10 parallel write jobs to NCMP'
-            def executionResults = executeParallelWriteJobs(10, 1_000)
-        then: 'record execution times'
-            executionResults.eachWithIndex { result, index ->
-                logExecutionResults("CPS-2692 Job-${index + 1}", result)
-            }
-        cleanup: 'deregister test cm handles'
-            deregisterSequenceOfCmHandles(DMI1_URL, 1_000, 1)
+    def 'Performance test parallel small cm write data jobs.'() {
+        when: 'sending 10 parallel write jobs to NCMP, execute test 3 times with some delay and different offsets'
+            def executionResults1 = executeParallelWriteJobs(10, 100, 0)
+            Thread.sleep(500)
+            def executionResults2 = executeParallelWriteJobs(10, 100, 200)
+            Thread.sleep(500)
+            def executionResults3 = executeParallelWriteJobs(10, 100, 300)
+        then: 'record execution times, note how 3rd run will be fastest!'
+            executionResults1.eachWithIndex { result1, index1 -> logExecutionResults("CPS-2692 run 1 Job-${index1 + 1}", result1) }
+            executionResults2.eachWithIndex { result2, index2 -> logExecutionResults("CPS-2692 run 2 Job-${index2 + 1}", result2) }
+            executionResults3.eachWithIndex { result3, index3 -> logExecutionResults("CPS-2692 run 3 Job-${index3 + 1}", result3) }
     }
 
     def registerTestCmHandles(numberOfCmHandles) {
@@ -84,20 +95,34 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
         )
     }
 
-    def executeParallelWriteJobs(numberOfJobs, numberOfWriteOperations) {
+    def executeParallelWriteJobs(numberOfJobs, numberOfWriteOperations, offset) {
         def executorService = Executors.newFixedThreadPool(numberOfJobs)
         def futures = (0..<numberOfJobs).collect { jobId ->
-            CompletableFuture.supplyAsync({ -> executeWriteJob(jobId, populateDataJobWriteRequests(numberOfWriteOperations)) }, executorService)
+            CompletableFuture.supplyAsync({ -> executeWriteJob(jobId, populateDataJobWriteRequests(numberOfWriteOperations, offset)) }, executorService)
         }
         def executionResults = futures.collect { it.join() }
         executorService.shutdown()
         return executionResults
     }
 
+    def populateDataJobWriteRequests(numberOfWriteOperations, offset) {
+        def writeOperations = []
+        for (int i = 1; i <= numberOfWriteOperations; i++) {
+            def basePath = "/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${offset + i}/ManagedElement=MyManagedElement${offset + i}"
+            writeOperations.add(new WriteOperation("${basePath}/SomeChild=child-1", 'operation1', '1', null))
+            writeOperations.add(new WriteOperation("${basePath}/SomeChild=child-2", 'operation2', '2', null))
+            writeOperations.add(new WriteOperation(basePath, 'operation3', '3', null))
+        }
+        return new DataJobWriteRequest(writeOperations)
+    }
+
+
     def executeWriteJob(jobId, dataJobWriteRequest) {
         def localMeter = new ResourceMeter()
         localMeter.start()
-        dataJobService.writeDataJob('', '', new DataJobMetadata("job-${jobId}", '', ''), dataJobWriteRequest)
+        1.times {
+            dataJobService.writeDataJob('', '', new DataJobMetadata("job-${jobId}", '', ''), dataJobWriteRequest)
+        }
         localMeter.stop()
         ['executionTime': localMeter.totalTimeInSeconds, 'memoryUsage': localMeter.totalMemoryUsageInMB]
     }
@@ -106,7 +131,4 @@ class WriteDataJobPerfTest extends CpsIntegrationSpecBase {
         println "*** ${jobId} Execution time: ${result.executionTime} seconds | Memory usage: ${result.memoryUsage} MB"
     }
 
-    def deregisterTestCmHandles(numberOfCmHandles) {
-        deregisterSequenceOfCmHandles(DMI1_URL, numberOfCmHandles, 1)
-    }
 }

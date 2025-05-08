@@ -30,18 +30,39 @@ class AlternateIdPerfTest extends CpsIntegrationSpecBase {
 
     def resourceMeter = new ResourceMeter()
 
+    def NETWORK_SIZE = 10_000
+    def altIdPrefix = '/a=1/b=2/c=3/'
+
+    def setup() {
+        registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', NETWORK_SIZE, 1, altIdPrefix)
+    }
+
+    def cleanup() {
+        deregisterSequenceOfCmHandles(DMI1_URL, NETWORK_SIZE, 1)
+    }
+
     def 'Alternate Id Lookup Performance.'() {
-        given: 'register 1,000 cm handles (with alternative ids)'
-            registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(DMI1_URL, 'tagA', 1000, 1)
         when: 'perform a 1,000 lookups by alternate id'
             resourceMeter.start()
             (1..1000).each {
-                networkCmProxyInventoryFacade.getNcmpServiceCmHandle("alt=${it}")
+                networkCmProxyInventoryFacade.getNcmpServiceCmHandle("${altIdPrefix}alt=${it}")
             }
             resourceMeter.stop()
         then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2605'
             println "*** CPS-2605 Execution time: ${resourceMeter.totalTimeInSeconds} ms"
-        cleanup: 'deregister test cm handles'
-            deregisterSequenceOfCmHandles(DMI1_URL, 1000, 1)
+    }
+
+    def 'Alternate Id Longest Match Performance.'() {
+        given: 'an offset at 90% of the network size, so matches are not at the start...'
+            def offset = (int) (0.9 * NETWORK_SIZE)
+        when: 'perform a 100 longest matches'
+            resourceMeter.start()
+            (1..100).each {
+                def target = "${altIdPrefix}alt=${it + offset}/d=4/e=5/f=6/g=7"
+                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(target, "/")
+            }
+            resourceMeter.stop()
+        then: 'record the result. Not asserted, just recorded in See https://lf-onap.atlassian.net/browse/CPS-2743?focusedCommentId=83220'
+            println "*** CPS-2743 Execution time: ${resourceMeter.totalTimeInSeconds} ms"
     }
 }

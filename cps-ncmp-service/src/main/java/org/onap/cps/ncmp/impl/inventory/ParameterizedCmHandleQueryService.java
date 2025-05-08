@@ -71,13 +71,4 @@ public interface ParameterizedCmHandleQueryService {
      */
     Flux<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
-    /**
-     * Retrieves all {@code NcmpServiceCmHandle} instances without their associated properties.
-     * This method fetches the relevant data nodes from the inventory persistence layer and
-     * converts them into {@code NcmpServiceCmHandle} objects. Only the handles are returned,
-     * without any additional properties.
-     *
-     * @return a collection of {@code NcmpServiceCmHandle} instances without properties.
-     */
-    Collection<NcmpServiceCmHandle> getAllCmHandlesWithoutProperties();
 }

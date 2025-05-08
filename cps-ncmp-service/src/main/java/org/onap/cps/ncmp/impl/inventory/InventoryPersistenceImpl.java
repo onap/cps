@@ -118,17 +118,12 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     @Override
     public Collection<YangModelCmHandle> getYangModelCmHandles(final Collection<String> cmHandleIds) {
-        final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
-        cmHandleIds.forEach(cmHandleId -> {
-            try {
-                cpsValidator.validateNameCharacters(cmHandleId);
-                validCmHandleIds.add(cmHandleId);
-            } catch (final DataValidationException dataValidationException) {
-                log.error("DataValidationException in CmHandleId {} to be ignored",
-                        dataValidationException.getMessage());
-            }
-        });
-        return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, INCLUDE_ALL_DESCENDANTS));
+        return getYangModelCmHandlesWithDescendantsOption(cmHandleIds, INCLUDE_ALL_DESCENDANTS);
+    }
+
+    @Override
+    public Collection<YangModelCmHandle> getYangModelCmHandlesWithoutProperties(final Collection<String> cmHandleIds) {
+        return getYangModelCmHandlesWithDescendantsOption(cmHandleIds, OMIT_DESCENDANTS);
     }
 
     @Override
@@ -220,4 +215,22 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                 .filter(StringUtils::isNotBlank)
                 .collect(Collectors.toSet());
     }
+
+    private Collection<YangModelCmHandle> getYangModelCmHandlesWithDescendantsOption(final Collection<String>
+                                                                                         cmHandleIds,
+                                                                                     final FetchDescendantsOption
+                                                                                         fetchDescendantsOption) {
+        final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> {
+            try {
+                cpsValidator.validateNameCharacters(cmHandleId);
+                validCmHandleIds.add(cmHandleId);
+            } catch (final DataValidationException dataValidationException) {
+                log.error("DataValidationException in CmHandleId {} to be ignored",
+                    dataValidationException.getMessage());
+            }
+        });
+        return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, fetchDescendantsOption));
+    }
+
 }

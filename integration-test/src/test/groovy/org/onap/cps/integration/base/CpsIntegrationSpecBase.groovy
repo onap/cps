@@ -279,6 +279,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
         registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE, { id -> "alt=${id}" })
     }
 
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, altIdPrefix) {
+        registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE, { id -> "${altIdPrefix}alt=${id}" })
+    }
+
+
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy) {
         registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, moduleNameStrategy, { id -> "alt=${id}" })
     }
