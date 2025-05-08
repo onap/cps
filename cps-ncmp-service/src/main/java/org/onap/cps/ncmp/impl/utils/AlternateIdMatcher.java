@@ -21,11 +21,18 @@
 package org.onap.cps.ncmp.impl.utils;
 
 import com.hazelcast.map.IMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +50,7 @@ public class AlternateIdMatcher {
      * If alternate id contains a hash then all elements after that hash are ignored.
      *
      * @param alternateId            alternate ID
-     * @param separator              a string that separates each element from the next.
+     * @param separator              a string that separates each path element from the next.
      * @return ncmp service cm handle
      */
     public String getCmHandleIdByLongestMatchingAlternateId(
@@ -58,6 +65,53 @@ public class AlternateIdMatcher {
             bestMatch = getParentPath(bestMatch, separator);
         }
         throw new NoAlternateIdMatchFoundException(alternateId);
+    }
+
+    /**
+     * Get cm handle that matches longest alternate id in the given map.
+     *
+     * @param alternateId            the target alternate id
+     * @param separator              a string that separates each path element from the next.
+     * @param cmHandlePerAlternateId a map of cm handles with the alternate id as key
+     * @return cm handle as a YangModelCmHandle
+     */
+    public YangModelCmHandle getCmHandleByLongestMatchingAlternateId(
+                                                    final String alternateId, final String separator,
+                                                    final Map<String, YangModelCmHandle> cmHandlePerAlternateId) {
+        final String[] splitPath = alternateId.split("#", 2);
+        String bestMatch = splitPath[0];
+        while (StringUtils.isNotEmpty(bestMatch)) {
+            final YangModelCmHandle yangModelCmHandle = cmHandlePerAlternateId.get(bestMatch);
+            if (yangModelCmHandle != null) {
+                return yangModelCmHandle;
+            }
+            bestMatch = getParentPath(bestMatch, separator);
+        }
+        throw new NoAlternateIdMatchFoundException(alternateId);
+    }
+
+    /**
+     * Get collection of cm handle ids whose alternate id best (longest) match the given paths.
+     * If alternate id contains a hash then all elements after that hash are ignored.
+     *
+     * @param paths            collection of paths
+     * @param separator        a string that separates each path element from the next.
+     * @return collection of cm handle ids
+     */
+    public Collection<String> getCmHandleIdsByLongestMatchingAlternateIds(final Collection<String> paths,
+                                                                          final String separator) {
+        final Collection<String> cmHandleIds = new ArrayList<>();
+        Set<String> unresolvedPaths = new HashSet<>(paths);
+        while (!unresolvedPaths.isEmpty()) {
+            final Map<String, String> resolvedCmHandleIdPerAlternateId =
+                cmHandleIdPerAlternateId.getAll(unresolvedPaths);
+            cmHandleIds.addAll(resolvedCmHandleIdPerAlternateId.values());
+            unresolvedPaths.removeAll(resolvedCmHandleIdPerAlternateId.keySet());
+            unresolvedPaths = unresolvedPaths.stream().map(p -> getParentPath(p, separator))
+                .filter(StringUtils::isNotEmpty)
+                .collect(Collectors.toSet());
+        }
+        return cmHandleIds;
     }
 
     /**

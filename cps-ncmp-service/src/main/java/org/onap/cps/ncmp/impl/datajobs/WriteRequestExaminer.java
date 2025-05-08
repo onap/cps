@@ -21,27 +21,29 @@
 package org.onap.cps.ncmp.impl.datajobs;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.datajobs.models.DataJobWriteRequest;
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation;
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey;
 import org.onap.cps.ncmp.api.datajobs.models.WriteOperation;
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
-import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class WriteRequestExaminer {
+
     private static final String PATH_SEPARATOR = "/";
 
     private final AlternateIdMatcher alternateIdMatcher;
@@ -56,24 +58,28 @@ public class WriteRequestExaminer {
      */
     public Map<ProducerKey, List<DmiWriteOperation>> splitDmiWriteOperationsFromRequest(
             final String dataJobId, final DataJobWriteRequest dataJobWriteRequest) {
+        final Map<String, YangModelCmHandle> cmHandlePerAlternateId = preloadCmHandles(dataJobWriteRequest);
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey = new HashMap<>();
         for (final WriteOperation writeOperation : dataJobWriteRequest.data()) {
-            examineWriteOperation(dataJobId, dmiWriteOperationsPerProducerKey, writeOperation);
+            examineWriteOperation(dataJobId,
+                                  dmiWriteOperationsPerProducerKey,
+                                  cmHandlePerAlternateId,
+                                  writeOperation);
         }
         return dmiWriteOperationsPerProducerKey;
     }
 
     private void examineWriteOperation(final String dataJobId,
                                        final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey,
+                                       final Map<String, YangModelCmHandle> cmHandlePerAlternateId,
                                        final WriteOperation writeOperation) {
         log.debug("data job id for write operation is: {}", dataJobId);
-        final String cmHandleId = alternateIdMatcher
-                .getCmHandleIdByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR);
-        final NcmpServiceCmHandle ncmpServiceCmHandle = YangDataConverter.toNcmpServiceCmHandle(
-                inventoryPersistence.getYangModelCmHandle(cmHandleId));
-        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, ncmpServiceCmHandle);
+        final YangModelCmHandle yangModelCmHandle = alternateIdMatcher
+                .getCmHandleByLongestMatchingAlternateId(writeOperation.path(), PATH_SEPARATOR, cmHandlePerAlternateId);
 
-        final ProducerKey producerKey = createProducerKey(ncmpServiceCmHandle);
+        final DmiWriteOperation dmiWriteOperation = createDmiWriteOperation(writeOperation, yangModelCmHandle);
+
+        final ProducerKey producerKey = createProducerKey(yangModelCmHandle);
         final List<DmiWriteOperation> dmiWriteOperations;
         if (dmiWriteOperationsPerProducerKey.containsKey(producerKey)) {
             dmiWriteOperations = dmiWriteOperationsPerProducerKey.get(producerKey);
@@ -84,19 +90,31 @@ public class WriteRequestExaminer {
         dmiWriteOperations.add(dmiWriteOperation);
     }
 
-    private ProducerKey createProducerKey(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+    private Map<String, YangModelCmHandle> preloadCmHandles(final DataJobWriteRequest dataJobWriteRequest) {
+        final Collection<String> uniquePaths
+            = dataJobWriteRequest.data().stream().map(operation -> operation.path()).collect(Collectors.toSet());
+        final Collection<String> cmHandleIds
+            = alternateIdMatcher.getCmHandleIdsByLongestMatchingAlternateIds(uniquePaths, PATH_SEPARATOR);
+        final Collection<YangModelCmHandle> yangModelCmHandles
+            = inventoryPersistence.getYangModelCmHandlesWithoutProperties(cmHandleIds);
+        return yangModelCmHandles.stream()
+            .collect(Collectors.toMap(YangModelCmHandle::getAlternateId, yangModelCmHandle -> yangModelCmHandle));
+    }
+
+    private ProducerKey createProducerKey(final YangModelCmHandle yangModelCmHandle) {
         final String dmiDataServiceName =
-                DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA, ncmpServiceCmHandle);
-        return new ProducerKey(dmiDataServiceName, ncmpServiceCmHandle.getDataProducerIdentifier());
+                DmiServiceNameResolver.resolveDmiServiceName(RequiredDmiService.DATA, yangModelCmHandle);
+        return new ProducerKey(dmiDataServiceName, yangModelCmHandle.getDataProducerIdentifier());
     }
 
     private DmiWriteOperation createDmiWriteOperation(final WriteOperation writeOperation,
-                                                      final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                                      final YangModelCmHandle yangModelCmHandle) {
         return new DmiWriteOperation(
                 writeOperation.path(),
                 writeOperation.op(),
-                ncmpServiceCmHandle.getModuleSetTag(),
+                yangModelCmHandle.getModuleSetTag(),
                 writeOperation.value(),
                 writeOperation.operationId());
     }
+
 }
