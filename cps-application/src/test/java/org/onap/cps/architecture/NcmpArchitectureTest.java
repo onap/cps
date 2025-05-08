@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -71,7 +71,6 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                                                                 "org.onap.cps.ncmp.utils..",
                                                                 "org.onap.cps.ncmp.config..",
                                                                 "org.onap.cps.ncmp.exceptions..",
-                                                                "org.onap.cps.spi.api..",
                                                                 // Below packages are breaking the agreed dependencies
                                                                 // and need to be removed from this rule.
                                                                 // This will be handled in a separate user story
