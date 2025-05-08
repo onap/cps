@@ -24,11 +24,35 @@ chmod +x make-logs.sh
 
 testProfile=$1
 docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"
+remove_onap_docker_images_cmd="docker images | grep "onap" | awk '{print $3}' | xargs docker rmi"
+
+# Verify number of docker images after deletion on teardown of endurance testing
+verify_docker_images() {
+  no_of_onap_docker_images=$(docker images | grep "onap" | wc -l)
+  if [[ "$no_of_onap_docker_images" -eq 0 ]]; then
+    echo "Successfully removed ONAP docker images!"
+  else
+    echo "Removing ONAP docker images failed."
+  fi
+}
+
+# Remove all onap docker images
+remove_all_onap_docker_images() {
+  no_of_onap_docker_images=$(docker images | grep "onap" | wc -l)
+  if [[ "$no_of_onap_docker_images" -ne 0 ]]; then
+    echo "Removing all ONAP docker images..."
+    eval "$remove_onap_docker_images_cmd"
+    verify_docker_images
+  fi
+}
 
 # Set an environment variable CLEAN_DOCKER_IMAGES=1 to also remove docker images when done (used on jenkins job)
 echo "Stopping, Removing containers and volumes for $testProfile tests..."
-if [ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]; then
-  $docker_compose_shutdown_cmd --rmi all
+if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
+  eval "$docker_compose_shutdown_cmd --rmi all"
+  if [[ "$testProfile" == "endurance" ]]; then
+    remove_all_onap_docker_images
+  fi
 else
-  $docker_compose_shutdown_cmd
+  eval "$docker_compose_shutdown_cmd"
 fi
