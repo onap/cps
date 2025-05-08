@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -278,6 +278,11 @@ abstract class CpsIntegrationSpecBase extends Specification {
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset) {
         registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE, { id -> "alt=${id}" })
     }
+
+    def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, altIdPrefix) {
+        registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy.UNIQUE, { id -> "${altIdPrefix}alt=${id}" })
+    }
+
 
     def registerSequenceOfCmHandlesWithManyModuleReferencesButDoNotWaitForReady(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, ModuleNameStrategy moduleNameStrategy) {
         registerSequenceOfCmHandles(dmiPlugin, moduleSetTag, numberOfCmHandles, offset, moduleNameStrategy, { id -> "alt=${id}" })
