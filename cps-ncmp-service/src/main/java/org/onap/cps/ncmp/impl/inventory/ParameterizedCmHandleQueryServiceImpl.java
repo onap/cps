@@ -20,15 +20,12 @@
 
 package org.onap.cps.ncmp.impl.inventory;
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateModuleNameConditionProperties;
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_MODULES;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
 import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
-import static org.onap.cps.ncmp.impl.utils.YangDataConverter.toNcmpServiceCmHandle;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,11 +34,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.ConditionProperties;
-import org.onap.cps.api.model.DataNode;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
@@ -89,16 +84,6 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     public Flux<NcmpServiceCmHandle> queryCmHandles(final CmHandleQueryServiceParameters queryParameters) {
         final Collection<String> cmHandleIds = queryCmHandleReferenceIds(queryParameters, false);
         return getNcmpServiceCmHandles(cmHandleIds);
-    }
-
-    @Override
-    public Collection<NcmpServiceCmHandle> getAllCmHandlesWithoutProperties() {
-        return toNcmpServiceCmHandles(inventoryPersistence.getDataNode(NCMP_DMI_REGISTRY_PARENT, DIRECT_CHILDREN_ONLY));
-    }
-
-    private Collection<NcmpServiceCmHandle> toNcmpServiceCmHandles(final Collection<DataNode> dataNodes) {
-        final DataNode dataNode = dataNodes.iterator().next();
-        return dataNode.getChildDataNodes().stream().map(this::createNcmpServiceCmHandle).collect(Collectors.toSet());
     }
 
     private Collection<String> queryCmHandlesByDmiPlugin(
@@ -244,10 +229,6 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         );
         trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
         return ncmpServiceCmHandles;
-    }
-
-    private NcmpServiceCmHandle createNcmpServiceCmHandle(final DataNode dataNode) {
-        return toNcmpServiceCmHandle(YangDataConverter.toYangModelCmHandle(dataNode));
     }
 
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,

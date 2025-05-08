@@ -411,7 +411,7 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getDataProducerIdentifier());
     }
 
-    private void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
+    void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
         for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
             final String cmHandleId = yangModelCmHandle.getId();
             final String alternateId = yangModelCmHandle.getAlternateId();
