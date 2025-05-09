@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c719756d_bd1f9657",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-09T10:59:07Z",
+      "side": 1,
+      "message": "Is this accurate enough for our purposes. If \"onap\" is multiple times in the image table will it count an image more than once?\nSomething like this would only search the repo and tag:\ndocker images --format \"{{.Repository}}:{{.Tag}}\" | grep \"onap\"",
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
