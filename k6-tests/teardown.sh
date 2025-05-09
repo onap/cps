@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 Nordix Foundation.
+# Copyright 2024-2025 OpenInfra Foundation Europe.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ chmod +x make-logs.sh
 ./make-logs.sh
 
 testProfile=$1
-docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"
+docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/cps-base.yml --project-name $testProfile down --volumes"
 remove_onap_docker_images_cmd="docker images | grep "onap" | awk '{print $3}' | xargs docker rmi"
 
 # Verify number of docker images after deletion on teardown of endurance testing

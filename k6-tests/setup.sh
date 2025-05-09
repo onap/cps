@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 Nordix Foundation.
+# Copyright 2024-2025 OpenInfra Foundation Europe.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,10 +20,9 @@ echo "Spinning off the CPS and NCMP containers for $testProfile testing..."
 
 ENV_FILE="../docker-compose/env/${testProfile}.env"
 docker-compose \
-  --file "../docker-compose/docker-compose.yml" \
+  --file "../docker-compose/cps-base.yml" \
   --env-file "$ENV_FILE" \
   --project-name "$testProfile" \
-  --profile dmi-stub \
   up --quiet-pull --detach --wait || exit 1
 
 if [[ "$testProfile" == "kpi" ]]; then
