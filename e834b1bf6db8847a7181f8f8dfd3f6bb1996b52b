@@ -56,6 +56,29 @@
       "message": "Is this accurate enough for our purposes. If \"onap\" is multiple times in the image table will it count an image more than once?\nSomething like this would only search the repo and tag:\ndocker images --format \"{{.Repository}}:{{.Tag}}\" | grep \"onap\"",
       "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6faad24_1dacffe2",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-09T11:28:50Z",
+      "side": 1,
+      "message": "if we always want to remove all the images after endurance test run, it should be compared with 0 (default value) not 1. Because there is no CLEAN_DOCKER_IMAGES variable permanently set to 1 on the regular HW server.\n\nif a developer running it locally and don\u0027t want to remove the images, then he/she should set CLEAN_DOCKER_IMAGES to 1 explicitely.",
+      "range": {
+        "startLine": 51,
+        "startChar": 38,
+        "endLine": 51,
+        "endChar": 39
+      },
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
