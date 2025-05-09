@@ -17,7 +17,7 @@ Simply run the main script. (The script assumes k6 and the relevant docker-compo
 ## Running k6 tests manually
 Before running tests, ensure CPS/NCMP is running:
 ```shell
-docker-compose -f docker-compose/docker-compose.yml --profile dmi-stub up
+docker-compose -f docker-compose/cps-base.yml --profile dmi-stub up
 ```
 
 To run an individual test from command line, use

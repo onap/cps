@@ -29,14 +29,14 @@ export LOCAL_IP=localhost
 source $WORKSPACE/plans/cps/test.properties
 export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 
-###################### setup cps-ncmp ############################
+###################### setup cps-and-ncmp with dmi-services ############################
 cd $CPS_HOME/docker-compose
 
-# start CPS/NCMP, DMI Plugin, and PostgreSQL containers with docker compose, waiting for all containers to be healthy
-docker-compose --profile dmi-service --profile dmi-stub up -d --quiet-pull --wait || exit 1
+# Start cps-base and dmi-services with docker compose, and wait for all containers to be healthy.
+docker-compose -f cps-base.yml -f dmi-services.yml up -d --quiet-pull --wait || exit 1
 
 ###################### ROBOT Configurations ##########################
-# Pass variables required for Robot test suites in ROBOT_VARIABLES
+# Pass variables required for Robot test suites in ROBOT_VARIABLES.
 ROBOT_VARIABLES="\
 -v CPS_CORE_HOST:$CPS_CORE_HOST \
 -v CPS_CORE_PORT:$CPS_CORE_PORT \

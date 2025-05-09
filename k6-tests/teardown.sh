@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 Nordix Foundation.
+# Copyright 2024-2025 OpenInfra Foundation Europe.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ chmod +x make-logs.sh
 ./make-logs.sh
 
 testProfile=$1
-docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --profile dmi-stub --project-name $testProfile down --volumes"
+docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/cps-base.yml --project-name $testProfile down --volumes"
 
 # Set an environment variable CLEAN_DOCKER_IMAGES=1 to also remove docker images when done (used on jenkins job)
 echo "Stopping, Removing containers and volumes for $testProfile tests..."
