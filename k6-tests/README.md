@@ -8,8 +8,9 @@ Follow the instructions in the [build from source guide](https://github.com/most
 
 ## Running the k6 test suites
 These tests measure the system capabilities as per requirements.
-There are two test profiles can be run with either: kpi or endurance.
-Simply run the main script. (The script assumes k6 and the relevant docker-compose have been installed).
+There are two test profiles that can be run with either: kpi or endurance.
+Run the main script.
+(The script assumes k6 and the relevant docker-compose have been installed).
 ```shell
 ./run-k6-tests.sh kpi
 ```
@@ -17,10 +18,10 @@ Simply run the main script. (The script assumes k6 and the relevant docker-compo
 ## Running k6 tests manually
 Before running tests, ensure CPS/NCMP is running:
 ```shell
-docker-compose -f docker-compose/docker-compose.yml --profile dmi-stub up
+docker-compose -f docker-compose/cps-base.yml up -d
 ```
 
-To run an individual test from command line, use
+To run an individual test from the command line, use
 ```shell
 k6 run ncmp/ncmp-test-runner.js
 ```

@@ -21,7 +21,7 @@
   ============LICENSE_END=========================================================
 -->
 
-# Building and running CPS locally
+# Building and Running CPS Locally
 
 ## Building Java Archive only
 
@@ -32,7 +32,7 @@ without generating any docker images:
 mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker -Djib.skip
 ```
 
-## Building Java Archive and Docker images
+## Building Java Archive and Docker Images
 
 * Following command builds the JAR file and also generates the Docker image for all CPS components:
 
@@ -47,66 +47,28 @@ mvn clean install -Pcps-docker -Pncmp-docker -Pcps-ncmp-docker
 mvn clean install -P<docker-profile>
 ```
 
-## Running Docker containers
+## Running Docker Containers
 
-`docker-compose/docker-compose.yml` file is provided to be run with `docker-compose` tool and images previously built.
-It starts both Postgres database and CPS services.
-
-1. Edit `docker-compose.yml`
-   1. uncomment desired service to be deployed, by default `cps-and-ncmp` is enabled. You can comment it and uncomment `cps-standalone` or `ncmp-standalone`.
-   2. To send data-updated events to kafka,
-      * uncomment the `zookeeper` and `kafka` services.
-      * uncomment environment variables
-        * `KAFKA_BOOTSTRAP_SERVER: kafka:9092`
-2. Execute following command from `docker-compose` folder:
-
-Use one of the below version type that has been generated in the local system's docker image list after the build.
+`docker-compose/cps-base.yml` contains the base services required to run CPS and NCMP.
+This deployment can also be used for KPI test. Please run the following command from `docker-compose` folder:
 ```bash
-VERSION=latest DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+docker-compose -f cps-base.yml up -d
 or
-VERSION=<version> DB_USERNAME=cps DB_PASSWORD=cps docker-compose up -d
+docker-compose -f cps-base.yml --profile tracing up -d
 ```
 
-## Running Docker containers with profile: monitoring
-
-Run docker-compose with profile, monitoring, then it will start monitoring services:
-* prometheus
-* grafana
-* kafka-ui
-
+`docker-compose/dmi-services.yml` contains the DMI services including SDNC and PNF Simulator.
+This deployment is required for the CSIT test.
 ```bash
-docker-compose --profile monitoring up -d
+docker-compose -f cps-base.yml -f dmi-services.yml up -d
 ```
 
-### prometheus service
-It collects and stores metrics as time series data, recording information with a timestamp.
-
-The environment variable, PROMETHEUS_RETENTION_TIME, is used to set the retention time for the metrics
-in the prometheus database. The default value is 15d, but can be changed to any value.
-
-To be able to use the historical data, the prometheus container should not be removed.
-Instead, it can be stopped and started using the following commands:
-
+To deploy services that are required for Endurance test, please use the following command:
 ```bash
-docker-compose start prometheus
+docker-compose -f cps-base.yml --project-name endurance --env-file env/endurance.env up -d
 ```
 
-```bash
-docker-compose stop prometheus
-```
-
-## Running or debugging Java built code
-
-Before running CPS, a Postgres database instance needs to be started. This can be done with following
-command:
-
-```bash
-docker run --name postgres -p 5432:5432 -d \
-  -e POSTGRES_DB=cpsdb -e POSTGRES_USER=cps -e POSTGRES_PASSWORD=cps \
-  postgres:12.4-alpine
-```
-
-Then CPS can be started either using a Java Archive previously built or directly from Intellij IDE.
+To stop any deployment, please replace `up -d` flag with `down` in the above commands.
 
 ### Running from Jar Archive
 
@@ -136,7 +98,7 @@ Swagger UI and Open API specifications are available to discover service endpoin
 * `http://localhost:<port-number>/api-docs/cps-ncmp/openapi.yaml`
 * `http://localhost:<port-number>/api-docs/cps-ncmp/openapi-inventory.yaml`
 
-with <port-number> being either `8080` if running the plain Java build or retrieved using following command
+with <port-number> is being either `8080` if running the plain Java build or retrieved using following command
 if running from `docker-compose`:
 
 ```bash
@@ -145,4 +107,4 @@ docker inspect \
   <cps-docker-container>
 ```
 
-Enjoy CPS !
+Enjoy CPS!
