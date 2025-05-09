@@ -130,7 +130,7 @@
     },
     "produceKafkaMessages": {
       "executor": "constant-arrival-rate",
-      "rate": 10,
+      "rate": 11,
       "timeUnit": "1s",
       "duration": "15m",
       "preAllocatedVUs": 10,
