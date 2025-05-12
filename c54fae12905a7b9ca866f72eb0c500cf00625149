@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad3c75e_3935bad0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-12T12:05:18Z",
+      "side": 1,
+      "message": "final boolean groupingEnabled \u003d isGroupingEnabled(groupingEnabled); will throw error as its same variable name as in parameters.",
+      "parentUuid": "72298f32_373c2b13",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "c54fae12905a7b9ca866f72eb0c500cf00625149",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c931432_fed59b1b",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-02T04:31:03Z",
       "side": 1,
       "message": "variable name same as above",
+      "range": {
+        "startLine": 79,
+        "startChar": 22,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "c54fae12905a7b9ca866f72eb0c500cf00625149",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb342bc_425daffe",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-12T12:05:18Z",
+      "side": 1,
+      "message": "same as above",
+      "parentUuid": "4c931432_fed59b1b",
       "range": {
         "startLine": 79,
         "startChar": 22,
