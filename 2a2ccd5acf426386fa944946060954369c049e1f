@@ -33,6 +33,75 @@
       "message": "looks fine to me.",
       "revId": "2a2ccd5acf426386fa944946060954369c049e1f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea52135_79e4f763",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-12T09:10:33Z",
+      "side": 1,
+      "message": "NB Tip: For test that expect to end in an error scenario i always use the term \u0027Attempt\u0027 e.g \u0027Attempt to get delta between anchor and empty file\u0027",
+      "range": {
+        "startLine": 145,
+        "startChar": 9,
+        "endLine": 145,
+        "endChar": 18
+      },
+      "revId": "2a2ccd5acf426386fa944946060954369c049e1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f32a0b_ccf8d6ad",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-12T09:10:33Z",
+      "side": 1,
+      "message": "error message",
+      "range": {
+        "startLine": 158,
+        "startChar": 46,
+        "endLine": 158,
+        "endChar": 51
+      },
+      "revId": "2a2ccd5acf426386fa944946060954369c049e1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4405dcea_69739e8e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-12T09:10:33Z",
+      "side": 1,
+      "message": "NB: error details/error message",
+      "range": {
+        "startLine": 176,
+        "startChar": 46,
+        "endLine": 176,
+        "endChar": 51
+      },
+      "revId": "2a2ccd5acf426386fa944946060954369c049e1f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
