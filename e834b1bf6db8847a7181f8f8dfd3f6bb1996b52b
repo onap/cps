@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ba4dd75_f9907e2a",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-12T08:24:17Z",
+      "side": 1,
+      "message": "yes , as on screenshots on the ticket, there was more than one onap image on my local which removed these with this command",
+      "parentUuid": "c719756d_bd1f9657",
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6faad24_1dacffe2",
         "filename": "k6-tests/teardown.sh",
         "patchSetId": 1
@@ -71,6 +89,30 @@
       "writtenOn": "2025-05-09T11:28:50Z",
       "side": 1,
       "message": "if we always want to remove all the images after endurance test run, it should be compared with 0 (default value) not 1. Because there is no CLEAN_DOCKER_IMAGES variable permanently set to 1 on the regular HW server.\n\nif a developer running it locally and don\u0027t want to remove the images, then he/she should set CLEAN_DOCKER_IMAGES to 1 explicitely.",
+      "range": {
+        "startLine": 51,
+        "startChar": 38,
+        "endLine": 51,
+        "endChar": 39
+      },
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d73d9c3c_7e1ef936",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-12T08:24:17Z",
+      "side": 1,
+      "message": "based on https://jenkins.nordix.org/job/onap-cps-endurance-test/configure , endurance test run explicitly sets this to 1 rather than default. this behaviour is only added to the current flow of the teardown for  endurance test",
+      "parentUuid": "c6faad24_1dacffe2",
       "range": {
         "startLine": 51,
         "startChar": 38,
