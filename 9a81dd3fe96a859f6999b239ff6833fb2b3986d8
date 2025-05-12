@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "030e532b_3e4bc81f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-12T10:58:07Z",
+      "side": 1,
+      "message": "I think I found the reason for the cyclic dependency. You are first storing previous data previousDataNodes \u003d cpsDataPersistenceService.getDataNodes(), then applying the update operation. Then you are generating delta and after that you are calling sendDataUpdatedEvent(). This approach is incorrect.\n\nThe correct approach should be to first generate delta using the anchor, parentNodeXpath and dataNodeUpdatesAsJson provided. Then apply the update. Then send the events using the data from delta report.\n\nIn your approach you are just dumping entire delta report as JSON under a singular event. But if you see the documentation and structure of Delta Report it can have different actions under a list of delta reports. Hence you should iterate over these entries and use information from each entry to send the notification.\n\nIn my opinion the ideal approach will be something like this, This eliminates the need of storing old data, then calculating delta between old and new data. In my suggested approach you get delta in the first step using user provided info. And then you can use the delta report for sendDataUpdatedEvent. \n    public void updateNodeLeavesAndExistingDescendantLeaves(final String dataspaceName, final String anchorName,\n                                                            final String parentNodeXpath,\n                                                            final String dataNodeUpdatesAsJson,\n                                                            final OffsetDateTime observedTimestamp) {\n        cpsValidator.validateNameCharacters(dataspaceName, anchorName);\n        final Anchor anchor \u003d cpsAnchorService.getAnchor(dataspaceName, anchorName);\n        final Collection\u003cDataNode\u003e dataNodeUpdates \u003d dataNodeFactory\n                .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, dataNodeUpdatesAsJson, JSON);\n        final List\u003cDeltaReport\u003e deltaReports \u003d cpsDeltaService.getDeltaByDataspaceAnchorAndPayload(dataspaceName, \n            anchorName, parentNodeXpath, Collections.emptyMap(), dataNodeUpdatesAsJson, FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS);\n        for (final DataNode dataNodeUpdate : dataNodeUpdates) {\n            processDataNodeUpdate(anchor, dataNodeUpdate);\n        }\n        for (final DeltaReport deltaReport: deltaReports) {\n            final Collection\u003cDataNode\u003e sourceDataNodes \u003d new DataNodeBuilder().withAnchor(anchor)\n                .withXpath(deltaReport.getXpath()).withLeaves(deltaReport.getSourceData()).build();\n            sendDataUpdatedEvent(anchor, deltaReport.getXpath(), sourceDataNodes, deltaReport.getAction(), \n                observedTimestamp);\n            // here source data nodes can be replaced by the JSON data provided by delta report i.e.\n            // deltaReport.getSourceData() and operations are not needed as stated earlier and should be fetched from \n            // delta report using deltaReport.getAction() for consistent results\n            // But you need to handle the operations as deltaReport.getAction() is string\n        }\n    }",
+      "range": {
+        "startLine": 265,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 28
+      },
+      "revId": "9a81dd3fe96a859f6999b239ff6833fb2b3986d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
