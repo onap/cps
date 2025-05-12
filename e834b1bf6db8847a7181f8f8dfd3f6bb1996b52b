@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e354dc0_12ae02e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-12T08:56:05Z",
+      "side": 1,
+      "message": "Perfect. Looks good to me then.",
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c42bbda9_064fe709",
@@ -72,6 +89,24 @@
       "side": 1,
       "message": "yes , as on screenshots on the ticket, there was more than one onap image on my local which removed these with this command",
       "parentUuid": "c719756d_bd1f9657",
+      "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7a6bf34_f6f0ce44",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-12T08:56:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ba4dd75_f9907e2a",
       "revId": "e834b1bf6db8847a7181f8f8dfd3f6bb1996b52b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
