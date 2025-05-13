@@ -203,7 +203,7 @@ export function legacyBatchProduceScenario() {
 }
 
 export function produceAvcEventsScenario() {
-    sendBatchOfKafkaMessages(250);
+    sendBatchOfKafkaMessages(500);
 }
 
 export function legacyBatchConsumeScenario() {

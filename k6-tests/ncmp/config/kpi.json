@@ -130,11 +130,11 @@
     },
     "produceKafkaMessages": {
       "executor": "constant-arrival-rate",
-      "rate": 11,
+      "rate": 26,
       "timeUnit": "1s",
       "duration": "15m",
-      "preAllocatedVUs": 10,
-      "maxVUs": 12,
+      "preAllocatedVUs": 26,
+      "maxVUs": 30,
       "exec": "produceAvcEventsScenario",
       "gracefulStop": "10s"
     }
