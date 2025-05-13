@@ -1,0 +1,333 @@
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+openapi: 3.0.3
+info:
+  title: NCMP Data Subjob API
+  description: Support datajobs through one or more subjob for each DMI and Data Producer Identifier combination
+  version: 1.7.0
+servers:
+  - url: /dmi
+tags:
+  - description: DMI plugin rest apis
+    name: dmi-datajob
+paths:
+  /v1/cmreadJob:
+    post:
+      description: Create a read request
+      operationId: readDataJob
+      parameters:
+        - $ref: '#/dmi-components/parameters/destinationInQuery'
+      requestBody:
+        description: Operation body
+        content:
+          application/3gpp-json-patch+json:
+            schema:
+              $ref: '#/dmi-components/schemas/SubjobReadRequest'
+      tags:
+        - dmi-datajob
+      responses:
+        "501":
+          $ref: '#/dmi-components/responses/NotImplemented'
+  /v1/cmwriteJob:
+    post:
+      description: Create a write request
+      operationId: writeDataJob
+      parameters:
+        - $ref: '#/dmi-components/parameters/destinationInQuery'
+      requestBody:
+        description: Operation body
+        content:
+          application/3gpp-json-patch+json:
+            schema:
+              $ref: '#/dmi-components/schemas/SubjobWriteRequest'
+      tags:
+        - dmi-datajob
+      responses:
+        "501":
+          $ref: '#/dmi-components/responses/NotImplemented'
+  /v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/status:
+    get:
+      description: Retrieve the status of a specific data job.
+      operationId: getDataJobStatus
+      parameters:
+        - $ref: '#/dmi-components/parameters/dataProducerIdInPath'
+        - $ref: '#/dmi-components/parameters/dataProducerJobIdInPath'
+      tags:
+        - dmi-datajob
+      responses:
+        "501":
+          $ref: '#/dmi-components/responses/NotImplemented'
+  /v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/result:
+    get:
+      description: Retrieve the result of a data job.
+      operationId: getDataJobResult
+      parameters:
+        - $ref: '#/dmi-components/parameters/dataProducerIdInPath'
+        - $ref: '#/dmi-components/parameters/dataProducerJobIdInPath'
+        - $ref: '#/dmi-components/parameters/destinationInQuery'
+      tags:
+        - dmi-datajob
+      responses:
+        "501":
+          $ref: '#/dmi-components/responses/NotImplemented'
+
+dmi-components:
+  parameters:
+    requestIdInPath:
+      description: Identifier for the overall Datajob
+      in: path
+      name: requestId
+      required: true
+      schema:
+        example: some-identifier
+        type: string
+    dataProducerJobIdInPath:
+      description: Identifier for the data producer job
+      in: path
+      name: dataProducerJobId
+      required: true
+      schema:
+        example: some-producer-job-identifier
+        type: string
+    dataProducerIdInPath:
+      name: dataProducerId
+      in: path
+      description: Identifier for the data producer
+      required: true
+      schema:
+        type: string
+        example: some-data-producer-identifier
+    dataProducerIdInQuery:
+      name: dataProducerId
+      in: query
+      description: Identifier for the data producer
+      required: true
+      schema:
+        type: string
+        example: some-data-producer-identifier
+    destinationInQuery:
+      name: destination
+      in: query
+      description: The destination of the results (Kafka topic name or s3 bucket name)
+      required: true
+      schema:
+        type: string
+        example: some-destination
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    SubjobReadRequest:
+      type: object
+      required:
+        - dataProducerId
+        - data
+      properties:
+        dataAcceptType:
+          description: Defines the data response accept type
+          example: application/vnd.3gpp.object-tree-hierarchical+json
+          type: string
+        dataContentType:
+          description: Defines the data request content type
+          example: application/3gpp-json-patch+json
+          type: string
+        dataProducerId:
+          description: ID of the producer registered by DMI for the paths in the operations in this request
+          example: my-data-producer-identifier
+          type: string
+        data:
+          example:
+            op: read
+            operationId: 1
+            path: SubNetwork=Europe/SubNetwork=Ireland/MeContext=NR03gNodeBRadio00003/ManagedElement=NR03gNodeBRadio00003/GNBCUCPFunction=2
+            attributes: userLabel
+            scope:
+              scopeTyp: BASE_ONLY
+          type: array
+          items:
+            type: object
+            required:
+              - path
+              - op
+            properties:
+              path:
+                description: Defines the resource on which operation is executed
+                example: SubNetwork=Europe/SubNetwork=Ireland/MeContext=NR03gNodeBRadio00003/ManagedElement=NR03gNodeBRadio00003
+                type: string
+              op:
+                description: Describes the operation to execute
+                example: read
+                type: string
+              operationId:
+                description: Unique identifier for the operation within the request
+                example: 1
+                type: string
+              attributes:
+                description: This parameter specifies the attributes of the scoped resources that are returned
+                type: array
+                items:
+                  example: cellId
+                  type: string
+              fields:
+                description: This parameter specifies the attribute fields of the scoped resources that are returned
+                type: array
+                items:
+                  type: string
+              filter:
+                description: This parameter is used to filter the scoped Managed Objects. Only Managed Objects passing the filter criteria will be fetched
+                example: NRCellDU/attributes/administrativeState==LOCKED
+                type: string
+              scopeType:
+                description: ScopeType selects MOs depending on relationships with Base Managed Object
+                example: BASE_ONLY
+                type: string
+              scopeLevel:
+                description: Only used when the scope type is BASE_NTH_LEVEL to specify amount of levels to search
+                example: 0
+                type: integer
+              moduleSetTag:
+                description: Module set identifier
+                example: my-module-set-tag
+                type: string
+              cmHandleProperties:
+                description: Private properties of the cm handle for the given path
+                $ref: '#/dmi-components/schemas/CmHandleProperties'
+    SubjobWriteRequest:
+      type: object
+      required:
+        - dataProducerId
+        - data
+      properties:
+        dataAcceptType:
+          description: Defines the data response accept type
+          example: application/vnd.3gpp.object-tree-hierarchical+json
+          type: string
+        dataContentType:
+          description: Defines the data request content type
+          example: application/3gpp-json-patch+json
+          type: string
+        dataProducerId:
+          description: ID of the producer registered by DMI for the paths in the operations in this request
+          example: my-data-producer-identifier
+          type: string
+        dataJobId:
+          description: Identifier for the overall Data Job
+          example: my-data-producer-identifier
+          type: string
+        data:
+          example:
+            op: add
+            path: SubNetwork=Europe/SubNetwork=Ireland/MeContext=NR03gNodeBRadio00003/ManagedElement=NR03gNodeBRadio00003/GNBCUCPFunction=1/EUtraNetwork=1/EUtranFrequency=12
+            value:
+              id: 12
+              attributes:
+                userLabel: label12
+          type: array
+          items:
+            type: object
+            required:
+              - path
+              - op
+            properties:
+              path:
+                description: Defines the resource on which operation is executed
+                example: SubNetwork=Europe/SubNetwork=Ireland/MeContext=NR03gNodeBRadio00003/ManagedElement=NR03gNodeBRadio00003
+                type: string
+              op:
+                description: Describes the operation to execute
+                example: add
+                type: string
+              operationId:
+                description: Unique identifier for the operation within the request
+                example: 1
+                type: string
+              moduleSetTag:
+                description: Module set identifier
+                example: my-module-set-tag
+                type: string
+              cmHandleProperties:
+                description: Private properties of the cm handle for the given path
+                $ref: '#/dmi-components/schemas/CmHandleProperties'
+              value:
+                description: Value dependent on the op specified. Resource for an add. Object for a replace. ActionParameters for an action.
+                type: object
+                oneOf:
+                  - $ref: '#/dmi-components/schemas/Resource'
+                  - $ref: '#/dmi-components/schemas/ActionParameters'
+                  - $ref: '#/dmi-components/schemas/Object'
+    CmHandleProperties:
+      description: Private properties of the cm handle for the given path
+      type: object
+    Resource:
+      type: object
+      properties:
+        id:
+          description: Identifier of the resource object
+          example: resource-identifier
+          type: string
+        attributes:
+          description: Key value map representing the objects class attributes and values
+          type: object
+          additionalProperties:
+            example: 'userLabel: label11'
+            type: string
+    ActionParameters:
+      description: The input of the action in the form of key value pairs
+      type: object
+      additionalProperties:
+        type: string
+    Object:
+      type: object
+    SubjobWriteResponse:
+      type: object
+      required:
+        - subJobId
+        - dmiServiceName
+        - dataProducerId
+      properties:
+        subJobId:
+          description: Unique identifier for the sub-job
+          example: my-sub-job-id
+          type: string
+        dmiServiceName:
+          description: Name of the relevant DMI Service
+          example: my-dmi-service
+          type: string
+        dataProducerId:
+          description: ID of the producer registered by DMI for the paths in the operations in this request
+          example: my-data-producer-identifier
+          type: string
+  responses:
+    NotImplemented:
+      description: Not Implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/dmi-components/schemas/ErrorMessage'
+          example:
+            status: 501
+            message: Not Implemented
+            details: Method Not Implemented

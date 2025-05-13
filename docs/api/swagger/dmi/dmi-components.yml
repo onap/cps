@@ -1,0 +1,318 @@
+#  ============LICENSE_START=======================================================
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+#  Modifications Copyright (C) 2022 Bell Canada
+#  ================================================================================
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+#  SPDX-License-Identifier: Apache-2.0
+#  ============LICENSE_END=========================================================
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+
+    CmHandles:
+      type: object
+      properties:
+        cmHandles:
+          type: array
+          example: ["cmHandleId1","cmHandleId2","cmHandleId3"]
+          items:
+            type: string
+
+    ModuleReferencesRequest:
+      type: object
+      properties:
+        moduleSetTag:
+          type: string
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+
+    ResourceDataOperationRequests:
+      type: array
+      items:
+        type: object
+        title: 'DataOperationRequest'
+        properties:
+          operation:
+            type: string
+            example: 'read'
+          operationId:
+            description: 'it is recommended that the operationId is unique within the scope of the request'
+            type: string
+            example: '12'
+          datastore:
+            type: string
+            example: 'ncmp-datastore:passthrough-operational'
+          options:
+            type: string
+            example: '(fields=NRCellDU/attributes/cellLocalId)'
+          resourceIdentifier:
+            type: string
+            example: '/ManagedElement=NRNode1/GNBDUFunction=1'
+          cmHandles:
+            type: array
+            items:
+              $ref: '#/components/schemas/dmiOperationCmHandle'
+        required:
+          - operation
+          - operationId
+          - datastore
+          - cmHandles
+
+    dmiOperationCmHandle:
+      type: object
+      title: 'CmHandle with properties for DMI'
+      properties:
+        id:
+          type: string
+        cmHandleProperties:
+          additionalProperties:
+            type: string
+        moduleSetTag:
+          type: string
+          example: module-set-tag1
+      example:
+        id: cmHandle123
+        cmHandleProperties:
+          myProp: some value
+          otherProp: other value
+          moduleSetTag: module-set-tag1
+
+    ModuleResourcesReadRequest:
+      type: object
+      properties:
+        moduleSetTag:
+          type: string
+          description: Module set tag of the given cm handle
+          example: Module-set-tag-1
+          required: false
+        data:
+          type: object
+          properties:
+            modules:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: my-name
+                  revision:
+                    type: string
+                    example: my-revision
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+
+    ModuleSet:
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: object
+            properties:
+              moduleName:
+                type: string
+                example: my-module-name
+              revision:
+                type: string
+                example: my-revision
+              namespace:
+                type: string
+                example: my-namespace
+
+    YangResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/YangResource'
+
+    YangResource:
+      properties:
+        yangSource:
+          type: string
+          example: my-yang-source
+        moduleName:
+          type: string
+          example: my-module-name
+        revision:
+          type: string
+          example: my-revision
+
+    DataAccessRequest:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum: [ read, create, update, patch, delete ]
+          example: read
+        dataType:
+          type: string
+          example: my-data-type
+        data:
+          type: string
+          example: my-data
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+        requestId:
+          type: string
+          example: 3a9ce55c-e365-4dc9-8da3-a06f07cbc6d7
+        moduleSetTag:
+          type: string
+          example: module-set-tag1
+
+    cmHandleProperties:
+      type: object
+      nullable: true
+      additionalProperties:
+        type: string
+        example: {"prop1":"value1","prop2":"value2"}
+
+  responses:
+    NoContent:
+      description: No Content
+      content: {}
+
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
+
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 404
+            message: Resource Not Found
+            details: The requested resource is not found
+
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occured
+
+    NotImplemented:
+      description: Not Implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 501
+            message: Not Implemented
+            details: Method Not Implemented
+
+  parameters:
+    cmHandleInPath:
+      name: cmHandle
+      in: path
+      description: The CM handle or alternate identifier for a network function, network element, subnetwork, or any other CM object managed by Network CM Proxy
+      required: true
+      schema:
+        type: string
+        example: my-cm-handle
+
+    resourceIdentifierInQuery:
+      name: resourceIdentifier
+      in: query
+      description: Resource identifier to get/set the resource data
+      required: true
+      schema:
+        type: string
+        example: '/ManagedElement=NRNode1/GNBDUFunction=1'
+
+    optionsParamInQuery:
+      name: options
+      in: query
+      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'.
+      required: false
+      schema:
+        type: string
+      examples:
+        sample1:
+          value:
+            options: (fields=NRCellDU/attributes/cellLocalId)
+
+    topicParamInQuery:
+      name: topic
+      in: query
+      description: topic name passed from client(NCMP).
+      required: false
+      schema:
+        type: string
+      examples:
+        sample1:
+          value: my-topic-name
+
+    requiredTopicParamInQuery:
+      name: topic
+      in: query
+      description: mandatory topic name passed from client(NCMP).
+      required: true
+      schema:
+        type: string
+      examples:
+        sample1:
+          value:
+            topic: my-topic-name
+
+    requiredRequestIdParamInQuery:
+      name: requestId
+      in: query
+      description: request ID generated by NCMP and is sent here and sent as an acknowledgement for the client request.
+      required: true
+      schema:
+        type: string
+      examples:
+        sample1:
+          value: 4753fc1f-7de2-449a-b306-a6204b5370b3
+
+    datastoreName:
+      name: datastore-name
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: ncmp-datastore:passthrough-operational or ncmp-datastore:passthrough-running
+
+security:
+  - basicAuth: []
