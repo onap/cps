@@ -30,11 +30,11 @@ class InstanceStartupDelayManagerSpec extends Specification {
         given: 'a sequenced host name'
             objectUnderTest.getHostName() >> hostName
         and: 'the expected delay is based on the sequence number'
-            def expectedDelay = expectedDelayInSeconds * 1_000;
+            def totalExpectedDelayInMs = expectedDelayInSeconds * 2_000;
         when: 'startup delay is called'
             objectUnderTest.applyHostNameBasedStartupDelay()
         then: 'the system will sleep for expected number of seconds as defined by sequence number'
-            1 * objectUnderTest.haveALittleSleepInMs(expectedDelay) >> { /* don't sleep for testing purposes */  }
+            1 * objectUnderTest.haveALittleSleepInMs(totalExpectedDelayInMs) >> { /* don't sleep for testing purposes */  }
         where: ' following sequenced host names are used'
             scenario                      | hostName           || expectedDelayInSeconds
             'our usual host-name'         | 'cps-and-ncmp-0'   || 0

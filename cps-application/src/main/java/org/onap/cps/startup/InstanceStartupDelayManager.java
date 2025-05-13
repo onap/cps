@@ -36,7 +36,7 @@ public class InstanceStartupDelayManager {
      * This method is useful in environments with multiple instances.
      * (e.g., Docker Compose, Kubernetes), where simultaneous Liquibase executions might result in conflicts.
      * Delay calculation:
-     * - For host names that match {host-name}-{sequence-number} the delay wil be 1 second times the sequence number.
+     * - For host names that match {host-name}-{sequence-number} the delay will be 2 second times the sequence number.
      * - please note, the sequence number can be 2 digits at most.
      * - For other names the delay is calculated as the hash code of that name modulus 10,000 ms i.e. up to 10,000 ms.
      */
@@ -47,7 +47,7 @@ public class InstanceStartupDelayManager {
             final Matcher matcher = HOST_NAME_WITH_SEQUENCE_PATTERN.matcher(hostName);
             final long startupDelayInMillis;
             if (matcher.matches()) {
-                startupDelayInMillis = Integer.valueOf(matcher.group(1)) * 1_000L;
+                startupDelayInMillis = Integer.valueOf(matcher.group(1)) * 2_000L;
                 log.info("Sequenced host name detected, calculated delay = {} ms", startupDelayInMillis);
             } else {
                 startupDelayInMillis = Math.abs(hostName.hashCode() % 10_000L);
