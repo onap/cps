@@ -117,37 +117,29 @@
       "startTime": "12s"
     },
     "legacy_batch_produce_scenario": {
-      "executor": "shared-iterations",
+      "executor": "constant-arrival-rate",
       "exec": "legacyBatchProduceScenario",
-      "vus": 2,
-      "iterations": 100
+      "rate": 1,
+      "preAllocatedVUs": 1,
+      "timeUnit": "1s",
+      "duration": "15m"
     },
     "legacy_batch_consume_scenario": {
       "executor": "per-vu-iterations",
       "exec": "legacyBatchConsumeScenario",
       "vus": 1,
-      "iterations": 1
+      "iterations": 1,
+      "maxDuration": "16m"
     },
-    "produceKafkaMessagesStorm": {
+    "produceCmAvcBackGroundLoadAtPeakRate": {
       "executor": "constant-arrival-rate",
-      "rate": 26,
-      "timeUnit": "1s",
-      "duration": "6m",
-      "preAllocatedVUs": 26,
-      "maxVUs": 30,
       "exec": "produceAvcEventsScenario",
+      "rate": 11,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 11,
+      "maxVUs": 12,
       "gracefulStop": "10s"
-    },
-    "produceKafkaMessagesNormal": {
-      "executor": "constant-arrival-rate",
-      "rate": 6,
-      "timeUnit": "1s",
-      "duration": "8m",
-      "preAllocatedVUs": 6,
-      "maxVUs": 8,
-      "exec": "produceAvcEventsScenario",
-      "gracefulStop": "10s",
-      "startTime": "7m"
     }
   },
   "thresholds": {
