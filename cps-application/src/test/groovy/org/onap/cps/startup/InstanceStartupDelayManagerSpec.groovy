@@ -38,10 +38,10 @@ class InstanceStartupDelayManagerSpec extends Specification {
         where: ' following sequenced host names are used'
             scenario                      | hostName           || expectedDelayInSeconds
             'our usual host-name'         | 'cps-and-ncmp-0'   || 0
-            'dash and 1 digit at end'     | 'host-1'           || 1
-            'dash and 2 digits at end'    | 'host-23'          || 23
-            'digits in name'              | 'host-2-34'        || 34
-            'weird name ending in digits' | 't@st : - { " -56' || 56
+            'dash and 1 digit at end'     | 'host-1'           || 2
+            'dash and 2 digits at end'    | 'host-23'          || 46
+            'digits in name'              | 'host-2-34'        || 68
+            'weird name ending in digits' | 't@st : - { " -56' || 112
     }
 
     def 'Startup delay with un-sequenced host name.'() {
