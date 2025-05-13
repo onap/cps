@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "431f27e8_cf4a6eb2",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/InstanceStartupDelayManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-13T14:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c4eaf53_1cd5469d",
+      "range": {
+        "startLine": 33,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 72
+      },
+      "revId": "7d1bc1a9bf273bf27a4fff10b6a15e44ecf044f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd5fa4b1_40bcd6c0",
@@ -84,6 +108,30 @@
       "writtenOn": "2025-05-13T13:46:58Z",
       "side": 1,
       "message": "2",
+      "range": {
+        "startLine": 41,
+        "startChar": 66,
+        "endLine": 41,
+        "endChar": 67
+      },
+      "revId": "7d1bc1a9bf273bf27a4fff10b6a15e44ecf044f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1676815f_c674511d",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/InstanceStartupDelayManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-13T14:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd5fa4b1_40bcd6c0",
       "range": {
         "startLine": 41,
         "startChar": 66,
@@ -117,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8821cf82_0addd709",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/InstanceStartupDelayManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-13T14:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5c785a_e7b5c1f4",
+      "range": {
+        "startLine": 42,
+        "startChar": 66,
+        "endLine": 42,
+        "endChar": 68
+      },
+      "revId": "7d1bc1a9bf273bf27a4fff10b6a15e44ecf044f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38aff0a0_69952cab",
@@ -140,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "320194f9_df1ead07",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/InstanceStartupDelayManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-13T14:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38aff0a0_69952cab",
+      "range": {
+        "startLine": 43,
+        "startChar": 66,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "7d1bc1a9bf273bf27a4fff10b6a15e44ecf044f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2d6cb25_bc900f27",
@@ -153,6 +249,30 @@
       "writtenOn": "2025-05-13T13:46:58Z",
       "side": 1,
       "message": "112",
+      "range": {
+        "startLine": 44,
+        "startChar": 66,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "7d1bc1a9bf273bf27a4fff10b6a15e44ecf044f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1874a95_50bf4d19",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/startup/InstanceStartupDelayManagerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-13T14:14:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2d6cb25_bc900f27",
       "range": {
         "startLine": 44,
         "startChar": 66,
