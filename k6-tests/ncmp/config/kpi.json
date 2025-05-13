@@ -128,15 +128,26 @@
       "vus": 1,
       "iterations": 1
     },
-    "produceKafkaMessages": {
+    "produceKafkaMessagesStorm": {
       "executor": "constant-arrival-rate",
-      "rate": 11,
+      "rate": 26,
       "timeUnit": "1s",
-      "duration": "15m",
-      "preAllocatedVUs": 10,
-      "maxVUs": 12,
+      "duration": "6m",
+      "preAllocatedVUs": 26,
+      "maxVUs": 30,
       "exec": "produceAvcEventsScenario",
       "gracefulStop": "10s"
+    },
+    "produceKafkaMessagesNormal": {
+      "executor": "constant-arrival-rate",
+      "rate": 6,
+      "timeUnit": "1s",
+      "duration": "8m",
+      "preAllocatedVUs": 6,
+      "maxVUs": 8,
+      "exec": "produceAvcEventsScenario",
+      "gracefulStop": "10s",
+      "startTime": "7m"
     }
   },
   "thresholds": {
