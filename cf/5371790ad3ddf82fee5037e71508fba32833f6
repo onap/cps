@@ -1,0 +1,9 @@
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Toine Siebelink <toine.siebelink@est.tech>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Submitted-by: Lee Anjella Macabuhay <lee.anjella.macabuhay@est.tech>
+Submitted-at: Wed, 14 May 2025 08:55:08 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/140872
+Project: cps
+Branch: refs/heads/master
