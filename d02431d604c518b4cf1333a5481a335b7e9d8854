@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1753f333_630b6d50",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-14T15:33:05Z",
+      "side": 1,
+      "message": "will add test to bring this back up\nIts actually at 0.97 really...",
+      "range": {
+        "startLine": 37,
+        "startChar": 26,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "d02431d604c518b4cf1333a5481a335b7e9d8854",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59cd8c8_27531ef8",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-14T15:33:05Z",
+      "side": 1,
+      "message": "defining on your feedback I might leave the 3 blocks \nbut just add a more descriptions and explain why its executed 3 times",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 83
+      },
+      "revId": "d02431d604c518b4cf1333a5481a335b7e9d8854",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "180338bc_ec11ce33",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/WriteDataJobPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-14T15:33:05Z",
+      "side": 1,
+      "message": "needs to be removed\nI experimented first with repeating the test this way and getting averages but that hid the fact that the test speeded up upon repeating",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 17
+      },
+      "revId": "d02431d604c518b4cf1333a5481a335b7e9d8854",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
