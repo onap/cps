@@ -33,7 +33,6 @@ export const READ_DATA_FOR_CM_HANDLE_DELAY_MS = 300; // must have same value as 
 export const WRITE_DATA_FOR_CM_HANDLE_DELAY_MS = 670; // must have same value as in docker-compose.yml
 export const CONTENT_TYPE_JSON_PARAM = {'Content-Type': 'application/json'};
 export const LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE = 200;
-export const LEGACY_BATCH_THROUGHPUT_TEST_NUMBER_OF_REQUESTS = 100;
 export const MODULE_SET_TAGS = ['tagA', 'tagB', 'tagC', 'tagD', 'tagE'];
 
 /**
@@ -128,7 +127,7 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
         makeSummaryCsvLine('4e', 'CM-handle search with Trust Level filter', 'milliseconds', 'cm_search_trustlevel_duration', 18000, testResults, scenarioConfig),
         makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 18, testResults, scenarioConfig),
         makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 18, testResults, scenarioConfig),
-        makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 1750, testResults, scenarioConfig),
+        makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 200, testResults, scenarioConfig),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
