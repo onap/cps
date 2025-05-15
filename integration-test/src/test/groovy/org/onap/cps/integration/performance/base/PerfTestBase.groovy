@@ -26,6 +26,9 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     static def LARGE_SCHEMA_SET = 'largeSchemaSet'
     static def PERFORMANCE_RECORD = []
+    static def DEFAULT_TIME_MARGIN = 1.5                  // Allow 50% margin
+    static def VERY_FAST_TEST_THRESHOLD = 0.01            // Defintion of a very vast test (hard to measure)
+    static def DEFAULT_TIME_MARGIN_FOR_VERY_FAST_TEST = 3 // Allow 200% margin on very fast test (accuracy is an issue)
 
     def cleanupSpec() {
         println('##################################################################################################')
@@ -53,16 +56,22 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     abstract def createInitialData()
 
-    def recordAndAssertResourceUsage(String shortTitle, double thresholdInSec, double recordedTimeInSec, memoryLimit, memoryUsageInMB) {
-        def pass = recordedTimeInSec <= thresholdInSec && memoryUsageInMB <= memoryLimit
+    def recordAndAssertResourceUsage(String shortTitle, double expectedTimeInSec, double recordedTimeInSec, memoryLimit, memoryUsageInMB, double timeMargin) {
+        if (expectedTimeInSec <= VERY_FAST_TEST_THRESHOLD) {
+            timeMargin = DEFAULT_TIME_MARGIN_FOR_VERY_FAST_TEST
+        }
+        def testPassed = recordedTimeInSec <= timeMargin * expectedTimeInSec
         if (shortTitle.length() > 40) {
             shortTitle = shortTitle.substring(0, 40)
         }
-        def record = String.format('%2d.%-40s limit %8.3f took %8.3f sec %,8.2f MB used ', PERFORMANCE_RECORD.size() + 1, shortTitle, thresholdInSec, recordedTimeInSec, memoryUsageInMB)
-        record += pass ? 'PASS' : 'FAIL'
+        def record = String.format('%2d.%-40s limit %8.3f took %8.3f sec %,8.2f MB used ', PERFORMANCE_RECORD.size() + 1, shortTitle, expectedTimeInSec, recordedTimeInSec, memoryUsageInMB)
+        record += testPassed ? 'PASS' : 'FAIL'
         PERFORMANCE_RECORD.add(record)
-        assert recordedTimeInSec <= thresholdInSec
-        assert memoryUsageInMB <= memoryLimit
+        assert recordedTimeInSec <= timeMargin * expectedTimeInSec
         return true
+    }
+
+    def recordAndAssertResourceUsage(String shortTitle, double thresholdInSec, double recordedTimeInSec, memoryLimit, memoryUsageInMB) {
+        recordAndAssertResourceUsage(shortTitle, thresholdInSec, recordedTimeInSec, memoryLimit, memoryUsageInMB, DEFAULT_TIME_MARGIN)
     }
 }

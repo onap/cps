@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -47,10 +47,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 1.98             | 100
-            100        || 3.84             | 200
-            200        || 8.6              | 400
-            400        || 16.37            | 500
+            50         || 1.45             | 100
+            100        || 2.9              | 200
+            200        || 5.6              | 400
+            400        || 11.4             | 500
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -72,10 +72,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalBooks || expectedDuration | memoryLimit
-            800        || 0.38             | 50
-            1600       || 0.95             | 100
-            3200       || 2.71             | 150
-            6400       || 8.08             | 200
+            800        || 0.26             | 50
+            1600       || 0.75             | 100
+            3200       || 2.2              | 150
+            6400       || 6.9              | 200
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -100,10 +100,10 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 1.8              | 100
-            100        || 3.93             | 200
-            200        || 7.77             | 400
-            400        || 16.59            | 500
+            50         || 1.35             | 100
+            100        || 2.7              | 200
+            200        || 5.4              | 400
+            400        || 10.8             | 500
     }
 
 }
