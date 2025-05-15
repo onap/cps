@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16bb48c1_5789131d",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T15:41:12Z",
+      "side": 1,
+      "message": "no need to name it what we are using it for, that is irrelevant in future we might use it on the main job too\n__ENV_.TOTAL_CM_HANDLES will do",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "81483e471554424f01813e4386130e81c2729ce2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
