@@ -92,7 +92,7 @@ public class WriteRequestExaminer {
 
     private Map<String, YangModelCmHandle> preloadCmHandles(final DataJobWriteRequest dataJobWriteRequest) {
         final Collection<String> uniquePaths
-            = dataJobWriteRequest.data().stream().map(operation -> operation.path()).collect(Collectors.toSet());
+            = dataJobWriteRequest.data().stream().map(WriteOperation::path).collect(Collectors.toSet());
         final Collection<String> cmHandleIds
             = alternateIdMatcher.getCmHandleIdsByLongestMatchingAlternateIds(uniquePaths, PATH_SEPARATOR);
         final Collection<YangModelCmHandle> yangModelCmHandles

@@ -140,6 +140,23 @@
       "preAllocatedVUs": 11,
       "maxVUs": 12,
       "gracefulStop": "10s"
+    },
+    "write_large_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobLargeScenario",
+      "rate": 1,
+      "timeUnit": "60s",
+      "duration": "15m",
+      "preAllocatedVUs": 1
+    },
+    "write_small_data_job_scenario": {
+      "executor": "constant-arrival-rate",
+      "exec": "writeDataJobSmallScenario",
+      "rate": 10,
+      "timeUnit": "5s",
+      "duration": "15m",
+      "preAllocatedVUs": 10,
+      "maxVUs": 12
     }
   },
   "thresholds": {
@@ -158,6 +175,8 @@
     "cm_search_property_duration": ["avg <= 24000"],
     "cm_search_cpspath_duration": ["avg <= 24000"],
     "cm_search_trustlevel_duration": ["avg <= 24000"],
-    "legacy_batch_read_cmhandles_per_second": ["avg >= 150"]
+    "legacy_batch_read_cmhandles_per_second": ["avg >= 150"],
+    "write_large_data_job_duration": ["avg <= 10000"],
+    "write_small_data_job_duration": ["avg <= 5000"]
   }
 }
