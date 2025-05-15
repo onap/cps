@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04086bc_c5396f71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:13:29Z",
+      "side": 1,
+      "message": "Reviewed as a part of https://gerrit.onap.org/r/c/cps/+/140885",
+      "revId": "9f1a941f436f9ed6d84c5dbcf9c71b29aea0bfc8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
