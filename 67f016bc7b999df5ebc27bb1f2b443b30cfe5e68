@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b6a2d1_7d97728d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T10:18:27Z",
+      "side": 1,
+      "message": "NB: Similarly, you can mention how many avc event/second you sending now e.g. 5500 and total for 15mins 4,950,000",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 74
+      },
+      "revId": "67f016bc7b999df5ebc27bb1f2b443b30cfe5e68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
