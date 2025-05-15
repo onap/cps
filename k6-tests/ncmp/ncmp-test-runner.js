@@ -31,6 +31,7 @@ import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from '
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
 import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/passthrough-crud.js';
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
+import { executeWriteDataJob } from "./common/write-data-job.js";
 
 let cmHandlesCreatedPerSecondTrend = new Trend('cmhandles_created_per_second', false);
 let cmHandlesDeletedPerSecondTrend = new Trend('cmhandles_deleted_per_second', false);
@@ -47,6 +48,8 @@ let cmSearchPropertyDurationTrend = new Trend('cm_search_property_duration', tru
 let cmSearchCpsPathDurationTrend = new Trend('cm_search_cpspath_duration', true);
 let cmSearchTrustLevelDurationTrend = new Trend('cm_search_trustlevel_duration', true);
 let legacyBatchReadCmHandlesPerSecondTrend = new Trend('legacy_batch_read_cmhandles_per_second', false);
+let writeSmallDataJobDurationTrend = new Trend('write_small_data_job_duration', true);
+let writeLargeDataJobDurationTrend = new Trend('write_large_data_job_duration', true);
 
 export const legacyBatchEventReader = new Reader({
     brokers: [KAFKA_BOOTSTRAP_SERVERS],
@@ -101,7 +104,7 @@ export function teardown() {
 }
 
 export function passthroughReadAltIdScenario() {
-    const response = passthroughRead(true);
+    const response = passthroughRead();
     if (check(response, { 'passthrough read with alternate Id status equals 200': (r) => r.status === 200 })) {
         const overhead = response.timings.duration - READ_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughReadNcmpOverheadTrendWithAlternateId.add(overhead);
@@ -109,7 +112,7 @@ export function passthroughReadAltIdScenario() {
 }
 
 export function passthroughWriteAltIdScenario() {
-    const response = passthroughWrite(true);
+    const response = passthroughWrite();
     if (check(response, { 'passthrough write with alternate Id status equals 201': (r) => r.status === 201 })) {
         const overhead = response.timings.duration - WRITE_DATA_FOR_CM_HANDLE_DELAY_MS;
         passthroughWriteNcmpOverheadTrendWithAlternateId.add(overhead);
@@ -200,6 +203,28 @@ export function legacyBatchProduceScenario() {
     const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
     const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, { 'data operation batch read status equals 200': (r) => r.status === 200 });
+}
+
+/**
+ * Scenario for writing a large volume of DCM write operation.
+ */
+export function writeDataJobLargeScenario() {
+    const response = executeWriteDataJob(100000);
+    if (check(response, {'large  writeDataJob response status is 200': (r) => r.status === 200})
+        && check(response, {'large  writeDataJob received expected number of responses': (r) => r.json('#') === 1})) {
+        writeLargeDataJobDurationTrend.add(response.timings.duration);
+    }
+}
+
+/**
+ * Scenario for writing a small volume of DCM write operation.
+ */
+export function writeDataJobSmallScenario() {
+    const response = executeWriteDataJob(100);
+    if (check(response, {'small writeDataJob response status is 200': (r) => r.status === 200})
+        && check(response, {'small writeDataJob received expected number of responses': (r) => r.json('#') === 1})) {
+        writeSmallDataJobDurationTrend.add(response.timings.duration);
+    }
 }
 
 export function produceAvcEventsScenario() {

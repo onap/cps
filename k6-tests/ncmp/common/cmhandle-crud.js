@@ -19,7 +19,8 @@
  */
 
 import { sleep } from 'k6';
-import { performPostRequest, NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS
+import {
+    performPostRequest, getAlternateId, NCMP_BASE_URL, DMI_PLUGIN_URL, TOTAL_CM_HANDLES, MODULE_SET_TAGS
 } from './utils.js';
 import { executeCmHandleIdSearch } from './search-base.js';
 
@@ -53,19 +54,20 @@ function createCmHandlePayload(cmHandleIds) {
         "dmiPlugin": DMI_PLUGIN_URL,
         "createdCmHandles": cmHandleIds.map((cmHandleId, index) => {
             // Ensure unique networkSegment within range 1-10
-            let networkSegmentId = Math.floor(Math.random() * 10) + 1; // Random between 1-10
+            let networkSegmentId = Math.floor(Math.random() * 10) + 1;
             let moduleTag = MODULE_SET_TAGS[index % MODULE_SET_TAGS.length];
 
             return {
                 "cmHandle": cmHandleId,
-                "alternateId": cmHandleId.replace('ch-', 'Region=NorthAmerica,Segment='),
+                "alternateId": getAlternateId(cmHandleId.replace('ch-', '')),
                 "moduleSetTag": moduleTag,
+                "dataProducerIdentifier": "some-data-producer-id",
                 "cmHandleProperties": {
                     "segmentId": index + 1,
-                    "networkSegment": `Region=NorthAmerica,Segment=${networkSegmentId}`, // Unique within range 1-10
-                    "deviceIdentifier": `Element=RadioBaseStation_5G_${index + 1000}`, // Unique per cmHandle
-                    "hardwareVersion": `HW-${moduleTag}`, // Shares uniqueness with moduleSetTag
-                    "softwareVersion": `Firmware_${moduleTag}`, // Shares uniqueness with moduleSetTag
+                    "networkSegment": `Region=NorthAmerica,Segment=${networkSegmentId}`,
+                    "deviceIdentifier": `Element=RadioBaseStation_5G_${index + 1000}`,
+                    "hardwareVersion": `HW-${moduleTag}`,
+                    "softwareVersion": `Firmware_${moduleTag}`,
                     "syncStatus": "ACTIVE",
                     "nodeCategory": "VirtualNode"
                 },
