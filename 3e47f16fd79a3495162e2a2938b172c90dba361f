@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b647f6_a30753db",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b36c03a_ebd19ea2",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 43
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a54f61d_442ac502",
@@ -54,6 +78,24 @@
       "writtenOn": "2025-05-15T07:45:21Z",
       "side": 1,
       "message": "Why are we using Java 7 here?",
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e431c14b_1506e6be",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "oops, i missed this, for some reason IntelliJ prompted me at some stage when I was rebuilding",
+      "parentUuid": "5a54f61d_442ac502",
       "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -94,6 +136,30 @@
       "writtenOn": "2025-05-15T08:38:57Z",
       "side": 1,
       "message": "NB: Can be a CONSTANT with a meaningful name?",
+      "range": {
+        "startLine": 81,
+        "startChar": 68,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e830cae_8d4d583a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "good point, when this was first introduce it wasn\u0027t named properly. Took me a few minutes to find the correct terminology around this but apparently is called \u0027path components\u0027 according to the 3GPP definition\nhttps://www.etsi.org/deliver/etsi_ts/132100_132199/132158/18.02.00_60/ts_132158v180200p.pdf section 6.4.2",
+      "parentUuid": "71e3c98a_43e7955e",
       "range": {
         "startLine": 81,
         "startChar": 68,
@@ -150,6 +216,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "433025ee_2baa1fcc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1e8783c_5011bfb5",
+      "range": {
+        "startLine": 55,
+        "startChar": 38,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea19e5c_944801c4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c03b1c6_c34ee2cc",
+      "range": {
+        "startLine": 55,
+        "startChar": 16,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3813114f_f989d127",
@@ -173,6 +287,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e523ed_f131d497",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3813114f_f989d127",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "512c7965_986b249f",
@@ -186,6 +324,30 @@
       "writtenOn": "2025-05-15T08:38:57Z",
       "side": 1,
       "message": "NB: Copyright update",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b759999a_3210e354",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T10:04:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512c7965_986b249f",
       "range": {
         "startLine": 3,
         "startChar": 23,
