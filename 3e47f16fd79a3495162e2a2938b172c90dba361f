@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a54f61d_442ac502",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-15T07:45:21Z",
+      "side": 1,
+      "message": "Why are we using Java 7 here?",
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59b38ae5_30502f30",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
         "patchSetId": 2
