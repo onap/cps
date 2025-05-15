@@ -3,6 +3,120 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4d4bf94_d404d9fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/WriteRequestExaminer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Later improvment\n\n// Step 1: Preload YangModelCmHandles mapped by their longest matching alternate ID\n        final Map\u003cString, YangModelCmHandle\u003e cmHandlePerAlternateId \u003d preloadCmHandles(dataJobWriteRequest);\n\n        // Step 2: Use thread-safe maps for parallelism\n        final ConcurrentMap\u003cProducerKey, List\u003cDmiWriteOperation\u003e\u003e dmiWriteOperationsPerProducerKey\n                \u003d new ConcurrentHashMap\u003c\u003e();\n        final ConcurrentMap\u003cString, YangModelCmHandle\u003e resolvedCmHandleByPath \u003d new ConcurrentHashMap\u003c\u003e();\n        final ConcurrentMap\u003cString, ProducerKey\u003e producerKeyCache \u003d new ConcurrentHashMap\u003c\u003e();\n\n        // Step 3: Parallel processing of write operations\n        dataJobWriteRequest.data().parallelStream().forEach(writeOperation -\u003e {\n            final String path \u003d writeOperation.path();\n\n            // Step 3.1: Resolve cmHandle once per path\n            final YangModelCmHandle cmHandle \u003d resolvedCmHandleByPath.computeIfAbsent(\n                    path, p -\u003e alternateIdMatcher.getCmHandleByLongestMatchingAlternateId(\n                            p, PATH_SEPARATOR, cmHandlePerAlternateId)\n            );\n\n            if (cmHandle \u003d\u003d null) {\n                log.warn(\"No CM handle matched for path: {}\", path);\n                return;\n            }\n\n            // Step 3.2: Cache ProducerKey per cmHandle ID\n            final ProducerKey producerKey \u003d producerKeyCache.computeIfAbsent(\n                    cmHandle.getId(), id -\u003e createProducerKey(cmHandle)\n            );\n\n            // Step 3.3: Create DMI Write Operation\n            final DmiWriteOperation dmiWriteOperation \u003d createDmiWriteOperation(writeOperation, cmHandle);\n\n            // Step 3.4: Group by ProducerKey\n            dmiWriteOperationsPerProducerKey\n                    .computeIfAbsent(producerKey, key -\u003e Collections.synchronizedList(new ArrayList\u003c\u003e()))\n                    .add(dmiWriteOperation);\n        });\n\n        return dmiWriteOperationsPerProducerKey;\n    }",
+      "range": {
+        "startLine": 61,
+        "startChar": 7,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a015ebdb_a86befef",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Future Improvment :\n\nprivate static final Map\u003cString, String\u003e bestMatchCache \u003d new ConcurrentHashMap\u003c\u003e();",
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "357ae323_efd8a948",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Future Improvment :\n\nif (bestMatchCache.containsKey(alternateId)) {\n            return bestMatchCache.get(alternateId);\n        }",
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036d1a4b_2ef2de25",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Future Improvment \n\nbestMatchCache.put(alternateId, cmHandleId);",
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e9202c_c96f4e75",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Future Improvment:\n\n\n // Step 1: Build ordered list of candidate parent paths for each input\n        final Map\u003cString, List\u003cString\u003e\u003e parentPathsPerInput \u003d paths.parallelStream()\n                .collect(Collectors.toMap(\n                        path -\u003e path,\n                        path -\u003e computeAllParentPaths(path, separator)\n                ));\n\n        // Step 2: Flatten all candidates into one unique lookup set\n        final Set\u003cString\u003e allCandidates \u003d parentPathsPerInput.values().stream()\n                .flatMap(Collection::stream)\n                .collect(Collectors.toSet());\n\n        // Step 3: One-time Hazelcast batch lookup\n        final Map\u003cString, String\u003e resolvedCmHandleIds \u003d cmHandleIdPerAlternateId.getAll(allCandidates);\n\n        // Step 4: Resolve best match for each original path (first match in order)\n        final Collection\u003cString\u003e resultCmHandleIds \u003d new ArrayList\u003c\u003e();\n        for (final Map.Entry\u003cString, List\u003cString\u003e\u003e entry : parentPathsPerInput.entrySet()) {\n            for (final String candidate : entry.getValue()) {\n                if (resolvedCmHandleIds.containsKey(candidate)) {\n                    resultCmHandleIds.add(resolvedCmHandleIds.get(candidate));\n                    break;\n                }\n            }\n        }\n        return resultCmHandleIds;",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7b8d62_99a74db0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-15T15:07:34Z",
+      "side": 1,
+      "message": "NB: Future Improvment:\n\n private List\u003cString\u003e computeAllParentPaths(final String path, final String separator) {\n        final List\u003cString\u003e paths \u003d new ArrayList\u003c\u003e();\n        String current \u003d path.split(\"#\", 2)[0];\n        while (StringUtils.isNotEmpty(current)) {\n            paths.add(current);\n            current \u003d getParentPath(current, separator);\n        }\n        return paths;\n    }",
+      "revId": "5d8a9cfe85dfefad43ed7adf09dcf15eace681c2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e49d7a8_6f3a7c34",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
         "patchSetId": 4
