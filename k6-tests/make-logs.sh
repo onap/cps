@@ -14,26 +14,55 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-SERVICE_NAMES=("cps-and-ncmp" "dbpostgresql")
-TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-LOG_DIR="${WORKSPACE:-.}/logs"
+
+set -euo pipefail
+
+# Constants
+readonly LOG_DIR="${WORKSPACE:-.}/logs"
+readonly LOG_RETENTION_DAYS=14
+readonly TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+readonly SERVICES_TO_BE_LOGGED=("cps-and-ncmp" "ncmp-dmi-plugin-demo-and-csit-stub" "dbpostgresql")
+
+# Ensure log directory exists
 mkdir -p "$LOG_DIR"
-# Store logs for each service's containers and zip them individually
-for SERVICE_NAME in "${SERVICE_NAMES[@]}"; do
-    TEMP_DIR="$LOG_DIR/temp_${SERVICE_NAME}_$TIMESTAMP"
-    ZIP_FILE="$LOG_DIR/logs_${SERVICE_NAME}_$TIMESTAMP.zip"
-    mkdir -p "$TEMP_DIR"
-    CONTAINER_IDS=$(docker ps --filter "name=$SERVICE_NAME" --format "{{.ID}}")
-    for CONTAINER_ID in $CONTAINER_IDS; do
-        CONTAINER_NAME=$(docker inspect --format="{{.Name}}" "$CONTAINER_ID" | sed 's/\///g')
-        LOG_FILE="$TEMP_DIR/${CONTAINER_NAME}_logs_$TIMESTAMP.log"
-        docker logs "$CONTAINER_ID" > "$LOG_FILE"
-    done
-    # Zip the logs for the current service
-    zip -r "$ZIP_FILE" "$TEMP_DIR"
-    echo "Logs for service $SERVICE_NAME saved to $ZIP_FILE"
-    # Clean temp files for the current service
-    rm -r "$TEMP_DIR"
+
+# Function to fetch logs from a container
+fetch_container_logs() {
+  local container_id="$1"
+  local container_name
+  container_name=$(docker inspect --format="{{.Name}}" "$container_id" | sed 's/\///g')
+  local log_file="$2/${container_name}_logs_$TIMESTAMP.log"
+  docker logs "$container_id" > "$log_file"
+}
+
+# Function to archive logs for a service
+archive_service_logs() {
+  local service_name="$1"
+  local temp_dir="$2"
+  local zip_file="$3"
+
+  mkdir -p "$temp_dir"
+
+  local container_ids
+  container_ids=$(docker ps --filter "name=$service_name" --format "{{.ID}}")
+
+  for container_id in $container_ids; do
+    fetch_container_logs "$container_id" "$temp_dir"
+  done
+
+  zip -r "$zip_file" "$temp_dir"
+  echo "Logs for service '$service_name' saved to $zip_file"
+
+  rm -r "$temp_dir"
+}
+
+# Main process
+for service_name in "${SERVICES_TO_BE_LOGGED[@]}"; do
+  temp_dir="$LOG_DIR/temp_${service_name}_$TIMESTAMP"
+  zip_file="$LOG_DIR/logs_${service_name}_$TIMESTAMP.zip"
+
+  archive_service_logs "$service_name" "$temp_dir" "$zip_file"
 done
-# Delete logs older than 2 weeks
-find "$LOG_DIR" -name "logs_*.zip" -mtime +14 -delete
+
+# Clean up old logs
+find "$LOG_DIR" -name "logs_*.zip" -mtime +$LOG_RETENTION_DAYS -delete
