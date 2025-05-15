@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9268633a_84bf094a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b36c03a_ebd19ea2",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: copyright update",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 43
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a54f61d_442ac502",
@@ -36,6 +76,121 @@
         "startChar": 4,
         "endLine": 414,
         "endChar": 8
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e3c98a_43e7955e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/AlternateIdMatcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: Can be a CONSTANT with a meaningful name?",
+      "range": {
+        "startLine": 81,
+        "startChar": 68,
+        "endLine": 81,
+        "endChar": 71
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e8783c_5011bfb5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: ids",
+      "range": {
+        "startLine": 55,
+        "startChar": 38,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c03b1c6_c34ee2cc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/AlternateIdMatcherSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: redundant space",
+      "range": {
+        "startLine": 55,
+        "startChar": 16,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3813114f_f989d127",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: Copyright updates",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512c7965_986b249f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/AlternateIdPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-15T08:38:57Z",
+      "side": 1,
+      "message": "NB: Copyright update",
+      "range": {
+        "startLine": 3,
+        "startChar": 23,
+        "endLine": 3,
+        "endChar": 40
       },
       "revId": "3e47f16fd79a3495162e2a2938b172c90dba361f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
