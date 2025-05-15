@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a0f34d_2304ca4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T15:06:14Z",
+      "side": 1,
+      "message": "margin :-)",
+      "range": {
+        "startLine": 12,
+        "startChar": 57,
+        "endLine": 12,
+        "endChar": 64
+      },
+      "revId": "3cde640898da5b3b8c797504c6e60b1740d34f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43411be5_c0fc5d9c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-15T15:06:14Z",
+      "side": 1,
+      "message": "i was changed for testing but reverted, no harm in udpdating the copyright though I think...",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "3cde640898da5b3b8c797504c6e60b1740d34f3a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
