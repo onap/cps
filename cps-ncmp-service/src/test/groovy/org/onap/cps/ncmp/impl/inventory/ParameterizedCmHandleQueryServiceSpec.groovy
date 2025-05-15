@@ -20,15 +20,14 @@
 
 package org.onap.cps.ncmp.impl.inventory
 
-import org.onap.cps.cpspath.parser.PathParsingException
-import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.api.exceptions.DataInUseException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.cpspath.parser.PathParsingException
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import spock.lang.Specification
 

@@ -433,4 +433,22 @@ class CmHandleRegistrationServiceSpec extends Specification {
             0 * mockInventoryPersistence.saveCmHandleState(_, _)
     }
 
+    def 'Adding and removing id - alternate id mappings with #scenario.'() {
+        given: 'a yang model cm handle with #scenario'
+            def yangModelCmHandle = new YangModelCmHandle(id:'ch-1', alternateId: alternateId)
+        when: 'it is added to the cache'
+            objectUnderTest.addAlternateIdsToCache([yangModelCmHandle])
+        then: 'it is added to the cache with the expected key'
+            1 * mockCmHandleIdPerAlternateId.putAll([(expectedKey):'ch-1'])
+        when: 'it is removed from the cache'
+            objectUnderTest.removeAlternateIdsFromCache([yangModelCmHandle])
+        then: 'the correct key is deleted from the cache'
+            1 * mockCmHandleIdPerAlternateId.delete(expectedKey)
+        where: 'the following alternate ids are used'
+            scenario             | alternateId || expectedKey
+            'with alternate id'  | 'alt-1'     || 'alt-1'
+            'blank alternate id' | ''          || 'ch-1'
+            'no alternate id'    | null        || 'ch-1'
+    }
+
 }
