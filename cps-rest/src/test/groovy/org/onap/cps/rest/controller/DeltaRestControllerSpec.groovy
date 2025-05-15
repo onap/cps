@@ -35,6 +35,10 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.StandardOpenOption
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -65,10 +69,21 @@ class DeltaRestControllerSpec extends Specification {
     @Shared
     def expectedJsonData = '{"some-key":"some-value","categories":[{"books":[{"authors":["Iain M. Banks"]}]}]}'
     @Shared
-    static MultipartFile multipartYangFile = new MockMultipartFile('file', 'filename.yang', 'text/plain', 'content'.getBytes())
+    static MultipartFile multipartYangFile = new MockMultipartFile('yangResourceFile', 'filename.yang', 'text/plain', 'content'.getBytes())
+    @Shared
+    Path targetDataAsJsonFile
+    @Shared
+    MockMultipartFile multipartTargetDataAsJsonFile
 
     def setup() {
         dataNodeBaseEndpointV2 = "$basePath/v2/dataspaces/$dataspaceName/anchors/$anchorName/delta"
+        targetDataAsJsonFile = Files.createTempFile('requestBody', '.json')
+        Files.write(targetDataAsJsonFile, requestBodyJson.getBytes(StandardCharsets.UTF_8), StandardOpenOption.WRITE)
+        multipartTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', targetDataAsJsonFile.fileName.toString(), 'application/json', Files.readAllBytes(targetDataAsJsonFile))
+    }
+
+    def cleanup() {
+        Files.deleteIfExists(targetDataAsJsonFile)
     }
 
     def 'Get delta between two anchors'() {
@@ -88,7 +103,7 @@ class DeltaRestControllerSpec extends Specification {
             assert response.contentAsString.contains('[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]')
     }
 
-    def 'Get delta between anchor and JSON payload with multipart file'() {
+    def 'Get delta between anchor and JSON payload with yangResourceFile'() {
         given: 'sample delta report, xpath, yang model file and json payload'
             def deltaReports = new DeltaReportBuilder().actionCreate().withXpath('some xpath').build()
             def xpath = 'some xpath'
@@ -98,7 +113,7 @@ class DeltaRestControllerSpec extends Specification {
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
                     .file(multipartYangFile)
-                    .param('json', requestBodyJson)
+                    .file(multipartTargetDataAsJsonFile)
                     .param('xpath', xpath)
                     .contentType(MediaType.MULTIPART_FORM_DATA))
                     .andReturn().response
@@ -108,7 +123,7 @@ class DeltaRestControllerSpec extends Specification {
             assert response.contentAsString.contains('[{\"action\":\"create\",\"xpath\":\"some xpath\"}]')
     }
 
-    def 'Get delta between anchor and JSON payload without multipart file'() {
+    def 'Get delta between anchor and JSON payload without yangResourceFile'() {
         given: 'sample delta report, xpath, and json payload'
             def deltaReports = new DeltaReportBuilder().actionRemove().withXpath('some xpath').build()
             def xpath = 'some xpath'
@@ -117,7 +132,7 @@ class DeltaRestControllerSpec extends Specification {
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(multipart(dataNodeBaseEndpointV2)
-                    .param('json', requestBodyJson)
+                    .file(multipartTargetDataAsJsonFile)
                     .param('xpath', xpath)
                     .contentType(MediaType.MULTIPART_FORM_DATA))
                     .andReturn().response
@@ -125,5 +140,40 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
             assert response.contentAsString.contains('[{\"action\":\"remove\",\"xpath\":\"some xpath\"}]')
+    }
+
+    def 'Attempt to get delta between anchor and JSON payload with an Empty File'() {
+        given: 'xpath, yang model file and empty json payload'
+            def xpath = 'some xpath'
+            def emptyTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', 'empty.json', 'application/json', new byte[0])
+        when: 'get delta request is performed using REST API'
+            def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
+                .file(emptyTargetDataAsJsonFile)
+                .param('xpath', xpath)
+                .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andReturn()
+                .response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'the response contains expected error message'
+           assert response.contentAsString.contains("JSON file is required")
+    }
+
+    def 'Get delta between anchor and JSON payload with an invalid data'() {
+        given: 'xpath, yang model file and empty json payload'
+            def xpath = 'some xpath'
+            def invalidJsonContent = '{'
+            def invalidTargetDataAsJsonFile = new MockMultipartFile('targetDataAsJsonFile', 'invalid.json', 'application/json', invalidJsonContent.getBytes())
+        when: 'get delta request is performed using REST API'
+            def response = mvc.perform(multipart(dataNodeBaseEndpointV2)
+                .file(invalidTargetDataAsJsonFile)
+                .param('xpath', xpath)
+                .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andReturn()
+                .response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        then: 'the response contains expected error message'
+            assert response.contentAsString.contains("Parsing error occurred while converting JSON content to Json Node")
     }
 }

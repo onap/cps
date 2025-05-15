@@ -65,6 +65,16 @@ components:
           description: multipartFile
           format: binary
 
+    TargetDataAsJsonFile:
+      type: object
+      required:
+        - file
+      properties:
+        file:
+          type: string
+          description: multipartFile
+          format: binary
+
     ModuleReferences:
       type: object
       title: Module reference object

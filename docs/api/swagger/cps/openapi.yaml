@@ -3350,19 +3350,14 @@ components:
     NotificationSubscriptionsDataSample: {}
     getDeltaByDataspaceAnchorAndPayload_request:
       properties:
-        json:
-          example:
-            test:bookstore:
-              bookstore-name: Chapters
-              categories:
-              - code: 1
-                name: SciFi
-              - code: 2
-                name: kids
-          type: object
-        file:
+        targetDataAsJsonFile:
+          example: "{$ref=components.yml#/components/schemas/TargetDataAsJsonFile}"
+          format: binary
+          type: string
+        yangResourceFile:
+          example: "{$ref=components.yml#/components/schemas/MultipartFile}"
           format: binary
           type: string
       required:
-      - json
+      - targetDataAsJsonFile
       type: object
