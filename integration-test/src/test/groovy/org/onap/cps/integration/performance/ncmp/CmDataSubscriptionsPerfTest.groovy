@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -97,7 +97,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
             assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
         and: 'update matching subscription within 15 seconds'
-            recordAndAssertResourceUsage("Update matching subscription", 13.86, durationInSeconds, 1000, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Update matching subscription", 6.2, durationInSeconds, 1000, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
