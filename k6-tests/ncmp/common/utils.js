@@ -18,10 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-import { randomIntBetween } from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
+import {randomIntBetween} from 'https://jslib.k6.io/k6-utils/1.2.0/index.js';
 import http from 'k6/http';
+import {check} from 'k6';
+import {Trend} from 'k6/metrics';
 
 export const testConfig = JSON.parse(open(`../config/${__ENV.TEST_PROFILE}.json`));
+export const testKpiMetaData = JSON.parse(open(`../config/test-kpi-metadata.json`));
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
@@ -57,19 +60,26 @@ export function makeBatchOfCmHandleIds(batchSize, batchNumber) {
 export function makeRandomBatchOfAlternateIds() {
     const alternateIds = new Set();
     while (alternateIds.size < LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE) {
-        alternateIds.add(getRandomCmHandleReference(true));
+        alternateIds.add(getRandomAlternateId());
     }
     return Array.from(alternateIds)
 }
 
 /**
- * Generates a random CM Handle reference based on the provided flag.
- * @param useAlternateId
- * @returns {string} CM Handle reference representing a CM handle ID or an alternate ID.
+ * Generates a random CM Handle alternate ID.
+ *
+ * This function selects a random CM Handle ID between 1 and TOTAL_CM_HANDLES (inclusive)
+ * and returns its corresponding alternate ID by invoking `getAlternateId(id)`.
+ *
+ * @returns {string} A CM Handle alternate ID derived from a randomly selected CM Handle ID.
  */
-export function getRandomCmHandleReference(useAlternateId) {
-    const prefix = useAlternateId ? 'Region=NorthAmerica,Segment=' : 'ch-';
-    return `${prefix}${randomIntBetween(1, TOTAL_CM_HANDLES)}`;
+export function getRandomAlternateId() {
+    let randomCmHandleId = randomIntBetween(1, TOTAL_CM_HANDLES);
+    return getAlternateId(randomCmHandleId);
+}
+
+export function getAlternateId(cmHandleNumericId) {
+    return `/SubNetwork=Europe/SubNetwork=Ireland/MeContext=MyRadioNode${cmHandleNumericId}/ManagedElement=MyManagedElement${cmHandleNumericId}`;
 }
 
 /**
@@ -112,22 +122,17 @@ export function performGetRequest(url, metricTag) {
 export function makeCustomSummaryReport(testResults, scenarioConfig) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Fs Requirement,Current Expectation,Actual',
-        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', 0, testResults, scenarioConfig),
-        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cmhandles_created_per_second', 100, testResults, scenarioConfig),
-        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cmhandles_deleted_per_second', 180, testResults, scenarioConfig),
-        makeSummaryCsvLine('3a', 'CM-handle ID search with No filter', 'milliseconds', 'id_search_nofilter_duration', 550, testResults, scenarioConfig),
-        makeSummaryCsvLine('3b', 'CM-handle ID search with Module filter', 'milliseconds', 'id_search_module_duration', 2300, testResults, scenarioConfig),
-        makeSummaryCsvLine('3c', 'CM-handle ID search with Property filter', 'milliseconds', 'id_search_property_duration', 1450, testResults, scenarioConfig),
-        makeSummaryCsvLine('3d', 'CM-handle ID search with Cps Path filter', 'milliseconds', 'id_search_cpspath_duration', 1500, testResults, scenarioConfig),
-        makeSummaryCsvLine('3e', 'CM-handle ID search with Trust Level filter', 'milliseconds', 'id_search_trustlevel_duration', 1600, testResults, scenarioConfig),
-        makeSummaryCsvLine('4a', 'CM-handle search with No filter', 'milliseconds', 'cm_search_nofilter_duration', 18000, testResults, scenarioConfig),
-        makeSummaryCsvLine('4b', 'CM-handle search with Module filter', 'milliseconds', 'cm_search_module_duration', 18000, testResults, scenarioConfig),
-        makeSummaryCsvLine('4c', 'CM-handle search with Property filter', 'milliseconds', 'cm_search_property_duration', 18000, testResults, scenarioConfig),
-        makeSummaryCsvLine('4d', 'CM-handle search with Cps Path filter', 'milliseconds', 'cm_search_cpspath_duration', 18000, testResults, scenarioConfig),
-        makeSummaryCsvLine('4e', 'CM-handle search with Trust Level filter', 'milliseconds', 'cm_search_trustlevel_duration', 18000, testResults, scenarioConfig),
-        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_read_alt_id', 18, testResults, scenarioConfig),
-        makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_overhead_passthrough_write_alt_id', 18, testResults, scenarioConfig),
-        makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read_cmhandles_per_second', 200, testResults, scenarioConfig),
+        ...testKpiMetaData.map(test => {
+            return makeSummaryCsvLine(
+                test.label,
+                test.name,
+                test.unit,
+                test.metric,
+                test.cpsAverage,
+                testResults,
+                scenarioConfig
+            );
+        })
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
@@ -139,3 +144,27 @@ function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentEx
     const actualValue = testResults.metrics[measurementName].values[thresholdKey].toFixed(3);
     return `${testCase},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
 }
+
+/**
+ * Handles the response by performing a check, logging errors if any, and recording overhead.
+ *
+ * @param {Object} response - The HTTP response object.
+ * @param {number} expectedStatus - The expected HTTP status code.
+ * @param {string} checkLabel - A descriptive label for the check.
+ * @param {number} delayMs - The predefined delay in milliseconds.
+ * @param {Trend} trendMetric - The Trend metric to record overhead.
+ */
+export function handleHttpResponse(response, expectedStatus, checkLabel, delayMs, trendMetric) {
+    const isSuccess = check(response, {
+        [checkLabel]: (responseObj) => responseObj.status === expectedStatus,
+    });
+
+    if (isSuccess) {
+        const overhead = response.timings.duration - delayMs;
+        trendMetric.add(overhead);
+    } else {
+        let responseBody = JSON.parse(response.body);
+        console.error(`${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
+    }
+}
+
