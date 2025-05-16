@@ -32,62 +32,62 @@ paths:
       description: Create a read request
       operationId: readDataJob
       parameters:
-        - $ref: '#/dmi-components/parameters/destinationInQuery'
+        - $ref: '#/component/parameters/destinationInQuery'
       requestBody:
         description: Operation body
         content:
           application/3gpp-json-patch+json:
             schema:
-              $ref: '#/dmi-components/schemas/SubjobReadRequest'
+              $ref: '#/component/schemas/SubjobReadRequest'
       tags:
         - dmi-datajob
       responses:
         "501":
-          $ref: '#/dmi-components/responses/NotImplemented'
+          $ref: '#/component/responses/NotImplemented'
   /v1/cmwriteJob:
     post:
       description: Create a write request
       operationId: writeDataJob
       parameters:
-        - $ref: '#/dmi-components/parameters/destinationInQuery'
+        - $ref: '#/component/parameters/destinationInQuery'
       requestBody:
         description: Operation body
         content:
           application/3gpp-json-patch+json:
             schema:
-              $ref: '#/dmi-components/schemas/SubjobWriteRequest'
+              $ref: '#/component/schemas/SubjobWriteRequest'
       tags:
         - dmi-datajob
       responses:
         "501":
-          $ref: '#/dmi-components/responses/NotImplemented'
+          $ref: '#/component/responses/NotImplemented'
   /v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/status:
     get:
       description: Retrieve the status of a specific data job.
       operationId: getDataJobStatus
       parameters:
-        - $ref: '#/dmi-components/parameters/dataProducerIdInPath'
-        - $ref: '#/dmi-components/parameters/dataProducerJobIdInPath'
+        - $ref: '#/component/parameters/dataProducerIdInPath'
+        - $ref: '#/component/parameters/dataProducerJobIdInPath'
       tags:
         - dmi-datajob
       responses:
         "501":
-          $ref: '#/dmi-components/responses/NotImplemented'
+          $ref: '#/component/responses/NotImplemented'
   /v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/result:
     get:
       description: Retrieve the result of a data job.
       operationId: getDataJobResult
       parameters:
-        - $ref: '#/dmi-components/parameters/dataProducerIdInPath'
-        - $ref: '#/dmi-components/parameters/dataProducerJobIdInPath'
-        - $ref: '#/dmi-components/parameters/destinationInQuery'
+        - $ref: '#/component/parameters/dataProducerIdInPath'
+        - $ref: '#/component/parameters/dataProducerJobIdInPath'
+        - $ref: '#/component/parameters/destinationInQuery'
       tags:
         - dmi-datajob
       responses:
         "501":
-          $ref: '#/dmi-components/responses/NotImplemented'
+          $ref: '#/component/responses/NotImplemented'
 
-dmi-components:
+component:
   parameters:
     requestIdInPath:
       description: Identifier for the overall Datajob
@@ -214,7 +214,7 @@ dmi-components:
                 type: string
               cmHandleProperties:
                 description: Private properties of the cm handle for the given path
-                $ref: '#/dmi-components/schemas/CmHandleProperties'
+                $ref: '#/component/schemas/CmHandleProperties'
     SubjobWriteRequest:
       type: object
       required:
@@ -270,14 +270,14 @@ dmi-components:
                 type: string
               cmHandleProperties:
                 description: Private properties of the cm handle for the given path
-                $ref: '#/dmi-components/schemas/CmHandleProperties'
+                $ref: '#/component/schemas/CmHandleProperties'
               value:
                 description: Value dependent on the op specified. Resource for an add. Object for a replace. ActionParameters for an action.
                 type: object
                 oneOf:
-                  - $ref: '#/dmi-components/schemas/Resource'
-                  - $ref: '#/dmi-components/schemas/ActionParameters'
-                  - $ref: '#/dmi-components/schemas/Object'
+                  - $ref: '#/component/schemas/Resource'
+                  - $ref: '#/component/schemas/ActionParameters'
+                  - $ref: '#/component/schemas/Object'
     CmHandleProperties:
       description: Private properties of the cm handle for the given path
       type: object
@@ -326,7 +326,7 @@ dmi-components:
       content:
         application/json:
           schema:
-            $ref: '#/dmi-components/schemas/ErrorMessage'
+            $ref: '#/component/schemas/ErrorMessage'
           example:
             status: 501
             message: Not Implemented
