@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed23ec38_67901772",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T14:51:19Z",
+      "side": 1,
+      "message": "what is the update in the POJO??",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "206c763e_a24e5a6b",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 29
@@ -37,6 +60,92 @@
         "endLine": 56,
         "endChar": 54
       },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1405dde7_4ce36dd6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T14:51:19Z",
+      "side": 1,
+      "message": "NB: can be extracted to a method.",
+      "range": {
+        "startLine": 297,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 108
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c9df5c_25b520fc",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T14:51:19Z",
+      "side": 1,
+      "message": "NB: can also use streams.",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 317,
+        "endChar": 5
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad0e6b8_100756b1",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T14:51:19Z",
+      "side": 1,
+      "message": "NB: just checking . dont u want to use toDataMapWithIdentifier method that Anupriya modified?? i thought there was some blocking code.",
+      "range": {
+        "startLine": 321,
+        "startChar": 50,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248c071c_b65cbe49",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T14:51:19Z",
+      "side": 1,
+      "message": "will u also add the integration test with the grouping enabled when this feature is fully added?? if yes then u can create a sub-task and then we can ignore the comment to add the test here.",
       "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
