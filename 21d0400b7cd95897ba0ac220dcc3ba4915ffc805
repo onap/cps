@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "206c763e_a24e5a6b",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T13:36:42Z",
+      "side": 1,
+      "message": "do you need to provide 2 examples where grouping is enabled and grouping disabled.",
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f567336f_52a0f923",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-16T13:36:42Z",
+      "side": 1,
+      "message": "this is not used.",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
