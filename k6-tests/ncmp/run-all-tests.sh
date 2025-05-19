@@ -22,7 +22,7 @@ testProfile=$1
 summaryFile="${testProfile}Summary.csv"
 echo "Running $testProfile performance tests..."
 
-k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile" || ((number_of_failures++))
+k6 run ncmp-test-runner.js -e TEST_PROFILE="$testProfile"  > "$summaryFile" || ((number_of_failures++))
 
 if [ -f "$summaryFile" ]; then
 
