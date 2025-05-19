@@ -43,6 +43,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "129c5cb5_223c1bb1",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "confused, so target data for create and remove has both key-value pair and array ? \narray for code, key-value for name? \n\nbut for action replace , name is array??\n\nif you intend both to be part of the list \"target-data\" , maybe remove the comma after 3\n    \n    \nplease double check",
+      "range": {
+        "startLine": 266,
+        "startChar": 10,
+        "endLine": 268,
+        "endChar": 26
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "608e204c_d30409fd",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "i see the idea here but this just repeats the code",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 74
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da213f3c_4951b072",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "can just have groupingEnabled here or change the parameter name to \u0027groupDataNodes\u0027",
+      "range": {
+        "startLine": 66,
+        "startChar": 65,
+        "endLine": 66,
+        "endChar": 79
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f567336f_52a0f923",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 29
@@ -66,6 +135,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6ac1b7f_a801e409",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "why remove variable before? easier to read with it before",
+      "range": {
+        "startLine": 152,
+        "startChar": 31,
+        "endLine": 152,
+        "endChar": 60
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc38e40_6db5b316",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "would just call it deltaReportEntries",
+      "range": {
+        "startLine": 293,
+        "startChar": 32,
+        "endLine": 293,
+        "endChar": 56
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8084858_8442d753",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "i dont get \u0027added\u0027DataNodes \nsuggestion: deltaReportDataNodes? or something else",
+      "range": {
+        "startLine": 294,
+        "startChar": 35,
+        "endLine": 294,
+        "endChar": 50
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1405dde7_4ce36dd6",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 29
@@ -82,6 +220,29 @@
         "startChar": 12,
         "endLine": 299,
         "endChar": 108
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af1c8f5_0a559a85",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "getDataNodesForDeltaReport",
+      "range": {
+        "startLine": 307,
+        "startChar": 40,
+        "endLine": 307,
+        "endChar": 63
       },
       "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -128,6 +289,75 @@
         "startChar": 50,
         "endLine": 321,
         "endChar": 72
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3c524f_3c5813d9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "these can just be imported no need to create var for it\n\nimport static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS\nimport static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS",
+      "range": {
+        "startLine": 83,
+        "startChar": 3,
+        "endLine": 84,
+        "endChar": 73
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942c184a_50ed9251",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "for tests that doesnt specify grouping boolean , id create a shared variable at top be used by other tests and use it here \nlet groupingDisabled \u003d true\nlet groupingEnabled \u003d false",
+      "range": {
+        "startLine": 281,
+        "startChar": 187,
+        "endLine": 281,
+        "endChar": 192
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695b0686_2de11dc1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:41:20Z",
+      "side": 1,
+      "message": "legacy: just INCLUDE_ALL_DESCENDANTS",
+      "range": {
+        "startLine": 281,
+        "startChar": 139,
+        "endLine": 281,
+        "endChar": 174
       },
       "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
