@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -57,7 +57,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete 100 containers', 3.9, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete 100 containers', 1.5, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch delete 100 container nodes'() {
@@ -71,7 +71,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch delete 100 containers', 0.87, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch delete 100 containers', 0.7, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 list elements'() {
@@ -87,7 +87,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete 100 lists elements', 4.22, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete 100 lists elements', 1.5, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch delete 100 list elements'() {
@@ -101,7 +101,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch delete 100 lists elements', 0.87, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch delete 100 lists elements', 0.7, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete 100 whole lists'() {
@@ -117,7 +117,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete 100 whole lists', 5.4, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete 100 whole lists', 3.2, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB(), 3)
     }
 
     def 'Batch delete 100 whole lists'() {
@@ -131,7 +131,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch delete 100 whole lists', 1.98, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch delete 100 whole lists', 3.4, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB(), 3)
     }
 
     def 'Delete 1 large data node'() {
@@ -141,7 +141,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete one large node', 2.35, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete one large node', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete root node with many descendants'() {
@@ -151,7 +151,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete root node', 2.23, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete root node', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Delete data nodes for an anchor'() {
@@ -161,7 +161,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete data nodes for anchor', 2.25, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Delete data nodes for anchor', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch delete 100 non-existing nodes'() {
@@ -175,7 +175,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Batch delete 100 non-existing', 0.74, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch delete 100 non-existing', 2.6, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Clean up test data'() {

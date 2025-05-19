@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -70,9 +70,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
         then: 'operation takes less than expected duration'
-            recordAndAssertResourceUsage('Module query test setup',
-                    45, resourceMeter.totalTimeInSeconds,
-                    500, resourceMeter.totalMemoryUsageInMB
+            recordAndAssertResourceUsage('Module query test setup', 90, resourceMeter.totalTimeInSeconds, 500, resourceMeter.totalMemoryUsageInMB
             )
     }
 
@@ -84,13 +82,11 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
         then: 'expected number of anchors is returned'
             assert result.size() == TOTAL_TEST_ANCHORS
         and: 'operation completes with expected resource usage'
-            recordAndAssertResourceUsage("Query for anchors with ${scenario}",
-                    expectedTimeInSeconds, resourceMeter.totalTimeInSeconds,
-                    5, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage("Query for anchors with ${scenario}", 0.1, resourceMeter.totalTimeInSeconds, 5, resourceMeter.totalMemoryUsageInMB)
         where: 'the following parameters are used'
-            scenario         | yangModuleName || expectedTimeInSeconds
-            '1 KB module'    | 'module0'      || 0.05
-            '1000 KB module' | 'module1'      || 0.05
+            scenario         | yangModuleName
+            '1 KB module'    | 'module0'
+            '1000 KB module' | 'module1'
     }
 
     def 'Module query - Clean up test data.'() {

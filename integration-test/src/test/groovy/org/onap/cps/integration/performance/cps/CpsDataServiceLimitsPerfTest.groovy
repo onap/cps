@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the operation completes within 12 seconds'
-            recordAndAssertResourceUsage("Creating 33,000 books", 18.891, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Creating 33,000 books", 12, durationInSeconds, 150, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Get data nodes from multiple xpaths 32K (2^15) limit exceeded.'() {
@@ -81,14 +81,14 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
     }
 
     def 'Clean up test data.'() {
-        when:
+        when: 'cleaning up all performance test data nodes and anchors.'
             resourceMeter.start()
             cpsDataService.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor', OffsetDateTime.now())
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'test data is deleted in 1 second'
-            recordAndAssertResourceUsage("Deleting test data", 0.141, durationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Deleting test data", 0.056, durationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def countDataNodes() {
