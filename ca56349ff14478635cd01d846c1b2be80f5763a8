@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513a7520_fdbbe4e6",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:58:27Z",
+      "side": 1,
+      "message": "license",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00707943_9b18bc0b",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:58:27Z",
+      "side": 1,
+      "message": "can you confirm , intended is 15 iterations?",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 150,
+        "endChar": 26
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e3558ea_4548f20e",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-19T07:58:27Z",
+      "side": 1,
+      "message": "can you confirm, intended is 1,800 iterations (10x180) ?",
+      "range": {
+        "startLine": 155,
+        "startChar": 6,
+        "endLine": 160,
+        "endChar": 5
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
