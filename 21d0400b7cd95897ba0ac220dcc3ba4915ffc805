@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61c06eea_71c1efd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "We planned to change the leaves from Map\u003cString, Serializable\u003e to Map\u003cString, Object\u003e will be taking it as part of separate patch as the feature is implemented partially in this patch. I am reverting this statement",
+      "parentUuid": "ed23ec38_67901772",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "206c763e_a24e5a6b",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 29
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec5f1711_aa8fa20e",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "yes i thought of adding it in Part 2 when all the delta report actions: add, remove and update are implemented.",
+      "parentUuid": "206c763e_a24e5a6b",
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "129c5cb5_223c1bb1",
         "filename": "cps-rest/docs/openapi/components.yml",
         "patchSetId": 29
@@ -54,6 +96,30 @@
       "writtenOn": "2025-05-19T07:41:20Z",
       "side": 1,
       "message": "confused, so target data for create and remove has both key-value pair and array ? \narray for code, key-value for name? \n\nbut for action replace , name is array??\n\nif you intend both to be part of the list \"target-data\" , maybe remove the comma after 3\n    \n    \nplease double check",
+      "range": {
+        "startLine": 266,
+        "startChar": 10,
+        "endLine": 268,
+        "endChar": 26
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5735a8a9_8cf669c9",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "No it will not make code as array and name as key-value pair. Instead it was to make the source and target data as an array.\nBecause the idea was to make source and target data to an array. So, the generated result would have been \n\"target-data\": [\n      {\n        \"code\": \"3,\",\n        \"name\": \"kidz\"\n      }\n    ]\nBut since we are not doing it anymore, I reverted this back.",
+      "parentUuid": "129c5cb5_223c1bb1",
       "range": {
         "startLine": 266,
         "startChar": 10,
@@ -87,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "107c8e99_f37b9636",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "608e204c_d30409fd",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 74
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da213f3c_4951b072",
@@ -100,6 +190,30 @@
       "writtenOn": "2025-05-19T07:41:20Z",
       "side": 1,
       "message": "can just have groupingEnabled here or change the parameter name to \u0027groupDataNodes\u0027",
+      "range": {
+        "startLine": 66,
+        "startChar": 65,
+        "endLine": 66,
+        "endChar": 79
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa28c59_a57e6100",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da213f3c_4951b072",
       "range": {
         "startLine": 66,
         "startChar": 65,
@@ -133,6 +247,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "408ee186_305649d6",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f567336f_52a0f923",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6ac1b7f_a801e409",
@@ -146,6 +284,30 @@
       "writtenOn": "2025-05-19T07:41:20Z",
       "side": 1,
       "message": "why remove variable before? easier to read with it before",
+      "range": {
+        "startLine": 152,
+        "startChar": 31,
+        "endLine": 152,
+        "endChar": 60
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a181cc_a9beae71",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "We planned to change the type of source leaves and target leaves hence to avoid to many changes in planning stage I was using it directly. But I reverted it back as those changes are planned for later stage.",
+      "parentUuid": "c6ac1b7f_a801e409",
       "range": {
         "startLine": 152,
         "startChar": 31,
@@ -181,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fcd92a2_edff2f16",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "to differentiate from removed and updated deltaReportEntries. Changes for that are in Part 2 of this patch :)",
+      "parentUuid": "7dc38e40_6db5b316",
+      "range": {
+        "startLine": 293,
+        "startChar": 32,
+        "endLine": 293,
+        "endChar": 56
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8084858_8442d753",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 29
@@ -192,6 +378,30 @@
       "writtenOn": "2025-05-19T07:41:20Z",
       "side": 1,
       "message": "i dont get \u0027added\u0027DataNodes \nsuggestion: deltaReportDataNodes? or something else",
+      "range": {
+        "startLine": 294,
+        "startChar": 35,
+        "endLine": 294,
+        "endChar": 50
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b27d7ffb_44d66d01",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "same as above, we will have delta report entries that contain removed and updated data in Part 2 of the patch.",
+      "parentUuid": "a8084858_8442d753",
       "range": {
         "startLine": 294,
         "startChar": 35,
@@ -225,6 +435,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f41c62f_508f766f",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1405dde7_4ce36dd6",
+      "range": {
+        "startLine": 297,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 108
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1af1c8f5_0a559a85",
@@ -248,6 +482,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3aa7b5_3b802ba0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1af1c8f5_0a559a85",
+      "range": {
+        "startLine": 307,
+        "startChar": 40,
+        "endLine": 307,
+        "endChar": 63
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21c9df5c_25b520fc",
@@ -261,6 +519,30 @@
       "writtenOn": "2025-05-16T14:51:19Z",
       "side": 1,
       "message": "NB: can also use streams.",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 317,
+        "endChar": 5
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c493c327_71a1a5b7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21c9df5c_25b520fc",
       "range": {
         "startLine": 307,
         "startChar": 4,
@@ -296,6 +578,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72d30100_1ba660f4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "no it was toDataMapForApiV3, I saw she had used a more granular approach in implementing the method and I adjusted my code accordingly",
+      "parentUuid": "4ad0e6b8_100756b1",
+      "range": {
+        "startLine": 321,
+        "startChar": 50,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd3c524f_3c5813d9",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 29
@@ -307,6 +613,30 @@
       "writtenOn": "2025-05-19T07:41:20Z",
       "side": 1,
       "message": "these can just be imported no need to create var for it\n\nimport static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS\nimport static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS",
+      "range": {
+        "startLine": 83,
+        "startChar": 3,
+        "endLine": 84,
+        "endChar": 73
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af9d7b4_834d4e82",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3c524f_3c5813d9",
       "range": {
         "startLine": 83,
         "startChar": 3,
@@ -363,6 +693,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f91c76_1e11571e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "695b0686_2de11dc1",
+      "range": {
+        "startLine": 281,
+        "startChar": 139,
+        "endLine": 281,
+        "endChar": 174
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5c50425_57a7cccd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "942c184a_50ed9251",
+      "range": {
+        "startLine": 281,
+        "startChar": 187,
+        "endLine": 281,
+        "endChar": 192
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "248c071c_b65cbe49",
@@ -376,6 +754,24 @@
       "writtenOn": "2025-05-16T14:51:19Z",
       "side": 1,
       "message": "will u also add the integration test with the grouping enabled when this feature is fully added?? if yes then u can create a sub-task and then we can ignore the comment to add the test here.",
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178328dc_41cfc397",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 1,
+      "message": "yes, will add it as a sub-task",
+      "parentUuid": "248c071c_b65cbe49",
       "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

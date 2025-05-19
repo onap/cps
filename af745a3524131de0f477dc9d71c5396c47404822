@@ -16,6 +16,24 @@
       "message": "no actual change in file, revert for smaller patch set",
       "revId": "af745a3524131de0f477dc9d71c5396c47404822",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f7e452c_cc13d914",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/DeltaReportBuilder.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-19T11:21:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "1937fcb0_6b43029d",
+      "revId": "af745a3524131de0f477dc9d71c5396c47404822",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
