@@ -83,6 +83,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ec0f64_b5650a48",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 29
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-20T10:30:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec5f1711_aa8fa20e",
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129c5cb5_223c1bb1",
