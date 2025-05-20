@@ -40,24 +40,24 @@ paths:
       description: Get all modules for given cm handle
       operationId: getModuleReferences
       parameters:
-        - $ref: 'dmi-components.yml#/components/parameters/cmHandleInPath'
+        - $ref: '#/components/parameters/cmHandleInPath'
       requestBody:
         description: Operational body
         content:
           application/json:
             schema:
-              $ref: 'dmi-components.yml#/components/schemas/ModuleReferencesRequest'
+              $ref: '#/components/schemas/ModuleReferencesRequest'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: 'dmi-components.yml#/components/schemas/ModuleSet'
+                $ref: '#/components/schemas/ModuleSet'
         '404':
-          $ref: 'dmi-components.yml#/components/responses/NotFound'
+          $ref: '#/components/responses/NotFound'
         '500':
-          $ref: 'dmi-components.yml#/components/responses/ServerError'
+          $ref: '#/components/responses/ServerError'
 
 
   /v1/ch/{cmHandle}/moduleResources:
@@ -68,24 +68,24 @@ paths:
       summary: Retrieve module resources
       operationId: retrieveModuleResources
       parameters:
-        - $ref: 'dmi-components.yml#/components/parameters/cmHandleInPath'
+        - $ref: '#/components/parameters/cmHandleInPath'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: 'dmi-components.yml#/components/schemas/ModuleResourcesReadRequest'
+              $ref: '#/components/schemas/ModuleResourcesReadRequest'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: 'dmi-components.yml#/components/schemas/YangResources'
+                $ref: '#/components/schemas/YangResources'
         '404':
-          $ref: 'dmi-components.yml#/components/responses/NotFound'
+          $ref: '#/components/responses/NotFound'
         '500':
-          $ref: 'dmi-components.yml#/components/responses/ServerError'
+          $ref: '#/components/responses/ServerError'
 
   /v1/inventory/cmHandles:
     post:
@@ -100,7 +100,7 @@ paths:
         content:
           application/json:
             schema:
-                $ref: 'dmi-components.yml#/components/schemas/CmHandles'
+              $ref: '#/components/schemas/CmHandles'
         required: true
       responses:
         '201':
@@ -111,9 +111,9 @@ paths:
                 type: string
                 example: cm-handle registered successfully
         '400':
-          $ref: 'dmi-components.yml#/components/responses/BadRequest'
+          $ref: '#/components/responses/BadRequest'
         '500':
-          $ref: 'dmi-components.yml#/components/responses/ServerError'
+          $ref: '#/components/responses/ServerError'
 
   /v1/ch/{cmHandle}/data/ds/{datastore-name}:
     post:
@@ -123,17 +123,17 @@ paths:
       description: Get resource data from passthrough operational or running for a cm handle
       operationId: dataAccessPassthrough
       parameters:
-        - $ref: 'dmi-components.yml#/components/parameters/datastoreName'
-        - $ref: 'dmi-components.yml#/components/parameters/cmHandleInPath'
-        - $ref: 'dmi-components.yml#/components/parameters/resourceIdentifierInQuery'
-        - $ref: 'dmi-components.yml#/components/parameters/optionsParamInQuery'
-        - $ref: 'dmi-components.yml#/components/parameters/topicParamInQuery'
+        - $ref: '#/components/parameters/datastoreName'
+        - $ref: '#/components/parameters/cmHandleInPath'
+        - $ref: '#/components/parameters/resourceIdentifierInQuery'
+        - $ref: '#/components/parameters/optionsParamInQuery'
+        - $ref: '#/components/parameters/topicParamInQuery'
       requestBody:
         description: Contains collection of cm handles with it's private properties and requestId
         content:
           application/json:
             schema:
-              $ref: 'dmi-components.yml#/components/schemas/DataAccessRequest'
+              $ref: '#/components/schemas/DataAccessRequest'
       responses:
         '200':
           description: OK
@@ -146,9 +146,9 @@ paths:
                     moduleName: my-module-name
                     revision: my-revision
         '400':
-          $ref: 'dmi-components.yml#/components/responses/BadRequest'
+          $ref: '#/components/responses/BadRequest'
         '500':
-          $ref: 'dmi-components.yml#/components/responses/ServerError'
+          $ref: '#/components/responses/ServerError'
 
   /v1/data:
     post:
@@ -158,20 +158,318 @@ paths:
       description: Execute a data operation for group of CM handle (IDs or alternate IDs) by supplied operation details
       operationId: getResourceDataForCmHandleDataOperation
       parameters:
-        - $ref: 'dmi-components.yml#/components/parameters/requiredTopicParamInQuery'
-        - $ref: 'dmi-components.yml#/components/parameters/requiredRequestIdParamInQuery'
+        - $ref: '#/components/parameters/requiredTopicParamInQuery'
+        - $ref: '#/components/parameters/requiredRequestIdParamInQuery'
       requestBody:
         description: list of operation details
         content:
           application/json:
             schema:
-              $ref: 'dmi-components.yml#/components/schemas/ResourceDataOperationRequests'
+              $ref: '#/components/schemas/ResourceDataOperationRequests'
       responses:
         '202':
           description: Accepted
         '400':
-          $ref: 'dmi-components.yml#/components/responses/BadRequest'
+          $ref: '#/components/responses/BadRequest'
         '500':
-          $ref: 'dmi-components.yml#/components/responses/ServerError'
+          $ref: '#/components/responses/ServerError'
         '501':
-          $ref: 'dmi-components.yml#/components/responses/NotImplemented'
+          $ref: '#/components/responses/NotImplemented'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    ErrorMessage:
+      type: object
+      title: Error
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+
+    CmHandles:
+      type: object
+      properties:
+        cmHandles:
+          type: array
+          example: ["cmHandleId1","cmHandleId2","cmHandleId3"]
+          items:
+            type: string
+
+    ModuleReferencesRequest:
+      type: object
+      properties:
+        moduleSetTag:
+          type: string
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+
+    ResourceDataOperationRequests:
+      type: array
+      items:
+        type: object
+        title: 'DataOperationRequest'
+        properties:
+          operation:
+            type: string
+            example: 'read'
+          operationId:
+            description: 'it is recommended that the operationId is unique within the scope of the request'
+            type: string
+            example: '12'
+          datastore:
+            type: string
+            example: 'ncmp-datastore:passthrough-operational'
+          options:
+            type: string
+            example: '(fields=NRCellDU/attributes/cellLocalId)'
+          resourceIdentifier:
+            type: string
+            example: '/ManagedElement=NRNode1/GNBDUFunction=1'
+          cmHandles:
+            type: array
+            items:
+              $ref: '#/components/schemas/dmiOperationCmHandle'
+        required:
+          - operation
+          - operationId
+          - datastore
+          - cmHandles
+
+    dmiOperationCmHandle:
+      type: object
+      title: 'CmHandle with properties for DMI'
+      properties:
+        id:
+          type: string
+        cmHandleProperties:
+          additionalProperties:
+            type: string
+        moduleSetTag:
+          type: string
+          example: module-set-tag1
+      example:
+        id: cmHandle123
+        cmHandleProperties:
+          myProp: some value
+          otherProp: other value
+          moduleSetTag: module-set-tag1
+
+    ModuleResourcesReadRequest:
+      type: object
+      properties:
+        moduleSetTag:
+          type: string
+          description: Module set tag of the given cm handle
+          example: Module-set-tag-1
+        data:
+          type: object
+          properties:
+            modules:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: my-name
+                  revision:
+                    type: string
+                    example: my-revision
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+
+    ModuleSet:
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: object
+            properties:
+              moduleName:
+                type: string
+                example: my-module-name
+              revision:
+                type: string
+                example: my-revision
+              namespace:
+                type: string
+                example: my-namespace
+
+    YangResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/YangResource'
+
+    YangResource:
+      properties:
+        yangSource:
+          type: string
+          example: my-yang-source
+        moduleName:
+          type: string
+          example: my-module-name
+        revision:
+          type: string
+          example: my-revision
+
+    DataAccessRequest:
+      type: object
+      properties:
+        operation:
+          type: string
+          enum: [ read, create, update, patch, delete ]
+          example: read
+        dataType:
+          type: string
+          example: my-data-type
+        data:
+          type: string
+          example: my-data
+        cmHandleProperties:
+          $ref: '#/components/schemas/cmHandleProperties'
+        requestId:
+          type: string
+          example: 3a9ce55c-e365-4dc9-8da3-a06f07cbc6d7
+        moduleSetTag:
+          type: string
+          example: module-set-tag1
+
+    cmHandleProperties:
+      type: object
+      nullable: true
+      additionalProperties:
+        type: string
+        example: {"prop1":"value1","prop2":"value2"}
+
+  responses:
+    NoContent:
+      description: No Content
+      content: {}
+
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 400
+            message: Bad Request
+            details: The provided request is not valid
+
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 404
+            message: Resource Not Found
+            details: The requested resource is not found
+
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 500
+            message: Internal Server Error
+            details: Internal Server Error occured
+
+    NotImplemented:
+      description: Not Implemented
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+          example:
+            status: 501
+            message: Not Implemented
+            details: Method Not Implemented
+
+  parameters:
+    cmHandleInPath:
+      name: cmHandle
+      in: path
+      description: The CM handle or alternate identifier for a network function, network element, subnetwork, or any other CM object managed by Network CM Proxy
+      required: true
+      schema:
+        type: string
+        example: my-cm-handle
+
+    resourceIdentifierInQuery:
+      name: resourceIdentifier
+      in: query
+      description: Resource identifier to get/set the resource data
+      required: true
+      schema:
+        type: string
+        example: '/ManagedElement=NRNode1/GNBDUFunction=1'
+
+    optionsParamInQuery:
+      name: options
+      in: query
+      description: options parameter in query, it is mandatory to wrap key(s)=value(s) in parenthesis'()'.
+      required: false
+      schema:
+        type: string
+      examples:
+        sample1:
+          value:
+            options: (fields=NRCellDU/attributes/cellLocalId)
+
+    topicParamInQuery:
+      name: topic
+      in: query
+      description: topic name passed from client(NCMP).
+      required: false
+      schema:
+        type: string
+      examples:
+        sample1:
+          value: my-topic-name
+
+    requiredTopicParamInQuery:
+      name: topic
+      in: query
+      description: mandatory topic name passed from client(NCMP).
+      required: true
+      schema:
+        type: string
+      examples:
+        sample1:
+          value:
+            topic: my-topic-name
+
+    requiredRequestIdParamInQuery:
+      name: requestId
+      in: query
+      description: request ID generated by NCMP and is sent here and sent as an acknowledgement for the client request.
+      required: true
+      schema:
+        type: string
+      examples:
+        sample1:
+          value: 4753fc1f-7de2-449a-b306-a6204b5370b3
+
+    datastoreName:
+      name: datastore-name
+      in: path
+      description: The type of the requested data
+      required: true
+      schema:
+        type: string
+        example: ncmp-datastore:passthrough-operational or ncmp-datastore:passthrough-running
+
+security:
+  - basicAuth: []
