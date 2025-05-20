@@ -39,7 +39,7 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration and memory used is within limit'
+        then: 'the operation takes less than #expectedDuration with a margin of 50%'
             recordAndAssertResourceUsage("Writing ${totalNodes} devices",
                     expectedDuration, resourceMeter.getTotalTimeInSeconds(),
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
@@ -64,7 +64,7 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration and memory used is within limit'
+        then: 'the operation takes less than #expectedDuration with a margin of 50%'
             recordAndAssertResourceUsage("Writing ${totalBooks} books",
                     expectedDuration, resourceMeter.totalTimeInSeconds,
                     memoryLimit, resourceMeter.totalMemoryUsageInMB)
@@ -92,7 +92,7 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration and memory used is within limit'
+        then: 'the operation takes less than #expectedDuration with a margin of 50%'
             recordAndAssertResourceUsage("Saving list of ${totalNodes} devices",
                     expectedDuration, resourceMeter.totalTimeInSeconds,
                     memoryLimit, resourceMeter.totalMemoryUsageInMB)
