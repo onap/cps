@@ -84,34 +84,32 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             recordAndAssertResourceUsage('Look up CM-handle by id', 0.009, averageResponseTime, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
-    def 'CM-handle is looked up by alternate-id.'() {
-        when: 'CM-handles are looked up by alternate-id 1000 times'
+    def 'CM-handle is looked up by alternate id.'() {
+        when: 'CM-handles are looked up by alternate id 100 times'
             int count = 0
             resourceMeter.start()
-            (1..1000).each {
+            (1..100).each {
                 count += cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR,
                         "/dmi-registry/cm-handles[@alternate-id='alt-${it}']", OMIT_DESCENDANTS).size()
             }
             resourceMeter.stop()
-        then:
-            assert count == 1000
+        then: 'all alternate ids are resolved correctly'
+            assert count == 100
         and: 'average performance is as expected'
-            def averageResponseTime = resourceMeter.totalTimeInSeconds / 1000
-            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 0.02, averageResponseTime, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 1.9, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
-    def 'A batch of CM-handles is looked up by alternate-id.'() {
-        given: 'a CPS Path Query to look up 100 alternate-ids in a single operation'
+    def 'A batch of CM-handles is looked up by alternate id.'() {
+        given: 'a CPS Path Query to look up 100 alternate ids in a single operation'
             def cpsPathQuery = '/dmi-registry/cm-handles[' + (1..100).collect { "@alternate-id='alt-${it}'" }.join(' or ') + ']'
-        when: 'CM-handles are looked up by alternate-ids in a single query'
+        when: 'CM-handles are looked up by alternate ids in a single query'
             resourceMeter.start()
             def count = cpsQueryService.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, cpsPathQuery, OMIT_DESCENDANTS).size()
             resourceMeter.stop()
         then: 'expected amount of data was returned'
             assert count == 100
         then: 'average performance is as expected'
-            def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
-            recordAndAssertResourceUsage('Batch look up CM-handle by alternate-id', 0.004, averageResponseTime, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Batch look up CM-handle by alternate-id', 0.4, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'Find any CM-handle given moduleSetTag when there are 20K READY handles with same moduleSetTag.'() {

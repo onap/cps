@@ -75,7 +75,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         and: 'data leaves have expected values'
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
-        and: 'update completes within expected time and memory used is within limit'
+        and: 'update completes within expected time and a margin of 50%'
             recordAndAssertResourceUsage(scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
@@ -99,7 +99,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         and: 'data leaves have expected values'
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
-        and: 'update completes within expected time and memory used is within limit'
+        and: 'update completes within expected time and a margin of 50%'
             recordAndAssertResourceUsage(scenario,
                     expectedTime, resourceMeter.getTotalTimeInSeconds(),
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
@@ -125,7 +125,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
-        and: 'update completes within expected time and memory used is within limit'
+        and: 'update completes within expected time and a margin of 50%'
             recordAndAssertResourceUsage('Update leaves for 100 data nodes', 0.14, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
     }
 
