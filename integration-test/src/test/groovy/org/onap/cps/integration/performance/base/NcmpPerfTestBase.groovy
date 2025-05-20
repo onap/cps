@@ -82,7 +82,7 @@ class NcmpPerfTestBase extends PerfTestBase {
         def cmHandleJsonTemplate = readResourceDataFile('inventory/cmHandleTemplate.json')
         def batchSize = 100
         for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
-            def data = '{ "cm-handles": [' + (1..batchSize).collect { cmHandleJsonTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString()) }.join(',') + ']}'
+            def data = '{ "cm-handles": [' + (1..batchSize).collect { cmHandleJsonTemplate.replace('CM_HANDLE_ID_POSTFIX', (it + i).toString()) }.join(',') + ']}'
             cpsDataService.saveListElements(NCMP_PERFORMANCE_TEST_DATASPACE, REGISTRY_ANCHOR, REGISTRY_PARENT, data, now, ContentType.JSON)
         }
     }
@@ -92,8 +92,8 @@ class NcmpPerfTestBase extends PerfTestBase {
         def batchSize = 10
         for (def i = 0; i < TOTAL_CM_HANDLES; i += batchSize) {
             def data = '{ "cm-handles": [' + (1..batchSize).collect {
-                cmHandleWithAlternateIdTemplate.replace('CM_HANDLE_ID_HERE', (it + i).toString())
-                        .replace('ALTERNATE_ID_AS_PATH', (it + i).toString())
+                cmHandleWithAlternateIdTemplate.replace('CM_HANDLE_ID_POSTFIX', (it + i).toString())
+                        .replace('ALTERNATE_ID_POSTFIX', (it + i).toString())
             }.join(',') + ']}'
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_PARENT, data, now, ContentType.JSON)
         }
