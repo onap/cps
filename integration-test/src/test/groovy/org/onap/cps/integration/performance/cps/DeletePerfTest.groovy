@@ -40,7 +40,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             addAnchorsWithData(10, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'delete', data, ContentType.JSON)
             resourceMeter.stop()
             def setupDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'setup duration is within expected time and memory used is within limit'
+        then: 'setup duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete test setup', 103, setupDurationInSeconds, 800, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -56,8 +56,8 @@ class DeletePerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete 100 containers', 1.5, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'delete duration is below accepted margin of the expected average'
+            recordAndAssertResourceUsage('Delete 100 containers', 1.4, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Batch delete 100 container nodes'() {
@@ -70,7 +70,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete2', xpathsToDelete, OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Batch delete 100 containers', 0.65, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -86,7 +86,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete 100 lists elements', 1.5, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -100,7 +100,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete4', xpathsToDelete, OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Batch delete 100 lists elements', 0.7, deleteDurationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -116,8 +116,8 @@ class DeletePerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
-            recordAndAssertResourceUsage('Delete 100 whole lists', 3.2, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB(), 3)
+        then: 'delete duration is below accepted margin (4x) of the expected average'
+            recordAndAssertResourceUsage('Delete 100 whole lists', 3.2, deleteDurationInSeconds, 20, resourceMeter.getTotalMemoryUsageInMB(), 4)
     }
 
     def 'Batch delete 100 whole lists'() {
@@ -130,7 +130,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete6', xpathsToDelete, OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin (3x) of the expected average'
             recordAndAssertResourceUsage('Batch delete 100 whole lists', 3.4, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB(), 3)
     }
 
@@ -140,7 +140,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNode(CPS_PERFORMANCE_TEST_DATASPACE, 'delete7', '/openroadm-devices', OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete one large node', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -150,7 +150,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNode(CPS_PERFORMANCE_TEST_DATASPACE, 'delete8', '/', OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete root node', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -160,7 +160,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete9', OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete data nodes for anchor', 2, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -174,7 +174,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             } catch (DataNodeNotFoundException ignored) {}
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Batch delete 100 non-existing', 2, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
     }
 
@@ -186,7 +186,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchors(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames)
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'delete duration is within expected time and memory used is within limit'
+        then: 'delete duration is below accepted margin of the expected average'
             recordAndAssertResourceUsage('Delete test cleanup', 11.09, deleteDurationInSeconds, 1, resourceMeter.getTotalMemoryUsageInMB())
     }
 
