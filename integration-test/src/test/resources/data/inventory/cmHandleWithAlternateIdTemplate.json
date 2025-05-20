@@ -1,6 +1,6 @@
 {
-  "id": "cm-handle-CM_HANDLE_ID_HERE",
-  "alternate-id": "/a/b/c/d-ALTERNATE_ID_AS_PATH",
+  "id": "cm-handle-CM_HANDLE_ID_POSTFIX",
+  "alternate-id": "/a/b/c/d-ALTERNATE_ID_POSTFIX",
   "module-set-tag": "my-module-set-tag",
   "dmi-service-name": "http://ncmp-dmi-plugin-stub:8080",
   "dmi-data-service-name": "",
