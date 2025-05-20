@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "2fe500018538c918c03d0fd8ad7789483bbd0ada",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1a898f1_24d0a464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-05-20T10:42:28Z",
+      "side": 1,
+      "message": "Looks good, just one comment on test description",
+      "revId": "2fe500018538c918c03d0fd8ad7789483bbd0ada",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06a7a168_1f63b545",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeletePerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-05-20T10:42:28Z",
+      "side": 1,
+      "message": "NB: \u0027around expected average time\u0027 to clarify purpose of the figures. Update for other tests as well.",
+      "range": {
+        "startLine": 73,
+        "startChar": 34,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "2fe500018538c918c03d0fd8ad7789483bbd0ada",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
