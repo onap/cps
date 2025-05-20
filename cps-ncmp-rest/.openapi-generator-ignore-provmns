@@ -1,0 +1,9 @@
+# Ignore generation of all the models for ProvMns
+target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/*.java
+
+# Allow generation of the below model for ProvMns
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ResourceOneOf.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/Scope.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ScopeType.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ErrorResponseDefault.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ErrorResponseGet.java
