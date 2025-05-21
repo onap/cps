@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecf408df_8a05c176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-05-21T08:14:20Z",
+      "side": 1,
+      "message": "Nothing objectionable there. The renaming and rephrasing makes a difference if nothing else.",
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
