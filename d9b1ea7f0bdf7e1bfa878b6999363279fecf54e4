@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb49da9_9704bec5",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T12:10:07Z",
+      "side": 1,
+      "message": "Fixing into next patch",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
