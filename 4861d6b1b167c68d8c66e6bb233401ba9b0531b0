@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "4861d6b1b167c68d8c66e6bb233401ba9b0531b0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a95566_c356bb80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-21T09:17:23Z",
+      "side": 1,
+      "message": "NB: would result in little bit duplication but I guess its ok.\nwe wont be reusing the components now( atleast for DMI )",
+      "revId": "4861d6b1b167c68d8c66e6bb233401ba9b0531b0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
