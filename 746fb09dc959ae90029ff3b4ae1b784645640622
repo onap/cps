@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c306c64_3b482066",
+        "filename": "cps-rest/docs/openapi/components.yml",
+        "patchSetId": 30
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cdc04a1_f3e0aa83",
+      "range": {
+        "startLine": 481,
+        "startChar": 17,
+        "endLine": 481,
+        "endChar": 22
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6331c77_961b5837",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-05-20T16:51:33Z",
       "side": 1,
       "message": "groupDataNodesParameter",
+      "range": {
+        "startLine": 60,
+        "startChar": 78,
+        "endLine": 60,
+        "endChar": 92
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181a6d94_eb3a48d6",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6331c77_961b5837",
       "range": {
         "startLine": 60,
         "startChar": 78,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56de2771_1bdeedb0",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecdba93b_76a7c05d",
+      "range": {
+        "startLine": 63,
+        "startChar": 22,
+        "endLine": 63,
+        "endChar": 38
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93290408_f104a1b1",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-05-20T16:51:33Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 77,
+        "startChar": 84,
+        "endLine": 77,
+        "endChar": 98
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eae119f_06f171d7",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93290408_f104a1b1",
       "range": {
         "startLine": 77,
         "startChar": 84,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e14fd3_4f107c10",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "179a90b8_0ccb2bfd",
+      "range": {
+        "startLine": 80,
+        "startChar": 22,
+        "endLine": 80,
+        "endChar": 38
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54b145e3_1b9238a4",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-05-20T16:51:33Z",
       "side": 1,
       "message": "NB: add def NO_GROUPING \u003d false\nat the top of the file and use it as needed to make it clearer what parameter is what in all tests",
+      "range": {
+        "startLine": 93,
+        "startChar": 130,
+        "endLine": 93,
+        "endChar": 135
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "347228a2_cd86591e",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54b145e3_1b9238a4",
       "range": {
         "startLine": 93,
         "startChar": 130,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dec5b430_438f2051",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a4618ea_fc94e357",
+      "range": {
+        "startLine": 40,
+        "startChar": 14,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4844cb5e_b00cc9af",
@@ -192,6 +360,30 @@
       "writtenOn": "2025-05-20T16:51:33Z",
       "side": 1,
       "message": "ensure consistent naming, i wont repeat this comment...",
+      "range": {
+        "startLine": 70,
+        "startChar": 73,
+        "endLine": 70,
+        "endChar": 88
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f11a95b_bdcd23c0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4844cb5e_b00cc9af",
       "range": {
         "startLine": 70,
         "startChar": 73,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4106cd48_0c44e862",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "this is not needed. I was testing the overall feature with update and remove operations and forgot to remove this code",
+      "parentUuid": "05fed9a9_3c29b028",
+      "range": {
+        "startLine": 237,
+        "startChar": 57,
+        "endLine": 238,
+        "endChar": 61
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f87a2e3_15f03365",
@@ -238,6 +454,30 @@
       "writtenOn": "2025-05-20T10:30:28Z",
       "side": 1,
       "message": "NB: typo here.",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 23
+      },
+      "revId": "746fb09dc959ae90029ff3b4ae1b784645640622",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe396990_cd3a77ba",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 30
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f87a2e3_15f03365",
       "range": {
         "startLine": 89,
         "startChar": 8,

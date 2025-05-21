@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6d20ce_678556fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61c06eea_71c1efd8",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "206c763e_a24e5a6b",
@@ -608,6 +632,30 @@
       "side": 1,
       "message": "no it was toDataMapForApiV3, I saw she had used a more granular approach in implementing the method and I adjusted my code accordingly",
       "parentUuid": "4ad0e6b8_100756b1",
+      "range": {
+        "startLine": 321,
+        "startChar": 50,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b6c392_d726213b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-21T07:24:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72d30100_1ba660f4",
       "range": {
         "startLine": 321,
         "startChar": 50,
