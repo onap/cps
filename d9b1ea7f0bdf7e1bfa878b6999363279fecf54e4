@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ed0ea610_a0864796",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/JettyConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d6de1c3_071238a7",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 10
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c9ac0cf0_80d1a595",
         "filename": "cps-application/src/main/java/org/onap/cps/config/JettyConfig.java",
         "patchSetId": 1
@@ -93,6 +117,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38a85afa_e9859588",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "beb49da9_9704bec5",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fbd9a5e_040760f6",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba7da24e_46d833ea",
+      "range": {
+        "startLine": 23,
+        "startChar": 31,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20836a9f_2f6a9829",
@@ -106,6 +178,30 @@
       "writtenOn": "2025-05-21T12:21:36Z",
       "side": 1,
       "message": "normay define at class level not in teh test",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0acb331_594ee183",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "20836a9f_2f6a9829",
       "range": {
         "startLine": 31,
         "startChar": 12,
@@ -139,6 +235,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b397f7_c1c9d4bc",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9bfa8880_0696e028",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a074998_2e29caa1",
@@ -152,6 +272,30 @@
       "writtenOn": "2025-05-21T12:21:36Z",
       "side": 1,
       "message": "again strange place to define the mocks, this is normally at class level",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 43
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f072bb6b_996e32cb",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a074998_2e29caa1",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -185,6 +329,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e978cdc_e76cbce5",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1352f4d1_2c4aedd4",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96a23db6_8d3529df",
@@ -198,6 +366,30 @@
       "writtenOn": "2025-05-21T12:21:36Z",
       "side": 1,
       "message": "simplify:\n\ndef httpConfig \u003d null\nif (connectionFactory instanceof HttpConnectionFactory) {\n   httpConfig \u003d Mock(HttpConfiguration) \n   connectionFactory.getHttpConfiguration() \u003e\u003e httpConfig\n}",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "038ea4d5_1529a9a8",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96a23db6_8d3529df",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -231,6 +423,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f76994ac_e1fa44c6",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5f9c29fc_dddd7f33",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f826a126_e8763e02",
@@ -244,6 +460,30 @@
       "writtenOn": "2025-05-21T12:21:36Z",
       "side": 1,
       "message": "type of connection factories",
+      "range": {
+        "startLine": 54,
+        "startChar": 26,
+        "endLine": 54,
+        "endChar": 32
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb4f5bea_75fc4c5a",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f826a126_e8763e02",
       "range": {
         "startLine": 54,
         "startChar": 26,
@@ -300,6 +540,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49435425_6ec7c310",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6f1171b9_c4f565cd",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5ff2ba9_00d6a99e",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a580fb60_b28b4458",
+      "range": {
+        "startLine": 55,
+        "startChar": 52,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5c3d549_13ae0555",
@@ -313,6 +601,30 @@
       "writtenOn": "2025-05-21T12:21:36Z",
       "side": 1,
       "message": "no need fo scenarios , just test it with one, why Not GET ?! (not supported ?)",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 68
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30fd1d49_ec475117",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:14:21Z",
+      "side": 1,
+      "message": "The main reason is to keep the test lightweight and avoid additional complexity that comes with mocking the GET response payload. Since the goal of this test is specifically to validate URI parsing and path handling (not the content of the response), POST serves the same purpose without requiring detailed mock data setup.",
+      "parentUuid": "b5c3d549_13ae0555",
       "range": {
         "startLine": 491,
         "startChar": 0,
