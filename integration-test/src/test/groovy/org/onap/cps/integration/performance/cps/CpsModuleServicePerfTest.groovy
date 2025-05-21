@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2023 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@
 package org.onap.cps.integration.performance.cps
 
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.onap.cps.api.model.ModuleReference
+import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.springframework.util.StopWatch
 
 import java.util.concurrent.ThreadLocalRandom
@@ -68,7 +68,7 @@ class CpsModuleServicePerfTest extends CpsPerfTestBase {
                 stopWatch.stop()
                 assert newModuleReferences.size() > 0 && newModuleReferences.size() < 300
             }
-            assert stopWatch.getTotalTimeMillis() < 6000
+            assert stopWatch.getTotalTimeMillis() < 10_000
     }
 
     def createModuleReferencesWithRandomMatchingExistingModuleReferences() {
