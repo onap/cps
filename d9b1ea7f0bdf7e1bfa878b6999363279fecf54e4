@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d6de1c3_071238a7",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/JettyConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-21T12:18:20Z",
+      "side": 1,
+      "message": "NB: @Configuration",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 10
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "beb49da9_9704bec5",
         "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
         "patchSetId": 1
