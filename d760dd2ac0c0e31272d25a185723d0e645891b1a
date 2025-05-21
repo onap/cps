@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f4a4fa_e8d1d2ac",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:45:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "655971a5_8559fe9a",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "d760dd2ac0c0e31272d25a185723d0e645891b1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e75fafa9_1623c13d",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-21T14:28:20Z",
       "side": 1,
       "message": "NB: Scenario (as per all our oterh test) adn use in lien #37",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 69
+      },
+      "revId": "d760dd2ac0c0e31272d25a185723d0e645891b1a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604aadbf_6954f619",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-21T14:45:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e75fafa9_1623c13d",
       "range": {
         "startLine": 60,
         "startChar": 12,
