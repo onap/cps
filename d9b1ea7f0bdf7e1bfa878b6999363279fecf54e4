@@ -24,6 +24,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ac0cf0_80d1a595",
+        "filename": "cps-application/src/main/java/org/onap/cps/config/JettyConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "ok, so its a bit more then just a config parameter ;-)",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "beb49da9_9704bec5",
@@ -42,6 +65,259 @@
         "startChar": 0,
         "endLine": 23,
         "endChar": 33
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba7da24e_46d833ea",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "NB: never use .* import, change your IDE settings for this it has some kind of threshold  when you use .* I always set it to 999 (for Java AND Groovy separet I think)",
+      "range": {
+        "startLine": 23,
+        "startChar": 31,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20836a9f_2f6a9829",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "normay define at class level not in teh test",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bfa8880_0696e028",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "use full name (theer is quiet a few factories in this test!) : jettyServletWebServerFactory",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a074998_2e29caa1",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "again strange place to define the mocks, this is normally at class level",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 43
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1352f4d1_2c4aedd4",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "since this is depending on test parameter its OK here\n(would prefer it on line line though) \nI dont care much about line length limit in Groovy most time it looks beter/easier to read on on line... (going of the normal window size is my limit really :-) )",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a23db6_8d3529df",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "simplify:\n\ndef httpConfig \u003d null\nif (connectionFactory instanceof HttpConnectionFactory) {\n   httpConfig \u003d Mock(HttpConfiguration) \n   connectionFactory.getHttpConfiguration() \u003e\u003e httpConfig\n}",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9c29fc_dddd7f33",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "find this hard to read still a bit confused, can you split it up and use descrptions to explain this part",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f826a126_e8763e02",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "type of connection factories",
+      "range": {
+        "startLine": 54,
+        "startChar": 26,
+        "endLine": 54,
+        "endChar": 32
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a580fb60_b28b4458",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "scanrio, should be first column and main descrption of test",
+      "range": {
+        "startLine": 55,
+        "startChar": 52,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f1171b9_c4f565cd",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/config/JettyConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "||",
+      "range": {
+        "startLine": 55,
+        "startChar": 34,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c3d549_13ae0555",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T12:21:36Z",
+      "side": 1,
+      "message": "no need fo scenarios , just test it with one, why Not GET ?! (not supported ?)",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 68
       },
       "revId": "d9b1ea7f0bdf7e1bfa878b6999363279fecf54e4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
