@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4528d9ba_7e4fbfc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T09:51:15Z",
+      "side": 1,
+      "message": "oops, forgot that",
+      "parentUuid": "ade84e87_3fc8e2a7",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ecf408df_8a05c176",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c531699_9ba267f3",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T09:51:15Z",
+      "side": 1,
+      "message": "legacy issue but you are right I did think about it earlier but ignored it, I have to draw a line on how many legacy issues I can fix sometimes...",
+      "parentUuid": "7d2a5798_7e0c4600",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5dfda52_effdeece",
@@ -94,6 +142,30 @@
       "writtenOn": "2025-05-21T08:35:44Z",
       "side": 1,
       "message": "NB: objectUnderTest",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae83717_6a76f0d9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T09:51:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5dfda52_effdeece",
       "range": {
         "startLine": 29,
         "startChar": 8,
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71eeb34c_0545b95e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T09:51:15Z",
+      "side": 1,
+      "message": "deliberatly left it in case we want it use it again in the future",
+      "parentUuid": "ea3c717d_c322adea",
+      "range": {
+        "startLine": 59,
+        "startChar": 115,
+        "endLine": 59,
+        "endChar": 125
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e09e484_5d96a06c",
@@ -140,6 +236,24 @@
       "writtenOn": "2025-05-21T08:35:44Z",
       "side": 1,
       "message": "NB: redundant extra space",
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5c9e8e8_6aaca1d0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsModuleServicePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-21T09:51:15Z",
+      "side": 1,
+      "message": "no this is a convention java import get separated from 3pp imports",
+      "parentUuid": "0e09e484_5d96a06c",
       "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
