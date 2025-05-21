@@ -477,6 +477,23 @@ class NetworkCmProxyControllerSpec extends Specification {
             'invalid datastore'     | 'DELETE'  | 'invalid'
     }
 
+    def 'Ensure URI-encoded alternateId with slashes is accepted for #operation - #scenario'() {
+        given: 'A URI-encoded alternateId that includes slashes'
+            def alternateIdWithSlashes = '/some/cps/path'
+            def encodedAlternateId = URLEncoder.encode(alternateIdWithSlashes, 'UTF-8')
+            def url = "$ncmpBasePathV1/ch/${encodedAlternateId}/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=some-value"
+        when: 'A passthrough operation is executed on the URL containing the encoded alternateId'
+            def response = mvc.perform(executeRestOperation(operation, url)).andReturn().response
+        then: 'The API successfully processes the request and returns the expected HTTP status'
+            assert response.status == expectedStatus
+        where: 'Supported operations are tested with the encoded alternateId'
+            scenario    | operation || expectedStatus
+            'creation'  | 'POST'    || HttpStatus.CREATED.value()
+            'update'    | 'PUT'     || HttpStatus.OK.value()
+            'patch'     | 'PATCH'   || HttpStatus.OK.value()
+            'deletion'  | 'DELETE'  || HttpStatus.NO_CONTENT.value()
+    }
+
     def executeRestOperation(operation, url) {
         if (operation == 'POST') {
             return post(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
