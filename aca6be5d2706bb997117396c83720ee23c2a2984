@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade84e87_3fc8e2a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "No issue id is available, this is blocker.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ecf408df_8a05c176",
@@ -14,6 +37,109 @@
       "writtenOn": "2025-05-21T08:14:20Z",
       "side": 1,
       "message": "Nothing objectionable there. The renaming and rephrasing makes a difference if nothing else.",
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e998d1_d709c31a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "No issue id is available. Thus, I can not understand the A/C. I am not sure if it was mentioned somewhere to stop passing memory expectations to the resource meter?",
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2a5798_7e0c4600",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "NB: This is not a performance test. However, it is just a unit test that may be renamed to ResourceMeterTest",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5dfda52_effdeece",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/ResourceMeterPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "NB: objectUnderTest",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 21
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3c717d_c322adea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "Redundant variable. Never used.",
+      "range": {
+        "startLine": 59,
+        "startChar": 115,
+        "endLine": 59,
+        "endChar": 125
+      },
+      "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e09e484_5d96a06c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsModuleServicePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-05-21T08:35:44Z",
+      "side": 1,
+      "message": "NB: redundant extra space",
       "revId": "aca6be5d2706bb997117396c83720ee23c2a2984",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
