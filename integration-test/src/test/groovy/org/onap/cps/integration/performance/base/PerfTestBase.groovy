@@ -56,7 +56,7 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     abstract def createInitialData()
 
-    def recordAndAssertResourceUsage(shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryLimitCurrentlyNotAsserted, memoryUsageInMB, timeLimitFactor) {
+    def recordAndAssertResourceUsage(shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, memoryLimitCurrentlyNotAsserted, double memoryUsageInMB, double timeLimitFactor) {
         if (expectedAverageTimeInSec <= VERY_FAST_TEST_THRESHOLD) {
             timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR_FOR_VERY_FAST_TEST
         }
