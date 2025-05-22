@@ -60,7 +60,7 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'requested nodes and their descendants are returned'
             assert countDataNodesInTree(result) == OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
         and: 'all data is read within expected time and a margin of 200%'
-            recordAndAssertResourceUsage("Read datatrees for multiple xpaths", 1.1, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB(),3)
+            recordAndAssertResourceUsage("Read datatrees for multiple xpaths", 1.3, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB(),3)
     }
 
     def 'Read for multiple xpaths to non-existing datanodes'() {

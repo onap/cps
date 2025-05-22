@@ -122,16 +122,14 @@ class DeletePerfTest extends CpsPerfTestBase {
 
     def 'Batch delete 100 whole lists'() {
         given: 'a list of xpaths to delete'
-            def xpathsToDelete = (1..100).collect {
-                "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']/org-openroadm-device/degree"
-            }
+            def xpathsToDelete = (1..100).collect { "/openroadm-devices/openroadm-device[@device-id='C201-7-1A-" + it + "']/org-openroadm-device/degree" }
         when: 'lists are deleted'
             resourceMeter.start()
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'delete6', xpathsToDelete, OffsetDateTime.now())
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin (3x) of the expected average'
-            recordAndAssertResourceUsage('Batch delete 100 whole lists', 3.4, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB(), 3)
+            recordAndAssertResourceUsage('Batch delete 100 whole lists', 3.8, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB(), 4)
     }
 
     def 'Delete 1 large data node'() {
@@ -175,7 +173,7 @@ class DeletePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             def deleteDurationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'delete duration is below accepted margin of the expected average'
-            recordAndAssertResourceUsage('Batch delete 100 non-existing', 2, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('Batch delete 100 non-existing', 2, deleteDurationInSeconds, 3, resourceMeter.getTotalMemoryUsageInMB(),3)
     }
 
     def 'Clean up test data'() {

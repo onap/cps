@@ -80,7 +80,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
         then: '100 data node have been found'
             assert count == 100
         and: 'average performance is as expected'
-            recordAndAssertResourceUsage('Look up CM-handle by id', 0.5, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handle by id', 0.25, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'CM-handle is looked up by alternate id.'() {

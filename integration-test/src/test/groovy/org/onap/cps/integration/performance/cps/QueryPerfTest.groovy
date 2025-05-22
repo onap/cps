@@ -79,7 +79,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 50%'
-            recordAndAssertResourceUsage("Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(),2)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.08             | 6           | OPENROADM_DEVICES_PER_ANCHOR
