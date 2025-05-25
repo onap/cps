@@ -81,6 +81,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b57f5153_52acf7a9",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-25T11:19:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00707943_9b18bc0b",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 150,
+        "endChar": 26
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e3558ea_4548f20e",
@@ -94,6 +118,30 @@
       "writtenOn": "2025-05-19T07:58:27Z",
       "side": 1,
       "message": "can you confirm, intended is 1,800 iterations (10x180) ?",
+      "range": {
+        "startLine": 155,
+        "startChar": 6,
+        "endLine": 160,
+        "endChar": 5
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63088231_0699f292",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-25T11:19:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3558ea_4548f20e",
       "range": {
         "startLine": 155,
         "startChar": 6,
