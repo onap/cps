@@ -407,6 +407,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8656aa5f_c3586c26",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-25T10:35:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4fcd92a2_edff2f16",
+      "range": {
+        "startLine": 293,
+        "startChar": 32,
+        "endLine": 293,
+        "endChar": 56
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8084858_8442d753",
@@ -444,6 +468,30 @@
       "side": 1,
       "message": "same as above, we will have delta report entries that contain removed and updated data in Part 2 of the patch.",
       "parentUuid": "a8084858_8442d753",
+      "range": {
+        "startLine": 294,
+        "startChar": 35,
+        "endLine": 294,
+        "endChar": 50
+      },
+      "revId": "21d0400b7cd95897ba0ac220dcc3ba4915ffc805",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0f57bd3_057bd0cb",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-05-25T10:35:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b27d7ffb_44d66d01",
       "range": {
         "startLine": 294,
         "startChar": 35,
