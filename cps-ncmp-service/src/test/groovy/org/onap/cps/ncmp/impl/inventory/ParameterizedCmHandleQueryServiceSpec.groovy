@@ -246,6 +246,21 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             'both queries are null'                                      | null                    | null                    || null
     }
 
+//    def 'Query cm handle details by dmi service name.'() {
+//        given: 'a modules condition property'
+//            def cmHandleQueryParameters = new CmHandleQueryServiceParameters()
+//            def conditionProperties = createConditionProperties('hasAllProperties', [['dmi-service-name': 'some-dmi']])
+//            cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
+//        and: 'x'
+//            cmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier('some-dmi', true) >> ['ch1'].asCollection()
+//            1 * mockInventoryPersistence.getYangModelCmHandles(['ch1']) >>
+//                    [new YangModelCmHandle(id: 'ch1', dmiServiceName: 'some-dmi')]
+//        when: 'the query is executed'
+//            def result = objectUnderTest.queryInventoryForCmHandles(cmHandleQueryParameters).collectList().block()
+//        then: 'the inventory service is called with the correct module names'
+//            result
+//    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }

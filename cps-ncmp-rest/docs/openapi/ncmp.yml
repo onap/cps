@@ -1,5 +1,5 @@
 #  ============LICENSE_START=======================================================
-#  Copyright (C) 2021-2024 OpenInfra Foundation Europe. All rights reserved.
+#  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 #  Modifications Copyright (C) 2021 Pantheon.tech
 #  Modifications Copyright (C) 2021-2022 Bell Canada
 #  ================================================================================
@@ -392,7 +392,7 @@ getCmHandlePropertiesById:
         content:
           application/json:
             schema:
-              $ref: 'components.yaml#/components/schemas/RestOutputCmHandlePublicProperties'
+              $ref: 'components.yaml#/components/schemas/RestOutputPublicCmHandleProperties'
       400:
         $ref: 'components.yaml#/components/responses/BadRequest'
       404:
