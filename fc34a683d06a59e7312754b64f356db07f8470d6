@@ -269,6 +269,30 @@
       },
       "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014ce7a3_d70d7632",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 36
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-27T12:00:59Z",
+      "side": 1,
+      "message": "The coverage did go down by 1% as in the build logs and I cross verified locally so reverted the patch",
+      "parentUuid": "d9803271_312d647a",
+      "range": {
+        "startLine": 283,
+        "startChar": 61,
+        "endLine": 283,
+        "endChar": 83
+      },
+      "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
