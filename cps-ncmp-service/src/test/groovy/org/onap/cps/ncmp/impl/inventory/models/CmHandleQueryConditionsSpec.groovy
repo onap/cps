@@ -26,11 +26,12 @@ import spock.lang.Specification
 class CmHandleQueryConditionsSpec extends Specification {
 
     def 'CmHandle query condition names.'() {
-        expect: '3 conditions with the correct names'
-            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.size() == 4
+        expect: '5 conditions with the correct names'
+            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.size() == 5
             assert CmHandleQueryConditions.ALL_CONDITION_NAMES.containsAll('hasAllProperties',
                                                                            'hasAllModules',
                                                                            'cmHandleWithCpsPath',
+                                                                           'cmHandleWithDmiPlugin',
                                                                             'cmHandleWithTrustLevel')
     }
 

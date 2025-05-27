@@ -56,7 +56,8 @@ services:
   cps-and-ncmp-template:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
     ### DEBUG: Uncomment next line to enable java debugging (ensure 'ports' aligns with 'deploy')
-    ### - ${CPS_CORE_DEBUG_PORT:-5005}:5005-
+    ### ports:
+    ### - ${CPS_CORE_DEBUG_PORT:-5005}:5005
     environment:
       DB_HOST: ${DB_HOST:-dbpostgresql}
       DB_USERNAME: ${DB_USERNAME:-cps}

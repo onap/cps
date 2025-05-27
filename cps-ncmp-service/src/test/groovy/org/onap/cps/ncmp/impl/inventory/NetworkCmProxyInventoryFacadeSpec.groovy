@@ -263,6 +263,24 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result[1].currentTrustLevel == TrustLevel.COMPLETE
     }
 
+    def 'Execute cm handle reference search by dmi service name'() {
+        given: 'a ConditionApiProperties object'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'hasAllProperties'
+            conditionApiProperties.conditionParameters = [ [ 'dmi-service-name' : 'some-value' ] ]
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+        and: 'the system returns a cm handle id'
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_)
+                    >> Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'cmHandle1', dmiServiceName: 'some-value')])
+        when: 'executing the search'
+            def result = objectUnderTest.queryInventoryForCmHandles(cmHandleQueryApiParameters).collectList().block()
+        then: 'the result returns the correct 2 elements'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'cmHandle1'
+            assert result[0].dmiServiceName == 'some-value'
+    }
+
     def 'Set Cm Handle Data Sync flag.'() {
         when: 'setting data sync enabled flag'
             objectUnderTest.setDataSyncEnabled('ch-1',true)
