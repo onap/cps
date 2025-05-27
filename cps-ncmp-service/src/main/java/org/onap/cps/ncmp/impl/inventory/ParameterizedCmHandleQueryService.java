@@ -71,4 +71,18 @@ public interface ParameterizedCmHandleQueryService {
      */
     Flux<NcmpServiceCmHandle> queryCmHandles(CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 
+
+    /**
+     * Query and return cm handles that match the given query parameters.
+     * Supported query types:
+     *      cps-path
+     *      public properties
+     *      private (additional) properties
+     *      dmi-names
+     *
+     * @param cmHandleQueryServiceParameters the cm handle query parameters
+     * @return cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> queryInventoryForCmHandles(
+                                                final CmHandleQueryServiceParameters cmHandleQueryServiceParameters);
 }

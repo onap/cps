@@ -246,6 +246,31 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             'both queries are null'                                      | null                    | null                    || null
     }
 
+    def 'Query CM handle details by DMI service name.'() {
+        given: 'query parameters with the cmHandleWithDmiPlugin condition'
+            def queryParams = new CmHandleQueryServiceParameters(
+                    cmHandleQueryParameters: [
+                            createConditionProperties('cmHandleWithDmiPlugin', [['some-key': 'some-value']])
+                    ]
+            )
+        and: 'the query service returns a matching cm handle id'
+            def expectedCmHandleId = 'cm-handle from query service'
+            partiallyMockedCmHandleQueries.getCmHandleReferencesByDmiPluginIdentifier(_, false) >> [expectedCmHandleId]
+        and: 'the inventory persistence returns the matching cm handle object'
+            mockInventoryPersistence.getYangModelCmHandles([expectedCmHandleId]) >> [
+                    new YangModelCmHandle(
+                            id: expectedCmHandleId,
+                            dmiProperties: [new YangModelCmHandle.Property('name', 'value')],
+                            publicProperties: []
+                    )
+            ]
+        when: 'the query is executed'
+            def result = objectUnderTestWithPartiallyMockedQueries.queryInventoryForCmHandles(queryParams).collectList().block()
+        then: 'the result contains the correct cm handle id'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'cm-handle from query service'
+    }
+
     def createConditionProperties(String conditionName, List<Map<String, String>> conditionParameters) {
         return new ConditionProperties(conditionName : conditionName, conditionParameters : conditionParameters)
     }
