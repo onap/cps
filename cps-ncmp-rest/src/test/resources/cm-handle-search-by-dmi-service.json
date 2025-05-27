@@ -1,0 +1,12 @@
+{
+  "cmHandleQueryParameters": [
+    {
+      "conditionName": "cmHandleWithDmiPlugin",
+      "conditionParameters": [
+        {
+          "dmi-service-name": "my dmi"
+        }
+      ]
+    }
+  ]
+}

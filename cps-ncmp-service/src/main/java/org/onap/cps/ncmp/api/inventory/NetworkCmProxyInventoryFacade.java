@@ -143,4 +143,12 @@ public interface NetworkCmProxyInventoryFacade {
      * @return cm handle state
      */
     CompositeState getCmHandleCompositeState(final String cmHandleReference);
+
+    /**
+     * Retrieve cm handles with details for the given query parameters.
+     *
+     * @param cmHandleQueryApiParameters cm handle query parameters
+     * @return cm handle objects as a reactive stream (flux)
+     */
+    Flux<NcmpServiceCmHandle> queryInventoryForCmHandles(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 }
