@@ -293,6 +293,30 @@
       },
       "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dc4716b_0e59c9ef",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 36
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-27T12:23:01Z",
+      "side": 1,
+      "message": "OK, my bad I forgot to include the word \u0027clean\u0027 when I ran a mvn test with coverage and now I see the branch INSIDE the condensed report method you need to cover...\n\nSorry about that....",
+      "parentUuid": "014ce7a3_d70d7632",
+      "range": {
+        "startLine": 283,
+        "startChar": 61,
+        "endLine": 283,
+        "endChar": 83
+      },
+      "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
