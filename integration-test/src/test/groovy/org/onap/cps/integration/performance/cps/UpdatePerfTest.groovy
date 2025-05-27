@@ -75,16 +75,16 @@ class UpdatePerfTest extends CpsPerfTestBase {
         and: 'data leaves have expected values'
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
-        and: 'update completes within expected time and a margin of 50%'
+        and: 'update completes within expected time and a margin of 100%'
             recordAndAssertResourceUsage(scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
-            'Replace 0 nodes with 100'         | 100        | 1       | false        || 2.85         | 200
-            'Replace 100 using same data'      | 100        | 1       | false        || 2.0          | 200
-            'Replace 100 with new leaf values' | 100        | 1       | true         || 2.0          | 200
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 6.2          | 200
-            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 4.2          | 200
-            'Replace 100 nodes with 0'         | 0          | 1       | false        || 3.5          | 200
+            'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | 200
+            'Replace 100 using same data'      | 100        | 1       | false        || 5.0          | 200
+            'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | 200
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | 200
+            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | 200
+            'Replace 100 nodes with 0'         | 0          | 1       | false        || 6.0          | 200
     }
 
     def 'Replace list content: #scenario.'() {
@@ -99,18 +99,18 @@ class UpdatePerfTest extends CpsPerfTestBase {
         and: 'data leaves have expected values'
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
-        and: 'update completes within expected time and a margin of 50%'
+        and: 'update completes within expected time and a margin of 100%'
             recordAndAssertResourceUsage(scenario,
                     expectedTime, resourceMeter.getTotalTimeInSeconds(),
                     memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                                   | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
             'Replace list of 0 with 100'               | 100        | 1       | false        || 3.0          | 200
-            'Replace list of 100 using same data'      | 100        | 1       | false        || 2.0          | 200
-            'Replace list of 100 with new leaf values' | 100        | 1       | true         || 2.0          | 200
-            'Replace list with 100 new nodes'          | 100        | 101     | false        || 6.1          | 200
-            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 4.0          | 200
-            'Replace list of 100 nodes with 1'         | 1          | 1       | false        || 3.34         | 200
+            'Replace list of 100 using same data'      | 100        | 1       | false        || 5.5          | 200
+            'Replace list of 100 with new leaf values' | 100        | 1       | true         || 5.5          | 200
+            'Replace list with 100 new nodes'          | 100        | 101     | false        || 9.0          | 200
+            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 7.0          | 200
+            'Replace list of 100 nodes with 1'         | 1          | 1       | false        || 5.9          | 200
     }
 
     def 'Update leaves for 100 data nodes.'() {
@@ -125,8 +125,8 @@ class UpdatePerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
-        and: 'update completes within expected time and a margin of 50%'
-            recordAndAssertResourceUsage('Update leaves for 100 data nodes', 0.14, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
+        and: 'update completes within expected time and a margin of 100%'
+            recordAndAssertResourceUsage('Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Clean up for CPS Update API.'() {

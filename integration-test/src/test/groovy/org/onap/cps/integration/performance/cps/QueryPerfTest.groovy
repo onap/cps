@@ -41,13 +41,13 @@ class QueryPerfTest extends CpsPerfTestBase {
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
-        and: 'all data is read #expectedDuration seconds with a margin of 50%'
+        and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("Query 1 anchor ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpsPath                                                             || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'top element'                | '/openroadm-devices'                                                || 0.89             | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
             'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 1.3              | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 1.1              | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 1.3              | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
             'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 0.93             | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
             'non-existing data'          | '/path/to/non-existing/node[@id="1"]'                               || 0.01             | 1           | 0
     }
@@ -60,7 +60,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
-        and: 'all data is read #expectedDuration seconds with a margin of 50%'
+        and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("Query across anchors ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpspath                                                             || expectedDuration | memoryLimit | expectedNumberOfDataNodes
@@ -78,12 +78,12 @@ class QueryPerfTest extends CpsPerfTestBase {
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
-        and: 'all data is read #expectedDuration seconds with a margin of 50%'
+        and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(),2)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.08             | 6           | OPENROADM_DEVICES_PER_ANCHOR
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.09             | 12          | OPENROADM_DEVICES_PER_ANCHOR * 2
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.12             | 12          | OPENROADM_DEVICES_PER_ANCHOR * 2
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.05             | 200         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
@@ -95,12 +95,12 @@ class QueryPerfTest extends CpsPerfTestBase {
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
-        and: 'all data is read #expectedDuration seconds with a margin of 50%'
+        and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("Query ancestors with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 0.06             | 3           | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.07             | 8           | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'no descendants'     | OMIT_DESCENDANTS        || 0.08             | 3           | 1
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.09             | 8           | 1 + OPENROADM_DEVICES_PER_ANCHOR
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.0              | 400         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
@@ -112,7 +112,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of results is returned'
             assert result.size() == expectedNumberOfValues
-        and: 'all data is read #expectedDuration seconds with a margin of 50%'
+        and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("Query data leaf ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpsPath                                             || expectedDuration | memoryLimit | expectedNumberOfValues

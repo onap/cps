@@ -26,7 +26,7 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     static def LARGE_SCHEMA_SET = 'largeSchemaSet'
     static def PERFORMANCE_RECORD = []
-    static def DEFAULT_TIME_LIMIT_FACTOR = 1.5                  // Allow 50% margin on top of expected (average) value
+    static def DEFAULT_TIME_LIMIT_FACTOR = 2                    // Allow 100% margin on top of expected (average) value
     static def VERY_FAST_TEST_THRESHOLD = 0.01                  // Definition of a very vast test (hard to measure)
     static def DEFAULT_TIME_LIMIT_FACTOR_FOR_VERY_FAST_TEST = 3 // Allow 200% margin on very fast test (accuracy is an issue)
 

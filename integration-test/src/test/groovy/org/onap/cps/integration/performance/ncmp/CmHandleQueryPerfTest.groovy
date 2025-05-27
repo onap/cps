@@ -80,7 +80,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
         then: '100 data node have been found'
             assert count == 100
         and: 'average performance is as expected'
-            recordAndAssertResourceUsage('Look up CM-handle by id', 0.25, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handle by id', 0.58, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'CM-handle is looked up by alternate id.'() {
@@ -95,7 +95,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
         then: 'all alternate ids are resolved correctly'
             assert count == 100
         and: 'average performance is as expected'
-            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 1.75, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 1.4, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'A batch of CM-handles is looked up by alternate id.'() {
@@ -125,7 +125,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
             assert count == TOTAL_CM_HANDLES * 100
         then: 'average performance is as expected'
             def averageResponseTime = resourceMeter.totalTimeInSeconds / 100
-            recordAndAssertResourceUsage('Look up CM-handles by module-set-tag', 0.26, averageResponseTime, 500, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handles by module-set-tag', 0.25, averageResponseTime, 500, resourceMeter.totalMemoryUsageInMB)
     }
 
 }

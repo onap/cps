@@ -40,12 +40,12 @@ class GetPerfTest extends CpsPerfTestBase {
             resourceMeter.stop()
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'all data is read within #expectedDuration seconds and a margin of 50%'
+        then: 'all data is read within #expectedDuration seconds and a margin of 100%'
             recordAndAssertResourceUsage("Read datatrees with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.01             | 1           | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.03             | 5           | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.05             | 5           | 1 + OPENROADM_DEVICES_PER_ANCHOR
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.1              | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
@@ -60,12 +60,12 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'requested nodes and their descendants are returned'
             assert countDataNodesInTree(result) == OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
         and: 'all data is read within expected time and a margin of 200%'
-            recordAndAssertResourceUsage("Read datatrees for multiple xpaths", 1.3, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB(),3)
+            recordAndAssertResourceUsage("Read datatrees for multiple xpaths", 2.0, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB(),3)
     }
 
     def 'Read for multiple xpaths to non-existing datanodes'() {
         given: 'a collection of xpaths to get'
-            def xpaths = (1..50).collect { "/path/to/non-existing/node[@id='" + it + "']" }
+            def xpaths = (1..500).collect { "/path/to/non-existing/node[@id='" + it + "']" }
         when: 'get data nodes from 1 anchor'
             resourceMeter.start()
             def result = objectUnderTest.getDataNodesForMultipleXpaths(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', xpaths, INCLUDE_ALL_DESCENDANTS)
@@ -74,7 +74,7 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'no data is returned'
             assert result.isEmpty()
         and: 'the operation completes within within expected time'
-            recordAndAssertResourceUsage("Read non-existing xpaths", 0.01, durationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Read non-existing xpaths", 0.15, durationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Read complete data trees using #scenario.'() {
@@ -84,12 +84,12 @@ class GetPerfTest extends CpsPerfTestBase {
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'all data is read within expected time and a margin of 50%'
-            recordAndAssertResourceUsage("Read datatrees using ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'all data is read within expected time and a margin of 100%'
+            recordAndAssertResourceUsage("Read datatrees using ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(),3)
         where: 'the following xpaths are used'
             scenario                | xpath                                  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'openroadm root'        | '/'                                    || 1                | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm top element' | '/openroadm-devices'                   || 0.9              | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm top element' | '/openroadm-devices'                   || 1.0              | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
             'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.06             | 250         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 

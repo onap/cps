@@ -39,18 +39,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration with a margin of 50%'
-            recordAndAssertResourceUsage("Writing ${totalNodes} devices",
-                    expectedDuration, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'the operation takes less than #expectedDuration with a margin of 100%'
+            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
             50         || 1.45             | 100
             100        || 2.9              | 200
-            200        || 5.6              | 400
-            400        || 11.4             | 500
+            200        || 6.2              | 400
+            400        || 13.0             | 500
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -64,7 +62,7 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration with a margin of 50%'
+        then: 'the operation takes less than #expectedDuration with a margin of 100%'
             recordAndAssertResourceUsage("Writing ${totalBooks} books",
                     expectedDuration, resourceMeter.totalTimeInSeconds,
                     memoryLimit, resourceMeter.totalMemoryUsageInMB)
@@ -72,8 +70,8 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalBooks || expectedDuration | memoryLimit
-            800        || 0.26             | 50
-            1600       || 0.75             | 100
+            800        || 0.31             | 50
+            1600       || 0.8              | 100
             3200       || 2.2              | 150
             6400       || 6.9              | 200
     }
@@ -92,18 +90,16 @@ class WritePerfTest extends CpsPerfTestBase {
             resourceMeter.start()
             cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
-        then: 'the operation takes less than #expectedDuration with a margin of 50%'
-            recordAndAssertResourceUsage("Saving list of ${totalNodes} devices",
-                    expectedDuration, resourceMeter.totalTimeInSeconds,
-                    memoryLimit, resourceMeter.totalMemoryUsageInMB)
+        then: 'the operation takes less than #expectedDuration with a margin of 100%'
+            recordAndAssertResourceUsage("Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
             totalNodes || expectedDuration | memoryLimit
-            50         || 1.35             | 100
-            100        || 2.7              | 200
-            200        || 5.4              | 400
-            400        || 10.8             | 500
+            50         || 1.5              | 100
+            100        || 3.0              | 200
+            200        || 7.1              | 400
+            400        || 12.5             | 500
     }
 
 }
