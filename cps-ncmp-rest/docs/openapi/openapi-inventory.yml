@@ -33,3 +33,6 @@ paths:
 
   /v1/ch/searches:
     $ref: 'ncmp-inventory.yml#/searchCmHandleIds'
+
+  /v1/ch/searchCmHandles:
+    $ref: 'ncmp-inventory.yml#/searchCmHandles'
