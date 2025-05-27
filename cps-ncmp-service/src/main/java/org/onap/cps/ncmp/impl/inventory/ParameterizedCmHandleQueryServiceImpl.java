@@ -86,6 +86,12 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return getNcmpServiceCmHandles(cmHandleIds);
     }
 
+    @Override
+    public Flux<NcmpServiceCmHandle> queryInventoryForCmHandles(final CmHandleQueryServiceParameters queryParameters) {
+        final Collection<String> cmHandleIds = queryCmHandleIdsForInventory(queryParameters, false);
+        return getNcmpServiceCmHandles(cmHandleIds);
+    }
+
     private Collection<String> queryCmHandlesByDmiPlugin(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
         final Map<String, String> dmiPropertyQueryPairs =
