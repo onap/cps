@@ -24,6 +24,7 @@
 package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ConditionProperties
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
@@ -261,6 +262,36 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'cm handles have trust level'
             assert result[0].currentTrustLevel == TrustLevel.COMPLETE
             assert result[1].currentTrustLevel == TrustLevel.COMPLETE
+    }
+
+    def 'Execute cm handle reference search with a valid condition name'() {
+        given: 'a ConditionApiProperties object'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'hasAllProperties'
+            conditionApiProperties.conditionParameters = [ [ 'some key' : 'some value' ] ]
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+        and: 'the system returns a cm handle id'
+            mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_)
+                    >> Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'cm handle from the query service')])
+        when: 'executing the search'
+            def result = objectUnderTest.queryInventoryForCmHandles(cmHandleQueryApiParameters).collectList().block()
+        then: 'the result returns the cm handle from the query service'
+            assert result.size() == 1
+            assert result[0].cmHandleId == 'cm handle from the query service'
+    }
+
+    def 'Execute cm handle reference search with an invalid condition name'() {
+        given: 'a ConditionApiProperties object with an invalid condition name'
+            def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
+            def conditionApiProperties = new ConditionApiProperties()
+            conditionApiProperties.conditionName = 'invalid condition name'
+            cmHandleQueryApiParameters.cmHandleQueryParameters = [conditionApiProperties]
+        when: 'executing the search'
+            objectUnderTest.queryInventoryForCmHandles(cmHandleQueryApiParameters).collectList().block()
+        then: 'a data validation exception will be thrown'
+            DataValidationException dataValidationException = thrown()
+            assert dataValidationException.message == 'Invalid Query Parameter.'
     }
 
     def 'Set Cm Handle Data Sync flag.'() {

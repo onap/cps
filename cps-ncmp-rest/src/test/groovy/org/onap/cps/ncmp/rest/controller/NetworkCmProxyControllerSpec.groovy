@@ -43,12 +43,14 @@ import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.spockframework.spring.SpringBean
@@ -111,6 +113,9 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     @SpringBean
     DataOperationRequestMapper dataOperationRequestMapper = Mappers.getMapper(DataOperationRequestMapper)
+
+    @SpringBean
+    RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @SpringBean
     DeprecationHelper stubbedDeprecationHelper = Stub()
@@ -261,53 +266,46 @@ class NetworkCmProxyControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
     }
 
-    def 'Retrieve cm handles.'() {
-        given: 'an endpoint and json data'
+    def 'Execute cm handle search.'() {
+        given: 'the search endpoint and search post request'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('cmhandle-search.json')
-        and: 'the service method is invoked with module names and returns two cm handles'
-            def cmHandle1 = new NcmpServiceCmHandle()
-            cmHandle1.cmHandleId = 'ch-1'
-            cmHandle1.publicProperties = [color: 'yellow']
-            cmHandle1.currentTrustLevel = TrustLevel.NONE
-            def cmHandle2 = new NcmpServiceCmHandle()
-            cmHandle2.cmHandleId = 'ch-2'
-            cmHandle2.publicProperties = [color: 'green']
-            cmHandle2.alternateId = 'someAlternateId'
-            cmHandle2.moduleSetTag = 'someModuleSetTag'
-            cmHandle2.dataProducerIdentifier = 'someDataProducerIdentifier'
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([cmHandle1, cmHandle2])
+        and: 'the inventory facade returns two cm handles'
+            def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
+            def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
+            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([ncmpServiceCmHandle1, ncmpServiceCmHandle2])
+        and: 'the mapper is requested to convert the object without private properties for ch-1'
+            def restOutputCmHandle1 = new RestOutputCmHandle(cmHandle: 'rest ch-1')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle1, false) >> restOutputCmHandle1
+        and: 'the mapper is requested to convert the object without private properties for ch-2'
+            def restOutputCmHandle2 = new RestOutputCmHandle(cmHandle: 'rest ch-2')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle2, false) >> restOutputCmHandle2
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
         then: 'response status returns OK'
             assert response.status == HttpStatus.OK.value()
-        and: 'the expected response content is returned'
-            assert response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":null,"moduleSetTag":"someModuleSetTag","alternateId":"someAlternateId","dataProducerIdentifier":"someDataProducerIdentifier"}]'
+        and: 'the response contains the rest version of both cm handles'
+            assert response.contentAsString.contains('rest ch-1')
+            assert response.contentAsString.contains('rest ch-2')
     }
+
 
     def 'Get complete Cm Handle details by Cm Handle Reference.'() {
         given: 'an endpoint and a cm handle reference'
-            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference"
+            def cmHandleDetailsEndpoint = "$ncmpBasePathV1/ch/cm handle id in request"
         and: 'an existing ncmp service cm handle'
-            def cmHandleId = 'some-cm-handle'
-            def alternateId = 'some-alternate-id'
-            def dmiProperties = [prop: 'some DMI property']
-            def publicProperties = ["public prop": 'some public property']
-            def compositeState = compositeStateTestObject()
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, alternateId: alternateId, dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState, currentTrustLevel: TrustLevel.COMPLETE)
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
         and: 'the service method is invoked with the cm handle reference'
-            1 * mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('some-cm-handle-reference') >> ncmpServiceCmHandle
+            mockNetworkCmProxyInventoryFacade.getNcmpServiceCmHandle('cm handle id in request') >> ncmpServiceCmHandle
+        and: 'the mapper is requested to convert the object without private properties'
+            def restOutputCmHandle = new RestOutputCmHandle(cmHandle: 'rest version of the cm handle')
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle, false) >> restOutputCmHandle
         when: 'the cm handle details api is invoked'
-            def response = mvc.perform(
-                    get(cmHandleDetailsEndpoint)).andReturn().response
+            def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
         then: 'the correct response is returned'
             response.status == HttpStatus.OK.value()
-        and: 'the response contains the public properties'
-            assertContainsPublicProperties(response)
-        and: 'the response contains the cm handle state'
-            assertContainsState(response)
-        and: 'the content does not contain dmi properties'
-            assert !response.contentAsString.contains("some DMI property")
+        and: 'the response contains the rest version of the cm handle'
+            assert response.contentAsString.contains('rest version of the cm handle')
     }
 
     def 'Get Cm Handle public properties by Cm Handle Reference.'() {
@@ -341,23 +339,14 @@ class NetworkCmProxyControllerSpec extends Specification {
     }
 
     def 'Call execute cm handle searches with unrecognized condition name.'() {
-        given: 'an endpoint and json data'
+        given: 'the search endpoint and a request with an unrecognized condition name'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
             String jsonString = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
-        and: 'the service method is invoked with module names and returns two cm handles'
-            def cmHandle1 = new NcmpServiceCmHandle()
-            cmHandle1.cmHandleId = 'ch-1'
-            cmHandle1.publicProperties = [color: 'yellow']
-            cmHandle1.currentTrustLevel = TrustLevel.COMPLETE
-            def cmHandle2 = new NcmpServiceCmHandle()
-            cmHandle2.cmHandleId = 'ch-2'
-            cmHandle2.publicProperties = [color: 'green']
-            cmHandle2.currentTrustLevel = TrustLevel.NONE
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([cmHandle1, cmHandle2])
         when: 'the searches api is invoked'
-            def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
-        then: 'an empty cm handle identifier is returned'
-            assert response.contentAsString == '[{"cmHandle":"ch-1","publicCmHandleProperties":[{"color":"yellow"}],"state":null,"trustLevel":"COMPLETE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null},{"cmHandle":"ch-2","publicCmHandleProperties":[{"color":"green"}],"state":null,"trustLevel":"NONE","moduleSetTag":null,"alternateId":null,"dataProducerIdentifier":null}]'
+            mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString))
+        then: 'the request was still accepted and forwarded to the correct services'
+            1 * mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([new NcmpServiceCmHandle()])
+            1 * mockRestOutputCmHandleMapper.toRestOutputCmHandle(_, _) >> new RestOutputCmHandle(cmHandle: 'some cm handle')
     }
 
     def 'Query for cm handles matching query parameters'() {
