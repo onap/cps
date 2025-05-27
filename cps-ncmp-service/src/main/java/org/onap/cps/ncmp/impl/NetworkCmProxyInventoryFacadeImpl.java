@@ -128,6 +128,15 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
+    public Flux<NcmpServiceCmHandle> queryInventoryForCmHandles(
+            final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
+                jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
+        return parameterizedCmHandleQueryService.queryInventoryForCmHandles(cmHandleQueryServiceParameters);
+    }
+
+    @Override
     public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
                                                       final boolean outputAlternateId) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(

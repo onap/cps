@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
@@ -32,7 +33,10 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle
+import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -42,6 +46,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import reactor.core.publisher.Flux
 import spock.lang.Specification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -59,6 +64,12 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     @SpringBean
     NcmpRestInputMapper ncmpRestInputMapper = Mock()
+
+    @SpringBean
+    RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    DeprecationHelper deprecationHelper = Mock()
 
     DmiPluginRegistration mockDmiPluginRegistration = Mock()
 
@@ -252,9 +263,24 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             assert response.contentAsString.contains(firstReference)
             assert response.contentAsString.contains(secondReference)
         where:
-            scenario                | outputAlternateId         || firstReference    | secondReference
+            scenario                        | outputAlternateId         || firstReference    | secondReference
             'output returns cm handle ids'  | ''                        ||  'cm-handle-id-1' | 'cm-handle-id-2'
             'output returns alternate ids'  | '&outputAlternateId=true' ||  'alternate-id-1' | 'alternate-id-2'
+    }
+
+    def 'Get a cm handle by dmi service name.'() {
+        given: 'an endpoint for returning cm handles by dmi service name'
+            def postUrl = "$ncmpBasePathV1/ch/searchCmHandles?includePrivateProperties=true"
+            String jsonString = TestUtils.getResourceFileContent('cm-handle-search-by-dmi-service.json')
+        and: 'a cm handle is returned'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(dmiProperties: ['someName': 'my dmi'])
+            mockNetworkCmProxyInventoryFacade.queryInventoryForCmHandles(_) >> Flux.fromIterable([ncmpServiceCmHandle])
+        and: 'the mapper is requested to convert the object with private properties'
+            mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle, true) >> new RestOutputCmHandle()
+        when: 'the endpoint is invoked'
+            def response = mvc.perform(post(postUrl).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
+        then: 'a response status is OK'
+            assert response.status == 200
     }
 
     def expectedUnknownErrorResponse(cmHandle) {

@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.inventory.NetworkCmProxyInventoryFacade;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse.Status;
@@ -37,8 +38,11 @@ import org.onap.cps.ncmp.rest.model.CmHandleQueryParameters;
 import org.onap.cps.ncmp.rest.model.CmHandlerRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.DmiPluginRegistrationErrorResponse;
 import org.onap.cps.ncmp.rest.model.RestDmiPluginRegistration;
+import org.onap.cps.ncmp.rest.model.RestOutputCmHandle;
 import org.onap.cps.ncmp.rest.util.CountCmHandleSearchExecution;
+import org.onap.cps.ncmp.rest.util.DeprecationHelper;
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper;
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +55,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
 
     private final NetworkCmProxyInventoryFacade networkCmProxyInventoryFacade;
     private final NcmpRestInputMapper ncmpRestInputMapper;
+    private final DeprecationHelper deprecationHelper;
+    private final RestOutputCmHandleMapper restOutputCmHandleMapper;
 
     /**
      * Get all cm handle references under a registered DMI plugin.
@@ -71,6 +77,29 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
                 .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
+    }
+
+    /**
+     * Execute cm handle query search and return a list of cm handle details. Any number of conditions can be applied.
+     *
+     * @param cmHandleQueryParameters the cm handle query parameters
+     * @param includePrivateProperties boolean value to determine the inclusion of private properties
+     * @return collection of cm handles
+     */
+    @Override
+    public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
+            final CmHandleQueryParameters cmHandleQueryParameters,
+            final Boolean includePrivateProperties) {
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters =
+                deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
+        final boolean includePrivatePropertiesParameter =
+                includePrivateProperties != null && includePrivateProperties;
+        final List<RestOutputCmHandle> restOutputCmHandles =
+                networkCmProxyInventoryFacade.queryInventoryForCmHandles(cmHandleQueryApiParameters)
+                        .map(handle -> restOutputCmHandleMapper
+                                .toRestOutputCmHandle(handle, includePrivatePropertiesParameter))
+                        .collectList().block();
+        return ResponseEntity.ok(restOutputCmHandles);
     }
 
     /**
