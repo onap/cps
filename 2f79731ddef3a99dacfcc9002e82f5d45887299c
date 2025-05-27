@@ -80,6 +80,30 @@
       },
       "revId": "2f79731ddef3a99dacfcc9002e82f5d45887299c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "537e3813_87920fa5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 37
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-27T12:05:26Z",
+      "side": 1,
+      "message": "yeah. same happening for me. let me check with Toine on this.",
+      "parentUuid": "f5d0637c_fa912f4b",
+      "range": {
+        "startLine": 283,
+        "startChar": 4,
+        "endLine": 294,
+        "endChar": 5
+      },
+      "revId": "2f79731ddef3a99dacfcc9002e82f5d45887299c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
