@@ -44,6 +44,7 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -104,6 +105,9 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     DataJobControllerForTest stubbedDataJobControllerForTest = Stub()
+
+    @SpringBean
+    RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
