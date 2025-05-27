@@ -221,6 +221,30 @@
       },
       "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a70cf79_9529eca3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 36
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-27T10:59:33Z",
+      "side": 1,
+      "message": "NB: I understand, but grouping WITH data is a different but there is NO special branching for handling identical outcome. I ran the coverage report without this test and it is stil 100% covered on Delta Impl so no need to add this!",
+      "parentUuid": "0d360c80_4469b1a1",
+      "range": {
+        "startLine": 283,
+        "startChar": 61,
+        "endLine": 283,
+        "endChar": 83
+      },
+      "revId": "fc34a683d06a59e7312754b64f356db07f8470d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
