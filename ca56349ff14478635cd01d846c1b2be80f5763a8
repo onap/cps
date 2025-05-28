@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf11e5d_caddbaba",
+        "filename": "k6-tests/ncmp/common/cmhandle-crud.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "513a7520_fdbbe4e6",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00707943_9b18bc0b",
@@ -175,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "686225f7_cde06ecb",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8df11124_c1cfb27f",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 3
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28e679c0_5b1601e8",
@@ -188,6 +236,30 @@
       "writtenOn": "2025-05-21T15:38:02Z",
       "side": 1,
       "message": "NB: I would extract it into a meaningfull constant like TOTAL_CM_HANDLES",
+      "range": {
+        "startLine": 214,
+        "startChar": 112,
+        "endLine": 214,
+        "endChar": 113
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adc7c466_bd7695ad",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "EXPECTED_WRITE_RESPONSE_COUNT",
+      "parentUuid": "28e679c0_5b1601e8",
       "range": {
         "startLine": 214,
         "startChar": 112,
@@ -221,6 +293,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "229f5922_1de8db15",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6089104_2ce269b2",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 3
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3400726_39f8d190",
@@ -234,6 +330,30 @@
       "writtenOn": "2025-05-21T15:38:02Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 225,
+        "startChar": 111,
+        "endLine": 225,
+        "endChar": 112
+      },
+      "revId": "ca56349ff14478635cd01d846c1b2be80f5763a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20deb7bc_c6a00aca",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "EXPECTED_WRITE_RESPONSE_COUNT",
+      "parentUuid": "c3400726_39f8d190",
       "range": {
         "startLine": 225,
         "startChar": 111,

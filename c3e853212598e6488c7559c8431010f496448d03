@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "195f8d73_1ad89aac",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "32090cd6_873ab740",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 103
+      },
+      "revId": "c3e853212598e6488c7559c8431010f496448d03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30ec3d13_7dcd089f",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-05-15T15:55:34Z",
       "side": 1,
       "message": "NB: might lead to excessive logging?!",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 93
+      },
+      "revId": "c3e853212598e6488c7559c8431010f496448d03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7523fe36_be5cdaf0",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T14:27:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30ec3d13_7dcd089f",
       "range": {
         "startLine": 34,
         "startChar": 4,
