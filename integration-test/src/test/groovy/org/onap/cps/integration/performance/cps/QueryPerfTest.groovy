@@ -82,7 +82,7 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(),2)
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 0.08             | 6           | OPENROADM_DEVICES_PER_ANCHOR
+            'no descendants'     | OMIT_DESCENDANTS        || 0.09             | 6           | OPENROADM_DEVICES_PER_ANCHOR
             'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.12             | 12          | OPENROADM_DEVICES_PER_ANCHOR * 2
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.05             | 200         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }

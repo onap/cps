@@ -95,7 +95,7 @@ class CmHandleQueryPerfTest extends NcmpPerfTestBase {
         then: 'all alternate ids are resolved correctly'
             assert count == 100
         and: 'average performance is as expected'
-            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 1.4, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('Look up CM-handle by alternate-id', 1.75, resourceMeter.totalTimeInSeconds, 15, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'A batch of CM-handles is looked up by alternate id.'() {

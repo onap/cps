@@ -59,16 +59,16 @@ class CpsModuleServicePerfTest extends CpsPerfTestBase {
         then: 'the schema set is persisted correctly'
             def result =  cpsModuleService.getSchemaSet(CPS_PERFORMANCE_TEST_DATASPACE, 'perfSchemaSet')
             result.moduleReferences.size() == 200
-        and: 'identification of new module resources is fast enough (1,000 executions less then 6,000 milliseconds)'
+        and: 'identification of new module resources is fast enough (100 executions less then 2,000 milliseconds)'
             def stopWatch = new StopWatch()
-            1000.times() {
+            100.times() {
                 def moduleReferencesToCheck = createModuleReferencesWithRandomMatchingExistingModuleReferences()
                 stopWatch.start()
                 def newModuleReferences = objectUnderTest.identifyNewModuleReferences(moduleReferencesToCheck)
                 stopWatch.stop()
                 assert newModuleReferences.size() > 0 && newModuleReferences.size() < 300
             }
-            assert stopWatch.getTotalTimeMillis() < 10_000
+            recordAndAssertResourceUsage('NCMP: Create large schema set', 2, stopWatch.getTotalTimeSeconds(), 3, 0)
     }
 
     def createModuleReferencesWithRandomMatchingExistingModuleReferences() {

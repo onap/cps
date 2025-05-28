@@ -45,7 +45,7 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.01             | 1           | 1
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.05             | 5           | 1 + OPENROADM_DEVICES_PER_ANCHOR
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.045            | 5           | 1 + OPENROADM_DEVICES_PER_ANCHOR
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.1              | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
@@ -74,7 +74,7 @@ class GetPerfTest extends CpsPerfTestBase {
         then: 'no data is returned'
             assert result.isEmpty()
         and: 'the operation completes within within expected time'
-            recordAndAssertResourceUsage("Read non-existing xpaths", 0.15, durationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("Read non-existing xpaths", 0.06, durationInSeconds, 2, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Read complete data trees using #scenario.'() {
@@ -89,7 +89,7 @@ class GetPerfTest extends CpsPerfTestBase {
         where: 'the following xpaths are used'
             scenario                | xpath                                  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'openroadm root'        | '/'                                    || 1                | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
-            'openroadm top element' | '/openroadm-devices'                   || 1.0              | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'openroadm top element' | '/openroadm-devices'                   || 0.95             | 250         | 1 + OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
             'openroadm whole list'  | '/openroadm-devices/openroadm-device'  || 1.06             | 250         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 

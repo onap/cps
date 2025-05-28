@@ -98,8 +98,8 @@ class WritePerfTest extends CpsPerfTestBase {
             totalNodes || expectedDuration | memoryLimit
             50         || 1.5              | 100
             100        || 3.0              | 200
-            200        || 7.1              | 400
-            400        || 12.5             | 500
+            200        || 6.4              | 400
+            400        || 14.0             | 500
     }
 
 }

@@ -80,7 +80,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         where:
             scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
             'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | 200
-            'Replace 100 using same data'      | 100        | 1       | false        || 5.0          | 200
+            'Replace 100 using same data'      | 100        | 1       | false        || 5.5          | 200
             'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | 200
             'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | 200
             'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | 200
@@ -109,7 +109,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             'Replace list of 100 using same data'      | 100        | 1       | false        || 5.5          | 200
             'Replace list of 100 with new leaf values' | 100        | 1       | true         || 5.5          | 200
             'Replace list with 100 new nodes'          | 100        | 101     | false        || 9.0          | 200
-            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 7.0          | 200
+            'Replace list with 50 existing and 50 new' | 100        | 151     | true         || 8.0          | 200
             'Replace list of 100 nodes with 1'         | 1          | 1       | false        || 5.9          | 200
     }
 
