@@ -35,6 +35,15 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-2566 <https://lf-onap.atlassian.net/browse/CPS-2566>`_ Fix Inconsistency With JSON Response(List Items) Using GetANode API.
+    - `CPS-2600 <https://lf-onap.atlassian.net/browse/CPS-2600>`_ Remove Basic Authentication References.
+    - `CPS-2657 <https://lf-onap.atlassian.net/browse/CPS-2657>`_ Enhance the Multipart Delta API to support JSON file.
+    - `CPS-2709 <https://lf-onap.atlassian.net/browse/CPS-2709>`_ Scrape all metrics and add them to cps documentation.
+    - `CPS-2769 <https://lf-onap.atlassian.net/browse/CPS-2769>`_ Fix legacy batch response with not found CM-handle.
+    - `CPS-2819 <https://lf-onap.atlassian.net/browse/CPS-2819>`_ Added JettyConfig with support for ambiguous path separators.
+
 Version: 3.6.2
 ==============
 
