@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a6c8cc6_6f55c4e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T11:43:13Z",
+      "side": 1,
+      "message": "Few minor comments else all looks good.",
+      "revId": "59bcdd159e493ea60281fc1f420ff30d65877ca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e94ba3_1cdfa37b",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2253,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T11:43:13Z",
+      "side": 1,
+      "message": "NB: Boolean flag to enable or disable data node grouping. When enabled, it produces a condensed delta report.",
+      "range": {
+        "startLine": 2252,
+        "startChar": 21,
+        "endLine": 2253,
+        "endChar": 48
+      },
+      "revId": "59bcdd159e493ea60281fc1f420ff30d65877ca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7366ad_3d8b78cf",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2337,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T11:43:13Z",
+      "side": 1,
+      "message": "NB: Boolean flag to enable or disable data node grouping. When enabled, it produces a condensed delta report.",
+      "range": {
+        "startLine": 2336,
+        "startChar": 21,
+        "endLine": 2337,
+        "endChar": 48
+      },
+      "revId": "59bcdd159e493ea60281fc1f420ff30d65877ca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab35ea6_5ad4e55b",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3165,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-05-28T11:43:13Z",
+      "side": 1,
+      "message": "NB: Boolean flag to enable or disable data node grouping. When enabled, it produces a condensed delta report.",
+      "range": {
+        "startLine": 3164,
+        "startChar": 19,
+        "endLine": 3165,
+        "endChar": 46
+      },
+      "revId": "59bcdd159e493ea60281fc1f420ff30d65877ca8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
