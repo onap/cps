@@ -76,15 +76,15 @@ class UpdatePerfTest extends CpsPerfTestBase {
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage(scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:${scenario}", scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
         where:
-            scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
-            'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | 200
-            'Replace 100 using same data'      | 100        | 1       | false        || 5.5          | 200
-            'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | 200
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | 200
-            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | 200
-            'Replace 100 nodes with 0'         | 0          | 1       | false        || 6.0          | 200
+            scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit | referenceGraph
+            'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | 200         | false
+            'Replace 100 using same data'      | 100        | 1       | false        || 5.5          | 200         | false
+            'Replace 100 with new leaf values' | 100        | 1       | true         || 5.4          | 200         | false
+            'Replace 100 with 100 new nodes'   | 100        | 101     | false        || 9.3          | 200         | true
+            'Replace 50 existing and 50 new'   | 100        | 151     | true         || 7.3          | 200         | false
+            'Replace 100 nodes with 0'         | 0          | 1       | false        || 6.0          | 200         | false
     }
 
     def 'Replace list content: #scenario.'() {
@@ -100,9 +100,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage(scenario,
-                    expectedTime, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:${scenario}", scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where:
             scenario                                   | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
             'Replace list of 0 with 100'               | 100        | 1       | false        || 3.0          | 200
@@ -126,7 +124,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage('Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Update leaves for 100 data nodes', 'Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Clean up for CPS Update API.'() {

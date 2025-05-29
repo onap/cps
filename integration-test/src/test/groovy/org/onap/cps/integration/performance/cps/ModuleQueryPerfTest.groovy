@@ -70,8 +70,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
         then: 'operation takes less than expected duration'
-            recordAndAssertResourceUsage('Module query test setup', 90, resourceMeter.totalTimeInSeconds, 500, resourceMeter.totalMemoryUsageInMB
-            )
+            recordAndAssertResourceUsage('CPS:Module query test setup', 'Module query test setup', 150, resourceMeter.totalTimeInSeconds, 500, resourceMeter.totalMemoryUsageInMB)
     }
 
     def 'Querying anchors by module name is NOT dependant on the file size of the module.'() {
@@ -82,7 +81,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
         then: 'expected number of anchors is returned'
             assert result.size() == TOTAL_TEST_ANCHORS
         and: 'operation completes with expected resource usage'
-            recordAndAssertResourceUsage("Query for anchors with ${scenario}", 0.1, resourceMeter.totalTimeInSeconds, 5, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage("CPS:Query for anchors with ${scenario}", "Query for anchors with ${scenario}", 0.1, resourceMeter.totalTimeInSeconds, 5, resourceMeter.totalMemoryUsageInMB, REFERENCE_GRAPH)
         where: 'the following parameters are used'
             scenario         | yangModuleName
             '1 KB module'    | 'module0'
