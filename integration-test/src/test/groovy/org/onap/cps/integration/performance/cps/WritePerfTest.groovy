@@ -40,7 +40,7 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:', "Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), false)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
@@ -63,9 +63,9 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Writing ${totalBooks} books",
-                    expectedDuration, resourceMeter.totalTimeInSeconds,
-                    memoryLimit, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('CPS:', "Writing ${totalBooks} books",
+                expectedDuration, resourceMeter.totalTimeInSeconds,
+                memoryLimit, resourceMeter.totalMemoryUsageInMB, false)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
@@ -91,7 +91,7 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('CPS:', "Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB, false)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:

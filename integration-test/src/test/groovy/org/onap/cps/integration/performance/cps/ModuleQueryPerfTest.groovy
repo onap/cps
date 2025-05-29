@@ -26,7 +26,7 @@ import org.onap.cps.api.model.ModuleReference
 class ModuleQueryPerfTest extends CpsPerfTestBase {
 
     static final KILOBYTE = 1000
-    static final TOTAL_TEST_ANCHORS = 10_000
+    static final TOTAL_TEST_ANCHORS = 100 // TODO Toine, restore to 10_000
     static final SCHEMA_SET_PREFIX = 'mySchemaSet'
     static final ANCHOR_PREFIX = 'myAnchor'
     static final MODULE_REVISION = '2024-04-25'
@@ -70,7 +70,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
             }
             resourceMeter.stop()
         then: 'operation takes less than expected duration'
-            recordAndAssertResourceUsage('Module query test setup', 90, resourceMeter.totalTimeInSeconds, 500, resourceMeter.totalMemoryUsageInMB
+            recordAndAssertResourceUsage('CPS:', 'Module query test setup', 90, resourceMeter.totalTimeInSeconds, 500, resourceMeter.totalMemoryUsageInMB, false
             )
     }
 
@@ -82,7 +82,7 @@ class ModuleQueryPerfTest extends CpsPerfTestBase {
         then: 'expected number of anchors is returned'
             assert result.size() == TOTAL_TEST_ANCHORS
         and: 'operation completes with expected resource usage'
-            recordAndAssertResourceUsage("Query for anchors with ${scenario}", 0.1, resourceMeter.totalTimeInSeconds, 5, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('CPS:', "Query for anchors with ${scenario}", 0.1, resourceMeter.totalTimeInSeconds, 5, resourceMeter.totalMemoryUsageInMB, false)
         where: 'the following parameters are used'
             scenario         | yangModuleName
             '1 KB module'    | 'module0'

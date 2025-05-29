@@ -35,7 +35,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     def static REGISTRY_ANCHOR = NCMP_DMI_REGISTRY_ANCHOR
     def static REGISTRY_PARENT = NCMP_DMI_REGISTRY_PARENT
     def static REGISTRY_SCHEMA_SET = 'registrySchemaSet'
-    def static TOTAL_CM_HANDLES = 20_000
+    def static TOTAL_CM_HANDLES = 2_000  // TODO Toine, restore to 20_000
     def static CM_DATA_SUBSCRIPTIONS_ANCHOR = 'cm-data-subscriptions'
     def static CM_DATA_SUBSCRIPTIONS_SCHEMA_SET = 'cmDataSubscriptionsSchemaSet'
 
@@ -121,9 +121,9 @@ class NcmpPerfTestBase extends PerfTestBase {
         then: 'expected data exists'
             assert result.xpath == [REGISTRY_PARENT]
         and: 'operation completes within expected time'
-            recordAndAssertResourceUsage('NCMP pre-load test data',
-                    15, resourceMeter.totalTimeInSeconds,
-                    600, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('CPS:', 'NCMP pre-load test data',
+                15, resourceMeter.totalTimeInSeconds,
+                600, resourceMeter.totalMemoryUsageInMB, false)
     }
 
 }

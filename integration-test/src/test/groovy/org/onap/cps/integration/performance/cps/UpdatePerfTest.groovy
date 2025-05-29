@@ -76,7 +76,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage(scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:', scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), false)
         where:
             scenario                           | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
             'Replace 0 nodes with 100'         | 100        | 1       | false        || 3.0          | 200
@@ -100,9 +100,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
             assert totalNodes == countDataNodes(changeLeaves? '/openroadm-devices/openroadm-device[@status="fail"]'
                                                             : '/openroadm-devices/openroadm-device[@status="success"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage(scenario,
-                    expectedTime, resourceMeter.getTotalTimeInSeconds(),
-                    memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:', scenario, expectedTime, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), false)
         where:
             scenario                                   | totalNodes | startId | changeLeaves || expectedTime | memoryLimit
             'Replace list of 0 with 100'               | 100        | 1       | false        || 3.0          | 200
@@ -126,7 +124,7 @@ class UpdatePerfTest extends CpsPerfTestBase {
         then: 'data leaves have expected values'
             assert 100 == countDataNodes('/openroadm-devices/openroadm-device[@status="fail"]')
         and: 'update completes within expected time and a margin of 100%'
-            recordAndAssertResourceUsage('Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:', 'Update leaves for 100 data nodes', 0.22, resourceMeter.getTotalTimeInSeconds(), 120, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def 'Clean up for CPS Update API.'() {

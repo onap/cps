@@ -68,7 +68,7 @@ class CpsModuleServicePerfTest extends CpsPerfTestBase {
                 stopWatch.stop()
                 assert newModuleReferences.size() > 0 && newModuleReferences.size() < 300
             }
-            recordAndAssertResourceUsage('NCMP: Create large schema set', 2, stopWatch.getTotalTimeSeconds(), 3, 0)
+            recordAndAssertResourceUsage('CPS:', 'NCMP: Create large schema set', 2, stopWatch.getTotalTimeSeconds(), 3, 0, false)
     }
 
     def createModuleReferencesWithRandomMatchingExistingModuleReferences() {
