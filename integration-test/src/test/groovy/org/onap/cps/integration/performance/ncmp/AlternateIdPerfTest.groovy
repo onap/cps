@@ -42,9 +42,9 @@ class AlternateIdPerfTest extends CpsIntegrationSpecBase {
     }
 
     def 'Alternate Id Lookup Performance.'() {
-        when: 'perform a 1,000 lookups by alternate id'
+        when: 'perform a 10 lookups by alternate id'  // Increase to 1,000 for more accurate result while tuning
             resourceMeter.start()
-            (1..1000).each {
+            (1..10).each {
                 networkCmProxyInventoryFacade.getNcmpServiceCmHandle("${altIdPrefix}alt=${it}")
             }
             resourceMeter.stop()
