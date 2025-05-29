@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be89a96f_6c3cab59",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "why is this now a list of maps?!",
+      "range": {
+        "startLine": 319,
+        "startChar": 14,
+        "endLine": 319,
+        "endChar": 39
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d71926_0ec2d782",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "Update Java doc. is support several queries. Maybe best to refer to the RTD for full details",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 39
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb78d334_7487c9b1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "so this IS needed  to handle null, correct?",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 77
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2d9722_e7751723",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "NB: number not need if only 1 instance involved in the test",
+      "range": {
+        "startLine": 297,
+        "startChar": 35,
+        "endLine": 297,
+        "endChar": 36
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd5eca6d_63e6e21e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "wrong description, this test has nothing to do with including of private properties or not... (and it shouldn\u0027t)",
+      "range": {
+        "startLine": 282,
+        "startChar": 37,
+        "endLine": 282,
+        "endChar": 57
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251090e9_e826c43e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapperSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "\u0027private property key\u0027",
+      "range": {
+        "startLine": 57,
+        "startChar": 76,
+        "endLine": 57,
+        "endChar": 81
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "946e1b3f_422b4cff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "does this have to be a valid condition name?!\nif yes (diff code path in eth method being tested) you should aslo include a test with an invalid one.\nIf no, change to \u0027some condition\u0027",
+      "range": {
+        "startLine": 270,
+        "startChar": 52,
+        "endLine": 270,
+        "endChar": 68
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fed0778_5e0f00ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "incorrect and misleading\nI think someKey:\u0027some Value\u0027 wil suffice",
+      "range": {
+        "startLine": 271,
+        "startChar": 61,
+        "endLine": 271,
+        "endChar": 94
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da0abda_4a16c424",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "as per our previous discussion before (as applied to another test) a more meaningful name to show the behavior might be \u0027cm handle form query service\u0027 and assert exact that on line #280",
+      "range": {
+        "startLine": 275,
+        "startChar": 79,
+        "endLine": 275,
+        "endChar": 89
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2cfc54f_3214bdb6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "probably dont need this at all, no need to assert because it is just mocking behavior you are verifying them...",
+      "range": {
+        "startLine": 275,
+        "startChar": 91,
+        "endLine": 275,
+        "endChar": 119
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9901c681_ccbd8415",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "cm handle from the query service",
+      "range": {
+        "startLine": 278,
+        "startChar": 38,
+        "endLine": 278,
+        "endChar": 56
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da7cb103_2d70a3b0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "this is only verify what you mocked, so not needed really",
+      "range": {
+        "startLine": 281,
+        "startChar": 2,
+        "endLine": 281,
+        "endChar": 59
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d10fd4_eca5f212",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "not suer if you really need these. is the code you are testing doing anything with these ie do code paths change?!",
+      "range": {
+        "startLine": 258,
+        "startChar": 53,
+        "endLine": 258,
+        "endChar": 138
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82415992_82168339",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "incorrect description",
+      "range": {
+        "startLine": 262,
+        "startChar": 15,
+        "endLine": 262,
+        "endChar": 76
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496eb75a_46518b91",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-05-29T11:39:25Z",
+      "side": 1,
+      "message": "I think 1 cm handle will do but DO check the id of it e.g \u0027cm-handle from query service\u0027",
+      "range": {
+        "startLine": 263,
+        "startChar": 19,
+        "endLine": 263,
+        "endChar": 37
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
