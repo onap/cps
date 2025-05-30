@@ -20,7 +20,7 @@ openapi: 3.0.3
 info:
   title: NCMP Data Subjob API
   description: Support datajobs through one or more subjob for each DMI and Data Producer Identifier combination
-  version: 1.7.0
+  version: "1.7.0"
 servers:
   - url: /dmi
 tags:
@@ -274,32 +274,9 @@ components:
               value:
                 description: Value dependent on the op specified. Resource for an add. Object for a replace. ActionParameters for an action.
                 type: object
-                oneOf:
-                  - $ref: '#/components/schemas/Resource'
-                  - $ref: '#/components/schemas/ActionParameters'
-                  - $ref: '#/components/schemas/Object'
+                additionalProperties: true
     CmHandleProperties:
       description: Private properties of the cm handle for the given path
-      type: object
-    Resource:
-      type: object
-      properties:
-        id:
-          description: Identifier of the resource object
-          example: resource-identifier
-          type: string
-        attributes:
-          description: Key value map representing the objects class attributes and values
-          type: object
-          additionalProperties:
-            example: 'userLabel: label11'
-            type: string
-    ActionParameters:
-      description: The input of the action in the form of key value pairs
-      type: object
-      additionalProperties:
-        type: string
-    Object:
       type: object
     SubjobWriteResponse:
       type: object
