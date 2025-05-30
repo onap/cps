@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eea67545_caf711f7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-05-30T08:32:52Z",
+      "side": 1,
+      "message": "There was an issue with openapi early on with this issue. You and Priyank came up with a fix. this was part of the solution",
+      "parentUuid": "be89a96f_6c3cab59",
+      "range": {
+        "startLine": 319,
+        "startChar": 14,
+        "endLine": 319,
+        "endChar": 39
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33d71926_0ec2d782",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
         "patchSetId": 6
@@ -60,6 +84,30 @@
       "writtenOn": "2025-05-29T11:39:25Z",
       "side": 1,
       "message": "so this IS needed  to handle null, correct?",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 77
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b05c67_e18ee662",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-05-30T08:32:52Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "fb78d334_7487c9b1",
       "range": {
         "startLine": 95,
         "startChar": 2,
@@ -290,6 +338,30 @@
       "writtenOn": "2025-05-29T11:39:25Z",
       "side": 1,
       "message": "not suer if you really need these. is the code you are testing doing anything with these ie do code paths change?!",
+      "range": {
+        "startLine": 258,
+        "startChar": 53,
+        "endLine": 258,
+        "endChar": 138
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cec2b8b4_583d0572",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-05-30T08:32:52Z",
+      "side": 1,
+      "message": "i got an exception if these were not added. therefore i think this is necessary",
+      "parentUuid": "81d10fd4_eca5f212",
       "range": {
         "startLine": 258,
         "startChar": 53,
