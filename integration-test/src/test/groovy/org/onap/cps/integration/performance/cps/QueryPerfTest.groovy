@@ -42,7 +42,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
-            recordAndAssertResourceUsage("Query 1 anchor ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Query 1 anchor ${scenario}", "Query 1 anchor ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpsPath                                                             || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'top element'                | '/openroadm-devices'                                                || 0.89             | 400         | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1
@@ -61,7 +61,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
-            recordAndAssertResourceUsage("Query across anchors ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Query across anchors ${scenario}", "Query across anchors ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
         where: 'the following parameters are used'
             scenario                     | cpspath                                                             || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'top element'                | '/openroadm-devices'                                                || 3.0              | 600         | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
@@ -79,7 +79,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
-            recordAndAssertResourceUsage("Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB(),2)
+            recordAndAssertResourceUsage("CPS:Query with ${scenario}", "Query with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.09             | 6           | OPENROADM_DEVICES_PER_ANCHOR
@@ -96,7 +96,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of nodes is returned'
             assert countDataNodesInTree(result) == expectedNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
-            recordAndAssertResourceUsage("Query ancestors with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Query ancestors with ${scenario}", "Query ancestors with ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | memoryLimit | expectedNumberOfDataNodes
             'no descendants'     | OMIT_DESCENDANTS        || 0.08             | 3           | 1
@@ -113,7 +113,7 @@ class QueryPerfTest extends CpsPerfTestBase {
         then: 'the expected number of results is returned'
             assert result.size() == expectedNumberOfValues
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
-            recordAndAssertResourceUsage("Query data leaf ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Query data leaf ${scenario}", "Query data leaf ${scenario}", expectedDuration, durationInSeconds, memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario                     | cpsPath                                             || expectedDuration | memoryLimit | expectedNumberOfValues
             'unique leaf value'          | '/openroadm-devices/openroadm-device/@device-id'    || 0.05             | 0.1         | OPENROADM_DEVICES_PER_ANCHOR

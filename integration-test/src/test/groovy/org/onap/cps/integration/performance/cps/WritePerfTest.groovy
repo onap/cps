@@ -40,15 +40,15 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage("CPS:Writing ${totalNodes} devices", "Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalNodes || expectedDuration | memoryLimit
-            50         || 1.45             | 100
-            100        || 2.9              | 200
-            200        || 6.2              | 400
-            400        || 13.0             | 500
+            totalNodes || expectedDuration | memoryLimit | referenceGraph
+            50         || 1.45             | 100         | false
+            100        || 2.9              | 200         | false
+            200        || 6.2              | 400         | true
+            400        || 13.0             | 500         | false
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -63,17 +63,15 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Writing ${totalBooks} books",
-                    expectedDuration, resourceMeter.totalTimeInSeconds,
-                    memoryLimit, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage("CPS:Writing ${totalBooks} books", "Writing ${totalBooks} books", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB, referenceGraph)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalBooks || expectedDuration | memoryLimit
-            800        || 0.31             | 50
-            1600       || 0.8              | 100
-            3200       || 2.2              | 150
-            6400       || 6.9              | 200
+            totalBooks || expectedDuration | memoryLimit | referenceGraph
+            800        || 0.31             | 50          | false
+            1600       || 0.8              | 100         | false
+            3200       || 2.2              | 150         | false
+            6400       || 6.9              | 200         | true
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -91,7 +89,7 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage("CPS:Saving list of ${totalNodes} devices", "Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
