@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14157f80_400cdc1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-30T11:58:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f864cf9_3eec4470",
+      "revId": "eecfe2d825cddcb3abc99bbaa65b587ec6111649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73748b3e_4987d280",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-30T09:38:14Z",
       "side": 1,
       "message": "remove the commented out test if not needed.",
+      "revId": "eecfe2d825cddcb3abc99bbaa65b587ec6111649",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0bc57ce_761c8d51",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-05-30T11:58:28Z",
+      "side": 1,
+      "message": "my bad. I thought I uncommented these",
+      "parentUuid": "73748b3e_4987d280",
       "revId": "eecfe2d825cddcb3abc99bbaa65b587ec6111649",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
