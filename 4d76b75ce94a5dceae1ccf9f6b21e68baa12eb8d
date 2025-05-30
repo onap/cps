@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b04ba28_c54f513f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-30T09:14:16Z",
+      "side": 1,
+      "message": "minor comments only. can be fixed later.",
+      "revId": "4d76b75ce94a5dceae1ccf9f6b21e68baa12eb8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e82b2912_b20372ea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-30T09:14:16Z",
+      "side": 1,
+      "message": "NB: fix the license",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "4d76b75ce94a5dceae1ccf9f6b21e68baa12eb8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f99ce723_b0cca25d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsModuleServicePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-05-30T09:14:16Z",
+      "side": 1,
+      "message": "NB: is it supposed to be CPS here??",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 46
+      },
+      "revId": "4d76b75ce94a5dceae1ccf9f6b21e68baa12eb8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
