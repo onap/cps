@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54b7b9dd_dd22cd4d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e82b2912_b20372ea",
+      "range": {
+        "startLine": 3,
+        "startChar": 28,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "4d76b75ce94a5dceae1ccf9f6b21e68baa12eb8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f99ce723_b0cca25d",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "correct, will fix that quickly now as it is important this data is correct in teh log files...",
       "parentUuid": "f99ce723_b0cca25d",
+      "range": {
+        "startLine": 71,
+        "startChar": 42,
+        "endLine": 71,
+        "endChar": 46
+      },
+      "revId": "4d76b75ce94a5dceae1ccf9f6b21e68baa12eb8d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91c9e552_94ebd97f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/CpsModuleServicePerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "652ed5d0_82e077c0",
       "range": {
         "startLine": 71,
         "startChar": 42,

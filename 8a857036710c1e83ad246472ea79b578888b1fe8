@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43429fe4_063cf921",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/NcmpPerfTestBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5661016a_824d300a",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b1c3980_3c21273d",
@@ -54,6 +78,24 @@
       "writtenOn": "2025-05-30T14:54:24Z",
       "side": 1,
       "message": "NB: Redundant space",
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed196c3_b04782c0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "its a common convention to have the Java import separate!\nIntelliJ does this by default",
+      "parentUuid": "0b1c3980_3c21273d",
       "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -152,6 +194,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2536aa33_b3467805",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/UpdatePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b027f21c_fdcfec52",
+      "range": {
+        "startLine": 57,
+        "startChar": 62,
+        "endLine": 57,
+        "endChar": 84
+      },
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f23fe5ea_406e55d1",
@@ -165,6 +231,30 @@
       "writtenOn": "2025-05-30T14:54:24Z",
       "side": 1,
       "message": "NB: You can organize imports",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9087bc_8872939e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/WritePerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23fe5ea_406e55d1",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -198,6 +288,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "535b170c_ea3f790a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmDataSubscriptionsPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "that method is called several times, for random generation one generator is better",
+      "parentUuid": "63c82ef6_06d52a71",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 29
+      },
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d5a8596_7fde7cbe",
@@ -211,6 +325,30 @@
       "writtenOn": "2025-05-30T14:54:24Z",
       "side": 1,
       "message": "NB: no need to extra variable. Since there is already an instance of it created in NcmpPerfTestBase",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 35,
+        "endChar": 53
+      },
+      "revId": "8a857036710c1e83ad246472ea79b578888b1fe8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a33e80_33daf1e9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/ncmp/CmHandleQueryPerfTest.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T11:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d5a8596_7fde7cbe",
       "range": {
         "startLine": 35,
         "startChar": 5,
