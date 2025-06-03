@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2b7379_71978e2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-03T10:51:39Z",
+      "side": 1,
+      "message": "provide the link to the wiki page here for reference.",
+      "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9394da2c_4aeeb77d",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-03T10:51:39Z",
+      "side": 1,
+      "message": "General comment on the changes.\nWe are trying to do too many things in a single patch.\nRefactoring/Renaming , adding new functionality.\nYou can raise multiple smaller patches by logically grouping them.\nMake it part of a topic.\nThat topic will represent full functionality.\n\nWe can talk offline on how best to do it.",
+      "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6451a3d5_ed87cc0e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-03T10:51:39Z",
+      "side": 1,
+      "message": "can u remind me why are we doing the remove and update together??\nis it possible to do both separately as we are handling add?",
+      "range": {
+        "startLine": 130,
+        "startChar": 37,
+        "endLine": 130,
+        "endChar": 69
+      },
+      "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
