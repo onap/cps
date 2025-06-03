@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc9381f_a9ad7fee",
+        "filename": "docker-compose/cps-base.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-03T09:20:32Z",
+      "side": 1,
+      "message": "Just update the comments if we are going to merge this",
+      "revId": "835a9024d524a48e2875645882c24712c5d176f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
