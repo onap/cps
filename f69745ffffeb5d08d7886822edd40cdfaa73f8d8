@@ -56,6 +56,30 @@
       },
       "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "215f6699_65e206df",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-03T11:09:05Z",
+      "side": 1,
+      "message": "it was the most efficient approach as we are able to handle update and remove in one loop. Then finding the added nodes by removing the common data between two configurations is handled separately.",
+      "parentUuid": "6451a3d5_ed87cc0e",
+      "range": {
+        "startLine": 130,
+        "startChar": 37,
+        "endLine": 130,
+        "endChar": 69
+      },
+      "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
