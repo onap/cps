@@ -72,6 +72,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f935e1_f2d52a5f",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T10:42:20Z",
+      "side": 1,
+      "message": "does this mean the output format has changed really or not?",
+      "parentUuid": "ca976b69_66fa532e",
+      "range": {
+        "startLine": 319,
+        "startChar": 14,
+        "endLine": 319,
+        "endChar": 39
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33d71926_0ec2d782",
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "946e1b3f_422b4cff",
+      "range": {
+        "startLine": 270,
+        "startChar": 52,
+        "endLine": 270,
+        "endChar": 68
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21a3b9d_3efabf47",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/NetworkCmProxyInventoryFacadeSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-03T10:42:20Z",
+      "side": 1,
+      "message": "OK, I see the new test for invalid conditioname, good!",
+      "parentUuid": "354e7618_fd6c562f",
       "range": {
         "startLine": 270,
         "startChar": 52,
