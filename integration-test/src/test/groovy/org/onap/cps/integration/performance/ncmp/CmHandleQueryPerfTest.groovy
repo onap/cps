@@ -21,7 +21,6 @@
 package org.onap.cps.integration.performance.ncmp
 
 import org.onap.cps.api.CpsQueryService
-import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.integration.performance.base.NcmpPerfTestBase
 
 import java.util.stream.Collectors
@@ -32,7 +31,6 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANT
 class CmHandleQueryPerfTest extends NcmpPerfTestBase {
 
     CpsQueryService objectUnderTest
-    ResourceMeter resourceMeter = new ResourceMeter()
 
     def setup() { objectUnderTest = cpsQueryService }
 

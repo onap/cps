@@ -21,10 +21,10 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.onap.cps.integration.performance.base.CpsPerfTestBase
 import org.onap.cps.utils.ContentType
 
 import java.time.OffsetDateTime
-import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
 class WritePerfTest extends CpsPerfTestBase {
 

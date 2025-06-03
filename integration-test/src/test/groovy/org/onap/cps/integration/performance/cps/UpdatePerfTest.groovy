@@ -48,19 +48,19 @@ class UpdatePerfTest extends CpsPerfTestBase {
 
     def 'JVM warm up for update tests: #scenario.'() {
         given: 'replacement JSON for node containing list of device nodes'
-            def jsonData = '{ "openroadm-devices": ' + generateJsonForOpenRoadmDevices(startId, totalNodes, changeLeaves) + '}'
+            def jsonData = '{ "openroadm-devices": ' + generateJsonForOpenRoadmDevices(startId, numberOfNodesAfterUpdate, changeLeaves) + '}'
         when: 'the container node is updated'
             objectUnderTest.updateDataNodeAndDescendants(CPS_PERFORMANCE_TEST_DATASPACE, UPDATE_TEST_ANCHOR, '/', jsonData, now, ContentType.JSON)
         then: 'there are the expected number of total nodes'
-            assert totalNodes == countDataNodes('/openroadm-devices/openroadm-device')
+            assert numberOfNodesAfterUpdate == countDataNodes('/openroadm-devices/openroadm-device')
         where:
-            scenario                           | totalNodes | startId | changeLeaves
-            'Replace 0 nodes with 100'         | 100        | 1       | false
-            'Replace 100 using same data'      | 100        | 1       | false
-            'Replace 100 with new leaf values' | 100        | 1       | true
-            'Replace 100 with 100 new nodes'   | 100        | 101     | false
-            'Replace 50 existing and 50 new'   | 100        | 151     | true
-            'Replace 100 nodes with 0'         | 0          | 1       | false
+            scenario                           | startId | changeLeaves || numberOfNodesAfterUpdate
+            'Replace 0 nodes with 100'         | 1       | false        || 100
+            'Replace 100 using same data'      | 1       | false        || 100
+            'Replace 100 with new leaf values' | 1       | true         || 100
+            'Replace 100 with 100 new nodes'   | 101     | false        || 100
+            'Replace 50 existing and 50 new'   | 151     | true         || 100
+            'Replace 100 nodes with 0'         | 1       | false        || 0
     }
 
     def 'Replace single data node and descendants: #scenario.'() {

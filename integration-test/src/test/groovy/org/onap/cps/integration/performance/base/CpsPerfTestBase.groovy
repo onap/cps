@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
@@ -34,7 +34,7 @@ class CpsPerfTestBase extends PerfTestBase {
     static final def OPENROADM_DEVICES_PER_ANCHOR = 1000
     static final def OPENROADM_DATANODES_PER_DEVICE = 86
 
-    ResourceMeter resourceMeter = new ResourceMeter()
+    def resourceMeter = new ResourceMeter()
 
     def printTitle() {
         println('##                   C P S   P E R F O R M A N C E   T E S T   R E S U L T S                    ##')
