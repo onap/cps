@@ -16,21 +16,46 @@
 #
 
 testProfile=$1
-echo "Spinning off the CPS and NCMP containers for $testProfile testing..."
-
 ENV_FILE="../docker-compose/env/${testProfile}.env"
-docker-compose \
-  --file "../docker-compose/cps-base.yml" \
-  --env-file "$ENV_FILE" \
-  --project-name "$testProfile" \
-  up --quiet-pull --detach --wait || exit 1
+COMPOSE_FILE="../docker-compose/cps-base.yml"
 
-if [[ "$testProfile" == "kpi" ]]; then
-  ACTUATOR_PORT=8883
-elif [[ "$testProfile" == "endurance" ]]; then
-  ACTUATOR_PORT=8884
-fi
+# Define a function to encapsulate docker-compose command
+compose() {
+  docker-compose \
+    --file "$COMPOSE_FILE" \
+    --env-file "$ENV_FILE" \
+    --project-name "$testProfile" "$@"
+}
 
-echo "Build information:"
-curl --silent --show-error http://localhost:$ACTUATOR_PORT/actuator/info
+# Start the containers
+echo
+echo "Spinning off the following containers for '$testProfile'..."
+echo
+compose up --quiet-pull --detach --wait || { echo "Failed to start containers."; exit 1; }
+
+# Define port mappings based on the test profile
+declare -A CPS_PORTS=( ["kpi"]=8883 ["endurance"]=8884 )
+declare -A DMI_PORTS=( ["kpi"]=8784 ["endurance"]=8787 )
+
+CPS_ACTUATOR_PORT="${CPS_PORTS[$testProfile]}"
+DMI_DEMO_STUB_PORT="${DMI_PORTS[$testProfile]}"
+
+# Function to fetch and display build information
+fetch_build_info() {
+  local service_name="$1"
+  local port="$2"
+  local url="http://localhost:${port}/actuator/info"
+
+  echo -e "\n${service_name} Build Information:"
+  if curl --silent --show-error "$url"; then
+    echo
+  else
+    echo "Error: Unable to retrieve ${service_name} build information from ${url}"
+    exit 1
+  fi
+}
+
+# Fetch and display build information for CPS and DMI
+fetch_build_info "CPS and NCMP" "$CPS_ACTUATOR_PORT"
+fetch_build_info "DMI" "$DMI_DEMO_STUB_PORT"
 echo
