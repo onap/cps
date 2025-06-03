@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d059ebc_d22b26e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-03T10:08:03Z",
+      "side": 1,
+      "message": "Just an initial look. I\u0027ll get back to it again.",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b71594ec_f2b3bb8e",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-03T10:08:03Z",
+      "side": 1,
+      "message": "NB can we pick either PublicCmHandleProperties or CmHandlePublicProperties just to have the type and method the same",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b556349c_d50b96df",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-03T10:08:03Z",
+      "side": 1,
+      "message": "Again can we get convention on the naming so it is in the same order everywhere",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f1f211_3afbbcfc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-03T10:08:03Z",
+      "side": 1,
+      "message": "Do we need to initialise the list size here?",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
