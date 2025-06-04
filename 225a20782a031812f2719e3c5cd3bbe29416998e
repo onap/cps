@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd87224_b393415e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-04T11:07:50Z",
+      "side": 1,
+      "message": "Looks good, just one copyright to address",
+      "revId": "225a20782a031812f2719e3c5cd3bbe29416998e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706da9bc_7d5fa22e",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-04T11:07:50Z",
+      "side": 1,
+      "message": "NB: Update copyright",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 43
+      },
+      "revId": "225a20782a031812f2719e3c5cd3bbe29416998e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
