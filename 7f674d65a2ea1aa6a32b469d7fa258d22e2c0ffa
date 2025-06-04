@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d23082ac_683e629f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-04T15:19:52Z",
+      "side": 1,
+      "message": "Overall it looks good. Thanks for your hard work.",
+      "revId": "7f674d65a2ea1aa6a32b469d7fa258d22e2c0ffa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48adc148_c833d858",
@@ -588,6 +605,30 @@
         "startChar": 74,
         "endLine": 52,
         "endChar": 75
+      },
+      "revId": "7f674d65a2ea1aa6a32b469d7fa258d22e2c0ffa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1a2bd4_ec53a166",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapperSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-04T15:19:52Z",
+      "side": 1,
+      "message": "with private properties",
+      "parentUuid": "68f079de_c676b7ee",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 41
       },
       "revId": "7f674d65a2ea1aa6a32b469d7fa258d22e2c0ffa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
