@@ -105,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dce5c1c_1bde37e5",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-06-04T08:50:11Z",
+      "side": 1,
+      "message": "We agreed with Toine to handle this issue in a separate commit!",
+      "parentUuid": "6ad7d1d9_0bf0f254",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27f1f211_3afbbcfc",
