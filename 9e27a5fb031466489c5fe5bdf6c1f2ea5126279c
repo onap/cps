@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8806d1_f4c0f200",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-04T12:20:23Z",
+      "side": 1,
+      "message": "all my comments are adressed and definitly have better naming now but I dont think I am the right person to approve shell script code. Really want 2 other reviwers of this latest patch",
+      "revId": "9e27a5fb031466489c5fe5bdf6c1f2ea5126279c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
