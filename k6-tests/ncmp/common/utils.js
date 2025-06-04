@@ -146,25 +146,45 @@ function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentEx
 }
 
 /**
- * Handles the response by performing a check, logging errors if any, and recording overhead.
+ * Validates a response against an expected HTTP status and an optional additional check.
+ * If successful, records a metric value to a trend. Logs detailed error output on failure.
  *
- * @param {Object} response - The HTTP response object.
- * @param {number} expectedStatus - The expected HTTP status code.
- * @param {string} checkLabel - A descriptive label for the check.
- * @param {number} delayMs - The predefined delay in milliseconds.
- * @param {Trend} trendMetric - The Trend metric to record overhead.
+ * @param {Object} response - The HTTP response object from a K6 request.
+ * @param {number} expectedStatus - The expected HTTP status code (e.g., 200, 202).
+ * @param {string} checkLabel - The label to use in the K6 `check()` for reporting.
+ * @param {Trend} trendMetric - A K6 `Trend` metric to which the extracted value will be added on success.
+ * @param {function(Object): number} metricExtractor - A function that takes the response and returns a numeric value to record (e.g., `res.timings.duration`).
+ * @param {function(Object): boolean} [additionalCheckValidator=() => true] - Optional function for any additional custom validation on the response.
+ *
  */
-export function handleHttpResponse(response, expectedStatus, checkLabel, delayMs, trendMetric) {
+export function validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, metricExtractor, additionalCheckValidator = () => true) {
+
+    const isExpectedStatus = response.status === expectedStatus;
+    const isAdditionalCheckValid = additionalCheckValidator(response);
     const isSuccess = check(response, {
-        [checkLabel]: (responseObj) => responseObj.status === expectedStatus,
+        [checkLabel]: () => isExpectedStatus && isAdditionalCheckValid,
     });
 
     if (isSuccess) {
-        const overhead = response.timings.duration - delayMs;
-        trendMetric.add(overhead);
+        trendMetric.add(metricExtractor(response));
     } else {
-        let responseBody = JSON.parse(response.body);
-        console.error(`${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
+        console.error(`${checkLabel} failed. Status: ${response.status}`);
+        if (response.body) {
+            try {
+                const responseBody = JSON.parse(response.body);
+                console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
+            } catch (e) {
+                console.error(`❌ ${checkLabel} failed: Unable to parse response body.`);
+            }
+        }
     }
+}
+
+export function processHttpResponseWithOverheadMetrics(response, expectedStatus, checkLabel, delayMs, trendMetric) {
+    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration - delayMs);
+}
+
+export function validateResponseAndRecordMetric(response, expectedStatus, expectedJsonLength, trendMetric, checkLabel) {
+    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration, (res) => res.json('#') === expectedJsonLength);
 }
 

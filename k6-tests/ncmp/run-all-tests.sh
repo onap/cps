@@ -87,7 +87,7 @@ awk -v trends="$trend_declarations" '
   }
 ' "$NCMP_RUNNER_FILE" > "$TMP_FILE"
 mv "$TMP_FILE" "$NCMP_RUNNER_FILE"
-echo "✅ Trend declarations inserted."
+echo "✅ Trend declarations inserted into [$NCMP_RUNNER_FILE]"
 
 # Update thresholds in KPI config
 TMP_FILE=$(mktemp)
