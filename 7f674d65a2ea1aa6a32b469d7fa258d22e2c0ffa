@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08773f41_c1670063",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-04T12:39:36Z",
+      "side": 1,
+      "message": "you can decide to do this as part of this patch or next patch.\nalso after sourabhs review it will be more clear on what to do.",
+      "revId": "7f674d65a2ea1aa6a32b469d7fa258d22e2c0ffa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48adc148_c833d858",
