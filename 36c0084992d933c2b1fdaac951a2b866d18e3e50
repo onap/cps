@@ -123,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d41243_1a819996",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-06-04T09:05:44Z",
+      "side": 1,
+      "message": "https://lf-onap.atlassian.net/browse/CPS-2834",
+      "parentUuid": "9dce5c1c_1bde37e5",
+      "revId": "36c0084992d933c2b1fdaac951a2b866d18e3e50",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27f1f211_3afbbcfc",
