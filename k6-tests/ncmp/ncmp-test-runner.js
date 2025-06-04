@@ -25,7 +25,8 @@ import {
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
     makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfAlternateIds,
     LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, REGISTRATION_BATCH_SIZE,
-    KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS, testConfig, handleHttpResponse
+    KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS, testConfig, processHttpResponseWithOverheadMetrics,
+    validateResponseAndRecordMetric
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -91,94 +92,62 @@ export function teardown() {
 
 export function passthroughReadAltIdScenario() {
     const response = passthroughRead();
-    handleHttpResponse(response, 200, 'passthrough read with alternate Id status equals 200',
-        READ_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpReadOverheadTrend);
+    processHttpResponseWithOverheadMetrics(response, 200, 'passthrough read with alternate Id status equals 200', READ_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpReadOverheadTrend);
 }
 
 export function passthroughWriteAltIdScenario() {
     const response = passthroughWrite();
-    handleHttpResponse(response, 201, 'passthrough write with alternate Id status equals 201',
-        WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpWriteOverheadTrend);
+    processHttpResponseWithOverheadMetrics(response, 201, 'passthrough write with alternate Id status equals 201', WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpWriteOverheadTrend);
 }
 
 export function cmHandleIdSearchNoFilterScenario() {
     const response = executeCmHandleIdSearch('no-filter');
-    if (check(response, { 'CM handle ID no-filter search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle ID no-filter search returned the correct number of ids': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleIdSearchNoFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleIdSearchNoFilterTrend, 'CM handle ID no-filter search');
 }
 
 export function cmHandleSearchNoFilterScenario() {
     const response = executeCmHandleSearch('no-filter');
-    if (check(response, { 'CM handle no-filter search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle no-filter search returned expected CM-handles': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleSearchNoFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchNoFilterTrend, 'CM handle no-filter search');
 }
 
 export function cmHandleIdSearchModuleScenario() {
     const response = executeCmHandleIdSearch('module');
-    if (check(response, { 'CM handle ID module search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle ID module search returned the correct number of ids': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleIdSearchModuleFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleIdSearchModuleFilterTrend, 'CM handle ID module search');
 }
 
 export function cmHandleSearchModuleScenario() {
     const response = executeCmHandleSearch('module');
-    if (check(response, { 'CM handle module search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle module search returned expected CM-handles': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleSearchModuleFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchModuleFilterTrend, 'CM handle module search');
 }
 
 export function cmHandleIdSearchPropertyScenario() {
     const response = executeCmHandleIdSearch('property');
-    if (check(response, { 'CM handle ID property search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle ID property search returned the correct number of ids': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleIdSearchPropertyFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleIdSearchPropertyFilterTrend, 'CM handle ID property search');
 }
 
 export function cmHandleSearchPropertyScenario() {
     const response = executeCmHandleSearch('property');
-    if (check(response, { 'CM handle property search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle property search returned expected CM-handles': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleSearchPropertyFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchPropertyFilterTrend, 'CM handle property search');
 }
 
 export function cmHandleIdSearchCpsPathScenario() {
     const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
-    if (check(response, { 'CM handle ID cps path search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle ID cps path search returned the correct number of ids': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleIdSearchCpsPathFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleIdSearchCpsPathFilterTrend, 'CM handle ID cps path search');
 }
 
 export function cmHandleSearchCpsPathScenario() {
     const response = executeCmHandleSearch('cps-path-for-ready-cm-handles');
-    if (check(response, { 'CM handle cps path search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle cps path search returned expected CM-handles': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleSearchCpsPathFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchCpsPathFilterTrend, 'CM handle cps path search');
 }
 
 export function cmHandleIdSearchTrustLevelScenario() {
     const response = executeCmHandleIdSearch('trust-level');
-    if (check(response, { 'CM handle ID trust level search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle ID trust level search returned the correct number of cm handle references': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleIdSearchTrustLevelFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleIdSearchTrustLevelFilterTrend, 'CM handle ID trust level search');
 }
 
 export function cmHandleSearchTrustLevelScenario() {
     const response = executeCmHandleSearch('trust-level');
-    if (check(response, { 'CM handle trust level search status equals 200': (response) => response.status === 200 })
-     && check(response, { 'CM handle trust level search returned expected CM-handles': (response) => response.json('#') === TOTAL_CM_HANDLES })) {
-        cmHandleSearchTrustLevelFilterTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchTrustLevelFilterTrend, 'CM handle trust level search');
 }
 
 export function legacyBatchProduceScenario() {
@@ -189,18 +158,12 @@ export function legacyBatchProduceScenario() {
 
 export function writeDataJobLargeScenario() {
     const response = executeWriteDataJob(100000);
-    if (check(response, {'large  writeDataJob response status is 200': (response) => response.status === 200})
-        && check(response, {'large  writeDataJob received expected number of responses': (response) => response.json('#') === EXPECTED_WRITE_RESPONSE_COUNT})) {
-        dcmWriteDataJobLargeTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, EXPECTED_WRITE_RESPONSE_COUNT, dcmWriteDataJobLargeTrend, 'Large writeDataJob');
 }
 
 export function writeDataJobSmallScenario() {
     const response = executeWriteDataJob(100);
-    if (check(response, {'small writeDataJob response status is 200': (response) => response.status === 200})
-        && check(response, {'small writeDataJob received expected number of responses': (response) => response.json('#') === EXPECTED_WRITE_RESPONSE_COUNT})) {
-        dcmWriteDataJobSmallTrend.add(response.timings.duration);
-    }
+    validateResponseAndRecordMetric(response, 200, EXPECTED_WRITE_RESPONSE_COUNT, dcmWriteDataJobSmallTrend, 'Small writeDataJob');
 }
 
 export function produceAvcEventsScenario() {
