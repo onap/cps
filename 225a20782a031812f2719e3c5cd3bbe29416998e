@@ -92,6 +92,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f640e4_fa315f4d",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-04T15:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "706da9bc_7d5fa22e",
+      "range": {
+        "startLine": 4,
+        "startChar": 21,
+        "endLine": 4,
+        "endChar": 43
+      },
+      "revId": "225a20782a031812f2719e3c5cd3bbe29416998e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b652f006_23803721",
@@ -109,6 +133,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e7a3e87_03396b07",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-04T15:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b652f006_23803721",
+      "revId": "225a20782a031812f2719e3c5cd3bbe29416998e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9acf2f80_14b7bbb6",
@@ -122,6 +164,30 @@
       "writtenOn": "2025-06-04T14:38:48Z",
       "side": 1,
       "message": "NB: maybe add comment to why this file is needed/not generated",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "225a20782a031812f2719e3c5cd3bbe29416998e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e17cca_d71eb839",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/model/Resource.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-04T15:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9acf2f80_14b7bbb6",
       "range": {
         "startLine": 23,
         "startChar": 0,
