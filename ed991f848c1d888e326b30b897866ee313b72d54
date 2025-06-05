@@ -41,6 +41,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e42fd3c9_06d9c4e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T15:15:50Z",
+      "side": 1,
+      "message": "As we discussed offline. \nCpsDeltaServiceImpl will be splitted now as per the suggestion in a separate patchset.\nGrouping related code will be a separate service/utility class ( we can decide on that )\nhttps://lf-onap.atlassian.net/browse/CPS-2838 is created to address that issue.",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95cdf92d_69c633f5",
@@ -54,6 +71,98 @@
       "writtenOn": "2025-06-05T11:46:50Z",
       "side": 1,
       "message": "how about you create a separate class/service for the CondensedDeltaReports.\nI mean Delta service has way too much responsibility now.\nwhat do you think ??",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecd644e_bfe5644d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T15:15:50Z",
+      "side": 1,
+      "message": "?? typo?",
+      "range": {
+        "startLine": 173,
+        "startChar": 31,
+        "endLine": 173,
+        "endChar": 39
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa75496d_64e745eb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T15:15:50Z",
+      "side": 1,
+      "message": "NB: the delta report is empty??",
+      "range": {
+        "startLine": 195,
+        "startChar": 14,
+        "endLine": 195,
+        "endChar": 87
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37867946_45c491fd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T15:15:50Z",
+      "side": 1,
+      "message": "i think this test is duplicated.. i see same test at line #325. \nalso please do check for other tests as well.",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a793e18f_0e4d45f0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T15:15:50Z",
+      "side": 1,
+      "message": "remove if it is not needed.",
+      "range": {
+        "startLine": 161,
+        "startChar": 12,
+        "endLine": 161,
+        "endChar": 182
+      },
       "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
