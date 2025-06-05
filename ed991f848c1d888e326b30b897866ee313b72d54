@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9b5016_b6543fda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 22
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T11:46:50Z",
+      "side": 1,
+      "message": "NB: modify",
+      "range": {
+        "startLine": 15,
+        "startChar": 50,
+        "endLine": 15,
+        "endChar": 57
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ea1b4419_41ed964c",
@@ -14,6 +37,23 @@
       "writtenOn": "2025-06-04T13:10:52Z",
       "side": 1,
       "message": "recheck",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95cdf92d_69c633f5",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-05T11:46:50Z",
+      "side": 1,
+      "message": "how about you create a separate class/service for the CondensedDeltaReports.\nI mean Delta service has way too much responsibility now.\nwhat do you think ??",
       "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
