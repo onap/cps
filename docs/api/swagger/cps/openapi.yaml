@@ -1141,7 +1141,6 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -1239,14 +1238,12 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
-                  value: null
               schema:
                 type: object
             application/xml:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleXml'
-                  value: null
               schema:
                 type: object
                 xml:
@@ -1345,14 +1342,12 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleForV3'
-                  value: null
               schema:
                 type: object
             application/xml:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleXmlForV3'
-                  value: null
               schema:
                 type: object
                 xml:
@@ -1552,14 +1547,12 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-                value: null
             schema:
               type: string
           application/xml:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSampleXml'
-                value: null
             schema:
               type: object
               xml:
@@ -1680,14 +1673,12 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-                value: null
             schema:
               type: string
           application/xml:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSampleXml'
-                value: null
             schema:
               type: object
               xml:
@@ -1817,14 +1808,12 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-                value: null
             schema:
               type: string
           application/xml:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSampleXml'
-                value: null
             schema:
               type: object
               xml:
@@ -2020,14 +2009,12 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-                value: null
             schema:
               type: string
           application/xml:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSampleXml'
-                value: null
             schema:
               type: object
               xml:
@@ -2145,14 +2132,12 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSample'
-                value: null
             schema:
               type: string
           application/xml:
             examples:
               dataSample:
                 $ref: '#/components/examples/dataSampleXml'
-                value: null
             schema:
               type: object
               xml:
@@ -2265,7 +2250,6 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/deltaReportSample'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -2354,7 +2338,6 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/deltaReportSample'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -2448,7 +2431,6 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -2544,14 +2526,12 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSample'
-                  value: null
               schema:
                 type: object
             application/xml:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleXml'
-                  value: null
               schema:
                 type: object
                 xml:
@@ -2649,7 +2629,6 @@ paths:
               examples:
                 dataSample:
                   $ref: '#/components/examples/dataSampleAcrossAnchors'
-                  value: null
               schema:
                 type: object
           description: OK
@@ -2839,7 +2818,6 @@ paths:
             examples:
               dataSample:
                 $ref: '#/components/examples/NotificationSubscriptionsDataSample'
-                value: null
             schema:
               type: object
         required: true
@@ -3288,6 +3266,10 @@ components:
       description: Unauthorized
   schemas:
     ErrorMessage:
+      example:
+        details: details
+        message: message
+        status: status
       properties:
         status:
           type: string
