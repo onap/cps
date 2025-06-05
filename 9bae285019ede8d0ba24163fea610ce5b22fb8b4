@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e08bb14_1623c5e4",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-06-05T13:43:47Z",
+      "side": 1,
+      "message": "NB: maybe keeping some kind of do description would be a good thing...",
+      "revId": "9bae285019ede8d0ba24163fea610ce5b22fb8b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
