@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "62356d35_a5bde6f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 22
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a9b5016_b6543fda",
+      "range": {
+        "startLine": 15,
+        "startChar": 50,
+        "endLine": 15,
+        "endChar": 57
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ea1b4419_41ed964c",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 22
@@ -247,6 +271,30 @@
       "writtenOn": "2025-06-05T15:15:50Z",
       "side": 1,
       "message": "remove if it is not needed.",
+      "range": {
+        "startLine": 161,
+        "startChar": 12,
+        "endLine": 161,
+        "endChar": 182
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "008468c6_8b27b634",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DeltaServiceIntegrationSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:19:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a793e18f_0e4d45f0",
       "range": {
         "startLine": 161,
         "startChar": 12,
