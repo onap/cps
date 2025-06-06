@@ -77,6 +77,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d70bc5a1_783e83d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:14:46Z",
+      "side": 1,
+      "message": "yes refactoring is in our TODO list for a future patch after CondensedDeltaReports feature is made available to the stakeholders.",
+      "parentUuid": "95cdf92d_69c633f5",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecd644e_bfe5644d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 22
@@ -88,6 +106,30 @@
       "writtenOn": "2025-06-05T15:15:50Z",
       "side": 1,
       "message": "?? typo?",
+      "range": {
+        "startLine": 173,
+        "startChar": 31,
+        "endLine": 173,
+        "endChar": 39
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5afa3ea0_556ed2bd",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eecd644e_bfe5644d",
       "range": {
         "startLine": 173,
         "startChar": 31,
@@ -121,6 +163,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebc5f80b_27a940e6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa75496d_64e745eb",
+      "range": {
+        "startLine": 195,
+        "startChar": 14,
+        "endLine": 195,
+        "endChar": 87
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37867946_45c491fd",
@@ -134,6 +200,30 @@
       "writtenOn": "2025-06-05T15:15:50Z",
       "side": 1,
       "message": "i think this test is duplicated.. i see same test at line #325. \nalso please do check for other tests as well.",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfa923d4_68173acf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-06T11:14:46Z",
+      "side": 1,
+      "message": "it was a repeated but was needed for separate scenarios, one test should test with grouping enabled and another with grouping disabled. I removed duplicates and now using one test with \"where\" clause.",
+      "parentUuid": "37867946_45c491fd",
       "range": {
         "startLine": 186,
         "startChar": 4,
