@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe.
+# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,20 @@
 # limitations under the License.
 #
 
+# Load image check and logging functions
+source "$(dirname "$0")/verify-docker-image-digests.sh"
+
 testProfile=$1
 ENV_FILE="../docker-compose/env/${testProfile}.env"
 COMPOSE_FILE="../docker-compose/cps-base.yml"
+
+# Define images to pre-check (add more if needed)
+IMAGES_TO_CHECK=(
+  "nexus3.onap.org:10003/onap/dmi-stub:latest"
+)
+
+# Run the image checks before anything else
+check_images "${IMAGES_TO_CHECK[@]}"
 
 # Define a function to encapsulate docker-compose command
 compose() {
