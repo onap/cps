@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b09b00e_c4f88be1",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-06T15:05:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d3a0bbc_108bd000",
+      "range": {
+        "startLine": 162,
+        "startChar": 10,
+        "endLine": 162,
+        "endChar": 25
+      },
+      "revId": "8e2db3d600929e50cdda922431ec356208f54cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc0c132b_7403a4f1",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-06T14:59:14Z",
       "side": 1,
       "message": "NB: should it be isExpectedAdditionalCheck as per the previous comment from Toine??",
+      "range": {
+        "startLine": 165,
+        "startChar": 47,
+        "endLine": 165,
+        "endChar": 69
+      },
+      "revId": "8e2db3d600929e50cdda922431ec356208f54cff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e1d2ba_97a1b8b8",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-06T15:05:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cc0c132b_7403a4f1",
       "range": {
         "startLine": 165,
         "startChar": 47,
