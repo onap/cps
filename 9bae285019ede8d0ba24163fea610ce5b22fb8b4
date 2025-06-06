@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faf4d865_ec25c7f7",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-06T14:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e08bb14_1623c5e4",
+      "revId": "9bae285019ede8d0ba24163fea610ce5b22fb8b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "542ab9e8_1a700b76",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-06-05T15:52:19Z",
       "side": 1,
       "message": "\u0027valid\u0027 is not teh correct term to use here (all statuses probably are valid)\nso isExpectedStaus is better",
+      "range": {
+        "startLine": 149,
+        "startChar": 10,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "9bae285019ede8d0ba24163fea610ce5b22fb8b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07dd2e43_25480ade",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-06T14:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "542ab9e8_1a700b76",
       "range": {
         "startLine": 149,
         "startChar": 10,
