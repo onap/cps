@@ -230,6 +230,30 @@
       },
       "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd70b756_19ba4e1e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-09T10:42:38Z",
+      "side": 1,
+      "message": "i mean the same comment related to introducing the prefix. But I see that you already answered the previous one.",
+      "parentUuid": "8e31e1f3_86c35613",
+      "range": {
+        "startLine": 245,
+        "startChar": 212,
+        "endLine": 245,
+        "endChar": 222
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
