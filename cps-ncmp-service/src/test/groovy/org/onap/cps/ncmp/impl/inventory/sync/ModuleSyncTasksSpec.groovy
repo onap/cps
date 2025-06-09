@@ -45,11 +45,13 @@ import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_U
 
 class ModuleSyncTasksSpec extends Specification {
 
-    def logger = Spy(ListAppender<ILoggingEvent>)
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
-        ((Logger) LoggerFactory.getLogger(ModuleSyncTasks.class)).addAppender(logger)
-        logger.start()
+        def logger = LoggerFactory.getLogger(ModuleSyncTasks)
+        logger.setLevel(Level.DEBUG)
+        logger.addAppender(logAppender)
+        logAppender.start()
     }
 
     void cleanup() {
@@ -180,9 +182,9 @@ class ModuleSyncTasksSpec extends Specification {
             moduleSyncStartedOnCmHandles.put('ch-1', 'started')
         when: 'remove cm handle entry'
             objectUnderTest.removeResetCmHandleFromModuleSyncMap('ch-1')
-        then: 'an event is logged with level INFO'
+        then: 'an event is logged with level DEBUG'
             def loggingEvent = getLoggingEvent()
-            assert loggingEvent.level == Level.INFO
+            assert loggingEvent.level == Level.DEBUG
         and: 'the log indicates the cm handle entry is removed successfully'
             assert loggingEvent.formattedMessage == 'ch-1 removed from in progress map'
     }
@@ -225,6 +227,6 @@ class ModuleSyncTasksSpec extends Specification {
     }
 
     def getLoggingEvent() {
-        return logger.list[0]
+        return logAppender.list[0]
     }
 }
