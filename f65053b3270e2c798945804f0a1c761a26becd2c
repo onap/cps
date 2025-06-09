@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "713df60c_f14ce038",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T15:49:24Z",
+      "side": 1,
+      "message": "yeah, there still seem to be two ways of doing this. Had to change it in this to allow verification of debug level messages",
+      "parentUuid": "8a564ac2_93f59106",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59d0a566_715246c8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
         "patchSetId": 2
@@ -54,6 +78,24 @@
       "writtenOn": "2025-06-09T15:08:31Z",
       "side": 1,
       "message": "log message shows state change at DEBUG level??",
+      "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f380f10_55f2e2d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T15:49:24Z",
+      "side": 1,
+      "message": "Ack, should have caught that myself...",
+      "parentUuid": "59d0a566_715246c8",
       "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
