@@ -3,6 +3,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44fe6fb4_5592bfa5",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "this name is a a bit confusing\nsuggestion: \"getDeltarReportsForUpdates\"",
+      "range": {
+        "startLine": 158,
+        "startChar": 40,
+        "endLine": 158,
+        "endChar": 59
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9fd4a4_98c511c2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "deltaReportEntiresForUpdates",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bbfd058_08638975",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "are these checks really necessary (it means you need to test 4 possible paths!)\nif its really ineffcient/costly to process one of the empty I think you really should have two separate blocks:\n\nif (!updatedLeavesOfSourceData.isEmpty()) { process source leaves }\n\nif (!updatedLeavesOfTargetData.isEmpty()) { process target leaves }",
+      "range": {
+        "startLine": 235,
+        "startChar": 12,
+        "endLine": 235,
+        "endChar": 88
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfba9ec_0340dd2e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "as above are these checks really needed?!",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 83
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e531785_63b57e04",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "deltaReportEntiresForRemoves",
+      "range": {
+        "startLine": 352,
+        "startChar": 32,
+        "endLine": 352,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458684ff_a083ec1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "deltaReportEntiresForUpdates",
+      "range": {
+        "startLine": 365,
+        "startChar": 32,
+        "endLine": 365,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19193f7e_6be1f7ae",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 26
@@ -19,6 +157,29 @@
         "startChar": 139,
         "endLine": 129,
         "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2c45cd_753f9255",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-09T10:29:44Z",
+      "side": 1,
+      "message": "NB: I am a bit worried about the size (no of columns) of this table: it is hard to follow/review! Could it be split into separate tests and reduce the table size?!",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 5
       },
       "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
