@@ -54,7 +54,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             matches.size() == numberOfFiltersPerCmHandle * numberOfCmHandlesPerCmDataSubscription
         and: 'query all subscribers within 1 second'
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-            recordAndAssertResourceUsage('NCMP:Query all subscribers', "Query all subscribers", 1, durationInSeconds, 300, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('NCMP:Query all subscribers', 1, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def 'Worst case subscription update (200x10 matching entries).'() {
@@ -97,7 +97,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             def resultAfter = objectUnderTest.queryDataNodes(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, cpsPath, INCLUDE_ALL_DESCENDANTS)
             assert resultAfter.collect {it.leaves.subscribers.size()}.sum() == totalNumberOfEntries * (1 + numberOfCmDataSubscribers)
         and: 'update matching subscription within 15 seconds'
-            recordAndAssertResourceUsage('NCMP:Update matching subscription', "Update matching subscription", 10.5, durationInSeconds, 1000, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
+            recordAndAssertResourceUsage('NCMP:Update matching subscription', 10.5, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
     }
 
     def 'Worst case new subscription (200x10 new entries).'() {
@@ -111,7 +111,7 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'insert new subscription with 1 second'
-            recordAndAssertResourceUsage('NCMP:Insert new subscription', "Insert new subscription", 1.28, durationInSeconds, 100, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('NCMP:Insert new subscription', 1.28, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 
     def querySubscriptionsByIteration(Collection<DataNode> allSubscriptionsAsDataNodes, targetSubscriptionSequenceNumber) {

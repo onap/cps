@@ -68,7 +68,7 @@ class CpsPerfTestBase extends PerfTestBase {
         addAnchorsWithData(OPENROADM_ANCHORS, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm', data, ContentType.JSON)
         resourceMeter.stop()
         def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        recordAndAssertResourceUsage('CPS:Creating openroadm anchors with large data tree', 'Creating openroadm anchors with large data tree', 100, durationInSeconds, 600, resourceMeter.getTotalMemoryUsageInMB(), false)
+        recordAndAssertResourceUsage('CPS:Creating openroadm anchors with large data tree', 100, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def generateOpenRoadData(numberOfNodes) {
@@ -86,7 +86,7 @@ class CpsPerfTestBase extends PerfTestBase {
         then: 'expected data exists'
             assert result.xpath == ['/openroadm-devices']
         then: 'operation completes within expected time'
-            recordAndAssertResourceUsage('CPS:Preload test data', 'CPS pre-load test data', 100, resourceMeter.totalTimeInSeconds, 600, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage('CPS:Preload test data', 100, resourceMeter.totalTimeInSeconds, resourceMeter.totalMemoryUsageInMB)
     }
 
 }
