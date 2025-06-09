@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19193f7e_6be1f7ae",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-09T10:28:10Z",
+      "side": 1,
+      "message": "Arpit  : when grouping is disabled then the output should not change. right??\nI remember you mentioning something around it which is needed for the upcoming patchsets. Plz elaborate on that for other reviewers.",
+      "range": {
+        "startLine": 129,
+        "startChar": 139,
+        "endLine": 129,
+        "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
