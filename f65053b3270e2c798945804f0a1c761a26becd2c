@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2bcdbf7_8e8b0cea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-09T14:57:52Z",
+      "side": 1,
+      "message": "looks fine to me.",
+      "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a564ac2_93f59106",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-09T14:57:52Z",
+      "side": 1,
+      "message": "NB: if this is how we want to do it then we can do like this at other places in the testware too. ( not in this patch )",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
