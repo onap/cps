@@ -99,7 +99,7 @@ public class ModuleSyncWatchdog {
                     advisedCmHandleIds.size());
             advisedCmHandleIds.forEach(cmHandleId -> {
                 if (moduleSyncWorkQueue.offer(cmHandleId)) {
-                    log.info("CM handle {} added to the work queue.", cmHandleId);
+                    log.debug("CM handle {} added to the work queue.", cmHandleId);
                 } else {
                     log.warn("Failed to add CM handle {} to the work queue.", cmHandleId);
                 }
@@ -131,7 +131,7 @@ public class ModuleSyncWatchdog {
             if (alreadyAddedToInProgressMap) {
                 log.info("module sync for {} already in progress by other instance", cmHandleId);
             } else {
-                log.info("Adding cmHandle : {} to current batch", cmHandleId);
+                log.debug("Adding cmHandle : {} to current batch", cmHandleId);
                 nextBatch.add(cmHandleId);
             }
         }

@@ -24,8 +24,8 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
-import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.slf4j.LoggerFactory
@@ -42,11 +42,13 @@ import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_S
 
 class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
-    def logger = Spy(ListAppender<ILoggingEvent>)
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
-        ((Logger) LoggerFactory.getLogger(LcmEventsCmHandleStateHandlerImpl.class)).addAppender(logger)
-        logger.start()
+        def logger = LoggerFactory.getLogger(LcmEventsCmHandleStateHandlerImpl)
+        logger.setLevel(Level.DEBUG)
+        logger.addAppender(logAppender)
+        logAppender.start()
     }
 
     void cleanup() {
@@ -78,9 +80,9 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).cmHandleState == toCmHandleState
                 }
             }
-        and: 'log message shows state change at INFO level'
-            def loggingEvent = (ILoggingEvent) logger.list[0]
-            assert loggingEvent.level == Level.INFO
+        and: 'log message shows state change at DEBUG level'
+            def loggingEvent = logAppender.list[0]
+            assert loggingEvent.level == Level.DEBUG
             assert loggingEvent.formattedMessage == "${cmHandleId} is now in ${toCmHandleState} state"
         and: 'event service is called to send event'
             1 * mockLcmEventsProducer.sendLcmEvent(cmHandleId, _, _)
@@ -183,8 +185,6 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
             1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
         and: 'no event will be sent'
             0 * mockLcmEventsProducer.sendLcmEvent(*_)
-        and: 'no log entries are written'
-            assert logger.list.empty
     }
 
     def 'Batch of new cm handles provided'() {
@@ -255,7 +255,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         and: 'no events are sent'
             0 * mockLcmEventsProducer.sendLcmEvent(_, _, _)
         and: 'no log entries are written'
-            assert logger.list.empty
+            assert logAppender.list.empty
     }
 
     def setupBatch(type) {
@@ -288,6 +288,6 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     }
 
     def getLogMessage(index) {
-        return logger.list[index].formattedMessage
+        return logAppender.list[index].formattedMessage
     }
 }

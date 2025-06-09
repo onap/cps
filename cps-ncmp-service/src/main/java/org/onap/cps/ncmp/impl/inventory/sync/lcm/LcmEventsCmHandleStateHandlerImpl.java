@@ -163,7 +163,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     private static void logCmHandleStateChanges(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
         cmHandleTransitionPairs.stream()
                 .map(CmHandleTransitionPair::getTargetYangModelCmHandle)
-                .forEach(yangModelCmHandle -> log.info("{} is now in {} state", yangModelCmHandle.getId(),
+                .forEach(yangModelCmHandle -> log.debug("{} is now in {} state", yangModelCmHandle.getId(),
                         yangModelCmHandle.getCompositeState().getCmHandleState().name()));
     }
 
