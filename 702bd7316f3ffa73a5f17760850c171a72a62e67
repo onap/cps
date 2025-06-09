@@ -212,6 +212,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8ae9154_a85ced97",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-09T13:39:02Z",
+      "side": 1,
+      "message": "so this change corresponds to first point under proposed changes in the wiki page that you have.",
+      "parentUuid": "4f004cd6_5d8c466f",
+      "range": {
+        "startLine": 129,
+        "startChar": 139,
+        "endLine": 129,
+        "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb2c45cd_753f9255",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 26
