@@ -164,6 +164,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c83a1ec0_8f33aedc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-09T10:35:39Z",
+      "side": 1,
+      "message": "Yes, In the current delta report format we only report the leaf nodes that change. But when we tried to use this data, we noticed that leaf nodes cannot be directly used in practical cases because there is no JSON structure present. \nSo, in a future patch we proposed to maintain the JSON structure of the nodes that are reported in delta report and these changes are mentioned in the following page as well https://lf-onap.atlassian.net/wiki/spaces/DW/pages/232194058/Proposed+changes+to+original+Delta+Report+Format",
+      "parentUuid": "19193f7e_6be1f7ae",
+      "range": {
+        "startLine": 129,
+        "startChar": 139,
+        "endLine": 129,
+        "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb2c45cd_753f9255",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 26
