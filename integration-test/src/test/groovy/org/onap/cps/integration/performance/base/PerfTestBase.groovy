@@ -27,7 +27,7 @@ import java.text.DecimalFormat
 abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     static def LARGE_SCHEMA_SET = 'largeSchemaSet'
-    static def PERFORMANCE_RECORDS = []
+    static def PERFORMANCE_TXT_RECORDS = []
     static def PERFORMANCE_CSV_RECORDS = []
     static def DEFAULT_TIME_LIMIT_FACTOR = 2                    // Allow 100% margin on top of expected (average) value
     static def VERY_FAST_TEST_THRESHOLD = 0.01                  // Definition of a very vast test (hard to measure)
@@ -35,7 +35,6 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
     static def REFERENCE_GRAPH = true
     static def CSV_PREFIX = "### CSV ### "                      // To be used in plot-job to extract CSV data from logs
     static def TIME_FORMAT = new DecimalFormat("0.####")
-
 
     def cleanupSpec() {
         printTextRecords()
@@ -57,13 +56,13 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     abstract def createInitialData()
 
-    def recordAndAssertResourceUsage(String title, String shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, memoryLimitCurrentlyNotAsserted, double memoryUsageInMB, boolean referenceGraph) {
+    def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean referenceGraph) {
         def timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR
         if (expectedAverageTimeInSec <= VERY_FAST_TEST_THRESHOLD) {
             timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR_FOR_VERY_FAST_TEST
         }
         def testPassed = recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
-        addRecord(shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, testPassed)
+        addRecord(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, testPassed)
         if (referenceGraph) {
             addCsvRecord('Reference', title, expectedAverageTimeInSec, recordedTimeInSec)
         }
@@ -72,20 +71,18 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
         return true
     }
 
-    def recordAndAssertResourceUsage(String title, String shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, memoryLimitCurrentlyNotAsserted, double memoryUsageInMB) {
-        recordAndAssertResourceUsage(title, shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryLimitCurrentlyNotAsserted, memoryUsageInMB, false)
+    def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB) {
+        recordAndAssertResourceUsage(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, false)
     }
 
     def addRecord(shortTitle, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean testPassed) {
         if (shortTitle.length() > 40) {
             shortTitle = shortTitle.substring(0, 40)
         }
-        def record = String.format('%2d.%-40s limit %8.3f took %8.3f sec %,8.2f MB used ', PERFORMANCE_RECORDS.size() + 1, shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB)
+        def record = String.format('%2d.%-40s limit %8.3f took %8.3f sec %,8.2f MB used ', PERFORMANCE_TXT_RECORDS.size() + 1, shortTitle, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB)
         record += testPassed ? 'PASS' : 'FAIL'
-        PERFORMANCE_RECORDS.add(record)
+        PERFORMANCE_TXT_RECORDS.add(record)
     }
-
-
 
     def addCsvRecord(tabName, title, double expectedAverageTimeInSec, double recordedTimeInSec) {
         def csvRecord = String.format('%s,%s,%s,%s', tabName, title, TIME_FORMAT.format(expectedAverageTimeInSec), TIME_FORMAT.format(recordedTimeInSec))
@@ -96,10 +93,10 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
         println('##################################################################################################')
         printTitle()
         println('##################################################################################################')
-        PERFORMANCE_RECORDS.sort().each {
+        PERFORMANCE_TXT_RECORDS.sort().each {
             println(it)
         }
-        PERFORMANCE_RECORDS.clear()
+        PERFORMANCE_TXT_RECORDS.clear()
     }
 
     def printCsvRecordsWithPrefix() {

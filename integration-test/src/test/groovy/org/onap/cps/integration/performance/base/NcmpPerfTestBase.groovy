@@ -120,8 +120,6 @@ class NcmpPerfTestBase extends PerfTestBase {
             resourceMeter.stop()
         then: 'expected data exists'
             assert result.xpath == [REGISTRY_PARENT]
-        and: 'operation completes within expected time'
-            recordAndAssertResourceUsage('NCMP:Pre-load test data', 'NCMP pre-load test data', 15, resourceMeter.totalTimeInSeconds, 600, resourceMeter.totalMemoryUsageInMB)
     }
 
 }

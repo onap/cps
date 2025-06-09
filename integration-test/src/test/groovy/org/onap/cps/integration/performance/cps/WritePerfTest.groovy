@@ -40,15 +40,15 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, jsonData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("CPS:Writing ${totalNodes} devices", "Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), memoryLimit, resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
+            recordAndAssertResourceUsage("CPS:Writing ${totalNodes} devices", expectedDuration, resourceMeter.getTotalTimeInSeconds(), resourceMeter.getTotalMemoryUsageInMB(), referenceGraph)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalNodes || expectedDuration | memoryLimit | referenceGraph
-            50         || 1.45             | 100         | false
-            100        || 2.9              | 200         | false
-            200        || 6.2              | 400         | true
-            400        || 13.0             | 500         | false
+            totalNodes || expectedDuration | referenceGraph
+            50         || 1.45             | false
+            100        || 2.9              | false
+            200        || 6.2              | true
+            400        || 13.0             | false
     }
 
     def 'Writing bookstore data has exponential time.'() {
@@ -63,15 +63,15 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/bookstore/categories[@code=1]', booksData, OffsetDateTime.now())
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("CPS:Writing ${totalBooks} books", "Writing ${totalBooks} books", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB, referenceGraph)
+            recordAndAssertResourceUsage("CPS:Writing ${totalBooks} books", expectedDuration, resourceMeter.totalTimeInSeconds, resourceMeter.totalMemoryUsageInMB, referenceGraph)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalBooks || expectedDuration | memoryLimit | referenceGraph
-            800        || 0.31             | 50          | false
-            1600       || 0.8              | 100         | false
-            3200       || 2.2              | 150         | false
-            6400       || 6.9              | 200         | true
+            totalBooks || expectedDuration | referenceGraph
+            800        || 0.31             | false
+            1600       || 0.8              | false
+            3200       || 2.2              | false
+            6400       || 6.9              | true
     }
 
     def 'Writing openroadm list data using saveListElements.'() {
@@ -89,15 +89,15 @@ class WritePerfTest extends CpsPerfTestBase {
             cpsDataService.saveListElements(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR, '/openroadm-devices', jsonListData, OffsetDateTime.now(), ContentType.JSON)
             resourceMeter.stop()
         then: 'the operation takes less than #expectedDuration with a margin of 100%'
-            recordAndAssertResourceUsage("CPS:Saving list of ${totalNodes} devices", "Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, memoryLimit, resourceMeter.totalMemoryUsageInMB)
+            recordAndAssertResourceUsage("CPS:Saving list of ${totalNodes} devices", expectedDuration, resourceMeter.totalTimeInSeconds, resourceMeter.totalMemoryUsageInMB)
         cleanup:
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, WRITE_TEST_ANCHOR)
         where:
-            totalNodes || expectedDuration | memoryLimit
-            50         || 1.5              | 100
-            100        || 3.0              | 200
-            200        || 6.4              | 400
-            400        || 14.0             | 500
+            totalNodes || expectedDuration
+            50         || 1.5
+            100        || 3.0
+            200        || 6.4
+            400        || 14.0
     }
 
 }
