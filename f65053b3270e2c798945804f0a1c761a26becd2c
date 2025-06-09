@@ -39,6 +39,23 @@
       },
       "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d0a566_715246c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-09T15:08:31Z",
+      "side": 1,
+      "message": "log message shows state change at DEBUG level??",
+      "revId": "f65053b3270e2c798945804f0a1c761a26becd2c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
