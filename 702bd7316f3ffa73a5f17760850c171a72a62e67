@@ -188,6 +188,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f004cd6_5d8c466f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-09T10:44:26Z",
+      "side": 1,
+      "message": "in the current patch we only made changes to \"replace\" action because it has shared code between both the delta report formats. In the next patch we will extend the change to \"create\" and \"remove\" action as well",
+      "parentUuid": "c83a1ec0_8f33aedc",
+      "range": {
+        "startLine": 129,
+        "startChar": 139,
+        "endLine": 129,
+        "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb2c45cd_753f9255",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 26
