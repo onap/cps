@@ -146,45 +146,100 @@ function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentEx
 }
 
 /**
- * Validates a response against an expected HTTP status and an optional additional check.
- * If successful, records a metric value to a trend. Logs detailed error output on failure.
+ * Processes HTTP response and records duration minus known overhead (e.g., artificial delay).
  *
- * @param {Object} response - The HTTP response object from a K6 request.
- * @param {number} expectedStatus - The expected HTTP status code (e.g., 200, 202).
- * @param {string} checkLabel - The label to use in the K6 `check()` for reporting.
- * @param {Trend} trendMetric - A K6 `Trend` metric to which the extracted value will be added on success.
- * @param {function(Object): number} metricExtractor - A function that takes the response and returns a numeric value to record (e.g., `res.timings.duration`).
- * @param {function(Object): boolean} [additionalCheckValidator=() => true] - Optional function for any additional custom validation on the response.
- *
+ * @param {Object} httpResponse
+ * @param {number} expectedStatusCode
+ * @param {string} checkLabel
+ * @param {number} delayInMs - Overhead to subtract
+ * @param {Trend} trendMetric
  */
-export function validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, metricExtractor, additionalCheckValidator = () => true) {
+export function validateResponseAndRecordMetricWithOverhead(httpResponse, expectedStatusCode, checkLabel, delayInMs, trendMetric) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric,
+        (httpResponse) => httpResponse.timings.duration - delayInMs
+    );
+}
 
-    const isExpectedStatus = response.status === expectedStatus;
-    const isAdditionalCheckValid = additionalCheckValidator(response);
-    const isSuccess = check(response, {
-        [checkLabel]: () => isExpectedStatus && isAdditionalCheckValid,
+/**
+ * Validates that the JSON response is an array of expected length and records duration.
+ *
+ * @param {Object} httpResponse
+ * @param {number} expectedStatusCode
+ * @param {string} checkLabel
+ * @param {number} expectedArrayLength
+ * @param {Trend} trendMetric
+ */
+export function validateResponseAndRecordMetric(httpResponse, expectedStatusCode, checkLabel, expectedArrayLength, trendMetric) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric, (response) => response.timings.duration, (response) => {
+        const body = typeof response.body === 'string' ? response.body.trim() : '';
+        if (!body) {
+            return {valid: false, reason: "Empty response body"};
+        }
+        try {
+            const arrayLength = response.json('#');
+            const valid = arrayLength === expectedArrayLength;
+            return {
+                valid,
+                reason: valid ? undefined : `Expected array length ${expectedArrayLength}, but got ${arrayLength}`
+            };
+        } catch (e) {
+            return {valid: false, reason: `JSON parse error: ${e.message}`};
+        }
+    });
+}
+
+function recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, metricRecorder, metricValueExtractor, customValidatorFn = () => ({
+    valid: true,
+    reason: undefined
+})) {
+    const isExpectedStatusMatches = httpResponse.status === expectedStatusCode;
+    const {valid: isCustomValidationPasses, reason = ""} = customValidatorFn(httpResponse);
+
+    const isSuccess = check(httpResponse, {
+        [checkLabel]: () => isExpectedStatusMatches && isCustomValidationPasses,
     });
 
     if (isSuccess) {
-        trendMetric.add(metricExtractor(response));
+        metricRecorder.add(metricValueExtractor(httpResponse));
     } else {
-        console.error(`${checkLabel} failed. Status: ${response.status}`);
-        if (response.body) {
-            try {
-                const responseBody = JSON.parse(response.body);
-                console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
-            } catch (e) {
-                console.error(`❌ ${checkLabel} failed: Unable to parse response body.`);
-            }
-        }
+        logDetailedFailure(httpResponse, isExpectedStatusMatches, checkLabel, reason);
     }
 }
 
-export function processHttpResponseWithOverheadMetrics(response, expectedStatus, checkLabel, delayMs, trendMetric) {
-    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration - delayMs);
-}
+function logDetailedFailure(httpResponse, isExpectedStatusMatches, checkLabel, customReason = "") {
+    const {status, url, body} = httpResponse;
+    const trimmedBody = typeof body === 'string' ? body.trim() : '';
 
-export function validateResponseAndRecordMetric(response, expectedStatus, expectedJsonLength, trendMetric, checkLabel) {
-    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration, (res) => res.json('#') === expectedJsonLength);
-}
+    // If status is okay but custom check failed, log that reason only
+    if (isExpectedStatusMatches && customReason) {
+        console.error(`❌ ${checkLabel} failed: Custom validation failed. Reason: ${customReason}. URL: ${url}`);
+        return;
+    }
 
+    // Categorize status
+    let errorCategory;
+    if (status >= 400 && status < 500) {
+        errorCategory = 'Client Error (4xx)';
+    } else if (status >= 500 && status < 600) {
+        errorCategory = 'Server Error (5xx)';
+    } else if (status === 0) {
+        errorCategory = 'Network Error or Timeout (status = 0)';
+    } else {
+        errorCategory = `Unexpected Status (${status})`;
+    }
+
+    if (!trimmedBody) {
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Empty response body. URL: ${url}`);
+        return;
+    }
+
+    try {
+        const responseJson = JSON.parse(trimmedBody);
+        const errorMessage = responseJson && responseJson.message ? responseJson.message : 'No message';
+        const errorDetails = responseJson && responseJson.details ? responseJson.details : 'No details';
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Status: ${status}, Message: ${errorMessage}, Details: ${errorDetails}, URL: ${url}`);
+    } catch (e) {
+        const bodyPreview = trimmedBody.length > 500 ? trimmedBody.slice(0, 500) + '... [truncated]' : trimmedBody;
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Status: ${status}, URL: ${url}. Response is not valid JSON.\n↪️ Raw body preview:\n${bodyPreview}\n✳️ Parse error: ${e.message}`);
+    }
+}
