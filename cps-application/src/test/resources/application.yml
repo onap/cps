@@ -43,7 +43,7 @@ spring:
             hibernate.jdbc.batch_size: 100
 
     datasource:
-        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/cpsdb
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:-cpsdb}
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
         driverClassName: org.postgresql.Driver
