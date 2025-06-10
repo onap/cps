@@ -168,11 +168,14 @@ export function validateAndRecordMetric(response, expectedStatus, checkLabel, tr
     if (isSuccess) {
         trendMetric.add(metricExtractor(response));
     } else {
-        console.error(`${checkLabel} failed. Status: ${response.status}`);
-        if (response.body) {
+        if (!isExpectedStatus) {
             try {
-                const responseBody = JSON.parse(response.body);
-                console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
+                if (response.body) {
+                    const responseBody = JSON.parse(response.body);
+                    console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
+                } else {
+                    console.error(`❌ ${checkLabel} failed: Empty response body. Possibly a timeout or connection issue.`);
+                }
             } catch (e) {
                 console.error(`❌ ${checkLabel} failed: Unable to parse response body.`);
             }
@@ -185,6 +188,19 @@ export function processHttpResponseWithOverheadMetrics(response, expectedStatus,
 }
 
 export function validateResponseAndRecordMetric(response, expectedStatus, expectedJsonLength, trendMetric, checkLabel) {
-    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration, (res) => res.json('#') === expectedJsonLength);
+    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric,
+        (res) => res.timings.duration, (res) => {
+            if (!res.body) {
+                console.error(`⚠️ ${checkLabel}: Response body is null. Status: ${res.status}, URL: ${res.url}`);
+                return false;
+            }
+            try {
+                return res.json('#') === expectedJsonLength;
+            } catch (e) {
+                console.error(`❌ ${checkLabel} failed: JSON parsing error - ${e.message}`);
+                return false;
+            }
+        }
+    );
 }
 
