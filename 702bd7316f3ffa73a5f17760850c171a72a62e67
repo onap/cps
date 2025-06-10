@@ -240,6 +240,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee3c58af_6031d4f2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d5d4328_8e9839d2",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 83
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e531785_63b57e04",
@@ -429,6 +453,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "754ae0a3_e0e65c96",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:35:37Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "b8ae9154_a85ced97",
+      "range": {
+        "startLine": 129,
+        "startChar": 139,
+        "endLine": 129,
+        "endChar": 147
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb2c45cd_753f9255",
@@ -442,6 +490,30 @@
       "writtenOn": "2025-06-09T10:29:44Z",
       "side": 1,
       "message": "NB: I am a bit worried about the size (no of columns) of this table: it is hard to follow/review! Could it be split into separate tests and reduce the table size?!",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 5
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ece556fe_04e6fac1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb2c45cd_753f9255",
       "range": {
         "startLine": 157,
         "startChar": 0,
