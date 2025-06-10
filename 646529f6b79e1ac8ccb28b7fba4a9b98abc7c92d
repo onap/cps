@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cfa3da4_999d3df2",
+        "filename": "docker-compose/cps-base.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T12:39:11Z",
+      "side": 1,
+      "message": "expose the same in application.yml as well.\nspring.datasource.url at all places.\ncheck if we need to document this in the RTD.",
+      "range": {
+        "startLine": 35,
+        "startChar": 21,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "646529f6b79e1ac8ccb28b7fba4a9b98abc7c92d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
