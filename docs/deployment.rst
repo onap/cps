@@ -201,7 +201,7 @@ The following tables list properties that can be configured in the deployment. T
    :header-rows: 1
 
 .. note::
-    - The default datasource is defined as ``jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/cpsdb``. So it can also be configured using environment variables to just set the hostname ``DB_HOST`` and port ``DB_PORT``.
+    - The default datasource is defined as ``jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:cpsdb}``. You can configure the database connection by setting the environment variables ``DB_HOST`` for the hostname, ``DB_PORT`` for the port number, and ``POSTGRES_DB`` for the database name.
     - The kafka bootstrap-servers can also be overridden with the environment variable ``KAFKA_BOOTSTRAP_SERVER``.
 
 .. csv-table:: Common CPS-NCMP Custom Properties
