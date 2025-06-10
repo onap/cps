@@ -18,7 +18,10 @@
 # ─────────────────────────────────────────────────────────────
 # 📁 Navigate to Script Directory
 # ─────────────────────────────────────────────────────────────
-pushd "$(dirname "$0")" >/dev/null || { echo "❌ Failed to access script directory. Exiting."; exit 1; }
+pushd "$(dirname "$0")" >/dev/null || {
+  echo "❌ Failed to access script directory. Exiting."
+  exit 1
+}
 
 # ─────────────────────────────────────────────────────────────
 # 📌 Global Variables
@@ -34,10 +37,16 @@ echo
 echo "📢 Running NCMP K6 performance test for profile: [$testProfile]"
 echo
 
-# ─────────────────────────────────────────────────────────────
-# 1️⃣ Generate trend declarations and thresholds from metadata
-# ─────────────────────────────────────────────────────────────
-echo "🔧 Generating trend declarations, thresholds from [$KPI_METADATA_FILE] and updating [$NCMP_RUNNER_FILE] and [$KPI_CONFIG_FILE]..."
+# ───────────────────────────────────────────────────────────────────────────
+# 1️⃣ Generate trend declarations and (conditionally) thresholds from metadata
+# ───────────────────────────────────────────────────────────────────────────
+echo "🔧 Generating trend declarations from [$KPI_METADATA_FILE]..."
+
+# Pass true or false depending on testProfile
+kpiTestProfile=false
+if [[ "$testProfile" == "kpi" ]]; then
+  kpiTestProfile=true
+fi
 
 read -r -d '' jq_script << 'EOF'
 def toCamelCase:
@@ -69,9 +78,8 @@ EOF
 # Execute jq script
 jq_output=$(jq -r "$jq_script" "$KPI_METADATA_FILE")
 
-# Extract trends and thresholds
+# Extract trends
 trend_declarations=$(echo "$jq_output" | jq -r '.trends[]')
-thresholds_json=$(echo "$jq_output" | jq '.thresholds')
 
 # Replace placeholder in runner with generated trends
 TMP_FILE=$(mktemp)
@@ -89,15 +97,19 @@ awk -v trends="$trend_declarations" '
 mv "$TMP_FILE" "$NCMP_RUNNER_FILE"
 echo "✅ Trend declarations inserted into [$NCMP_RUNNER_FILE]"
 
-# Update thresholds in KPI config
-TMP_FILE=$(mktemp)
-cp "$KPI_CONFIG_FILE" "$TMP_FILE"
-jq --argjson thresholds "$thresholds_json" '
-  .thresholds = $thresholds
-' "$TMP_FILE" | jq '.' > "$KPI_CONFIG_FILE"
-rm -f "$TMP_FILE"
-echo "✅ Threshold block has been injected into [$KPI_CONFIG_FILE]"
-echo
+# If profile is KPI, generate threshold config too
+if [ "$kpiTestProfile" = true ]; then
+  echo "📌 Writing thresholds to [$KPI_CONFIG_FILE]..."
+  # Update thresholds in KPI config
+  # Extract thresholds
+  thresholds_json=$(echo "$jq_output" | jq '.thresholds')
+  TMP_FILE=$(mktemp)
+  cp "$KPI_CONFIG_FILE" "$TMP_FILE"
+  jq --argjson thresholds "$thresholds_json" '.thresholds = $thresholds' "$TMP_FILE" | jq '.' > "$KPI_CONFIG_FILE"
+  rm -f "$TMP_FILE"
+  echo "✅ Threshold block has been injected into [$KPI_CONFIG_FILE]"
+  echo
+fi
 
 # ─────────────────────────────────────────────────────────────
 # 2️⃣ Run K6 and Capture Output
@@ -108,9 +120,10 @@ k6_exit_code=$?
 case $k6_exit_code in
   0) echo "✅ K6 executed successfully for profile: [$testProfile]." ;;
   99) echo "⚠️  K6 thresholds failed (exit code 99). Processing failures..." ;;
-  *) echo "❌ K6 execution error (exit code $k6_exit_code)."; ((number_of_failures++)) ;;
+  *) echo "❌ K6 execution error (exit code $k6_exit_code)."; number_of_failures=$((number_of_failures + 1)) ;;
 esac
 
+if [ "$kpiTestProfile" = true ]; then
 # ─────────────────────────────────────────────────────────────
 # 3️⃣ Extract and Filter Summary Data
 # ─────────────────────────────────────────────────────────────
@@ -253,18 +266,65 @@ if [ -f "$summaryFile" ]; then
   # 🎯 Final FS Summary of threshold result
   if (( threshold_failures > 0 )); then
     echo "❌ Summary: [$threshold_failures] test(s) failed FS requirements."
+    echo
+      echo "⚠️ Performance tests completed with issues for profile: [$testProfile]."
+      echo "❗ Number of failures or threshold breaches: $threshold_failures"
+      echo "Please check the summary reports and logs above for details."
+      echo "Investigate any failing metrics and consider re-running the tests after fixes."
+      echo
     ((number_of_failures++))
   else
     echo "✅ All tests passed FS requirements."
+    echo "✅ No threshold violations or execution errors detected."
+    echo "You can review detailed results in the generated summary."
   fi
 
-  # Cleanup temp files
-  rm -f "$summaryFile" "$filtered_summary" "$annotated_summary"
+  # Cleanup temp files related to reporting
+  rm -f "$filtered_summary" "$annotated_summary"
 
 else  # no summary file
   echo "❌ Error: Summary file [$summaryFile] was not generated. Possible K6 failure."
   ((number_of_failures++))
 fi
+else
+# ─────────────────────────────────────────────────────────────
+# Non-KPI Profile: Investigative Guidance
+# ─────────────────────────────────────────────────────────────
+    echo
+    echo "🔍 Skipping KPI evaluation for profile [$testProfile]"
+    echo
+    echo "📌 Please use the following tools and dashboards to investigate performance:"
+    echo
+    echo "  • 📈 Grafana Dashboards:"
+    echo "     - Nordix Prometheus/Grafana can visualize memory and latency trends."
+    echo "     - Especially useful for endurance/stability runs."
+    echo "     - 🌐 https://monitoring.nordix.org/login"
+    echo "     - Dashboards include:"
+    echo "         ▪ Check CM Handle operation latency trends over time."
+    echo "         ▪ Focus on 'Pass-through Read/Write', 'Search', or 'Kafka Batch' graphs."
+    echo "         ▪ Memory usage patterns (cps/ncmp containers)"
+    echo "         ▪ Kafka lag and consumer trends (if applicable)"
+    echo
+    echo "  • 📊 GnuPlot:"
+    echo "     - Optional local alternative to visualize memory trends."
+    echo "     - Requires exporting memory data (CSV/JSON) and plotting manually."
+    echo
+    echo "  • 🔎 Important Metrics to Watch:"
+    echo "     - HTTP duration (avg, p95, max)"
+    echo "     - VU concurrency and iteration rates"
+    echo "     - Error rates and failed checks"
+    echo "     - Container memory growth over time (especially in endurance tests)"
+    echo
+    echo "  • 📄 Logs and Summary:"
+    echo "     - Check '$summaryFile' for raw execution summary."
+    echo "     - Inspect logs for timeout/retries/exception patterns."
+    echo
+    echo "ℹ️  Reminder: For KPI validation with FS thresholds, re-run with profile: 'kpi'"
+    echo
+fi
+
+# Cleanup global temp file
+rm -f "$summaryFile"
 
 # ─────────────────────────────────────────────────────────────
 # 🔚 Final Exit

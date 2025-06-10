@@ -146,45 +146,89 @@ function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentEx
 }
 
 /**
- * Validates a response against an expected HTTP status and an optional additional check.
- * If successful, records a metric value to a trend. Logs detailed error output on failure.
+ * Processes HTTP response and records duration minus known overhead (e.g., artificial delay).
  *
- * @param {Object} response - The HTTP response object from a K6 request.
- * @param {number} expectedStatus - The expected HTTP status code (e.g., 200, 202).
- * @param {string} checkLabel - The label to use in the K6 `check()` for reporting.
- * @param {Trend} trendMetric - A K6 `Trend` metric to which the extracted value will be added on success.
- * @param {function(Object): number} metricExtractor - A function that takes the response and returns a numeric value to record (e.g., `res.timings.duration`).
- * @param {function(Object): boolean} [additionalCheckValidator=() => true] - Optional function for any additional custom validation on the response.
- *
+ * @param {Object} httpResponse
+ * @param {number} expectedStatusCode
+ * @param {string} checkLabel
+ * @param {number} delayInMs - Overhead to subtract (e.g., artificial delay).
+ * @param {Trend} trendMetric
  */
-export function validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, metricExtractor, additionalCheckValidator = () => true) {
+export function validateResponseAndRecordMetricWithOverhead(httpResponse, expectedStatusCode, checkLabel, delayInMs, trendMetric) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric, (httpResponse) => httpResponse.timings.duration - delayInMs);
+}
 
-    const isExpectedStatus = response.status === expectedStatus;
-    const isAdditionalCheckValid = additionalCheckValidator(response);
-    const isSuccess = check(response, {
-        [checkLabel]: () => isExpectedStatus && isAdditionalCheckValid,
+/**
+ * Validates that the JSON response has a specific array length and records duration.
+ *
+ * @param {Object} httpResponse
+ * @param {number} expectedStatusCode
+ * @param {number} expectedArrayLength
+ * @param {Trend} trendMetric
+ * @param {string} checkLabel
+ */
+export function validateResponseAndRecordMetric(httpResponse, expectedStatusCode, expectedArrayLength, trendMetric, checkLabel) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric, (httpResponse) => httpResponse.timings.duration, (httpResponse) => {
+            if (!httpResponse.body) {
+                console.error(`⚠️ ${checkLabel}: Response body is null. Status: ${httpResponse.status}, URL: ${httpResponse.url}`);
+                return false;
+            }
+            try {
+                return httpResponse.json('#') === expectedArrayLength;
+            } catch (e) {
+                console.error(`❌ ${checkLabel} failed: JSON parsing error - ${e.message}`);
+                return false;
+            }
+        }
+    );
+}
+
+function recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, metricRecorder, metricValueExtractor, customValidatorFn = () => true) {
+
+    const isExpectedStatusMatches = httpResponse.status === expectedStatusCode;
+    const isCustomValidationPasses  = customValidatorFn(httpResponse);
+
+    const isSuccess = check(httpResponse, {
+        [checkLabel]: () => isExpectedStatusMatches && isCustomValidationPasses,
     });
 
     if (isSuccess) {
-        trendMetric.add(metricExtractor(response));
+        metricRecorder.add(metricValueExtractor(httpResponse));
     } else {
-        console.error(`${checkLabel} failed. Status: ${response.status}`);
-        if (response.body) {
-            try {
-                const responseBody = JSON.parse(response.body);
-                console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
-            } catch (e) {
-                console.error(`❌ ${checkLabel} failed: Unable to parse response body.`);
-            }
-        }
+        logDetailedFailure(httpResponse, checkLabel, isExpectedStatusMatches);
     }
 }
 
-export function processHttpResponseWithOverheadMetrics(response, expectedStatus, checkLabel, delayMs, trendMetric) {
-    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration - delayMs);
-}
+function logDetailedFailure(httpResponse, checkLabel, isExpectedStatusMatches) {
+    if (isExpectedStatusMatches) return;
 
-export function validateResponseAndRecordMetric(response, expectedStatus, expectedJsonLength, trendMetric, checkLabel) {
-    validateAndRecordMetric(response, expectedStatus, checkLabel, trendMetric, (res) => res.timings.duration, (res) => res.json('#') === expectedJsonLength);
-}
+    const { status, url, body } = httpResponse;
 
+    // Categorize status
+    let errorCategory;
+    if (status >= 400 && status < 500) {
+        errorCategory = 'Client Error (4xx)';
+    } else if (status >= 500 && status < 600) {
+        errorCategory = 'Server Error (5xx)';
+    } else if (status === 0) {
+        errorCategory = 'Network Error or Timeout (status = 0)';
+    } else {
+        errorCategory = `Unexpected Status (${status})`;
+    }
+
+    // Handle body
+    if (!body) {
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Empty response body. URL: ${url}`);
+        return;
+    }
+
+    try {
+        const responseJson = JSON.parse(body);
+        const errorMessage = responseJson && responseJson.message ? responseJson.message : 'No message';
+        const errorDetails = responseJson && responseJson.details ? responseJson.details : 'No details';
+
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Status: ${status}, Message: ${errorMessage}, Details: ${errorDetails}, URL: ${url}`);
+    } catch (e) {
+        console.error(`❌ ${checkLabel} failed: ${errorCategory}. Invalid JSON. Status: ${status}, URL: ${url}. Parse error: ${e.message}`);
+    }
+}
