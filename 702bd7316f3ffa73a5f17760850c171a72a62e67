@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e088728e_48e35360",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44fe6fb4_5592bfa5",
+      "range": {
+        "startLine": 158,
+        "startChar": 40,
+        "endLine": 158,
+        "endChar": 59
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d9fd4a4_98c511c2",
@@ -88,6 +112,30 @@
       "writtenOn": "2025-06-09T10:29:44Z",
       "side": 1,
       "message": "deltaReportEntiresForUpdates",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90bf39a_d92b68ac",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d9fd4a4_98c511c2",
       "range": {
         "startLine": 160,
         "startChar": 32,
@@ -123,6 +171,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95afaddf_5b6471cf",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "thanks, this gave me idea to resolve by just using one private method which handles source data first then target data. Hence no need to have 2 if blocks. 😊",
+      "parentUuid": "7bbfd058_08638975",
+      "range": {
+        "startLine": 235,
+        "startChar": 12,
+        "endLine": 235,
+        "endChar": 88
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dfba9ec_0340dd2e",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 26
@@ -134,6 +206,30 @@
       "writtenOn": "2025-06-09T10:29:44Z",
       "side": 1,
       "message": "as above are these checks really needed?!",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 83
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5d4328_8e9839d2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "resolved using same idea as above.",
+      "parentUuid": "2dfba9ec_0340dd2e",
       "range": {
         "startLine": 262,
         "startChar": 12,
@@ -167,6 +263,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63942110_1e8262f0",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e531785_63b57e04",
+      "range": {
+        "startLine": 352,
+        "startChar": 32,
+        "endLine": 352,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "458684ff_a083ec1c",
@@ -180,6 +300,30 @@
       "writtenOn": "2025-06-09T10:29:44Z",
       "side": 1,
       "message": "deltaReportEntiresForUpdates",
+      "range": {
+        "startLine": 365,
+        "startChar": 32,
+        "endLine": 365,
+        "endChar": 58
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "165b5cac_11f0acaf",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 26
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "458684ff_a083ec1c",
       "range": {
         "startLine": 365,
         "startChar": 32,
@@ -345,6 +489,30 @@
       "side": 1,
       "message": "i mean the same comment related to introducing the prefix. But I see that you already answered the previous one.",
       "parentUuid": "8e31e1f3_86c35613",
+      "range": {
+        "startLine": 245,
+        "startChar": 212,
+        "endLine": 245,
+        "endChar": 222
+      },
+      "revId": "702bd7316f3ffa73a5f17760850c171a72a62e67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b0b14f4_6d4bdd87",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 26
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-06-10T08:11:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd70b756_19ba4e1e",
       "range": {
         "startLine": 245,
         "startChar": 212,
