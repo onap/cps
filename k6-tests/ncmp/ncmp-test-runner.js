@@ -21,12 +21,11 @@
 import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
-import {
+import { testConfig, validateResponseAndRecordMetricWithOverhead,
+    validateResponseAndRecordMetric, makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfAlternateIds,
     TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfAlternateIds,
     LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, REGISTRATION_BATCH_SIZE,
-    KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS, testConfig, processHttpResponseWithOverheadMetrics,
-    validateResponseAndRecordMetric
+    KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -92,12 +91,12 @@ export function teardown() {
 
 export function passthroughReadAltIdScenario() {
     const response = passthroughRead();
-    processHttpResponseWithOverheadMetrics(response, 200, 'passthrough read with alternate Id status equals 200', READ_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpReadOverheadTrend);
+    validateResponseAndRecordMetricWithOverhead(response, 200, 'passthrough read with alternate Id status equals 200', READ_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpReadOverheadTrend);
 }
 
 export function passthroughWriteAltIdScenario() {
     const response = passthroughWrite();
-    processHttpResponseWithOverheadMetrics(response, 201, 'passthrough write with alternate Id status equals 201', WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpWriteOverheadTrend);
+    validateResponseAndRecordMetricWithOverhead(response, 201, 'passthrough write with alternate Id status equals 201', WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpWriteOverheadTrend);
 }
 
 export function cmHandleIdSearchNoFilterScenario() {
@@ -214,7 +213,13 @@ export function legacyBatchConsumeScenario() {
 }
 
 export function handleSummary(data) {
-    return {
-        stdout: makeCustomSummaryReport(data, options),
-    };
+    const testProfile = __ENV.TEST_PROFILE;
+    if (testProfile === 'kpi') {
+        console.log("✅ Generating KPI summary...");
+        return {
+            stdout: makeCustomSummaryReport(data, options),
+        };
+    }
+    console.log("⛔ Skipping KPI summary (not in 'kpi' profile)");
+    return {};
 }
