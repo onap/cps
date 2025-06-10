@@ -46,12 +46,10 @@ services:
           cpus: '6'
           memory: 3G
     healthcheck:
-      test: pg_isready || exit 1 # This command runs inside the container, returning 0 for success, non-zero for failure.
-      timeout: 1s               # Time-out of the above test command.
-      interval: 2s              # How often the health is run.
-      retries: 100              # If 3 health checks fail, the container is unhealthy.
-      start_period: 210s        # Ignore failed health checks for first 30 seconds, to give system time to start
-      ### Full start-up time allowed = 30 seconds start period + 3 tries * 10 seconds interval = 60 seconds
+      test: pg_isready -U ${DB_USERNAME:-cps} -d cpsdb || exit 1 # This command runs inside the container, returning 0 for success, non-zero for failure.
+      timeout: 110s               # Time-out of the above test command.
+      interval: 10s               # How often the health is run.
+      retries: 10                 # If 10 health checks fail, the container is unhealthy.
 
   cps-and-ncmp-template:
     image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/cps-and-ncmp:${CPS_VERSION:-latest}
