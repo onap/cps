@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b08d6c_e1e50d9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T13:45:21Z",
+      "side": 1,
+      "message": "fine by me.\nwe already agreed to do the refactoring to have separate services for Delta Report and the grouping delta reports.",
+      "revId": "99274b453a0b6919f35113eba93a905f6c21f3cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
