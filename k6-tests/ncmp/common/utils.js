@@ -168,8 +168,7 @@ export function validateAndRecordMetric(response, expectedStatus, checkLabel, tr
     if (isSuccess) {
         trendMetric.add(metricExtractor(response));
     } else {
-        console.error(`${checkLabel} failed. Status: ${response.status}`);
-        if (response.body) {
+        if (!isExpectedStatus) {
             try {
                 const responseBody = JSON.parse(response.body);
                 console.error(`❌ ${checkLabel} failed: Error response status: ${response.status}, message: ${responseBody.message}, details: ${responseBody.details}`);
