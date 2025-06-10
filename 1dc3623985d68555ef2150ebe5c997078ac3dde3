@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6a8bda6_18fdb976",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-10T13:15:45Z",
+      "side": 1,
+      "message": "Entries",
+      "range": {
+        "startLine": 340,
+        "startChar": 43,
+        "endLine": 340,
+        "endChar": 50
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fc61fd_8a6cc96a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-10T13:15:45Z",
+      "side": 1,
+      "message": "Entries\n(don\u0027t copy what I type, my typing is very bad :-) )",
+      "range": {
+        "startLine": 353,
+        "startChar": 42,
+        "endLine": 353,
+        "endChar": 50
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
