@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08f24091_112c5236",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T13:18:58Z",
+      "side": 1,
+      "message": "NB: so as per your change on line #142 , shall we change this as well?\ngetDeltaReportsForRemove ??",
+      "range": {
+        "startLine": 140,
+        "startChar": 31,
+        "endLine": 140,
+        "endChar": 53
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d39e643_0aa4d8c2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T13:18:58Z",
+      "side": 1,
+      "message": "NB: typo deltaReportEntriesForRemove",
+      "range": {
+        "startLine": 150,
+        "startChar": 32,
+        "endLine": 150,
+        "endChar": 59
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a31368_a62e1279",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T13:18:58Z",
+      "side": 1,
+      "message": "NB: typo\nrefactor everywhere.",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 60
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6a8bda6_18fdb976",
         "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
         "patchSetId": 28
@@ -42,6 +111,29 @@
         "startChar": 42,
         "endLine": 353,
         "endChar": 50
+      },
+      "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cbe4b8f_83468592",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-10T13:18:58Z",
+      "side": 1,
+      "message": "NB: here the action will be replace for the added and remove scenario? coz it is list node?",
+      "range": {
+        "startLine": 321,
+        "startChar": 44,
+        "endLine": 321,
+        "endChar": 53
       },
       "revId": "1dc3623985d68555ef2150ebe5c997078ac3dde3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
