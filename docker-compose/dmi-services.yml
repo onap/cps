@@ -106,19 +106,15 @@ services:
 
   ncmp-dmi-plugin:
     container_name: ${NCMP_DMI_PLUGIN_CONTAINER_NAME:-ncmp-dmi-plugin}
-    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.7.0-SNAPSHOT-latest}
+    image: ${DOCKER_REPO:-nexus3.onap.org:10003}/onap/ncmp-dmi-plugin:${DMI_VERSION:-1.8.0-SNAPSHOT-latest}
     ports:
       - ${DMI_PORT:-8783}:8080
     depends_on:
       - sdnc
       - pnf-simulator
     environment:
-      CPS_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-      CPS_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
       CPS_CORE_HOST: ${CPS_CORE_HOST:-nginx}
       CPS_CORE_PORT: ${CPS_CORE_PORT:-80}
-      CPS_CORE_USERNAME: ${CPS_CORE_USERNAME:-cpsuser}
-      CPS_CORE_PASSWORD: ${CPS_CORE_PASSWORD:-cpsr0cks!}
       SDNC_HOST: ${SDNC_HOST:-sdnc}
       SDNC_PORT: ${SDNC_PORT:-8181}
       SDNC_USERNAME: ${SDNC_USERNAME:-admin}
