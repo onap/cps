@@ -119,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "110498a2_7c0103de",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-11T11:09:15Z",
+      "side": 1,
+      "message": "https://lf-onap.atlassian.net/browse/CPS-2838 to do the refactoring.",
+      "parentUuid": "d70bc5a1_783e83d9",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eecd644e_bfe5644d",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 22

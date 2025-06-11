@@ -98,6 +98,30 @@
       },
       "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5ecc786_44977ae7",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-11T11:09:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "215f6699_65e206df",
+      "range": {
+        "startLine": 130,
+        "startChar": 37,
+        "endLine": 130,
+        "endChar": 69
+      },
+      "revId": "f69745ffffeb5d08d7886822edd40cdfaa73f8d8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
