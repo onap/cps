@@ -1,0 +1,10 @@
+Code-Review+2: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Code-Review+1: Rajesh kumar <rk00747546@techmahindra.com>
+Verified+1: ONAP Bypass GHA <releng+onap.bypass.gha@linuxfoundation.org>
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Verified+1: ONAP Required GHA <releng+onap.required.gha@linuxfoundation.org>
+Submitted-by: Priyank Maheshwari <priyank.maheshwari@est.tech>
+Submitted-at: Wed, 11 Jun 2025 11:09:02 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/cps/+/140211
+Project: cps
+Branch: refs/heads/master
