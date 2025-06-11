@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba6808b1_e51e2bb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-11T16:01:59Z",
+      "side": 1,
+      "message": "time is good but I think it is a bad idea to make db name configurable\nIt is still hardcoded in a few more places like test scripts and graphana dashboard.\nPlease remove that configuration parameter and RTD update....",
+      "revId": "80533bd2cb389fe11e40b14281791f423669e97e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b06e59c3_61645f4d",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-06-11T15:54:42Z",
       "side": 1,
       "message": "@Toine : u referring to these changes.",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 0
+      },
+      "revId": "80533bd2cb389fe11e40b14281791f423669e97e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff713117_4f789aea",
+        "filename": "docker-compose/cps-base.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-11T16:01:59Z",
+      "side": 1,
+      "message": "yes I did, sorry Not suer why I missed it",
+      "parentUuid": "b06e59c3_61645f4d",
       "range": {
         "startLine": 48,
         "startChar": 4,
