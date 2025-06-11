@@ -33,6 +33,23 @@
       "message": "merging based on previous approvals.",
       "revId": "99274b453a0b6919f35113eba93a905f6c21f3cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77cc829d_98e3e221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-11T11:09:36Z",
+      "side": 1,
+      "message": "merged based on previous +1s",
+      "revId": "99274b453a0b6919f35113eba93a905f6c21f3cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
