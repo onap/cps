@@ -39,6 +39,30 @@
       },
       "revId": "8f756373c888ab567b42c990931f9bdec2fdb305",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433007bd_3b0d5bb0",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-11T14:27:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5f3292_a55cda28",
+      "range": {
+        "startLine": 204,
+        "startChar": 238,
+        "endLine": 204,
+        "endChar": 239
+      },
+      "revId": "8f756373c888ab567b42c990931f9bdec2fdb305",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
