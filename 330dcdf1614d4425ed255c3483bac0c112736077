@@ -45,6 +45,23 @@
       },
       "revId": "330dcdf1614d4425ed255c3483bac0c112736077",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2309e1e1_2e238a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-06-11T09:13:06Z",
+      "side": 1,
+      "message": "Pending commit message change",
+      "revId": "330dcdf1614d4425ed255c3483bac0c112736077",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
