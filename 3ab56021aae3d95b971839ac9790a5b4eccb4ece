@@ -45,6 +45,30 @@
       },
       "revId": "3ab56021aae3d95b971839ac9790a5b4eccb4ece",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56fd6008_e68f4f09",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-12T14:31:27Z",
+      "side": 1,
+      "message": "NCM\u003cP API is NOT implemented by anyone else at the moment, so this is not a concern...",
+      "parentUuid": "caa50423_4e235ec2",
+      "range": {
+        "startLine": 386,
+        "startChar": 17,
+        "endLine": 386,
+        "endChar": 56
+      },
+      "revId": "3ab56021aae3d95b971839ac9790a5b4eccb4ece",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
