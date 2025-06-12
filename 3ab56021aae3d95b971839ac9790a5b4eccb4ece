@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1148dc49_5296bcb1",
+        "filename": "cps-ncmp-rest-stub/cps-ncmp-rest-stub-service/src/main/java/org/onap/cps/ncmp/rest/stub/controller/NetworkCmProxyStubController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-12T14:28:18Z",
+      "side": 1,
+      "message": "NB: fix license since touching the file",
+      "range": {
+        "startLine": 4,
+        "startChar": 32,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "3ab56021aae3d95b971839ac9790a5b4eccb4ece",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa50423_4e235ec2",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-12T14:28:18Z",
+      "side": 1,
+      "message": "with this change the interface method signature generated will differ. which means the impl. method would be different.\nAre our stakeholders taking openapi file and generating code from it and using it?\n\nif that is the case then this change might impact them.\n\nOR maybe i am little bit overthinking 😄",
+      "range": {
+        "startLine": 386,
+        "startChar": 17,
+        "endLine": 386,
+        "endChar": 56
+      },
+      "revId": "3ab56021aae3d95b971839ac9790a5b4eccb4ece",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
