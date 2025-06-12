@@ -22,6 +22,30 @@
       },
       "revId": "cbc77b21201653865e7697acc4d425733420367b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1478bb7_4aa4ce67",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-12T11:57:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96e68699_11c459d6",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 1
+      },
+      "revId": "cbc77b21201653865e7697acc4d425733420367b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
