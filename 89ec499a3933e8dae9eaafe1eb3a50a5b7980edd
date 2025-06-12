@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b111c64_03b7e227",
+        "filename": "docker-compose/cps-base.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-12T11:52:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a131dfb_d4fe052e",
+      "range": {
+        "startLine": 176,
+        "startChar": 63,
+        "endLine": 176,
+        "endChar": 87
+      },
+      "revId": "89ec499a3933e8dae9eaafe1eb3a50a5b7980edd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21f20eaa_da639290",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-12T11:19:04Z",
       "side": 1,
       "message": "suggest to go with ${DMI_VERSION:-1.8.0-SNAPSHOT}\nthis will fallback to 1.8.0-SNAPSHOT if the environement variable is not set.\n\nwith no default value it will fallback to latest tag again which we dont want.",
+      "range": {
+        "startLine": 109,
+        "startChar": 70,
+        "endLine": 109,
+        "endChar": 84
+      },
+      "revId": "89ec499a3933e8dae9eaafe1eb3a50a5b7980edd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20530e24_29c81688",
+        "filename": "docker-compose/dmi-services.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-12T11:52:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21f20eaa_da639290",
       "range": {
         "startLine": 109,
         "startChar": 70,
