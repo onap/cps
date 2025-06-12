@@ -114,7 +114,7 @@ Verify delete to bookstore using passthrough-running removed only category 01
 
 Patch will add new category with new book and add a new book to an existing category
     ${uri}=              Set Variable       ${ncmpBasePath}/v1/ch/ietfYang-PNFDemo/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=stores:bookstore
-    ${headers}=          Create Dictionary  Content-Type=application/yang.patch+json
+    ${headers}=          Create Dictionary  Content-Type=application/json
     ${jsonData}=         Get Binary File    ${DATADIR_NCMP}${/}bookstorePatchExample.json
     ${response}=         PATCH On Session   CPS_URL   ${uri}   headers=${headers}   data=${jsonData}
     Should Be Equal As Strings              ${response.status_code}   200

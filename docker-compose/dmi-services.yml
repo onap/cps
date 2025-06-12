@@ -40,7 +40,7 @@ services:
 
   sdnc:
     container_name: sdnc
-    image: onap/sdnc-image:${SDNC_VERSION:-2.2.3}
+    image: onap/sdnc-image:${SDNC_VERSION:-2.6.1}
     entrypoint: /opt/onap/sdnc/bin/startODL.sh
     ports:
       - 8181:8181
