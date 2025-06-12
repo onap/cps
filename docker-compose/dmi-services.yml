@@ -36,7 +36,7 @@ services:
 
   sdnc:
     container_name: sdnc
-    image: onap/sdnc-image:${SDNC_VERSION:-2.2.3}
+    image: onap/sdnc-image:${SDNC_VERSION:-3.0.2}
     entrypoint: /opt/onap/sdnc/bin/startODL.sh
     ports:
       - 8181:8181
@@ -64,7 +64,7 @@ services:
       - ./config/sdnc/certs/certs.properties:/opt/opendaylight/certs/certs.properties
       - ./config/sdnc/certs/keys0.zip:/opt/opendaylight/certs/keys0.zip
     healthcheck:
-      test: "wget -q -O - --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' http://localhost:8181/restconf/operational/network-topology:network-topology || exit 1"
+      test: "wget -q -O - --header 'Authorization: Basic YWRtaW46S3A4Yko0U1hzek0wV1hsaGFrM2VIbGNzZTJnQXc4NHZhb0dHbUp2VXkyVQ==' http://localhost:8181/rests/operations/SLI-API:healthcheck || exit 1"
       interval: 10s
       timeout: 10s
       retries: 6
