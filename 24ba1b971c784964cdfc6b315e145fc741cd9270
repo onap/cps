@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a2d6272_44276bbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "Some minor comments but make the code more readable!",
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97e4245f_c68c8170",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "I would keep private methods nearby eachother, similary would keep public methods together without having a private method in between them!",
+      "range": {
+        "startLine": 140,
+        "startChar": 9,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f47bfee_fa7ea265",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "This is a private method used in this file only, thus no need to export!",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 39
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b93a6e3_c0f39b38",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "Don\u0027t need this block, anything else except success is not expected status!",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 32
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d384c04_afe9c93c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "for the method: processHttpResponseWithOverheadMetrics\nUse method parameter in this order:\n\nresponse, expectedStatus, checkLabel, trendMetric, delayMs \n\n\nfor the method: validateResponseAndRecordMetric\nUse method parameter in this order:\n\nresponse, expectedStatus, checkLabel, trendMetric, expectedJsonLength\n\n\nSo that the common ones will be in the same order!",
+      "range": {
+        "startLine": 186,
+        "startChar": 93,
+        "endLine": 186,
+        "endChar": 100
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dcacfa1_66dc759c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "I don\u0027t understand where this \u0027res\u0027 parameter is coming from?",
+      "range": {
+        "startLine": 191,
+        "startChar": 79,
+        "endLine": 191,
+        "endChar": 84
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eddf8de_e75b3c5b",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "one testProfile is not enough?",
+      "range": {
+        "startLine": 217,
+        "startChar": 9,
+        "endLine": 217,
+        "endChar": 34
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7de116_386c57ba",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "No need to true, false assignent, it complicates code more!\n\nInstead do a comparison as you get the $testProfile\n\nlike $testProfile \u003d\u003d \"kpi\"",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 2
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "059bfccc_b728f437",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "What is the intention of this block?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 3
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bd41a12_a8fe84ae",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "\u003d\u003d\n\nAlso, please do compare with the profile direclty!\n\n$testProfile \u003d\u003d \"kpi\"",
+      "range": {
+        "startLine": 101,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 24
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3587d631_038c793e",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "Do a direct comparison plesae like below instead of true false!\n\n$testProfile \u003d\u003d \"kpi\"",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 37
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd26edeb_bb204d0f",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "fi    # end of kpiTestProfile check",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 2
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69cf3739_15da025a",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-12T10:06:35Z",
+      "side": 1,
+      "message": "Endurance",
+      "range": {
+        "startLine": 291,
+        "startChar": 2,
+        "endLine": 291,
+        "endChar": 9
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
