@@ -1083,7 +1083,7 @@ paths:
   /v1/ch/{cm-handle}/properties:
     get:
       description: Get CM handle properties by cm handle id
-      operationId: getCmHandlePublicPropertiesByCmHandleId
+      operationId: getPublicCmHandlePropertiesByCmHandleId
       parameters:
       - description: "The identifier (cmHandle or alternate) for a network function,\
           \ network element, subnetwork or any other cm object by managed Network\

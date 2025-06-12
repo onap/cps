@@ -314,13 +314,13 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return cm handle properties
      */
     @Override
-    public ResponseEntity<RestOutputPublicCmHandleProperties> getCmHandlePublicPropertiesByCmHandleId(
+    public ResponseEntity<RestOutputPublicCmHandleProperties> getPublicCmHandlePropertiesByCmHandleId(
             final String cmHandleReference) {
-        final List<Map<String, String>> cmHandlePublicProperties = new ArrayList<>(1);
-        cmHandlePublicProperties.add(networkCmProxyInventoryFacade.getCmHandlePublicProperties(cmHandleReference));
+        final List<Map<String, String>> publicCmHandleProperties = new ArrayList<>(1);
+        publicCmHandleProperties.add(networkCmProxyInventoryFacade.getPublicCmHandleProperties(cmHandleReference));
         final RestOutputPublicCmHandleProperties restOutputPublicCmHandleProperties =
                 new RestOutputPublicCmHandleProperties();
-        restOutputPublicCmHandleProperties.setPublicCmHandleProperties(cmHandlePublicProperties);
+        restOutputPublicCmHandleProperties.setPublicCmHandleProperties(publicCmHandleProperties);
         return ResponseEntity.ok(restOutputPublicCmHandleProperties);
     }
 

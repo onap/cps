@@ -163,7 +163,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'the system returns this yang modelled cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
         when: 'getting cm handle public properties for a given cm handle reference from ncmp service'
-            def result = objectUnderTest.getCmHandlePublicProperties(cmHandleRef)
+            def result = objectUnderTest.getPublicCmHandleProperties(cmHandleRef)
         then: 'the result returns the correct data'
             assert result == [ 'public prop' : 'some public prop' ]
         where: 'following cm handle reference is used'

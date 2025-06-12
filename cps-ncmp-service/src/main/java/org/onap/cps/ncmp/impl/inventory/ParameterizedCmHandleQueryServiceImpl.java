@@ -132,7 +132,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         if (publicPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueryService.queryCmHandlePublicProperties(publicPropertyQueryPairs, outputAlternateId);
+        return cmHandleQueryService.queryPublicCmHandleProperties(publicPropertyQueryPairs, outputAlternateId);
     }
 
     private Collection<String> queryCmHandlesByTrustLevel(final CmHandleQueryServiceParameters
