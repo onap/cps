@@ -75,7 +75,7 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<String> queryCmHandlePublicProperties(final Map<String, String> publicPropertyQueryPairs,
+    public Collection<String> queryPublicCmHandleProperties(final Map<String, String> publicPropertyQueryPairs,
                                                             final boolean outputAlternateId) {
         return queryCmHandleAnyProperties(publicPropertyQueryPairs, PropertyType.PUBLIC, outputAlternateId);
     }

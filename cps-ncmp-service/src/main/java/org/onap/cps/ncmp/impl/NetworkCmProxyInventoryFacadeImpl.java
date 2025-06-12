@@ -161,7 +161,7 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
-    public Map<String, String> getCmHandlePublicProperties(final String cmHandleReference) {
+    public Map<String, String> getPublicCmHandleProperties(final String cmHandleReference) {
         final String cmHandleId = alternateIdMatcher.getCmHandleId(cmHandleReference);
         final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         return YangDataConverter.toPropertiesMap(yangModelCmHandle.getPublicProperties());

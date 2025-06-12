@@ -46,7 +46,7 @@ public interface CmHandleQueryService {
      * @param outputAlternateId  boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return CmHandles which have these public properties
      */
-    Collection<String> queryCmHandlePublicProperties(Map<String, String> publicPropertyQueryPairs,
+    Collection<String> queryPublicCmHandleProperties(Map<String, String> publicPropertyQueryPairs,
                                                      boolean outputAlternateId);
 
     /**

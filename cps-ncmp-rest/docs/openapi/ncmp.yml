@@ -383,7 +383,7 @@ getCmHandlePropertiesById:
     tags:
       - network-cm-proxy
     summary: Get CM handle properties
-    operationId: getCmHandlePublicPropertiesByCmHandleId
+    operationId: getPublicCmHandlePropertiesByCmHandleId
     parameters:
       - $ref: 'components.yaml#/components/parameters/cmHandleReferenceInPath'
     responses:

@@ -73,7 +73,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
         given: 'the DataNodes queried for a given cpsPath are returned from the persistence service.'
             mockResponses()
         when: 'a query on cmhandle public properties is performed with a public property pair'
-            def result = objectUnderTest.queryCmHandlePublicProperties(publicPropertyPairs, outputAlternateId)
+            def result = objectUnderTest.queryPublicCmHandleProperties(publicPropertyPairs, outputAlternateId)
         then: 'the correct cm handle data objects are returned'
             result.containsAll(expectedCmHandleReferences)
             result.size() == expectedCmHandleReferences.size()
@@ -105,7 +105,7 @@ class CmHandleQueryServiceImplSpec extends Specification {
 
     def 'Query CmHandles using empty public properties query pair.'() {
         when: 'a query on CmHandle public properties is executed using an empty map'
-            def result = objectUnderTest.queryCmHandlePublicProperties([:], false)
+            def result = objectUnderTest.queryPublicCmHandleProperties([:], false)
         then: 'no cm handles are returned'
             result.size() == 0
     }

@@ -189,7 +189,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             def conditionProperties = createConditionProperties(conditionName, [['some-key': 'some-value']])
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
-            partiallyMockedCmHandleQueries.queryCmHandlePublicProperties(*_) >> cmHandlesWithMatchingPublicProperties
+            partiallyMockedCmHandleQueries.queryPublicCmHandleProperties(*_) >> cmHandlesWithMatchingPublicProperties
             partiallyMockedCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingPrivateProperties
         when: 'the query executed'
             def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, false)

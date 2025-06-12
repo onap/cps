@@ -134,7 +134,7 @@ public interface NetworkCmProxyInventoryFacade {
      * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle public properties
      */
-    Map<String, String> getCmHandlePublicProperties(final String cmHandleReference);
+    Map<String, String> getPublicCmHandleProperties(final String cmHandleReference);
 
     /**
      * Get cm handle composite state for a given cm handle id.

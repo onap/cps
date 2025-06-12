@@ -35,7 +35,6 @@ import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
@@ -312,7 +311,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'some cm handle public properties'
             def publicProperties = ['public prop': 'some public property']
         and: 'the service method is invoked with the cm handle id returning the cm handle public properties'
-            1 * mockNetworkCmProxyInventoryFacade.getCmHandlePublicProperties('some-cm-handle-reference') >> publicProperties
+            1 * mockNetworkCmProxyInventoryFacade.getPublicCmHandleProperties('some-cm-handle-reference') >> publicProperties
         when: 'the cm handle properties api is invoked'
             def response = mvc.perform(get(cmHandlePropertiesEndpoint)).andReturn().response
         then: 'the correct response is returned'
