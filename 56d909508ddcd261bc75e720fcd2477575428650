@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e172f77_a466a607",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb9b0b31_456cb66e",
+      "range": {
+        "startLine": 168,
+        "startChar": 19,
+        "endLine": 168,
+        "endChar": 38
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a78b6ec_d5e0a8d0",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "297d2709_f4ca327c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a78b6ec_d5e0a8d0",
+      "range": {
+        "startLine": 169,
+        "startChar": 18,
+        "endLine": 169,
+        "endChar": 29
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d03b9ca1_4f1dfd7b",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-06-13T11:24:53Z",
       "side": 1,
       "message": "NB: trendMetric",
+      "range": {
+        "startLine": 170,
+        "startChar": 19,
+        "endLine": 170,
+        "endChar": 29
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef2bdb6d_1bebc223",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d03b9ca1_4f1dfd7b",
       "range": {
         "startLine": 170,
         "startChar": 19,
@@ -133,6 +205,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c32bd80_825a40b5",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0f1b6440_925f182e",
+      "range": {
+        "startLine": 173,
+        "startChar": 92,
+        "endLine": 173,
+        "endChar": 100
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdc2fe7a_ce4ece0c",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "efd9e0b3_6f6e41db",
+      "range": {
+        "startLine": 173,
+        "startChar": 91,
+        "endLine": 173,
+        "endChar": 147
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "151918a5_72ff2581",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-06-13T11:24:53Z",
       "side": 1,
       "message": "Why did you need to declare trends in a bash file?\n\nThis cause compile error on my IDE.\n\nInitialy I thought the import for Trend UNUSED!\n\nAlso, this make code unreadable unless you have a very specific reason!",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "058b3b14_f74ecaa5",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Reference my response : https://gerrit.onap.org/r/c/cps/+/141185/comment/1dcacfa1_66dc759c/",
+      "parentUuid": "151918a5_72ff2581",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d205262c_d4b60156",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Reference my response : https://gerrit.onap.org/r/c/cps/+/141185/comment/1dcacfa1_66dc759c/",
+      "parentUuid": "458509f6_6bd3187c",
+      "range": {
+        "startLine": 94,
+        "startChar": 153,
+        "endLine": 94,
+        "endChar": 174
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "945eb71d_2b25743a",
@@ -192,6 +360,30 @@
       "writtenOn": "2025-06-13T11:24:53Z",
       "side": 1,
       "message": "Same as above!",
+      "range": {
+        "startLine": 99,
+        "startChar": 155,
+        "endLine": 99,
+        "endChar": 177
+      },
+      "revId": "56d909508ddcd261bc75e720fcd2477575428650",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e85e4f3_9ab7887b",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T11:46:07Z",
+      "side": 1,
+      "message": "Reference my response : https://gerrit.onap.org/r/c/cps/+/141185/comment/1dcacfa1_66dc759c/",
+      "parentUuid": "945eb71d_2b25743a",
       "range": {
         "startLine": 99,
         "startChar": 155,
