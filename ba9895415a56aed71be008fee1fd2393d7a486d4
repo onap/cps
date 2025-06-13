@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07daa059_ea9dd70e",
+        "filename": "k6-tests/verify-docker-image-digests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-13T10:01:53Z",
+      "side": 1,
+      "message": "NB (some more comment):\nUsing sed, it replaces all occurrences of : (colon) and / (forward slash) with _ (underscore)\nInput: docker.io/library/ubuntu:20.04 -\u003e Output: docker.io_library_ubuntu_20.04",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "ba9895415a56aed71be008fee1fd2393d7a486d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
