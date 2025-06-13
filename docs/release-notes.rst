@@ -35,6 +35,10 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-2547 <https://lf-onap.atlassian.net/browse/CPS-2547>`_ Grouping of Data Nodes in Delta Report
+
 Version: 3.6.3
 ==============
 
