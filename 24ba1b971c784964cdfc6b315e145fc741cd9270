@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca55f40b_f17c1aee",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97e4245f_c68c8170",
+      "range": {
+        "startLine": 140,
+        "startChar": 9,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f47bfee_fa7ea265",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "This is a private method used in this file only, thus no need to export!",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 39
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc4234f3_6db8aa3f",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f47bfee_fa7ea265",
       "range": {
         "startLine": 160,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7bb6d29_bd993093",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b93a6e3_c0f39b38",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 32
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d384c04_afe9c93c",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "for the method: processHttpResponseWithOverheadMetrics\nUse method parameter in this order:\n\nresponse, expectedStatus, checkLabel, trendMetric, delayMs \n\n\nfor the method: validateResponseAndRecordMetric\nUse method parameter in this order:\n\nresponse, expectedStatus, checkLabel, trendMetric, expectedJsonLength\n\n\nSo that the common ones will be in the same order!",
+      "range": {
+        "startLine": 186,
+        "startChar": 93,
+        "endLine": 186,
+        "endChar": 100
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d363b077_878bc0bf",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d384c04_afe9c93c",
       "range": {
         "startLine": 186,
         "startChar": 93,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a23cea_038aee4d",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "For example : export function cmHandleSearchNoFilterScenario() {\n    const response \u003d executeCmHandleSearch(\u0027no-filter\u0027);\n    validateResponseAndRecordMetric(response, 200, TOTAL_CM_HANDLES, cmHandleSearchNoFilterTrend, \u0027CM handle no-filter search\u0027);\n}\n\n1. response is the actual response returned from executeCmHandleSearch(...)\n\n2. It\u0027s passed as the first argument to validateResponseAndRecordMetric(...)\n\n3. Inside validateResponseAndRecordMetric, that argument is renamed to httpResponse\n\n4. Then it\u0027s passed to the metricExtractor or customValidatorFn function (i.e., arrow function)",
+      "parentUuid": "1dcacfa1_66dc759c",
+      "range": {
+        "startLine": 191,
+        "startChar": 79,
+        "endLine": 191,
+        "endChar": 84
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8eddf8de_e75b3c5b",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "one testProfile is not enough?",
+      "range": {
+        "startLine": 217,
+        "startChar": 9,
+        "endLine": 217,
+        "endChar": 34
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fca075c1_8f2b681c",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "It’s a defensive check to ensure:\n\ntestProfile is defined and not empty or undefined.\n\nIt will work fine where:\n\nIf testProfile is undefined, testProfile \u003d\u003d\u003d \u0027kpi\u0027 safely returns false.\n\nSo technically the testProfile \u0026\u0026 part is not strictly necessary.",
+      "parentUuid": "8eddf8de_e75b3c5b",
       "range": {
         "startLine": 217,
         "startChar": 9,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f47daf7_f9599b24",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "1. Central control flag – We set a clear, single flag that can be reused throughout the script.\n\n2. Avoids repeated string comparisons – Instead of checking \"$testProfile\" \u003d\u003d \"kpi\" in multiple places.",
+      "parentUuid": "7c7de116_386c57ba",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 2
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "059bfccc_b728f437",
@@ -192,6 +360,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "What is the intention of this block?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 3
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aef91406_1117fe5b",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "To generate JavaScript trend declarations and threshold configs dynamically.\n\n1. Converts strings like \"http_req_duration\" → \"httpReqDuration\" (for valid JS variable names in K6).\n2. Starts building a config object with:\n\n            - trends: array of K6 Trend declarations\n\n            - thresholds: thresholds per metric\n3. Generates JS code for a K6 Trend like:\n\nexport let httpReqDurationTrend \u003d new Trend(\u0027http_req_duration\u0027, true);\n4. Creates thresholds for each metric:\n\n      For http_req_failed: max failure rate\n\n          - For rate metrics: minimum avg\n\n          - For others (e.g., response time): maximum avg",
+      "parentUuid": "059bfccc_b728f437",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f33a483_82ca97bf",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bd41a12_a8fe84ae",
+      "range": {
+        "startLine": 101,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 24
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3587d631_038c793e",
@@ -238,6 +454,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "Do a direct comparison plesae like below instead of true false!\n\n$testProfile \u003d\u003d \"kpi\"",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 37
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e41e69_150aebbb",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3587d631_038c793e",
       "range": {
         "startLine": 126,
         "startChar": 0,
@@ -271,6 +511,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6605348_964c7e6e",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd26edeb_bb204d0f",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 2
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69cf3739_15da025a",
@@ -284,6 +548,30 @@
       "writtenOn": "2025-06-12T10:06:35Z",
       "side": 1,
       "message": "Endurance",
+      "range": {
+        "startLine": 291,
+        "startChar": 2,
+        "endLine": 291,
+        "endChar": 9
+      },
+      "revId": "24ba1b971c784964cdfc6b315e145fc741cd9270",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e44fddf_fbb23cfd",
+        "filename": "k6-tests/ncmp/run-all-tests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T09:29:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "69cf3739_15da025a",
       "range": {
         "startLine": 291,
         "startChar": 2,
