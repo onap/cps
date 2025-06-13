@@ -22,6 +22,30 @@
       },
       "revId": "ba9895415a56aed71be008fee1fd2393d7a486d4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca51ee7_78feff19",
+        "filename": "k6-tests/verify-docker-image-digests.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-13T10:04:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07daa059_ea9dd70e",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 48
+      },
+      "revId": "ba9895415a56aed71be008fee1fd2393d7a486d4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
