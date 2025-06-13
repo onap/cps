@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f1b3b3e_8f3753cf",
+        "filename": "releases/3.6.4-container.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-13T14:50:14Z",
+      "side": 1,
+      "message": "09d00e6da0b955c10792402d14b60e42d7d7cbae\nideally we take SHA of the patch where we run stage-release job.",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 45
+      },
+      "revId": "c73d6a4a17e615ef2ca715ca8e86aa27653db072",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
