@@ -103,15 +103,15 @@ class InventoryPersistenceImplSpec extends Specification {
             result.dmiServiceName == 'common service name'
             result.dmiDataServiceName == 'data service name'
             result.dmiModelServiceName == 'model service name'
-        and: 'the expected DMI properties'
-            result.dmiProperties == expectedDmiProperties
+        and: 'the expected additional & public properties'
+            result.dmiProperties == expectedAdditionalProperties
             result.publicProperties == expectedPublicProperties
         and: 'the state details are returned'
             result.compositeState.cmHandleState == expectedCompositeState
         and: 'the CM Handle ID is validated'
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
+            scenario                    | childDataNodes                                || expectedAdditionalProperties                        || expectedPublicProperties                              || expectedCompositeState
             'no properties'             | []                                            || []                                                  || []                                                    || null
             'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
             'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null

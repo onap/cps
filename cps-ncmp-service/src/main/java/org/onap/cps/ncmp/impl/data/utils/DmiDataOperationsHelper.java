@@ -186,7 +186,7 @@ public class DmiDataOperationsHelper {
 
     private static Map<String, String> filterAndGetNonReadyAlternateIdPerCmHandleId(
         final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, String> cmHandleReferenceMap = new HashMap<>(yangModelCmHandles.size());
+        final Map<String, String> cmHandleReferenceMap = new HashMap<>(0);
         for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
             if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
                 cmHandleReferenceMap.put(yangModelCmHandle.getId(), yangModelCmHandle.getAlternateId());
