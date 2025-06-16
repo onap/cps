@@ -77,17 +77,17 @@ class InventoryPersistenceImplSpec extends Specification {
     def alternateId2 = 'another-alternate-id'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
-    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: leaves)
+    def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='myAdditionalProperty']", leaves: leaves)
 
     @Shared
-    def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"]),
-                                                      new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleWithAllProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"]),
+                                                      new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithDMIProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='name1']", leaves: ["name":"name1", "value":"value1"])]
+    def childDataNodesForCmHandleWithDMIProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='name2']", leaves: ["name":"name2","value":"value2"])]
+    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
 
     @Shared
     def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
@@ -103,20 +103,21 @@ class InventoryPersistenceImplSpec extends Specification {
             result.dmiServiceName == 'common service name'
             result.dmiDataServiceName == 'data service name'
             result.dmiModelServiceName == 'model service name'
-        and: 'the expected DMI properties'
-            result.dmiProperties == expectedDmiProperties
-            result.publicProperties == expectedPublicProperties
+        and: 'the expected additional properties'
+            result.dmiProperties.name == expectedAdditionalProperties
+        and: 'the expected public properties'
+            result.publicProperties.name == expectedPublicProperties
         and: 'the state details are returned'
             result.compositeState.cmHandleState == expectedCompositeState
         and: 'the CM Handle ID is validated'
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedDmiProperties                               || expectedPublicProperties                              || expectedCompositeState
-            'no properties'             | []                                            || []                                                  || []                                                    || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || [new YangModelCmHandle.Property("name1", "value1")] || [new YangModelCmHandle.Property("name2", "value2")]   || null
-            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || [new YangModelCmHandle.Property("name1", "value1")] || []                                                    || null
-            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                                                  || [new YangModelCmHandle.Property("name2", "value2")]   || null
-            'with state details'        | childDataNodesForCmHandleWithState            || []                                                  || []                                                    || CmHandleState.ADVISED
+            scenario                    | childDataNodes                                || expectedAdditionalProperties || expectedPublicProperties || expectedCompositeState
+            'no properties'             | []                                            || []                           || []                       || null
+            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || ["myAdditionalProperty"]     || ["myPublicProperty"]     || null
+            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || ["myAdditionalProperty"]     || []                       || null
+            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                           || ["myPublicProperty"]     || null
+            'with state details'        | childDataNodesForCmHandleWithState            || []                           || []                       || CmHandleState.ADVISED
     }
 
     def 'Handling missing service names as null.'() {
