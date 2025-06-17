@@ -273,9 +273,9 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             def postUrl = "$ncmpBasePathV1/ch/searchCmHandles?includePrivatePropertiesInQuery=true"
             String jsonString = TestUtils.getResourceFileContent('cm-handle-search-by-dmi-service.json')
         and: 'a cm handle is returned'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(dmiProperties: ['someName': 'my dmi'])
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(additionalProperties: ['someName': 'my dmi'])
             mockNetworkCmProxyInventoryFacade.executeCmHandleInventorySearch(_) >> Flux.fromIterable([ncmpServiceCmHandle])
-        and: 'the mapper is requested to convert the object with private properties'
+        and: 'the mapper is requested to convert the object with additional properties'
             mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle, true) >> new RestOutputCmHandle()
         when: 'the endpoint is invoked'
             def response = mvc.perform(post(postUrl).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response

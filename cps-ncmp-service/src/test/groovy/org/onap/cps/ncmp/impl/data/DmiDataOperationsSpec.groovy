@@ -85,7 +85,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
     def 'call get resource data for #expectedDataStore from DMI without topic #scenario.'() {
         given: 'a cm handle for #cmHandleId'
             alternateIdMatcher.getCmHandleId(cmHandleId) >> cmHandleId
-            mockYangModelCmHandleRetrieval(dmiProperties)
+            mockYangModelCmHandleRetrieval(additionalProperties)
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = Mono.just(new ResponseEntity<Object>('{some-key:some-value}', HttpStatus.OK))
             def expectedUrlTemplateWithVariables = getExpectedUrlTemplateWithVariables(expectedOptions, expectedDataStore)
@@ -98,7 +98,7 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             assert result.body == '{some-key:some-value}'
             assert result.statusCode.'2xxSuccessful'
         where: 'the following parameters are used'
-            scenario                               | dmiProperties               || expectedDataStore       | expectedOptions | expectedProperties
+            scenario                               | additionalProperties        || expectedDataStore       | expectedOptions | expectedProperties
             'without properties'                   | []                          || PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM   | '{}'
             'with properties'                      | [yangModelCmHandleProperty] || PASSTHROUGH_OPERATIONAL | OPTIONS_PARAM   | '{"prop1":"val1"}'
             'null options'                         | [yangModelCmHandleProperty] || PASSTHROUGH_OPERATIONAL | null            | '{"prop1":"val1"}'

@@ -49,7 +49,7 @@ public class YangDataConverter {
      */
     public static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
         final NcmpServiceCmHandle ncmpServiceCmHandle = new NcmpServiceCmHandle();
-        final List<YangModelCmHandle.Property> dmiProperties = yangModelCmHandle.getDmiProperties();
+        final List<YangModelCmHandle.Property> additionalProperties = yangModelCmHandle.getAdditionalProperties();
         final List<YangModelCmHandle.Property> publicProperties = yangModelCmHandle.getPublicProperties();
         ncmpServiceCmHandle.setCmHandleId(yangModelCmHandle.getId());
         ncmpServiceCmHandle.setDmiServiceName(yangModelCmHandle.getDmiServiceName());
@@ -59,7 +59,7 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
         ncmpServiceCmHandle.setDataProducerIdentifier(yangModelCmHandle.getDataProducerIdentifier());
-        setDmiProperties(dmiProperties, ncmpServiceCmHandle);
+        setAdditionalProperties(additionalProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
         return ncmpServiceCmHandle;
     }
@@ -122,20 +122,20 @@ public class YangDataConverter {
 
     private static void populateCmHandleDetails(final DataNode cmHandleDataNode,
                                                 final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final Map<String, String> dmiProperties = new LinkedHashMap<>();
+        final Map<String, String> additionalProperties = new LinkedHashMap<>();
         final Map<String, String> publicProperties = new LinkedHashMap<>();
         final CompositeStateBuilder compositeStateBuilder = new CompositeStateBuilder();
         CompositeState compositeState = compositeStateBuilder.build();
         for (final DataNode childDataNode: cmHandleDataNode.getChildDataNodes()) {
             if (childDataNode.getXpath().contains("/additional-properties[@name=")) {
-                addProperty(childDataNode, dmiProperties);
+                addProperty(childDataNode, additionalProperties);
             } else if (childDataNode.getXpath().contains("/public-properties[@name=")) {
                 addProperty(childDataNode, publicProperties);
             } else if (childDataNode.getXpath().endsWith("/state")) {
                 compositeState = compositeStateBuilder.fromDataNode(childDataNode).build();
             }
         }
-        ncmpServiceCmHandle.setDmiProperties(dmiProperties);
+        ncmpServiceCmHandle.setAdditionalProperties(additionalProperties);
         ncmpServiceCmHandle.setPublicProperties(publicProperties);
         ncmpServiceCmHandle.setCompositeState(compositeState);
     }
@@ -145,9 +145,9 @@ public class YangDataConverter {
                 String.valueOf(propertyDataNode.getLeaves().get("value")));
     }
 
-    private static void setDmiProperties(final List<YangModelCmHandle.Property> dmiProperties,
+    private static void setAdditionalProperties(final List<YangModelCmHandle.Property> additionalProperties,
                                          final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        ncmpServiceCmHandle.setDmiProperties(toPropertiesMap(dmiProperties));
+        ncmpServiceCmHandle.setAdditionalProperties(toPropertiesMap(additionalProperties));
     }
 
     private static void setPublicProperties(final List<YangModelCmHandle.Property> publicProperties,

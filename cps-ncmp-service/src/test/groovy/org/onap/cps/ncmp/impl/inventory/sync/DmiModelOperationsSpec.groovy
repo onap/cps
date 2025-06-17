@@ -84,9 +84,9 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             'no body'      | null
     }
 
-    def 'Retrieving module references, DMI property handling:  #scenario.'() {
+    def 'Retrieving module references, additional property handling:  #scenario.'() {
         given: 'a cm handle'
-            mockYangModelCmHandleRetrieval(dmiProperties)
+            mockYangModelCmHandleRetrieval(additionalProperties)
         and: 'a positive response from DMI service when it is called with tha expected parameters'
             def responseFromDmi = new ResponseEntity<String>(HttpStatus.OK)
             mockDmiRestClient.synchronousPostOperationWithJsonData(MODEL, expectedModulesUrlTemplateWithVariables,
@@ -95,8 +95,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def result = objectUnderTest.getModuleReferences(yangModelCmHandle, NO_MODULE_SET_TAG)
         then: 'the result is the response from DMI service'
             assert result == []
-        where: 'the following DMI properties are used'
-            scenario             | dmiProperties               || expectedAdditionalPropertiesInRequest
+        where: 'the following additional properties are used'
+            scenario             | additionalProperties        || expectedAdditionalPropertiesInRequest
             'with properties'    | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
             'without properties' | []                          || '{}'
     }
@@ -135,9 +135,9 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             'null array'  | null
     }
 
-    def 'Retrieving yang resources, DMI property handling #scenario.'() {
+    def 'Retrieving yang resources, additional property handling #scenario.'() {
         given: 'a cm handle'
-            mockYangModelCmHandleRetrieval(dmiProperties)
+            mockYangModelCmHandleRetrieval(additionalProperties)
         and: 'a positive response from DMI service when it is called with the expected moduleSetTag, modules and properties'
             def responseFromDmi = new ResponseEntity<>([[moduleName: 'mod1', revision: 'A', yangSource: 'some yang source']], HttpStatus.OK)
             mockDmiRestClient.synchronousPostOperationWithJsonData(MODEL, expectedModuleResourcesUrlTemplateWithVariables,
@@ -147,8 +147,8 @@ class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
             def result = objectUnderTest.getNewYangResourcesFromDmi(yangModelCmHandle, NO_MODULE_SET_TAG, newModuleReferences)
         then: 'the result is the response from DMI service'
             assert result == [mod1:'some yang source']
-        where: 'the following DMI properties are used'
-            scenario                                | dmiProperties               || expectedAdditionalPropertiesInRequest
+        where: 'the following additional properties are used'
+            scenario                                | additionalProperties        || expectedAdditionalPropertiesInRequest
             'with module references and properties' | [yangModelCmHandleProperty] || '{"prop1":"val1"}'
             'without properties'                    | []                          || '{}'
     }

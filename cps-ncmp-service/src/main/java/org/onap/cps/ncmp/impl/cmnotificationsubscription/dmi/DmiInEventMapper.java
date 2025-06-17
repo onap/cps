@@ -52,7 +52,7 @@ public class DmiInEventMapper {
         final DmiInEvent dmiInEvent = new DmiInEvent();
         final Data cmSubscriptionData = new Data();
         cmSubscriptionData.setPredicates(mapToDmiInEventPredicates(dmiCmSubscriptionPredicates));
-        cmSubscriptionData.setCmHandles(mapToCmSubscriptionCmHandleWithPrivateProperties(
+        cmSubscriptionData.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(
                 extractUniqueCmHandleIds(dmiCmSubscriptionPredicates)));
         dmiInEvent.setData(cmSubscriptionData);
         return dmiInEvent;
@@ -79,18 +79,19 @@ public class DmiInEventMapper {
 
     }
 
-    private List<CmHandle> mapToCmSubscriptionCmHandleWithPrivateProperties(final Set<String> cmHandleIds) {
+    private List<CmHandle> mapToCmSubscriptionCmHandleWithAdditionalProperties(final Set<String> cmHandleIds) {
 
         final List<CmHandle> cmSubscriptionCmHandles = new ArrayList<>();
 
         inventoryPersistence.getYangModelCmHandles(cmHandleIds).forEach(yangModelCmHandle -> {
-            final CmHandle cmhandle = new CmHandle();
-            final Map<String, String> cmhandleDmiProperties = new LinkedHashMap<>();
-            yangModelCmHandle.getDmiProperties()
-                    .forEach(dmiProperty -> cmhandleDmiProperties.put(dmiProperty.getName(), dmiProperty.getValue()));
-            cmhandle.setCmhandleId(yangModelCmHandle.getId());
-            cmhandle.setPrivateProperties(cmhandleDmiProperties);
-            cmSubscriptionCmHandles.add(cmhandle);
+            final CmHandle cmHandle = new CmHandle();
+            final Map<String, String> cmHandleAdditionalProperties = new LinkedHashMap<>();
+            yangModelCmHandle.getAdditionalProperties()
+                    .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.getName(),
+                        additionalProperty.getValue()));
+            cmHandle.setCmhandleId(yangModelCmHandle.getId());
+            cmHandle.setPrivateProperties(cmHandleAdditionalProperties);
+            cmSubscriptionCmHandles.add(cmHandle);
         });
 
         return cmSubscriptionCmHandles;

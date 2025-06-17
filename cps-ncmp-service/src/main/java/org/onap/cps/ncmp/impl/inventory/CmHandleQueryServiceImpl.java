@@ -69,9 +69,9 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     private final CpsValidator cpsValidator;
 
     @Override
-    public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> privatePropertyQueryPairs,
+    public Collection<String> queryCmHandleAdditionalProperties(final Map<String, String> additionalPropertyQueryPairs,
                                                                 final boolean outputAlternateId) {
-        return queryCmHandleAnyProperties(privatePropertyQueryPairs, PropertyType.ADDITIONAL, outputAlternateId);
+        return queryCmHandleAnyProperties(additionalPropertyQueryPairs, PropertyType.ADDITIONAL, outputAlternateId);
     }
 
     @Override

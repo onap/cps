@@ -49,25 +49,25 @@ abstract class DmiOperationsBaseSpec extends Specification {
     def static alternateId = 'alt-id-' + cmHandleId
     def static resourceIdentifier = 'parent/child'
 
-    def mockYangModelCmHandleRetrieval(dmiProperties) {
-        populateYangModelCmHandle(dmiProperties, '')
+    def mockYangModelCmHandleRetrieval(additionalProperties) {
+        populateYangModelCmHandle(additionalProperties, '')
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
     }
 
-    def mockYangModelCmHandleRetrieval(dmiProperties, moduleSetTag) {
-        populateYangModelCmHandle(dmiProperties, moduleSetTag)
+    def mockYangModelCmHandleRetrieval(additionalProperties, moduleSetTag) {
+        populateYangModelCmHandle(additionalProperties, moduleSetTag)
         mockInventoryPersistence.getYangModelCmHandle(cmHandleId) >> yangModelCmHandle
     }
 
-    def mockYangModelCmHandleRetrievalByCmHandleId(dmiProperties) {
-        populateYangModelCmHandle(dmiProperties, '')
+    def mockYangModelCmHandleRetrievalByCmHandleId(additionalProperties) {
+        populateYangModelCmHandle(additionalProperties, '')
         mockInventoryPersistence.getYangModelCmHandles(_) >> [yangModelCmHandle]
     }
 
-    def populateYangModelCmHandle(dmiProperties, moduleSetTag) {
+    def populateYangModelCmHandle(additionalProperties, moduleSetTag) {
         yangModelCmHandle.dmiDataServiceName = dmiServiceName
         yangModelCmHandle.dmiServiceName = dmiServiceName
-        yangModelCmHandle.dmiProperties = dmiProperties
+        yangModelCmHandle.additionalProperties = additionalProperties
         yangModelCmHandle.id = cmHandleId
         yangModelCmHandle.alternateId = alternateId
         yangModelCmHandle.compositeState = new CompositeState()

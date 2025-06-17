@@ -118,11 +118,11 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())
-            def dmiProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
+            def additionalProperties = [new YangModelCmHandle.Property('Book', 'Romance Novel')]
             def publicProperties = [new YangModelCmHandle.Property('Public Book', 'Public Romance Novel')]
             def moduleSetTag = 'some-module-set-tag'
             def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName, dmiProperties: dmiProperties,
+            def yangModelCmHandle = new YangModelCmHandle(id: 'some-cm-handle', dmiServiceName: dmiServiceName, additionalProperties: additionalProperties,
                  publicProperties: publicProperties, compositeState: compositeState, moduleSetTag: moduleSetTag, alternateId: alternateId)
             1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
             1 * mockInventoryPersistence.getYangModelCmHandle('some-cm-handle') >> yangModelCmHandle
@@ -137,8 +137,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result.alternateId == 'some-alternate-id'
         and: 'the cm handle contains the module-set-tag'
             assert result.moduleSetTag == 'some-module-set-tag'
-        and: 'the cm handle contains the DMI Properties'
-            assert result.dmiProperties ==[ Book:'Romance Novel' ]
+        and: 'the cm handle contains the additional Properties'
+            assert result.additionalProperties ==[Book:'Romance Novel' ]
         and: 'the cm handle contains the public Properties'
             assert result.publicProperties == [ "Public Book":'Public Romance Novel' ]
         and: 'the cm handle contains the cm handle composite state'
@@ -153,11 +153,11 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
 
     def 'Get cm handle public properties using #scenario'() {
         given: 'a yang modelled cm handle'
-            def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+            def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]
             def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
             def cmHandleId = 'some-cm-handle'
             def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties)
+            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', additionalProperties: additionalProperties, publicProperties: publicProperties)
         and: 'we have corresponding cm handle for the cm handle reference'
             1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
         and: 'the system returns this yang modelled cm handle'
@@ -179,11 +179,11 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 lastUpdateTime: 'some-timestamp',
                 dataSyncEnabled: false,
                 dataStores: dataStores())
-            def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+            def additionalProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
             def publicProperties = [new YangModelCmHandle.Property('public prop', 'some public prop')]
             def cmHandleId = 'some-cm-handle'
             def alternateId = 'some-alternate-id'
-            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', dmiProperties: dmiProperties, publicProperties: publicProperties, compositeState: compositeState)
+            def yangModelCmHandle = new YangModelCmHandle(id:cmHandleId, alternateId: alternateId, dmiServiceName: 'some service name', additionalProperties: additionalProperties, publicProperties: publicProperties, compositeState: compositeState)
         and: 'we have corresponding cm handle for the cm handle reference'
             1 * mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> cmHandleId
         and: 'the system returns this yang modelled cm handle'

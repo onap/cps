@@ -123,8 +123,9 @@ public class CmHandleRegistrationServicePropertyHandler {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY,
                 updatedNcmpServiceCmHandle.getPublicProperties());
         }
-        if (!updatedNcmpServiceCmHandle.getDmiProperties().isEmpty()) {
-            updateProperties(existingCmHandleDataNode, DMI_PROPERTY, updatedNcmpServiceCmHandle.getDmiProperties());
+        if (!updatedNcmpServiceCmHandle.getAdditionalProperties().isEmpty()) {
+            updateProperties(existingCmHandleDataNode, DMI_PROPERTY,
+                updatedNcmpServiceCmHandle.getAdditionalProperties());
         }
     }
 

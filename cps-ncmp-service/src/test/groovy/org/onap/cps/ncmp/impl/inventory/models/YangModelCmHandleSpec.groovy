@@ -37,7 +37,7 @@ class YangModelCmHandleSpec extends Specification {
         given: 'a cm handle with properties'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
-            ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value1']
+            ncmpServiceCmHandle.additionalProperties = [myAdditionalProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
         and: 'with a composite state'
             def compositeState = new CompositeStateBuilder()
@@ -49,14 +49,14 @@ class YangModelCmHandleSpec extends Specification {
         when: 'it is converted to a yang model cm handle'
             def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier')
         then: 'the result has the right size'
-            assert objectUnderTest.dmiProperties.size() == 1
+            assert objectUnderTest.additionalProperties.size() == 1
         and: 'the result has the correct values for module set tag, alternate ID, and data producer identifier'
             assert objectUnderTest.moduleSetTag == 'my-module-set-tag'
             assert objectUnderTest.alternateId == 'my-alternate-id'
             assert objectUnderTest.dataProducerIdentifier == 'my-data-producer-identifier'
-        and: 'the DMI property in the result has the correct name and value'
-            assert objectUnderTest.dmiProperties[0].name == 'myDmiProperty'
-            assert objectUnderTest.dmiProperties[0].value == 'value1'
+        and: 'the additional property in the result has the correct name and value'
+            assert objectUnderTest.additionalProperties[0].name == 'myAdditionalProperty'
+            assert objectUnderTest.additionalProperties[0].value == 'value1'
         and: 'the public property in the result has the correct name and value'
             assert objectUnderTest.publicProperties[0].name == 'myPublicProperty'
             assert objectUnderTest.publicProperties[0].value == 'value2'
@@ -89,19 +89,19 @@ class YangModelCmHandleSpec extends Specification {
         given: 'a yang model cm handle'
             def currentYangModelCmHandle = new YangModelCmHandle(id: 'cmhandle',
                 publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')],
-                dmiProperties: [new YangModelCmHandle.Property('dmiProperty1', 'value1')],
+                additionalProperties: [new YangModelCmHandle.Property('additionalProperty1', 'value1')],
                 compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false))
         when: 'a deep copy is created'
             def yangModelCmhandleDeepCopy = YangModelCmHandle.deepCopyOf(currentYangModelCmHandle)
         and: 'we try to mutate current yang model cm handle'
             currentYangModelCmHandle.id = 'cmhandle-changed'
-            currentYangModelCmHandle.dmiProperties = [new YangModelCmHandle.Property('updatedPublicProperty1', 'value1')]
-            currentYangModelCmHandle.publicProperties = [new YangModelCmHandle.Property('updatedDmiProperty1', 'value1')]
+            currentYangModelCmHandle.additionalProperties = [new YangModelCmHandle.Property('updatedAdditionalProperty1', 'value1')]
+            currentYangModelCmHandle.publicProperties = [new YangModelCmHandle.Property('updatedPublicProperty1', 'value1')]
             currentYangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
             currentYangModelCmHandle.compositeState.dataSyncEnabled = true
         then: 'there is no change in the deep copied object'
             assert yangModelCmhandleDeepCopy.id == 'cmhandle'
-            assert yangModelCmhandleDeepCopy.dmiProperties == [new YangModelCmHandle.Property('dmiProperty1', 'value1')]
+            assert yangModelCmhandleDeepCopy.additionalProperties == [new YangModelCmHandle.Property('additionalProperty1', 'value1')]
             assert yangModelCmhandleDeepCopy.publicProperties == [new YangModelCmHandle.Property('publicProperty1', 'value1')]
             assert yangModelCmhandleDeepCopy.compositeState.cmHandleState == CmHandleState.ADVISED
             assert yangModelCmhandleDeepCopy.compositeState.dataSyncEnabled == false
