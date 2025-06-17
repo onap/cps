@@ -76,8 +76,8 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def 'DMI Registration: Create, Update, Delete & Upgrade operations are processed in the right order'() {
         given: 'a registration with operations of all types'
             def dmiRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
-            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], dmiProperties: [:])])
+            dmiRegistration.setCreatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-1', publicProperties: ['publicProp1': 'value'], additionalProperties: [:])])
+            dmiRegistration.setUpdatedCmHandles([new NcmpServiceCmHandle(cmHandleId: 'cmhandle-2', publicProperties: ['publicProp1': 'value'], additionalProperties: [:])])
             dmiRegistration.setRemovedCmHandles(['cmhandle-3'])
             dmiRegistration.setUpgradedCmHandles(new UpgradedCmHandles(cmHandles: ['cmhandle-4', 'cmhandle-5'], moduleSetTag: moduleSetTagForUpgrade))
         and: 'cm handles 2,3 and 4 already exist in the inventory'
@@ -200,7 +200,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
     def 'Create CM-Handle Successfully: #scenario.'() {
         given: 'a registration without cm-handle properties'
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: 'my-server')
-            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', dmiProperties: dmiProperties, publicProperties: publicProperties)]
+            dmiPluginRegistration.createdCmHandles = [new NcmpServiceCmHandle(cmHandleId: 'cmhandle', additionalProperties: additionalProperties, publicProperties: publicProperties)]
         when: 'registration is updated'
             def response = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
         then: 'a successful response is received'
@@ -218,11 +218,11 @@ class CmHandleRegistrationServiceSpec extends Specification {
                     }
             }
         where:
-            scenario                          | dmiProperties            | publicProperties               || expectedDmiProperties                      | expectedPublicProperties
-            'with dmi & public properties'    | ['dmi-key': 'dmi-value'] | ['public-key': 'public-value'] || '[{"name":"dmi-key","value":"dmi-value"}]' | '[{"name":"public-key","value":"public-value"}]'
-            'with only public properties'     | [:]                      | ['public-key': 'public-value'] || [:]                                        | '[{"name":"public-key","value":"public-value"}]'
-            'with only dmi properties'        | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | [:]
-            'without dmi & public properties' | [:]                      | [:]                            || [:]                                        | [:]
+            scenario                                 | additionalProperties     | publicProperties               || expectedAdditionalProperties               | expectedPublicProperties
+            'with additional & public properties'    | ['dmi-key': 'dmi-value'] | ['public-key': 'public-value'] || '[{"name":"dmi-key","value":"dmi-value"}]' | '[{"name":"public-key","value":"public-value"}]'
+            'with only public properties'            | [:]                      | ['public-key': 'public-value'] || [:]                                        | '[{"name":"public-key","value":"public-value"}]'
+            'with only dmi properties'               | ['dmi-key': 'dmi-value'] | [:]                            || '[{"name":"dmi-key","value":"dmi-value"}]' | [:]
+            'without additional & public properties' | [:]                      | [:]                            || [:]                                        | [:]
     }
 
     def 'Add CM-Handle #scenario.'() {

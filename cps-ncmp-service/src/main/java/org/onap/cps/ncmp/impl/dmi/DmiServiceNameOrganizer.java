@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,27 +38,29 @@ public class DmiServiceNameOrganizer {
      *
      * @param yangModelCmHandles list of cm handle model
      */
-    public static Map<String, Map<String, Map<String, String>>> getDmiPropertiesPerCmHandleIdPerServiceName(
+    public static Map<String, Map<String, Map<String, String>>> getAdditionalPropertiesPerCmHandleIdPerDmiServiceName(
             final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName
+        final Map<String, Map<String, Map<String, String>>> additionalPropertiesPerCmHandleIdPerServiceName
                 = new HashMap<>();
         yangModelCmHandles.forEach(yangModelCmHandle -> {
             final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(RequiredDmiService.DATA);
-            if (!dmiPropertiesPerCmHandleIdPerServiceName.containsKey(dmiServiceName)) {
-                final Map<String, Map<String, String>> cmHandleDmiPropertiesMap = new HashMap<>();
-                cmHandleDmiPropertiesMap.put(yangModelCmHandle.getId(),
-                        dmiPropertiesAsMap(yangModelCmHandle.getDmiProperties()));
-                dmiPropertiesPerCmHandleIdPerServiceName.put(dmiServiceName, cmHandleDmiPropertiesMap);
+            if (!additionalPropertiesPerCmHandleIdPerServiceName.containsKey(dmiServiceName)) {
+                final Map<String, Map<String, String>> cmHandleAdditionalPropertiesMap = new HashMap<>();
+                cmHandleAdditionalPropertiesMap.put(yangModelCmHandle.getId(),
+                        additionalPropertiesAsMap(yangModelCmHandle.getAdditionalProperties()));
+                additionalPropertiesPerCmHandleIdPerServiceName.put(dmiServiceName, cmHandleAdditionalPropertiesMap);
             } else {
-                dmiPropertiesPerCmHandleIdPerServiceName.get(dmiServiceName)
-                        .put(yangModelCmHandle.getId(), dmiPropertiesAsMap(yangModelCmHandle.getDmiProperties()));
+                additionalPropertiesPerCmHandleIdPerServiceName.get(dmiServiceName)
+                        .put(yangModelCmHandle.getId(),
+                            additionalPropertiesAsMap(yangModelCmHandle.getAdditionalProperties()));
             }
         });
-        return dmiPropertiesPerCmHandleIdPerServiceName;
+        return additionalPropertiesPerCmHandleIdPerServiceName;
     }
 
-    private static Map<String, String> dmiPropertiesAsMap(final List<YangModelCmHandle.Property> dmiProperties) {
-        return dmiProperties.stream().collect(
+    private static Map<String, String> additionalPropertiesAsMap(
+        final List<YangModelCmHandle.Property> additionalProperties) {
+        return additionalProperties.stream().collect(
                 Collectors.toMap(YangModelCmHandle.Property::getName, YangModelCmHandle.Property::getValue));
     }
 }

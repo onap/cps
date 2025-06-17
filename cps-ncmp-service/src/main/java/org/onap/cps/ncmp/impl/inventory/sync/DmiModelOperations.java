@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -69,7 +69,7 @@ public class DmiModelOperations {
     public List<ModuleReference> getModuleReferences(final YangModelCmHandle yangModelCmHandle,
                                                      final String targetModuleSetTag) {
         final DmiRequestBody dmiRequestBody = DmiRequestBody.builder().moduleSetTag(targetModuleSetTag).build();
-        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
+        dmiRequestBody.asAdditionalProperties(yangModelCmHandle.getAdditionalProperties());
         final ResponseEntity<Object> dmiFetchModulesResponseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
                 jsonObjectMapper.asJsonString(dmiRequestBody), yangModelCmHandle.getId(), "modules");
@@ -92,11 +92,11 @@ public class DmiModelOperations {
         if (newModuleReferences.isEmpty()) {
             return Collections.emptyMap();
         }
-        final String jsonWithDataAndDmiProperties = getRequestBodyToFetchYangResources(newModuleReferences,
-                yangModelCmHandle.getDmiProperties(), targetModuleSetTag);
+        final String jsonWithDataAndAdditionalProperties = getRequestBodyToFetchYangResources(newModuleReferences,
+                yangModelCmHandle.getAdditionalProperties(), targetModuleSetTag);
         final ResponseEntity<Object> responseEntity = getResourceFromDmiWithJsonData(
             yangModelCmHandle.resolveDmiServiceName(MODEL),
-            jsonWithDataAndDmiProperties,
+            jsonWithDataAndAdditionalProperties,
             yangModelCmHandle.getId(),
             "moduleResources");
         return asModuleNameToYangResourceMap(responseEntity);
@@ -125,7 +125,8 @@ public class DmiModelOperations {
     }
 
     private static String getRequestBodyToFetchYangResources(final Collection<ModuleReference> newModuleReferences,
-                                                             final List<YangModelCmHandle.Property> dmiProperties,
+                                                             final List<YangModelCmHandle.Property>
+                                                                 additionalProperties,
                                                              final String targetModuleSetTag) {
         final JsonArray moduleReferencesAsJson = getModuleReferencesAsJson(newModuleReferences);
         final JsonObject data = new JsonObject();
@@ -135,7 +136,7 @@ public class DmiModelOperations {
             jsonRequestObject.addProperty("moduleSetTag", targetModuleSetTag);
         }
         jsonRequestObject.add("data", data);
-        jsonRequestObject.add("cmHandleProperties", toJsonObject(dmiProperties));
+        jsonRequestObject.add("cmHandleProperties", toJsonObject(additionalProperties));
         return jsonRequestObject.toString();
     }
 
@@ -152,9 +153,9 @@ public class DmiModelOperations {
     }
 
     private static JsonObject toJsonObject(final List<YangModelCmHandle.Property>
-                                               dmiProperties) {
+                                               additionalProperties) {
         final JsonObject asJsonObject = new JsonObject();
-        for (final YangModelCmHandle.Property additionalProperty : dmiProperties) {
+        for (final YangModelCmHandle.Property additionalProperty : additionalProperties) {
             asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
         }
         return asJsonObject;

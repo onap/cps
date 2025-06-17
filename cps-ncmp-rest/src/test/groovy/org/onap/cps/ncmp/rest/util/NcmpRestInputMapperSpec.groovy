@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ class NcmpRestInputMapperSpec extends Specification {
 
     def 'Convert a created REST CM Handle Input to an NCMP Service CM Handle with #scenario'() {
         given: 'a rest cm handle input'
-            def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: registrationDmiProperties,
+            def inputRestCmHandle = new RestInputCmHandle(cmHandle : 'example-id', cmHandleProperties: registrationAdditionalProperties,
                 publicCmHandleProperties: registrationPublicProperties, trustLevel: registrationTrustLevel, alternateId: 'my-alternate-id', moduleSetTag: 'my-module-set-tag', dataProducerIdentifier: 'my-data-producer-identifier')
             def restDmiPluginRegistration = new RestDmiPluginRegistration(
                 createdCmHandles: [inputRestCmHandle])
@@ -51,7 +51,7 @@ class NcmpRestInputMapperSpec extends Specification {
         and: 'the converted cm handle has the same id'
             result.createdCmHandles[0].cmHandleId == 'example-id'
         and: '(empty) properties are converted correctly'
-            result.createdCmHandles[0].dmiProperties == mappedDmiProperties
+            result.createdCmHandles[0].additionalProperties == mappedAdditionalProperties
             result.createdCmHandles[0].publicProperties == mappedPublicProperties
         and: 'other fields are mapped correctly'
             result.createdCmHandles[0].alternateId == 'my-alternate-id'
@@ -59,9 +59,9 @@ class NcmpRestInputMapperSpec extends Specification {
             result.createdCmHandles[0].registrationTrustLevel == mappedTrustLevel
             result.createdCmHandles[0].dataProducerIdentifier == 'my-data-producer-identifier'
         where: 'the following parameters are used'
-            scenario                    | registrationDmiProperties                | registrationPublicProperties                           | registrationTrustLevel || mappedDmiProperties                      | mappedPublicProperties                                 | mappedTrustLevel
-            'dmi and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
-            'no properties'             | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null
+            scenario                           | registrationAdditionalProperties         | registrationPublicProperties                           | registrationTrustLevel || mappedAdditionalProperties               | mappedPublicProperties                                 | mappedTrustLevel
+            'additional and public properties' | ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | 'COMPLETE'             || ['Property-Example': 'example property'] | ['Public-Property-Example': 'public example property'] | TrustLevel.COMPLETE
+            'no properties'                    | null                                     | null                                                   | null                   || [:]                                      | [:]                                                    | null
     }
 
     def 'Handling empty dmi registration'() {

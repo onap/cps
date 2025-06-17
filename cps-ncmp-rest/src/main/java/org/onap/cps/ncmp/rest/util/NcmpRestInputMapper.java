@@ -54,7 +54,7 @@ public interface NcmpRestInputMapper {
     DmiPluginRegistration toDmiPluginRegistration(final RestDmiPluginRegistration restDmiPluginRegistration);
 
     @Mapping(source = "cmHandle", target = "cmHandleId")
-    @Mapping(source = "cmHandleProperties", target = "dmiProperties")
+    @Mapping(source = "cmHandleProperties", target = "additionalProperties")
     @Mapping(source = "publicCmHandleProperties", target = "publicProperties")
     @Mapping(source = "trustLevel", target = "registrationTrustLevel")
     NcmpServiceCmHandle toNcmpServiceCmHandle(final RestInputCmHandle restInputCmHandle);

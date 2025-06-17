@@ -37,9 +37,9 @@ class RestOutputCmHandleMapperSpec extends Specification {
         and: 'the state mapper returns a composite state'
             mockCmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(ncmpServiceCmHandle.getCompositeState()) >> new CmHandleCompositeState(cmHandleState: 'ADVISED')
         when: 'the mapper function is called'
-            def result = objectUnderTest.toRestOutputCmHandle(ncmpServiceCmHandle, includePrivateProperties)
+            def result = objectUnderTest.toRestOutputCmHandle(ncmpServiceCmHandle, includeAdditionalProperties)
         then: 'result has the expected properties'
-            assert result.privateCmHandleProperties.containsKey('private property key') == includePrivateProperties
+            assert result.privateCmHandleProperties.containsKey('additional property key') == includeAdditionalProperties
             if (trustLevel != null) {
                 assert result.trustLevel == trustLevel.toString()
             }
@@ -47,14 +47,14 @@ class RestOutputCmHandleMapperSpec extends Specification {
             assert result.alternateId == 'alt-1'
             assert result.cmHandle == 'ch-1'
         where:
-            scenario                     | includePrivateProperties || trustLevel
-            'without private properties' | false                    || null
-            'with private properties'    | true                     || TrustLevel.NONE
-            'with trust level'           | false                    || TrustLevel.COMPLETE
+            scenario                        | includeAdditionalProperties || trustLevel
+            'without additional properties' | false                       || null
+            'with additional properties'    | true                        || TrustLevel.NONE
+            'with trust level'              | false                       || TrustLevel.COMPLETE
     }
 
     def createNcmpServiceCmHandle(trustLevel) {
-        return new NcmpServiceCmHandle(cmHandleId: 'ch-1', dmiProperties: ['private property key': 'some value'],
+        return new NcmpServiceCmHandle(cmHandleId: 'ch-1', additionalProperties: ['additional property key': 'some value'],
                 currentTrustLevel: trustLevel,
                 publicProperties: ['public property key': 'public property value'],
                 alternateId: 'alt-1', compositeState: new CompositeState(cmHandleState: 'ADVISED'))

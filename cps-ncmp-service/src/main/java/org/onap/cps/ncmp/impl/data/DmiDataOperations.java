@@ -210,7 +210,7 @@ public class DmiDataOperations {
                 .dataType(dataType)
                 .moduleSetTag(yangModelCmHandle.getModuleSetTag())
                 .build();
-        dmiRequestBody.asDmiProperties(yangModelCmHandle.getDmiProperties());
+        dmiRequestBody.asAdditionalProperties(yangModelCmHandle.getAdditionalProperties());
         return jsonObjectMapper.asJsonString(dmiRequestBody);
     }
 

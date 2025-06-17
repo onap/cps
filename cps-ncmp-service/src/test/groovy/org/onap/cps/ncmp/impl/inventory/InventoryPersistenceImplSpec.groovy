@@ -84,7 +84,7 @@ class InventoryPersistenceImplSpec extends Specification {
                                                       new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithDMIProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"])]
+    def childDataNodesForCmHandleWithAdditionalProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"])]
 
     @Shared
     def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
@@ -104,7 +104,7 @@ class InventoryPersistenceImplSpec extends Specification {
             result.dmiDataServiceName == 'data service name'
             result.dmiModelServiceName == 'model service name'
         and: 'the expected additional properties'
-            result.dmiProperties.name == expectedAdditionalProperties
+            result.additionalProperties.name == expectedAdditionalProperties
         and: 'the expected public properties'
             result.publicProperties.name == expectedPublicProperties
         and: 'the state details are returned'
@@ -112,12 +112,12 @@ class InventoryPersistenceImplSpec extends Specification {
         and: 'the CM Handle ID is validated'
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
         where: 'the following parameters are used'
-            scenario                    | childDataNodes                                || expectedAdditionalProperties || expectedPublicProperties || expectedCompositeState
-            'no properties'             | []                                            || []                           || []                       || null
-            'DMI and public properties' | childDataNodesForCmHandleWithAllProperties    || ["myAdditionalProperty"]     || ["myPublicProperty"]     || null
-            'just DMI properties'       | childDataNodesForCmHandleWithDMIProperties    || ["myAdditionalProperty"]     || []                       || null
-            'just public properties'    | childDataNodesForCmHandleWithPublicProperties || []                           || ["myPublicProperty"]     || null
-            'with state details'        | childDataNodesForCmHandleWithState            || []                           || []                       || CmHandleState.ADVISED
+            scenario                           | childDataNodes                                    || expectedAdditionalProperties || expectedPublicProperties || expectedCompositeState
+            'no properties'                    | []                                                || []                           || []                       || null
+            'additional and public properties' | childDataNodesForCmHandleWithAllProperties        || ["myAdditionalProperty"]     || ["myPublicProperty"]     || null
+            'just additional properties'       | childDataNodesForCmHandleWithAdditionalProperties || ["myAdditionalProperty"]     || []                       || null
+            'just public properties'           | childDataNodesForCmHandleWithPublicProperties     || []                           || ["myPublicProperty"]     || null
+            'with state details'               | childDataNodesForCmHandleWithState                || []                           || []                       || CmHandleState.ADVISED
     }
 
     def 'Handling missing service names as null.'() {
@@ -238,7 +238,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'Save Cmhandle'() {
         given: 'cmHandle represented as Yang Model'
-            def yangModelCmHandle = new YangModelCmHandle(id: 'cmhandle', dmiProperties: [], publicProperties: [])
+            def yangModelCmHandle = new YangModelCmHandle(id: 'cmhandle', additionalProperties: [], publicProperties: [])
         when: 'the method to save cmhandle is called'
             objectUnderTest.saveCmHandle(yangModelCmHandle)
         then: 'the data service method to save list elements is called once'
