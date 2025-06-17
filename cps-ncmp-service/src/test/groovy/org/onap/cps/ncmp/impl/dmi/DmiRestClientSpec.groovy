@@ -60,11 +60,11 @@ class DmiRestClientSpec extends Specification {
     def mockRequestBody = Mock(WebClient.RequestBodyUriSpec)
     def mockResponse = Mock(WebClient.ResponseSpec)
 
-    def mockDmiProperties = Mock(DmiProperties)
+    def mockDmiServiceAuthenticationProperties = Mock(DmiServiceAuthenticationProperties)
 
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    DmiRestClient objectUnderTest = new DmiRestClient(mockDmiProperties, jsonObjectMapper, mockDataServicesWebClient, mockModelServicesWebClient, mockHealthChecksWebClient)
+    DmiRestClient objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, mockDataServicesWebClient, mockModelServicesWebClient, mockHealthChecksWebClient)
 
     def setup() {
         mockRequestBody.uri(_,_) >> mockRequestBody
@@ -148,9 +148,9 @@ class DmiRestClientSpec extends Specification {
 
     def 'DMI auth header #scenario'() {
         when: 'Specific dmi properties are provided'
-            mockDmiProperties.dmiBasicAuthEnabled >> authEnabled
-            mockDmiProperties.authUsername >> 'some user'
-            mockDmiProperties.authPassword >> 'some password'
+            mockDmiServiceAuthenticationProperties.dmiBasicAuthEnabled >> authEnabled
+            mockDmiServiceAuthenticationProperties.authUsername >> 'some user'
+            mockDmiServiceAuthenticationProperties.authPassword >> 'some password'
         then: 'http headers to conditionally have Authorization header'
             def httpHeaders = new HttpHeaders()
             objectUnderTest.configureHttpHeaders(httpHeaders, ncmpAuthHeader)

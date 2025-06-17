@@ -57,7 +57,7 @@ public class DmiRestClient {
 
     private static final String NOT_SPECIFIED = "";
 
-    private final DmiProperties dmiProperties;
+    private final DmiServiceAuthenticationProperties dmiServiceAuthenticationProperties;
     private final JsonObjectMapper jsonObjectMapper;
     @Qualifier("dataServicesWebClient")
     private final WebClient dataServicesWebClient;
@@ -188,8 +188,9 @@ public class DmiRestClient {
     }
 
     private void configureHttpHeaders(final HttpHeaders httpHeaders, final String authorization) {
-        if (dmiProperties.isDmiBasicAuthEnabled()) {
-            httpHeaders.setBasicAuth(dmiProperties.getAuthUsername(), dmiProperties.getAuthPassword());
+        if (dmiServiceAuthenticationProperties.isDmiBasicAuthEnabled()) {
+            httpHeaders.setBasicAuth(dmiServiceAuthenticationProperties.getAuthUsername(),
+                dmiServiceAuthenticationProperties.getAuthPassword());
         } else if (authorization != null && authorization.toLowerCase(Locale.getDefault()).startsWith("bearer ")) {
             httpHeaders.add(HttpHeaders.AUTHORIZATION, authorization);
         }

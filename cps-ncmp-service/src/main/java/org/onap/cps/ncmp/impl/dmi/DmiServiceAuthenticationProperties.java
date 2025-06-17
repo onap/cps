@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 
 @Getter
 @Component
-public class DmiProperties {
+public class DmiServiceAuthenticationProperties {
     @Value("${ncmp.dmi.auth.username}")
     private String authUsername;
     @Value("${ncmp.dmi.auth.password}")

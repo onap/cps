@@ -36,8 +36,8 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.model.ModuleReference;
 import org.onap.cps.ncmp.api.inventory.models.YangResource;
-import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
@@ -54,7 +54,7 @@ import org.springframework.stereotype.Service;
 public class DmiModelOperations {
 
     private final JsonObjectMapper jsonObjectMapper;
-    private final DmiProperties dmiProperties;
+    private final DmiServiceAuthenticationProperties dmiServiceAuthenticationProperties;
     private final DmiRestClient dmiRestClient;
 
     /**
@@ -119,7 +119,7 @@ public class DmiModelOperations {
                 .fixedPathSegment("ch")
                 .variablePathSegment("cmHandleId", cmHandle)
                 .fixedPathSegment(resourceName)
-                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+                .createUrlTemplateParameters(dmiServiceName, dmiServiceAuthenticationProperties.getDmiBasePath());
         return dmiRestClient.synchronousPostOperationWithJsonData(MODEL, urlTemplateParameters, jsonRequestBody, READ,
                 null);
     }

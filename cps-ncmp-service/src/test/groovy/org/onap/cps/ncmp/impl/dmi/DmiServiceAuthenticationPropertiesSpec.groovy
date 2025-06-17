@@ -23,9 +23,9 @@ package org.onap.cps.ncmp.impl.dmi
 
 import spock.lang.Specification
 
-class DmiPropertiesSpec extends Specification {
+class DmiServiceAuthenticationPropertiesSpec extends Specification {
 
-    def objectUnderTest = new DmiProperties()
+    def objectUnderTest = new DmiServiceAuthenticationProperties()
 
     def 'Geting dmi base path.'() {
         given: 'base path of #dmiBasePath'
