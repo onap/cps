@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f9d954_bf855c44",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-17T13:16:31Z",
+      "side": 1,
+      "message": "rename to myAdditionalProperty\nand just store NAMES in these arrays",
+      "range": {
+        "startLine": 116,
+        "startChar": 124,
+        "endLine": 116,
+        "endChar": 129
+      },
+      "revId": "6085dac1161c73927fcf6ebbab2ad2c6c0338d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c60261b_872d5114",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-17T13:16:31Z",
+      "side": 1,
+      "message": "rename to myPublicProperty\nand just store NAMES in these arrays",
+      "range": {
+        "startLine": 116,
+        "startChar": 179,
+        "endLine": 116,
+        "endChar": 184
+      },
+      "revId": "6085dac1161c73927fcf6ebbab2ad2c6c0338d90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
