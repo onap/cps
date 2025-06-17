@@ -28,7 +28,7 @@ export const testKpiMetaData = JSON.parse(open(`../config/test-kpi-metadata.json
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
-export const CONTAINER_UP_TIME_IN_SECONDS = testConfig.hosts.containerUpTimeInSeconds;
+export const CONTAINER_COOL_DOWW_TIME_IN_SECONDS = testConfig.hosts.containerCoolDownTimeInSeconds;
 export const LEGACY_BATCH_TOPIC_NAME = 'legacy_batch_topic';
 export const TOTAL_CM_HANDLES = __ENV.TOTAL_CM_HANDLES ? parseInt(__ENV.TOTAL_CM_HANDLES) : 50000;
 export const REGISTRATION_BATCH_SIZE = 2000;
@@ -119,7 +119,7 @@ export function performGetRequest(url, metricTag) {
     return http.get(url, {tags: metricTags});
 }
 
-export function makeCustomSummaryReport(testResults, scenarioConfig) {
+export function makeCustomSummaryReport(metrics, thresholds) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Fs Requirement,Current Expectation,Actual',
         ...testKpiMetaData.map(test => {
@@ -129,20 +129,19 @@ export function makeCustomSummaryReport(testResults, scenarioConfig) {
                 test.unit,
                 test.metric,
                 test.cpsAverage,
-                testResults,
-                scenarioConfig
+                metrics,
+                thresholds
             );
         })
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
 
-function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentExpectation, testResults, scenarioConfig) {
-    const thresholdArray = JSON.parse(JSON.stringify(scenarioConfig.thresholds[measurementName]));
-    const thresholdString = thresholdArray[0];
-    const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
-    const actualValue = testResults.metrics[measurementName].values[thresholdKey].toFixed(3);
-    return `${testCase},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
+function makeSummaryCsvLine(testNumber, testName, unit, measurementName, currentExpectation, metrics, thresholds) {
+    const thresholdCondition = JSON.parse(JSON.stringify(thresholds[measurementName]))[0];
+    const [metricsFunction, thresholdOperator, thresholdValue] = thresholdCondition.split(/\s+/);
+    const actualValue = metrics[measurementName].values[metricsFunction].toFixed(3);
+    return `${testNumber},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
 }
 
 /**
@@ -152,10 +151,10 @@ function makeSummaryCsvLine(testCase, testName, unit, measurementName, currentEx
  * @param {number} expectedStatusCode
  * @param {string} checkLabel
  * @param {number} delayInMs - Overhead to subtract
- * @param {Trend} trendMetric
+ * @param {Trend} testTrend
  */
-export function validateResponseAndRecordMetricWithOverhead(httpResponse, expectedStatusCode, checkLabel, delayInMs, trendMetric) {
-    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric,
+export function validateResponseAndRecordMetricWithOverhead(httpResponse, expectedStatusCode, checkLabel, delayInMs, testTrend) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, testTrend,
         (httpResponse) => httpResponse.timings.duration - delayInMs
     );
 }
@@ -167,10 +166,10 @@ export function validateResponseAndRecordMetricWithOverhead(httpResponse, expect
  * @param {number} expectedStatusCode
  * @param {string} checkLabel
  * @param {number} expectedArrayLength
- * @param {Trend} trendMetric
+ * @param {Trend} testTrend
  */
-export function validateResponseAndRecordMetric(httpResponse, expectedStatusCode, checkLabel, expectedArrayLength, trendMetric) {
-    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, trendMetric, (response) => response.timings.duration, (response) => {
+export function validateResponseAndRecordMetric(httpResponse, expectedStatusCode, checkLabel, expectedArrayLength, testTrend) {
+    recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, testTrend, (response) => response.timings.duration, (response) => {
         const status = response.status;
         const body = typeof response.body === 'string' ? response.body.trim() : '';
         if (!body) {
@@ -189,7 +188,7 @@ export function validateResponseAndRecordMetric(httpResponse, expectedStatusCode
     });
 }
 
-function recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, metricRecorder, metricValueExtractor, customValidatorFn = () => ({
+function recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabel, testTrend, metricValueExtractor, customValidatorFn = () => ({
     valid: true,
     reason: undefined
 })) {
@@ -201,7 +200,7 @@ function recordMetricIfResponseValid(httpResponse, expectedStatusCode, checkLabe
     });
 
     if (isSuccess) {
-        metricRecorder.add(metricValueExtractor(httpResponse));
+        testTrend.add(metricValueExtractor(httpResponse));
     } else {
         logDetailedFailure(httpResponse, isExpectedStatusMatches, checkLabel, reason);
     }
