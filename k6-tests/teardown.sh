@@ -49,6 +49,7 @@ remove_all_onap_docker_images() {
 # Set an environment variable CLEAN_DOCKER_IMAGES=1 to also remove docker images when done (used on jenkins job)
 echo "Stopping, Removing containers and volumes for $testProfile tests..."
 if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
+  echo "Also cleaning up all images"
   eval "$docker_compose_shutdown_cmd --rmi all"
   if [[ "$testProfile" == "endurance" ]]; then
     remove_all_onap_docker_images

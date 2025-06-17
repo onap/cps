@@ -41,3 +41,5 @@ tmp/
 
 csit/env.properties
 csit/archives/
+
+/k6-tests/image/

@@ -3,7 +3,7 @@
     "ncmpBaseUrl": "http://localhost:8883",
     "dmiStubUrl": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
     "kafkaBootstrapServer": "localhost:9092",
-    "containerUpTimeInSeconds": 300
+    "containerCoolDownTimeInSeconds": 10
   },
   "scenarios": {
     "passthrough_read_alt_id_scenario": {
@@ -124,17 +124,19 @@
       "rate": 1,
       "preAllocatedVUs": 1,
       "timeUnit": "1s",
-      "duration": "15m10s",
-      "maxVUs": 2,
+      "duration": "15m5s",
+      "maxVUs": 1,
       "startTime": "71ms"
     },
     "legacy_batch_consume_scenario": {
-      "executor": "per-vu-iterations",
+      "executor": "constant-arrival-rate",
       "exec": "legacyBatchConsumeScenario",
-      "vus": 1,
-      "iterations": 1,
-      "maxDuration": "16m",
-      "startTime": "71ms"
+      "rate": 1,
+      "timeUnit": "1s",
+      "duration": "15m",
+      "preAllocatedVUs": 1,
+      "maxVUs": 1,
+      "startTime": "571ms"
     },
     "produceCmAvcBackGroundLoadAtPeakRate": {
       "executor": "constant-arrival-rate",
@@ -169,3 +171,4 @@
   },
   "thresholds": "#SCENARIO-THRESHOLDS#"
 }
+

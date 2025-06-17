@@ -21,11 +21,20 @@
 import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
-import { testConfig, validateResponseAndRecordMetricWithOverhead,
-    validateResponseAndRecordMetric, makeCustomSummaryReport, makeBatchOfCmHandleIds, makeRandomBatchOfAlternateIds,
-    TOTAL_CM_HANDLES, READ_DATA_FOR_CM_HANDLE_DELAY_MS, WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
-    LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE, REGISTRATION_BATCH_SIZE,
-    KAFKA_BOOTSTRAP_SERVERS, LEGACY_BATCH_TOPIC_NAME, CONTAINER_UP_TIME_IN_SECONDS
+import { testConfig,
+    validateResponseAndRecordMetricWithOverhead,
+    validateResponseAndRecordMetric,
+    makeCustomSummaryReport,
+    makeBatchOfCmHandleIds,
+    makeRandomBatchOfAlternateIds,
+    TOTAL_CM_HANDLES,
+    READ_DATA_FOR_CM_HANDLE_DELAY_MS,
+    WRITE_DATA_FOR_CM_HANDLE_DELAY_MS,
+    LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
+    REGISTRATION_BATCH_SIZE,
+    KAFKA_BOOTSTRAP_SERVERS,
+    LEGACY_BATCH_TOPIC_NAME,
+    CONTAINER_COOL_DOWW_TIME_IN_SECONDS
 } from './common/utils.js';
 import { createCmHandles, deleteCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle-crud.js';
 import { executeCmHandleSearch, executeCmHandleIdSearch } from './common/search-base.js';
@@ -40,6 +49,7 @@ const EXPECTED_WRITE_RESPONSE_COUNT = 1;
 export const legacyBatchEventReader = new Reader({
     brokers: [KAFKA_BOOTSTRAP_SERVERS],
     topic: LEGACY_BATCH_TOPIC_NAME,
+    maxWait: '500ms', // Do not increase otherwise the read won't finish within 1 second (it is set to run every second)
 });
 
 export const options = {
@@ -52,8 +62,8 @@ export const options = {
 export function setup() {
     const startTimeInMillis = Date.now();
 
-    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
-    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
+    const numberOfBatches = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
+    for (let batchNumber = 0; batchNumber < numberOfBatches; batchNumber++) {
         const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
         const response = createCmHandles(nextBatchOfCmHandleIds);
         check(response, { 'create CM-handles status equals 200': (response) => response.status === 200 });
@@ -70,13 +80,13 @@ export function setup() {
 export function teardown() {
     const startTimeInMillis = Date.now();
 
-    let DEREGISTERED_CM_HANDLES = 0
-    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
-    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
+    let numberOfDeregisteredCmHandles = 0
+    const numberOfBatches = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
+    for (let batchNumber = 0; batchNumber < numberOfBatches; batchNumber++) {
         const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
         const response = deleteCmHandles(nextBatchOfCmHandleIds);
         if (response.error_code === 0) {
-              DEREGISTERED_CM_HANDLES += REGISTRATION_BATCH_SIZE
+              numberOfDeregisteredCmHandles += REGISTRATION_BATCH_SIZE
         }
         check(response, { 'delete CM-handles status equals 200': (response) => response.status === 200 });
     }
@@ -84,9 +94,9 @@ export function teardown() {
     const endTimeInMillis = Date.now();
     const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
-    cmHandlesDeletedTrend.add(DEREGISTERED_CM_HANDLES / totalDeregistrationTimeInSeconds);
+    cmHandlesDeletedTrend.add(numberOfDeregisteredCmHandles / totalDeregistrationTimeInSeconds);
 
-    sleep(CONTAINER_UP_TIME_IN_SECONDS);
+    sleep(CONTAINER_COOL_DOWW_TIME_IN_SECONDS);
 }
 
 export function passthroughReadAltIdScenario() {
@@ -150,9 +160,25 @@ export function cmHandleSearchTrustLevelScenario() {
 }
 
 export function legacyBatchProduceScenario() {
+    const timestamp1 = (new Date()).toISOString();
     const nextBatchOfAlternateIds = makeRandomBatchOfAlternateIds();
     const response = legacyBatchRead(nextBatchOfAlternateIds);
     check(response, {'data operation batch read status equals 200': (response) => response.status === 200});
+    const timestamp2 = (new Date()).toISOString();
+    console.debug(`✅ From ${timestamp1} to ${timestamp2} produced ${LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE} messages for legacy batch read`);
+}
+
+export function legacyBatchConsumeScenario() {
+    const timestamp1 = (new Date()).toISOString();
+    try {
+        const messages = legacyBatchEventReader.consume({ limit: 220, expectTimeout: true });
+        const timestamp2 = (new Date()).toISOString();
+        console.debug(`✅ From ${timestamp1} to ${timestamp2} consumed ${messages.length} messages by legacy batch read\``);
+        legacyBatchReadTrend.add(messages.length);
+    } catch (error) {
+        const timestamp2 = (new Date()).toISOString();
+        console.error(`❌ From ${timestamp1} to ${timestamp2} Consume error (legacy batch read): ${error.message}`);
+    }
 }
 
 export function writeDataJobLargeScenario() {
@@ -169,55 +195,12 @@ export function produceAvcEventsScenario() {
     sendBatchOfKafkaMessages(500);
 }
 
-export function legacyBatchConsumeScenario() {
-    // calculate total messages 15 minutes times 60 seconds times
-    const TOTAL_MESSAGES_TO_CONSUME = 15 * 60 * LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE;
-    console.log("📥 [legacy batch consume scenario] Starting consumption of", TOTAL_MESSAGES_TO_CONSUME, "messages...");
-
-    try {
-        let messagesConsumed = 0;
-        const startTime = Date.now();
-
-        while (messagesConsumed < TOTAL_MESSAGES_TO_CONSUME) {
-            try {
-                const messages = legacyBatchEventReader.consume({
-                    limit: LEGACY_BATCH_THROUGHPUT_TEST_BATCH_SIZE,
-                    timeout: 30000,
-                });
-
-                if (messages.length > 0) {
-                    messagesConsumed += messages.length;
-                    console.debug(`✅ Consumed ${messages.length} messages by legacy batch read (total: ${messagesConsumed}/${TOTAL_MESSAGES_TO_CONSUME})`);
-                } else {
-                    console.warn("⚠️ No messages received by legacy batch read.");
-                }
-            } catch (err) {
-                console.error(`❌ Consume error (legacy batch read): ${err.message}`);
-            }
-        }
-
-        const endTime = Date.now();
-        const timeToConsumeMessagesInSeconds = (endTime - startTime) / 1000.0;
-
-        if (messagesConsumed > 0) {
-            legacyBatchReadTrend.add(messagesConsumed / timeToConsumeMessagesInSeconds);
-            console.log(`🏁 Finished (legacy batch read): Consumed ${messagesConsumed} messages in ${timeToConsumeMessagesInSeconds.toFixed(2)}s.`);
-        } else {
-            legacyBatchReadCmhandlesPerSecondTrend.add(0);
-            console.error("⚠️ No messages consumed by legacy read batch.");
-        }
-    } catch (error) {
-        legacyBatchReadTrend.add(0);
-        console.error("💥 Legacy batch read scenario failed:", error.message);
-    }
-}
-
 export function handleSummary(data) {
     const testProfile = __ENV.TEST_PROFILE;
     if (testProfile === 'kpi') {
         console.log("✅ Generating KPI summary...");
         return {
-            stdout: makeCustomSummaryReport(data, options),
+            stdout: makeCustomSummaryReport(data.metrics, options.thresholds),
         };
     }
     console.log("⛔ Skipping KPI summary (not in 'kpi' profile)");
