@@ -74,7 +74,7 @@ public class YangModelCmHandle {
     private String dataProducerIdentifier;
 
     @JsonProperty("additional-properties")
-    private List<Property> dmiProperties;
+    private List<Property> additionalProperties;
 
     @JsonProperty("public-properties")
     private List<Property> publicProperties;
@@ -93,7 +93,8 @@ public class YangModelCmHandle {
         copy.dmiModelServiceName = original.getDmiModelServiceName();
         copy.compositeState =
                 original.getCompositeState() == null ? null : new CompositeState(original.getCompositeState());
-        copy.dmiProperties = original.getDmiProperties() == null ? null : new ArrayList<>(original.getDmiProperties());
+        copy.additionalProperties = original.getAdditionalProperties()
+            == null ? null : new ArrayList<>(original.getAdditionalProperties());
         copy.publicProperties =
                 original.getPublicProperties() == null ? null : new ArrayList<>(original.getPublicProperties());
         copy.moduleSetTag = original.getModuleSetTag();
@@ -129,7 +130,8 @@ public class YangModelCmHandle {
         yangModelCmHandle.setModuleSetTag(StringUtils.trimToEmpty(moduleSetTag));
         yangModelCmHandle.setAlternateId(StringUtils.trimToEmpty(alternateId));
         yangModelCmHandle.setDataProducerIdentifier(StringUtils.trimToEmpty(dataProducerIdentifier));
-        yangModelCmHandle.setDmiProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getDmiProperties()));
+        yangModelCmHandle.setAdditionalProperties(
+            asYangModelCmHandleProperties(ncmpServiceCmHandle.getAdditionalProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         return yangModelCmHandle;

@@ -25,8 +25,8 @@ import spock.lang.Specification
 
 class YangDataConverterSpec extends Specification{
 
-    def 'Convert a cm handle data node with private and public properties.'() {
-        given: 'a datanode with some additional (dmi, private) and public properties'
+    def 'Convert a cm handle data node with additional and public properties.'() {
+        given: 'a datanode with some additional and public properties'
             def dataNodeAdditionalProperties = new DataNode(xpath:'/additional-properties[@name="dmiProp1"]',
                     leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
             def dataNodePublicProperties = new DataNode(xpath:'/public-properties[@name="pubProp1"]',
@@ -40,9 +40,9 @@ class YangDataConverterSpec extends Specification{
             assert yangModelCmHandle.dmiServiceName == 'my-dmi'
             assert yangModelCmHandle.moduleSetTag == 'my-tag'
             assert yangModelCmHandle.dataProducerIdentifier == 'my-dpi'
-        and: 'the additional (dmi, private) properties are included'
-            assert yangModelCmHandle.dmiProperties[0].name == 'dmiProp1'
-            assert yangModelCmHandle.dmiProperties[0].value == 'dmiValue1'
+        and: 'the additional properties are included'
+            assert yangModelCmHandle.additionalProperties[0].name == 'dmiProp1'
+            assert yangModelCmHandle.additionalProperties[0].value == 'dmiValue1'
         and: 'the public properties are included'
             assert yangModelCmHandle.publicProperties[0].name == 'pubProp1'
             assert yangModelCmHandle.publicProperties[0].value == 'pubValue1'

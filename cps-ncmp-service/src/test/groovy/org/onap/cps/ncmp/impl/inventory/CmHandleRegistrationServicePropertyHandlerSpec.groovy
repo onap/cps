@@ -105,8 +105,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def 'Update DMI Properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> cmHandleDataNodeAsCollection
-        and: 'an update cm handle request with DMI properties updates'
-            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, dmiProperties: updatedDmiProperties)]
+        and: 'an update cm handle request with additional properties updates'
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, additionalProperties: updatedAddiontalProperties)]
         when: 'update data node leaves is called with the update request'
             objectUnderTest.updateCmHandleProperties(cmHandleUpdateRequest)
         then: 'replace list method should is called with correct params'
@@ -116,8 +116,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
                     assert args[1].leaves.containsAll(convertToProperties(expectedPropertiesAfterUpdate))
                 }
             }
-        where: 'following DMI properties updates are made'
-            scenario                          | updatedDmiProperties                || expectedPropertiesAfterUpdate                                                                                           | expectedCallsToReplaceMethod
+        where: 'following additional properties updates are made'
+            scenario                          | updatedAddiontalProperties          || expectedPropertiesAfterUpdate                                                                                           | expectedCallsToReplaceMethod
             'property added'                  | ['newAdditionalProp1': 'add-value'] || [['additionalProp1': 'additionalValue1'], ['additionalProp2': 'additionalValue2'], ['newAdditionalProp1': 'add-value']] | 1
             'property updated'                | ['additionalProp1': 'newValue']     || [['additionalProp2': 'additionalValue2'], ['additionalProp1': 'newValue']]                                              | 1
             'property removed'                | ['additionalProp1': null]           || [['additionalProp2': 'additionalValue2']]                                                                               | 1
@@ -125,7 +125,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             'no property changes'             | [:]                                 || [['additionalProp1': 'additionalValue1'], ['additionalProp2': 'additionalValue2']]                                      | 0
     }
 
-    def 'Update CM Handle Properties, remove all properties: #scenario'() {
+    def 'Update CM Handle Properties, remove all public properties: #scenario'() {
         given: 'the CPS service return a CM handle'
             def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': cmHandleId], childDataNodes: originalPropertyDataNodes)
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS) >> [cmHandleDataNode]
@@ -149,7 +149,7 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
 
     def '#scenario error leads to #exception when we try to update cmHandle'() {
         given: 'cm handles request'
-            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: [:], dmiProperties: [:])]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: [:], additionalProperties: [:])]
         and: 'data node cannot be found'
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(*_) >> { throw exception }
         when: 'update data node leaves is called using correct parameters'
@@ -172,9 +172,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
 
     def 'Multiple update operations in a single request'() {
         given: 'cm handles request'
-            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
-                                         new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:]),
-                                         new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], dmiProperties: [:])]
+            def cmHandleUpdateRequest = [new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], additionalProperties: [:]),
+                                         new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], additionalProperties: [:]),
+                                         new NcmpServiceCmHandle(cmHandleId: cmHandleId, publicProperties: ['publicProp1': "value"], additionalProperties: [:])]
         and: 'data node can be found for 1st and 3rd cm-handle but not for 2nd cm-handle'
             mockInventoryPersistence.getCmHandleDataNodeByCmHandleId(*_) >> cmHandleDataNodeAsCollection >> {
                 throw new DataNodeNotFoundException(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) } >> cmHandleDataNodeAsCollection

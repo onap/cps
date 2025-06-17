@@ -147,11 +147,11 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             1 * mockInventoryPersistence.getCmHandleReferencesWithGivenModules(['some-module-name'], false) >> ['ch1']
         and: 'the inventory service is called with teh correct if and returns a yang model cm handle'
             1 * mockInventoryPersistence.getYangModelCmHandles(['ch1']) >>
-                [new YangModelCmHandle(id: 'abc', dmiProperties: [new YangModelCmHandle.Property('name','value')], publicProperties: [])]
+                [new YangModelCmHandle(id: 'abc', additionalProperties: [new YangModelCmHandle.Property('name','value')], publicProperties: [])]
         and: 'the expected cm handle(s) are returned as NCMP Service cm handles'
             assert result[0] instanceof NcmpServiceCmHandle
             assert result.size() == 1
-            assert result[0].dmiProperties == [name:'value']
+            assert result[0].additionalProperties == [name:'value']
     }
 
     def 'Query cm handle references when the query is empty.'() {
@@ -175,7 +175,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
         and: 'the inventory persistence returns the cm handle ids of all cm handles'
             cmHandleQueries.getAllCmHandleReferences(false) >> getCmHandleReferencesForDmiRegistry(false)
         and: 'the inventory persistence returns the cm handle details when requested'
-            mockInventoryPersistence.getYangModelCmHandles(_) >> dmiRegistry.childDataNodes.collect { new YangModelCmHandle(id: it.leaves.get("id").toString(), dmiProperties: [], publicProperties: []) }
+            mockInventoryPersistence.getYangModelCmHandles(_) >> dmiRegistry.childDataNodes.collect { new YangModelCmHandle(id: it.leaves.get("id").toString(), additionalProperties: [], publicProperties: []) }
         when: 'the query is executed for both cm handle details'
             def result = objectUnderTest.queryCmHandles(cmHandleQueryParameters).collectList().block()
         then: 'the correct cm handles are returned'
@@ -190,17 +190,17 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             cmHandleQueryParameters.setCmHandleQueryParameters([conditionProperties])
         and: 'the inventoryPersistence returns different CmHandleIds'
             partiallyMockedCmHandleQueries.queryPublicCmHandleProperties(*_) >> cmHandlesWithMatchingPublicProperties
-            partiallyMockedCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingPrivateProperties
+            partiallyMockedCmHandleQueries.queryCmHandleAdditionalProperties(*_) >> cmHandlesWithMatchingAdditionalProperties
         when: 'the query executed'
             def result = objectUnderTestWithPartiallyMockedQueries.queryCmHandleIdsForInventory(cmHandleQueryParameters, false)
         then: 'the expected number of results are returned.'
             assert result.size() == expectedCmHandleIdsSize
         where: 'the following data is used'
-            scenario                                          | conditionName                | cmHandlesWithMatchingPublicProperties | cmHandlesWithMatchingPrivateProperties || expectedCmHandleIdsSize
-            'all properties, only public matching'            | 'hasAllProperties'           | ['h1', 'h2']                          | null                                   || 2
-            'all properties, no matching cm handles'          | 'hasAllProperties'           | []                                    | []                                     || 0
-            'additional properties, some matching cm handles' | 'hasAllAdditionalProperties' | []                                    | ['h1', 'h2']                           || 2
-            'additional properties, no matching cm handles'   | 'hasAllAdditionalProperties' | null                                  | []                                     || 0
+            scenario                                          | conditionName                | cmHandlesWithMatchingPublicProperties | cmHandlesWithMatchingAdditionalProperties || expectedCmHandleIdsSize
+            'all properties, only public matching'            | 'hasAllProperties'           | ['h1', 'h2']                          | null                                      || 2
+            'all properties, no matching cm handles'          | 'hasAllProperties'           | []                                    | []                                        || 0
+            'additional properties, some matching cm handles' | 'hasAllAdditionalProperties' | []                                    | ['h1', 'h2']                              || 2
+            'additional properties, no matching cm handles'   | 'hasAllAdditionalProperties' | null                                  | []                                        || 0
     }
 
     def 'Retrieve alternate ids by different DMI properties.' () {
@@ -260,7 +260,7 @@ class ParameterizedCmHandleQueryServiceSpec extends Specification {
             mockInventoryPersistence.getYangModelCmHandles([expectedCmHandleId]) >> [
                     new YangModelCmHandle(
                             id: expectedCmHandleId,
-                            dmiProperties: [new YangModelCmHandle.Property('name', 'value')],
+                            additionalProperties: [new YangModelCmHandle.Property('name', 'value')],
                             publicProperties: []
                     )
             ]

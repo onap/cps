@@ -51,7 +51,7 @@ public class NcmpServiceCmHandle {
     private String dmiModelServiceName;
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
-    private Map<String, String> dmiProperties = Collections.emptyMap();
+    private Map<String, String> additionalProperties = Collections.emptyMap();
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private Map<String, String> publicProperties = Collections.emptyMap();

@@ -42,20 +42,20 @@ public class DmiRequestBody {
     private String dataType;
     private String data;
     @JsonProperty("cmHandleProperties")
-    private Map<String, String> dmiProperties;
+    private Map<String, String> additionalProperties;
     private String requestId;
     private String moduleSetTag;
 
     /**
-     * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
+     * Set additional Properties by converting a list of YangModelCmHandle.Property objects.
      *
-     * @param yangModelCmHandleProperties list of cm handle dmi properties
+     * @param yangModelCmHandleProperties list of cm handle additional properties
      */
-    public void asDmiProperties(
+    public void asAdditionalProperties(
         final List<YangModelCmHandle.Property> yangModelCmHandleProperties) {
-        dmiProperties = new LinkedHashMap<>();
-        for (final YangModelCmHandle.Property dmiProperty : yangModelCmHandleProperties) {
-            dmiProperties.put(dmiProperty.getName(), dmiProperty.getValue());
+        additionalProperties = new LinkedHashMap<>();
+        for (final YangModelCmHandle.Property additionalProperty : yangModelCmHandleProperties) {
+            additionalProperties.put(additionalProperty.getName(), additionalProperty.getValue());
         }
     }
 

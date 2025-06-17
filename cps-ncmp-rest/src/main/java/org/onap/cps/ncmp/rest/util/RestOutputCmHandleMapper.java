@@ -36,18 +36,18 @@ public class RestOutputCmHandleMapper {
      * Map NcmpServiceCmHandle to a RestOutputCmHandle object.
      *
      * @param ncmpServiceCmHandle            DMI plugin identifier
-     * @param includePrivateProperties       Boolean for cm handle reference type either
+     * @param includeAdditionalProperties       Boolean for cm handle reference type either
      *                                       cm handle id (False) or alternate id (True)
      * @return                               list of cm handles
      */
     public RestOutputCmHandle toRestOutputCmHandle(final NcmpServiceCmHandle ncmpServiceCmHandle,
-                                                   final boolean includePrivateProperties) {
+                                                   final boolean includeAdditionalProperties) {
         final RestOutputCmHandle restOutputCmHandle = new RestOutputCmHandle();
         restOutputCmHandle.setCmHandle(ncmpServiceCmHandle.getCmHandleId());
         restOutputCmHandle.setPublicCmHandleProperties(
                 Collections.singletonList(ncmpServiceCmHandle.getPublicProperties()));
-        if (includePrivateProperties) {
-            restOutputCmHandle.setPrivateCmHandleProperties(ncmpServiceCmHandle.getDmiProperties());
+        if (includeAdditionalProperties) {
+            restOutputCmHandle.setPrivateCmHandleProperties(ncmpServiceCmHandle.getAdditionalProperties());
         }
         restOutputCmHandle.setState(
                 cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
