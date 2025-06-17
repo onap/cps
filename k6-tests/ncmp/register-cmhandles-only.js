@@ -34,8 +34,8 @@ import { createCmHandles, waitForAllCmHandlesToBeReady } from './common/cmhandle
  * The number of handles to be registered is TOTAL_CM_HANDLES defined in common/utils.js
  */
 export default function () {
-    const TOTAL_BATCHES = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
-    for (let batchNumber = 0; batchNumber < TOTAL_BATCHES; batchNumber++) {
+    const numberOfBatches = Math.ceil(TOTAL_CM_HANDLES / REGISTRATION_BATCH_SIZE);
+    for (let batchNumber = 0; batchNumber < numberOfBatches; batchNumber++) {
         const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
         const response = createCmHandles(nextBatchOfCmHandleIds);
         check(response, { 'create CM-handles status equals 200': (r) => r.status === 200 });

@@ -18,7 +18,6 @@
  *  ============LICENSE_END=========================================================
  */
 
-import {crypto} from 'k6/experimental/webcrypto';
 import {check} from 'k6';
 import {Writer, SchemaRegistry, SCHEMA_TYPE_STRING} from 'k6/x/kafka';
 

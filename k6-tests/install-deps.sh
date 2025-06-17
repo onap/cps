@@ -37,11 +37,12 @@ docker-compose version
 
 # Download k6 with kafka extension.
 if [ ! -x bin/k6 ]; then
-  echo " Downloading k6 with kafka extension"
-  curl -s -L https://github.com/mostafa/xk6-kafka/releases/download/v0.26.0/xk6-kafka_v0.26.0_linux_amd64.tar.gz | tar -xz
-  mv dist/xk6-kafka_v0.26.0_linux_amd64 bin/k6 && rmdir dist
+  echo " Installing k6 1.0.0 with kafka extension"
+  curl -s -L https://github.com/mostafa/xk6-kafka/releases/download/v1.0.0/xk6-kafka_v1.0.0_linux_amd64.tar.gz | tar -xz
+  mv dist/xk6-kafka_v1.0.0_linux_amd64 bin/k6 && rmdir dist
   chmod +x bin/k6
 else
   echo " k6 already installed"
 fi
+echo " Checking k6 Version:"
 k6 --version
