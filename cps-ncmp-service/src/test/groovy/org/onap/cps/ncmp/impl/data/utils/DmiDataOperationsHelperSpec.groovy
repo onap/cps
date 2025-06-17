@@ -135,24 +135,24 @@ class DmiDataOperationsHelperSpec extends MessagingBaseSpec {
     }
 
     static def getYangModelCmHandles() {
-        def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+        def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]
         def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
         def advisedState = new CompositeStateBuilder().withCmHandleState(ADVISED).withLastUpdatedTimeNow().build()
-        return [new YangModelCmHandle(id: 'ch1-dmi1', 'alternateId': 'alt1-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch2-dmi1', 'alternateId': 'alt2-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch6-dmi1', 'alternateId': 'alt6-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch8-dmi1', 'alternateId': 'alt8-dmi1', dmiServiceName: 'dmi1', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch3-dmi2', 'alternateId': 'alt3-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch4-dmi2', 'alternateId': 'alt4-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'ch7-dmi2', 'alternateId': 'alt7-dmi2', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: readyState),
-                new YangModelCmHandle(id: 'non-ready-cm-handle', 'alternateId': 'non-ready-alternate', dmiServiceName: 'dmi2', dmiProperties: dmiProperties, compositeState: advisedState)
+        return [new YangModelCmHandle(id: 'ch1-dmi1', 'alternateId': 'alt1-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch2-dmi1', 'alternateId': 'alt2-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch6-dmi1', 'alternateId': 'alt6-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch8-dmi1', 'alternateId': 'alt8-dmi1', dmiServiceName: 'dmi1', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch3-dmi2', 'alternateId': 'alt3-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch4-dmi2', 'alternateId': 'alt4-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'ch7-dmi2', 'alternateId': 'alt7-dmi2', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: readyState),
+                new YangModelCmHandle(id: 'non-ready-cm-handle', 'alternateId': 'non-ready-alternate', dmiServiceName: 'dmi2', additionalProperties: additionalProperties, compositeState: advisedState)
         ]
     }
 
     static def getYangModelCmHandlesForOneCmHandle() {
-        def dmiProperties = [new YangModelCmHandle.Property('prop', 'some DMI property')]
+        def additionalProperties = [new YangModelCmHandle.Property('prop', 'some additional property')]
         def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
-        return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', moduleSetTag: 'module-set-tag1', dmiProperties: dmiProperties, compositeState: readyState)]
+        return [new YangModelCmHandle(id: 'ch1-dmi1', dmiServiceName: 'dmi1', moduleSetTag: 'module-set-tag1', additionalProperties: additionalProperties, compositeState: readyState)]
     }
 
     def mockAndPopulateErrorMap(errorReportedToClientTopic) {

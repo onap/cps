@@ -34,13 +34,13 @@ class WriteRequestExaminerSpec extends Specification {
     def objectUnderTest = new WriteRequestExaminer(mockAlternateIdMatcher, mockInventoryPersistence)
 
     def setup() {
-        def yangModelCmHandle1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', dmiProperties: [],
+        def yangModelCmHandle1 = new YangModelCmHandle(id: 'ch1', dmiServiceName: 'dmiA', additionalProperties: [],
             publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: 'fdn1', dataProducerIdentifier: 'p1')
-        def yangModelCmHandle2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', dmiProperties: [],
+        def yangModelCmHandle2 = new YangModelCmHandle(id: 'ch2', dmiServiceName: 'dmiA', additionalProperties: [],
             publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: 'fdn2', dataProducerIdentifier: 'p1')
-        def yangModelCmHandle3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', dmiProperties: [],
+        def yangModelCmHandle3 = new YangModelCmHandle(id: 'ch3', dmiServiceName: 'dmiA', additionalProperties: [],
             publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: 'fdn3', dataProducerIdentifier: 'p2')
-        def yangModelCmHandle4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', dmiProperties: [],
+        def yangModelCmHandle4 = new YangModelCmHandle(id: 'ch4', dmiServiceName: 'dmiB', additionalProperties: [],
             publicProperties: [], compositeState: null, moduleSetTag: '', alternateId: 'fdn4', dataProducerIdentifier: 'p1')
         mockAlternateIdMatcher.getCmHandleIdsByLongestMatchingAlternateIds(_, '/') > ['ch1','ch2','ch3','ch4']
 

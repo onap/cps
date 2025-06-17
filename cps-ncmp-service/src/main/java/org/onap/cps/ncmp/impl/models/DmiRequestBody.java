@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,20 +42,20 @@ public class DmiRequestBody {
     private String dataType;
     private String data;
     @JsonProperty("cmHandleProperties")
-    private Map<String, String> dmiProperties;
+    private Map<String, String> additionalProperties;
     private String requestId;
     private String moduleSetTag;
 
     /**
-     * Set DMI Properties by converting a list of YangModelCmHandle.Property objects.
+     * Set additional Properties by converting a list of YangModelCmHandle.Property objects.
      *
-     * @param yangModelCmHandleProperties list of cm handle dmi properties
+     * @param yangModelCmHandleProperties list of cm handle additional properties
      */
-    public void asDmiProperties(
+    public void asAdditionalProperties(
         final List<YangModelCmHandle.Property> yangModelCmHandleProperties) {
-        dmiProperties = new LinkedHashMap<>();
-        for (final YangModelCmHandle.Property dmiProperty : yangModelCmHandleProperties) {
-            dmiProperties.put(dmiProperty.getName(), dmiProperty.getValue());
+        additionalProperties = new LinkedHashMap<>();
+        for (final YangModelCmHandle.Property additionalProperty : yangModelCmHandleProperties) {
+            additionalProperties.put(additionalProperty.getName(), additionalProperty.getValue());
         }
     }
 
