@@ -56,6 +56,47 @@
       "message": "NB: license.",
       "revId": "41eb2412eca306cc999a8915cb0497d1fda58460",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdea5e50_ea3bd026",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-18T13:04:45Z",
+      "side": 1,
+      "message": "i agreed with Sean that when INtelliJ Automatically updated many files because of rename that aren\u0027t really changed and copyright does not have to be updated",
+      "parentUuid": "8ff58779_376d9bc8",
+      "revId": "41eb2412eca306cc999a8915cb0497d1fda58460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a7a1e2_cdc3a5a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceAuthenticationProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-18T13:04:45Z",
+      "side": 1,
+      "message": "nb: since this is a \u0027manual\u0027 change and the source of all other updates this copyright should have been updated...",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 41
+      },
+      "revId": "41eb2412eca306cc999a8915cb0497d1fda58460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
