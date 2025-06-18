@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "ae7cfdb5c46710d9a03df71efa43e47270901099",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87073da2_5f36aaef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-18T13:17:16Z",
+      "side": 1,
+      "message": "maybe update the copyright for files you have to do some manual extra work...",
+      "revId": "ae7cfdb5c46710d9a03df71efa43e47270901099",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6307285a_f00a3648",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/utils/DmiDataOperationsHelperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-18T13:17:16Z",
+      "side": 1,
+      "message": "NB: missed this",
+      "range": {
+        "startLine": 138,
+        "startChar": 81,
+        "endLine": 138,
+        "endChar": 85
+      },
+      "revId": "ae7cfdb5c46710d9a03df71efa43e47270901099",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
