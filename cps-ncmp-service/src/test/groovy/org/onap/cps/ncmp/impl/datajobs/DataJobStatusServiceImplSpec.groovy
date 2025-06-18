@@ -20,8 +20,8 @@
 
 package org.onap.cps.ncmp.impl.datajobs
 
-import org.onap.cps.ncmp.impl.dmi.DmiProperties
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import reactor.core.publisher.Mono
 import spock.lang.Specification
@@ -29,11 +29,11 @@ import spock.lang.Specification
 class DataJobStatusServiceImplSpec extends Specification {
 
     def mockDmiRestClient = Mock(DmiRestClient)
-    def mockDmiProperties = Mock(DmiProperties)
-    def objectUnderTest = new DataJobStatusServiceImpl(mockDmiRestClient, mockDmiProperties)
+    def mockDmiServiceAuthenticationProperties = Mock(DmiServiceAuthenticationProperties)
+    def objectUnderTest = new DataJobStatusServiceImpl(mockDmiRestClient, mockDmiServiceAuthenticationProperties)
 
     def setup() {
-        mockDmiProperties.dmiBasePath >> 'dmi'
+        mockDmiServiceAuthenticationProperties.dmiBasePath >> 'dmi'
     }
 
     def 'Forward a data job status query to DMI.' () {

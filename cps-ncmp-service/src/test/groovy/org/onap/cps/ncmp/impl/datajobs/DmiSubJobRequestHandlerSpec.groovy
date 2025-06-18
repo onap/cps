@@ -5,8 +5,7 @@ import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.datajobs.models.DataJobMetadata
 import org.onap.cps.ncmp.api.datajobs.models.DmiWriteOperation
 import org.onap.cps.ncmp.api.datajobs.models.ProducerKey
-import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse
-import org.onap.cps.ncmp.impl.dmi.DmiProperties
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.models.RequiredDmiService
 import org.onap.cps.utils.JsonObjectMapper
@@ -18,8 +17,8 @@ class DmiSubJobRequestHandlerSpec extends Specification {
 
     def mockDmiRestClient = Mock(DmiRestClient)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def mockDmiProperties = Mock(DmiProperties)
-    def objectUnderTest = new DmiSubJobRequestHandler(mockDmiRestClient, mockDmiProperties, jsonObjectMapper)
+    def mockDmiServiceAuthenticationProperties = Mock(DmiServiceAuthenticationProperties)
+    def objectUnderTest = new DmiSubJobRequestHandler(mockDmiRestClient, mockDmiServiceAuthenticationProperties, jsonObjectMapper)
 
     def 'Send a sub-job request to the DMI Plugin.'() {
         given: 'a data job id, metadata and a map of producer keys and write operations to create a request'

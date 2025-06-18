@@ -22,7 +22,7 @@
 package org.onap.cps.ncmp.impl.inventory.sync
 
 import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
-import org.onap.cps.ncmp.impl.dmi.DmiProperties
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.utils.JsonObjectMapper
@@ -37,7 +37,7 @@ import static org.onap.cps.ncmp.api.data.models.OperationType.READ
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
 @SpringBootTest
-@ContextConfiguration(classes = [DmiProperties, DmiModelOperations, JsonObjectMapper])
+@ContextConfiguration(classes = [DmiServiceAuthenticationProperties, DmiModelOperations, JsonObjectMapper])
 class DmiModelOperationsSpec extends DmiOperationsBaseSpec {
 
     def NO_AUTH_HEADER = null

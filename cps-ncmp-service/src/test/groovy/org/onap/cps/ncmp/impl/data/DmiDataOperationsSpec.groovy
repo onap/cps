@@ -31,7 +31,7 @@ import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiOperationsBaseSpec
-import org.onap.cps.ncmp.impl.dmi.DmiProperties
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
@@ -57,7 +57,7 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent
 
 @SpringBootTest
-@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext, DmiProperties, DmiDataOperations, PolicyExecutor])
+@ContextConfiguration(classes = [EventsProducer, CpsApplicationContext, DmiServiceAuthenticationProperties, DmiDataOperations, PolicyExecutor])
 class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
 
     def NO_TOPIC = null

@@ -46,8 +46,8 @@ import org.onap.cps.ncmp.impl.data.models.DmiDataOperationRequest;
 import org.onap.cps.ncmp.impl.data.models.DmiOperationCmHandle;
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.data.utils.DmiDataOperationsHelper;
-import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.models.DmiRequestBody;
@@ -73,7 +73,7 @@ public class DmiDataOperations {
     private final InventoryPersistence inventoryPersistence;
     private final AlternateIdMatcher alternateIdMatcher;
     private final JsonObjectMapper jsonObjectMapper;
-    private final DmiProperties dmiProperties;
+    private final DmiServiceAuthenticationProperties dmiServiceAuthenticationProperties;
     private final DmiRestClient dmiRestClient;
     private final PolicyExecutor policyExecutor;
 
@@ -229,7 +229,7 @@ public class DmiDataOperations {
                 .queryParameter("resourceIdentifier", resourceIdentifier)
                 .queryParameter("options", optionsParamInQuery)
                 .queryParameter("topic", topicParamInQuery)
-                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+                .createUrlTemplateParameters(dmiServiceName, dmiServiceAuthenticationProperties.getDmiBasePath());
     }
 
     private UrlTemplateParameters getUrlTemplateParameters(final String dmiServiceName,
@@ -239,7 +239,7 @@ public class DmiDataOperations {
                 .fixedPathSegment("data")
                 .queryParameter("requestId", requestId)
                 .queryParameter("topic", topicParamInQuery)
-                .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+                .createUrlTemplateParameters(dmiServiceName, dmiServiceAuthenticationProperties.getDmiBasePath());
     }
 
     private void validateIfCmHandleStateReady(final YangModelCmHandle yangModelCmHandle,

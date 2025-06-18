@@ -22,8 +22,8 @@ package org.onap.cps.ncmp.impl.datajobs;
 
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.datajobs.DataJobResultService;
-import org.onap.cps.ncmp.impl.dmi.DmiProperties;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class DataJobResultServiceImpl implements DataJobResultService {
 
     private final DmiRestClient dmiRestClient;
-    private final DmiProperties dmiProperties;
+    private final DmiServiceAuthenticationProperties dmiServiceAuthenticationProperties;
 
     @Override
     public String getDataJobResult(final String authorization,
@@ -49,7 +49,8 @@ public class DataJobResultServiceImpl implements DataJobResultService {
                                            .variablePathSegment("dataProducerJobId", dataProducerJobId)
                                            .fixedPathSegment("result")
                                            .queryParameter("destination", destination)
-                                           .createUrlTemplateParameters(dmiServiceName, dmiProperties.getDmiBasePath());
+                                           .createUrlTemplateParameters(dmiServiceName,
+                                               dmiServiceAuthenticationProperties.getDmiBasePath());
         return dmiRestClient.getDataJobResult(urlTemplateParameters, authorization).block();
     }
 }
