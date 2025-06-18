@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a017b6_5f4d7140",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-18T11:52:19Z",
+      "side": 1,
+      "message": "apart from the license. all ok for me.",
+      "revId": "41eb2412eca306cc999a8915cb0497d1fda58460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ff58779_376d9bc8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobResultServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-18T11:52:19Z",
+      "side": 1,
+      "message": "NB: license.",
+      "revId": "41eb2412eca306cc999a8915cb0497d1fda58460",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
