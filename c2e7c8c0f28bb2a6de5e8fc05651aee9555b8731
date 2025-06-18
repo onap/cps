@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f523585_627caaf6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-18T12:32:22Z",
+      "side": 1,
+      "message": "i see that you are using some other parameters? like maxWait. is it coz we are figuring out things?",
+      "range": {
+        "startLine": 11,
+        "startChar": 43,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "c2e7c8c0f28bb2a6de5e8fc05651aee9555b8731",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08890eff_412d8f17",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-18T12:32:22Z",
+      "side": 1,
+      "message": "NB: want to add a second in total?\n1071ms ?",
+      "range": {
+        "startLine": 139,
+        "startChar": 20,
+        "endLine": 139,
+        "endChar": 25
+      },
+      "revId": "c2e7c8c0f28bb2a6de5e8fc05651aee9555b8731",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
