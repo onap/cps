@@ -93,6 +93,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     static def GROUPING_DISABLED = false
 
     def setup() {
+        resetTestData()
         mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_1) >> anchor1
         mockCpsAnchorService.getAnchor(dataspaceName, ANCHOR_NAME_2) >> anchor2
         logger.setLevel(Level.DEBUG)
@@ -124,8 +125,8 @@ class CpsDeltaServiceImplSpec extends Specification {
             deltaReport[0].targetData == expectedTargetData
         where: 'following data was used'
             scenario                         | sourceDataNodes          | targetDataNodes         | groupDataNodes    || expectedAction | expectedSourceData                                                                                            | expectedTargetData
-            'added with grouping disabled'   | []                       | targetDataNode          | GROUPING_DISABLED || 'create'       | null                                                                                                          | ['parent-leaf':'parent-leaf-as-target-data']
-            'removed with grouping disabled' | sourceDataNode           | []                      | GROUPING_DISABLED || 'remove'       | ['parent-leaf':'parent-leaf-as-source-data']                                                                  | null
+            'added with grouping disabled'   | []                       | targetDataNode          | GROUPING_DISABLED || 'create'       | null                                                                                                          | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
+            'removed with grouping disabled' | sourceDataNode           | []                      | GROUPING_DISABLED || 'remove'       | ['parent':['parent-leaf':'parent-leaf-as-source-data']]                                                       | null
             'updated with grouping disabled' | sourceDataNode           | targetDataNode          | GROUPING_DISABLED || 'replace'      | ['parent':['parent-leaf':'parent-leaf-as-source-data']]                                                       | ['parent':['parent-leaf':'parent-leaf-as-target-data']]
             'added with grouping enabled'    | []                       | targetDataNodeWithChild | GROUPING_ENABLED  || 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
             'removed with grouping enabled'  | sourceDataNodeWithChild  | []                      | GROUPING_ENABLED  || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
@@ -154,10 +155,10 @@ class CpsDeltaServiceImplSpec extends Specification {
             assert deltaReport[1].sourceData == expectedSourceDataForChild
             assert deltaReport[1].targetData == expectedTargetDataForChild
         where: 'the following data is used'
-            scenario  | sourceDataNodes         | targetDataNodes         || expectedAction | expectedSourceDataForParent                   | expectedTargetDataForParent                   | expectedSourceDataForChild                            | expectedTargetDataForChild
-            'added'   | []                      | targetDataNodeWithChild || 'create'       | null                                          | ['parent-leaf': 'parent-leaf-as-target-data'] | null                                                  | ['child-leaf': 'child-leaf-as-target-data']
-            'removed' | sourceDataNodeWithChild | []                      || 'remove'       | ['parent-leaf': 'parent-leaf-as-source-data'] | null                                          | ['child-leaf': 'child-leaf-as-source-data']           | null
-            'updated' | sourceDataNodeWithChild | targetDataNodeWithChild || 'replace'      | expectedParentSourceData                      | expectedParentTargetData                      | ['child':['child-leaf': 'child-leaf-as-source-data']] | ['child':['child-leaf': 'child-leaf-as-target-data']]
+            scenario  | sourceDataNodes         | targetDataNodes         || expectedAction | expectedSourceDataForParent | expectedTargetDataForParent | expectedSourceDataForChild                            | expectedTargetDataForChild
+            'updated' | sourceDataNodeWithChild | targetDataNodeWithChild || 'replace'      | expectedParentSourceData    | expectedParentTargetData    | ['child':['child-leaf': 'child-leaf-as-source-data']] | ['child':['child-leaf': 'child-leaf-as-target-data']]
+            'added'   | []                      | targetDataNodeWithChild || 'create'       | null                        | expectedParentTargetData    | null                                                  | ['child':['child-leaf': 'child-leaf-as-target-data']]
+            'removed' | sourceDataNodeWithChild | []                      || 'remove'       | expectedParentSourceData    | null                        | ['child':['child-leaf': 'child-leaf-as-source-data']] | null
     }
 
     def 'Delta Report between parent nodes with children where parent is updated and child node is #scenario with grouping of data nodes'() {
@@ -343,4 +344,12 @@ class CpsDeltaServiceImplSpec extends Specification {
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
+
+    static def resetTestData() {
+        sourceDataNodeWithChild = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-source-data'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-source-data'])])]
+        targetDataNodeWithChild = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-target-data'], childDataNodes: [new DataNode(xpath: '/parent/child', leaves: ['child-leaf': 'child-leaf-as-target-data'])])]
+        sourceDataNode = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-source-data'])]
+        targetDataNode = [new DataNode(xpath: '/parent', leaves: ['parent-leaf': 'parent-leaf-as-target-data'])]
+    }
+
 }

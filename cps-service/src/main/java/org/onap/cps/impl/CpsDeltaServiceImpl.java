@@ -148,9 +148,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     private static List<DeltaReport> getDeltaReportsForRemove(final String xpath, final DataNode sourceDataNode) {
         final List<DeltaReport> deltaReportEntriesForRemove = new ArrayList<>();
-        final Map<String, Serializable> sourceDataNodeLeaves = sourceDataNode.getLeaves();
+        sourceDataNode.setChildDataNodes(Collections.emptyList());
+        final Map<String, Serializable> sourceDataNodeRemoved =
+            getCondensedDataForDeltaReport(Collections.singletonList(sourceDataNode));
         final DeltaReport removedDeltaReportEntry = new DeltaReportBuilder().actionRemove().withXpath(xpath)
-                .withSourceData(sourceDataNodeLeaves).build();
+                .withSourceData(sourceDataNodeRemoved).build();
         deltaReportEntriesForRemove.add(removedDeltaReportEntry);
         return deltaReportEntriesForRemove;
     }
@@ -290,8 +292,11 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
         for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
             final String xpath = entry.getKey();
             final DataNode dataNode = entry.getValue();
+            dataNode.setChildDataNodes(Collections.emptyList());
+            final Map<String, Serializable> targetData =
+                getCondensedDataForDeltaReport(Collections.singletonList(dataNode));
             final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
-                                .withTargetData(dataNode.getLeaves()).build();
+                                .withTargetData(targetData).build();
             addedDeltaReportEntries.add(addedDataForDeltaReport);
         }
         return addedDeltaReportEntries;
