@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d6e86c5_02588c0a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-19T15:06:18Z",
+      "side": 1,
+      "message": "why do we need to do this ??\nif it has any data it will be wiped off.\n\nalso in the DataNode class it is instantiated with Collections.emptySet()",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 66
+      },
+      "revId": "7c74d75adb84fc1b10acc0a08b9942a2fa7b3af2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
