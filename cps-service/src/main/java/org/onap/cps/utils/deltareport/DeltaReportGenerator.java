@@ -20,9 +20,13 @@
 
 package org.onap.cps.utils.deltareport;
 
+import static org.onap.cps.utils.deltareport.DeltaReportHelper.getNodeNameToDataForDeltaReport;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
+import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.impl.DeltaReportBuilder;
 import org.springframework.stereotype.Service;
 
@@ -59,10 +64,12 @@ public class DeltaReportGenerator {
     private static Map<String, DataNode> convertToXPathToDataNodesMap(final Collection<DataNode> dataNodes) {
         final Map<String, DataNode> xpathToDataNode = new LinkedHashMap<>();
         for (final DataNode dataNode : dataNodes) {
-            xpathToDataNode.put(dataNode.getXpath(), dataNode);
+            final DataNode shallowCopyOfDataNode = shallowCopyDataNode(dataNode);
+            xpathToDataNode.put(shallowCopyOfDataNode.getXpath(), shallowCopyOfDataNode);
             final Collection<DataNode> childDataNodes = dataNode.getChildDataNodes();
             if (!childDataNodes.isEmpty()) {
                 xpathToDataNode.putAll(convertToXPathToDataNodesMap(childDataNodes));
+                shallowCopyOfDataNode.getChildDataNodes().clear();
             }
         }
         return xpathToDataNode;
@@ -88,9 +95,10 @@ public class DeltaReportGenerator {
 
     private static List<DeltaReport> getDeltaReportsForRemove(final String xpath, final DataNode sourceDataNode) {
         final List<DeltaReport> deltaReportEntriesForRemove = new ArrayList<>();
-        final Map<String, Serializable> sourceDataNodeLeaves = sourceDataNode.getLeaves();
+        final Map<String, Serializable> sourceDataNodeRemoved =
+            getNodeNameToDataForDeltaReport(Collections.singletonList(sourceDataNode));
         final DeltaReport removedDeltaReportEntry = new DeltaReportBuilder().actionRemove().withXpath(xpath)
-            .withSourceData(sourceDataNodeLeaves).build();
+            .withSourceData(sourceDataNodeRemoved).build();
         deltaReportEntriesForRemove.add(removedDeltaReportEntry);
         return deltaReportEntriesForRemove;
     }
@@ -104,12 +112,22 @@ public class DeltaReportGenerator {
         for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
             final String xpath = entry.getKey();
             final DataNode dataNode = entry.getValue();
+            final Map<String, Serializable> targetData =
+                getNodeNameToDataForDeltaReport(Collections.singletonList(dataNode));
             final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
-                .withTargetData(dataNode.getLeaves()).build();
+                .withTargetData(targetData).build();
             addedDeltaReportEntries.add(addedDataForDeltaReport);
         }
         return addedDeltaReportEntries;
     }
 
+    private static DataNode shallowCopyDataNode(final DataNode dataNode) {
+        return new DataNodeBuilder()
+            .withXpath(dataNode.getXpath())
+            .withModuleNamePrefix(dataNode.getModuleNamePrefix())
+            .withLeaves(new HashMap<>(dataNode.getLeaves()))
+            .withChildDataNodes(new ArrayList<>(dataNode.getChildDataNodes()))
+            .build();
+    }
 
 }

@@ -20,7 +20,8 @@
 
 package org.onap.cps.utils.deltareport;
 
-import java.io.Serializable;
+import static org.onap.cps.utils.deltareport.DeltaReportHelper.getNodeNameToDataForDeltaReport;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,9 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
-import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.impl.DeltaReportBuilder;
-import org.onap.cps.utils.DataMapUtils;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -70,7 +69,7 @@ public class GroupedDeltaReportGenerator {
         if (!removedDataNodes.isEmpty()) {
             final String xpath = getXpathForDeltaReport(removedDataNodes);
             deltaReportEntriesForRemove.add(new DeltaReportBuilder().actionRemove().withXpath(xpath)
-                .withSourceData(getCondensedDataForDeltaReport(removedDataNodes)).build());
+                .withSourceData(getNodeNameToDataForDeltaReport(removedDataNodes)).build());
         }
         return deltaReportEntriesForRemove;
     }
@@ -111,7 +110,7 @@ public class GroupedDeltaReportGenerator {
         if (!addedDataNodes.isEmpty()) {
             final String xpath = getXpathForDeltaReport(addedDataNodes);
             addedDeltaReportEntries.add(new DeltaReportBuilder().actionCreate().withXpath(xpath)
-                .withTargetData(getCondensedDataForDeltaReport(addedDataNodes)).build());
+                .withTargetData(getNodeNameToDataForDeltaReport(addedDataNodes)).build());
         }
         return addedDeltaReportEntries;
     }
@@ -125,13 +124,6 @@ public class GroupedDeltaReportGenerator {
     private static Collection<DataNode> getDataNodesForDeltaReport(final Collection<DataNode> dataNodes,
                                                                    final Map<String, DataNode> xpathToDataNodes) {
         return dataNodes.stream().filter(dataNode -> !xpathToDataNodes.containsKey(dataNode.getXpath())).toList();
-    }
-
-    private static Map<String, Serializable> getCondensedDataForDeltaReport(final Collection<DataNode> dataNodes) {
-        final DataNode containerNode = new DataNodeBuilder().withChildDataNodes(dataNodes).build();
-        final Map<String, Object> condensedData = DataMapUtils.toDataMap(containerNode);
-        return condensedData.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,
-            entry -> (Serializable) entry.getValue()));
     }
 
     private static Map<String, DataNode> flattenToXpathToFirstLevelDataNodeMap(final Collection<DataNode> dataNodes) {
