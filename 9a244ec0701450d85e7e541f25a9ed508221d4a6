@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5585e3a_c7cb7761",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-19T13:05:38Z",
+      "side": 1,
+      "message": "NB: try to keep the summary less than 50 chars.\nMove the details to the body of the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 107
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0b47ab9f_47fb4640",
@@ -14,6 +37,29 @@
       "writtenOn": "2025-06-19T08:48:52Z",
       "side": 1,
       "message": "recheck",
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f42b4b_e9b51c0c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-06-19T13:05:38Z",
+      "side": 1,
+      "message": "NB: just 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
       "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
