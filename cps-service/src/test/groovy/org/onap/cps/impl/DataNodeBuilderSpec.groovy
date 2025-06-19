@@ -231,6 +231,25 @@ class DataNodeBuilderSpec extends Specification {
             'container xpath' | '/test-tree/branch[@name=\'Left\']'         | [name: 'Left']                 | '{sampleModuleNamePrefix:branch={name=Left}}'
     }
 
+    def 'Build a copy of DataNode object'() {
+        given: 'a DataNode object with some attributes'
+            def originalDataNode = new DataNodeBuilder()
+                    .withDataspace('my dataspace')
+                    .withAnchor('my anchor')
+                    .withModuleNamePrefix('my prefix')
+                    .withXpath('/test-tree/branch[@name=\'Left\']')
+                    .withLeaves([name: 'Left'])
+                    .build()
+        when: 'a copy of the DataNode is created'
+            def copiedDataNode = objectUnderTest.buildDataNodeCopy(originalDataNode)
+        then: 'the copied DataNode has the same attributes as the original'
+            assert copiedDataNode.dataspace == originalDataNode.dataspace
+            assert copiedDataNode.anchorName == originalDataNode.anchorName
+            assert copiedDataNode.moduleNamePrefix == originalDataNode.moduleNamePrefix
+            assert copiedDataNode.xpath == originalDataNode.xpath
+            assert copiedDataNode.leaves == originalDataNode.leaves
+    }
+
     def static assertLeavesMaps(actualLeavesMap, expectedLeavesMap) {
         expectedLeavesMap.each { key, value ->
             {

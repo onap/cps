@@ -142,7 +142,7 @@ public class DeltaReportHelper {
                 addKeyLeavesToUpdatedData(xpath, updatedLeaves);
             }
             final Collection<DataNode> updatedDataNode = buildUpdatedDataNode(dataNode, updatedLeaves);
-            updatedSourceData.putAll(getCondensedDataForDeltaReport(updatedDataNode));
+            updatedSourceData.putAll(getNodeNameToDataForDeltaReport(updatedDataNode));
         }
         return updatedSourceData;
     }
@@ -169,7 +169,13 @@ public class DeltaReportHelper {
         return Collections.singletonList(updatedDataNode);
     }
 
-    private static Map<String, Serializable> getCondensedDataForDeltaReport(final Collection<DataNode> dataNodes) {
+    /**
+     * Converts a collection of DataNodes to a map where the keys are the node names and the values are the node data.
+     *
+     * @param dataNodes the collection of DataNodes
+     * @return          a map with node names as keys and their corresponding data as values
+     */
+    public static Map<String, Serializable> getNodeNameToDataForDeltaReport(final Collection<DataNode> dataNodes) {
         final DataNode containerNode = new DataNodeBuilder().withChildDataNodes(dataNodes).build();
         final Map<String, Object> condensedData = DataMapUtils.toDataMap(containerNode);
         return condensedData.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,

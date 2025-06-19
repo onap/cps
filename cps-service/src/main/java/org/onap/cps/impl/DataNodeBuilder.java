@@ -25,8 +25,10 @@ package org.onap.cps.impl;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -171,6 +173,27 @@ public class DataNodeBuilder {
             return buildCollectionFromContainerNode();
         }
         return Collections.emptySet();
+    }
+
+    /**
+     *  Build a deep copy of a data node.
+     *
+     * @param  dataNode {@link DataNode} whose copy is to be created.
+     * @return deep copy of the provided {@link DataNode}.
+     */
+
+    public final DataNode buildDataNodeCopy(final DataNode dataNode) {
+        final Map<String, Serializable> leavesCopy = new HashMap<>(dataNode.getLeaves());
+        final Collection<DataNode> childrenCopy = new ArrayList<>(dataNode.getChildDataNodes().stream()
+            .map(this::buildDataNodeCopy).toList());
+        final var dataNodeBuilder = new DataNodeBuilder()
+            .withXpath(dataNode.getXpath())
+            .withModuleNamePrefix(dataNode.getModuleNamePrefix())
+            .withLeaves(leavesCopy)
+            .withChildDataNodes(childrenCopy)
+            .withDataspace(dataNode.getDataspace())
+            .withAnchor(dataNode.getAnchorName());
+        return dataNodeBuilder.build();
     }
 
     private DataNode buildFromAttributes() {
