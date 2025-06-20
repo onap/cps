@@ -46,6 +46,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Slf4j
@@ -155,6 +156,10 @@ public class PolicyExecutor {
 
         final Object bodyAsObject = createBodyAsObject(operationAsMap);
 
+        log.debug("Sending permission check to Policy Executor for CMHandle: {} with operation: {}",
+                yangModelCmHandle.getId(), operationType);
+        log.trace("Policy Executor request body: {}", bodyAsObject);
+
         final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
                 .fixedPathSegment(REQUEST_PATH)
                 .createUrlTemplateParameters(String.format("%s:%s", serverAddress, serverPort), PERMISSION_BASE_PATH);
@@ -191,21 +196,32 @@ public class PolicyExecutor {
         }
     }
 
+    private String getPolicyExecutorErrorDetails(final Throwable throwable) {
+        if (throwable instanceof WebClientResponseException webClientResponseException) {
+            return "Policy Executor returned HTTP Status code " + webClientResponseException.getStatusCode().value() + ".";
+        } else if (throwable instanceof WebClientRequestException) {
+            return "Network or I/O error while attempting to contact Policy Executor.";
+        } else if (throwable instanceof TimeoutException || throwable.getCause() instanceof TimeoutException) {
+            return "Policy Executor request timed out.";
+        } else if (throwable.getCause() instanceof UnknownHostException) {
+            return String.format("Cannot connect to Policy Executor (%s:%s).", serverAddress, serverPort);
+        } else {
+            return "Unexpected error during Policy Executor call.";
+        }
+    }
+
     private void processException(final RuntimeException runtimeException) {
+        final String errorDetailsMessage = getPolicyExecutorErrorDetails(runtimeException);
+
         if (runtimeException instanceof WebClientResponseException) {
-            final WebClientResponseException webClientResponseException = (WebClientResponseException) runtimeException;
-            log.warn("HTTP Error Message: {}", webClientResponseException.getMessage());
-            final int httpStatusCode = webClientResponseException.getStatusCode().value();
-            processFallbackResponse("Policy Executor returned HTTP Status code " + httpStatusCode + ".",
-                webClientResponseException);
+            log.warn("HTTP Error Message: {}", runtimeException.getMessage());
+            processFallbackResponse(errorDetailsMessage, runtimeException);
+        } else if (runtimeException instanceof WebClientRequestException) {
+            processFallbackResponse(errorDetailsMessage, runtimeException);
         } else {
             final Throwable cause = runtimeException.getCause();
-            if (cause instanceof TimeoutException) {
-                processFallbackResponse("Policy Executor request timed out.", cause);
-            } else if (cause instanceof UnknownHostException) {
-                final String message
-                    = String.format("Cannot connect to Policy Executor (%s:%s).", serverAddress, serverPort);
-                processFallbackResponse(message, cause);
+            if (cause instanceof TimeoutException || cause instanceof UnknownHostException) {
+                processFallbackResponse(errorDetailsMessage, cause);
             } else {
                 log.warn("Request to Policy Executor failed with unexpected exception", runtimeException);
                 throw runtimeException;
