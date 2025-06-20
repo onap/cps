@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
 import reactor.core.publisher.Mono
 import spock.lang.Specification
-
 import java.util.concurrent.TimeoutException
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
@@ -79,7 +79,7 @@ class PolicyExecutorSpec extends Specification {
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
         then: 'system logs the operation is allowed'
-            assert getLogEntry(2) == 'Operation allowed.'
+            assert getLogEntry(4) == 'Operation allowed.'
         and: 'no exception occurs'
             noExceptionThrown()
         where: 'all write operations are tested'
@@ -129,7 +129,7 @@ class PolicyExecutorSpec extends Specification {
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
         then: 'system logs the expected message'
-            assert getLogEntry(1) == 'No valid response body from Policy Executor, ignored'
+            assert getLogEntry(3) == 'No valid response body from Policy Executor, ignored'
     }
 
     def 'Permission check with timeout exception.'() {
@@ -159,7 +159,7 @@ class PolicyExecutorSpec extends Specification {
         then: 'Policy Executor exception is thrown'
             def thrownException = thrown(PolicyExecutorException)
             assert thrownException.message == 'Operation not allowed. Decision id N/A : deny by default'
-            assert thrownException.details == 'Cannot connect to Policy Executor (some host:some port). Falling back to configured default decision: deny by default'
+            assert thrownException.details == 'Unexpected error during Policy Executor call. Falling back to configured default decision: deny by default'
         and: 'the cause is the original unknown host exception'
             assert thrownException.cause == unknownHostException
     }
@@ -206,6 +206,21 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.checkPermission(new YangModelCmHandle(), PATCH, 'my credentials','my resource',someValidJson)
         then: 'system logs that the feature not enabled'
             assert getLogEntry(0) == 'Policy Executor Enabled: false'
+    }
+
+    def 'Permission check with web client request exception.'() {
+        given: 'a WebClientRequestException is thrown during the Policy Executor call'
+            def webClientRequestException = Mock(WebClientRequestException)
+            webClientRequestException.getMessage() >> "some error message"
+            mockResponseSpec.toEntity(*_) >> { throw webClientRequestException }
+            objectUnderTest.defaultDecision = 'deny'
+        when: 'permission is checked for a write operation'
+            objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
+        then: 'a PolicyExecutorException is thrown with the expected fallback message'
+            def thrownException = thrown(PolicyExecutorException)
+            thrownException.message == 'Operation not allowed. Decision id N/A : deny'
+            thrownException.details == 'Network or I/O error while attempting to contact Policy Executor. Falling back to configured default decision: deny'
+            thrownException.cause == webClientRequestException
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {
