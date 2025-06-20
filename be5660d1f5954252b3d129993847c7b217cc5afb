@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f22fe3c7_3c8b5767",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T11:01:31Z",
+      "side": 1,
+      "message": "NB: Please check copyright updates.",
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37b8673d_2b3d9f32",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T11:01:31Z",
+      "side": 1,
+      "message": "NB: is this the one you mention to keep as is for backward compatibility?",
+      "range": {
+        "startLine": 50,
+        "startChar": 31,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db1fe956_4b4cc0fb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T11:01:31Z",
+      "side": 1,
+      "message": "NB: plz update copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ed165e_9e522b23",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceAuthenticationProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T11:01:31Z",
+      "side": 1,
+      "message": "NB: no changes in the file except copyright himself 😄",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 77
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
