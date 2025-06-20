@@ -79,7 +79,7 @@ class PolicyExecutorSpec extends Specification {
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), operationType, 'my credentials','my resource',someValidJson)
         then: 'system logs the operation is allowed'
-            assert getLogEntry(2) == 'Operation allowed.'
+            assert getLogEntry(4) == 'Operation allowed.'
         and: 'no exception occurs'
             noExceptionThrown()
         where: 'all write operations are tested'
@@ -129,7 +129,7 @@ class PolicyExecutorSpec extends Specification {
         when: 'permission is checked for an operation'
             objectUnderTest.checkPermission(new YangModelCmHandle(), CREATE, 'my credentials', 'my resource', someValidJson)
         then: 'system logs the expected message'
-            assert getLogEntry(1) == 'No valid response body from Policy Executor, ignored'
+            assert getLogEntry(3) == 'No valid response body from Policy Executor, ignored'
     }
 
     def 'Permission check with timeout exception.'() {
