@@ -41,6 +41,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5ba079_3fe83aee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T08:47:38Z",
+      "side": 1,
+      "message": "Some NB comments...",
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6f42b4b_e9b51c0c",
@@ -59,6 +76,52 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 27
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d2ff240_f88c7b84",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T08:47:38Z",
+      "side": 1,
+      "message": "Nb: not needed since the test on line 98 does the same check!",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "418d3f64_b5866833",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-20T08:47:38Z",
+      "side": 1,
+      "message": "NB: same as above",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 6
       },
       "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
