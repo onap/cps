@@ -96,6 +96,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8493508f_351db5cd",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T12:58:21Z",
+      "side": 1,
+      "message": "please demo this by ruungoin and saving output form before and after your change",
+      "parentUuid": "02f935e1_f2d52a5f",
+      "range": {
+        "startLine": 319,
+        "startChar": 14,
+        "endLine": 319,
+        "endChar": 39
+      },
+      "revId": "493a45358455938e78d2e46c9b7553e0458cf106",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33d71926_0ec2d782",
