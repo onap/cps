@@ -169,6 +169,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "245f6a35_d1088b66",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T14:21:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83e82d19_8c00775f",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6f54683_cb69cf9b",
@@ -192,6 +216,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b2173bd_655e8127",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T14:21:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6f54683_cb69cf9b",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b18f7f76_d989ba4c",
@@ -205,6 +253,30 @@
       "writtenOn": "2025-06-23T09:11:28Z",
       "side": 1,
       "message": "I would prefer\nresponse.every {\n assert it.... \u003d\u003d\n assert it.... \u003d\u003d \n }\n \nTechnically response.every is not needed I think but it is good for readability",
+      "range": {
+        "startLine": 90,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 13
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36cae49e_eff05012",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T14:21:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b18f7f76_d989ba4c",
       "range": {
         "startLine": 90,
         "startChar": 3,
@@ -346,6 +418,30 @@
       "writtenOn": "2025-06-23T09:11:28Z",
       "side": 1,
       "message": "NB: not needed in Groovy",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 33
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cdefcae_78c2ad3c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T14:21:49Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "33ca2e8b_b2a83f44",
       "range": {
         "startLine": 108,
         "startChar": 26,
