@@ -58,6 +58,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a7ac18d_9981a541",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "a few things to imrpove, non NB on its own but together wort an update",
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6f42b4b_e9b51c0c",
@@ -76,6 +93,75 @@
         "startChar": 18,
         "endLine": 3,
         "endChar": 27
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e82d19_8c00775f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "NB: would have declared this on the class level becasue of its size. But its OK",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f54683_cb69cf9b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "subjobs (it has been extracted/converted from the more genericrepsonse object)",
+      "range": {
+        "startLine": 88,
+        "startChar": 16,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b18f7f76_d989ba4c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "I would prefer\nresponse.every {\n assert it.... \u003d\u003d\n assert it.... \u003d\u003d \n }\n \nTechnically response.every is not needed I think but it is good for readability",
+      "range": {
+        "startLine": 90,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 13
       },
       "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -106,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "decf41e1_4766a38b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "6d2ff240_f88c7b84",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "418d3f64_b5866833",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
         "patchSetId": 1
@@ -122,6 +232,29 @@
         "startChar": 0,
         "endLine": 103,
         "endChar": 6
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ca2e8b_b2a83f44",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T09:11:28Z",
+      "side": 1,
+      "message": "NB: not needed in Groovy",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 33
       },
       "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
