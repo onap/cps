@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "569cc6e9_7a6144b9",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-23T09:46:24Z",
+      "side": 1,
+      "message": "Yes, restOutputCmHandle is defined in yaml so we cannot change it as it would affect the endpoint interactions",
+      "parentUuid": "37b8673d_2b3d9f32",
+      "range": {
+        "startLine": 50,
+        "startChar": 31,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db1fe956_4b4cc0fb",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d2732c7_7f1cfdc0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-23T09:46:24Z",
+      "side": 1,
+      "message": "not necessary for this file as was automatically done by IntelliJ",
+      "parentUuid": "db1fe956_4b4cc0fb",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 45
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55ed165e_9e522b23",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-06-20T11:01:31Z",
       "side": 1,
       "message": "NB: no changes in the file except copyright himself 😄",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 77
+      },
+      "revId": "be5660d1f5954252b3d129993847c7b217cc5afb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33815f74_0d6053a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiServiceAuthenticationProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-23T09:46:24Z",
+      "side": 1,
+      "message": "Legacy from previous NB comments in other patch",
+      "parentUuid": "55ed165e_9e522b23",
       "range": {
         "startLine": 3,
         "startChar": 18,
