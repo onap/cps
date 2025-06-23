@@ -33,17 +33,17 @@ public class DmiOperationCmHandle {
     private String id;
 
     @JsonProperty("cmHandleProperties")
-    private Map<String, String> dmiProperties;
+    private Map<String, String> additionalProperties;
     private String moduleSetTag;
 
     /**
      * Builds Dmi Operation Cm Handle object with all its associated properties.
      */
     public static DmiOperationCmHandle buildDmiOperationCmHandle(final String cmHandleId,
-                                                                 final Map<String, String> dmiProperties,
+                                                                 final Map<String, String> additionalProperties,
                                                                  final String moduleSetTag) {
         return DmiOperationCmHandle.builder().id(cmHandleId)
-                .dmiProperties(dmiProperties).moduleSetTag(moduleSetTag)
+                .additionalProperties(additionalProperties).moduleSetTag(moduleSetTag)
                 .build();
     }
 }

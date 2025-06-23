@@ -26,7 +26,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLES_NOT_FOUND;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
-import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.DMI_PROPERTY;
+import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.ADDITIONAL_PROPERTY;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
@@ -123,8 +123,9 @@ public class CmHandleRegistrationServicePropertyHandler {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY,
                 updatedNcmpServiceCmHandle.getPublicProperties());
         }
-        if (!updatedNcmpServiceCmHandle.getDmiProperties().isEmpty()) {
-            updateProperties(existingCmHandleDataNode, DMI_PROPERTY, updatedNcmpServiceCmHandle.getDmiProperties());
+        if (!updatedNcmpServiceCmHandle.getAdditionalProperties().isEmpty()) {
+            updateProperties(existingCmHandleDataNode, ADDITIONAL_PROPERTY,
+                updatedNcmpServiceCmHandle.getAdditionalProperties());
         }
     }
 
@@ -242,7 +243,7 @@ public class CmHandleRegistrationServicePropertyHandler {
     }
 
     enum PropertyType {
-        DMI_PROPERTY("additional-properties"), PUBLIC_PROPERTY("public-properties");
+        ADDITIONAL_PROPERTY("additional-properties"), PUBLIC_PROPERTY("public-properties");
 
         private static final String LIST_INDEX_PATTERN = "\\[@(\\w+)[^\\/]'([^']+)']";
 

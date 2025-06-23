@@ -70,7 +70,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update and Send Events on State Change #stateChange'() {
         given: 'Cm Handle represented as YangModelCmHandle'
             compositeState = new CompositeState(cmHandleState: fromCmHandleState)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, toCmHandleState))
         then: 'state is saved using inventory persistence'
@@ -96,7 +96,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def 'Update and Send Events on State Change from non-existing to ADVISED'() {
         given: 'Cm Handle represented as YangModelCmHandle'
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [])
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [])
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, ADVISED))
         then: 'CM-handle is saved using inventory persistence'
@@ -111,7 +111,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         given: 'Cm Handle represented as YangModelCmHandle in LOCKED state'
             compositeState = new CompositeState(cmHandleState: LOCKED,
                 lockReason: CompositeState.LockReason.builder().lockReasonCategory(MODULE_SYNC_FAILED).details('some lock details').build())
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'update state is invoked'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, ADVISED))
         then: 'state is saved using inventory persistence and old lock reason details are retained'
@@ -130,7 +130,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update and Send Events on State Change to from ADVISED to READY'() {
         given: 'Cm Handle represented as YangModelCmHandle'
             compositeState = new CompositeState(cmHandleState: ADVISED)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
         and: 'global sync flag is set'
             compositeState.setDataSyncEnabled(false)
         when: 'update cmhandle state is invoked'
@@ -152,7 +152,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update cmHandle state from READY to DELETING' (){
         given: 'cm Handle as Yang model'
             compositeState = new CompositeState(cmHandleState: READY)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'updating cm handle state to "DELETING"'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, DELETING))
         then: 'the cm handle state is as expected'
@@ -166,7 +166,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update cmHandle state to DELETING to DELETED' (){
         given: 'cm Handle with state "DELETING" as Yang model '
             compositeState = new CompositeState(cmHandleState: DELETING)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, dmiProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
         when: 'updating cm handle state to "DELETED"'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, DELETED))
         then: 'the cm handle state is as expected'
@@ -260,8 +260,8 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def setupBatch(type) {
 
-        def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1', dmiProperties: [], publicProperties: [])
-        def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', dmiProperties: [], publicProperties: [])
+        def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1', additionalProperties: [], publicProperties: [])
+        def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2', additionalProperties: [], publicProperties: [])
 
         switch (type) {
             case 'NEW':

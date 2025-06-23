@@ -76,7 +76,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return executeQueries(cmHandleQueryServiceParameters, outputAlternateId,
                 this::executeCpsPathQuery,
                 this::queryCmHandlesByPublicProperties,
-                this::queryCmHandlesByPrivateProperties,
+                this::queryCmHandlesByAdditionalProperties,
                 this::queryCmHandlesByDmiPlugin);
     }
 
@@ -109,17 +109,17 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
 
     }
 
-    private Collection<String> queryCmHandlesByPrivateProperties(
+    private Collection<String> queryCmHandlesByAdditionalProperties(
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
 
-        final Map<String, String> privatePropertyQueryPairs =
+        final Map<String, String> additionalPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
                         InventoryQueryConditions.HAS_ALL_ADDITIONAL_PROPERTIES.getName());
 
-        if (privatePropertyQueryPairs.isEmpty()) {
+        if (additionalPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
-        return cmHandleQueryService.queryCmHandleAdditionalProperties(privatePropertyQueryPairs, outputAlternateId);
+        return cmHandleQueryService.queryCmHandleAdditionalProperties(additionalPropertyQueryPairs, outputAlternateId);
     }
 
     private Collection<String> queryCmHandlesByPublicProperties(

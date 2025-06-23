@@ -36,8 +36,8 @@ class DmiInEventMapperSpec extends Specification {
     def objectUnderTest = new DmiInEventMapper(mockInventoryPersistence)
 
     def setup() {
-        def yangModelCmHandles = [new YangModelCmHandle(id: 'ch-1', dmiProperties: [new YangModelCmHandle.Property('k1', 'v1')], publicProperties: []),
-                                  new YangModelCmHandle(id: 'ch-2', dmiProperties: [new YangModelCmHandle.Property('k2', 'v2')], publicProperties: [])]
+        def yangModelCmHandles = [new YangModelCmHandle(id: 'ch-1', additionalProperties: [new YangModelCmHandle.Property('k1', 'v1')], publicProperties: []),
+                                  new YangModelCmHandle(id: 'ch-2', additionalProperties: [new YangModelCmHandle.Property('k2', 'v2')], publicProperties: [])]
         mockInventoryPersistence.getYangModelCmHandles(['ch-1', 'ch-2'] as Set) >> yangModelCmHandles
     }
 

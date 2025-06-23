@@ -74,11 +74,11 @@ public class DmiDataOperationsHelper {
         final Map<String, String> nonReadyAlternateIdPerCmHandleId =
             filterAndGetNonReadyAlternateIdPerCmHandleId(yangModelCmHandles);
 
-        final Map<String, Map<String, Map<String, String>>> dmiPropertiesPerCmHandleIdPerServiceName =
-                DmiServiceNameOrganizer.getDmiPropertiesPerCmHandleIdPerServiceName(yangModelCmHandles);
+        final Map<String, Map<String, Map<String, String>>> additionalPropertiesPerCmHandleIdPerDmiServiceName =
+                DmiServiceNameOrganizer.getAdditionalPropertiesPerCmHandleIdPerDmiServiceName(yangModelCmHandles);
 
         final Map<String, String> dmiServiceNamesPerCmHandleId =
-                getDmiServiceNamesPerCmHandleId(dmiPropertiesPerCmHandleIdPerServiceName);
+                getDmiServiceNamesPerCmHandleId(additionalPropertiesPerCmHandleIdPerDmiServiceName);
 
         final Map<String, String> moduleSetTagPerCmHandle = getModuleSetTagPerCmHandleId(yangModelCmHandles);
 
@@ -93,15 +93,15 @@ public class DmiDataOperationsHelper {
                 } else {
                     final String cmHandleId = getCmHandleId(cmHandleReference, yangModelCmHandles);
                     final String dmiServiceName = dmiServiceNamesPerCmHandleId.get(cmHandleId);
-                    final Map<String, String> cmHandleIdProperties
-                            = dmiPropertiesPerCmHandleIdPerServiceName.get(dmiServiceName).get(cmHandleId);
-                    if (cmHandleIdProperties == null) {
+                    final Map<String, String> additionalProperties
+                            = additionalPropertiesPerCmHandleIdPerDmiServiceName.get(dmiServiceName).get(cmHandleId);
+                    if (additionalProperties == null) {
                         nonExistingCmHandleReferences.add(cmHandleReference);
                     } else {
                         final DmiDataOperation dmiBatchOperationOut = getOrAddDmiBatchOperation(dmiServiceName,
                                 dataOperationDefinitionIn, dmiDataOperationsOutPerDmiServiceName);
                         final DmiOperationCmHandle dmiOperationCmHandle = DmiOperationCmHandle
-                                .buildDmiOperationCmHandle(cmHandleId, cmHandleIdProperties,
+                                .buildDmiOperationCmHandle(cmHandleId, additionalProperties,
                                         moduleSetTagPerCmHandle.get(cmHandleId));
                         dmiBatchOperationOut.getCmHandles().add(dmiOperationCmHandle);
                     }
@@ -149,17 +149,19 @@ public class DmiDataOperationsHelper {
     }
 
     private static Map<String, String> getDmiServiceNamesPerCmHandleId(
-            final Map<String, Map<String, Map<String, String>>> dmiDmiPropertiesPerCmHandleIdPerServiceName) {
+            final Map<String, Map<String, Map<String, String>>> additionalPropertiesPerCmHandleIdPerDmiServiceName) {
         final Map<String, String> dmiServiceNamesPerCmHandleId = new HashMap<>();
-        for (final Map.Entry<String, Map<String, Map<String, String>>> dmiDmiPropertiesEntry
-                : dmiDmiPropertiesPerCmHandleIdPerServiceName.entrySet()) {
-            final String dmiServiceName = dmiDmiPropertiesEntry.getKey();
-            final Set<String> cmHandleIds = dmiDmiPropertiesPerCmHandleIdPerServiceName.get(dmiServiceName).keySet();
+        for (final Map.Entry<String, Map<String, Map<String, String>>>
+            additionalPropertiesPerCmHandleIdPerDmiServiceNameEntry
+                : additionalPropertiesPerCmHandleIdPerDmiServiceName.entrySet()) {
+            final String dmiServiceName = additionalPropertiesPerCmHandleIdPerDmiServiceNameEntry.getKey();
+            final Set<String> cmHandleIds
+                = additionalPropertiesPerCmHandleIdPerDmiServiceName.get(dmiServiceName).keySet();
             for (final String cmHandleId : cmHandleIds) {
                 dmiServiceNamesPerCmHandleId.put(cmHandleId, dmiServiceName);
             }
         }
-        dmiDmiPropertiesPerCmHandleIdPerServiceName.put(UNKNOWN_SERVICE_NAME, Collections.emptyMap());
+        additionalPropertiesPerCmHandleIdPerDmiServiceName.put(UNKNOWN_SERVICE_NAME, Collections.emptyMap());
         return dmiServiceNamesPerCmHandleId;
     }
 
