@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6f606038_885030f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T13:57:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e5585e3a_c7cb7761",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 107
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0b47ab9f_47fb4640",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -88,6 +112,30 @@
       "writtenOn": "2025-06-19T13:05:38Z",
       "side": 1,
       "message": "NB: just 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 27
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a4758a_88fdc8b1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T13:57:32Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c6f42b4b_e9b51c0c",
       "range": {
         "startLine": 3,
         "startChar": 18,
@@ -214,6 +262,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b76939_80e316c4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T13:57:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6d2ff240_f88c7b84",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "418d3f64_b5866833",
@@ -227,6 +299,30 @@
       "writtenOn": "2025-06-20T08:47:38Z",
       "side": 1,
       "message": "NB: same as above",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 6
+      },
+      "revId": "9a244ec0701450d85e7e541f25a9ed508221d4a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b0e974_42686cb6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/DcmWriteSubJobSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T13:57:32Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "418d3f64_b5866833",
       "range": {
         "startLine": 103,
         "startChar": 0,
