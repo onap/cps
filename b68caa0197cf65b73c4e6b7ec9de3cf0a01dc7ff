@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d25b853b_8b3392ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T15:42:44Z",
+      "side": 1,
+      "message": "misleading name. i would suggest something like\n\ncreateErrorDetailsMessage",
+      "range": {
+        "startLine": 199,
+        "startChar": 19,
+        "endLine": 199,
+        "endChar": 48
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadf9739_ab867c99",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T15:42:44Z",
+      "side": 1,
+      "message": "no need for any of these else statements as you have a return statement before it..",
+      "range": {
+        "startLine": 203,
+        "startChar": 10,
+        "endLine": 203,
+        "endChar": 14
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4df12c56_20111ccb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T15:42:44Z",
+      "side": 1,
+      "message": "you need to write a new unit test and throw all these posibilities!\nNo need for very strict log checking, just one crucial details using contains should sufice...",
+      "range": {
+        "startLine": 199,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 9
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61fcc006_2b02e596",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T15:42:44Z",
+      "side": 1,
+      "message": "no need to have seperate else block for, only difference is the warnbin log wihc probably should happen always anyway:\n\nlog.warn(\"Exception during Policy Execution check. Class:{}, Message:{}, details:{} , exception.class, exception.message, errorDetailsMessage }\nif (runtimeException instanceof WebClientResponseException || \n   runtimeException instanceof WebClientRequestException) {\n   processFallback...   \n} else {\n...\n}",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 75
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28579594_13a756dc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-23T15:42:44Z",
+      "side": 1,
+      "message": "I think you need to call createErrorDetailsMessage again with the cause ( this is a different exception!)",
+      "range": {
+        "startLine": 225,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 39
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
