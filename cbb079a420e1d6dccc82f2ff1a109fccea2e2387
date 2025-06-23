@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12551dae_6df157c9",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-23T08:03:23Z",
+      "side": 1,
+      "message": "NB: Should we use httpcomponents-bom instead?",
+      "range": {
+        "startLine": 60,
+        "startChar": 7,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "cbb079a420e1d6dccc82f2ff1a109fccea2e2387",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
