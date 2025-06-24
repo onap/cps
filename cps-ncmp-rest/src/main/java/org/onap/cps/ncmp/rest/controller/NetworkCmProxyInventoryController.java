@@ -83,16 +83,16 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * Execute cm handle query search and return a list of cm handle details. Any number of conditions can be applied.
      *
      * @param cmHandleQueryParameters the cm handle query parameters
-     * @param includeAdditionalProperties boolean value to determine the inclusion of additional properties
+     * @param includeAdditionalPropertiesInQuery boolean value to determine the inclusion of additional properties
      * @return collection of cm handles
      */
     @Override
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters,
-            final Boolean includeAdditionalProperties) {
+            final Boolean includeAdditionalPropertiesInQuery) {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
-        final boolean includeAdditionalPropertiesParameter = Boolean.TRUE.equals(includeAdditionalProperties);
+        final boolean includeAdditionalPropertiesParameter = Boolean.TRUE.equals(includeAdditionalPropertiesInQuery);
         final List<RestOutputCmHandle> restOutputCmHandles =
                 networkCmProxyInventoryFacade.executeCmHandleInventorySearch(cmHandleQueryApiParameters)
                         .map(handle -> restOutputCmHandleMapper

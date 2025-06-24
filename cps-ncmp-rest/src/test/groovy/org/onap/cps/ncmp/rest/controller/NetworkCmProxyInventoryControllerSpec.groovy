@@ -270,7 +270,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
 
     def 'Get a cm handle by DMI service name.'() {
         given: 'an endpoint for returning cm handles by dmi service name'
-            def postUrl = "$ncmpBasePathV1/ch/searchCmHandles?includePrivatePropertiesInQuery=true"
+            def postUrl = "$ncmpBasePathV1/ch/searchCmHandles?includeAdditionalPropertiesInQuery=true"
             String jsonString = TestUtils.getResourceFileContent('cm-handle-search-by-dmi-service.json')
         and: 'a cm handle is returned'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(additionalProperties: ['someName': 'my dmi'])

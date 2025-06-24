@@ -202,9 +202,9 @@ paths:
         this query.
       operationId: searchCmHandles
       parameters:
-      - description: Whether to include private properties in the response.
+      - description: Whether to include additional properties in the response.
         in: query
-        name: includePrivatePropertiesInQuery
+        name: includeAdditionalPropertiesInQuery
         required: false
         schema:
           type: boolean
@@ -644,6 +644,7 @@ components:
               example: 3gpp Type
               type: string
             type: object
+          nullable: true
           type: array
         privateCmHandleProperties:
           additionalProperties:
