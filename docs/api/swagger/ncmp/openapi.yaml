@@ -1937,6 +1937,8 @@ components:
         publicCmHandleProperties:
         - key: 3gpp Type
         - key: 3gpp Type
+        cmHandleProperties:
+          key: 3gpp Type
         state:
           dataSyncEnabled: false
           dataSyncState:
@@ -1953,8 +1955,6 @@ components:
           lastUpdateTime: 2022-12-31T20:30:40.000+0000
         trustLevel: COMPLETE
         moduleSetTag: my-module-set-tag
-        privateCmHandleProperties:
-          key: 3gpp Type
       properties:
         cmHandle:
           example: my-cm-handle1
@@ -1965,8 +1965,9 @@ components:
               example: 3gpp Type
               type: string
             type: object
+          nullable: true
           type: array
-        privateCmHandleProperties:
+        cmHandleProperties:
           additionalProperties:
             example: 3gpp Type
             type: string

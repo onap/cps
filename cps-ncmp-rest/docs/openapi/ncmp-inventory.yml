@@ -157,9 +157,9 @@ searchCmHandles:
     summary: Query Cm Handles for a requested DMI Service
     operationId: searchCmHandles
     parameters:
-      - name: includePrivatePropertiesInQuery
+      - name: includeAdditionalPropertiesInQuery
         in: query
-        description: Whether to include private properties in the response.
+        description: Whether to include additional properties in the response.
         required: false
         schema:
           type: boolean

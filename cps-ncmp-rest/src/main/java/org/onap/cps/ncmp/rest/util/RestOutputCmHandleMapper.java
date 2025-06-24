@@ -47,7 +47,9 @@ public class RestOutputCmHandleMapper {
         restOutputCmHandle.setPublicCmHandleProperties(
                 Collections.singletonList(ncmpServiceCmHandle.getPublicProperties()));
         if (includeAdditionalProperties) {
-            restOutputCmHandle.setPrivateCmHandleProperties(ncmpServiceCmHandle.getAdditionalProperties());
+            restOutputCmHandle.setCmHandleProperties(ncmpServiceCmHandle.getAdditionalProperties());
+        } else {
+            restOutputCmHandle.setCmHandleProperties(null);
         }
         restOutputCmHandle.setState(
                 cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
