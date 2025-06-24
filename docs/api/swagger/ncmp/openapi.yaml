@@ -1965,6 +1965,7 @@ components:
               example: 3gpp Type
               type: string
             type: object
+          nullable: true
           type: array
         privateCmHandleProperties:
           additionalProperties:
