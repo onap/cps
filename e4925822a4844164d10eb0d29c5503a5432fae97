@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11caa32_4e7a6d1b",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-24T15:09:11Z",
+      "side": 1,
+      "message": "NB: cm handle",
+      "range": {
+        "startLine": 205,
+        "startChar": 40,
+        "endLine": 205,
+        "endChar": 50
+      },
+      "revId": "e4925822a4844164d10eb0d29c5503a5432fae97",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
