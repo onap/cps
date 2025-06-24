@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "9dd15c08f2474023810cd7f48cf6768d60ac36d9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd2b9e66_17b13db4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T16:20:18Z",
+      "side": 1,
+      "message": "looks OK to me but job still failing?!",
+      "revId": "9dd15c08f2474023810cd7f48cf6768d60ac36d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
