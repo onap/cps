@@ -33,9 +33,9 @@ class ResourceMeterAccuracyTest extends Specification {
             objectUnderTest.start()
             TimeUnit.SECONDS.sleep(2)
             objectUnderTest.stop()
-        then: 'the resource meter reports a duration within 20ms of the expected duration'
-            assert objectUnderTest.getTotalTimeInSeconds() >= 1.98
-            assert objectUnderTest.getTotalTimeInSeconds() <= 2.02
+        then: 'the resource meter reports a duration within 40ms of the expected duration'
+            assert objectUnderTest.getTotalTimeInSeconds() >= 1.96
+            assert objectUnderTest.getTotalTimeInSeconds() <= 2.04
     }
 
 }

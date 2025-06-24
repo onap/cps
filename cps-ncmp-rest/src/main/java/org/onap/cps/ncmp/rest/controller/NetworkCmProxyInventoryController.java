@@ -95,8 +95,8 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
         final boolean includeCmHandlePropertiesParameter = Boolean.TRUE.equals(includeCmHandlePropertiesInQuery);
         final List<RestOutputCmHandle> restOutputCmHandles =
                 networkCmProxyInventoryFacade.executeCmHandleInventorySearch(cmHandleQueryApiParameters)
-                        .map(handle -> restOutputCmHandleMapper
-                                .toRestOutputCmHandle(handle, includeCmHandlePropertiesParameter))
+                        .map(ncmpServiceCmHandle -> restOutputCmHandleMapper
+                            .toRestOutputCmHandle(ncmpServiceCmHandle, includeCmHandlePropertiesParameter))
                         .collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
     }

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -18,16 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional.ncmp
+package org.onap.cps.integration.functional.ncmp.data
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.springframework.http.MediaType
 
-import static org.springframework.http.HttpMethod.DELETE
 import static org.springframework.http.HttpMethod.GET
-import static org.springframework.http.HttpMethod.PATCH
 import static org.springframework.http.HttpMethod.POST
-import static org.springframework.http.HttpMethod.PUT
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 

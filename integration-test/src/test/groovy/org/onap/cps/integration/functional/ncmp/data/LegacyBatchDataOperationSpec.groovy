@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.integration.functional.ncmp
+package org.onap.cps.integration.functional.ncmp.data
 
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
