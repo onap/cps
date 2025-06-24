@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b20e068_7781ca98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T12:07:04Z",
+      "side": 1,
+      "message": "much better, just one comment and a question",
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc2ed24_820d7352",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T12:07:04Z",
+      "side": 1,
+      "message": "I think the UnknownHostException should be included here as well, since you do not need/want to get the cause of that",
+      "range": {
+        "startLine": 222,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 69
+      },
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad48b8c0_edc28779",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T12:07:04Z",
+      "side": 1,
+      "message": "are all the patss covered in the modified code now?",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 59
+      },
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
