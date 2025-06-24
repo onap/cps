@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ca1339_ac2ffc7e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-06-24T07:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "932a44df_d7e43e02",
+      "range": {
+        "startLine": 39,
+        "startChar": 62,
+        "endLine": 39,
+        "endChar": 80
+      },
+      "revId": "7bf9c3258ccdf0d5c4a8732ea9f7bbb4a2231dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76921187_4af08ba9",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-09T12:28:09Z",
       "side": 1,
       "message": "NB: can be extracted to a constant and same constant can be used to fetch the headers and also put the same to the MDC map.",
+      "range": {
+        "startLine": 45,
+        "startChar": 49,
+        "endLine": 45,
+        "endChar": 67
+      },
+      "revId": "7bf9c3258ccdf0d5c4a8732ea9f7bbb4a2231dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a25006_69c1f371",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-06-24T07:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76921187_4af08ba9",
       "range": {
         "startLine": 45,
         "startChar": 49,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86365089_69771162",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-06-24T07:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96246130_e672382a",
+      "range": {
+        "startLine": 46,
+        "startChar": 49,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "7bf9c3258ccdf0d5c4a8732ea9f7bbb4a2231dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87045336_9667f272",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a7241d_72997818",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-06-24T07:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87045336_9667f272",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "7bf9c3258ccdf0d5c4a8732ea9f7bbb4a2231dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd846d2f_e97644a7",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-06-09T12:28:09Z",
       "side": 1,
       "message": "use MDC.remove and just remove what you are populating.",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 24
+      },
+      "revId": "7bf9c3258ccdf0d5c4a8732ea9f7bbb4a2231dae",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f418668a_2d004e71",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7809
+      },
+      "writtenOn": "2025-06-24T07:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd846d2f_e97644a7",
       "range": {
         "startLine": 60,
         "startChar": 12,
