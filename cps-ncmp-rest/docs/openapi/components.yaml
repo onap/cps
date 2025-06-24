@@ -255,6 +255,7 @@ components:
           example: my-cm-handle1
         publicCmHandleProperties:
           type: object
+          nullable: true
           items:
             type: object
             additionalProperties:

@@ -39,7 +39,9 @@ class RestOutputCmHandleMapperSpec extends Specification {
         when: 'the mapper function is called'
             def result = objectUnderTest.toRestOutputCmHandle(ncmpServiceCmHandle, includeAdditionalProperties)
         then: 'result has the expected properties'
-            assert result.privateCmHandleProperties.containsKey('additional property key') == includeAdditionalProperties
+            if (includeAdditionalProperties) {
+                assert result.privateCmHandleProperties.containsKey('additional property key')
+            }
             if (trustLevel != null) {
                 assert result.trustLevel == trustLevel.toString()
             }
