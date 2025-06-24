@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d300965_3fd05b90",
+        "filename": "cps-ncmp-rest/docs/openapi/ncmp-inventory.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-06-24T14:45:47Z",
+      "side": 1,
+      "message": "I understand we call it additional properties internally but given this is an external interface would it not make more sense to call this parameter includeCmHandlePropertiesInQuery since that is what the user will see returned",
+      "range": {
+        "startLine": 160,
+        "startChar": 21,
+        "endLine": 160,
+        "endChar": 31
+      },
+      "revId": "0a770536c20380a1360e91f0e9c8f51a7239cb94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46699c64_ae80a9d3",
         "filename": "docs/api/swagger/ncmp/openapi.yaml",
         "patchSetId": 4
