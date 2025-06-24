@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc254c4e_07b92079",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-24T11:19:56Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "d25b853b_8b3392ba",
+      "range": {
+        "startLine": 199,
+        "startChar": 19,
+        "endLine": 199,
+        "endChar": 48
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fadf9739_ab867c99",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-23T15:42:44Z",
       "side": 1,
       "message": "no need for any of these else statements as you have a return statement before it..",
+      "range": {
+        "startLine": 203,
+        "startChar": 10,
+        "endLine": 203,
+        "endChar": 14
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "617c4fdf_e57c8a59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-24T11:19:56Z",
+      "side": 1,
+      "message": "refactored",
+      "parentUuid": "fadf9739_ab867c99",
       "range": {
         "startLine": 203,
         "startChar": 10,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "228a2078_4b57332d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-24T11:19:56Z",
+      "side": 1,
+      "message": "added",
+      "parentUuid": "4df12c56_20111ccb",
+      "range": {
+        "startLine": 199,
+        "startChar": 1,
+        "endLine": 211,
+        "endChar": 9
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61fcc006_2b02e596",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60020544_f4ca8f4a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-24T11:19:56Z",
+      "side": 1,
+      "message": "refactored",
+      "parentUuid": "61fcc006_2b02e596",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 75
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28579594_13a756dc",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-06-23T15:42:44Z",
       "side": 1,
       "message": "I think you need to call createErrorDetailsMessage again with the cause ( this is a different exception!)",
+      "range": {
+        "startLine": 225,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 39
+      },
+      "revId": "b68caa0197cf65b73c4e6b7ec9de3cf0a01dc7ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "802ac22f_f0494332",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-24T11:19:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "28579594_13a756dc",
       "range": {
         "startLine": 225,
         "startChar": 16,
