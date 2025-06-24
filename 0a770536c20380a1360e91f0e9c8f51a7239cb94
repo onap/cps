@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50c8039c_9a7b9447",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T13:37:55Z",
+      "side": 1,
+      "message": "just make sure to contact both Csaba\u0027s, see below",
+      "revId": "0a770536c20380a1360e91f0e9c8f51a7239cb94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46699c64_ae80a9d3",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-24T13:37:55Z",
+      "side": 1,
+      "message": "As discussed, its important we inform Csabe Eder (adn Csaba Kocis) of this change. I am assuming they are NOT using this functionality yet...",
+      "range": {
+        "startLine": 1940,
+        "startChar": 8,
+        "endLine": 1940,
+        "endChar": 26
+      },
+      "revId": "0a770536c20380a1360e91f0e9c8f51a7239cb94",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
