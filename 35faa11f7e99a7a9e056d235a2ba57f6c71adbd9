@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be606e1_ec9412a2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T15:06:27Z",
+      "side": 1,
+      "message": "It is ONE word, see https://www.merriam-webster.com/dictionary/southbound#:~:text\u003dKids%20Definition-,southbound,a%20southbound%20train",
+      "parentUuid": "0e612af7_f31d4434",
+      "range": {
+        "startLine": 269,
+        "startChar": 46,
+        "endLine": 269,
+        "endChar": 56
+      },
+      "revId": "35faa11f7e99a7a9e056d235a2ba57f6c71adbd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d445c3ce_70224286",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-06-25T14:34:31Z",
       "side": 1,
       "message": "southBound",
+      "range": {
+        "startLine": 97,
+        "startChar": 46,
+        "endLine": 97,
+        "endChar": 56
+      },
+      "revId": "35faa11f7e99a7a9e056d235a2ba57f6c71adbd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c279ac4_5180916a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T15:06:27Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "d445c3ce_70224286",
       "range": {
         "startLine": 97,
         "startChar": 46,
