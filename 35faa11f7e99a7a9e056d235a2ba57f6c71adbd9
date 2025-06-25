@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1730a389_7ffaa7ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T14:30:16Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "35faa11f7e99a7a9e056d235a2ba57f6c71adbd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "eaa0af01_b9580dbe",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/SouthboundCmHandleQuerySupportedConditions.java",
         "patchSetId": 2
