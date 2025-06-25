@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50db1d8b_9f3eac74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-25T08:28:12Z",
+      "side": 1,
+      "message": "We can\u0027t include \"runtimeException instanceof UnknownHostException\" As it\u0027s failing at compile time because UnknownHostException is not a sub class of RuntimeException object.",
+      "parentUuid": "1fc2ed24_820d7352",
+      "range": {
+        "startLine": 222,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 69
+      },
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad48b8c0_edc28779",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2025-06-24T12:07:04Z",
       "side": 1,
       "message": "are all the patss covered in the modified code now?",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 59
+      },
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cbc182f_bd70910e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-06-25T08:28:12Z",
+      "side": 1,
+      "message": "Others are covered into existing test. I keep it seperate for redability.",
+      "parentUuid": "ad48b8c0_edc28779",
       "range": {
         "startLine": 211,
         "startChar": 9,
