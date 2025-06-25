@@ -272,7 +272,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         and: 'the inventory facade returns two cm handles'
             def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
-            mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([ncmpServiceCmHandle1, ncmpServiceCmHandle2])
+            mockNetworkCmProxyInventoryFacade.northboundCmHandleSearch(_) >> Flux.fromIterable([ncmpServiceCmHandle1, ncmpServiceCmHandle2])
         and: 'mapper converts cm handles without private properties'
             def restHandle1 = new RestOutputCmHandle(cmHandle: 'rest ch-1')
             def restHandle2 = new RestOutputCmHandle(cmHandle: 'rest ch-2')
@@ -342,7 +342,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         when: 'the searches api is invoked'
             mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString))
         then: 'the request was still accepted and forwarded to the correct services'
-            1 * mockNetworkCmProxyInventoryFacade.executeCmHandleSearch(_) >> Flux.fromIterable([new NcmpServiceCmHandle()])
+            1 * mockNetworkCmProxyInventoryFacade.northboundCmHandleSearch(_) >> Flux.fromIterable([new NcmpServiceCmHandle()])
             1 * mockRestOutputCmHandleMapper.toRestOutputCmHandle(_, _) >> new RestOutputCmHandle(cmHandle: 'some cm handle')
     }
 
@@ -350,7 +350,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
         and: 'the service method is invoked with module names and returns cm handle ids'
-            1 * mockNetworkCmProxyInventoryFacade.executeCmHandleIdSearch(_, _) >> ['ch-1', 'ch-2']
+            1 * mockNetworkCmProxyInventoryFacade.northboundCmHandleIdSearch(_, _) >> ['ch-1', 'ch-2']
         when: 'the searches api is invoked'
             def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content('{}')).andReturn().response
         then: 'cm handle ids are returned'

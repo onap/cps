@@ -124,7 +124,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -147,7 +147,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         and: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleIdSearch(cmHandleQueryServiceParameters, _) >> serviceMockResponse
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -168,7 +168,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
         given: 'the mapper service returns a converted object'
             ncmpRestInputMapper.toCmHandleQueryServiceParameters(_) >> cmHandleQueryServiceParameters
         and: 'the service returns the desired results'
-            mockNetworkCmProxyInventoryFacade.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters) >> []
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleIdSearch(cmHandleQueryServiceParameters) >> []
         when: 'post request is performed & search is called with the given request parameters'
             def response = mvc.perform(
                     post("$ncmpBasePathV1/ch/searches")
@@ -274,7 +274,7 @@ class NetworkCmProxyInventoryControllerSpec extends Specification {
             String jsonString = TestUtils.getResourceFileContent('cm-handle-search-by-dmi-service.json')
         and: 'a cm handle is returned'
             def ncmpServiceCmHandle = new NcmpServiceCmHandle(additionalProperties: ['someName': 'my dmi'])
-            mockNetworkCmProxyInventoryFacade.executeCmHandleInventorySearch(_) >> Flux.fromIterable([ncmpServiceCmHandle])
+            mockNetworkCmProxyInventoryFacade.southboundCmHandleSearch(_) >> Flux.fromIterable([ncmpServiceCmHandle])
         and: 'the mapper is requested to convert the object with additional properties'
             mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle, true) >> new RestOutputCmHandle()
         when: 'the endpoint is invoked'

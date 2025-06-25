@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,23 +21,24 @@
 package org.onap.cps.ncmp.impl.inventory.models;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum InventoryQueryConditions {
 
+public enum NorthboundCmHandleQuerySupportedConditions {
+    HAS_ALL_MODULES("hasAllModules"),
     HAS_ALL_PROPERTIES("hasAllProperties"),
-    HAS_ALL_ADDITIONAL_PROPERTIES("hasAllAdditionalProperties"),
-    CM_HANDLE_WITH_DMI_PLUGIN("cmHandleWithDmiPlugin"),
-    WITH_CPS_PATH("cmHandleWithCpsPath");
+    WITH_CPS_PATH("cmHandleWithCpsPath"),
+    WITH_TRUST_LEVEL("cmHandleWithTrustLevel");
 
-    public static final List<String> ALL_CONDITION_NAMES = Arrays.stream(InventoryQueryConditions.values())
-        .map(InventoryQueryConditions::getName).collect(Collectors.toList());
+    public static final Collection<String> CONDITION_NAMES =
+        Arrays.stream(NorthboundCmHandleQuerySupportedConditions.values())
+        .map(NorthboundCmHandleQuerySupportedConditions::getConditionName).collect(Collectors.toList());
 
-    private final String name;
+    private final String conditionName;
 
 }

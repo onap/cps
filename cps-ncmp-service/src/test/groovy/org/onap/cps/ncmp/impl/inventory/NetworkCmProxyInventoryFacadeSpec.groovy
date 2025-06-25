@@ -64,7 +64,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             1 * mockCmHandleRegistrationService.updateDmiRegistration(dmiPluginRegistration)
     }
 
-    def 'Execute cm handle reference search for inventory'() {
+    def 'Execute southbound handle reference search (dmi)'() {
         given: 'a ConditionApiProperties object'
             def conditionProperties = new ConditionProperties()
             conditionProperties.conditionName = 'hasAllProperties'
@@ -74,7 +74,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
         and: 'the system returns an set of cmHandle ids'
             mockParameterizedCmHandleQueryService.queryCmHandleIdsForInventory(*_) >> [ 'cmHandle1', 'cmHandle2' ]
         when: 'executing the search'
-            def result = objectUnderTest.executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, false)
+            def result = objectUnderTest.southboundCmHandleIdSearch(cmHandleQueryServiceParameters, false)
         then: 'the result returns the correct 2 elements'
             assert result.size() == 2
             assert result.contains('cmHandle1')
@@ -198,7 +198,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Execute cm handle reference search'() {
+    def 'Execute northbound cm handle reference search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
             def conditionApiProperties = new ConditionApiProperties()
@@ -209,8 +209,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             mockParameterizedCmHandleQueryService.queryCmHandleReferenceIds(
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class), false)
                 >> ['cm-handle-id-1']
-        when: 'execute cm handle search is called'
-            def result = objectUnderTest.executeCmHandleIdSearch(cmHandleQueryApiParameters, false)
+        when: 'cm handle id search is called'
+            def result = objectUnderTest.northboundCmHandleIdSearch(cmHandleQueryApiParameters, false)
         then: 'result is the same collection as returned by the CPS Data Service'
             assert result == ['cm-handle-id-1']
     }
@@ -241,7 +241,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Execute cm handle search'() {
+    def 'Execute northbound cm handle search'() {
         given: 'valid CmHandleQueryApiParameters input'
             def cmHandleQueryApiParameters = new CmHandleQueryApiParameters()
             def conditionApiProperties = new ConditionApiProperties()
@@ -253,8 +253,8 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                 spiedJsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class))
                 >> Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'ch-0', currentTrustLevel: TrustLevel.COMPLETE),
                                       new NcmpServiceCmHandle(cmHandleId: 'ch-1', currentTrustLevel: TrustLevel.COMPLETE)])
-        when: 'execute cm handle search is called'
-            def result = objectUnderTest.executeCmHandleSearch(cmHandleQueryApiParameters).collectList().block()
+        when: 'the cm handle search is called'
+            def result = objectUnderTest.northboundCmHandleSearch(cmHandleQueryApiParameters).collectList().block()
         then: 'result consists of the two cm handles returned by the CPS Data Service'
             assert result.size() == 2
             assert result[0].cmHandleId == 'ch-0'
@@ -264,7 +264,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             assert result[1].currentTrustLevel == TrustLevel.COMPLETE
     }
 
-    def 'Execute cm handle reference search with a valid condition name'() {
+    def 'Execute southbound cm handle reference search with a valid condition name'() {
         given: 'a valid API parameter with a supported condition'
             def apiParams = new CmHandleQueryApiParameters(
                     cmHandleQueryParameters: [
@@ -278,7 +278,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             mockParameterizedCmHandleQueryService.queryInventoryForCmHandles(_)
                     >> Flux.fromIterable([new NcmpServiceCmHandle(cmHandleId: 'cm handle from the query service')])
         when: 'executing the cm handle search'
-            def result = objectUnderTest.executeCmHandleInventorySearch(apiParams).collectList().block()
+            def result = objectUnderTest.southboundCmHandleSearch(apiParams).collectList().block()
         then: 'the result returns the cm handle from the query service'
             assert result.size() == 1
             assert result[0].cmHandleId == 'cm handle from the query service'
@@ -292,7 +292,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
                     ]
             )
         when: 'executing the search'
-            objectUnderTest.executeCmHandleInventorySearch(apiParams).collectList().block()
+            objectUnderTest.southboundCmHandleSearch(apiParams).collectList().block()
         then: 'a data validation exception will be thrown'
             def exception = thrown(DataValidationException)
             assert exception.message == 'Invalid Query Parameter.'

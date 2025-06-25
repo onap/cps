@@ -44,8 +44,8 @@ import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
 import org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService;
-import org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions;
-import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
+import org.onap.cps.ncmp.impl.inventory.models.NorthboundCmHandleQuerySupportedConditions;
+import org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
@@ -77,14 +77,6 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         return cmHandleQueryService.getCmHandleReferencesByDmiPluginIdentifier(dmiPluginIdentifier, outputAlternateId);
     }
 
-    @Override
-    public Collection<String> executeParameterizedCmHandleIdSearch(
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, InventoryQueryConditions.ALL_CONDITION_NAMES);
-
-        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
-            outputAlternateId);
-    }
 
     @Override
     public Collection<ModuleReference> getYangResourcesModuleReferences(final String cmHandleReference) {
@@ -119,30 +111,42 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
     }
 
     @Override
-    public Flux<NcmpServiceCmHandle> executeCmHandleSearch(
-            final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
+    public Collection<String> northboundCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
+                                                         final boolean outputAlternateId) {
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
+            cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            NorthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
+        return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
+            outputAlternateId);
+    }
+
+    @Override
+    public Flux<NcmpServiceCmHandle> northboundCmHandleSearch(
+        final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            NorthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
         return parameterizedCmHandleQueryService.queryCmHandles(cmHandleQueryServiceParameters);
     }
 
     @Override
-    public Flux<NcmpServiceCmHandle> executeCmHandleInventorySearch(
+    public Flux<NcmpServiceCmHandle> southboundCmHandleSearch(
             final CmHandleQueryApiParameters cmHandleQueryApiParameters) {
         final CmHandleQueryServiceParameters cmHandleQueryServiceParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
         return parameterizedCmHandleQueryService.queryInventoryForCmHandles(cmHandleQueryServiceParameters);
     }
 
     @Override
-    public Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
-                                                      final boolean outputAlternateId) {
-        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters = jsonObjectMapper.convertToValueType(
-            cmHandleQueryApiParameters, CmHandleQueryServiceParameters.class);
-        validateCmHandleQueryParameters(cmHandleQueryServiceParameters, CmHandleQueryConditions.ALL_CONDITION_NAMES);
-        return parameterizedCmHandleQueryService.queryCmHandleReferenceIds(cmHandleQueryServiceParameters,
+    public Collection<String> southboundCmHandleIdSearch(
+        final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
+        validateCmHandleQueryParameters(cmHandleQueryServiceParameters,
+            SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES);
+        return parameterizedCmHandleQueryService.queryCmHandleIdsForInventory(cmHandleQueryServiceParameters,
             outputAlternateId);
     }
 

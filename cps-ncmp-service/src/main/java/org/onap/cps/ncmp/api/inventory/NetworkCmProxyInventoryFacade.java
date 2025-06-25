@@ -61,9 +61,9 @@ public interface NetworkCmProxyInventoryFacade {
      *                                       cm handle id (false) or alternate id (true)
      * @return                               collection of cm handle references
      */
-    Collection<String> executeParameterizedCmHandleIdSearch(final CmHandleQueryServiceParameters
+    Collection<String> southboundCmHandleIdSearch(final CmHandleQueryServiceParameters
                                                                   cmHandleQueryServiceParameters,
-                                                            final boolean outputAlternateId);
+                                                  final boolean outputAlternateId);
 
     /**
      * Retrieve module references for the given cm handle reference.
@@ -99,7 +99,7 @@ public interface NetworkCmProxyInventoryFacade {
      * @param cmHandleQueryApiParameters cm handle query parameters
      * @return cm handle objects as a reactive stream (flux)
      */
-    Flux<NcmpServiceCmHandle> executeCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
+    Flux<NcmpServiceCmHandle> northboundCmHandleSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters);
 
     /**
      * Retrieve cm handle ids for the given query parameters.
@@ -108,8 +108,8 @@ public interface NetworkCmProxyInventoryFacade {
      * @param outputAlternateId boolean for cm handle reference type either cmHandleId (false) or AlternateId (true)
      * @return cm handle ids
      */
-    Collection<String> executeCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
-                                               final boolean outputAlternateId);
+    Collection<String> northboundCmHandleIdSearch(final CmHandleQueryApiParameters cmHandleQueryApiParameters,
+                                                  final boolean outputAlternateId);
 
     /**
      * Set the data sync enabled flag, along with the data sync state
@@ -150,6 +150,6 @@ public interface NetworkCmProxyInventoryFacade {
      * @param cmHandleQueryApiParameters cm handle query parameters
      * @return cm handle objects as a reactive stream (flux)
      */
-    Flux<NcmpServiceCmHandle> executeCmHandleInventorySearch(final CmHandleQueryApiParameters
+    Flux<NcmpServiceCmHandle> southboundCmHandleSearch(final CmHandleQueryApiParameters
                                                                      cmHandleQueryApiParameters);
 }
