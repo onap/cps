@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1802e028_ec777901",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T09:57:18Z",
+      "side": 1,
+      "message": "ok, I see no teh Unknowhost Exception is a cause and not the main one",
+      "parentUuid": "50db1d8b_9f3eac74",
+      "range": {
+        "startLine": 222,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 69
+      },
+      "revId": "becc02d340b8274092661e702422b91ceff79ab4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad48b8c0_edc28779",
