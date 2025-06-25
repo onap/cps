@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaa0af01_b9580dbe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/SouthboundCmHandleQuerySupportedConditions.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T14:10:48Z",
+      "side": 1,
+      "message": "alwass has been missing, no need why this shoudln\u0027t be supported on the southbound ifc, but no-one probably ever needed/tried it...",
+      "range": {
+        "startLine": 36,
+        "startChar": 22,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "35faa11f7e99a7a9e056d235a2ba57f6c71adbd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838c420a_6d98775a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/SouthboundCmHandleQuerySupportedConditions.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-06-25T14:10:48Z",
+      "side": 1,
+      "message": "should always have been here, but didnt cause an issue because the wrong  other enum ((northbound) was updated and used in the validation method",
+      "range": {
+        "startLine": 36,
+        "startChar": 22,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "35faa11f7e99a7a9e056d235a2ba57f6c71adbd9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
