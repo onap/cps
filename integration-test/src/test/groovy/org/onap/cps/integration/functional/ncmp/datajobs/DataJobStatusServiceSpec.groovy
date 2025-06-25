@@ -1,4 +1,4 @@
-package org.onap.cps.integration.functional.ncmp
+package org.onap.cps.integration.functional.ncmp.datajobs
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.datajobs.DataJobStatusService

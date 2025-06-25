@@ -52,8 +52,7 @@ public class RestOutputCmHandleMapper {
             restOutputCmHandle.setCmHandleProperties(null);
         }
         restOutputCmHandle.setState(
-                cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(
-                        ncmpServiceCmHandle.getCompositeState()));
+            cmHandleStateMapper.toCmHandleCompositeStateExternalLockReason(ncmpServiceCmHandle.getCompositeState()));
         if (ncmpServiceCmHandle.getCurrentTrustLevel() != null) {
             restOutputCmHandle.setTrustLevel(ncmpServiceCmHandle.getCurrentTrustLevel().toString());
         }
