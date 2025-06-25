@@ -3,7 +3,7 @@
  *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -149,7 +149,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+    public boolean updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
                                               final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
@@ -158,9 +158,12 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
-
         logMissingXPaths(xpaths, existingFragmentEntities);
-
+        final Collection<FragmentEntity> fragmentEntities = existingFragmentEntities;
+        final List<DataNode> newNodesToInsert = updatedDataNodes.stream()
+            .filter(newNode -> fragmentEntities.stream()
+                .noneMatch(existingEntity -> existingEntity.getXpath().equals(newNode.getXpath())))
+            .collect(Collectors.toList());
         existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
             FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
 
@@ -168,12 +171,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             final DataNode updatedDataNode = xpathToUpdatedDataNode.get(existingFragmentEntity.getXpath());
             updateFragmentEntityAndDescendantsWithDataNode(existingFragmentEntity, updatedDataNode);
         }
-
+        final boolean newNodesInserted = !newNodesToInsert.isEmpty();
+        for (final DataNode newNode : newNodesToInsert) {
+            final FragmentEntity newFragment = convertToFragmentWithAllDescendants(anchorEntity, newNode);
+            existingFragmentEntities.add(newFragment);
+        }
         try {
             fragmentRepository.saveAll(existingFragmentEntities);
         } catch (final StaleStateException staleStateException) {
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
         }
+        return newNodesInserted;
     }
 
     private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
