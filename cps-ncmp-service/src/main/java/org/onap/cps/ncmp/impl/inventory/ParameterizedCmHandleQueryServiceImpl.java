@@ -22,10 +22,10 @@ package org.onap.cps.ncmp.impl.inventory;
 
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateCpsPathConditionProperties;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleQueryParametersValidator.validateModuleNameConditionProperties;
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_MODULES;
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.HAS_ALL_PROPERTIES;
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_CPS_PATH;
-import static org.onap.cps.ncmp.impl.inventory.models.CmHandleQueryConditions.WITH_TRUST_LEVEL;
+import static org.onap.cps.ncmp.impl.inventory.models.NorthboundCmHandleQuerySupportedConditions.HAS_ALL_MODULES;
+import static org.onap.cps.ncmp.impl.inventory.models.NorthboundCmHandleQuerySupportedConditions.HAS_ALL_PROPERTIES;
+import static org.onap.cps.ncmp.impl.inventory.models.NorthboundCmHandleQuerySupportedConditions.WITH_CPS_PATH;
+import static org.onap.cps.ncmp.impl.inventory.models.NorthboundCmHandleQuerySupportedConditions.WITH_TRUST_LEVEL;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,8 +40,8 @@ import org.onap.cps.api.model.ConditionProperties;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
-import org.onap.cps.ncmp.impl.inventory.models.InventoryQueryConditions;
 import org.onap.cps.ncmp.impl.inventory.models.PropertyType;
+import org.onap.cps.ncmp.impl.inventory.models.SouthboundCmHandleQuerySupportedConditions;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
@@ -96,7 +96,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
             final CmHandleQueryServiceParameters cmHandleQueryServiceParameters, final boolean outputAlternateId) {
         final Map<String, String> dmiPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
-                        InventoryQueryConditions.CM_HANDLE_WITH_DMI_PLUGIN.getName());
+                        SouthboundCmHandleQuerySupportedConditions.WITH_DMI_SERVICE.getConditionName());
         if (dmiPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;
         }
@@ -114,7 +114,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
 
         final Map<String, String> additionalPropertyQueryPairs =
                 getPropertyPairs(cmHandleQueryServiceParameters.getCmHandleQueryParameters(),
-                        InventoryQueryConditions.HAS_ALL_ADDITIONAL_PROPERTIES.getName());
+                        SouthboundCmHandleQuerySupportedConditions.HAS_ALL_ADDITIONAL_PROPERTIES.getConditionName());
 
         if (additionalPropertyQueryPairs.isEmpty()) {
             return NO_QUERY_TO_EXECUTE;

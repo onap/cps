@@ -266,7 +266,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
         final List<RestOutputCmHandle> restOutputCmHandles =
-                networkCmProxyInventoryFacade.executeCmHandleSearch(cmHandleQueryApiParameters)
+                networkCmProxyInventoryFacade.northboundCmHandleSearch(cmHandleQueryApiParameters)
                         .map(handle -> restOutputCmHandleMapper
                                 .toRestOutputCmHandle(handle, false)).collectList().block();
         return ResponseEntity.ok(restOutputCmHandles);
@@ -288,7 +288,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
         final CmHandleQueryApiParameters cmHandleQueryApiParameters =
                 jsonObjectMapper.convertToValueType(cmHandleQueryParameters, CmHandleQueryApiParameters.class);
         final Collection<String> cmHandleIds
-            = networkCmProxyInventoryFacade.executeCmHandleIdSearch(cmHandleQueryApiParameters, outputAlternateId);
+            = networkCmProxyInventoryFacade.northboundCmHandleIdSearch(cmHandleQueryApiParameters, outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 

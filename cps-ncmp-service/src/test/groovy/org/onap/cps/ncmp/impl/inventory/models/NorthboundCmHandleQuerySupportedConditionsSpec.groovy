@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2022-2024 Nordix Foundation.
+ * Copyright (c) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,16 +20,18 @@
 
 package org.onap.cps.ncmp.impl.inventory.models
 
+
 import spock.lang.Specification
 
-class InventoryQueryConditionsSpec extends Specification {
+class NorthboundCmHandleQuerySupportedConditionsSpec extends Specification {
 
-    def 'Inventory query condition names.'() {
+    def 'Northbound cm handle query condition names.'() {
         expect: '4 conditions with the correct names'
-            assert InventoryQueryConditions.ALL_CONDITION_NAMES.size() == 4
-            assert InventoryQueryConditions.ALL_CONDITION_NAMES.containsAll('hasAllProperties',
-                                                                            'hasAllAdditionalProperties',
-                                                                            'cmHandleWithDmiPlugin',
-                                                                            'cmHandleWithCpsPath')
+            assert NorthboundCmHandleQuerySupportedConditions.CONDITION_NAMES.size() == 4
+            assert NorthboundCmHandleQuerySupportedConditions.CONDITION_NAMES.containsAll('hasAllProperties',
+                                                                           'hasAllModules',
+                                                                           'cmHandleWithCpsPath',
+                                                                           'cmHandleWithTrustLevel')
     }
+
 }

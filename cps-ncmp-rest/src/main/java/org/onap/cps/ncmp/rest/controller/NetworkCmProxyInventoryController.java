@@ -75,7 +75,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 .toCmHandleQueryServiceParameters(cmHandleQueryParameters);
 
         final Collection<String> cmHandleIds = networkCmProxyInventoryFacade
-                .executeParameterizedCmHandleIdSearch(cmHandleQueryServiceParameters, outputAlternateId);
+                .southboundCmHandleIdSearch(cmHandleQueryServiceParameters, outputAlternateId);
         return ResponseEntity.ok(List.copyOf(cmHandleIds));
     }
 
@@ -94,7 +94,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
                 deprecationHelper.mapOldConditionProperties(cmHandleQueryParameters);
         final boolean includeCmHandlePropertiesParameter = Boolean.TRUE.equals(includeCmHandlePropertiesInQuery);
         final List<RestOutputCmHandle> restOutputCmHandles =
-                networkCmProxyInventoryFacade.executeCmHandleInventorySearch(cmHandleQueryApiParameters)
+                networkCmProxyInventoryFacade.southboundCmHandleSearch(cmHandleQueryApiParameters)
                         .map(handle -> restOutputCmHandleMapper
                                 .toRestOutputCmHandle(handle, includeCmHandlePropertiesParameter))
                         .collectList().block();

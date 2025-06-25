@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- * Copyright (c) 2022 Nordix Foundation.
+ * Copyright (c) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,19 +20,18 @@
 
 package org.onap.cps.ncmp.impl.inventory.models
 
-
 import spock.lang.Specification
 
-class CmHandleQueryConditionsSpec extends Specification {
+class SouthboundCmHandleQuerySupportedConditionsSpec extends Specification {
 
-    def 'CmHandle query condition names.'() {
-        expect: '5 conditions with the correct names'
-            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.size() == 5
-            assert CmHandleQueryConditions.ALL_CONDITION_NAMES.containsAll('hasAllProperties',
-                                                                           'hasAllModules',
-                                                                           'cmHandleWithCpsPath',
-                                                                           'cmHandleWithDmiPlugin',
+    def 'Southbound cm handle query condition names.'() {
+        expect: '6 conditions with the correct names'
+            assert SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES.size() == 6
+            assert SouthboundCmHandleQuerySupportedConditions.CONDITION_NAMES.containsAll('hasAllModules',
+                                                                            'hasAllProperties',
+                                                                            'hasAllAdditionalProperties',
+                                                                            'cmHandleWithCpsPath',
+                                                                            'cmHandleWithDmiPlugin',
                                                                             'cmHandleWithTrustLevel')
     }
-
 }
