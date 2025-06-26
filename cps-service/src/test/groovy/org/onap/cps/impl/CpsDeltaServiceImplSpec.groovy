@@ -31,6 +31,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.deltareport.DeltaReportHelper
 import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
@@ -58,7 +59,8 @@ class CpsDeltaServiceImplSpec extends Specification {
     def mockPrefixResolver = Mock(PrefixResolver)
     def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
-    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper)
+    def deltaReportHelper = new DeltaReportHelper()
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportHelper)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
