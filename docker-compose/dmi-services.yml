@@ -16,10 +16,6 @@
 
 services:
 
-  ### docker-compose -f dmi-services.yml up -d -> run ONAP-DMI plugin, and related services such as SDNC, and PNF-Simulator
-  ### docker-compose -f dmi-services.yml down -> stop ONAP-DMI plugin, and related services
-  ### docker-compose -f cps-base.yml -f dmi-services.yml up -d -> run cps-and-ncmp with ONAP dmi-plugin
-
   sdnc-db:
     container_name: sdnc-db
     image: mariadb:10.5
