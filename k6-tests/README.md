@@ -12,16 +12,16 @@ There are two test profiles that can be run with either: kpi or endurance.
 Run the main script.
 (The script assumes k6 and the relevant docker-compose have been installed).
 ```shell
-./run-k6-tests.sh kpi
+./k6-main.sh kpi
 ```
 
 ## Running k6 tests manually
 Before running tests, ensure CPS/NCMP is running:
 ```shell
-docker-compose -f docker-compose/cps-base.yml up -d
+docker-compose -f docker-compose/docker-compose.yml up -d
 ```
 
 To run an individual test from the command line, use
 ```shell
-k6 run ncmp/ncmp-test-runner.js
+k6 run ncmp/scenarios-config.js
 ```
