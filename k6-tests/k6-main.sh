@@ -45,7 +45,7 @@ echo "Test profile provided: $testProfile"
 
 # Run k6 test suite.
 ./setup.sh "$testProfile"
-./ncmp/run-all-tests.sh "$testProfile"
+./ncmp/execute-k6-scenarios.sh "$testProfile"
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!

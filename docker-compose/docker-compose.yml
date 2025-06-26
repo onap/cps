@@ -18,11 +18,11 @@
 
 services:
 
-  ### docker-compose -f cps-base.yml up -d -> run CPS with stubbed dmi-plugin (DMI-stub, and monitoring services for k6 testing)
-  ### docker-compose -f cps-base.yml --profile tracing up -d -> run CPS with stubbed dmi-plugin (DMI-stub for k6 testing with jaeger tracing)
-  ### docker-compose -f cps-base.yml -f dmi-services.yml up -d -> run CPS with dmi-plugin (cps-base, and ONAP-DMI services for CSIT testing)
-  ### docker-compose -f cps-base.yml --project-name endurance --env-file env/endurance.env up -d -> run CPS with DMI-stub for Endurance testing
-  ### docker-compose -f cps-base.yml --project-name endurance down --volumes -> stop and remove containers and volumes
+  ### docker-compose up -d -> run CPS with stubbed dmi-plugin (DMI-stub, and monitoring services for k6 testing)
+  ### docker-compose --profile tracing up -d -> run CPS with stubbed dmi-plugin (DMI-stub for k6 testing with jaeger tracing)
+  ### docker-compose -f docker-compose.yml -f dmi-services.yml up -d -> run CPS with dmi-plugin (cps-base, and ONAP-DMI services for CSIT testing)
+  ### docker-compose --project-name endurance --env-file env/endurance.env up -d -> run CPS with DMI-stub for Endurance testing
+  ### docker-compose --project-name endurance down --volumes -> stop and remove containers and volumes
   ### To disable notification make notification.enabled to false and comment out kafka/zookeeper services
   ### DEBUG: Look for '### DEBUG' comments to enable CPS-NCMP debugging
 
