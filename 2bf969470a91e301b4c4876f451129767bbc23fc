@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03bc00e8_057be819",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-06-26T05:00:39Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4dca16aa_2fee6704",
+      "range": {
+        "startLine": 177,
+        "startChar": 16,
+        "endLine": 177,
+        "endChar": 73
+      },
+      "revId": "2bf969470a91e301b4c4876f451129767bbc23fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff55438c_381a5354",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-19T15:19:38Z",
       "side": 1,
       "message": "simplify this. directly we can collection to a list.",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 170,
+        "endChar": 9
+      },
+      "revId": "2bf969470a91e301b4c4876f451129767bbc23fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a7cf0a7_d56e2997",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-06-26T05:00:39Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "ff55438c_381a5354",
       "range": {
         "startLine": 163,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82308ad9_3ff2d5ba",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-06-26T05:00:39Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5c59c9a9_af8d3354",
+      "range": {
+        "startLine": 150,
+        "startChar": 32,
+        "endLine": 150,
+        "endChar": 35
+      },
+      "revId": "2bf969470a91e301b4c4876f451129767bbc23fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afeb264d_cb679946",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-06-19T15:19:38Z",
       "side": 1,
       "message": "same comment as before.",
+      "range": {
+        "startLine": 117,
+        "startChar": 28,
+        "endLine": 117,
+        "endChar": 31
+      },
+      "revId": "2bf969470a91e301b4c4876f451129767bbc23fc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdd522ba_ded5e3c6",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-06-26T05:00:39Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "afeb264d_cb679946",
       "range": {
         "startLine": 117,
         "startChar": 28,
