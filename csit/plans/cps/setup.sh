@@ -32,8 +32,10 @@ export $(cut -d= -f1 $WORKSPACE/plans/cps/test.properties)
 ###################### setup cps-and-ncmp with dmi-services ############################
 cd $CPS_HOME/docker-compose
 
-# Start cps-base and dmi-services with docker compose, and wait for all containers to be healthy.
-docker-compose -f cps-base.yml -f dmi-services.yml up -d --quiet-pull --wait || exit 1
+# Start default docker-compose and dmi-services, and wait for all containers to be healthy.
+# Note: Since -f flag is used for dmi-services.yml, default docker-compose file should also be binded with -f flag,
+# otherwise cps base services won't be running!
+docker-compose -f docker-compose.yml -f dmi-services.yml up -d --quiet-pull --wait || exit 1
 
 ###################### ROBOT Configurations ##########################
 # Pass variables required for Robot test suites in ROBOT_VARIABLES.

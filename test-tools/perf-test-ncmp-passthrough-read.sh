@@ -33,8 +33,8 @@ WARMUP_REQUESTS=600
 MEASUREMENT_REQUESTS=240
 
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
-# Read DMI delay from cps-base.yml
-DMI_DATA_DELAY=$(grep 'DATA_FOR_CM_HANDLE_DELAY_MS:' "$SCRIPT_DIR"/../docker-compose/cps-base.yml | grep -oE '[0-9]+')
+# Read DMI delay from docker-compose.yml
+DMI_DATA_DELAY=$(grep 'DATA_FOR_CM_HANDLE_DELAY_MS:' "$SCRIPT_DIR"/../docker-compose/docker-compose.yml | grep -oE '[0-9]+')
 
 function cmHandleExists() {
   local cmHandleId=$1

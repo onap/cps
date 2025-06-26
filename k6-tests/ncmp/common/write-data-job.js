@@ -18,6 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
+import {crypto} from 'k6/experimental/webcrypto';
 import {performPostRequest, getRandomAlternateId, NCMP_BASE_URL} from './utils.js';
 
 /**
