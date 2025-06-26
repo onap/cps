@@ -49,23 +49,23 @@ mvn clean install -P<docker-profile>
 
 ## Running Docker Containers
 
-`docker-compose/cps-base.yml` contains the base services required to run CPS and NCMP.
+`docker-compose/docker-compose.yml` contains the base services required to run CPS and NCMP.
 This deployment can also be used for KPI test. Please run the following command from `docker-compose` folder:
 ```bash
-docker-compose -f cps-base.yml up -d
+docker-compose up -d
 or
-docker-compose -f cps-base.yml --profile tracing up -d
+docker-compose --profile tracing up -d
 ```
 
 `docker-compose/dmi-services.yml` contains the DMI services including SDNC and PNF Simulator.
 This deployment is required for the CSIT test.
 ```bash
-docker-compose -f cps-base.yml -f dmi-services.yml up -d
+docker-compose -f dmi-services.yml up -d
 ```
 
 To deploy services that are required for Endurance test, please use the following command:
 ```bash
-docker-compose -f cps-base.yml --project-name endurance --env-file env/endurance.env up -d
+docker-compose --project-name endurance --env-file env/endurance.env up -d
 ```
 
 To stop any deployment, please replace `up -d` flag with `down` in the above commands.
