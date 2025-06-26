@@ -33,8 +33,8 @@ WARMUP_REQUESTS=600
 MEASUREMENT_REQUESTS=240
 
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
-# Read DMI delay from cps-base.yml
-DMI_DATA_DELAY=$(grep 'DATA_FOR_CM_HANDLE_DELAY_MS:' "$SCRIPT_DIR"/../docker-compose/cps-base.yml | grep -oE '[0-9]+')
+# Read DMI delay from docker-compose.yml
+READ_DATA_FOR_CM_HANDLE_DELAY_MS=$(grep 'READ_DATA_FOR_CM_HANDLE_DELAY_MS:' "$SCRIPT_DIR"/../docker-compose/docker-compose.yml | grep -oE '[0-9]+')
 
 function cmHandleExists() {
   local cmHandleId=$1
@@ -79,9 +79,9 @@ measureAverageResponseTimeInMillis "$WARMUP_REQUESTS" > /dev/null
 # Measure performance
 echo "Measuring average time of $MEASUREMENT_REQUESTS total requests, sending $PARALLEL_REQUESTS requests in parallel"
 ncmpResponseTime=$(measureAverageResponseTimeInMillis "$MEASUREMENT_REQUESTS")
-ncmpOverhead=$(echo "$ncmpResponseTime - $DMI_DATA_DELAY" | bc)
+ncmpOverhead=$(echo "$ncmpResponseTime - $READ_DATA_FOR_CM_HANDLE_DELAY_MS" | bc)
 
 # Report performance
 echo "Average response time from NCMP: $ncmpResponseTime ms"
-echo "Average response time from DMI: $DMI_DATA_DELAY ms"
+echo "Mocked DMI Read response delay: $READ_DATA_FOR_CM_HANDLE_DELAY_MS ms"
 echo "NCMP overhead: $ncmpOverhead ms"
