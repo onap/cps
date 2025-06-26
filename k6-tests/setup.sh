@@ -25,7 +25,6 @@ testProfile=$1
 
 # Set ENV and COMPOSE file paths
 ENV_FILE="../docker-compose/env/${testProfile}.env"
-COMPOSE_FILE="../docker-compose/cps-base.yml"
 
 # Load environment variables from the selected .env file
 set -o allexport
@@ -48,7 +47,6 @@ check_images "${IMAGES_TO_CHECK[@]}"
 # Define a function to encapsulate docker-compose command
 compose() {
   docker-compose \
-    --file "$COMPOSE_FILE" \
     --env-file "$ENV_FILE" \
     --project-name "$testProfile" "$@"
 }
