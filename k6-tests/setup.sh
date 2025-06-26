@@ -25,7 +25,7 @@ testProfile=$1
 
 # Set ENV and COMPOSE file paths
 ENV_FILE="../docker-compose/env/${testProfile}.env"
-COMPOSE_FILE="../docker-compose/cps-base.yml"
+COMPOSE_FILE="../docker-compose/docker-compose.yml"
 
 # Load environment variables from the selected .env file
 set -o allexport

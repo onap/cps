@@ -23,11 +23,11 @@ chmod +x make-logs.sh
 ./make-logs.sh
 
 testProfile=$1
-docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/cps-base.yml --project-name $testProfile down --volumes"
+docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
 remove_onap_docker_images_cmd="docker images | grep "onap" | awk '{print $3}' | xargs docker rmi"
 
-# Verify number of docker images after deletion on teardown of endurance testing
-verify_docker_images() {
+# Check for remaining ONAP images and log it
+check_remaining_onap_images() {
   no_of_onap_docker_images=$(docker images | grep "onap" | wc -l)
   if [[ "$no_of_onap_docker_images" -eq 0 ]]; then
     echo "Successfully removed ONAP docker images!"
@@ -36,24 +36,28 @@ verify_docker_images() {
   fi
 }
 
-# Remove all onap docker images
+# Remove all ONAP docker images
+# /onap/cps-and-ncmp
+# /onap/dmi-stub
+# /onap/policy-executor-stub
 remove_all_onap_docker_images() {
   no_of_onap_docker_images=$(docker images | grep "onap" | wc -l)
   if [[ "$no_of_onap_docker_images" -ne 0 ]]; then
     echo "Removing all ONAP docker images..."
     eval "$remove_onap_docker_images_cmd"
-    verify_docker_images
   fi
 }
 
-# Set an environment variable CLEAN_DOCKER_IMAGES=1 to also remove docker images when done (used on jenkins job)
+# Check env. variable CLEAN_DOCKER_IMAGES=1 to decide removing images
 echo "Stopping, Removing containers and volumes for $testProfile tests..."
 if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
+  # down the compose stack, then purge any remaining ONAP images,
+  # regardless of any test profile!
   echo "Also cleaning up all images"
   eval "$docker_compose_shutdown_cmd --rmi all"
-  if [[ "$testProfile" == "endurance" ]]; then
-    remove_all_onap_docker_images
-  fi
+  remove_all_onap_docker_images
+  check_remaining_onap_images
 else
+  # for local test operations
   eval "$docker_compose_shutdown_cmd"
 fi

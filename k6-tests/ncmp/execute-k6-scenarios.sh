@@ -31,7 +31,7 @@ testProfile=$1
 summaryFile="${testProfile}Summary.csv"
 KPI_METADATA_FILE="./config/test-kpi-metadata.json"
 KPI_CONFIG_FILE="./config/kpi.json"
-NCMP_RUNNER_FILE="ncmp-test-runner.js"
+SCENARIOS_CONFIG_FILE="scenarios-config.js"
 
 echo
 echo "📢 Running NCMP K6 performance test for profile: [$testProfile]"
@@ -87,9 +87,9 @@ awk -v trends="$trend_declarations" '
       print $0
     }
   }
-' "$NCMP_RUNNER_FILE" > "$TMP_FILE"
-mv "$TMP_FILE" "$NCMP_RUNNER_FILE"
-echo "✅ Trend declarations inserted into [$NCMP_RUNNER_FILE]"
+' "$SCENARIOS_CONFIG_FILE" > "$TMP_FILE"
+mv "$TMP_FILE" "$SCENARIOS_CONFIG_FILE"
+echo "✅ Trend declarations inserted into [$SCENARIOS_CONFIG_FILE]"
 
 # If profile is KPI, generate threshold config too
 if [[ "$testProfile" == "kpi" ]]; then
@@ -108,7 +108,7 @@ fi
 # ─────────────────────────────────────────────────────────────
 # 2️⃣ Run K6 and Capture Output
 # ─────────────────────────────────────────────────────────────
-k6 run ncmp-test-runner.js -e TEST_PROFILE="$testProfile" > "$summaryFile"
+k6 run scenarios-config.js -e TEST_PROFILE="$testProfile" > "$summaryFile"
 k6_exit_code=$?
 
 case $k6_exit_code in
