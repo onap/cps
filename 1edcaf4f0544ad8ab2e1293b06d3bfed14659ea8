@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac726e64_cc5015b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-30T09:55:46Z",
+      "side": 1,
+      "message": "CPS verification job failing because of ncmp-dmi-plugin:1.8.0-SNAPSHOT\n\n10:38:35 +++ DMI_VERSION\u003d1.8.0-SNAPSHOT\n10:38:35 +++ DMI_DEMO_STUB_VERSION\u003d1.8.0-SNAPSHOT\n\n10:40:26 container ncmp-dmi-plugin is unhealthy.\n\nhttps://jenkins.onap.org/job/cps-review-verification-maven-master/9482/consoleFull",
+      "revId": "1edcaf4f0544ad8ab2e1293b06d3bfed14659ea8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9667a619_edeb4e06",
