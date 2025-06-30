@@ -39,6 +39,30 @@
       },
       "revId": "1edcaf4f0544ad8ab2e1293b06d3bfed14659ea8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883a894e_ec4e34e1",
+        "filename": "docs/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-06-30T14:06:27Z",
+      "side": 1,
+      "message": "I will raise another commit for this part only after the current commit get merged!",
+      "parentUuid": "9667a619_edeb4e06",
+      "range": {
+        "startLine": 226,
+        "startChar": 135,
+        "endLine": 226,
+        "endChar": 149
+      },
+      "revId": "1edcaf4f0544ad8ab2e1293b06d3bfed14659ea8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
