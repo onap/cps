@@ -38,6 +38,7 @@ import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.utils.deltareport.DeltaReportGenerator
 import org.onap.cps.utils.deltareport.DeltaReportHelper
+import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -62,7 +63,8 @@ class CpsDeltaServiceImplSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def deltaReportHelper = new DeltaReportHelper()
     def deltaReportGenerator = new DeltaReportGenerator(deltaReportHelper)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportHelper, deltaReportGenerator)
+    def groupedDeltaReportGenerator = new GroupedDeltaReportGenerator(deltaReportHelper)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
