@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "144d0f02_0a019357",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-03T10:08:03Z",
+      "side": 1,
+      "message": "The name before: run-k6-test.sh telling e.g. it runs k6 tests however, in reality, it is responsible for:\n\n1- trapping on_exit()\n2- installing required services\n3- running k6 tests\n\nMoreover, it was confusing name since there were 3 similar files: run-k6-tests.sh, run-all-tests.sh, and ncmp-test-runner.js. \n\nFinally, Toine confirmed the final names that used in this commit.",
+      "parentUuid": "9a8046c2_bc750ee7",
+      "revId": "3d8bed823989e75bfbe0867e16b1cb6053fa47a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38d79776_9cf0b4d6",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-07-03T09:47:07Z",
       "side": 1,
       "message": "it seems default is with use of \u0027-f\u0027 flag , so just say that \u0027Since -f flag is used .....\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "3d8bed823989e75bfbe0867e16b1cb6053fa47a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21e03c0c_c5684441",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-03T10:08:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38d79776_9cf0b4d6",
       "range": {
         "startLine": 36,
         "startChar": 0,
