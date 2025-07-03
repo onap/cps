@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a8046c2_bc750ee7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-03T09:47:07Z",
+      "side": 1,
+      "message": "why rename to k6-tests/k6-main.sh ?? \n\ni think before was more descriptive and sh files should be named descriptively",
+      "revId": "3d8bed823989e75bfbe0867e16b1cb6053fa47a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d79776_9cf0b4d6",
+        "filename": "csit/plans/cps/setup.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-03T09:47:07Z",
+      "side": 1,
+      "message": "it seems default is with use of \u0027-f\u0027 flag , so just say that \u0027Since -f flag is used .....\u0027",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "3d8bed823989e75bfbe0867e16b1cb6053fa47a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
