@@ -31,6 +31,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.CpsCondensedDeltaServiceUtils
 import org.onap.cps.utils.CpsDeltaServiceUpdateUtils
 import org.onap.cps.utils.CpsDeltaServiceUtils
 import org.onap.cps.utils.DataMapper
@@ -62,7 +63,8 @@ class CpsDeltaServiceImplSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def cpsDeltaServiceUpdateUtils = new CpsDeltaServiceUpdateUtils()
     def cpsDeltaServiceUtils = new CpsDeltaServiceUtils(cpsDeltaServiceUpdateUtils)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, cpsDeltaServiceUtils, cpsDeltaServiceUpdateUtils)
+    def cpsCondensedDeltaServiceUtils = new CpsCondensedDeltaServiceUtils(cpsDeltaServiceUpdateUtils)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, cpsDeltaServiceUtils, cpsCondensedDeltaServiceUtils)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
