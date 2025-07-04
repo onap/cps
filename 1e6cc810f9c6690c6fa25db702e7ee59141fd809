@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56663cb2_84a0dc08",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T14:22:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e9d8cdd_314475ea",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "1e6cc810f9c6690c6fa25db702e7ee59141fd809",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fef93819_464ae573",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-07-04T13:56:28Z",
       "side": 1,
       "message": "cps_image_name",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 11
+      },
+      "revId": "1e6cc810f9c6690c6fa25db702e7ee59141fd809",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "707a6ab1_e9bf2000",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T14:22:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fef93819_464ae573",
       "range": {
         "startLine": 34,
         "startChar": 6,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07e91044_70cb9195",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T14:22:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "621256cb_46c6f76a",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "1e6cc810f9c6690c6fa25db702e7ee59141fd809",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f2993fb_6180ebba",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-07-04T13:56:28Z",
       "side": 1,
       "message": "is tag a better name, comment above seems to suggest that\nsuggestion: image_tags",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 7
+      },
+      "revId": "1e6cc810f9c6690c6fa25db702e7ee59141fd809",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf799bd_5a4feb46",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T14:22:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f2993fb_6180ebba",
       "range": {
         "startLine": 37,
         "startChar": 4,
