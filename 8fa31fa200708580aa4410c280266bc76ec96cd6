@@ -508,6 +508,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b33a1bf6_e69051b4",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T11:14:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fd47e31_6f2c4a34",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 84
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b8e717_2ba25cfe",
@@ -673,6 +697,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e9577a5_59333ed6",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T11:14:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bac74d33_87272682",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a24f822_cca7fe1e",
@@ -734,6 +782,30 @@
       "side": 1,
       "message": "change it now to \"Mocked DMI Read response delay\"",
       "parentUuid": "32673cf6_ae155db2",
+      "range": {
+        "startLine": 86,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 23
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893df877_c6e8b782",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T11:14:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "269b0212_0861f5b9",
       "range": {
         "startLine": 86,
         "startChar": 6,
