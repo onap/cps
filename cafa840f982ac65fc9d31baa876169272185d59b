@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b83d1d2_d7a78c91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-04T15:41:48Z",
+      "side": 1,
+      "message": "do we also have to change anything from where these scripts are executed?? as we are changing the script names. just wondering.",
+      "revId": "cafa840f982ac65fc9d31baa876169272185d59b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
