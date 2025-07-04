@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "494858da_b8de0c80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-04T13:13:35Z",
+      "side": 1,
+      "message": "since its just code movement and we already reviewed it before. nothing objectionable for me.",
+      "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8267557_1c757f9b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-04T13:13:35Z",
+      "side": 1,
+      "message": "NB: not needed as no bean to inject.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0760b2a0_c65d0784",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-04T13:13:35Z",
+      "side": 1,
+      "message": "NB: how about DeltaReportOperationHelper ?? \nothers can also suggest.",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
