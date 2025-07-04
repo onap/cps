@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "083abd95_5a04fb33",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "sorry, I should have removed this I have seen how its done...",
+      "parentUuid": "1377b1f9_f91468cd",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8f09853d_99ac6a82",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -129,6 +153,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ecce43_54406470",
+        "filename": "docker-compose/dmi-services.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3f9892_8b3a7f77",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 109
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f6a2fdc_da5946fb",
@@ -163,6 +211,30 @@
         "id": 8063
       },
       "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f6a2fdc_da5946fb",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "999fc9aa_6218cf08",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "5f6a2fdc_da5946fb",
@@ -223,6 +295,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12319f2a_65b7f52b",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e055abe_c8a3a644",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0df228da_2f80738a",
@@ -270,6 +366,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86acc3e1_8db7cacd",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0df228da_2f80738a",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52261006_33c7584c",
@@ -304,6 +424,30 @@
         "id": 8063
       },
       "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52261006_33c7584c",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1570a3de_37abf5d2",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "52261006_33c7584c",
@@ -507,6 +651,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bac74d33_87272682",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "OK. since there are now two variable but this scritpt needs only 1 lets make it more correct like so:\n\n\nREAD_DATA_FOR_CM_HANDLE_DELAY_MS\u003d$(grep \u0027READ_DATA_FOR_CM_HANDLE_DELAY_MS:...",
+      "parentUuid": "e34b52df_4eb8255c",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a24f822_cca7fe1e",
         "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
         "patchSetId": 6
@@ -542,6 +710,30 @@
       "side": 1,
       "message": "Can handle this in a follow up commit.",
       "parentUuid": "0a24f822_cca7fe1e",
+      "range": {
+        "startLine": 86,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 23
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269b0212_0861f5b9",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "change it now to \"Mocked DMI Read response delay\"",
+      "parentUuid": "32673cf6_ae155db2",
       "range": {
         "startLine": 86,
         "startChar": 6,

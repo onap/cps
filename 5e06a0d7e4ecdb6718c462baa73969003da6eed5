@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5defae2_28fbbdb6",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T10:32:14Z",
+      "side": 1,
+      "message": "remove_cps_images\n1) no need to check\n2) use term cps_image and explicitly remove 3 the 3 relevant cps images",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 39
+      },
+      "revId": "5e06a0d7e4ecdb6718c462baa73969003da6eed5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
