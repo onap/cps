@@ -532,6 +532,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71412b78_2d9fe6a1",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-04T13:56:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "b33a1bf6_e69051b4",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 84
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b8e717_2ba25cfe",
