@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "42654c19_0d873453",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "it used to call: eval \"$docker_compose_shutdown_cmd --rmi all\"  \nteardown.sh: line 57\n\nI removed \"--rmi all\" flag. Since it is for: remove all images.",
+      "parentUuid": "1377b1f9_f91468cd",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8f09853d_99ac6a82",
@@ -81,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5f9e582_b1056043",
+        "filename": "docker-compose/dmi-services.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3f9892_8b3a7f77",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 109
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f6a2fdc_da5946fb",
@@ -94,6 +142,30 @@
       "writtenOn": "2025-07-04T08:01:44Z",
       "side": 1,
       "message": "according to startup warning this import is no longer needed with  k6 1.0",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "310696f8_a971b608",
+        "filename": "k6-tests/ncmp/common/produce-avc-event.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f6a2fdc_da5946fb",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "638b50a1_61ca4587",
+        "filename": "k6-tests/ncmp/common/write-data-job.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e055abe_c8a3a644",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 49
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0df228da_2f80738a",
@@ -150,6 +246,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d71ca01b_bea5568c",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0df228da_2f80738a",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52261006_33c7584c",
@@ -163,6 +283,30 @@
       "writtenOn": "2025-07-04T08:01:44Z",
       "side": 1,
       "message": "isd this really used/needed. I see it hardcode in many places anyway",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6750e95d_f3f2a5c0",
+        "filename": "k6-tests/setup.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52261006_33c7584c",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -198,6 +342,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2fd47e31_6f2c4a34",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "since teardown.sh and docker-compose.yml are not in the same folder, then we should provide docker-compose file location.",
+      "parentUuid": "7fe1d1f6_28450a1f",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 84
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5b8e717_2ba25cfe",
         "filename": "k6-tests/teardown.sh",
         "patchSetId": 6
@@ -209,6 +377,30 @@
       "writtenOn": "2025-07-04T08:01:44Z",
       "side": 1,
       "message": "bad name. suggestion: check_onap_images_have_been_deleted",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cba8b34_3244b12a",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5b8e717_2ba25cfe",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -232,6 +424,30 @@
       "writtenOn": "2025-07-04T08:01:44Z",
       "side": 1,
       "message": "since this happens first I would swap the to methods.\nOR, since removing and checking they have been removed are closely related actions I think it can be one method (no need for \u0027checking\u0027 in the name of the combined method)",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ae7f39_e250b123",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b653b43_f8d9933e",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -267,6 +483,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e34b52df_4eb8255c",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Let me handle this variable changes in a follow up commit. Since changing this DATA_FOR_CM_HANDLE_DELAY_MS would mean changing two environment variables in docker-compose:\n\n      READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300\n      WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670\n      \nThis change will eventually require a change in another code repo: ncmp-dmi-plugin for dmi stub changes where this env. variables being read.\n\nOtherwise, this commit would be complex.",
+      "parentUuid": "ce1801d7_c64a83ed",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a24f822_cca7fe1e",
         "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
         "patchSetId": 6
@@ -278,6 +518,30 @@
       "writtenOn": "2025-07-04T08:01:44Z",
       "side": 1,
       "message": "NOthing being measured here! SO using the word \u0027average\u0027 is misleading\nchange to: \"Mocked DMI response delay\"",
+      "range": {
+        "startLine": 86,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 23
+      },
+      "revId": "8fa31fa200708580aa4410c280266bc76ec96cd6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32673cf6_ae155db2",
+        "filename": "test-tools/perf-test-ncmp-passthrough-read.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-04T10:05:48Z",
+      "side": 1,
+      "message": "Can handle this in a follow up commit.",
+      "parentUuid": "0a24f822_cca7fe1e",
       "range": {
         "startLine": 86,
         "startChar": 6,
