@@ -30,14 +30,18 @@ docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.
 # nexus3.onap.org:10003/onap/dmi-stub:1.8.0-SNAPSHOT
 # nexus3.onap.org:10003/onap/policy-executor-stub:latest
 remove_cps_images() {
-  local cps_image_names=(cps-and-ncmp dmi-stub policy-executor-stub)
+  local cps_image_names=(cps-and-ncmp policy-executor-stub)
   for cps_image_name in "${cps_image_names[@]}"; do
     local image_path="nexus3.onap.org:10003/onap/$cps_image_name"
-    # list all image IDs for this repository (all tags)
-    image_tags=$(docker images -q "$image_path")
-    if [ -n "$image_tags" ]; then
-      echo "Removing images for $image_path..."
-      docker rmi -f $image_tags
+    # list all images for all tags except 'latest' since it would be in use
+    # result will store in snapshot_tags[0], snapshot_tags[1]
+    local snapshot_tags=( $(docker images "$image_path" --format '{{.Tag}}' | grep -v '^latest$') )
+    if [ ${#snapshot_tags[@]} -gt 0 ]; then
+      echo "Removing snapshot images for tags $image_path: ${snapshot_tags[*]}"
+      # remove each snapshot image explicitly
+      for tag in "${snapshot_tags[@]}"; do
+        docker rmi "$image_path:$tag"
+      done
     fi
   done
 }
