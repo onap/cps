@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9fbfdc4_21589651",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-07T16:26:22Z",
+      "side": 1,
+      "message": "I find it hard to review this, to much scripting magic.\nNot suer if that is a comments ie do we need more explanation in the code, or just lack of my expertise. I would prefer to do a walkthrough review during a meeting tomorrow maybe?",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52bb8a1a_4d519ce0",
