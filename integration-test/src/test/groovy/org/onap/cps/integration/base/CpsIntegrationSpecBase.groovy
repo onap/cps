@@ -22,8 +22,6 @@
 package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
-import java.time.OffsetDateTime
-import java.util.concurrent.BlockingQueue
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -46,6 +44,7 @@ import org.onap.cps.ncmp.impl.inventory.ParameterizedCmHandleQueryService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncService
 import org.onap.cps.ncmp.impl.inventory.sync.ModuleSyncWatchdog
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.rest.controller.NetworkCmProxyInventoryController
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
@@ -65,6 +64,9 @@ import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 
+import java.time.OffsetDateTime
+import java.util.concurrent.BlockingQueue
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = [CpsDataspaceService])
 @Testcontainers
 @EnableAutoConfiguration
@@ -83,6 +85,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     MockMvc mvc
+
+    @Autowired
+    NetworkCmProxyInventoryController networkCmProxyInventoryController
 
     @Autowired
     CpsDataspaceService cpsDataspaceService
