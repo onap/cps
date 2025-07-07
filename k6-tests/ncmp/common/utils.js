@@ -24,8 +24,8 @@ import {check} from 'k6';
 import {Trend} from 'k6/metrics';
 
 export const TEST_PROFILE = __ENV.TEST_PROFILE ? __ENV.TEST_PROFILE : 'kpi'
-export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}.json`));
-export const testKpiMetaData = JSON.parse(open(`../config/test-kpi-metadata.json`));
+export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}-scenario-execution.json`));
+export const testKpiMetaData = JSON.parse(open(`../config/scenario-metadata.json`));
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
