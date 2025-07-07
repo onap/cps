@@ -1,10 +1,11 @@
 {
 	"info": {
-		"_postman_id": "284e78f0-74c9-45f5-bdd5-25869a51028c",
+		"_postman_id": "972d83a9-62bc-4cdb-aa41-9c6e17cb9846",
 		"name": "CPS",
 		"description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26733783"
+		"_exporter_id": "16927565",
+		"_collection_link": "https://cps555.postman.co/workspace/CPS-Workspace~388a7e32-81fe-4932-8636-02ccf8b51aca/collection/16927565-972d83a9-62bc-4cdb-aa41-9c6e17cb9846?action=share&source=collection_link&creator=16927565"
 	},
 	"item": [
 		{
@@ -799,499 +800,675 @@
 					"name": "Inventory",
 					"item": [
 						{
-							"name": "CM handle registration (discovery)",
-							"event": [
+							"name": "Southbound (dmi)",
+							"item": [
 								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmpInventory",
-										"v1",
-										"ch"
-									]
-								},
-								"description": "DMI notifies NCMP of new CM handles"
-							},
-							"response": []
-						},
-						{
-							"name": "Get registered CM handle references",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmpInventory",
-										"v1",
-										"ch",
-										"cmHandles"
-									],
-									"query": [
+									"name": "CM handle registration (discovery)",
+									"event": [
 										{
-											"key": "dmi-plugin-identifier",
-											"value": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092"
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"cm-handle-1\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X1\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"123\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    },\r\n    {\r\n      \"cmHandle\": \"cm-handle-2\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X2\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"cmHandleProperties\": {},\r\n      \"publicCmHandleProperties\": {\r\n        \"id\": \"456\",\r\n        \"userLabel\": \"test\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
 										},
-										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Query for CM handle ids",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch"
+											]
+										},
+										"description": "DMI notifies NCMP of new CM handles"
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searches",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmpInventory",
-										"v1",
-										"ch",
-										"searches"
-									],
-									"query": [
-										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
+								{
+									"name": "Get registered CM handle references",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://ncmp-dmi-plugin-demo-and-csit-stub:8092",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch",
+												"cmHandles"
+											],
+											"query": [
+												{
+													"key": "dmi-plugin-identifier",
+													"value": "http://ncmp-dmi-plugin-demo-and-csit-stub:8092"
+												},
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
 										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get module references",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1",
-										"modules"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get module definitions",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+								{
+									"name": "CM handle de-registration",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\"]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch"
+											]
+										},
+										"description": "DMI notifies NCMP of new CM handles"
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1",
-										"modules",
-										"definitions"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CM handle id search",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+								{
+									"name": "Query CM handle ids (hasAllProperties)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searches",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch",
+												"searches"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
 										}
-									}
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/id-searches",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"id-searches"
-									],
-									"query": [
-										{
-											"key": "outputAlternateId",
-											"value": "true",
-											"description": "Returns alternate ids rather then cm handle ids",
-											"disabled": true
+								{
+									"name": "Query CM handles (hasAllProperties)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch",
+												"searchCmHandles"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
 										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CM handle object search",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"searches"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get CM handle details",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get CM handle details using alternate-id",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"Subnetwork%3DEurope%2CManagedElement%3DX1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get CM handle properties",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/properties",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1",
-										"properties"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get CM handle state",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
+								{
+									"name": "Query CM handles (withCpsPath)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"cmHandleWithCpsPath\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"cpsPath\": \"//state[@cm-handle-state='READY']\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch",
+												"searchCmHandles"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
 										}
-									}
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/state",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1",
-										"state"
-									]
+								{
+									"name": "Query CM handles (withDmiPlugin, incl.add.props)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"cmHandleWithDmiPlugin\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"dmiPluginName\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles?includeAdditionalPropertiesInQuery=true",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmpInventory",
+												"v1",
+												"ch",
+												"searchCmHandles"
+											],
+											"query": [
+												{
+													"key": "includeAdditionalPropertiesInQuery",
+													"value": "true"
+												},
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						},
 						{
-							"name": "Set CM handle 'dataSync' flag",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
+							"name": "Northbound (rApps)",
+							"item": [
+								{
+									"name": "Get module references",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1",
+												"modules"
+											]
 										}
-									}
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data-sync?dataSyncEnabled=false",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmp",
-										"v1",
-										"ch",
-										"cm-handle-1",
-										"data-sync"
-									],
-									"query": [
-										{
-											"key": "dataSyncEnabled",
-											"value": "false"
+								{
+									"name": "Get module definitions",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1",
+												"modules",
+												"definitions"
+											]
 										}
-									]
+									},
+									"response": []
+								},
+								{
+									"name": "CM handle object search",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"searches"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get CM handle details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get CM handle details using alternate-id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"Subnetwork%3DEurope%2CManagedElement%3DX1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get CM handle properties",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/properties",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1",
+												"properties"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get CM handle state",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/state",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1",
+												"state"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set CM handle 'dataSync' flag",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/data-sync?dataSyncEnabled=false",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"cm-handle-1",
+												"data-sync"
+											],
+											"query": [
+												{
+													"key": "dataSyncEnabled",
+													"value": "false"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Query CM handle ids (hasAllProperties)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/id-searches",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"id-searches"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Query CM handles (hasAllProperties)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"cmHandleQueryParameters\": [\r\n    {\r\n      \"conditionName\": \"hasAllProperties\",\r\n      \"conditionParameters\": [\r\n        {\r\n          \"id\": \"123\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
+											"protocol": "http",
+											"host": [
+												"{{CPS_HOST}}"
+											],
+											"port": "{{CPS_PORT}}",
+											"path": [
+												"ncmp",
+												"v1",
+												"ch",
+												"searches"
+											],
+											"query": [
+												{
+													"key": "outputAlternateId",
+													"value": "true",
+													"description": "Returns alternate ids rather then cm handle ids",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
-						},
-						{
-							"name": "CM handle de-registration",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"dmiPlugin\": \"http://ncmp-dmi-plugin-demo-and-csit-stub:8092\",\r\n  \"removedCmHandles\": [ \"cm-handle-1\", \"cm-handle-2\"]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"ncmpInventory",
-										"v1",
-										"ch"
-									]
-								},
-								"description": "DMI notifies NCMP of new CM handles"
-							},
-							"response": []
+							]
 						}
 					],
 					"description": "CPS-NCMP-Inventory endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps/en/latest/design.html#cps-ncmp-inventory)"
