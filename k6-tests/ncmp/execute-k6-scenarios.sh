@@ -16,7 +16,7 @@
 #
 
 # ─────────────────────────────────────────────────────────────
-# 📁 Navigate to Script Directory
+# Navigate to Script Directory
 # ─────────────────────────────────────────────────────────────
 pushd "$(dirname "$0")" >/dev/null || {
   echo "❌ Failed to access script directory. Exiting."
@@ -29,86 +29,26 @@ pushd "$(dirname "$0")" >/dev/null || {
 number_of_failures=0
 testProfile=$1
 summaryFile="${testProfile}Summary.csv"
-KPI_METADATA_FILE="./config/test-kpi-metadata.json"
-KPI_CONFIG_FILE="./config/kpi.json"
-SCENARIOS_CONFIG_SCRIPT="scenarios-config.js"
+# Path to the JSON file containing metric metadata.
+# This JSON holds metric names, units, and threshold values.
+SCENARIO_METADATA_FILE="./config/scenario-metadata.json"
 
 echo
 echo "📢 Running NCMP K6 performance test for profile: [$testProfile]"
 echo
 
-# ───────────────────────────────────────────────────────────────────────────
-# 1️⃣ Generate trend declarations and (conditionally) thresholds from metadata
-# ───────────────────────────────────────────────────────────────────────────
-echo "🔧 Generating trend declarations from [$KPI_METADATA_FILE]..."
+chmod +x ./create-scenario-javascript.sh
+source ./create-scenario-javascript.sh
 
-read -r -d '' jq_script << 'EOF'
-def toCamelCase:
-  split("_") as $parts |
-  ($parts[0]) + ($parts[1:] | map((.[0:1] | ascii_upcase) + .[1:]) | join(""));
-
-reduce .[] as $item (
-  { trends: [], thresholds: {} };
-  if ($item.unit == "milliseconds") or ($item.unit | test("/second")) then
-    .trends += [
-      "export let \($item.metric | toCamelCase)Trend = new Trend('\($item.metric)', \($item.unit == "milliseconds"));"
-    ]
-  else
-    .
-  end
-  |
-  .thresholds[$item.metric] = (
-    if $item.metric == "http_req_failed" then
-      ["rate <= \($item.kpiThreshold)"]
-    elif ($item.unit | test("/second")) then
-      ["avg >= \($item.kpiThreshold)"]
-    else
-      ["avg <= \($item.kpiThreshold)"]
-    end
-  )
-)
-EOF
-
-# Execute jq script
-jq_output=$(jq -r "$jq_script" "$KPI_METADATA_FILE")
-
-# Extract trends
-trend_declarations=$(echo "$jq_output" | jq -r '.trends[]')
-
-# Replace placeholder in runner with generated trends
-TMP_FILE=$(mktemp)
-awk -v trends="$trend_declarations" '
-  BEGIN { replaced=0 }
-  {
-    if ($0 ~ /#METRICS-TRENDS-PLACE-HOLDER#/ && replaced == 0) {
-      print trends
-      replaced=1
-    } else {
-      print $0
-    }
-  }
-' "$SCENARIOS_CONFIG_SCRIPT" > "$TMP_FILE"
-mv "$TMP_FILE" "$SCENARIOS_CONFIG_SCRIPT"
-echo "✅ Trend declarations inserted into [$SCENARIOS_CONFIG_SCRIPT]"
-
-# If profile is KPI, generate threshold config too
 if [[ "$testProfile" == "kpi" ]]; then
-  echo "📌 Writing thresholds to [$KPI_CONFIG_FILE]..."
-  # Update thresholds in KPI config
-  # Extract thresholds
-  thresholds_json=$(echo "$jq_output" | jq '.thresholds')
-  TMP_FILE=$(mktemp)
-  cp "$KPI_CONFIG_FILE" "$TMP_FILE"
-  jq --argjson thresholds "$thresholds_json" '.thresholds = $thresholds' "$TMP_FILE" | jq '.' > "$KPI_CONFIG_FILE"
-  rm -f "$TMP_FILE"
-  echo "✅ Threshold block has been injected into [$KPI_CONFIG_FILE]"
-  echo
+  chmod +x ./create-scenario-execution-definition.sh
+  source ./create-scenario-execution-definition.sh
 fi
 
 # ─────────────────────────────────────────────────────────────
-# 2️⃣ Run K6 and Capture Output
+# Run K6 and Capture Output
 # ─────────────────────────────────────────────────────────────
-k6 run scenarios-config.js -e TEST_PROFILE="$testProfile" > "$summaryFile"
+k6 run scenario-javascript.js -e TEST_PROFILE="$testProfile" > "$summaryFile"
 k6_exit_code=$?
 
 case $k6_exit_code in
@@ -119,14 +59,14 @@ esac
 
 if [[ "$testProfile" == "kpi" ]]; then
 # ─────────────────────────────────────────────────────────────
-# 3️⃣ Extract and Filter Summary Data
+# Extract and Filter Summary Data
 # ─────────────────────────────────────────────────────────────
 if [ -f "$summaryFile" ]; then
   echo "🔍 Extracting expected test names from metadata..."
   expected_tests=()
   while IFS= read -r test_name; do
     [[ -n "$test_name" ]] && expected_tests+=("$test_name")
-  done < <(jq -r '.[].name' "$KPI_METADATA_FILE")
+  done < <(jq -r '.[].name' "$SCENARIO_METADATA_FILE")
 
   if [[ ${#expected_tests[@]} -eq 0 ]]; then
     echo "❌ No test names found in metadata. Aborting."
@@ -151,7 +91,7 @@ if [ -f "$summaryFile" ]; then
   echo -e "📊 -- -- END CSV REPORT --\n"
 
   # ─────────────────────────────────────────────────────────────
-  # 4️⃣ Evaluate FS Thresholds
+  # Evaluate FS Thresholds
   # ─────────────────────────────────────────────────────────────
 
   # Evaluate FS pass/fail thresholds
@@ -209,7 +149,7 @@ if [ -f "$summaryFile" ]; then
   rm -f tmp_input
 
   # ─────────────────────────────────────────────────────────────
-  # 5️⃣ Print Human-Readable Report
+  # Print Human-Readable Report
   # ─────────────────────────────────────────────────────────────
   table_preview=$(column -t -s, "$annotated_summary")
 
@@ -320,8 +260,6 @@ fi # end of testProfile check
 # Cleanup global temp file
 rm -f "$summaryFile"
 
-# ─────────────────────────────────────────────────────────────
-# 🔚 Final Exit
-# ─────────────────────────────────────────────────────────────
+# final exit
 popd >/dev/null || true
 exit $number_of_failures
