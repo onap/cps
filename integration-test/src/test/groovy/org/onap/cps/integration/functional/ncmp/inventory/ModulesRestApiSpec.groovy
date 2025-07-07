@@ -24,8 +24,8 @@ import org.onap.cps.integration.base.CpsIntegrationSpecBase
 
 import static org.hamcrest.Matchers.containsInAnyOrder
 import static org.hamcrest.Matchers.emptyString
-import static org.hamcrest.Matchers.everyItem
 import static org.hamcrest.Matchers.equalTo
+import static org.hamcrest.Matchers.everyItem
 import static org.hamcrest.Matchers.hasSize
 import static org.hamcrest.Matchers.is
 import static org.hamcrest.Matchers.not
