@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "9a31c6f93686401867c3dafb7d8f608b756b5f26",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8244641_feee2e42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-07-07T06:39:08Z",
+      "side": 1,
+      "message": "resolved comments. The naming of classes can be done after inputs from other reviewers",
+      "revId": "9a31c6f93686401867c3dafb7d8f608b756b5f26",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
