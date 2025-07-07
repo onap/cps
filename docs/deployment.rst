@@ -223,7 +223,7 @@ The following tables list properties that can be configured in the deployment. T
 CPS-Core Docker Installation
 ============================
 
-CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/cps-base.yml>`_ is included in the repo to start all the relevant services.
+CPS-Core can also be installed in a docker environment. Latest `docker-compose <https://github.com/onap/cps/blob/master/docker-compose/docker-compose.yml>`_ is included in the repo to start all the relevant services.
 The latest instructions are covered in the `README <https://github.com/onap/cps/blob/master/docker-compose/README.md>`_.
 
 .. Below Label is used by documentation for other CPS components to link here, do not remove even if it gives a warning
