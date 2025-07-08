@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.fullname" . }}-zookeeper
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: zookeeper
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: zookeeper
+    spec:
+      containers:
+        - name: zookeeper
+          image: "{{ .Values.zookeeper.image.repository }}:{{ .Values.zookeeper.image.tag }}"
+          imagePullPolicy: {{ .Values.zookeeper.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.zookeeper.service.port }}
+          env:
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "{{ .Values.zookeeper.env.ZOOKEEPER_CLIENT_PORT }}"
+          readinessProbe:
+            exec:
+              command: {{ toJson .Values.zookeeper.healthcheck.command }}
+            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
+            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
+            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
+            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+          livenessProbe:
+            exec:
+              command: {{ toJson .Values.zookeeper.healthcheck.command }}
+            initialDelaySeconds: {{ .Values.zookeeper.healthcheck.startPeriod | int }}
+            periodSeconds: {{ .Values.zookeeper.healthcheck.interval | int }}
+            timeoutSeconds: {{ .Values.zookeeper.healthcheck.timeout | int }}
+            failureThreshold: {{ .Values.zookeeper.healthcheck.retries | int }}
+          resources:
+            limits:
+              cpu: {{ .Values.zookeeper.resources.limits.cpu }}
+              memory: {{ .Values.zookeeper.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.zookeeper.resources.requests.cpu }}
+              memory: {{ .Values.zookeeper.resources.requests.memory }}

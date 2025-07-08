@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-sql
+data:
+  postgres-init.sql: |-
+    {{ .Files.Get "config/postgres-init.sql" | indent 4 }}
