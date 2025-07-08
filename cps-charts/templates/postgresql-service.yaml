@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.fullname" . }}-postgresql
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: postgresql
+  ports:
+    - port: {{ .Values.postgresql.servicePort }}
+      targetPort: 5432

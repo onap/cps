@@ -1,0 +1,146 @@
+postgresql:
+  image: "postgres:14.1-alpine"
+  resources:
+    requests:
+      cpu: "1"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "1Gi"
+  servicePort: 5432
+  env:
+    POSTGRES_DB: "cpsdb"
+    POSTGRES_USER: "cps"
+    POSTGRES_PASSWORD: "cps"
+  initSql:
+    enabled: true
+    configMapName: postgres-init-sql
+    mountPath: /docker-entrypoint-initdb.d
+
+cps:
+  image:
+    repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
+    tag: "latest"
+  replicas: 2
+  servicePort: 8080
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 30080
+  resources:
+    limits:
+      cpu: "1"
+      memory: "1Gi"
+  env:
+    DB_HOST: "cps-cps-and-ncmp-postgresql"
+    DB_USERNAME: "cps"
+    DB_PASSWORD: "cps"
+    DMI_USERNAME: "cpsuser"
+    DMI_PASSWORD: "cpsr0cks!"
+    KAFKA_BOOTSTRAP_SERVER: "cps-cps-and-ncmp-kafka.default.svc.cluster.local:9092"
+    notification_enabled: "true"
+    ONAP_TRACING_ENABLED: "false"
+    ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: "http://jaeger-service:14250"
+    ONAP_OTEL_EXPORTER_ENDPOINT: "http://jaeger-service:4317"
+    POLICY_SERVICE_ENABLED: "false"
+    POLICY_SERVICE_DEFAULT_DECISION: "deny from env"
+    CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
+    JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
+    HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
+
+kafka:
+  enabled: true
+  image:
+    repository: confluentinc/cp-kafka
+    tag: 7.8.0
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    ports:
+      external: 9092
+      internal: 29092
+  zookeeperConnect: "cps-cps-and-ncmp-zookeeper.default.svc.cluster.local"
+  brokerId: 1
+  listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092"
+  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-cps-and-ncmp-kafka:9092"
+  interBrokerListenerName: "INTERNAL"
+  listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
+  offsetsTopicReplicationFactor: 1
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+  healthcheck:
+    enabled: true
+    command: >
+      kafka-topics --bootstrap-server cps-cps-and-ncmp-kafka:29092 --list || exit 1
+    interval: 10
+    timeout: 10
+    retries: 3
+    startPeriod: 30
+
+zookeeper:
+  enabled: true
+  image:
+    repository: confluentinc/cp-zookeeper
+    tag: 7.8.0
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 2181
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+    requests:
+      cpu: "250m"
+      memory: "512Mi"
+  env:
+    ZOOKEEPER_CLIENT_PORT: 2181
+  healthcheck:
+    enabled: true
+    command: ["sh", "-c", "nc -z localhost 2181 || exit 1"]
+    interval: 10s
+    timeout: 10s
+    retries: 3
+    startPeriod: 30s
+
+dmiStub:
+  enabled: true
+  image:
+    repository: nexus3.onap.org:10003/onap/dmi-stub
+    tag: "1.8.0-SNAPSHOT"
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: NodePort
+    port: 8092
+    nodePort: 30092
+  containerPort: 8092
+  env:
+    KAFKA_BOOTSTRAP_SERVER: "cps-and-ncmp-kafka:29092"
+    NCMP_CONSUMER_GROUP_ID: "ncmp-group"
+    NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
+    MODULE_INITIAL_PROCESSING_DELAY_MS: "180000"
+    MODULE_REFERENCES_DELAY_MS: "100"
+    MODULE_RESOURCES_DELAY_MS: "1000"
+    READ_DATA_FOR_CM_HANDLE_DELAY_MS: "300"
+    WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: "670"
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+  livenessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8092
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 3
