@@ -1,0 +1,12 @@
+apiVersion: v2
+name: cps-and-ncmp
+description: Helm chart for CPS and NCMP for testing purposes
+version: 0.1.0
+type: application
+appVersion: "1.0.0"
+home: "https://docs.onap.org/projects/onap-cps/en/latest/index.html"
+sources:
+  - "https://gerrit.onap.org/r/admin/repos/cps,general"
+maintainers:
+  - name: "CPS Team"
+    email: "cpsteam@est.tech"
