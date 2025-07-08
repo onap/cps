@@ -1,7 +1,7 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
 .. Copyright (C) 2021 Pantheon.tech
-.. Modifications Copyright (C) 2021-2025 Nordix Foundation
+.. Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 .. _modeling:
 
 .. toctree::
@@ -136,7 +136,6 @@ Additional information on CPS-NCMP interfaces
    :maxdepth: 1
 
    ncmp-cmhandle-querying.rst
-   ncmp-inventory-querying.rst
    ncmp-data-operation.rst
 
 CPS-NCMP Scheduled Processes

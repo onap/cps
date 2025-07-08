@@ -1,6 +1,6 @@
 .. This work is licensed under a Creative Commons Attribution 4.0 International License.
 .. http://creativecommons.org/licenses/by/4.0
-.. Copyright (C) 2021-2023 Nordix Foundation
+.. Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
 
 .. DO NOT CHANGE THIS LABEL FOR RELEASE NOTES - EVEN THOUGH IT GIVES A WARNING
 .. _design:
@@ -104,14 +104,8 @@ The CPS Delta feature is described in detail in :doc:`cps-delta-feature`.
 NCMP CM Handle Querying
 =======================
 
-The CM Handle searches endpoints can be used to query for CM Handles or CM Handle IDs.
+The CM Handle searches and inventory endpoints can be used to query for CM Handles or CM Handle IDs.
 This endpoint is described in detail in :doc:`ncmp-cmhandle-querying`.
-
-NCMP Inventory CM Handle Querying
-=================================
-
-The CM Handle searches ncmp inventory endpoints can be used to query for CM Handles or CM Handle IDs.
-This endpoint is described in detail in :doc:`ncmp-inventory-querying`.
 
 Common NCMP Response Codes
 ==========================
