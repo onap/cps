@@ -16,6 +16,29 @@
       "message": "TODO: Need to improve the script to generate this in alphabetical order always so we don\u0027t get random changes",
       "revId": "28a5d09c4c8a1ca461fe7b400a5c7098815bf573",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a8ed188_4ce81b17",
+        "filename": "docs/requirements-docs.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-08T12:33:11Z",
+      "side": 1,
+      "message": "NB: what is that mean? are they really needed?",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "28a5d09c4c8a1ca461fe7b400a5c7098815bf573",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
