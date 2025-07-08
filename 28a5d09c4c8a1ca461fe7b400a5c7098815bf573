@@ -90,6 +90,30 @@
       },
       "revId": "28a5d09c4c8a1ca461fe7b400a5c7098815bf573",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f119af_a88f8f07",
+        "filename": "docs/requirements-docs.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T12:43:07Z",
+      "side": 1,
+      "message": "yes they are all need, i spent several frustrating hours to reduce the number of dependencies but couldn\u0027t\n\n\\For full explanation of each see: https://g.co/gemini/share/42753b4476d6",
+      "parentUuid": "2a8ed188_4ce81b17",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "28a5d09c4c8a1ca461fe7b400a5c7098815bf573",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
