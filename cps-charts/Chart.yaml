@@ -1,0 +1,4 @@
+apiVersion: v2
+name: cps-and-ncmp
+description: CPS and NCMP with Postgres
+version: 0.1.0
