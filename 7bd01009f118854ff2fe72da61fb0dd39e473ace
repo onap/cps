@@ -69,6 +69,52 @@
       "parentUuid": "f1a49846_766d79a9",
       "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e761913_a44fef27",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-08T10:32:10Z",
+      "side": 1,
+      "message": "Temp_FILE is not required",
+      "range": {
+        "startLine": 77,
+        "startChar": 40,
+        "endLine": 77,
+        "endChar": 51
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25b707a4_fd03508f",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-08T10:32:10Z",
+      "side": 1,
+      "message": "TEMP_FILE is not required",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 19
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
