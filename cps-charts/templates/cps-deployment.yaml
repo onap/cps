@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.fullname" . }}-cps
+spec:
+  replicas: {{ .Values.cps.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: cps
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: cps
+    spec:
+      containers:
+        - name: cps
+          image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
+          ports:
+            - containerPort: 8080
+            - containerPort: 5701
+          env:
+            - name: DB_HOST
+              value: "{{ .Values.cps.env.DB_HOST }}"
+            - name: DB_USERNAME
+              value: "{{ .Values.cps.env.DB_USERNAME }}"
+            - name: DB_PASSWORD
+              value: "{{ .Values.cps.env.DB_PASSWORD }}"
+            - name: DMI_USERNAME
+              value: "{{ .Values.cps.env.DMI_USERNAME }}"
+            - name: DMI_PASSWORD
+              value: "{{ .Values.cps.env.DMI_PASSWORD }}"
+            - name: KAFKA_BOOTSTRAP_SERVER
+              value: "{{ .Values.cps.env.KAFKA_BOOTSTRAP_SERVER }}"
+            - name: notification.enabled
+              value: "{{ .Values.cps.env.notification_enabled }}"
+            - name: ONAP_TRACING_ENABLED
+              value: "{{ .Values.cps.env.ONAP_TRACING_ENABLED }}"
+            - name: ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT
+              value: "{{ .Values.cps.env.ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT }}"
+            - name: ONAP_OTEL_EXPORTER_ENDPOINT
+              value: "{{ .Values.cps.env.ONAP_OTEL_EXPORTER_ENDPOINT }}"
+            - name: POLICY_SERVICE_ENABLED
+              value: "{{ .Values.cps.env.POLICY_SERVICE_ENABLED }}"
+            - name: POLICY_SERVICE_DEFAULT_DECISION
+              value: "{{ .Values.cps.env.POLICY_SERVICE_DEFAULT_DECISION }}"
+            - name: CPS_MONITORING_MICROMETER_JVM_EXTRAS
+              value: "{{ .Values.cps.env.CPS_MONITORING_MICROMETER_JVM_EXTRAS }}"
+            - name: JAVA_TOOL_OPTIONS
+              value: "{{ .Values.cps.env.JAVA_TOOL_OPTIONS }}"
+            - name: HAZELCAST_MODE_KUBERNETES_ENABLED
+              value: "{{ .Values.cps.env.HAZELCAST_MODE_KUBERNETES_ENABLED }}"
+            - name: CPS_NCMP_SERVICE_NAME
+              value: {{ include "cps-and-ncmp.name" . }}-cps-hz
+          resources:
+            limits:
+              cpu: {{ .Values.cps.resources.limits.cpu }}
+              memory: {{ .Values.cps.resources.limits.memory }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 10

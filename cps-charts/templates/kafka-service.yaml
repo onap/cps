@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "cps-and-ncmp.fullname" . }}-kafka
+  labels:
+    app: kafka
+spec:
+  type: {{ .Values.kafka.service.type }}
+  ports:
+    - name: internal
+      port: {{ .Values.kafka.service.ports.internal }}
+      targetPort: {{ .Values.kafka.service.ports.internal }}
+    - name: external
+      port: {{ .Values.kafka.service.ports.external }}
+      targetPort: {{ .Values.kafka.service.ports.external }}
+  selector:
+    app: kafka
