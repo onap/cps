@@ -136,7 +136,6 @@ Additional information on CPS-NCMP interfaces
    :maxdepth: 1
 
    ncmp-cmhandle-querying.rst
-   ncmp-inventory-querying.rst
    ncmp-data-operation.rst
 
 CPS-NCMP Scheduled Processes
