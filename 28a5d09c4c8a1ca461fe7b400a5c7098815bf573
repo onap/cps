@@ -105,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "787deadc_c7bb99a1",
+        "filename": "docs/ncmp-cmhandle-querying.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T13:08:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b076091_b6e1a509",
+      "revId": "28a5d09c4c8a1ca461fe7b400a5c7098815bf573",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a8ed188_4ce81b17",
