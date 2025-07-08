@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+spec:
+  replicas: {{ .Values.dmiStub.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "cps-and-ncmp.name" . }}
+      component: dmi-stub
+  template:
+    metadata:
+      labels:
+        app: {{ include "cps-and-ncmp.name" . }}
+        component: dmi-stub
+    spec:
+      containers:
+        - name: dmi-stub
+          image: "{{ .Values.dmiStub.image.repository }}:{{ .Values.dmiStub.image.tag }}"
+          imagePullPolicy: {{ .Values.dmiStub.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.dmiStub.containerPort }}
+          env:
+            {{- range $key, $value := .Values.dmiStub.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          resources:
+            {{- toYaml .Values.dmiStub.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.dmiStub.livenessProbe | nindent 12 }}
