@@ -15,37 +15,61 @@ CM Handle Query Endpoints
 Introduction
 ============
 
-For querying CM Handles we have two Post endpoints:
+For querying CM Handles there are four Post endpoints:
 
-- ncmp/v1/ch/searches Returns all CM Handles which match the query properties provided. Gives a JSON payload of the **details** of all matching CM Handles.
++-------------------------------------+------------------+----------------------+
+| Endpoint                            | Target           | Output               |
++-------------------------------------+------------------+----------------------+
+| ncmp/v1/ch/searches                 | northbound: rApp | cm-handle references |
++-------------------------------------+------------------+----------------------+
+| ncmp/v1/ch/id-searches              | northbound: rApp | cm-handle objects    |
++-------------------------------------+------------------+----------------------+
+| ncmpInventory/v1/ch/searches        | southbound: dmi  | cm-handle references |
++-------------------------------------+------------------+----------------------+
+| ncmpInventory/v1/ch/searchCmHandles | southbound: dmi  | cm-handle objects    |
++-------------------------------------+------------------+----------------------+
 
-- ncmp/v1/ch/id-searches Returns all CM Handles IDs or Alternate IDs which match the query properties provided. Gives a JSON payload of the **ids** of all matching CM Handles.
+All these endpoints use the request body structure to define to search conditions and similar parameters described in the next sections.
+If no matching CM Handles are found an empty array is returned.
 
-/searches returns whole CM Handle object (data) whereas /id-searches returns only CM Handle IDs or Alternate IDs. Otherwise these endpoints are intended to be functionally identical so both can be queried with the same request body. If no matching CM Handles are found an empty array is returned.
 
 Parameters
 ==========
 
-/id-searches can return either CM Handle IDs or Alternate IDs. This is controlled with an optional parameter outputAlternateId.
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
+| Parameter                          | Value             | Behavior                             | Scope                              |
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
+| outputAlternateId                  | true              | return Alternate Ids                 | cm-handle reference searches       |
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
+| outputAlternateId                  | false / undefined | return CM Handle Ids                 | cm-handle reference searches       |
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
+| includeAdditionalPropertiesInQuery | true              | include additional properties        | southbound cm-handle object search |
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
+| includeAdditionalPropertiesInQuery | false / undefined | do not include additional properties | southbound cm-handle object search |
++------------------------------------+-------------------+--------------------------------------+------------------------------------+
 
-- *outputAlternateId=true* returns Alternate IDs
-
-- *outputAlternateId=false* returns CM Handle IDs
-
-Note: Null values will default to false so /id-searches & /id-searches?outputAlternateId will both return CM Handle IDs
 
 Request Body
 ============
 
-Currently this endpoint allows three criteria to be query on:
+Supported search criteria (conditionName in request body)
 
-- *hasAllModules* returns CM Handles which have the module names provided.
++----------------------------+---------------------------------------------------------------+---------------------------|
+| Condition Name             | Description                                                   | Scope                     |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| hasAllModules              | find cm handles that have all the given modules               | both interfaces           |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| hasAllProperties           | find cm handles that have all the given public properties     | both interfaces           |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| hasAllAdditionalProperties | find cm handles that have all the given additional properties | southbound interface only |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| cmHandleWithCpsPath        | find cm handles that match the CPS Path provided              | both interfaces           |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| cmHandleWithDmiPlugin      | find cm handles registered by the given dm plugin             | southbound interface only |
++----------------------------+---------------------------------------------------------------+---------------------------|
+| cmHandleWithTrustLevel     | find cm handles with the given trust level                    | both interfaces           |
++----------------------------+---------------------------------------------------------------+---------------------------|
 
-- *hasAllProperties* returns CM Handles which have the properties (key and value) provided.
-
-- *cmHandleWithCpsPath* returns CM Handles which match the CPS Path provided.
-
-Not all request body combinations have been validated and as such request bodies which do not conform to the structure as documented here can produce results in which all CM Handles are returned.
 
 Casing conventions: 'camelCasing' and 'kebab-casing'
 ----------------------------------------------------
@@ -53,59 +77,8 @@ Casing conventions: 'camelCasing' and 'kebab-casing'
 .. note::
     By convention REST JSON return bodies use 'camelCasing'. By convention field names in yang modelled data use 'kebab-casing'. Therefore some inconsistencies can be seen in the JSON use in CPS REST interfaces. For CM Handle related endpoints we return data in 'camelCasing'. But for *cmHandleWithCpsPath*, the query is accessing yang modelled field names and as such needs to use 'kebab-casing'. Therefore the dmi-registry field names should be referenced when using the *cmHandleWithCpsPath* condition: :doc:`modeling`
 
-Request Body example using all available query criteria. This query would return all CM Handles which have the specified modules my-module-(1-3), have the specified properties of Color yellow, Shape circle, Size small and are in a sync state of ADVISED:
-
-.. code-block:: json
-
-    {
-      "cmHandleQueryParameters": [
-        {
-          "conditionName": "hasAllModules",
-          "conditionParameters": [
-            {
-              "moduleName": "my-module-1"
-            },
-            {
-              "moduleName": "my-module-2"
-            },
-            {
-              "moduleName": "my-module-3"
-            }
-          ]
-        },
-        {
-          "conditionName": "hasAllProperties",
-          "conditionParameters": [
-            {
-              "Color": "yellow"
-            },
-            {
-              "Shape": "circle"
-            },
-            {
-              "Size": "small"
-            }
-          ]
-        },
-        {
-          "conditionName": "cmHandleWithCpsPath",
-          "conditionParameters": [
-            {
-              "cpsPath": "//state[@cm-handle-state='ADVISED']"
-            }
-          ]
-        },
-        {
-          "conditionName": "cmHandleWithTrustLevel",
-          "conditionParameters": [
-            {
-              "trustLevel": "COMPLETE"
-            }
-          ]
-        }
-      ]
-    }
-
+Examples
+========
 
 Has all Modules
 ---------------
@@ -159,6 +132,33 @@ With the *hasAllProperties* condition, we can provide a list of property keys an
       ]
     }
 
+Has all additional Properties
+-----------------------------
+
+With the *hasAllAdditionalProperties* condition, we can provide a list of property keys and values. The CM Handles returned will have these additional properties. The parameter names must be as below with key and value for each property. The returned CM Handle must have all supplied properties. For the example request, a CM Handle will be returned if it has properties where there is a key of "Price" with value "5", a key of "Year" with value "2022" and a key of "Quantity" with value "12".
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "hasAllAdditionalProperties",
+          "conditionParameters": [
+            {
+              "Price": "5"
+            },
+            {
+              "Year": "2022"
+            },
+            {
+              "Quantity": "12"
+            }
+          ]
+        }
+      ]
+    }
+
+
 CM Handle with CPS Path
 -----------------------
 
@@ -179,6 +179,27 @@ The *cmHandleWithCpsPath* condition allows any data of the CM Handle to be queri
       ]
     }
 
+With DMI Plugin
+---------------
+
+With the *cmHandleWithDmiPlugin* condition, we can provide a dmiPluginName. The CM Handles returned will have this DMI Plugin Name value in at least one of the following registered service names: dmi-service-name, dmi-data-service-name and dmi-model-service-name. For the example request a CM Handle will be returned if it has my-dmi-plugin as a value in at least one of the aforementioned leaves.
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "cmHandleWithDmiPlugin",
+          "conditionParameters": [
+            {
+              "dmi-service-name": "my-dmi-plugin"
+            }
+          ]
+        }
+      ]
+    }
+
+
 CM Handle with Trust Level
 --------------------------
 
@@ -188,6 +209,62 @@ With the *cmHandleWithTrustLevel* condition, we can provide just one trust level
 
     {
       "cmHandleQueryParameters": [
+        {
+          "conditionName": "cmHandleWithTrustLevel",
+          "conditionParameters": [
+            {
+              "trustLevel": "COMPLETE"
+            }
+          ]
+        }
+      ]
+    }
+
+Combining Conditions
+--------------------
+
+Request Body example using several conditions. This query would return all CM Handles which have the specified modules my-module-(1-3), have the specified properties of Color yellow, Shape circle, Size small and are in a sync state of ADVISED:
+
+.. code-block:: json
+
+    {
+      "cmHandleQueryParameters": [
+        {
+          "conditionName": "hasAllModules",
+          "conditionParameters": [
+            {
+              "moduleName": "my-module-1"
+            },
+            {
+              "moduleName": "my-module-2"
+            },
+            {
+              "moduleName": "my-module-3"
+            }
+          ]
+        },
+        {
+          "conditionName": "hasAllProperties",
+          "conditionParameters": [
+            {
+              "Color": "yellow"
+            },
+            {
+              "Shape": "circle"
+            },
+            {
+              "Size": "small"
+            }
+          ]
+        },
+        {
+          "conditionName": "cmHandleWithCpsPath",
+          "conditionParameters": [
+            {
+              "cpsPath": "//state[@cm-handle-state='ADVISED']"
+            }
+          ]
+        },
         {
           "conditionName": "cmHandleWithTrustLevel",
           "conditionParameters": [
