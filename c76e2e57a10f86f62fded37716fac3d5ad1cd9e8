@@ -22,6 +22,30 @@
       },
       "revId": "c76e2e57a10f86f62fded37716fac3d5ad1cd9e8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c821065a_58f6c2dd",
+        "filename": "k6-tests/teardown.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-08T10:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69d1c01b_ea19228d",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "revId": "c76e2e57a10f86f62fded37716fac3d5ad1cd9e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
