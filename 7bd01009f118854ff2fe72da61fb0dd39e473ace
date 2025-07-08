@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "876c166c_37456632",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-08T10:58:47Z",
+      "side": 1,
+      "message": "We are not installing as a part of K6 setup but already available as default  Jenkins Docker Agent Image",
+      "parentUuid": "41185a83_33bf9dd1",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e761913_a44fef27",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
