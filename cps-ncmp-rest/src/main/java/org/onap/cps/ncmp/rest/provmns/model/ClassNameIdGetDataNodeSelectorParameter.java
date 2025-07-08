@@ -20,13 +20,13 @@
 
 package org.onap.cps.ncmp.rest.provmns.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * This interface serves as a replacement for the generated Resource class, which has dependencies on the NRM-related
- * models that we want to avoid for our implementation of Provisioning and Management Services (ProvMnS) API.
- */
-@JsonSerialize(as = ResourceOneOf.class)
-@JsonDeserialize(as = ResourceOneOf.class)
-public interface Resource { }
+@Getter
+@Setter
+public class ClassNameIdGetDataNodeSelectorParameter {
+
+    private String dataNodeSelector;
+
+}

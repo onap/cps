@@ -2,7 +2,6 @@
 target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/*.java
 
 # Allow generation of the below model for ProvMns
-!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ClassNameIdGetDataNodeSelectorParameter.java
 !target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ClassNameIdPatchDefaultResponse.java
 !target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ErrorResponseDefault.java
 !target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ErrorResponseDefaultOtherProblemsInner.java
