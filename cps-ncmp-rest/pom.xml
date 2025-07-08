@@ -203,6 +203,7 @@
                             </configOptions>
                             <importMappings>
                                 <importMapping>Resource=org.onap.cps.ncmp.rest.provmns.model.Resource</importMapping>
+                                <importMapping>ClassNameIdGetDataNodeSelectorParameter=org.onap.cps.ncmp.rest.provmns.model.ClassNameIdGetDataNodeSelectorParameter</importMapping>
                             </importMappings>
                             <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore-provmns</ignoreFileOverride>
                         </configuration>

@@ -21,6 +21,7 @@ rest:
     api:
         ncmp-base-path: /ncmp
         ncmp-inventory-base-path: /ncmpInventory
+        provmns-base-path: /ProvMnS
 
 notification:
     enabled: true
