@@ -51,6 +51,24 @@
       "parentUuid": "52bb8a1a_4d519ce0",
       "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41185a83_33bf9dd1",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-07-08T08:47:37Z",
+      "side": 1,
+      "message": "But where is the version of jqlang coming from?",
+      "parentUuid": "f1a49846_766d79a9",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
