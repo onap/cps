@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3329d0c8_2593db84",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T11:48:06Z",
+      "side": 1,
+      "message": "badly named and doing 2 things\nsplit into 2 separte scripts and name after what is does ie create_x and create_y \ndo NOT name it after what the created files do...",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52bb8a1a_4d519ce0",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
@@ -102,6 +119,98 @@
       "side": 1,
       "message": "We are not installing as a part of K6 setup but already available as default  Jenkins Docker Agent Image",
       "parentUuid": "41185a83_33bf9dd1",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af4515e_695941c2",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T11:48:06Z",
+      "side": 1,
+      "message": "remove ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8c9e94_2f8a6568",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T11:48:06Z",
+      "side": 1,
+      "message": "trends_and_thresholds_as_json",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81d9478_28ab35db",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T11:48:06Z",
+      "side": 1,
+      "message": "no need to rename it?",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f3ff0a1_22637f85",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-08T11:48:06Z",
+      "side": 1,
+      "message": "add comments what is happening: like replace first occurence of ... to ...",
+      "range": {
+        "startLine": 68,
+        "startChar": 1,
+        "endLine": 68,
+        "endChar": 22
+      },
       "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
