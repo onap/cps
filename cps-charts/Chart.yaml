@@ -1,0 +1,4 @@
+apiVersion: v2
+name: cps-and-ncmp
+description: Helm chart for CPS and NCMP for testing purposes
+version: 0.1.0
