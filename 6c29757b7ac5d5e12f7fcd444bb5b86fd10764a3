@@ -86,6 +86,30 @@
       },
       "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca0782a_d45b9a1a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-09T13:41:34Z",
+      "side": 1,
+      "message": "it\u0027s always tricky to get good names for such extracted classes\nbut in this case I think this call obviously creates report(s)\nso I would suggest to call it DeltaReportGenerator (I dont like \u0027Creator\u0027 sound like a deity :-) )",
+      "parentUuid": "0760b2a0_c65d0784",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

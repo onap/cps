@@ -16,6 +16,69 @@
       "message": "since just code movement. I am fine with this.",
       "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27ff93ac_922e4b91",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-09T13:41:34Z",
+      "side": 1,
+      "message": "I assume the bulk of the code in this call is a straight copy and I didn\u0027t review it again",
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2921f4fa_2dfa0d53",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-09T13:41:34Z",
+      "side": 1,
+      "message": "to me \u0027get\u0027 means getting something that is readily available i,e a property, or maybe something that is presetsited, the main thing is \u0027get\u0027 would indicate it is cheap and simple from a coding point of view\n\nso I think \u0027get\u0027 is the wrong term here and i would prefer \u0027create\u0027 to indicate what is really happening and a serious amount of code/processing is involved. It also ties in better with the name I suggested for the whole class \u0027Generator\u0027",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 32
+      },
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45934bc3_4d5485cb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-09T13:41:34Z",
+      "side": 1,
+      "message": "Now the main code is in a separate class I think you should have a separate spec for this class ie refactor the testware too!\nFollow unit test principles and in the end it should make unit test easier!\n\nI would simplify the tests in this spec but still use a real instance of the helper/generator (you could mock it too). Simpel have 1 basic happy path covered that calls the helper/generator but not all variations\n\nMove the variations that exist in the new class-code from this spec but to a new DeltaReportGeneratorSpec",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
