@@ -110,6 +110,30 @@
       },
       "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5b2cb3_4b586662",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-09T13:46:25Z",
+      "side": 1,
+      "message": "Part-2 of the refactor already has this class that u suggest 😊\nhttps://gerrit.onap.org/r/c/cps/+/141290/10/cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+      "parentUuid": "eca0782a_d45b9a1a",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "6c29757b7ac5d5e12f7fcd444bb5b86fd10764a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5bd1cbe_b0c31310",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-09T13:46:25Z",
+      "side": 1,
+      "message": "yeah.  its a straight copy.",
+      "parentUuid": "27ff93ac_922e4b91",
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2921f4fa_2dfa0d53",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
         "patchSetId": 10
