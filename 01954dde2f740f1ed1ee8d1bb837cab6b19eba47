@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6b7f84a_e230d8e3",
+        "filename": "k6-tests/ncmp/scripts/create-kpi-config-and-scenario-js.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-10T13:39:51Z",
+      "side": 1,
+      "message": "great I can now understand what this file does!",
+      "revId": "01954dde2f740f1ed1ee8d1bb837cab6b19eba47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2c942d_6d67c13b",
+        "filename": "k6-tests/ncmp/scripts/create-kpi-config-and-scenario-js.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-10T13:39:51Z",
+      "side": 1,
+      "message": "As agreed this step 3 should NOT be part of this",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 100
+      },
+      "revId": "01954dde2f740f1ed1ee8d1bb837cab6b19eba47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151f6c8b_3ad43d07",
+        "filename": "k6-tests/ncmp/scripts/create-kpi-config-and-scenario-js.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-10T13:39:51Z",
+      "side": 1,
+      "message": "NB: Placeholder can be one word\nyou do Have it as 1 word in the next file:\"thresholds\": \"#THRESHOLDS-PLACEHOLDER#\"",
+      "range": {
+        "startLine": 101,
+        "startChar": 54,
+        "endLine": 101,
+        "endChar": 67
+      },
+      "revId": "01954dde2f740f1ed1ee8d1bb837cab6b19eba47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5e0dfe_99997fa8",
+        "filename": "k6-tests/ncmp/scripts/create-kpi-config-and-scenario-js.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-10T13:39:51Z",
+      "side": 1,
+      "message": "why do we need this check, there is only ONE occurence anyway?!",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 75
+      },
+      "revId": "01954dde2f740f1ed1ee8d1bb837cab6b19eba47",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
