@@ -16,6 +16,75 @@
       "message": "Addressed review comments",
       "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6485591d_a774e62f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-10T14:50:32Z",
+      "side": 1,
+      "message": "extract this to a method maybe \n\nprivate void putToMDC(String header, HttpServletRequest request) {\n    String value \u003d request.getHeader(header);\n    if (value !\u003d null) {\n        MDC.put(header, value);\n    }\n}\n\nthis way we can avoid populating the context when the header is not present.",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 77
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d95076_ba677e71",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-10T14:50:32Z",
+      "side": 1,
+      "message": "NB: typo here\nONAP_CLIENT_ID_HEADER",
+      "range": {
+        "startLine": 44,
+        "startChar": 54,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "390171b6_4988d31f",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MdcServletFilterSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-10T14:50:32Z",
+      "side": 1,
+      "message": "this can be moved outside the test.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
