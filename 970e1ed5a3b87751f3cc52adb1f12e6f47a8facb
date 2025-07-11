@@ -76,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb7f1a2f_e916f38e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-07-11T04:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2921f4fa_2dfa0d53",
+      "range": {
+        "startLine": 54,
+        "startChar": 29,
+        "endLine": 54,
+        "endChar": 32
+      },
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45934bc3_4d5485cb",
@@ -89,6 +113,30 @@
       "writtenOn": "2025-07-09T13:41:34Z",
       "side": 1,
       "message": "Now the main code is in a separate class I think you should have a separate spec for this class ie refactor the testware too!\nFollow unit test principles and in the end it should make unit test easier!\n\nI would simplify the tests in this spec but still use a real instance of the helper/generator (you could mock it too). Simpel have 1 basic happy path covered that calls the helper/generator but not all variations\n\nMove the variations that exist in the new class-code from this spec but to a new DeltaReportGeneratorSpec",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "970e1ed5a3b87751f3cc52adb1f12e6f47a8facb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01bf72d0_c2fc5d7c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-07-11T04:56:25Z",
+      "side": 1,
+      "message": "Noted. But I was thinking if the three current patches containing the refactored code can be merged first then I can add separate testware for the files as these three patches are blocking other tasks from Rajesh.",
+      "parentUuid": "45934bc3_4d5485cb",
       "range": {
         "startLine": 62,
         "startChar": 4,
