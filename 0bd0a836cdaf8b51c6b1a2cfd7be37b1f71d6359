@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "432614cd_b418912d",
+        "filename": "k6-tests/ncmp/config/endurance-scenario-execution.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "it not really \u0027execution\u0027 but just a definition of that\nso suggested names:\nendurance_scenario_execution_defintion\nOR\nendurance_scenario_execution_parameters",
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bd3b253_0e96a479",
         "filename": "k6-tests/ncmp/create-scenario-execution.sh",
         "patchSetId": 4
@@ -31,6 +48,30 @@
       "writtenOn": "2025-07-14T12:50:37Z",
       "side": 1,
       "message": "NB: not needed it is obvious these are global variables to the file",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5b1c6f_565e49c9",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "9bd3b253_0e96a479",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6ef8b9e_d6b7fd47",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "2c727ff8_b6802629",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cdc319c5_54d12a7e",
         "filename": "k6-tests/ncmp/create-scenario-execution.sh",
         "patchSetId": 4
@@ -77,6 +142,30 @@
       "writtenOn": "2025-07-14T12:50:37Z",
       "side": 1,
       "message": "NB: not needed",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8670eba_50246381",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "I think we do Need something like this, especially when looking at the file in plain text (not in IntelliJ) its is helpful!",
+      "parentUuid": "cdc319c5_54d12a7e",
       "range": {
         "startLine": 96,
         "startChar": 7,
@@ -181,6 +270,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da3a4def_1f7255bb",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "I think Sourabh name is correct if this script is creatign another script, not actually execution... Bit is is not B\u0026W both interpretations could be argued for...",
+      "parentUuid": "150437fc_d401ed50",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80658d50_fe17c6e0",
         "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
         "patchSetId": 4
@@ -192,6 +305,30 @@
       "writtenOn": "2025-07-14T12:50:37Z",
       "side": 1,
       "message": "No need to mention if it was javascript",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "166794e1_583ed32b",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "we agreed explicitly to include this",
+      "parentUuid": "80658d50_fe17c6e0",
       "range": {
         "startLine": 86,
         "startChar": 17,
@@ -225,6 +362,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8977121d_94730f46",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "we agreed explicitly to include this",
+      "parentUuid": "cb795567_a9a71ccc",
+      "range": {
+        "startLine": 87,
+        "startChar": 17,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "409f7b86_88d13a5f",
@@ -243,6 +404,53 @@
         "startChar": 7,
         "endLine": 102,
         "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "672fb007_2ab0ea77",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "I think it is needed",
+      "parentUuid": "409f7b86_88d13a5f",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d75e5ea5_1b547740",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-14T13:16:12Z",
+      "side": 1,
+      "message": "NB: 3 lines for this might be a bit over the top, but a 1 line comment for \u0027final exit\u0027 is fine...",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 63
       },
       "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
