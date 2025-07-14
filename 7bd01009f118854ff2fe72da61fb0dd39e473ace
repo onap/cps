@@ -55,6 +55,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ff7ece7_83444353",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5adfdcbc_ba6bb193",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84fe26fa_71da7698",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "Split it into 2 :\n1. Create Kpi config file (scenario-execution.json)\n2. Create scenario js file (scenario-javascript.js)",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3329d0c8_2593db84",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
@@ -66,6 +107,24 @@
       "writtenOn": "2025-07-08T11:48:06Z",
       "side": 1,
       "message": "badly named and doing 2 things\nsplit into 2 separte scripts and name after what is does ie create_x and create_y \ndo NOT name it after what the created files do...",
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8198ca3_ec485fc7",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "splited",
+      "parentUuid": "3329d0c8_2593db84",
       "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -166,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fbc640e_e5d37697",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "2af4515e_695941c2",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 5
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f8c9e94_2f8a6568",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
@@ -177,6 +260,30 @@
       "writtenOn": "2025-07-08T11:48:06Z",
       "side": 1,
       "message": "trends_and_thresholds_as_json",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ba9e2c_9d49fd4b",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "not required",
+      "parentUuid": "7f8c9e94_2f8a6568",
       "range": {
         "startLine": 60,
         "startChar": 0,
@@ -212,6 +319,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0763670_b0f93dda",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "Required to pass trend_declarations to awk",
+      "parentUuid": "b81d9478_28ab35db",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f3ff0a1_22637f85",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
@@ -223,6 +354,30 @@
       "writtenOn": "2025-07-08T11:48:06Z",
       "side": 1,
       "message": "add comments what is happening: like replace first occurence of ... to ...",
+      "range": {
+        "startLine": 68,
+        "startChar": 1,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7f2db8d_7fdeafdb",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "Refactored to replace METRICS-TRENDS-PLACE-HOLDER placeholder. No extra code irs required as placeholder will appear only once.",
+      "parentUuid": "1f3ff0a1_22637f85",
       "range": {
         "startLine": 68,
         "startChar": 1,
@@ -258,6 +413,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "766a336d_681264c2",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "9e761913_a44fef27",
+      "range": {
+        "startLine": 77,
+        "startChar": 40,
+        "endLine": 77,
+        "endChar": 51
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25b707a4_fd03508f",
         "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
         "patchSetId": 1
@@ -269,6 +448,30 @@
       "writtenOn": "2025-07-08T10:32:10Z",
       "side": 1,
       "message": "TEMP_FILE is not required",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 19
+      },
+      "revId": "7bd01009f118854ff2fe72da61fb0dd39e473ace",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd9e1bb_456b2849",
+        "filename": "k6-tests/trend-and-thresholds-using-templates.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-14T11:06:24Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "25b707a4_fd03508f",
       "range": {
         "startLine": 90,
         "startChar": 2,
