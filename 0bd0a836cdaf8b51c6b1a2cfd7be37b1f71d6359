@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68f4dc77_608ad007",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "Some minor comments, otherwise ok.",
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bd3b253_0e96a479",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "NB: not needed it is obvious these are global variables to the file",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c727ff8_b6802629",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "create_thresholds",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc319c5_54d12a7e",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "NB: not needed",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bfff38_206af730",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffe8bb2_c3f2abb8",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "I would also be mentioning input and output parameters here, like you already did for create_thresholds() function in above file.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 67
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "150437fc_d401ed50",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "it is not only declaring the trends but also initializing them with new keyword, right? \n\nThus the function name is misleading.\n\nI would change it to create_trends_variables",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80658d50_fe17c6e0",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "No need to mention if it was javascript",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb795567_a9a71ccc",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 87,
+        "startChar": 17,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "409f7b86_88d13a5f",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T12:50:37Z",
+      "side": 1,
+      "message": "Not needed.",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
