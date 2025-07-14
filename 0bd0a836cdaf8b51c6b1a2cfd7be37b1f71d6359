@@ -176,6 +176,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4036309f_60315afc",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T13:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e8670eba_50246381",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67bfff38_206af730",
@@ -282,6 +306,30 @@
       "side": 1,
       "message": "I think Sourabh name is correct if this script is creatign another script, not actually execution... Bit is is not B\u0026W both interpretations could be argued for...",
       "parentUuid": "150437fc_d401ed50",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76b00c73_c2fcfd66",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T13:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "da3a4def_1f7255bb",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -423,6 +471,30 @@
       "side": 1,
       "message": "I think it is needed",
       "parentUuid": "409f7b86_88d13a5f",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e8aa2d_961bed46",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-14T13:18:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "672fb007_2ab0ea77",
       "range": {
         "startLine": 102,
         "startChar": 7,
