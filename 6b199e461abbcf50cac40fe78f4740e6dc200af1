@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4ede0e89_e523e30b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "645bafe9_47003c05",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a5e835cc_d2d78358",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -88,6 +112,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c1c3f3f_f1a6323a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f1e7b92_66bfc138",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 53
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6543cbdf_db7ec121",
@@ -101,6 +149,30 @@
       "writtenOn": "2025-07-15T07:30:20Z",
       "side": 1,
       "message": "this is more \u0027how\u0027 than what. A consumer of this interface does not (need to) know what DMI is. Does the API yaml itself have (good) descriptions that you could re-use?",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 62
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a4618a_7a99911a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6543cbdf_db7ec121",
       "range": {
         "startLine": 46,
         "startChar": 47,
@@ -134,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa4aec5_b4c1809e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/model/ClassNameIdGetDataNodeSelectorParameter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac853ac1_35faa6f7",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 53
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51bfe76c_a8a1a37c",
@@ -147,6 +243,30 @@
       "writtenOn": "2025-07-15T09:20:40Z",
       "side": 1,
       "message": "You can shorten this initializtions into a single line:\nSince you prefer to use new operator, no @SpringBean needed to inject it!\n\ndef jsonObjectMapper \u003d new JsonObjectMapper(new ObjectMapper())",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 74
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5491cfb7_5f86a445",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51bfe76c_a8a1a37c",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -180,6 +300,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1123b9_99cd249c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec25a5f0_e62a94d5",
+      "range": {
+        "startLine": 60,
+        "startChar": 34,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec8e8747_cb58b858",
@@ -193,6 +337,30 @@
       "writtenOn": "2025-07-15T07:30:20Z",
       "side": 1,
       "message": "not described, maybe add and: block",
+      "range": {
+        "startLine": 67,
+        "startChar": 5,
+        "endLine": 67,
+        "endChar": 82
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e21e097_0a909d38",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8e8747_cb58b858",
       "range": {
         "startLine": 67,
         "startChar": 5,
@@ -226,6 +394,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b59a69d_d4e41541",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "415195c5_da738d8c",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 18
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1f9890c_eba548af",
@@ -239,6 +431,30 @@
       "writtenOn": "2025-07-15T07:30:20Z",
       "side": 1,
       "message": "not described, maybe add and: block",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 25
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1799e5e_763490de",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1f9890c_eba548af",
       "range": {
         "startLine": 80,
         "startChar": 16,
@@ -272,6 +488,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3b94012_41264f15",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3021f03a_c31becca",
+      "range": {
+        "startLine": 81,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 18
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "604fa019_eb247b7e",
@@ -285,6 +525,30 @@
       "writtenOn": "2025-07-15T07:30:20Z",
       "side": 1,
       "message": "dont think you need/use this (ye) But maybe you should add a least 1 integration test for teh get use-case",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 31
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc8b999_b366affc",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-15T11:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604fa019_eb247b7e",
       "range": {
         "startLine": 23,
         "startChar": 4,
