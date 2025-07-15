@@ -37,7 +37,7 @@ class CmHandleSearchApiPerfTest extends NcmpPerfTestBase {
         and: 'the response contains all the cm handles in the network'
             assert result.body.size() == TOTAL_CM_HANDLES
         and: 'record the resource usage'
-            recordAndAssertResourceUsage('CM Handle API Query Performance A', 6.0 , resourceMeter.totalTimeInSeconds, 0.0)
+            recordAndAssertResourceUsage('NCMP:CM Handle API Query Performance A', 4.0 , resourceMeter.totalTimeInSeconds, 0.0)
     }
 
 }
