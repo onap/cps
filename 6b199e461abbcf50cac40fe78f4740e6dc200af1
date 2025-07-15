@@ -112,6 +112,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51bfe76c_a8a1a37c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-15T09:20:40Z",
+      "side": 1,
+      "message": "You can shorten this initializtions into a single line:\nSince you prefer to use new operator, no @SpringBean needed to inject it!\n\ndef jsonObjectMapper \u003d new JsonObjectMapper(new ObjectMapper())",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 74
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec25a5f0_e62a94d5",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
         "patchSetId": 2
@@ -158,6 +181,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "415195c5_da738d8c",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-15T09:20:40Z",
+      "side": 1,
+      "message": "put",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 18
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1f9890c_eba548af",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
         "patchSetId": 2
@@ -174,6 +220,29 @@
         "startChar": 16,
         "endLine": 80,
         "endChar": 25
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3021f03a_c31becca",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-15T09:20:40Z",
+      "side": 1,
+      "message": "patch",
+      "range": {
+        "startLine": 81,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 18
       },
       "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
