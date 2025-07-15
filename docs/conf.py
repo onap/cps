@@ -39,7 +39,7 @@ html_static_path = ["_static"]
 html_show_sphinx = False
 
 extensions = [
-    'sphinx.ext.intersphinx','sphinxcontrib.blockdiag',
+    'sphinx.ext.intersphinx', 'sphinxcontrib.blockdiag', 'sphinx.ext.autosummary',
     'sphinxcontrib.seqdiag', 'sphinxcontrib.swaggerdoc', 'sphinx.ext.graphviz',
     'sphinxcontrib.spelling']
 
@@ -53,7 +53,13 @@ branch = 'latest'
 doc_url = 'https://docs.onap.org/projects'
 master_doc = 'index'
 
-exclude_patterns = ['.tox']
+exclude_patterns = [
+    '.tox',
+    '/site-packages//LICENSE.rst',
+    '/site-packages//licenses/.rst',
+    '/site-packages//templates/**/.rst',
+    '/site-packages//DESCRIPTION.rst' ]
+
 
 spelling_word_list_filename='spelling_wordlist.txt'
 spelling_lang = "en_GB"
