@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "845ac2c7_42962c14",
+        "filename": "k6-tests/ncmp/config/endurance-scenario-execution.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "432614cd_b418912d",
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bd3b253_0e96a479",
@@ -82,6 +100,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d280025_470fa9af",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "ec5b1c6f_565e49c9",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c727ff8_b6802629",
@@ -119,6 +161,30 @@
       "side": 1,
       "message": "agreed",
       "parentUuid": "2c727ff8_b6802629",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bd1f792_4220d131",
+        "filename": "k6-tests/ncmp/create-scenario-execution.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ef8b9e_d6b7fd47",
       "range": {
         "startLine": 41,
         "startChar": 12,
@@ -223,6 +289,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3717b7be_16945324",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "67bfff38_206af730",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6de80d10_e418764b",
@@ -246,6 +336,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4535c60_8654faaf",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de80d10_e418764b",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 39
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ffe8bb2_c3f2abb8",
@@ -259,6 +373,30 @@
       "writtenOn": "2025-07-14T12:50:37Z",
       "side": 1,
       "message": "I would also be mentioning input and output parameters here, like you already did for create_thresholds() function in above file.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 67
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3521fd6b_cde972c3",
+        "filename": "k6-tests/ncmp/create-scenario-javascript.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "Added",
+      "parentUuid": "4ffe8bb2_c3f2abb8",
       "range": {
         "startLine": 43,
         "startChar": 0,
@@ -518,6 +656,30 @@
       "writtenOn": "2025-07-14T13:16:12Z",
       "side": 1,
       "message": "NB: 3 lines for this might be a bit over the top, but a 1 line comment for \u0027final exit\u0027 is fine...",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 63
+      },
+      "revId": "0bd0a836cdaf8b51c6b1a2cfd7be37b1f71d6359",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c723b6_b61d9dd9",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-07-15T08:36:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d75e5ea5_1b547740",
       "range": {
         "startLine": 263,
         "startChar": 0,
