@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "645bafe9_47003c05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "adda few more details about what exactly is included and TODO\u0027s (in separate commits)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5e835cc_d2d78358",
@@ -14,6 +37,167 @@
       "writtenOn": "2025-07-14T15:24:54Z",
       "side": 1,
       "message": "recheck",
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56196d8c_4ddef969",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "I suppose we cannot (easily) change the name of this?",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 53
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6543cbdf_db7ec121",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "this is more \u0027how\u0027 than what. A consumer of this interface does not (need to) know what DMI is. Does the API yaml itself have (good) descriptions that you could re-use?",
+      "range": {
+        "startLine": 46,
+        "startChar": 47,
+        "endLine": 46,
+        "endChar": 62
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac853ac1_35faa6f7",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/model/ClassNameIdGetDataNodeSelectorParameter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "add some Documentation that you override a class that should have been generated and why\n(like you do in Resource.java)",
+      "range": {
+        "startLine": 28,
+        "startChar": 13,
+        "endLine": 28,
+        "endChar": 53
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec25a5f0_e62a94d5",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "align test description with actual current expectation; response is \u0027not implemented\u0027",
+      "range": {
+        "startLine": 60,
+        "startChar": 34,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec8e8747_cb58b858",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "not described, maybe add and: block",
+      "range": {
+        "startLine": 67,
+        "startChar": 5,
+        "endLine": 67,
+        "endChar": 82
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f9890c_eba548af",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "not described, maybe add and: block",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 25
+      },
+      "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604fa019_eb247b7e",
+        "filename": "integration-test/src/test/resources/application.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-15T07:30:20Z",
+      "side": 1,
+      "message": "dont think you need/use this (ye) But maybe you should add a least 1 integration test for teh get use-case",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 31
+      },
       "revId": "6b199e461abbcf50cac40fe78f4740e6dc200af1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
