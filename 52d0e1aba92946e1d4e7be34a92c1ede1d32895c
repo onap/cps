@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "433079dd_603f754c",
+        "filename": ".readthedocs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-07-16T15:30:57Z",
+      "side": 1,
+      "message": "NB: 2021-2025",
+      "revId": "52d0e1aba92946e1d4e7be34a92c1ede1d32895c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2cfa0d0_48b897cc",
         "filename": "/COMMIT_MSG",
         "patchSetId": 4
