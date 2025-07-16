@@ -26,7 +26,7 @@ PNF_SIM_PORT=${PNF_SIM_PORT:-6513}
 NODE_ID=${NODE_ID:-'ietfYang-PNFDemo'}
 
 echo "Attempting to mount node with id '$NODE_ID' to SDNC using RestConf"
-curl --request PUT "http://$SDNC_HOST:$SDNC_PORT/restconf/config/network-topology:network-topology/topology/topology-netconf/node/$NODE_ID" \
+curl --request PUT "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf/node=$NODE_ID" \
 --silent --location \
 --header "$SDNC_AUTH_HEADER" \
 --header 'Content-Type: application/json' \
@@ -50,7 +50,7 @@ curl --request PUT "http://$SDNC_HOST:$SDNC_PORT/restconf/config/network-topolog
 }'
 
 # Verify node has been mounted
-RESPONSE=$(curl --silent --location --request GET "http://$SDNC_HOST:$SDNC_PORT/restconf/config/network-topology:network-topology/topology/topology-netconf" --header "$SDNC_AUTH_HEADER")
+RESPONSE=$(curl --silent --location --request GET "http://$SDNC_HOST:$SDNC_PORT/rests/data/network-topology:network-topology/topology=topology-netconf?content=config" --header "$SDNC_AUTH_HEADER")
 
 if echo "$RESPONSE" | grep -q "$NODE_ID"; then
   echo "Node mounted successfully"
