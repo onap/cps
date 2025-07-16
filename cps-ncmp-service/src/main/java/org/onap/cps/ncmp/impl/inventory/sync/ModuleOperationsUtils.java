@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -201,8 +201,8 @@ public class ModuleOperationsUtils {
     private String getFirstResource(final Object responseBody) {
         final String jsonObjectAsString = jsonObjectMapper.asJsonString(responseBody);
         final JsonNode overallJsonNode = jsonObjectMapper.convertToJsonNode(jsonObjectAsString);
-        final Iterator<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.fields();
-        final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.next();
+        final Set<Map.Entry<String, JsonNode>> overallJsonTreeMap = overallJsonNode.properties();
+        final Map.Entry<String, JsonNode> firstElement = overallJsonTreeMap.iterator().next();
         return jsonObjectMapper.asJsonString(Map.of(firstElement.getKey(), firstElement.getValue()));
     }
 
