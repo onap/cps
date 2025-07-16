@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56741036_55a7dc43",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "even this else block is not needed.\n\nmaybe do something like below.\n\n    final boolean hasNewNodes \u003d cpsDataService.updateDataNodeAndDescendants(\n            dataspaceName,\n            anchorName,\n            parentNodeXpath,\n            nodeData,\n            toOffsetDateTime(observedTimestamp),\n            contentType\n    );\n\n    final HttpStatus httpStatus \u003d hasNewNodes ? HttpStatus.CREATED : HttpStatus.OK;\n    return ResponseEntity.status(httpStatus ).build();",
+      "range": {
+        "startLine": 172,
+        "startChar": 10,
+        "endLine": 172,
+        "endChar": 15
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d625ae_7994a529",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "else block not needed as we have the return statement.",
+      "range": {
+        "startLine": 178,
+        "startChar": 14,
+        "endLine": 178,
+        "endChar": 20
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f627748c_944950f1",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "dont need this as both has application/json. better directly hardcode in the test and use. remove redundant scenario.\nsame for requestBody and expected data.",
+      "range": {
+        "startLine": 439,
+        "startChar": 73,
+        "endLine": 439,
+        "endChar": 84
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fea1305f_abfa7ca9",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "check if this is needed.",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 85
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3123883_317aaddd",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "NB: newNodes",
+      "range": {
+        "startLine": 163,
+        "startChar": 29,
+        "endLine": 163,
+        "endChar": 45
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf855f8_afeead0d",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "NB: can be moved to a new private method",
+      "range": {
+        "startLine": 163,
+        "startChar": 6,
+        "endLine": 166,
+        "endChar": 42
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c83221_6b13915c",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-16T11:10:03Z",
+      "side": 1,
+      "message": "true/false",
+      "range": {
+        "startLine": 150,
+        "startChar": 32,
+        "endLine": 150,
+        "endChar": 42
+      },
+      "revId": "7b8246ce43e1590f239ffcda9022188f885ef318",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
