@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "109784dd_56b2e3fa",
+        "filename": ".readthedocs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-17T11:51:48Z",
+      "side": 1,
+      "message": "Ubuntu-24 comes with python 3.12 and not 3.13",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 18
+      },
+      "revId": "49f9a7f382aa39b8264332f853148a7cc75ef841",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf9dc1a_7e2a5850",
+        "filename": "docs/tox.ini",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-17T11:51:48Z",
+      "side": 1,
+      "message": "Reduced to ! env, thought it would speed up but doesnt realy...\nStill it is easier to maintain and I don\u0027t see a reason to use 3 different environment one for each command, tested it locally and it works fine like this",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 14
+      },
+      "revId": "49f9a7f382aa39b8264332f853148a7cc75ef841",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

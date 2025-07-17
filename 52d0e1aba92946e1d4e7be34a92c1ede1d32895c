@@ -39,6 +39,30 @@
       },
       "revId": "52d0e1aba92946e1d4e7be34a92c1ede1d32895c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f6cd36_85e3bd0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-17T11:51:48Z",
+      "side": 1,
+      "message": "commit message is incorrect should be 3.13, although I am not convinced it will work with 3.13 so I might still revert to 3.12...",
+      "parentUuid": "e2cfa0d0_48b897cc",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "52d0e1aba92946e1d4e7be34a92c1ede1d32895c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
