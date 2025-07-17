@@ -147,9 +147,10 @@ public interface CpsDataService {
      * @param nodeData          node data
      * @param observedTimestamp observedTimestamp
      * @param contentType       JSON/XML content type
+     * @return                 true/false
      */
-    void updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
-                                       OffsetDateTime observedTimestamp, ContentType contentType);
+    boolean updateDataNodeAndDescendants(String dataspaceName, String anchorName, String parentNodeXpath,
+                                         String nodeData, OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
      * Replaces multiple existing data nodes' content including descendants in a batch operation.

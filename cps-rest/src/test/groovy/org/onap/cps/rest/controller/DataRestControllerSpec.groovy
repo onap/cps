@@ -420,6 +420,27 @@ class DataRestControllerSpec extends Specification {
             'XML content: some xpath by parent'  | '/some/xpath' | MediaType.APPLICATION_XML  || '/some/xpath'         | requestBodyXml  | expectedXmlData  | ContentType.XML
     }
 
+    def 'Replace data node tree hasNewNodes: #scenario.'() {
+        given: 'endpoint to replace node'
+            def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/nodes"
+        when: 'put request is performed'
+            def response =
+                mvc.perform(
+                    put(endpoint)
+                        .contentType(contentType)
+                        .content(requestBody)
+                        .param('xpath', inputXpath))
+                    .andReturn().response
+        then: 'the cps data service method is invoked with expected parameters'
+            1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, xpathServiceParameter, expectedData, noTimestamp, ContentType.JSON) >> hasNewNodes
+        and: 'response status indicates success or creation'
+            response.status == expectedStatus
+        where:
+            scenario                                      | inputXpath | contentType                || xpathServiceParameter | requestBody     | expectedData     | hasNewNodes || expectedStatus
+            'JSON content: root node updated only'        | ''         | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | false       || HttpStatus.OK.value()
+            'JSON content: root node with new list items' | ''         | MediaType.APPLICATION_JSON || '/'                   | requestBodyJson | expectedJsonData | true        || HttpStatus.CREATED.value()
+    }
+
     def 'Validate data using Replace data node API.'() {
         given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"
