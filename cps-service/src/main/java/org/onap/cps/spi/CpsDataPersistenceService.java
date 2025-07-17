@@ -3,7 +3,7 @@
  *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -114,8 +114,10 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
+     * @return              true/false
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+    boolean updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode>
+                                                                           dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements
