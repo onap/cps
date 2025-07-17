@@ -50,6 +50,29 @@
       "message": "fine by me. i see all the comments are addressed from the previous comments.",
       "revId": "dbe68d7e74c70029402d9918a128b826969e083a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e448bc6b_ba9f4731",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-17T08:36:58Z",
+      "side": 1,
+      "message": "Copied form the API, no debate needed, Perfect!",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 67
+      },
+      "revId": "dbe68d7e74c70029402d9918a128b826969e083a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
