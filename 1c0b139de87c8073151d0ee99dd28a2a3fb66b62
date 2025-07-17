@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b36b39_2e5f7748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-17T10:17:51Z",
+      "side": 1,
+      "message": "fine by me as its just code movement and we agreed that the common testware would be added after the refactoring patches are merged ( so that others are unblocked )",
+      "revId": "1c0b139de87c8073151d0ee99dd28a2a3fb66b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
