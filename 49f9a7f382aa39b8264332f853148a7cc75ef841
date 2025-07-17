@@ -24,6 +24,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "138b8458_1fc3ff84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-07-17T12:47:20Z",
+      "side": 1,
+      "message": "Couple of suggestions for the conf.py file to clean up the log:\n\n1: Add autosummary to extensions list\n\nline 41:\nextensions \u003d [\n    \u0027sphinx.ext.intersphinx\u0027,\u0027sphinxcontrib.blockdiag\u0027, \u0027sphinx.ext.autosummary\u0027,\n    \u0027sphinxcontrib.seqdiag\u0027, \u0027sphinxcontrib.swaggerdoc\u0027, \u0027sphinx.ext.graphviz\u0027,\n    \u0027sphinxcontrib.spelling\u0027]\n\n2: Add to the patterns to exclude:\n\nline 59:\nexclude_patterns \u003d [\n    \u0027.tox\u0027,\n    \u0027**/site-packages/**/LICENSE.rst\u0027,\n    \u0027**/site-packages/**/licenses/*.rst\u0027,\n    \u0027**/site-packages/**/templates/**/*.rst\u0027,\n    \u0027**/site-packages/**/DESCRIPTION.rst\u0027,\n]",
+      "revId": "49f9a7f382aa39b8264332f853148a7cc75ef841",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbf9dc1a_7e2a5850",
