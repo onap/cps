@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2022 Nordix Foundation
-# Modifications Copyright (C) 2022-2024 TechMahindra Ltd.
+# Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
 # Modifications Copyright (C) 2022 Deutsche Telekom AG
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -238,6 +238,8 @@ nodesByDataspaceAndAnchor:
             dataSample:
               $ref: 'components.yml#/components/examples/dataSampleXml'
     responses:
+      '201':
+        $ref: 'components.yml#/components/responses/Created'
       '200':
         $ref: 'components.yml#/components/responses/Ok'
       '400':
