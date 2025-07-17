@@ -1820,6 +1820,13 @@ paths:
                 name: stores
         required: true
       responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                example: my-resource
+                type: string
+          description: Created
         "200":
           content:
             application/json:
