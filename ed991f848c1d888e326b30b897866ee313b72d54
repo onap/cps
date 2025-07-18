@@ -135,6 +135,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09eeb3ab_d66e9b1c",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-07-18T05:40:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "110498a2_7c0103de",
+      "revId": "ed991f848c1d888e326b30b897866ee313b72d54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eecd644e_bfe5644d",

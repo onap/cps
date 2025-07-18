@@ -50,6 +50,23 @@
       "message": "merged based on previous +1s",
       "revId": "99274b453a0b6919f35113eba93a905f6c21f3cf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0853955d_e5f4f1aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-07-18T05:40:26Z",
+      "side": 1,
+      "message": "Closed open comments",
+      "revId": "99274b453a0b6919f35113eba93a905f6c21f3cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
