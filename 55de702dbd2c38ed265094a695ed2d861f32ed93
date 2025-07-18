@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea69b075_5a374b34",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-18T10:56:26Z",
+      "side": 1,
+      "message": "again. if we are passing the same parameter then just hardcode it.",
+      "range": {
+        "startLine": 439,
+        "startChar": 60,
+        "endLine": 439,
+        "endChar": 87
+      },
+      "revId": "55de702dbd2c38ed265094a695ed2d861f32ed93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4704a0_2c226819",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-18T10:56:26Z",
+      "side": 1,
+      "message": "NB: indendation",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 41
+      },
+      "revId": "55de702dbd2c38ed265094a695ed2d861f32ed93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
