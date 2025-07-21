@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef78c0e_b1ce8800",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-21T08:27:14Z",
+      "side": 1,
+      "message": "it doesnt have the Issue-ID mentioned..",
+      "revId": "9e613ed3fe6f309fdfc94ea48f7bcc1838956945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ed3205_9ebd0c04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-21T08:27:14Z",
+      "side": 1,
+      "message": "just the issue-id is not there. otherwise fine for me.",
+      "revId": "9e613ed3fe6f309fdfc94ea48f7bcc1838956945",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
