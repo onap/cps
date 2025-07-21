@@ -21,6 +21,7 @@
 
 package org.onap.cps.utils;
 
+import static org.onap.cps.utils.RestConfStylePathToCpsPathUtil.convertToCpsPath;
 import static org.onap.cps.utils.YangParserHelper.VALIDATE_AND_PARSE;
 import static org.onap.cps.utils.YangParserHelper.VALIDATE_ONLY;
 
@@ -48,20 +49,18 @@ public class YangParser {
     /**
      * Parses data into (normalized) ContainerNode according to schema context for the given anchor.
      *
-     * @param nodeData  data string
-     * @param anchor    the anchor for the node data
+     * @param nodeData data string
+     * @param anchor   the anchor for the node data
      * @return the NormalizedNode object
      */
     @Timed(value = "cps.utils.yangparser.nodedata.with.parent.parse",
-        description = "Time taken to parse node data with a parent")
-    public ContainerNode parseData(final ContentType contentType,
-                                   final String nodeData,
-                                   final Anchor anchor,
-                                   final String parentNodeXpath) {
+            description = "Time taken to parse node data with a parent")
+    public ContainerNode parseData(final ContentType contentType, final String nodeData, final Anchor anchor,
+            final String parentNodeXpath) {
         final SchemaContext schemaContext = getSchemaContext(anchor);
         try {
-            return yangParserHelper
-                    .parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_AND_PARSE);
+            return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath,
+                    VALIDATE_AND_PARSE);
         } catch (final DataValidationException e) {
             invalidateCache(anchor);
         }
@@ -71,16 +70,14 @@ public class YangParser {
     /**
      * Parses data into (normalized) ContainerNode according to schema context for the given yang resource.
      *
-     * @param nodeData                    data string
-     * @param yangResourceContentPerName  yang resource content per name
-     * @return                            the NormalizedNode object
+     * @param nodeData                   data string
+     * @param yangResourceContentPerName yang resource content per name
+     * @return the NormalizedNode object
      */
     @Timed(value = "cps.utils.yangparser.nodedata.with.parent.with.yangResourceMap.parse",
             description = "Time taken to parse node data with a parent")
-    public ContainerNode parseData(final ContentType contentType,
-                                   final String nodeData,
-                                   final Map<String, String> yangResourceContentPerName,
-                                   final String parentNodeXpath) {
+    public ContainerNode parseData(final ContentType contentType, final String nodeData,
+            final Map<String, String> yangResourceContentPerName, final String parentNodeXpath) {
         final SchemaContext schemaContext = getSchemaContext(yangResourceContentPerName);
         return yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_AND_PARSE);
     }
@@ -88,16 +85,14 @@ public class YangParser {
     /**
      * Parses data to validate it, using the schema context for given anchor.
      *
-     * @param anchor                    the anchor used for node data validation
-     * @param parentNodeXpath           the xpath of the parent node
-     * @param nodeData                  JSON or XML data string to validate
-     * @param contentType               the content type of the data (e.g., JSON or XML)
-     * @throws DataValidationException  if validation fails
+     * @param anchor          the anchor used for node data validation
+     * @param parentNodeXpath the xpath of the parent node
+     * @param nodeData        JSON or XML data string to validate
+     * @param contentType     the content type of the data (e.g., JSON or XML)
+     * @throws DataValidationException if validation fails
      */
-    public void validateData(final ContentType contentType,
-                             final String nodeData,
-                             final Anchor anchor,
-                             final String parentNodeXpath) {
+    public void validateData(final ContentType contentType, final String nodeData, final Anchor anchor,
+            final String parentNodeXpath) {
         final SchemaContext schemaContext = getSchemaContext(anchor);
         try {
             yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_ONLY);
@@ -109,14 +104,26 @@ public class YangParser {
         yangParserHelper.parseData(contentType, nodeData, schemaContext, parentNodeXpath, VALIDATE_ONLY);
     }
 
+    /**
+     * Get Cps path from Restconf path.
+     *
+     * @param anchor            anchor
+     * @param restConfStylePath restconf path
+     * @return CpsPath
+     */
+    public String getCpsPathFromRestConfStylePath(final Anchor anchor, final String restConfStylePath) {
+        final SchemaContext schemaContext = getSchemaContext(anchor);
+        return convertToCpsPath(restConfStylePath, schemaContext);
+    }
+
     private SchemaContext getSchemaContext(final Anchor anchor) {
-        return yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(),
-            anchor.getSchemaSetName()).getSchemaContext();
+        return yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(), anchor.getSchemaSetName())
+                       .getSchemaContext();
     }
 
     private SchemaContext getSchemaContext(final Map<String, String> yangResourceContentPerName) {
         return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName)
-                .getSchemaContext();
+                       .getSchemaContext();
     }
 
     private void invalidateCache(final Anchor anchor) {
