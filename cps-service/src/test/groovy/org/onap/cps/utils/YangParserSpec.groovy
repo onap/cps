@@ -24,12 +24,14 @@ package org.onap.cps.utils
 import org.onap.cps.TestUtils
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
+import org.onap.cps.impl.YangTextSchemaSourceSetCache
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
+import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
+import org.opendaylight.yangtools.yang.model.api.ListSchemaNode
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
-import org.onap.cps.impl.YangTextSchemaSourceSetCache
 
 class YangParserSpec extends Specification {
 
@@ -52,6 +54,25 @@ class YangParserSpec extends Specification {
     def setup() {
         mockYangTextSchemaSourceSetCache.get('my dataspace', 'my schema') >> mockYangTextSchemaSourceSet
         mockYangTextSchemaSourceSet.getSchemaContext() >> mockSchemaContext
+    }
+
+    def 'Convert RestConf-style path to CPS path'() {
+        given: 'a RestConf-style path'
+            def restConfStylePath = '/bookstore:book=Book1'
+            def expectedCpsPath = '/book[@name=\'Book1\']'
+        and: 'a schema context that contains the matching node'
+            def mockedBookNode = Mock(ListSchemaNode) {
+                getQName() >> QName.create("bookstore", "book")
+                getKeyDefinition() >> List.of(QName.create("bookstore", "name"))
+            }
+            mockSchemaContext.getChildNodes() >> [mockedBookNode]
+            mockedBookNode.getChildNodes() >> []
+        when: 'restconf style path is converted to cps path'
+            def result = objectUnderTest.getCpsPathFromRestConfStylePath(anchor, restConfStylePath)
+        then: 'the schema context is retrieved from the cache for the correct anchor'
+            1 * mockYangTextSchemaSourceSetCache.get('my dataspace', 'my schema') >> mockYangTextSchemaSourceSet
+        and: 'the CPS path is returned correctly'
+            assert result == expectedCpsPath
     }
 
     def 'Parsing data.'() {
