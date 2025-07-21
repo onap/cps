@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a742a2_0d159ae0",
+        "filename": ".readthedocs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-21T07:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "433079dd_603f754c",
+      "revId": "52d0e1aba92946e1d4e7be34a92c1ede1d32895c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2cfa0d0_48b897cc",
