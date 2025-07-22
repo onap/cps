@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45deccdf_d49c28af",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: not for this patch but we can refactor this code as a method as it is been used at multiple places. no need to duplicate the code. I am ok if we do it as a separate patch as well.",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 9
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08a9aac_6edbc083",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: having new nodes set to #hasNewNodes for #scenario.\ndo it something like this so that when the test is formed it is readable.",
+      "range": {
+        "startLine": 423,
+        "startChar": 32,
+        "endLine": 423,
+        "endChar": 43
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0536e73_8c458622",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "this method looks full of loops and readability is taking a hit. we have to extract small methods to improve readability",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0df0a22_d1ba1593",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: identifyNewNodes",
+      "range": {
+        "startLine": 161,
+        "startChar": 40,
+        "endLine": 161,
+        "endChar": 51
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8c14e3_e6d4f816",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: move this to a method for better readability.\nupdateExistingFragmentEntities or updateExistingFragments.",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385ab9d1_96edc462",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "also this can be method. processNewNodes ??",
+      "range": {
+        "startLine": 170,
+        "startChar": 8,
+        "endLine": 173,
+        "endChar": 9
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31830911_9f340600",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: this can also be a method.\npersistFragmentEntitiesWithRetry maybe.",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 9
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98aed7f0_0348cf22",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "final Set\u003cString\u003e existingXpaths \u003d existingFragmentEntities.stream()\n        .map(FragmentEntity::getXpath)\n        .collect(Collectors.toSet());\n    \n    return updatedDataNodes.stream()\n        .filter(dataNode -\u003e !existingXpaths.contains(dataNode.getXpath()))\n        .collect(Collectors.toList());\n\ncan do it like this.",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 42
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7b8f5c_79c10e55",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-22T10:29:05Z",
+      "side": 1,
+      "message": "NB: updated",
+      "range": {
+        "startLine": 253,
+        "startChar": 41,
+        "endLine": 253,
+        "endChar": 47
+      },
+      "revId": "ead6ff955afbe55a8ac9dfc61ddbb3997843173c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
