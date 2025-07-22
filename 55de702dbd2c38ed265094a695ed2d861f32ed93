@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "785f0d8b_407084f5",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-07-22T09:21:01Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "ea69b075_5a374b34",
+      "range": {
+        "startLine": 439,
+        "startChar": 60,
+        "endLine": 439,
+        "endChar": 87
+      },
+      "revId": "55de702dbd2c38ed265094a695ed2d861f32ed93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de4704a0_2c226819",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-18T10:56:26Z",
       "side": 1,
       "message": "NB: indendation",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 41
+      },
+      "revId": "55de702dbd2c38ed265094a695ed2d861f32ed93",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a666a995_9e75dc46",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7840
+      },
+      "writtenOn": "2025-07-22T09:21:01Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "de4704a0_2c226819",
       "range": {
         "startLine": 150,
         "startChar": 30,
