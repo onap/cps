@@ -33,6 +33,86 @@
       "message": "recheck",
       "revId": "e5aab5524fa8762a06cb1e991e34af87bce99fd7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec45c133_c64ad375",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-23T13:30:43Z",
+      "side": 1,
+      "message": "dont fully understand all of this but I do worry on some of the shortened names used..",
+      "revId": "e5aab5524fa8762a06cb1e991e34af87bce99fd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bbfc55f_16e1c30a",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-23T13:30:43Z",
+      "side": 1,
+      "message": "not suer why you are adding this, does it stand for hazelcast?!",
+      "range": {
+        "startLine": 55,
+        "startChar": 61,
+        "endLine": 55,
+        "endChar": 63
+      },
+      "revId": "e5aab5524fa8762a06cb1e991e34af87bce99fd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa51689_be35b200",
+        "filename": "cps-charts/templates/cps-hz-service.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-23T13:30:43Z",
+      "side": 1,
+      "message": "presume hz stands for hazelcast, never lick acronyms, plesse use full name",
+      "revId": "e5aab5524fa8762a06cb1e991e34af87bce99fd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f2a5a0b_406055df",
+        "filename": "cps-charts/templates/cps-hz-service.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-23T13:30:43Z",
+      "side": 1,
+      "message": "hazelcast?",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "e5aab5524fa8762a06cb1e991e34af87bce99fd7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
