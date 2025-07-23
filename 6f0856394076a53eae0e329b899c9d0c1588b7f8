@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "6f0856394076a53eae0e329b899c9d0c1588b7f8",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ddc18d6_a5088305",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/PerfTestBase.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-07-23T12:30:09Z",
+      "side": 1,
+      "message": "NB: is this the same statement with the one on line 60? You can simply use testPassed variable insted.",
+      "range": {
+        "startLine": 66,
+        "startChar": 15,
+        "endLine": 66,
+        "endChar": 78
+      },
+      "revId": "6f0856394076a53eae0e329b899c9d0c1588b7f8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
