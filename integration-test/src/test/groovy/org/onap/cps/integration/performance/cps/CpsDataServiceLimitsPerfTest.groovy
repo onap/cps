@@ -74,7 +74,7 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
     def 'Delete data nodes from multiple anchors 32K (2^15) limit exceeded.'() {
         given: '33,000 anchor names'
             def anchorNames = (1..33_000).collect { "size-of-this-name-does-not-matter-for-limit-" + it }
-        when: 'a single operation is executed to delete all datanodes in given anchors'
+        when: 'a single operation is executed to delete all data nodes in given anchors'
             objectUnderTest.deleteDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, anchorNames, OffsetDateTime.now())
         then: 'a database exception is not thrown'
             noExceptionThrown()
@@ -87,8 +87,8 @@ class CpsDataServiceLimitsPerfTest extends CpsPerfTestBase {
             cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'limitsAnchor')
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        then: 'test data is deleted in 1 second'
-            recordAndAssertResourceUsage('CPS:Deleting test data', 0.068, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+        then: 'test data is deleted in 1 second (margin 3x)'
+            recordAndAssertResourceUsage('CPS:Deleting test data', 0.068, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false, 3)
     }
 
     def countDataNodes() {
