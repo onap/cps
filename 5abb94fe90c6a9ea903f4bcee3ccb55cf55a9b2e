@@ -64,6 +64,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f43de5_08eb7ec8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-07-23T06:13:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8d95076_ba677e71",
+      "range": {
+        "startLine": 44,
+        "startChar": 54,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19adee32_24e243aa",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-07-23T06:13:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6485591d_a774e62f",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 77
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "390171b6_4988d31f",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-07-10T14:50:32Z",
       "side": 1,
       "message": "this can be moved outside the test.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "5abb94fe90c6a9ea903f4bcee3ccb55cf55a9b2e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57e88ae3_71dceda4",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MdcServletFilterSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-07-23T06:13:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "390171b6_4988d31f",
       "range": {
         "startLine": 34,
         "startChar": 12,
