@@ -56,11 +56,7 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
 
     abstract def createInitialData()
 
-    def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean referenceGraph) {
-        def timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR
-        if (expectedAverageTimeInSec <= VERY_FAST_TEST_THRESHOLD) {
-            timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR_FOR_VERY_FAST_TEST
-        }
+    def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean referenceGraph, double timeLimitFactor) {
         def testPassed = recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
         addRecord(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, testPassed)
         if (referenceGraph) {
@@ -69,6 +65,15 @@ abstract class PerfTestBase extends CpsIntegrationSpecBase {
         addCsvRecord('All', title, expectedAverageTimeInSec, recordedTimeInSec)
         assert recordedTimeInSec <= timeLimitFactor * expectedAverageTimeInSec
         return true
+    }
+
+    def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB, boolean referenceGraph) {
+        def timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR
+        if (expectedAverageTimeInSec <= VERY_FAST_TEST_THRESHOLD) {
+            timeLimitFactor = DEFAULT_TIME_LIMIT_FACTOR_FOR_VERY_FAST_TEST
+        }
+        recordAndAssertResourceUsage(title, expectedAverageTimeInSec, recordedTimeInSec, memoryUsageInMB, referenceGraph, timeLimitFactor)
+
     }
 
     def recordAndAssertResourceUsage(String title, double expectedAverageTimeInSec, double recordedTimeInSec, double memoryUsageInMB) {
