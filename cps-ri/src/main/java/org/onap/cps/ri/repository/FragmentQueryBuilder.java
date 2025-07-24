@@ -21,14 +21,16 @@
 
 package org.onap.cps.ri.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.StringSubstitutor;
 import org.onap.cps.api.exceptions.CpsPathException;
@@ -36,6 +38,7 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -367,4 +370,38 @@ public class FragmentQueryBuilder {
         return stringSubstitutor.replace(template);
     }
 
+    public List<Map<String, Object>> getCustomNodesQuery(Long id, String xpath, List<String> selectFields, String whereConditions) {
+        try {
+            CpsPathUtil.SqlQueryResult sqlQueryResult = CpsPathUtil.getSqlQuery(xpath, whereConditions);
+            String sql = "SELECT attributes FROM fragment WHERE " + sqlQueryResult.sql();
+            List<Object> params = sqlQueryResult.params();
+            Query query = entityManager.createNativeQuery(sql);
+            for (int i = 0; i < params.size(); i++) {
+                query.setParameter(i + 1, params.get(i));
+            }
+
+            @SuppressWarnings("unchecked")
+            List<String> results = query.getResultList();
+            List<Map<String, Object>> mappedResults = new ArrayList<>();
+            for (Object result : results) {
+                ObjectMapper objectMapper =new ObjectMapper();
+
+                Map<String, Object> resultMap = new HashMap<>();
+                Map<String, Object> attributes = objectMapper.readValue(result.toString(), Map.class);
+                for (String field : selectFields) {
+                    if (attributes.containsKey(field)) {
+                        resultMap.put(field, attributes.get(field));
+                    }
+                }
+                mappedResults.add(resultMap);
+            }
+            return mappedResults;
+        } catch (PathParsingException e) {
+            throw new IllegalArgumentException("Failed to parse query: " + e.getDetails(), e);
+        } catch (JsonMappingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

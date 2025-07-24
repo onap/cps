@@ -46,6 +46,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
 
     private final List<CpsPathQuery.LeafCondition> leafConditions = new ArrayList<>();
 
+    private final List<CpsPathQuery.WhereCondition> whereConditions = new ArrayList<>();
+
     private final StringBuilder normalizedXpathBuilder = new StringBuilder();
 
     private int startIndexOfAncestorSchemaNodeIdentifier = 0;
@@ -55,6 +57,8 @@ public class CpsPathBuilder extends CpsPathBaseListener {
     private final List<String> containerNames = new ArrayList<>();
 
     private final List<String> booleanOperators = new ArrayList<>();
+
+    private final List<String> whereBooleanOperators = new ArrayList<>();
 
     @Override
     public void exitSlash(final CpsPathParser.SlashContext ctx) {
@@ -159,10 +163,62 @@ public class CpsPathBuilder extends CpsPathBaseListener {
         normalizedXpathBuilder.append(CLOSE_BRACKET);
     }
 
+    @Override
+    public void enterWhereClause(final CpsPathParser.WhereClauseContext ctx) {
+        whereConditions.clear();
+        whereBooleanOperators.clear();
+    }
+
+    @Override
+    public void exitAndExpression(final CpsPathParser.AndExpressionContext ctx) {
+        whereBooleanOperators.add("AND");
+    }
+
+    @Override
+    public void exitOrExpression(final CpsPathParser.OrExpressionContext ctx) {
+        whereBooleanOperators.add("OR");
+    }
+
+    @Override
+    public void exitNotExpression(final CpsPathParser.NotExpressionContext ctx) {
+        whereConditions.add(new CpsPathQuery.WhereCondition("", "NOT", null));
+    }
+
+    @Override
+    public void exitParenExpression(final CpsPathParser.ParenExpressionContext ctx) {
+
+    }
+
+    @Override
+    public void exitPredicateExpression(final CpsPathParser.PredicateExpressionContext ctx) {
+
+    }
+
+    @Override
+    public void exitComparison(final CpsPathParser.ComparisonContext ctx) {
+        final String leafName = ctx.leafName().getText();
+        final String operator = ctx.comparativeOperators().getText();
+        final Object comparisonValue;
+        if (ctx.IntegerLiteral() != null) {
+            comparisonValue = Integer.valueOf(ctx.IntegerLiteral().getText());
+        } else if (ctx.DecimalLiteral() != null || ctx.DoubleLiteral() != null) {
+            comparisonValue = Double.valueOf(ctx.getChild(2).getText());
+        } else if (ctx.StringLiteral() != null) {
+            comparisonValue = unwrapQuotedString(ctx.StringLiteral().getText());
+        } else {
+            throw new PathParsingException("Unsupported comparison value encountered in expression: " + ctx.getText());
+        }
+        whereConditions.add(new CpsPathQuery.WhereCondition(leafName, operator, comparisonValue));
+    }
+
     CpsPathQuery build() {
         cpsPathQuery.setNormalizedXpath(normalizedXpathBuilder.toString());
         cpsPathQuery.setContainerNames(containerNames);
         cpsPathQuery.setBooleanOperators(booleanOperators);
+        cpsPathQuery.setWhereBooleanOperators(whereBooleanOperators);
+        if (!whereConditions.isEmpty()) {
+            cpsPathQuery.setWhereConditions(whereConditions);
+        }
         return cpsPathQuery;
     }
 

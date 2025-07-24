@@ -25,6 +25,8 @@ package org.onap.cps.rest.controller;
 import io.micrometer.core.annotation.Timed;
 import java.util.List;
 import java.util.Map;
+
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -35,8 +37,7 @@ import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("${rest.api.cps-base-path}")
@@ -103,5 +104,19 @@ public class QueryRestController implements CpsQueryApi {
             responseData = jsonObjectMapper.asJsonString(dataNodesAsMaps);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+    @PostMapping("/query/{dataspaceName}/{anchor}")
+    @Timed(value = "cps.data.controller.datanode.query.post", description = "Time taken to execute POST query")
+    public ResponseEntity<Object> executeQuery(@PathVariable("dataspaceName") String dataspaceName, @PathVariable("anchor") String anchor , @RequestBody QueryRequest queryRequest) {
+
+        String xpath = queryRequest.getXpath();
+        List<String> selectFields = queryRequest.getSelect();
+        String whereConditions = queryRequest.getCondition();
+
+        List<Map<String, Object>> queryResult = cpsFacade.executeCustomQuery(dataspaceName,anchor,xpath, selectFields, whereConditions);
+
+        String responsedata = jsonObjectMapper.asJsonString(queryResult);
+        return new ResponseEntity<>(responsedata, HttpStatus.OK);
     }
 }

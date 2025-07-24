@@ -33,6 +33,7 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -306,6 +307,15 @@ public class CpsDataServiceImpl implements CpsDataService {
         final String xpath = ROOT_NODE_XPATH.equals(parentNodeXpath) ? NO_PARENT_PATH :
                 CpsPathUtil.getNormalizedXpath(parentNodeXpath);
         yangParser.validateData(contentType, nodeData, anchor, xpath);
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchor);
+        final Anchor anchorEntity = cpsAnchorService.getAnchor(dataspaceName, anchor);
+        return cpsDataPersistenceService.getCustomNodes(
+                dataspaceName, anchor, xpath, selectFields, whereConditions);
+
     }
 
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {

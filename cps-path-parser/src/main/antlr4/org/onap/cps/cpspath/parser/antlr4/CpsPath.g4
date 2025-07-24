@@ -27,7 +27,11 @@
 
 grammar CpsPath ;
 
-cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? attributeAxis? EOF ;
+query
+    : cpsPath whereClause? EOF
+    ;
+
+cpsPath : ( prefix | descendant ) multipleLeafConditions? textFunctionCondition? containsFunctionCondition? ancestorAxis? attributeAxis? ;
 
 slash : SLASH ;
 
@@ -59,9 +63,25 @@ leafCondition : AT leafName comparativeOperators ( IntegerLiteral | StringLitera
 
 leafName : QName ;
 
+whereClause
+    : whereExpression
+    ;
+
+whereExpression
+    : whereExpression KW_AND whereExpression # AndExpression
+    | whereExpression KW_OR whereExpression # OrExpression
+    | KW_NOT whereExpression # NotExpression
+    | OP whereExpression CP # ParenExpression
+    | wherePredicate # PredicateExpression
+    ;
+
+wherePredicate
+    : leafName comparativeOperators ( IntegerLiteral | DecimalLiteral | DoubleLiteral | StringLiteral ) # Comparison
+    ;
+
 booleanOperators : ( KW_AND | KW_OR ) ;
 
-comparativeOperators : ( EQ | GT | LT | GE | LE ) ;
+comparativeOperators : ( EQ | GT | LT | GE | LE | NE | LIKE ) ;
 
 /*
  * Lexer Rules
@@ -73,6 +93,7 @@ AT : '@' ;
 CB : ']' ;
 COLONCOLON : '::' ;
 EQ : '=' ;
+NE : '!=' ;
 OB : '[' ;
 SLASH : '/' ;
 COMMA : ',' ;
@@ -82,14 +103,15 @@ GT : '>' ;
 LT : '<' ;
 GE : '>=' ;
 LE : '<=' ;
+LIKE : 'like' | 'LIKE' ;
 
 // KEYWORDS
-
 KW_ANCESTOR : 'ancestor' ;
-KW_AND : 'and' ;
-KW_TEXT_FUNCTION: 'text()' ;
-KW_OR : 'or' ;
+KW_AND : 'and' | 'AND' ;
+KW_TEXT_FUNCTION : 'text()' ;
+KW_OR : 'or' | 'OR' ;
 KW_CONTAINS_FUNCTION : 'contains' ;
+KW_NOT : 'not' | 'NOT' ;
 KW_ANCESTOR_AXIS_PREFIX : SLASH KW_ANCESTOR COLONCOLON ;
 
 IntegerLiteral : FragDigits ;

@@ -248,7 +248,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
                     "Only Cps Path Queries with attribute-axis are supported by queryDataLeaf");
         }
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-        return fragmentRepository.findAttributeValuesByAnchorAndCpsPath(anchorEntity, cpsPathQuery,
+        return fragmentRepository. findAttributeValuesByAnchorAndCpsPath(anchorEntity, cpsPathQuery,
                 cpsPathQuery.getAttributeAxisAttributeName(), queryResultLimit, targetClass);
     }
 
@@ -296,6 +296,13 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final CpsPathQuery cpsPathQuery = getCpsPathQuery(cpsPath);
         final List<Long> anchorIdList = getAnchorIdsForPagination(dataspaceEntity, cpsPathQuery, NO_PAGINATION);
         return anchorIdList.size();
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions) {
+        AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchor);
+        return fragmentRepository.findCustomNodes(anchorEntity.getId(),xpath,selectFields,whereConditions);
+
     }
 
     @Override

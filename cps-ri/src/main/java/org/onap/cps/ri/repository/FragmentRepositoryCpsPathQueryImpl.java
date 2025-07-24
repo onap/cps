@@ -24,6 +24,7 @@ package org.onap.cps.ri.repository;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -90,6 +91,12 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
                 dataspaceEntity, cpsPathQuery, paginationOption);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Map<String, Object>> findCustomNodes(Long id, String xpath, List<String> selectFields, String whereConditions) {
+        List<Map<String, Object>> as =  fragmentQueryBuilder.getCustomNodesQuery(id, xpath, selectFields, whereConditions);
+        return as;
     }
 
 }

@@ -114,5 +114,12 @@ public class CpsFacadeImpl implements CpsFacade {
             : (int) Math.ceil((double) totalAnchors / paginationOption.getPageSize());
     }
 
+    @Override
+    public List<Map<String, Object>> executeCustomQuery(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions) {
+       return cpsDataService.getCustomNodes(dataspaceName, anchor, xpath, selectFields, whereConditions);
+
+    }
+
+
 }
 

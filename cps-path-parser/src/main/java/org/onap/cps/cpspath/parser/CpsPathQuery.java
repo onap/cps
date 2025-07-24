@@ -46,6 +46,8 @@ public class CpsPathQuery {
     private List<String> booleanOperators;
     private String containsFunctionConditionLeafName;
     private String containsFunctionConditionValue;
+    private List<WhereCondition> whereConditions;
+    private List<String> whereBooleanOperators;
 
     /**
      * Returns a cps path query.
@@ -111,6 +113,12 @@ public class CpsPathQuery {
         return cpsPathPrefixType == ABSOLUTE && hasLeafConditions();
     }
 
+    public boolean hasWhereConditions(){
+        return whereConditions != null && !whereConditions.isEmpty();
+    }
+
     public record LeafCondition(String name, String operator, Object value) { }
+
+    public record WhereCondition(String name, String operator, Object value) { }
 
 }
