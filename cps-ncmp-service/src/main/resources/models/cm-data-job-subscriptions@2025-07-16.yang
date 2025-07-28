@@ -1,0 +1,20 @@
+module cps-data-job-subscriptions {
+    yang-version 1.1;
+    namespace "org:onap:cps:ncmp";
+
+    prefix cps-djs;
+
+    revision "2025-07-16" {
+        description
+            "First release of cm data job (notification) subscriptions model";
+    }
+
+    container dataJob {
+        list subscription {
+            key "alternateId dataTypeId";
+            leaf alternateId { type string; }
+            leaf dataTypeId { type string; }
+            leaf-list dataJobId { type string; }
+        }
+    }
+}
