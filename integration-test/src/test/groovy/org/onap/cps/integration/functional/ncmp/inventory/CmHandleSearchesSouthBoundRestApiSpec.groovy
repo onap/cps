@@ -44,18 +44,18 @@ class CmHandleSearchesSouthBoundRestApiSpec extends CpsIntegrationSpecBase {
                             } ]
                 }""".formatted(dmiPluginNameSearchValue)
         when: 'the search is executed it returns expected CM handles'
-            def result = mvc.perform(post("/ncmpInventory/v1/ch/searchCmHandles?includeCmHandlePropertiesInQuery=${includeCmHandleProperties}").contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
+            def result = mvc.perform(post("/ncmpInventory/v1/ch/searchCmHandles?outputDmiProperties=${outputDmiProperties}").contentType(MediaType.APPLICATION_JSON).content(requestBodyWithModuleCondition))
                     .andExpect(status().is2xxSuccessful())
                     .andExpect(jsonPath('$', hasSize(expectedCmHandleReferences.size())))
                     .andExpect(jsonPath('$[*].cmHandle', containsInAnyOrder(expectedCmHandleReferences.toArray())))
                     .andReturn()
         then: 'the result response only contains additional properties when requested'
-            assert result.response.contentAsString.contains('cmHandleProperties') == includeCmHandleProperties
+            assert result.response.contentAsString.contains('cmHandleProperties') == outputDmiProperties
         cleanup: 'deregister the CM Handles'
             requestBody = '{"dmiPlugin":"'+DMI1_URL+'", "removedCmHandles": ["ch-1", "ch-2"]}'
             mvc.perform(post('/ncmpInventory/v1/ch').contentType(MediaType.APPLICATION_JSON).content(requestBody)).andExpect(status().is2xxSuccessful())
         where: 'the following parameters are used'
-            useCorrectDmiForSearch | includeCmHandleProperties || expectedCmHandleReferences
+            useCorrectDmiForSearch | outputDmiProperties       || expectedCmHandleReferences
             true                   | true                      || ['ch-1', 'ch-2']
             true                   | false                     || ['ch-1', 'ch-2']
             false                  | false                     || []

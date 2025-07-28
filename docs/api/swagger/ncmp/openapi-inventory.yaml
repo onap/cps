@@ -204,7 +204,7 @@ paths:
       parameters:
       - description: Whether to include additional properties in the response.
         in: query
-        name: includeCmHandlePropertiesInQuery
+        name: outputDmiProperties
         required: false
         schema:
           type: boolean

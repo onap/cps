@@ -157,7 +157,7 @@ searchCmHandles:
     summary: Query Cm Handles for a requested DMI Service
     operationId: searchCmHandles
     parameters:
-      - name: includeCmHandlePropertiesInQuery
+      - name: outputDmiProperties
         in: query
         description: Whether to include additional properties in the response.
         required: false
