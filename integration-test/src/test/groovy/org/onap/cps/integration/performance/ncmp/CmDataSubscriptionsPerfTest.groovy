@@ -81,12 +81,12 @@ class CmDataSubscriptionsPerfTest extends NcmpPerfTestBase {
             }
 
             // NOTE Below fails as updateDataNodesAndDescendants can't handle JSON lists!
-            // cpsDataService.updateDataNodesAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, jsonPerPath, now)
+            // cpsDataPersistenceService.updateDataNodesAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, jsonPerPath, now)
 
             // So update for each CM-handle instead:
             jsonPerPath.each { parentPath, json ->
                 // Around 8.5 seconds for long strings, 4.8 with short strings
-                // cpsDataService.updateDataNodeAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
+                // cpsDataPersistenceService.updateDataNodeAndDescendants(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now)
                 // Around 6.5 seconds for long strings, 3.3 seconds with short strings
                 cpsDataService.updateNodeLeaves(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_ANCHOR, parentPath, json, now, ContentType.JSON)
             }

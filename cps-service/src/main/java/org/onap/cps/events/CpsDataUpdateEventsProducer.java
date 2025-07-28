@@ -24,16 +24,20 @@ package org.onap.cps.events;
 import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.events.model.CpsDataUpdatedEvent;
 import org.onap.cps.events.model.Data;
 import org.onap.cps.events.model.Data.Operation;
 import org.onap.cps.utils.DateTimeUtility;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -46,29 +50,34 @@ public class CpsDataUpdateEventsProducer {
 
     private final CpsNotificationService cpsNotificationService;
 
+    private final JsonObjectMapper jsonObjectMapper;
+
     @Value("${app.cps.data-updated.topic:cps-data-updated-events}")
     private String topicName;
 
-    @Value("${app.cps.data-updated.change-event-notifications-enabled:false}")
     private boolean cpsChangeEventNotificationsEnabled;
 
     @Value("${notification.enabled:false}")
     private boolean notificationsEnabled;
 
+    @Value("${app.cps.data-updated.delta-notification:false}")
+    private boolean deltaNotificationEnabled;
+
     /**
      * Send the cps data update event with header to the public topic.
      *
      * @param anchor Anchor of the updated data
+     * @param deltaReports data nodes
      * @param xpath  xpath of the updated data
      * @param operation operation performed on the data
      * @param observedTimestamp timestamp when data was updated.
      */
     @Timed(value = "cps.dataupdate.events.send", description = "Time taken to send Data Update event")
-    public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath,
+    public void sendCpsDataUpdateEvent(final Anchor anchor, final List<DeltaReport> deltaReports, final String xpath,
                                        final Operation operation, final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
             final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
-                    observedTimestamp, xpath, operation);
+                    observedTimestamp, xpath, deltaReports, operation);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
             final Map<String, String> extensions = createUpdateEventExtensions(updateEventId);
             final CloudEvent cpsDataUpdatedEventAsCloudEvent =
@@ -86,16 +95,19 @@ public class CpsDataUpdateEventsProducer {
     }
 
     private CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
-                                                          final String xpath,
-                                                          final Operation rootNodeOperation) {
+                                                          final String xpath, final List<DeltaReport> deltaReports,
+                                                          final Operation operation) {
         final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
         final Data updateEventData = new Data();
         updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
         updateEventData.setAnchorName(anchor.getName());
         updateEventData.setSchemaSetName(anchor.getSchemaSetName());
-        updateEventData.setOperation(getRootNodeOperation(xpath, rootNodeOperation));
+        updateEventData.setOperation(operation);
         updateEventData.setXpath(xpath);
+        if (deltaNotificationEnabled) {
+            updateEventData.setDelta(Collections.singletonList(deltaReports));
+        }
         cpsDataUpdatedEvent.setData(updateEventData);
         return cpsDataUpdatedEvent;
     }
@@ -106,15 +118,4 @@ public class CpsDataUpdateEventsProducer {
         return extensions;
     }
 
-    private Operation getRootNodeOperation(final String xpath, final Operation operation) {
-        return isRootXpath(xpath) || isRootContainerNodeXpath(xpath) ? operation : Operation.UPDATE;
-    }
-
-    private static boolean isRootXpath(final String xpath) {
-        return "/".equals(xpath) || "".equals(xpath);
-    }
-
-    private static boolean isRootContainerNodeXpath(final String xpath) {
-        return 0 == xpath.lastIndexOf('/');
-    }
 }

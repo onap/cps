@@ -26,11 +26,12 @@ import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
-import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.DataMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
@@ -53,7 +54,8 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANT
 class CpsDeltaServiceImplSpec extends Specification {
 
     def mockCpsAnchorService = Mock(CpsAnchorService)
-    def mockCpsDataService = Mock(CpsDataService)
+    def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
+    def mockCpsValidator = Mock(CpsValidator)
     def mockYangTextSchemaSourceSetCache = Mock(YangTextSchemaSourceSetCache)
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
@@ -64,7 +66,7 @@ class CpsDeltaServiceImplSpec extends Specification {
     def deltaReportHelper = new DeltaReportHelper()
     def deltaReportGenerator = new DeltaReportGenerator(deltaReportHelper)
     def groupedDeltaReportGenerator = new GroupedDeltaReportGenerator(deltaReportHelper)
-    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataService, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
+    def objectUnderTest = new CpsDeltaServiceImpl(mockCpsAnchorService, mockCpsDataPersistenceService, mockCpsValidator, dataNodeFactory, dataMapper, jsonObjectMapper, deltaReportGenerator, groupedDeltaReportGenerator)
 
     static def bookstoreDataNodeWithParentXpath = [new DataNode(xpath: '/bookstore', leaves: ['bookstore-name': 'Easons'])]
     static def bookstoreDataNodeWithChildXpath = [new DataNode(xpath: '/bookstore/categories[@code=\'02\']', leaves: ['code': '02', 'name': 'Kids'])]
@@ -119,9 +121,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, OMIT_DESCENDANTS, groupDataNodes)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], OMIT_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], OMIT_DESCENDANTS) >> targetDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], OMIT_DESCENDANTS) >> targetDataNodes
         and: 'the delta report contains the expected information'
             deltaReport.size() == 1
             deltaReport[0].action.equals(expectedAction)
@@ -144,9 +146,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
         and: 'delta report contains correct number of entries'
             deltaReport.size() == 2
         and: 'the delta report contains expected details for parent node'
@@ -172,9 +174,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_ENABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
         and: 'delta report contains correct number of entries'
             deltaReport.size() == 2
         and: 'the delta report contains expected details for parent node'
@@ -200,9 +202,9 @@ class CpsDeltaServiceImplSpec extends Specification {
     when: 'attempt to get delta between 2 anchors'
         def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
     then: 'cps data service is invoked and returns source data nodes'
-        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+        mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
     and: 'cps data service is invoked again to return target data nodes'
-        mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+        mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
     and: 'the delta report contains expected "replace" action'
         assert deltaReport[0].action.equals('replace')
     and: 'the delta report contains expected xpath'
@@ -224,9 +226,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 data nodes'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
         then: 'the delta report is empty'
             assert deltaReport.isEmpty()
     }
@@ -238,7 +240,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between an anchor and a JSON payload'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, yangResourceContentPerName, jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
             dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
         and: 'data node factory method is invoked to build target data nodes using user provided schema'
@@ -261,7 +263,7 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between an anchor and a JSON payload'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAnchorAndPayload(dataspaceName, ANCHOR_NAME_1, xpath, [:], jsonData, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'source data nodes are rebuilt (to match the data type with target data nodes)'
             dataNodeFactory.createDataNodesWithAnchorXpathAndNodeData(anchor1, xpath, jsonObjectMapper.asJsonString(sourceDataNodesAsMap), ContentType.JSON)
         and: 'data node factory method is invoked to build target data nodes using schema details fetched from anchor name'
@@ -301,9 +303,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, groupDataNodes)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodeWithoutLeafData
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodeWithoutLeafData
         and: 'the delta report contains expected details for parent node and child node'
             assert deltaReport.isEmpty()
         where:
@@ -318,9 +320,9 @@ class CpsDeltaServiceImplSpec extends Specification {
         when: 'attempt to get delta between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, xpath, INCLUDE_ALL_DESCENDANTS, GROUPING_ENABLED)
         then: 'cps data service is invoked and returns source data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_1, [xpath], INCLUDE_ALL_DESCENDANTS) >> sourceDataNodes
         and: 'cps data service is invoked again to return target data nodes'
-            mockCpsDataService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
+            mockCpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName, ANCHOR_NAME_2, [xpath], INCLUDE_ALL_DESCENDANTS) >> targetDataNodes
         and: 'delta report contains correct number of entries'
             deltaReport.size() == 1
         and: 'the delta report contains expected details for updated node'
