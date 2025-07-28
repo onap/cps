@@ -16,6 +16,121 @@
       "message": "need to check the compatibility with NCMP as well.",
       "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb8744b_7a55e7c3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T07:02:40Z",
+      "side": 1,
+      "message": "Replace date node tre returns #hasNewNodes for #scenario",
+      "range": {
+        "startLine": 423,
+        "startChar": 27,
+        "endLine": 423,
+        "endChar": 44
+      },
+      "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dea547d_a39055e3",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T07:02:40Z",
+      "side": 1,
+      "message": "? rephrase",
+      "range": {
+        "startLine": 250,
+        "startChar": 15,
+        "endLine": 250,
+        "endChar": 72
+      },
+      "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "656249b2_7f47c4ad",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T07:02:40Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 255,
+        "startChar": 7,
+        "endLine": 255,
+        "endChar": 93
+      },
+      "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd89ae3f_840d0c58",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDataService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T07:02:40Z",
+      "side": 1,
+      "message": "expand description .. boolean",
+      "range": {
+        "startLine": 150,
+        "startChar": 30,
+        "endLine": 150,
+        "endChar": 42
+      },
+      "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7161d6f8_8a76c9b8",
+        "filename": "cps-service/src/main/java/org/onap/cps/spi/CpsDataPersistenceService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T07:02:40Z",
+      "side": 1,
+      "message": "expand",
+      "range": {
+        "startLine": 117,
+        "startChar": 27,
+        "endLine": 117,
+        "endChar": 38
+      },
+      "revId": "70749b461f20454a2f4fde97943b5bd11ffa1cf3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
