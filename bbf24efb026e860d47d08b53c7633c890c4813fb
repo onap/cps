@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "bbf24efb026e860d47d08b53c7633c890c4813fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabfd140_8d61afae",
+        "filename": "cps-charts/templates/cps-hazelcast-service.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-28T07:37:52Z",
+      "side": 1,
+      "message": "did you forget to rename this one? hazelcast",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "bbf24efb026e860d47d08b53c7633c890c4813fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
