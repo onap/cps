@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ffa844_05ca89fd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/RestConfStylePathToCpsPathUtil.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-28T12:17:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58cc3c3b_dbc451e8",
+      "range": {
+        "startLine": 48,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "7c276d9e953476baca4e37d9f372dbb6d849d41a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "400caa76_5d52a6d4",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-07-28T11:51:24Z",
       "side": 1,
       "message": "restConfPathSegmentWithoutModulePrefix",
+      "range": {
+        "startLine": 78,
+        "startChar": 21,
+        "endLine": 78,
+        "endChar": 32
+      },
+      "revId": "7c276d9e953476baca4e37d9f372dbb6d849d41a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b7f4b81_eb1a9184",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/RestConfStylePathToCpsPathUtil.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-28T12:17:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "400caa76_5d52a6d4",
       "range": {
         "startLine": 78,
         "startChar": 21,
