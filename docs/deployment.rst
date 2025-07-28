@@ -249,8 +249,6 @@ Below are the list of distributed datastructures that we have.
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | trustLevelPerDmiPlugin             | Stores the trust level for the dmi-plugins.               |
 +--------------+------------------------------------+-----------------------------------------------------------+
-| cps-ncmp     | cmNotificationSubscriptionCache    | Stores and tracks cm notification subscription requests.  |
-+--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cpsAndNcmpLock                     | Cps and NCMP distributed lock for various use cases.      |
 +--------------+------------------------------------+-----------------------------------------------------------+
 | cps-ncmp     | cmHandleIdPerAlternateId           | Stores cm handle ids per alternate ids.                   |
