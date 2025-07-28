@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "436da124_2b80c207",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-28T15:08:53Z",
+      "side": 1,
+      "message": "one minor suggestion",
+      "revId": "0e8253e0a774468196b8110347bfaf023bd868ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd724ea6_d0c8ecc1",
@@ -36,6 +53,53 @@
         "startChar": 78,
         "endLine": 86,
         "endChar": 99
+      },
+      "revId": "0e8253e0a774468196b8110347bfaf023bd868ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d945b06b_2ab06a9d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-28T15:08:53Z",
+      "side": 1,
+      "message": "from a java point of view the properties is still called additionalProperties, so I think its OK. This will change when we implement the new model",
+      "parentUuid": "bd724ea6_d0c8ecc1",
+      "range": {
+        "startLine": 86,
+        "startChar": 78,
+        "endLine": 86,
+        "endChar": 99
+      },
+      "revId": "0e8253e0a774468196b8110347bfaf023bd868ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefe5c52_d39cc645",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyInventoryController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-28T15:08:53Z",
+      "side": 1,
+      "message": "outputDmiPropertiesAsPrimitive",
+      "range": {
+        "startLine": 95,
+        "startChar": 22,
+        "endLine": 95,
+        "endChar": 51
       },
       "revId": "0e8253e0a774468196b8110347bfaf023bd868ee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
