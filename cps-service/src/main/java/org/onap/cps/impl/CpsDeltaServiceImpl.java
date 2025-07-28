@@ -31,13 +31,14 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.spi.CpsDataPersistenceService;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportGenerator;
@@ -50,7 +51,8 @@ import org.springframework.stereotype.Service;
 public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     private final CpsAnchorService cpsAnchorService;
-    private final CpsDataService cpsDataService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
+    private final CpsValidator cpsValidator;
     private final DataNodeFactory dataNodeFactory;
     private final DataMapper dataMapper;
     private final JsonObjectMapper jsonObjectMapper;
@@ -67,9 +69,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                            final FetchDescendantsOption fetchDescendantsOption,
                                                            final boolean groupDataNodes) {
 
-        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+        cpsValidator.validateNameCharacters(dataspaceName, sourceAnchorName, targetAnchorName);
+        final Collection<DataNode> sourceDataNodes = cpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName,
             sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
-        final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
+        final Collection<DataNode> targetDataNodes = cpsDataPersistenceService.getDataNodesForMultipleXpaths(dataspaceName,
             targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
         return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
     }
@@ -85,9 +88,10 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                                  final FetchDescendantsOption fetchDescendantsOption,
                                                                  final boolean groupDataNodes) {
 
+        cpsValidator.validateNameCharacters(dataspaceName, sourceAnchorName);
         final Anchor sourceAnchor = cpsAnchorService.getAnchor(dataspaceName, sourceAnchorName);
-        final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+        final Collection<DataNode> sourceDataNodes = cpsDataPersistenceService.getDataNodesForMultipleXpaths(
+            dataspaceName, sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
         final Collection<DataNode> sourceDataNodesRebuilt =
             rebuildSourceDataNodes(xpath, sourceAnchor, sourceDataNodes);
         final Collection<DataNode> targetDataNodes = new ArrayList<>(
