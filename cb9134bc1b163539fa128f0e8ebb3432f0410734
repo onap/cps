@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67ccf42_d8eece72",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T12:45:18Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "8d11c589_f1aa67c5",
+      "range": {
+        "startLine": 17,
+        "startChar": 79,
+        "endLine": 17,
+        "endChar": 112
+      },
+      "revId": "cb9134bc1b163539fa128f0e8ebb3432f0410734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cec120ec_e4549ca7",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-28T12:33:46Z",
       "side": 0,
       "message": "I would leave this entry but mark it as \u0027Unused\u0027 in the Feature column",
+      "range": {
+        "startLine": 27,
+        "startChar": 79,
+        "endLine": 27,
+        "endChar": 112
+      },
+      "revId": "cb9134bc1b163539fa128f0e8ebb3432f0410734",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14d593a2_a181264c",
+        "filename": "docs/cps-ncmp-message-status-codes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-28T12:45:18Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "cec120ec_e4549ca7",
       "range": {
         "startLine": 27,
         "startChar": 79,
