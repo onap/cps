@@ -21,6 +21,9 @@
 
 package org.onap.cps.events
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.cloudevents.CloudEvent
 import io.cloudevents.core.CloudEventUtils
@@ -29,39 +32,56 @@ import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.events.model.CpsDataUpdatedEvent
 import org.onap.cps.utils.JsonObjectMapper
+import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
 import static org.onap.cps.events.model.Data.Operation.CREATE
-import static org.onap.cps.events.model.Data.Operation.DELETE
-import static org.onap.cps.events.model.Data.Operation.UPDATE
+import static org.onap.cps.events.model.Data.Operation.REMOVE
+import static org.onap.cps.events.model.Data.Operation.REPLACE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
-    def mockEventsProducer = Mock(EventsProducer)
-    def objectMapper = new ObjectMapper();
+    def mockEventsProducer = Mock(EventsProducer<CpsDataUpdatedEvent>)
     def mockCpsNotificationService = Mock(CpsNotificationService)
-
-    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService, jsonObjectMapper)
+    
+    def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
+    def loggingListAppender
+    def applicationContext = new AnnotationConfigApplicationContext()
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         objectUnderTest.topicName = 'cps-core-event'
+        logger.setLevel(Level.DEBUG)
+        loggingListAppender = new ListAppender()
+        logger.addAppender(loggingListAppender)
+        loggingListAppender.start()
+        applicationContext.refresh()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CpsDataUpdateEventsProducer.class)).detachAndStopAllAppenders()
+        applicationContext.close()
     }
 
     def 'Create and send cps update event where events are #scenario.'() {
         given: 'an anchor, operation and observed timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
-            def operation = operationInRequest
             def observedTimestamp = OffsetDateTime.now()
+            def objectMapper = new ObjectMapper();
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = true
+            objectUnderTest.deltaNotificationEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
-        when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
+        when: 'service is called to publish data update event'
+            objectUnderTest.topicName = "cps-core-event"
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, Collections.EMPTY_LIST, xpath, operationInRequest, observedTimestamp)
         then: 'the event contains the required attributes'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
@@ -70,6 +90,8 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
                     assert cpsDataUpdatedEvent.getExtension('correlationid') == 'dataspace01:anchor01'
                     assert cpsDataUpdatedEvent.type == 'org.onap.cps.events.model.CpsDataUpdatedEvent'
                     assert cpsDataUpdatedEvent.source.toString() == 'CPS'
+                    def actualAnchor = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.anchorName
+                    assert actualAnchor == 'anchor01'
                     def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.operation
                     assert actualEventOperation == expectedOperation
                 }
@@ -78,15 +100,38 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         scenario                                   | xpath        | operationInRequest  || expectedOperation
         'empty xpath'                              | ''           | CREATE              || CREATE
         'root xpath and create operation'          | '/'          | CREATE              || CREATE
-        'root xpath and update operation'          | '/'          | UPDATE              || UPDATE
-        'root xpath and delete operation'          | '/'          | DELETE              || DELETE
-        'not root xpath and update operation'      | 'test'       | UPDATE              || UPDATE
+        'root xpath and update operation'          | '/'          | REPLACE             || REPLACE
+        'root xpath and delete operation'          | '/'          | REMOVE              || REMOVE
+        'not root xpath and update operation'      | 'test'       | REPLACE             || REPLACE
         'root node xpath and create operation'     | '/test'      | CREATE              || CREATE
-        'non root node xpath and update operation' | '/test/path' | CREATE              || UPDATE
-        'non root node xpath and delete operation' | '/test/path' | DELETE              || UPDATE
+        'non root node xpath and update operation' | '/test/path' | CREATE              || CREATE
+        'non root node xpath and delete operation' | '/test/path' | REMOVE              || REMOVE
     }
 
-    def 'Send cps update event when no timestamp provided.'() {
+    def 'publish cps update event when #scenario'() {
+        given: 'an anchor, operation and observed timestamp'
+            def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
+            def operation = CREATE
+            def observedTimestamp = OffsetDateTime.now()
+        and: 'notificationsEnabled is #notificationsEnabled'
+            objectUnderTest.notificationsEnabled = notificationsEnabled
+        and: 'cpsChangeEventNotificationsEnabled is #cpsChangeEventNotificationsEnabled'
+            objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
+        when: 'service is called to publish data update event'
+            objectUnderTest.topicName = "cps-core-event"
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, Collections.EMPTY_LIST, '/', operation, observedTimestamp)
+        then: 'the event contains the required attributes'
+            expectedCallToPublisher * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
+        where: 'below scenarios are present'
+            scenario                                     | notificationsEnabled | cpsChangeEventNotificationsEnabled || expectedCallToPublisher
+            'both notifications enabled'                 | true                 | true                               || 1
+            'both notifications disabled'                | false                | false                              || 0
+            'only CPS change event notification enabled' | false                | true                               || 0
+            'only overall notification enabled'          | true                 | false                              || 0
+
+    }
+
+    def 'publish cps update event when no timestamp provided'() {
         given: 'an anchor, operation and null timestamp'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
             def observedTimestamp = null
@@ -94,9 +139,10 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
-        when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, observedTimestamp)
-        then: 'the event is sent'
+        when: 'service is called to publish data update event'
+            objectUnderTest.topicName = "cps-core-event"
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, Collections.EMPTY_LIST, '/', CREATE, observedTimestamp)
+        then: 'the event is published'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
 
@@ -109,9 +155,9 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
         and: 'notification service enabled is: #cpsNotificationServiceisNotificationEnabled'
             mockCpsNotificationService.isNotificationEnabled(_, 'anchor02') >> cpsNotificationServiceisNotificationEnabled
-        when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, null)
-        then: 'the event is only sent when all related flags are true'
+        when: 'service is called to publish data update event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, Collections.EMPTY_LIST, '/', CREATE, null)
+        then: 'the event is only published when all related flags are true'
             expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
         where: 'the following flags are used'
             notificationsEnabled | cpsChangeEventNotificationsEnabled | cpsNotificationServiceisNotificationEnabled  || expectedCallsToProducer
