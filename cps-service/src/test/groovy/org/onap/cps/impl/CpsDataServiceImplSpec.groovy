@@ -26,8 +26,10 @@ package org.onap.cps.impl
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
+import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.api.exceptions.ConcurrencyException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.api.exceptions.DataValidationException
@@ -39,6 +41,9 @@ import org.onap.cps.events.CpsDataUpdateEventsProducer
 import org.onap.cps.spi.CpsDataPersistenceService
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
+import org.onap.cps.utils.DataMapper
+import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.PrefixResolver
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
@@ -51,7 +56,8 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Operation.DELETE
+import static org.onap.cps.events.model.Data.Operation.REMOVE
+import static org.onap.cps.events.model.Data.Operation.REPLACE
 
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
@@ -61,10 +67,14 @@ class CpsDataServiceImplSpec extends Specification {
     def mockTimedYangTextSchemaSourceSetBuilder = Mock(TimedYangTextSchemaSourceSetBuilder)
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
+    def mockCpsDeltaService = Mock(CpsDeltaService)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
+    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def mockPrefixResolver = Mock(PrefixResolver)
+    def dataMapper = new DataMapper(mockCpsAnchorService, mockPrefixResolver)
 
-    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
-            dataNodeFactory, mockCpsValidator, yangParser)
+    def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsDeltaService, mockCpsAnchorService,
+            dataNodeFactory, mockCpsValidator, dataMapper, jsonObjectMapper, yangParser)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -312,6 +322,24 @@ class CpsDataServiceImplSpec extends Specification {
             'json list'      | '/test-tree'    | '{"branch": [{"name":"Name1"}, {"name":"Name2"}]}' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
+    def 'Replace data node when delta notifications is #scenario'() {
+        given: 'schema set for given anchor and dataspace references test-tree model and delta notification enabled'
+            setupSchemaSetMocks('test-tree.yang')
+            objectUnderTest.deltaNotificationEnabled = notificationsEnabled
+            def json = '{"test-tree": {"branch": []}}'
+            def deltaReport = [new DeltaReportBuilder().withXpath('/xpath').withSourceData(['data':'leaf-data']).withTargetData(['data':'new-leaf-data']).actionReplace().build()]
+        when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
+            objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', json, observedTimestamp, ContentType.JSON)
+        then: 'delta service returns delta report for updated data'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'the persistence service method is invoked with correct parameters'
+            numberOfInvocations * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, deltaReport, '/', REPLACE, observedTimestamp)
+        where: 'following parameters were used'
+            scenario   | notificationsEnabled | numberOfInvocations
+            'enabled'  | true                 | 1
+            'disabled' | false                | 0
+    }
+
     def 'Replace data node using singular XML data node: #scenario.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -394,6 +422,24 @@ class CpsDataServiceImplSpec extends Specification {
             2 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
     }
 
+    def 'Replace list content when delta notifications is #scenario'() {
+        given: 'schema set for given anchor and dataspace references test-tree model'
+            setupSchemaSetMocks('test-tree.yang')
+            def json = '{"branch": [{"name": "A"}, {"name": "B"}]}'
+            def deltaReport = [new DeltaReportBuilder().withXpath('/xpath').withSourceData(['data':'leaf-data']).withTargetData(['data':'new-leaf-data']).actionReplace().build()]
+            objectUnderTest.deltaNotificationEnabled = notificationsEnabled
+        when: 'replace list data method is invoked with list element json data'
+            objectUnderTest.replaceListContent(dataspaceName, anchorName, '/test-tree', json, observedTimestamp, ContentType.JSON)
+        then: 'delta service returns delta report for the generated json'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'the event producer service is called to send notification'
+            numberOfInvocations * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, deltaReport, '/test-tree', REPLACE, observedTimestamp)
+        where: 'the following parameters were used'
+            scenario   | notificationsEnabled | numberOfInvocations
+            'enabled'  | true                 | 1
+            'disabled' | false                | 0
+    }
+
     def 'Replace list content data fragment XML under parent node.'() {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
@@ -441,6 +487,25 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsDataPersistenceService.deleteListDataNode(dataspaceName, anchorName, '/test-tree/branch')
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+    }
+
+    def 'Delete list element when delta notifications is #scenario'() {
+        given: 'delta notification is enabled'
+            objectUnderTest.deltaNotificationEnabled = notificationsEnabled
+            def dataNodes = [new DataNodeBuilder().withXpath('/test-tree/branch').build()]
+            def deltaReport = [new DeltaReportBuilder().withXpath('/test-tree/branch').withSourceData(['data':'leaf-data']).actionRemove().build()]
+        when: 'delete list data method is invoked with list element json data'
+            objectUnderTest.deleteListOrListElement(dataspaceName, anchorName, '/test-tree/branch', observedTimestamp)
+        then: 'persistence service returns data for delete request'
+            mockCpsDataPersistenceService.getDataNodes(*_) >> dataNodes
+        and: 'delta service returns delta report for the generated json'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'the event producer service is called to send notification'
+            numberOfInvocations * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(_, deltaReport, '/test-tree/branch', REMOVE, observedTimestamp)
+        where: 'the following parameters were used'
+            scenario   | notificationsEnabled | numberOfInvocations
+            'enabled'  | true                 | 1
+            'disabled' | false                | 0
     }
 
     def 'Delete multiple list elements under existing node.'() {
@@ -497,9 +562,45 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(['anchor1', 'anchor2'])
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
-        and: 'a data update event is sent for each anchor'
-            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
-            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
+    }
+
+    def 'Delete data nodes when delta notification is #scenario'() {
+        given: 'data nodes to be deleted and delta report'
+            def dataNodes = [new DataNodeBuilder().withXpath('/data-node').build()]
+            def deltaReport = [new DeltaReportBuilder().withXpath('/data-node').withSourceData(['data':'leaf-data']).actionRemove().build()]
+            objectUnderTest.deltaNotificationEnabled = notificationsEnabled
+        when: 'delete data node method is invoked with correct parameters'
+            objectUnderTest.deleteDataNodes(dataspaceName, anchorName, observedTimestamp)
+        then: 'persistence service returns data for delete request'
+            mockCpsDataPersistenceService.getDataNodes(*_) >> dataNodes
+        and: 'delta service returns delta report for the generated json'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'the event producer service is called to send notification'
+            numberOfInvocations * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, deltaReport, '/', REMOVE, observedTimestamp)
+        where: 'the following parameters were used'
+            scenario   | notificationsEnabled | numberOfInvocations
+            'enabled'  | true                 | 1
+            'disabled' | false                | 0
+    }
+
+    def 'Delete data node when delta notification is #scenario'() {
+        given: 'data nodes to be deleted, delta report and delta notification is enabled'
+            def dataNodes = [new DataNodeBuilder().withXpath('/data-node').build()]
+            def deltaReport = [new DeltaReportBuilder().withXpath('/data-node').withSourceData(['data':'leaf-data']).actionRemove().build()]
+            objectUnderTest.deltaNotificationEnabled = notificationsEnabled
+        when: 'delete data node method is invoked with correct parameters'
+            objectUnderTest.deleteDataNode(dataspaceName, anchorName, '/data-node', observedTimestamp)
+        then: 'persistence service returns data for delete request'
+            mockCpsDataPersistenceService.getDataNodes(*_) >> dataNodes
+        and: 'delta service returns delta report for the generated json'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'the event producer service is called to send notification'
+            numberOfInvocations * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor, deltaReport, '/data-node', REMOVE, observedTimestamp)
+        where: 'the following parameters were used'
+            scenario   | notificationsEnabled | numberOfInvocations
+            'enabled'  | true                 | 1
+            'disabled' | false                | 0
+
     }
 
     def "Validating #scenario when dry run is enabled."() {
@@ -563,13 +664,17 @@ class CpsDataServiceImplSpec extends Specification {
     def 'Exception is thrown while sending the notification.'(){
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
-        when: 'producer throws an exception while sending event'
-            mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("Sending failed")}
+            def deltaReport = [new DeltaReportBuilder().withXpath('/xpath').withSourceData(['data':'leaf-data']).withTargetData(['data':'new-leaf-data']).actionReplace().build()]
+        when: 'cps delta service returns delta report for the updated data'
+            mockCpsDeltaService.getDeltaByDataspaceAnchorAndPayload(*_) >> deltaReport
+        and: 'producer throws an exception while sending event'
+            mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(*_) >> { throw new Exception("Sending failed")}
+            objectUnderTest.deltaNotificationEnabled = true
         and: 'an update event is performed'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
-        then: 'the exception is not bubbled up'
+        then: 'no exception is thrown'
             noExceptionThrown()
-        and: "the exception message is logged"
+        and: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
             assert logs.contains('Failed to send message to notification service')
     }
