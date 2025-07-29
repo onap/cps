@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7862ec_ab748aab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "275dc2e5_0044812c",
+      "range": {
+        "startLine": 51,
+        "startChar": 58,
+        "endLine": 51,
+        "endChar": 69
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "144b0608_5b477ed0",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-07-29T11:29:07Z",
       "side": 1,
       "message": "processed by ncmp?",
+      "range": {
+        "startLine": 63,
+        "startChar": 74,
+        "endLine": 63,
+        "endChar": 83
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "834bb615_96d58dfe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "144b0608_5b477ed0",
       "range": {
         "startLine": 63,
         "startChar": 74,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "958cb0d4_efe25114",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcOperationEnum.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb4710ac_76c37990",
+      "range": {
+        "startLine": 26,
+        "startChar": 22,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5124b105_61278ffb",
@@ -133,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11dbbbde_0f7c441f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcOperationEnum.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5124b105_61278ffb",
+      "range": {
+        "startLine": 52,
+        "startChar": 7,
+        "endLine": 52,
+        "endChar": 8
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a0e6358_c54eda6a",
@@ -146,6 +242,30 @@
       "writtenOn": "2025-07-29T11:29:07Z",
       "side": 1,
       "message": "align , cmAvcEventCon...",
+      "range": {
+        "startLine": 60,
+        "startChar": 23,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2244593a_e0d40038",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a0e6358_c54eda6a",
       "range": {
         "startLine": 60,
         "startChar": 23,
