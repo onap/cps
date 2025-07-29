@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b729212a_0cee5c0f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T22:19:37Z",
+      "side": 1,
+      "message": "yep. tried to accommodate this with minor modifications.",
+      "parentUuid": "23b27eac_e5f0a405",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "16b1c5e180539a39cc5db2919348aaea995c3c74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83d62d96_d550cba0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-29T16:30:39Z",
       "side": 1,
       "message": "nothing being sent here really, you are just creating an cloud event and then wrapping it in a consumerrecord (mimicking what is been received in the production code)",
+      "range": {
+        "startLine": 72,
+        "startChar": 23,
+        "endLine": 72,
+        "endChar": 30
+      },
+      "revId": "16b1c5e180539a39cc5db2919348aaea995c3c74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19b49b2_03e43704",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T22:19:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83d62d96_d550cba0",
       "range": {
         "startLine": 72,
         "startChar": 23,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41739e10_028f59a3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T22:19:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5971426e_00fbbb36",
+      "range": {
+        "startLine": 82,
+        "startChar": 14,
+        "endLine": 82,
+        "endChar": 43
+      },
+      "revId": "16b1c5e180539a39cc5db2919348aaea995c3c74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e47181c_3f46f396",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-07-29T16:30:39Z",
       "side": 1,
       "message": "the inventory service says #scenario",
+      "range": {
+        "startLine": 109,
+        "startChar": 14,
+        "endLine": 109,
+        "endChar": 55
+      },
+      "revId": "16b1c5e180539a39cc5db2919348aaea995c3c74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1801e249_bea0929b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T22:19:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e47181c_3f46f396",
       "range": {
         "startLine": 109,
         "startChar": 14,
@@ -129,6 +225,30 @@
       "writtenOn": "2025-07-29T16:30:39Z",
       "side": 1,
       "message": "find replace \" with \u0027 unless using GStrings :-D",
+      "range": {
+        "startLine": 65,
+        "startChar": 43,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "16b1c5e180539a39cc5db2919348aaea995c3c74",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2364a593_17533737",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T22:19:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "813166c5_6e3f4b3e",
       "range": {
         "startLine": 65,
         "startChar": 43,
