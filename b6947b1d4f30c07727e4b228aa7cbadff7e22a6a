@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6c9d5d_0e5f86ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "NB: something is missing here 😊",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a899dd_fec223d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "NB: typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 17,
+        "endLine": 15,
+        "endChar": 27
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b49ad196_2d8c5258",
@@ -14,6 +60,132 @@
       "writtenOn": "2025-07-29T05:44:10Z",
       "side": 1,
       "message": "recheck",
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd2f867a_5f77fdc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "once these comments are incorporated. I will look at the testware again.",
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78d58adc_d7f6816a",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "NB: applyDeltaEndpointV2",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 24
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172f4a90_a721bbc3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "this test looks duplicate of the above except checking the invocation with applyDelta method.",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 5
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f78ff0b8_7905ad90",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "update the copyright here.",
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214a0b73_9bb9492f",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/ApplyDeltaReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "NB: can we name it CpsDeltaReportService or something else?\nApplyDeltaReport sounds more like a action.",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e75c1651_579358b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T10:07:17Z",
+      "side": 1,
+      "message": "i wont mention this in the service layer class.",
+      "range": {
+        "startLine": 340,
+        "startChar": 17,
+        "endLine": 340,
+        "endChar": 21
+      },
       "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
