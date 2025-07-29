@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0832addd_98ee004b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-29T08:54:36Z",
+      "side": 1,
+      "message": "https://lf-onap.atlassian.net/wiki/spaces/DW/pages/16230087/Commit+Messages#CommitMessages-CommitStructure\n\ndetails can be put in the body and summary can be short.",
+      "revId": "0e8253e0a774468196b8110347bfaf023bd868ee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2f24ac3a_1867f91c",
