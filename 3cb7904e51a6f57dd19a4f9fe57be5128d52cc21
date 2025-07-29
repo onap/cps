@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b47f39_5ccae45b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "bit of a name conflict here between class and method names.\nYOu can avoid it by directly getting th only property you need\nfinal dataSyncEnabled \u003d  inventoryPersistence.getCmHandleState(cmHandleId).getDataSyncEnabled()",
+      "range": {
+        "startLine": 83,
+        "startChar": 29,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a4110b_6346a9f9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "is this really need i.e. can it be null?",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398a36ec_2afd0f68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "no logging for this operation, seems inconsistent",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 99,
+        "endChar": 31
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc7da274_04bf392b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "you sure you want to log these at info level?!\nI suppose of Ericsson doesn\u0027t use this feature its probably OK",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d92c911_ff6da6cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "is this neccessary?! is it convert to json fist and then back to string?",
+      "range": {
+        "startLine": 138,
+        "startChar": 32,
+        "endLine": 138,
+        "endChar": 79
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbe5d7c_1de141ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcOperationEnum.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "no reale nned if value is alwasy lwoer case of the ENUM...",
+      "range": {
+        "startLine": 47,
+        "startChar": 18,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a251cf5b_2487260a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "why using 2 variables for the same? Just do:\n\ncmAvcEventConsumer.cmEventsTopicName \u003d \u0027test-topic\u0027",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 71,
+        "endChar": 68
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0674d7b2_e70446e9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "cmAvcEventConsumer.cmEventsTopicName",
+      "range": {
+        "startLine": 84,
+        "startChar": 72,
+        "endLine": 84,
+        "endChar": 89
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2ae92e_61ba8bac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 68
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a48385_afff04c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 110,
+        "startChar": 66,
+        "endLine": 110,
+        "endChar": 81
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b02baf2_4ed29de8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "do not set what you do not HAVE to set...",
+      "range": {
+        "startLine": 121,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 55
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c75de865_f1f48c35",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "why not use real objectMapper ?",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "012a190b_64588b5c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "cool , haven\u0027t seen this before I think",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 42
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee47711_13589863",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventServiceSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "missing \u0027assert\u0027",
+      "range": {
+        "startLine": 144,
+        "startChar": 12,
+        "endLine": 144,
+        "endChar": 27
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf97b1d3_966e00e7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "just use [ and ]",
+      "range": {
+        "startLine": 66,
+        "startChar": 38,
+        "endLine": 66,
+        "endChar": 45
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

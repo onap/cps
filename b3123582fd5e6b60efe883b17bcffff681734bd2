@@ -137,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d5adc49_eb9b9310",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T14:19:23Z",
+      "side": 1,
+      "message": "\u0027cmAvcEventEdit\u0027 is already a parameter\n\nso I would suggest extractNodeData(cmAvcEventEdit)",
+      "parentUuid": "4912a958_13c9a6ba",
+      "range": {
+        "startLine": 137,
+        "startChar": 44,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb4710ac_76c37990",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcOperationEnum.java",
         "patchSetId": 1
