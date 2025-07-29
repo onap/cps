@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2419164_eb53b1b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T16:30:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49265e64_60c2c1ea",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "398a36ec_2afd0f68",
@@ -189,6 +213,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe2e48e6_d8bceb66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T16:30:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4a70dc62_b2bde6c1",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 16
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d92c911_ff6da6cd",
@@ -236,6 +284,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d89c28c_414c0099",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T16:30:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3d34f7d7_dd7e87e8",
+      "range": {
+        "startLine": 138,
+        "startChar": 32,
+        "endLine": 138,
+        "endChar": 79
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dbe5d7c_1de141ab",
@@ -273,6 +345,30 @@
       "side": 1,
       "message": "then I think I would have to keep the constants in the enum as lower cased as well.\nAs of now I have ( CREATE(\"create\"), UPDATE(\"update\")etc )\nI can do it just with lower case as ( create , update etc ) , but then it will look a little inconsistent having lower cased constants in the enum.",
       "parentUuid": "3dbe5d7c_1de141ab",
+      "range": {
+        "startLine": 47,
+        "startChar": 18,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b78972_cb29105f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcOperationEnum.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T16:30:39Z",
+      "side": 1,
+      "message": "its OK, it does allow in the future to have a name that doesnt match the enum value exactly...",
+      "parentUuid": "3811756b_3e725bd3",
       "range": {
         "startLine": 47,
         "startChar": 18,
@@ -508,6 +604,30 @@
       "side": 1,
       "message": "these are the mandatory header fields for the cloud events.",
       "parentUuid": "9b02baf2_4ed29de8",
+      "range": {
+        "startLine": 121,
+        "startChar": 13,
+        "endLine": 123,
+        "endChar": 55
+      },
+      "revId": "3cb7904e51a6f57dd19a4f9fe57be5128d52cc21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9ce18b4_51aa988e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-29T16:30:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8888e29e_a55fb832",
       "range": {
         "startLine": 121,
         "startChar": 13,
