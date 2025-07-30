@@ -87,6 +87,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      * @return collection of cm handles
      */
     @Override
+    @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 17
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
             final CmHandleQueryParameters cmHandleQueryParameters,
             final Boolean outputDmiProperties) {
