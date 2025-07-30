@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5bd2aa2_517eeba4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-30T09:59:06Z",
+      "side": 1,
+      "message": "Lets meet later today",
+      "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0053e54c_a6fc1ccc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-30T09:59:06Z",
+      "side": 1,
+      "message": "need to clear as I am still a little unsure now: is this the same \u0027target topic\u0027 as mentioned on line 84. Please use  constsist names and descriptions \n\u0027the target topic\u0027 in descriptions and \u0027target-topic-1\u0027 in code",
+      "range": {
+        "startLine": 78,
+        "startChar": 45,
+        "endLine": 78,
+        "endChar": 52
+      },
+      "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c2db8c_f240ac4e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-30T09:59:06Z",
+      "side": 1,
+      "message": "is this relevant, suggests a link with test-topic-1. I assume not and thus call it \u0027soem group\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 89,
+        "endLine": 79,
+        "endChar": 101
+      },
+      "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
