@@ -1059,7 +1059,7 @@
 											}
 										},
 										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles?includeAdditionalPropertiesInQuery=true",
+											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch/searchCmHandles?outputDmiProperties=true",
 											"protocol": "http",
 											"host": [
 												"{{CPS_HOST}}"
@@ -1073,7 +1073,7 @@
 											],
 											"query": [
 												{
-													"key": "includeAdditionalPropertiesInQuery",
+													"key": "outputDmiProperties",
 													"value": "true"
 												},
 												{
