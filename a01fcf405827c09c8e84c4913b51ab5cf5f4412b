@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a14e398b_8358d03a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-30T13:16:39Z",
+      "side": 1,
+      "message": "seems very unlikely tahta ddin a sche actually caused an issue with CSIT...",
+      "revId": "a01fcf405827c09c8e84c4913b51ab5cf5f4412b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb0454bf_a5a4c7bc",
