@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0454bf_a5a4c7bc",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp/cmnotificationsubscription/data-job-subscription-operation-in-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-07-30T09:49:15Z",
+      "side": 1,
+      "message": "when reviewing please see the \u0027description\u0027 fields and see if it is ok :) thank you",
+      "revId": "a01fcf405827c09c8e84c4913b51ab5cf5f4412b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
