@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75d57c39_cae5e938",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-30T11:57:38Z",
+      "side": 1,
+      "message": "discussed and decided to name target-topic-for-Test-A",
+      "parentUuid": "0053e54c_a6fc1ccc",
+      "range": {
+        "startLine": 78,
+        "startChar": 45,
+        "endLine": 78,
+        "endChar": 52
+      },
+      "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02c2db8c_f240ac4e",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
         "patchSetId": 4
@@ -71,6 +95,30 @@
       "writtenOn": "2025-07-30T09:59:06Z",
       "side": 1,
       "message": "is this relevant, suggests a link with test-topic-1. I assume not and thus call it \u0027soem group\u0027",
+      "range": {
+        "startLine": 79,
+        "startChar": 89,
+        "endLine": 79,
+        "endChar": 101
+      },
+      "revId": "5acca29d125716f30e4e8f333da9744ca709af82",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ac2147_bd8b80c8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-30T11:57:38Z",
+      "side": 1,
+      "message": "after our discussion and refactoring on the Test A , I closely looked the Test B and concluded that I am not verifying the forwarding bit in Test B , just verifying the processing of event to be cached. Hence I will revert the kafka consumer to be defined globally again.",
+      "parentUuid": "02c2db8c_f240ac4e",
       "range": {
         "startLine": 79,
         "startChar": 89,
