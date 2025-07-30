@@ -33,6 +33,23 @@
       "message": "Waiting on Permission from Csaba Kocsis as this is a BIC and e need to make sure it is not used in an automated way",
       "revId": "f2e558692e853ebf1e12012372ff5761e67c8f67",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f8b22c_0bee3bb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-07-30T09:31:39Z",
+      "side": 1,
+      "message": "@Csaba has confirmed they weren\u0027t using this option yet so renaming does not cause BIC",
+      "revId": "f2e558692e853ebf1e12012372ff5761e67c8f67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
