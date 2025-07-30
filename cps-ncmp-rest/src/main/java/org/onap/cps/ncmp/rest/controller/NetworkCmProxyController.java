@@ -258,7 +258,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
      * @return collection of cm handles
      */
     @Override
-    @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 12
+    @SuppressWarnings("deprecation") // mapOldConditionProperties method will be removed in Release 17
     @CountCmHandleSearchExecution(methodName = "searchCmHandles", interfaceName = "CPS-E-05",
         description = "Search for cm handles within CPS-E-05 interface")
     public ResponseEntity<List<RestOutputCmHandle>> searchCmHandles(
