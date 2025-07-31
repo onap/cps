@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,13 @@
 
 package org.onap.cps.ncmp.impl.data;
 
+import static org.onap.cps.ncmp.api.data.models.DatastoreType.OPERATIONAL;
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+
 import java.util.Collection;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.api.CpsDataService;
+import org.onap.cps.api.CpsFacade;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress;
@@ -33,7 +37,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandler {
 
-    private final CpsDataService cpsDataService;
+    private final CpsFacade cpsFacade;
     private final NetworkCmProxyQueryService networkCmProxyQueryService;
 
     /**
@@ -60,14 +64,22 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final String requestId,
                                                       final boolean includeDescendants,
                                                       final String authorization) {
-        final FetchDescendantsOption fetchDescendantsOption
-            = FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
+        final FetchDescendantsOption fetchDescendantsOption =
+                FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
 
-        final DataNode dataNode = cpsDataService.getDataNodes(cmResourceAddress.getDatastoreName(),
-            cmResourceAddress.resolveCmHandleReferenceToId(),
-            cmResourceAddress.getResourceIdentifier(),
-            fetchDescendantsOption).iterator().next();
-        return Mono.justOrEmpty(dataNode);
+        final Map<String, Object> dataNodes = cpsFacade.getDataNodesByAnchorV3(resolveDatastoreName(cmResourceAddress),
+                cmResourceAddress.resolveCmHandleReferenceToId(), cmResourceAddress.getResourceIdentifier(),
+                fetchDescendantsOption);
+        return Mono.justOrEmpty(dataNodes);
+    }
+
+    private String resolveDatastoreName(final CmResourceAddress cmResourceAddress) {
+        final String datastoreName = cmResourceAddress.getDatastoreName();
+        if (datastoreName.equals(OPERATIONAL.getDatastoreName())) {
+            return NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+        }
+        throw new IllegalArgumentException(
+                "Unsupported datastore name provided to fetch the cached data: " + datastoreName);
     }
 
 }
