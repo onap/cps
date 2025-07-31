@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e5b6fa_3a8e4590",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-31T09:20:56Z",
+      "side": 1,
+      "message": "the body of the commit message can be a little descriptive here.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "67cfe05bf3e455837de797dcc904005968043c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3ebf648_812540ba",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MdcServletFilterSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-31T09:20:56Z",
+      "side": 1,
+      "message": "some typo over here.",
+      "range": {
+        "startLine": 42,
+        "startChar": 57,
+        "endLine": 42,
+        "endChar": 84
+      },
+      "revId": "67cfe05bf3e455837de797dcc904005968043c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
