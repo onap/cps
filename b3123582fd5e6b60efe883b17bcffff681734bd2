@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95956593_6fc2fd90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-07-31T08:22:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d5adc49_eb9b9310",
+      "range": {
+        "startLine": 137,
+        "startChar": 44,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "b3123582fd5e6b60efe883b17bcffff681734bd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb4710ac_76c37990",
