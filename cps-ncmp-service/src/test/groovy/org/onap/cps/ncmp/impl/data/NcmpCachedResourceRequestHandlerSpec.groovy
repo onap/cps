@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,11 +20,11 @@
 
 package org.onap.cps.ncmp.impl.data
 
-import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.CpsFacade
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.ncmp.api.data.models.CmResourceAddress
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
-import org.onap.cps.api.model.DataNode
 import org.spockframework.spring.SpringBean
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
@@ -39,8 +39,8 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANT
 @ContextConfiguration(classes = [CpsApplicationContext])
 class NcmpCachedResourceRequestHandlerSpec extends Specification {
 
-    def cpsDataService = Mock(CpsDataService)
-    def networkCmProxyQueryService= Mock(NetworkCmProxyQueryService)
+    def mockCpsFacade = Mock(CpsFacade)
+    def mockNetworkCmProxyQueryService = Mock(NetworkCmProxyQueryService)
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
@@ -48,31 +48,44 @@ class NcmpCachedResourceRequestHandlerSpec extends Specification {
     @SpringBean
     ApplicationContext applicationContext = Mock()
 
-    def objectUnderTest = new NcmpCachedResourceRequestHandler(cpsDataService, networkCmProxyQueryService)
+    def objectUnderTest = new NcmpCachedResourceRequestHandler(mockCpsFacade, mockNetworkCmProxyQueryService)
 
     def 'Execute a request with include descendants = #includeDescendants.'() {
         when: 'executing a request'
             objectUnderTest.executeRequest('ch-1', 'resource', includeDescendants)
         then: 'it is delegated to the ncmp query service with the correct option'
-            1 * networkCmProxyQueryService.queryResourceDataOperational('ch-1','resource', expectedFetchDescendantsOption)
+            1 * mockNetworkCmProxyQueryService.queryResourceDataOperational('ch-1', 'resource', expectedFetchDescendantsOption)
         where: 'the following options are used'
             includeDescendants || expectedFetchDescendantsOption
             true               || INCLUDE_ALL_DESCENDANTS
             false              || OMIT_DESCENDANTS
     }
 
-    def 'Get resource data.'() {
-        given: 'the data service returns 2 nodes for the given resource address'
-            def cmResourceAddress = new CmResourceAddress('datastore','ch-1','resource')
-            def dataNode1 = new DataNode(xpath:'p1')
-            def dataNode2 = new DataNode(xpath:'p2')
-            cpsDataService.getDataNodes('datastore','ch-1','resource',OMIT_DESCENDANTS) >> [dataNode1, dataNode2]
-        when: 'getting the resource data'
-            alternateIdMatcher.getCmHandleId('ch-1') >> 'ch-1'
-            def result = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, 'options', 'topic', 'request id', false, 'authorization')
-        then: 'the result is a "Mono" holding just the first data node'
+    def 'Get resource data using NCMP operational datastore'() {
+        given: 'a CmResourceAddress with OPERATIONAL datastore'
+            def cmResourceAddress = new CmResourceAddress('ncmp-datastore:operational', 'ch-ref', 'resource')
+        and: 'a mocked resolved cm handle id and data node map'
+            def expectedData = [node1: 'value1']
+            1 * alternateIdMatcher.getCmHandleId('ch-ref') >> 'ch-id'
+            1 * mockCpsFacade.getDataNodesByAnchorV3('NFP-Operational', 'ch-id', 'resource', FetchDescendantsOption.getFetchDescendantsOption(includeDescendants)) >> expectedData
+        when: 'the method is invoked'
+            def result = objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, 'options', null,null, includeDescendants, 'auth')
+        then: 'a Mono with expected data is returned'
             assert result instanceof Mono
-            assert result.block() == dataNode1
+            assert result.block() == expectedData
+        where: 'the following descendants options are used'
+            includeDescendants << [true, false]
+    }
+
+    def 'Get resource data with unsupported datastore throws exception'() {
+        given: 'a CmResourceAddress with unsupported datastore name'
+            def cmResourceAddress = new CmResourceAddress('unsupported-datastore', 'some-cm-handle-ref', 'some-resource-id')
+        when: 'the method is invoked'
+            objectUnderTest.getResourceDataForCmHandle(cmResourceAddress, 'options', null, null, false, 'auth'
+            ).block()
+        then: 'an IllegalArgumentException is thrown'
+            def exception = thrown(IllegalArgumentException)
+            assert exception.message == 'Unsupported datastore name provided to fetch the cached data: unsupported-datastore'
     }
 
 }
