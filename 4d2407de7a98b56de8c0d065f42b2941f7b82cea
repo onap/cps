@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e192eb36_f50f0cc6",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-01T13:42:03Z",
+      "side": 1,
+      "message": "populate the date here.",
+      "range": {
+        "startLine": 50,
+        "startChar": 41,
+        "endLine": 50,
+        "endChar": 58
+      },
+      "revId": "4d2407de7a98b56de8c0d065f42b2941f7b82cea",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
