@@ -22,6 +22,30 @@
       },
       "revId": "c7f7fd962d9bd34b67d61093ccf913cadf43292d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c3c292_2cef004d",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-01T10:12:37Z",
+      "side": 1,
+      "message": "Are we still but a name on the release. Thought we were just going number now",
+      "parentUuid": "d3a55565_0fa17165",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "c7f7fd962d9bd34b67d61093ccf913cadf43292d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
