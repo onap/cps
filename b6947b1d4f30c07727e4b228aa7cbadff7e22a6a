@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa552fe1_ca5a0e39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "added extra text by mistake. Removed",
+      "parentUuid": "fb6c9d5d_0e5f86ef",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64a899dd_fec223d2",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-29T10:07:17Z",
       "side": 1,
       "message": "NB: typo",
+      "range": {
+        "startLine": 15,
+        "startChar": 17,
+        "endLine": 15,
+        "endChar": 27
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709e7e06_97d65694",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64a899dd_fec223d2",
       "range": {
         "startLine": 15,
         "startChar": 17,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a1951b_88965969",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78d58adc_d7f6816a",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 24
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "172f4a90_a721bbc3",
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a118fe_c04bb341",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "yes I think I copy pasted it twice. Removed it now.",
+      "parentUuid": "172f4a90_a721bbc3",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 5
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f78ff0b8_7905ad90",
@@ -140,6 +236,24 @@
       "writtenOn": "2025-07-29T10:07:17Z",
       "side": 1,
       "message": "update the copyright here.",
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c562f3a2_a0949e54",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f78ff0b8_7905ad90",
       "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -169,6 +283,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f7a3e7b_d90e0ac6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/ApplyDeltaReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "There is already a class name CpsDeltaService.java so this may sound confusing. This class is particularly to take a delta report and apply its changes to an anchor. So DeltaReportHandlerService or DeltaReportExecutorService can be used?",
+      "parentUuid": "214a0b73_9bb9492f",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e75c1651_579358b0",
         "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
         "patchSetId": 20
@@ -180,6 +318,30 @@
       "writtenOn": "2025-07-29T10:07:17Z",
       "side": 1,
       "message": "i wont mention this in the service layer class.",
+      "range": {
+        "startLine": 340,
+        "startChar": 17,
+        "endLine": 340,
+        "endChar": 21
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceccf7da_451df855",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-04T09:08:55Z",
+      "side": 1,
+      "message": "Does \u0027Apply changes from a delta report on an anchor\u0027 work?",
+      "parentUuid": "e75c1651_579358b0",
       "range": {
         "startLine": 340,
         "startChar": 17,
