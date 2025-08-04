@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -47,7 +47,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.hibernate.exception.ConstraintViolationException;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
@@ -374,7 +374,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private String getNameForChecksum(final String checksum,
                                       final Collection<YangResourceEntity> yangResourceEntities) {
         final Optional<String> optionalFileName = yangResourceEntities.stream()
-                        .filter(entity -> StringUtils.equals(checksum, (entity.getChecksum())))
+                        .filter(entity -> Strings.CS.equals(checksum, (entity.getChecksum())))
                         .findFirst()
                         .map(YangResourceEntity::getFileName);
         return optionalFileName.orElse("no filename");

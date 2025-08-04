@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.Strings;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @NoArgsConstructor
@@ -82,7 +82,7 @@ public class RestServiceUrlTemplateBuilder {
      */
     public RestServiceUrlTemplateBuilder queryParameter(final String queryParameterName,
                                                         final String queryParameterValue) {
-        if (Strings.isNotBlank(queryParameterValue)) {
+        if (StringUtils.isNotBlank(queryParameterValue)) {
             queryParameters.put(queryParameterName, queryParameterValue);
         }
         return this;
@@ -100,7 +100,7 @@ public class RestServiceUrlTemplateBuilder {
         final Map<String, String> urlTemplateVariables = new HashMap<>();
 
         pathSegments.forEach((pathSegmentName, variablePathValue) ->  {
-            if (StringUtils.equals(variablePathValue, FIXED_PATH_SEGMENT)) {
+            if (Strings.CS.equals(variablePathValue, FIXED_PATH_SEGMENT)) {
                 this.uriComponentsBuilder.pathSegment(pathSegmentName);
             } else {
                 this.uriComponentsBuilder.pathSegment("{" + pathSegmentName + "}");
