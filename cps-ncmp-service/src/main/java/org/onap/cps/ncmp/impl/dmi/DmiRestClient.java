@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
+import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -77,14 +78,13 @@ public class DmiRestClient {
      * @return ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
-    public ResponseEntity<Object> synchronousPostOperationWithJsonData(final RequiredDmiService requiredDmiService,
-                                                                       final UrlTemplateParameters
-                                                                               urlTemplateParameters,
-                                                                       final String requestBodyAsJsonString,
-                                                                       final OperationType operationType,
-                                                                       final String authorization) {
+    public ResponseEntity<Object> synchronousPostOperation(final RequiredDmiService requiredDmiService,
+                                                           final UrlTemplateParameters urlTemplateParameters,
+                                                           final String requestBodyAsJsonString,
+                                                           final OperationType operationType,
+                                                           final String authorization) {
         final Mono<ResponseEntity<Object>> responseEntityMono =
-            asynchronousPostOperationWithJsonData(requiredDmiService,
+            asynchronousPostOperation(requiredDmiService,
                     urlTemplateParameters,
                 requestBodyAsJsonString,
                 operationType,
@@ -103,7 +103,7 @@ public class DmiRestClient {
      * @param authorization           The authorization token to be added to the request headers.
      * @return A Mono emitting the response entity containing the server's response.
      */
-    public Mono<ResponseEntity<Object>> asynchronousPostOperationWithJsonData(final RequiredDmiService
+    public Mono<ResponseEntity<Object>> asynchronousPostOperation(final RequiredDmiService
                                                                                       requiredDmiService,
                                                                               final UrlTemplateParameters
                                                                                       urlTemplateParameters,
@@ -118,6 +118,29 @@ public class DmiRestClient {
                 .retrieve()
                 .toEntity(Object.class)
                 .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()));
+    }
+
+    /**
+     * Sends a synchronous (blocking) GET operation to the DMI.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param operationType         The type of operation being executed (for error reporting only).
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public ResponseEntity<Resource> synchronousGetOperation(final RequiredDmiService requiredDmiService,
+                                                                        final UrlTemplateParameters
+                                                                            urlTemplateParameters,
+                                                                        final OperationType operationType) {
+        return getWebClient(requiredDmiService)
+            .get()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .retrieve()
+            .toEntity(Resource.class)
+            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
     }
 
     /**

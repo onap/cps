@@ -121,7 +121,7 @@ public class DmiModelOperations {
                 .variablePathSegment("cmHandleId", cmHandle)
                 .fixedPathSegment(resourceName)
                 .createUrlTemplateParameters(dmiServiceName, dmiServiceAuthenticationProperties.getDmiBasePath());
-        return dmiRestClient.synchronousPostOperationWithJsonData(MODEL, urlTemplateParameters, jsonRequestBody, READ,
+        return dmiRestClient.synchronousPostOperation(MODEL, urlTemplateParameters, jsonRequestBody, READ,
                 null);
     }
 

@@ -30,13 +30,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
+import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdPatchDefaultResponse;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseDefault;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseGet;
+import org.onap.cps.ncmp.impl.provmns.model.Resource;
+import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
-import org.onap.cps.ncmp.rest.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
-import org.onap.cps.ncmp.rest.provmns.model.ClassNameIdPatchDefaultResponse;
-import org.onap.cps.ncmp.rest.provmns.model.ErrorResponseDefault;
-import org.onap.cps.ncmp.rest.provmns.model.ErrorResponseGet;
-import org.onap.cps.ncmp.rest.provmns.model.Resource;
-import org.onap.cps.ncmp.rest.provmns.model.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,39 +47,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "ProvMnS", description = "Provisioning Management Service")
 public interface ProvMnS {
-
-    /**
-     * DELETE /{URI-LDN-first-part}/{className}={id} : Deletes one resource
-     * With HTTP DELETE one resource is deleted. The resources to be deleted is identified with the target URI.
-     *
-     * @param httpServletRequest (required)
-     * @return Success case "200 OK". This status code is returned, when the resource has been successfully deleted.
-     *         The response body is empty. (status code 200)
-     *         or Error case. (status code 200)
-     */
-    @Operation(
-        operationId = "deleteMoi",
-        summary = "Deletes one resource",
-        description = "With HTTP DELETE one resource is deleted. "
-            + "The resources to be deleted is identified with the target URI.",
-        responses = {
-            @ApiResponse(responseCode = "200",
-                description = "Success case (\"200 OK\"). This status code is returned, "
-                    + "when the resource has been successfully deleted. The response body is empty."),
-            @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
-            }),
-            @ApiResponse(responseCode = "default", description = "Error case.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDefault.class))
-            })
-        }
-    )
-    @DeleteMapping(
-        value = "v1/**",
-        produces = { "application/json" }
-    )
-    ResponseEntity<Void> deleteMoi(HttpServletRequest httpServletRequest);
-
 
     /**
      * GET /{URI-LDN-first-part}/{className}={id} : Reads one or multiple resources
@@ -282,5 +249,37 @@ public interface ProvMnS {
             description = "The request body describes the resource that has been created or replaced", required = true)
         @Valid @RequestBody Resource resource
     );
+
+    /**
+     * DELETE /{URI-LDN-first-part}/{className}={id} : Deletes one resource
+     * With HTTP DELETE one resource is deleted. The resources to be deleted is identified with the target URI.
+     *
+     * @param httpServletRequest (required)
+     * @return Success case "200 OK". This status code is returned, when the resource has been successfully deleted.
+     *         The response body is empty. (status code 200)
+     *         or Error case. (status code 200)
+     */
+    @Operation(
+        operationId = "deleteMoi",
+        summary = "Deletes one resource",
+        description = "With HTTP DELETE one resource is deleted. "
+            + "The resources to be deleted is identified with the target URI.",
+        responses = {
+            @ApiResponse(responseCode = "200",
+                description = "Success case (\"200 OK\"). This status code is returned, "
+                    + "when the resource has been successfully deleted. The response body is empty."),
+            @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+            }),
+            @ApiResponse(responseCode = "default", description = "Error case.", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDefault.class))
+            })
+        }
+    )
+    @DeleteMapping(
+        value = "v1/**",
+        produces = { "application/json" }
+    )
+    ResponseEntity<Void> deleteMoi(HttpServletRequest httpServletRequest);
 
 }

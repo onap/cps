@@ -18,10 +18,11 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.model;
+package org.onap.cps.ncmp.impl.provmns.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf;
 
 /**
  * This interface serves as a replacement for the generated Resource class, which has dependencies on the NRM-related

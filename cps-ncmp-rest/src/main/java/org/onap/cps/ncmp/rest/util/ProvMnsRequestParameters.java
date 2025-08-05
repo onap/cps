@@ -36,12 +36,22 @@ public class ProvMnsRequestParameters {
     private static final String PROVMNS_BASE_PATH = "ProvMnS/v\\d+/";
 
     /**
+     * Gets alternate id from combining URI-LDN-First-Part, className and Id.
+     *
+     * @return String of Alternate Id.
+     */
+    public String getAlternateId() {
+        return uriLdnFirstPart + "/" + className + "=" + id;
+    }
+
+    /**
      * Converts HttpServletRequest to ProvMnsRequestParameters.
      *
      * @param httpServletRequest HttpServletRequest object containing the path
      * @return ProvMnsRequestParameters object containing parsed parameters
      */
-    public static ProvMnsRequestParameters toProvMnsRequestParameters(final HttpServletRequest httpServletRequest) {
+    public static ProvMnsRequestParameters extractProvMnsRequestParameters(
+                                                                        final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
 
