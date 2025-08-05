@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.model;
+package org.onap.cps.ncmp.provmns.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -35,6 +35,7 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
+import org.onap.cps.ncmp.provmns.model.Resource;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -118,6 +119,29 @@ public class DmiRestClient {
                 .retrieve()
                 .toEntity(Object.class)
                 .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()));
+    }
+
+    /**
+     * Sends a synchronous (blocking) GET operation to the DMI with a JSON body.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param operationType         The type of operation being executed (for error reporting only).
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public ResponseEntity<Resource> synchronousGetOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                                        final UrlTemplateParameters
+                                                                            urlTemplateParameters,
+                                                                        final OperationType operationType) {
+        return getWebClient(requiredDmiService)
+            .get()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .retrieve()
+            .toEntity(Resource.class)
+            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
     }
 
     /**
