@@ -96,6 +96,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acee55b_2bc8209c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/RestServiceUrlTemplateBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-05T13:02:14Z",
+      "side": 1,
+      "message": "deprecation of .equals was from String.utils described in commit notes",
+      "parentUuid": "9951503c_13d061a9",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 72
+      },
+      "revId": "47bcef4a090ce889125cd6518c855d5cc2c568e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caf64d30_97c7c3fb",
