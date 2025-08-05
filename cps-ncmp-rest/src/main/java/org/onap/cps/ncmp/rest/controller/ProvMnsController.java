@@ -24,21 +24,32 @@ package org.onap.cps.ncmp.rest.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.RequiredDmiService;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
 import org.onap.cps.ncmp.rest.provmns.model.Resource;
 import org.onap.cps.ncmp.rest.provmns.model.Scope;
+import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper;
 import org.onap.cps.ncmp.rest.util.ProvMnsRequestParameters;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequestMapping("${rest.api.provmns-base-path}")
 @RequiredArgsConstructor
 public class ProvMnsController implements ProvMnS {
+
+    private final AlternateIdMatcher alternateIdMatcher;
+    private final DmiRestClient dmiRestClient;
+    private final InventoryPersistence inventoryPersistence;
+    private final ProvMnSParametersMapper provMnsParametersMapper;
 
     /**
      * Replaces a complete single resource or creates it if it does not exist.
@@ -82,7 +93,16 @@ public class ProvMnsController implements ProvMnS {
                                                    final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector) {
         final ProvMnsRequestParameters requestParameters =
             ProvMnsRequestParameters.toProvMnsRequestParameters(httpServletRequest);
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
+            alternateIdMatcher.getCmHandleId(requestParameters.getClassName()));
+        provMnsParametersMapper.checkDataProducerIdentifier(yangModelCmHandle);
+        final UrlTemplateParameters urlTemplateParameters = provMnsParametersMapper.getUrlTemplateParameters(scope,
+                                                                                     filter, attributes,
+                                                                                     fields, dataNodeSelector,
+                                                                                     yangModelCmHandle,"/ProvMns");
+
+        return provMnsParametersMapper.convertToResource(dmiRestClient.synchronousGetOperationWithJsonData(
+            RequiredDmiService.DATA, urlTemplateParameters, OperationType.READ));
     }
 
     /**

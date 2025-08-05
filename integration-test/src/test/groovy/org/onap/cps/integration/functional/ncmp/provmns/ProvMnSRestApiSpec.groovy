@@ -34,9 +34,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
 
     def 'Get Resource Data from provmns interface.'() {
+        given: 'a registered cm handle'
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'C')
         expect: 'not implemented response on GET endpoint'
             mvc.perform(get("/ProvMnS/v1/A=1/B=2/C=3"))
-                    .andExpect(status().isNotImplemented())
+                    .andExpect(status().is2xxSuccessful())
+        cleanup: 'deregister CM handles'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'Put Resource Data from provmns interface.'() {

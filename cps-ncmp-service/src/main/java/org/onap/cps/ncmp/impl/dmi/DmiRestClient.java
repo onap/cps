@@ -121,6 +121,29 @@ public class DmiRestClient {
     }
 
     /**
+     * Sends a synchronous (blocking) GET operation to the DMI with a JSON body.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param operationType         The type of operation being executed (for error reporting only).
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public ResponseEntity<Object> synchronousGetOperationWithJsonData(final RequiredDmiService requiredDmiService,
+                                                                        final UrlTemplateParameters
+                                                                            urlTemplateParameters,
+                                                                        final OperationType operationType) {
+        return getWebClient(requiredDmiService)
+            .get()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .retrieve()
+            .toEntity(Object.class)
+            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
+    }
+
+    /**
      * Retrieves the health status of the DMI plugin.
      * This method performs an HTTP GET request to the DMI health check endpoint specified by the URL template
      * parameters. If the response status code indicates a client error (4xx) or a server error (5xx), it logs a warning
