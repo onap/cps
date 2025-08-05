@@ -21,13 +21,23 @@
 package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.ncmp.rest.provmns.model.ResourceOneOf
+import jakarta.servlet.ServletException
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
+import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
+import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper
 import org.onap.cps.utils.JsonObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatusCode
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
@@ -39,6 +49,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(ProvMnsController)
 class ProvMnsControllerSpec extends Specification {
 
+    @SpringBean
+    ProvMnSParametersMapper provMnSParametersMapper = new ProvMnSParametersMapper()
+
+    @SpringBean
+    AlternateIdMatcher alternateIdMatcher = Mock()
+
+    @SpringBean
+    DmiRestClient dmiRestClient = Mock()
+
+    @SpringBean
+    InventoryPersistence inventoryPersistence = Mock()
+
     @Autowired
     MockMvc mvc
 
@@ -49,11 +71,19 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Get Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def getUrl = "$provMnSBasePath/v1/A=1/B=2/C=3"
+            def getUrl = "$provMnSBasePath/v1/A=1/B=2/C=3"+path
+        and: 'request classes return correct information'
+            inventoryPersistence.getYangModelCmHandle("cm-1") >> new YangModelCmHandle(dmiServiceName: "sampleDmiService", dataProducerIdentifier: 'A=1/B=2')
+            alternateIdMatcher.getCmHandleId("A=1/B=2/C=3") >> "cm-1"
+            dmiRestClient.synchronousGetOperationWithJsonData(*_) >> new ResponseEntity<Object>(HttpStatusCode.valueOf(200))
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'response status is Not Implemented (501)'
-            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'response status is OK (200)'
+            assert response.status == HttpStatus.OK.value()
+        where:
+            scenario            | path
+            'no query params'   | ''
+            'with query params' | '?attributes=[test,query,param]'
     }
 
     def 'Put Resource Data from provmns interface.'() {
@@ -93,12 +123,33 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
     }
 
-    def 'Get Resource Data from provmns interface with query param.'() {
-        given: 'resource data url with query parameter'
-            def getUrl = "$provMnSBasePath/v1/A=1/B=2/C=3?attributes=[test,query,param]"
+    def 'Invalid resource requested for ProvMns.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/A=1/B=2/C=3"
+        and: 'request classes return correct information'
+            inventoryPersistence.getYangModelCmHandle("cm-1") >> new YangModelCmHandle(dmiServiceName: "sampleDmiService", dataProducerIdentifier: dataProducerId)
+            alternateIdMatcher.getCmHandleId("A=1/B=2/C=3") >> "cm-1"
+            dmiRestClient.synchronousGetOperationWithJsonData(*_) >> new ResponseEntity<Object>(HttpStatusCode.valueOf(200))
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'response status is Not Implemented (501)'
-            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
+            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON))
+        then: 'exception is thrown for'
+            thrown(ServletException)
+        where:
+            scenario                    | dataProducerId
+            'Data producer id is null'  | null
+            'Data producer id is empty' | ''
+    }
+
+    def 'Invalid path passed in to provmns interface for given #scenario'() {
+        given: 'an invalid path'
+            def url = "$provMnSBasePath/v1/" + invalidPath
+        when: 'get data resource request is performed'
+            mvc.perform(get(url).contentType(MediaType.APPLICATION_JSON))
+        then: 'invalid path exception is thrown'
+            thrown(ServletException)
+        where:
+            scenario                     | invalidPath
+            'Missing URI-LDN-first-part' | 'className=Id'
+            'Missing ClassName and Id'   | 'uriLdnFirstPart/'
     }
 }

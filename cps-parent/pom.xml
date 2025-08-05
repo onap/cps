@@ -448,10 +448,10 @@
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
-                        <exclude>org/onap/cps/ncmp/rest/provmns/model/*</exclude>
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
                         <exclude>org/onap/cps/ncmp/rest/stub/*</exclude>
                         <exclude>org/onap/cps/policyexecutor/stub/model/*</exclude>
+                        <exclude>org/onap/cps/ncmp/impl/provmns/model/*</exclude>
                         <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>
