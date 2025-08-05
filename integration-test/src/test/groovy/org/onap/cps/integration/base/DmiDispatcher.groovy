@@ -105,6 +105,11 @@ class DmiDispatcher extends Dispatcher {
             case ~'^/dmi/v1/cmwriteJob(.*)$':
                 return mockWriteJobResponse(request)
 
+            // provmns endpoint
+            case ~'^/ProvMnS/v1(.*)$':
+                dmiResourceDataUrl = request.path
+                return mockResponseWithBody(HttpStatus.OK, '{}')
+
             default:
                 throw new IllegalArgumentException('Mock DMI does not implement endpoint ' + request.path)
         }

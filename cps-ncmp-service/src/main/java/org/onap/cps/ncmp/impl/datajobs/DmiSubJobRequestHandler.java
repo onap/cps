@@ -73,7 +73,7 @@ public class DmiSubJobRequestHandler {
 
             final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobMetadata.destination(),
                                                                                          producerKey);
-            final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperationWithJsonData(
+            final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperation(
                     RequiredDmiService.DATA,
                     urlTemplateParameters,
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
