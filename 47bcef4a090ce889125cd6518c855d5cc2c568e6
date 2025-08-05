@@ -72,6 +72,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9951503c_13d061a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/RestServiceUrlTemplateBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-05T12:58:28Z",
+      "side": 1,
+      "message": "You are still using this function from: org.apache.commons.lang3.Strings which was the content of deprecated function.",
+      "parentUuid": "7f317c5d_d3330e49",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 72
+      },
+      "revId": "47bcef4a090ce889125cd6518c855d5cc2c568e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caf64d30_97c7c3fb",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "it is documented by them to use it directly\n\nit is not using the SAME deprecated function but from a different class.",
       "parentUuid": "caf64d30_97c7c3fb",
+      "range": {
+        "startLine": 377,
+        "startChar": 42,
+        "endLine": 377,
+        "endChar": 93
+      },
+      "revId": "47bcef4a090ce889125cd6518c855d5cc2c568e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f962bcfe_99122001",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-05T12:58:28Z",
+      "side": 1,
+      "message": "You are still using this function from: org.apache.commons.lang3.Strings which was the content of deprecated funtion.",
+      "parentUuid": "263156a6_3e414e2a",
       "range": {
         "startLine": 377,
         "startChar": 42,
