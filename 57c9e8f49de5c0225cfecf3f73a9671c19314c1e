@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0cf3e26d_5fe40538",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-05T12:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f009264_c0cddccc",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "57c9e8f49de5c0225cfecf3f73a9671c19314c1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1f561045_dcdccde6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2025-08-05T12:15:09Z",
       "side": 1,
       "message": "NB: started",
+      "range": {
+        "startLine": 69,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 39
+      },
+      "revId": "57c9e8f49de5c0225cfecf3f73a9671c19314c1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d311100_3de7ce30",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-05T12:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e6e3da8_8d10e5e1",
       "range": {
         "startLine": 69,
         "startChar": 34,
