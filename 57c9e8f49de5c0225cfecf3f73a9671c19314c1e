@@ -16,6 +16,46 @@
       "message": "recheck",
       "revId": "57c9e8f49de5c0225cfecf3f73a9671c19314c1e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c997009_00572934",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-05T12:15:09Z",
+      "side": 1,
+      "message": "fine by me. just a question and a NB.",
+      "revId": "57c9e8f49de5c0225cfecf3f73a9671c19314c1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6e3da8_8d10e5e1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/CmDataSubscriptionModelLoaderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-05T12:15:09Z",
+      "side": 1,
+      "message": "NB: started",
+      "range": {
+        "startLine": 69,
+        "startChar": 34,
+        "endLine": 69,
+        "endChar": 39
+      },
+      "revId": "57c9e8f49de5c0225cfecf3f73a9671c19314c1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbb38bc4_fe2d1507",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/cmnotificationsubscription/CmNotificationSubscriptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-05T12:15:09Z",
+      "side": 0,
+      "message": "do we plan to add a new integration test for the new model??\njust to measure we are efficiently able to write and read the data.",
+      "revId": "c46952431c7239495b55d87f2fb47e96f674750c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
