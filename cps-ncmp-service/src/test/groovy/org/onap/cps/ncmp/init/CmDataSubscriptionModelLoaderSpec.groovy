@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,8 +27,6 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
-import org.onap.cps.ncmp.exceptions.NcmpStartUpException
-import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.model.Dataspace
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationStartedEvent
@@ -52,7 +50,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
-        expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-subscriptions@2024-02-12.yang')
+        expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-job-subscriptions@2025-07-16.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -68,43 +66,14 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def 'Onboard subscription model via application started event.'() {
         given: 'dataspace is ready for use'
             mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
-        when: 'the application is ready'
+        when: 'the application is started'
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the module service to create schema set is called once'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', expectedYangResourcesToContentMap)
+            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
-            1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', 'cm-data-subscriptions')
+            1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', 'cm-data-job-subscriptions')
         and: 'the data service to create a top level datanode is called once'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '{"datastores":{}}', _)
-        and: 'the data service is called once to create datastore for Passthrough-operational'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                '{"datastore":[{"name":"ncmp-datastore:passthrough-operational","cm-handles":{}}]}', _, _)
-        and: 'the data service is called once to create datastore for Passthrough-running'
-            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-subscriptions', '/datastores',
-                '{"datastore":[{"name":"ncmp-datastore:passthrough-running","cm-handles":{}}]}', _, _)
-    }
-
-    def 'Create node for datastore with already defined exception.'() {
-        given: 'the data service throws an Already Defined exception'
-            mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
-        when: 'attempt to create datastore'
-            objectUnderTest.createDatastore('some datastore')
-        then: 'the exception is ignored i.e. no exception thrown up'
-            noExceptionThrown()
-        and: 'the exception message is logged'
-            def logs = loggingListAppender.list.toString()
-            logs.contains("Creating new child data node 'some datastore' for data node 'datastores' failed as data node already exists")
-    }
-
-    def 'Create node for datastore with any other exception.'() {
-        given: 'the data service throws an exception'
-            mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
-        when: 'attempt to create datastore'
-            objectUnderTest.createDatastore('some datastore')
-        then: 'a startup exception with correct message and details is thrown'
-            def thrown = thrown(NcmpStartUpException)
-            assert thrown.message.contains('Creating data node failed')
-            assert thrown.details.contains('test message')
+            1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', '{"dataJob":{}}', _)
     }
 
 }

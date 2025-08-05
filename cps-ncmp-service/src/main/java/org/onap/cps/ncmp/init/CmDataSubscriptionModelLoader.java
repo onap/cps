@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,28 +21,23 @@
 package org.onap.cps.ncmp.init;
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
-import static org.onap.cps.utils.ContentType.JSON;
 
-import java.time.OffsetDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
-import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.init.AbstractModelLoader;
-import org.onap.cps.ncmp.api.data.models.DatastoreType;
-import org.onap.cps.ncmp.exceptions.NcmpStartUpException;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "cm-data-subscriptions@2024-02-12.yang";
-    private static final String SCHEMASET_NAME = "cm-data-subscriptions";
-    private static final String ANCHOR_NAME = "cm-data-subscriptions";
-    private static final String REGISTRY_DATANODE_NAME = "datastores";
+    private static final String MODEL_FILENAME = "cm-data-job-subscriptions@2025-07-16.yang";
+    private static final String SCHEMASET_NAME = "cm-data-job-subscriptions";
+    private static final String ANCHOR_NAME = "cm-data-job-subscriptions";
+    private static final String REGISTRY_DATANODE_NAME = "dataJob";
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
             final CpsModuleService cpsModuleService, final CpsAnchorService cpsAnchorService,
@@ -61,24 +56,6 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
-        createDatastore(DatastoreType.PASSTHROUGH_OPERATIONAL.getDatastoreName(),
-                DatastoreType.PASSTHROUGH_RUNNING.getDatastoreName());
-    }
-
-    private void createDatastore(final String... datastoreNames) {
-        for (final String datastoreName : datastoreNames) {
-            final String nodeData = "{\"datastore\":[{\"name\":\"" + datastoreName + "\",\"cm-handles\":{}}]}";
-            try {
-                cpsDataService.saveData(NCMP_DATASPACE_NAME, ANCHOR_NAME, "/" + REGISTRY_DATANODE_NAME, nodeData,
-                        OffsetDateTime.now(), JSON);
-            } catch (final AlreadyDefinedException exception) {
-                log.info("Creating new child data node '{}' for data node '{}' failed as data node already exists",
-                        datastoreName, REGISTRY_DATANODE_NAME);
-            } catch (final Exception exception) {
-                log.error("Creating data node failed: {}", exception.getMessage());
-                throw new NcmpStartUpException("Creating data node failed", exception.getMessage());
-            }
-        }
     }
 
 }
