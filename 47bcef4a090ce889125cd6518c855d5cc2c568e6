@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5255f8b4_d648a500",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/RestServiceUrlTemplateBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-05T12:46:12Z",
+      "side": 1,
+      "message": "The content of deprecated function is:\n\n    @Deprecated\n    public static boolean equals(CharSequence cs1, CharSequence cs2) {\n        return Strings.CS.equals(cs1, cs2);\n    }\n\nSo you are indirecly using the same deprecated funtion, to solve a deprecation!\n\n\nSince FIXED_PATH_SEGMENT is always null you can simple compare these two object with \u003d\u003d , e.g.\n\nvariablePathValue \u003d\u003d FIXED_PATH_SEGMENT",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 72
+      },
+      "revId": "47bcef4a090ce889125cd6518c855d5cc2c568e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf64d30_97c7c3fb",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsModulePersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-05T12:46:12Z",
+      "side": 1,
+      "message": "The content of deprecated function is:\n\n    @Deprecated\n    public static boolean equals(CharSequence cs1, CharSequence cs2) {\n        return Strings.CS.equals(cs1, cs2);\n    }\n\nSo you are indirecly using the same deprecated funtion, to solve a deprecation!\n\n\nPlease use Objects.equals(checksum, (entity.getChecksum()) to compare two strings safely with built-in java apis.",
+      "range": {
+        "startLine": 377,
+        "startChar": 42,
+        "endLine": 377,
+        "endChar": 93
+      },
+      "revId": "47bcef4a090ce889125cd6518c855d5cc2c568e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
