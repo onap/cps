@@ -27,6 +27,8 @@ import static org.onap.cps.utils.YangParserHelper.VALIDATE_ONLY;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.exceptions.DataValidationException;
@@ -114,6 +116,23 @@ public class YangParser {
     public String getCpsPathFromRestConfStylePath(final Anchor anchor, final String restConfStylePath) {
         final SchemaContext schemaContext = getSchemaContext(anchor);
         return convertToCpsPath(restConfStylePath, schemaContext);
+    }
+
+    /**
+     * Get module and root nodes using an anchor and return a concatenated set.
+     *
+     * @param anchor Anchor
+     * @return Concatentated module and root node
+     */
+    public Set<String> getModuleAndRootNodes(final Anchor anchor) {
+        final SchemaContext schemaContext = getSchemaContext(anchor);
+        return schemaContext.getModules()
+                       .stream()
+                       .flatMap(module ->
+                                module.getChildNodes()
+                                .stream().map(rootNode ->
+                                     module.getName() + ":" + rootNode.getQName().getLocalName()))
+                       .collect(Collectors.toSet());
     }
 
     private SchemaContext getSchemaContext(final Anchor anchor) {

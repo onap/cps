@@ -29,7 +29,9 @@ import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.opendaylight.yangtools.yang.common.QName
 import org.opendaylight.yangtools.yang.data.api.schema.ContainerNode
+import org.opendaylight.yangtools.yang.model.api.DataSchemaNode
 import org.opendaylight.yangtools.yang.model.api.ListSchemaNode
+import org.opendaylight.yangtools.yang.model.api.Module
 import org.opendaylight.yangtools.yang.model.api.SchemaContext
 import spock.lang.Specification
 
@@ -156,6 +158,22 @@ class YangParserSpec extends Specification {
             thrown(DataValidationException)
         and: 'the cache is cleared for the correct dataspace and schema after the failure'
             1 * mockYangTextSchemaSourceSetCache.removeFromCache('my dataspace', 'my schema')
+    }
+
+    def 'Get module and root nodes'() {
+        given: 'a schema context with module and root node'
+            def mockModule1 = Mock(Module) {
+                getName() >> 'bookstore'
+            }
+            def mockRootNode1 = Mock(DataSchemaNode) {
+                getQName() >> QName.create('bookstore', 'book')
+            }
+            mockModule1.getChildNodes() >> [mockRootNode1]
+            mockSchemaContext.getModules() >> [mockModule1]
+        when: 'we get module and root nodes for the anchor'
+            def result = objectUnderTest.getModuleAndRootNodes(anchor)
+        then: 'the result contains expected module:rootnode combination'
+            assert result == ['bookstore:book'] as Set
     }
 
 }

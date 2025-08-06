@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -34,6 +34,7 @@ import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.api.model.SchemaSet
+import org.onap.cps.utils.YangParser
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -49,8 +50,9 @@ class CpsModuleServiceImplSpec extends Specification {
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockCpsValidator = Mock(CpsValidator)
     def timedYangTextSchemaSourceSetBuilder = new TimedYangTextSchemaSourceSetBuilder()
+    def mockYangParser = Mock(YangParser)
 
-    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder)
+    def objectUnderTest = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,mockYangParser)
 
     def 'Create schema set.'() {
         when: 'Create schema set method is invoked'
@@ -264,6 +266,16 @@ class CpsModuleServiceImplSpec extends Specification {
             objectUnderTest.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
         then: 'the call is delegated to the module persistence service'
             1 * mockCpsModulePersistenceService.schemaSetExists('some-dataspace-name', 'some-schema-set-name')
+    }
+
+    def 'Get module and root nodes'() {
+        given: 'an anchor'
+            def myAnchor = createAnchors(1)[0]
+            mockCpsAnchorService.getAnchor('my-dataspace', 'my-anchor-1') >> myAnchor
+        when: 'module and root nodes are fetched for my anchor'
+            objectUnderTest.getModuleAndRootNodes('my-dataspace', 'my-anchor-1')
+        then: 'the call is delegated to the yang parser with correct anchor'
+            1 * mockYangParser.getModuleAndRootNodes(myAnchor)
     }
 
     def getModuleReferences() {

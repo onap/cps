@@ -151,11 +151,11 @@ class DmiDataOperationsSpec extends DmiOperationsBaseSpec {
             mockYangModelCmHandleRetrieval([yangModelCmHandleProperty], 'my-module-set-tag')
         and: 'a positive response from DMI service when it is called with the expected parameters'
             def responseFromDmi = new ResponseEntity<Object>(HttpStatus.OK)
-            def expectedTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}', ['resourceIdentifier': '/', 'datastore': 'ncmp-datastore:passthrough-operational', 'cmHandleId': cmHandleId])
+            def expectedTemplateWithVariables = new UrlTemplateParameters('myServiceName/dmi/v1/ch/{cmHandleId}/data/ds/{datastore}?resourceIdentifier={resourceIdentifier}&options={options}', ['resourceIdentifier': '/', 'datastore': 'ncmp-datastore:passthrough-operational', 'cmHandleId': cmHandleId, 'options': OPTIONS_PARAM])
             def expectedJson = '{"operation":"read","cmHandleProperties":{"prop1":"val1"},"moduleSetTag":"my-module-set-tag"}'
             mockDmiRestClient.synchronousPostOperationWithJsonData(DATA, expectedTemplateWithVariables, expectedJson, READ, null) >> responseFromDmi
         when: 'get resource data is invoked'
-            def result = objectUnderTest.getAllResourceDataFromDmi(cmHandleId, NO_REQUEST_ID)
+            def result = objectUnderTest.getAllResourceDataFromDmi(cmHandleId, NO_REQUEST_ID, OPTIONS_PARAM)
         then: 'the result is the response from the DMI service'
             assert result == responseFromDmi
     }

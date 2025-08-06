@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
  *  Modifications Copyright (C) 2022 TechMahindra Ltd
@@ -38,6 +38,7 @@ import org.onap.cps.api.model.SchemaSet;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.spi.CpsModulePersistenceService;
 import org.onap.cps.utils.CpsValidator;
+import org.onap.cps.utils.YangParser;
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder;
 import org.onap.cps.yang.YangTextSchemaSourceSet;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,7 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final CpsAnchorService cpsAnchorService;
     private final CpsValidator cpsValidator;
     private final TimedYangTextSchemaSourceSetBuilder timedYangTextSchemaSourceSetBuilder;
+    private final YangParser yangParser;
 
     @Override
     @Timed(value = "cps.module.service.schemaset.create",
@@ -177,6 +179,12 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     public void deleteAllUnusedYangModuleData(final String dataspaceName) {
         cpsValidator.validateNameCharacters(dataspaceName);
         cpsModulePersistenceService.deleteAllUnusedYangModuleData(dataspaceName);
+    }
+
+    @Override
+    public Collection<String> getModuleAndRootNodes(final String dataspaceName, final String anchorName) {
+        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        return yangParser.getModuleAndRootNodes(anchor);
     }
 
     private boolean isCascadeDeleteProhibited(final CascadeDeleteAllowed cascadeDeleteAllowed) {

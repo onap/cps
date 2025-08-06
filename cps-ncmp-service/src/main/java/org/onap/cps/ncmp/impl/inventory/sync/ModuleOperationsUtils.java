@@ -21,6 +21,8 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
+import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
@@ -56,6 +59,8 @@ public class ModuleOperationsUtils {
     private final CmHandleQueryService cmHandleQueryService;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
+    private final CpsModuleService cpsModuleService;
+
     private static final String RETRY_ATTEMPT_KEY = "attempt";
     private static final String MODULE_SET_TAG_KEY = "moduleSetTag";
     public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: %s";
@@ -167,13 +172,23 @@ public class ModuleOperationsUtils {
      * @param cmHandleId cm handle id
      * @return optional string containing the resource data
      */
-    public String getResourceData(final String cmHandleId) {
+    public String getResourceData(final String cmHandleId, final String options) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getAllResourceDataFromDmi(
-                cmHandleId, UUID.randomUUID().toString());
+                cmHandleId, UUID.randomUUID().toString(), options);
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());
         }
         return null;
+    }
+
+    /**
+     * Get the module and root node for a given cm handle id.
+     *
+     * @param cmHandleId cm handle identifier
+     * @return Collection of concatenated module and root node for the provided cm handle id
+     */
+    public Collection<String> getModuleAndRootNodes(final String cmHandleId) {
+        return cpsModuleService.getModuleAndRootNodes(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
     }
 
     /**

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_D
 
 import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +47,8 @@ public class DataSyncWatchdog {
     private static final boolean DATA_SYNC_DONE = true;
 
     private final InventoryPersistence inventoryPersistence;
-
     private final CpsDataService cpsDataService;
-
     private final ModuleOperationsUtils moduleOperationsUtils;
-
     private final IMap<String, Boolean> dataSyncSemaphores;
 
     /**
@@ -57,29 +57,62 @@ public class DataSyncWatchdog {
      */
     @Scheduled(initialDelayString = "${ncmp.timers.cm-handle-data-sync.initial-delay-ms:40000}",
             fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
-    public void executeUnSynchronizedReadyCmHandlePoll() {
-        moduleOperationsUtils.getUnsynchronizedReadyCmHandles().forEach(unSynchronizedReadyCmHandle -> {
-            final String cmHandleId = unSynchronizedReadyCmHandle.getId();
-            if (hasPushedIntoSemaphoreMap(cmHandleId)) {
-                log.info("Executing data sync on {}", cmHandleId);
-                final CompositeState compositeState = inventoryPersistence
-                        .getCmHandleState(cmHandleId);
-                final String resourceData = moduleOperationsUtils.getResourceData(cmHandleId);
-                if (resourceData == null) {
-                    log.error("Error retrieving resource data for Cm-Handle: {}", cmHandleId);
-                } else {
-                    cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
-                            resourceData, OffsetDateTime.now());
-                    setSyncStateToSynchronized().accept(compositeState);
-                    inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
-                    updateDataSyncSemaphoreMap(cmHandleId);
-                    log.info("Data sync finished for {}", cmHandleId);
-                }
-            } else {
-                log.info("{} already processed by another instance", cmHandleId);
+    public void executeUnSynchronizedReadyCmHandleForInitialDataSync() {
+        final List<YangModelCmHandle> unsynchronizedReadyCmHandles =
+                moduleOperationsUtils.getUnsynchronizedReadyCmHandles();
+        if (unsynchronizedReadyCmHandles.isEmpty()) {
+            log.debug("No Cm Handles currently found in READY State and Operational Sync State is UNSYNCHRONIZED");
+            return;
+        }
+        unsynchronizedReadyCmHandles.forEach(this::processCmHandle);
+    }
+
+    private void processCmHandle(final YangModelCmHandle unsynchronizedReadyCmHandle) {
+        final String cmHandleId = unsynchronizedReadyCmHandle.getId();
+
+        if (!hasPushedIntoSemaphoreMap(cmHandleId)) {
+            log.debug("{} already processed by another instance", cmHandleId);
+            return;
+        }
+
+        log.info("Executing data sync on {}", cmHandleId);
+
+        try {
+            performDataSyncForCmHandle(cmHandleId);
+            log.info("Data sync finished for {}", cmHandleId);
+        } catch (final Exception exception) {
+            log.error("Failed to complete data sync for CM handle: {}", cmHandleId, exception);
+        }
+    }
+
+    private void performDataSyncForCmHandle(final String cmHandleId) {
+        final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
+        final Collection<String> moduleAndRootNodes = moduleOperationsUtils.getModuleAndRootNodes(cmHandleId);
+
+        for (final String moduleAndRootNode : moduleAndRootNodes) {
+            syncModuleAndRootNode(cmHandleId, moduleAndRootNode);
+        }
+
+        setSyncStateToSynchronized().accept(compositeState);
+        inventoryPersistence.saveCmHandleState(cmHandleId, compositeState);
+        updateDataSyncSemaphoreMap(cmHandleId);
+    }
+
+    private void syncModuleAndRootNode(final String cmHandleId, final String moduleAndRootNode) {
+        final String options = String.format("(fields=%s)", moduleAndRootNode);
+
+        try {
+            final String resourceData = moduleOperationsUtils.getResourceData(cmHandleId, options);
+            if (resourceData == null) {
+                log.warn("No resource data found for CM handle: {} with options: {}", cmHandleId, options);
+                return;
             }
-        });
-        log.debug("No Cm-Handles currently found in READY State and Operational Sync State is UNSYNCHRONIZED");
+            cpsDataService.saveData(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId, resourceData,
+                    OffsetDateTime.now());
+        } catch (final Exception exception) {
+            log.error("Failed to sync module and root node for CM handle: {} with options: {}", cmHandleId, options,
+                    exception);
+        }
     }
 
     private Consumer<CompositeState> setSyncStateToSynchronized() {

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -170,5 +170,14 @@ public interface CpsModuleService {
      * @param dataspaceName     dataspace name
      */
     void deleteAllUnusedYangModuleData(String dataspaceName);
+
+    /**
+     * Get the collection of concatenated module-name:root-node of the provided anchor in the given dataspace.
+     *
+     * @param dataspaceName dataspace name
+     * @param anchorName    anchor name
+     * @return collection of module and root nodes concatenated with : as separator
+     */
+    Collection<String> getModuleAndRootNodes(String dataspaceName, String anchorName);
 
 }
