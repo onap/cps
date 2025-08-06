@@ -56,6 +56,7 @@ public class ModuleOperationsUtils {
     private final CmHandleQueryService cmHandleQueryService;
     private final DmiDataOperations dmiDataOperations;
     private final JsonObjectMapper jsonObjectMapper;
+
     private static final String RETRY_ATTEMPT_KEY = "attempt";
     private static final String MODULE_SET_TAG_KEY = "moduleSetTag";
     public static final String MODULE_SET_TAG_MESSAGE_FORMAT = "Upgrade to ModuleSetTag: %s";
@@ -167,9 +168,9 @@ public class ModuleOperationsUtils {
      * @param cmHandleId cm handle id
      * @return optional string containing the resource data
      */
-    public String getResourceData(final String cmHandleId) {
+    public String getResourceData(final String cmHandleId, final String options) {
         final ResponseEntity<Object> resourceDataResponseEntity = dmiDataOperations.getAllResourceDataFromDmi(
-                cmHandleId, UUID.randomUUID().toString());
+                cmHandleId, UUID.randomUUID().toString(), options);
         if (resourceDataResponseEntity.getStatusCode().is2xxSuccessful()) {
             return getFirstResource(resourceDataResponseEntity.getBody());
         }
