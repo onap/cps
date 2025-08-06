@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,7 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.api.CpsModuleService
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.impl.data.DmiDataOperations
@@ -49,9 +50,7 @@ import static org.onap.cps.ncmp.api.inventory.models.LockReasonCategory.MODULE_U
 class ModuleOperationsUtilsSpec extends Specification{
 
     def mockCmHandleQueries = Mock(CmHandleQueryService)
-
     def mockDmiDataOperations = Mock(DmiDataOperations)
-
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     def objectUnderTest = new ModuleOperationsUtils(mockCmHandleQueries, mockDmiDataOperations, jsonObjectMapper)
@@ -154,16 +153,16 @@ class ModuleOperationsUtilsSpec extends Specification{
             JsonNode jsonNode = jsonObjectMapper.convertToJsonNode(jsonString)
         and: 'DMI operations are mocked to return a response based on the scenario'
             def responseEntity = new ResponseEntity<>(statusCode == HttpStatus.OK ? jsonNode : null, statusCode)
-            mockDmiDataOperations.getAllResourceDataFromDmi('cm-handle-123', _) >> responseEntity
+            mockDmiDataOperations.getAllResourceDataFromDmi('cm-handle-123', _, 'some options') >> responseEntity
         when: 'get resource data is called'
-            def result = objectUnderTest.getResourceData('cm-handle-123')
+            def actualResult = objectUnderTest.getResourceData('cm-handle-123', 'some options')
         then: 'the returned data matches the expected result'
-            assert result == expectedResult
+            assert actualResult == expectedResult
         where:
-            scenario                              | statusCode                       | expectedResult
-            'successful response'                 | HttpStatus.OK                    | '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
-            'response with not found status'      | HttpStatus.NOT_FOUND             | null
-            'response with internal server error' | HttpStatus.INTERNAL_SERVER_ERROR | null
+            scenario                              | statusCode                       || expectedResult
+            'successful response'                 | HttpStatus.OK                    || '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
+            'response with not found status'      | HttpStatus.NOT_FOUND             || null
+            'response with internal server error' | HttpStatus.INTERNAL_SERVER_ERROR || null
     }
 
         def 'Extract module set tag and number of attempt when lock reason contains #scenario'() {
