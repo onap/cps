@@ -114,16 +114,18 @@ public class DmiDataOperations {
      *
      * @param cmHandleId    network resource identifier
      * @param requestId     requestId for async responses
+     * @param options       options field for filtered response
      * @return {@code ResponseEntity} response entity
      */
-    public ResponseEntity<Object> getAllResourceDataFromDmi(final String cmHandleId, final String requestId) {
+    public ResponseEntity<Object> getAllResourceDataFromDmi(final String cmHandleId, final String requestId,
+            final String options) {
         final YangModelCmHandle yangModelCmHandle = getYangModelCmHandle(cmHandleId);
         final CmHandleState cmHandleState = yangModelCmHandle.getCompositeState().getCmHandleState();
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
 
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
-                PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", null,
+                PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", options,
                 null);
         return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
                 DmiRestClient.NO_AUTHORIZATION);
