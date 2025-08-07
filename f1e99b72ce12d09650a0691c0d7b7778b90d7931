@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d50dc88_be1693ce",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "NB: would change the order ie put this above the cpsDataService",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 52
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c37ea147_ea2686c0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "in the context of this method this can be simplified to yangModelCmHandle\nOR\nif only the ID is needed why not change the signature to only take in the cmHandleId ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 57,
+        "endLine": 68,
+        "endChar": 84
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c758723e_27708c7d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "suggestion: synchronizeCmHandle or syncCmHandle (I still prefer the longer name but maybe for consistency you can shorten it/or make all of  them longer :-)",
+      "range": {
+        "startLine": 68,
+        "startChar": 17,
+        "endLine": 68,
+        "endChar": 32
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2edda42a_125ab594",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "align order with production code",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 53
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77a05de_bec9ed0b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "not \u0027we have\u0027 but something like\n\u0027the module service ....\u0027",
+      "range": {
+        "startLine": 82,
+        "startChar": 14,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a67b0d97_7b6f7ab4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "as before",
+      "range": {
+        "startLine": 97,
+        "startChar": 14,
+        "endLine": 97,
+        "endChar": 21
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95905426_eb859c0c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "I think now this tts is no longer need, it doesn\u0027t over any branches anymore(it also doesnt add any value either)",
+      "range": {
+        "startLine": 107,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68c64ce_06999bab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "not asserted and I dont think you have to",
+      "range": {
+        "startLine": 127,
+        "startChar": 28,
+        "endLine": 127,
+        "endChar": 46
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866cd008_153b8dad",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "not really needed, just replace with noExeptionThrown (unless you really want to assert the logging)",
+      "range": {
+        "startLine": 128,
+        "startChar": 10,
+        "endLine": 131,
+        "endChar": 50
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac57b317_b3a0cfe1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "dont think the dash is needed (suggest some validation takes place)",
+      "range": {
+        "startLine": 156,
+        "startChar": 85,
+        "endLine": 156,
+        "endChar": 86
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4447a8a0_16897cd9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T11:18:20Z",
+      "side": 1,
+      "message": "update wording",
+      "range": {
+        "startLine": 163,
+        "startChar": 13,
+        "endLine": 163,
+        "endChar": 35
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
