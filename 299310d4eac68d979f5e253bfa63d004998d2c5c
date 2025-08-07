@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9445561_c5aa3863",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T13:44:09Z",
+      "side": 1,
+      "message": "apart from the generated pojo classes. I am ok with this as it will be anyways agreed with the stakeholders.",
+      "revId": "299310d4eac68d979f5e253bfa63d004998d2c5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505eb167_d91bd7b8",
+        "filename": "cps-ncmp-events/src/main/resources/schemas/ncmp/cmnotificationsubscription/data-job-subscription-dmi-in-event-schema-1.0.0.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T13:44:09Z",
+      "side": 1,
+      "message": "u might want to reconsider this.\nall the classes from different schema are generated in the same folder and I see different schemas has same outer/inner classes for it will be suffixed with __1 or __2 etc.\nmaybe better check the target folder to check.",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 104
+      },
+      "revId": "299310d4eac68d979f5e253bfa63d004998d2c5c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
