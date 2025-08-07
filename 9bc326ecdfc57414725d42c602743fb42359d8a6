@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eede7014_7472ea4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "yup. incorporated/answered the comments.",
+      "parentUuid": "650de1c1_4c01d964",
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14e421e4_f58610da",
@@ -66,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d1fee10_fe19094d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "am.. it should be getUnsynchronizedReadyCmHandles ?? isnt it ?\nOR are u suggesting getunsynchronizedReadyCmHandles ??",
+      "parentUuid": "589b54f5_c9fea7d6",
+      "range": {
+        "startLine": 62,
+        "startChar": 41,
+        "endLine": 62,
+        "endChar": 42
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6765fce_828e989c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
         "patchSetId": 1
@@ -77,6 +119,30 @@
       "writtenOn": "2025-08-07T07:31:15Z",
       "side": 1,
       "message": "opinion: this block is not really necessary unless you really need the logging",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e3a7c3_f623c16c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "yeah. removed it. not adds real value.",
+      "parentUuid": "e6765fce_828e989c",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -112,6 +178,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2688123_17ffbcbe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "rootNodeReferences",
+      "parentUuid": "a29e0e97_70f243da",
+      "range": {
+        "startLine": 90,
+        "startChar": 33,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6cca513_535f9a27",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
         "patchSetId": 1
@@ -123,6 +213,30 @@
       "writtenOn": "2025-08-07T07:31:15Z",
       "side": 1,
       "message": "not sure why this method is in utils since it is just a wrapper around a service method. No need to wrap it like this I feel",
+      "range": {
+        "startLine": 190,
+        "startChar": 30,
+        "endLine": 190,
+        "endChar": 51
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "633cd52a_d0d5ea6c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "yeah.. I was thinking abt it where to best inject the dependency.\nLooks like adding in ModuleOperationUtils is resulting in a extra delegation call.\nWill rather directly use CpsModuleService in the DataSyncWatchdog.",
+      "parentUuid": "f6cca513_535f9a27",
       "range": {
         "startLine": 190,
         "startChar": 30,
@@ -156,6 +270,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217c02e0_407f76d9",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsModuleService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e94cc10f_609d9f31",
+      "range": {
+        "startLine": 181,
+        "startChar": 23,
+        "endLine": 181,
+        "endChar": 44
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b91a74d_eb684c14",
@@ -169,6 +307,30 @@
       "writtenOn": "2025-08-07T07:31:15Z",
       "side": 1,
       "message": "previous descriptions are better, somethign like\nconcatenated strings",
+      "range": {
+        "startLine": 122,
+        "startChar": 7,
+        "endLine": 122,
+        "endChar": 79
+      },
+      "revId": "9bc326ecdfc57414725d42c602743fb42359d8a6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34930626_18361f2a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/YangParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-07T10:33:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b91a74d_eb684c14",
       "range": {
         "startLine": 122,
         "startChar": 7,
