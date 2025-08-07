@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.events.subscription:1.0.0",
+  "$ref": "#/definitions/DmiInEvent",
+  "definitions": {
+    "DmiInEvent": {
+      "description": "The payload for cm notification data job subscription event incoming message from NCMP.",
+      "type": "object",
+      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DataJobSubscriptionDmiInEvent",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/data"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "description": "Information about the cm handle targets and data job subscription",
+      "additionalProperties": false,
+      "properties": {
+        "cmHandles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Details for the target cmhandles",
+            "additionalProperties": false,
+            "properties": {
+              "cmhandleId": {
+                "type": "string"
+              },
+              "privateProperties": {
+                "type": "object",
+                "existingJavaType": "java.util.Map<String,String>",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "productionJobDefinition": {
+          "description": "Data job subscription details",
+          "type": "object",
+          "properties": {
+            "targetSelector": {
+              "description": "An object that contains the data node selectors.",
+              "type": "object",
+              "properties": {
+                "dataNodeSelector": {
+                  "description": "A string that contains one or multiple data node selector in JEX format.",
+                  "type": "string"
+                }
+              }
+            },
+            "dataSelector": {
+              "description": "An object that contains the the notification types and notification filter.",
+              "type": "object",
+              "properties": {
+                "notificationTypes": {
+                  "description": "A string array of notification types.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "notificationFilter": {
+                  "description": "A string that contains one or multiple notification filter in JEX format",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "cmHandles"
+    ]
+  }
+}
