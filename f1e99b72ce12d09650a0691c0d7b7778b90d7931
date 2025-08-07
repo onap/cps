@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe53df3_47b7e467",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe756e3d_7497154f",
+      "range": {
+        "startLine": 68,
+        "startChar": 17,
+        "endLine": 68,
+        "endChar": 32
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2edda42a_125ab594",
@@ -330,6 +354,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c93c11d_fe8f92f6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a18930f2_8bf09d4e",
+      "range": {
+        "startLine": 107,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d68c64ce_06999bab",
@@ -461,6 +509,30 @@
       "side": 1,
       "message": "i just removed the dash from here. Hope you meant that only?",
       "parentUuid": "ac57b317_b3a0cfe1",
+      "range": {
+        "startLine": 156,
+        "startChar": 85,
+        "endLine": 156,
+        "endChar": 86
+      },
+      "revId": "f1e99b72ce12d09650a0691c0d7b7778b90d7931",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e821d3e_015915b6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "exactly that is all I meant",
+      "parentUuid": "c9c2f485_ecf4a0c2",
       "range": {
         "startLine": 156,
         "startChar": 85,

@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff3d22dc_2ebb5be5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "not really need but if you want add it inside the method",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 57
+      },
+      "revId": "825b274c0bbae15a575fd67ce15cd2afb3d82cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a44f97_0d8fa7eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "this is what I meant with consistency, Since you chose for the long form  you should apply the same here too , \n\nI suggest: performDataSynchronization  (the for-part is redundant since that is implied by the parameter name)",
+      "range": {
+        "startLine": 78,
+        "startChar": 12,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "825b274c0bbae15a575fd67ce15cd2afb3d82cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4eea1a4_5a8cd755",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "not really need but if you want add it inside the method",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 62
+      },
+      "revId": "825b274c0bbae15a575fd67ce15cd2afb3d82cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd359bbe_a35f04fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "since you use result twice call this actualResult",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 23
+      },
+      "revId": "825b274c0bbae15a575fd67ce15cd2afb3d82cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7966cbec_720541a7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleOperationsUtilsSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-07T13:55:30Z",
+      "side": 1,
+      "message": "double ||",
+      "range": {
+        "startLine": 162,
+        "startChar": 85,
+        "endLine": 162,
+        "endChar": 87
+      },
+      "revId": "825b274c0bbae15a575fd67ce15cd2afb3d82cbb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
