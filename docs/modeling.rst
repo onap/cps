@@ -124,10 +124,14 @@ Basic Concepts
     +--------------------------------+-------------------------------------+-------------------------+
     | Datastore                      | Configurations                      | Data access type        |
     +================================+=====================================+=========================+
-    | Passthrough-operational        | config-true, config-false           | read-only               |
+    | passthrough-operational        | config-true, config-false           | read-only               |
     +--------------------------------+-------------------------------------+-------------------------+
-    | Passthrough-running            | config-true                         | read-write              |
+    | passthrough-running            | config-true                         | read-write              |
     +--------------------------------+-------------------------------------+-------------------------+
+    | operational                    | config-true, config-false           | read-only               |
+    +--------------------------------+-------------------------------------+-------------------------+
+
+    **Note.** The usage of Datastore depends on whether it is supported by the DMI Plugin.
 
 Additional information on CPS-NCMP interfaces
 ---------------------------------------------
