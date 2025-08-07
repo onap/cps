@@ -23,6 +23,8 @@ The CM Notification Event follows the structure outlined in the schema below:
 :download:`CM Data Notification Event Schema <schemas/dmi/cm-events/avc-event-schema-1.0.0.json>`
 
 **Note.** NCMP uses the CM Notification Event key from the source topic to forward notifications to the client, ensuring that the order of notifications within a topic partition is maintained during forwarding.
+
 **Note.** If the notification key from the source topic is null, NCMP cannot guarantee the order of events within a topic partition when forwarding.
 
+**Note.** CM Notifications originating from ONAP-DMI-PLUGIN source system are also persisted in the CPS Database and can later be retrieved via the OPERATIONAL CPS datastore.
 

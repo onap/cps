@@ -124,9 +124,11 @@ Basic Concepts
     +--------------------------------+-------------------------------------+-------------------------+
     | Datastore                      | Configurations                      | Data access type        |
     +================================+=====================================+=========================+
-    | Passthrough-operational        | config-true, config-false           | read-only               |
+    | passthrough-operational        | config-true, config-false           | read-only               |
     +--------------------------------+-------------------------------------+-------------------------+
-    | Passthrough-running            | config-true                         | read-write              |
+    | passthrough-running            | config-true                         | read-write              |
+    +--------------------------------+-------------------------------------+-------------------------+
+    | operational                    | config-true, config-false           | read-only               |
     +--------------------------------+-------------------------------------+-------------------------+
 
 Additional information on CPS-NCMP interfaces
