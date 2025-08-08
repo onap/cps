@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmDataJobSubscriptionPersistenceService;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Predicate;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -45,7 +45,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DmiCacheHandler {
 
-    private final CmSubscriptionPersistenceService cmSubscriptionPersistenceService;
+    private final CmDataJobSubscriptionPersistenceService cmDataJobSubscriptionPersistenceService;
     private final Map<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache;
     private final InventoryPersistence inventoryPersistence;
 
@@ -156,13 +156,9 @@ public class DmiCacheHandler {
         for (final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate : dmiCmSubscriptionPredicates) {
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             final Set<String> cmHandles = dmiCmSubscriptionPredicate.getTargetCmHandleIds();
-            final Set<String> xpaths = dmiCmSubscriptionPredicate.getXpaths();
-
             for (final String cmHandle: cmHandles) {
-                for (final String xpath: xpaths) {
-                    cmSubscriptionPersistenceService.addCmSubscription(datastoreType, cmHandle,
-                            xpath, subscriptionId);
-                }
+                cmDataJobSubscriptionPersistenceService.addSubscription(datastoreType.getDatastoreName(),
+                        cmHandle, subscriptionId);
             }
         }
     }
@@ -181,13 +177,9 @@ public class DmiCacheHandler {
         for (final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate : dmiCmSubscriptionPredicates) {
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             final Set<String> cmHandles = dmiCmSubscriptionPredicate.getTargetCmHandleIds();
-            final Set<String> xpaths = dmiCmSubscriptionPredicate.getXpaths();
-
             for (final String cmHandle: cmHandles) {
-                for (final String xpath: xpaths) {
-                    cmSubscriptionPersistenceService.removeCmSubscription(datastoreType,
-                            cmHandle, xpath, subscriptionId);
-                }
+                cmDataJobSubscriptionPersistenceService.removeSubscription(datastoreType.getDatastoreName(),
+                        cmHandle, subscriptionId);
             }
         }
     }

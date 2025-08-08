@@ -41,7 +41,7 @@ import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptio
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionKey;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionTuple;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmDataJobSubscriptionPersistenceService;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Predicate;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent;
@@ -58,7 +58,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
             "^/datastores/datastore\\[@name='([^']*)']/cm-handles/cm-handle\\[@id='([^']*)']/"
                     + "filters/filter\\[@xpath='(.*)']$");
 
-    private final CmSubscriptionPersistenceService cmSubscriptionPersistenceService;
+    private final CmDataJobSubscriptionPersistenceService cmDataJobSubscriptionPersistenceService;
     private final CmSubscriptionComparator cmSubscriptionComparator;
     private final NcmpOutEventMapper ncmpOutEventMapper;
     private final DmiInEventMapper dmiInEventMapper;
@@ -70,7 +70,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     @Override
     public void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates) {
-        if (cmSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
+        if (cmDataJobSubscriptionPersistenceService.isNewSubscriptionId(subscriptionId)) {
             dmiCacheHandler.add(subscriptionId, predicates);
             handleNewCmSubscription(subscriptionId);
             scheduleNcmpOutEventResponse(subscriptionId, "subscriptionCreateResponse");
@@ -82,7 +82,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     @Override
     public void processSubscriptionDeleteRequest(final String subscriptionId) {
         final Collection<DataNode> subscriptionDataNodes =
-                cmSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId);
+                cmDataJobSubscriptionPersistenceService.getAffectedDataNodes(subscriptionId);
         final DmiCmSubscriptionTuple dmiCmSubscriptionTuple =
                 getLastRemainingAndOverlappingSubscriptionsPerDmi(subscriptionDataNodes);
         dmiCacheHandler.add(subscriptionId, mergeDmiCmSubscriptionDetailsPerDmiMaps(dmiCmSubscriptionTuple));
