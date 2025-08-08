@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import io.cloudevents.core.builder.CloudEventBuilder
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.CmSubscriptionStatus
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionDetails
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmDataJobSubscriptionPersistenceService
 import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -49,7 +49,7 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
     @SpringBean
     InventoryPersistence mockInventoryPersistence = Mock(InventoryPersistence)
     @SpringBean
-    CmSubscriptionPersistenceService mockCmSubscriptionPersistenceService = Mock(CmSubscriptionPersistenceService)
+    CmDataJobSubscriptionPersistenceService mockCmSubscriptionPersistenceService = Mock(CmDataJobSubscriptionPersistenceService)
 
     def testCache = [:]
     def objectUnderTest = new DmiCacheHandler(mockCmSubscriptionPersistenceService, testCache, mockInventoryPersistence)
@@ -188,7 +188,7 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
         when: 'subscription is persisted in database'
             objectUnderTest.persistIntoDatabasePerDmi(subscriptionId,'dmi-1')
         then: 'persistence service is called the correct number of times per dmi'
-            4 * mockCmSubscriptionPersistenceService.addCmSubscription(_,_,_,subscriptionId)
+            2 * mockCmSubscriptionPersistenceService.addSubscription(*_)
     }
 
     def 'Remove subscription from database per dmi'() {
@@ -199,7 +199,7 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
         when: 'subscription is persisted in database'
             objectUnderTest.removeFromDatabase(subscriptionId,'dmi-1')
         then: 'persistence service is called the correct number of times per dmi'
-            4 * mockCmSubscriptionPersistenceService.removeCmSubscription(_,_,_,subscriptionId)
+            2 * mockCmSubscriptionPersistenceService.removeSubscription(*_)
     }
 
     def setUpTestEvent(){
