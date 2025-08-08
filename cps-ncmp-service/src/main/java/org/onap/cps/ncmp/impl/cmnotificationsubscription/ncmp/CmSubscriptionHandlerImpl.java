@@ -70,7 +70,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
 
     @Override
     public void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates) {
-        if (cmSubscriptionPersistenceService.isUniqueSubscriptionId(subscriptionId)) {
+        if (cmSubscriptionPersistenceService.isUniqueDataJobSubscriptionId(subscriptionId)) {
             dmiCacheHandler.add(subscriptionId, predicates);
             handleNewCmSubscription(subscriptionId);
             scheduleNcmpOutEventResponse(subscriptionId, "subscriptionCreateResponse");
@@ -82,7 +82,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     @Override
     public void processSubscriptionDeleteRequest(final String subscriptionId) {
         final Collection<DataNode> subscriptionDataNodes =
-                cmSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId);
+                cmSubscriptionPersistenceService.getAllNodesForDataJobSubscriptionId(subscriptionId);
         final DmiCmSubscriptionTuple dmiCmSubscriptionTuple =
                 getLastRemainingAndOverlappingSubscriptionsPerDmi(subscriptionDataNodes);
         dmiCacheHandler.add(subscriptionId, mergeDmiCmSubscriptionDetailsPerDmiMaps(dmiCmSubscriptionTuple));

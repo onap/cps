@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,13 +51,9 @@ public class CmSubscriptionComparator {
             final Set<String> xpaths = new HashSet<>();
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             for (final String cmHandleId : dmiCmSubscriptionPredicate.getTargetCmHandleIds()) {
-                for (final String xpath : dmiCmSubscriptionPredicate.getXpaths()) {
-                    if (!cmSubscriptionPersistenceService.isOngoingCmSubscription(datastoreType,
-                            cmHandleId, xpath)) {
-                        targetCmHandleIds.add(cmHandleId);
-                        xpaths.add(xpath);
-
-                    }
+                if (!cmSubscriptionPersistenceService.isOngoingCmDataJobSubscription(
+                        datastoreType.getDatastoreName(), cmHandleId)) {
+                    targetCmHandleIds.add(cmHandleId);
                 }
             }
             populateValidDmiSubscriptionPredicates(targetCmHandleIds, xpaths, datastoreType,

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
         when: 'subscription is persisted in database'
             objectUnderTest.persistIntoDatabasePerDmi(subscriptionId,'dmi-1')
         then: 'persistence service is called the correct number of times per dmi'
-            4 * mockCmSubscriptionPersistenceService.addCmSubscription(_,_,_,subscriptionId)
+            2 * mockCmSubscriptionPersistenceService.addCmDataJobSubscription(*_)
     }
 
     def 'Remove subscription from database per dmi'() {
@@ -199,7 +199,7 @@ class DmiCacheHandlerSpec extends MessagingBaseSpec {
         when: 'subscription is persisted in database'
             objectUnderTest.removeFromDatabase(subscriptionId,'dmi-1')
         then: 'persistence service is called the correct number of times per dmi'
-            4 * mockCmSubscriptionPersistenceService.removeCmSubscription(_,_,_,subscriptionId)
+            2 * mockCmSubscriptionPersistenceService.removeCmDataJobSubscription(*_)
     }
 
     def setUpTestEvent(){

@@ -66,7 +66,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
             def testListOfDeltaPredicates = [new DmiCmSubscriptionPredicate(['ch1'].toSet(), PASSTHROUGH_OPERATIONAL, ['/a/b'].toSet())]
-            mockCmSubscriptionPersistenceService.isUniqueSubscriptionId("test-id") >> true
+            mockCmSubscriptionPersistenceService.isUniqueDataJobSubscriptionId("test-id") >> true
         and: 'relevant details is extracted from the event'
             def subscriptionId = testEventConsumed.getData().getSubscriptionId()
             def predicates = testEventConsumed.getData().getPredicates()
@@ -93,7 +93,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
             def noDeltaPredicates = []
-            mockCmSubscriptionPersistenceService.isUniqueSubscriptionId("test-id") >> true
+            mockCmSubscriptionPersistenceService.isUniqueDataJobSubscriptionId("test-id") >> true
         and: 'the cache handler returns for relevant subscription id'
             1 * mockDmiCacheHandler.get('test-id') >> testDmiSubscriptionsPerDmi
         and: 'the delta predicates is returned'
@@ -112,7 +112,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         given: 'a cmNotificationSubscriptionNcmp in event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
             def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
-            mockCmSubscriptionPersistenceService.isUniqueSubscriptionId('test-id') >> false
+            mockCmSubscriptionPersistenceService.isUniqueDataJobSubscriptionId('test-id') >> false
         and: 'relevant details is extracted from the event'
             def subscriptionId = testEventConsumed.getData().getSubscriptionId()
             def predicates = testEventConsumed.getData().getPredicates()
@@ -132,9 +132,9 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         given: 'a test subscription id'
             def subscriptionId = 'test-id'
         and: 'the persistence service returns datanodes'
-            1 * mockCmSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId) >>
+            1 * mockCmSubscriptionPersistenceService.getAllNodesForDataJobSubscriptionId(subscriptionId) >>
                 [new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='x/y']", leaves: ['xpath': 'x/y', 'subscriptionIds': ['test-id']]),
-                new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-2']/filters/filter[@xpath='y/z']", leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id']])]
+                 new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-2']/filters/filter[@xpath='y/z']", leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id']])]
         and: 'the inventory persistence returns yang model cm handles'
             1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(dmiServiceName: 'dmi-1')
             1 * mockInventoryPersistence.getYangModelCmHandle('ch-2') >> new YangModelCmHandle(dmiServiceName: 'dmi-2')
@@ -151,7 +151,7 @@ class CmSubscriptionHandlerImplSpec extends Specification {
         given: 'a test subscription id'
             def subscriptionId = 'test-id'
         and: 'the persistence service returns datanodes with multiple subscribers'
-            1 * mockCmSubscriptionPersistenceService.getAllNodesForSubscriptionId(subscriptionId) >>
+            1 * mockCmSubscriptionPersistenceService.getAllNodesForDataJobSubscriptionId(subscriptionId) >>
                 [new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='x/y']", leaves: ['xpath': 'x/y', 'subscriptionIds': ['test-id','other-id']]),
                  new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-2']/filters/filter[@xpath='y/z']", leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id','other-id']])]
         and: 'the inventory persistence returns yang model cm handles'
