@@ -49,6 +49,10 @@ class CpsFacadeImplSpec extends Specification {
     def dataNode1 = new DataNode(xpath:'/path1', anchorName: 'my anchor')
     def dataNode2 = new DataNode(xpath:'/path2', anchorName: 'my anchor')
     def dataNode3 = new DataNode(xpath:'/path3', anchorName: 'other anchor')
+    def expectedResult = [
+            [field1: 'value1', field2: 'value2'],
+            [field1: 'value3', field2: 'value4']
+    ]
 
     def setup() {
         mockCpsDataService.getDataNodes('my dataspace', 'my anchor', 'my path', myFetchDescendantsOption) >> [ dataNode1, dataNode2]
@@ -128,6 +132,27 @@ class CpsFacadeImplSpec extends Specification {
             '3 anchors per page'            | new PaginationOption(1,3)   || 4
             '10 anchors per page'           | new PaginationOption(1,10)  || 1
             '100 anchors per page'          | new PaginationOption(1,100) || 1
+    }
+
+    def 'Execute custom query with select fields and where conditions.'() {
+        given: 'A mock response from CpsDataService'
+        def dataspaceName = 'my-dataspace'
+        def anchor = 'my-anchor'
+        def xpath = '/my/path'
+        def selectFields = ['field1', 'field2']
+        def whereConditions = 'field1 = "value1"'
+        def expectedResult = [
+                [field1: 'value1', field2: 'value2'],
+                [field1: 'value3', field2: 'value4']
+        ]
+        mockCpsQueryService.getCustomNodes(dataspaceName, anchor, xpath, selectFields, whereConditions) >> expectedResult
+        when: 'Execute custom query is called'
+        def result = objectUnderTest.executeCustomQuery(dataspaceName, anchor, xpath, selectFields, whereConditions)
+        then: 'The result matches the mock response'
+        assert result == expectedResult
+        assert result.size() == 2
+        assert result[0] == [field1: 'value1', field2: 'value2']
+        assert result[1] == [field1: 'value3', field2: 'value4']
     }
 
 }

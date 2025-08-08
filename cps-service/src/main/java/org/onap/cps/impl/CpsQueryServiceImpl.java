@@ -23,6 +23,8 @@ package org.onap.cps.impl;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsQueryService;
@@ -92,5 +94,15 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     public Integer countAnchorsForDataspaceAndCpsPath(final String dataspaceName, final String cpsPath) {
         cpsValidator.validateNameCharacters(dataspaceName);
         return cpsDataPersistenceService.countAnchorsForDataspaceAndCpsPath(dataspaceName, cpsPath);
+    }
+
+
+    @Override
+    public List<Map<String, Object>> getCustomNodes(final String dataspaceName,
+                                                    final String anchor, final String xpath,
+                                                    final List<String> selectFields, final String whereConditions) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchor);
+        return cpsDataPersistenceService.getCustomNodes(
+                dataspaceName, anchor, xpath, selectFields, whereConditions);
     }
 }

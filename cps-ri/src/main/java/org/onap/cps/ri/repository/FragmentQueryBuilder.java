@@ -24,6 +24,7 @@ package org.onap.cps.ri.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,8 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -369,4 +372,110 @@ public class FragmentQueryBuilder {
         return stringSubstitutor.replace(template);
     }
 
+
+    /**
+     * Create a sql query to retrieve custom attributes with conditions.
+     *
+     * @param xpath the x path query to be transformed into a sql query
+     * @return executable query object
+     */
+    public Query getCustomNodesQuery(final String xpath,
+                                     final List<String> selectFields,
+                                     final QuerySelectWhere querySelectWhere) {
+        validateInputs(xpath, selectFields);
+
+        final StringBuilder sql = new StringBuilder("SELECT f.attributes FROM fragment f");
+        final List<Object> params = new ArrayList<>();
+        final List<String> conditions = buildConditions(xpath, querySelectWhere, params);
+
+        appendConditionsToSql(sql, conditions, querySelectWhere);
+
+        final Query query = entityManager.createNativeQuery(sql.toString());
+        setQueryParameters(query, params);
+
+        return query;
+    }
+
+    private void validateInputs(final String xpath, final List<String> selectFields) {
+        if (xpath == null || xpath.isEmpty()) {
+            throw new PathParsingException("XPath cannot be null or empty");
+        }
+        if (selectFields == null || selectFields.isEmpty()) {
+            throw new IllegalArgumentException("Select fields cannot be empty");
+        }
+    }
+
+    private List<String> buildConditions(final String xpath,
+                                         final QuerySelectWhere querySelectWhere,
+                                         final List<Object> params) {
+        final List<String> conditions = new ArrayList<>();
+        conditions.add("f.xpath LIKE ?1");
+        params.add(xpath);
+
+        if (querySelectWhere.hasWhereConditions()) {
+            addWhereConditions(conditions, querySelectWhere, params);
+        }
+
+        return conditions;
+    }
+
+    private void addWhereConditions(final List<String> conditions,
+                                    final QuerySelectWhere querySelectWhere,
+                                    final List<Object> params) {
+        int paramIndex = 2;
+        for (final QuerySelectWhere.WhereCondition condition : querySelectWhere.getWhereConditions()) {
+            final String conditionSql = buildConditionSql(condition, paramIndex);
+            conditions.add(conditionSql);
+            params.add(sanitizeValue(condition.value(), condition.operator()));
+            paramIndex++;
+        }
+    }
+
+    private String buildConditionSql(final QuerySelectWhere.WhereCondition condition,
+                                     final int paramIndex) {
+        final String field = condition.name();
+        final String operator = condition.operator();
+        if ("LIKE".equalsIgnoreCase(operator)) {
+            return "f.attributes->>'" + field + "' LIKE ?" + paramIndex;
+        }
+        if (condition.value() instanceof Number) {
+            return "CAST(f.attributes->>'" + field + "' AS DOUBLE PRECISION) " + operator + " ?" + paramIndex;
+        }
+        return "f.attributes->>'" + field + "' " + operator + " ?" + paramIndex;
+    }
+
+    private Object sanitizeValue(final Object value, final String operator) {
+        if (value instanceof String && !"LIKE".equalsIgnoreCase(operator)) {
+            return value.toString().replace("'", "''");
+        }
+        return value;
+    }
+
+    private void appendConditionsToSql(final StringBuilder sql,
+                                       final List<String> conditions,
+                                       final QuerySelectWhere querySelectWhere) {
+        if (!conditions.isEmpty()) {
+            sql.append(" WHERE ");
+            for (int i = 0; i < conditions.size(); i++) {
+                sql.append(conditions.get(i));
+                if (i < conditions.size() - 1) {
+                    final String operator = getBooleanOperator(querySelectWhere, i);
+                    sql.append(" ").append(operator).append(" ");
+                }
+            }
+        }
+    }
+
+    private String getBooleanOperator(final QuerySelectWhere querySelectWhere, final int index) {
+        if (index < querySelectWhere.getWhereBooleanOperators().size()) {
+            return querySelectWhere.getWhereBooleanOperators().get(index).toUpperCase();
+        }
+        return "AND";
+    }
+
+    private void setQueryParameters(final Query query, final List<Object> params) {
+        for (int i = 0; i < params.size(); i++) {
+            query.setParameter(i + 1, params.get(i));
+        }
+    }
 }

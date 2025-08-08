@@ -265,4 +265,16 @@ public interface CpsDataPersistenceService {
      * @return total anchors for dataspace name and cps path
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    /**
+     * Query for custom nodes.
+     * @param dataspaceName dataspace name
+     * @param anchor anchor
+     * @param xpath xpath
+     * @param selectFields select
+     * @param whereConditions where
+     * @return map for custom query result
+     */
+    List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor,
+                                             String xpath, List<String> selectFields, String whereConditions);
 }

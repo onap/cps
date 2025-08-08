@@ -22,6 +22,7 @@ package org.onap.cps.ri
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
+import org.onap.cps.query.parser.QuerySelectWhere
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.FragmentEntity
@@ -298,6 +299,26 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
     def mockFragmentWithJson(json) {
         def fragmentEntity = new FragmentEntity(456, '/parent-01', null, json, anchorEntity, [] as Set)
         mockFragmentRepository.findByAnchorAndXpathIn(_, ['/parent-01'] as Set) >> [fragmentEntity]
+    }
+
+    def 'Get custom nodes with valid inputs: #scenario'() {
+        given: 'Expected QuerySelectWhere for select and where clauses'
+        def expectedQuerySelectWhere = new QuerySelectWhere()
+        expectedQuerySelectWhere.setSelectFields(selectFields)
+        expectedQuerySelectWhere.setWhereConditions(whereConditions)
+        expectedQuerySelectWhere.setWhereBooleanOperators(booleanOperators)
+        and: 'Mock repository response'
+        def expectedResult = null
+        mockFragmentRepository.findCustomNodes(123, xpath, selectFields, whereConditions, expectedQuerySelectWhere) >> expectedResult
+        when: 'getCustomNodes is called'
+        def result = objectUnderTest.getCustomNodes(dataspaceName, anchor, xpath, selectFields, whereConditions)
+        then: 'Result matches expected'
+        result == expectedResult
+        and: 'Repository is called with correct parameters'
+        1 * mockFragmentRepository.findCustomNodes(123, xpath, selectFields, whereConditions, _ as QuerySelectWhere)
+        where:
+        scenario                     | dataspaceName | anchor  | xpath       | selectFields         | whereConditions                    | whereConditionsList                                                                 | booleanOperators
+        'single select field'       | 'ds1'         | 'a1'    | '/path'     | ['field1']           | null                               | []                                                                                  | []
     }
 
 }

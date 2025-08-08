@@ -38,14 +38,6 @@ class DataNodeBuilderSpec extends Specification {
     def yangParserHelper = new YangParserHelper()
     def validateAndParse = false
 
-    def expectedLeavesByXpathMap = [
-            '/test-tree'                                            : [],
-            '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
-            '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
-            '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
-            '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
-            '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
-    ]
 
     String[] networkTopologyModelRfc8345 = [
             'ietf/ietf-yang-types@2013-07-15.yang',
@@ -74,6 +66,24 @@ class DataNodeBuilderSpec extends Specification {
             mappedResult.each {
                 xpath, dataNode -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
             }
+        where:
+        yangFile                    | expectedLeavesByXpathMap
+        'test-tree.yang'            | [
+                '/test-tree'                                            : [],
+                '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
+                '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Finch', 'Robin', 'Sparrow']],
+                '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
+                '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Crow', 'Owl', 'Raven']],
+                '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
+        ]
+        'test-tree-user-ordered.yang' | [
+                '/test-tree'                                            : [],
+                '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
+                '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
+                '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
+                '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
+                '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
+        ]
     }
 
     def 'Converting ContainerNode (tree) to a DataNode (tree) for known parent node.'() {
