@@ -176,6 +176,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67572f9_db9d263d",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T16:20:49Z",
+      "side": 1,
+      "message": "have u suffixed V2 because of this comment??\ni just meant to do it here in this test.",
+      "parentUuid": "e5a1951b_88965969",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 186,
+        "endChar": 24
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "172f4a90_a721bbc3",
@@ -342,6 +366,30 @@
       "side": 1,
       "message": "Does \u0027Apply changes from a delta report on an anchor\u0027 work?",
       "parentUuid": "e75c1651_579358b0",
+      "range": {
+        "startLine": 340,
+        "startChar": 17,
+        "endLine": 340,
+        "endChar": 21
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b38a8c3b_f587594d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T16:20:49Z",
+      "side": 1,
+      "message": "yep. works for me.",
+      "parentUuid": "ceccf7da_451df855",
       "range": {
         "startLine": 340,
         "startChar": 17,

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b111f0a_e0a0af20",
+        "filename": "cps-rest/docs/openapi/openapi.yml",
+        "patchSetId": 24
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T16:20:49Z",
+      "side": 1,
+      "message": "why V2 here??\nwe dont have v1 of this.. right?\nand anyways we have already versioned this as v2.",
+      "range": {
+        "startLine": 109,
+        "startChar": 63,
+        "endLine": 109,
+        "endChar": 75
+      },
+      "revId": "4d8b081680535cf915e9afbb1ec80d95aadf50d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "055fee20_b621a18b",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T16:20:49Z",
+      "side": 1,
+      "message": "this still looks little weird. \nmaybe we need to revisit the name of the ApplyDeltaReport service class.",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 43
+      },
+      "revId": "4d8b081680535cf915e9afbb1ec80d95aadf50d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
