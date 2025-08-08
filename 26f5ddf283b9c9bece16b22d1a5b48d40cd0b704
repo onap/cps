@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f41dabb_82794944",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-08T16:05:54Z",
+      "side": 1,
+      "message": "other than the test ... all good",
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1700f5b_ea24dad3",
@@ -36,6 +53,29 @@
         "startChar": 6,
         "endLine": 242,
         "endChar": 60
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd29006_37127f0f",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-08T16:05:54Z",
+      "side": 1,
+      "message": "?? this is still unclear , i cant tell what is special about these dataNodes with this statement\n\nmaybe split this into two to make it more clear..\n\nsuggestion -\u003e\n\nand: \u0027a data node that represents replacing an attribute from an existing one\u0027\ndef dataNode1 \u003d new DataNode(xpath: \u0027/bookstore/categories[@code\u003d1]/books[@title\u003d\"Matilda\"]\u0027, leaves: [\u0027title\u0027: \u0027Matilda\u0027, \u0027lang\u0027: \u0027French\u0027])\n\nand: \u0027a data node that represents adding a new list item\u0027\ndef dataNode2 \u003d new DataNode(xpath: \u0027/bookstore/categories[@code\u003d1]/books[@title\u003d\"Book 2\"]\u0027, leaves: [\u0027title\u0027: \u0027Book 2\u0027, \u0027lang\u0027: \u0027English\u0027])",
+      "range": {
+        "startLine": 250,
+        "startChar": 14,
+        "endLine": 250,
+        "endChar": 75
       },
       "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
