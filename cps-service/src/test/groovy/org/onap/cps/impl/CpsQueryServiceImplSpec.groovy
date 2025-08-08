@@ -94,4 +94,30 @@ class CpsQueryServiceImplSpec extends Specification {
         then: 'the persistence service is called once with the correct parameters'
             1 * mockCpsDataPersistenceService.queryDataLeaf('some-dataspace', 'some-anchor', '/cps-path/@id', 0, Object.class)
     }
+
+
+    def 'Get custom nodes with valid inputs.'() {
+        given: 'Valid inputs and mock response'
+        def dataspaceName = 'some-dataspace'
+        def anchorName = 'some-anchor'
+        def xpath = '/my/path'
+        def selectFields = ['field1', 'field2']
+        def whereConditions = 'field1 = "value1"'
+        def expectedResult = [
+                [field1: 'value1', field2: 'value2'],
+                [field1: 'value3', field2: 'value4']
+        ]
+        mockCpsValidator.validateNameCharacters(dataspaceName, anchorName) >> { /* No exception */ }
+        mockCpsDataPersistenceService.getCustomNodes(dataspaceName, anchorName, xpath, selectFields, whereConditions) >> expectedResult
+
+        when: 'getCustomNodes is called'
+        def result = objectUnderTest.getCustomNodes(dataspaceName, anchorName, xpath, selectFields, whereConditions)
+
+        then: 'The result matches the expected output'
+        1*mockCpsDataPersistenceService.getCustomNodes(dataspaceName, anchorName, xpath, selectFields, whereConditions) >> expectedResult
+        assert result == expectedResult
+        assert result.size() == 2
+        assert result[0] == [field1: 'value1', field2: 'value2']
+        assert result[1] == [field1: 'value3', field2: 'value4']
+    }
 }

@@ -22,6 +22,8 @@
 package org.onap.cps.api;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -107,4 +109,8 @@ public interface CpsQueryService {
      * @return total number of anchors for given dataspace name and cps path.
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+    List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath,
+                                             List<String> selectFields, String whereConditions);
+
 }

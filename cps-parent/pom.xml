@@ -447,6 +447,7 @@
                         <exclude>org/onap/cps/events/model/*</exclude>
                         <exclude>org/onap/cps/rest/model/*</exclude>
                         <exclude>org/onap/cps/cpspath/parser/antlr4/*</exclude>
+                        <exclude>org/onap/cps/query/parser/antlr4/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/model/*</exclude>
                         <exclude>org/onap/cps/ncmp/rest/provmns/model/*</exclude>
                         <exclude>org/onap/cps/**/*MapperImpl.class</exclude>
