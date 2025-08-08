@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,6 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.utils;
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY;
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import java.io.Serializable;
@@ -46,9 +45,7 @@ import org.springframework.stereotype.Service;
 public class CmSubscriptionPersistenceService {
 
     private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-    private static final String CM_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-subscriptions";
-
-    private static final String SUBSCRIPTION_ANCHOR_NAME = "cm-data-subscriptions";
+    private static final String CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-job-subscriptions";
     private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE = """
             /datastores/datastore[@name='%s']/cm-handles/cm-handle[@id='%s']
             """.trim();
@@ -58,60 +55,61 @@ public class CmSubscriptionPersistenceService {
     private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH =
             CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE + "/filter[@xpath='%s']";
 
+    private static final String CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE = """
+                /dataJob/subscription[@alternateId='%s' and @dataTypeId='%s']
+                """.trim();
 
-    private static final String CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID = """
-            //filter/subscriptionIds[text()='%s']
+    private static final String CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_DATA_JOB_ID = """
+            //subscription/dataJobId[text()='%s']
             """.trim();
+
 
     private final JsonObjectMapper jsonObjectMapper;
     private final CpsQueryService cpsQueryService;
     private final CpsDataService cpsDataService;
 
     /**
-     * Check if we have an ongoing cm subscription based on the parameters.
+     * Check if we have an ongoing cm data job subscription based on the parameters.
      *
-     * @param datastoreType the susbcription target datastore type
-     * @param cmHandleId    the id of the cm handle for the susbcription
-     * @param xpath         the target xpath
-     * @return true for ongoing cmsubscription , otherwise false
+     * @param dataType      the data type of the data job subscription
+     * @param alternateId   the alternate id target of the data job subscription
+     * @return              true for ongoing cm data job subscription , otherwise false
      */
-    public boolean isOngoingCmSubscription(final DatastoreType datastoreType, final String cmHandleId,
-            final String xpath) {
-        return !getOngoingCmSubscriptionIds(datastoreType, cmHandleId, xpath).isEmpty();
+    public boolean isOngoingCmDataJobSubscription(final String dataType, final String alternateId) {
+        return !getOngoingCmDataJobSubscriptionIds(dataType, alternateId).isEmpty();
     }
 
     /**
-     * Check if the subscription ID is unique against ongoing subscriptions.
+     * Check if the data job subscription ID is unique against ongoing subscriptions.
      *
-     * @param subscriptionId subscription ID
-     * @return true if subscriptionId is not used in active subscriptions, otherwise false
+     * @param dataJobSubscriptionId subscription ID
+     * @return true if dataJobSubscriptionId is not used in active subscriptions, otherwise false
      */
-    public boolean isUniqueSubscriptionId(final String subscriptionId) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted(subscriptionId), OMIT_DESCENDANTS).isEmpty();
+    public boolean isUniqueDataJobSubscriptionId(final String dataJobSubscriptionId) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_DATA_JOB_ID.formatted(dataJobSubscriptionId),
+                OMIT_DESCENDANTS).isEmpty();
     }
 
     /**
-     * Get all ongoing cm notification subscription based on the parameters.
+     * Get all ongoing cm data job subscription based on the parameters.
      *
-     * @param datastoreType the susbcription target datastore type
-     * @param cmHandleId    the id of the cm handle for the susbcription
-     * @param xpath         the target xpath
-     * @return collection of subscription ids of ongoing cm notification subscription
+     * @param dataType      the data type of the data job subscription
+     * @param alternateId   the alternate id target of the data job subscription
+     * @return              collection of subscription ids of ongoing cm notification subscription
      */
-    public Collection<String> getOngoingCmSubscriptionIds(final DatastoreType datastoreType,
-            final String cmHandleId, final String xpath) {
-
-        final String isOngoingCmSubscriptionCpsPathQuery =
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
-                        datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath));
+    public Collection<String> getOngoingCmDataJobSubscriptionIds(final String dataType,
+                                                                 final String alternateId) {
+        final String isOngoingCmDataJobSubscriptionCpsPathQuery =
+                CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE.formatted(
+                        alternateId, dataType);
         final Collection<DataNode> existingNodes =
-                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                        isOngoingCmSubscriptionCpsPathQuery, OMIT_DESCENDANTS);
+                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+                        isOngoingCmDataJobSubscriptionCpsPathQuery, OMIT_DESCENDANTS);
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
-        return (List<String>) existingNodes.iterator().next().getLeaves().get("subscriptionIds");
+        return (List<String>) existingNodes.iterator().next().getLeaves().get("dataJobId");
     }
 
     /**
@@ -125,7 +123,7 @@ public class CmSubscriptionPersistenceService {
     public void addCmSubscription(final DatastoreType datastoreType, final String cmHandleId,
             final String xpath, final String newSubscriptionId) {
         final Collection<String> subscriptionIds =
-                getOngoingCmSubscriptionIds(datastoreType, cmHandleId, xpath);
+                getOngoingCmDataJobSubscriptionIds(datastoreType.getDatastoreName(), cmHandleId);
         if (subscriptionIds.isEmpty()) {
             addFirstSubscriptionForDatastoreCmHandleAndXpath(datastoreType, cmHandleId, xpath, newSubscriptionId);
         } else if (!subscriptionIds.contains(newSubscriptionId)) {
@@ -137,15 +135,15 @@ public class CmSubscriptionPersistenceService {
     /**
      * Remove cm notification Subscription.
      *
-     * @param datastoreType  the susbcription target datastore type
-     * @param cmHandleId     the id of the cm handle for the susbcription
+     * @param datastoreType  the subscription target datastore type
+     * @param cmHandleId     the id of the cm handle for the subscription
      * @param xpath          the target xpath
      * @param subscriptionId subscription id to remove
      */
     public void removeCmSubscription(final DatastoreType datastoreType, final String cmHandleId,
             final String xpath, final String subscriptionId) {
         final Collection<String> subscriptionIds =
-                getOngoingCmSubscriptionIds(datastoreType, cmHandleId, xpath);
+                getOngoingCmDataJobSubscriptionIds(datastoreType.getDatastoreName(), cmHandleId);
         if (subscriptionIds.remove(subscriptionId)) {
             saveSubscriptionDetails(datastoreType, cmHandleId, xpath, subscriptionIds);
             log.info("There are subscribers left for the following cps path {} :",
@@ -155,48 +153,38 @@ public class CmSubscriptionPersistenceService {
                 log.info("No subscribers left for the following cps path {} :",
                         CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
                                 datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)));
-                deleteListOfSubscriptionsFor(datastoreType, cmHandleId, xpath);
+                deleteListOfSubscriptionsFor(datastoreType, cmHandleId);
             }
         }
     }
 
     /**
-     * Retrieve all existing dataNodes for given subscription id.
+     * Retrieve all existing data nodes for given data job subscription id.
      *
-     * @param subscriptionId  subscription id
-     * @return collection of DataNodes
+     * @param subscriptionId  data job subscription id
+     * @return                collection of DataNodes
      */
-    public Collection<DataNode> getAllNodesForSubscriptionId(final String subscriptionId) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_ID.formatted(subscriptionId),
+    public Collection<DataNode> getAllNodesForDataJobSubscriptionId(final String subscriptionId) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_DATA_JOB_ID.formatted(subscriptionId),
                 OMIT_DESCENDANTS);
     }
 
-    private void deleteListOfSubscriptionsFor(final DatastoreType datastoreType, final String cmHandleId,
-            final String xpath) {
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
-                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_CMHANDLE_AND_XPATH.formatted(
-                        datastoreType.getDatastoreName(), cmHandleId, escapeQuotesByDoublingThem(xpath)),
+    private void deleteListOfSubscriptionsFor(final DatastoreType datastoreType, final String cmHandleId) {
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+                CPS_PATH_QUERY_FOR_CM_DATA_JOB_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE.formatted(cmHandleId,
+                        datastoreType.getDatastoreName()),
                 OffsetDateTime.now());
-        final Collection<DataNode> existingFiltersForCmHandle =
-                cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
-                                CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
-                                        datastoreType.getDatastoreName(), cmHandleId),
-                                DIRECT_CHILDREN_ONLY).iterator().next()
-                        .getChildDataNodes();
-        if (existingFiltersForCmHandle.isEmpty()) {
-            removeCmHandleFromDatastore(datastoreType.getDatastoreName(), cmHandleId);
-        }
     }
 
     private void removeCmHandleFromDatastore(final String datastoreName, final String cmHandleId) {
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME,
+        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_WITH_DATASTORE_AND_CMHANDLE.formatted(datastoreName, cmHandleId),
                 OffsetDateTime.now());
     }
 
     private boolean isFirstSubscriptionForCmHandle(final DatastoreType datastoreType, final String cmHandleId) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                         datastoreType.getDatastoreName(), cmHandleId), OMIT_DESCENDANTS).isEmpty();
     }
@@ -211,10 +199,10 @@ public class CmSubscriptionPersistenceService {
             final String subscriptionAsJson =
                     String.format("{\"cm-handle\":[{\"id\":\"%s\",\"filters\":%s}]}", cmHandleId,
                             subscriptionDetailsAsJson);
-            cpsDataService.saveData(NCMP_DATASPACE_NAME, SUBSCRIPTION_ANCHOR_NAME, parentXpath, subscriptionAsJson,
-                    OffsetDateTime.now(), ContentType.JSON);
+            cpsDataService.saveData(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME, parentXpath,
+                    subscriptionAsJson, OffsetDateTime.now(), ContentType.JSON);
         } else {
-            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+            cpsDataService.saveListElements(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
                     CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                             datastoreType.getDatastoreName(), cmHandleId), subscriptionDetailsAsJson,
                     OffsetDateTime.now(), ContentType.JSON);
@@ -224,7 +212,7 @@ public class CmSubscriptionPersistenceService {
     private void saveSubscriptionDetails(final DatastoreType datastoreType, final String cmHandleId, final String xpath,
             final Collection<String> subscriptionIds) {
         final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(xpath, subscriptionIds);
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, CM_SUBSCRIPTIONS_ANCHOR_NAME,
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
                 CPS_PATH_QUERY_FOR_CM_SUBSCRIPTION_FILTERS_WITH_DATASTORE_AND_CMHANDLE.formatted(
                         datastoreType.getDatastoreName(), cmHandleId), subscriptionDetailsAsJson, OffsetDateTime.now(),
                 ContentType.JSON);

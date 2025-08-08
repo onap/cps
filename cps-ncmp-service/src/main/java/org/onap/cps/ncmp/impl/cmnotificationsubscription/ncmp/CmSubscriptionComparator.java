@@ -52,8 +52,8 @@ public class CmSubscriptionComparator {
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             for (final String cmHandleId : dmiCmSubscriptionPredicate.getTargetCmHandleIds()) {
                 for (final String xpath : dmiCmSubscriptionPredicate.getXpaths()) {
-                    if (!cmSubscriptionPersistenceService.isOngoingCmSubscription(datastoreType,
-                            cmHandleId, xpath)) {
+                    if (!cmSubscriptionPersistenceService.isOngoingCmDataJobSubscription(
+                            datastoreType.getDatastoreName(), cmHandleId)) {
                         targetCmHandleIds.add(cmHandleId);
                         xpaths.add(xpath);
 

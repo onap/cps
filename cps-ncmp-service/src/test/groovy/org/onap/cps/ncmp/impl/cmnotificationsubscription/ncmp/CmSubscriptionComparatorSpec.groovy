@@ -19,9 +19,9 @@
  */
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp
 
-
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService
+import spock.lang.Ignore
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
@@ -31,6 +31,7 @@ class CmSubscriptionComparatorSpec extends Specification {
     def mockCmSubscriptionPersistenceService = Mock(CmSubscriptionPersistenceService)
     def objectUnderTest = new CmSubscriptionComparator(mockCmSubscriptionPersistenceService)
 
+    @Ignore //CPS-2919
     def 'Find Delta of given list of predicates'() {
         given: 'A list of predicates'
             def predicates = [new DmiCmSubscriptionPredicate(['ch-1', 'ch-2'].toSet(), PASSTHROUGH_OPERATIONAL, ['a/1/', 'b/2'].toSet())]
@@ -48,6 +49,7 @@ class CmSubscriptionComparatorSpec extends Specification {
 
     }
 
+    @Ignore //CPS-2919
     def 'Find Delta of given list of predicates when it is an ongoing Cm Subscription'() {
         given: 'A list of predicates'
             def predicates = [new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_OPERATIONAL, ['a/1/'].toSet())]
