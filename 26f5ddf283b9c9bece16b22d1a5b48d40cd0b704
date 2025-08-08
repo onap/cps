@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c179982_bab21a02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T15:41:13Z",
+      "side": 1,
+      "message": "most of my comments addressed. \nwhen u fix other comments u can take care of my non blocking comments.\ni will ask others to have a look.",
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1700f5b_ea24dad3",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T15:41:13Z",
+      "side": 1,
+      "message": "NB: maybe add this after 200 status code just for consistency.",
+      "range": {
+        "startLine": 241,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 60
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c477c2_36c61f19",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 1829,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-08T15:41:13Z",
+      "side": 1,
+      "message": "NB: move after 200 status code.",
+      "range": {
+        "startLine": 1823,
+        "startChar": 2,
+        "endLine": 1829,
+        "endChar": 30
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
