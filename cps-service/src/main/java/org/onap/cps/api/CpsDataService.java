@@ -26,6 +26,7 @@ package org.onap.cps.api;
 
 import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -303,4 +304,6 @@ public interface CpsDataService {
      */
     void validateData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
                                  ContentType contentType);
+
+    List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions);
 }

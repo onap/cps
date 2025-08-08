@@ -33,6 +33,7 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -326,5 +327,14 @@ public class CpsDataServiceImpl implements CpsDataService {
         } catch (final Exception exception) {
             log.error("Failed to send message to notification service", exception);
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchor);
+        final Anchor anchorEntity = cpsAnchorService.getAnchor(dataspaceName, anchor);
+        return cpsDataPersistenceService.getCustomNodes(
+                dataspaceName, anchor, xpath, selectFields, whereConditions);
+
     }
 }

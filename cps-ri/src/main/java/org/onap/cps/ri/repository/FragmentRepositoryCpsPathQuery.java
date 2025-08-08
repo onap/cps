@@ -22,9 +22,11 @@
 package org.onap.cps.ri.repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -43,4 +45,5 @@ public interface FragmentRepositoryCpsPathQuery {
     List<Long> findAnchorIdsForPagination(DataspaceEntity dataspaceEntity, CpsPathQuery cpsPathQuery,
                                           PaginationOption paginationOption);
 
+    List<Map<String, Object>> findCustomNodes(Long id, String xpath, List<String> selectFields, String whereConditions, QuerySelectWhere querySelectWhere);
 }

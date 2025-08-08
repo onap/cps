@@ -21,15 +21,18 @@
 
 package org.onap.cps.ri.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -90,6 +93,35 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
                 dataspaceEntity, cpsPathQuery, paginationOption);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Map<String, Object>> findCustomNodes(Long id, String xpath, List<String> selectFields, String whereConditions, QuerySelectWhere querySelectWhere) {
+        Query query =  fragmentQueryBuilder.getCustomNodesQuery(id, xpath, selectFields, whereConditions, querySelectWhere);
+
+        List<Object> results = query.getResultList();
+
+        List<Map<String, Object>> response = new ArrayList<>();
+        for (Object result : results) {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            Map<String, Object> jsonb = null;
+            try {
+                jsonb = objectMapper.readValue(result.toString(), Map.class);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            Map<String, Object> filtered = new HashMap<>();
+            for (String field : querySelectWhere.getSelectFields()) {
+                if (jsonb.containsKey(field)) {
+                    filtered.put(field, jsonb.get(field));
+                }
+            }
+            response.add(filtered);
+        }
+
+        return response;
+
     }
 
 }

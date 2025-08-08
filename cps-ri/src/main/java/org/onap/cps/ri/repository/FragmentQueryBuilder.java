@@ -24,11 +24,7 @@ package org.onap.cps.ri.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.StringSubstitutor;
 import org.onap.cps.api.exceptions.CpsPathException;
@@ -36,6 +32,8 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -367,4 +365,72 @@ public class FragmentQueryBuilder {
         return stringSubstitutor.replace(template);
     }
 
+    public Query getCustomNodesQuery(Long id, String xpath, List<String> selectFields, String whereConditions , QuerySelectWhere querySelectWhere) {
+        if (xpath == null || xpath.isEmpty()) {
+            throw new PathParsingException("XPath cannot be null or empty");
+        }
+        if (selectFields == null || selectFields.isEmpty()) {
+            throw new IllegalArgumentException("Select fields cannot be empty");
+        }
+
+        StringBuilder sql = new StringBuilder("SELECT f.attributes FROM fragment f");
+        List<String> conditions = new ArrayList<>();
+        List<String> conditionOperators = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
+        int paramIndex = 1;
+
+        // Handle XPath condition
+        conditions.add("f.xpath LIKE ?" + paramIndex);
+        params.add(xpath); // Use raw xpath with % for LIKE
+        paramIndex++;
+
+        // Add where clause conditions from QuerySelectWhere
+        if (querySelectWhere.hasWhereConditions()) {
+            for (int i = 0; i < querySelectWhere.getWhereConditions().size(); i++) {
+                QuerySelectWhere.WhereCondition condition = querySelectWhere.getWhereConditions().get(i);
+                String field = condition.name();
+                String operator = condition.operator();
+                Object value = condition.value();
+                if ("LIKE".equalsIgnoreCase(operator)) {
+                    conditions.add("f.attributes->>'" + field + "' LIKE ?" + paramIndex);
+                    params.add(value.toString().replace("'", "''"));
+                    paramIndex++;
+                } else {
+                    if (value instanceof Number) {
+                        conditions.add("CAST(f.attributes->>'" + field + "' AS DOUBLE PRECISION) " + operator + " ?" + paramIndex);
+                        params.add(value);
+                        paramIndex++;
+                    } else {
+                        conditions.add("f.attributes->>'" + field + "' " + operator + " ?" + paramIndex);
+                        params.add(value.toString().replace("'", "''"));
+                        paramIndex++;
+                    }
+                }
+                if (i < querySelectWhere.getWhereConditions().size() - 1) {
+                    conditionOperators.add(querySelectWhere.getWhereBooleanOperators().get(i).toUpperCase());
+                }
+            }
+        }
+
+        if (!conditions.isEmpty()) {
+            sql.append(" WHERE ");
+            for (int i = 0; i < conditions.size(); i++) {
+                sql.append(conditions.get(i));
+                if (i < conditions.size() - 1) {
+                    String operator = conditionOperators.size() > i ? conditionOperators.get(i) : "AND";
+                    sql.append(" ").append(operator).append(" ");
+                }
+            }
+        }
+
+        // Execute query
+       Query query = entityManager.createNativeQuery(sql.toString());
+
+        for (int i = 0; i < params.size(); i++) {
+            query.setParameter(i + 1, params.get(i));
+        }
+
+        return query;
+
+    }
 }

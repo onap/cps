@@ -57,6 +57,8 @@ import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
 import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.impl.DataNodeBuilder;
+import org.onap.cps.query.parser.QuerySelectWhere;
+import org.onap.cps.query.parser.QuerySelectWhereUtil;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -698,6 +700,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (!missingXPaths.isEmpty()) {
             log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomNodes(String dataspaceName, String anchor, String xpath, List<String> selectFields, String whereConditions) {
+        AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchor);
+        String selectString = String.join(",", selectFields);
+        QuerySelectWhere querySelectWhere = QuerySelectWhereUtil.getQuerySelectWhere(selectString, whereConditions);
+        return fragmentRepository.findCustomNodes(anchorEntity.getId(),xpath,selectFields,whereConditions,querySelectWhere);
+
     }
 
 }
