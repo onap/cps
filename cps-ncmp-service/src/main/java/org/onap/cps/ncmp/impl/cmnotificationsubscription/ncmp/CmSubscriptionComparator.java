@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,14 +27,14 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.DatastoreType;
 import org.onap.cps.ncmp.impl.cmnotificationsubscription.models.DmiCmSubscriptionPredicate;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmSubscriptionPersistenceService;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription.utils.CmDataJobSubscriptionPersistenceService;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class CmSubscriptionComparator {
 
-    private final CmSubscriptionPersistenceService cmSubscriptionPersistenceService;
+    private final CmDataJobSubscriptionPersistenceService cmDataJobSubscriptionPersistenceService;
 
     /**
      * Get the new Dmi Predicates for a given predicates list.
@@ -51,13 +51,9 @@ public class CmSubscriptionComparator {
             final Set<String> xpaths = new HashSet<>();
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             for (final String cmHandleId : dmiCmSubscriptionPredicate.getTargetCmHandleIds()) {
-                for (final String xpath : dmiCmSubscriptionPredicate.getXpaths()) {
-                    if (!cmSubscriptionPersistenceService.isOngoingCmSubscription(datastoreType,
-                            cmHandleId, xpath)) {
-                        targetCmHandleIds.add(cmHandleId);
-                        xpaths.add(xpath);
-
-                    }
+                if (!cmDataJobSubscriptionPersistenceService.hasAtLeastOneSubscription(
+                        datastoreType.getDatastoreName(), cmHandleId)) {
+                    targetCmHandleIds.add(cmHandleId);
                 }
             }
             populateValidDmiSubscriptionPredicates(targetCmHandleIds, xpaths, datastoreType,
