@@ -21,15 +21,21 @@
 
 package org.onap.cps.ri.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -90,6 +96,38 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
                 dataspaceEntity, cpsPathQuery, paginationOption);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Map<String, Object>> findCustomNodes(final Long id, final String xpath,
+                                                     final List<String> selectFields, final String whereConditions,
+                                                     final QuerySelectWhere querySelectWhere) {
+        final Query query =  fragmentQueryBuilder.getCustomNodesQuery(id, xpath,
+                selectFields, whereConditions, querySelectWhere);
+
+        final List<Object> results = query.getResultList();
+
+        final List<Map<String, Object>> response = new ArrayList<>();
+        for (final Object result : results) {
+            final ObjectMapper objectMapper = new ObjectMapper();
+
+            Map<String, Object> jsonb = null;
+            try {
+                jsonb = objectMapper.readValue(result.toString(), Map.class);
+            } catch (final JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            final Map<String, Object> filtered = new HashMap<>();
+            for (final String field : querySelectWhere.getSelectFields()) {
+                if (jsonb.containsKey(field)) {
+                    filtered.put(field, jsonb.get(field));
+                }
+            }
+            response.add(filtered);
+        }
+
+        return response;
+
     }
 
 }

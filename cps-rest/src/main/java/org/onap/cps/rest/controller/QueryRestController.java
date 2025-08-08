@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsFacade;
+import org.onap.cps.api.model.QueryRequest;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.rest.api.CpsQueryApi;
@@ -35,6 +36,9 @@ import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -103,5 +107,35 @@ public class QueryRestController implements CpsQueryApi {
             responseData = jsonObjectMapper.asJsonString(dataNodesAsMaps);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+
+    /**
+     * GET /v2/query/{dataspace-name}/{anchor}: custom attributes search
+     * Query data nodes for the given conditions using SQL like post request
+     *
+     * @param dataspaceName dataspace-name (required)
+     * @param anchor anchor-name
+     * @param queryRequest request-body
+     * @return OK (status code 200)
+     *         or Bad Request (status code 400)
+     *         or Forbidden (status code 403)
+     *         or Internal Server Error (status code 500)
+     */
+    @PostMapping("/query/{dataspaceName}/{anchor}")
+    @Timed(value = "cps.data.controller.datanode.query.post", description = "Time taken to execute POST query")
+    public ResponseEntity<Object> executeQuery(@PathVariable("dataspaceName")final String dataspaceName,
+                                               @PathVariable("anchor")final String anchor,
+                                               @RequestBody final QueryRequest queryRequest) {
+
+        final String xpath = queryRequest.getXpath();
+        final List<String> selectFields = queryRequest.getSelect();
+        final String whereConditions = queryRequest.getCondition();
+
+        final List<Map<String, Object>> queryResult = cpsFacade.executeCustomQuery(dataspaceName, anchor,
+                xpath, selectFields, whereConditions);
+
+        final String responsedata = jsonObjectMapper.asJsonString(queryResult);
+        return new ResponseEntity<>(responsedata, HttpStatus.OK);
     }
 }
