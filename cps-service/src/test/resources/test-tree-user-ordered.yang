@@ -1,0 +1,25 @@
+module test-tree-user-ordered {
+    namespace "urn:test:tree";
+    prefix tree;
+    revision 2025-08-20 {
+        description "Test tree with user-ordered leaf-list";
+    }
+    container test-tree {
+        list branch {
+            key "name";
+            leaf name { type string; }
+            container nest {
+                leaf name { type string; }
+                leaf-list birds {
+                    type string;
+                    ordered-by user;
+                }
+            }
+        }
+        list fruit {
+            key "name color";
+            leaf name { type string; }
+            leaf color { type string; }
+        }
+    }
+}
