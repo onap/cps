@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -156,13 +156,9 @@ public class DmiCacheHandler {
         for (final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate : dmiCmSubscriptionPredicates) {
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             final Set<String> cmHandles = dmiCmSubscriptionPredicate.getTargetCmHandleIds();
-            final Set<String> xpaths = dmiCmSubscriptionPredicate.getXpaths();
-
             for (final String cmHandle: cmHandles) {
-                for (final String xpath: xpaths) {
-                    cmSubscriptionPersistenceService.addCmSubscription(datastoreType, cmHandle,
-                            xpath, subscriptionId);
-                }
+                cmSubscriptionPersistenceService.addCmDataJobSubscription(datastoreType.getDatastoreName(),
+                        cmHandle, subscriptionId);
             }
         }
     }
@@ -181,13 +177,9 @@ public class DmiCacheHandler {
         for (final DmiCmSubscriptionPredicate dmiCmSubscriptionPredicate : dmiCmSubscriptionPredicates) {
             final DatastoreType datastoreType = dmiCmSubscriptionPredicate.getDatastoreType();
             final Set<String> cmHandles = dmiCmSubscriptionPredicate.getTargetCmHandleIds();
-            final Set<String> xpaths = dmiCmSubscriptionPredicate.getXpaths();
-
             for (final String cmHandle: cmHandles) {
-                for (final String xpath: xpaths) {
-                    cmSubscriptionPersistenceService.removeCmSubscription(datastoreType,
-                            cmHandle, xpath, subscriptionId);
-                }
+                cmSubscriptionPersistenceService.removeCmDataJobSubscription(datastoreType.getDatastoreName(),
+                        cmHandle, subscriptionId);
             }
         }
     }
