@@ -24,6 +24,7 @@ package org.onap.cps.ri.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,8 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.cpspath.parser.CpsPathPrefixType;
 import org.onap.cps.cpspath.parser.CpsPathQuery;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
+import org.onap.cps.query.parser.QuerySelectWhere;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
@@ -367,4 +370,82 @@ public class FragmentQueryBuilder {
         return stringSubstitutor.replace(template);
     }
 
+
+    /**
+     * Create a sql query to retrieve custom attributes with conditions.
+     *
+     * @param id the dataspace
+     * @param xpath the x path query to be transformed into a sql query
+     * @return executable query object
+     */
+    public Query getCustomNodesQuery(final Long id, final String xpath,
+                                     final List<String> selectFields,
+                                     final String whereConditions, final QuerySelectWhere querySelectWhere) {
+        if (xpath == null || xpath.isEmpty()) {
+            throw new PathParsingException("XPath cannot be null or empty");
+        }
+        if (selectFields == null || selectFields.isEmpty()) {
+            throw new IllegalArgumentException("Select fields cannot be empty");
+        }
+
+        final StringBuilder sql = new StringBuilder("SELECT f.attributes FROM fragment f");
+        final List<String> conditions = new ArrayList<>();
+        final List<String> conditionOperators = new ArrayList<>();
+        final List<Object> params = new ArrayList<>();
+        int paramIndex = 1;
+
+        // Handle XPath condition
+        conditions.add("f.xpath LIKE ?" + paramIndex);
+        params.add(xpath); // Use raw xpath with % for LIKE
+        paramIndex++;
+
+        // Add where clause conditions from QuerySelectWhere
+        if (querySelectWhere.hasWhereConditions()) {
+            for (int i = 0; i < querySelectWhere.getWhereConditions().size(); i++) {
+                final QuerySelectWhere.WhereCondition condition = querySelectWhere.getWhereConditions().get(i);
+                final String field = condition.name();
+                final String operator = condition.operator();
+                final Object value = condition.value();
+                if ("LIKE".equalsIgnoreCase(operator)) {
+                    conditions.add("f.attributes->>'" + field + "' LIKE ?" + paramIndex);
+                    params.add(value.toString().replace("'", "''"));
+                    paramIndex++;
+                } else {
+                    if (value instanceof Number) {
+                        conditions.add("CAST(f.attributes->>'" + field + "' AS DOUBLE PRECISION) "
+                                + operator + " ?" + paramIndex);
+                        params.add(value);
+                        paramIndex++;
+                    } else {
+                        conditions.add("f.attributes->>'" + field + "' " + operator + " ?" + paramIndex);
+                        params.add(value.toString().replace("'", "''"));
+                        paramIndex++;
+                    }
+                }
+                if (i < querySelectWhere.getWhereConditions().size() - 1) {
+                    conditionOperators.add(querySelectWhere.getWhereBooleanOperators().get(i).toUpperCase());
+                }
+            }
+        }
+
+        if (!conditions.isEmpty()) {
+            sql.append(" WHERE ");
+            for (int i = 0; i < conditions.size(); i++) {
+                sql.append(conditions.get(i));
+                if (i < conditions.size() - 1) {
+                    final String operator = conditionOperators.size() > i ? conditionOperators.get(i) : "AND";
+                    sql.append(" ").append(operator).append(" ");
+                }
+            }
+        }
+
+        final Query query = entityManager.createNativeQuery(sql.toString());
+
+        for (int i = 0; i < params.size(); i++) {
+            query.setParameter(i + 1, params.get(i));
+        }
+
+        return query;
+
+    }
 }
