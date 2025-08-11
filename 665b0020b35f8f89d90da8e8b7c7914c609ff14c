@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c1df63_bb21f8c9",
+        "filename": "docs/cm-notification-subscriptions.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-11T08:00:43Z",
+      "side": 1,
+      "message": "cannot make a comment about a specific implementation of the plugin.\nAlso this page is for a different feature, should not mention/mix it up with other notifications that happen to serve a similar goal\n\nIf you want to update any documentation it should be in the DMI RTD instead...",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 174
+      },
+      "revId": "665b0020b35f8f89d90da8e8b7c7914c609ff14c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
