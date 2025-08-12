@@ -25,13 +25,16 @@ package org.onap.cps.utils;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -45,6 +48,7 @@ import javax.xml.transform.stream.StreamResult;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.api.model.DeltaReport;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.w3c.dom.DOMException;
@@ -55,7 +59,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class XmlFileUtils {
+public class XmlUtils {
 
     private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static boolean isNewDocumentBuilderFactoryInstance = true;
@@ -194,6 +198,90 @@ public class XmlFileUtils {
         }
     }
 
+    /**
+     * Converts a collection of DeltaReport objects to XML format using DOM.
+     *
+     * @param deltaReports The collection of DeltaReport objects.
+     * @return The XML string representation of the delta reports.
+     */
+
+    public static String buildXmlUsingDom(final List<DeltaReport> deltaReports) {
+        try {
+            final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+            final Document document = documentBuilder.newDocument();
+            final Element rootElement = document.createElement("deltaReports");
+            document.appendChild(rootElement);
+
+            int id = 1;
+            for (final DeltaReport deltaReport : deltaReports) {
+                final Element deltaReportElement = document.createElement("deltaReport");
+                deltaReportElement.setAttribute("id", String.valueOf(id++));
+                Element actionElement = createKeyValueElement(
+                        document, deltaReportElement, "action", deltaReport.getAction());
+                if (actionElement != null) {
+                    deltaReportElement.appendChild(actionElement);
+                }
+                Element xpathElement = createKeyValueElement(
+                        document, deltaReportElement, "xpath", deltaReport.getXpath());
+                if (xpathElement != null) {
+                    deltaReportElement.appendChild(xpathElement);
+                }
+                convertMapToElement(document, deltaReportElement, "source-data", deltaReport.getSourceData());
+                convertMapToElement(document, deltaReportElement, "target-data", deltaReport.getTargetData());
+
+                rootElement.appendChild(deltaReportElement);
+            }
+
+            return transformDocumentToString(document);
+
+        } catch (final DOMException | ParserConfigurationException | TransformerException exception) {
+            throw new DataValidationException("Data Validation Failed", "Failed to build xml deltaReport: "
+                    + exception.getMessage(), exception);
+        }
+    }
+
+    private static Element createKeyValueElement(final Document document, final Element parentElement,
+                                                           final String name, final String value) {
+        if (value != null && !value.isEmpty()) {
+            final Element element = document.createElement(name);
+            element.appendChild(document.createTextNode(value));
+            return element;
+        }
+        return null;
+    }
+
+    private static void convertMapToElement(
+            final Document document,
+            final Element parentElement,
+            final String name,
+            final Map<String, Serializable> data) {
+
+        if (data != null && !data.isEmpty()) {
+            final Element element = document.createElement(name);
+
+            for (final Map.Entry<String, Serializable> mapentry  : data.entrySet()) {
+               Element childElement= createXmlElement(document, mapentry);
+               element.appendChild(childElement);
+            }
+             parentElement.appendChild(element);
+        }
+    }
+
+    private static Element createXmlElement(final Document document,
+                                         final Map.Entry<String, Serializable> inputMap) {
+        final Element element = document.createElement(inputMap.getKey());
+        final Serializable mapValue = inputMap.getValue();
+        if (mapValue instanceof Collection) {
+            final String collectionAsCsvString = ((Collection<?>) mapValue).stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
+            element.appendChild(document.createTextNode(collectionAsCsvString));
+        } else {
+            element.appendChild(document.createTextNode(mapValue.toString()));
+        }
+       return element;
+    }
+
     private static void createXmlElements(final Document document, final Node parentNode,
                                           final Map<String, Object> dataMap) {
         for (final Map.Entry<String, Object> dataNodeMapEntry : dataMap.entrySet()) {
@@ -250,20 +338,30 @@ public class XmlFileUtils {
             throws TransformerException {
         final Transformer transformer = getTransformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        final StringWriter writer = new StringWriter();
-        final StreamResult result = new StreamResult(writer);
-        transformer.transform(new DOMSource(documentFragment), result);
-        return writer.toString();
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(documentFragment), streamResult);
+        return stringWriter.toString();
     }
 
+
     @SuppressWarnings("SameReturnValue")
+    private static String transformDocumentToString(final Document document)
+            throws TransformerException {
+        final Transformer transformer = getTransformerFactory().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(document), streamResult);
+        return stringWriter.toString();
+    }
+
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
         if (isNewDocumentBuilderFactoryInstance) {
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             isNewDocumentBuilderFactoryInstance = false;
         }
-
         return documentBuilderFactory;
     }
 
