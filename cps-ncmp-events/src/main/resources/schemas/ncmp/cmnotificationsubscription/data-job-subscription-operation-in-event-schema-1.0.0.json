@@ -3,7 +3,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Data job subscription operation event format",
   "type": "object",
-  "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.DataJobSubscriptionOperationInEvent",
+  "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.DataJobSubscriptionOperationInEvent",
   "properties": {
     "eventType": {
       "description": "the type of the event",
