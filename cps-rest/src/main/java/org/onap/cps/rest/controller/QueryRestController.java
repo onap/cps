@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2022 Bell Canada.
- *  Modifications Copyright (C) 2022-2024 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import org.onap.cps.api.parameters.PaginationOption;
 import org.onap.cps.rest.api.CpsQueryApi;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.onap.cps.utils.XmlFileUtils;
+import org.onap.cps.utils.XmlUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,7 +98,7 @@ public class QueryRestController implements CpsQueryApi {
                                                final ContentType contentType) {
         final String responseData;
         if (ContentType.XML.equals(contentType)) {
-            responseData = XmlFileUtils.convertDataMapsToXml(dataNodesAsMaps);
+            responseData = XmlUtils.convertDataMapsToXml(dataNodesAsMaps);
         } else {
             responseData = jsonObjectMapper.asJsonString(dataNodesAsMaps);
         }
