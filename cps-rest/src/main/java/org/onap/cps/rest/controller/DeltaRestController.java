@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,7 +34,10 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDeltaApi;
 import org.onap.cps.rest.utils.MultipartFileUtil;
+import org.onap.cps.utils.ContentType;
+import org.onap.cps.utils.DeltaReportUtils;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.XmlUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,13 +60,15 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                 final String targetAnchorName,
                                                                 final String xpath,
                                                                 final String descendants,
-                                                                final Boolean groupDataNodes) {
+                                                                final Boolean groupDataNodes,
+                                                                final String contentTypeInHeader) {
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(descendants);
         final List<DeltaReport> deltaBetweenAnchors =
             cpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption, groupDataNodes);
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
+        return buildDeltaResponseEntity(deltaBetweenAnchors, ContentType.fromString(contentTypeInHeader));
+
     }
 
     @Timed(value = "cps.delta.controller.get.delta",
@@ -88,6 +94,7 @@ public class DeltaRestController implements CpsDeltaApi {
         return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaReports), HttpStatus.OK);
     }
 
+
     public ResponseEntity<String> applyChangesInDeltaReport(final String dataspaceName,
                                                             final String anchorName,
                                                             final String deltaReport) {
@@ -95,4 +102,14 @@ public class DeltaRestController implements CpsDeltaApi {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    private ResponseEntity<Object> buildDeltaResponseEntity(final List<DeltaReport> deltaBetweenAnchors,
+                                                            final ContentType contentType) {
+        final String responseData;
+        if (ContentType.XML.equals(contentType)) {
+            responseData = DeltaReportUtils.buildXmlUsingDom(deltaBetweenAnchors);
+        } else {
+            responseData = jsonObjectMapper.asJsonString(deltaBetweenAnchors);
+        }
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 }
