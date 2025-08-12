@@ -156,7 +156,7 @@ public class YangParserHelper {
         final String preparedXmlContent;
         try {
             if (parentNodeXpath.isEmpty()) {
-                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext);
+                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
             } else {
                 final DataSchemaNode parentSchemaNode =
@@ -167,7 +167,7 @@ public class YangParserHelper {
                 final EffectiveStatementInference effectiveStatementInference =
                     SchemaInferenceStack.of(effectiveModelContext,
                         SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
-                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
             }
 
