@@ -32,35 +32,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
 
+    @SuppressWarnings('SpellCheckingInspection')
     def 'Get Resource Data from provmns interface.'() {
         expect: 'not implemented response on GET endpoint'
-            mvc.perform(get("/ProvMnS/SampleClassName=SampleId"))
+            mvc.perform(get("/ProvMnS/v1/A=1/B=2/C=3"))
                     .andExpect(status().isNotImplemented())
     }
 
+    @SuppressWarnings('SpellCheckingInspection')
     def 'Put Resource Data from provmns interface.'() {
         given: 'an example resource json body'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PUT endpoint'
-            mvc.perform(put("/ProvMnS/SampleClassName=SampleId")
+            mvc.perform(put("/ProvMnS/v1/A=1/B=2/C=3")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonBody))
                     .andExpect(status().isNotImplemented())
     }
 
+    @SuppressWarnings('SpellCheckingInspection')
     def 'Patch Resource Data from provmns interface.'() {
         given: 'an example resource json body'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PATCH endpoint'
-            mvc.perform(patch("/ProvMnS/SampleClassName=SampleId")
+            mvc.perform(patch("/ProvMnS/v1/A=1/B=2/C=3")
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
                     .andExpect(status().isNotImplemented())
     }
 
+    @SuppressWarnings('SpellCheckingInspection')
     def 'Delete Resource Data from provmns interface.'() {
         expect: 'not implemented response on DELETE endpoint'
-            mvc.perform(delete("/ProvMnS/SampleClassName=SampleId"))
+            mvc.perform(delete("/ProvMnS/v1/A=1/B=2/C=3"))
                     .andExpect(status().isNotImplemented())
     }
 }

@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper

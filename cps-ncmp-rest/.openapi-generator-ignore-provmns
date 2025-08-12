@@ -1,5 +1,6 @@
 # Ignore generation of all the models for ProvMns
 target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/*.java
+target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/api/*.java
 
 # Allow generation of the below model for ProvMns
 !target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/rest/provmns/model/ClassNameIdPatchDefaultResponse.java
