@@ -46,6 +46,8 @@ import org.onap.cps.api.exceptions.SchemaSetInUseException
 import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.deltareport.DeltaReportUtils
+import org.onap.cps.utils.deltareport.XmlObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -97,6 +99,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsDeltaService cpsDeltaService = Stub()
+
+    @SpringBean
+    DeltaReportUtils deltaReportUtils = new DeltaReportUtils(new XmlObjectMapper())
 
     @Autowired
     MockMvc mvc

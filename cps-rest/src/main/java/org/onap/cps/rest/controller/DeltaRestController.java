@@ -21,6 +21,7 @@
 package org.onap.cps.rest.controller;
 
 import static org.onap.cps.rest.utils.MultipartFileUtil.extractYangResourcesMap;
+import static  org.onap.cps.utils.ContentType.XML;
 
 import io.micrometer.core.annotation.Timed;
 import java.util.Collection;
@@ -33,7 +34,9 @@ import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDeltaApi;
 import org.onap.cps.rest.utils.MultipartFileUtil;
+import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.utils.deltareport.DeltaReportUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +50,7 @@ public class DeltaRestController implements CpsDeltaApi {
 
     private final CpsDeltaService cpsDeltaService;
     private final JsonObjectMapper jsonObjectMapper;
+    private final DeltaReportUtils deltaReportUtils;
 
     @Timed(value = "cps.delta.controller.get.delta",
         description = "Time taken to get delta between anchors")
@@ -56,13 +60,15 @@ public class DeltaRestController implements CpsDeltaApi {
                                                                 final String targetAnchorName,
                                                                 final String xpath,
                                                                 final String descendants,
-                                                                final Boolean groupDataNodes) {
+                                                                final Boolean groupDataNodes,
+                                                                final String contentTypeInHeader) {
         final FetchDescendantsOption fetchDescendantsOption =
             FetchDescendantsOption.getFetchDescendantsOption(descendants);
-        final List<DeltaReport> deltaBetweenAnchors =
+        final List<DeltaReport> deltaReports =
             cpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, sourceAnchorName,
                 targetAnchorName, xpath, fetchDescendantsOption, groupDataNodes);
-        return new ResponseEntity<>(jsonObjectMapper.asJsonString(deltaBetweenAnchors), HttpStatus.OK);
+        return buildDeltaResponseEntity(deltaReports, ContentType.fromString(contentTypeInHeader));
+
     }
 
     @Timed(value = "cps.delta.controller.get.delta",
@@ -95,4 +101,12 @@ public class DeltaRestController implements CpsDeltaApi {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    private ResponseEntity<Object> buildDeltaResponseEntity(final List<DeltaReport> deltaReports,
+                                                            final ContentType contentType) {
+        final String responseData =
+                        XML.equals(contentType)
+                        ? deltaReportUtils.buildXml(deltaReports)
+                        : jsonObjectMapper.asJsonString(deltaReports);
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 }
