@@ -27,17 +27,17 @@ import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.w3c.dom.DOMException
 import org.xml.sax.SAXParseException
 import spock.lang.Specification
+import static XmlUtils.convertDataMapsToXml
 
-import static org.onap.cps.utils.XmlFileUtils.convertDataMapsToXml
 
-class XmlFileUtilsSpec extends Specification {
+class XmlUtilsSpec extends Specification {
 
     def 'Parse a valid xml content #scenario'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the xml data is parsed'
-            def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext)
+            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext)
         then: 'the result xml is wrapped by root node defined in YANG schema'
             assert parsedXmlContent == expectedOutput
         where:
@@ -52,7 +52,7 @@ class XmlFileUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'attempt to parse invalid xml'
-            XmlFileUtils.prepareXmlContent('invalid-xml', schemaContext)
+            XmlUtils.prepareXmlContent('invalid-xml', schemaContext)
         then: 'a Sax Parser exception is thrown'
             thrown(SAXParseException)
     }
@@ -64,7 +64,7 @@ class XmlFileUtilsSpec extends Specification {
         and: 'Parent schema node by xPath'
             def parentSchemaNode = YangParserHelper.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get('dataSchemaNode')
         when: 'the XML data is parsed'
-            def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
+            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
         then: 'the result XML is wrapped by xPath defined parent root node'
             assert parsedXmlContent == expectedOutput
         where:
@@ -79,27 +79,27 @@ class XmlFileUtilsSpec extends Specification {
         then: 'the result contains the expected XML'
             assert result == expectedXmlOutput
         where:
-            scenario                            | dataMaps                                                                                                                                 || expectedXmlOutput
-            'single XML branch'                 | ['branch': ['name': 'Left']]                                                                                                             || '<branch><name>Left</name></branch>'
-            'nested XML branch'                 | [['test-tree': [branch: [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]]                                                       || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
-            'list of branch within a test tree' | [['test-tree': [branch: [[name: 'Left', nest: [name: 'Small', birds: 'Sparrow']], [name: 'Right', nest: [name: 'Big', birds: 'Owl']]]]]] || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch><branch><name>Right</name><nest><name>Big</name><birds>Owl</birds></nest></branch></test-tree>'
-            'list of birds under a nest'        | [['nest': ['name': 'Small', 'birds': ['Sparrow']]]]                                                                                      || '<nest><name>Small</name><birds>Sparrow</birds></nest>'
+             scenario                            | dataMaps                                                                                                                                 || expectedXmlOutput
+             'single XML branch'                 | ['branch': ['name': 'Left']]                                                                                                             || '<branch><name>Left</name></branch>'
+             'nested XML branch'                 | [['test-tree': [branch: [name: 'Left', nest: [name: 'Small', birds: 'Sparrow']]]]]                                                       || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch></test-tree>'
+             'list of branch within a test tree' | [['test-tree': [branch: [[name: 'Left', nest: [name: 'Small', birds: 'Sparrow']], [name: 'Right', nest: [name: 'Big', birds: 'Owl']]]]]] || '<test-tree><branch><name>Left</name><nest><name>Small</name><birds>Sparrow</birds></nest></branch><branch><name>Right</name><nest><name>Big</name><birds>Owl</birds></nest></branch></test-tree>'
+             'list of birds under a nest'        | [['nest': ['name': 'Small', 'birds': ['Sparrow']]]]                                                                                      || '<nest><name>Small</name><birds>Sparrow</birds></nest>'
     }
 
     def 'Convert data maps to XML with null or empty maps and lists'() {
         when: 'data maps with empty content are converted to XML'
-            def result = convertDataMapsToXml(dataMaps)
+           def result = convertDataMapsToXml(dataMaps)
         then: 'the result contains the expected XML or handles nulls correctly'
-            assert result == expectedXmlOutput
+           assert result == expectedXmlOutput
         where:
-            scenario                         | dataMaps                                                                                    || expectedXmlOutput
-            'null entry in map'              | [['branch': []]]                                                                            || '<branch/>'
-            'XML Content list is empty'      | [['nest': ['name': 'Small', 'birds': [null]]]]                                              || '<nest><name>Small</name><birds/></nest>'
-            'XML with mixed content in list' | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': [null, 'Sparrow']]]]]       || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds></nest></branch>'
-            'list with null object'          | [['branch': [name: 'Left', nest: [name: 'Small', birds: [null]]]]]                          || '<branch><name>Left</name><nest><name>Small</name><birds/></nest></branch>'
-            'list containing null values'    | [['branch': [null, null, null]]]                                                            || '<branch/><branch/><branch/>'
-            'nested map with null values'    | [['test-tree': [branch: [name: 'Left', nest: null]]]]                                       || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
-            'mixed list with null values'    | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': [null, 'Sparrow', null]]]]] || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds><birds/></nest></branch>'
+           scenario                         | dataMaps                                                                                    || expectedXmlOutput
+           'null entry in map'              | [['branch': []]]                                                                            || '<branch/>'
+           'XML Content list is empty'      | [['nest': ['name': 'Small', 'birds': [null]]]]                                              || '<nest><name>Small</name><birds/></nest>'
+           'XML with mixed content in list' | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': [null, 'Sparrow']]]]]       || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds></nest></branch>'
+           'list with null object'          | [['branch': [name: 'Left', nest: [name: 'Small', birds: [null]]]]]                          || '<branch><name>Left</name><nest><name>Small</name><birds/></nest></branch>'
+           'list containing null values'    | [['branch': [null, null, null]]]                                                            || '<branch/><branch/><branch/>'
+           'nested map with null values'    | [['test-tree': [branch: [name: 'Left', nest: null]]]]                                       || '<test-tree><branch><name>Left</name><nest/></branch></test-tree>'
+           'mixed list with null values'    | [['branch': ['name': 'Left', 'nest': ['name': 'Small', 'birds': [null, 'Sparrow', null]]]]] || '<branch><name>Left</name><nest><name>Small</name><birds/><birds>Sparrow</birds><birds/></nest></branch>'
     }
 
     def 'Converting data maps to xml with unsupported input type'() {
@@ -112,13 +112,13 @@ class XmlFileUtilsSpec extends Specification {
 
     def 'Converting data maps to xml with no data'() {
         given: 'A list of maps where entry is null'
-            def dataMapWithNull = [null]
+             def dataMapWithNull = [null]
         when: 'convert the dataMaps to XML'
             convertDataMapsToXml(dataMapWithNull)
         then: 'a validation exception is thrown'
             def exception = thrown(DataValidationException)
         and: 'the cause is a null pointer exception'
-            assert exception.cause instanceof NullPointerException
+           assert exception.cause instanceof NullPointerException
     }
 
     def 'Converting data maps to xml with document syntax error'() {
@@ -132,5 +132,4 @@ class XmlFileUtilsSpec extends Specification {
             assert exception.cause instanceof DOMException
 
     }
-
 }
