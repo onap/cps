@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2025 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -95,6 +96,7 @@ class DeltaRestControllerSpec extends Specification {
         when: 'get delta request is performed using REST API'
             def response =
                 mvc.perform(get(dataNodeBaseEndpointV2)
+                    .contentType(MediaType.APPLICATION_JSON)
                     .param('target-anchor-name', 'targetAnchor')
                     .param('xpath', xpath))
                     .andReturn().response
@@ -102,6 +104,24 @@ class DeltaRestControllerSpec extends Specification {
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains expected value'
             assert response.contentAsString.contains('[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]')
+    }
+
+    def 'Get XML delta between two anchors'() {
+        given: 'the service returns a list containing delta reports'
+            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('someKey': 'someValue').withTargetData('someKey': 'someValue').build()
+            def xpath = 'some xpath'
+            mockCpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName, 'targetAnchor', xpath, OMIT_DESCENDANTS, NO_GROUPING) >> [deltaReports]
+        when: 'get delta request is performed using REST API'
+            def response =
+                mvc.perform(get(dataNodeBaseEndpointV2)
+                    .contentType(MediaType.APPLICATION_XML)
+                    .param('target-anchor-name', 'targetAnchor')
+                    .param('xpath', xpath))
+                    .andReturn().response
+        then: 'expected response code is returned'
+            assert response.status == HttpStatus.OK.value()
+        and: 'the response contains expected value'
+            assert response.contentAsString.contains("<deltaReports><deltaReport id=\"1\"><action>replace</action><xpath>some xpath</xpath><source-data><someKey>someValue</someKey></source-data><target-data><someKey>someValue</someKey></target-data></deltaReport></deltaReports>")
     }
 
     def 'Get delta between anchor and JSON payload with yangResourceFile'() {

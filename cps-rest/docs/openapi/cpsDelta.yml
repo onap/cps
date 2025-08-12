@@ -1,5 +1,6 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2025 TechMahindra Ltd.
+# Modifications Copyright (C) 2025 TechMahindra Ltd.
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,6 +31,7 @@ delta:
       - $ref: 'components.yml#/components/parameters/xpathInQuery'
       - $ref: 'components.yml#/components/parameters/descendantsInQuery'
       - $ref: 'components.yml#/components/parameters/groupDataNodesInQuery'
+      - $ref: 'components.yml#/components/parameters/contentTypeInHeader'
     responses:
       '200':
         description: OK
@@ -40,6 +42,12 @@ delta:
             examples:
               dataSample:
                 $ref: 'components.yml#/components/examples/deltaReportSample'
+          application/xml:
+            schema:
+              type: object
+            examples:
+              dataSample:
+                $ref: 'components.yml#/components/examples/deltaReportSampleXml'
       '400':
         $ref: 'components.yml#/components/responses/BadRequest'
       '403':
