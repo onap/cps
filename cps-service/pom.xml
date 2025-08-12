@@ -204,5 +204,9 @@
           <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
       </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-xml</artifactId>
+      </dependency>
   </dependencies>
 </project>
