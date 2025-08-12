@@ -25,13 +25,16 @@ package org.onap.cps.utils;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -55,7 +58,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class XmlFileUtils {
+public class XmlUtils {
 
     private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static boolean isNewDocumentBuilderFactoryInstance = true;
@@ -250,25 +253,35 @@ public class XmlFileUtils {
             throws TransformerException {
         final Transformer transformer = getTransformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        final StringWriter writer = new StringWriter();
-        final StreamResult result = new StreamResult(writer);
-        transformer.transform(new DOMSource(documentFragment), result);
-        return writer.toString();
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(documentFragment), streamResult);
+        return stringWriter.toString();
     }
 
+
     @SuppressWarnings("SameReturnValue")
-    private static DocumentBuilderFactory getDocumentBuilderFactory() {
+    private static String transformDocumentToString(final Document document)
+            throws TransformerException {
+        final Transformer transformer = getTransformerFactory().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(document), streamResult);
+        return stringWriter.toString();
+    }
+
+     static DocumentBuilderFactory getDocumentBuilderFactory() {
         if (isNewDocumentBuilderFactoryInstance) {
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             isNewDocumentBuilderFactoryInstance = false;
         }
-
         return documentBuilderFactory;
     }
 
     @SuppressWarnings("SameReturnValue")
-    private static TransformerFactory getTransformerFactory() {
+     public static TransformerFactory getTransformerFactory() {
         if (isNewTransformerFactoryInstance) {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
