@@ -4,7 +4,7 @@
   Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
   Modifications Copyright (C) 2021 Bell Canada.
   Modifications Copyright (C) 2021 Pantheon.tech
-  Modifications Copyright (C) 2022-2024 Deutsche Telekom AG
+  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
   ================================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -73,8 +73,8 @@
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
     </dependency>
+    <!-- For parsing JSON object -->
     <dependency>
-      <!-- For parsing JSON object -->
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
     </dependency>
@@ -203,6 +203,11 @@
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
+      </dependency>
+    <!-- For parsing XML object -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-xml</artifactId>
       </dependency>
   </dependencies>
 </project>
