@@ -293,6 +293,36 @@ components:
           dataspace:
             - name: my-dataspace
             - name: bookstore-dataspace
+  deltaReportSampleXml:
+    value:
+      <deltaReports>
+      <deltaReport id="1">
+      <action>replace</action>
+      <xpath>/bookstore/categories[@code='1']</xpath>
+      <source-data>
+      <name>SciFi</name>
+      </source-data>
+      <target-data>
+      <name>Comic</name>
+      </target-data>
+      </deltaReport>
+      <deltaReport id="2">
+      <action>remove</action>
+      <xpath>/bookstore/categories[@code='2']</xpath>
+      <source-data>
+      <code>2</code>
+      <name>kids</name>
+      </source-data>
+      </deltaReport>
+      <deltaReport id="3">
+      <action>create</action>
+      <xpath>/bookstore/categories[@code='3']</xpath>
+      <target-data>
+      <code>3</code>
+      <name>Fiction</name>
+      </target-data>
+      </deltaReport>
+      </deltaReports>
   parameters:
     dataspaceNameInQuery:
       name: dataspace-name
@@ -380,10 +410,10 @@ components:
         type: string
         default: /dataspaces
       examples:
-        dataspace xpath:
-          value: /dataspaces
-        anchor xpath:
+        subscription by dataspace xpath:
           value: /dataspaces/dataspace[@name='dataspace01']
+        subscription by anchor xpath:
+          value: /dataspaces/dataspace[@name='dataspace01']/anchors/anchor[@name='anchor01']
     requiredXpathInQuery:
       name: xpath
       in: query
