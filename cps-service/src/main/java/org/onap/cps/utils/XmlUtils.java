@@ -55,7 +55,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class XmlFileUtils {
+public class XmlUtils {
 
     private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static boolean isNewDocumentBuilderFactoryInstance = true;
@@ -250,31 +250,40 @@ public class XmlFileUtils {
             throws TransformerException {
         final Transformer transformer = getTransformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        final StringWriter writer = new StringWriter();
-        final StreamResult result = new StreamResult(writer);
-        transformer.transform(new DOMSource(documentFragment), result);
-        return writer.toString();
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(documentFragment), streamResult);
+        return stringWriter.toString();
     }
+    /**
+     * Provides a configured instance of DocumentBuilderFactory.
+     * This method initializes the factory with secure processing settings
+     * to prevent XML External Entity (XXE) attacks.
+     * @return a configured DocumentBuilderFactory instance
+     */
 
-    @SuppressWarnings("SameReturnValue")
-    private static DocumentBuilderFactory getDocumentBuilderFactory() {
+    public static DocumentBuilderFactory getDocumentBuilderFactory() {
         if (isNewDocumentBuilderFactoryInstance) {
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             isNewDocumentBuilderFactoryInstance = false;
         }
-
         return documentBuilderFactory;
     }
+    /**
+     * Provides a configured instance of TransformerFactory.
+     * This method initializes the factory with secure settings to prevent
+     * unwanted stylesheet or DTD access.
+     * @return a configured TransformerFactory instance
+     */
 
     @SuppressWarnings("SameReturnValue")
-    private static TransformerFactory getTransformerFactory() {
+    public static TransformerFactory getTransformerFactory() {
         if (isNewTransformerFactoryInstance) {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
             isNewTransformerFactoryInstance = false;
         }
-
         return transformerFactory;
     }
 }
