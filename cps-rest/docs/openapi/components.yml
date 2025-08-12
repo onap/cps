@@ -1,7 +1,7 @@
 # ============LICENSE_START=======================================================
 # Copyright (c) 2021-2022 Bell Canada.
 # Modifications Copyright (C) 2021-2023 Nordix Foundation
-# Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
+# Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
 # ================================================================================
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -292,6 +292,36 @@ components:
           dataspace:
             - name: my-dataspace
             - name: bookstore-dataspace
+    deltaReportSampleXml:
+      value:
+         <deltaReports>
+            <deltaReport>
+                   <action>replace</action>
+                   <xpath>/bookstore/categories[@code='1']</xpath>
+                   <source-data>
+                        <name>SciFi</name>
+                   </source-data>
+                   <target-data>
+                        <name>Comic</name>
+                </target-data>
+           </deltaReport>
+           <deltaReport>
+                  <action>remove</action>
+                  <xpath>/bookstore/categories[@code='2']</xpath>
+                  <source-data>
+                       <code>2</code>
+                       <name>kids</name>
+                  </source-data>
+           </deltaReport>
+           <deltaReport>
+                     <action>create</action>
+                     <xpath>/bookstore/categories[@code='3']</xpath>
+                     <target-data>
+                          <code>3</code>
+                          <name>Fiction</name>
+                     </target-data>
+          </deltaReport>
+       </deltaReports>
   parameters:
     dataspaceNameInQuery:
       name: dataspace-name

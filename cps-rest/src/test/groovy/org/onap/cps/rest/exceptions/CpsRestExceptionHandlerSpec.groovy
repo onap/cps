@@ -3,7 +3,7 @@
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021-2025 Nordix Foundation
  *  Modifications Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2022-2025 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -46,6 +46,7 @@ import org.onap.cps.api.exceptions.SchemaSetInUseException
 import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -97,6 +98,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsDeltaService cpsDeltaService = Stub()
+
+    @SpringBean
+    XmlObjectMapper xmlObjectMapper = new XmlObjectMapper()
 
     @Autowired
     MockMvc mvc
