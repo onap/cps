@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.rest.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.rest.provmns.model.ResourceOneOf
 import org.onap.cps.utils.JsonObjectMapper
-import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -45,12 +44,12 @@ class ProvMnsControllerSpec extends Specification {
 
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
-    @Value('${rest.api.provmns-base-path}')
+    @Value('${rest.api.provmns-base-path-v1}')
     def provMnSBasePath
 
     def 'Get Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def getUrl = "$provMnSBasePath/test=another"
+            def getUrl = "$provMnSBasePath/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"
         when: 'get data resource request is performed'
             def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'response status is Not Implemented (501)'
@@ -59,7 +58,7 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Put Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def putUrl = "$provMnSBasePath/test=another"
+            def putUrl = "$provMnSBasePath/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"
         and: 'an example resource json object'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         when: 'put data resource request is performed'
@@ -73,7 +72,7 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Patch Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def patchUrl = "$provMnSBasePath/test=another"
+            def patchUrl = "$provMnSBasePath/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"
         and: 'an example resource json object'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         when: 'patch data resource request is performed'
@@ -87,11 +86,19 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Delete Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def deleteUrl = "$provMnSBasePath/test=another"
+            def deleteUrl = "$provMnSBasePath/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"
         when: 'delete data resource request is performed'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
         then: 'response status is Not Implemented (501)'
             assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
     }
 
+    def 'Get Resource Data from provmns interface with query param.'() {
+        given: 'resource data url with query parameter'
+            def getUrl = "$provMnSBasePath/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123?attributes=[test,query,param]"
+        when: 'get data resource request is performed'
+            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+        then: 'response status is Not Implemented (501)'
+            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
+    }
 }
