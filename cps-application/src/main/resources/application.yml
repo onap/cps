@@ -27,7 +27,8 @@ rest:
         cps-base-path: /cps/api
         ncmp-base-path: /ncmp
         ncmp-inventory-base-path: /ncmpInventory
-        provmns-base-path: /ProvMnS
+        provmns-base-path: /ProvMnS/v1
+        provmns-base-path: /ProvMnSActions/v1
 
 spring:
     main:

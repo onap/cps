@@ -34,7 +34,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
 
     def 'Get Resource Data from provmns interface.'() {
         expect: 'not implemented response on GET endpoint'
-            mvc.perform(get("/ProvMnS/SampleClassName=SampleId"))
+            mvc.perform(get("/ProvMnS/v1/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"))
                     .andExpect(status().isNotImplemented())
     }
 
@@ -42,7 +42,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
         given: 'an example resource json body'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PUT endpoint'
-            mvc.perform(put("/ProvMnS/SampleClassName=SampleId")
+            mvc.perform(put("/ProvMnS/v1/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonBody))
                     .andExpect(status().isNotImplemented())
@@ -52,7 +52,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
         given: 'an example resource json body'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PATCH endpoint'
-            mvc.perform(patch("/ProvMnS/SampleClassName=SampleId")
+            mvc.perform(patch("/ProvMnS/v1/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123")
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
                     .andExpect(status().isNotImplemented())
@@ -60,7 +60,7 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
 
     def 'Delete Resource Data from provmns interface.'() {
         expect: 'not implemented response on DELETE endpoint'
-            mvc.perform(delete("/ProvMnS/SampleClassName=SampleId"))
+            mvc.perform(delete("/ProvMnS/v1/SubNetwork=Europe/ManagedElement=LTE01dg2ERBS00001/NWFunction=radio/Cell=123"))
                     .andExpect(status().isNotImplemented())
     }
 }
