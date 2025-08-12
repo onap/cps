@@ -123,6 +123,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffbd5c04_88d38687",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:25:40Z",
+      "side": 1,
+      "message": "becomes hard to maintain and unreadable, if possible split to make it easier to read too :)",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e02456e8_7c5bda2f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 1
