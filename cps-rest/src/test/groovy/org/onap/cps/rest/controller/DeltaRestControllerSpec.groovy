@@ -24,6 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.impl.DeltaReportBuilder
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.deltareport.DeltaReportUtils
+import org.onap.cps.utils.deltareport.XmlObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -35,7 +37,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.multipart.MultipartFile
 import spock.lang.Shared
 import spock.lang.Specification
-
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
@@ -55,6 +56,9 @@ class DeltaRestControllerSpec extends Specification {
 
     @SpringBean
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    @SpringBean
+    DeltaReportUtils deltaReportUtils = new DeltaReportUtils(new XmlObjectMapper())
 
     @Autowired
     MockMvc mvc
@@ -89,21 +93,26 @@ class DeltaRestControllerSpec extends Specification {
         Files.deleteIfExists(targetDataAsJsonFile)
     }
 
-    def 'Get delta between two anchors'() {
-        given: 'the service returns a list containing delta reports'
-            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath('some xpath').withSourceData('some key': 'some value').withTargetData('some key': 'some value').build()
+    def 'Get delta between two anchors with content type #scenario'() {
+        given: 'delta report and a xpath'
             def xpath = 'some xpath'
-            mockCpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName, 'targetAnchor', xpath, OMIT_DESCENDANTS, NO_GROUPING) >> [deltaReports]
+            def deltaReports = new DeltaReportBuilder().actionReplace().withXpath(xpath).withSourceData('some_key': 'some value').withTargetData('some_key': 'some value').build()
+                mockCpsDeltaService.getDeltaByDataspaceAndAnchors(dataspaceName, anchorName, 'targetAnchor', xpath, OMIT_DESCENDANTS, NO_GROUPING) >> [deltaReports]
         when: 'get delta request is performed using REST API'
-            def response =
-                mvc.perform(get(dataNodeBaseEndpointV2)
-                    .param('target-anchor-name', 'targetAnchor')
-                    .param('xpath', xpath))
-                    .andReturn().response
+            def response = mvc.perform(get(dataNodeBaseEndpointV2)
+                .contentType(contentType)
+                .accept(contentType)
+                .param('target-anchor-name', 'targetAnchor')
+                .param('xpath', xpath))
+                .andReturn().response
         then: 'expected response code is returned'
             assert response.status == HttpStatus.OK.value()
-        and: 'the response contains expected value'
-            assert response.contentAsString.contains('[{\"action\":\"replace\",\"xpath\":\"some xpath\",\"sourceData\":{\"some key\":\"some value\"},\"targetData\":{\"some key\":\"some value\"}}]')
+        and: 'service returns a list containing delta reports'
+            assert response.contentAsString.contains(expectedResponse)
+        where:
+            scenario  | contentType                   || expectedResponse
+            'JSON'    | MediaType.APPLICATION_JSON    || '[{"action":"replace","xpath":"some xpath","sourceData":{"some_key":"some value"},"targetData":{"some_key":"some value"}}]'
+            'XML'     | MediaType.APPLICATION_XML     || '<deltaReports><deltaReport><action>replace</action><xpath>some xpath</xpath><sourceData><some_key>some value</some_key></sourceData><targetData><some_key>some value</some_key></targetData></deltaReport></deltaReports>'
     }
 
     def 'Get delta between anchor and JSON payload with yangResourceFile'() {
