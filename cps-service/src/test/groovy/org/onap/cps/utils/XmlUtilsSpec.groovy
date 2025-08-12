@@ -27,17 +27,17 @@ import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import org.w3c.dom.DOMException
 import org.xml.sax.SAXParseException
 import spock.lang.Specification
+import static XmlUtils.convertDataMapsToXml
 
-import static org.onap.cps.utils.XmlFileUtils.convertDataMapsToXml
 
-class XmlFileUtilsSpec extends Specification {
+class XmlUtilsSpec extends Specification {
 
     def 'Parse a valid xml content #scenario'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the xml data is parsed'
-            def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext)
+            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext)
         then: 'the result xml is wrapped by root node defined in YANG schema'
             assert parsedXmlContent == expectedOutput
         where:
@@ -52,7 +52,7 @@ class XmlFileUtilsSpec extends Specification {
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
             def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'attempt to parse invalid xml'
-            XmlFileUtils.prepareXmlContent('invalid-xml', schemaContext)
+            XmlUtils.prepareXmlContent('invalid-xml', schemaContext)
         then: 'a Sax Parser exception is thrown'
             thrown(SAXParseException)
     }
@@ -64,7 +64,7 @@ class XmlFileUtilsSpec extends Specification {
         and: 'Parent schema node by xPath'
             def parentSchemaNode = YangParserHelper.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get('dataSchemaNode')
         when: 'the XML data is parsed'
-            def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
+            def parsedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, xPath)
         then: 'the result XML is wrapped by xPath defined parent root node'
             assert parsedXmlContent == expectedOutput
         where:
