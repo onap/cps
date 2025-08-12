@@ -25,13 +25,16 @@ package org.onap.cps.utils;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -45,6 +48,7 @@ import javax.xml.transform.stream.StreamResult;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.DataValidationException;
+import org.onap.cps.api.model.DeltaReport;
 import org.opendaylight.yangtools.yang.model.api.DataSchemaNode;
 import org.opendaylight.yangtools.yang.model.api.SchemaContext;
 import org.w3c.dom.DOMException;
@@ -192,6 +196,72 @@ public class XmlFileUtils {
                     "Data Validation Failed", "Failed to parse xml data: " + exception.getMessage(), exception);
         }
     }
+
+    /**
+     * Converts a collection of DeltaReport objects to XML format using DOM.
+     *
+     * @param deltaReports The collection of DeltaReport objects.
+     * @return The XML string representation of the delta reports.
+     */
+
+    public static String buildXmlUsingDom(final List<DeltaReport> deltaReports) {
+        try {
+            final DocumentBuilder documentBuilder = getDocumentBuilderFactory().newDocumentBuilder();
+            final Document document = documentBuilder.newDocument();
+            final DocumentFragment documentFragment = document.createDocumentFragment();
+            final Element rootElement = document.createElement("deltaReports");
+            documentFragment.appendChild(rootElement);
+            int id = 1;
+            for (final DeltaReport deltaReport : deltaReports) {
+                final Element deltaReportElement = document.createElement("deltaReport");
+                deltaReportElement.setAttribute("id", String.valueOf(id++));
+                final Element actionElement = document.createElement("action");
+                actionElement.appendChild(document.createTextNode(deltaReport.getAction()));
+                deltaReportElement.appendChild(actionElement);
+                final Element xpathElement = document.createElement("xpath");
+                xpathElement.appendChild(document.createTextNode(deltaReport.getXpath()));
+                deltaReportElement.appendChild(xpathElement);
+                if (deltaReport.getSourceData() != null && !deltaReport.getSourceData().isEmpty()) {
+                    final Element sourceDataElement = document.createElement("source-data");
+                    for (final Map.Entry<String, Serializable> deltaReportEntry : deltaReport.getSourceData()
+                        .entrySet()) {
+                        createXmlElementForDelta(document, sourceDataElement, deltaReportEntry);
+                    }
+                    deltaReportElement.appendChild(sourceDataElement);
+                }
+                if (deltaReport.getTargetData() != null && !deltaReport.getTargetData().isEmpty()) {
+                    final Element targetDataElement = document.createElement("target-data");
+                    for (final Map.Entry<String, Serializable> deltaReportEntry : deltaReport.getTargetData()
+                        .entrySet()) {
+                        createXmlElementForDelta(document, targetDataElement, deltaReportEntry);
+                    }
+                    deltaReportElement.appendChild(targetDataElement);
+                }
+                rootElement.appendChild(deltaReportElement);
+            }
+            return transformFragmentToString(documentFragment);
+        } catch (final DOMException | ParserConfigurationException | TransformerException
+            exception) {
+            throw new DataValidationException(
+                "Data Validation Failed", "Failed to build xml deltaReport: " + exception.getMessage(), exception);
+        }
+    }
+
+    private static void createXmlElementForDelta(final Document document, final Element targetDataElement,
+                                      final Map.Entry<String, Serializable> deltaReportEntry) {
+        final Element dataElement = document.createElement(deltaReportEntry.getKey());
+        final Serializable deltaReportEntryValue = deltaReportEntry.getValue();
+        if (deltaReportEntryValue instanceof Collection) {
+            final String deltaReport = ((Collection<?>) deltaReportEntryValue).stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+            dataElement.appendChild(document.createTextNode(deltaReport));
+        } else {
+            dataElement.appendChild(document.createTextNode(deltaReportEntryValue.toString()));
+        }
+        targetDataElement.appendChild(dataElement);
+    }
+
 
     private static void createXmlElements(final Document document, final Node parentNode,
                                           final Map<String, Object> dataMap) {
