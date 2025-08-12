@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2025-2026 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -156,7 +157,7 @@ public class YangParserHelper {
         final String preparedXmlContent;
         try {
             if (parentNodeXpath.isEmpty()) {
-                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext);
+                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, schemaContext);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveModelContext);
             } else {
                 final DataSchemaNode parentSchemaNode =
@@ -167,7 +168,7 @@ public class YangParserHelper {
                 final EffectiveStatementInference effectiveStatementInference =
                     SchemaInferenceStack.of(effectiveModelContext,
                         SchemaNodeIdentifier.Absolute.of(dataSchemaNodeIdentifiers)).toInference();
-                preparedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
+                preparedXmlContent = XmlUtils.prepareXmlContent(xmlData, parentSchemaNode, parentNodeXpath);
                 xmlParserStream = XmlParserStream.create(normalizedNodeStreamWriter, effectiveStatementInference);
             }
 
