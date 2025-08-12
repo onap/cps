@@ -24,6 +24,7 @@
 package org.onap.cps.rest.exceptions
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import groovy.json.JsonSlurper
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
@@ -46,6 +47,7 @@ import org.onap.cps.api.exceptions.SchemaSetInUseException
 import org.onap.cps.rest.controller.CpsRestInputMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.onap.cps.utils.PrefixResolver
+import org.onap.cps.utils.XmlObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -97,6 +99,9 @@ class CpsRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     CpsDeltaService cpsDeltaService = Stub()
+
+    @SpringBean
+    XmlObjectMapper xmlObjectMapper = new XmlObjectMapper(new XmlMapper())
 
     @Autowired
     MockMvc mvc
