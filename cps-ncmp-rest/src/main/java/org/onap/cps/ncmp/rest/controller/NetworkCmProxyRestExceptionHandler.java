@@ -41,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
+import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -99,6 +100,11 @@ public class NetworkCmProxyRestExceptionHandler {
     @ExceptionHandler({PayloadTooLargeException.class})
     public static ResponseEntity<Object> handlePayloadTooLargeExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
+    }
+
+    @ExceptionHandler({InvalidPathException.class})
+    public static ResponseEntity<Object> invalidPathExceptions(final Exception exception) {
+        return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
     }
 
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {

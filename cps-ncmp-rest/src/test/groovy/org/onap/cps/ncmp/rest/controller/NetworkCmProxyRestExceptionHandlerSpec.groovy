@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -64,6 +65,7 @@ import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
@@ -148,6 +150,7 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')          || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
             'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                          || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
             'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null) || CONFLICT              | sampleErrorMessage          | sampleErrorDetails
+            'Invalid Path'          | new InvalidPathException("some invalid path")                             || UNPROCESSABLE_ENTITY  | 'not a valid path'          | 'some invalid path not a valid path'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {
