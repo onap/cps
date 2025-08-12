@@ -21,6 +21,7 @@
 
 package org.onap.cps.integration.base
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.hazelcast.map.IMap
 import io.micrometer.core.instrument.MeterRegistry
 import okhttp3.mockwebserver.MockWebServer
@@ -54,6 +55,8 @@ import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.XmlObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -166,6 +169,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     MeterRegistry meterRegistry
+
+    @SpringBean
+    XmlObjectMapper xmlObjectMapper = new XmlObjectMapper(new XmlMapper())
 
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
