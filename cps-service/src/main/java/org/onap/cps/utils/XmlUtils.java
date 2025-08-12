@@ -55,7 +55,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class XmlFileUtils {
+public class XmlUtils {
 
     private static final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static boolean isNewDocumentBuilderFactoryInstance = true;
@@ -186,7 +186,7 @@ public class XmlFileUtils {
             } else {
                 throw new IllegalArgumentException("Unsupported data type for XML conversion");
             }
-            return transformFragmentToString(documentFragment);
+            return transformNodeToString(documentFragment);
         } catch (final DOMException |  NullPointerException | ParserConfigurationException | TransformerException
                 exception) {
             throw new DataValidationException(
@@ -245,27 +245,44 @@ public class XmlFileUtils {
         }
         parentNode.appendChild(element);
     }
+    /**
+     * Converts the given XML Node into a String.
+     *
+     * @param node the XML node to convert
+     * @return string representation of the XML node
+     * @throws TransformerException if transformation fails
+     */
 
-    private static String transformFragmentToString(final DocumentFragment documentFragment)
+    private static String transformNodeToString(final Node node)
             throws TransformerException {
         final Transformer transformer = getTransformerFactory().newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-        final StringWriter writer = new StringWriter();
-        final StreamResult result = new StreamResult(writer);
-        transformer.transform(new DOMSource(documentFragment), result);
-        return writer.toString();
+        final StringWriter stringWriter = new StringWriter();
+        final StreamResult streamResult = new StreamResult(stringWriter);
+        transformer.transform(new DOMSource(node), streamResult);
+        return stringWriter.toString();
     }
+    /**
+     * Provides a configured instance of DocumentBuilderFactory.
+     * This method initializes the factory with secure processing settings
+     * to prevent XML External Entity (XXE) attacks.
+     * @return a configured DocumentBuilderFactory instance
+     */
 
-    @SuppressWarnings("SameReturnValue")
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
         if (isNewDocumentBuilderFactoryInstance) {
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             isNewDocumentBuilderFactoryInstance = false;
         }
-
         return documentBuilderFactory;
     }
+    /**
+     * Provides a configured instance of TransformerFactory.
+     * This method initializes the factory with secure settings to prevent
+     * unwanted stylesheet or DTD access.
+     * @return a configured TransformerFactory instance
+     */
 
     @SuppressWarnings("SameReturnValue")
     private static TransformerFactory getTransformerFactory() {
@@ -274,7 +291,6 @@ public class XmlFileUtils {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
             isNewTransformerFactoryInstance = false;
         }
-
         return transformerFactory;
     }
 }
