@@ -398,6 +398,30 @@
       },
       "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9229c771_7253305a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-12T08:13:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b38a8c3b_f587594d",
+      "range": {
+        "startLine": 340,
+        "startChar": 17,
+        "endLine": 340,
+        "endChar": 21
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
