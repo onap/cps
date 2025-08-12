@@ -33,6 +33,281 @@
       "message": "recheck",
       "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5346288_34a3d8f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "just 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7cc61e6_2c979f9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "maybe rephrase and can say something like it can be a single or multiline\n\nalso suggestion maybe not using \u0027dataNodeSelector\u0027 and possibly sticking to JEX terms (https://www.etsi.org/deliver/etsi_ts/132100_132199/132161/18.00.00_60/ts_132161v180000p.pdf) in this case dataNodeSelector \u003d JexBasicExpressionWithManyPaths\n\ne.g\nResolves alternate IDs from a JEX basic expression with many paths",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 64
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9adf05f9_f177e101",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "JexBasicExpressionWithManyPaths",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50579767_a8cdbddd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "each valid path",
+      "range": {
+        "startLine": 39,
+        "startChar": 70,
+        "endLine": 39,
+        "endChar": 83
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e02456e8_7c5bda2f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "a valid jex basic expression as path",
+      "range": {
+        "startLine": 57,
+        "startChar": 59,
+        "endLine": 57,
+        "endChar": 79
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa0b3f1_c695b5a7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "suggestion something like \"jexBasicExpressionSinglePath\" or \"singlePathJex\"",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1bb2b92_c9241fa3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "resolveFdnFromSinglePath",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43e682bc_7eb1db4a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "2025 only",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e31ab48_10f62aae",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "jex basic expression with many paths",
+      "range": {
+        "startLine": 27,
+        "startChar": 60,
+        "endLine": 27,
+        "endChar": 68
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee7e68b_ed10d91d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "same comments as before",
+      "range": {
+        "startLine": 28,
+        "startChar": 26,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef3640d_30a3030c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "sampleBasicJexWithManyPaths",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e275d65_46231668",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "too long , not necessary for this specific test",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 78
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a838f7c_ac90cf5b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-12T14:24:00Z",
+      "side": 1,
+      "message": "seems repeated on other tests , probably covered already?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 5
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
