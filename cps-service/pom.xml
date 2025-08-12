@@ -73,8 +73,8 @@
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
     </dependency>
+    <!-- For parsing JSON object -->
     <dependency>
-      <!-- For parsing JSON object -->
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
     </dependency>
@@ -203,6 +203,11 @@
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-web</artifactId>
+      </dependency>
+    <!-- For parsing XML object -->
+      <dependency>
+          <groupId>com.fasterxml.jackson.dataformat</groupId>
+          <artifactId>jackson-dataformat-xml</artifactId>
       </dependency>
   </dependencies>
 </project>
