@@ -24,6 +24,8 @@
 
 package org.onap.cps.rest.controller;
 
+import static org.onap.cps.utils.XmlUtils.convertDataMapsToXml;
+
 import io.micrometer.core.annotation.Timed;
 import jakarta.validation.ValidationException;
 import java.time.OffsetDateTime;
@@ -38,7 +40,6 @@ import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.rest.api.CpsDataApi;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
-import org.onap.cps.utils.XmlFileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -204,7 +205,7 @@ public class DataRestController implements CpsDataApi {
     private ResponseEntity<Object> buildResponseEntity(final Object dataMaps, final ContentType contentType) {
         final String responseData;
         if (ContentType.XML.equals(contentType)) {
-            responseData = XmlFileUtils.convertDataMapsToXml(dataMaps);
+            responseData = convertDataMapsToXml(dataMaps);
         } else {
             responseData = jsonObjectMapper.asJsonString(dataMaps);
         }
