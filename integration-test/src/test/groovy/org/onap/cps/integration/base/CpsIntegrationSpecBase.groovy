@@ -54,6 +54,8 @@ import org.onap.cps.ri.repository.SchemaSetRepository
 import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.utils.XmlObjectMapper
+import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -166,6 +168,9 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
     @Autowired
     MeterRegistry meterRegistry
+
+    @SpringBean
+    XmlObjectMapper xmlObjectMapper = new XmlObjectMapper()
 
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
