@@ -34,6 +34,8 @@ import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -54,8 +56,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockAlternateIdChecker = Mock(AlternateIdChecker)
     def mockCmHandleIdPerAlternateId = Mock(IMap)
+    def mockLcmEventsHelper = Mock(LcmEventsHelper)
 
-    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId)
+    def objectUnderTest = new CmHandleRegistrationServicePropertyHandler(mockInventoryPersistence, mockCpsDataService, jsonObjectMapper, mockAlternateIdChecker, mockCmHandleIdPerAlternateId, mockLcmEventsHelper)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -242,50 +245,88 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
     }
 
     def 'Update CM Handle data producer identifier from #scenario'() {
-        given: 'an existing cm handle with no data producer identifier'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId','data-producer-identifier': oldDataProducerIdentifier])
+        given: 'an existing cm handle with old data producer identifier'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': oldDataProducerIdentifier])
         and: 'an update request with a new data producer identifier'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'New Data Producer Identifier')
-        when: 'data producer identifier updated'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmHandleId', dataProducerIdentifier: 'New Data Producer Identifier')
+        and: 'the inventory persistence returns updated yang model'
+            1 * mockInventoryPersistence.getYangModelCmHandle('cmHandleId') >> createYangModelCmHandle('cmHandleId', 'New Data Producer Identifier')
+        when: 'data producer identifier is updated'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
-        then: 'the update node leaves method is invoked once'
+        then: 'the update node leaves method is invoked once with correct parameters'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >> { args ->
                 assert args[3].contains('New Data Producer Identifier')
             }
-        and: 'correct information is logged'
-            def lastLoggingEvent = logger.list[0]
-            assert lastLoggingEvent.level == Level.DEBUG
-            assert lastLoggingEvent.formattedMessage.contains('Updating data-producer-identifier')
-        where: 'the following scenarios are attempted'
+        and: 'LCM event is sent'
+            1 * mockLcmEventsHelper.sendLcmEventAsynchronously(_, _) >> { args ->
+                assert args[0].dataProducerIdentifier == 'New Data Producer Identifier'
+            }
+        where: 'the following scenarios are used'
             scenario             | oldDataProducerIdentifier
             'null to something'  | null
             'blank to something' | ''
     }
 
     def 'Update CM Handle data producer identifier with same value'() {
-        given: 'an existing cm handle with no data producer identifier'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId','data-producer-identifier': 'same id'])
-        and: 'an update request with a new data producer identifier'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'same id')
-        when: 'data producer identifier updated'
+        given: 'an existing cm handle with existing data producer identifier'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': 'same-data-producer-id'])
+        and: 'an update request with the same data producer identifier'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmHandleId', dataProducerIdentifier: 'same-data-producer-id')
+        when: 'data producer identifier is updated'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
+        and: 'LCM event is not sent'
+            0 * mockLcmEventsHelper.sendLcmEventAsynchronously(*_)
+        and: 'debug information is logged'
+            def loggingEvent = logger.list[0]
+            assert loggingEvent.level == Level.DEBUG
+            assert loggingEvent.formattedMessage.contains('dataProducerIdentifier for cmHandle cmHandleId is already set to same-data-producer-id')
     }
 
-    def 'Update CM Handle data producer identifier from some data producer identifier to another data producer identifier'() {
+    def 'Update CM Handle data producer identifier from existing to new value'() {
         given: 'an existing cm handle with a data producer identifier'
-            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': 'someDataProducerIdentifier'])
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': 'oldDataProducerIdentifier'])
         and: 'an update request with a new data producer identifier'
-            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'someNewDataProducerIdentifier')
-        when: 'update data producer identifier is called with the update request'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmHandleId', dataProducerIdentifier: 'newDataProducerIdentifier')
+        and: 'the inventory persistence returns updated yang model'
+            mockInventoryPersistence.getYangModelCmHandle('cmHandleId') >> createYangModelCmHandle('cmHandleId', 'newDataProducerIdentifier')
+        when: 'update data producer identifier is called'
+            objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
+        then: 'the update node leaves method is invoked once with correct parameters'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'ncmp-dmi-registry', '/dmi-registry', _, _, ContentType.JSON) >> { args ->
+                assert args[3].contains('newDataProducerIdentifier')
+            }
+        and: 'LCM event is sent'
+            1 * mockLcmEventsHelper.sendLcmEventAsynchronously(_, _) >> { args ->
+                assert args[0].dataProducerIdentifier == 'newDataProducerIdentifier'
+                assert args[1].dataProducerIdentifier == 'oldDataProducerIdentifier'
+            }
+        and: 'correct information is logged'
+            def loggingEvent = logger.list[1]
+            assert loggingEvent.level == Level.DEBUG
+            assert loggingEvent.formattedMessage.contains('updated from oldDataProducerIdentifier to newDataProducerIdentifier')
+    }
+
+    def 'Update CM Handle data producer identifier with null or blank target identifier'() {
+        given: 'an existing cm handle'
+            DataNode existingCmHandleDataNode = new DataNode(xpath: cmHandleXpath, leaves: ['id': 'cmHandleId', 'data-producer-identifier': 'some existing id'])
+        and: 'an update request with null/blank data producer identifier'
+            def ncmpServiceCmHandle = new NcmpServiceCmHandle(cmHandleId: 'cmHandleId', dataProducerIdentifier: targetDataProducerIdentifier)
+        when: 'data producer identifier update is attempted'
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
-        and: 'correct information is logged'
+        and: 'LCM event is not sent'
+            0 * mockLcmEventsHelper.sendLcmEventAsynchronously(*_)
+        and: 'warning is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.WARN
-            assert lastLoggingEvent.formattedMessage.contains('Unable to update dataProducerIdentifier')
+            assert lastLoggingEvent.formattedMessage.contains('Ignoring update for cmHandle cmHandleId: target dataProducerIdentifier is null or blank')
+        where: 'the following invalid scenarios are used'
+            scenario      | targetDataProducerIdentifier
+            'null value'  | null
+            'blank value' | ''
     }
 
     def convertToProperties(expectedPropertiesAfterUpdateAsMap) {
@@ -295,5 +336,16 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
                 properties.add(['name': key, 'value': val])
             }))
         return properties
+    }
+
+
+    def createYangModelCmHandle(cmHandleId, dataProducerIdentifier) {
+        new YangModelCmHandle(
+            id: cmHandleId,
+            dmiDataServiceName: 'some-dmi-plugin',
+            dataProducerIdentifier: dataProducerIdentifier,
+            additionalProperties: [],
+            publicProperties: []
+        )
     }
 }

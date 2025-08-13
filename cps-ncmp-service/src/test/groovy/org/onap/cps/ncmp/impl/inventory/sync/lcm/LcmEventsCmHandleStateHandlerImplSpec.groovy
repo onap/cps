@@ -60,7 +60,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def mockLcmEventsProducer = Mock(LcmEventsProducer)
     def mockCmHandleStateMonitor = Mock(CmHandleStateMonitor)
 
-    def lcmEventsCmHandleStateHandlerAsyncHelper = new LcmEventsCmHandleStateHandlerAsyncHelper(mockLcmEventsCreator, mockLcmEventsProducer)
+    def lcmEventsCmHandleStateHandlerAsyncHelper = new LcmEventsHelper(mockLcmEventsCreator, mockLcmEventsProducer)
     def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, lcmEventsCmHandleStateHandlerAsyncHelper, mockCmHandleStateMonitor)
 
     def cmHandleId = 'cmhandle-id-1'
