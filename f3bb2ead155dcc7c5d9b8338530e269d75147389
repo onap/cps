@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49b0fa8e_6d4d4d74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T13:18:38Z",
+      "side": 1,
+      "message": "In Patchset 1 I already wrote what you described here but as per the suggestion of @lee.anjella.macabuhay@est.tech I changed it to current version. Hi @gerard.nugent@est.tech and @lee.anjella.macabuhay@est.tech  can we come to a conclusion here on the recommended way?",
+      "parentUuid": "3e5aee1b_7c36ad1b",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1e13003_65b72de9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54fe9914_3d10891c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T13:18:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f1e13003_65b72de9",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ea9c01f_475ba24d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -65,6 +101,24 @@
       "writtenOn": "2025-08-13T12:38:37Z",
       "side": 1,
       "message": "This is compiling the regex every iteration. Can it go out of the loop",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb9c49e7_71800d36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T13:18:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ea9c01f_475ba24d",
       "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
