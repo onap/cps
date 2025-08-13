@@ -16,6 +16,57 @@
       "message": "recheck",
       "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e5aee1b_7c36ad1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-13T12:38:37Z",
+      "side": 1,
+      "message": "Can all the streams be chained? Something like:\n\nreturn Arrays.stream(input.split(\"\\\\R\"))\n        .map(String::trim)\n        .filter(line -\u003e !line.isEmpty())\n        .filter(line -\u003e !line.startsWith(\"\u0026\u0026\"))\n        .map(JexResolver::resolveFdnFromSinglePath)\n        .flatMap(Optional::stream)\n        .map(JexResolver::toAlternateId)\n        .distinct()\n        .collect(Collectors.toList());",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1e13003_65b72de9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-13T12:38:37Z",
+      "side": 1,
+      "message": "Just a checkstyle issue. Needs an extra indent",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea9c01f_475ba24d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-13T12:38:37Z",
+      "side": 1,
+      "message": "This is compiling the regex every iteration. Can it go out of the loop",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
