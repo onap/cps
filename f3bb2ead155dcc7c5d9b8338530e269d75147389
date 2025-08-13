@@ -53,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92eee195_7ac2c0cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-13T13:42:30Z",
+      "side": 1,
+      "message": "Sorry, I didn\u0027t spot that. It was just a suggestion. Feel free to stick to Lee Anjellas suggextion",
+      "parentUuid": "49b0fa8e_6d4d4d74",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1e13003_65b72de9",
