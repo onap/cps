@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5972e60_ba244315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "not so major comments.\nI will ask other team members to have a look and will get people opinion on that.",
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98130964_0888c87e",
+        "filename": "cps-service/src/main/java/org/onap/cps/api/CpsDeltaService.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "NB: delta report changes?",
+      "range": {
+        "startLine": 74,
+        "startChar": 19,
+        "endLine": 74,
+        "endChar": 31
+      },
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998ff781_4dc81684",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "jsonProcessingException. Please correct here as well.",
+      "range": {
+        "startLine": 120,
+        "startChar": 47,
+        "endLine": 120,
+        "endChar": 48
+      },
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1811b12_653b893e",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "jsonProcessingException",
+      "range": {
+        "startLine": 140,
+        "startChar": 47,
+        "endLine": 140,
+        "endChar": 48
+      },
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be0dea6f_39bbfaf4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "use asserts here.",
+      "range": {
+        "startLine": 146,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 37
+      },
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc1bf78_38f39202",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/ApplyDeltaReportSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-13T14:09:47Z",
+      "side": 1,
+      "message": "will review this class when the name of the service class is finalized.",
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
