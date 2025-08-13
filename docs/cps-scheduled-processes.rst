@@ -18,8 +18,8 @@ Introduction
 
 The following section is a list of the current scheduled processes running within the CPS system.
 
-Module Sync
------------
+Module Synchronization
+----------------------
 The module sync is a user :ref:`configurable timed process<configuration-properties>`,
 which is set to search for CM Handles within CPS with an *'ADVISED'* state.
 Once the CM Handle is processed by the module sync, the CM Handle state is then set to *'READY'*, if the process completes successfully.
@@ -28,10 +28,12 @@ and the reason for the lock will also be stored within CPS.
 CM Handles in the *'LOCKED'* state will be retried when the system has availability. CM Handles in a *'LOCKED'*
 state are processed by the retry mechanism, by setting CM Handle state back to *'ADVISED'* so the next sync cycle will process those again.
 
-Data Sync
----------
+Data Synchronization
+--------------------
 The data sync is a user :ref:`configurable timed process<configuration-properties>`,
 which is set to search for CM Handles with a sync state of *'UNSYNCHRONIZED'*.
 Once the CM Handle(s) with a sync state of *'UNSYNCHRONIZED'* is processed by the data sync,
 the CM Handle sync state is then set to *'SYNCHRONIZED'*, if the process completes successfully.
 If the data sync fails, the CM Handle sync state will remain as *'UNSYNCHRONIZED'*, and will be re-attempted.
+
+Once the data is synched then the data can be retrieved using the OPERATIONAL datastore directly from the CPS database.
