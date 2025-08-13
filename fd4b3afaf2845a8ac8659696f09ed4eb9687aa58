@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89cf6d61_01ca8b19",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d5346288_34a3d8f2",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7cc61e6_2c979f9b",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "maybe rephrase and can say something like it can be a single or multiline\n\nalso suggestion maybe not using \u0027dataNodeSelector\u0027 and possibly sticking to JEX terms (https://www.etsi.org/deliver/etsi_ts/132100_132199/132161/18.00.00_60/ts_132161v180000p.pdf) in this case dataNodeSelector \u003d JexBasicExpressionWithManyPaths\n\ne.g\nResolves alternate IDs from a JEX basic expression with many paths",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 36,
+        "endChar": 64
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dbfa3e1_f46407c5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7cc61e6_2c979f9b",
       "range": {
         "startLine": 36,
         "startChar": 37,
@@ -98,6 +146,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4a72f61_a19f4755",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9adf05f9_f177e101",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50579767_a8cdbddd",
@@ -111,6 +177,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "each valid path",
+      "range": {
+        "startLine": 39,
+        "startChar": 70,
+        "endLine": 39,
+        "endChar": 83
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65fe7127_e2a88fb1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "50579767_a8cdbddd",
       "range": {
         "startLine": 39,
         "startChar": 70,
@@ -144,6 +234,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3bb134_847fd336",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ffbd5c04_88d38687",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 46
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e02456e8_7c5bda2f",
@@ -157,6 +271,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "a valid jex basic expression as path",
+      "range": {
+        "startLine": 57,
+        "startChar": 59,
+        "endLine": 57,
+        "endChar": 79
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4d5ba58_f59c6d28",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e02456e8_7c5bda2f",
       "range": {
         "startLine": 57,
         "startChar": 59,
@@ -184,6 +322,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ff6243_bb57e42e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "faa0b3f1_c695b5a7",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1bb2b92_c9241fa3",
@@ -201,6 +357,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2d901bc_7b1b2ba1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e1bb2b92_c9241fa3",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43e682bc_7eb1db4a",
@@ -214,6 +388,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "2025 only",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10631f45_f5824aca",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "43e682bc_7eb1db4a",
       "range": {
         "startLine": 3,
         "startChar": 17,
@@ -247,6 +445,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b855d002_2d9e5b09",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e31ab48_10f62aae",
+      "range": {
+        "startLine": 27,
+        "startChar": 60,
+        "endLine": 27,
+        "endChar": 68
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aee7e68b_ed10d91d",
@@ -260,6 +482,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "same comments as before",
+      "range": {
+        "startLine": 28,
+        "startChar": 26,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d3aa041_877a3267",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aee7e68b_ed10d91d",
       "range": {
         "startLine": 28,
         "startChar": 26,
@@ -287,6 +533,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "814e8f09_e933248e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2ef3640d_30a3030c",
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e275d65_46231668",
@@ -310,6 +574,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7511cf23_6382c79e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e275d65_46231668",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 78
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a838f7c_ac90cf5b",
@@ -323,6 +611,30 @@
       "writtenOn": "2025-08-12T14:24:00Z",
       "side": 1,
       "message": "seems repeated on other tests , probably covered already?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 5
+      },
+      "revId": "fd4b3afaf2845a8ac8659696f09ed4eb9687aa58",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba723d86_967d7afe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-13T11:31:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a838f7c_ac90cf5b",
       "range": {
         "startLine": 154,
         "startChar": 0,
