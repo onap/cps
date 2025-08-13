@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LcmEventsCmHandleStateHandlerAsyncHelper {
+public class LcmEventsHelper {
 
     private final LcmEventsProducerHelper lcmEventsProducerHelper;
     private final LcmEventsProducer lcmEventsProducer;
@@ -50,8 +50,20 @@ public class LcmEventsCmHandleStateHandlerAsyncHelper {
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
     }
 
-    private void sendLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+    /**
+     * Sends LcmEvent asynchronously.
+     *
+     * @param targetNcmpServiceCmHandle   target Ncmp Service Cm Handle
+     * @param existingNcmpServiceCmHandle existing Ncmp Service Cm Handle
+     */
+    @Async("notificationExecutor")
+    public void sendLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
                               final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        sendLcmEvent(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
+    private void sendLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+            final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
         final LcmEventHeader lcmEventHeader =
                 lcmEventsProducerHelper.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,

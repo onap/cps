@@ -55,6 +55,7 @@ import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -74,6 +75,7 @@ public class CmHandleRegistrationServicePropertyHandler {
     private final AlternateIdChecker alternateIdChecker;
     @Qualifier("cmHandleIdPerAlternateId")
     private final IMap<String, String> cmHandleIdPerAlternateId;
+    private final LcmEventsHelper lcmEventsHelper;
 
     /**
      * Iterates over incoming updatedNcmpServiceCmHandles and update the dataNodes based on the updated attributes.
@@ -140,25 +142,40 @@ public class CmHandleRegistrationServicePropertyHandler {
     }
 
     private void updateDataProducerIdentifier(final DataNode cmHandleDataNode,
-                                              final NcmpServiceCmHandle ncmpServiceCmHandle) {
-        final String newDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
-        if (StringUtils.isNotBlank(newDataProducerIdentifier)) {
-            final YangModelCmHandle yangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleDataNode);
-            final String existingDataProducerIdentifier = yangModelCmHandle.getDataProducerIdentifier();
-            if (StringUtils.isNotBlank(existingDataProducerIdentifier)) {
-                if (!existingDataProducerIdentifier.equals(newDataProducerIdentifier)) {
-                    log.warn("Unable to update dataProducerIdentifier for cmHandle {}. "
-                            + "Value for dataProducerIdentifier has been set previously.",
-                        ncmpServiceCmHandle.getCmHandleId());
-                } else {
-                    log.debug("dataProducerIdentifier for cmHandle {} is already set to {}.",
-                        ncmpServiceCmHandle.getCmHandleId(), newDataProducerIdentifier);
-                }
-            } else {
-                setAndUpdateCmHandleField(
-                    yangModelCmHandle.getId(), "data-producer-identifier", newDataProducerIdentifier);
-            }
+            final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String targetDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
+        final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+
+        if (StringUtils.isBlank(targetDataProducerIdentifier)) {
+            log.warn("Ignoring update for cmHandle {}: target dataProducerIdentifier is null or blank.", cmHandleId);
+            return;
         }
+
+        final YangModelCmHandle existingYangModelCmHandle = YangDataConverter.toYangModelCmHandle(cmHandleDataNode);
+        final String existingDataProducerIdentifier = existingYangModelCmHandle.getDataProducerIdentifier();
+
+        if (existingDataProducerIdentifier.equals(targetDataProducerIdentifier)) {
+            log.debug("Ignoring update as dataProducerIdentifier for cmHandle {} is already set to {}.", cmHandleId,
+                    targetDataProducerIdentifier);
+            return;
+        }
+
+        setAndUpdateCmHandleField(cmHandleId, "data-producer-identifier", targetDataProducerIdentifier);
+        log.debug("dataProducerIdentifier for cmHandle {} updated from {} to {}", cmHandleId,
+                existingDataProducerIdentifier, targetDataProducerIdentifier);
+        sendLcmEventForDataProducerIdentifier(cmHandleId, existingYangModelCmHandle);
+    }
+
+    private void sendLcmEventForDataProducerIdentifier(final String cmHandleId,
+            final YangModelCmHandle existingYangModelCmHandle) {
+        final YangModelCmHandle updatedYangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+        final NcmpServiceCmHandle existingNcmpServiceCmHandle =
+                YangDataConverter.toNcmpServiceCmHandle(existingYangModelCmHandle);
+        final NcmpServiceCmHandle updatedNcmpServiceCmHandle =
+                YangDataConverter.toNcmpServiceCmHandle(updatedYangModelCmHandle);
+
+        lcmEventsHelper.sendLcmEventAsynchronously(updatedNcmpServiceCmHandle,
+                existingNcmpServiceCmHandle);
     }
 
     private void updateProperties(final DataNode existingCmHandleDataNode, final PropertyType propertyType,
