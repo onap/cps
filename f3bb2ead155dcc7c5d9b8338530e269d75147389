@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f9c299_5b64077b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "Hi Shivian I think the code does what it intend but there are some (complicated) issues with naming. There is also some history related to the term altenateId/fdn you of course are not aware off (we are very strict on good consistent naming in CPS!). I\u0027ll try to organise a call with you later. I do have my doubt myself id in this case we CAN use the term FDN as you a specifically are converting jexPath to a FDN... Which happen to be what ericsson uses as AlternatIds (therin lies the problem) But you definitely use the term FDN to early in your current patch...\nMight need a secodn opion (other team member) to dicuss some of this\nbut in teh mean time see hwo you get on with mu suggestions",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63263579_ffd389a3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "jexBasicExpressionWithManyPaths \n\nthere are some qualifiers in the name that dont make sense unless you would have different methods for different variations of Jex\n\u0027basic\u0027 its not like we complex version  too?\n\u0027many\u0027 well you dont know until you have examined it. From the code it could even be empty. I see in teh private method use use \u0027single\u0027 which is fine because you have check/manipulated and only use that method for those variations (I assume)\n\nFinally Jex stands for JsonExpresion so JexExpression is liek a half expanded acronym :-( Although I see it being used in website too)\n\nso all combined\n\nI recommend just \u0027JsonExpression\u0027 (preferred) or \u0027jex\u0027 for this parameter",
+      "range": {
+        "startLine": 42,
+        "startChar": 64,
+        "endLine": 42,
+        "endChar": 95
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e5aee1b_7c36ad1b",
@@ -73,6 +113,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc0ef5cc_5e167594",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "why change from \u0027Paths\u0027 to \u0027Lines\u0027 I think these are still path ie trimmedPaths",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 42
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f1e13003_65b72de9",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -108,6 +171,167 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0832cf1e_53883864",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "validPaths",
+      "range": {
+        "startLine": 53,
+        "startChar": 28,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba512fa3_14b1d779",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "path",
+      "range": {
+        "startLine": 54,
+        "startChar": 24,
+        "endLine": 54,
+        "endChar": 29
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff153e04_d404feee",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "dont use the term FDN use alternatId everywhere instead",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a07ad8cf_6f261b7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "distinctAlternateIds\n\nBut I probably would combine this line with the return statement and then you dont need this variable name",
+      "range": {
+        "startLine": 61,
+        "startChar": 29,
+        "endLine": 61,
+        "endChar": 42
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77032789_dd0dbb57",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "alternate id",
+      "range": {
+        "startLine": 70,
+        "startChar": 47,
+        "endLine": 70,
+        "endChar": 50
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a36486_fdc985a8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "singleJexPath",
+      "range": {
+        "startLine": 76,
+        "startChar": 74,
+        "endLine": 76,
+        "endChar": 87
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b1d0d8c_5b345e55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "is this really possible. ie double slashes?",
+      "range": {
+        "startLine": 84,
+        "startChar": 21,
+        "endLine": 84,
+        "endChar": 28
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ea9c01f_475ba24d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -137,6 +361,116 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "7ea9c01f_475ba24d",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4542845_b16e5b77",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "even better shoudl be dined as a meaningfully named (private) constant. There are many instance of such already oin our code",
+      "parentUuid": "cb9c49e7_71800d36",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1ff6d8_08323c61",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "extract out private constant with meaningful name please",
+      "range": {
+        "startLine": 91,
+        "startChar": 59,
+        "endLine": 91,
+        "endChar": 97
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f9d8de_96cdeedb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "jexPath",
+      "range": {
+        "startLine": 111,
+        "startChar": 53,
+        "endLine": 111,
+        "endChar": 56
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcc035a_1e76c56a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "took me a minute but this is regex for \u0027\u003d\u0027 + group 1 correct?\nSo again extracting out  this in a constant would be good for readability\n\n\nalternateIdIdentiferAssigmnetUsingRegexGroupOne (it is hard to come up with a good name)",
+      "range": {
+        "startLine": 112,
+        "startChar": 56,
+        "endLine": 112,
+        "endChar": 59
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f834da3_3423b58a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-13T14:32:34Z",
+      "side": 1,
+      "message": "extract out private constant with meaningful name please",
+      "range": {
+        "startLine": 112,
+        "startChar": 30,
+        "endLine": 112,
+        "endChar": 52
+      },
       "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
