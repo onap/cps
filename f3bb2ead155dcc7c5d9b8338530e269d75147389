@@ -286,6 +286,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5fff7d1_70d0919b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-14T09:34:29Z",
+      "side": 1,
+      "message": "we dont put javadocs on the private methods.",
+      "range": {
+        "startLine": 69,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 74
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92a36486_fdc985a8",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -408,6 +431,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c78816b7_89dfbcf2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-14T09:34:29Z",
+      "side": 1,
+      "message": "no javadoc needed on private methods.",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 110,
+        "endChar": 7
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37f9d8de_96cdeedb",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
         "patchSetId": 3
@@ -471,6 +517,23 @@
         "endLine": 112,
         "endChar": 52
       },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3940c476_728199f0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexResolverSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-14T09:34:29Z",
+      "side": 1,
+      "message": "code formatting is incorrect.\ncheck if you have the correct formatter setup.",
       "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
