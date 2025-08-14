@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed31db1a_7f1aced5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "overall quiet good but please don\u0027t shorten names when adding prefix like newNodes they are still DataNodes naming consistency is very important!",
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1700f5b_ea24dad3",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 12
@@ -53,6 +70,122 @@
         "startChar": 6,
         "endLine": 242,
         "endChar": 60
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b6dca6_3926a7d7",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "e1700f5b_ea24dad3",
+      "range": {
+        "startLine": 241,
+        "startChar": 6,
+        "endLine": 242,
+        "endChar": 60
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cae3975c_91d3cc54",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "newDataNodes",
+      "range": {
+        "startLine": 159,
+        "startChar": 29,
+        "endLine": 159,
+        "endChar": 38
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dd088b1_cffe774e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "addFragmentEntitiesForNewDataNodes",
+      "range": {
+        "startLine": 176,
+        "startChar": 17,
+        "endLine": 176,
+        "endChar": 32
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2236ac5e_abfd0505",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "newFragmentEntity\n\nbut you can also combien with next line and then you dont need this variable",
+      "range": {
+        "startLine": 179,
+        "startChar": 33,
+        "endLine": 179,
+        "endChar": 45
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2089798f_ad4c6101",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "identifyNewDataNodes",
+      "range": {
+        "startLine": 193,
+        "startChar": 27,
+        "endLine": 193,
+        "endChar": 43
       },
       "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -83,6 +216,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f83b0e6_2eade038",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "agree split use and: to clarify more",
+      "parentUuid": "8dd29006_37127f0f",
+      "range": {
+        "startLine": 250,
+        "startChar": 14,
+        "endLine": 250,
+        "endChar": 75
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721f587c_ac06784e",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "hasNewDataNodes",
+      "range": {
+        "startLine": 206,
+        "startChar": 22,
+        "endLine": 206,
+        "endChar": 34
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4c477c2_36c61f19",
         "filename": "docs/api/swagger/cps/openapi.yaml",
         "patchSetId": 12
@@ -94,6 +274,30 @@
       "writtenOn": "2025-08-08T15:41:13Z",
       "side": 1,
       "message": "NB: move after 200 status code.",
+      "range": {
+        "startLine": 1823,
+        "startChar": 2,
+        "endLine": 1829,
+        "endChar": 30
+      },
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1abc58_b6706c3b",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 12
+      },
+      "lineNbr": 1829,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-14T07:49:00Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "b4c477c2_36c61f19",
       "range": {
         "startLine": 1823,
         "startChar": 2,
