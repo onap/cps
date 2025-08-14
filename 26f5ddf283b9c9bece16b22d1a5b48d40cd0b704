@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53cd2a9c_95393832",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-14T10:41:45Z",
+      "side": 1,
+      "message": "comments to be resolved by someone and then can be put back to active.",
+      "revId": "26f5ddf283b9c9bece16b22d1a5b48d40cd0b704",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1700f5b_ea24dad3",
