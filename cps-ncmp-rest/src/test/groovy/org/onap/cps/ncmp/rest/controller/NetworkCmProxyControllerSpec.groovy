@@ -28,17 +28,18 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
-import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.events.EventsProducer
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
-import org.onap.cps.ncmp.api.inventory.models.CompositeState
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
-import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.model.DataOperationDefinition
 import org.onap.cps.ncmp.rest.model.DataOperationRequest
@@ -47,8 +48,6 @@ import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
 import org.onap.cps.ncmp.rest.util.NcmpRestInputMapper
-import org.onap.cps.api.model.ModuleDefinition
-import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -57,7 +56,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
 import reactor.core.publisher.Flux
@@ -69,14 +67,15 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
-import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
 import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
 import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE
 import static org.onap.cps.ncmp.api.data.models.OperationType.PATCH
 import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
 import static org.onap.cps.ncmp.api.inventory.models.CompositeState.DataStores
 import static org.onap.cps.ncmp.api.inventory.models.CompositeState.Operational
+import static org.springframework.http.MediaType.APPLICATION_JSON
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
@@ -122,9 +121,15 @@ class NetworkCmProxyControllerSpec extends Specification {
     @Value('${rest.api.ncmp-base-path}/v1')
     def ncmpBasePathV1
 
-    def requestBody = '{"some-key":"some-value"}'
+    def validRequestBody = '{"some":"valid json"}'
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
+
+    def testCompositeState = new CompositeState(cmHandleState: ADVISED,
+                                                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details('lock details').build(),
+                                                lastUpdateTime: formattedDateAndTime.toString(),
+                                                dataSyncEnabled: false,
+                                                dataStores: dataStores())
 
     @Shared
     def NO_TOPIC = null
@@ -145,10 +150,10 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-operational?resourceIdentifier=parent/child&options=(a=1,b=2)"
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'the NCMP data service is called with correct parameters'
-            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1,b=2)', NO_TOPIC, false, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
-        and: 'response status is Ok'
+            def response = mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
+        then: 'the NCMP facade returns a response entity'
+            mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1,b=2)', NO_TOPIC, false, NO_AUTH_HEADER) >> Mono.just(new ResponseEntity<Object>(HttpStatus.OK))
+        and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
 
@@ -157,14 +162,14 @@ class NetworkCmProxyControllerSpec extends Specification {
             def getUrl = "$ncmpBasePathV1/ch/h123/data/ds/ncmp-datastore:operational?resourceIdentifier=parent/child${additionalUrlParam}"
         and: 'the expected cm resource address'
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'the NCMP data service is called with correct parameters'
+            def response = mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
+        then: 'the NCMP facade is called with correct parameters'
             1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, NO_OPTIONS, NO_TOPIC, expectedIncludeDescendants, NO_AUTH_HEADER)
         and: 'response status is OK'
             assert response.status == HttpStatus.OK.value()
-        where: 'the following parameters are used'
+        where: 'the following additional parameters are used'
             scenario                    | additionalUrlParam           || expectedIncludeDescendants
-            'no additional param'       | ''                           || false
+            'no additional parameter'   | ''                           || false
             'include descendants true'  | '&include-descendants=true'  || true
             'include descendants TRUE'  | '&include-descendants=true'  || true
             'include descendants false' | '&include-descendants=false' || false
@@ -174,25 +179,24 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Execute (async) data operation to read data from dmi service.'() {
         given: 'data operation url'
             def getUrl = "$ncmpBasePathV1/data?topic=my-topic-name"
-            def dataOperationRequestJsonData = jsonObjectMapper.asJsonString(getDataOperationRequest('read', datastore.datastoreName))
+        and: 'a data operation request as json string'
+            def dataOperationRequestAsJsonString = jsonObjectMapper.asJsonString(createDataOperationRequest())
         when: 'post data operation request is performed'
-            def response = mvc.perform(post(getUrl).contentType(MediaType.APPLICATION_JSON).content(dataOperationRequestJsonData)).andReturn().response
-        then: 'response status is Ok'
+            def response = mvc.perform(post(getUrl).contentType(APPLICATION_JSON).content(dataOperationRequestAsJsonString)).andReturn().response
+        then: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
         then: 'the request for (async) data operation invoked once'
             1 * mockNetworkCmProxyFacade.executeDataOperationForCmHandles('my-topic-name', _, NO_AUTH_HEADER)
-        where: 'the following data stores are used'
-            datastore << [PASSTHROUGH_RUNNING, PASSTHROUGH_OPERATIONAL]
     }
 
     def 'Query Resource Data from operational.'() {
         given: 'the query resource data url'
             def getUrl = "$ncmpBasePathV1/ch/ch-1/data/ds/ncmp-datastore:operational/query?cps-path=/cps/path"
         when: 'the query data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+            def response = mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
         then: 'the NCMP query service is called with queryResourceDataOperationalForCmHandle'
             1 * mockNetworkCmProxyFacade.queryResourceDataForCmHandle('ch-1','/cps/path', false)
-        and: 'response status is Ok'
+        and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
 
@@ -200,9 +204,9 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'the query resource data url'
             def getUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running/query?cps-path=/cps/path"
         when: 'the query data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+            def response = mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
         then: 'a 400 BAD_REQUEST is returned for the unsupported datastore'
-            assert response.status == 400
+            assert response.status == HttpStatus.BAD_REQUEST.value()
         and: 'the error message is that the datastore is not supported'
             assert response.contentAsString.contains("ncmp-datastore:passthrough-running is not supported")
     }
@@ -210,17 +214,15 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Get Resource Data from pass-through running with #scenario value in resource identifier param.'() {
         given: 'resource data url'
             def getUrl = "$ncmpBasePathV1/ch/ch-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=$resourceIdentifier&options=(a=1)"
-        and: 'ncmp service returns json object'
-            1 * mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1)', NO_TOPIC, false, NO_AUTH_HEADER)
-                    >> new ResponseEntity<Object>('{valid-json}', HttpStatus.OK)
+        and: 'ncmp facade returns a response entity'
+            mockNetworkCmProxyFacade.getResourceDataForCmHandle(_, '(a=1)', NO_TOPIC, false, NO_AUTH_HEADER) >> new ResponseEntity<Object>('data from facade', HttpStatus.OK)
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'response status is Ok'
-            assert response.status == 200
-        and: 'response contains the object returned by the service'
-            def responseAsJsonObject = new JsonSlurper().parseText(response.getContentAsString())
-            assert responseAsJsonObject.body == '{valid-json}'
-        where: 'tokens are used in the resource identifier parameter'
+            def response = mvc.perform(get(getUrl).contentType(APPLICATION_JSON)).andReturn().response
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
+        and: 'response contains the data returned by the service'
+            assert response.getContentAsString().contains('data from facade')
+        where: 'the following special tokens are used in the resource identifier parameter'
             scenario                       | resourceIdentifier
             '/'                            | 'id/with/slashes'
             '?'                            | 'idWith?'
@@ -234,9 +236,9 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'update resource data url'
             def updateUrl = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child"
         when: 'update data resource request is performed'
-            def response = mvc.perform(put(updateUrl).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)).andReturn().response
-        then: 'ncmp service method to update resource is called'
-            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle','parent/child', UPDATE, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
+            def response = mvc.perform(put(updateUrl).contentType(APPLICATION_JSON).content(validRequestBody)).andReturn().response
+        then: 'the ncmp facade method to update resource is called'
+            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle','parent/child', UPDATE, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
@@ -245,30 +247,30 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child"
         when: 'create resource request is performed'
-            def response = mvc.perform(post(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)).andReturn().response
-        then: 'ncmp service method to create resource called'
-            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', CREATE, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
-        and: 'resource is created'
+            def response = mvc.perform(post(url).contentType(APPLICATION_JSON).content(validRequestBody)).andReturn().response
+        then: 'the ncmp facade method to create resource called'
+            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', CREATE, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
+        and: 'the response status is Created'
             assert response.status == HttpStatus.CREATED.value()
     }
 
     def 'Get module references for the given dataspace and cm handle.'() {
         given: 'get module references url'
-            def getUrl = "$ncmpBasePathV1/ch/some-cmhandle/modules"
+            def getUrl = "$ncmpBasePathV1/ch/my-cm-handle/modules"
         when: 'get module resource request is performed'
             def response = mvc.perform(get(getUrl)).andReturn().response
-        then: 'ncmp service method to get yang resource module references is called'
-            mockNetworkCmProxyInventoryFacade.getYangResourcesModuleReferences('some-cmhandle') >> [new ModuleReference(moduleName: 'some-name1', revision: '2021-10-03')]
+        then: 'the inventory facade method to get yang resource module references is called'
+            mockNetworkCmProxyInventoryFacade.getYangResourcesModuleReferences('my-cm-handle') >> [new ModuleReference(moduleName: 'my-module', revision: '2021-10-03')]
         and: 'response contains an array with the module name and revision'
-            response.getContentAsString() == '[{"moduleName":"some-name1","revision":"2021-10-03"}]'
-        and: 'response returns an OK http code'
+            response.getContentAsString() == '[{"moduleName":"my-module","revision":"2021-10-03"}]'
+        and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
 
     def 'Execute cm handle search.'() {
         given: 'search endpoint and JSON request'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
-            String jsonString = TestUtils.getResourceFileContent('cmhandle-search.json')
+            def validSearchRequest = TestUtils.getResourceFileContent('cmhandle-search.json')
         and: 'the inventory facade returns two cm handles'
             def ncmpServiceCmHandle1 = new NcmpServiceCmHandle(cmHandleId: 'ch-1')
             def ncmpServiceCmHandle2 = new NcmpServiceCmHandle(cmHandleId: 'ch-2')
@@ -279,8 +281,8 @@ class NetworkCmProxyControllerSpec extends Specification {
             mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle1, false) >> restHandle1
             mockRestOutputCmHandleMapper.toRestOutputCmHandle(ncmpServiceCmHandle2, false) >> restHandle2
         when: 'the search endpoint is invoked'
-            def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString)).andReturn().response
-        then: 'response status is OK'
+            def response = mvc.perform(post(searchesEndpoint).contentType(APPLICATION_JSON).content(validSearchRequest)).andReturn().response
+        then: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains the rest version of both cm handles'
             assert response.contentAsString.contains('rest ch-1')
@@ -299,22 +301,22 @@ class NetworkCmProxyControllerSpec extends Specification {
             mockRestOutputCmHandleMapper.toRestOutputCmHandle(cmHandle, false) >> restOutputCmHandle
         when: 'the cm handle details api is invoked'
             def response = mvc.perform(get(cmHandleDetailsEndpoint)).andReturn().response
-        then: 'response status is OK'
-            response.status == HttpStatus.OK.value()
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
         and: 'the response contains the rest version of the cm handle'
             assert response.contentAsString.contains('rest version of the cm handle')
     }
 
     def 'Get Cm Handle public properties by Cm Handle Reference.'() {
         given: 'a cm handle properties endpoint'
-            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference/properties"
-        and: 'some cm handle public properties'
-            def publicProperties = ['public prop': 'some public property']
-        and: 'the service method is invoked with the cm handle id returning the cm handle public properties'
-            1 * mockNetworkCmProxyInventoryFacade.getPublicCmHandleProperties('some-cm-handle-reference') >> publicProperties
+            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/my-cm-handle-reference/properties"
+        and: 'my cm handle public properties'
+            def publicProperties = ['public prop': 'my public property']
+        and: 'the inventory facade returns the cm handle public properties'
+            mockNetworkCmProxyInventoryFacade.getPublicCmHandleProperties('my-cm-handle-reference') >> publicProperties
         when: 'the cm handle properties api is invoked'
             def response = mvc.perform(get(cmHandlePropertiesEndpoint)).andReturn().response
-        then: 'the correct response is returned'
+        then: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
         and: 'the response contains the public properties'
             assertContainsPublicProperties(response)
@@ -322,37 +324,39 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Get Cm Handle composite state by Cm Handle Reference.'() {
         given: 'a cm handle state endpoint'
-            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/some-cm-handle-reference/state"
-        and: 'some cm handle composite state'
-            def compositeState = compositeStateTestObject()
-        and: 'the service method is invoked with the cm handle id returning the cm handle composite state'
-            1 * mockNetworkCmProxyInventoryFacade.getCmHandleCompositeState('some-cm-handle-reference') >> compositeState
+            def cmHandlePropertiesEndpoint = "$ncmpBasePathV1/ch/my-cm-handle-reference/state"
+        and: 'the inventory facade return a test composite state'
+            mockNetworkCmProxyInventoryFacade.getCmHandleCompositeState('my-cm-handle-reference') >> testCompositeState
         when: 'the cm handle state api is invoked'
             def response = mvc.perform(get(cmHandlePropertiesEndpoint)).andReturn().response
-        then: 'the correct response is returned'
-            response.status == HttpStatus.OK.value()
+        then: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
         and: 'the response contains the cm handle state'
-            assert assertContainsState(response)
+            assert assertContainsTestCompositeState(response)
     }
 
-    def 'Call execute cm handle searches with unrecognized condition name.'() {
-        given: 'the search endpoint and a request with an unrecognized condition name'
+    def 'Execute cm handle search with a data validation exception.'() {
+        given: 'the search endpoint and a valid request'
             def searchesEndpoint = "$ncmpBasePathV1/ch/searches"
-            String jsonString = TestUtils.getResourceFileContent('invalid-cmhandle-search.json')
+            def validSearchRequest = TestUtils.getResourceFileContent('cmhandle-search.json')
+        and: 'the inventory facade throws a validation exception'
+            mockNetworkCmProxyInventoryFacade.northboundCmHandleSearch(_) >> { throw new DataValidationException('my error', 'my details') }
         when: 'the searches api is invoked'
-            mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(jsonString))
-        then: 'the request was still accepted and forwarded to the correct services'
-            1 * mockNetworkCmProxyInventoryFacade.northboundCmHandleSearch(_) >> Flux.fromIterable([new NcmpServiceCmHandle()])
-            1 * mockRestOutputCmHandleMapper.toRestOutputCmHandle(_, _) >> new RestOutputCmHandle(cmHandle: 'some cm handle')
+            def response = mvc.perform(post(searchesEndpoint).contentType(APPLICATION_JSON).content(validSearchRequest)).andReturn().response
+        then: 'the response status is Bad Request'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
+        and: 'the error details are in the response object'
+            assert response.contentAsString.contains('my error')
+            assert response.contentAsString.contains('my details')
     }
 
     def 'Query for cm handles matching query parameters'() {
         given: 'an endpoint and json data'
             def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
-        and: 'the service method is invoked with module names and returns cm handle ids'
-            1 * mockNetworkCmProxyInventoryFacade.northboundCmHandleIdSearch(_, _) >> ['ch-1', 'ch-2']
+        and: 'the inventory facade returns two cm handle ids'
+            mockNetworkCmProxyInventoryFacade.northboundCmHandleIdSearch(_, _) >> ['ch-1', 'ch-2']
         when: 'the searches api is invoked'
-            def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content('{}')).andReturn().response
+            def response = mvc.perform(post(searchesEndpoint).contentType(APPLICATION_JSON).content('{}')).andReturn().response
         then: 'cm handle ids are returned'
             assert response.contentAsString == '["ch-1","ch-2"]'
     }
@@ -360,19 +364,18 @@ class NetworkCmProxyControllerSpec extends Specification {
     def 'Query for cm handles with invalid request payload'() {
         when: 'the searches api is invoked'
             def searchesEndpoint = "$ncmpBasePathV1/ch/id-searches"
-            def invalidInputData = '{invalidJson}'
-            def response = mvc.perform(post(searchesEndpoint).contentType(MediaType.APPLICATION_JSON).content(invalidInputData)).andReturn().response
-        then: 'BAD_REQUEST is returned'
-            assert response.getStatus() == 400
+            def response = mvc.perform(post(searchesEndpoint).contentType(APPLICATION_JSON).content('{invalidJson}')).andReturn().response
+        then: 'the response status is Bad Request'
+            assert response.status == HttpStatus.BAD_REQUEST.value()
     }
 
     def 'Patch resource data in pass-through running datastore.'() {
         given: 'patch resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child"
         when: 'patch data resource request is performed'
-            def response = mvc.perform(patch(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(requestBody)).andReturn().response
-        then: 'ncmp service method to update resource is called'
-            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', PATCH, requestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
+            def response = mvc.perform(patch(url).contentType(APPLICATION_JSON).accept(APPLICATION_JSON).content(validRequestBody)).andReturn().response
+        then: 'the inventory facade method to update resource is called'
+            1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', PATCH, validRequestBody, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
@@ -381,8 +384,8 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'delete resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=parent/child"
         when: 'delete data resource request is performed'
-            def response = mvc.perform(delete(url).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn().response
-        then: 'the ncmp service method to delete resource is called (with null as body)'
+            def response = mvc.perform(delete(url).contentType(APPLICATION_JSON).accept(APPLICATION_JSON)).andReturn().response
+        then: 'the ncmp facade method to delete resource is called (with null as body)'
             1 * mockNetworkCmProxyFacade.writeResourceDataPassThroughRunningForCmHandle('testCmHandle', 'parent/child', DELETE, null, 'application/json;charset=UTF-8', NO_AUTH_HEADER)
         and: 'the response is No Content'
             assert response.status == HttpStatus.NO_CONTENT.value()
@@ -390,27 +393,26 @@ class NetworkCmProxyControllerSpec extends Specification {
 
     def 'Getting module definitions for a module'() {
         when: 'get module definition request is performed with module name'
-            def response = mvc.perform(get("$ncmpBasePathV1/ch/some-cmhandle/modules/definitions?module-name=sampleModuleName")).andReturn().response
-        then: 'ncmp service method is invoked with correct parameters'
-            mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('some-cmhandle', 'sampleModuleName', _)
+            def response = mvc.perform(get("$ncmpBasePathV1/ch/my-cm-handle/modules/definitions?module-name=sampleModuleName")).andReturn().response
+        then: 'ncmp inventory facade returns a (list of one) module definition'
+            mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('my-cm-handle', 'sampleModuleName', _)
                 >> [new ModuleDefinition('sampleModuleName', '2021-10-03','module sampleModuleName{ sample module content }')]
         and: 'response contains an array with the module name, revision and content'
-            response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
-        and: 'response returns an OK http code'
+            assert response.getContentAsString() == '[{"moduleName":"sampleModuleName","revision":"2021-10-03","content":"module sampleModuleName{ sample module content }"}]'
+        and: 'the response status is OK'
             assert response.status == HttpStatus.OK.value()
     }
 
     def 'Getting module definitions filtering on #scenario'() {
         when: 'get module definition request is performed'
             def response = mvc.perform(
-                get("$ncmpBasePathV1/ch/some-cmhandle-reference/modules/definitions?module-name=" + moduleName + "&revision=" + revision))
-                .andReturn().response
-        then: 'ncmp service method to get definitions by cm handle reference is invoked when needed'
-            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleReference('some-cmhandle-reference') >> []
-        and: 'ncmp service method to get definitions by module is invoked when needed'
-            numberOfCallsToByModule * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('some-cmhandle-reference', moduleName, revision) >> []
-        and: 'response returns an OK http code'
-            response.status == HttpStatus.OK.value()
+                get("$ncmpBasePathV1/ch/my-cm-handle-reference/modules/definitions?module-name=$moduleName&revision=$revision")).andReturn().response
+        then: 'the inventory facade method to get definitions by cm handle reference is only invoked when needed'
+            numberOfCallsToByCmHandleId * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleReference('my-cm-handle-reference') >> []
+        and: 'the inventory facade method to get definitions by module is invoked when needed'
+            numberOfCallsToByModule * mockNetworkCmProxyInventoryFacade.getModuleDefinitionsByCmHandleAndModule('my-cm-handle-reference', moduleName, revision) >> []
+        and: 'the response returns is OK'
+            assert response.status == HttpStatus.OK.value()
         and: 'the correct message is logged when needed'
             if (expectLogWarning) {
                 def lastLoggingEvent = logger.list[0]
@@ -418,22 +420,20 @@ class NetworkCmProxyControllerSpec extends Specification {
                 assert lastLoggingEvent.formattedMessage.contains('Ignoring revision')
             }
         where: 'following parameters are used'
-            scenario                   | moduleName    | revision        || numberOfCallsToByCmHandleId | numberOfCallsToByModule | expectLogWarning
-            'module name'              | 'some-module' | ''              || 0                           | 1                       | false
-            'module name and revision' | 'some-module' | 'some-revision' || 0                           | 1                       | false
-            'no filtering'             | ''            | ''              || 1                           | 0                       | false
-            'only revision'            | ''            | 'some-revision' || 1                           | 0                       | true
+            scenario                   | moduleName  | revision      || numberOfCallsToByCmHandleId | numberOfCallsToByModule | expectLogWarning
+            'module name'              | 'my-module' | ''            || 0                           | 1                       | false
+            'module name and revision' | 'my-module' | 'my-revision' || 0                           | 1                       | false
+            'no filtering'             | ''          | ''            || 1                           | 0                       | false
+            'only revision'            | ''          | 'my-revision' || 1                           | 0                       | true
     }
 
     def 'Set the data sync enabled based on the cm handle id and the data sync flag is #scenario'() {
         when: 'the set data sync enabled request is invoked'
-            def response = mvc.perform(
-                    put("$ncmpBasePathV1/ch/some-cm-handle-id/data-sync?dataSyncEnabled=" + dataSyncEnabledFlag))
-                    .andReturn().response
-        then: 'method to set data sync enabled is called'
-            1 * mockNetworkCmProxyInventoryFacade.setDataSyncEnabled('some-cm-handle-id', dataSyncEnabledFlag)
-        and: 'the response returns an OK http code'
-            response.status == HttpStatus.OK.value()
+            def response = mvc.perform(put("$ncmpBasePathV1/ch/my-cm-handle/data-sync?dataSyncEnabled=$dataSyncEnabledFlag")).andReturn().response
+        then: 'the inventory facade method to set data sync enabled is called'
+            1 * mockNetworkCmProxyInventoryFacade.setDataSyncEnabled('my-cm-handle', dataSyncEnabledFlag)
+        and: 'the response status is OK'
+            assert response.status == HttpStatus.OK.value()
         where: 'the following parameters are used'
             scenario   | dataSyncEnabledFlag
             'enabled'  | true
@@ -444,10 +444,8 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'resource data url'
             def url = "$ncmpBasePathV1/ch/testCmHandle/data/ds/${datastoreInUrl}?resourceIdentifier=parent/child"
         when: 'selected request for data resource is performed on url'
-            def response = mvc.perform(
-                    executeRestOperation(operation, url))
-                    .andReturn().response
-        then: 'the response status is as expected'
+            def response = mvc.perform(executeRestOperation(operation, url)).andReturn().response
+        then: 'the response status is Bad Request'
             assert response.status == HttpStatus.BAD_REQUEST.value()
         and: 'the response is as expected'
             assert response.getContentAsString().contains(datastoreInUrl)
@@ -467,41 +465,31 @@ class NetworkCmProxyControllerSpec extends Specification {
         given: 'A URI-encoded alternateId that includes slashes'
             def alternateIdWithSlashes = '/some/cps/path'
             def encodedAlternateId = URLEncoder.encode(alternateIdWithSlashes, 'UTF-8')
-            def url = "$ncmpBasePathV1/ch/${encodedAlternateId}/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=some-value"
+            def url = "$ncmpBasePathV1/ch/${encodedAlternateId}/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=some-resource"
         when: 'A passthrough operation is executed on the URL containing the encoded alternateId'
             def response = mvc.perform(executeRestOperation('POST', url)).andReturn().response
-        then: 'The API successfully processes the request and returns the expected HTTP status'
+        then: 'The response status is Created'
             assert response.status == HttpStatus.CREATED.value()
     }
 
     def executeRestOperation(operation, url) {
         if (operation == 'POST') {
-            return post(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+            return post(url).contentType(APPLICATION_JSON).content(validRequestBody)
         }
         if (operation == 'PUT') {
-            return put(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+            return put(url).contentType(APPLICATION_JSON).content(validRequestBody)
         }
         if (operation == 'PATCH') {
-            return patch(url).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody)
+            return patch(url).contentType(APPLICATION_JSON).content(validRequestBody)
         }
         if (operation == 'DELETE') {
-            return delete(url).contentType(MediaType.APPLICATION_JSON_VALUE)
+            return delete(url).contentType(APPLICATION_JSON)
         }
     }
 
     def dataStores() {
-        DataStores.builder()
-                .operationalDataStore(Operational.builder()
-                        .dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
-                        .lastSyncTime(formattedDateAndTime.toString()).build()).build()
-    }
-
-    def compositeStateTestObject() {
-        new CompositeState(cmHandleState: CmHandleState.ADVISED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(LockReasonCategory.MODULE_SYNC_FAILED).details("lock details").build(),
-                lastUpdateTime: formattedDateAndTime.toString(),
-                dataSyncEnabled: false,
-                dataStores: dataStores())
+        DataStores.builder().operationalDataStore(Operational.builder().dataStoreSyncState(DataStoreSyncState.NONE_REQUESTED)
+                                                                       .lastSyncTime(formattedDateAndTime.toString()).build()).build()
     }
 
     def assertContainsAll(response, assertContent) {
@@ -509,7 +497,7 @@ class NetworkCmProxyControllerSpec extends Specification {
         return void
     }
 
-    def assertContainsState(response) {
+    def assertContainsTestCompositeState(response) {
         def expectedContent = [
                 '"state":',
                 '"cmHandleState":"ADVISED"',
@@ -529,28 +517,16 @@ class NetworkCmProxyControllerSpec extends Specification {
         def expectedContent = [
                 '"publicCmHandleProperties":',
                 '"public prop"',
-                '"some public property"'
+                '"my public property"'
         ]
         return assertContainsAll(response, expectedContent)
     }
 
-    def getDataOperationRequest(operation, datastore) {
+    def createDataOperationRequest() {
         def dataOperationRequest = new DataOperationRequest()
-        def dataOperationDefinitions = new ArrayList()
-        dataOperationDefinitions.add(getDataOperationDefinition(operation, datastore))
-        dataOperationRequest.addOperationsItem(dataOperationDefinitions)
+        def dataOperationDefinition = new DataOperationDefinition([operation: 'read', operationId: 'operational-12', datastore: PASSTHROUGH_RUNNING])
+        dataOperationRequest.addOperationsItem([dataOperationDefinition])
         return dataOperationRequest
-    }
-
-    def getDataOperationDefinition(operation, datastore) {
-        def dataOperationDefinition = new DataOperationDefinition()
-        dataOperationDefinition.setOperation(operation)
-        dataOperationDefinition.setOperationId("operational-12")
-        dataOperationDefinition.setDatastore(datastore)
-        dataOperationDefinition.setOptions("some option")
-        dataOperationDefinition.setResourceIdentifier("some resource identifier")
-        dataOperationDefinition.addTargetIdsItem("some-cm-handle")
-        return dataOperationDefinition
     }
 
     def setupLogger() {
