@@ -1,0 +1,602 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc1d657a_f1c3605a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "for the given data type and target (FDN?)",
+      "range": {
+        "startLine": 59,
+        "startChar": 60,
+        "endLine": 59,
+        "endChar": 83
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80754934_10d4ade9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 35
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9b53ccb_5c07e372",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "i suppose this checks if there is any ongoing subscription for these details, \ncorrect?   \n\nsuggestion: alreadySubscribed  or alreadyAtLeastOneSubscription\n\n\u0027ongoing\u0027 is not really meaningful as we cannott pause a susbcription or anything like that",
+      "range": {
+        "startLine": 65,
+        "startChar": 19,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8cbb1c5_07cb94a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "the whole subscription is new, not just its id",
+      "range": {
+        "startLine": 75,
+        "startChar": 36,
+        "endLine": 75,
+        "endChar": 38
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1d758f_c0838f52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "Get the ids for the subscriptions for the given data type and targets",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 72
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19784df0_78d7fb29",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "the \u0027ongoing\u0027 is not needed (in my opinion)",
+      "range": {
+        "startLine": 88,
+        "startChar": 30,
+        "endLine": 88,
+        "endChar": 55
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa16b47b_4c841a05",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "\u0027new\u0027 not needed in the context of this method",
+      "range": {
+        "startLine": 110,
+        "startChar": 45,
+        "endLine": 110,
+        "endChar": 48
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0904af0_be48d728",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "fir on 1 line now?",
+      "range": {
+        "startLine": 131,
+        "startChar": 6,
+        "endLine": 132,
+        "endChar": 65
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd5bcb8_b0ac94cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "did you forget to execute the service and log the result heer instead?!",
+      "range": {
+        "startLine": 137,
+        "startChar": 83,
+        "endLine": 137,
+        "endChar": 88
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2368dead_4b1d7467",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "legacy: Dont think this description is still correct",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c4c9b1_d31ee72e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "legacy, why is this 3 \u003e\u003e\u003e ?!",
+      "range": {
+        "startLine": 37,
+        "startChar": 129,
+        "endLine": 37,
+        "endChar": 133
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4262ab_2d36a0b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "not sure what happened here but need english description of below method",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b7eb94_4d228e27",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "be more specific",
+      "range": {
+        "startLine": 41,
+        "startChar": 30,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0149de01_98dcbca5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "why 3 \u003e  ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 130,
+        "endLine": 50,
+        "endChar": 133
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5196396d_d16e4ac7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "new",
+      "range": {
+        "startLine": 65,
+        "startChar": 63,
+        "endLine": 65,
+        "endChar": 70
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9881f4_fa070d74",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "it might be better if this line has its own and: description",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 48
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646fb75f_f0b1ae7e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "it might be better if this line has its own and: description",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 48
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee8fda1_7c70cef1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "it might be better if this line has its own and: description",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 115,
+        "endChar": 48
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8511edd6_c165966e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "I prefer \u0027result\u0027",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6607f311_5b2e4ff1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "rename based on new method name (as per comments earlier)",
+      "range": {
+        "startLine": 55,
+        "startChar": 96,
+        "endLine": 55,
+        "endChar": 124
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d9e80b_7f68b04c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "\u0027Add subscription for a data type and and fdn that already have subscription(s).\u0027",
+      "range": {
+        "startLine": 90,
+        "startChar": 9,
+        "endLine": 90,
+        "endChar": 62
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "250f4649_bcae9d6d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "Add subscription for a data type and and fdn that have no subscriptions yet.\n(prefer to test this method first as that would be the logical first use case)",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 55
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87baf3a0_3e9b3f74",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "double check incorrect use of \" (use \u0027 instead here)",
+      "range": {
+        "startLine": 112,
+        "startChar": 35,
+        "endLine": 112,
+        "endChar": 36
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9cace38_3808c418",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "Remove subscription (other subscriptions remain for same data type and target).",
+      "range": {
+        "startLine": 120,
+        "startChar": 9,
+        "endLine": 120,
+        "endChar": 73
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f65ba1_04adc25b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "Remove last subscription (no subscriptions remain for same data type and target).",
+      "range": {
+        "startLine": 133,
+        "startChar": 9,
+        "endLine": 133,
+        "endChar": 69
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ceaf62c_44f049d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T13:58:39Z",
+      "side": 1,
+      "message": "Attempt to remove non existing subscription (id).",
+      "range": {
+        "startLine": 146,
+        "startChar": 9,
+        "endLine": 146,
+        "endChar": 77
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
