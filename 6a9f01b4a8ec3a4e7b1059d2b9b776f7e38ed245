@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2b74160_9d3140ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef96d86_6f54a818",
+      "range": {
+        "startLine": 73,
+        "startChar": 45,
+        "endLine": 73,
+        "endChar": 74
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "830fdf6b_f29cf733",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "(this is actually my last comment on this class, after I went through all the details below)\nI have been think about the correct names for these subscriptions and how best to apply it. Of course the official name is quite a mouthful but maybe if we name the class correctly and then in the (Context of the class) method names and variable names can be shorter?\n\nCmDataJobSubscriptionPersistenceService (is this the correct full name?)\n\nmethod example:\n\nCmDataJobSubscriptionPersistenceService.isOngoingSubscription(subscriptionId)\n\nWhat do you think, we can discuss maybe with someone like Priyank too and then agree and apply consistently?",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 46
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "350e0137_b3dc9c2a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "830fdf6b_f29cf733",
       "range": {
         "startLine": 44,
         "startChar": 13,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ae0441_dabbd57f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c566021_9986e832",
+      "range": {
+        "startLine": 51,
+        "startChar": 32,
+        "endLine": 51,
+        "endChar": 107
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0feffd2_0785dc5f",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "suggestion: isNewDataJobSubscriptionId",
+      "range": {
+        "startLine": 80,
+        "startChar": 19,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50cafadb_145ca68d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0feffd2_0785dc5f",
       "range": {
         "startLine": 80,
         "startChar": 19,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8adf38a6_343a8a7f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2de4f12c_be03ff43",
+      "range": {
+        "startLine": 81,
+        "startChar": 21,
+        "endLine": 81,
+        "endChar": 63
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c3eb99d_10f19207",
@@ -146,6 +266,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "don\u0027t think this is needed, try with a unit test",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 9
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b117fed0_d318f87e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "the return statement returns a no such element exception",
+      "parentUuid": "9c3eb99d_10f19207",
       "range": {
         "startLine": 102,
         "startChar": 0,
@@ -179,6 +323,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "042027dc_d39184db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "26e2bccc_787fcb3b",
+      "range": {
+        "startLine": 122,
+        "startChar": 19,
+        "endLine": 122,
+        "endChar": 70
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bf29c21_7588e405",
@@ -192,6 +360,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "just wondering what happens if thee user tries to remove a non existing id, will it get this far, silently ignored (is behavior defined as part of error handling requirements)? Could be just fine but important it gets tested..",
+      "range": {
+        "startLine": 135,
+        "startChar": 16,
+        "endLine": 135,
+        "endChar": 43
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65223eb6_0171c07a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9bf29c21_7588e405",
       "range": {
         "startLine": 135,
         "startChar": 16,
@@ -225,6 +417,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c715e1_97096406",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea1cc51b_be199e0d",
+      "range": {
+        "startLine": 142,
+        "startChar": 25,
+        "endLine": 142,
+        "endChar": 52
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bc5a91d_397b0af0",
@@ -238,6 +454,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "I always think repeating a parameter (name) in the method name is a bit silly (even if inconsistent names are used like here)\nBut I understand you want to give some context, but is it really needed?\nsuggestionsin order of my preference\ngetDataNodes(dataJobSubscriptionId) I think this is self explanatory really\ngetAffectedDataNodes(dataJobSubscriptionId)\ngetDataJobSubscriptionDataNodes(dataJobSubscriptionId)",
+      "range": {
+        "startLine": 159,
+        "startChar": 43,
+        "endLine": 159,
+        "endChar": 67
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb4e409_bb808918",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bc5a91d_397b0af0",
       "range": {
         "startLine": 159,
         "startChar": 43,
@@ -271,6 +511,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ef89cdf_c80f0d93",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cde9732_f78d9131",
+      "range": {
+        "startLine": 166,
+        "startChar": 42,
+        "endLine": 166,
+        "endChar": 45
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d542fd12_f25eb1a4",
@@ -284,6 +548,30 @@
       "writtenOn": "2025-08-13T16:24:01Z",
       "side": 1,
       "message": "suggestion: addNewSubscriptionForFivenScope(...)",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 61
+      },
+      "revId": "6a9f01b4a8ec3a4e7b1059d2b9b776f7e38ed245",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e43f323_9784e2f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-18T11:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d542fd12_f25eb1a4",
       "range": {
         "startLine": 174,
         "startChar": 17,
