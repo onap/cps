@@ -33,6 +33,40 @@
       "message": "blocking until all NBs are resolved :-)",
       "revId": "ee89fe4ab0c6bb012ea89c2db65e4d208fc27833",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422c499e_3453a38e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-18T10:02:18Z",
+      "side": 1,
+      "message": "Just for my information is it not deemed necessary to private static final in Groovy/Spock?",
+      "revId": "ee89fe4ab0c6bb012ea89c2db65e4d208fc27833",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b04cab_3e94d904",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-08-18T10:02:18Z",
+      "side": 1,
+      "message": "Should we be using the Spring constants here also: APPLICATION_JSON?",
+      "revId": "ee89fe4ab0c6bb012ea89c2db65e4d208fc27833",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
