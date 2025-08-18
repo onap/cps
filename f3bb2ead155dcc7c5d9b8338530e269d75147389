@@ -192,6 +192,48 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cce2d0ba_b4af614d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-18T16:21:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0832cf1e_53883864",
+      "range": {
+        "startLine": 53,
+        "startChar": 28,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "500a8614_0f59b0aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-18T16:21:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54fe9914_3d10891c",
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba512fa3_14b1d779",
@@ -205,6 +247,30 @@
       "writtenOn": "2025-08-13T14:32:34Z",
       "side": 1,
       "message": "path",
+      "range": {
+        "startLine": 54,
+        "startChar": 24,
+        "endLine": 54,
+        "endChar": 29
+      },
+      "revId": "f3bb2ead155dcc7c5d9b8338530e269d75147389",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78485d2c_a8209ddf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexResolver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-08-18T16:21:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba512fa3_14b1d779",
       "range": {
         "startLine": 54,
         "startChar": 24,
