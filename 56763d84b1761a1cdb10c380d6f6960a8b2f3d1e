@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea981c1_833112f6",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-08-18T09:26:36Z",
+      "side": 0,
+      "message": "cm handle ids",
+      "revId": "56763d84b1761a1cdb10c380d6f6960a8b2f3d1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "004122a3_1a89376e",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-08-18T09:26:36Z",
+      "side": 0,
+      "message": "id-searches",
+      "revId": "56763d84b1761a1cdb10c380d6f6960a8b2f3d1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a509e46d_8d44042b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-08-18T09:26:36Z",
+      "side": 0,
+      "message": "cm handle ids",
+      "revId": "56763d84b1761a1cdb10c380d6f6960a8b2f3d1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d7099d_2b7d1276",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/NetworkCmProxyControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-08-18T09:26:36Z",
+      "side": 0,
+      "message": "id-searches",
+      "revId": "56763d84b1761a1cdb10c380d6f6960a8b2f3d1e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
