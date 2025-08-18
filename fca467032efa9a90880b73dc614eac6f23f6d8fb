@@ -16,6 +16,213 @@
       "message": "fine by me now.",
       "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdd557a2_83e4cd1b",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "Just talked to Priyank, we agreed this should be in a different location:\nmodule: cps-application\npackage: org.onap.cps.config.logging  (new)",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 32
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210efdab_f9468f4c",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "no need for prefix in context of this class",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b456b9a5_0760dacc",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "not sure we want to refer to ONAP here, it could be any stack of onap and non-onap components. Also you are mixing snake case with title-lcase?\nI suggest to use CPS instead e.g. X-CPS-Request-Id",
+      "range": {
+        "startLine": 36,
+        "startChar": 60,
+        "endLine": 36,
+        "endChar": 64
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53842442_40a65828",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "no need for prefix in context of this class",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 37
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17cda699_897c9e90",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "stay consistent with above e.g\nX-CPS-Client-Id",
+      "range": {
+        "startLine": 37,
+        "startChar": 57,
+        "endLine": 37,
+        "endChar": 67
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b09926_ed36974e",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "httpServletRequest",
+      "range": {
+        "startLine": 42,
+        "startChar": 33,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f3cbf1_05ce4cd8",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "httpServletRequest",
+      "range": {
+        "startLine": 54,
+        "startChar": 72,
+        "endLine": 54,
+        "endChar": 79
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ed0aaa_0ce13565",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/utils/MdcServletFilter.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "according to the documentation null-check is not needed MDC.put() handles null (by removing it)",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 25
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba601bdf_26d90e75",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/utils/MdcServletFilterSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-18T09:54:34Z",
+      "side": 1,
+      "message": "not using gString functionality so use single \u0027 (everywhere in this test)",
+      "range": {
+        "startLine": 37,
+        "startChar": 69,
+        "endLine": 37,
+        "endChar": 70
+      },
+      "revId": "fca467032efa9a90880b73dc614eac6f23f6d8fb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
