@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfbb80fe_f3ac90bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T13:21:49Z",
+      "side": 1,
+      "message": "NB: dint take my comment too literal (i might not have selected exact ection or made typos myself), this should have been removed too :-D",
+      "range": {
+        "startLine": 70,
+        "startChar": 29,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "92dc9eca7bc792eb8026902dc2c5c65eeb96bfe6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
