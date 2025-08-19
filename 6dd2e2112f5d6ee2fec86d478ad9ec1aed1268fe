@@ -472,6 +472,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "255537da_fbd392bb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-19T09:07:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba071e73_b46fa55c",
+      "range": {
+        "startLine": 137,
+        "startChar": 83,
+        "endLine": 137,
+        "endChar": 88
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "842a7dd4_f5a2685b",
@@ -485,6 +509,30 @@
       "writtenOn": "2025-08-19T07:32:31Z",
       "side": 1,
       "message": "log.info(\"There are no subscribers left for dataType {} on {}\", dataType, alternateId);",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 87
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e93292b_645c696e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-19T09:07:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "842a7dd4_f5a2685b",
       "range": {
         "startLine": 139,
         "startChar": 15,
