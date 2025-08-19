@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 highstreet technologies GmbH
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -67,7 +67,7 @@ public class NetworkCmProxyFacade {
                                              final String authorization) {
 
         final NcmpDatastoreRequestHandler ncmpDatastoreRequestHandler
-            = getNcmpDatastoreRequestHandler(cmResourceAddress.getDatastoreName());
+            = getNcmpDatastoreRequestHandler(cmResourceAddress.datastoreName());
         return ncmpDatastoreRequestHandler.executeRequest(cmResourceAddress, optionsParamInQuery,
             topicParamInQuery, includeDescendants, authorization);
     }

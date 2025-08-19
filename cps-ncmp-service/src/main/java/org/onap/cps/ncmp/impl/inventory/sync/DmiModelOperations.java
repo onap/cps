@@ -49,6 +49,7 @@ import org.springframework.stereotype.Service;
 /**
  * Operations class for DMI Model.
  */
+@SuppressWarnings({"ALL", "rawtypes"})
 @RequiredArgsConstructor
 @Service
 public class DmiModelOperations {
@@ -156,7 +157,7 @@ public class DmiModelOperations {
                                                additionalProperties) {
         final JsonObject asJsonObject = new JsonObject();
         for (final YangModelCmHandle.Property additionalProperty : additionalProperties) {
-            asJsonObject.addProperty(additionalProperty.getName(), additionalProperty.getValue());
+            asJsonObject.addProperty(additionalProperty.name(), additionalProperty.value());
         }
         return asJsonObject;
     }

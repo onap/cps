@@ -72,7 +72,7 @@ public class YangDataConverter {
     public static Map<String, String> toPropertiesMap(final List<YangModelCmHandle.Property> properties) {
         final Map<String, String> propertiesMap = new LinkedHashMap<>(properties.size());
         for (final YangModelCmHandle.Property property : properties) {
-            propertiesMap.put(property.getName(), property.getValue());
+            propertiesMap.put(property.name(), property.value());
         }
         return propertiesMap;
     }
@@ -111,12 +111,11 @@ public class YangDataConverter {
     /**
      * This method extracts cm handle id from xpath of data node.
      * @param xpath for data node of the cm handle
-     * @return cm handle Id
+     * @return cm handle id or null if no id can be found
      */
     public static String extractCmHandleIdFromXpath(final String xpath) {
         final Matcher matcher = cmHandleIdInXpathPattern.matcher(xpath);
-        matcher.find();
-        return matcher.group(1);
+        return matcher.find() ? matcher.group(1) : null;
     }
 
 

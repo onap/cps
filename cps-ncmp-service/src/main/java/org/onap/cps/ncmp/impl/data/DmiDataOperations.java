@@ -102,7 +102,7 @@ public class DmiDataOperations {
         validateIfCmHandleStateReady(yangModelCmHandle, cmHandleState);
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(cmResourceAddress
-                .getDatastoreName(), yangModelCmHandle, cmResourceAddress.getResourceIdentifier(), options, topic);
+                .datastoreName(), yangModelCmHandle, cmResourceAddress.resourceIdentifier(), options, topic);
         return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
                 authorization);
     }
