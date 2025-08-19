@@ -21,11 +21,15 @@
 
 package org.onap.cps.integration.performance.base
 
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.integration.ResourceMeter
 import org.onap.cps.rest.utils.MultipartFileUtil
-import org.onap.cps.api.parameters.FetchDescendantsOption
 import org.onap.cps.utils.ContentType
 import org.springframework.web.multipart.MultipartFile
+
+import java.time.OffsetDateTime
 
 class CpsPerfTestBase extends PerfTestBase {
 
@@ -52,6 +56,16 @@ class CpsPerfTestBase extends PerfTestBase {
     def createInitialData() {
         addOpenRoadModel()
         addOpenRoadData()
+        addModifiedOpenRoadData()
+    }
+
+    def 'CPS pre-load test data'() {
+        when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
+            resourceMeter.start()
+            def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
+            resourceMeter.stop()
+        then: 'expected data exists'
+            assert result.xpath == ['/openroadm-devices']
     }
 
     def addOpenRoadModel() {
@@ -78,13 +92,63 @@ class CpsPerfTestBase extends PerfTestBase {
             ']}}'
     }
 
-    def 'CPS pre-load test data'() {
-        when: 'dummy get data nodes runs so that populating the DB does not get included in other test timings'
-            resourceMeter.start()
-            def result = cpsDataService.getDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/', FetchDescendantsOption.OMIT_DESCENDANTS)
-            resourceMeter.stop()
-        then: 'expected data exists'
-            assert result.xpath == ['/openroadm-devices']
+    def addModifiedOpenRoadData() {
+        def data = generateModifiedOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR, 200, 200, 200)
+        resourceMeter.start()
+        addAnchorsWithData(1, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm-modified', data, ContentType.JSON)
+        resourceMeter.stop()
+        def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
+        recordAndAssertResourceUsage('CPS:Creating modified openroadm anchor with large data tree', 100, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+    }
+
+    def generateModifiedOpenRoadData(numberOfNodes, removeNodesCount, addNodesCount, updateCount) {
+        def innerNode = readResourceDataFile('openroadm/innerNode.json')
+        def allIndices = (0..<numberOfNodes).toList()
+        def nodeIdsAfterRemove = removeNodes(allIndices, removeNodesCount)
+        def newNodeIds = addNodes(nodeIdsAfterRemove, addNodesCount)
+        def nodeIds = (nodeIdsAfterRemove + newNodeIds).collect {
+            innerNode.replace('NODE_ID_HERE', it.toString())
+        }
+        def updatedNodes = updateNodes(nodeIds, innerNode, updateCount)
+        return '{ "openroadm-devices": { "openroadm-device": [' +
+            updatedNodes.collect {
+                it.toString()
+            }.join(',') +
+            ']}}'
+    }
+
+    def removeNodes(allIndice, removeNodesCount) {
+        def indicesToRemove = allIndice.findAll{
+            it % 2 == 0
+        }.take(removeNodesCount)
+        return (allIndice - indicesToRemove).collect { it + 1 }
+    }
+
+    def addNodes(nodeIds, addNodesCount) {
+        def maxNodeId = nodeIds ? nodeIds.max() : 0
+        return ((maxNodeId + 1)..(maxNodeId + addNodesCount))
+    }
+
+    def updateNodes(nodeIds, innerNode, updateCount) {
+        def slurper = new JsonSlurper()
+        nodeIds.withIndex().collect { data, idx ->
+            def jsonNode = slurper.parseText(data)
+            if (idx < updateCount) {
+                jsonNode['status'] = 'fail'
+                def childNode = jsonNode['org-openroadm-device']['degree'][0]
+                if (childNode) {
+                    childNode['max-wavelengths'] += 100
+                }
+            }
+            return JsonOutput.toJson(jsonNode)
+        }
+    }
+
+    def resetTestAnchorData() {
+        cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1')
+        def data = generateOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR)
+        cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm1')
+        cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', data, OffsetDateTime.now())
     }
 
 }
