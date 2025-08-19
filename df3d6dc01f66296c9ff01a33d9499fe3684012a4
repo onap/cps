@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e56d69f_59c853ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T15:35:20Z",
+      "side": 1,
+      "message": "Nice bit of work no further blocking issues but feel free to update below minor comments",
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a47f41de_a398071d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T15:35:20Z",
+      "side": 1,
+      "message": "NB: I think in the case of catch only one exception \u0027e\u0027 is OK to use. The full classname is OK too\n\nBut in the same class I would like to see consistency ie. same pattern on lines #120 and #140.",
+      "range": {
+        "startLine": 120,
+        "startChar": 47,
+        "endLine": 120,
+        "endChar": 48
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84a4352_0359fe05",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T15:35:20Z",
+      "side": 1,
+      "message": "NB: dont forget to update the descptions when you rename a class that you refer too :-)",
+      "range": {
+        "startLine": 345,
+        "startChar": 15,
+        "endLine": 345,
+        "endChar": 35
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57921683_fbcbff8c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T15:35:20Z",
+      "side": 1,
+      "message": "NB: should be simplified to: assert result \u003d\u003d [\u0027value\u0027,value2\u0027]\n line instead of 4! Sorry should have seen this before",
+      "range": {
+        "startLine": 146,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 44
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "973507f2_7e273ac7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T15:35:20Z",
+      "side": 1,
+      "message": "note how this description does not change/rely on the class name :-)\nSo I therefore this is a better description and still very clear for someone that reads the test \n(compare with description in previous test class)",
+      "range": {
+        "startLine": 96,
+        "startChar": 15,
+        "endLine": 96,
+        "endChar": 60
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
