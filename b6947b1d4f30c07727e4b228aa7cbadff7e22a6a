@@ -353,6 +353,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7280a459_58e1253b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/ApplyDeltaReport.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-19T12:31:42Z",
+      "side": 1,
+      "message": "Renamed to DeltaReportExecutor",
+      "parentUuid": "20310cc5_29da6b32",
+      "range": {
+        "startLine": 44,
+        "startChar": 13,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "b6947b1d4f30c07727e4b228aa7cbadff7e22a6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e75c1651_579358b0",
