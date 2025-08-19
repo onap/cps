@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import lombok.Getter;
 @Getter
 public enum NcmpResponseStatus {
 
-    SUCCESS("0", "Successfully applied changes"),
+    @SuppressWarnings("unused") SUCCESS("0", "Successfully applied changes"),
     CM_DATA_SUBSCRIPTION_ACCEPTED("1", "ACCEPTED"),
     CM_HANDLES_NOT_FOUND("100", "cm handle reference(s) not found"),
     CM_HANDLES_NOT_READY("101", "cm handle(s) not ready"),
@@ -35,8 +35,8 @@ public enum NcmpResponseStatus {
     UNKNOWN_ERROR("108", "Unknown error"),
     CM_HANDLE_ALREADY_EXIST("109", "cm-handle already exists"),
     CM_HANDLE_INVALID_ID("110", "cm handle reference has an invalid character(s) in id"),
-    ALTERNATE_ID_ALREADY_ASSOCIATED("111", "alternate id already associated"),
-    MESSAGE_TOO_LARGE("112", "message too large");
+    @SuppressWarnings("unused") ALTERNATE_ID_ALREADY_ASSOCIATED("111", "alternate id already associated"),
+    @SuppressWarnings("unused") MESSAGE_TOO_LARGE("112", "message too large");
 
     private final String code;
     private final String message;

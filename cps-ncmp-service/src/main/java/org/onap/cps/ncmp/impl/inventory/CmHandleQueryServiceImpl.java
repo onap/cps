@@ -100,20 +100,6 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
     }
 
     @Override
-    public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
-                                                           final FetchDescendantsOption fetchDescendantsOption) {
-        return queryNcmpRegistryByCpsPath(cpsPath, fetchDescendantsOption, NO_LIMIT);
-    }
-
-    @Override
-    public Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
-                                                           final FetchDescendantsOption fetchDescendantsOption,
-                                                           final int queryResultLimit) {
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
-                fetchDescendantsOption, queryResultLimit);
-    }
-
-    @Override
     public Collection<DataNode> queryCmHandleAncestorsByCpsPath(final String cpsPath,
                                                                 final FetchDescendantsOption fetchDescendantsOption) {
         if (CpsPathUtil.getCpsPathQuery(cpsPath).getXpathPrefix().endsWith("/cm-handles")) {
@@ -267,4 +253,11 @@ public class CmHandleQueryServiceImpl implements CmHandleQueryService {
         return cpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 xpath, OMIT_DESCENDANTS).iterator().next();
     }
+
+    private Collection<DataNode> queryNcmpRegistryByCpsPath(final String cpsPath,
+                                                            final FetchDescendantsOption fetchDescendantsOption) {
+        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cpsPath,
+            fetchDescendantsOption, NO_LIMIT);
+    }
+
 }

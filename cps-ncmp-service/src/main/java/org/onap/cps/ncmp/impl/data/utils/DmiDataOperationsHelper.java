@@ -141,6 +141,7 @@ public class DmiDataOperationsHelper {
         if (!cmHandleIdsPerResponseCodesPerOperation.isEmpty()) {
             final CloudEvent dataOperationCloudEvent = DataOperationEventCreator.createDataOperationEvent(clientTopic,
                     requestId, cmHandleIdsPerResponseCodesPerOperation);
+            //noinspection unchecked
             final EventsProducer<CloudEvent> eventsProducer = CpsApplicationContext.getCpsBean(EventsProducer.class);
             log.warn("sending error message to client topic: {} ,requestId: {}, data operation cloud event id: {}",
                     clientTopic, requestId, dataOperationCloudEvent.getId());

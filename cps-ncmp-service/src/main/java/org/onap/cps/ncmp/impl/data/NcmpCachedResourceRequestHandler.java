@@ -66,20 +66,18 @@ public class NcmpCachedResourceRequestHandler extends NcmpDatastoreRequestHandle
                                                       final String authorization) {
         final FetchDescendantsOption fetchDescendantsOption =
                 FetchDescendantsOption.getFetchDescendantsOption(includeDescendants);
-
-        final Map<String, Object> dataNodes = cpsFacade.getDataNodesByAnchorV3(resolveDatastoreName(cmResourceAddress),
-                cmResourceAddress.resolveCmHandleReferenceToId(), cmResourceAddress.getResourceIdentifier(),
+        validateDatastore(cmResourceAddress.datastoreName());
+        final Map<String, Object> dataNodes = cpsFacade.getDataNodesByAnchorV3(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
+                cmResourceAddress.resolveCmHandleReferenceToId(), cmResourceAddress.resourceIdentifier(),
                 fetchDescendantsOption);
         return Mono.justOrEmpty(dataNodes);
     }
 
-    private String resolveDatastoreName(final CmResourceAddress cmResourceAddress) {
-        final String datastoreName = cmResourceAddress.getDatastoreName();
-        if (datastoreName.equals(OPERATIONAL.getDatastoreName())) {
-            return NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
-        }
-        throw new IllegalArgumentException(
+    private void validateDatastore(final String datastoreName) {
+        if (!datastoreName.equals(OPERATIONAL.getDatastoreName())) {
+            throw new IllegalArgumentException(
                 "Unsupported datastore name provided to fetch the cached data: " + datastoreName);
+        }
     }
 
 }

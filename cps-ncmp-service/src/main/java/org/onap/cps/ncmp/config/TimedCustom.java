@@ -28,6 +28,7 @@ import java.lang.annotation.Target;
 /**
  * Custom annotation to enable metric scraping.
  */
+@SuppressWarnings("UnusedReturnValue")
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TimedCustom {

@@ -72,6 +72,7 @@ public class LcmEventsProducer {
         if (notificationsEnabled) {
             final Timer.Sample timerSample = Timer.start(meterRegistry);
             try {
+                //noinspection unchecked
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
                 eventsProducer.sendEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
