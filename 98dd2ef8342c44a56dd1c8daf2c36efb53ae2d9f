@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f7ce878_fe679666",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:57:27Z",
+      "side": 1,
+      "message": "very good! Just 2 tiny issues left",
+      "revId": "98dd2ef8342c44a56dd1c8daf2c36efb53ae2d9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5068627_0187edf0",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:57:27Z",
+      "side": 1,
+      "message": "never import .* check your IDE settings please",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "98dd2ef8342c44a56dd1c8daf2c36efb53ae2d9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ac933a_3070f727",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:57:27Z",
+      "side": 1,
+      "message": "still some \" that should be changed to \u0027 :-)",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "98dd2ef8342c44a56dd1c8daf2c36efb53ae2d9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
