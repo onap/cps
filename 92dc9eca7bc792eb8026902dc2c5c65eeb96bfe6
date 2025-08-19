@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3581a457_8a5afd59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T13:32:17Z",
+      "side": 1,
+      "message": "I worked on that with Shivani and we had to do this but maybe once we use the list interface it will be fine (should have spotted that myself)",
+      "parentUuid": "67cb4488_c1693cc9",
+      "range": {
+        "startLine": 100,
+        "startChar": 61,
+        "endLine": 100,
+        "endChar": 76
+      },
+      "revId": "92dc9eca7bc792eb8026902dc2c5c65eeb96bfe6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfbb80fe_f3ac90bc",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
         "patchSetId": 9
