@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "239d8f65_60dec4f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-19T15:09:07Z",
+      "side": 1,
+      "message": "still needed ? dont think so , also based on prev comments",
+      "range": {
+        "startLine": 100,
+        "startChar": 55,
+        "endLine": 100,
+        "endChar": 71
+      },
+      "revId": "9cc3dcf7d952ff1558d33276d3fbd82345d140f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
