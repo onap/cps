@@ -22,6 +22,30 @@
       },
       "revId": "9cc3dcf7d952ff1558d33276d3fbd82345d140f0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1a29d07_cf48e323",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-19T15:18:54Z",
+      "side": 1,
+      "message": "yeah. its needed to make it mutable.\nArrays.asList returns a fixed size list which will only allow replace.\nwe cant add or remove an item from that.\n\nWrapping needed to make it mutable.\n\nthe above can be done using Streams as well.\n\nreturn Arrays.stream(locationPath.split(SEGMENT_SEPARATOR))\n        .skip(1) // skip root\n        .collect(Collectors.toList());",
+      "parentUuid": "239d8f65_60dec4f2",
+      "range": {
+        "startLine": 100,
+        "startChar": 55,
+        "endLine": 100,
+        "endChar": 71
+      },
+      "revId": "9cc3dcf7d952ff1558d33276d3fbd82345d140f0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
