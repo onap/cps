@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 Nordix Foundation
+ * Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,18 +20,10 @@
 
 package org.onap.cps.ncmp.api.data.models;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.config.CpsApplicationContext;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 
-@Getter
-@RequiredArgsConstructor
-public class CmResourceAddress {
-
-    private final String datastoreName;
-    private final String cmHandleReference;
-    private final String resourceIdentifier;
+public record CmResourceAddress(String datastoreName, String cmHandleReference, String resourceIdentifier) {
 
     public String resolveCmHandleReferenceToId() {
         final AlternateIdMatcher alternateIdMatcher = CpsApplicationContext.getCpsBean(AlternateIdMatcher.class);

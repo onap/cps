@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.Dataspace;
+import org.onap.cps.ncmp.impl.inventory.sync.SynchronizationCacheConfig;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -78,13 +79,10 @@ public class HazelcastCacheConfig {
 
     private Config getHazelcastInstanceConfig(final String instanceConfigName) {
         final HazelcastInstance hazelcastInstance = Hazelcast.getHazelcastInstanceByName(instanceConfigName);
-        Config config = null;
-        if (hazelcastInstance != null) {
-            config = hazelcastInstance.getConfig();
-        } else {
-            config = new Config(instanceConfigName);
+        if (hazelcastInstance == null) {
+            return new Config(instanceConfigName);
         }
-        return config;
+        return hazelcastInstance.getConfig();
     }
 
     protected static MapConfig createMapConfig(final String configName) {
@@ -93,18 +91,15 @@ public class HazelcastCacheConfig {
         return mapConfig;
     }
 
-    protected static MapConfig createMapConfigWithTimeToLiveInSeconds(final String configName,
-                                                                      final int timeToLiveInSeconds) {
-        final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(1);
-        mapConfig.setTimeToLiveSeconds(timeToLiveInSeconds);
+    protected static MapConfig createModuleSyncStartedMapConfig() {
+        final MapConfig mapConfig = createMapConfig("moduleSyncStartedConfig");
+        mapConfig.setTimeToLiveSeconds(SynchronizationCacheConfig.MODULE_SYNC_STARTED_TTL_SECS);
         return mapConfig;
     }
 
-    protected static MapConfig createNearCacheMapConfig(final String configName) {
-        final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(1);
-        mapConfig.setNearCacheConfig(new NearCacheConfig(configName));
+    protected static MapConfig createTrustLevelPerCmHandleCacheMapConfigs() {
+        final MapConfig mapConfig = createMapConfig("trustLevelPerCmHandleCacheConfig");
+        mapConfig.setNearCacheConfig(new NearCacheConfig("trustLevelPerCmHandleCacheConfig"));
         return mapConfig;
     }
 
