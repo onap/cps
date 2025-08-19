@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbafde5f_f95c9a62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "almost there, a few suggestions left",
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "982862e4_91e81293",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "see my reply on patch 4:\nlog.info(\"There is at least one subscriber left for dataType {} on {}\", dataType, alternateId);",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 90
+      },
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458993d9_1dc95322",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "log.info(\"There is no subscribers left for dataType {} on {}\", dataType, alternateId);",
+      "range": {
+        "startLine": 133,
+        "startChar": 16,
+        "endLine": 133,
+        "endChar": 87
+      },
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c9611a_f614f665",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "since DT have developed a \u0027Delta\u0027 feature i would use this term anymore. just use difference and expand a little more maybe",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b12757a_c2519636",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionComparatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "since the expected size is 0 i find this description very confusing.\nMaybe the test would be clearer with a partial overlap so that \n\"from 2 predicates only 1 remains\" and use that quoted string (or similar) here to explain..",
+      "range": {
+        "startLine": 53,
+        "startChar": 22,
+        "endLine": 53,
+        "endChar": 35
+      },
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d743fb7_a988a9a1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "already used",
+      "range": {
+        "startLine": 117,
+        "startChar": 75,
+        "endLine": 117,
+        "endChar": 79
+      },
+      "revId": "a0fe0ff81364e078e18b89b713f4eee1f89f1c21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

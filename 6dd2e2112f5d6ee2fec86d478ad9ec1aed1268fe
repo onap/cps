@@ -189,6 +189,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54749c37_5b05028b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "fair enough, matter of opinion I suppose :-)",
+      "parentUuid": "7fbdfcc7_871f1269",
+      "range": {
+        "startLine": 75,
+        "startChar": 36,
+        "endLine": 75,
+        "endChar": 38
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb1d758f_c0838f52",
@@ -419,6 +443,53 @@
         "startChar": 83,
         "endLine": 137,
         "endChar": 88
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba071e73_b46fa55c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "ah, OK I understand what you are doing now. \nBut I think logging the cps path i smore for a developer then a end user. \nInstead I would just log data type and alternateId \n\nlog.info(\"There is at least one subscriber left for dataType {} on {}\", dataType, alternateId);",
+      "parentUuid": "4fa9f31c_85cb009e",
+      "range": {
+        "startLine": 137,
+        "startChar": 83,
+        "endLine": 137,
+        "endChar": 88
+      },
+      "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842a7dd4_f5a2685b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T07:32:31Z",
+      "side": 1,
+      "message": "log.info(\"There are no subscribers left for dataType {} on {}\", dataType, alternateId);",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 87
       },
       "revId": "6dd2e2112f5d6ee2fec86d478ad9ec1aed1268fe",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
