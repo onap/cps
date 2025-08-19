@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,12 +61,6 @@ public class NcmpPersistenceImpl implements NcmpPersistence {
                 fetchDescendantsOption);
     }
 
-    @Override
-    public Collection<DataNode> getDataNodes(final Collection<String> xpaths) {
-        return getDataNodes(xpaths, INCLUDE_ALL_DESCENDANTS);
-    }
-
-    @Override
     public Collection<DataNode> getDataNodes(final Collection<String> xpaths,
                                              final FetchDescendantsOption fetchDescendantsOption) {
         return cpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpaths,

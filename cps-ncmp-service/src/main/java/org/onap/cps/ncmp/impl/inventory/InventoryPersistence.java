@@ -134,16 +134,6 @@ public interface InventoryPersistence extends NcmpPersistence {
                                                          FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Get collection of data nodes of given cm handles.
-     *
-     * @param cmHandleIds collection of cmHandle IDs
-     * @param fetchDescendantsOption fetch descendants option
-     * @return collection of data nodes
-     */
-    Collection<DataNode> getCmHandleDataNodes(Collection<String> cmHandleIds,
-                                              FetchDescendantsOption fetchDescendantsOption);
-
-    /**
      * get CM handles that has given module names.
      *
      * @param moduleNamesForQuery module names

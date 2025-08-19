@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.inventory.trustlevel;
 
 import com.hazelcast.config.MapConfig;
+import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.map.IMap;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
 import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
@@ -34,10 +35,10 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
     public static final String TRUST_LEVEL_PER_CM_HANDLE = "trustLevelPerCmHandle";
     private static final MapConfig trustLevelPerCmHandleIdNearCacheConfig =
-            createNearCacheMapConfig("trustLevelPerCmHandleCacheConfig");
+        createMapConfigsWithNearCache();
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
-            createMapConfig("trustLevelPerDmiPluginCacheConfig");
+        createGenericMapConfig("trustLevelPerDmiPluginCacheConfig");
 
     /**
      * Distributed instance of trust level cache containing the trust level per cm handle.
@@ -58,6 +59,12 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
     public IMap<String, TrustLevel> trustLevelPerDmiPlugin() {
         return getOrCreateHazelcastInstance(
                 trustLevelPerDmiPluginCacheConfig).getMap(TRUST_LEVEL_PER_DMI_PLUGIN);
+    }
+
+    private static MapConfig createMapConfigsWithNearCache() {
+        final MapConfig mapConfig = createGenericMapConfig("trustLevelPerCmHandleCacheConfig");
+        mapConfig.setNearCacheConfig(new NearCacheConfig("trustLevelPerCmHandleCacheConfig"));
+        return mapConfig;
     }
 
 }

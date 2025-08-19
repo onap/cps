@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 Nordix Foundation
+ * Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.api.exceptions;
 
+import java.io.Serial;
 import lombok.Getter;
 
 /**
@@ -28,6 +29,7 @@ import lombok.Getter;
 @Getter
 public class PolicyExecutorException extends NcmpException {
 
+    @Serial
     private static final long serialVersionUID = 6659897770659834798L;
 
     /**

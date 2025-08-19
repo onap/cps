@@ -27,7 +27,6 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +84,7 @@ public class CmDataJobSubscriptionPersistenceService {
      * @param alternateId   the alternate id target of the data job subscription
      * @return              collection of subscription ids of ongoing cm notification subscription
      */
+    @SuppressWarnings("unchecked")
     public Collection<String> getSubscriptionIds(final String dataType, final String alternateId) {
         final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE.formatted(
                 alternateId, dataType);
@@ -94,7 +94,7 @@ public class CmDataJobSubscriptionPersistenceService {
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
-        return (List<String>) existingNodes.iterator().next().getLeaves().get("dataJobId");
+        return (Collection<String>) existingNodes.iterator().next().getLeaves().get("dataJobId");
     }
 
     /**
@@ -105,8 +105,7 @@ public class CmDataJobSubscriptionPersistenceService {
      * @param subscriptionId data job subscription id to be added
      */
     public void addSubscription(final String dataType, final String alternateId, final String subscriptionId) {
-        final Collection<String> subscriptionIds =
-                getSubscriptionIds(dataType, alternateId);
+        final Collection<String> subscriptionIds = getSubscriptionIds(dataType, alternateId);
         if (subscriptionIds.isEmpty()) {
             addNewSubscriptionDetails(dataType, alternateId, subscriptionId);
         } else {

@@ -48,7 +48,9 @@ public class DataJobServiceImpl implements DataJobService {
                             final String dataJobId,
                             final DataJobMetadata dataJobMetadata,
                             final DataJobReadRequest dataJobReadRequest) {
-        log.info("data job id for read operation is: {}", dataJobId);
+        logJobIdAndSize(dataJobId, dataJobReadRequest.data().size());
+        log.info("Destination: {}", dataJobMetadata.destination());
+        log.info("authorization: {}", authorization);
     }
 
     @Override
@@ -56,8 +58,7 @@ public class DataJobServiceImpl implements DataJobService {
                                                   final String dataJobId,
                                                   final DataJobMetadata dataJobMetadata,
                                                   final DataJobWriteRequest dataJobWriteRequest) {
-
-        log.info("Data Job ID: {} - Total operations received: {}", dataJobId, dataJobWriteRequest.data().size());
+        logJobIdAndSize(dataJobId, dataJobWriteRequest.data().size());
         logJsonRepresentation("Initiating WRITE operation for Data Job ID: " + dataJobId, dataJobWriteRequest);
 
         final Map<ProducerKey, List<DmiWriteOperation>> dmiWriteOperationsPerProducerKey =
@@ -71,10 +72,15 @@ public class DataJobServiceImpl implements DataJobService {
         return subJobWriteResponses;
     }
 
+    private void logJobIdAndSize(final String dataJobId, final int numberOfOperations) {
+        log.info("Data Job ID: {} - Total operations received: {}", dataJobId, numberOfOperations);
+    }
+
     private void logJsonRepresentation(final String description, final Object object) {
         if (log.isDebugEnabled()) {
             final String objectAsJsonString = jsonObjectMapper.asJsonString(object);
             log.debug("{} (JSON): {}", description, objectAsJsonString);
         }
     }
+
 }

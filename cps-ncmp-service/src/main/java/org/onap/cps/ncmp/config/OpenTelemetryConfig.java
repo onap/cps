@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2024 Nordix Foundation
+ * Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,9 +52,11 @@ public class OpenTelemetryConfig {
     @Value("${spring.application.name:cps-application}")
     private String serviceId;
 
+    @SuppressWarnings("HttpUrlsUsage")
     @Value("${cps.tracing.exporter.endpoint:http://onap-otel-collector:4317}")
     private String tracingExporterEndpointUrl;
 
+    @SuppressWarnings("HttpUrlsUsage")
     @Value("${cps.tracing.sampler.jaeger_remote.endpoint:http://onap-otel-collector:14250}")
     private String jaegerRemoteSamplerUrl;
 

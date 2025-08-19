@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Nordix Foundation
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AdminCacheConfig extends HazelcastCacheConfig {
 
-    private static final MapConfig cmHandleStateCacheMapConfig = createMapConfig("cmHandleStateCacheMapConfig");
+    private static final MapConfig cmHandleStateCacheMapConfig = createGenericMapConfig("cmHandleStateCacheMapConfig");
 
     /**
      * Distributed instance admin cache map for cm handles by state for use of gauge metrics.

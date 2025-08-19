@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class CpsAndNcmpLockConfig extends HazelcastCacheConfig {
     // Lock names for different use cases ( to be used as cpsAndNcmpLock keys)
     public static final String MODULE_SYNC_WORK_QUEUE_LOCK_NAME = "workQueueLock";
 
-    private static final MapConfig cpsAndNcmpLockMapConfig = createMapConfig("cpsAndNcmpLockConfig");
+    private static final MapConfig cpsAndNcmpLockMapConfig = createGenericMapConfig("cpsAndNcmpLockConfig");
 
     /**
      * Distributed instance used for locking purpose for various use cases in cps-and-ncmp.

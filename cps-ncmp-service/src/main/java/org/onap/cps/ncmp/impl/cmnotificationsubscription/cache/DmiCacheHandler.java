@@ -129,7 +129,7 @@ public class DmiCacheHandler {
     /**
      *  Update status in map of subscription details per DMI.
      *
-     * @param subscriptionId    String of subscription Id
+     * @param subscriptionId    String of subscription id
      * @param dmiServiceName    String of dmiServiceName
      * @param status            String of status
      *
@@ -145,7 +145,7 @@ public class DmiCacheHandler {
     /**
      *  Persist map of subscription details per DMI.
      *
-     * @param subscriptionId    String of subscription Id
+     * @param subscriptionId    String of subscription id
      * @param dmiServiceName    String of dmiServiceName
      *
      */
