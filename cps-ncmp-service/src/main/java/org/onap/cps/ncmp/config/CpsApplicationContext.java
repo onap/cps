@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class CpsApplicationContext implements ApplicationContextAware {
      * @param cpsBeanClass cps class type
      * @return requested bean instance
      */
-    public static <T extends Object> T getCpsBean(final Class<T> cpsBeanClass) {
+    public static <T> T getCpsBean(final Class<T> cpsBeanClass) {
         return applicationContext.getBean(cpsBeanClass);
     }
 

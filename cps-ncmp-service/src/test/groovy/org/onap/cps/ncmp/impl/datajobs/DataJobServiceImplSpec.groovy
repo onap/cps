@@ -61,7 +61,7 @@ class DataJobServiceImplSpec extends Specification {
         then: 'the data job id is correctly logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('data job id for read operation is: my-job-id')
+            assert loggingEvent.formattedMessage.contains('Data Job ID: my-job-id')
     }
 
     def 'Write data-job request and verify logging when info enabled.'() {

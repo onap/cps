@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024-2025 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -79,6 +79,7 @@ public class DmiSubJobRequestHandler {
                     jsonObjectMapper.asJsonString(subJobWriteRequest),
                     OperationType.CREATE,
                     authorization);
+            //noinspection unchecked
             final Map<String, String> responseAsKeyValuePairs = jsonObjectMapper
                     .convertToValueType(responseEntity.getBody(), Map.class);
             final String subJobId = responseAsKeyValuePairs.get("subJobId");

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2024 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,8 +26,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -155,15 +153,6 @@ public class YangModelCmHandle {
         return yangModelCmHandleProperties;
     }
 
-    @AllArgsConstructor
-    @Data
-    public static class Property {
-
-        @JsonProperty()
-        private final String name;
-
-        @JsonProperty()
-        private final String value;
-    }
+    public record Property(@JsonProperty() String name, @JsonProperty() String value) { }
 
 }

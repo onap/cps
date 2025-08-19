@@ -48,6 +48,7 @@ import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+@SuppressWarnings("ALL")
 @Service
 @RequiredArgsConstructor
 public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHandleQueryService {
@@ -237,6 +238,7 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
         return ncmpServiceCmHandles;
     }
 
+    @SafeVarargs
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
                                               final boolean outputAlternateId,
                                               final BiFunction<CmHandleQueryServiceParameters, Boolean,

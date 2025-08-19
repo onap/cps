@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2023 Nordix Foundation
+ * Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ public class RecordFilterStrategies {
      */
     @Bean
     public RecordFilterStrategy<String, CloudEvent> includeDataOperationEventsOnly() {
-        return consumerRecord ->
-                isNotCloudEventOfType(consumerRecord.headers(), "DataOperationEvent");
+        return consumerRecord -> isNotCloudDataOperationEvent(consumerRecord.headers());
     }
 
     /**
@@ -66,12 +65,12 @@ public class RecordFilterStrategies {
         return headers.lastHeader("ce_type") != null;
     }
 
-    private boolean isNotCloudEventOfType(final Headers headers, final String requiredEventType) {
+    private boolean isNotCloudDataOperationEvent(final Headers headers) {
         final String eventTypeHeaderValue = KafkaHeaders.getParsedKafkaHeader(headers, "ce_type");
         if (eventTypeHeaderValue == null) {
             log.trace("No ce_type header found, possibly a legacy event (ignored)");
             return EXCLUDE_EVENT;
         }
-        return !(eventTypeHeaderValue.contains(requiredEventType));
+        return !(eventTypeHeaderValue.contains("DataOperationEvent"));
     }
 }

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2025 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,24 +56,6 @@ public interface NcmpPersistence {
      * @return data node
      */
     Collection<DataNode> getDataNode(String xpath, FetchDescendantsOption fetchDescendantsOption);
-
-    /**
-     * Get collection of data nodes via xpaths.
-     *
-     * @param xpaths collection of xpaths
-     * @return collection of data nodes
-     */
-    Collection<DataNode> getDataNodes(Collection<String> xpaths);
-
-    /**
-     * Get collection of data nodes via xpaths.
-     *
-     * @param xpaths                 collection of xpaths
-     * @param fetchDescendantsOption fetch descendants option
-     * @return collection of data nodes
-     */
-    Collection<DataNode> getDataNodes(Collection<String> xpaths,
-                                              FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements as data nodes.
