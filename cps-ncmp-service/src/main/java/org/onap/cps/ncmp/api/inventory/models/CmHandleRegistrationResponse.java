@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (C) 2022--2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -88,12 +88,13 @@ public class CmHandleRegistrationResponse {
         final Collection<String> failedXpaths, final NcmpResponseStatus ncmpResponseStatus) {
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failedXpaths.size());
         for (final String xpath : failedXpaths) {
-            try {
-                final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
-                cmHandleRegistrationResponses
-                    .add(CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus));
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                log.warn("Unexpected xpath {}", xpath);
+            final String cmHandleId = YangDataConverter.extractCmHandleIdFromXpath(xpath);
+            if (cmHandleId == null) {
+                log.warn("Unexpected xpath (no id found) {}", xpath);
+            } else {
+                final CmHandleRegistrationResponse cmHandleRegistrationResponse =
+                    CmHandleRegistrationResponse.createFailureResponse(cmHandleId, ncmpResponseStatus);
+                cmHandleRegistrationResponses.add(cmHandleRegistrationResponse);
             }
         }
         return cmHandleRegistrationResponses;
@@ -142,6 +143,6 @@ public class CmHandleRegistrationResponse {
     }
 
     public enum Status {
-        SUCCESS, FAILURE;
+        SUCCESS, FAILURE
     }
 }

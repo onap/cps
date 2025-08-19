@@ -124,8 +124,7 @@ public class CmHandleRegistrationService {
         if (CmHandleState.READY.equals(compositeState.getCmHandleState())) {
             final DataStoreSyncState dataStoreSyncState = compositeState.getDataStores()
                 .getOperationalDataStore().getDataStoreSyncState();
-            if (Boolean.FALSE.equals(dataSyncEnabledTargetValue)
-                && DataStoreSyncState.SYNCHRONIZED.equals(dataStoreSyncState)) {
+            if (!dataSyncEnabledTargetValue && DataStoreSyncState.SYNCHRONIZED.equals(dataStoreSyncState)) {
                 // TODO : This is hard-coded for onap dmi that need to be addressed
                 cpsDataService.deleteDataNode(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId,
                     "/netconf-state", OffsetDateTime.now());

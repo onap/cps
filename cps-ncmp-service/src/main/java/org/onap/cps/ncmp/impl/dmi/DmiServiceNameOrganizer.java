@@ -61,6 +61,6 @@ public class DmiServiceNameOrganizer {
     private static Map<String, String> additionalPropertiesAsMap(
         final List<YangModelCmHandle.Property> additionalProperties) {
         return additionalProperties.stream().collect(
-                Collectors.toMap(YangModelCmHandle.Property::getName, YangModelCmHandle.Property::getValue));
+                Collectors.toMap(YangModelCmHandle.Property::name, YangModelCmHandle.Property::value));
     }
 }

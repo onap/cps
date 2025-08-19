@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Tuple to be used during for to delete usecase.
+ * Tuple to be used during for to delete use case.
  *
  * @param lastRemainingSubscriptionsPerDmi   subscriptions that are used by only one subscriber grouped per dmi
  * @param overlappingSubscriptionsPerDmi     subscriptions that are shared by multiple subscribers grouped per dmi

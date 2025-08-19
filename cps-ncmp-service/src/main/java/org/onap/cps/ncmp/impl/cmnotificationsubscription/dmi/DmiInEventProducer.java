@@ -45,8 +45,8 @@ public class DmiInEventProducer {
     /**
      * Send the event to the provided dmi plugin with key as subscription id and the event is in Cloud Event format.
      *
-     * @param subscriptionId Cm Subscription Id
-     * @param dmiPluginName  Dmi Plugin Name
+     * @param subscriptionId CM subscription id
+     * @param dmiPluginName  Dmi plugin Name
      * @param eventType      Type of event
      * @param dmiInEvent     Cm Notification Subscription event for Dmi
      */
