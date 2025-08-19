@@ -16,6 +16,282 @@
       "message": "recheck",
       "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f199c16b_5cc4102a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this block at all\nIt seems a special case for if the old value is blank, you just add a logging statement (that is incorrect even) but then call the same method as on line #169 \nI simply would remove this block it adds no value",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 9
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc756217_5f0134c8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "add \u0027ignoring update\u0027",
+      "range": {
+        "startLine": 164,
+        "startChar": 83,
+        "endLine": 164,
+        "endChar": 84
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b981fb_859e3d81",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "if you remove the block i mentioned above there is no need for a separate method really",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 52
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c40154b_cbe06e02",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "i forgot what we agreed exactly but need to be careful that NO event is sent when first registered..\nIt seems to me that an event IS sent now upon first registration... a Unit test can prove/disprove this",
+      "range": {
+        "startLine": 181,
+        "startChar": 17,
+        "endLine": 181,
+        "endChar": 54
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ac985a_3079ea45",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerAsyncHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "I think you should reconsider the name of the class now you added this menod. I think it could be simplified and is more correct like: \"LcmEventsHelper\"",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "414d8a67_9ff867d8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "see my previous comment, i think this should be 0 when going from null to something!",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ce37d2_b7e86c28",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "why not combien this test with previous ie expand table starting  at line #269",
+      "range": {
+        "startLine": 291,
+        "startChar": 9,
+        "endLine": 291,
+        "endChar": 77
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20bdb8de_e48205af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "opinion: not needed",
+      "range": {
+        "startLine": 304,
+        "startChar": 32,
+        "endLine": 304,
+        "endChar": 46
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "708e4d2d_0a91d053",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "why any and ot a speci entry like we used to do?!",
+      "range": {
+        "startLine": 311,
+        "startChar": 33,
+        "endLine": 311,
+        "endChar": 37
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5649108_db5cc6e5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "better tart with the negative: No LCM event is sent",
+      "range": {
+        "startLine": 326,
+        "startChar": 14,
+        "endLine": 326,
+        "endChar": 35
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c495b853_a82c42d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "Not sure if you really need to test of this as this is implemented in Java als blank and empty are ambiguous terms. I my opinion\n\u0027\u0027 \u003d empty\n\u0027 \u0027 \u003d blank\n\nI would just test it with \u0027 \u0027 (and just 1 space will do :-)",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 336,
+        "endChar": 33
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467eb555_d67e97af",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-19T09:53:21Z",
+      "side": 1,
+      "message": "Suggestion: use groovy map constructor",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 32
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
