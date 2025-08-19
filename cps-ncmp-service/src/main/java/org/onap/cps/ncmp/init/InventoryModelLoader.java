@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -31,6 +32,7 @@ import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +40,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class InventoryModelLoader extends AbstractModelLoader {
 
+    @Value("${app.ncmp.model-loader.enable-dmi-registry-2025-07-22:false}")
+    private boolean newModelEnabled;
+    private String newSchemaSetName;
+    private String newModelFileName;
     private final ApplicationEventPublisher applicationEventPublisher;
-    private static final String NEW_MODEL_FILE_NAME = "dmi-registry@2024-02-23.yang";
-    private static final String NEW_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
     private static final String REGISTRY_DATANODE_NAME = "dmi-registry";
 
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
@@ -52,19 +56,37 @@ public class InventoryModelLoader extends AbstractModelLoader {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
+    /**
+     * This method determines if thhe new model is used.
+     */
+    @PostConstruct
+    public void init() {
+        newSchemaSetName = newModelEnabled
+                ? "dmi-registry-2025-07-22"
+                : "dmi-registry-2024-02-23";
+
+        newModelFileName = newModelEnabled
+                ? "dmi-registry@2025-07-22.yang"
+                : "dmi-registry@2024-02-23.yang";
+    }
+
     @Override
     public void onboardOrUpgradeModel() {
         updateInventoryModel();
         log.info("Inventory Model updated successfully");
+        if (newModelEnabled) {
+            migrateData();
+        }
         applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
     }
 
     private void updateInventoryModel() {
+
         createDataspace(NCMP_DATASPACE_NAME);
         createDataspace(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
-        createSchemaSet(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NEW_MODEL_FILE_NAME);
-        createAnchor(NCMP_DATASPACE_NAME, NEW_SCHEMA_SET_NAME, NCMP_DMI_REGISTRY_ANCHOR);
-        updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NEW_SCHEMA_SET_NAME);
+        createSchemaSet(NCMP_DATASPACE_NAME, newSchemaSetName, newModelFileName);
+        createAnchor(NCMP_DATASPACE_NAME, newSchemaSetName, NCMP_DMI_REGISTRY_ANCHOR);
+        updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, newSchemaSetName);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, REGISTRY_DATANODE_NAME);
         deleteOldButNotThePreviousSchemaSets();
     }
@@ -73,6 +95,10 @@ public class InventoryModelLoader extends AbstractModelLoader {
         //No schema sets passed in yet, but wil be required for future updates
         deleteUnusedSchemaSets(NCMP_DATASPACE_NAME);
         deleteUnusedSchemaSets(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME);
+    }
+
+    private void migrateData() {
+        log.info("Migration will happen here");
     }
 
 }

@@ -1,0 +1,137 @@
+module dmi-registry {
+  yang-version 1.1;
+  namespace "org:onap:cps:ncmp";
+  prefix dmi-reg;
+  contact "toine.siebelink@est.tech";
+  revision "2025-07-22" {
+    description
+    "Added dmi-registry.cm-handles.dmi-properties (string) to replace (now deprecated) dmi-registry.cm-handles.additional-properties (list).
+     Added dmi-registry.cm-handles.cm-handle-state to replace (now deprecated) and dmi-registry.cm-handles.state.cm-handle-state";
+  }
+  revision "2024-02-23" {
+      description
+      "Added data-producer-identifier";
+    }
+  revision "2023-11-27" {
+    description
+    "Added alternate-id";
+  }
+  revision "2023-08-23" {
+    description
+    "Added module-set-tag";
+  }
+  revision "2022-05-10" {
+    description
+    "Added data-sync-enabled, sync-state with state, last-sync-time, data-store-sync-state with operational and running syncstate";
+  }
+  revision "2022-02-10" {
+    description
+    "Added state, lock-reason, lock-reason-details to aid with cmHandle sync and timestamp to aid with retry/timeout scenarios";
+  }
+  revision "2021-12-13" {
+    description
+    "Added new list of public-properties and additional-properties for a Cm-Handle which are exposed to clients of the NCMP interface";
+  }
+  revision "2021-10-20" {
+    description
+    "Added dmi-data-service-name & dmi-model-service-name to allow separate DMI instances for each responsibility";
+  }
+  revision "2021-05-20" {
+    description
+    "Initial Version";
+  }
+  grouping LockReason {
+    leaf reason {
+      type string;
+    }
+    leaf details {
+      type string;
+    }
+  }
+  grouping SyncState {
+   leaf sync-state {
+     type string;
+   }
+   leaf last-sync-time {
+     type string;
+   }
+  }
+  grouping Datastores {
+    container operational {
+      uses SyncState;
+    }
+    container running {
+      uses SyncState;
+    }
+  }
+  container dmi-registry {
+    list cm-handles {
+      key "id";
+      leaf id {
+        type string;
+      }
+      leaf dmi-service-name {
+        type string;
+      }
+      leaf dmi-data-service-name {
+        type string;
+      }
+      leaf dmi-model-service-name {
+        type string;
+      }
+      leaf module-set-tag {
+        type string;
+      }
+      leaf alternate-id {
+        type string;
+      }
+      leaf data-producer-identifier {
+        type string;
+      }
+      leaf dmi-properties {
+        type string;
+      }
+      leaf cm-handle-state {
+        type string;
+      }
+      list additional-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+        status deprecated; // Replaced by dmi-properties
+      }
+      list public-properties {
+        key "name";
+        leaf name {
+          type string;
+        }
+        leaf value {
+          type string;
+        }
+      }
+      container state {
+        leaf cm-handle-state {
+          type string;
+          status deprecated;
+        }
+        container lock-reason {
+          uses LockReason;
+        }
+        leaf last-update-time {
+          type string;
+        }
+        leaf data-sync-enabled {
+          type boolean;
+          default "false";
+        }
+        container datastores {
+          uses Datastores;
+        }
+      }
+    }
+  }
+}

@@ -99,6 +99,8 @@ spring:
             mode: ALWAYS
 app:
     ncmp:
+        model-loader:
+            enable-dmi-registry-2025-07-22: false
         async-m2m:
             topic: ${NCMP_ASYNC_M2M_TOPIC:ncmp-async-m2m}
         avc:

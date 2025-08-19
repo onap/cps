@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,6 +53,8 @@ class InventoryModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
+        objectUnderTest.@newModelEnabled = false   // or true
+        objectUnderTest.init()                     // <--- important
         expectedYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
@@ -68,17 +70,45 @@ class InventoryModelLoaderSpec extends Specification {
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use'
-            mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
+        mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         when: 'the application is started'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+        objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
-            1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedYangResourceToContentMap)
+        1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedYangResourceToContentMap)
         and: 'the admin service is used to update the anchor'
-            1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
+        1 * mockCpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'dmi-registry-2024-02-23')
         and: 'No schema sets are being removed by the module service (yet)'
-            0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
+        0 * mockCpsModuleService.deleteSchemaSet(NCMP_DATASPACE_NAME, _, _)
         and: 'application event publisher is called once'
-            1 * mockApplicationEventPublisher.publishEvent(_)
+        1 * mockApplicationEventPublisher.publishEvent(_)
+    }
+
+    def "init should set schema and model file when new model enabled"() {
+        given:
+        objectUnderTest.@newModelEnabled = true   // directly set private field
+
+        when:
+        objectUnderTest.init()
+
+        then:
+        objectUnderTest.newSchemaSetName == "dmi-registry-2025-07-22"
+        objectUnderTest.newModelFileName == "dmi-registry@2025-07-22.yang"
+    }
+
+    def "migrateData only runs when new model enabled"() {
+        given:
+        objectUnderTest.newModelEnabled = enabled
+
+        when:
+        objectUnderTest.onboardOrUpgradeModel()
+
+        then:
+        def logs = loggingListAppender.list*.toString()
+        (enabled ? logs.any { it.contains("Migration will happen here") }
+                : logs.every { !it.contains("Migration will happen here") })
+
+        where:
+        enabled << [true, false]
     }
 
 }
