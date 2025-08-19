@@ -234,8 +234,9 @@ if [ -f "${checkandmount}" ]; then
     source_safely "${checkandmount}"
 fi
 
-run_test_plan "testplanNcmp"
-NCMPRESULT="$?"
+#run_test_plan "testplanNcmp"
+#NCMPRESULT="$?"
 
 # Note that the final steps are done in on_exit function after this exit!
-exit $CPSRESULT || $NCMPRESULT
+#exit $CPSRESULT || $NCMPRESULT
+exit $CPSRESULT

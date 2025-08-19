@@ -117,7 +117,7 @@ public class AlternateIdMatcher {
     }
 
     /**
-     * Get cm handle Id from given cmHandleReference.
+     * Get cm handle id from given cmHandleReference.
      *
      * @param cmHandleReference cm handle or alternate identifier
      * @return cm handle id string

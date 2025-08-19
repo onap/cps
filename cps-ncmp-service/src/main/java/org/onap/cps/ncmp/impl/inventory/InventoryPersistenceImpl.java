@@ -58,7 +58,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements InventoryPersistence {
 
-    private static final int CMHANDLE_BATCH_SIZE = 300;
+    private static final int CM_HANDLE_BATCH_SIZE = 300;
 
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
@@ -154,7 +154,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public void saveCmHandleBatch(final List<YangModelCmHandle> yangModelCmHandles) {
         for (final List<YangModelCmHandle> yangModelCmHandleBatch :
-                Lists.partition(yangModelCmHandles, CMHANDLE_BATCH_SIZE)) {
+                Lists.partition(yangModelCmHandles, CM_HANDLE_BATCH_SIZE)) {
             final String cmHandlesJsonData = createCmHandlesJsonData(yangModelCmHandleBatch);
             cpsDataService.saveListElements(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                     NCMP_DMI_REGISTRY_PARENT, cmHandlesJsonData, NO_TIMESTAMP, ContentType.JSON);
@@ -165,14 +165,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public Collection<DataNode> getCmHandleDataNodeByCmHandleId(final String cmHandleId,
                                                                 final FetchDescendantsOption fetchDescendantsOption) {
         return this.getDataNode(getXPathForCmHandleById(cmHandleId), fetchDescendantsOption);
-    }
-
-    @Override
-    public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
-                                                     final FetchDescendantsOption fetchDescendantsOption) {
-        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
-        cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
-        return this.getDataNodes(xpaths, fetchDescendantsOption);
     }
 
     @Override
@@ -231,6 +223,13 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             }
         });
         return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, fetchDescendantsOption));
+    }
+
+    private Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
+        return this.getDataNodes(xpaths, fetchDescendantsOption);
     }
 
 }

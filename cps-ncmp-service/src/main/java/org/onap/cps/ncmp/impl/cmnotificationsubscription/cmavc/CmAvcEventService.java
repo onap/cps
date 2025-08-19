@@ -139,7 +139,7 @@ public class CmAvcEventService {
     }
 
     private String getCpsPath(final String cmHandleId, final String restConfStylePath) {
-        log.debug("Getting cps path from the restconfpath : {}", restConfStylePath);
+        log.debug("Getting cps path from the rest config path : {}", restConfStylePath);
         final Anchor anchor = cpsAnchorService.getAnchor(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, cmHandleId);
         return yangParser.getCpsPathFromRestConfStylePath(anchor, restConfStylePath);
     }

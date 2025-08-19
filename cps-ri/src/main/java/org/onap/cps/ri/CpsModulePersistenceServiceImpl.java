@@ -356,8 +356,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         DuplicatedYangResourceException duplicatedYangResourceException = null;
 
         final Throwable cause = originalException.getCause();
-        if (cause instanceof ConstraintViolationException) {
-            final ConstraintViolationException constraintException = (ConstraintViolationException) cause;
+        if (cause instanceof final ConstraintViolationException constraintException) {
             if (YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintException.getConstraintName())) {
                 // Db constraint related to yang resource checksum uniqueness is not respected
                 final String checksumInError = getDuplicatedChecksumFromException(constraintException);

@@ -112,7 +112,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.ok(Collections.<RestOutputCmHandle>emptyList());
+        return ResponseEntity.ok(Collections.emptyList());
     }
 
     private ResponseEntity<Map<String, Object>> populateAsyncResponse(final String topicParamInQuery) {

@@ -36,7 +36,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ResourceProviderImpl implements ResourceProvider {
 
-    private String pathToResponseFiles;
+    private final String pathToResponseFiles;
 
     @Autowired
     public ResourceProviderImpl(@Value("${stub.path}") final String pathToResponseFiles) {

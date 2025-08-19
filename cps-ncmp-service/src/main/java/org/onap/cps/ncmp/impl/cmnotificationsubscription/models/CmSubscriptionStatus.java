@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,11 +22,8 @@ package org.onap.cps.ncmp.impl.cmnotificationsubscription.models;
 
 public enum CmSubscriptionStatus {
 
-    ACCEPTED("ACCEPTED"), REJECTED("REJECTED"), PENDING("PENDING");
+    ACCEPTED(), REJECTED(), PENDING();
 
-    private final String cmNotificationSubscriptionStatusValue;
-
-    CmSubscriptionStatus(final String cmNotificationSubscriptionStatusValue) {
-        this.cmNotificationSubscriptionStatusValue = cmNotificationSubscriptionStatusValue;
+    CmSubscriptionStatus() {
     }
 }

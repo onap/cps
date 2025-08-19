@@ -225,18 +225,19 @@ public class ParameterizedCmHandleQueryServiceImpl implements ParameterizedCmHan
     }
 
     private Collection<NcmpServiceCmHandle> getNcmpServiceCmHandleBatch(final Collection<String> cmHandleIds) {
-        final Collection<YangModelCmHandle> yangModelcmHandles
+        final Collection<YangModelCmHandle> yangModelCmHandles
                 = inventoryPersistence.getYangModelCmHandles(cmHandleIds);
 
-        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelcmHandles.size());
+        final Collection<NcmpServiceCmHandle> ncmpServiceCmHandles = new ArrayList<>(yangModelCmHandles.size());
 
-        yangModelcmHandles.forEach(yangModelcmHandle ->
+        yangModelCmHandles.forEach(yangModelcmHandle ->
                 ncmpServiceCmHandles.add(YangDataConverter.toNcmpServiceCmHandle(yangModelcmHandle))
         );
         trustLevelManager.applyEffectiveTrustLevels(ncmpServiceCmHandles);
         return ncmpServiceCmHandles;
     }
 
+    @SafeVarargs
     private Collection<String> executeQueries(final CmHandleQueryServiceParameters cmHandleQueryServiceParameters,
                                               final boolean outputAlternateId,
                                               final BiFunction<CmHandleQueryServiceParameters, Boolean,
