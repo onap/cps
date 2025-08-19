@@ -94,6 +94,7 @@ public class CmDataJobSubscriptionPersistenceService {
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
+        //noinspection unchecked
         return (List<String>) existingNodes.iterator().next().getLeaves().get("dataJobId");
     }
 
@@ -105,7 +106,7 @@ public class CmDataJobSubscriptionPersistenceService {
      * @param subscriptionId data job subscription id to be added
      */
     public void addSubscription(final String dataType, final String alternateId, final String subscriptionId) {
-        final Collection<String> subscriptionIds =
+        final Collection<String> subscriptionIds =git t
                 getSubscriptionIds(dataType, alternateId);
         if (subscriptionIds.isEmpty()) {
             addNewSubscriptionDetails(dataType, alternateId, subscriptionId);

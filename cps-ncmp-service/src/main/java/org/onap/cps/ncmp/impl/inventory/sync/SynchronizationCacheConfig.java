@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,8 +38,7 @@ public class SynchronizationCacheConfig extends HazelcastCacheConfig {
     public static final int DATA_SYNC_SEMAPHORE_TTL_SECS = 1800;
 
     private static final QueueConfig commonQueueConfig = createQueueConfig("defaultQueueConfig");
-    private static final MapConfig moduleSyncStartedConfig =
-            createMapConfigWithTimeToLiveInSeconds("moduleSyncStartedConfig", MODULE_SYNC_STARTED_TTL_SECS);
+    private static final MapConfig moduleSyncStartedConfig =  createModuleSyncStartedMapConfig();
     private static final MapConfig dataSyncSemaphoresConfig = createMapConfig("dataSyncSemaphoresConfig");
 
     /**

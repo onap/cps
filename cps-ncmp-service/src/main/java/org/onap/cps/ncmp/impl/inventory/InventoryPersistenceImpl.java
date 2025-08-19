@@ -168,14 +168,6 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     @Override
-    public Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
-                                                     final FetchDescendantsOption fetchDescendantsOption) {
-        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
-        cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
-        return this.getDataNodes(xpaths, fetchDescendantsOption);
-    }
-
-    @Override
     public Collection<String> getCmHandleReferencesWithGivenModules(final Collection<String> moduleNamesForQuery,
                                                                     final boolean outputAlternateId) {
         final Collection<String> cmHandleIds =
@@ -231,6 +223,13 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
             }
         });
         return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, fetchDescendantsOption));
+    }
+
+    private Collection<DataNode> getCmHandleDataNodes(final Collection<String> cmHandleIds,
+                                                      final FetchDescendantsOption fetchDescendantsOption) {
+        final Collection<String> xpaths = new ArrayList<>(cmHandleIds.size());
+        cmHandleIds.forEach(cmHandleId -> xpaths.add(getXPathForCmHandleById(cmHandleId)));
+        return this.getDataNodes(xpaths, fetchDescendantsOption);
     }
 
 }
