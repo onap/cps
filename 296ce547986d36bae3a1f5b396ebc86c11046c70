@@ -232,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be7cfa52_7e2b6c5e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-19T12:16:37Z",
+      "side": 1,
+      "message": "class",
+      "parentUuid": "28a2bc84_c3bdc74d",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "296ce547986d36bae3a1f5b396ebc86c11046c70",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2733a8e4_95ec3b89",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
         "patchSetId": 5
