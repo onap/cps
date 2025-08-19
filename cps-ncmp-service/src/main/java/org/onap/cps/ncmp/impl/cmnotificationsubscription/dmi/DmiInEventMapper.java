@@ -87,8 +87,8 @@ public class DmiInEventMapper {
             final CmHandle cmHandle = new CmHandle();
             final Map<String, String> cmHandleAdditionalProperties = new LinkedHashMap<>();
             yangModelCmHandle.getAdditionalProperties()
-                    .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.getName(),
-                        additionalProperty.getValue()));
+                    .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.name(),
+                        additionalProperty.value()));
             cmHandle.setCmhandleId(yangModelCmHandle.getId());
             cmHandle.setPrivateProperties(cmHandleAdditionalProperties);
             cmSubscriptionCmHandles.add(cmHandle);

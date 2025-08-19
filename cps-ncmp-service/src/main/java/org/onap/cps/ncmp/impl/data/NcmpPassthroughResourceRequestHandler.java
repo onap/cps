@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2024 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public class NcmpPassthroughResourceRequestHandler extends NcmpDatastoreRequestH
      * @param topic                 the topic param in query
      * @param dataOperationRequest  data operation request details for resource data
      * @param authorization         contents of Authorization header, or null if not present
-     * @return a map with one entry of request Id for success or status and error when async feature is disabled
+     * @return a map with one entry of request id for success or status and error when async feature is disabled
      */
     public Map<String, String> executeAsynchronousRequest(final String topic,
                                                           final DataOperationRequest dataOperationRequest,

@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -34,10 +34,10 @@ public class TrustLevelCacheConfig extends HazelcastCacheConfig {
 
     public static final String TRUST_LEVEL_PER_CM_HANDLE = "trustLevelPerCmHandle";
     private static final MapConfig trustLevelPerCmHandleIdNearCacheConfig =
-            createNearCacheMapConfig("trustLevelPerCmHandleCacheConfig");
+        createTrustLevelPerCmHandleCacheMapConfigs();
 
     private static final MapConfig trustLevelPerDmiPluginCacheConfig =
-            createMapConfig("trustLevelPerDmiPluginCacheConfig");
+        createMapConfig("trustLevelPerDmiPluginCacheConfig");
 
     /**
      * Distributed instance of trust level cache containing the trust level per cm handle.

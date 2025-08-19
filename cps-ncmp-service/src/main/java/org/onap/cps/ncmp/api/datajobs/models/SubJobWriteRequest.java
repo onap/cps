@@ -32,7 +32,7 @@ import java.util.Collection;
  * @param dataContentType Define the data request content type.
  *                        e.g. "application/3gpp-json-patch+json" etc.
  * @param dataProducerId  Identifier of the data producer.
- * @param dataJobId       Identifier for the overall Datajob
+ * @param dataJobId       Identifier for the overall data job
  * @param data            A collection of outgoing write operations.
  */
 public record SubJobWriteRequest (

@@ -62,7 +62,7 @@ public class NcmpOutEventProducer {
      * Send the event to the client who requested the subscription with key as subscription id and event is Cloud
      * Event compliant.
      *
-     * @param subscriptionId   Cm Subscription Id
+     * @param subscriptionId   CM subscription id
      * @param eventType        Type of event
      * @param ncmpOutEvent     Cm Notification Subscription Event for the
      *                         client

@@ -63,7 +63,7 @@ public class LcmEventsProducer {
      * Sends an LCM event to the dedicated topic with optional notification headers.
      * Capture and log KafkaException If an error occurs while sending the event to Kafka
      *
-     * @param cmHandleId     Cm Handle Id associated with the LCM event
+     * @param cmHandleId     CM handle id associated with the LCM event
      * @param lcmEvent       The LCM event object to be sent
      * @param lcmEventHeader Optional headers associated with the LCM event
      */
@@ -72,6 +72,7 @@ public class LcmEventsProducer {
         if (notificationsEnabled) {
             final Timer.Sample timerSample = Timer.start(meterRegistry);
             try {
+                //noinspection unchecked
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
                 eventsProducer.sendEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);

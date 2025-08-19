@@ -198,6 +198,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
             final DmiCmSubscriptionKey dmiCmSubscriptionKey = extractCmSubscriptionKey(subscriptionNode.getXpath());
             final String dmiServiceName = inventoryPersistence.getYangModelCmHandle(
                     dmiCmSubscriptionKey.cmHandleId()).getDmiServiceName();
+            //noinspection unchecked
             final List<String> subscribers = (List<String>) subscriptionNode.getLeaves().get("subscriptionIds");
             populateDmiCmSubscriptionTuple(subscribers, overlappingSubscriptionsPerDmi,
                     lastRemainingSubscriptionsPerDmi, dmiServiceName, dmiCmSubscriptionKey);
