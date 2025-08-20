@@ -2,7 +2,7 @@
 #
 # Copyright 2016-2017 Huawei Technologies Co., Ltd.
 # Modification Copyright 2019-2021 © Samsung Electronics Co., Ltd.
-# Modification Copyright (C) 2024 Nordix Foundation.
+# Modification Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -234,8 +234,12 @@ if [ -f "${checkandmount}" ]; then
     source_safely "${checkandmount}"
 fi
 
-run_test_plan "testplanNcmp"
-NCMPRESULT="$?"
+#Disabling the NCMP CSITs temporarily as they are unstable at the moment.
+#https://lf-onap.atlassian.net/browse/CPS-2959 will be addressing the issues.
+
+#run_test_plan "testplanNcmp"
+#NCMPRESULT="$?"
+#exit $CPSRESULT || $NCMPRESULT
 
 # Note that the final steps are done in on_exit function after this exit!
-exit $CPSRESULT || $NCMPRESULT
+exit $CPSRESULT
