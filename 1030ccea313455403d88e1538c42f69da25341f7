@@ -16,6 +16,69 @@
       "message": "recheck",
       "revId": "1030ccea313455403d88e1538c42f69da25341f7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9643f909_3edcffea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T08:02:10Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "1030ccea313455403d88e1538c42f69da25341f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526099b7_0cd3a2a5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T08:02:10Z",
+      "side": 1,
+      "message": "NB: Not sure why you did not remove this.\nTheoretical the assert on line #149 would pass for any type of collection so if you are really are concerned about the type of collection you could leave that check\nHowever size is definitely checked by line 149 as well...",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "1030ccea313455403d88e1538c42f69da25341f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "404fbe53_537831f1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T08:02:10Z",
+      "side": 1,
+      "message": "oh, its a mapped I missed that :-) SO yes this is correct assert!",
+      "range": {
+        "startLine": 149,
+        "startChar": 29,
+        "endLine": 149,
+        "endChar": 63
+      },
+      "revId": "1030ccea313455403d88e1538c42f69da25341f7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
