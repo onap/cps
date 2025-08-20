@@ -70,5 +70,13 @@ public interface CpsDeltaService {
                                                           FetchDescendantsOption fetchDescendantsOption,
                                                           boolean groupDataNodes);
 
-
+    /**
+     * Apply the changes in the given delta report to an anchor. The delta report contains the difference between two
+     * anchors or an anchor and a configuration.
+     *
+     * @param dataspaceName           dataspace name
+     * @param anchorName              anchor name where the delta report is to be applied
+     * @param deltaReportAsJsonString delta report in JSON string format
+     */
+    void applyChangesInDeltaReport(String dataspaceName, String anchorName, String deltaReportAsJsonString);
 }
