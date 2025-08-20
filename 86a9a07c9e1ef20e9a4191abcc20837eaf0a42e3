@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10e4d04c_3da40d83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T12:59:51Z",
+      "side": 1,
+      "message": "all good, nice piece of work, well done!\nWe are having some issues with the CSIT test and that\u0027s why I ran recheck a couple of times. Nothing to do with your code. We are taking separate actions to resolve the intermittent issues with CSIT...",
+      "revId": "86a9a07c9e1ef20e9a4191abcc20837eaf0a42e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
