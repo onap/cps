@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97340a03_22a69cf0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T10:39:42Z",
+      "side": 1,
+      "message": "\u003e we use this timed custom tho?\n\nwe don\u0027t use the name() method directly in our code, hence the warming. its like a false positive, hence teh supression",
+      "parentUuid": "4699e505_3f1d7f76",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c7385d6_b902e1a4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2025-08-20T08:44:45Z",
       "side": 1,
       "message": "this additional not correction?",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8365ee1_3bce1f14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/DataJobServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T10:39:42Z",
+      "side": 1,
+      "message": "i added these to prevent and have to suppress \u0027unused parameters\u0027 warnings",
+      "parentUuid": "7c7385d6_b902e1a4",
       "range": {
         "startLine": 52,
         "startChar": 8,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3ba3f91_cab55338",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T10:39:42Z",
+      "side": 1,
+      "message": "there was several false positives in this class. \nIntelliJ suggested this. But maybe it is better to suppress individually. I\u0027ll try to change it",
+      "parentUuid": "a62a540f_e1cb3448",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c24dc89_e0bd4345",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperations.java",
         "patchSetId": 5
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d449e509_c994c2fc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T10:39:42Z",
+      "side": 1,
+      "message": "I think this one is specific to \u0027rawTeps\u0027 (casting) though.  I dont think we will ever to a type check when casting raw types to specifics",
+      "parentUuid": "9c24dc89_e0bd4345",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9ed514c_0b3381e1",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/RestServiceUrlTemplateBuilder.java",
         "patchSetId": 5
@@ -106,6 +202,30 @@
       "writtenOn": "2025-08-20T08:44:45Z",
       "side": 1,
       "message": "things like this and other changes here maybe should be added as part of our best practices page to keep it consistent? or do we practice using the analyze option... maybe a team discussion..",
+      "range": {
+        "startLine": 123,
+        "startChar": 65,
+        "endLine": 123,
+        "endChar": 107
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff600d2d_dcf61494",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/http/RestServiceUrlTemplateBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T10:39:42Z",
+      "side": 1,
+      "message": "agreed team discussion needed!",
+      "parentUuid": "f9ed514c_0b3381e1",
       "range": {
         "startLine": 123,
         "startChar": 65,
