@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf64dc7_eacd28af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/ParameterizedCmHandleQueryServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T11:56:31Z",
+      "side": 1,
+      "message": "weird, after removing this and running inspect again there were no warnings for this class except 2 typos which I have fixed now. Maybe I click on the wrong button at some stage...\nAnyway I have removed it now.",
+      "parentUuid": "e3ba3f91_cab55338",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c24dc89_e0bd4345",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I think this one is specific to \u0027rawTeps\u0027 (casting) though.  I dont think we will ever to a type check when casting raw types to specifics",
       "parentUuid": "9c24dc89_e0bd4345",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f01a48c_f2be6edc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DmiModelOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T11:56:31Z",
+      "side": 1,
+      "message": "I tried individual suppress statements instead but there are 4 needed and since this statement at the top suppresses only one type of warning I think it is OK",
+      "parentUuid": "d449e509_c994c2fc",
       "range": {
         "startLine": 52,
         "startChar": 16,
