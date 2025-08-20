@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c3ddafe_44a3089a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T05:29:48Z",
+      "side": 1,
+      "message": "Resolved comments and simplified test cases",
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a47f41de_a398071d",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-08-19T15:35:20Z",
       "side": 1,
       "message": "NB: I think in the case of catch only one exception \u0027e\u0027 is OK to use. The full classname is OK too\n\nBut in the same class I would like to see consistency ie. same pattern on lines #120 and #140.",
+      "range": {
+        "startLine": 120,
+        "startChar": 47,
+        "endLine": 120,
+        "endChar": 48
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ad5cad4_6a0abf80",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T05:29:48Z",
+      "side": 1,
+      "message": "reverted to \u0027e\u0027 for consistency with other methods in class",
+      "parentUuid": "a47f41de_a398071d",
       "range": {
         "startLine": 120,
         "startChar": 47,
@@ -64,6 +105,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edf1d97c_53b3bb88",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/CpsDeltaServiceImplSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T05:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e84a4352_0359fe05",
+      "range": {
+        "startLine": 345,
+        "startChar": 15,
+        "endLine": 345,
+        "endChar": 35
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57921683_fbcbff8c",
@@ -77,6 +142,30 @@
       "writtenOn": "2025-08-19T15:35:20Z",
       "side": 1,
       "message": "NB: should be simplified to: assert result \u003d\u003d [\u0027value\u0027,value2\u0027]\n line instead of 4! Sorry should have seen this before",
+      "range": {
+        "startLine": 146,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 44
+      },
+      "revId": "df3d6dc01f66296c9ff01a33d9499fe3684012a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e4ddf39_da6e04b0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/JsonObjectMapperSpec.groovy",
+        "patchSetId": 29
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T05:29:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57921683_fbcbff8c",
       "range": {
         "startLine": 146,
         "startChar": 12,
