@@ -62,6 +62,53 @@
       },
       "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a11d2b7_fa8558e1",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T12:03:11Z",
+      "side": 1,
+      "message": "I checked and this naming follows the standard convention for custom headers. We also had a demo with DT and they were fine with this naming for headers.",
+      "parentUuid": "01b6eed7_362c18b3",
+      "range": {
+        "startLine": 36,
+        "startChar": 24,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2475d17_d50f4ffe",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-20T12:03:11Z",
+      "side": 1,
+      "message": "remove extra spaces here and line #42",
+      "range": {
+        "startLine": 38,
+        "startChar": 85,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
