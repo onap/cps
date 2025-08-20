@@ -253,6 +253,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eade576f_c4b94c19",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerAsyncHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T08:13:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2abd95d2_ed231225",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "414d8a67_9ff867d8",
@@ -290,6 +314,30 @@
       "side": 1,
       "message": "we can discuss this.\n\nmy thinking : \nsince this is all happening in the update flow , i think if during cm-handle-creation if the user has not set dataproducerid and is only setting during the update flow then they will need an event.",
       "parentUuid": "414d8a67_9ff867d8",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3937b54c_0f4945f0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-20T08:13:11Z",
+      "side": 1,
+      "message": "I am pretty sure do NOT want an event about DataProdcurId changing when the cm handles are created! (only state change events and when the state goes to ready that vent should contain the correct dataProdcuerId ie it should be set by then)!)\n\nBut you could be right. To take away the uncertainty I think you need to demo (write or modify an e2e test) to see which events occur when we register a new cm handle with a dataproduceid////",
+      "parentUuid": "7ea0ab9c_3767b291",
       "range": {
         "startLine": 262,
         "startChar": 12,
