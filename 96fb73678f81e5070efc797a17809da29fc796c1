@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fe6ee86_e1e096b8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b10e1f1d_6e74803e",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 9
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc756217_5f0134c8",
@@ -159,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de0a64aa_c46764b6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e3f9cd4_94aee45c",
+      "range": {
+        "startLine": 174,
+        "startChar": 17,
+        "endLine": 174,
+        "endChar": 52
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c40154b_cbe06e02",
@@ -196,6 +244,30 @@
       "side": 1,
       "message": "this is triggered from the updated cm handles flow.\ncreated cm handles flow is different. user can choose to set the data-producer-identifier in that flow or choose to update in the updated cm handles flow.",
       "parentUuid": "5c40154b_cbe06e02",
+      "range": {
+        "startLine": 181,
+        "startChar": 17,
+        "endLine": 181,
+        "endChar": 54
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "407f5717_15d438df",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d53e222_854d6e60",
       "range": {
         "startLine": 181,
         "startChar": 17,
@@ -338,6 +410,30 @@
       "side": 1,
       "message": "I am pretty sure do NOT want an event about DataProdcurId changing when the cm handles are created! (only state change events and when the state goes to ready that vent should contain the correct dataProdcuerId ie it should be set by then)!)\n\nBut you could be right. To take away the uncertainty I think you need to demo (write or modify an e2e test) to see which events occur when we register a new cm handle with a dataproduceid////",
       "parentUuid": "7ea0ab9c_3767b291",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "96fb73678f81e5070efc797a17809da29fc796c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be72c36a_16095f20",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:52:18Z",
+      "side": 1,
+      "message": "agreed to proof this behavior during demo",
+      "parentUuid": "3937b54c_0f4945f0",
       "range": {
         "startLine": 262,
         "startChar": 12,

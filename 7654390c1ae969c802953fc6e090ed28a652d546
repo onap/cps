@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "7654390c1ae969c802953fc6e090ed28a652d546",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68bffdc2_95ab7e7b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:52:18Z",
+      "side": 1,
+      "message": "nb: change instacne name too",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "7654390c1ae969c802953fc6e090ed28a652d546",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
