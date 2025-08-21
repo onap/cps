@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "46e49dc0_87095c01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "800d2378_73b79bdb",
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "35ffd73b_0a4b37c1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -60,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67dd05ec_8b323238",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CpsApplicationContext.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "yes because the interface we are implementing has this annotation iti should.\n(we can sill remove our own)",
+      "parentUuid": "9f54d132_1605f18a",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ffdd4ca_7279ce30",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
         "patchSetId": 6
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bde2981d_c9e1988b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "agreed to move specific methods to the relevevant classes",
+      "parentUuid": "0ffdd4ca_7279ce30",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2391a25_ce0cdb5d",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/CmSubscriptionStatus.java",
         "patchSetId": 6
@@ -94,6 +160,30 @@
       "writtenOn": "2025-08-21T15:17:48Z",
       "side": 1,
       "message": "i think this can also be removed then.",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 5
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e892ff57_7f695d52",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/CmSubscriptionStatus.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2391a25_ce0cdb5d",
       "range": {
         "startLine": 27,
         "startChar": 3,
@@ -144,6 +234,48 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e7afc4_cab1e4b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36a74965_17838ea9",
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d550470f_88646fdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "let me try again\nOK I replaced all with annotation now instead. For one it HAD to be done on method level though (return statement)",
+      "parentUuid": "2ae951b1_b7cf69e2",
+      "range": {
+        "startLine": 201,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 36
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a3e61b5_74f570a9",
@@ -157,6 +289,30 @@
       "writtenOn": "2025-08-21T15:17:48Z",
       "side": 1,
       "message": "same comment as previous.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8babd432_bb70ab9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a3e61b5_74f570a9",
       "range": {
         "startLine": 97,
         "startChar": 8,
@@ -190,6 +346,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ed6b16_1b08ddcf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7281763_55c7be66",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 97
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "831dca6b_95115beb",
@@ -203,6 +383,30 @@
       "writtenOn": "2025-08-21T15:17:48Z",
       "side": 1,
       "message": "same as before.",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7639a9_0aa08625",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T17:27:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "831dca6b_95115beb",
       "range": {
         "startLine": 36,
         "startChar": 4,
