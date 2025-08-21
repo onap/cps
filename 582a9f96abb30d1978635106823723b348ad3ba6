@@ -1,0 +1,239 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "800d2378_73b79bdb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "this can be removed.",
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ffd73b_0a4b37c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "mostly NBs but one main comment regarding the HazelcastCacheConfig.",
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f54d132_1605f18a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CpsApplicationContext.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "is this enforced by intellij ??\nin the past we removed these annotations.",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ffdd4ca_7279ce30",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "i dont think we should be doing any specific cache configuration here. there are specialized class that extend this class which are defining these.\n\nI am ok with the intellij suggestion : \n\n    protected static MapConfig createMapConfigWithTimeToLiveInSeconds(final String configName,\n                                                                      final int timeToLiveInSeconds) {\n        MapConfig mapConfig \u003d createMapConfig(configName);\n        mapConfig.setTimeToLiveSeconds(timeToLiveInSeconds);\n        return mapConfig;\n    }\n\n    protected static MapConfig createNearCacheMapConfig(final String configName) {\n        MapConfig mapConfig \u003d createMapConfig(configName);\n        mapConfig.setNearCacheConfig(new NearCacheConfig(configName));\n        return mapConfig;\n    }",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2391a25_ce0cdb5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/models/CmSubscriptionStatus.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "i think this can also be removed then.",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 5
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae951b1_b7cf69e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "NB: @SuppressWarnings(\"unchecked\")\ncan you check if this works. \nwe have used SuppressWarnings at other places. So to be consistent I would prefer to go with annotation.",
+      "range": {
+        "startLine": 201,
+        "startChar": 12,
+        "endLine": 201,
+        "endChar": 36
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a74965_17838ea9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "I see that u have used this at many places. We can discuss this with the team and agree the preferred usage.",
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3e61b5_74f570a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "same comment as previous.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7281763_55c7be66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/SynchronizationCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "if my other comment on the same topic is agreed , then this change will not be needed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 97
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831dca6b_95115beb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/trustlevel/TrustLevelCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "same as before.",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ae4c445_23eeeee9",
+        "filename": "csit/run-csit.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 1,
+      "message": "I also added a comment as per comment from Sourabh.\nis it lost during rebase?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 15
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

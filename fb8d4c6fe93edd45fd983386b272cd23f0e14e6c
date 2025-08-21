@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b19eeb_8f642b38",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleQueryServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:17:48Z",
+      "side": 0,
+      "message": "where is this method gone.",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "fb8d4c6fe93edd45fd983386b272cd23f0e14e6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
