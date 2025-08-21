@@ -113,6 +113,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f25f679f_3eca103a",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-21T11:00:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ce7bdee_d12c6dd7",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 69
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01b6eed7_362c18b3",
@@ -184,6 +208,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d6e572_20f8c6e4",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-21T11:00:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "47a9af36_c0917dcb",
+      "range": {
+        "startLine": 36,
+        "startChar": 24,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2475d17_d50f4ffe",
@@ -197,6 +245,30 @@
       "writtenOn": "2025-08-20T12:03:11Z",
       "side": 1,
       "message": "remove extra spaces here and line #42",
+      "range": {
+        "startLine": 38,
+        "startChar": 85,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dd84664_197a8152",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-21T11:00:40Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "c2475d17_d50f4ffe",
       "range": {
         "startLine": 38,
         "startChar": 85,
