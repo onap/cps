@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0566418_8f0cfa74",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T08:26:57Z",
+      "side": 1,
+      "message": "ok so just to eliminate any confusion.\nX-CPS-Request-Id and X-CPS-Client-Id is approved to be used. right?",
+      "parentUuid": "2ce7bdee_d12c6dd7",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 69
+      },
+      "revId": "23d9719f6a60b0f4dbd07d7b4f87f78a35b02424",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01b6eed7_362c18b3",
         "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
         "patchSetId": 19
