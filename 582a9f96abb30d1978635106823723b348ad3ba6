@@ -234,6 +234,30 @@
       },
       "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06045b74_f371beb6",
+        "filename": "csit/run-csit.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-21T15:23:28Z",
+      "side": 1,
+      "message": "this can be ignored.",
+      "parentUuid": "3ae4c445_23eeeee9",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 15
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
