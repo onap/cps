@@ -480,6 +480,24 @@
       "message": "will review this class when the name of the service class is finalized.",
       "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8011e364_f7efae1d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/ApplyDeltaReportSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-21T04:05:38Z",
+      "side": 1,
+      "message": "closing this comment for now",
+      "parentUuid": "ebc1bf78_38f39202",
+      "revId": "3bbf6a31c8d92bd41d540ce957dac680bef869aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

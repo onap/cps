@@ -33,6 +33,41 @@
       "message": "merging this for now.\nu can address the NBs in the next patch.",
       "revId": "86a9a07c9e1ef20e9a4191abcc20837eaf0a42e3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29f8ee7_55a51b14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-21T04:05:38Z",
+      "side": 1,
+      "message": "Thank you 😊",
+      "parentUuid": "10e4d04c_3da40d83",
+      "revId": "86a9a07c9e1ef20e9a4191abcc20837eaf0a42e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "012f4191_eb45787c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-08-21T04:05:38Z",
+      "side": 1,
+      "message": "Closing remarks 😊",
+      "revId": "86a9a07c9e1ef20e9a4191abcc20837eaf0a42e3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
