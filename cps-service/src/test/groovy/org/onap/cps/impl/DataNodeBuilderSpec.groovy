@@ -38,15 +38,6 @@ class DataNodeBuilderSpec extends Specification {
     def yangParserHelper = new YangParserHelper()
     def validateAndParse = false
 
-    def expectedLeavesByXpathMap = [
-            '/test-tree'                                            : [],
-            '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
-            '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
-            '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
-            '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
-            '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
-    ]
-
     String[] networkTopologyModelRfc8345 = [
             'ietf/ietf-yang-types@2013-07-15.yang',
             'ietf/ietf-network-topology-state@2018-02-26.yang',
@@ -56,24 +47,42 @@ class DataNodeBuilderSpec extends Specification {
             'ietf/ietf-inet-types@2013-07-15.yang'
     ]
 
-    def 'Converting ContainerNode (tree) to a DataNode (tree).'() {
+    def 'Converting ContainerNode (tree) to a DataNode (tree) with #yangFile.'() {
         given: 'the schema context for expected model'
-            def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+        def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangFile)
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         and: 'the json data parsed into container node object'
-            def jsonData = TestUtils.getResourceFileContent('test-tree.json')
-            def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
+        def jsonData = TestUtils.getResourceFileContent('test-tree.json')
+        def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         when: 'the container node is converted to a data node'
-            def result = objectUnderTest.withContainerNode(containerNode).build()
-            def mappedResult = TestUtils.getFlattenMapByXpath(result)
+        def result = objectUnderTest.withContainerNode(containerNode).build()
+        def mappedResult = TestUtils.getFlattenMapByXpath(result)
         then: '6 DataNode objects with unique xpath were created in total'
-            mappedResult.size() == 6
+        mappedResult.size() == 6
         and: 'all expected xpaths were built'
-            mappedResult.keySet().containsAll(expectedLeavesByXpathMap.keySet())
+        mappedResult.keySet().containsAll(expectedLeavesByXpathMap.keySet())
         and: 'each data node contains the expected attributes'
-            mappedResult.each {
-                xpath, dataNode -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
-            }
+        mappedResult.each {
+            xpath, dataNode -> assertLeavesMaps(dataNode.getLeaves(), expectedLeavesByXpathMap[xpath])
+        }
+        where:
+        yangFile                    | expectedLeavesByXpathMap
+        'test-tree.yang'            | [
+                '/test-tree'                                            : [],
+                '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
+                '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Finch', 'Robin', 'Sparrow']],
+                '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
+                '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Crow', 'Owl', 'Raven']],
+                '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
+        ]
+        'test-tree-user-ordered.yang' | [
+                '/test-tree'                                            : [],
+                '/test-tree/branch[@name=\'Left\']'                     : [name: 'Left'],
+                '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
+                '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
+                '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
+                '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
+        ]
     }
 
     def 'Converting ContainerNode (tree) to a DataNode (tree) for known parent node.'() {

@@ -25,6 +25,7 @@ package org.onap.cps.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsFacade
+import org.onap.cps.api.model.QueryRequest
 import org.onap.cps.api.parameters.PaginationOption
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -40,6 +41,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @WebMvcTest(QueryRestController)
 class QueryRestControllerSpec extends Specification {
@@ -148,5 +150,61 @@ class QueryRestControllerSpec extends Specification {
             scenario           | parameterName
             'only page size'   | 'pageSize'
             'only page index'  | 'pageIndex'
+    }
+
+    def 'Execute query with valid query request inputs for #scenario.'() {
+        given: 'The query endpoint'
+        def mockJsonObjectMapper = Mock(JsonObjectMapper)
+        def dataNodeEndpoint = "/cps/api/query/my-dataspace/my-anchor"
+        and: 'A valid query request and mock response'
+        def queryRequest = [
+                xpath: xpath,
+                select: selectFields,
+                condition: whereCondition
+        ]
+        def queryResult = expectedResult
+        mockCpsFacade.executeCustomQuery('my-dataspace', 'my-anchor', xpath, selectFields, whereCondition) >> queryResult
+        mockJsonObjectMapper.asJsonString(queryResult) >> expectedJsonOutput
+        mockJsonObjectMapper.asJsonString(queryRequest) >> queryRequestJson
+
+        when: 'Query data nodes API is invoked with POST request'
+        def response = mvc.perform(post(dataNodeEndpoint)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(queryRequestJson))
+                .andReturn().response
+        println "Response Status: ${response.status}, Content: ${response.getContentAsString()}, Content-Type: ${response.getHeader('Content-Type')}"
+
+        then: 'The call is delegated to the CpsFacade with correct parameters'
+        1 * mockCpsFacade.executeCustomQuery('my-dataspace', 'my-anchor', xpath, selectFields, whereCondition) >> expectedResult
+
+        and: 'The response is OK, has correct Content-Type, and contains the query result in JSON format'
+        assert response.status == HttpStatus.OK.value()
+        assert response.getHeader('Content-Type') == MediaType.APPLICATION_JSON_VALUE
+        assert response.getContentAsString() == expectedJsonOutput
+
+        where: 'The following valid query parameters are used'
+        scenario                            | xpath         | selectFields         | whereCondition         | expectedResult                                    | expectedJsonOutput                                | queryRequestJson
+        'all fields provided'              | '/my/path'    | ['field1', 'field2'] | 'field1 = "value1"'    | [[field1: 'value1', field2: 'value2']]           | '[{"field1":"value1","field2":"value2"}]'         | '{"xpath":"/my/path","select":["field1","field2"],"condition":"field1 = \\"value1\\""}'
+        'single select field'              | '/my/path'    | ['field1']           | 'field1 = "value1"'    | [[field1: 'value1']]                             | '[{"field1":"value1"}]'                           | '{"xpath":"/my/path","select":["field1"],"condition":"field1 = \\"value1\\""}'
+        'no where condition'               | '/my/path'    | ['field1', 'field2'] | null                   | [[field1: 'value1', field2: 'value2']]           | '[{"field1":"value1","field2":"value2"}]'         | '{"xpath":"/my/path","select":["field1","field2"],"condition":null}'
+        'empty select fields'              | '/my/path'    | []                   | 'field1 = "value1"'    | [[:]]                                            | '[{}]'                                            | '{"xpath":"/my/path","select":[],"condition":"field1 = \\"value1\\""}'
+    }
+
+    def 'Set where condition in QueryRequest for #scenario.'() {
+        given: 'A new QueryRequest instance'
+        def queryRequest = new QueryRequest()
+
+        when: 'setWhere is called with a condition'
+        queryRequest.setWhere(whereCondition)
+
+        then: 'The condition is correctly set and retrievable via getCondition'
+        queryRequest.getCondition() == expectedCondition
+
+        where: 'The following conditions are tested'
+        scenario                   | whereCondition         | expectedCondition
+        'valid condition'         | 'field1 = "value1"'    | 'field1 = "value1"'
+        'null condition'          | null                   | null
+        'empty condition'         | ''                     | ''
     }
 }

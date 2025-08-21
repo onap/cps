@@ -581,5 +581,25 @@ class CpsDataServiceImplSpec extends Specification {
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
         mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
     }
+    def 'Get custom nodes with valid inputs.'() {
+        given: 'Valid inputs and mock response'
+        def xpath = '/my/path'
+        def selectFields = ['field1', 'field2']
+        def whereConditions = 'field1 = "value1"'
+        def expectedResult = [
+                [field1: 'value1', field2: 'value2'],
+                [field1: 'value3', field2: 'value4']
+        ]
+        mockCpsValidator.validateNameCharacters(dataspaceName, anchorName) >> { /* No exception */ }
+        mockCpsDataPersistenceService.getCustomNodes(dataspaceName, anchorName, xpath, selectFields, whereConditions) >> expectedResult
 
+        when: 'getCustomNodes is called'
+        def result = objectUnderTest.getCustomNodes(dataspaceName, anchorName, xpath, selectFields, whereConditions)
+
+        then: 'The result matches the expected output'
+        assert result == expectedResult
+        assert result.size() == 2
+        assert result[0] == [field1: 'value1', field2: 'value2']
+        assert result[1] == [field1: 'value3', field2: 'value4']
+    }
 }
