@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a51f8e79_b2f74ced",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5068627_0187edf0",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "98dd2ef8342c44a56dd1c8daf2c36efb53ae2d9f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79ac933a_3070f727",

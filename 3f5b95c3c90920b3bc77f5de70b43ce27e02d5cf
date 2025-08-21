@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8778b058_a395e65b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:48:55Z",
+      "side": 1,
+      "message": "all good just confusion about the header values...",
+      "revId": "3f5b95c3c90920b3bc77f5de70b43ce27e02d5cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebcb634d_a3cf7170",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-21T07:48:55Z",
+      "side": 1,
+      "message": "you reverted these names but I thought your previous message on this (see above) indicated DT was ok with the proposed new names included the term CPS ?!",
+      "range": {
+        "startLine": 36,
+        "startChar": 55,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "3f5b95c3c90920b3bc77f5de70b43ce27e02d5cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
