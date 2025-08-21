@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a74cdcc3_5685feea",
+        "filename": "csit/run-csit.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-08-21T09:02:42Z",
+      "side": 1,
+      "message": "If you can add a reason for it as a comment",
+      "revId": "32f89ac170eb84d12135b9d2769efd6b4e571be7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
