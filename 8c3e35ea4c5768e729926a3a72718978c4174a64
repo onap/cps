@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67660d24_fa436cf1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-08-22T11:21:05Z",
+      "side": 1,
+      "message": "can this be part of the properties file?",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "8c3e35ea4c5768e729926a3a72718978c4174a64",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
