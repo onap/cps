@@ -25,7 +25,7 @@ module dmi-registry {
 
   revision "2022-05-10" {
     description
-    "Added data-sync-enabled, sync-state with state, last-sync-time, data-store-sync-state with operational and running syncstate";
+    "Added data-sync-enabled, sync-state with state, last-sync-time, data-store-sync-state with operational and running sync-state";
   }
 
   revision "2022-02-10" {

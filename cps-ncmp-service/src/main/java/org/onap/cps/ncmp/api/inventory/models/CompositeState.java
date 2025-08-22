@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2022-2023 Nordix Foundation
+ * Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,18 +109,6 @@ public class CompositeState {
 
         @JsonProperty("sync-state")
         private DataStoreSyncState dataStoreSyncState;
-
-        @JsonProperty("last-sync-time")
-        private String lastSyncTime;
-    }
-
-    @Data
-    @Builder
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Running {
-
-        @JsonProperty("sync-state")
-        private String syncState;
 
         @JsonProperty("last-sync-time")
         private String lastSyncTime;

@@ -55,7 +55,7 @@ public class DmiRequestBody {
         final List<YangModelCmHandle.Property> yangModelCmHandleProperties) {
         additionalProperties = new LinkedHashMap<>();
         for (final YangModelCmHandle.Property additionalProperty : yangModelCmHandleProperties) {
-            additionalProperties.put(additionalProperty.getName(), additionalProperty.getValue());
+            additionalProperties.put(additionalProperty.name(), additionalProperty.value());
         }
     }
 

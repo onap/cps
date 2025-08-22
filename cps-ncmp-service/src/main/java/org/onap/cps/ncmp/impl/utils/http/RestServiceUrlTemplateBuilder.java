@@ -91,7 +91,7 @@ public class RestServiceUrlTemplateBuilder {
     /**
      * Constructs a URL template with variables based on the accumulated path segments and query parameters.
      *
-     * @param serviceBaseUrl the base URL of the service, e.g., "http://dmi-service.com".
+     * @param serviceBaseUrl the base URL of the service, e.g., "<a href="http://dmi-service.com">...</a>".
      * @param basePath       the base path of the service
      * @return a UrlTemplateParameters instance containing the complete URL template and URL variables
      */
@@ -120,7 +120,7 @@ public class RestServiceUrlTemplateBuilder {
     /**
      * Constructs a URL for a spring actuator health check based on the given base URL.
      *
-     * @param serviceBaseUrl the base URL of the service, e.g., "http://dmi-service.com".
+     * @param serviceBaseUrl the base URL of the service, e.g., "<a href="http://dmi-service.com">...</a>".
      * @return a {@link UrlTemplateParameters} instance containing the complete URL template and empty URL variables,
      *     suitable for DMI health check.
      */

@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (c) 2022-2024 Nordix Foundation
+ *  Modifications Copyright (c) 2022-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -112,7 +112,7 @@ public class NetworkCmProxyStubController implements NetworkCmProxyApi {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.ok(Collections.<RestOutputCmHandle>emptyList());
+        return ResponseEntity.ok(Collections.emptyList());
     }
 
     private ResponseEntity<Map<String, Object>> populateAsyncResponse(final String topicParamInQuery) {

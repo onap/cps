@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START========================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ package org.onap.cps.ncmp.impl.cache;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NamedConfig;
-import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.config.QueueConfig;
 import com.hazelcast.config.SetConfig;
 import com.hazelcast.core.Hazelcast;
@@ -78,35 +77,19 @@ public class HazelcastCacheConfig {
 
     private Config getHazelcastInstanceConfig(final String instanceConfigName) {
         final HazelcastInstance hazelcastInstance = Hazelcast.getHazelcastInstanceByName(instanceConfigName);
-        Config config = null;
-        if (hazelcastInstance != null) {
-            config = hazelcastInstance.getConfig();
-        } else {
-            config = new Config(instanceConfigName);
+        if (hazelcastInstance == null) {
+            return new Config(instanceConfigName);
         }
-        return config;
+        return hazelcastInstance.getConfig();
     }
 
-    protected static MapConfig createMapConfig(final String configName) {
+    protected static MapConfig createGenericMapConfig(final String configName) {
         final MapConfig mapConfig = new MapConfig(configName);
         mapConfig.setBackupCount(1);
         return mapConfig;
     }
 
-    protected static MapConfig createMapConfigWithTimeToLiveInSeconds(final String configName,
-                                                                      final int timeToLiveInSeconds) {
-        final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(1);
-        mapConfig.setTimeToLiveSeconds(timeToLiveInSeconds);
-        return mapConfig;
-    }
 
-    protected static MapConfig createNearCacheMapConfig(final String configName) {
-        final MapConfig mapConfig = new MapConfig(configName);
-        mapConfig.setBackupCount(1);
-        mapConfig.setNearCacheConfig(new NearCacheConfig(configName));
-        return mapConfig;
-    }
 
     protected static QueueConfig createQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);

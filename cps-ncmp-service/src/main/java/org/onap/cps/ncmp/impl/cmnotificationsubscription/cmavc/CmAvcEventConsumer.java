@@ -83,7 +83,9 @@ public class CmAvcEventConsumer {
         if (Boolean.TRUE.equals(dataSyncEnabled)) {
             final AvcEvent cmAvcEvent = toTargetEvent(cmAvcEventAsConsumerRecord.value(), AvcEvent.class);
             log.debug("Event to be processed to update the cache with cmHandleId : {}", cmHandleId);
-            cmAvcEventService.processCmAvcEvent(cmHandleId, cmAvcEvent);
+            if (cmAvcEvent != null) {
+                cmAvcEventService.processCmAvcEvent(cmHandleId, cmAvcEvent);
+            }
         }
     }
 

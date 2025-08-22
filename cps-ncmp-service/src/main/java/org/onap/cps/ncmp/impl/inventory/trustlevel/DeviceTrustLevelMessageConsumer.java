@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,8 +53,10 @@ public class DeviceTrustLevelMessageConsumer {
 
         final DeviceTrustLevel deviceTrustLevel =
             CloudEventMapper.toTargetEvent(consumerRecord.value(), DeviceTrustLevel.class);
-        final String trustLevelAsString = deviceTrustLevel.getData().getTrustLevel();
-        trustLevelManager.updateCmHandleTrustLevel(cmHandleId, TrustLevel.valueOf(trustLevelAsString));
+        if (deviceTrustLevel != null) {
+            final String trustLevelAsString = deviceTrustLevel.getData().getTrustLevel();
+            trustLevelManager.updateCmHandleTrustLevel(cmHandleId, TrustLevel.valueOf(trustLevelAsString));
+        }
     }
 
 }

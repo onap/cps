@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -50,22 +50,23 @@ public class NcmpInEventConsumer {
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
     public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> ncmpInEventAsConsumerRecord) {
         final CloudEvent cloudEvent = ncmpInEventAsConsumerRecord.value();
-        final NcmpInEvent ncmpInEvent =
-                toTargetEvent(cloudEvent, NcmpInEvent.class);
-        log.info("Subscription with name {} to be mapped to hazelcast object...",
+        final NcmpInEvent ncmpInEvent = toTargetEvent(cloudEvent, NcmpInEvent.class);
+        if (ncmpInEvent != null) {
+            log.info("Subscription with name {} to be mapped to hazelcast object...",
                 ncmpInEvent.getData().getSubscriptionId());
 
-        final String subscriptionId = ncmpInEvent.getData().getSubscriptionId();
-        final List<Predicate> predicates = ncmpInEvent.getData().getPredicates();
-        if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
-            log.info("Subscription create request for source {} with subscription id {} ...",
+            final String subscriptionId = ncmpInEvent.getData().getSubscriptionId();
+            final List<Predicate> predicates = ncmpInEvent.getData().getPredicates();
+            if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
+                log.info("Subscription create request for source {} with subscription id {} ...",
                     cloudEvent.getSource(), subscriptionId);
-            cmSubscriptionHandler.processSubscriptionCreateRequest(subscriptionId, predicates);
-        }
-        if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
-            log.info("Subscription delete request for source {} with subscription id {} ...",
+                cmSubscriptionHandler.processSubscriptionCreateRequest(subscriptionId, predicates);
+            }
+            if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
+                log.info("Subscription delete request for source {} with subscription id {} ...",
                     cloudEvent.getSource(), subscriptionId);
-            cmSubscriptionHandler.processSubscriptionDeleteRequest(subscriptionId);
+                cmSubscriptionHandler.processSubscriptionDeleteRequest(subscriptionId);
+            }
         }
     }
 }

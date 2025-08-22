@@ -60,7 +60,7 @@ public class CmHandleStateMonitor {
             final String stateMetricKey = cmHandleStateAsString + METRIC_POSTFIX;
             final int cmHandleCountForState =  cmHandleQueryService.queryCmHandleIdsByState(cmHandleState).size();
             cmHandlesByState.putIfAbsent(stateMetricKey, cmHandleCountForState);
-            log.info("Cm handle state monitor has set " + stateMetricKey + " to " + cmHandleCountForState);
+            log.info("Cm handle state monitor has set {} to {}", stateMetricKey, cmHandleCountForState);
         }
     }
 
@@ -121,6 +121,5 @@ public class CmHandleStateMonitor {
             return null;
         }
     }
-
 
 }

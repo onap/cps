@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2024 Nordix Foundation.
+ * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -59,10 +59,10 @@ class NcmpInEventConsumerSpec extends MessagingBaseSpec {
     }
 
 
-    def 'Consume valid CmNotificationSubscriptionNcmpInEvent create message'() {
+    def 'Consume valid CmNotificationSubscriptionNcmpInEvent create message.'() {
         given: 'a cmNotificationSubscription event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
                 .withId('subscriptionCreated')
@@ -81,10 +81,10 @@ class NcmpInEventConsumerSpec extends MessagingBaseSpec {
             1 * mockCmSubscriptionHandler.processSubscriptionCreateRequest('test-id',_)
     }
 
-    def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
+    def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message.'() {
         given: 'a cmNotificationSubscription event'
             def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
+            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent)
             def testCloudEventSent = CloudEventBuilder.v1()
                 .withData(objectMapper.writeValueAsBytes(testEventSent))
                 .withId('sub-id')
@@ -103,6 +103,21 @@ class NcmpInEventConsumerSpec extends MessagingBaseSpec {
             1 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest('test-id')
     }
 
+    def 'Attempt to consume unsupported Event.'() {
+        given: 'a unsupported event with a valid supported type'
+            def unsupportedEvent = Mock(CloudEvent)
+            def cloudEventWithUnsupportedEvent = CloudEventBuilder.v1()
+                .withId('some id')
+                .withType('subscriptionCreateRequest') // this is valid but does not match the event object
+                .withSource(URI.create('some-resource'))
+                .withData(objectMapper.writeValueAsBytes(unsupportedEvent)).build()
+            def consumerRecord = new ConsumerRecord<String, CloudEvent>('some topic', 0, 0, 'some key', cloudEventWithUnsupportedEvent)
+        when: 'attempt to consume the unsupported event'
+            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
+        then: 'the subscription handler service is not called at all'
+            0 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest(*_)
+            0 * mockCmSubscriptionHandler.processSubscriptionCreateRequest(*_)
+    }
 
     def getLoggingEvent() {
         return logger.list[1]

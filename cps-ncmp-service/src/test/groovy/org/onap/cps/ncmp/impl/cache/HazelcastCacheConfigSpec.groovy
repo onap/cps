@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
  */
 
 package org.onap.cps.ncmp.impl.cache
-
 
 import com.hazelcast.core.Hazelcast
 import spock.lang.Specification
@@ -54,7 +53,7 @@ class HazelcastCacheConfigSpec extends Specification {
             }
         where: 'the following configs are used'
             scenario       | config                                                    || expectMapConfig | expectQueueConfig | expectSetConfig
-            'Map Config'   | HazelcastCacheConfig.createMapConfig('my map config')     || true            | false             | false
+            'Map Config'   | HazelcastCacheConfig.createGenericMapConfig('my map config') || true | false | false
             'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config') || false           | true              | false
             'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')     || false           | false             | true
     }

@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 public class AlternateIdCacheConfig extends HazelcastCacheConfig {
 
     private static final MapConfig cmHandleIdPerAlternateIdMapConfig =
-            createMapConfig("cmHandleIdPerAlternateIdMapConfig");
+            createGenericMapConfig("cmHandleIdPerAlternateIdMapConfig");
 
     /**
      * Distributed instance used for mapping alternate id to cm handle id.
