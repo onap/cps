@@ -50,6 +50,23 @@
       "message": "resolved",
       "revId": "f4b1f4d1801d0f13c5bd173172a56e551ce8f618",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60f52a3_ce7dc85d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-22T10:25:09Z",
+      "side": 1,
+      "message": "plz check the testware.\n\n[ERROR]   MdcServletFilterSpec.Should set Mapped Diagnostic Context from header if present:40-\u003eShould set Mapped Diagnostic Context from header if present_closure1:43 Condition not satisfied:\n\nMDC.get(\u0027REQUEST_ID_HEADER\u0027) \u003d\u003d \u0027test-request-id\u0027\n|   |                        |\n|   null                     false\nclass org.slf4j.MDC",
+      "revId": "f4b1f4d1801d0f13c5bd173172a56e551ce8f618",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
