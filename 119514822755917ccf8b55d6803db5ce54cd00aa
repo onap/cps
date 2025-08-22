@@ -48,6 +48,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad496315_93621e4c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/TimedCustom.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-22T10:21:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "97340a03_22a69cf0",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "119514822755917ccf8b55d6803db5ce54cd00aa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c7385d6_b902e1a4",

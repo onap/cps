@@ -100,6 +100,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6723c0b_5502d8bf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/CpsApplicationContext.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-22T10:21:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67dd05ec_8b323238",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 46
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ffdd4ca_7279ce30",
@@ -137,6 +161,30 @@
       "side": 1,
       "message": "agreed to move specific methods to the relevevant classes",
       "parentUuid": "0ffdd4ca_7279ce30",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "582a9f96abb30d1978635106823723b348ad3ba6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ceb0601_68b6e9ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cache/HazelcastCacheConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-22T10:21:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde2981d_c9e1988b",
       "range": {
         "startLine": 94,
         "startChar": 4,
