@@ -20,6 +20,7 @@
 
 package org.onap.cps.utils.deltareport;
 
+import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
 
 import java.time.OffsetDateTime;
@@ -28,12 +29,12 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.DataNodeFactory;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +47,7 @@ public class DeltaReportExecutor {
     private static final OffsetDateTime NO_TIMESTAMP = null;
 
     private final CpsAnchorService cpsAnchorService;
-    private final CpsDataService cpsDataService;
+    private final CpsDataPersistenceService cpsDataPersistenceService;
     private final DataNodeFactory dataNodeFactory;
     private final JsonObjectMapper jsonObjectMapper;
 
@@ -80,26 +81,37 @@ public class DeltaReportExecutor {
 
     private void updateDataNodes(final String dataspaceName, final String anchorName, final String xpath,
                                  final String updatedData) {
-        cpsDataService.updateNodeLeavesAndExistingDescendantLeaves(dataspaceName, anchorName,
-            CpsPathUtil.getNormalizedParentXpath(xpath), updatedData, NO_TIMESTAMP);
+        final String parentNodeXpath = CpsPathUtil.getNormalizedParentXpath(xpath);
+        final Collection<DataNode> dataNodesToUpdate =
+            buildDataNodes(dataspaceName, anchorName, parentNodeXpath, updatedData);
+        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodesToUpdate);
     }
 
     private void deleteDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
                                            final String dataToDelete) {
-        final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
-        final Collection<DataNode> dataNodesToDelete =
-            dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, dataToDelete, JSON);
+        final Collection<DataNode> dataNodesToDelete = buildDataNodes(dataspaceName, anchorName, xpath, dataToDelete);
         final Collection<String> xpathsToDelete = dataNodesToDelete.stream().map(DataNode::getXpath).toList();
-        cpsDataService.deleteDataNodes(dataspaceName, anchorName, xpathsToDelete, NO_TIMESTAMP);
+        cpsDataPersistenceService.deleteDataNodes(dataspaceName, anchorName, xpathsToDelete);
     }
 
     private void addDataNodesUsingDelta(final String dataspaceName, final String anchorName, final String xpath,
                                         final String dataToAdd) {
         final String xpathToAdd = isRootListNodeXpath(xpath) ? CpsPathUtil.ROOT_NODE_XPATH : xpath;
-        cpsDataService.saveListElements(dataspaceName, anchorName, xpathToAdd, dataToAdd, NO_TIMESTAMP, JSON);
+        final Collection<DataNode> dataNodesToAdd = buildDataNodes(dataspaceName, anchorName, xpathToAdd, dataToAdd);
+        if (ROOT_NODE_XPATH.equals(xpathToAdd)) {
+            cpsDataPersistenceService.storeDataNodes(dataspaceName, anchorName, dataNodesToAdd);
+        } else {
+            cpsDataPersistenceService.addListElements(dataspaceName, anchorName, xpathToAdd, dataNodesToAdd);
+        }
     }
 
     private boolean isRootListNodeXpath(final String xpath) {
         return CpsPathUtil.getNormalizedParentXpath(xpath).isEmpty() && CpsPathUtil.isPathToListElement(xpath);
+    }
+
+    private Collection<DataNode> buildDataNodes(final String datasapceName, final String anchorName,
+                                                final String xpath, final String nodeData) {
+        final Anchor anchor = cpsAnchorService.getAnchor(datasapceName, anchorName);
+        return dataNodeFactory.createDataNodesWithAnchorParentXpathAndNodeData(anchor, xpath, nodeData, JSON);
     }
 }
