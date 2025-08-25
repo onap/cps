@@ -1,0 +1,22 @@
+{
+  "eventType": "my event type",
+  "event": {
+    "dataJob": {
+      "id": "my job id",
+      "productionJobDefinition": {
+        "targetSelector": {
+          "dataNodeSelector": "my data node selector"
+        },
+        "dataSelector": {
+          "notificationTypes": [
+            ""
+          ],
+          "notificationFilter": ""
+        }
+      }
+    },
+    "dataType": {
+      "dataTypeId": "${dataTypeId}"
+    }
+  }
+}
