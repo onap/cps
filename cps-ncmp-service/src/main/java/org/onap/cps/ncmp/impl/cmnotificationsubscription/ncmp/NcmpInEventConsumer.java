@@ -9,7 +9,7 @@
  *        http://www.apache.org/licenses/LICENSE-2.0
  *
  *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  distributed under the License is distributed on an 'AS IS' BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
@@ -20,15 +20,11 @@
 
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.ncmp;
 
-import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent;
-
-import io.cloudevents.CloudEvent;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent;
-import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.Predicate;
+import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.DataJobSubscriptionOperationInEvent;
+import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -39,34 +35,28 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class NcmpInEventConsumer {
 
-    private final CmSubscriptionHandler cmSubscriptionHandler;
-
     /**
      * Consume the specified event.
      *
-     * @param ncmpInEventAsConsumerRecord the event to be consumed
+     * @param dataJobSubscriptionOperationInEvent the event to be consumed
      */
     @KafkaListener(topics = "${app.ncmp.avc.cm-subscription-ncmp-in}",
-            containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
-    public void consumeSubscriptionEvent(final ConsumerRecord<String, CloudEvent> ncmpInEventAsConsumerRecord) {
-        final CloudEvent cloudEvent = ncmpInEventAsConsumerRecord.value();
-        final NcmpInEvent ncmpInEvent = toTargetEvent(cloudEvent, NcmpInEvent.class);
-        if (ncmpInEvent != null) {
-            log.info("Subscription with name {} to be mapped to hazelcast object...",
-                ncmpInEvent.getData().getSubscriptionId());
+            containerFactory = "legacyEventConcurrentKafkaListenerContainerFactory",
+            properties = {"spring.json.value.default.type="
+                    + "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0"
+                    + ".client_to_ncmp.DataJobSubscriptionOperationInEvent"})
+    public void consumeSubscriptionEvent(
+            final DataJobSubscriptionOperationInEvent dataJobSubscriptionOperationInEvent) {
 
-            final String subscriptionId = ncmpInEvent.getData().getSubscriptionId();
-            final List<Predicate> predicates = ncmpInEvent.getData().getPredicates();
-            if ("subscriptionCreateRequest".equals(cloudEvent.getType())) {
-                log.info("Subscription create request for source {} with subscription id {} ...",
-                    cloudEvent.getSource(), subscriptionId);
-                cmSubscriptionHandler.processSubscriptionCreateRequest(subscriptionId, predicates);
-            }
-            if ("subscriptionDeleteRequest".equals(cloudEvent.getType())) {
-                log.info("Subscription delete request for source {} with subscription id {} ...",
-                    cloudEvent.getSource(), subscriptionId);
-                cmSubscriptionHandler.processSubscriptionDeleteRequest(subscriptionId);
-            }
-        }
+        final String eventType = dataJobSubscriptionOperationInEvent.getEventType();
+        final String dataNodeSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
+                .getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
+        final List<String> fdns = JexParser.extractFdnsFromLocationPaths(dataNodeSelector);
+        final String dataJobId = dataJobSubscriptionOperationInEvent.getEvent().getDataJob().getId();
+        final String dataTypeId = dataJobSubscriptionOperationInEvent.getEvent().getDataType() != null
+                ? dataJobSubscriptionOperationInEvent.getEvent().getDataType().getDataTypeId() : "UNKNOWN";
+
+        log.info("Consumed subscription event with details: | jobId={} | eventType={} | fdns={} | dataType={}",
+                dataJobId, eventType, fdns, dataTypeId);
     }
 }

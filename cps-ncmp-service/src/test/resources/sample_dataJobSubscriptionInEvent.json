@@ -1,0 +1,22 @@
+{
+  "eventType": "my event type",
+  "event": {
+    "dataJob": {
+      "id": "my job id",
+      "productionJobDefinition": {
+        "targetSelector": {
+          "dataNodeSelector": "/SubNetwork[id=\"SN1\"]"
+        },
+        "dataSelector": {
+          "notificationTypes": [
+            ""
+          ],
+          "notificationFilter": ""
+        }
+      }
+    },
+    "dataType": {
+      "dataTypeId": "#dataTypeId"
+    }
+  }
+}
