@@ -20,19 +20,20 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-import java.time.Duration
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
-import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
+
+import java.time.Duration
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
@@ -91,6 +92,9 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         and: 'the next event is about update to READY state'
             notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
+
+        and: 'the data producer identifier has not changed as part of the initial registration( proving that this event is not triggered because of data producer identifier update during cm handle creation )'
+            assert notificationMessages[0].event.dataProducerIdentifier == notificationMessages[1].event.dataProducerIdentifier
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
