@@ -21,7 +21,7 @@
 package org.onap.cps.ncmp.impl.cmnotificationsubscription.models;
 
 public enum CmSubscriptionStatus {
-
-    ACCEPTED(), REJECTED(), PENDING()
-
+    ACCEPTED,
+    REJECTED,
+    PENDING
 }
