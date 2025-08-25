@@ -38,6 +38,7 @@ import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.onap.cps.utils.deltareport.DeltaReportExecutor;
@@ -52,6 +53,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
 
     private final DeltaReportExecutor deltaReportExecutor;
     private final CpsAnchorService cpsAnchorService;
+    private final CpsValidator cpsValidator;
     private final CpsDataService cpsDataService;
     private final DataNodeFactory dataNodeFactory;
     private final DataMapper dataMapper;
@@ -107,6 +109,7 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
     @Override
     public void applyChangesInDeltaReport(final String dataspaceName, final String anchorName,
                                           final String deltaReportAsJsonString) {
+        cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         deltaReportExecutor.applyChangesInDeltaReport(dataspaceName, anchorName, deltaReportAsJsonString);
     }
 
