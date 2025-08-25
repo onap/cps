@@ -22,10 +22,11 @@ package org.onap.cps.integration.functional.ncmp.inventory
 
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
+import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
 class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
@@ -33,6 +34,12 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
+        subscribeAndClearPreviousMessages('test-group-for-update', 'ncmp-events')
+    }
+
+    def cleanup() {
+        kafkaConsumer.unsubscribe()
+        kafkaConsumer.close()
     }
 
     def 'Update of CM-handle with new or unchanged alternate ID succeeds.'() {
@@ -84,6 +91,49 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
         cleanup: 'deregister CM handles'
             deregisterCmHandle(DMI1_URL, 'ch-1')
+    }
+
+    def 'CM Handle registration to verify changes in data producer identifier'() {
+        given: 'DMI will return modules when requested'
+            def cmHandleId = 'ch-id-for-update'
+            dmiDispatcher1.moduleNamesPerCmHandleId[cmHandleId] = ['M1', 'M2']
+
+        when: 'a CM-handle is registered for creation'
+
+            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: cmHandleId)
+            def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
+            def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
+
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponse.createdCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
+
+        then: 'the module sync watchdog is triggered'
+            moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
+
+        and: 'flush the latest cm handle registration events( state transition from NONE to ADVISED and ADVISED to READY)'
+            getLatestConsumerRecords(2)
+
+        and: 'cm handle updated with the data producer identifier'
+            def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
+            def dmiPluginRegistrationForUpdate = new DmiPluginRegistration(dmiPlugin: DMI1_URL, updatedCmHandles: [cmHandleToUpdate])
+            def dmiPluginRegistrationResponseForUpdate = objectUnderTest.updateDmiRegistration(dmiPluginRegistrationForUpdate)
+
+        then: 'registration gives successful response'
+            assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
+
+        and: 'get the latest message'
+            def consumerRecords = getLatestConsumerRecords(1)
+
+        and: 'the message has the updated data producer identifier'
+            def notificationMessages = []
+            for (def consumerRecord : consumerRecords) {
+                notificationMessages.add(jsonObjectMapper.convertJsonString(consumerRecord.value().toString(), LcmEvent))
+            }
+            assert notificationMessages[0].event.cmHandleId.contains(cmHandleId)
+            assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-id'
+
+        cleanup: 'deregister CM handle'
+            deregisterCmHandle(DMI1_URL, cmHandleId)
     }
 
 }
