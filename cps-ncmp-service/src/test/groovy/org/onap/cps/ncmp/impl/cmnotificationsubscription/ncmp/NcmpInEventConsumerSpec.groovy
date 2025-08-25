@@ -25,23 +25,19 @@ import ch.qos.logback.classic.Logger
 import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.cloudevents.CloudEvent
-import io.cloudevents.core.builder.CloudEventBuilder
-import org.apache.kafka.clients.consumer.ConsumerRecord
-import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent
+import org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.DataJobSubscriptionOperationInEvent
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.ncmp.utils.events.MessagingBaseSpec
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import spock.lang.Specification
 
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
-class NcmpInEventConsumerSpec extends MessagingBaseSpec {
+class NcmpInEventConsumerSpec extends Specification {
 
-    def mockCmSubscriptionHandler = Mock(CmSubscriptionHandler)
-    def objectUnderTest = new NcmpInEventConsumer(mockCmSubscriptionHandler)
-    def logger = Spy(ListAppender<ILoggingEvent>)
+    def objectUnderTest = new NcmpInEventConsumer()
+    def logger = new ListAppender<ILoggingEvent>()
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -58,69 +54,23 @@ class NcmpInEventConsumerSpec extends MessagingBaseSpec {
         ((Logger) LoggerFactory.getLogger(NcmpInEventConsumer.class)).detachAndStopAllAppenders()
     }
 
-
-    def 'Consume valid CmNotificationSubscriptionNcmpInEvent create message.'() {
-        given: 'a cmNotificationSubscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent)
-            def testCloudEventSent = CloudEventBuilder.v1()
-                .withData(objectMapper.writeValueAsBytes(testEventSent))
-                .withId('subscriptionCreated')
-                .withType('subscriptionCreateRequest')
-                .withSource(URI.create('some-resource'))
-                .withExtension('correlationid', 'test-cmhandle1').build()
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
-        when: 'the valid event is consumed'
-            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
-        then: 'an event is logged with level INFO'
-            def loggingEvent = getLoggingEvent()
+    def 'Consuming CM Data Notification #scenario data type id.'() {
+        given: 'a JSON file containing a subscription event'
+            def jsonData = TestUtils.getResourceFileContent('sample_dataJobSubscriptionInEvent.json')
+            jsonData = jsonData.replace('#dataTypeId', dataTypeId)
+            def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
+        when: 'the event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(event)
+        then: 'event details are logged at level INFO'
+            def loggingEvent = logger.list.last()
             assert loggingEvent.level == Level.INFO
-        and: 'the log indicates the task completed successfully'
-            assert loggingEvent.formattedMessage == 'Subscription create request for source some-resource with subscription id test-id ...'
-        and: 'the subscription handler service is called once'
-            1 * mockCmSubscriptionHandler.processSubscriptionCreateRequest('test-id',_)
+            assert loggingEvent.formattedMessage.contains('jobId=my job id')
+            assert loggingEvent.formattedMessage.contains('eventType=my event type')
+            assert loggingEvent.formattedMessage.contains("dataType=${dataTypeId}")
+            assert loggingEvent.formattedMessage.contains('fdns=[/SubNetwork=SN1]')
+        where: 'the following data type ids are used'
+            scenario  | dataTypeId
+            'with'    | 'my data type'
+            'without' | 'null'
     }
-
-    def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message.'() {
-        given: 'a cmNotificationSubscription event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventSent = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent)
-            def testCloudEventSent = CloudEventBuilder.v1()
-                .withData(objectMapper.writeValueAsBytes(testEventSent))
-                .withId('sub-id')
-                .withType('subscriptionDeleteRequest')
-                .withSource(URI.create('some-resource'))
-                .withExtension('correlationid', 'test-cmhandle1').build()
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('topic-name', 0, 0, 'event-key', testCloudEventSent)
-        when: 'the valid event is consumed'
-            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
-        then: 'an event is logged with level INFO'
-            def loggingEvent = getLoggingEvent()
-            assert loggingEvent.level == Level.INFO
-        and: 'the log indicates the task completed successfully'
-            assert loggingEvent.formattedMessage == 'Subscription delete request for source some-resource with subscription id test-id ...'
-        and: 'the subscription handler service is called once'
-            1 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest('test-id')
-    }
-
-    def 'Attempt to consume unsupported Event.'() {
-        given: 'a unsupported event with a valid supported type'
-            def unsupportedEvent = Mock(CloudEvent)
-            def cloudEventWithUnsupportedEvent = CloudEventBuilder.v1()
-                .withId('some id')
-                .withType('subscriptionCreateRequest') // this is valid but does not match the event object
-                .withSource(URI.create('some-resource'))
-                .withData(objectMapper.writeValueAsBytes(unsupportedEvent)).build()
-            def consumerRecord = new ConsumerRecord<String, CloudEvent>('some topic', 0, 0, 'some key', cloudEventWithUnsupportedEvent)
-        when: 'attempt to consume the unsupported event'
-            objectUnderTest.consumeSubscriptionEvent(consumerRecord)
-        then: 'the subscription handler service is not called at all'
-            0 * mockCmSubscriptionHandler.processSubscriptionDeleteRequest(*_)
-            0 * mockCmSubscriptionHandler.processSubscriptionCreateRequest(*_)
-    }
-
-    def getLoggingEvent() {
-        return logger.list[1]
-    }
-
 }
