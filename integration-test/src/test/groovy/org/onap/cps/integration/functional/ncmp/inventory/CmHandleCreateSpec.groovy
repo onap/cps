@@ -20,30 +20,25 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-import java.time.Duration
-import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.serialization.StringDeserializer
-import org.onap.cps.integration.KafkaTestContainer
+
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
-import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
-import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
+import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
     def uniqueId = 'ch-unique-id-for-create-test'
 
-    static KafkaConsumer kafkaConsumer
-
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
-        subscribeAndClearPreviousMessages()
+        subscribeAndClearPreviousMessages('test-group', 'ncmp-events')
     }
 
     def cleanup() {
@@ -57,7 +52,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             dmiDispatcher1.moduleNamesPerCmHandleId[uniqueId] = ['M1', 'M2']
 
         when: 'a CM-handle is registered for creation'
-            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueId)
+            def cmHandleToCreate = new NcmpServiceCmHandle(cmHandleId: uniqueId, dataProducerIdentifier: 'my-data-producer-identifier')
             def dmiPluginRegistration = new DmiPluginRegistration(dmiPlugin: DMI1_URL, createdCmHandles: [cmHandleToCreate])
             def dmiPluginRegistrationResponse = objectUnderTest.updateDmiRegistration(dmiPluginRegistration)
 
@@ -77,7 +72,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
 
         then: 'get the latest messages'
-            def consumerRecords = getLatestConsumerRecords()
+            def consumerRecords = getLatestConsumerRecordsWithPollDurationInMs(2, 100)
 
         and: 'both converted messages are for the correct cm handle'
             def notificationMessages = []
@@ -86,11 +81,16 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             }
             assert notificationMessages.event.cmHandleId == [ uniqueId, uniqueId ]
 
-        and: 'the oldest event is about the update to ADVISED state'
-            notificationMessages[0].event.newValues.cmHandleState.value() == 'ADVISED'
+        and: 'the oldest event is about the update to ADVISED state and it has a data producer id'
+            assert notificationMessages[0].event.newValues.cmHandleState.value() == 'ADVISED'
+            assert notificationMessages[0].event.dataProducerIdentifier == 'my-data-producer-identifier'
 
-        and: 'the next event is about update to READY state'
-            notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
+        and: 'the next event is about update to READY state and it has the same data producer identifier as in in ADVISED state'
+            assert notificationMessages[1].event.newValues.cmHandleState.value() == 'READY'
+            assert notificationMessages[1].event.dataProducerIdentifier == 'my-data-producer-identifier'
+
+        and: 'there are no more messages to be read'
+            assert getLatestConsumerRecordsWithPollDurationInMs(1, 100).size() == 0
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
@@ -213,24 +213,6 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
-    }
-
-    def subscribeAndClearPreviousMessages() {
-        kafkaConsumer = KafkaTestContainer.getConsumer('test-group', StringDeserializer.class)
-        kafkaConsumer.subscribe(['ncmp-events'])
-        kafkaConsumer.poll(Duration.ofMillis(500))
-    }
-
-    def getLatestConsumerRecords() {
-        def consumerRecords = []
-        def retryAttempts = 10
-        while (consumerRecords.size() < 2) {
-            retryAttempts--
-            consumerRecords.addAll(kafkaConsumer.poll(Duration.ofMillis(100)))
-            if (retryAttempts == 0)
-                break
-        }
-        return consumerRecords
     }
 
 }
