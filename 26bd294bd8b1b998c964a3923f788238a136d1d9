@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a62a43_1fd58a04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-25T12:22:29Z",
+      "side": 1,
+      "message": "resolved",
+      "revId": "26bd294bd8b1b998c964a3923f788238a136d1d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e685a857_142f59fe",
@@ -58,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dab2937_f2ad0bf9",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-25T12:22:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e685a857_142f59fe",
+      "range": {
+        "startLine": 39,
+        "startChar": 45,
+        "endLine": 39,
+        "endChar": 46
+      },
+      "revId": "26bd294bd8b1b998c964a3923f788238a136d1d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24bf94aa_a2566426",
@@ -71,6 +112,30 @@
       "writtenOn": "2025-08-25T09:57:10Z",
       "side": 1,
       "message": "if the request-id and client-id are set in MDC why are we asserting with null ??",
+      "range": {
+        "startLine": 52,
+        "startChar": 14,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "26bd294bd8b1b998c964a3923f788238a136d1d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37bd6a85_4aff11ee",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-25T12:22:29Z",
+      "side": 1,
+      "message": "During filter chain -assert MDC has value. After filter chain complete assert MDC is null/cleared.",
+      "parentUuid": "24bf94aa_a2566426",
       "range": {
         "startLine": 52,
         "startChar": 14,
