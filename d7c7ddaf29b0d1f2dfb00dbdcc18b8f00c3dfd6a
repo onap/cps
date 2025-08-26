@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf6a5e39_abe5807c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-26T11:16:12Z",
+      "side": 1,
+      "message": "I think we should include the max poll time in the method for clarity during test\ne.g. getLatestConsumerRecordsMaxPoll1Second",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 32
+      },
+      "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
