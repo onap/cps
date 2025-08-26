@@ -22,6 +22,30 @@
       },
       "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8194eb1_04b5c1c1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-26T15:47:59Z",
+      "side": 1,
+      "message": "sure. it can be done.\nas of now we just poll for 100ms.\n\nso we can either parameterize the method to take the poll duration\nOR\nhave a dedicated method : getLatestConsumerRecordWithMaxPollOf100Ms or **MaxPollOf1Second ?\n\nwhich one do u prefer?",
+      "parentUuid": "cf6a5e39_abe5807c",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 32
+      },
+      "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
