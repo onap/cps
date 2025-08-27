@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "cps-and-ncmp.fullname" . }}-postgresql
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: postgres
 spec:
   replicas: 1
   selector:
