@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +35,10 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.AnchorNotFoundException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
+import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.boot.SpringApplication;
@@ -47,7 +50,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
 
     protected final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
-    private final CpsAnchorService cpsAnchorService;
+    protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
@@ -118,6 +121,23 @@ public abstract class AbstractModelLoader implements ModelLoader {
     }
 
     /**
+     * Checks whether the specified anchor exists within the given dataspace.
+     *
+     * @param dataspaceName the name of the dataspace
+     * @param anchorName    the name of the anchor within the dataspace
+     * @return {@code true} if the anchor exists, {@code false} otherwise
+     */
+    public boolean doesAnchorExist(final String dataspaceName, final String anchorName) {
+        try {
+            cpsAnchorService.getAnchor(dataspaceName, anchorName);
+            return true;
+        } catch (final AnchorNotFoundException anchorNotFoundException) {
+            log.debug("Anchor '{}' not found in dataspace '{}'", anchorName, dataspaceName);
+            return false;
+        }
+    }
+
+    /**
      * Create initial top level data node.
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
@@ -182,6 +202,17 @@ public abstract class AbstractModelLoader implements ModelLoader {
             log.debug(message);
             throw new ModelOnboardingException(message, exception.getMessage());
         }
+    }
+
+    /**
+     * Checks if the specified revision of a module is installed.
+     */
+    protected boolean isModuleRevisionInstalled(final String dataspaceName, final String anchorName,
+                                                final String moduleName, final String moduleRevision) {
+        final Collection<ModuleDefinition> moduleDefinitions =
+                cpsModuleService.getModuleDefinitionsByAnchorAndModule(dataspaceName, anchorName, moduleName,
+                        moduleRevision);
+        return !moduleDefinitions.isEmpty();
     }
 
     private void exitApplication(final ApplicationStartedEvent applicationStartedEvent) {
