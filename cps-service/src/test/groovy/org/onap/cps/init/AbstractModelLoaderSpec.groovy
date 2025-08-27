@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modification Copyright (C) 2024 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,8 +28,10 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
+import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.slf4j.LoggerFactory
@@ -240,6 +242,40 @@ class AbstractModelLoaderSpec extends Specification {
             def thrown = thrown(ModelOnboardingException)
             assert thrown.message.contains('Updating schema set failed')
             assert thrown.details.contains('test message')
+    }
+
+    def 'Checking if an anchor exists'() {
+        given: 'the anchor service returns an anchor without throwing an exception'
+            mockCpsAnchorService.getAnchor('my-dataspace', 'my-anchor') >> {}
+        when: 'checking if the anchor exists'
+            def result = objectUnderTest.doesAnchorExist('my-dataspace', 'my-anchor')
+        then: 'the expected boolean value is returned'
+            assert result == true
+    }
+
+    def 'Checking if an anchor exists with unknown anchor'() {
+        given: 'the anchor service throws an exception'
+            def anchorNotFoundException = new AnchorNotFoundException('my-dataspace', 'missing-anchor')
+            mockCpsAnchorService.getAnchor('my-dataspace', 'missing-anchor') >> {throw anchorNotFoundException}
+        when: 'checking if the anchor exists'
+            def result = objectUnderTest.doesAnchorExist('my-dataspace', 'missing-anchor')
+        then: 'the expected boolean value is returned'
+            assert result == false
+    }
+
+    def 'Checking if module revision is installed'() {
+        given: 'the module service returns module definitions'
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule('some-dataspace', 'some-anchor', 'some-module', revision) >> moduleDefinitions
+        when: 'checking if a module revision is installed'
+            def result = objectUnderTest.isModuleRevisionInstalled('some-dataspace', 'some-anchor', 'some-module', revision)
+        then: 'the result matches expectation'
+            assert result == expectedResult
+        and: 'a log message is produced'
+            assertLogContains("Checking if revision ${revision} of module some-module is installed")
+        where:
+            revision || moduleDefinitions          || expectedResult
+            'rev1'   || [Mock(ModuleDefinition)]   || true
+            'rev2'   || []                         || false
     }
 
     private void assertLogContains(String message) {
