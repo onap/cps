@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "568840d7_49851320",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:39:51Z",
+      "side": 1,
+      "message": "This commit now is blocked by another commit: \n\nhttps://gerrit.onap.org/r/c/cps/+/141946",
+      "revId": "c4d4661fafb62a9803b830c5ee15d70b92578014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0579817e_d0b13fe2",
