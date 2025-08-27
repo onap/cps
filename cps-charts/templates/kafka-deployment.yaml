@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: {{ include "cps-and-ncmp.fullname" . }}-kafka
   labels:
-    app: kafka
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: kafka
 spec:
   replicas: {{ .Values.kafka.replicaCount }}
   selector:

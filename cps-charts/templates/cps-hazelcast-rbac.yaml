@@ -1,0 +1,53 @@
+# Reference : https://raw.githubusercontent.com/hazelcast/hazelcast/master/kubernetes-rbac.yaml
+# Simplified kubernetes-rbac.yaml with minimum necessary permissions granted to pods to query Kubernetes API.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cps-hazelcast-service-account
+  namespace: default
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: hazelcast
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cps-hazelcast-cluster-role
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: hazelcast
+rules:
+  - apiGroups:
+      - ""  # core API group (pods, nodes, services, endpoints)
+    resources:
+      - endpoints # used to discover other hazelcast members using kubernetes services
+      - pods
+      - nodes
+      - services
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - "discovery.k8s.io"
+    resources:
+      - endpointslices # (for newer kubernetes versions) used to discover other hazelcast members using kubernetes services
+    verbs:
+      - get
+      - list
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cps-hazelcast-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cps-hazelcast-cluster-role
+subjects:
+  - kind: ServiceAccount
+    name: cps-hazelcast-service-account
+    namespace: default

@@ -2,6 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-init-sql
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: postgres
 data:
   postgres-init.sql: |-
     {{ .Files.Get "config/postgres-init.sql" | indent 4 }}

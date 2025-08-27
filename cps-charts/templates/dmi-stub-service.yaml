@@ -4,6 +4,7 @@ metadata:
   name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
+    component: dmi-stub
 spec:
   type: {{ .Values.dmiStub.service.type }}
   ports:
