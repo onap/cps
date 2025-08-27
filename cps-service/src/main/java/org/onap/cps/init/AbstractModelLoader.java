@@ -34,6 +34,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
+import org.onap.cps.api.exceptions.AnchorNotFoundException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
@@ -46,8 +47,8 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 public abstract class AbstractModelLoader implements ModelLoader {
 
     protected final CpsDataspaceService cpsDataspaceService;
-    private final CpsModuleService cpsModuleService;
-    private final CpsAnchorService cpsAnchorService;
+    protected final CpsModuleService cpsModuleService;
+    protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
@@ -114,6 +115,23 @@ public abstract class AbstractModelLoader implements ModelLoader {
         } catch (final Exception exception) {
             log.error("Creating anchor failed: {} ", exception.getMessage());
             throw new ModelOnboardingException("Creating anchor failed", exception.getMessage());
+        }
+    }
+
+    /**
+     * Checks whether the specified anchor exists within the given dataspace.
+     *
+     * @param dataspaceName the name of the dataspace
+     * @param anchorName    the name of the anchor within the dataspace
+     * @return {@code true} if the anchor exists, {@code false} otherwise
+     */
+    public boolean doesAnchorExist(final String dataspaceName, final String anchorName) {
+        try {
+            cpsAnchorService.getAnchor(dataspaceName, anchorName);
+            return true;
+        } catch (final AnchorNotFoundException alreadyDefinedException) {
+            log.debug("Anchor '{}' not found in dataspace '{}'", anchorName, dataspaceName);
+            return false;
         }
     }
 
