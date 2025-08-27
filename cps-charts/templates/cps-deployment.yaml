@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "cps-and-ncmp.fullname" . }}-cps
+  labels:
+    app: {{ include "cps-and-ncmp.name" . }}
+    component: cps-and-ncmp
 spec:
   replicas: {{ .Values.cps.replicas }}
   selector:
@@ -14,6 +17,7 @@ spec:
         app: {{ include "cps-and-ncmp.name" . }}
         component: cps
     spec:
+      serviceAccountName: cps-hazelcast-service-account
       containers:
         - name: cps
           image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
