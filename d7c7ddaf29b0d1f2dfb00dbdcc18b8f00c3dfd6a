@@ -111,6 +111,30 @@
       },
       "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf665c7b_9c3bbdfe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T12:50:28Z",
+      "side": 1,
+      "message": "updated the name of the method.",
+      "parentUuid": "de50e840_32a1702e",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 32
+      },
+      "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
