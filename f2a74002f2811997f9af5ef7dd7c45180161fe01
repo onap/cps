@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05142119_cb51d9d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:55:45Z",
+      "side": 1,
+      "message": "saying something about logging for this task/commit",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03b80a07_f4160cb4",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
         "patchSetId": 2
@@ -49,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67b380a8_90b6b864",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:55:45Z",
+      "side": 1,
+      "message": "not needed if you say something in commit message",
+      "parentUuid": "ba0217b9_de219052",
+      "range": {
+        "startLine": 69,
+        "startChar": 18,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0eaf5110_1d7c08b8",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
         "patchSetId": 2
@@ -60,6 +107,30 @@
       "writtenOn": "2025-08-27T12:39:57Z",
       "side": 1,
       "message": "these are the current \u0027expectations\u0027 should not be in slogan(name) of test.\n Suggested slogan:\n \u0027Consuming CM Data Notification #scenario\u0027\n See also my comments on the table below",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 46
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4526156_9f7210bb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:55:45Z",
+      "side": 1,
+      "message": "you also do \n\u0027Consuming CM Data Notification #scenario datatype id\u0027",
+      "parentUuid": "0eaf5110_1d7c08b8",
       "range": {
         "startLine": 58,
         "startChar": 28,
