@@ -115,9 +115,9 @@ public class CmHandleRegistrationService {
      * @param cmHandleId                 cm handle id
      * @param dataSyncEnabledTargetValue data sync enabled flag
      */
-    public void setDataSyncEnabled(final String cmHandleId, final Boolean dataSyncEnabledTargetValue) {
+    public void setDataSyncEnabled(final String cmHandleId, final boolean dataSyncEnabledTargetValue) {
         final CompositeState compositeState = inventoryPersistence.getCmHandleState(cmHandleId);
-        if (dataSyncEnabledTargetValue.equals(compositeState.getDataSyncEnabled())) {
+        if (dataSyncEnabledTargetValue == compositeState.getDataSyncEnabled()) {
             log.info("Data-Sync Enabled flag is already: {} ", dataSyncEnabledTargetValue);
             return;
         }
@@ -146,7 +146,7 @@ public class CmHandleRegistrationService {
      */
     public void addAlternateIdsToCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
         final Map<String, String> cmHandleIdPerAlternateIdToRegister = new HashMap<>(yangModelCmHandles.size());
-        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
             final String cmHandleId = yangModelCmHandle.getId();
             final String alternateId = yangModelCmHandle.getAlternateId();
             if (StringUtils.isNotBlank(alternateId)) {
@@ -277,7 +277,7 @@ public class CmHandleRegistrationService {
     private void processTrustLevels(final Collection<NcmpServiceCmHandle> cmHandlesToBeCreated,
                                     final Collection<String> succeededCmHandleIds) {
         final Map<String, TrustLevel> initialTrustLevelPerCmHandleId = new HashMap<>(cmHandlesToBeCreated.size());
-        for (final NcmpServiceCmHandle ncmpServiceCmHandle: cmHandlesToBeCreated) {
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : cmHandlesToBeCreated) {
             if (succeededCmHandleIds.contains(ncmpServiceCmHandle.getCmHandleId())) {
                 initialTrustLevelPerCmHandleId.put(ncmpServiceCmHandle.getCmHandleId(),
                     ncmpServiceCmHandle.getRegistrationTrustLevel());
@@ -384,7 +384,7 @@ public class CmHandleRegistrationService {
         final List<YangModelCmHandle> yangModelCmHandlesToRegister = new ArrayList<>(cmHandlesToBeCreated.size());
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses =
             new ArrayList<>(cmHandlesToBeCreated.size());
-        for (final NcmpServiceCmHandle ncmpServiceCmHandle: cmHandlesToBeCreated) {
+        for (final NcmpServiceCmHandle ncmpServiceCmHandle : cmHandlesToBeCreated) {
             if (!rejectedCmHandleIds.contains(ncmpServiceCmHandle.getCmHandleId())) {
                 yangModelCmHandlesToRegister.add(getYangModelCmHandle(dmiPluginRegistration, ncmpServiceCmHandle));
                 cmHandleRegistrationResponses.add(
@@ -411,7 +411,7 @@ public class CmHandleRegistrationService {
     }
 
     void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        for (final YangModelCmHandle yangModelCmHandle: yangModelCmHandles) {
+        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
             final String cmHandleId = yangModelCmHandle.getId();
             final String alternateId = yangModelCmHandle.getAlternateId();
             if (StringUtils.isNotBlank(alternateId)) {

@@ -349,15 +349,15 @@ class CpsDeltaServiceImplSpec extends Specification {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
+        mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 
     def setupSchemaSetMocksForDelta(yangResourceContentPerName) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName) >> mockYangTextSchemaSourceSet
         mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).schemaContext()
+        mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 }

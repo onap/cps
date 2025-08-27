@@ -185,7 +185,7 @@ class CpsNotificationServiceImplSpec extends Specification {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
+        mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 }

@@ -81,7 +81,7 @@ class E2ENetworkSliceSpec extends Specification {
         given: 'Valid yang resource as name-to-content map'
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap(
                     'e2e/basic/cps-cavsta-onap-internal2021-01-28.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).schemaContext()
             def dataNodeStored
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-Cavsta-Data.txt')
@@ -112,7 +112,7 @@ class E2ENetworkSliceSpec extends Specification {
         def dataNodeStored
         given: 'valid yang resource as name-to-content map'
             def yangResourceContentPerName = TestUtils.getYangResourcesAsMap('e2e/basic/cps-ran-inventory@2021-01-28.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).schemaContext()
         and : 'a valid json is provided for the model'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-inventory-data.json')
         and : 'all the further dependencies are mocked '
@@ -154,7 +154,7 @@ class E2ENetworkSliceSpec extends Specification {
         and : 'json data'
             def jsonData = TestUtils.getResourceFileContent('e2e/basic/cps-ran-schema-model-data-v4.json')
         expect: 'schema context is built with no exception indicating the schema set being valid '
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceContentPerName).schemaContext()
         and: 'data is parsed with no exception indicating the model match'
             new YangParserHelper().parseData(ContentType.JSON, jsonData, schemaContext, '', false) != null
     }

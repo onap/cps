@@ -137,12 +137,12 @@ public class YangParser {
 
     private SchemaContext getSchemaContext(final Anchor anchor) {
         return yangTextSchemaSourceSetCache.get(anchor.getDataspaceName(), anchor.getSchemaSetName())
-                       .getSchemaContext();
+                       .schemaContext();
     }
 
     private SchemaContext getSchemaContext(final Map<String, String> yangResourceContentPerName) {
         return timedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourceContentPerName)
-                       .getSchemaContext();
+                       .schemaContext();
     }
 
     private void invalidateCache(final Anchor anchor) {

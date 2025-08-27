@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020-2021 Pantheon.tech
- *  Modifications Copyright (C) 2020-2022 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2021 Bell Canada.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
@@ -36,7 +36,7 @@ class YangTextSchemaSourceSetBuilderSpec extends Specification {
         given: 'a yang model (file)'
             def yangResourceNameToContent = [filename: TestUtils.getResourceFileContent('bookstore.yang')]
         when: 'the content is parsed'
-            def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         then: 'it can be validated successfully'
             YangTextSchemaSourceSetBuilder.validate(yangResourceNameToContent)
         and: 'the result contains 1 module of the correct name and revision'
