@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b80a07_f4160cb4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "can we use triple \"\"\" here to avoid concatenation?",
+      "range": {
+        "startLine": 55,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 75
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba0217b9_de219052",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "Maybe indicate that this need to be expanded later, as we don\u0027t really do anything with this event yet?",
+      "range": {
+        "startLine": 69,
+        "startChar": 18,
+        "endLine": 69,
+        "endChar": 27
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eaf5110_1d7c08b8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "these are the current \u0027expectations\u0027 should not be in slogan(name) of test.\n Suggested slogan:\n \u0027Consuming CM Data Notification #scenario\u0027\n See also my comments on the table below",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 46
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e976c8_9654dd20",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "nice idea but most of these do NOT need to be inserted dynamically. Only the dataTypeId, see also my comments below",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 112
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624bed75_67e28f8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "this is the only column you need since you code only has a code path for this variable!\n\nyou need to test with null and non-null value like so\n\nwhere: \u0027the following data type ids are used\u0027\nscenario | dataTypeId\n\u0027with data type id\u0027 | \u0027my data type\u0027\n\u0027without data type id\u0027 | null",
+      "range": {
+        "startLine": 77,
+        "startChar": 58,
+        "endLine": 77,
+        "endChar": 69
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2733eb1_31e033c2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "same here, can be hardcoded, \u0027my job id\u0027",
+      "range": {
+        "startLine": 77,
+        "startChar": 31,
+        "endLine": 77,
+        "endChar": 56
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1357c809_1d665925",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "Node different code paths for eventType so this can be hardcoded, again using a simple value like \u0027my event type\u0027",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 29
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146de890_859874f4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "since this is not parsed here use simple explanatory test values like\n\u0027my data node selector\u0027\u0027\nAlso no need for teh delete and the create to have different values so again no column need but can simply be hardcoded",
+      "range": {
+        "startLine": 78,
+        "startChar": 72,
+        "endLine": 78,
+        "endChar": 104
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc6cff2_26769fbd",
+        "filename": "cps-ncmp-service/src/test/resources/sample_dataJobSubscriptionInEvent.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "can be hardcoded",
+      "range": {
+        "startLine": 2,
+        "startChar": 15,
+        "endLine": 2,
+        "endChar": 29
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1df2731f_0ba41512",
+        "filename": "cps-ncmp-service/src/test/resources/sample_dataJobSubscriptionInEvent.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "can be hardcoded",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d542723f_7f83a3c1",
+        "filename": "cps-ncmp-service/src/test/resources/sample_dataJobSubscriptionInEvent.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:39:57Z",
+      "side": 1,
+      "message": "can be hardcoded",
+      "range": {
+        "startLine": 8,
+        "startChar": 31,
+        "endLine": 8,
+        "endChar": 50
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
