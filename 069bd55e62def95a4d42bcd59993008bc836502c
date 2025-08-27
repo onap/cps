@@ -69,6 +69,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51451827_595c31f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:36:52Z",
+      "side": 1,
+      "message": "The comments in this commit are addressed in another commit: Addressed in another commit: 141946: Updated the k8s objects with correct labels | https://gerrit.onap.org/r/c/cps/+/141946\n\nI\u0027ll abandon this commit sooner. Thank you for reviewing.",
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f25fb99_a7214dec",
@@ -116,6 +133,30 @@
       "writtenOn": "2025-08-27T08:08:57Z",
       "side": 1,
       "message": "is his needed if so can you add a comen what this empty group is for",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 10
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d80c6c5c_01600871",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:36:52Z",
+      "side": 1,
+      "message": "Yes, it is. This refers to core Kubernetes API groups like pods, nodes, and services.",
+      "parentUuid": "f91d2625_6f553956",
       "range": {
         "startLine": 8,
         "startChar": 6,
@@ -199,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46d5cd62_e640c701",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:36:52Z",
+      "side": 1,
+      "message": "Addressed in another commit: 141946: Updated the k8s objects with correct labels | https://gerrit.onap.org/r/c/cps/+/141946",
+      "parentUuid": "63bfeee5_a2acae23",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d02c88cb_ed1d11f3",
         "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
         "patchSetId": 1
@@ -270,6 +335,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41c0b1c1_3e87c7f4",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:36:52Z",
+      "side": 1,
+      "message": "Addressed in another commit: 141946: Updated the k8s objects with correct labels | https://gerrit.onap.org/r/c/cps/+/141946",
+      "parentUuid": "207fc066_be90e8cd",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc904d85_450c4c1e",
         "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
         "patchSetId": 1
@@ -305,6 +394,30 @@
       "side": 1,
       "message": "again check if we really need ot not, like above",
       "parentUuid": "bc904d85_450c4c1e",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0b7e9a_349cc5ba",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T15:36:52Z",
+      "side": 1,
+      "message": "Addressed in another commit: 141946: Updated the k8s objects with correct labels | https://gerrit.onap.org/r/c/cps/+/141946",
+      "parentUuid": "9aeba70f_1fbacd84",
       "range": {
         "startLine": 23,
         "startChar": 0,
