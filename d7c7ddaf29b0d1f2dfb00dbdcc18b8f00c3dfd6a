@@ -87,6 +87,30 @@
       },
       "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de50e840_32a1702e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T12:14:47Z",
+      "side": 1,
+      "message": "no parameter! As we just learned from the clean up exercises: if you call a method only with always the same value for a parameter it is better NOT to have that parameter at all...\nHence my sugested name: getLatestConsumerRecordsMaxPoll1Second\n\n1 secondn because you attempt 10x100ms",
+      "parentUuid": "2c7c9f1f_54154c24",
+      "range": {
+        "startLine": 343,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 32
+      },
+      "revId": "d7c7ddaf29b0d1f2dfb00dbdcc18b8f00c3dfd6a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
