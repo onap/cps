@@ -131,7 +131,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
     NetworkCmProxyFacade networkCmProxyFacade
 
     @Autowired
-    NetworkCmProxyInventoryFacadeImpl NetworkCmProxyInventoryFacade
+    NetworkCmProxyInventoryFacadeImpl networkCmProxyInventoryFacade
 
     @Autowired
     NetworkCmProxyQueryService networkCmProxyQueryService
