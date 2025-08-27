@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
@@ -240,6 +241,29 @@ class AbstractModelLoaderSpec extends Specification {
             def thrown = thrown(ModelOnboardingException)
             assert thrown.message.contains('Updating schema set failed')
             assert thrown.details.contains('test message')
+    }
+
+    def 'doesAnchorExist returns true when anchor exists'() {
+        given: 'the anchor service returns an anchor without throwing an exception'
+        mockCpsAnchorService.getAnchor('my-dataspace', 'my-anchor') >> {}
+
+        when: 'checking if the anchor exists'
+        def result = objectUnderTest.doesAnchorExist('my-dataspace', 'my-anchor')
+
+        then: 'it returns true'
+        assert result == true
+    }
+
+    def 'doesAnchorExist returns false when anchor does not exist'() {
+        given: 'the anchor service throws AnchorNotFoundException'
+        def originalException = new AnchorNotFoundException('my-dataspace', 'missing-anchor')
+        mockCpsAnchorService.getAnchor('my-dataspace', 'missing-anchor') >> {throw originalException}
+
+        when: 'checking if the anchor exists'
+        def result = objectUnderTest.doesAnchorExist('my-dataspace', 'missing-anchor')
+
+        then: 'it returns false and logs the debug message'
+        assert result == false
     }
 
     private void assertLogContains(String message) {
