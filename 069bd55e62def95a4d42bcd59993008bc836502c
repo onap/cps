@@ -35,6 +35,40 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "985d0d28_06124467",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T08:14:34Z",
+      "side": 1,
+      "message": "since this is the copy. m fine with this.",
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f25fb99_a7214dec",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T08:14:34Z",
+      "side": 1,
+      "message": "this is directly copied from https://raw.githubusercontent.com/hazelcast/hazelcast/master/kubernetes-rbac.yaml\npath.\nand we are using the default service account.\nThe benefit of copying is that we are not relying on the external ref and if needed we can override/tune the parameters.",
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f91d2625_6f553956",
@@ -83,6 +117,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff824f1d_207c937a",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T08:14:34Z",
+      "side": 1,
+      "message": "yes. these are copied from the external location.",
+      "parentUuid": "c4b3ee49_af7e9353",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d02c88cb_ed1d11f3",
         "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
         "patchSetId": 1
@@ -94,6 +152,30 @@
       "writtenOn": "2025-08-27T08:08:57Z",
       "side": 1,
       "message": "note sure these comments are helpful I presume they are copied from somewhere",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "702f86f7_fac60f3d",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T08:14:34Z",
+      "side": 1,
+      "message": "yep.",
+      "parentUuid": "d02c88cb_ed1d11f3",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -140,6 +222,30 @@
       "writtenOn": "2025-08-27T08:08:57Z",
       "side": 1,
       "message": "is thsi correct",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 3
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb818932_572f5ef4",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-27T08:14:34Z",
+      "side": 1,
+      "message": "yes. this is YAML syntax.\nif we want to put multiple kubernetes in a single file then triple-hyphen ( --- ) is the separator.",
+      "parentUuid": "15426b3f_8b481e50",
       "range": {
         "startLine": 34,
         "startChar": 0,
