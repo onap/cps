@@ -55,7 +55,7 @@ class YangParserSpec extends Specification {
 
     def setup() {
         mockYangTextSchemaSourceSetCache.get('my dataspace', 'my schema') >> mockYangTextSchemaSourceSet
-        mockYangTextSchemaSourceSet.getSchemaContext() >> mockSchemaContext
+        mockYangTextSchemaSourceSet.schemaContext() >> mockSchemaContext
     }
 
     def 'Convert RestConf-style path to CPS path'() {

@@ -39,13 +39,13 @@ class PrefixResolverSpec extends Specification {
 
     def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
 
-    def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+    def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
 
     def anchor = new Anchor(dataspaceName: 'testDataspace', name: 'testAnchor')
 
     def 'get xpath prefix using node schema context'() {
         given: 'the schema source cache contains the schema context for the test-tree module'
-            mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+            mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
             mockYangTextSchemaSourceSetCache.get(*_) >> mockYangTextSchemaSourceSet
         when: 'the prefix of the yang module is retrieved'
             def result = objectUnderTest.getPrefix(anchor, xpath)

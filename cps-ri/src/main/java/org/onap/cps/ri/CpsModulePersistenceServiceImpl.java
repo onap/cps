@@ -82,7 +82,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private static final String NO_MODULE_REVISION = null;
     private static final Pattern CHECKSUM_EXCEPTION_PATTERN = Pattern.compile(".*\\(checksum\\)=\\((\\w+)\\).*");
     private static final Pattern RFC6020_RECOMMENDED_FILENAME_PATTERN = Pattern
-            .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
+        .compile("([\\w-]+)@(\\d{4}-\\d{2}-\\d{2})(?:\\.yang)?", Pattern.CASE_INSENSITIVE);
 
     private final YangResourceRepository yangResourceRepository;
 
@@ -112,18 +112,18 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     public Collection<ModuleReference> getYangResourceModuleReferences(final String dataspaceName,
                                                                        final String anchorName) {
         final Set<YangResourceModuleReference> yangResourceModuleReferenceList =
-                yangResourceRepository
-                        .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
+            yangResourceRepository
+                .findAllModuleReferencesByDataspaceAndAnchor(dataspaceName, anchorName);
         return yangResourceModuleReferenceList.stream().map(CpsModulePersistenceServiceImpl::toModuleReference)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
     }
 
     @Override
     public Collection<ModuleDefinition> getYangResourceDefinitions(final String dataspaceName,
                                                                    final String anchorName) {
         final Set<YangResourceEntity> yangResourceEntities =
-                yangResourceRepository.findAllModuleDefinitionsByDataspaceAndAnchorAndModule(dataspaceName, anchorName,
-                    NO_MODULE_NAME_FILTER, NO_MODULE_REVISION);
+            yangResourceRepository.findAllModuleDefinitionsByDataspaceAndAnchorAndModule(dataspaceName, anchorName,
+                NO_MODULE_NAME_FILTER, NO_MODULE_REVISION);
         return convertYangResourceEntityToModuleDefinition(yangResourceEntities);
     }
 
@@ -141,7 +141,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private List<ModuleDefinition> convertYangResourceEntityToModuleDefinition(final Set<YangResourceEntity>
                                                                                    yangResourceEntities) {
         final List<ModuleDefinition> resultModuleDefinitions = new ArrayList<>(yangResourceEntities.size());
-        for (final YangResourceEntity yangResourceEntity: yangResourceEntities) {
+        for (final YangResourceEntity yangResourceEntity : yangResourceEntities) {
             resultModuleDefinitions.add(toModuleDefinition(yangResourceEntity));
         }
         return resultModuleDefinitions;
@@ -180,7 +180,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
         final List<SchemaSetEntity> schemaSetEntities = schemaSetRepository.findByDataspace(dataspaceEntity);
         return schemaSetEntities.stream()
-                .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
+            .map(CpsModulePersistenceServiceImpl::toSchemaSet).collect(Collectors.toList());
     }
 
     @Override
@@ -247,31 +247,31 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
         // return ALL yang resourceEntities
         return ImmutableSet.<YangResourceEntity>builder()
-                .addAll(existingYangResourceEntities)
-                .addAll(newYangResourceEntities)
-                .build();
+            .addAll(existingYangResourceEntities)
+            .addAll(newYangResourceEntities)
+            .build();
     }
 
     private static Map<String, YangResourceEntity> getYangResourceEntityPerChecksum(
         final Map<String, String> yangResourceContentPerName) {
-        return yangResourceContentPerName.entrySet().stream().map(entry -> {
-            final String checksum = DigestUtils.sha256Hex(entry.getValue().getBytes(StandardCharsets.UTF_8));
-            final Map<String, String> moduleNameAndRevisionMap = createModuleNameAndRevisionMap(entry.getKey(),
-                        entry.getValue());
-            final YangResourceEntity yangResourceEntity = new YangResourceEntity();
-            yangResourceEntity.setContent(entry.getValue());
-            final String moduleName = moduleNameAndRevisionMap.get("moduleName");
-            final String revision = moduleNameAndRevisionMap.get("revision");
-            yangResourceEntity.setModuleName(moduleName);
-            yangResourceEntity.setRevision(revision);
-            yangResourceEntity.setFileName(moduleName + "@" + revision + RFC6020_YANG_FILE_EXTENSION);
-            yangResourceEntity.setChecksum(checksum);
-            return yangResourceEntity;
-        })
-    .collect(Collectors.toMap(
-        YangResourceEntity::getChecksum,
-        entity -> entity
-    ));
+        return yangResourceContentPerName.entrySet().stream().map(CpsModulePersistenceServiceImpl::toYangResourceEntity)
+            .collect(Collectors.toMap(YangResourceEntity::getChecksum, entity -> entity));
+    }
+
+    private static YangResourceEntity toYangResourceEntity(final Map.Entry<String, String> entry) {
+        final String yangResourceContent = entry.getValue();
+        final String checksum = DigestUtils.sha256Hex(yangResourceContent.getBytes(StandardCharsets.UTF_8));
+        final Map<String, String> moduleNameAndRevisionMap
+            = createModuleNameAndRevisionMap(entry.getKey(), yangResourceContent);
+        final YangResourceEntity yangResourceEntity = new YangResourceEntity();
+        yangResourceEntity.setContent(yangResourceContent);
+        final String moduleName = moduleNameAndRevisionMap.get("moduleName");
+        final String revision = moduleNameAndRevisionMap.get("revision");
+        yangResourceEntity.setModuleName(moduleName);
+        yangResourceEntity.setRevision(revision);
+        yangResourceEntity.setFileName(moduleName + "@" + revision + RFC6020_YANG_FILE_EXTENSION);
+        yangResourceEntity.setChecksum(checksum);
+        return yangResourceEntity;
     }
 
     private void createAndSaveSchemaSetEntity(final String dataspaceName,
@@ -302,7 +302,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
             @Override
             protected MoreObjects.ToStringHelper addToStringAttributes(
-                    final MoreObjects.ToStringHelper toStringHelper) {
+                final MoreObjects.ToStringHelper toStringHelper) {
                 return toStringHelper;
             }
 
@@ -318,7 +318,7 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
             metaDataMap.put("revision", yangModelDependencyInfo.getFormattedRevision());
         } catch (final YangSyntaxErrorException | IOException e) {
             throw new ModelValidationException("Yang resource is invalid.",
-                   String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
+                String.format("Yang syntax validation failed for resource %s:%n%s", sourceName, e.getMessage()), e);
         }
         return metaDataMap;
     }
@@ -343,27 +343,26 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
      * Convert the specified data integrity violation exception into a CPS duplicated Yang resource exception
      * if the cause of the error is a yang checksum database constraint violation.
      *
-     * @param originalException the original db exception.
+     * @param originalException    the original db exception.
      * @param yangResourceEntities the collection of Yang resources involved in the db failure.
      * @return an optional converted CPS duplicated Yang resource exception. The optional is empty if the original
      *      cause of the error is not a yang checksum database constraint violation.
      */
     private Optional<DuplicatedYangResourceException> convertToDuplicatedYangResourceException(
-            final DataIntegrityViolationException originalException,
-            final Collection<YangResourceEntity> yangResourceEntities) {
+        final DataIntegrityViolationException originalException,
+        final Collection<YangResourceEntity> yangResourceEntities) {
 
         // The exception result
         DuplicatedYangResourceException duplicatedYangResourceException = null;
 
         final Throwable cause = originalException.getCause();
-        if (cause instanceof final ConstraintViolationException constraintException) {
-            if (YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintException.getConstraintName())) {
-                // Db constraint related to yang resource checksum uniqueness is not respected
-                final String checksumInError = getDuplicatedChecksumFromException(constraintException);
-                final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
-                duplicatedYangResourceException =
-                        new DuplicatedYangResourceException(nameInError, checksumInError, constraintException);
-            }
+        if (cause instanceof final ConstraintViolationException constraintException
+            && YANG_RESOURCE_CHECKSUM_CONSTRAINT_NAME.equals(constraintException.getConstraintName())) {
+            // Db constraint related to yang resource checksum uniqueness is not respected
+            final String checksumInError = getDuplicatedChecksumFromException(constraintException);
+            final String nameInError = getNameForChecksum(checksumInError, yangResourceEntities);
+            duplicatedYangResourceException =
+                new DuplicatedYangResourceException(nameInError, checksumInError, constraintException);
         }
 
         return Optional.ofNullable(duplicatedYangResourceException);
@@ -373,9 +372,9 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
     private String getNameForChecksum(final String checksum,
                                       final Collection<YangResourceEntity> yangResourceEntities) {
         final Optional<String> optionalFileName = yangResourceEntities.stream()
-                        .filter(entity -> Strings.CS.equals(checksum, (entity.getChecksum())))
-                        .findFirst()
-                        .map(YangResourceEntity::getFileName);
+            .filter(entity -> Strings.CS.equals(checksum, (entity.getChecksum())))
+            .findFirst()
+            .map(YangResourceEntity::getFileName);
         return optionalFileName.orElse("no filename");
     }
 
@@ -404,14 +403,14 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     private static ModuleDefinition toModuleDefinition(final YangResourceEntity yangResourceEntity) {
         return new ModuleDefinition(
-                yangResourceEntity.getModuleName(),
-                yangResourceEntity.getRevision(),
-                yangResourceEntity.getContent());
+            yangResourceEntity.getModuleName(),
+            yangResourceEntity.getRevision(),
+            yangResourceEntity.getContent());
     }
 
     private static SchemaSet toSchemaSet(final SchemaSetEntity schemaSetEntity) {
         return SchemaSet.builder().name(schemaSetEntity.getName())
-                .dataspaceName(schemaSetEntity.getDataspace().getName()).build();
+            .dataspaceName(schemaSetEntity.getDataspace().getName()).build();
     }
 
 }

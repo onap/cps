@@ -36,7 +36,7 @@ class YangTextSchemaSourceSetBuilderSpec extends Specification {
         given: 'a yang model (file)'
             def yangResourceNameToContent = [filename: TestUtils.getResourceFileContent('bookstore.yang')]
         when: 'the content is parsed'
-            def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def result = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         then: 'it can be validated successfully'
             YangTextSchemaSourceSetBuilder.validate(yangResourceNameToContent)
         and: 'the result contains 1 module of the correct name and revision'

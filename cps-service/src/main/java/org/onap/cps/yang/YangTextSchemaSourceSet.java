@@ -41,5 +41,5 @@ public interface YangTextSchemaSourceSet {
      *  Return SchemaContext for given YangSchema.
      * @return SchemaContext
      */
-    SchemaContext getSchemaContext();
+    SchemaContext schemaContext();
 }

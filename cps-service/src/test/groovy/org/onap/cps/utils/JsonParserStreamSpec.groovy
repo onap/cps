@@ -44,7 +44,7 @@ class JsonParserStreamSpec extends Specification{
             def jsonReader = new JsonReader(new StringReader(jsonData))
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('multipleDataTree.yang')
         and: 'schema context'
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         and: 'variable to store the result of parsing'
             DataContainerNodeBuilder<YangInstanceIdentifier.NodeIdentifier, ContainerNode> builder =
                     Builders.containerBuilder().withNodeIdentifier(new YangInstanceIdentifier.NodeIdentifier(schemaContext.getQName()))

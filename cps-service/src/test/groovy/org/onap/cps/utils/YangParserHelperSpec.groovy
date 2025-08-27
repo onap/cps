@@ -38,7 +38,7 @@ class YangParserHelperSpec extends Specification {
             def jsonData = TestUtils.getResourceFileContent('multiple-object-data.json')
         and: 'a model for that data'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('multipleDataTree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the json data is parsed'
             def result = objectUnderTest.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
@@ -56,7 +56,7 @@ class YangParserHelperSpec extends Specification {
             def fileData = TestUtils.getResourceFileContent(contentFile)
         and: 'a model for that data'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the data is parsed'
             NormalizedNode result = objectUnderTest.parseData(contentType, fileData, schemaContext, '', validateAndParse)
         then: 'the result is a normalized node of the correct type'
@@ -74,7 +74,7 @@ class YangParserHelperSpec extends Specification {
     def 'Parsing invalid data: #description.'() {
         given: 'a yang model (file)'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'invalid data is parsed'
             objectUnderTest.parseData(contentType, invalidData, schemaContext, '', validateAndParse)
         then: 'an exception is thrown'
@@ -92,7 +92,7 @@ class YangParserHelperSpec extends Specification {
     def 'Parsing data fragment by xpath for #scenario.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         when: 'json string is parsed'
             def result = objectUnderTest.parseData(contentType, nodeData, schemaContext, parentNodeXpath, validateAndParse)
         then: 'a ContainerNode holding collection of normalized nodes is returned'
@@ -112,7 +112,7 @@ class YangParserHelperSpec extends Specification {
     def 'Parsing json data fragment by xpath error scenario: #scenario.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         when: 'json string is parsed'
             objectUnderTest.parseData(ContentType.JSON, '{"nest": {"name" : "Nest", "birds": ["bird"]}}', schemaContext, parentNodeXpath, validateAndParse)
         then: 'expected exception is thrown'
@@ -129,7 +129,7 @@ class YangParserHelperSpec extends Specification {
     def 'Parsing json data with invalid json string: #description.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         when: 'malformed json string is parsed'
             objectUnderTest.parseData(ContentType.JSON, invalidJson, schemaContext, '', validateAndParse)
         then: 'an exception is thrown'
@@ -143,7 +143,7 @@ class YangParserHelperSpec extends Specification {
     def 'Parsing json data with space.'() {
         given: 'schema context'
             def yangResourcesMap = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesMap).schemaContext()
         and: 'some json data with space in the array elements'
             def jsonDataWithSpacesInArrayElement = TestUtils.getResourceFileContent('bookstore.json')
         when: 'that json data is parsed'
@@ -169,7 +169,7 @@ class YangParserHelperSpec extends Specification {
             def fileData = TestUtils.getResourceFileContent(contentFile)
         and: 'the schema context is built for that data model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the data is parsed to be validated'
             objectUnderTest.parseData(contentType, fileData, schemaContext,  parentNodeXpath, validateOnly)
         then: 'no exception is thrown'

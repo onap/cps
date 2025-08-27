@@ -35,7 +35,7 @@ class RestConfStylePathToCpsPathUtilSpec extends Specification {
 
     def setup() {
         def yangResources = TestUtils.getYangResourcesAsMap('bookstore.yang')
-        schemaContext = YangTextSchemaSourceSetBuilder.of(yangResources).getSchemaContext()
+        schemaContext = YangTextSchemaSourceSetBuilder.of(yangResources).schemaContext()
     }
 
     def 'Convert RestConf style paths when (#scenario) to CPS paths'() {

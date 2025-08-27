@@ -182,15 +182,15 @@ class DataNodeFactorySpec extends Specification {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockYangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName) >> mockYangTextSchemaSourceSet
         def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(yangResources)
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
+        mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 
     def setupSchemaSetMocksForDelta(Map<String, String> yangResourcesNameToContentMap) {
         def mockYangTextSchemaSourceSet = Mock(YangTextSchemaSourceSet)
         mockTimedYangTextSchemaSourceSetBuilder.getYangTextSchemaSourceSet(yangResourcesNameToContentMap) >> mockYangTextSchemaSourceSet
         mockYangTextSchemaSourceSetCache.get(_, _) >> mockYangTextSchemaSourceSet
-        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).getSchemaContext()
-        mockYangTextSchemaSourceSet.getSchemaContext() >> schemaContext
+        def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourcesNameToContentMap).schemaContext()
+        mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 }
