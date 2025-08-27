@@ -59,7 +59,7 @@ public class PrefixResolver {
         final String topLevelContainerName = cpsPathQuery.getContainerNames().get(0);
         final YangTextSchemaSourceSet yangTextSchemaSourceSet =
             yangTextSchemaSourceSetCache.get(dataspaceName, schemaSetName);
-        final SchemaContext schemaContext = yangTextSchemaSourceSet.getSchemaContext();
+        final SchemaContext schemaContext = yangTextSchemaSourceSet.schemaContext();
 
         return schemaContext.getChildNodes().stream()
             .filter(DataNodeContainer.class::isInstance)

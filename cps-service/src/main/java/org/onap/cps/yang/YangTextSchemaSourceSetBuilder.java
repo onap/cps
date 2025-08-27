@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2022-2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public final class YangTextSchemaSourceSetBuilder {
     private final ImmutableMap.Builder<String, String> yangModelMap = new ImmutableMap.Builder<>();
 
     private static final YangParserFactory YANG_PARSER_FACTORY =
-            new DefaultYangParserFactory(new DefaultXPathParserFactory());
+        new DefaultYangParserFactory(new DefaultXPathParserFactory());
 
     /**
      * Add Yang resource context.
@@ -104,13 +104,7 @@ public final class YangTextSchemaSourceSetBuilder {
         generateSchemaContext(yangResourceNameToContent);
     }
 
-    private static class YangTextSchemaSourceSetImpl implements YangTextSchemaSourceSet {
-
-        private final SchemaContext schemaContext;
-
-        private YangTextSchemaSourceSetImpl(final SchemaContext schemaContext) {
-            this.schemaContext = schemaContext;
-        }
+    private record YangTextSchemaSourceSetImpl(SchemaContext schemaContext) implements YangTextSchemaSourceSet {
 
         @Override
         public List<ModuleReference> getModuleReferences() {
@@ -123,11 +117,6 @@ public final class YangTextSchemaSourceSetBuilder {
                 .namespace(module.getQNameModule().getNamespace().toString())
                 .revision(module.getRevision().map(Revision::toString).orElse(null))
                 .build();
-        }
-
-        @Override
-        public SchemaContext getSchemaContext() {
-            return schemaContext;
         }
     }
 

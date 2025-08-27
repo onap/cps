@@ -59,7 +59,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode (tree) to a DataNode (tree).'() {
         given: 'the schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('test-tree.json')
             def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
@@ -79,7 +79,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode (tree) to a DataNode (tree) for known parent node.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = '{ "branch": [{ "name": "Branch", "nest": { "name": "Nest", "birds": ["bird"] } }] }'
             def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '/test-tree', validateAndParse)
@@ -95,7 +95,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode (tree) to a DataNode (tree) -- augmentation case.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(networkTopologyModelRfc8345)
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'the json data parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('ietf/data/ietf-network-topology-sample-rfc8345.json')
             def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
@@ -126,7 +126,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode (tree) to a DataNode (tree) for known parent node -- augmentation case.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap(networkTopologyModelRfc8345)
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'parent node xpath referencing augmentation node within a model'
             def parentNodeXpath = "/networks/network[@network-id='otn-hc']/link[@link-id='D1,1-2-1,D2,2-1-1']"
         and: 'the json data fragment parsed into container node object for given parent node xpath'
@@ -143,7 +143,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode (tree) to a DataNode (tree) -- with ChoiceNode.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('yang-with-choice-node.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'the json data fragment parsed into container node object'
             def jsonData = TestUtils.getResourceFileContent('data-with-choice-node.json')
             def containerNode = yangParserHelper.parseData(ContentType.JSON, jsonData, schemaContext, '', validateAndParse)
@@ -160,7 +160,7 @@ class DataNodeBuilderSpec extends Specification {
     def 'Converting ContainerNode into DataNode collection: #scenario.'() {
         given: 'a schema context for expected model'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent) schemaContext()
         and: 'parent node xpath referencing parent of list element'
             def parentNodeXpath = '/test-tree'
         and: 'the json data fragment (list element) parsed into container node object'
