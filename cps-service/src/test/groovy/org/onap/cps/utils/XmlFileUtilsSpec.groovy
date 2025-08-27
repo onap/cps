@@ -35,7 +35,7 @@ class XmlFileUtilsSpec extends Specification {
     def 'Parse a valid xml content #scenario'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'the xml data is parsed'
             def parsedXmlContent = XmlFileUtils.prepareXmlContent(xmlData, schemaContext)
         then: 'the result xml is wrapped by root node defined in YANG schema'
@@ -50,7 +50,7 @@ class XmlFileUtilsSpec extends Specification {
     def 'Parse a invalid xml content'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('bookstore.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         when: 'attempt to parse invalid xml'
             XmlFileUtils.prepareXmlContent('invalid-xml', schemaContext)
         then: 'a Sax Parser exception is thrown'
@@ -60,7 +60,7 @@ class XmlFileUtilsSpec extends Specification {
     def 'Parse a xml content with XPath container #scenario'() {
         given: 'YANG model schema context'
             def yangResourceNameToContent = TestUtils.getYangResourcesAsMap('test-tree.yang')
-            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).getSchemaContext()
+            def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         and: 'Parent schema node by xPath'
             def parentSchemaNode = YangParserHelper.getDataSchemaNodeAndIdentifiersByXpath(xPath, schemaContext).get('dataSchemaNode')
         when: 'the XML data is parsed'
