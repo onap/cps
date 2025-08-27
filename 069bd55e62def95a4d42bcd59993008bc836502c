@@ -33,6 +33,121 @@
       "message": "recheck",
       "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91d2625_6f553956",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T08:08:57Z",
+      "side": 1,
+      "message": "is his needed if so can you add a comen what this empty group is for",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 10
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b3ee49_af7e9353",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T08:08:57Z",
+      "side": 1,
+      "message": "note sure these comments are helpful I presume they are copied from somewhere",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02c88cb_ed1d11f3",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T08:08:57Z",
+      "side": 1,
+      "message": "note sure these comments are helpful I presume they are copied from somewhere",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc904d85_450c4c1e",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T08:08:57Z",
+      "side": 1,
+      "message": "note sure these comments are helpful I presume they are copied from somewhere",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 50
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15426b3f_8b481e50",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-27T08:08:57Z",
+      "side": 1,
+      "message": "is thsi correct",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 3
+      },
+      "revId": "069bd55e62def95a4d42bcd59993008bc836502c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
