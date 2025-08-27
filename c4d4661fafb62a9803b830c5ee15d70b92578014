@@ -50,6 +50,24 @@
       "message": "NB: we should update this. doesnt return anything for me.\ndoes it work for you??",
       "revId": "c4d4661fafb62a9803b830c5ee15d70b92578014",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7fb8b0e_c1df4fc4",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-27T12:31:36Z",
+      "side": 1,
+      "message": "I had no output when I run the commands below for both instance names (cps and cps-and-ncmp):\n\n\nhalilcakal@fedora:~/nordix/onap/cps$ kubectl get all -l app.kubernetes.io/instance\u003dcps-and-ncmp\nNo resources found in default namespace.\n\nhalilcakal@fedora:~/nordix/onap/cps$ kubectl get all -l app.kubernetes.io/instance\u003dcps\nNo resources found in default namespace.\n\n\nAs agreed on the chat, lets discuss this when we had a call.",
+      "parentUuid": "0579817e_d0b13fe2",
+      "revId": "c4d4661fafb62a9803b830c5ee15d70b92578014",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
