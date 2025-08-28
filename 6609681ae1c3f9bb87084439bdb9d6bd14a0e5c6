@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df54fbc_f8b443c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T12:50:47Z",
+      "side": 1,
+      "message": "apologies these patches refer to Nordix no ONAP gerrit so I you want to see the difference between Ultimate and Community please compare in Nordix",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 8
+      },
+      "revId": "6609681ae1c3f9bb87084439bdb9d6bd14a0e5c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

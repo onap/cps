@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd093e9_b4751051",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/YangParserHelperSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T12:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d05468f7_b0bfe158",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "427a15eeae467c02463ea1ce8c44d1bafbf3ca7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3779842c_72fcc4c6",
@@ -87,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a4f1a5e_c4c582ca",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/yang/YangTextSchemaSourceSetBuilderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T12:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3779842c_72fcc4c6",
+      "range": {
+        "startLine": 4,
+        "startChar": 37,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "427a15eeae467c02463ea1ce8c44d1bafbf3ca7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e49884d1_00a1ae5a",
@@ -100,6 +148,30 @@
       "writtenOn": "2025-08-28T12:18:39Z",
       "side": 1,
       "message": "we don\u0027t have spring security anymore. do we really need 403 response code?",
+      "range": {
+        "startLine": 2434,
+        "startChar": 0,
+        "endLine": 2443,
+        "endChar": 32
+      },
+      "revId": "427a15eeae467c02463ea1ce8c44d1bafbf3ca7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696cb6fc_d05dc17e",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2443,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T12:50:47Z",
+      "side": 1,
+      "message": "out of scope of this patch",
+      "parentUuid": "e49884d1_00a1ae5a",
       "range": {
         "startLine": 2434,
         "startChar": 0,
