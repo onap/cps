@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb3cbbd_cfbdea70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "d9ff093b_e2ba637c",
+      "range": {
+        "startLine": 55,
+        "startChar": 26,
+        "endLine": 57,
+        "endChar": 75
+      },
+      "revId": "f2a74002f2811997f9af5ef7dd7c45180161fe01",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba0217b9_de219052",

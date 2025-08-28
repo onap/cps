@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a893c6_26cfca99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "i mean to say something about what you are NOT doing\neg add:\nactual event forwarding will be handled i a separate task/commit",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a06d280d_f6d71d20",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "Copy \u0026 Paste error ?!",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3626e80_242d31c4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "you have this in the variabel too so it is duplicated now, choose on or the other",
+      "range": {
+        "startLine": 58,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 61
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6dfe5e4_5a8eb137",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "you don\u0027t have to follow any syntax here its your own substition code, you can just insert #dataTypeID in the template to make it easier...",
+      "range": {
+        "startLine": 62,
+        "startChar": 43,
+        "endLine": 62,
+        "endChar": 53
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d763ab0a_97fa2f5b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "not needed, use the variable in the where block below instead of null it should be \"null\" so",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 20
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4023e1_f217e311",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "use \u0027 quotes in Groovy !\n(find replace all!)",
+      "range": {
+        "startLine": 67,
+        "startChar": 62,
+        "endLine": 67,
+        "endChar": 63
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c629f14c_5ed0f587",
+        "filename": "cps-ncmp-service/src/test/resources/sample_dataJobSubscriptionInEvent.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-08-28T09:30:27Z",
+      "side": 1,
+      "message": "simplify using #dataTypeId",
+      "range": {
+        "startLine": 19,
+        "startChar": 21,
+        "endLine": 19,
+        "endChar": 34
+      },
+      "revId": "11f7bcc1fec9e8ffa5edac0f9d511a85a8c08eca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
