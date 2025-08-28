@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4a29e7f_acbcb948",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-28T16:36:09Z",
+      "side": 1,
+      "message": "also u need to fix the merge conflict so giving -1 for the same.\nchanges are fine for me.\nwhen u resolve the merge conflict , you can resolve my comment.",
+      "revId": "a4a12f34982b0c39e818c9338b6e929c8f4dac4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f823021_71ecd75e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cmnotificationsubscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-28T16:36:09Z",
+      "side": 1,
+      "message": "NB: we usually use explicit assert statements.\neg : assert loggingEvent.level \u003d\u003d Level.INFO\n\ncan apply for the others as well.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "a4a12f34982b0c39e818c9338b6e929c8f4dac4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
