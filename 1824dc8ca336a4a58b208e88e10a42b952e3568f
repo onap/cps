@@ -16,6 +16,29 @@
       "message": "Resolved",
       "revId": "1824dc8ca336a4a58b208e88e10a42b952e3568f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd64b5aa_b87db83a",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-28T14:16:21Z",
+      "side": 1,
+      "message": "this can be simplified as below.\n\n  package org.onap.cps.logging\n\nimport jakarta.servlet.FilterChain\nimport jakarta.servlet.ServletResponse\nimport jakarta.servlet.http.HttpServletRequest\nimport org.slf4j.MDC\nimport spock.lang.Specification\n\nclass MdcServletFilterSpec extends Specification {\n\n    def mockFilterChain \u003d Mock(FilterChain)\n    def mockHttpServletRequest \u003d Mock(HttpServletRequest)\n    def mockServletResponse \u003d Mock(ServletResponse)\n\n    def objectUnderTest \u003d new MdcServletFilter()\n\n    def \u0027should set Mapped Diagnostic Context from headers if present\u0027() {\n        given: \u0027RequestID and ClientID present in request header\u0027\n            mockHttpServletRequest.getHeader(\u0027X-CPS-Request-Id\u0027) \u003e\u003e \u0027test-request-id\u0027\n            mockHttpServletRequest.getHeader(\u0027X-CPS-Client-Id\u0027) \u003e\u003e \u0027test-client-id\u0027\n        when: \u0027HTTP request is filtered\u0027\n            objectUnderTest.doFilter(mockHttpServletRequest, mockServletResponse, mockFilterChain)\n        then: \u0027the filter chain is called once\u0027\n            1 * mockFilterChain.doFilter(mockHttpServletRequest, mockServletResponse) \u003e\u003e {\n                assert MDC.get(\u0027X-CPS-Request-Id\u0027) \u003d\u003d \u0027test-request-id\u0027\n                assert MDC.get(\u0027X-CPS-Client-Id\u0027) \u003d\u003d \u0027test-client-id\u0027\n            }\n        and: \u0027MDC is cleaned up after filter chain execution\u0027\n            assert MDC.get(\u0027X-CPS-Request-Id\u0027) \u003d\u003d null\n            assert MDC.get(\u0027X-CPS-Client-Id\u0027) \u003d\u003d null\n    }\n}",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "1824dc8ca336a4a58b208e88e10a42b952e3568f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
