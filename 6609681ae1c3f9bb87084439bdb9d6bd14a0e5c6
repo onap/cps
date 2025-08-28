@@ -39,6 +39,23 @@
       "message": "issue id is missing 😞",
       "revId": "6609681ae1c3f9bb87084439bdb9d6bd14a0e5c6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e22f3daf_a3f54e65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-28T13:19:50Z",
+      "side": 1,
+      "message": "fine by me.",
+      "revId": "6609681ae1c3f9bb87084439bdb9d6bd14a0e5c6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
