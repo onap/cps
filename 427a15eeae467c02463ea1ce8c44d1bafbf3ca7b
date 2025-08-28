@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4a2252_bd88cdb1",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-28T12:56:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c658dc08_68dbd484",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "427a15eeae467c02463ea1ce8c44d1bafbf3ca7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d05468f7_b0bfe158",
@@ -172,6 +196,30 @@
       "side": 1,
       "message": "out of scope of this patch",
       "parentUuid": "e49884d1_00a1ae5a",
+      "range": {
+        "startLine": 2434,
+        "startChar": 0,
+        "endLine": 2443,
+        "endChar": 32
+      },
+      "revId": "427a15eeae467c02463ea1ce8c44d1bafbf3ca7b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9501a453_6fd1b620",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2443,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-08-28T12:56:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "696cb6fc_d05dc17e",
       "range": {
         "startLine": 2434,
         "startChar": 0,
