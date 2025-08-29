@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b03091c4_5da5dab2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:19:47Z",
+      "side": 1,
+      "message": "i think in this patch it mostly reusing the code.\nso once you answer my comment. I can ask others to have a look.",
+      "revId": "6e5c94309d61a40f6aa98df7d5cf124a63b5d1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae05236_84f7ce19",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:19:47Z",
+      "side": 1,
+      "message": "why is this needed. if you can explain ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "6e5c94309d61a40f6aa98df7d5cf124a63b5d1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
