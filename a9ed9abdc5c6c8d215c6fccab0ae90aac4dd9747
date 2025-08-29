@@ -16,6 +16,46 @@
       "message": "resolved",
       "revId": "a9ed9abdc5c6c8d215c6fccab0ae90aac4dd9747",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd0e6a0_a777d6fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:23:54Z",
+      "side": 1,
+      "message": "once the naming comment is incorporated. I am ok with this patch.",
+      "revId": "a9ed9abdc5c6c8d215c6fccab0ae90aac4dd9747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "161d6382_bd9fa15d",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DataRestController.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:23:54Z",
+      "side": 1,
+      "message": "hasNewDataNodes just to be consistent with the other naming you have in the same patch.",
+      "range": {
+        "startLine": 173,
+        "startChar": 22,
+        "endLine": 173,
+        "endChar": 33
+      },
+      "revId": "a9ed9abdc5c6c8d215c6fccab0ae90aac4dd9747",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
