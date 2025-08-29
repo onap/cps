@@ -56,6 +56,30 @@
       },
       "revId": "1824dc8ca336a4a58b208e88e10a42b952e3568f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1e56783_448d760c",
+        "filename": "cps-application/src/test/groovy/org/onap/cps/logging/MdcServletFilterSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-08-29T07:19:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd64b5aa_b87db83a",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "1824dc8ca336a4a58b208e88e10a42b952e3568f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
