@@ -33,6 +33,46 @@
       "message": "recheck",
       "revId": "18880a9418d41078b19a4fbe2fedb57e6ba955a0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be7e15e2_d9054e13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:04:57Z",
+      "side": 1,
+      "message": "if this comment is considered then I will review further code.",
+      "revId": "18880a9418d41078b19a4fbe2fedb57e6ba955a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b30f691_1294c39a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-08-29T10:04:57Z",
+      "side": 1,
+      "message": "why do we need the cpsValidator here.\nit should be done way above the call stack.\nSee if it makes sense to it in CpsDeltaServiceImpl\nthere u already have dataspace and anchor info.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "18880a9418d41078b19a4fbe2fedb57e6ba955a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
