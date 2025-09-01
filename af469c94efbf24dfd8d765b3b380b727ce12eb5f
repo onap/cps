@@ -37,6 +37,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3b927cf_4b1bcc83",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-01T15:13:57Z",
+      "side": 1,
+      "message": "overly complex. This class KNOWS the name of its model so just replace \u0027registry-\u0027 with \u0027registry@\u0027 nd add \".yang\" to get the filename",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 39
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c5b3a0d_b26647da",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-01T15:13:57Z",
+      "side": 1,
+      "message": "i dont see this being used in eth subclass",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15e401f_f62f1fb7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-01T15:13:57Z",
+      "side": 1,
+      "message": "Checking if an anchor exists",
+      "range": {
+        "startLine": 246,
+        "startChar": 9,
+        "endLine": 246,
+        "endChar": 56
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396407f2_adf427a2",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-01T15:13:57Z",
+      "side": 1,
+      "message": "Checking if an anchor exists with unknown anchor",
+      "range": {
+        "startLine": 255,
+        "startChar": 9,
+        "endLine": 255,
+        "endChar": 60
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a17fb35f_f4835587",
         "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
         "patchSetId": 2
