@@ -22,6 +22,30 @@
       },
       "revId": "7c74d75adb84fc1b10acc0a08b9942a2fa7b3af2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb05cf9_ca91bbd2",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-01T08:16:35Z",
+      "side": 1,
+      "message": "this is now not done for each operation, instead it is handled as a separate utility method. Closing the comment based on this.",
+      "parentUuid": "9d6e86c5_02588c0a",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 66
+      },
+      "revId": "7c74d75adb84fc1b10acc0a08b9942a2fa7b3af2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
