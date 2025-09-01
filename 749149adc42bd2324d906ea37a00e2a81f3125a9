@@ -16,6 +16,109 @@
       "message": "As tested on my local machine with Priyank, all works well. Thanks Priyank",
       "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6575981_43f26ace",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T10:19:13Z",
+      "side": 1,
+      "message": "Left some minor NB comments.",
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c50896d2_6b10fc22",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T10:19:13Z",
+      "side": 1,
+      "message": "annotations:\n  description: \"Hazelcast discovery via Kubernetes API - minimal RBAC\"\n  \nNB: Instead of comment lines at line no 1 and 2 would prefer to add into description here.",
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82bfc363_ad19024b",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T10:19:13Z",
+      "side": 1,
+      "message": "NB : As hazelcast is only to runing in a single namespace (Not intra-cluster), we should use \"Role + RoleBinding\" to avoid grants access to all pods/nodes/services/endpoints cluster-wide that is more than necessary and widen the access.",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c300a9_f949897f",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T10:19:13Z",
+      "side": 1,
+      "message": "NB : @Priyank can you verify if hazelcast discovery modes requires nodes (I think it required only endpoints, pods and services). As exposing nodes means exposing sensitive information like ip addresses, labels etc.\n\nIf not required, drop it.",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea79d59a_981e4583",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T10:19:13Z",
+      "side": 1,
+      "message": "NB : RoleBinding",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
