@@ -52,6 +52,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83811a87_5a707bf7",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-01T12:36:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c50896d2_6b10fc22",
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82bfc363_ad19024b",
@@ -65,6 +83,30 @@
       "writtenOn": "2025-09-01T10:19:13Z",
       "side": 1,
       "message": "NB : As hazelcast is only to runing in a single namespace (Not intra-cluster), we should use \"Role + RoleBinding\" to avoid grants access to all pods/nodes/services/endpoints cluster-wide that is more than necessary and widen the access.",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c82adefe_5dd5c468",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-01T12:36:27Z",
+      "side": 1,
+      "message": "yep. DONE to limit further access.",
+      "parentUuid": "82bfc363_ad19024b",
       "range": {
         "startLine": 15,
         "startChar": 6,
@@ -100,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5a5a999_02437b34",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-01T12:36:27Z",
+      "side": 1,
+      "message": "yes. not needed now as we did other changes.",
+      "parentUuid": "b9c300a9_f949897f",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea79d59a_981e4583",
         "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
         "patchSetId": 1
@@ -111,6 +177,30 @@
       "writtenOn": "2025-09-01T10:19:13Z",
       "side": 1,
       "message": "NB : RoleBinding",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "749149adc42bd2324d906ea37a00e2a81f3125a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e583023_1615c6d9",
+        "filename": "cps-charts/templates/cps-hazelcast-rbac.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-01T12:36:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea79d59a_981e4583",
       "range": {
         "startLine": 43,
         "startChar": 14,
