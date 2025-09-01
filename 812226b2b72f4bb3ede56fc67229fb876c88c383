@@ -22,6 +22,30 @@
       },
       "revId": "812226b2b72f4bb3ede56fc67229fb876c88c383",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58b9c81b_8adb6d55",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-01T14:55:12Z",
+      "side": 1,
+      "message": "You right Sourabh. You remember in the grooming meeting, we decided to support only one release name that is cps only.\n\nThe flexibility you mention will be a further enhancement after delivering basic requirement which having k6 run on a simple cps deployment.",
+      "parentUuid": "770ccd5c_2520780f",
+      "range": {
+        "startLine": 39,
+        "startChar": 29,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "812226b2b72f4bb3ede56fc67229fb876c88c383",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
