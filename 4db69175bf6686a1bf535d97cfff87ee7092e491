@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cb4215_102660d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-01T16:27:39Z",
+      "side": 1,
+      "message": "tiny comment",
+      "revId": "4db69175bf6686a1bf535d97cfff87ee7092e491",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd4e7954_f9515382",
@@ -31,6 +48,29 @@
       "writtenOn": "2025-09-01T15:10:56Z",
       "side": 1,
       "message": "NB: assert",
+      "revId": "4db69175bf6686a1bf535d97cfff87ee7092e491",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf5e4b9_aa755d68",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-01T16:27:39Z",
+      "side": 1,
+      "message": "?? maybe remove ;call\u0027",
+      "range": {
+        "startLine": 256,
+        "startChar": 15,
+        "endLine": 256,
+        "endChar": 50
+      },
       "revId": "4db69175bf6686a1bf535d97cfff87ee7092e491",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
