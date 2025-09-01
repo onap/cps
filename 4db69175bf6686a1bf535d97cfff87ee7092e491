@@ -16,6 +16,23 @@
       "message": "resolved",
       "revId": "4db69175bf6686a1bf535d97cfff87ee7092e491",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4e7954_f9515382",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DataRestControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-01T15:10:56Z",
+      "side": 1,
+      "message": "NB: assert",
+      "revId": "4db69175bf6686a1bf535d97cfff87ee7092e491",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
