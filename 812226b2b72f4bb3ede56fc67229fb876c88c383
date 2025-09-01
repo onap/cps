@@ -46,6 +46,30 @@
       },
       "revId": "812226b2b72f4bb3ede56fc67229fb876c88c383",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8dd8363_4a9394b1",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-01T16:22:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58b9c81b_8adb6d55",
+      "range": {
+        "startLine": 39,
+        "startChar": 29,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "812226b2b72f4bb3ede56fc67229fb876c88c383",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
