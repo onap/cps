@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770ccd5c_2520780f",
+        "filename": "cps-charts/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T12:27:16Z",
+      "side": 1,
+      "message": "NB : Helm automatically prepends the release name  (\"helm install cps ./\u003cchart-directory\u003e\" here cps is release name). So if our release is cps, a service cps would become cps-cps → confusing.\n\ncan\u0027t we use release version with release name or chart version to improve its redability just thought I\u0027d.",
+      "range": {
+        "startLine": 39,
+        "startChar": 29,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "812226b2b72f4bb3ede56fc67229fb876c88c383",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
