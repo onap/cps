@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae37a794_c253b7d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-09-01T10:37:39Z",
+      "side": 1,
+      "message": "JIRA ticket looks to be uncorrect",
+      "revId": "32c8887368848fc8297311f79c724cf8a6fc4ec1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
