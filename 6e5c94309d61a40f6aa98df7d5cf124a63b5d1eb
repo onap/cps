@@ -39,6 +39,30 @@
       },
       "revId": "6e5c94309d61a40f6aa98df7d5cf124a63b5d1eb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d760046_2d8b0804",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportGenerator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-01T08:14:31Z",
+      "side": 1,
+      "message": "In line #62 we flatten all the parent and child data nodes to a Map of xpath to their respective data node. After doing that the child data nodes still remain as part the data node structure under a parent node. Hence this block clears the child nodes under a parent DataNode after the flattening operation so that the child nodes do not get added to the delta report twice. \nThis was not needed before because earlier the delta report contained information about leaves but now, we are adding the node name and the corresponding JSON structure into the delta report hence this need came into picture.",
+      "parentUuid": "fae05236_84f7ce19",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "6e5c94309d61a40f6aa98df7d5cf124a63b5d1eb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
