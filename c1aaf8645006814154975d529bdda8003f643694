@@ -16,6 +16,29 @@
       "message": "resolved",
       "revId": "c1aaf8645006814154975d529bdda8003f643694",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a9539b_c1e63385",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-01T16:34:06Z",
+      "side": 1,
+      "message": "where was this agreed? or how did this lead to this values? wiki and jira doesnt say much",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 69
+      },
+      "revId": "c1aaf8645006814154975d529bdda8003f643694",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
