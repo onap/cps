@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c971c08_80c7ff85",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T11:39:08Z",
+      "side": 1,
+      "message": "Check if new revesion is already installed to avoid upgrade operation again",
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eb113de_835b73af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T11:39:08Z",
+      "side": 1,
+      "message": "Not required as fine name is fixed never changes.",
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a17fb35f_f4835587",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T11:39:08Z",
+      "side": 1,
+      "message": "anchorNotFoundException",
+      "range": {
+        "startLine": 257,
+        "startChar": 16,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ddfaff6_4dc086e5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T11:39:08Z",
+      "side": 1,
+      "message": "Regsitrty (inventory) model upgrade poc (incl. backward compatibility)",
+      "range": {
+        "startLine": 41,
+        "startChar": 68,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817ce350_fed1c7c0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-01T11:39:08Z",
+      "side": 1,
+      "message": "additional properties are updated",
+      "range": {
+        "startLine": 77,
+        "startChar": 29,
+        "endLine": 77,
+        "endChar": 70
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
