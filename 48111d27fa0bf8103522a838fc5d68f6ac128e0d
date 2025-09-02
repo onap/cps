@@ -16,6 +16,29 @@
       "message": "I like the look of this now",
       "revId": "48111d27fa0bf8103522a838fc5d68f6ac128e0d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5511f01b_0df04b30",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T14:28:38Z",
+      "side": 1,
+      "message": "NB: add \": #scenario\"",
+      "range": {
+        "startLine": 266,
+        "startChar": 40,
+        "endLine": 266,
+        "endChar": 49
+      },
+      "revId": "48111d27fa0bf8103522a838fc5d68f6ac128e0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

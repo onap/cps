@@ -159,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c837d203_991e0d5a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T14:28:38Z",
+      "side": 1,
+      "message": "I meant static is correct!\nIts NB anyway",
+      "parentUuid": "ddda6561_df419b39",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e691362_24f7badd",
@@ -267,6 +291,30 @@
       "side": 1,
       "message": "Nope as by default its hidden with false.",
       "parentUuid": "6b773e1d_8f04f08f",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec19b442_37160a66",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T14:28:38Z",
+      "side": 1,
+      "message": "I checked code coverage too and it 100%",
+      "parentUuid": "fbfbeecd_e12b33d6",
       "range": {
         "startLine": 89,
         "startChar": 8,
