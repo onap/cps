@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77ad32a7_293fd096",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-02T06:29:39Z",
+      "side": 1,
+      "message": "resolved",
+      "revId": "c1aaf8645006814154975d529bdda8003f643694",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57a9539b_c1e63385",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-09-01T16:34:06Z",
       "side": 1,
       "message": "where was this agreed? or how did this lead to this values? wiki and jira doesnt say much",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 69
+      },
+      "revId": "c1aaf8645006814154975d529bdda8003f643694",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f2b30b_2d4d6e5b",
+        "filename": "cps-application/src/main/java/org/onap/cps/logging/MdcServletFilter.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-02T06:29:39Z",
+      "side": 1,
+      "message": "Thanks, Lee. These updated values are from the wiki page, so it\u0027s properly captured for future reference.",
+      "parentUuid": "57a9539b_c1e63385",
       "range": {
         "startLine": 35,
         "startChar": 0,
