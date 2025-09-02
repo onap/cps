@@ -16,6 +16,24 @@
       "message": "As talked on the call, could you please also remove the quotes around the delay parameters in /cps/cps-charts/values.yaml\n\nThese values should be numeric, not string.\n\ndmiStub:\n....\n....\n    MODULE_INITIAL_PROCESSING_DELAY_MS: \"180000\"\n    MODULE_REFERENCES_DELAY_MS: \"100\"\n    MODULE_RESOURCES_DELAY_MS: \"1000\"\n    READ_DATA_FOR_CM_HANDLE_DELAY_MS: \"300\"\n    WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: \"670\"",
       "revId": "3e6576b1e91d91f22909d0d5e8c10334bc004088",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2760f2e_f12dcf4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T16:00:12Z",
+      "side": 1,
+      "message": "Yes we do this change as a part of this commit.",
+      "parentUuid": "0bad1f04_99d238f1",
+      "revId": "3e6576b1e91d91f22909d0d5e8c10334bc004088",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
