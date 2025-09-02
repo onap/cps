@@ -40,6 +40,7 @@ import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.ModuleDefinition;
 import org.onap.cps.api.parameters.CascadeDeleteAllowed;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -52,6 +53,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
     private final CpsModuleService cpsModuleService;
     protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
+    protected final ReadinessManager readinessManager;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
 
@@ -59,12 +61,16 @@ public abstract class AbstractModelLoader implements ModelLoader {
 
     @Override
     public void onApplicationEvent(final ApplicationStartedEvent applicationStartedEvent) {
+        final String modelLoaderName = this.getClass().getSimpleName();
+        readinessManager.registerStartupProcess(modelLoaderName);
         try {
             onboardOrUpgradeModel();
         } catch (final Exception exception) {
             log.error("Exiting application due to failure in onboarding model: {} ",
-                exception.getMessage());
+                    exception.getMessage());
             exitApplication(applicationStartedEvent);
+        } finally {
+            readinessManager.markStartupProcessComplete(modelLoaderName);
         }
     }
 
