@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fa45b285_9808d191",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Its a hidden property. Only for developer\u0027s mode. Don\u0027t want to expose.",
+      "parentUuid": "7d182bd4_b6dc7c61",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "689255ad_51054cf5",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
         "patchSetId": 4
@@ -111,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddda6561_df419b39",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a5d2659c_791a6fe8",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e691362_24f7badd",
@@ -158,6 +206,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cedef528_a5c8d308",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e691362_24f7badd",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b773e1d_8f04f08f",
@@ -171,6 +243,30 @@
       "writtenOn": "2025-09-02T12:47:44Z",
       "side": 1,
       "message": "NB: Don\u0027t you need to use newRevisionEnabled flag for this tests and branches?",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbfbeecd_e12b33d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Nope as by default its hidden with false.",
+      "parentUuid": "6b773e1d_8f04f08f",
       "range": {
         "startLine": 89,
         "startChar": 8,
@@ -228,6 +324,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aaa56f1_82119075",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d50ce549_f4d9d121",
+      "range": {
+        "startLine": 134,
+        "startChar": 47,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62bf7ac0_9c40b278",
@@ -241,6 +361,24 @@
       "writtenOn": "2025-09-02T12:47:44Z",
       "side": 1,
       "message": "NB: extra space",
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcb2ee5b_446eb84e",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "62bf7ac0_9c40b278",
       "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -268,6 +406,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54acdcb_d6934afc",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49833773_857c1117",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 21
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d56df0fb_74d503b6",
@@ -281,6 +443,30 @@
       "writtenOn": "2025-09-02T12:47:44Z",
       "side": 1,
       "message": "NB: You can move this entire line up to Line 75",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 61
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9faa0ae_69137a41",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T13:34:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d56df0fb_74d503b6",
       "range": {
         "startLine": 77,
         "startChar": 6,
