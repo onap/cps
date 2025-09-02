@@ -41,6 +41,29 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "689255ad_51054cf5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T13:22:51Z",
+      "side": 1,
+      "message": "i missed that, this is correct now.",
+      "range": {
+        "startLine": 64,
+        "startChar": 29,
+        "endLine": 64,
+        "endChar": 44
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5d2659c_791a6fe8",
@@ -64,6 +87,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5168e92_bd45a3b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T13:22:51Z",
+      "side": 1,
+      "message": "I think code convent/rules will make you convert method to static that can be static. and I think it makes sense. Could be useful for future refactoring too",
+      "parentUuid": "a5d2659c_791a6fe8",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e691362_24f7badd",
@@ -77,6 +124,30 @@
       "writtenOn": "2025-09-02T12:47:44Z",
       "side": 1,
       "message": "NB: relevant only to this class and private. Thus no static is needed.",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d44ee1e_74504b1b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T13:22:51Z",
+      "side": 1,
+      "message": "see above",
+      "parentUuid": "9e691362_24f7badd",
       "range": {
         "startLine": 117,
         "startChar": 12,
@@ -135,6 +206,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "14c8873e_97d726b2",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T13:22:51Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "d50ce549_f4d9d121",
+      "range": {
+        "startLine": 134,
+        "startChar": 47,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62bf7ac0_9c40b278",
         "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
         "patchSetId": 4
@@ -146,6 +241,29 @@
       "writtenOn": "2025-09-02T12:47:44Z",
       "side": 1,
       "message": "NB: extra space",
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49833773_857c1117",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-02T13:22:51Z",
+      "side": 1,
+      "message": "you didnt reply to this? (see #3)",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 21
+      },
       "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
