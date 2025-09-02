@@ -183,6 +183,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf5e3622_4f59b4e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T14:38:43Z",
+      "side": 1,
+      "message": "ACK",
+      "parentUuid": "c837d203_991e0d5a",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e691362_24f7badd",
