@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -40,9 +41,11 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String REGISTRY_DATA_NODE_NAME = "dataJob";
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
-            final CpsModuleService cpsModuleService, final CpsAnchorService cpsAnchorService,
-            final CpsDataService cpsDataService) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
+                                         final CpsModuleService cpsModuleService,
+                                         final CpsAnchorService cpsAnchorService,
+                                         final CpsDataService cpsDataService,
+                                         final ReadinessManager readinessManager) {
+        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
     }
 
     @Override

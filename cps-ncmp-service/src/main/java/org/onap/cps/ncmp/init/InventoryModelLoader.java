@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -40,6 +41,7 @@ import org.springframework.stereotype.Service;
 public class InventoryModelLoader extends AbstractModelLoader {
 
     private final ApplicationEventPublisher applicationEventPublisher;
+
     private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
     private static final String NEW_INVENTORY_SCHEMA_SET_NAME = "dmi-registry-2025-07-22";
     private static final String INVENTORY_YANG_MODULE_NAME = "dmi-registry";
@@ -47,12 +49,17 @@ public class InventoryModelLoader extends AbstractModelLoader {
     @Value("${ncmp.inventory.model.upgrade.r20250722.enabled:false}")
     private boolean newRevisionEnabled;
 
+    /**
+     * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
+     * the NCMP inventory model schema sets and managing readiness state during migration.
+     */
     public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
                                 final CpsAnchorService cpsAnchorService,
                                 final CpsDataService cpsDataService,
-                                final ApplicationEventPublisher applicationEventPublisher) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService);
+                                final ApplicationEventPublisher applicationEventPublisher,
+                                final ReadinessManager readinessManager) {
+        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
@@ -107,6 +114,24 @@ public class InventoryModelLoader extends AbstractModelLoader {
         // TODO further implementation is pending
         //1. Load all the cm handles (in batch)
         //2. Copy the state and known properties
+        log.info("Starting inventory module data migration...");
+
+        // Simulate a 4-minute migration (240 seconds total)
+        final int totalSeconds = 240;
+        final int stepSeconds = 30; // log progress every 30 seconds
+        final int steps = totalSeconds / stepSeconds;
+
+        for (int i = 1; i <= steps; i++) {
+            try {
+                Thread.sleep(stepSeconds * 1000L);
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
+                log.warn("Migration interrupted!", e);
+                return;
+            }
+            final int progress = (i * 100) / steps;
+            log.info("Migration progress: {}%", progress);
+        }
         log.info("Inventory module data migration is completed successfully.");
     }
 
