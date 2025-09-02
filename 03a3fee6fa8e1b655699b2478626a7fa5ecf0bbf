@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1c8495_922221e8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T16:27:46Z",
+      "side": 1,
+      "message": "NB : Dummy impl for test and demo. Would not be a part of final production code.",
+      "range": {
+        "startLine": 121,
+        "startChar": 7,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "03a3fee6fa8e1b655699b2478626a7fa5ecf0bbf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
