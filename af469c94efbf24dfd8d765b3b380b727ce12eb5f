@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "926e27d7_3d502540",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c971c08_80c7ff85",
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0eb113de_835b73af",
@@ -35,6 +53,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a31c6e68_7e8a102a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eb113de_835b73af",
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3b927cf_4b1bcc83",
@@ -48,6 +84,30 @@
       "writtenOn": "2025-09-01T15:13:57Z",
       "side": 1,
       "message": "overly complex. This class KNOWS the name of its model so just replace \u0027registry-\u0027 with \u0027registry@\u0027 nd add \".yang\" to get the filename",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 39
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e4d565_9e243f2c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3b927cf_4b1bcc83",
       "range": {
         "startLine": 112,
         "startChar": 8,
@@ -81,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae29ed7_5d3cee31",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7c5b3a0d_b26647da",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b15e401f_f62f1fb7",
@@ -94,6 +178,30 @@
       "writtenOn": "2025-09-01T15:13:57Z",
       "side": 1,
       "message": "Checking if an anchor exists",
+      "range": {
+        "startLine": 246,
+        "startChar": 9,
+        "endLine": 246,
+        "endChar": 56
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d181ca_a6d492fb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b15e401f_f62f1fb7",
       "range": {
         "startLine": 246,
         "startChar": 9,
@@ -127,6 +235,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c647622_c7e0de9e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "396407f2_adf427a2",
+      "range": {
+        "startLine": 255,
+        "startChar": 9,
+        "endLine": 255,
+        "endChar": 60
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a17fb35f_f4835587",
@@ -140,6 +272,30 @@
       "writtenOn": "2025-09-01T11:39:08Z",
       "side": 1,
       "message": "anchorNotFoundException",
+      "range": {
+        "startLine": 257,
+        "startChar": 16,
+        "endLine": 257,
+        "endChar": 33
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64fd31f4_bdcf6be6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a17fb35f_f4835587",
       "range": {
         "startLine": 257,
         "startChar": 16,
@@ -173,6 +329,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ae3a9c6_f3f2a2e4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ddfaff6_4dc086e5",
+      "range": {
+        "startLine": 41,
+        "startChar": 68,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817ce350_fed1c7c0",
@@ -186,6 +366,30 @@
       "writtenOn": "2025-09-01T11:39:08Z",
       "side": 1,
       "message": "additional properties are updated",
+      "range": {
+        "startLine": 77,
+        "startChar": 29,
+        "endLine": 77,
+        "endChar": 70
+      },
+      "revId": "af469c94efbf24dfd8d765b3b380b727ce12eb5f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73fbf181_69f8066e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/inventory/ModuleUpgradeServiceIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-02T11:30:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "817ce350_fed1c7c0",
       "range": {
         "startLine": 77,
         "startChar": 29,
