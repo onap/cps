@@ -66,7 +66,7 @@ public class CmAvcEventConsumer {
      */
     @KafkaListener(topics = "${app.dmi.cm-events.topic}",
             containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
-    @Timed(value = "cps.ncmp.cmnotifications.consumeandforward", description = "Time taken to forward CM AVC events")
+    @Timed(value = "cps.ncmp.cm.notifications.consume.and.forward", description = "Time taken to forward CM AVC events")
     public void consumeAndForward(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         if (isEventFromOnapDmiPlugin(cmAvcEventAsConsumerRecord.headers())) {
             processCmAvcEventChanges(cmAvcEventAsConsumerRecord);

@@ -23,13 +23,13 @@ package org.onap.cps.ncmp.api.inventory.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
+import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter;
 
 /**
  * State Model to store state corresponding to the Yang resource dmi-registry model.
@@ -55,11 +55,6 @@ public class CompositeState {
     @JsonProperty("datastores")
     private DataStores dataStores;
 
-    /**
-     * Date and Time in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
-     */
-    private static final DateTimeFormatter dateTimeFormatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     /**
      * Composite State copy constructor.
@@ -117,10 +112,10 @@ public class CompositeState {
     /**
      * The date and time format used for the cm handle sync state.
      *
-     * @return the date and time in the format of yyyy-MM-dd'T'HH:mm:ss.SSSZ
+     * @return the date and time in the ISO standard format
      */
     public static String nowInSyncTimeFormat() {
-        return dateTimeFormatter.format(OffsetDateTime.now());
+        return EventDateTimeFormatter.ISO_TIMESTAMP_FORMATTER.format(OffsetDateTime.now());
     }
 
     /**

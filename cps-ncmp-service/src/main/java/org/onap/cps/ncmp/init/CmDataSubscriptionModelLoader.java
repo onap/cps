@@ -34,10 +34,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILENAME = "cm-data-job-subscriptions@2025-07-16.yang";
-    private static final String SCHEMASET_NAME = "cm-data-job-subscriptions";
+    private static final String MODEL_FILE_NAME = "cm-data-job-subscriptions@2025-07-16.yang";
+    private static final String SCHEMA_SET_NAME = "cm-data-job-subscriptions";
     private static final String ANCHOR_NAME = "cm-data-job-subscriptions";
-    private static final String REGISTRY_DATANODE_NAME = "dataJob";
+    private static final String REGISTRY_DATA_NODE_NAME = "dataJob";
 
     public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
             final CpsModuleService cpsModuleService, final CpsAnchorService cpsAnchorService,
@@ -53,9 +53,9 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     private void onboardSubscriptionModels() {
         createDataspace(NCMP_DATASPACE_NAME);
-        createSchemaSet(NCMP_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
-        createAnchor(NCMP_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
-        createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        createSchemaSet(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILE_NAME);
+        createAnchor(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
+        createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATA_NODE_NAME);
     }
 
 }
