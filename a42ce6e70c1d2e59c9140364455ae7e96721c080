@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e95b16b_5d5d7385",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "Some NB comments and questions...",
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d182bd4_b6dc7c61",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: needs to be added to application.yml as well.\n\nNB2: for type safety you can extract this property into @ConfigurationProperties and you can inject the field from that bean.",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5d2659c_791a6fe8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: relevant only to this class and private. Thus no static is needed.",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e691362_24f7badd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: relevant only to this class and private. Thus no static is needed.",
+      "range": {
+        "startLine": 117,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b773e1d_8f04f08f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: Don\u0027t you need to use newRevisionEnabled flag for this tests and branches?",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d50ce549_f4d9d121",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "misleading expection name.",
+      "range": {
+        "startLine": 134,
+        "startChar": 47,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bf7ac0_9c40b278",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: extra space",
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d56df0fb_74d503b6",
+        "filename": "docker-compose/docker-compose.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-02T12:47:44Z",
+      "side": 1,
+      "message": "NB: You can move this entire line up to Line 75",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 61
+      },
+      "revId": "a42ce6e70c1d2e59c9140364455ae7e96721c080",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
