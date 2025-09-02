@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2022 Nordix Foundation.
+ * Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  * Modifications Copyright (C) 2021 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * ================================================================================
@@ -22,6 +22,7 @@
 
 package org.onap.cps.api.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,6 +38,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DataNode implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1482619410918597467L;
 
     private String dataspace;

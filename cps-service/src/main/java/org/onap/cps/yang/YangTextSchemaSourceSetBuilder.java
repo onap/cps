@@ -29,13 +29,13 @@ import io.micrometer.core.annotation.Timed;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 import org.onap.cps.api.exceptions.ModelValidationException;
 import org.onap.cps.api.model.ModuleReference;
@@ -142,7 +142,7 @@ public final class YangTextSchemaSourceSetBuilder {
         try {
             return yangParser.buildEffectiveModel();
         } catch (final YangParserException yangParserException) {
-            final List<String> resourceNames = yangResourceNameToContent.keySet().stream().collect(Collectors.toList());
+            final List<String> resourceNames = new ArrayList<>(yangResourceNameToContent.keySet());
             Collections.sort(resourceNames);
             throw new ModelValidationException("Invalid schema set.",
                 String.format("Effective schema context build failed for resources %s.", resourceNames),

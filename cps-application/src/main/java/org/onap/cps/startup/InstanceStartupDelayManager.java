@@ -47,7 +47,7 @@ public class InstanceStartupDelayManager {
             final Matcher matcher = HOST_NAME_WITH_SEQUENCE_PATTERN.matcher(hostName);
             final long startupDelayInMillis;
             if (matcher.matches()) {
-                startupDelayInMillis = Integer.valueOf(matcher.group(1)) * 2_000L;
+                startupDelayInMillis = Integer.parseInt(matcher.group(1)) * 2_000L;
                 log.info("Sequenced host name detected, calculated delay = {} ms", startupDelayInMillis);
             } else {
                 startupDelayInMillis = Math.abs(hostName.hashCode() % 10_000L);

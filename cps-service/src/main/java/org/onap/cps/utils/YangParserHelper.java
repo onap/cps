@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -193,6 +193,7 @@ public class YangParserHelper {
         return Builders.containerBuilder().withChild(dataContainerChild).withNodeIdentifier(nodeIdentifier).build();
     }
 
+    @SuppressWarnings("unchecked")
     private static Collection<QName> getDataSchemaNodeIdentifiers(final SchemaContext schemaContext,
                                                                   final String parentNodeXpath) {
         return (Collection<QName>) getDataSchemaNodeAndIdentifiersByXpath(parentNodeXpath, schemaContext)
@@ -250,6 +251,7 @@ public class YangParserHelper {
 
     private static NormalizedNode getFirstChildXmlRoot(final NormalizedNode parent) {
         final String rootNodeType = parent.getIdentifier().getNodeType().getLocalName();
+        @SuppressWarnings("unchecked")
         final Collection<DataContainerChild> children = (Collection<DataContainerChild>) parent.body();
         final Iterator<DataContainerChild> iterator = children.iterator();
         NormalizedNode child = null;

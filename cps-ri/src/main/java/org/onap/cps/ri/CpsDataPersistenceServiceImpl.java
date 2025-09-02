@@ -249,7 +249,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
         return fragmentRepository.findAttributeValuesByAnchorAndCpsPath(anchorEntity, cpsPathQuery,
-                cpsPathQuery.getAttributeAxisAttributeName(), queryResultLimit, targetClass);
+            queryResultLimit, targetClass);
     }
 
     @Override
@@ -511,6 +511,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return Collections.unmodifiableList(dataNodes);
     }
 
+    @SuppressWarnings("unchecked")
     private DataNode toDataNode(final FragmentEntity fragmentEntity,
                                 final FetchDescendantsOption fetchDescendantsOption) {
         final List<DataNode> childDataNodes = getChildDataNodes(fragmentEntity, fetchDescendantsOption);
@@ -596,6 +597,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         return existingListElementEntity;
     }
 
+    @SuppressWarnings("unchecked")
     private String mergeLeaves(final Map<String, Serializable> updateLeaves, final String currentLeavesAsString) {
         Map<String, Serializable> currentLeavesAsMap = new HashMap<>();
         if (currentLeavesAsString != null) {
@@ -628,6 +630,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         if (currentLeavesAsString == null) {
             return "{}";
         }
+        @SuppressWarnings("unchecked")
         final Map<String, Serializable> sortedLeaves = jsonObjectMapper.convertJsonString(currentLeavesAsString,
             TreeMap.class);
         return jsonObjectMapper.asJsonString(sortedLeaves);

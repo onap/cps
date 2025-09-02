@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2023 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +21,7 @@
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.Getter;
@@ -32,6 +33,7 @@ import lombok.Getter;
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class AlreadyDefinedException extends CpsAdminException {
 
+    @Serial
     private static final long serialVersionUID = 501929839139881112L;
     public static final String ALREADY_DEFINED_EXCEPTION_MESSAGE = "Already defined exception";
 
@@ -45,10 +47,10 @@ public class AlreadyDefinedException extends CpsAdminException {
         alreadyDefinedObjectNames = Collections.singletonList(objectName);
     }
 
-    private AlreadyDefinedException(final String objectType, final Collection<String> objectNames,
+    private AlreadyDefinedException(final Collection<String> objectNames,
                                     final String contextName) {
         super(ALREADY_DEFINED_EXCEPTION_MESSAGE,
-                String.format("%d %s already exist for %s.", objectNames.size(), objectType, contextName));
+                String.format("%d data node(s) already exist for %s.", objectNames.size(), contextName));
         alreadyDefinedObjectNames = objectNames;
     }
 
@@ -72,6 +74,6 @@ public class AlreadyDefinedException extends CpsAdminException {
     }
 
     public static AlreadyDefinedException forDataNodes(final Collection<String> xpaths, final String contextName) {
-        return new AlreadyDefinedException("data node(s)", xpaths, contextName);
+        return new AlreadyDefinedException(xpaths, contextName);
     }
 }

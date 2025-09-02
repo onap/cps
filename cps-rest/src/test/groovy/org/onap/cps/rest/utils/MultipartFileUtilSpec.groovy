@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ class MultipartFileUtilSpec extends Specification {
 
     def 'Yang file limits in zip archive: #scenario for the bug reported in CPS-1477'() {
         given: 'a yang file size (uncompressed) limit of #threshold bytes'
-            ZipFileSizeValidator.thresholdSize = threshold
+            ZipFileSizeValidator.THRESHOLD_SIZE = threshold
         and: 'an archive with a yang file of 1083 bytes'
             def multipartFile = multipartZipFileFromResource('/yang-files-set-total-1083-bytes.zip')
         when: 'attempt to extract yang files'

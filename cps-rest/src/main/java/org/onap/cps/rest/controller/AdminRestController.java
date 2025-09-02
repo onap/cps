@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2025 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2021 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
@@ -68,7 +68,7 @@ public class AdminRestController implements CpsAdminApi {
      * Create a dataspace.
      *
      * @param dataspaceName dataspace name
-     * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
+     * @return a { {@code @Link}  ResponseEntity }  of created dataspace name & {@link HttpStatus} CREATED
      */
     @Override
     public ResponseEntity<String> createDataspace(@NotNull @Valid final String dataspaceName) {
@@ -80,7 +80,7 @@ public class AdminRestController implements CpsAdminApi {
      * Create a dataspace without returning any response body.
      *
      * @param dataspaceName dataspace name
-     * @return a {@Link ResponseEntity} of created dataspace name & {@link HttpStatus} CREATED
+     * @return a { {@code @Link}  ResponseEntity }  of created dataspace name & {@link HttpStatus} CREATED
      */
     @Override
     public ResponseEntity<Void> createDataspaceV2(@NotNull @Valid final String dataspaceName) {
@@ -92,7 +92,7 @@ public class AdminRestController implements CpsAdminApi {
      * Delete a dataspace.
      *
      * @param dataspaceName name of dataspace to be deleted
-     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     * @return a { {@code @Link}  ResponseEntity }  of {@link HttpStatus} NO_CONTENT
      */
     @Override
     public ResponseEntity<Void> deleteDataspace(final String apiVersion, final String dataspaceName) {
@@ -106,7 +106,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
      * @param multipartFile multipart file
-     * @return a {@Link ResponseEntity} of created schemaset name & {@link HttpStatus} CREATED
+     * @return a { {@code @Link}  ResponseEntity }  of created schemaset name & {@link HttpStatus} CREATED
      */
     @Override
     public ResponseEntity<String> createSchemaSet(final String dataspaceName,
@@ -122,7 +122,8 @@ public class AdminRestController implements CpsAdminApi {
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
      * @param multipartFile multipart file
-     * @return a {@Link ResponseEntity} of created schema set without any response body & {@link HttpStatus} CREATED
+     * @return a { {@code @Link}  ResponseEntity } of created schema set
+     *         without any response body & {@link HttpStatus} CREATED
      */
     @Override
     @Timed(value = "cps.rest.admin.controller.schemaset.create",
@@ -140,7 +141,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
-     * @return a {@Link ResponseEntity} of {@Link SchemaSetDetails} & {@link HttpStatus} OK
+     * @return a { {@code @Link}  ResponseEntity }  of { {@code @Link}  SchemaSetDetails }  & {@link HttpStatus} OK
      */
     @Override
     public ResponseEntity<SchemaSetDetails> getSchemaSet(final String apiVersion,
@@ -155,7 +156,7 @@ public class AdminRestController implements CpsAdminApi {
      *
      * @param apiVersion api version
      * @param dataspaceName dataspace name
-     * @return a {@Link ResponseEntity} of schema sets & {@link HttpStatus} OK
+     * @return a { {@code @Link}  ResponseEntity }  of schema sets & {@link HttpStatus} OK
      */
     @Override
     public ResponseEntity<List<SchemaSetDetails>> getSchemaSets(final String apiVersion, final String dataspaceName) {
@@ -171,7 +172,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param schemaSetName schemaset name
-     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     * @return a { {@code @Link}  ResponseEntity }  of {@link HttpStatus} NO_CONTENT
      */
     @Override
     public ResponseEntity<Void> deleteSchemaSet(final String apiVersion,
@@ -186,7 +187,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param apiVersion api version
      * @param dataspaceName dataspace name
      *
-     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     * @return a { {@code @Link}  ResponseEntity }  of {@link HttpStatus} NO_CONTENT
      */
     @Override
     public ResponseEntity<Void> cleanDataspace(final String apiVersion, final String dataspaceName) {
@@ -230,7 +231,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
-     * @return a {@Link ResponseEntity} of {@link HttpStatus} NO_CONTENT
+     * @return a { {@code @Link}  ResponseEntity }  of {@link HttpStatus} NO_CONTENT
      */
     @Override
     public ResponseEntity<Void> deleteAnchor(final String apiVersion,
@@ -245,7 +246,7 @@ public class AdminRestController implements CpsAdminApi {
      * @param apiVersion api version
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
-     * @return a {@Link ResponseEntity} of an {@Link AnchorDetails} & {@link HttpStatus} OK
+     * @return a { {@code @Link}  ResponseEntity }  of an { {@code @Link}  AnchorDetails }  & {@link HttpStatus} OK
      */
     @Override
     public ResponseEntity<AnchorDetails> getAnchor(final String apiVersion,
@@ -260,7 +261,7 @@ public class AdminRestController implements CpsAdminApi {
      *
      * @param apiVersion api version
      * @param dataspaceName dataspace name
-     * @return a {@Link ResponseEntity} of all {@Link AnchorDetails} & {@link HttpStatus} OK
+     * @return a { {@code @Link}  ResponseEntity }  of all { {@code @Link}  AnchorDetails }  & {@link HttpStatus} OK
      */
     @Override
     public ResponseEntity<List<AnchorDetails>> getAnchors(final String apiVersion,

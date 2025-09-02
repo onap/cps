@@ -1,6 +1,6 @@
 /*-
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation.
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import lombok.SneakyThrows;
 import org.onap.cps.api.model.ModuleReference;
 import org.springframework.transaction.annotation.Transactional;
 
+@SuppressWarnings("unused")
 @Transactional
 @RequiredArgsConstructor
 public class ModuleReferenceRepositoryImpl implements ModuleReferenceQuery {

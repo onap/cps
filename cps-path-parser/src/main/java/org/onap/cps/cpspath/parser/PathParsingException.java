@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 package org.onap.cps.cpspath.parser;
 
+import java.io.Serial;
 import lombok.Getter;
 
 /**
@@ -27,6 +28,7 @@ import lombok.Getter;
  */
 public class PathParsingException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 7072864354925271894L;
 
     @Getter

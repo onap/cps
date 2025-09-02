@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -100,8 +100,9 @@ public class SessionManager {
      * @param commit indicator whether session will commit or rollback
      */
     public void closeSession(final String sessionId, final boolean commit) {
+        Session session = null;
         try {
-            final Session session = getSession(sessionId);
+            session = getSession(sessionId);
             if (commit) {
                 session.getTransaction().commit();
             } else {
@@ -112,7 +113,9 @@ public class SessionManager {
             throw new SessionManagerException("Cannot close session",
                 String.format("Unable to close session with session ID '%s'", sessionId), e);
         } finally {
-            sessionMap.remove(sessionId);
+            if (session != null) {
+                sessionMap.remove(sessionId);
+            }
         }
     }
 

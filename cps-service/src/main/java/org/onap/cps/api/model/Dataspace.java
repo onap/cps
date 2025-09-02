@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2022 TechMahindra Ltd.
+ *  Modifications (C) 2025 OpenInfra Foundation Europe.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +21,7 @@
 
 package org.onap.cps.api.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +38,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class Dataspace implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1464791062718603291L;
 
     private String name;

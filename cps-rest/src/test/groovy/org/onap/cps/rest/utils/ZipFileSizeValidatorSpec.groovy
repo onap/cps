@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import spock.lang.Specification
 
 class ZipFileSizeValidatorSpec extends Specification {
 
-    def static thresholdSize = ZipFileSizeValidator.thresholdSize
+    def static thresholdSize = ZipFileSizeValidator.THRESHOLD_SIZE
     def static thresholdEntries = ZipFileSizeValidator.THRESHOLD_ENTRIES
     def static thresholdRatio = ZipFileSizeValidator.THRESHOLD_RATIO
 
@@ -58,7 +58,7 @@ class ZipFileSizeValidatorSpec extends Specification {
         given: 'the totalEntrySize of the archive so that compression ratio is within the threshold'
             int totalEntrySize = compressedFileSize * thresholdRatio - 1
         when: 'the validation is performed against the threshold compression ratio'
-            objectUnderTest.validateCompresssionRatio(totalEntrySize)
+            objectUnderTest.validateCompressionRatio(totalEntrySize)
         then: 'validation passes and no exception is thrown'
             noExceptionThrown()
     }
@@ -67,7 +67,7 @@ class ZipFileSizeValidatorSpec extends Specification {
         given: 'the totalEntrySize of the archive so that compression ratio is higher than the threshold'
             int totalEntrySize = compressedFileSize * thresholdRatio + 1
         when: 'the validation is performed against the threshold compression ratio'
-            objectUnderTest.validateCompresssionRatio(totalEntrySize)
+            objectUnderTest.validateCompressionRatio(totalEntrySize)
         then: 'validation fails and exception is thrown'
             thrown ModelValidationException
     }

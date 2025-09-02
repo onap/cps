@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 Bell Canada
- *  Modifications Copyright (C) 2022-2025 Nordix Foundation
+ *  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -74,6 +74,7 @@ public class YangTextSchemaSourceSetCache {
      * @param yangTextSchemaSourceSet yangTextSchemaSourceSet
      * @return YangTextSchemaSourceSet
      */
+    @SuppressWarnings("unused")
     @CachePut(key = "#p0.concat('-').concat(#p1)")
     @CanIgnoreReturnValue
     public YangTextSchemaSourceSet updateCache(final String dataspaceName, final String schemaSetName,
@@ -89,6 +90,7 @@ public class YangTextSchemaSourceSetCache {
      * @param dataspaceName dataspace name
      * @param schemaSetName schema set name
      */
+    @SuppressWarnings("unused")
     @CacheEvict(key = "#p0.concat('-').concat(#p1)")
     public void removeFromCache(final String dataspaceName, final String schemaSetName) {
         cpsValidator.validateNameCharacters(dataspaceName);

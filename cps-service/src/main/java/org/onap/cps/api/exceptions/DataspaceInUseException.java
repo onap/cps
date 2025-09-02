@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation.
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
+
 /**
  * Runtime exception.
  * Thrown when given dataspace name is rejected to be deleted because it has anchor or schemasets associated.
@@ -26,6 +28,7 @@ package org.onap.cps.api.exceptions;
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataspaceInUseException extends DataInUseException {
 
+    @Serial
     private static final long serialVersionUID = 4531370947720760347L;
 
     /**

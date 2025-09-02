@@ -48,5 +48,6 @@ public @interface CountCmHandleSearchExecution {
      *
      * @return the description of the metric.
      */
+    @SuppressWarnings("UnusedReturnValue")
     String description();
 }

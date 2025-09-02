@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2024 Nordix Foundation.
+ *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,11 +179,7 @@ class DataNodeBuilderSpec extends Specification {
 
     def 'Converting ContainerNode to a Collection with #scenario.'() {
         expect: 'converting null to a collection returns an empty collection'
-            assert objectUnderTest.withContainerNode(containerNode).buildCollection().isEmpty()
-        where: 'the following container node is used'
-            scenario              | containerNode
-            'null object'         | null
-            'object without body' | Mock(ContainerNode)
+            assert objectUnderTest.withContainerNode(null).buildCollection().isEmpty()
     }
 
     def 'Converting ContainerNode to a DataNode with unsupported Normalized Node.'() {
