@@ -16,6 +16,24 @@
       "message": "so its removing the unused ones.\nalright. these schemas are also in one of the wiki pages.\nso when the others are in use we can introduce them back.",
       "revId": "03485961e0fa74a61ff79cefddd5ecae8f5a11dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f11bc1_fb5f8483",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:18:06Z",
+      "side": 0,
+      "message": "indeed, I forgot about this one, is exactly what I wanted to double check with you",
+      "parentUuid": "c978d098_64a0d916",
+      "revId": "03485961e0fa74a61ff79cefddd5ecae8f5a11dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
