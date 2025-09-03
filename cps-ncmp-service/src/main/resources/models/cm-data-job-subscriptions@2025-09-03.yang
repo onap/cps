@@ -4,17 +4,18 @@ module cps-data-job-subscriptions {
 
     prefix cps-djs;
 
-    revision "2025-07-16" {
+    revision "2025-09-03" {
         description
             "First release of cm data job (notification) subscriptions model";
     }
 
     container dataJob {
         list subscription {
-            key "alternateId dataTypeId";
-            leaf alternateId { type string; }
+            key "dataNodeSelector";
+            leaf dataNodeSelector { type string; }
             leaf dataTypeId { type string; }
             leaf-list dataJobId { type string; }
+            leaf status { type string; }
         }
     }
 }

@@ -34,7 +34,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
-    private static final String MODEL_FILE_NAME = "cm-data-job-subscriptions@2025-07-16.yang";
+    private static final String MODEL_FILE_NAME = "cm-data-job-subscriptions@2025-09-03.yang";
     private static final String SCHEMA_SET_NAME = "cm-data-job-subscriptions";
     private static final String ANCHOR_NAME = "cm-data-job-subscriptions";
     private static final String REGISTRY_DATA_NODE_NAME = "dataJob";
