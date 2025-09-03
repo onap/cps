@@ -46,6 +46,29 @@
       },
       "revId": "34aa6e7d1fb515b5073292ef2f64069e36e76cbf",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3feaa239_6ba33dee",
+        "filename": "cps-ncmp-service/src/main/resources/models/cm-data-job-subscriptions@2025-09-03.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T16:56:06Z",
+      "side": 1,
+      "message": "I think we should remove this . \nWe agreed with Csaba that we handle supporting multiple dataType ids in a future epic.\nSo for now even if it is in the create event we do not need o store it (we might never have to in strategy)",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 44
+      },
+      "revId": "34aa6e7d1fb515b5073292ef2f64069e36e76cbf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
