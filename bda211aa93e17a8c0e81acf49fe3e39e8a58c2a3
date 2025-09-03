@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2fac21_8aa46c9c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "I think this should be set by any Modeloader!\nI actual thing the manger needs to support a collection of boolean or someother flag taht indicate it somethign is busy  which all need to be true before the system can start\n\n\nie. readinessManager.markNotReady(\"Inventory Migration\");\nreadinessManager.markNotReady(\"Subscription Model Setup); etc.\n\nit could even be done by a common method in abstract model loader\nthe concrete class just needs to set the process name\n\n\nthen when the process is done you remove the same flags",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c0d8c3b_92934ef2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "the readiness manager is generic and not tight to the Inventory Upgrade which is good. Keep it like that",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d88a3d74_1ab0306a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "\"Model Loaders(s) Busy\", ReadinessManager.getProcessesAString() (maybe impl using toString)",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 77
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ea4fe1_0bf96fe4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "becaue of what I said above you cannot hardcode context realet to inventory here. I think you better make these messages more generic. You could have a message property in thsi class with can be set by whoever uses this class to indicate what teh system is doign whiel it is not ready..",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 76
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64371885_262e8ef0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "add a collection\u003cString\u003e   startUpProcesses",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d99b02_71c26759",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "add processName parameter and remove that form the collection",
+      "range": {
+        "startLine": 31,
+        "startChar": 16,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23be9767_216cdc93",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "add a process name paramater and add that to the collection of startUpProcesses",
+      "range": {
+        "startLine": 35,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da789b3_c258e5fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-03T12:41:57Z",
+      "side": 1,
+      "message": "startUpProccess.isEmpty()",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
