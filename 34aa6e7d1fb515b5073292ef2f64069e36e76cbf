@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4381d5d1_55951f13",
+        "filename": "cps-ncmp-service/src/main/resources/models/cm-data-job-subscriptions@2025-09-03.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-03T16:45:05Z",
+      "side": 1,
+      "message": "this needs to be agreed on again i believe.",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "34aa6e7d1fb515b5073292ef2f64069e36e76cbf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
