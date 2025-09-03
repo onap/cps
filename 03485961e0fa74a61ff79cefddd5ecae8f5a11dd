@@ -34,6 +34,24 @@
       "parentUuid": "c978d098_64a0d916",
       "revId": "03485961e0fa74a61ff79cefddd5ecae8f5a11dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dfb2ecb_c8bf7751",
+        "filename": "cps-ncmp-events/src/main/java/org/onap/cps/ncmp/events/NcmpEventDataSchema.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-03T16:43:02Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "62f11bc1_fb5f8483",
+      "revId": "03485961e0fa74a61ff79cefddd5ecae8f5a11dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
