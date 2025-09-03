@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d2935973_8eef1b04",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa2fac21_8aa46c9c",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3c0d8c3b_92934ef2",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-03T12:41:57Z",
       "side": 1,
       "message": "the readiness manager is generic and not tight to the Inventory Upgrade which is good. Keep it like that",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f912d0_539ce416",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Agree",
+      "parentUuid": "3c0d8c3b_92934ef2",
       "range": {
         "startLine": 32,
         "startChar": 18,
@@ -93,6 +141,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "680dbbb7_29666294",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d88a3d74_1ab0306a",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 77
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d7a961b_5b339b75",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80ea4fe1_0bf96fe4",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 76
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64371885_262e8ef0",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-09-03T12:41:57Z",
       "side": 1,
       "message": "add a collection\u003cString\u003e   startUpProcesses",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d428e2_2a232cb2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64371885_262e8ef0",
       "range": {
         "startLine": 29,
         "startChar": 4,
@@ -139,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ec7176_713ab88d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2d99b02_71c26759",
+      "range": {
+        "startLine": 31,
+        "startChar": 16,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23be9767_216cdc93",
@@ -162,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97fc2fd9_6f3936c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23be9767_216cdc93",
+      "range": {
+        "startLine": 35,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5da789b3_c258e5fe",
@@ -175,6 +343,30 @@
       "writtenOn": "2025-09-03T12:41:57Z",
       "side": 1,
       "message": "startUpProccess.isEmpty()",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "bda211aa93e17a8c0e81acf49fe3e39e8a58c2a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c714d953_10bdfdb0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/actuator/ReadinessManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-03T15:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5da789b3_c258e5fe",
       "range": {
         "startLine": 40,
         "startChar": 15,
