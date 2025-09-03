@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 Nordix Foundation
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,9 +27,7 @@ public enum NcmpEventDataSchema {
 
     BATCH_RESPONSE_V1("urn:cps:org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent:1.0.0"),
     SUBSCRIPTIONS_V1("urn:cps:org.onap.ncmp.events.subscription:1.0.0"),
-    MOI_CHANGES_V1("urn:cps:org.onap.cps.ncmp.events.moi-changes:1.0.0"),
-    INVENTORY_EVENTS_V1("urn:cps:org.onap.cps.ncmp.events:inventory-event:1.0.0"),
-    CM_HANDLE_TRUST_LEVEL_V1("urn:cps:org.onap.cps.ncmp.dmi.events:cm-handle-trust-level:1.0.0");
+    INVENTORY_EVENTS_V1("urn:cps:org.onap.cps.ncmp.events:inventory-event:1.0.0");
 
     private final String dataSchema;
 

@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,12 +20,15 @@
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
+
 /**
  * DataNode Not Found Exception. Indicates the requested data being absent.
  */
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataNodeNotFoundException extends DataValidationException {
 
+    @Serial
     private static final long serialVersionUID = 7786740001662205407L;
     private static final String DATANODE_NOT_FOUND = "DataNode not found";
     /**

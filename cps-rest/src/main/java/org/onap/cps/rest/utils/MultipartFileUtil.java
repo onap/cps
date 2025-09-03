@@ -2,7 +2,7 @@
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
  *  Modifications Copyright (C) 2021 Bell Canada.
- *  Modifications Copyright (C) 2023 Nordix Foundation.
+ *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -77,7 +77,7 @@ public class MultipartFileUtil {
      *
      * @param multipartFile the json file uploaded
      * @return the string representation of the JSON content
-     * @throws IOException if the file is null or empty
+     * @throws DataValidationException if the file is null or empty
      */
 
     public static String extractJsonContent(final MultipartFile multipartFile, final JsonObjectMapper
@@ -165,7 +165,7 @@ public class MultipartFileUtil {
                 byteArrayOutputStream.write(buffer, 0, numberOfBytesRead);
                 totalSizeEntry += numberOfBytesRead;
                 zipFileSizeValidator.updateTotalUncompressedSizeOfYangFilesInArchive(numberOfBytesRead);
-                zipFileSizeValidator.validateCompresssionRatio(totalSizeEntry);
+                zipFileSizeValidator.validateCompressionRatio(totalSizeEntry);
             }
             return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
         }

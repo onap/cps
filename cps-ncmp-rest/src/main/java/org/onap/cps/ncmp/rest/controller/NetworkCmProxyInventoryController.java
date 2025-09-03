@@ -125,6 +125,7 @@ public class NetworkCmProxyInventoryController implements NetworkCmProxyInventor
      *
      * @param restDmiPluginRegistration the registration data
      */
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     @Timed(value = "cps.ncmp.inventory.controller.update",
         description = "Time taken to handle registration request")

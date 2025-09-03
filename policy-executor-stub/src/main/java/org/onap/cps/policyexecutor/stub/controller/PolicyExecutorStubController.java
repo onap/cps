@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
     private final Sleeper sleeper;
     private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
     private int decisionCounter = 0;
-    // Do NOT change below to final as it needs to be set during test
+    @SuppressWarnings("CanBeFinal") // Do NOT change below to final as it needs to be set during test
     private static int slowResponseTimeInSeconds = 40;
 
     @Override
@@ -59,7 +59,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
         final Operation firstOperation = permissionRequest.getOperations().iterator().next();
         log.info("1st Operation: {}", firstOperation.getOperation());
         if (!"delete".equals(firstOperation.getOperation()) && firstOperation.getChangeRequest() == null) {
-            log.warn("Change Request is required for " + firstOperation.getOperation() + " operations");
+            log.warn("Change Request is required for {} operations", firstOperation.getOperation());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return handleOperation(firstOperation);
@@ -71,7 +71,7 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
         final Matcher matcher = ERROR_CODE_PATTERN.matcher(targetIdentifier);
         if (matcher.find()) {
             final int errorCode = Integer.parseInt(matcher.group(1));
-            log.warn("Stub is mocking an error response, code: " + errorCode);
+            log.warn("Stub is mocking an error response, code: {}", errorCode);
             return new ResponseEntity<>(HttpStatusCode.valueOf(errorCode));
         }
 

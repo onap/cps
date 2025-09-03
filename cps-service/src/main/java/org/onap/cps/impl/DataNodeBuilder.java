@@ -2,7 +2,7 @@
  * ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Bell Canada. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2022-2024 Nordix Foundation.
+ *  Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -193,11 +193,9 @@ public class DataNodeBuilder {
     }
 
     private Collection<DataNode> buildCollectionFromContainerNode() {
-        final var parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
-        if (containerNode.body() != null) {
-            for (final NormalizedNode normalizedNode: containerNode.body()) {
-                addDataNodeFromNormalizedNode(parentDataNode, normalizedNode);
-            }
+        final DataNode parentDataNode = new DataNodeBuilder().withXpath(parentNodeXpath).build();
+        for (final NormalizedNode normalizedNode : containerNode.body()) {
+            addDataNodeFromNormalizedNode(parentDataNode, normalizedNode);
         }
         return parentDataNode.getChildDataNodes();
     }

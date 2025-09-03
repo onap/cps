@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2020 Pantheon.tech
- *  Modifications Copyright (C) 2020-2021 Nordix Foundation
+ *  Modifications Copyright (C) 2020-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2020 Bell Canada.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,8 +22,11 @@
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
+
 public class DataValidationException extends CpsException {
 
+    @Serial
     private static final long serialVersionUID = 7747941311132087621L;
 
     /**

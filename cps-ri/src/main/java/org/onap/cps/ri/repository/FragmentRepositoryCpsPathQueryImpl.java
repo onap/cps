@@ -35,6 +35,7 @@ import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.utils.JsonObjectMapper;
 
+@SuppressWarnings("unused")
 @RequiredArgsConstructor
 @Slf4j
 public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCpsPathQuery {
@@ -49,6 +50,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
                                                        final int queryResultLimit) {
         final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery,
                 queryResultLimit);
+        @SuppressWarnings("unchecked")
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by anchor and cps path.", fragmentEntities.size());
         if (queryResultLimit > 0) {
@@ -61,11 +63,11 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Transactional
     public <T> Set<T> findAttributeValuesByAnchorAndCpsPath(final AnchorEntity anchorEntity,
                                                             final CpsPathQuery cpsPathQuery,
-                                                            final String attributeName,
                                                             final int queryResultLimit,
                                                             final Class<T> targetClass) {
         final Query query = fragmentQueryBuilder.getQueryForAnchorAndCpsPath(anchorEntity, cpsPathQuery,
                 queryResultLimit);
+        @SuppressWarnings("unchecked")
         final List<String> jsonResultList = query.getResultList();
         return jsonResultList.stream()
                 .map(jsonValue -> jsonObjectMapper.convertJsonString(jsonValue, targetClass))
@@ -75,9 +77,11 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
     @Override
     @Transactional
     public List<FragmentEntity> findByDataspaceAndCpsPath(final DataspaceEntity dataspaceEntity,
-                                                          final CpsPathQuery cpsPathQuery, final List<Long> anchorIds) {
+                                                          final CpsPathQuery cpsPathQuery,
+                                                          final List<Long> anchorIds) {
         final Query query = fragmentQueryBuilder.getQueryForDataspaceAndCpsPath(
                 dataspaceEntity, cpsPathQuery, anchorIds);
+        @SuppressWarnings("unchecked")
         final List<FragmentEntity> fragmentEntities = query.getResultList();
         log.debug("Fetched {} fragment entities by cps path across all anchors.", fragmentEntities.size());
         return fragmentEntities;

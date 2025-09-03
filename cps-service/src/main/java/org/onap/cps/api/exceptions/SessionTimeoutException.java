@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,9 +20,12 @@
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
+
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class SessionTimeoutException extends SessionManagerException {
 
+    @Serial
     private static final long serialVersionUID = -8809577494038691360L;
 
     public SessionTimeoutException(final String message, final String details, final Throwable cause) {

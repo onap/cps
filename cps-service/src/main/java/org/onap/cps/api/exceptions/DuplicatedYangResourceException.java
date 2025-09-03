@@ -1,6 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (c) 2021 Bell Canada.
+ *  Copyright (c) 2021 Bell Canada.
+ *  Modifications Copyright (C) 2025 OpenInfra Foundation Europe.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +14,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
  * ============LICENSE_END=========================================================
  */
 
 package org.onap.cps.api.exceptions;
 
+import java.io.Serial;
 import lombok.Getter;
 
 /**
@@ -26,6 +30,7 @@ import lombok.Getter;
 @Getter
 public class DuplicatedYangResourceException extends CpsException {
 
+    @Serial
     private static final long serialVersionUID = 9085557087319212380L;
 
     private final String name;

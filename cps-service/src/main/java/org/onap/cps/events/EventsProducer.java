@@ -44,7 +44,7 @@ public class EventsProducer<T> {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
-     * Note: Cloud events should be used. This will be addressed as part of  https://lf-onap.atlassian.net/browse/CPS-1717.
+     * Note: Cloud events should be used. This will be addressed as part of  <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      */
     private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
 
@@ -73,7 +73,7 @@ public class EventsProducer<T> {
 
     /**
      * Generic Event sender.
-     * Note: Cloud events should be used. This will be addressed as part of  https://lf-onap.atlassian.net/browse/CPS-1717.
+     * Note: Cloud events should be used. This will be addressed as part of  <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      *
      * @param topicName valid topic name
      * @param eventKey  message key

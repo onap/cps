@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2022 Deutsche Telekom AG
- *  Modifications Copyright (C) 2023-2024 Nordix Foundation.
+ *  Modifications Copyright (C) 2023-2025 OpenInfra Foundation Europe.
  *  Modifications Copyright (C) 2024-2025 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -170,6 +170,7 @@ public class XmlFileUtils {
      * @param dataMaps List of data maps to convert
      * @return XML string representation of the data maps
      */
+    @SuppressWarnings("unchecked")
     @SuppressFBWarnings(value = "DCN_NULLPOINTER_EXCEPTION")
     public static String convertDataMapsToXml(final Object dataMaps) {
         try {
@@ -206,6 +207,7 @@ public class XmlFileUtils {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void appendList(final Document document, final Node parentNode,
                                    final Map.Entry<String, Object> dataNodeMapEntry) {
         final List<Object> dataNodeMaps = (List<Object>) dataNodeMapEntry.getValue();
@@ -227,6 +229,7 @@ public class XmlFileUtils {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void appendMap(final Document document, final Node parentNode,
                                   final Map.Entry<String, Object> dataNodeMapEntry) {
         final Element childElement = document.createElement(dataNodeMapEntry.getKey());
@@ -253,8 +256,8 @@ public class XmlFileUtils {
         return writer.toString();
     }
 
+    @SuppressWarnings("SameReturnValue")
     private static DocumentBuilderFactory getDocumentBuilderFactory() {
-
         if (isNewDocumentBuilderFactoryInstance) {
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             documentBuilderFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
@@ -264,8 +267,8 @@ public class XmlFileUtils {
         return documentBuilderFactory;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private static TransformerFactory getTransformerFactory() {
-
         if (isNewTransformerFactoryInstance) {
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");

@@ -35,7 +35,7 @@ public interface FragmentRepositoryCpsPathQuery {
                                                 int queryResultLimit);
 
     <T> Set<T> findAttributeValuesByAnchorAndCpsPath(AnchorEntity anchorEntity, CpsPathQuery cpsPathQuery,
-                                                     String attributeName, int queryResultLimit, Class<T> targetClass);
+                                                     int queryResultLimit, Class<T> targetClass);
 
     List<FragmentEntity> findByDataspaceAndCpsPath(DataspaceEntity dataspaceEntity,
                                                    CpsPathQuery cpsPathQuery, List<Long> anchorIds);

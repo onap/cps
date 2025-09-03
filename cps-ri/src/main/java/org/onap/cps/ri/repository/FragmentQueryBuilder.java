@@ -42,6 +42,7 @@ import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("unused")
 @RequiredArgsConstructor
 @Component
 public class FragmentQueryBuilder {
@@ -362,6 +363,7 @@ public class FragmentQueryBuilder {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static <V> String substitute(final String template, final Map<String, V> valueMap) {
         final StringSubstitutor stringSubstitutor = new StringSubstitutor(valueMap);
         return stringSubstitutor.replace(template);

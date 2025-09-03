@@ -29,7 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class Application {
 
-    static InstanceStartupDelayManager instanceStartupDelayManager = new InstanceStartupDelayManager();
+    static final InstanceStartupDelayManager instanceStartupDelayManager = new InstanceStartupDelayManager();
 
     /**
      * The main method which serves as the entry point to the Spring Boot application.
