@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "333ca04e_27bf0a31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-04T10:42:00Z",
+      "side": 1,
+      "message": "Just a question is asked.",
+      "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825530aa_2a00e88b",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-04T10:42:00Z",
+      "side": 1,
+      "message": "NB: we have this dependency already in cps-application pom.xml (cps-parent). Can\u0027t use it from there ? it should already been available to cps-service.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 19
+      },
+      "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
