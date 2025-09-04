@@ -6,7 +6,7 @@
     "DmiInEvent": {
       "description": "The payload for cm notification subscription event incoming message from NCMP.",
       "type": "object",
-      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_dmi.DmiInEvent",
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent",
       "additionalProperties": false,
       "properties": {
         "data": {

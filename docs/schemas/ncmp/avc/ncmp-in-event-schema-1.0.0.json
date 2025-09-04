@@ -5,7 +5,7 @@
   "definitions": {
     "NcmpInEvent": {
       "description": "The payload for subscription merge event.",
-      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent",
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.NcmpInEvent",
       "properties": {
         "data": {
           "properties": {
@@ -32,7 +32,10 @@
                       "datastore": {
                         "description": "Datastore which is to be used by the subscription",
                         "type": "string",
-                        "enum": ["ncmp-datastore:passthrough-operational", "ncmp-datastore:passthrough-running"]
+                        "enum": [
+                          "ncmp-datastore:passthrough-operational",
+                          "ncmp-datastore:passthrough-running"
+                        ]
                       },
                       "xpathFilter": {
                         "description": "Filter to be applied to the CM Handles through this event",
