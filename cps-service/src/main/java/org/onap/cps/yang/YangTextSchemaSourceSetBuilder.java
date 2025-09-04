@@ -104,6 +104,36 @@ public final class YangTextSchemaSourceSetBuilder {
         generateSchemaContext(yangResourceNameToContent);
     }
 
+    /**
+     * Create a new YangTextSchemaSource.
+     *
+     * @param source                   Yang (module) source as string
+     * @param revisionSourceIdentifier Revision of the source
+     * @return a YangTextSchemaSource created from the given source
+     */
+    public static YangTextSchemaSource getYangTextSchemaSource(final String source,
+                                                               final RevisionSourceIdentifier
+                                                                   revisionSourceIdentifier) {
+        return new YangTextSchemaSource(revisionSourceIdentifier) {
+            @Override
+            public Optional<String> getSymbolicName() {
+                return Optional.empty();
+            }
+
+            @Override
+            protected MoreObjects.ToStringHelper addToStringAttributes(
+                final MoreObjects.ToStringHelper toStringHelper) {
+                return toStringHelper;
+            }
+
+            @Override
+            public InputStream openStream() {
+                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
+            }
+        };
+    }
+
+
     private record YangTextSchemaSourceSetImpl(SchemaContext schemaContext) implements YangTextSchemaSourceSet {
 
         @Override
@@ -159,23 +189,7 @@ public final class YangTextSchemaSourceSetBuilder {
         final RevisionSourceIdentifier revisionSourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
-        return new YangTextSchemaSource(revisionSourceIdentifier) {
-            @Override
-            public Optional<String> getSymbolicName() {
-                return Optional.empty();
-            }
-
-            @Override
-            protected MoreObjects.ToStringHelper addToStringAttributes(
-                final MoreObjects.ToStringHelper toStringHelper) {
-                return toStringHelper;
-            }
-
-            @Override
-            public InputStream openStream() {
-                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
-            }
-        };
+        return getYangTextSchemaSource(source, revisionSourceIdentifier);
     }
 
     private static RevisionSourceIdentifier createIdentifierFromSourceName(final String sourceName) {

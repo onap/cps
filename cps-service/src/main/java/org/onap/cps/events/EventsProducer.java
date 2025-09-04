@@ -60,15 +60,7 @@ public class EventsProducer<T> {
     public void sendCloudEvent(final String topicName, final String eventKey, final CloudEvent event) {
         final CompletableFuture<SendResult<String, CloudEvent>> eventFuture =
                 cloudEventKafkaTemplate.send(topicName, eventKey, event);
-        eventFuture.whenComplete((result, e) -> {
-            if (e == null) {
-                log.debug("Successfully sent event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
-                        result.getProducerRecord().value());
-
-            } else {
-                log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
-            }
-        });
+        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e));
     }
 
     /**
@@ -94,7 +86,6 @@ public class EventsProducer<T> {
      * @param event        message payload
      */
     public void sendEvent(final String topicName, final String eventKey, final Headers eventHeaders, final T event) {
-
         final ProducerRecord<String, T> producerRecord =
                 new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
         final CompletableFuture<SendResult<String, T>> eventFuture = legacyKafkaEventTemplate.send(producerRecord);
@@ -111,26 +102,27 @@ public class EventsProducer<T> {
      */
     public void sendEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
                           final T event) {
-
         sendEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
     }
 
     private void handleLegacyEventCallback(final String topicName,
-            final CompletableFuture<SendResult<String, T>> eventFuture) {
-        eventFuture.whenComplete((result, e) -> {
-            if (e == null) {
-                log.debug("Successfully sent event to topic : {} , Event : {}", result.getRecordMetadata().topic(),
-                        result.getProducerRecord().value());
-            } else {
-                log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
-            }
-        });
+                                           final CompletableFuture<SendResult<String, T>> eventFuture) {
+        eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e));
     }
 
     private Headers convertToKafkaHeaders(final Map<String, Object> eventMessageHeaders) {
         final Headers eventHeaders = new RecordHeaders();
         eventMessageHeaders.forEach((key, value) -> eventHeaders.add(key, SerializationUtils.serialize(value)));
         return eventHeaders;
+    }
+
+    private static void logOutcome(final String topicName, final SendResult<String, ?> result, final Throwable e) {
+        if (e == null) {
+            final Object event = result.getProducerRecord().value();
+            log.debug("Successfully sent event to topic : {} , Event : {}", topicName, event);
+        } else {
+            log.error("Unable to send event to topic : {} due to {}", topicName, e.getMessage());
+        }
     }
 
 }

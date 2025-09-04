@@ -46,9 +46,7 @@ public class FetchDescendantsOption {
         Pattern.compile("^$|^all$|^none$|^direct$|^[0-9]+$|^-1$|^1$");
 
     /**
-     * Get depth.
-     *
-     * @return depth: -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants
+     * depth : -1 for all descendants, 0 for no descendants, or positive value for fixed level of descendants.
      */
     @Getter
     private final int depth;

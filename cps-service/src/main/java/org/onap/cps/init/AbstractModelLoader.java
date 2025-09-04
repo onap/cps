@@ -202,7 +202,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
 
     private String getFileContentAsString(final String fileName) {
         try (final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName)) {
-            return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+            return new String(inputStream != null ? inputStream.readAllBytes() : null, StandardCharsets.UTF_8);
         } catch (final Exception exception) {
             final String message = String.format("Onboarding failed as unable to read file: %s", fileName);
             log.debug(message);
