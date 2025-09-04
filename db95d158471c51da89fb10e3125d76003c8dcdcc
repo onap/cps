@@ -67,6 +67,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8ad0dee3_f8487701",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-04T10:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc2ed438_c8828ec1",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 40
+      },
+      "revId": "db95d158471c51da89fb10e3125d76003c8dcdcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1476af20_7e2a013f",
         "filename": "cps-service/src/main/java/org/onap/cps/init/AbstractModelLoader.java",
         "patchSetId": 3
