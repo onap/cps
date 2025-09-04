@@ -66,22 +66,17 @@ public class InventoryModelLoader extends AbstractModelLoader {
     @Override
     public void onboardOrUpgradeModel() {
         final String schemaToInstall = newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
-        if (newRevisionEnabled) {
-            if (doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
-                final String moduleRevision = getModuleRevision(schemaToInstall);
-                if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
-                        moduleRevision)) {
-                    log.info("Revision {} is already installed.", moduleRevision);
-                } else {
-                    upgradeInventoryModel();
-                    performInventoryDataMigration();
-                }
-            } else {
-                installInventoryModel(schemaToInstall);
-            }
+        final String moduleRevision = getModuleRevision(schemaToInstall);
+
+        if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
+                moduleRevision)) {
+            log.info("Revision {} is already installed.", moduleRevision);
+        } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+            upgradeAndMigrateInventoryModel();
         } else {
             installInventoryModel(schemaToInstall);
         }
+
         applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
     }
 
@@ -114,24 +109,6 @@ public class InventoryModelLoader extends AbstractModelLoader {
         // TODO further implementation is pending
         //1. Load all the cm handles (in batch)
         //2. Copy the state and known properties
-        log.info("Starting inventory module data migration...");
-
-        // Simulate a 4-minute migration (240 seconds total)
-        final int totalSeconds = 240;
-        final int stepSeconds = 30; // log progress every 30 seconds
-        final int steps = totalSeconds / stepSeconds;
-
-        for (int i = 1; i <= steps; i++) {
-            try {
-                Thread.sleep(stepSeconds * 1000L);
-            } catch (final InterruptedException e) {
-                Thread.currentThread().interrupt();
-                log.warn("Migration interrupted!", e);
-                return;
-            }
-            final int progress = (i * 100) / steps;
-            log.info("Migration progress: {}%", progress);
-        }
         log.info("Inventory module data migration is completed successfully.");
     }
 
@@ -142,5 +119,10 @@ public class InventoryModelLoader extends AbstractModelLoader {
     private static String getModuleRevision(final String schemaSetName) {
         // Extract the revision part ( for example: 2024-02-23)
         return schemaSetName.substring(INVENTORY_YANG_MODULE_NAME.length() + 1);
+    }
+
+    private void upgradeAndMigrateInventoryModel() {
+        upgradeInventoryModel();
+        performInventoryDataMigration();
     }
 }

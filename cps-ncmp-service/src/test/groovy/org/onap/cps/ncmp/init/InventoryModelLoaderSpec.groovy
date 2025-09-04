@@ -74,9 +74,11 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     def 'Onboard subscription model via application ready event.'() {
-        given: 'dataspace is ready for use'
+        given: 'dataspace is ready for use with default newRevisionEnabled flag'
             objectUnderTest.newRevisionEnabled = false
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
+        and: 'module revision does not exist'
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
         when: 'the application is started'
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
@@ -88,8 +90,9 @@ class InventoryModelLoaderSpec extends Specification {
     }
 
     def 'Install new model revision'() {
-        given: 'the anchor does not exist'
+        given: 'the anchor and module revision does not exist'
             mockCpsAnchorService.getAnchor(_, _) >> { throw new AnchorNotFoundException('', '') }
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
         when: 'the inventory model loader is triggered'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'a new schema set for the 2025-07-22 revision is installed'

@@ -192,6 +192,17 @@ public abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
+    /**
+     * Checks if the specified revision of a module is installed.
+     */
+    protected boolean isModuleRevisionInstalled(final String dataspaceName, final String anchorName,
+                                                final String moduleName, final String moduleRevision) {
+        final Collection<ModuleDefinition> moduleDefinitions =
+                cpsModuleService.getModuleDefinitionsByAnchorAndModule(dataspaceName, anchorName, moduleName,
+                        moduleRevision);
+        return !moduleDefinitions.isEmpty();
+    }
+
     Map<String, String> mapYangResourcesToContent(final String... resourceNames) {
         final Map<String, String> yangResourceContentByName = new HashMap<>();
         for (final String resourceName: resourceNames) {
@@ -208,17 +219,6 @@ public abstract class AbstractModelLoader implements ModelLoader {
             log.debug(message);
             throw new ModelOnboardingException(message, exception.getMessage());
         }
-    }
-
-    /**
-     * Checks if the specified revision of a module is installed.
-     */
-    protected boolean isModuleRevisionInstalled(final String dataspaceName, final String anchorName,
-                                                final String moduleName, final String moduleRevision) {
-        final Collection<ModuleDefinition> moduleDefinitions =
-                cpsModuleService.getModuleDefinitionsByAnchorAndModule(dataspaceName, anchorName, moduleName,
-                        moduleRevision);
-        return !moduleDefinitions.isEmpty();
     }
 
     private void exitApplication(final ApplicationStartedEvent applicationStartedEvent) {

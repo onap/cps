@@ -37,10 +37,9 @@ public class ReadinessHealthIndicator implements HealthIndicator {
             return Health.up()
                     .withDetail("Startup Processes", "All startup processes completed")
                     .build();
-        } else {
-            return Health.down()
-                    .withDetail("Startup Processes active", readinessManager.getStartupProcessesAsString())
-                    .build();
         }
+        return Health.down()
+                .withDetail("Startup Processes active", readinessManager.getStartupProcessesAsString())
+                .build();
     }
 }
