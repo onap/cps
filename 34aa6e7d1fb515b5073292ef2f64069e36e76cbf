@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89f4fcce_04e55274",
+        "filename": "cps-ncmp-service/src/main/resources/models/cm-data-job-subscriptions@2025-09-03.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-04T09:29:48Z",
+      "side": 1,
+      "message": "his name is actually OK",
+      "parentUuid": "c0ea6c9a_199c92a8",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "34aa6e7d1fb515b5073292ef2f64069e36e76cbf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3feaa239_6ba33dee",
         "filename": "cps-ncmp-service/src/main/resources/models/cm-data-job-subscriptions@2025-09-03.yang",
         "patchSetId": 1
