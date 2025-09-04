@@ -88,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc9107c_8d60f771",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-04T11:20:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa3b4a6e_0fc0b732",
+      "range": {
+        "startLine": 56,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 19
+      },
+      "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd4135e7_62237036",
@@ -101,6 +125,30 @@
       "writtenOn": "2025-09-04T10:52:25Z",
       "side": 1,
       "message": "this is not needed.",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 16
+      },
+      "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aebf3dc_0609ef2f",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ReadinessHealthIndicator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-04T11:20:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd4135e7_62237036",
       "range": {
         "startLine": 40,
         "startChar": 10,
