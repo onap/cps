@@ -6,7 +6,7 @@
     "NcmpOutEvent": {
       "type": "object",
       "description": "The payload applied cm subscription merge event coming out from NCMP.",
-      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.ncmp_to_client.NcmpOutEvent",
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_client.NcmpOutEvent",
       "additionalProperties": false,
       "properties": {
         "data": {

@@ -7,7 +7,7 @@
       "description": "The payload for cm notification subscription merge event coming out from DMI Plugin.",
       "type": "object",
       "additionalProperties": false,
-      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.dmi_to_ncmp.DmiOutEvent",
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.dmi_to_ncmp.DmiOutEvent",
       "properties": {
         "data": {
           "$ref": "#/definitions/Data"

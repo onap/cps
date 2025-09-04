@@ -5,7 +5,7 @@
   "definitions": {
     "NcmpInEvent": {
       "description": "The payload for subscription merge event.",
-      "javaType": "org.onap.cps.ncmp.impl.cmnotificationsubscription_1_0_0.client_to_ncmp.NcmpInEvent",
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.NcmpInEvent",
       "properties": {
         "data": {
           "properties": {
