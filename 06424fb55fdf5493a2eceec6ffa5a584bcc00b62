@@ -39,6 +39,30 @@
       },
       "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f9ac20_60ade908",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7957
+      },
+      "writtenOn": "2025-09-04T10:49:12Z",
+      "side": 1,
+      "message": "Verified , its not avaialble until we mention this explicitly as above.",
+      "parentUuid": "825530aa_2a00e88b",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 19
+      },
+      "revId": "06424fb55fdf5493a2eceec6ffa5a584bcc00b62",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
