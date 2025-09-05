@@ -16,6 +16,23 @@
       "message": "Resolved comments",
       "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4c1094_5f831acc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-05T09:54:37Z",
+      "side": 1,
+      "message": "fine by me as it mostly code movement.",
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
