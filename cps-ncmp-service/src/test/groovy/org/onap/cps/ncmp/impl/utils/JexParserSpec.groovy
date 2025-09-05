@@ -24,59 +24,65 @@ import spock.lang.Specification
 
 class JexParserSpec extends Specification {
 
-    def 'Parsing single JSON Expression with #scenario.'() {
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'only the expected top-level absolute paths with id is returned'
-            assert result[0] == expectedFdn
+    def 'Ignored expressions #scenario.'() {
+        when: 'the parser gets list of xpaths'
+            def result = JexParser.toXpaths(xpaths)
+        then: 'the result is empty'
+            assert result.isEmpty()
         where: 'Following expressions are used'
-            scenario                                          | locationPath                                     || expectedFdn
+            scenario            | xpaths
+            'null input'        | null
+            'comments only'     | '&&text only comment'
+            'commented out FDN' | '&&/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]'
+    }
+
+    def 'Parsing list of json expression with #scenario.'() {
+        when: 'the parser gets list of xpaths'
+            def result = JexParser.toXpaths(xpaths)
+        then: 'the result is empty'
+            assert result == expectedXpaths
+        where: 'Following expressions are used'
+            scenario               | xpaths                                         || expectedXpaths
+            'single segment'       | '/SubNetwork[id="SN1"]'                        || ['/SubNetwork[id="SN1"]']
+            'trimmed segment'      | '  /SubNetwork[id="SN1"]  '                    || ['/SubNetwork[id="SN1"]']
+            'duplicate segments'   | '/SubNetwork[id="SN1"]\n/SubNetwork[id="SN1"]' || ['/SubNetwork[id="SN1"]']
+            'comment with segment' | '&&ignore this\n/SubNetwork[id="SN1"]'         || ['/SubNetwork[id="SN1"]']
+    }
+
+    def 'Convert xpaths to json expression.'() {
+        given: 'list of xpaths'
+            def xpaths = ['/SubNetwork[id="SN1"]', '/ManagedElement']
+        when: 'parser gets json expression'
+            def result = JexParser.toJsonExpressionsAsString(xpaths)
+        then:
+            assert result == '/SubNetwork[id="SN1"]\n/ManagedElement'
+    }
+
+    def 'Extracts fdn from xpath with #scenario.'() {
+        when: 'the parser extracts the fdn'
+            def result = JexParser.extractFdnPrefix(xpath)
+        then: 'the expected FDN is returned'
+            assert result.orElse(null) == expectedFdn
+        where: 'Following expressions are used'
+            scenario                                          | xpath                                            || expectedFdn
             'single segment'                                  | '/SubNetwork[id="SN1"]'                          || '/SubNetwork=SN1'
             'two segments'                                    | '/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]' || '/SubNetwork=SN1/ManagedElement=ME1'
-            'segment and mo without id'                       | '/SubNetwork[id="SN1"]/attributes]'              || '/SubNetwork=SN1'
+            'segment and mo without id'                       | '/SubNetwork[id="SN1"]/attributes'               || '/SubNetwork=SN1'
             'segment and mos without id'                      | '/SubNetwork[id="SN1"]/attributes/vendorName'    || '/SubNetwork=SN1'
             'segment and mo with other attribute expressions' | '/SubNetwork[id="SN1"]/vendor[name="V1"]'        || '/SubNetwork=SN1'
             'segment followed by wildcard'                    | '/SubNetwork[id="SN1"]/*'                        || '/SubNetwork=SN1'
     }
 
-    def 'Parsing multiple JSON Expressions.'() {
-        given: 'multiple JSON expressions with multiple absolute paths, attributes, and filters'
-            def locationPath = """
-            /SubNetwork[id="SN1"]/ManagedElement
-            /SubNetwork[id="SN2"]
-            """
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'the expected paths with ids are returned'
-            assert result.size() == 2
-            assert result.containsAll(['/SubNetwork=SN1', '/SubNetwork=SN2'])
-    }
-
-    def 'Parsing multiple JSON Expressions with duplicate results.'() {
-        given: 'multiple JSON expressions with multiple absolute paths, attributes, and filters'
-            def locationPath = """
-            /SubNetwork[id="SN1"]/ManagedElement
-            /SubNetwork[id="SN1"]
-            """
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'only one unique path with id is returned'
-            assert result == ['/SubNetwork=SN1']
-    }
-
-    def 'Ignored expressions #scenario.'() {
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
+    def 'Ignored expressions with #scenario.'() {
+        when: 'the parser extracts fdns'
+            def result = JexParser.extractFdnPrefix(xpaths)
         then: 'the result is empty'
             assert result.isEmpty()
         where: 'Following expressions are used'
-            scenario            | locationPath
-            'comments'          | '&&text only comment'
-            'commented out FDN' | '&&/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]'
-            'blank'             | ''
-            'root'              | '/'
-            'no IDs at all'     | '/SubNetwork/attribute'
-            'null'              | null
+            scenario        | xpaths
+            'blank'         | ''
+            'root'          | '/'
+            'no IDs at all' | '/SubNetwork/attribute'
     }
 }
 
