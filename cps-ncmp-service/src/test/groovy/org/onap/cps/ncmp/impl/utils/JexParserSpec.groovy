@@ -24,59 +24,74 @@ import spock.lang.Specification
 
 class JexParserSpec extends Specification {
 
-    def 'Parsing single JSON Expression with #scenario.'() {
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'only the expected top-level absolute paths with id is returned'
-            assert result[0] == expectedFdn
+    def 'Parsing multi-line json expressions with #scenario.'() {
+        when: 'the parser gets a (muti-line) json expressions'
+            def result = JexParser.toXpaths(jsonExpressions)
+        then: 'the expected xpaths are returned'
+            assert result == ['/SubNetwork[id="SN1"]']
         where: 'Following expressions are used'
-            scenario                                          | locationPath                                     || expectedFdn
+            scenario               | jsonExpressions
+            'single segment'       | '/SubNetwork[id="SN1"]'
+            'trimmed segment'      | '  /SubNetwork[id="SN1"]  '
+            'duplicate segments'   | '/SubNetwork[id="SN1"]\n/SubNetwork[id="SN1"]'
+            'comment with segment' | '&&ignore this\n/SubNetwork[id="SN1"]'
+    }
+
+    def 'Parsing multi-line json expressions with multiple xpaths.'() {
+        given: 'multi-line json expressions'
+            def jsonExpressions = '/SubNetwork[id="SN1"]\n/ManagedElement[id="ME1"]'
+        when: 'the parser gets a (muti-line) json expressions'
+            def result = JexParser.toXpaths(jsonExpressions)
+        then: 'the expected xpaths are returned'
+            assert result == ['/SubNetwork[id="SN1"]','/ManagedElement[id="ME1"]']
+    }
+
+    def 'Extracts xpaths from json expressions, ignored expressions: #scenario.'() {
+        when: 'the parser gets a (muti-line) json expressions'
+            def result = JexParser.toXpaths(jsonExpressions)
+        then: 'the result is empty'
+            assert result.isEmpty()
+        where: 'Following expressions are used'
+            scenario            | jsonExpressions
+            'null input'        | null
+            'comments only'     | '&&text only comment'
+            'commented out FDN' | '&&/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]'
+    }
+
+    def 'Convert xpaths to json expressions.'() {
+        given: 'list of xpaths'
+            def xpaths = ['/SubNetwork[id="SN1"]', '/ManagedElement']
+        when: 'parser gets xpaths'
+            def result = JexParser.toJsonExpressionsAsString(xpaths)
+        then: 'the expected multi-line json expression returned'
+            assert result == '/SubNetwork[id="SN1"]\n/ManagedElement'
+    }
+
+    def 'Extracts fdn from xpath with #scenario.'() {
+        when: 'the parser extracts the fdn'
+            def result = JexParser.extractFdnPrefix(xpath)
+        then: 'the expected FDN is returned'
+            assert result.orElse(null) == expectedFdn
+        where: 'Following xpaths are used'
+            scenario                                          | xpath                                            || expectedFdn
             'single segment'                                  | '/SubNetwork[id="SN1"]'                          || '/SubNetwork=SN1'
             'two segments'                                    | '/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]' || '/SubNetwork=SN1/ManagedElement=ME1'
-            'segment and mo without id'                       | '/SubNetwork[id="SN1"]/attributes]'              || '/SubNetwork=SN1'
+            'segment and mo without id'                       | '/SubNetwork[id="SN1"]/attributes'               || '/SubNetwork=SN1'
             'segment and mos without id'                      | '/SubNetwork[id="SN1"]/attributes/vendorName'    || '/SubNetwork=SN1'
             'segment and mo with other attribute expressions' | '/SubNetwork[id="SN1"]/vendor[name="V1"]'        || '/SubNetwork=SN1'
             'segment followed by wildcard'                    | '/SubNetwork[id="SN1"]/*'                        || '/SubNetwork=SN1'
     }
 
-    def 'Parsing multiple JSON Expressions.'() {
-        given: 'multiple JSON expressions with multiple absolute paths, attributes, and filters'
-            def locationPath = """
-            /SubNetwork[id="SN1"]/ManagedElement
-            /SubNetwork[id="SN2"]
-            """
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'the expected paths with ids are returned'
-            assert result.size() == 2
-            assert result.containsAll(['/SubNetwork=SN1', '/SubNetwork=SN2'])
-    }
-
-    def 'Parsing multiple JSON Expressions with duplicate results.'() {
-        given: 'multiple JSON expressions with multiple absolute paths, attributes, and filters'
-            def locationPath = """
-            /SubNetwork[id="SN1"]/ManagedElement
-            /SubNetwork[id="SN1"]
-            """
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
-        then: 'only one unique path with id is returned'
-            assert result == ['/SubNetwork=SN1']
-    }
-
-    def 'Ignored expressions #scenario.'() {
-        when: 'the parser extracts FDNs'
-            def result = JexParser.extractFdnsFromLocationPaths(locationPath)
+    def 'Extracts fdn from xpath, ignored expressions: #scenario.'() {
+        when: 'the parser extracts fdns'
+            def result = JexParser.extractFdnPrefix(xpaths)
         then: 'the result is empty'
             assert result.isEmpty()
-        where: 'Following expressions are used'
-            scenario            | locationPath
-            'comments'          | '&&text only comment'
-            'commented out FDN' | '&&/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]'
-            'blank'             | ''
-            'root'              | '/'
-            'no IDs at all'     | '/SubNetwork/attribute'
-            'null'              | null
+        where: 'Following xpaths are used'
+            scenario        | xpaths
+            'blank'         | ''
+            'root'          | '/'
+            'no IDs at all' | '/SubNetwork/attribute'
     }
 }
 

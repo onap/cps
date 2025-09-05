@@ -67,7 +67,7 @@ class NcmpInEventConsumerSpec extends Specification {
             assert loggingEvent.formattedMessage.contains('jobId=my job id')
             assert loggingEvent.formattedMessage.contains('eventType=my event type')
             assert loggingEvent.formattedMessage.contains("dataType=${dataTypeId}")
-            assert loggingEvent.formattedMessage.contains('fdns=[/SubNetwork=SN1]')
+            assert loggingEvent.formattedMessage.contains('fdns=[/SubNetwork[id="SN1"]]')
         where: 'the following data type ids are used'
             scenario  | dataTypeId
             'with'    | 'my data type'
