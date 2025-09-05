@@ -50,7 +50,7 @@ public class NcmpInEventConsumer {
         final String eventType = dataJobSubscriptionOperationInEvent.getEventType();
         final String dataNodeSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
             .getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
-        final List<String> fdns = JexParser.extractFdnsFromLocationPaths(dataNodeSelector);
+        final List<String> fdns = JexParser.toXpaths(dataNodeSelector);
         final String dataJobId = dataJobSubscriptionOperationInEvent.getEvent().getDataJob().getId();
         final String dataTypeId = dataJobSubscriptionOperationInEvent.getEvent().getDataType() != null
             ? dataJobSubscriptionOperationInEvent.getEvent().getDataType().getDataTypeId() : "UNKNOWN";
