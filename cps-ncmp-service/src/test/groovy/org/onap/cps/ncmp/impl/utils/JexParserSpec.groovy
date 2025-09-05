@@ -78,6 +78,46 @@ class JexParserSpec extends Specification {
             'no IDs at all'     | '/SubNetwork/attribute'
             'null'              | null
     }
+
+    def 'Ignored expression #scenario.'() {
+        when: 'the parser gets list of location paths'
+            def result = JexParser.getListOfLocationPaths(locationPaths)
+        then: 'the result is empty'
+            assert result.isEmpty()
+        where: 'Following expressions are used'
+            scenario            | locationPaths
+            'null input'        | null
+            'comments only'     | '&&text only comment'
+            'commented out FDN' | '&&/SubNetwork[id="SN1"]/ManagedElement[id="ME1"]'
+    }
+
+    def 'Parsing list of JSON Expression with #scenario.'() {
+        when: 'the parser gets list of location paths'
+            def result = JexParser.getListOfLocationPaths(locationPaths)
+        then: 'the result is empty'
+            assert result == expectedLocationPaths
+        where: 'Following expressions are used'
+            scenario               | locationPaths                                  || expectedLocationPaths
+            'single segment'       | '/SubNetwork[id="SN1"]'                        || ['/SubNetwork[id="SN1"]']
+            'trimmed segment'      | '  /SubNetwork[id="SN1"]  '                    || ['/SubNetwork[id="SN1"]']
+            'duplicate segments'   | '/SubNetwork[id="SN1"]\n/SubNetwork[id="SN1"]' || ['/SubNetwork[id="SN1"]']
+            'comment with segment' | '&&ignore this\n/SubNetwork[id="SN1"]'         || ['/SubNetwork[id="SN1"]']
+    }
+
+    def 'Join a list of location paths into JSON expression.'() {
+        given: 'list of location paths'
+            def locationPaths = [
+                    '/SubNetwork[id="SN1"]',
+                    '/SubNetwork[id="SN1"]/ManagedElement',
+                    '/SubNetwork[id="SN1"]/ManagedElement/attributes'
+            ]
+            def LINE_JOINER_DELIMITER = '\n'
+            def expectedJsonExpression = locationPaths.join(LINE_JOINER_DELIMITER)
+        when: 'parser gets JSON expression'
+            def result = JexParser.getJsonExpression(locationPaths)
+        then:
+            assert result == expectedJsonExpression
+    }
 }
 
 
