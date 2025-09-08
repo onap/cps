@@ -1,0 +1,360 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5571f24_14f9d90c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "I stopped reviewing when i realized I need a walkthrough but have a look at the comemns so far and maybe some renaming will help me understand it better...",
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f570ef_26be746a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "consider: addProductJobDefinition",
+      "range": {
+        "startLine": 60,
+        "startChar": 24,
+        "endLine": 60,
+        "endChar": 43
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0d227f8_e67694fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "consider: addDataSelector",
+      "range": {
+        "startLine": 66,
+        "startChar": 24,
+        "endLine": 66,
+        "endChar": 49
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82724e72_a82cb86b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "its always trick with these long names and when they keep changing.\nNot sure if we discussed this before and what exactly we agreed. I would consider 2 options\n1) consistent use long name for event ie. DataJobSubscriptionDmiInEventProducers\n2) use short names in the context of package names, so in this case\ndatajob/dmi/EventProducer would suffice\n\nIts the halfway house I never like. I think in this case I would prefer option 2",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9835cd8_394a4a8f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "as per previous comment I think just \u0027send\u0027 might be OK here given the context of the class",
+      "range": {
+        "startLine": 53,
+        "startChar": 16,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fac1f1a_6ccb56c1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "is this really going to be variable?\n(or is this create, delete etc?)",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 53
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e74340_10e49f14",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "as per previous comment I think just \u0027event\u0027 might be OK here given the context of the class",
+      "range": {
+        "startLine": 54,
+        "startChar": 91,
+        "endLine": 54,
+        "endChar": 101
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a64419_728d0060",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "toCloudEvent",
+      "range": {
+        "startLine": 60,
+        "startChar": 23,
+        "endLine": 60,
+        "endChar": 56
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafb2d2f_5395fe59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "event",
+      "range": {
+        "startLine": 62,
+        "startChar": 93,
+        "endLine": 62,
+        "endChar": 103
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f5d5b6_735360a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "I am getting a bit lost in this class so I think I need a walkthrough",
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f92790a_6cf48f71",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "I would remove this word, it suggest there is a Synchronous interface and it is not needed to understand wata the method does",
+      "range": {
+        "startLine": 58,
+        "startChar": 41,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278bdf43_7d0ca621",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "dataSelector",
+      "range": {
+        "startLine": 59,
+        "startChar": 68,
+        "endLine": 59,
+        "endChar": 84
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea44b3e4_93b00a51",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "dataSelector",
+      "range": {
+        "startLine": 66,
+        "startChar": 86,
+        "endLine": 66,
+        "endChar": 102
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "794591ce_273c67ab",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "IS this methof applicablt for create and delete?!\nsend(Create)EventToDmis  OR\nsend(Create)EventToAffectedDmis",
+      "range": {
+        "startLine": 66,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 37
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb4373f_99c8e770",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "no need to add the end-goals to method names, the methow doesn\u0027t care who or what uses it and it should be irrelevant to the code",
+      "range": {
+        "startLine": 79,
+        "startChar": 46,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bacb714c_db8d49b9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:34:44Z",
+      "side": 1,
+      "message": "is this needed? Doe steh query not already have filter this?\n(Or are you trying to handle the delete case here too?!)",
+      "range": {
+        "startLine": 96,
+        "startChar": 42,
+        "endLine": 96,
+        "endChar": 79
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
