@@ -46,7 +46,6 @@ public class JexParser {
      * @param jsonExpressionsAsString Multi-line jex string.
      * @return List of xpaths
      */
-    @SuppressWarnings("unused")
     public static List<String> toXpaths(final String jsonExpressionsAsString) {
         if (jsonExpressionsAsString == null) {
             return Collections.emptyList();
@@ -67,7 +66,6 @@ public class JexParser {
      * @param xpath A single json expression.
      * @return Optional containing resolved fdn if found; empty otherwise.
      */
-    @SuppressWarnings("unused")
     public static Optional<String> extractFdnPrefix(final String xpath) {
         final List<String> xpathSegments = splitIntoXpaths(xpath);
         final StringBuilder fdnBuilder = new StringBuilder();
@@ -96,7 +94,6 @@ public class JexParser {
      * @param xpaths List of xpath strings to be joined.
      * @return A string representing the concatenated json expression.
      */
-    @SuppressWarnings("unused")
     public static String toJsonExpressionsAsString(final Collection<String> xpaths) {
         return String.join(LINE_JOINER_DELIMITER, xpaths);
     }
