@@ -38,7 +38,29 @@ public class JexParser {
     private static final Pattern LOCATION_SEGMENT_PATTERN = Pattern.compile("(.*)\\[id=\\\"(.*)\\\"]");
     private static final String JEX_COMMENT_PREFIX = "&&";
     private static final String LINE_SEPARATOR_REGEX = "\\R";
+
+    private static final String LINE_JOINER_DELIMITER = "\n";
     private static final String SEGMENT_SEPARATOR = "/";
+
+
+    /**
+     * Resolves a jsonExpression into a list of location paths.
+     *
+     * @param jsonExpression Multi-line JEX string with possible comments and relative xpaths.
+     * @return List of location paths
+     */
+    public static List<String> getListOfLocationPaths(final String jsonExpression) {
+        if (jsonExpression == null) {
+            return Collections.emptyList();
+        } else {
+            final String[] lines = jsonExpression.split(LINE_SEPARATOR_REGEX);
+            return Arrays.stream(lines)
+                    .map(String::trim)
+                    .filter(locationPath -> !locationPath.startsWith(JEX_COMMENT_PREFIX))
+                    .distinct()
+                    .toList();
+        }
+    }
 
     /**
      * Resolves alternate ids from a JEX basic expression with many paths.
@@ -50,14 +72,8 @@ public class JexParser {
         if (jsonExpression == null) {
             return Collections.emptyList();
         }
-
-        final String[] lines = jsonExpression.split(LINE_SEPARATOR_REGEX);
-
-        final Stream<String> locationPaths = Arrays.stream(lines)
-                .map(String::trim)
-                .filter(locationPath -> !locationPath.startsWith(JEX_COMMENT_PREFIX));
-
-        final Stream<String> fdns = locationPaths
+        final List<String> locationPaths = getListOfLocationPaths(jsonExpression);
+        final Stream<String> fdns = locationPaths.stream()
                 .map(JexParser::extractFdnPrefix)
                 .flatMap(Optional::stream)
                 .distinct();
@@ -73,7 +89,7 @@ public class JexParser {
      * @param locationPath A single JEX path.
      * @return Optional containing resolved FDN if found; empty otherwise.
      */
-    private static Optional<String> extractFdnPrefix(final String locationPath) {
+    public static Optional<String> extractFdnPrefix(final String locationPath) {
         final List<String> locationPathSegments = splitIntoLocationPathsSegments(locationPath);
         final StringBuilder fdnBuilder = new StringBuilder();
         for (final String locationPathSegment : locationPathSegments) {
@@ -93,6 +109,10 @@ public class JexParser {
 
         final String fdn = fdnBuilder.toString();
         return fdn.isEmpty() ? Optional.empty() : Optional.of(fdn);
+    }
+
+    public static String getJsonExpression(final List<String> locationPaths) {
+        return String.join(LINE_JOINER_DELIMITER, locationPaths);
     }
 
     private static List<String> splitIntoLocationPathsSegments(final String locationPath) {

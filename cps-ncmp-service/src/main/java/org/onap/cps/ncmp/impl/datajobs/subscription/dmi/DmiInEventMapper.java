@@ -27,13 +27,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionPredicate;
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.CmHandle;
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.Data;
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent;
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.Predicate;
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.ScopeFilter;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataSelector;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.ProductionJobDefinition;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.TargetSelector;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -43,40 +44,39 @@ public class DmiInEventMapper {
     private final InventoryPersistence inventoryPersistence;
 
     /**
-     * Mapper to form a request for the DMI Plugin for the Cm Notification Subscription.
+     * This method maps relevant details for a subscription to a data job subscription DMI in event.
      *
-     * @param dmiCmSubscriptionPredicates Collection of Cm Notification Subscription predicates
-     * @return DmiInEvent to be sent to DMI Plugin
+     * @param cmHandleIds           list of cm handle ID(s)
+     * @param dataNodeSelectors     list of data node selectors
+     * @param notificationTypes     the list of notification types
+     * @param notificationFilter    the notification filter
+     * @return                      data job subscription DMI in event
      */
-    public DmiInEvent toDmiInEvent(final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
-        final DmiInEvent dmiInEvent = new DmiInEvent();
-        final Data cmSubscriptionData = new Data();
-        cmSubscriptionData.setPredicates(mapToDmiInEventPredicates(dmiCmSubscriptionPredicates));
-        cmSubscriptionData.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(
-            extractUniqueCmHandleIds(dmiCmSubscriptionPredicates)));
-        dmiInEvent.setData(cmSubscriptionData);
+    public DataJobSubscriptionDmiInEvent toDmiInEvent(final List<String> cmHandleIds,
+                                                      final List<String> dataNodeSelectors,
+                                                      final List<String> notificationTypes,
+                                                      final String notificationFilter) {
+        final DataJobSubscriptionDmiInEvent dmiInEvent = new DataJobSubscriptionDmiInEvent();
+        final Data data = new Data();
+        final String dataNodeSelector = JexParser.getJsonExpression(dataNodeSelectors);
+        data.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(new HashSet<>(cmHandleIds)));
+        addProductJobDefinition(data, dataNodeSelector);
+        addDataSelector(data, notificationTypes, notificationFilter);
+        dmiInEvent.setData(data);
         return dmiInEvent;
-
     }
 
-    private List<Predicate> mapToDmiInEventPredicates(
-        final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
+    private static void addProductJobDefinition(final Data data, final String dataNodeSelector) {
+        data.setProductionJobDefinition(new ProductionJobDefinition());
+        data.getProductionJobDefinition().setTargetSelector(new TargetSelector());
+        data.getProductionJobDefinition().getTargetSelector().setDataNodeSelector(dataNodeSelector);
+    }
 
-        final List<Predicate> predicates = new ArrayList<>();
-
-        dmiCmSubscriptionPredicates.forEach(dmiCmNotificationSubscriptionPredicate -> {
-            final Predicate predicate = new Predicate();
-            final ScopeFilter scopeFilter = new ScopeFilter();
-            scopeFilter.setDatastore(ScopeFilter.Datastore.fromValue(
-                dmiCmNotificationSubscriptionPredicate.getDatastoreType().getDatastoreName()));
-            scopeFilter.setXpathFilter(dmiCmNotificationSubscriptionPredicate.getXpaths().stream().toList());
-            predicate.setScopeFilter(scopeFilter);
-            predicate.setTargetFilter(dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds().stream().toList());
-            predicates.add(predicate);
-        });
-
-        return predicates;
-
+    private static void addDataSelector(final Data data, final List<String> notificationTypes,
+                                        final String notificationFilter) {
+        data.getProductionJobDefinition().setDataSelector(new DataSelector());
+        data.getProductionJobDefinition().getDataSelector().setNotificationTypes(notificationTypes);
+        data.getProductionJobDefinition().getDataSelector().setNotificationFilter(notificationFilter);
     }
 
     private List<CmHandle> mapToCmSubscriptionCmHandleWithAdditionalProperties(final Set<String> cmHandleIds) {
@@ -97,14 +97,5 @@ public class DmiInEventMapper {
         return cmSubscriptionCmHandles;
 
     }
-
-    private Set<String> extractUniqueCmHandleIds(final List<DmiCmSubscriptionPredicate> dmiCmSubscriptionPredicates) {
-
-        final Set<String> cmHandleIds = new HashSet<>();
-        dmiCmSubscriptionPredicates.forEach(dmiCmNotificationSubscriptionPredicate -> cmHandleIds.addAll(
-            dmiCmNotificationSubscriptionPredicate.getTargetCmHandleIds()));
-        return cmHandleIds;
-    }
-
 
 }
