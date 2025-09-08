@@ -39,6 +39,30 @@
       },
       "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89581d4_a10fe687",
+        "filename": "cps-service/src/test/resources/test-tree.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T12:15:46Z",
+      "side": 1,
+      "message": "nah, it\u0027s not a production code model, its not like we maintain different version.\nalsos I like that it is a palindroom now :-)",
+      "parentUuid": "eabb1810_511d06f5",
+      "range": {
+        "startLine": 6,
+        "startChar": 14,
+        "endLine": 6,
+        "endChar": 24
+      },
+      "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
