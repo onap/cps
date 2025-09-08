@@ -16,6 +16,52 @@
       "message": "fine by me.",
       "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c94719b_ea4d618d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/JsonObjectMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-08T11:07:15Z",
+      "side": 1,
+      "message": "nb: \u0027JSON\u0027",
+      "range": {
+        "startLine": 141,
+        "startChar": 79,
+        "endLine": 141,
+        "endChar": 83
+      },
+      "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e50b35_8ccc9f3b",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-08T11:07:15Z",
+      "side": 1,
+      "message": "not really correct?\nrevision source identifier",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
