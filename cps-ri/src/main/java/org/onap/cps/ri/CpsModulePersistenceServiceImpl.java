@@ -26,13 +26,10 @@ package org.onap.cps.ri;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.opendaylight.yangtools.yang.common.YangConstants.RFC6020_YANG_FILE_EXTENSION;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 import io.micrometer.core.annotation.Timed;
 import jakarta.transaction.Transactional;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -64,6 +61,7 @@ import org.onap.cps.ri.repository.ModuleReferenceRepository;
 import org.onap.cps.ri.repository.SchemaSetRepository;
 import org.onap.cps.ri.repository.YangResourceRepository;
 import org.onap.cps.spi.CpsModulePersistenceService;
+import org.onap.cps.yang.YangTextSchemaSourceSetBuilder;
 import org.opendaylight.yangtools.yang.common.Revision;
 import org.opendaylight.yangtools.yang.model.repo.api.RevisionSourceIdentifier;
 import org.opendaylight.yangtools.yang.model.repo.api.YangTextSchemaSource;
@@ -294,23 +292,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
         final RevisionSourceIdentifier revisionSourceIdentifier =
             createIdentifierFromSourceName(checkNotNull(sourceName));
 
-        final YangTextSchemaSource tempYangTextSchemaSource = new YangTextSchemaSource(revisionSourceIdentifier) {
-            @Override
-            public Optional<String> getSymbolicName() {
-                return Optional.empty();
-            }
-
-            @Override
-            protected MoreObjects.ToStringHelper addToStringAttributes(
-                final MoreObjects.ToStringHelper toStringHelper) {
-                return toStringHelper;
-            }
-
-            @Override
-            public InputStream openStream() {
-                return new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8));
-            }
-        };
+        final YangTextSchemaSource tempYangTextSchemaSource =
+            YangTextSchemaSourceSetBuilder.getYangTextSchemaSource(source, revisionSourceIdentifier);
         try {
             final YangModelDependencyInfo yangModelDependencyInfo
                 = YangModelDependencyInfo.forYangText(tempYangTextSchemaSource);

@@ -44,7 +44,8 @@ public class PolicyExecutorStubController implements OperationPermissionApi {
     private final Sleeper sleeper;
     private static final Pattern ERROR_CODE_PATTERN = Pattern.compile("(\\d{3})");
     private int decisionCounter = 0;
-    @SuppressWarnings("CanBeFinal") // Do NOT change below to final as it needs to be set during test
+    @SuppressWarnings({"CanBeFinal", "FieldCanBeLocal"})
+    // Do NOT change below to final as it needs to be set during test
     private static int slowResponseTimeInSeconds = 40;
 
     @Override

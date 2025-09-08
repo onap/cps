@@ -89,7 +89,8 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
 
     @Override
     @Transactional
-    public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity, final CpsPathQuery cpsPathQuery,
+    public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,
+                                                 final CpsPathQuery cpsPathQuery,
                                                  final PaginationOption paginationOption) {
         final Query query = fragmentQueryBuilder.getQueryForAnchorIdsForPagination(
                 dataspaceEntity, cpsPathQuery, paginationOption);
