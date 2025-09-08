@@ -26,7 +26,7 @@ import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsProducer;
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -35,7 +35,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
-public class DmiInEventProducer {
+public class EventProducer {
 
     private final EventsProducer<CloudEvent> eventsProducer;
 
@@ -48,22 +48,22 @@ public class DmiInEventProducer {
      * @param subscriptionId CM subscription id
      * @param dmiPluginName  Dmi plugin Name
      * @param eventType      Type of event
-     * @param dmiInEvent     Cm Notification Subscription event for Dmi
+     * @param event          Cm Notification Subscription event for Dmi
      */
-    public void sendDmiInEvent(final String subscriptionId, final String dmiPluginName,
-                               final String eventType, final DmiInEvent dmiInEvent) {
+    public void send(final String subscriptionId, final String dmiPluginName,
+                     final String eventType, final DataJobSubscriptionDmiInEvent event) {
         eventsProducer.sendCloudEvent(dmiInEventTopic, subscriptionId,
-            buildAndGetDmiInEventAsCloudEvent(subscriptionId, dmiPluginName, eventType, dmiInEvent));
+            toCloudEvent(eventType, event, subscriptionId, dmiPluginName));
 
     }
 
-    private CloudEvent buildAndGetDmiInEventAsCloudEvent(final String subscriptionId, final String dmiPluginName,
-                                                         final String eventType, final DmiInEvent dmiInEvent) {
+    private CloudEvent toCloudEvent(final String eventType, final DataJobSubscriptionDmiInEvent event,
+                                    final String subscriptionId, final String dmiPluginName) {
         return NcmpEvent.builder()
             .type(eventType)
             .dataSchema(SUBSCRIPTIONS_V1.getDataSchema())
+            .data(event)
             .extensions(Map.of("correlationid", String.join("#", subscriptionId, dmiPluginName)))
-            .data(dmiInEvent)
             .build()
             .asCloudEvent();
     }
