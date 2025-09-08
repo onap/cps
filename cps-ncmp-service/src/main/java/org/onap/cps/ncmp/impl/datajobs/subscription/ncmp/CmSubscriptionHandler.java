@@ -21,23 +21,17 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
 import java.util.List;
-import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.Predicate;
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
 
 public interface CmSubscriptionHandler {
 
     /**
      * Process cm notification subscription create request.
      *
-     * @param subscriptionId subscription id
-     * @param predicates     subscription predicates
+     * @param subscriptionId    subscription id
+     * @param dataNodeSelectors subscription data node selectors
      */
-    void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates);
-
-    /**
-     * Process cm notification subscription delete request.
-     *
-     * @param subscriptionId subscription id
-     */
-    void processSubscriptionDeleteRequest(final String subscriptionId);
+    void processSubscriptionCreate(final DataSelector dataSelector, final String subscriptionId,
+                                   final List<String> dataNodeSelectors);
 
 }
