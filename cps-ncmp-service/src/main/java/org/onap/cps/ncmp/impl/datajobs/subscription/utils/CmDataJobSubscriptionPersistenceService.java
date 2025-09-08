@@ -22,11 +22,14 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.utils;
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.UNKNOWN;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,27 +45,30 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CmDataJobSubscriptionPersistenceService {
 
-    private static final String NCMP_DATASPACE_NAME = "NCMP-Admin";
-    private static final String CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME = "cm-data-job-subscriptions";
-    private static final String CM_DATA_JOB_SUBSCRIPTIONS_PARENT_NODE_XPATH = "/dataJob";
-    private static final String CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE =
-        "/dataJob/subscription[@alternateId='%s' and @dataTypeId='%s']";
+    private static final String DATASPACE = "NCMP-Admin";
+    private static final String ANCHOR = "cm-data-job-subscriptions";
+
+    private static final String PARENT_NODE_XPATH = "/dataJob";
+    private static final String CPS_PATH_FOR_SUBSCRIPTION_NODE = "//subscription";
+    private static final String CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR =
+            CPS_PATH_FOR_SUBSCRIPTION_NODE + "[@dataNodeSelector='%s']";
     private static final String CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID =
-        "//subscription/dataJobId[text()='%s']";
+        CPS_PATH_FOR_SUBSCRIPTION_NODE + "/dataJobId[text()='%s']";
+    private static final String CPS_PATH_TEMPLATE_FOR_INACTIVE_SUBSCRIPTIONS =
+            CPS_PATH_FOR_SUBSCRIPTION_NODE + "[@status='UNKNOWN' or @status='REJECTED']/dataJobId[text()='%s']";
 
     private final JsonObjectMapper jsonObjectMapper;
     private final CpsQueryService cpsQueryService;
     private final CpsDataService cpsDataService;
 
     /**
-     * Check if we have a cm data job subscription for the given data type and target (FDN).
+     * Check if we have a cm data job subscription for the given data node selector.
      *
-     * @param dataType    the data type of the data job subscription
-     * @param alternateId the alternate id target of the data job subscription
+     * @param dataNodeSelector the target of the data job subscription
      * @return true if the subscription details has at least one subscriber , otherwise false
      */
-    public boolean hasAtLeastOneSubscription(final String dataType, final String alternateId) {
-        return !getSubscriptionIds(dataType, alternateId).isEmpty();
+    public boolean hasAtLeastOneSubscription(final String dataNodeSelector) {
+        return !getSubscriptionIds(dataNodeSelector).isEmpty();
     }
 
     /**
@@ -73,23 +79,21 @@ public class CmDataJobSubscriptionPersistenceService {
      */
     public boolean isNewSubscriptionId(final String subscriptionId) {
         final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID.formatted(subscriptionId);
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+        return cpsQueryService.queryDataNodes(DATASPACE, ANCHOR,
             query, OMIT_DESCENDANTS).isEmpty();
     }
 
     /**
-     * Get the ids for the subscriptions for the given data type and targets.
+     * Get the ids for the subscriptions for the given data node selector.
      *
-     * @param dataType    the data type of the data job subscription
-     * @param alternateId the alternate id target of the data job subscription
+     * @param dataNodeSelector the target of the data job subscription
      * @return collection of subscription ids of ongoing cm notification subscription
      */
     @SuppressWarnings("unchecked")
-    public Collection<String> getSubscriptionIds(final String dataType, final String alternateId) {
-        final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE.formatted(
-            alternateId, dataType);
+    public Collection<String> getSubscriptionIds(final String dataNodeSelector) {
+        final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR.formatted(dataNodeSelector);
         final Collection<DataNode> existingNodes =
-            cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
+            cpsQueryService.queryDataNodes(DATASPACE, ANCHOR,
                 query, OMIT_DESCENDANTS);
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
@@ -98,88 +102,69 @@ public class CmDataJobSubscriptionPersistenceService {
     }
 
     /**
+     * Get data node selectors for subscriptions with status UNKNOWN or REJECTED.
+     *
+     * @param subscriptionId    subscription ID
+     * @return                  a list of data node selectors
+     */
+    public List<String> getInactiveDataNodeSelectors(final String subscriptionId) {
+        final String query = CPS_PATH_TEMPLATE_FOR_INACTIVE_SUBSCRIPTIONS.formatted(subscriptionId);
+        final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodes(DATASPACE, ANCHOR, query,
+                OMIT_DESCENDANTS);
+        final List<String> dataNodeSelectors = new ArrayList<>(dataNodes.size());
+        for (final DataNode dataNode : dataNodes) {
+            dataNodeSelectors.add(dataNode.getLeaves().get("dataNodeSelector").toString());
+        }
+        return dataNodeSelectors;
+    }
+
+    /**
      * Add cm notification data job subscription.
      *
-     * @param dataType       the data type of the data job subscription
-     * @param alternateId    the alternate id target of the data job subscription
-     * @param subscriptionId data job subscription id to be added
+     * @param subscriptionId   data job subscription id to be added
+     * @param dataNodeSelector the target of the data job subscription
      */
-    public void addSubscription(final String dataType, final String alternateId, final String subscriptionId) {
-        final Collection<String> subscriptionIds = getSubscriptionIds(dataType, alternateId);
-        if (subscriptionIds.isEmpty()) {
-            addNewSubscriptionDetails(dataType, alternateId, subscriptionId);
+    public void add(final String subscriptionId, final String dataNodeSelector) {
+        final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR.formatted(dataNodeSelector);
+        final Collection<DataNode> dataNodes = cpsQueryService.queryDataNodes(DATASPACE, ANCHOR, query,
+                OMIT_DESCENDANTS);
+        if (dataNodes.isEmpty()) {
+            addNewSubscriptionDetails(subscriptionId, dataNodeSelector);
         } else {
+            final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
+            final String status = dataNodes.iterator().next().getLeaves().get("status").toString();
             subscriptionIds.add(subscriptionId);
-            updateSubscriptionDetails(subscriptionIds, dataType, alternateId);
+            updateSubscriptionDetails(dataNodeSelector, subscriptionIds, status);
         }
     }
 
-    /**
-     * Remove cm notification data job Subscription.
-     *
-     * @param dataType       the data type of the data job subscription
-     * @param alternateId    the alternate id target of the data job subscription
-     * @param subscriptionId data subscription id to remove
-     */
-    public void removeSubscription(final String dataType, final String alternateId, final String subscriptionId) {
-        final Collection<String> subscriptionIds = getSubscriptionIds(dataType, alternateId);
-        if (subscriptionIds.remove(subscriptionId)) {
-            updateSubscriptionDetails(subscriptionIds, dataType, alternateId);
-            log.info("There is at least one subscriber left for dataType {} on {}", dataType, alternateId);
-            if (subscriptionIds.isEmpty()) {
-                log.info("There are no subscribers left for dataType {} on {}", dataType, alternateId);
-                deleteUnusedSubscriptionDetails(dataType, alternateId);
-            }
-        }
-    }
-
-    /**
-     * Retrieve all existing data nodes for given data job subscription id.
-     *
-     * @param subscriptionId data job subscription id
-     * @return collection of DataNodes
-     */
-    public Collection<DataNode> getAffectedDataNodes(final String subscriptionId) {
-        final String query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID.formatted(subscriptionId);
-        return cpsQueryService.queryDataNodes(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
-            query, OMIT_DESCENDANTS);
-    }
-
-    private void deleteUnusedSubscriptionDetails(final String dataType, final String alternateId) {
-        final String deleteListOfSubscriptionCpsPathQuery =
-            CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_ALTERNATE_ID_AND_DATATYPE.formatted(alternateId,
-                dataType);
-        cpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
-            deleteListOfSubscriptionCpsPathQuery, OffsetDateTime.now());
-    }
-
-    private void addNewSubscriptionDetails(final String dataType,
-                                           final String alternateId,
-                                           final String subscriptionId) {
+    private void addNewSubscriptionDetails(final String subscriptionId,
+                                           final String dataNodeSelector) {
         final Collection<String> newSubscriptionList = Collections.singletonList(subscriptionId);
-        final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(newSubscriptionList, dataType,
-            alternateId);
-        cpsDataService.saveData(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME, subscriptionDetailsAsJson,
+        final String status = String.valueOf(UNKNOWN);
+        final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
+                newSubscriptionList, status);
+        cpsDataService.saveData(DATASPACE, ANCHOR, subscriptionDetailsAsJson,
             OffsetDateTime.now(), ContentType.JSON);
     }
 
-    private void updateSubscriptionDetails(final Collection<String> subscriptionIds, final String dataType,
-                                           final String alternateId) {
-        final String subscriptionDetailsAsJson = getSubscriptionDetailsAsJson(subscriptionIds, dataType, alternateId);
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, CM_DATA_JOB_SUBSCRIPTIONS_ANCHOR_NAME,
-            CM_DATA_JOB_SUBSCRIPTIONS_PARENT_NODE_XPATH, subscriptionDetailsAsJson, OffsetDateTime.now(),
+    private void updateSubscriptionDetails(final String dataNodeSelector, final Collection<String> subscriptionIds,
+                                           final String status) {
+        final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
+                subscriptionIds, status);
+        cpsDataService.updateNodeLeaves(DATASPACE, ANCHOR,
+                PARENT_NODE_XPATH, subscriptionDetailsAsJson, OffsetDateTime.now(),
             ContentType.JSON);
     }
 
-    private String getSubscriptionDetailsAsJson(final Collection<String> subscriptionIds,
-                                                final String dataTypeId,
-                                                final String alternateId) {
+    private String createSubscriptionDetailsAsJson(final String dataNodeSelector,
+                                                   final Collection<String> subscriptionIds,
+                                                   final String status) {
         final Map<String, Serializable> subscriptionDetailsAsMap =
-            Map.of("dataTypeId", dataTypeId,
-                "alternateId", alternateId,
-                "dataJobId", (Serializable) subscriptionIds);
+            Map.of("dataNodeSelector", dataNodeSelector,
+                "dataJobId", (Serializable) subscriptionIds,
+                "status", status);
         return "{\"subscription\":[" + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap) + "]}";
     }
-
 }
 
