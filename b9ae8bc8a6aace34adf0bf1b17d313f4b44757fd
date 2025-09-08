@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b90a4f_2dd9b250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-08T11:13:44Z",
+      "side": 1,
+      "message": "Just one minor question, otherwise looks good",
+      "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabb1810_511d06f5",
+        "filename": "cps-service/src/test/resources/test-tree.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-08T11:13:44Z",
+      "side": 1,
+      "message": "NB: Should this be updated?",
+      "range": {
+        "startLine": 6,
+        "startChar": 14,
+        "endLine": 6,
+        "endChar": 24
+      },
+      "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
