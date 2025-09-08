@@ -33,6 +33,46 @@
       "message": "fine by me as it mostly code movement.",
       "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "316528a2_5bd51a6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T11:22:51Z",
+      "side": 1,
+      "message": "some minor refactoring",
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "487e1bd6_034b14b2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T11:22:51Z",
+      "side": 1,
+      "message": "It looks like this method is just a wrapper around DataMapUtils.toDataMap ensure  the values are serialize.\nPlease move this to a NEW method in DatMapUtils ie DataMapUtils.toSerialiazbleDataMap  (no need to refer to delta report in the name, anyone could use it for anything)\n\nCosnidre a new impovemnt Jira to udpate DataMap Utisl and make all object serializable which I think they could and should be! Myab to a quick PoC on this (discuss with Priyank)",
+      "range": {
+        "startLine": 178,
+        "startChar": 44,
+        "endLine": 178,
+        "endChar": 75
+      },
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
