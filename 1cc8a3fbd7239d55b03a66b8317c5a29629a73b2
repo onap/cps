@@ -62,6 +62,30 @@
       },
       "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "391d505f_1ff988b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T13:45:48Z",
+      "side": 1,
+      "message": "unfortunately the class is a 3PP class (Open daylight) which is badly named but we cannot change it,\n\nIf it was me I would have called it YangModuleRevsion os somethign like that",
+      "parentUuid": "44e50b35_8ccc9f3b",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
