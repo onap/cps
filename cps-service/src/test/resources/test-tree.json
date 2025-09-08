@@ -27,7 +27,13 @@
     "fruit": [
       {
         "name": "Apple",
-        "color": "Green"
+        "color": "Green",
+        "rattlinBog": [
+          "tick",
+          "louse",
+          "hair",
+          "worm"
+        ]
       }
     ]
   }

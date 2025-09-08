@@ -44,7 +44,7 @@ class DataNodeBuilderSpec extends Specification {
             '/test-tree/branch[@name=\'Left\']/nest'                : [name: 'Small', birds: ['Sparrow', 'Robin', 'Finch']],
             '/test-tree/branch[@name=\'Right\']'                    : [name: 'Right'],
             '/test-tree/branch[@name=\'Right\']/nest'               : [name: 'Big', birds: ['Owl', 'Raven', 'Crow']],
-            '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple']
+            '/test-tree/fruit[@color=\'Green\' and @name=\'Apple\']': [color: 'Green', name: 'Apple', rattlinBog: ['tick', 'louse', 'hair', 'worm']]
     ]
 
     String[] networkTopologyModelRfc8345 = [
