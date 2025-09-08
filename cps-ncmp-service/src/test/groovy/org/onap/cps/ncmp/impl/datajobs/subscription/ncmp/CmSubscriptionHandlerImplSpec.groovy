@@ -20,156 +20,120 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.onap.cps.api.model.DataNode
-import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.NcmpInEvent
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_client.NcmpOutEvent
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent
-import org.onap.cps.ncmp.impl.datajobs.subscription.cache.DmiCacheHandler
-import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiCmSubscriptionDetailsPerDmiMapper
+
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventMapper
-import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventProducer
-import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionDetails
-import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionPredicate
+import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.EventProducer
 import org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
-import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.utils.JsonObjectMapper
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.utils.JexParser
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.PENDING
 
 class CmSubscriptionHandlerImplSpec extends Specification {
 
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCmSubscriptionPersistenceService = Mock(CmDataJobSubscriptionPersistenceService)
-    def mockCmSubscriptionComparator = Mock(CmSubscriptionComparator)
-    def mockNcmpOutEventMapper = Mock(NcmpOutEventMapper)
     def mockDmiInEventMapper = Mock(DmiInEventMapper)
-    def dmiCmSubscriptionDetailsPerDmiMapper = new DmiCmSubscriptionDetailsPerDmiMapper()
-    def mockNcmpOutEventProducer = Mock(NcmpOutEventProducer)
-    def mockDmiInEventProducer = Mock(DmiInEventProducer)
-    def mockDmiCacheHandler = Mock(DmiCacheHandler)
+    def mockDmiInEventProducer = Mock(EventProducer)
     def mockInventoryPersistence = Mock(InventoryPersistence)
+    def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
 
-    def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService,
-        mockCmSubscriptionComparator, mockNcmpOutEventMapper, mockDmiInEventMapper, dmiCmSubscriptionDetailsPerDmiMapper,
-        mockNcmpOutEventProducer, mockDmiInEventProducer, mockDmiCacheHandler, mockInventoryPersistence)
+    def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService, mockDmiInEventMapper,
+        mockDmiInEventProducer, mockInventoryPersistence, mockAlternateIdMatcher)
 
-    def testDmiSubscriptionsPerDmi = ["dmi-1": new DmiCmSubscriptionDetails([], PENDING)]
-
-    def 'Consume valid and unique CmNotificationSubscriptionNcmpInEvent create message'() {
-        given: 'a cmNotificationSubscriptionNcmp in event with new subscription id'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
-            def testListOfDeltaPredicates = [new DmiCmSubscriptionPredicate(['ch1'].toSet(), PASSTHROUGH_OPERATIONAL, ['/a/b'].toSet())]
-        and: 'the persistence service confirms subscription id is new (not used for other subscription)'
-            mockCmSubscriptionPersistenceService.isNewSubscriptionId('test-id') >> true
-        and: 'relevant details is extracted from the event'
-            def subscriptionId = testEventConsumed.getData().getSubscriptionId()
-            def predicates = testEventConsumed.getData().getPredicates()
-        and: 'the cache handler returns for relevant subscription id'
-            1 * mockDmiCacheHandler.get("test-id") >> testDmiSubscriptionsPerDmi
-        and: 'the delta predicates is returned'
-            1 * mockCmSubscriptionComparator.getNewDmiSubscriptionPredicates(_) >> testListOfDeltaPredicates
-        and: 'the DMI in event mapper returns cm notification subscription event'
-            def testDmiInEvent = new DmiInEvent()
-            1 * mockDmiInEventMapper.toDmiInEvent(testListOfDeltaPredicates) >> testDmiInEvent
-        when: 'the valid and unique event is consumed'
-            objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
-        then: 'the subscription cache handler is called once'
-            1 * mockDmiCacheHandler.add('test-id', _)
-        and: 'the events handler method to send DMI event is called correct number of times with the correct parameters'
-            testDmiSubscriptionsPerDmi.size() * mockDmiInEventProducer.sendDmiInEvent(
-                "test-id", "dmi-1", "subscriptionCreateRequest", testDmiInEvent)
-        and: 'we schedule to send the response after configured time from the cache'
-            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+    def 'Process subscription CREATE request for new target [non existing]'() {
+        given: 'relevant subscription details'
+            def mySubId = 'dataJobId'
+            def myDataNodeSelectors = ['/parent[id="1"]'].toList()
+            def notificationTypes = []
+            def notificationFilter = ''
+            def dataSelector = new DataSelector(notificationTypes: notificationTypes, notificationFilter: notificationFilter)
+        and: 'alternate Id matcher returns cm handle id for given data node selector'
+            def fdn = getFdn(myDataNodeSelectors.iterator().next())
+            mockAlternateIdMatcher.getCmHandleId(fdn) >> 'myCmHandleId'
+        and: 'returns inactive data node selector(s)'
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors(mySubId) >> ['/parent[id="1"]']
+        and: 'the inventory persistence service returns cm handle'
+            mockInventoryPersistence.getYangModelCmHandle('myCmHandleId') >> new YangModelCmHandle(dmiServiceName: 'myDmiService')
+        and: 'DMI in event mapper returns event'
+            def myDmiInEvent = new DataJobSubscriptionDmiInEvent()
+            mockDmiInEventMapper.toDmiInEvent(['myCmHandleId'], myDataNodeSelectors, notificationTypes, notificationFilter) >> myDmiInEvent
+        when: 'the method to process subscription create request is called'
+            objectUnderTest.processSubscriptionCreate(dataSelector, mySubId, myDataNodeSelectors)
+        then: 'the persistence service is called'
+            1 * mockCmSubscriptionPersistenceService.add(mySubId, '/parent[id="1"]')
+        and: 'the event is sent to correct DMI'
+            1 * mockDmiInEventProducer.send(mySubId, 'myDmiService', 'subscriptionCreateRequest', _)
     }
 
-    def 'Consume valid and Overlapping Cm Notification Subscription NcmpIn Event'() {
-        given: 'a cmNotificationSubscriptionNcmp in event with unique subscription id'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
-            def noDeltaPredicates = []
-        and: 'the persistence service confirms subscription id is new (not used for other subscription)'
-            mockCmSubscriptionPersistenceService.isNewSubscriptionId('test-id') >> true
-        and: 'the cache handler returns for relevant subscription id'
-            1 * mockDmiCacheHandler.get('test-id') >> testDmiSubscriptionsPerDmi
-        and: 'the delta predicates is returned'
-            1 * mockCmSubscriptionComparator.getNewDmiSubscriptionPredicates(_) >> noDeltaPredicates
-        when: 'the valid and unique event is consumed'
-            objectUnderTest.processSubscriptionCreateRequest('test-id', noDeltaPredicates)
-        then: 'the subscription cache handler is called once'
-            1 * mockDmiCacheHandler.add('test-id', _)
-        and: 'the subscription details are updated in the cache'
-            1 * mockDmiCacheHandler.updateDmiSubscriptionStatus('test-id', _, ACCEPTED)
-        and: 'we schedule to send the response after configured time from the cache'
-            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', null, true)
+    def 'Process subscription CREATE request for new targets [non existing] to be sent to multiple DMIs'() {
+        given: 'relevant subscription details'
+            def mySubId = 'dataJobId'
+            def myDataNodeSelectors = [
+                '/parent[id="forDmi1"]',
+                '/parent[id="forDmi1"]/child',
+                '/parent[id="forDmi2"]'].toList()
+            def someAttr1 = []
+            def someAttr2 = ''
+            def dataSelector = new DataSelector(notificationTypes: someAttr1, notificationFilter: someAttr2)
+        and: 'alternate Id matcher returns cm handle ids for given data node selectors'
+            def fdn1 = getFdn(myDataNodeSelectors.get(0))
+            def fdn2 = getFdn(myDataNodeSelectors.get(1))
+            def fdn3 = getFdn(myDataNodeSelectors.get(2))
+            mockAlternateIdMatcher.getCmHandleId(fdn1) >> 'myCmHandleId1'
+            mockAlternateIdMatcher.getCmHandleId(fdn2) >> 'myCmHandleId1'
+            mockAlternateIdMatcher.getCmHandleId(fdn3) >> 'myCmHandleId2'
+        and: 'returns inactive data node selector(s)'
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors(mySubId) >> [
+                '/parent[id="forDmi1"]',
+                '/parent[id="forDmi1"]/child',
+                '/parent[id="forDmi2"]']
+        and: 'the inventory persistence service returns cm handles with dmi information'
+            mockInventoryPersistence.getYangModelCmHandle('myCmHandleId1') >> new YangModelCmHandle(dmiServiceName: 'myDmiService1')
+            mockInventoryPersistence.getYangModelCmHandle('myCmHandleId2') >> new YangModelCmHandle(dmiServiceName: 'myDmiService2')
+        and: 'DMI in event mapper returns events'
+            def myDmiInEvent1 = new DataJobSubscriptionDmiInEvent()
+            def myDmiInEvent2 = new DataJobSubscriptionDmiInEvent()
+            mockDmiInEventMapper.toDmiInEvent(['myCmHandleId1'], ['/parent[id="forDmi1"]', '/parent[id="forDmi1"]/child'], someAttr1, someAttr2) >> myDmiInEvent1
+            mockDmiInEventMapper.toDmiInEvent(['myCmHandleId2'], ['/parent[id="forDmi2"]'], someAttr1, someAttr2) >> myDmiInEvent2
+        when: 'the method to process subscription create request is called'
+            objectUnderTest.processSubscriptionCreate(dataSelector, mySubId, myDataNodeSelectors)
+        then: 'the persistence service is called'
+            myDataNodeSelectors.each { dataNodeSelector ->
+                1 * mockCmSubscriptionPersistenceService.add(_, dataNodeSelector)}
+        and: 'the event is sent to correct DMIs'
+            1 * mockDmiInEventProducer.send(mySubId, 'myDmiService1', 'subscriptionCreateRequest', myDmiInEvent1)
+            1 * mockDmiInEventProducer.send(mySubId, 'myDmiService2', 'subscriptionCreateRequest', myDmiInEvent2)
     }
 
-    def 'Consume valid and but non-unique CmNotificationSubscription create message'() {
-        given: 'a cmNotificationSubscriptionNcmp in event'
-            def jsonData = TestUtils.getResourceFileContent('cmSubscription/cmNotificationSubscriptionNcmpInEvent.json')
-            def testEventConsumed = jsonObjectMapper.convertJsonString(jsonData, NcmpInEvent.class)
-        and: 'the persistence service confirms subscription id is not new (already used subscription)'
-            mockCmSubscriptionPersistenceService.isNewSubscriptionId('test-id') >> false
-        and: 'relevant details is extracted from the event'
-            def subscriptionId = testEventConsumed.getData().getSubscriptionId()
-            def predicates = testEventConsumed.getData().getPredicates()
-        and: 'the NCMP out in event mapper returns an event for rejected request'
-            def testNcmpOutEvent = new NcmpOutEvent()
-            1 * mockNcmpOutEventMapper.toNcmpOutEventForRejectedRequest(
-                "test-id", _) >> testNcmpOutEvent
-        when: 'the valid but non-unique event is consumed'
-            objectUnderTest.processSubscriptionCreateRequest(subscriptionId, predicates)
-        then: 'the events handler method to send DMI event is never called'
-            0 * mockDmiInEventProducer.sendDmiInEvent(_, _, _, _)
-        and: 'the events handler method to send NCMP out event is called once'
-            1 * mockNcmpOutEventProducer.sendNcmpOutEvent('test-id', 'subscriptionCreateResponse', testNcmpOutEvent, false)
+    def 'Process subscription CREATE request for overlapping targets [non existing & existing]'() {
+        given: 'relevant subscription details'
+            def myNewSubId = 'newId'
+            def myDataNodeSelectors = ['/newDataNodeSelector[id=""]'].toList()
+            def dataSelector = new DataSelector(notificationTypes: [], notificationFilter: '')
+        and: 'alternate Id matcher returns cm handle ids for given data node selectors'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'someCmHandleId'
+        and: 'the inventory persistence service returns cm handles with dmi information'
+            mockInventoryPersistence.getYangModelCmHandle(_) >> new YangModelCmHandle(dmiServiceName: 'myDmiService')
+        and: 'returns inactive data node selector(s)'
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors(myNewSubId) >> inactiveDataNodeSelectors
+        when: 'the method to process subscription create request is called'
+            objectUnderTest.processSubscriptionCreate(dataSelector, myNewSubId, myDataNodeSelectors)
+        then: 'the persistence service is called'
+            1 * mockCmSubscriptionPersistenceService.add(_, myDataNodeSelectors.iterator().next())
+        and: 'the event is sent to correct DMIs'
+            expectedCallsToDmi * mockDmiInEventProducer.send(myNewSubId, 'myDmiService', 'subscriptionCreateRequest', _)
+        where: 'following data are used'
+            scenario                                           | inactiveDataNodeSelectors                                         || expectedCallsToDmi
+            'new target overlaps with ACCEPTED targets'        | []                                                                || 0
+            'new target overlaps with REJECTED targets'        | ['/existingDataNodeSelector[id=""]','/newDataNodeSelector[id=""]']|| 1
+            'new target overlaps with UNKNOWN targets'         | ['/existingDataNodeSelector[id=""]','/newDataNodeSelector[id=""]']|| 1
+            'new target does not overlap with existing targets'| ['/newDataNodeSelector[id=""]']                                   || 1
     }
 
-    def 'Consume valid CmNotificationSubscriptionNcmpInEvent delete message'() {
-        given: 'a test subscription id'
-            def subscriptionId = 'test-id'
-        and: 'the persistence service returns datanodes'
-            1 * mockCmSubscriptionPersistenceService.getAffectedDataNodes(subscriptionId) >>
-                [new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='x/y']", leaves: ['xpath': 'x/y', 'subscriptionIds': ['test-id']]),
-                 new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-2']/filters/filter[@xpath='y/z']", leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id']])]
-        and: 'the inventory persistence returns yang model cm handles'
-            1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(dmiServiceName: 'dmi-1')
-            1 * mockInventoryPersistence.getYangModelCmHandle('ch-2') >> new YangModelCmHandle(dmiServiceName: 'dmi-2')
-        when: 'the subscription delete request is processed'
-            objectUnderTest.processSubscriptionDeleteRequest(subscriptionId)
-        then: 'the method to send a dmi event is called with correct parameters'
-            1 * mockDmiInEventProducer.sendDmiInEvent(subscriptionId, 'dmi-1', 'subscriptionDeleteRequest', _)
-            1 * mockDmiInEventProducer.sendDmiInEvent(subscriptionId, 'dmi-2', 'subscriptionDeleteRequest', _)
-        and: 'the method to send nmcp out event is called with correct parameters'
-            1 * mockNcmpOutEventProducer.sendNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, true)
-    }
-
-    def 'Delete a subscriber for fully overlapping subscriptions'() {
-        given: 'a test subscription id'
-            def subscriptionId = 'test-id'
-        and: 'the persistence service returns datanodes with multiple subscribers'
-            1 * mockCmSubscriptionPersistenceService.getAffectedDataNodes(subscriptionId) >>
-                [new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-1']/filters/filter[@xpath='x/y']", leaves: ['xpath': 'x/y', 'subscriptionIds': ['test-id', 'other-id']]),
-                 new DataNode(xpath: "/datastores/datastore[@name='ncmp-datastore:passthrough-running']/cm-handles/cm-handle[@id='ch-2']/filters/filter[@xpath='y/z']", leaves: ['xpath': 'y/z', 'subscriptionIds': ['test-id', 'other-id']])]
-        and: 'the inventory persistence returns yang model cm handles'
-            1 * mockInventoryPersistence.getYangModelCmHandle('ch-1') >> new YangModelCmHandle(dmiServiceName: 'dmi-1')
-            1 * mockInventoryPersistence.getYangModelCmHandle('ch-2') >> new YangModelCmHandle(dmiServiceName: 'dmi-2')
-        and: 'the cache handler returns the relevant maps whenever called'
-            2 * mockDmiCacheHandler.get(subscriptionId) >> ['dmi-1': [:], 'dmi-2': [:]]
-        when: 'the subscription delete request is processed'
-            objectUnderTest.processSubscriptionDeleteRequest(subscriptionId)
-        then: 'the method to send a dmi event is never called'
-            0 * mockDmiInEventProducer.sendDmiInEvent(_, _, _, _)
-        and: 'the cache handler is called to remove subscriber from database per dmi'
-            1 * mockDmiCacheHandler.removeFromDatabase('test-id', 'dmi-1')
-            1 * mockDmiCacheHandler.removeFromDatabase('test-id', 'dmi-2')
-        and: 'the method to send ncmp out event is called with correct parameters'
-            1 * mockNcmpOutEventProducer.sendNcmpOutEvent(subscriptionId, 'subscriptionDeleteResponse', null, false)
+    def getFdn(dataNodeSelector) {
+        return JexParser.extractFdnPrefix(dataNodeSelector).orElse("")
     }
 }

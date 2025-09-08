@@ -23,5 +23,5 @@ package org.onap.cps.ncmp.impl.datajobs.subscription.models;
 public enum CmSubscriptionStatus {
     ACCEPTED,
     REJECTED,
-    PENDING
+    UNKNOWN
 }
