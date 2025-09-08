@@ -1,8 +1,8 @@
 {
-  "eventType": "my event type",
+  "eventType": "#myEventType",
   "event": {
     "dataJob": {
-      "id": "my job id",
+      "id": "myDataJobId",
       "productionJobDefinition": {
         "targetSelector": {
           "dataNodeSelector": "/SubNetwork[id=\"SN1\"]"
@@ -16,7 +16,7 @@
       }
     },
     "dataType": {
-      "dataTypeId": "#dataTypeId"
+      "dataTypeId": ""
     }
   }
 }

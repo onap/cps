@@ -26,6 +26,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent
+import org.onap.cps.ncmp.impl.utils.JexParser
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -36,7 +37,8 @@ import spock.lang.Specification
 @SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class NcmpInEventConsumerSpec extends Specification {
 
-    def objectUnderTest = new NcmpInEventConsumer()
+    def mockCmSubscriptionHandler = Mock(CmSubscriptionHandlerImpl)
+    def objectUnderTest = new NcmpInEventConsumer(mockCmSubscriptionHandler)
     def logger = new ListAppender<ILoggingEvent>()
 
     @Autowired
@@ -54,23 +56,34 @@ class NcmpInEventConsumerSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(NcmpInEventConsumer.class)).detachAndStopAllAppenders()
     }
 
-    def 'Consuming CM Data Notification #scenario data type id.'() {
-        given: 'a JSON file containing a subscription event'
-            def jsonData = TestUtils.getResourceFileContent('sample_dataJobSubscriptionInEvent.json')
-            jsonData = jsonData.replace('#dataTypeId', dataTypeId)
+    def 'Consuming CREATE cm data job subscription request.'() {
+        given: 'a JSON file for create event'
+            def jsonData = TestUtils.getResourceFileContent(
+                'datajobs/subscription/cmNotificationSubscriptionNcmpInEvent.json')
+            def myEventType = "dataJobCreated"
+            jsonData = jsonData.replace('#myEventType', myEventType)
+        and: 'the event'
             def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
+        and: 'the list of data node selectors'
+            def dataNodeSelectorList = getDataNodeSelectorList(event)
+        and: 'the other data job event attributes'
+            def dataJobExtraAttr = getDataJobExtraAttr(event)
         when: 'the event is consumed'
             objectUnderTest.consumeSubscriptionEvent(event)
         then: 'event details are logged at level INFO'
             def loggingEvent = logger.list.last()
             assert loggingEvent.level == Level.INFO
-            assert loggingEvent.formattedMessage.contains('jobId=my job id')
-            assert loggingEvent.formattedMessage.contains('eventType=my event type')
-            assert loggingEvent.formattedMessage.contains("dataType=${dataTypeId}")
-            assert loggingEvent.formattedMessage.contains('fdns=[/SubNetwork=SN1]')
-        where: 'the following data type ids are used'
-            scenario  | dataTypeId
-            'with'    | 'my data type'
-            'without' | 'null'
+            assert loggingEvent.formattedMessage.contains('dataJobId=myDataJobId')
+            assert loggingEvent.formattedMessage.contains("eventType=${myEventType}")
+        and: 'method to handle process subscription create request is called'
+            1 * mockCmSubscriptionHandler.processSubscriptionCreateRequest("myDataJobId", dataNodeSelectorList, dataJobExtraAttr)
+    }
+
+    def getDataNodeSelectorList(event) {
+        return JexParser.getListOfLocationPaths(event.event.dataJob.productionJobDefinition.targetSelector.dataNodeSelector)
+    }
+
+    def getDataJobExtraAttr(event) {
+        return event.event.dataJob.productionJobDefinition.dataSelector
     }
 }

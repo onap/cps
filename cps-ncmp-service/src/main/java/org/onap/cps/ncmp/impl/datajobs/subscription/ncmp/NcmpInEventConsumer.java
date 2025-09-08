@@ -24,6 +24,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent;
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
 import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -34,6 +35,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class NcmpInEventConsumer {
+
+    private final CmSubscriptionHandler cmSubscriptionHandler;
 
     /**
      * Consume the specified event.
@@ -46,16 +49,18 @@ public class NcmpInEventConsumer {
                 + "org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent"})
     public void consumeSubscriptionEvent(
         final DataJobSubscriptionOperationInEvent dataJobSubscriptionOperationInEvent) {
-
         final String eventType = dataJobSubscriptionOperationInEvent.getEventType();
-        final String dataNodeSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
-            .getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
-        final List<String> fdns = JexParser.extractFdnsFromLocationPaths(dataNodeSelector);
         final String dataJobId = dataJobSubscriptionOperationInEvent.getEvent().getDataJob().getId();
-        final String dataTypeId = dataJobSubscriptionOperationInEvent.getEvent().getDataType() != null
-            ? dataJobSubscriptionOperationInEvent.getEvent().getDataType().getDataTypeId() : "UNKNOWN";
 
-        log.info("Consumed subscription event with details: | jobId={} | eventType={} | fdns={} | dataType={}",
-            dataJobId, eventType, fdns, dataTypeId);
+        log.info("Consumed subscription event with details: | dataJobId={} | eventType={}", dataJobId, eventType);
+
+        if (eventType.equals("dataJobCreated")) {
+            final String dataNodeSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
+                    .getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
+            final List<String> dataNodeSelectors = JexParser.getListOfLocationPaths(dataNodeSelector);
+            final DataSelector dataJobExtraAttr = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
+                            .getProductionJobDefinition().getDataSelector();
+            cmSubscriptionHandler.processSubscriptionCreateRequest(dataJobId, dataNodeSelectors, dataJobExtraAttr);
+        }
     }
 }

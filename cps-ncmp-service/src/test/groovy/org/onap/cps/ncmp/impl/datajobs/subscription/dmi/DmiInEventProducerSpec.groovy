@@ -27,7 +27,7 @@ import org.onap.cps.events.EventsProducer
 import org.onap.cps.ncmp.config.CpsApplicationContext
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.CmHandle
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.Data
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent
 import org.onap.cps.ncmp.utils.events.CloudEventMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
@@ -47,7 +47,7 @@ class DmiInEventProducerSpec extends Specification {
             def subscriptionId = 'test-subscription-id'
             def dmiPluginName = 'test-dmiplugin'
             def eventType = 'subscriptionCreateRequest'
-            def dmiInEvent = new DmiInEvent(data: new Data(cmHandles: [new CmHandle(cmhandleId: 'test-1', privateProperties: [:])]))
+            def dmiInEvent = new DataJobSubscriptionDmiInEvent(data: new Data(cmHandles: [new CmHandle(cmhandleId: 'test-1', privateProperties: [:])]))
         and: 'also we have target topic for dmiPlugin'
             objectUnderTest.dmiInEventTopic = 'dmiplugin-test-topic'
         when: 'the event is sent'
@@ -62,7 +62,7 @@ class DmiInEventProducerSpec extends Specification {
                         assert dmiInEventAsCloudEvent.getExtension('correlationid') == subscriptionId + '#' + dmiPluginName
                         assert dmiInEventAsCloudEvent.type == 'subscriptionCreateRequest'
                         assert dmiInEventAsCloudEvent.source.toString() == 'NCMP'
-                        assert CloudEventMapper.toTargetEvent(dmiInEventAsCloudEvent, DmiInEvent) == dmiInEvent
+                        assert CloudEventMapper.toTargetEvent(dmiInEventAsCloudEvent, DataJobSubscriptionDmiInEvent) == dmiInEvent
                     }
             }
     }

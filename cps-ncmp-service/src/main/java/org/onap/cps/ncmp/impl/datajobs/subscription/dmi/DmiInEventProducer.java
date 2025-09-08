@@ -26,7 +26,7 @@ import io.cloudevents.CloudEvent;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.events.EventsProducer;
-import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DmiInEvent;
+import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.utils.events.NcmpEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -51,14 +51,15 @@ public class DmiInEventProducer {
      * @param dmiInEvent     Cm Notification Subscription event for Dmi
      */
     public void sendDmiInEvent(final String subscriptionId, final String dmiPluginName,
-                               final String eventType, final DmiInEvent dmiInEvent) {
+                               final String eventType, final DataJobSubscriptionDmiInEvent dmiInEvent) {
         eventsProducer.sendCloudEvent(dmiInEventTopic, subscriptionId,
             buildAndGetDmiInEventAsCloudEvent(subscriptionId, dmiPluginName, eventType, dmiInEvent));
 
     }
 
     private CloudEvent buildAndGetDmiInEventAsCloudEvent(final String subscriptionId, final String dmiPluginName,
-                                                         final String eventType, final DmiInEvent dmiInEvent) {
+                                                         final String eventType,
+                                                         final DataJobSubscriptionDmiInEvent dmiInEvent) {
         return NcmpEvent.builder()
             .type(eventType)
             .dataSchema(SUBSCRIPTIONS_V1.getDataSchema())
