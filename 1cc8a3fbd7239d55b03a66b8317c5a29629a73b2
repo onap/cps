@@ -86,6 +86,30 @@
       },
       "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44bdb1ac_b38bfbf2",
+        "filename": "cps-service/src/main/java/org/onap/cps/yang/YangTextSchemaSourceSetBuilder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-08T13:46:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "391d505f_1ff988b3",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "1cc8a3fbd7239d55b03a66b8317c5a29629a73b2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
