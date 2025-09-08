@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11fc444d_57fbeeaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:05:52Z",
+      "side": 1,
+      "message": "maybe we need to discuss the scope with Lee-Anjella, I am all in favour of small tasks and commits! But I think this might be a step to far, as per my comemnt it is hard to review the method name out of context of it being used. Maybe we need to extend the scope of this task and thus commit to see it being used...",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c347932_5bb70158",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:05:52Z",
+      "side": 1,
+      "message": "NB: since this is a conversion i prefer to use a methodname starting with \"to\":\ntoLocationPaths",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f10c18_ebb4c5aa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:05:52Z",
+      "side": 1,
+      "message": "NB: debatable is it really 1 jsonExpersson or already a \u0027collection\u0027 of expressions.I would consider this name: jsonExpressionsAsString",
+      "range": {
+        "startLine": 51,
+        "startChar": 67,
+        "endLine": 51,
+        "endChar": 81
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b1edbe8_71a8d188",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:05:52Z",
+      "side": 1,
+      "message": "not sure if this is worth a method, its just one standard java function but it is hard to judge without context of it being used.",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 65
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc0ef23_2a863c7d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-08T16:05:52Z",
+      "side": 1,
+      "message": "as per my previous comment you are just testing a standard java a method here...",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 51
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
