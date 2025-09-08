@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,23 +21,18 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
 import java.util.List;
-import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.Predicate;
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
 
 public interface CmSubscriptionHandler {
 
     /**
      * Process cm notification subscription create request.
      *
-     * @param subscriptionId subscription id
-     * @param predicates     subscription predicates
+     * @param dataSelector      subscription data selector
+     * @param subscriptionId    subscription id
+     * @param dataNodeSelectors subscription data node selectors
      */
-    void processSubscriptionCreateRequest(final String subscriptionId, final List<Predicate> predicates);
-
-    /**
-     * Process cm notification subscription delete request.
-     *
-     * @param subscriptionId subscription id
-     */
-    void processSubscriptionDeleteRequest(final String subscriptionId);
+    void processSubscriptionCreate(final DataSelector dataSelector, final String subscriptionId,
+                                   final List<String> dataNodeSelectors);
 
 }

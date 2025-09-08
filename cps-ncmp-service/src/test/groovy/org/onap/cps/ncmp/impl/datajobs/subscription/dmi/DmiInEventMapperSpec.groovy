@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2024 Nordix Foundation
+ *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -20,14 +20,10 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.dmi
 
-
-import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionPredicate
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.JexParser
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_OPERATIONAL
-import static org.onap.cps.ncmp.api.data.models.DatastoreType.PASSTHROUGH_RUNNING
 
 class DmiInEventMapperSpec extends Specification {
 
@@ -42,16 +38,18 @@ class DmiInEventMapperSpec extends Specification {
     }
 
     def 'Check for Cm Notification Subscription DMI In Event mapping'() {
-        given: 'a collection of cm subscription predicates'
-            def dmiSubscriptionPredicates = [new DmiCmSubscriptionPredicate(['ch-1'].toSet(), PASSTHROUGH_RUNNING, ['/ch-1'].toSet()),
-                                             new DmiCmSubscriptionPredicate(['ch-2'].toSet(), PASSTHROUGH_OPERATIONAL, ['/ch-2'].toSet())]
+        given: 'data job subscription details'
+            def cmHandleIds = ['ch-1', 'ch-2'].asList()
+            def dataNodeSelectors = ['/dataNodeSelector1'].asList()
+            def notificationTypes = []
+            def notificationFilter = ''
+            def dataNodeSelectorAsJsonExpression = JexParser.toJsonExpressionsAsString(dataNodeSelectors)
         when: 'we try to map the values'
-            def result = objectUnderTest.toDmiInEvent(dmiSubscriptionPredicates)
-        then: 'it contains correct cm notification subscription cmhandle object'
-            assert result.data.cmHandles.cmhandleId.containsAll(['ch-1', 'ch-2'])
-            assert result.data.cmHandles.privateProperties.containsAll([['k1': 'v1'], ['k2': 'v2']])
-        and: 'also has the correct dmi cm notification subscription predicates'
-            assert result.data.predicates.targetFilter.containsAll([['ch-1'], ['ch-2']])
+            def result = objectUnderTest.toDmiInEvent(cmHandleIds, dataNodeSelectors, notificationTypes, notificationFilter)
+        then: 'it contains correct cm handles'
+            assert result.data.cmHandles.cmhandleId.containsAll(cmHandleIds)
+        and: 'correct data node selector'
+            assert result.data.productionJobDefinition.targetSelector.dataNodeSelector == dataNodeSelectorAsJsonExpression
 
     }
 }
