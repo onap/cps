@@ -72,6 +72,99 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c9e0f96_122b3667",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "toXpaths",
+      "range": {
+        "startLine": 51,
+        "startChar": 67,
+        "endLine": 51,
+        "endChar": 81
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c55aacc_48329898",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c347932_5bb70158",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 53
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eee5b71d_e57d87ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "xPath",
+      "range": {
+        "startLine": 97,
+        "startChar": 65,
+        "endLine": 97,
+        "endChar": 77
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587df9d8_d9fb01c2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "Collection\u003cString\u003e xPaths",
+      "range": {
+        "startLine": 127,
+        "startChar": 49,
+        "endLine": 127,
+        "endChar": 74
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b1edbe8_71a8d188",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
         "patchSetId": 1
@@ -95,6 +188,139 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e7d92b9_7bdab9e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "toJsonExpressionsAsString(..)",
+      "parentUuid": "7b1edbe8_71a8d188",
+      "range": {
+        "startLine": 128,
+        "startChar": 15,
+        "endLine": 128,
+        "endChar": 65
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95f74bcd_5c6df960",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "splitIntoXPaths()",
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864402ec_475dcfdb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "change to xPaths --- same for rest of tests",
+      "range": {
+        "startLine": 83,
+        "startChar": 38,
+        "endLine": 83,
+        "endChar": 54
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa86a22f_5fe43248",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "Convert location path to \u0027JSON\u0027 expression as string\n\ncheck json if uppercase or lower",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 65
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "115fa216_2ff48e50",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "locationPaths \u003d [\u0027/A[id\u003d\"1\"]\u0027,\u0027/B\u0027]",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 112,
+        "endChar": 69
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d152365e_5ad1a893",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "removed",
+      "range": {
+        "startLine": 114,
+        "startChar": 11,
+        "endLine": 115,
+        "endChar": 82
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bc0ef23_2a863c7d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
         "patchSetId": 1
@@ -109,6 +335,29 @@
       "range": {
         "startLine": 107,
         "startChar": 0,
+        "endLine": 119,
+        "endChar": 51
+      },
+      "revId": "4f0f5b2fe34f292c1871d29fa5d564d7bcdfd060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a9e6b4_3397b654",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-09T15:02:00Z",
+      "side": 1,
+      "message": "hardcoded result\nlike...\n\u0027/A[id\u003d1]\\n/B\u0027",
+      "range": {
+        "startLine": 119,
+        "startChar": 29,
         "endLine": 119,
         "endChar": 51
       },
