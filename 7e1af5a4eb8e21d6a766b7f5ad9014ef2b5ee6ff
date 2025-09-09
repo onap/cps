@@ -52,6 +52,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80d7d27f_30d1118c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-09T06:13:20Z",
+      "side": 1,
+      "message": "replied to a comment",
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "487e1bd6_034b14b2",
@@ -65,6 +82,30 @@
       "writtenOn": "2025-09-08T11:22:51Z",
       "side": 1,
       "message": "It looks like this method is just a wrapper around DataMapUtils.toDataMap ensure  the values are serialize.\nPlease move this to a NEW method in DatMapUtils ie DataMapUtils.toSerialiazbleDataMap  (no need to refer to delta report in the name, anyone could use it for anything)\n\nCosnidre a new impovemnt Jira to udpate DataMap Utisl and make all object serializable which I think they could and should be! Myab to a quick PoC on this (discuss with Priyank)",
+      "range": {
+        "startLine": 178,
+        "startChar": 44,
+        "endLine": 178,
+        "endChar": 75
+      },
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffef6d95_8a04c389",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-09T06:13:20Z",
+      "side": 1,
+      "message": "Good catch! This was done intentionally while developing the new delta report format because the old delta report format returned the change in leaves, which was a Map\u003cString, Serializable\u003e while the new delta report format returns Map\u003cString, Object\u003e which represents the JSON data.\n\nSo, I used this wrapper method as a work around to convert the new delta report format from Map\u003cString, Object\u003e to Map\u003cString, Serializable\u003e. Earlier it was present in GroupedDeltaReportGenerator.java line#130.\n\n\nThis workaround was put in place during development of CPS-2547. The reason for having this work around was to keep the patch size small and easy to review. My plan was:\n1. Get the new delta report available (with this workaround) DONE\n2. Make the old delta report consistent with new one (WIP, this patch)\n3. Remove this workaround by doing code rework.\n\nI did some analysis on my part and the code rework to remove this workaround will be bit complex and should be taken as a separate task in a new patch. 😊",
+      "parentUuid": "487e1bd6_034b14b2",
       "range": {
         "startLine": 178,
         "startChar": 44,
