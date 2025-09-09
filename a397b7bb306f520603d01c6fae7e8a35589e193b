@@ -89,6 +89,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00046f6b_26300fc5",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-09T14:30:31Z",
+      "side": 1,
+      "message": "I presume this is still being discuss and might become \u0027Extension\u0027\nDon\u0027t think it  should be in the scope of your patch Sean?! But that is about coordination with levente...",
+      "range": {
+        "startLine": 31,
+        "startChar": 35,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7402bfc_3eda6c9c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-09T14:30:31Z",
+      "side": 1,
+      "message": "this is terrible :-( Make clear why using Yaml API generated code is preferred!\nI presume all details are copied from the original API /Generated code, we shouldn\u0027t really comment on descriptions etc.",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd8c479_3298efbc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-09T14:30:31Z",
+      "side": 1,
+      "message": "I think we can use and prefer pour own conventions on instance names (end user wont see this)\nSo this should be httpServletRequest",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 61
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29ee9127_3fcfe0ac",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
         "patchSetId": 1
