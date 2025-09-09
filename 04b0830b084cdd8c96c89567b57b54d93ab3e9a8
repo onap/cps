@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e417439_3917fa05",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/XmlFileUtilsSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-09T14:34:13Z",
+      "side": 1,
+      "message": "still not properly indended.",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 178,
+        "endChar": 1
+      },
+      "revId": "04b0830b084cdd8c96c89567b57b54d93ab3e9a8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
