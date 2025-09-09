@@ -178,6 +178,30 @@
       },
       "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f40e4a1_47b03a72",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-09T10:16:16Z",
+      "side": 1,
+      "message": "this can be taken care in the next patch.",
+      "parentUuid": "e4937b51_9ef7fad9",
+      "range": {
+        "startLine": 178,
+        "startChar": 44,
+        "endLine": 178,
+        "endChar": 75
+      },
+      "revId": "7e1af5a4eb8e21d6a766b7f5ad9014ef2b5ee6ff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
