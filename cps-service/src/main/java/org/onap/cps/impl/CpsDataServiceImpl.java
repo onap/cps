@@ -257,7 +257,7 @@ public class CpsDataServiceImpl implements CpsDataService {
     }
 
     @Override
-    @Timed(value = "cps.data.service.datanode.batch.delete", description = "Time taken to delete a batch of datanodes")
+    @Timed(value = "cps.data.service.datanode.batch.delete", description = "Time taken to delete a batch of data nodes")
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final Collection<String> dataNodeXpaths, final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -270,7 +270,7 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     @Timed(value = "cps.data.service.datanode.delete.anchor",
-        description = "Time taken to delete all datanodes for an anchor")
+        description = "Time taken to delete all data nodes for an anchor")
     public void deleteDataNodes(final String dataspaceName, final String anchorName,
                                 final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
@@ -281,7 +281,7 @@ public class CpsDataServiceImpl implements CpsDataService {
 
     @Override
     @Timed(value = "cps.data.service.datanode.delete.anchor.batch",
-        description = "Time taken to delete all datanodes for multiple anchors")
+        description = "Time taken to delete all data nodes for multiple anchors")
     public void deleteDataNodes(final String dataspaceName, final Collection<String> anchorNames,
                                 final OffsetDateTime observedTimestamp) {
         cpsValidator.validateNameCharacters(dataspaceName);

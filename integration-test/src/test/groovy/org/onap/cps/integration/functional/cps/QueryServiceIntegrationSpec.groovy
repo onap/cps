@@ -481,16 +481,4 @@ class QueryServiceIntegrationSpec extends FunctionalSpecBase {
             -1    || 5
     }
 
-    def 'Query data leaf with a limit of #limit.' () {
-        when: 'a query for data leaf is executed with a result limit'
-            def result = objectUnderTest.queryDataLeaf(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore/categories/@name', limit, String)
-        then: 'the expected number of leaf values is returned'
-            assert result.size() == expectedNumberOfResults
-        where: 'the following parameters are used'
-            limit || expectedNumberOfResults
-            1     || 1
-            2     || 2
-            0     || 5
-            -1    || 5
-    }
 }

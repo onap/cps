@@ -36,9 +36,9 @@ public final class RestConfStylePathToCpsPathUtil {
     private static final String NO_KEY_VALUE_IN_PATH_SEGMENT = null;
 
     /**
-     * Convert RESTCONF style path to CpsPath.
+     * Convert RestConf style path to CpsPath.
      *
-     * @param restConfStylePath restconf style path
+     * @param restConfStylePath restConf style path
      * @param schemaContext     schema context
      * @return CpsPath
      */

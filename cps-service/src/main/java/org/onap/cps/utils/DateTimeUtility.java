@@ -26,8 +26,7 @@ import java.time.format.DateTimeFormatter;
 
 public interface DateTimeUtility {
 
-    String ISO_TIMESTAMP_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_PATTERN);
+    DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     static String toString(OffsetDateTime offsetDateTime) {
         return offsetDateTime != null ? ISO_TIMESTAMP_FORMATTER.format(offsetDateTime) : null;

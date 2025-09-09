@@ -71,7 +71,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final int numberOfAssociatedSchemaSets = schemaSetRepository.countByDataspace(dataspaceEntity);
         if (numberOfAssociatedSchemaSets != 0) {
             throw new DataspaceInUseException(dataspaceName,
-                String.format("Dataspace contains %d schemaset(s)", numberOfAssociatedSchemaSets));
+                String.format("Dataspace contains %d schema set(s)", numberOfAssociatedSchemaSets));
         }
         dataspaceRepository.delete(dataspaceEntity);
     }

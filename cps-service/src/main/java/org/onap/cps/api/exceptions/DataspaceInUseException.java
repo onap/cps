@@ -23,7 +23,7 @@ import java.io.Serial;
 
 /**
  * Runtime exception.
- * Thrown when given dataspace name is rejected to be deleted because it has anchor or schemasets associated.
+ * Thrown when given dataspace name is rejected to be deleted because it has anchor or schema sets associated.
  */
 @SuppressWarnings("squid:S110")  // Team agreed to accept 6 levels of inheritance for CPS Exceptions
 public class DataspaceInUseException extends DataInUseException {

@@ -23,7 +23,6 @@
 
 package org.onap.cps.ri;
 
-import static org.onap.cps.api.CpsQueryService.NO_LIMIT;
 import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION;
 
 import com.google.common.collect.ImmutableSet;
@@ -244,13 +243,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
     @Override
     @Timed(value = "cps.data.persistence.service.datanode.query",
-            description = "Time taken to query data nodes")
-    public List<DataNode> queryDataNodes(final String dataspaceName, final String anchorName, final String cpsPath,
-                                         final FetchDescendantsOption fetchDescendantsOption) {
-        return queryDataNodes(dataspaceName, anchorName, cpsPath, fetchDescendantsOption, NO_LIMIT);
-    }
-
-    @Override
+        description = "Time taken to query data nodes")
     public List<DataNode> queryDataNodes(final String dataspaceName,
                                          final String anchorName,
                                          final String cpsPath,
@@ -713,17 +706,6 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
             return CpsPathUtil.getCpsPathQuery(cpsPath);
         } catch (final PathParsingException e) {
             throw new CpsPathException(e.getMessage());
-        }
-    }
-
-    private static void logMissingXPaths(final Collection<String> xpaths,
-                                         final Collection<FragmentEntity> existingFragmentEntities) {
-        final Set<String> existingXPaths =
-                existingFragmentEntities.stream().map(FragmentEntity::getXpath).collect(Collectors.toSet());
-        final Set<String> missingXPaths =
-                xpaths.stream().filter(xpath -> !existingXPaths.contains(xpath)).collect(Collectors.toSet());
-        if (!missingXPaths.isEmpty()) {
-            log.warn("Cannot update data nodes: Target XPaths {} not found in DB.", missingXPaths);
         }
     }
 

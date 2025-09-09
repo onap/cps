@@ -147,8 +147,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    @Timed(value = "cps.module.persistence.schemaset.create",
-        description = "Time taken to store a schemaset (list of module references)")
+    @Timed(value = "cps.module.persistence.schema.create",
+        description = "Time taken to store a schema set (list of module references)")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
                                 final Map<String, String> yangResourceContentPerName) {
         final Set<YangResourceEntity> yangResourceEntities = synchronizeYangResources(yangResourceContentPerName);
@@ -157,8 +157,8 @@ public class CpsModulePersistenceServiceImpl implements CpsModulePersistenceServ
 
     @Override
     @Transactional
-    @Timed(value = "cps.module.persistence.schemaset.createFromNewAndExistingModules",
-        description = "Time taken to store a schemaset (from new and existing)")
+    @Timed(value = "cps.module.persistence.schema.createFromNewAndExistingModules",
+        description = "Time taken to store a schema set (from new and existing)")
     public void createSchemaSetFromNewAndExistingModules(final String dataspaceName, final String schemaSetName,
                                                          final Map<String, String> newYangResourceContentPerName,
                                                          final Collection<ModuleReference> allModuleReferences) {

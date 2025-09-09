@@ -91,7 +91,7 @@ components:
 
     SchemaSetDetails:
       type: object
-      title: Schema set details by dataspace and schemasetName
+      title: Schema set details by dataspace and schema set name
       required:
         - "moduleReferences"
       properties:
@@ -265,7 +265,7 @@ components:
           xpath: "/bookstore/categories/[@code=3]"
           target-data:
             code: 3,
-            name: "kidz"
+            name: "kids"
         - action: "remove"
           xpath: "/bookstore/categories/[@code=1]"
           source-data:

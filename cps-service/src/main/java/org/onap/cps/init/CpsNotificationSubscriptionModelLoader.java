@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader {
 
     private static final String MODEL_FILENAME = "cps-notification-subscriptions@2024-07-03.yang";
-    private static final String SCHEMASET_NAME = "cps-notification-subscriptions";
+    private static final String SCHEMA_SET_NAME = "cps-notification-subscriptions";
     private static final String ANCHOR_NAME = "cps-notification-subscriptions";
     private static final String CPS_DATASPACE_NAME = "CPS-Admin";
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
@@ -54,8 +54,8 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
 
     private void onboardSubscriptionModels() {
         createDataspace(CPS_DATASPACE_NAME);
-        createSchemaSet(CPS_DATASPACE_NAME, SCHEMASET_NAME, MODEL_FILENAME);
-        createAnchor(CPS_DATASPACE_NAME, SCHEMASET_NAME, ANCHOR_NAME);
+        createSchemaSet(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILENAME);
+        createAnchor(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(CPS_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
     }
 

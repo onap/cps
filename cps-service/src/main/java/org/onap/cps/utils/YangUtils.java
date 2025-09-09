@@ -35,7 +35,7 @@ import org.opendaylight.yangtools.yang.data.api.YangInstanceIdentifier;
 public class YangUtils {
 
     /**
-     * Create an xpath form a Yang Tools NodeIdentifier (i.e. PathArgument).
+     * Create a xpath form a Yang Tools NodeIdentifier (i.e. PathArgument).
      *
      * @param nodeIdentifier the NodeIdentifier
      * @return a xpath
