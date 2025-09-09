@@ -20,9 +20,12 @@
 
 package org.onap.cps.utils.deltareport;
 
+import static org.onap.cps.utils.deltareport.DeltaReportHelper.getNodeNameToDataForDeltaReport;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +68,14 @@ public class DeltaReportGenerator {
                 xpathToDataNode.putAll(convertToXPathToDataNodesMap(childDataNodes));
             }
         }
-        return xpathToDataNode;
+        return clearChildDataNodes(xpathToDataNode);
+    }
+
+    private static Map<String, DataNode> clearChildDataNodes(final Map<String, DataNode> xpathToDataNodes) {
+        for (final DataNode dataNode : xpathToDataNodes.values()) {
+            dataNode.setChildDataNodes(Collections.emptyList());
+        }
+        return xpathToDataNodes;
     }
 
     private List<DeltaReport> getRemovedAndUpdatedDeltaReports(final Map<String, DataNode> xpathToSourceDataNodes,
@@ -88,9 +98,10 @@ public class DeltaReportGenerator {
 
     private static List<DeltaReport> getDeltaReportsForRemove(final String xpath, final DataNode sourceDataNode) {
         final List<DeltaReport> deltaReportEntriesForRemove = new ArrayList<>();
-        final Map<String, Serializable> sourceDataNodeLeaves = sourceDataNode.getLeaves();
+        final Map<String, Serializable> sourceDataNodeRemoved =
+            getNodeNameToDataForDeltaReport(Collections.singletonList(sourceDataNode));
         final DeltaReport removedDeltaReportEntry = new DeltaReportBuilder().actionRemove().withXpath(xpath)
-            .withSourceData(sourceDataNodeLeaves).build();
+            .withSourceData(sourceDataNodeRemoved).build();
         deltaReportEntriesForRemove.add(removedDeltaReportEntry);
         return deltaReportEntriesForRemove;
     }
@@ -104,12 +115,13 @@ public class DeltaReportGenerator {
         for (final Map.Entry<String, DataNode> entry: xpathToAddedNodes.entrySet()) {
             final String xpath = entry.getKey();
             final DataNode dataNode = entry.getValue();
+            final Map<String, Serializable> targetData =
+                getNodeNameToDataForDeltaReport(Collections.singletonList(dataNode));
             final DeltaReport addedDataForDeltaReport = new DeltaReportBuilder().actionCreate().withXpath(xpath)
-                .withTargetData(dataNode.getLeaves()).build();
+                .withTargetData(targetData).build();
             addedDeltaReportEntries.add(addedDataForDeltaReport);
         }
         return addedDeltaReportEntries;
     }
-
 
 }
