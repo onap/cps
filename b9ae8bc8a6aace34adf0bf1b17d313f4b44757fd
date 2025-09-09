@@ -63,6 +63,30 @@
       },
       "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee417db2_eb54eefa",
+        "filename": "cps-service/src/test/resources/test-tree.yang",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-09T10:18:28Z",
+      "side": 1,
+      "message": "😊",
+      "parentUuid": "e89581d4_a10fe687",
+      "range": {
+        "startLine": 6,
+        "startChar": 14,
+        "endLine": 6,
+        "endChar": 24
+      },
+      "revId": "b9ae8bc8a6aace34adf0bf1b17d313f4b44757fd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
