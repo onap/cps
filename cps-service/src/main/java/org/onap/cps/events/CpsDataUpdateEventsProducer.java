@@ -63,7 +63,7 @@ public class CpsDataUpdateEventsProducer {
      * @param operation operation performed on the data
      * @param observedTimestamp timestamp when data was updated.
      */
-    @Timed(value = "cps.dataupdate.events.send", description = "Time taken to send Data Update event")
+    @Timed(value = "cps.data.update.events.send", description = "Time taken to send Data Update event")
     public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath,
                                        final Operation operation, final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {

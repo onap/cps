@@ -50,8 +50,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataRestController implements CpsDataApi {
 
     private static final String ROOT_XPATH = "/";
-    private static final String ISO_TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(ISO_TIMESTAMP_FORMAT);
+    private static final DateTimeFormatter ISO_TIMESTAMP_FORMATTER =
+        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     private final CpsFacade cpsFacade;
     private final CpsDataService cpsDataService;
@@ -215,13 +215,12 @@ public class DataRestController implements CpsDataApi {
         return ROOT_XPATH.equals(xpath);
     }
 
-    private static OffsetDateTime toOffsetDateTime(final String datetTimestamp) {
+    private static OffsetDateTime toOffsetDateTime(final String dateTimestamp) {
         try {
-            return StringUtils.isEmpty(datetTimestamp)
-                ? null : OffsetDateTime.parse(datetTimestamp, ISO_TIMESTAMP_FORMATTER);
+            return StringUtils.isEmpty(dateTimestamp)
+                ? null : OffsetDateTime.parse(dateTimestamp, ISO_TIMESTAMP_FORMATTER);
         } catch (final Exception exception) {
-            throw new ValidationException(
-                String.format("observed-timestamp must be in '%s' format", ISO_TIMESTAMP_FORMAT));
+            throw new ValidationException("observed-timestamp must be in ISO format");
         }
     }
 }

@@ -45,7 +45,7 @@ public class CpsLoggingAspectService {
     /**
      * Intercept methods to measure and log execution details when debug level logging enabled.
      *
-     * @param proceedingJoinPoint exposes the proceed(..) method in order to support around advice.
+     * @param proceedingJoinPoint exposes the proceeding method in order to support around advice.
      * @return empty in case of void otherwise an object of return type
      */
     @Around(ALL_CPS_METHODS)

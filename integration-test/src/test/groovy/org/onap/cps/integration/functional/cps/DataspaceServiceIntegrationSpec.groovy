@@ -78,9 +78,9 @@ class DataspaceServiceIntegrationSpec extends FunctionalSpecBase {
             cpsModuleService.createSchemaSet('targetDataspace','someSchemaSet',[:])
         when: 'attempt to delete dataspace'
             objectUnderTest.deleteDataspace('targetDataspace')
-        then: 'an in-use exception is thrown mentioning schemasets'
+        then: 'an in-use exception is thrown mentioning schema sets'
             def thrownException = thrown(DataspaceInUseException)
-            assert thrownException.details.contains('contains 1 schemaset(s)')
+            assert thrownException.details.contains('contains 1 schema set(s)')
         cleanup:
             cpsModuleService.deleteSchemaSetsWithCascade('targetDataspace',['someSchemaSet'])
             objectUnderTest.deleteDataspace('targetDataspace')

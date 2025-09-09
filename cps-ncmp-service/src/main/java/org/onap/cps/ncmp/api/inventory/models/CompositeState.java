@@ -55,7 +55,6 @@ public class CompositeState {
     @JsonProperty("datastores")
     private DataStores dataStores;
 
-
     /**
      * Composite State copy constructor.
      *

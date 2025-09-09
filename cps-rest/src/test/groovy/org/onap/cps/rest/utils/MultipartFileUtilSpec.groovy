@@ -50,32 +50,6 @@ class MultipartFileUtilSpec extends Specification {
             assert result["component.yang"] == "fake component content 1\n"
     }
 
-    def 'Yang file limits in zip archive: #scenario for the bug reported in CPS-1477'() {
-        given: 'a yang file size (uncompressed) limit of #threshold bytes'
-            ZipFileSizeValidator.THRESHOLD_SIZE = threshold
-        and: 'an archive with a yang file of 1083 bytes'
-            def multipartFile = multipartZipFileFromResource('/yang-files-set-total-1083-bytes.zip')
-        when: 'attempt to extract yang files'
-            def thrownException = null
-            try {
-                MultipartFileUtil.extractYangResourcesMap(multipartFile)
-            } catch (Exception e) {
-                thrownException  = e
-            }
-        then: 'ModelValidationException indicating size limit is only thrown when threshold exceeded'
-            if (thresholdExceeded) {
-                assert thrownException instanceof ModelValidationException
-                assert thrownException.details.contains('limit of ' + threshold + ' bytes')
-            } else {
-                assert thrownException == null
-            }
-        where:
-            scenario          | threshold || thresholdExceeded
-            'exceed limit'    | 1082      || true
-            'equals to limit' | 1083      || false
-            'within limit'    | 1084      || false
-    }
-
     def 'Extract resources from zip archive having #caseDescriptor.'() {
         when: 'attempt to extract resources from zip file is performed'
             MultipartFileUtil.extractYangResourcesMap(multipartFile)

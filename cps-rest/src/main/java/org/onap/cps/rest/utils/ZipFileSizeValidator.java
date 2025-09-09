@@ -28,10 +28,9 @@ import org.onap.cps.api.exceptions.ModelValidationException;
 @Getter
 public class ZipFileSizeValidator {
 
-    private static final int THRESHOLD_ENTRIES = 10000;
-    @SuppressWarnings("FieldCanBeLocal")
-    private static int THRESHOLD_SIZE = 100000000;
-    private static final double THRESHOLD_RATIO = 40;
+    private static final int THRESHOLD_ENTRIES = 10_000;
+    private static final int THRESHOLD_RATIO = 40;
+    private static final int THRESHOLD_SIZE = 100_000_000;
     private static final String INVALID_ZIP = "Invalid ZIP archive content.";
 
     private int totalUncompressedSizeOfYangFilesInArchive = 0;

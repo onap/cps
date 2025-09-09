@@ -104,7 +104,7 @@ public class AdminRestController implements CpsAdminApi {
      * Create a {@link SchemaSet}.
      *
      * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schema set name
      * @param multipartFile multipart file
      * @return a { {@code @Link}  ResponseEntity }  of created schemaset name & {@link HttpStatus} CREATED
      */
@@ -120,14 +120,14 @@ public class AdminRestController implements CpsAdminApi {
      * Create a {@link SchemaSet}.
      *
      * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schema set name
      * @param multipartFile multipart file
      * @return a { {@code @Link}  ResponseEntity } of created schema set
      *         without any response body & {@link HttpStatus} CREATED
      */
     @Override
-    @Timed(value = "cps.rest.admin.controller.schemaset.create",
-        description = "Time taken to create schemaset from controller")
+    @Timed(value = "cps.rest.admin.controller.schema.create",
+        description = "Time taken to create schema set from controller")
     public ResponseEntity<Void> createSchemaSetV2(final String dataspaceName,
                                                   @NotNull @Valid final String schemaSetName,
                                                   final MultipartFile multipartFile) {
@@ -140,7 +140,7 @@ public class AdminRestController implements CpsAdminApi {
      *
      * @param apiVersion api version
      * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schema set name
      * @return a { {@code @Link}  ResponseEntity }  of { {@code @Link}  SchemaSetDetails }  & {@link HttpStatus} OK
      */
     @Override
@@ -167,7 +167,7 @@ public class AdminRestController implements CpsAdminApi {
     }
 
     /**
-     * Delete a {@link SchemaSet} based on given dataspace name & schemaset name.
+     * Delete a {@link SchemaSet} based on given dataspace name & schema set name.
      *
      * @param apiVersion api version
      * @param dataspaceName dataspace name

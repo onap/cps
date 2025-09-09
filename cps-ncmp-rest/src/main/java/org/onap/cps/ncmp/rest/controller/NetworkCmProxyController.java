@@ -325,7 +325,7 @@ public class NetworkCmProxyController implements NetworkCmProxyApi {
     }
 
     /**
-     * Get Cm Handle State by Cm Handle Id.
+     * Get Cm Handle State by Cm Handle id.
      *
      * @param cmHandleReference cm-handle or alternate identifier
      * @return cm handle state

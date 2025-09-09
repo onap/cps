@@ -87,6 +87,7 @@ public class FragmentRepositoryCpsPathQueryImpl implements FragmentRepositoryCps
         return fragmentEntities;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     @Transactional
     public List<Long> findAnchorIdsForPagination(final DataspaceEntity dataspaceEntity,

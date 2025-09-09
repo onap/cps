@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2021-2025 Nordix Foundation
+ *  Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,15 +67,8 @@ public class CpsQueryServiceImpl implements CpsQueryService {
     @Override
     public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
                                     final Class<T> targetClass) {
-        return queryDataLeaf(dataspaceName, anchorName, cpsPath, NO_LIMIT, targetClass);
-    }
-
-    @Override
-    public <T> Set<T> queryDataLeaf(final String dataspaceName, final String anchorName, final String cpsPath,
-                                    final int queryResultLimit, final Class<T> targetClass) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
-        return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath,
-                queryResultLimit, targetClass);
+        return cpsDataPersistenceService.queryDataLeaf(dataspaceName, anchorName, cpsPath, targetClass);
     }
 
     @Override

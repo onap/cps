@@ -101,7 +101,7 @@ class ModuleSyncWatchdogIntegrationSpec extends CpsIntegrationSpecBase {
             })
         and: 'log the relevant instrumentation'
             def dmiModuleRetrievalTimer = meterRegistry.get('cps.ncmp.inventory.module.references.from.dmi').timer()
-            def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schemaset.createFromNewAndExistingModules').timer()
+            def dbSchemaSetStorageTimer = meterRegistry.get('cps.module.persistence.schema.createFromNewAndExistingModules').timer()
             def dbStateUpdateTimer = meterRegistry.get('cps.ncmp.cmhandle.state.update.batch').timer()
             logInstrumentation(dmiModuleRetrievalTimer, 'get modules from DMI   ')
             logInstrumentation(dbSchemaSetStorageTimer, 'store schema sets      ')

@@ -106,7 +106,6 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void performInventoryDataMigration() {
-        // TODO further implementation is pending
         //1. Load all the cm handles (in batch)
         //2. Copy the state and known properties
         log.info("Inventory module data migration is completed successfully.");

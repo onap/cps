@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright 2023 Nordix Foundation.
+# Copyright 2023-2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import csv
 
 def load_metrics_table(filename):
     with open(filename) as tsvFile:
-        csvreader = csv.DictReader(tsvFile, dialect="excel-tab")
+        csvReader = csv.DictReader(tsvFile, dialect="excel-tab")
         table = {}
-        for source_row in csvreader:
+        for source_row in csvReader:
             method, count, sum_time = source_row['Method'], source_row['Count'], source_row['Sum']
             table[method] = { 'Count': int(float(count)), 'Sum': float(sum_time) }
     return table
@@ -31,11 +31,11 @@ def load_metrics_table(filename):
 
 def save_metrics_table(table, filename):
     with open(filename, 'w', newline='') as outfile:
-        csvwriter = csv.writer(outfile, dialect="excel-tab")
-        csvwriter.writerow(["Method", "Count", "Sum"])
+        csvWriter = csv.Writer(outfile, dialect="excel-tab")
+        csvWriter.writerow(["Method", "Count", "Sum"])
         for method in table:
             count, sum_time = table[method]['Count'], table[method]['Sum']
-            csvwriter.writerow([method, count, sum_time])
+            csvWriter.writerow([method, count, sum_time])
 
 
 def subtract_metrics_tables(table, table_to_subtract):

@@ -77,7 +77,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
     /**
      * Create initial schema set.
      * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schema set name
      * @param resourceNames resource names
      */
     public void createSchemaSet(final String dataspaceName, final String schemaSetName, final String... resourceNames) {
@@ -112,7 +112,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
     /**
      * Create initial anchor.
      * @param dataspaceName dataspace name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schemas et name
      * @param anchorName anchor name
      */
     public void createAnchor(final String dataspaceName, final String schemaSetName, final String anchorName) {
@@ -181,7 +181,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
      * Update anchor schema set.
      * @param dataspaceName dataspace name
      * @param anchorName anchor name
-     * @param schemaSetName schemaset name
+     * @param schemaSetName schema set name
      */
     public void updateAnchorSchemaSet(final String dataspaceName, final String anchorName, final String schemaSetName) {
         try {

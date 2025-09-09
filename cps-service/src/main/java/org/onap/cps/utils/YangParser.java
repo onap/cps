@@ -55,7 +55,7 @@ public class YangParser {
      * @param anchor   the anchor for the node data
      * @return the NormalizedNode object
      */
-    @Timed(value = "cps.utils.yangparser.nodedata.with.parent.parse",
+    @Timed(value = "cps.utils.yang.parser.node.data.with.parent.parse",
             description = "Time taken to parse node data with a parent")
     public ContainerNode parseData(final ContentType contentType, final String nodeData, final Anchor anchor,
             final String parentNodeXpath) {
@@ -76,7 +76,7 @@ public class YangParser {
      * @param yangResourceContentPerName yang resource content per name
      * @return the NormalizedNode object
      */
-    @Timed(value = "cps.utils.yangparser.nodedata.with.parent.with.yangResourceMap.parse",
+    @Timed(value = "cps.utils.yang.parser.node.data.with.parent.with.yangResourceMap.parse",
             description = "Time taken to parse node data with a parent")
     public ContainerNode parseData(final ContentType contentType, final String nodeData,
             final Map<String, String> yangResourceContentPerName, final String parentNodeXpath) {
@@ -107,10 +107,10 @@ public class YangParser {
     }
 
     /**
-     * Get Cps path from Restconf path.
+     * Get Cps path from RestConf path.
      *
      * @param anchor            anchor
-     * @param restConfStylePath restconf path
+     * @param restConfStylePath restConf path
      * @return CpsPath
      */
     public String getCpsPathFromRestConfStylePath(final Anchor anchor, final String restConfStylePath) {
@@ -122,7 +122,7 @@ public class YangParser {
      * Get the collection of concatenated module-name:root-node of the provided anchor.
      *
      * @param anchor Anchor
-     * @return Concatentated module and root node
+     * @return Concatenated module and root node
      */
     public Set<String> getRootNodeReferences(final Anchor anchor) {
         final SchemaContext schemaContext = getSchemaContext(anchor);

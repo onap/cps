@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TimedYangTextSchemaSourceSetBuilder {
 
-    @Timed(value = "cps.yangtextschemasourceset.build",
+    @Timed(value = "cps.yang.text.schema.source.set.build",
         description = "Time taken to build a yang text schema source set")
     public YangTextSchemaSourceSet getYangTextSchemaSourceSet(
         final Map<String, String> yangResourceContentPerName) {
