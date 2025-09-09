@@ -247,6 +247,8 @@ public class DataNodeBuilder {
                 .collect(Collectors.toList());
         if (leafSetNode.ordering() == Ordering.SYSTEM) {
             leafListValues.sort(null);
+        } else {
+            log.trace("Maintaining user order");
         }
         leafListValues = Collections.unmodifiableList(leafListValues);
         addYangLeaf(currentDataNode, leafListName, (Serializable) leafListValues);
