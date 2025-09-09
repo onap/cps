@@ -428,7 +428,7 @@
                     </excludes>
                     <environmentVariables>
                         <!--
-                            disable privileged container usage to cleanup the test containers;
+                            disable privileged container usage to clean up the test containers;
                             these will be removed automatically on jvm termination;
                             see https://www.testcontainers.org/features/configuration/#disabling-ryuk
                          -->

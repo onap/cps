@@ -48,7 +48,7 @@ public class YangTextSchemaSourceSetCache {
     private final CpsModulePersistenceService cpsModulePersistenceService;
     private final CpsValidator cpsValidator;
 
-    private final AtomicInteger yangSchemaCacheCounter = Metrics.gauge("cps.yangschema.cache.gauge",
+    private final AtomicInteger yangSchemaCacheCounter = Metrics.gauge("cps.yang.schema.cache.gauge",
                                                                         new AtomicInteger(0));
 
     /**

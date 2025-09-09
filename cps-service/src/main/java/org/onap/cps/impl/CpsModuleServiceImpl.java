@@ -56,8 +56,8 @@ public class CpsModuleServiceImpl implements CpsModuleService {
     private final YangParser yangParser;
 
     @Override
-    @Timed(value = "cps.module.service.schemaset.create",
-        description = "Time taken to create (and store) a schemaset")
+    @Timed(value = "cps.module.service.schema.create",
+        description = "Time taken to create (and store) a schema set")
     public void createSchemaSet(final String dataspaceName, final String schemaSetName,
         final Map<String, String> yangResourceContentPerName) {
         cpsValidator.validateNameCharacters(dataspaceName);

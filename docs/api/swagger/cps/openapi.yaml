@@ -3028,7 +3028,7 @@ components:
         xpath: "/bookstore/categories/[@code=3]"
         target-data:
           code: "3,"
-          name: kidz
+          name: kids
       - action: remove
         xpath: "/bookstore/categories/[@code=1]"
         source-data:
@@ -3415,7 +3415,7 @@ components:
           type: string
       required:
       - moduleReferences
-      title: Schema set details by dataspace and schemasetName
+      title: Schema set details by dataspace and schema set name
       type: object
     ModuleReferences:
       example:

@@ -99,7 +99,7 @@ public interface CpsDataService {
         OffsetDateTime observedTimestamp, ContentType contentType);
 
     /**
-     * Retrieves all the datanodes by XPath for given dataspace and anchor.
+     * Retrieves all the data nodes by XPath for given dataspace and anchor.
      *
      * @param dataspaceName           dataspace name
      * @param anchorName              anchor name
@@ -112,7 +112,7 @@ public interface CpsDataService {
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Retrieves all the datanodes for multiple XPaths for given dataspace and anchor.
+     * Retrieves all the data nodes for multiple XPaths for given dataspace and anchor.
      *
      * @param dataspaceName           dataspace name
      * @param anchorName              anchor name
@@ -183,10 +183,10 @@ public interface CpsDataService {
      * Replaces list content by removing all existing elements and inserting the given new elements as data nodes
      * under given parent, anchor and dataspace.
      *
-     * @param dataspaceName     dataspace-name
+     * @param dataspaceName     dataspace name
      * @param anchorName        anchor name
      * @param parentNodeXpath   parent node xpath
-     * @param dataNodes         datanodes representing the updated data
+     * @param dataNodes         data nodes representing the updated data
      * @param observedTimestamp observedTimestamp
      */
     void replaceListContent(String dataspaceName, String anchorName, String parentNodeXpath,

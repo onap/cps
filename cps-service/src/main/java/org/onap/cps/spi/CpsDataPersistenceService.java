@@ -40,7 +40,7 @@ import org.onap.cps.api.parameters.PaginationOption;
 public interface CpsDataPersistenceService {
 
     /**
-     * Store multiple datanodes at once.
+     * Store multiple data nodes at once.
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
@@ -70,7 +70,7 @@ public interface CpsDataPersistenceService {
         Collection<DataNode> listElementsCollection);
 
     /**
-     * Retrieves multiple datanodes for a single XPath for given dataspace and anchor.
+     * Retrieves multiple data nodes for a single XPath for given dataspace and anchor.
      * Multiple data nodes are returned when xPath is set to root '/', otherwise single data node
      * is returned when a specific xpath is used (Example: /bookstore).
      *
@@ -85,7 +85,7 @@ public interface CpsDataPersistenceService {
                                       FetchDescendantsOption fetchDescendantsOption);
 
     /**
-     * Retrieves multiple datanodes for multiple XPaths, given a dataspace and anchor.
+     * Retrieves multiple data nodes for multiple XPaths, given a dataspace and anchor.
      *
      * @param dataspaceName           dataspace name
      * @param anchorName              anchor name
@@ -176,18 +176,6 @@ public interface CpsDataPersistenceService {
      */
     void deleteListDataNode(String dataspaceName, String anchorName, String targetXpath);
 
-    /**
-     * Get a datanode by cps path.
-     *
-     * @param dataspaceName          dataspace name
-     * @param anchorName             anchor name
-     * @param cpsPath                cps path
-     * @param fetchDescendantsOption defines whether the descendants of the node(s) found by the query should be
-     *                               included in the output
-     * @return the data nodes found i.e. 0 or more data nodes
-     */
-    List<DataNode> queryDataNodes(String dataspaceName, String anchorName,
-                                  String cpsPath, FetchDescendantsOption fetchDescendantsOption);
 
     /**
      * Get a datanode by cps path.
@@ -212,12 +200,10 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName          dataspace name
      * @param anchorName             anchor name
      * @param cpsPath                cps path
-     * @param queryResultLimit       limits the number of returned entities (if less than 1 returns all)
      * @param targetClass            class of the expected data type
      * @return a collection of data objects of expected type
      */
-    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, int queryResultLimit,
-                             Class<T> targetClass);
+    <T> Set<T> queryDataLeaf(String dataspaceName, String anchorName, String cpsPath, Class<T> targetClass);
 
     /**
      * Get a datanode by dataspace name and cps path across all anchors.
@@ -260,7 +246,7 @@ public interface CpsDataPersistenceService {
 
     /**
      * Query total anchors for dataspace name and cps path.
-     * @param dataspaceName datasoace name
+     * @param dataspaceName dataspace name
      * @param cpsPath cps path
      * @return total anchors for dataspace name and cps path
      */

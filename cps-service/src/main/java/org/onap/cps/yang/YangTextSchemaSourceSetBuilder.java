@@ -89,7 +89,7 @@ public final class YangTextSchemaSourceSetBuilder {
      * @return the YangTextSchemaSourceSet
      */
 
-    @Timed(value = "cps.yang.schemasourceset.build", description = "Time taken to build a ODL yang Model")
+    @Timed(value = "cps.yang.schema.source.set.build", description = "Time taken to build a ODL yang Model")
     public static YangTextSchemaSourceSet of(final Map<String, String> yangResourceNameToContent) {
         return new YangTextSchemaSourceSetBuilder().putAll(yangResourceNameToContent).build();
     }

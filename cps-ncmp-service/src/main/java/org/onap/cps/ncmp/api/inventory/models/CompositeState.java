@@ -27,6 +27,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.impl.utils.EventDateTimeFormatter;
@@ -54,7 +55,6 @@ public class CompositeState {
 
     @JsonProperty("datastores")
     private DataStores dataStores;
-
 
     /**
      * Composite State copy constructor.
