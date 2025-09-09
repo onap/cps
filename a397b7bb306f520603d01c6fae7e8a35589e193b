@@ -69,6 +69,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "728e5b80_c55e4936",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-09T13:55:58Z",
+      "side": 1,
+      "message": "Not intentional, added it as an example during meeting. Forgot to remove, removed now",
+      "parentUuid": "ac646dc4_29e95759",
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29ee9127_3fcfe0ac",
@@ -82,6 +100,24 @@
       "writtenOn": "2025-09-09T10:33:53Z",
       "side": 1,
       "message": "it might be a good ide to make the \u0027v1\u0027 part more generic if possible. like:\n\nfinal String[] pathVariables \u003d uriPath.split(\"ProvMnS/v\\\\d+/\");\n\nthis in theory would work with all variations of versions (like v2, v3 etc...)",
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b11557_a0e90427",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-09T13:55:58Z",
+      "side": 1,
+      "message": "Good suggestion, regex added",
+      "parentUuid": "29ee9127_3fcfe0ac",
       "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
