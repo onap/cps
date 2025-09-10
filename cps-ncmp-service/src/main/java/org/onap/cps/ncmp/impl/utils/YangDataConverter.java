@@ -59,8 +59,10 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
         ncmpServiceCmHandle.setDataProducerIdentifier(yangModelCmHandle.getDataProducerIdentifier());
+        ncmpServiceCmHandle.setCmHandleStatus(yangModelCmHandle.getCmHandleStatus());
         setAdditionalProperties(additionalProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
+
         return ncmpServiceCmHandle;
     }
 
@@ -88,13 +90,14 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
-                (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
+                safeGetLeafValue(cmHandleDataNode, "dmi-service-name"),
+                safeGetLeafValue(cmHandleDataNode, "dmi-data-service-name"),
+                safeGetLeafValue(cmHandleDataNode, "dmi-model-service-name"),
                 ncmpServiceCmHandle,
-                (String) cmHandleDataNode.getLeaves().get("module-set-tag"),
-                (String) cmHandleDataNode.getLeaves().get("alternate-id"),
-                (String) cmHandleDataNode.getLeaves().get("data-producer-identifier")
+                safeGetLeafValue(cmHandleDataNode, "module-set-tag"),
+                safeGetLeafValue(cmHandleDataNode, "alternate-id"),
+                safeGetLeafValue(cmHandleDataNode, "data-producer-identifier"),
+                safeGetLeafValue(cmHandleDataNode, "cm-handle-state")
         );
     }
 
@@ -153,4 +156,12 @@ public class YangDataConverter {
                                             final NcmpServiceCmHandle ncmpServiceCmHandle) {
         ncmpServiceCmHandle.setPublicProperties(toPropertiesMap(publicProperties));
     }
+
+
+    private static String safeGetLeafValue(final DataNode node, final String leafName) {
+        final Object value = node.getLeaves().get(leafName);
+        return value == null ? null : value.toString();
+
+    }
+
 }
