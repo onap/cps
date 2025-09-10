@@ -152,6 +152,9 @@ components:
         dataProducerIdentifier:
           type: string
           example: "my-data-producer-identifier"
+        cmHandleStatus:
+          type: string
+          example: "ADVISED"
     #Module upgrade schema
     UpgradedCmHandles:
       required:
@@ -279,6 +282,9 @@ components:
         dataProducerIdentifier:
           type: string
           example: my-data-producer-identifier
+        cmHandleStatus:
+          type: string
+          example: Ready
     CmHandleCompositeState:
       type: object
       properties:

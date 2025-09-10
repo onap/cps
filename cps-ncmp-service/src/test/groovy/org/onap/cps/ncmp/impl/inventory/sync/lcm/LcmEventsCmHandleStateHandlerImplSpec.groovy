@@ -152,7 +152,7 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def 'Update cmHandle state from READY to DELETING' (){
         given: 'cm Handle as Yang model'
             compositeState = new CompositeState(cmHandleState: READY)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [],  compositeState: compositeState)
         when: 'updating cm handle state to "DELETING"'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, DELETING))
         then: 'the cm handle state is as expected'

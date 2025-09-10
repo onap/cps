@@ -77,6 +77,10 @@ public class YangModelCmHandle {
     @JsonProperty("public-properties")
     private List<Property> publicProperties;
 
+    @JsonProperty("cm-handle-state")
+    private String cmHandleStatus;
+
+
     /**
      * Creates a deep copy of Yang Model Cm Handle.
      *
@@ -98,6 +102,7 @@ public class YangModelCmHandle {
         copy.moduleSetTag = original.getModuleSetTag();
         copy.alternateId = original.getAlternateId();
         copy.dataProducerIdentifier = original.getDataProducerIdentifier();
+        copy.cmHandleStatus = original.getCmHandleStatus();
         return copy;
     }
 
@@ -119,7 +124,8 @@ public class YangModelCmHandle {
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle,
                                                         final String moduleSetTag,
                                                         final String alternateId,
-                                                        final String dataProducerIdentifier) {
+                                                        final String dataProducerIdentifier,
+                                                        final String cmHandleStatus) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
@@ -132,8 +138,10 @@ public class YangModelCmHandle {
             asYangModelCmHandleProperties(ncmpServiceCmHandle.getAdditionalProperties()));
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
+        yangModelCmHandle.setCmHandleStatus(cmHandleStatus);
         return yangModelCmHandle;
     }
+
 
     /**
      * Resolve a dmi service name.

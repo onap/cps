@@ -59,8 +59,10 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setModuleSetTag(yangModelCmHandle.getModuleSetTag());
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
         ncmpServiceCmHandle.setDataProducerIdentifier(yangModelCmHandle.getDataProducerIdentifier());
+        ncmpServiceCmHandle.setCmHandleStatus(yangModelCmHandle.getCmHandleStatus());
         setAdditionalProperties(additionalProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
+
         return ncmpServiceCmHandle;
     }
 
@@ -88,14 +90,20 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
         return YangModelCmHandle.toYangModelCmHandle(
-                (String) cmHandleDataNode.getLeaves().get("dmi-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-data-service-name"),
-                (String) cmHandleDataNode.getLeaves().get("dmi-model-service-name"),
+                safeLeaf(cmHandleDataNode, "dmi-service-name"),
+                safeLeaf(cmHandleDataNode, "dmi-data-service-name"),
+                safeLeaf(cmHandleDataNode, "dmi-model-service-name"),
                 ncmpServiceCmHandle,
-                (String) cmHandleDataNode.getLeaves().get("module-set-tag"),
-                (String) cmHandleDataNode.getLeaves().get("alternate-id"),
-                (String) cmHandleDataNode.getLeaves().get("data-producer-identifier")
+                safeLeaf(cmHandleDataNode, "module-set-tag"),
+                safeLeaf(cmHandleDataNode, "alternate-id"),
+                safeLeaf(cmHandleDataNode, "data-producer-identifier"),
+                safeLeaf(cmHandleDataNode, "cm-handle-state")
         );
+    }
+
+    private static String safeLeaf(final DataNode node, final String key) {
+        final Object value = node.getLeaves().get(key);
+        return value != null ? value.toString() : null;
     }
 
     /**
@@ -153,4 +161,5 @@ public class YangDataConverter {
                                             final NcmpServiceCmHandle ncmpServiceCmHandle) {
         ncmpServiceCmHandle.setPublicProperties(toPropertiesMap(publicProperties));
     }
+
 }
