@@ -407,7 +407,8 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle,
             ncmpServiceCmHandle.getModuleSetTag(),
             ncmpServiceCmHandle.getAlternateId(),
-            ncmpServiceCmHandle.getDataProducerIdentifier());
+            ncmpServiceCmHandle.getDataProducerIdentifier(),
+            ncmpServiceCmHandle.getCmHandleStatus());
     }
 
     void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
