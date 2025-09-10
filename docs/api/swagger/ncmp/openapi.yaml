@@ -1937,6 +1937,7 @@ components:
         publicCmHandleProperties:
         - key: 3gpp Type
         - key: 3gpp Type
+        cmHandleStatus: READY
         cmHandleProperties:
           key: 3gpp Type
         state:
@@ -1986,6 +1987,9 @@ components:
           type: string
         dataProducerIdentifier:
           example: my-data-producer-identifier
+          type: string
+        cmHandleStatus:
+          example: READY
           type: string
       title: CM handle Details
       type: object

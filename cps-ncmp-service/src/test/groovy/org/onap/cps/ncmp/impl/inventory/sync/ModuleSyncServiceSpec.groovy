@@ -139,7 +139,7 @@ class ModuleSyncServiceSpec extends Specification {
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, '').build())
             def dmiServiceName = 'some service name'
             ncmpServiceCmHandle.cmHandleId = 'upgraded-ch'
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'', '', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, '', '', ncmpServiceCmHandle,'', '', '', '')
         and: 'DMI operations returns some module references for upgraded cm handle'
             def moduleReferences =  [ new ModuleReference('module1','1') ]
             mockDmiModelOperations.getModuleReferences(yangModelCmHandle, NO_MODULE_SET_TAG) >> moduleReferences
@@ -159,7 +159,7 @@ class ModuleSyncServiceSpec extends Specification {
             def ncmpServiceCmHandle = new NcmpServiceCmHandle()
             ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withLockReason(MODULE_UPGRADE, 'Upgrade to ModuleSetTag: ' + tagTo).build())
             ncmpServiceCmHandle.setCmHandleId('cmHandleId-1')
-            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, tagFrom, '', '')
+            def yangModelCmHandle = YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, tagFrom, '', '', '')
             mockCmHandleQueries.cmHandleHasState('cmHandleId-1', CmHandleState.READY) >> true
         and: 'the module tag (schemaset) exists is #schemaExists'
             mockCpsModuleService.schemaSetExists(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, tagTo) >> schemaExists
@@ -186,7 +186,7 @@ class ModuleSyncServiceSpec extends Specification {
         def ncmpServiceCmHandle = new NcmpServiceCmHandle()
         ncmpServiceCmHandle.setCompositeState(new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED).build())
         ncmpServiceCmHandle.cmHandleId = 'ch-1'
-        return YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, moduleSetTag, '', '')
+        return YangModelCmHandle.toYangModelCmHandle('some service name', '', '', ncmpServiceCmHandle, moduleSetTag, '', '', '')
     }
 
 }
