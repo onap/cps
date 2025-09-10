@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0189c1_17e69a8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "you need to talk to Lee Anjella!",
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc06db8_2141847f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "This method will remove duplicates, blank lines and jex comments",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 56
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0a4ae4b_948ec231",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "remove all of this as it should be described above see previosu comment",
+      "range": {
+        "startLine": 48,
+        "startChar": 60,
+        "endLine": 48,
+        "endChar": 102
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec2379b_dd7feef4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "I am confused, why do we have 2 methods\none that extracts xpaths and another to extract FDNs (from those xpaths) do we really need both (to be public) ?\nLee Anjella thinks she doesn\u0027t need this method at all anymore",
+      "range": {
+        "startLine": 71,
+        "startChar": 31,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "786b8e9c_c09f62f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "xpath (json expression)",
+      "range": {
+        "startLine": 95,
+        "startChar": 29,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "435b8c18_a9c7a8d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "removed this part",
+      "range": {
+        "startLine": 125,
+        "startChar": 70,
+        "endLine": 125,
+        "endChar": 87
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d30f08e_b52d7e94",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-10T15:45:31Z",
+      "side": 1,
+      "message": "Talk to Lee Anjella about the change in test if we don\u0027t need this method anymore",
+      "range": {
+        "startLine": 29,
+        "startChar": 35,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
