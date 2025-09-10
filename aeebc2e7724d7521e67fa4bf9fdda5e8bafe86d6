@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5475beb_34483eb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-10T15:32:33Z",
+      "side": 1,
+      "message": "One suggestion, otherwise looks good",
+      "revId": "aeebc2e7724d7521e67fa4bf9fdda5e8bafe86d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c396cfb_1377c320",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsDataPersistenceServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-10T15:32:33Z",
+      "side": 1,
+      "message": "This variable can be removed as it is only called with NO_LIMIT from CpsQueryServiceImpl.java",
+      "range": {
+        "startLine": 261,
+        "startChar": 46,
+        "endLine": 261,
+        "endChar": 62
+      },
+      "revId": "aeebc2e7724d7521e67fa4bf9fdda5e8bafe86d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
