@@ -135,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c374ca3_63e6462b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-10T09:37:07Z",
+      "side": 1,
+      "message": "we can as well have our own written openapi spec file ( internal ) which will generate the interface and then we just have to implement specific methods.",
+      "parentUuid": "c7402bfc_3eda6c9c",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edd8c479_3298efbc",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
         "patchSetId": 1
