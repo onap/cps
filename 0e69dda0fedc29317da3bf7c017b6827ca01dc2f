@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d6301b_5dea8333",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-11T16:16:30Z",
+      "side": 1,
+      "message": "just need to add one last small test, thanks",
+      "revId": "0e69dda0fedc29317da3bf7c017b6827ca01dc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db6aa17_5288d840",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-11T16:16:30Z",
+      "side": 1,
+      "message": "missed this before: also use \u0027multi-line json expression\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 41
+      },
+      "revId": "0e69dda0fedc29317da3bf7c017b6827ca01dc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c59ae2_b81151fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-11T16:16:30Z",
+      "side": 1,
+      "message": "this test is al about special cases returning thee same single xpath. Its a good test and you can leave it as is.\n\nI would just add one more separate test, just one scenario i.e. no need for where-block: def \u0027Parsing multi-line json expression with multiple xpaths\u0027\n\nSo just a simple happy path test with 2 different xpaths:\n\n\u0027/SubNetwork[id\u003d\"SN1\"]\\n/SubNetwork[id\u003d\"SN2\"]\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 62
+      },
+      "revId": "0e69dda0fedc29317da3bf7c017b6827ca01dc2f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
