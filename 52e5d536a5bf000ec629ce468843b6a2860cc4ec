@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "159e9c82_895980a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bfc06db8_2141847f",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 56
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0a4ae4b_948ec231",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-09-10T15:45:31Z",
       "side": 1,
       "message": "remove all of this as it should be described above see previosu comment",
+      "range": {
+        "startLine": 48,
+        "startChar": 60,
+        "endLine": 48,
+        "endChar": 102
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce66168b_3d89978e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0a4ae4b_948ec231",
       "range": {
         "startLine": 48,
         "startChar": 60,
@@ -111,6 +159,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e197be20_361d69a5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf9fb318_f0cc508d",
+      "range": {
+        "startLine": 71,
+        "startChar": 31,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "786b8e9c_c09f62f5",
@@ -124,6 +196,30 @@
       "writtenOn": "2025-09-10T15:45:31Z",
       "side": 1,
       "message": "xpath (json expression)",
+      "range": {
+        "startLine": 95,
+        "startChar": 29,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc34dd58_aab69c11",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "786b8e9c_c09f62f5",
       "range": {
         "startLine": 95,
         "startChar": 29,
@@ -157,6 +253,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf199f74_73a0b7a1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "435b8c18_a9c7a8d2",
+      "range": {
+        "startLine": 125,
+        "startChar": 70,
+        "endLine": 125,
+        "endChar": 87
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d30f08e_b52d7e94",
@@ -170,6 +290,30 @@
       "writtenOn": "2025-09-10T15:45:31Z",
       "side": 1,
       "message": "Talk to Lee Anjella about the change in test if we don\u0027t need this method anymore",
+      "range": {
+        "startLine": 29,
+        "startChar": 35,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "52e5d536a5bf000ec629ce468843b6a2860cc4ec",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93202586_2cc63412",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-11T13:13:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6d30f08e_b52d7e94",
       "range": {
         "startLine": 29,
         "startChar": 35,
