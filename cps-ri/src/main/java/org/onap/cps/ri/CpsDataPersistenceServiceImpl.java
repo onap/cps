@@ -134,7 +134,9 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         final Collection<String> xpathsOfUpdatedLeaves = updatedLeavesPerXPath.keySet();
         final Collection<FragmentEntity> fragmentEntities = getFragmentEntities(anchorEntity, xpathsOfUpdatedLeaves);
-
+        if (fragmentEntities.isEmpty()) {
+            throw new DataNodeNotFoundExceptionBatch(dataspaceName, anchorName, xpathsOfUpdatedLeaves);
+        }
         for (final FragmentEntity fragmentEntity : fragmentEntities) {
             final Map<String, Serializable> updatedLeaves = updatedLeavesPerXPath.get(fragmentEntity.getXpath());
             final String mergedLeaves = mergeLeaves(updatedLeaves, fragmentEntity.getAttributes());

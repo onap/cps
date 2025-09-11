@@ -22,6 +22,7 @@ package org.onap.cps.ri
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hibernate.StaleStateException
+import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.FragmentEntity
@@ -95,7 +96,6 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
 
     def 'Batch update data node leaves and descendants: #scenario'(){
         given: 'the fragment repository returns fragment entities related to the xpath inputs'
-            mockFragmentRepository.findByAnchorAndXpathIn(_, [] as Set) >> []
             mockFragmentRepository.findByAnchorAndXpathIn(_, ['/test/xpath'] as Set) >> [
                     new FragmentEntity(1, '/test/xpath', null, "{\"id\":\"testId\"}", anchorEntity, [] as Set)
             ]
@@ -113,9 +113,20 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             })
         where: 'the following Data Type is passed'
             scenario                         | dataNodes                                                                                                                              | expectedSize || expectedFragmentEntities
-            'empty data node list'           | []                                                                                                                                     | 0            || []
             'one data node in list'          | [new DataNode(xpath: '/test/xpath', leaves: ['id': 'testId'])]                                                                         | 1            || [new FragmentEntity(xpath: '/test/xpath', attributes: '{"id":"testId"}', anchor: anchorEntity)]
             'multiple data nodes'            | [new DataNode(xpath: '/test/xpath1', leaves: ['id': 'newTestId1']), new DataNode(xpath: '/test/xpath2', leaves: ['id': 'newTestId2'])] | 2            || [new FragmentEntity(xpath: '/test/xpath2', attributes: '{"id":"newTestId2"}', anchor: anchorEntity), new FragmentEntity(xpath: '/test/xpath1', attributes: '{"id":"newTestId1"}', anchor: anchorEntity)]
+    }
+
+    def 'Batch update data node leaves and descendants fails when fragment entity is not found'() {
+        given: 'leaf nodes to update'
+            def leafNodes = [:] as Map<String, Map<String, Serializable>>
+        and: 'the fragment repository returns no fragment entities'
+            mockFragmentRepository.findByAnchorAndXpathIn(_, [] as Set) >> []
+        when: 'batch update data node leaves'
+            objectUnderTest.batchUpdateDataLeaves('dataspaceName', 'anchorName', leafNodes)
+        then: 'data node not found exception is thrown for batch operation'
+            def thrown = thrown(DataNodeNotFoundExceptionBatch)
+            assert thrown.message == 'DataNode not found'
     }
 
     def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
