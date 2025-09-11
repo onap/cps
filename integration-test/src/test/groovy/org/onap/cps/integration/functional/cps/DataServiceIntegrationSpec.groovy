@@ -521,6 +521,18 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    def 'Update node works when valid JSON is used but the data node to be updated does not exist in the database'() {
+        when: 'attempt to fetch a data node that does not exist'
+            objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']/books[@title='Non-existing book']", DIRECT_CHILDREN_ONLY)
+        then: 'a datanode not found exception is thrown'
+            thrown(DataNodeNotFoundException)
+        when: 'update is performed on the same non-existing data node'
+            def jsonData =  "{'book-store:books':{'lang':'English/French','price':100,'title':'Non-existing book'}}"
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonData, now, ContentType.JSON)
+        then: 'data node not found exception is thrown'
+            thrown(DataNodeNotFoundException)
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
