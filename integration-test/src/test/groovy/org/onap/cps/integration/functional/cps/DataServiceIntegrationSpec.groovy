@@ -521,6 +521,24 @@ class DataServiceIntegrationSpec extends FunctionalSpecBase {
             restoreBookstoreDataAnchor(2)
     }
 
+    def 'Update leaves operation fails when using a semantically invalid JSON.'() {
+        given: 'JSON string with data of non existent data node (book with title \'Non-existing book\' is not present in the database)'
+            def jsonDataForNonExistingDataNode =  "{'books':{'lang':'English/French','price':100,'title':'Non-existing book'}}"
+        when: 'attempt to perform update using semantically invalid JSON'
+            objectUnderTest.updateNodeLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore/categories[@code='1']", jsonDataForNonExistingDataNode, now, ContentType.JSON)
+        then: 'expected exception is thrown'
+            thrown(DataNodeNotFoundExceptionBatch)
+    }
+
+    def 'Update leaves operation fails when batch updating parent and child data nodes using a semantically invalid JSON.'() {
+        given: 'JSON string with data of non existent data node (data node with code \'xxx\' and book with title \'Non-existing book\' are not present in the database)'
+            def jsonDataForNonExistingDataNodes =  "{'categories':{'code':'xxx','books':{'lang':'English/French','price':100,'title':'Non-existing book'}}}"
+        when: 'attempt to perform batch update using semantically invalid JSON'
+            objectUnderTest.updateNodeLeavesAndExistingDescendantLeaves(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_2, "/bookstore", jsonDataForNonExistingDataNodes, now)
+        then: 'expected exception is thrown'
+            thrown(DataNodeNotFoundExceptionBatch)
+    }
+
     def countDataNodesInBookstore() {
         return countDataNodesInTree(objectUnderTest.getDataNodes(FUNCTIONAL_TEST_DATASPACE_1, BOOKSTORE_ANCHOR_1, '/bookstore', INCLUDE_ALL_DESCENDANTS))
     }
