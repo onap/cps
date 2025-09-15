@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a814fc5a_4065149a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "looks pretty good a few minor suggestions and a question...",
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a5b5381_4241e08d",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-09-15T15:48:47Z",
       "side": 1,
       "message": "is this an agreed tag?",
+      "range": {
+        "startLine": 139,
+        "startChar": 37,
+        "endLine": 139,
+        "endChar": 45
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ff62342_d84e0f5c",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "Why are you changing this? We still need \u0027latest\u0027 or are you deliberatlty trying to avoid this image being used elsewhere?!",
+      "parentUuid": "6a5b5381_4241e08d",
       "range": {
         "startLine": 139,
         "startChar": 37,
@@ -59,6 +100,306 @@
         "startChar": 19,
         "endLine": 287,
         "endChar": 24
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ffd53f_dab26a1d",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "cb50d85a_2dac6674",
+      "range": {
+        "startLine": 287,
+        "startChar": 19,
+        "endLine": 287,
+        "endChar": 24
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d663ee3_226ae665",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/NcmpRestInputMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "I thought @mapping is NOT needed is the names are the same ie it will work fine without this?",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 66
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fe094f_051e5250",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/RestOutputCmHandleMapperSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "for testing purposes could we used non standard values and highlight which is which\n\nnew CompositeState(cmHandleState: \u0027MY COMPOSITE STATE\u0027), cmHandleStatus: \u0027MY BASIC STATE\u0027)\n\nor to be more explicit:\n\nnew CompositeState(cmHandleState: \u0027DO NOT CARE\u0027), cmHandleStatus: \u0027REPORTED STATE\u0027)",
+      "range": {
+        "startLine": 63,
+        "startChar": 89,
+        "endLine": 63,
+        "endChar": 96
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65936625_8764021b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "NB: I hate unneeded white space :-)",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 7
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad98a6f6_cb6f73cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "privete should come after all public methods",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 12
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ebded8a_11714f36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "nie! but maybe a better name would be: safeGetLeafValue",
+      "range": {
+        "startLine": 104,
+        "startChar": 26,
+        "endLine": 104,
+        "endChar": 34
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18512222_9c768e02",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "name or leafName",
+      "range": {
+        "startLine": 104,
+        "startChar": 69,
+        "endLine": 104,
+        "endChar": 72
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0271f4d_b709a310",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "remove ! and swap:\nvalue \u003d\u003d null ? null : value.toString()",
+      "range": {
+        "startLine": 106,
+        "startChar": 15,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7fc608_d3304f42",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandleSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "not testing properties (yet)",
+      "range": {
+        "startLine": 66,
+        "startChar": 34,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e206597b_d8db928e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/lcm/LcmEventsCmHandleStateHandlerImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "NB: more redundant whitspace ;-)",
+      "range": {
+        "startLine": 155,
+        "startChar": 117,
+        "endLine": 155,
+        "endChar": 119
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "965672aa_699e9126",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "READY",
+      "range": {
+        "startLine": 627,
+        "startChar": 24,
+        "endLine": 627,
+        "endChar": 29
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d8b69c_1394d38d",
+        "filename": "docs/api/swagger/ncmp/openapi-inventory.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "READY",
+      "range": {
+        "startLine": 679,
+        "startChar": 19,
+        "endLine": 679,
+        "endChar": 24
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7abb54_ccbbc093",
+        "filename": "docs/api/swagger/ncmp/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T16:16:39Z",
+      "side": 1,
+      "message": "READY (is this be build from the other file we already commented upon?)",
+      "range": {
+        "startLine": 1940,
+        "startChar": 24,
+        "endLine": 1940,
+        "endChar": 29
       },
       "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
