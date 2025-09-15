@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2218d2_55c39e8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:48:47Z",
+      "side": 1,
+      "message": "just one question on tag name and non blocking comments",
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5b5381_4241e08d",
+        "filename": "cps-application/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:48:47Z",
+      "side": 1,
+      "message": "is this an agreed tag?",
+      "range": {
+        "startLine": 139,
+        "startChar": 37,
+        "endLine": 139,
+        "endChar": 45
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb50d85a_2dac6674",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:48:47Z",
+      "side": 1,
+      "message": "to be consistent with the above all upper case and in quotes , \"READY\"",
+      "range": {
+        "startLine": 287,
+        "startChar": 19,
+        "endLine": 287,
+        "endChar": 24
+      },
+      "revId": "01f534033b009ef50e6aab9136e903b409ffd90d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
