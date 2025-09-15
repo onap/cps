@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "819c972f_3b88fa26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T09:12:39Z",
+      "side": 1,
+      "message": "few non blockers.\ncan be incorporated when u get other ppl reviews.",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fb342b0_e70822b9",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T09:12:39Z",
+      "side": 1,
+      "message": "NB: way too much in the where block. see if we can create some method and just pass in the relevant data.\nIts difficult to read 😊",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc59402d_1422a31c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T09:12:39Z",
+      "side": 1,
+      "message": "this is new for me 😊",
+      "range": {
+        "startLine": 126,
+        "startChar": 126,
+        "endLine": 126,
+        "endChar": 129
+      },
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5ffe89a_17db66c6",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T09:12:39Z",
+      "side": 1,
+      "message": "NB: not really obvious what is invalid here.\nyou can be explicit about the invalid data here.",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
