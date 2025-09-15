@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f98222c_55d6d17e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T15:16:37Z",
+      "side": 1,
+      "message": "some comments but mostly on code paths and readability.",
+      "revId": "716e59f1e3fbdc0b52fc2f25da239ce99b2281f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8250f935_2b015a6e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T15:16:37Z",
+      "side": 1,
+      "message": "we dont need a else block here.\nif it is null then the code flow wont reach the other part of the code.",
+      "range": {
+        "startLine": 53,
+        "startChar": 10,
+        "endLine": 53,
+        "endChar": 14
+      },
+      "revId": "716e59f1e3fbdc0b52fc2f25da239ce99b2281f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f98a91_29e18911",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/JexParser.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T15:16:37Z",
+      "side": 1,
+      "message": "we can also test the negation first.\n\nif (!matcher.find()) break;\n\nthat will improve the readability.\n\nwe wont be needing the else block if this comment is incorporated.",
+      "revId": "716e59f1e3fbdc0b52fc2f25da239ce99b2281f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61119ad1_91fdec17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/utils/JexParserSpec.groovy",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-15T15:16:37Z",
+      "side": 1,
+      "message": "typo here",
+      "range": {
+        "startLine": 28,
+        "startChar": 34,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "716e59f1e3fbdc0b52fc2f25da239ce99b2281f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
