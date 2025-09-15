@@ -276,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77202284_5fa28d68",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventProducer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T11:06:29Z",
+      "side": 1,
+      "message": "yes its create delete etc",
+      "parentUuid": "7fac1f1a_6ccb56c1",
+      "range": {
+        "startLine": 54,
+        "startChar": 44,
+        "endLine": 54,
+        "endChar": 53
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48a64419_728d0060",
@@ -383,6 +407,24 @@
       "writtenOn": "2025-09-08T16:34:44Z",
       "side": 1,
       "message": "I am getting a bit lost in this class so I think I need a walkthrough",
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fc7071c_29ffda9a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12f5d5b6_735360a1",
       "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -546,6 +588,30 @@
         "startChar": 86,
         "endLine": 66,
         "endChar": 102
+      },
+      "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59dc11bf_e7b70f3b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "794591ce_273c67ab",
+      "range": {
+        "startLine": 66,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 37
       },
       "revId": "dda8ff1feafe4b179b779d04e5a2617c72609ee4",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
