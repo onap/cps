@@ -22,64 +22,58 @@ package org.onap.cps.ncmp.impl.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JexParser {
 
-    private static final Pattern LOCATION_SEGMENT_PATTERN = Pattern.compile("(.*)\\[id=\\\"(.*)\\\"]");
+    private static final Pattern XPATH_SEGMENT_PATTERN = Pattern.compile("^([^]]*)\\[id=\\\"([^\\\"]*)\\\"]");
     private static final String JEX_COMMENT_PREFIX = "&&";
     private static final String LINE_SEPARATOR_REGEX = "\\R";
+    private static final String LINE_JOINER_DELIMITER = "\n";
     private static final String SEGMENT_SEPARATOR = "/";
 
     /**
-     * Resolves alternate ids from a JEX basic expression with many paths.
+     * This method will remove duplicates, blank lines and jex comments.
      *
-     * @param jsonExpression Multi-line JEX string with possible comments and relative xpaths.
-     * @return List of unique alternate ids (FDNs) resolved from each valid path.
+     * @param jsonExpressionsAsString Multi-line jex string.
+     * @return List of xpaths
      */
-    public static List<String> extractFdnsFromLocationPaths(final String jsonExpression) {
-        if (jsonExpression == null) {
+    @SuppressWarnings("unused")
+    public static List<String> toXpaths(final String jsonExpressionsAsString) {
+        if (jsonExpressionsAsString == null) {
             return Collections.emptyList();
         }
-
-        final String[] lines = jsonExpression.split(LINE_SEPARATOR_REGEX);
-
-        final Stream<String> locationPaths = Arrays.stream(lines)
+        final String[] lines = jsonExpressionsAsString.split(LINE_SEPARATOR_REGEX);
+        return Arrays.stream(lines)
                 .map(String::trim)
-                .filter(locationPath -> !locationPath.startsWith(JEX_COMMENT_PREFIX));
-
-        final Stream<String> fdns = locationPaths
-                .map(JexParser::extractFdnPrefix)
-                .flatMap(Optional::stream)
-                .distinct();
-
-        return fdns.collect(Collectors.toList());
+                .filter(xpath -> !xpath.startsWith(JEX_COMMENT_PREFIX))
+                .distinct()
+                .toList();
     }
 
     /**
-     * Returns FDN from a JSON expression as a java Optional.
+     * Returns fdn from a json expression as a java Optional.
      * Example: /SubNetwork[id="SN1"]/ManagedElement[id="ME1"]
      * returns: /SubNetwork=SN1/ManagedElement=ME1
      *
-     * @param locationPath A single JEX path.
-     * @return Optional containing resolved FDN if found; empty otherwise.
+     * @param xpath A single json expression.
+     * @return Optional containing resolved fdn if found; empty otherwise.
      */
-    private static Optional<String> extractFdnPrefix(final String locationPath) {
-        final List<String> locationPathSegments = splitIntoLocationPathsSegments(locationPath);
+    @SuppressWarnings("unused")
+    public static Optional<String> extractFdnPrefix(final String xpath) {
+        final List<String> xpathSegments = splitIntoXpaths(xpath);
         final StringBuilder fdnBuilder = new StringBuilder();
-        for (final String locationPathSegment : locationPathSegments) {
-
-            final Matcher matcher = LOCATION_SEGMENT_PATTERN.matcher(locationPathSegment);
-            if (matcher.find()) {
+        for (final String xpathSegment : xpathSegments) {
+            final Matcher matcher = XPATH_SEGMENT_PATTERN.matcher(xpathSegment);
+            if (matcher.matches()) {
                 final String managedObjectName = matcher.group(1);
                 final String managedObjectId = matcher.group(2);
                 fdnBuilder.append(SEGMENT_SEPARATOR)
@@ -95,13 +89,25 @@ public class JexParser {
         return fdn.isEmpty() ? Optional.empty() : Optional.of(fdn);
     }
 
-    private static List<String> splitIntoLocationPathsSegments(final String locationPath) {
-        final String[] locationPathSegments = locationPath.split(SEGMENT_SEPARATOR);
-        final List<String> locationPathSegmentsAsList = new ArrayList<>(Arrays.asList(locationPathSegments));
-        if (!locationPathSegmentsAsList.isEmpty()) {
-            locationPathSegmentsAsList.remove(0); // ignore root
+    /**
+     * Concatenates the given list of xpaths into a single json expression string.
+     * Each path separated by the {@code LINE_JOINER_DELIMITER}.
+     *
+     * @param xpaths List of xpath strings to be joined.
+     * @return A string representing the concatenated json expression.
+     */
+    @SuppressWarnings("unused")
+    public static String toJsonExpressionsAsString(final Collection<String> xpaths) {
+        return String.join(LINE_JOINER_DELIMITER, xpaths);
+    }
+
+    private static List<String> splitIntoXpaths(final String xpath) {
+        final String[] xpathSegments = xpath.split(SEGMENT_SEPARATOR);
+        final List<String> xpathSegmentsAsList = new ArrayList<>(Arrays.asList(xpathSegments));
+        if (!xpathSegmentsAsList.isEmpty()) {
+            xpathSegmentsAsList.remove(0); // ignore root
         }
-        return locationPathSegmentsAsList;
+        return xpathSegmentsAsList;
     }
 }
 
