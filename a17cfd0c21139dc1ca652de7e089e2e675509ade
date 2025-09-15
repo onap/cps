@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5400a6a8_ea8c02c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:06:12Z",
+      "side": 1,
+      "message": "did not finish with test cases as it was not clear",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fb342b0_e70822b9",
@@ -37,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "581c7a3d_89aa83ea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:06:12Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "0fb342b0_e70822b9",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc59402d_1422a31c",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 5
@@ -48,6 +83,30 @@
       "writtenOn": "2025-09-15T09:12:39Z",
       "side": 1,
       "message": "this is new for me 😊",
+      "range": {
+        "startLine": 126,
+        "startChar": 126,
+        "endLine": 126,
+        "endChar": 129
+      },
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf91a75d_862c6562",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-15T15:06:12Z",
+      "side": 1,
+      "message": "not clear what is happening here",
+      "parentUuid": "cc59402d_1422a31c",
       "range": {
         "startLine": 126,
         "startChar": 126,
