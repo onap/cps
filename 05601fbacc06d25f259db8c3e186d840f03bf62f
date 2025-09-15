@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc8c7db9_0697ed1c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T15:53:12Z",
+      "side": 1,
+      "message": "NB: log some warning if null ie\nif (cmHandleId !\u003d null) {\n  log warning with details about dataNodeSelector that failed to resolve\n} else {\n  add it\n}",
+      "range": {
+        "startLine": 95,
+        "startChar": 15,
+        "endLine": 95,
+        "endChar": 35
+      },
+      "revId": "05601fbacc06d25f259db8c3e186d840f03bf62f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22aa14af_ca442022",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T15:53:12Z",
+      "side": 1,
+      "message": "NB: describe the mocked behavior more truly:\n\u0027alternate id matcher always returns a cm handle id\u0027",
+      "range": {
+        "startLine": 116,
+        "startChar": 34,
+        "endLine": 116,
+        "endChar": 86
+      },
+      "revId": "05601fbacc06d25f259db8c3e186d840f03bf62f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
