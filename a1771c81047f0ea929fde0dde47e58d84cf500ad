@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc524ca4_3a6aad59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T14:34:12Z",
+      "side": 1,
+      "message": "simplify by assigning to existing value in map (else block) or creata new one(if block)\nAdd new dat outside if-else block",
+      "range": {
+        "startLine": 96,
+        "startChar": 1,
+        "endLine": 103,
+        "endChar": 13
+      },
+      "revId": "a1771c81047f0ea929fde0dde47e58d84cf500ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3ffeee_36ac7955",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T14:34:12Z",
+      "side": 1,
+      "message": "see above: no need for this method if you add data outside if-else block above",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 0
+      },
+      "revId": "a1771c81047f0ea929fde0dde47e58d84cf500ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1556f6b_9f22f431",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T14:34:12Z",
+      "side": 1,
+      "message": "should NOT continue with empty string, that will lead to other problems and needless processing.\nThrow exception and have calling method catch it and record details\n(alternatively use optional instead of exception to control the flow in the calling method)",
+      "range": {
+        "startLine": 118,
+        "startChar": 79,
+        "endLine": 118,
+        "endChar": 91
+      },
+      "revId": "a1771c81047f0ea929fde0dde47e58d84cf500ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "439d86f1_9cbd8791",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-15T14:34:12Z",
+      "side": 1,
+      "message": "Doesn\u0027t really make a difference so I would NOT do this for better performance",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 13
+      },
+      "revId": "a1771c81047f0ea929fde0dde47e58d84cf500ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
