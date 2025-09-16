@@ -163,6 +163,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8013576_d9309202",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:46:04Z",
+      "side": 1,
+      "message": "ok. \n\nusually I follow this convention hence I suggested. I have used at other places in our codebase as well.\nThe parameter which is mutated is kept at the last. Helps to separate b/w input and output params.",
+      "parentUuid": "5f3e14ff_461d6040",
+      "range": {
+        "startLine": 69,
+        "startChar": 48,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "748a7cde_9fc855ae",
@@ -200,6 +224,30 @@
       "side": 1,
       "message": "as above",
       "parentUuid": "748a7cde_9fc855ae",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 55
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc6d8569_83f2298e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:46:04Z",
+      "side": 1,
+      "message": "okz.",
+      "parentUuid": "f7a50c65_ae127a64",
       "range": {
         "startLine": 75,
         "startChar": 40,
@@ -481,6 +529,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab9d113_4fafc0b5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:46:04Z",
+      "side": 1,
+      "message": "ah ok. then inactive makes sense.",
+      "parentUuid": "41a04c40_06f9c3fa",
+      "range": {
+        "startLine": 110,
+        "startChar": 24,
+        "endLine": 110,
+        "endChar": 52
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d5bcce6_e7f43c72",
@@ -575,6 +647,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f946ea79_2f2d2d86",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:46:04Z",
+      "side": 1,
+      "message": "sry I meant do it the groovy way.\ndef cmHandleIds \u003d [\u0027ch-1\u0027, \u0027ch-2\u0027] as List",
+      "parentUuid": "2564a744_11381dd8",
+      "range": {
+        "startLine": 42,
+        "startChar": 46,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "674f91ad_39960e40",
@@ -612,6 +708,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "674f91ad_39960e40",
+      "range": {
+        "startLine": 43,
+        "startChar": 59,
+        "endLine": 43,
+        "endChar": 67
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbfb720_a1bb47db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:46:04Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "ad863ed7_d4df81ee",
       "range": {
         "startLine": 43,
         "startChar": 59,
