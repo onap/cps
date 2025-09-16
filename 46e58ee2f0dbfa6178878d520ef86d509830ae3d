@@ -60,6 +60,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "039a4cb7_2b87e3b3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "i think this can be much simplified i think you need 3 basic method\n\n\nOptional\u003cElement\u003e - convertToXMl(Object object)\nappend outside by check if not Optional.isEmpty()\n\ndepend on type of object class use\nOptional\u003cElement\u003e - convertToXml(Map\u003cString, Serializable map)\n\nand in turn use \nOptional\u003cElement\u003e - convertToXml(String key, Serializable value)\n\nOR \nOptional\u003cElement\u003e - convertToCsvString(Collection\u003cString\u003e values)",
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6f963a1_13f41ad4",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 14
@@ -76,6 +93,29 @@
         "startChar": 13,
         "endLine": 62,
         "endChar": 25
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea8f164_e9f99657",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "suggestion, add these as staci to the class so you don\u0027t have to pass \u0027document\u0027 to each method",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 68
       },
       "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -215,6 +255,29 @@
         "startChar": 59,
         "endLine": 237,
         "endChar": 62
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f62f93b_939769e1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "is this really necessary?",
+      "range": {
+        "startLine": 239,
+        "startChar": 12,
+        "endLine": 239,
+        "endChar": 45
       },
       "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -383,6 +446,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "206223b4_c48c274a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "actually now thinking and discussing with Priyank this is a generic method to convert any map so the term \u0027deltareport \u0027 should not be used at all!\nmaybe just key (map)Key and (map)Value",
+      "parentUuid": "1cd28545_58aa86b4",
+      "range": {
+        "startLine": 263,
+        "startChar": 88,
+        "endLine": 263,
+        "endChar": 105
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4005f9f5_9a6fc44d",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 14
@@ -394,6 +481,29 @@
       "writtenOn": "2025-09-16T10:39:58Z",
       "side": 1,
       "message": "see above, use 2 parameters instead",
+      "range": {
+        "startLine": 264,
+        "startChar": 76,
+        "endLine": 264,
+        "endChar": 92
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfd1750_77923e72",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "inputMap",
       "range": {
         "startLine": 264,
         "startChar": 76,
@@ -422,6 +532,52 @@
         "startChar": 22,
         "endLine": 265,
         "endChar": 34
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062b2144_f70bb043",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "mapValue",
+      "range": {
+        "startLine": 266,
+        "startChar": 27,
+        "endLine": 266,
+        "endChar": 49
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6fa54e_2847bfb8",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T11:05:30Z",
+      "side": 1,
+      "message": "collectionAsCsvString",
+      "range": {
+        "startLine": 268,
+        "startChar": 25,
+        "endLine": 268,
+        "endChar": 37
       },
       "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
