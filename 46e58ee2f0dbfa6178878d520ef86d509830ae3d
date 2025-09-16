@@ -18,6 +18,138 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e66219db_1e8b508e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "lookign good but can be simplified using better naming and some minor refatoring\nI did not review the testware yet",
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86460281_4822c317",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "NB: would assign this just before you need it ie just before what is now line #70",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f963a1_13f41ad4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "not sure about the word \u0027File\u0027 in this class name\nI was actually considering to call it \"XmlConverter\" but maybe \"XmlUtils\" is better",
+      "range": {
+        "startLine": 62,
+        "startChar": 13,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9dffd55_2d2c5c34",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "OK, maybe in this case you need to pass in eth parent because the method does so checks before appending.\n\nI would call this method something like\nappendKeyValuePairAsChildIfPresent(...)",
+      "range": {
+        "startLine": 220,
+        "startChar": 16,
+        "endLine": 220,
+        "endChar": 35
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e331429_90c54710",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "as suggested below do not append inside this method",
+      "range": {
+        "startLine": 223,
+        "startChar": 16,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f78953_ada38313",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "NB: why not catch any exception?",
+      "range": {
+        "startLine": 231,
+        "startChar": 23,
+        "endLine": 231,
+        "endChar": 89
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24d55f93_e6e68039",
@@ -36,6 +168,260 @@
         "startChar": 59,
         "endLine": 237,
         "endChar": 62
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbba2dea_3a9b734c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "parentElement",
+      "range": {
+        "startLine": 237,
+        "startChar": 78,
+        "endLine": 237,
+        "endChar": 84
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3153ccd_05bfd410",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "agreed",
+      "parentUuid": "24d55f93_e6e68039",
+      "range": {
+        "startLine": 237,
+        "startChar": 59,
+        "endLine": 237,
+        "endChar": 62
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cdfe4d0_2b5749f7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "childElement",
+      "range": {
+        "startLine": 240,
+        "startChar": 26,
+        "endLine": 240,
+        "endChar": 34
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8015af8_282815fa",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "parentElement",
+      "range": {
+        "startLine": 248,
+        "startChar": 26,
+        "endLine": 248,
+        "endChar": 32
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6854dcdf_48aa86ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "childElement",
+      "range": {
+        "startLine": 253,
+        "startChar": 26,
+        "endLine": 253,
+        "endChar": 34
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb738bb3_36d7f0ec",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "i think for clarify to should use two well named parameters here ie but no \u0027delataReportValue\u0027, what exactly is the value? Is unclear to me right now.\nAfter reading below maybe just \u0027delaReportEntry\u0027 is OK but \u0027entry\u0027 refers to the report not to the map!\nalso what exact is the key maybe just \u0027name\u0027 ?",
+      "range": {
+        "startLine": 256,
+        "startChar": 55,
+        "endLine": 256,
+        "endChar": 60
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fb0f4ab_46f9e2ad",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "no need to add useCase information to method names, please remove",
+      "range": {
+        "startLine": 256,
+        "startChar": 32,
+        "endLine": 256,
+        "endChar": 40
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75590ade_c87cc71d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "i would do this inside the method but outside\nthen the method can be more meaningfull named to (convert)mapToElement",
+      "range": {
+        "startLine": 259,
+        "startChar": 12,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd28545_58aa86b4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "in the context of this method (based on line 275) this is again the \u0027parentElement\u0027\nbut as before I would NOT pass it in, just do the appending outside this method\n\ntehn you can call this convertDeltaReportEntriesToElement  \n(if you want to use XmlElement fine but then apply it consistently, I would not as the class is already called XmlUtils)",
+      "range": {
+        "startLine": 263,
+        "startChar": 88,
+        "endLine": 263,
+        "endChar": 105
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4005f9f5_9a6fc44d",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "see above, use 2 parameters instead",
+      "range": {
+        "startLine": 264,
+        "startChar": 76,
+        "endLine": 264,
+        "endChar": 92
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11376371_f2be0d90",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T10:39:58Z",
+      "side": 1,
+      "message": "childElement",
+      "range": {
+        "startLine": 265,
+        "startChar": 22,
+        "endLine": 265,
+        "endChar": 34
       },
       "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
