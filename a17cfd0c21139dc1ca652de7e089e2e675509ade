@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d05cda_d86a656a",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDeltaServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-16T12:42:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c95ce9b_c8a02076",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 112,
+        "endChar": 71
+      },
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fb342b0_e70822b9",
@@ -111,6 +135,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "369a8efe_62c9129a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-16T12:42:33Z",
+      "side": 1,
+      "message": "simplified and extracted excessive info to a setup method",
+      "parentUuid": "81d10e3e_af79b2ab",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc59402d_1422a31c",
@@ -160,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7614a78b_94456c09",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-16T12:42:33Z",
+      "side": 1,
+      "message": "fixed the parameter names and made it more specific, but if it is still confusing let me know 😊",
+      "parentUuid": "bf91a75d_862c6562",
+      "range": {
+        "startLine": 126,
+        "startChar": 126,
+        "endLine": 126,
+        "endChar": 129
+      },
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5ffe89a_17db66c6",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 5
@@ -171,6 +237,24 @@
       "writtenOn": "2025-09-15T09:12:39Z",
       "side": 1,
       "message": "NB: not really obvious what is invalid here.\nyou can be explicit about the invalid data here.",
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "297a8268_50bb161d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-16T12:42:33Z",
+      "side": 1,
+      "message": "specified the invalid data in the legend",
+      "parentUuid": "f5ffe89a_17db66c6",
       "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
