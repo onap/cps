@@ -16,6 +16,86 @@
       "message": "Looks good to me!",
       "revId": "2385dbe671f28432821d89065cb66d7973423aca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bca4dd1d_eae020fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-16T14:46:43Z",
+      "side": 1,
+      "message": "NB, Future improvment: Further improvment over unit testing suggestion: Instead of mocking and returning too many data in groovy, for a long term solution or approach, we could have in-memory database like Derby or Hsql for unit testing!",
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d62d625_91cf23cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-16T14:46:43Z",
+      "side": 1,
+      "message": "NB: header update is needed.",
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32e9586e_01fdf521",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-16T14:46:43Z",
+      "side": 1,
+      "message": "NB: need to be mentioned in java doc above.\n\nNB: the variable name is confusing with plural name: dataNodeSelectors? e.g. whic one which",
+      "range": {
+        "startLine": 34,
+        "startChar": 54,
+        "endLine": 34,
+        "endChar": 66
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4ad27b_742b98bc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-16T14:46:43Z",
+      "side": 1,
+      "message": "NB: Instead of mocking and returning these much stuff, for a long term solution or approach we could have in-memory database like Derby or Hsql for unit testing!",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
