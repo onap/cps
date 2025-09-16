@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a11931a4_13d83ce8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "some monir comments",
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f46ac6_4afd545d",
+        "filename": "cps-ri/src/test/groovy/org/onap/cps/ri/CpsDataPersistenceServiceImplSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "NB: for failure use cases i often precede the description with the words \u0027Attempt to ...\u0027",
+      "range": {
+        "startLine": 125,
+        "startChar": 15,
+        "endLine": 125,
+        "endChar": 44
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bc2b43d_80c7b274",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "this is not correct now?!\nsuggestion (btw don\u0027t include expectations etc in the main title)\n\u0027Update leaves on non existing data node\u0027",
+      "range": {
+        "startLine": 524,
+        "startChar": 9,
+        "endLine": 524,
+        "endChar": 119
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af11af8_bf9c187c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "jsonDataForNonExistingDataNode",
+      "range": {
+        "startLine": 526,
+        "startChar": 16,
+        "endLine": 526,
+        "endChar": 25
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21990006_b881b996",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "why are you testing this too? Its not really part of the use case and I am sure this behavior is tested elsewhere in basic unit tests",
+      "range": {
+        "startLine": 527,
+        "startChar": 0,
+        "endLine": 530,
+        "endChar": 45
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ab2fb1_62ff168e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "Update leaves and descendants with non existing data node",
+      "range": {
+        "startLine": 537,
+        "startChar": 9,
+        "endLine": 537,
+        "endChar": 142
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c3a32f_b432ff8d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:52:21Z",
+      "side": 1,
+      "message": "Apply same comments as on previous test",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 548,
+        "endChar": 5
+      },
+      "revId": "f4e293db121c4db2480c836efeee0f561995dd3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
