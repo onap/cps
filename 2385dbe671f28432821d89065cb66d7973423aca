@@ -115,6 +115,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f3e14ff_461d6040",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:13:31Z",
+      "side": 1,
+      "message": "i disagree i actually asked her to make it the first parameter",
+      "parentUuid": "4850b55c_de6353e2",
+      "range": {
+        "startLine": 69,
+        "startChar": 48,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "748a7cde_9fc855ae",
@@ -138,6 +162,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7a50c65_ae127a64",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:13:31Z",
+      "side": 1,
+      "message": "as above",
+      "parentUuid": "748a7cde_9fc855ae",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 55
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0873499_4cc91f7b",
@@ -151,6 +199,30 @@
       "writtenOn": "2025-09-16T15:03:06Z",
       "side": 1,
       "message": "NB: can we rename this to something else?\nwe already have a generic EventsProducer class. and this name is almost the same.",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c1ec19_1a641aeb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventProducer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:13:31Z",
+      "side": 1,
+      "message": "agree its could be an issue but myself and Lee Anjella thought it wa better to keep the name short and that the package structure helps resolving what exactly it is",
+      "parentUuid": "c0873499_4cc91f7b",
       "range": {
         "startLine": 38,
         "startChar": 13,
