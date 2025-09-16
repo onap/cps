@@ -16,6 +16,46 @@
       "message": "resolved comments",
       "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "721156c8_b08588af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:21:59Z",
+      "side": 1,
+      "message": "nothing blocking from me.\nThe test are still a bit hard to read and fully understand but I trust they do what is needed and I appreciate it is difficult to clean that up now",
+      "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96a1940_2d2d5470",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:21:59Z",
+      "side": 1,
+      "message": "not needed since you have a return statement above it",
+      "range": {
+        "startLine": 205,
+        "startChar": 10,
+        "endLine": 205,
+        "endChar": 16
+      },
+      "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

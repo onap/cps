@@ -226,6 +226,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a896e460_8d22548c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:21:59Z",
+      "side": 1,
+      "message": "I think i have seen/done something similar before but without the * symbol. I think it might not be need but maybe it is in this instance. In any case it is a good \u0027visual\u0027 indicator thought that means it is verifying each entry in the collection",
+      "parentUuid": "7614a78b_94456c09",
+      "range": {
+        "startLine": 126,
+        "startChar": 126,
+        "endLine": 126,
+        "endChar": 129
+      },
+      "revId": "a17cfd0c21139dc1ca652de7e089e2e675509ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5ffe89a_17db66c6",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 5
