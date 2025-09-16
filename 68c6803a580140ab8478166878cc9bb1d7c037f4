@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e12f36d_a35b17c3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-16T11:01:09Z",
+      "side": 1,
+      "message": "went for \u0027dataNodeSelectorsAsJson\u0027",
+      "parentUuid": "91f7212c_e275765c",
+      "range": {
+        "startLine": 61,
+        "startChar": 76,
+        "endLine": 61,
+        "endChar": 93
+      },
+      "revId": "68c6803a580140ab8478166878cc9bb1d7c037f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d73e5a5a_ad35dcfe",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-09-16T07:52:11Z",
       "side": 1,
       "message": "getDataNodeSelectors\nOR\ngetDataNodeSelectorsAsXpaths",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "68c6803a580140ab8478166878cc9bb1d7c037f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d264a83_960f8565",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-16T11:01:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d73e5a5a_ad35dcfe",
       "range": {
         "startLine": 82,
         "startChar": 8,
