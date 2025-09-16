@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8241e6_1aa88d0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:09:02Z",
+      "side": 1,
+      "message": "NB: should mention what you have remove, this patch removes 5x more than it adds :-)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2f1def35_2636910c",
@@ -48,6 +71,23 @@
       "writtenOn": "2025-09-16T15:03:06Z",
       "side": 1,
       "message": "the patch is good.\nfew NBs.",
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25455abf_3f0be52f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:09:02Z",
+      "side": 1,
+      "message": "maybe just run inspect and fix the javadoc",
       "revId": "2385dbe671f28432821d89065cb66d7973423aca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -151,6 +191,30 @@
       "writtenOn": "2025-09-16T14:46:43Z",
       "side": 1,
       "message": "NB: need to be mentioned in java doc above.\n\nNB: the variable name is confusing with plural name: dataNodeSelectors? e.g. whic one which",
+      "range": {
+        "startLine": 34,
+        "startChar": 54,
+        "endLine": 34,
+        "endChar": 66
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37058387_44c5a86b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T15:09:02Z",
+      "side": 1,
+      "message": "ok, it unfortunate naming but forced upon us by the 3GPP defintiion of teh event structure",
+      "parentUuid": "32e9586e_01fdf521",
       "range": {
         "startLine": 34,
         "startChar": 54,
