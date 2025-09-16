@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f120c800_efb7b546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T07:52:11Z",
+      "side": 1,
+      "message": "all good, just need to think about naming a bit some of it is a little confusing now",
+      "revId": "68c6803a580140ab8478166878cc9bb1d7c037f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f7212c_e275765c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T07:52:11Z",
+      "side": 1,
+      "message": "maybe consider these names. I know the parser was written genericly and used generic names.\nBut you converting dataNodeSelectors (plural) to one dataNodeSelector it seems strange. \nmaybe dataNodeSelectorAsXpaths and dataNodeSelectorAsJson",
+      "range": {
+        "startLine": 61,
+        "startChar": 76,
+        "endLine": 61,
+        "endChar": 93
+      },
+      "revId": "68c6803a580140ab8478166878cc9bb1d7c037f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d73e5a5a_ad35dcfe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-16T07:52:11Z",
+      "side": 1,
+      "message": "getDataNodeSelectors\nOR\ngetDataNodeSelectorsAsXpaths",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "68c6803a580140ab8478166878cc9bb1d7c037f4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
