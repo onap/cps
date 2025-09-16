@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41154f5a_54b0da85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T16:19:21Z",
+      "side": 1,
+      "message": "fine by me as well.\nif you get any further blocking comments then u can incorporate the NB.",
+      "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d96a1940_2d2d5470",
@@ -48,6 +65,30 @@
       "writtenOn": "2025-09-16T15:21:59Z",
       "side": 1,
       "message": "not needed since you have a return statement above it",
+      "range": {
+        "startLine": 205,
+        "startChar": 10,
+        "endLine": 205,
+        "endChar": 16
+      },
+      "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b495618a_6aa9fffa",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T16:19:21Z",
+      "side": 1,
+      "message": "yep.",
+      "parentUuid": "d96a1940_2d2d5470",
       "range": {
         "startLine": 205,
         "startChar": 10,
