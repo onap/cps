@@ -35,6 +35,92 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75886429_ddd01839",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "the patch is good.\nfew NBs.",
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4850b55c_de6353e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "NB: very minor but I would prefer the argument that is mutated as the last parameter in the method.\n\nprivate static void addProductJobDefinition(final String dataNodeSelector, final Data data)",
+      "range": {
+        "startLine": 69,
+        "startChar": 48,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748a7cde_9fc855ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "if you incorporate the above comment then this one applies.",
+      "range": {
+        "startLine": 75,
+        "startChar": 40,
+        "endLine": 75,
+        "endChar": 55
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0873499_4cc91f7b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventProducer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "NB: can we rename this to something else?\nwe already have a generic EventsProducer class. and this name is almost the same.",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d62d625_91cf23cd",
@@ -70,6 +156,121 @@
         "startChar": 54,
         "endLine": 34,
         "endChar": 66
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40e30ce0_1ec111d3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "NB: you can extract this part and make use of local variable.\nthis will shorten the subsequent calls to fetch the nested objects.",
+      "range": {
+        "startLine": 58,
+        "startChar": 44,
+        "endLine": 58,
+        "endChar": 103
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a46401_1b2bf796",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "these are the one which have the CmSubscriptionStatus as UNKNOWN ??\nif yes then do we need to change the method name?",
+      "range": {
+        "startLine": 110,
+        "startChar": 24,
+        "endLine": 110,
+        "endChar": 52
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d5bcce6_e7f43c72",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "NB: UNKNOWN.name() will result in the same thing ??",
+      "range": {
+        "startLine": 145,
+        "startChar": 30,
+        "endLine": 145,
+        "endChar": 54
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04e1cfa_b546eee0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "as List",
+      "range": {
+        "startLine": 42,
+        "startChar": 46,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "2385dbe671f28432821d89065cb66d7973423aca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "674f91ad_39960e40",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-16T15:03:06Z",
+      "side": 1,
+      "message": "same as previous",
+      "range": {
+        "startLine": 43,
+        "startChar": 59,
+        "endLine": 43,
+        "endChar": 67
       },
       "revId": "2385dbe671f28432821d89065cb66d7973423aca",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
