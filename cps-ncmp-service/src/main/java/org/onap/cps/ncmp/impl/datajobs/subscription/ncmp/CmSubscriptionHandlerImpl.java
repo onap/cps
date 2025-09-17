@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventMapper;
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.EventProducer;
+import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent;
 import org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -59,6 +60,26 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
             cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
         }
         sendCreateEventToDmis(subscriptionId, dataSelector);
+    }
+
+    @Override
+    public void updateCmSubscriptionStatus(final String subscriptionId,
+                                           final String dmiServiceName,
+                                           final CmSubscriptionStatus cmSubscriptionStatus) {
+        final List<String> dataNodeSelectors =
+                cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId);
+        for (final String dataNodeSelector : dataNodeSelectors) {
+            final String cmHandleId = getCmHandleId(dataNodeSelector);
+            if (cmHandleId == null) {
+                log.info("Failed to resolve cm handle ID for dataNodeSelector {}", dataNodeSelector);
+            } else {
+                final String resolvedDmiServiceName = getDmiServiceName(cmHandleId);
+                if (resolvedDmiServiceName.equals(dmiServiceName)) {
+                    cmDataJobSubscriptionPersistenceService.updateCmSubscriptionStatus(dataNodeSelector,
+                            cmSubscriptionStatus);
+                }
+            }
+        }
     }
 
     private void sendCreateEventToDmis(final String subscriptionId, final DataSelector dataSelector) {

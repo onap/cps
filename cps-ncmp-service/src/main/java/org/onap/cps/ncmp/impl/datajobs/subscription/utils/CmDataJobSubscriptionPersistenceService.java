@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
@@ -133,26 +134,38 @@ public class CmDataJobSubscriptionPersistenceService {
             addNewSubscriptionDetails(subscriptionId, dataNodeSelector);
         } else {
             final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
-            final String status = dataNodes.iterator().next().getLeaves().get("status").toString();
+            final String cmSubscriptionStatus = dataNodes.iterator().next().getLeaves().get("status").toString();
             subscriptionIds.add(subscriptionId);
-            updateSubscriptionDetails(dataNodeSelector, subscriptionIds, status);
+            updateSubscriptionDetails(dataNodeSelector, subscriptionIds, cmSubscriptionStatus);
         }
+    }
+
+    /**
+     * Update status of a subscription.
+     *
+     * @param dataNodeSelector     data node selector
+     * @param cmSubscriptionStatus cm subscription status
+     */
+    public void updateCmSubscriptionStatus(final String dataNodeSelector,
+                                           final CmSubscriptionStatus cmSubscriptionStatus) {
+        final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
+        updateSubscriptionDetails(dataNodeSelector, subscriptionIds, cmSubscriptionStatus.name());
     }
 
     private void addNewSubscriptionDetails(final String subscriptionId,
                                            final String dataNodeSelector) {
         final Collection<String> newSubscriptionList = Collections.singletonList(subscriptionId);
-        final String status = UNKNOWN.name();
+        final String cmSubscriptionStatus = UNKNOWN.name();
         final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
-                newSubscriptionList, status);
+                newSubscriptionList, cmSubscriptionStatus);
         cpsDataService.saveData(DATASPACE, ANCHOR, subscriptionDetailsAsJson,
             OffsetDateTime.now(), ContentType.JSON);
     }
 
     private void updateSubscriptionDetails(final String dataNodeSelector, final Collection<String> subscriptionIds,
-                                           final String status) {
+                                           final String cmSubscriptionStatus) {
         final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
-                subscriptionIds, status);
+                subscriptionIds, cmSubscriptionStatus);
         cpsDataService.updateNodeLeaves(DATASPACE, ANCHOR,
                 PARENT_NODE_XPATH, subscriptionDetailsAsJson, OffsetDateTime.now(),
             ContentType.JSON);
@@ -160,11 +173,11 @@ public class CmDataJobSubscriptionPersistenceService {
 
     private String createSubscriptionDetailsAsJson(final String dataNodeSelector,
                                                    final Collection<String> subscriptionIds,
-                                                   final String status) {
+                                                   final String cmSubscriptionStatus) {
         final Map<String, Serializable> subscriptionDetailsAsMap =
             Map.of("dataNodeSelector", dataNodeSelector,
                 "dataJobId", (Serializable) subscriptionIds,
-                "status", status);
+                "status", cmSubscriptionStatus);
         return "{\"subscription\":[" + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap) + "]}";
     }
 }
