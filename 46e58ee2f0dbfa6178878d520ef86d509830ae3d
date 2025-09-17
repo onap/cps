@@ -211,6 +211,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a615cf_2b1506d7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-17T14:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "02820132_c4572615",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 68
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9dffd55_2d2c5c34",
@@ -342,6 +366,30 @@
       "side": 1,
       "message": "I have used specific execption (DOMException,ParserConfigurationException,TransformerException)\n since these are the expected failure cases when handing XML This avoids masking unexpected runtime error.",
       "parentUuid": "60f78953_ada38313",
+      "range": {
+        "startLine": 231,
+        "startChar": 23,
+        "endLine": 231,
+        "endChar": 89
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da6dcde6_e03dab31",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-17T14:18:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f38b1ac7_4a0a868c",
       "range": {
         "startLine": 231,
         "startChar": 23,
@@ -507,6 +555,30 @@
       "side": 1,
       "message": "Thanks for pointing this out.I have kept the null check to avoid NPE,and also the isEmpty check to prevent adding unnecessary empty XML elements.",
       "parentUuid": "8f62f93b_939769e1",
+      "range": {
+        "startLine": 239,
+        "startChar": 12,
+        "endLine": 239,
+        "endChar": 45
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f392f59_27c870e5",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-17T14:18:39Z",
+      "side": 1,
+      "message": "its OK for a generic converter I suppose even if your current use case (your own delta report) does not have any occurence of this. But it means you DO need o write unit test cover all 3 cases: null, empty, not empty",
+      "parentUuid": "033c9813_627ca4b5",
       "range": {
         "startLine": 239,
         "startChar": 12,
@@ -848,6 +920,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba384fc7_1acbdebf",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-17T14:18:39Z",
+      "side": 1,
+      "message": "just one parameter is OK but it should be generic ie mapEntry",
+      "parentUuid": "206223b4_c48c274a",
+      "range": {
+        "startLine": 263,
+        "startChar": 88,
+        "endLine": 263,
+        "endChar": 105
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4005f9f5_9a6fc44d",
         "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
         "patchSetId": 14
@@ -906,6 +1002,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "ccfd1750_77923e72",
+      "range": {
+        "startLine": 264,
+        "startChar": 76,
+        "endLine": 264,
+        "endChar": 92
+      },
+      "revId": "46e58ee2f0dbfa6178878d520ef86d509830ae3d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d961fc00_3cd19f6c",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlFileUtils.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-17T14:18:39Z",
+      "side": 1,
+      "message": "ignore this comment",
+      "parentUuid": "4005f9f5_9a6fc44d",
       "range": {
         "startLine": 264,
         "startChar": 76,
