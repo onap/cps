@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c8b90d_10ef9836",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-17T12:51:15Z",
+      "side": 0,
+      "message": "update javadoc with cmHandleStatus",
+      "revId": "0dcf847d0df57209eb2a723256c6d84501d62e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
