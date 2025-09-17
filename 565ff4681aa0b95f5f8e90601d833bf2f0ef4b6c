@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41df970f_0995d110",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-17T14:06:29Z",
+      "side": 1,
+      "message": "We should not be mentioning Delta Report in this class as it is a generic Xml Utility not a specific Delta Report Utility.\n\nif you want specific methods then create a new utility class that just has Delta Report util methods.\n\nif general can be used then just dont mention delta report.",
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c7843e4_f9acaf78",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-17T14:06:29Z",
+      "side": 1,
+      "message": "this can be moved to the instance level.\nthen u dont need to pass the Document in each private method call. try that.",
+      "range": {
+        "startLine": 211,
+        "startChar": 12,
+        "endLine": 211,
+        "endChar": 68
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
