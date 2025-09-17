@@ -16,6 +16,23 @@
       "message": "resolved comment :)",
       "revId": "206327fc6c91fccf46a2160e61e4e07ea82e6b24",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fd5ca03_676f8e2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-17T14:08:36Z",
+      "side": 1,
+      "message": "merging based on previous approvals.",
+      "revId": "206327fc6c91fccf46a2160e61e4e07ea82e6b24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
