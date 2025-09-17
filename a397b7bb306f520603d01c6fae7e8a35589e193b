@@ -110,6 +110,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da69f533_99fe8452",
+        "filename": "cps-application/src/main/resources/application.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-17T08:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00046f6b_26300fc5",
+      "range": {
+        "startLine": 31,
+        "startChar": 35,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7402bfc_3eda6c9c",
@@ -180,6 +204,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9aaa340_bd15c858",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-17T08:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edd8c479_3298efbc",
+      "range": {
+        "startLine": 77,
+        "startChar": 54,
+        "endLine": 77,
+        "endChar": 61
+      },
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29ee9127_3fcfe0ac",
@@ -211,6 +259,24 @@
       "side": 1,
       "message": "Good suggestion, regex added",
       "parentUuid": "29ee9127_3fcfe0ac",
+      "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f094e706_e9134dad",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-17T08:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2b11557_a0e90427",
       "revId": "a397b7bb306f520603d01c6fae7e8a35589e193b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
