@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
 
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent
@@ -132,6 +133,27 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             'new target overlaps with UNKNOWN targets'         | ['/existingDataNodeSelector[id=""]','/newDataNodeSelector[id=""]']|| 1
             'new target does not overlap with existing targets'| ['/newDataNodeSelector[id=""]']                                   || 1
     }
+
+    def 'Update subscription status to ACCEPTED: #scenario'() {
+        given: 'a subscription ID'
+            def mySubscriptionId = 'mySubId'
+        and: 'the persistence service returns all inactive data node selectors'
+            def myDataNodeSelectors = ['/myDataNodeSelector[id=""]'].asList()
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors(mySubscriptionId) >> myDataNodeSelectors
+        and: 'alternate id matcher always returns a cm handle id'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'someCmHandleId'
+        and: 'the inventory persistence service returns a yang model with a dmi service name for the accepted subscription'
+            mockInventoryPersistence.getYangModelCmHandle(_) >>  new YangModelCmHandle(dmiServiceName: 'myDmi')
+        when: 'the method to update subscription status is called with status=ACCEPTED'
+            objectUnderTest.updateCmSubscriptionStatus(mySubscriptionId, dmiName, ACCEPTED)
+        then: 'the persistence service to update subscription status is called for every dmi service name matched'
+            expectedCallsToPersistenceService * mockCmSubscriptionPersistenceService.updateCmSubscriptionStatus('/myDataNodeSelector[id=""]', ACCEPTED)
+        where: 'the following data are used'
+            scenario                          |dmiName        || expectedCallsToPersistenceService
+            'data node selector for "myDmi"'  |'myDmi'        || 1
+            'data node selector for other dmi'| 'someOtherDmi'|| 0
+    }
+
 
     def getFdn(dataNodeSelector) {
         return JexParser.extractFdnPrefix(dataNodeSelector).orElse("")

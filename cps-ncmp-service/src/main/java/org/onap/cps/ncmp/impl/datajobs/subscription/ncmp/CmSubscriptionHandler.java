@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
 import java.util.List;
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector;
+import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 
 public interface CmSubscriptionHandler {
 
@@ -34,5 +35,15 @@ public interface CmSubscriptionHandler {
      */
     void processSubscriptionCreate(final DataSelector dataSelector, final String subscriptionId,
                                    final List<String> dataNodeSelectors);
+
+    /**
+     * Update status of a subscription.
+     *
+     * @param subscriptionId    subscription id
+     * @param dmiServiceName    relevant DMI service name
+     * @param status            subscription status
+     */
+    void updateCmSubscriptionStatus(final String subscriptionId, final String dmiServiceName,
+                                    final CmSubscriptionStatus status);
 
 }
