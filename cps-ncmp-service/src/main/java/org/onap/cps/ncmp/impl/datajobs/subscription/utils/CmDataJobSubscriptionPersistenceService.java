@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsQueryService;
 import org.onap.cps.api.model.DataNode;
+import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
@@ -137,6 +138,17 @@ public class CmDataJobSubscriptionPersistenceService {
             subscriptionIds.add(subscriptionId);
             updateSubscriptionDetails(dataNodeSelector, subscriptionIds, status);
         }
+    }
+
+    /**
+     * Update status of a subscription.
+     *
+     * @param dataNodeSelector  data node selector
+     * @param status            status
+     */
+    public void updateStatus(final String dataNodeSelector, final CmSubscriptionStatus status) {
+        final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
+        updateSubscriptionDetails(dataNodeSelector, subscriptionIds, status.name());
     }
 
     private void addNewSubscriptionDetails(final String subscriptionId,

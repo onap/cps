@@ -21,12 +21,12 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.utils
 
-
 import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR
 import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID
 import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_INACTIVE_SUBSCRIPTIONS
 import static CmDataJobSubscriptionPersistenceService.PARENT_NODE_XPATH
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
@@ -117,6 +117,23 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
             objectUnderTest.add('newSubId', dataNodeSelector)
         then: 'data service method to update list of subscribers is called once'
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, subscriptionDetailsAsJson, _, ContentType.JSON)
+    }
+
+    def 'Update subscription status'() {
+        given: 'a data node selector'
+            def myDataNodeSelector = "/myDataNodeSelector"
+        and: 'a status'
+            def status = ACCEPTED
+        and: 'the query service returns data node for given data node selector'
+            def subscriptionIds = ['someId']
+            mockCpsQueryService.queryDataNodes(_,_,_,_) >> [new DataNode(leaves: ['dataJobId': subscriptionIds, 'dataNodeSelector': myDataNodeSelector, 'status': 'UNKNOWN'])]
+        and: 'updated cm data job subscription details as json'
+            def subscriptionDetailsAsJson = objectUnderTest.createSubscriptionDetailsAsJson(myDataNodeSelector, subscriptionIds, status.name())
+        when: 'the method to update subscription status is called'
+            objectUnderTest.updateStatus(myDataNodeSelector, status)
+        then: 'data service method to update list of subscribers is called once'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, subscriptionDetailsAsJson, _, _)
+
     }
 
 }
