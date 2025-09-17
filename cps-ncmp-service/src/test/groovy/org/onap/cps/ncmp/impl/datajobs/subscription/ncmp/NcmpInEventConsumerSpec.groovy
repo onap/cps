@@ -28,24 +28,16 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent
 import org.onap.cps.ncmp.impl.utils.JexParser
 import org.onap.cps.ncmp.utils.TestUtils
-import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
-@SpringBootTest(classes = [ObjectMapper, JsonObjectMapper])
 class NcmpInEventConsumerSpec extends Specification {
+
+    def logger = new ListAppender<ILoggingEvent>()
+    def objectMapper = new ObjectMapper()
 
     def mockCmSubscriptionHandler = Mock(CmSubscriptionHandlerImpl)
     def objectUnderTest = new NcmpInEventConsumer(mockCmSubscriptionHandler)
-    def logger = new ListAppender<ILoggingEvent>()
-
-    @Autowired
-    JsonObjectMapper jsonObjectMapper
-
-    @Autowired
-    ObjectMapper objectMapper
 
     void setup() {
         ((Logger) LoggerFactory.getLogger(NcmpInEventConsumer.class)).addAppender(logger)
