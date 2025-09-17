@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ee9c65_faa90852",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-17T13:14:21Z",
+      "side": 1,
+      "message": "Resolved comments.\n@Priyank you discussed about removing the integration tests that I added in this patch. Do I still need to do that?",
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
