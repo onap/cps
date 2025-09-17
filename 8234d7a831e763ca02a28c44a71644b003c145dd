@@ -33,6 +33,24 @@
       "message": "looks fine.",
       "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ffa672d_62defcbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-17T14:13:06Z",
+      "side": 1,
+      "message": "u mean the test that u added to prove the bug?\nand now since it is fixed u want to remove it ?",
+      "parentUuid": "26ee9c65_faa90852",
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
