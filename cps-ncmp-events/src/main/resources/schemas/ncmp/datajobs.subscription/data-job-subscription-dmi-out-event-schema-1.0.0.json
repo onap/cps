@@ -1,0 +1,44 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:cps:org.onap.ncmp.events.subscription:1.0.0",
+  "$ref": "#/definitions/DmiOutEvent",
+  "definitions": {
+    "DmiOutEvent": {
+      "description": "The payload for cm notification subscription event coming out from DMI Plugin.",
+      "type": "object",
+      "additionalProperties": false,
+      "javaType": "org.onap.cps.ncmp.impl.datajobs.subscription.dmi_to_ncmp.DataJobSubscriptionDmiOutEvent",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "required": [
+        "data"
+      ],
+      "title": "DmiOutEvent"
+    },
+    "Data": {
+      "type": "object",
+      "description": "Information about the targets and subscription",
+      "additionalProperties": false,
+      "properties": {
+        "statusCode": {
+          "type": "string",
+          "format": "integer",
+          "description": "The common status as defined in CPS"
+        },
+        "statusMessage": {
+          "type": "string",
+          "description": "The common status message as defined in CPS"
+        }
+      },
+      "required": [
+        "statusCode",
+        "statusMessage"
+      ],
+      "title": "Data"
+    }
+  }
+}
