@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db94ff1e_3a215cbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T04:36:16Z",
+      "side": 1,
+      "message": "Sorry I missed this comment earlier. I do have a plan to clean the delta related testware in the future.\nRight now, we are working on some new proposals, so testware cleanup was on a lower priority 😊",
+      "parentUuid": "721156c8_b08588af",
+      "revId": "888f61f59b8b90468fc52d6ea47cc0d89b0a0896",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d96a1940_2d2d5470",
         "filename": "cps-service/src/test/groovy/org/onap/cps/utils/deltareport/DeltaReportExecutorSpec.groovy",
         "patchSetId": 6
