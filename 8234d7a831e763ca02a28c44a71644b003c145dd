@@ -76,6 +76,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9777c7bc_1cd04f2a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T05:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b8149bd_af74c032",
+      "range": {
+        "startLine": 524,
+        "startChar": 33,
+        "endLine": 524,
+        "endChar": 78
+      },
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9f50713_54b2ce6f",
@@ -89,6 +113,30 @@
       "writtenOn": "2025-09-17T14:29:00Z",
       "side": 1,
       "message": "not needed, you are saying the same thing twice\n\"Less is more\" :-)",
+      "range": {
+        "startLine": 525,
+        "startChar": 63,
+        "endLine": 525,
+        "endChar": 134
+      },
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0944bce3_1556f51c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T05:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9f50713_54b2ce6f",
       "range": {
         "startLine": 525,
         "startChar": 63,
@@ -122,6 +170,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48471894_2a965cc6",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T05:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1cf9f78_f2df65e4",
+      "range": {
+        "startLine": 527,
+        "startChar": 41,
+        "endLine": 527,
+        "endChar": 72
+      },
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b3d213_2fd6f3ec",
@@ -145,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6258354_a5a8767e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T05:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42b3d213_2fd6f3ec",
+      "range": {
+        "startLine": 533,
+        "startChar": 9,
+        "endLine": 533,
+        "endChar": 120
+      },
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a26323a0_4c2fb8c9",
@@ -158,6 +254,30 @@
       "writtenOn": "2025-09-17T14:29:00Z",
       "side": 1,
       "message": "wrogn again, see also previous test for suggestion",
+      "range": {
+        "startLine": 536,
+        "startChar": 15,
+        "endLine": 536,
+        "endChar": 78
+      },
+      "revId": "8234d7a831e763ca02a28c44a71644b003c145dd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff2eae8f_68245aae",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T05:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a26323a0_4c2fb8c9",
       "range": {
         "startLine": 536,
         "startChar": 15,
