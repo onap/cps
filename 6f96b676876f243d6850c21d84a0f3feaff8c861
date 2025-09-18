@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb5dd56d_97b60195",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-18T14:28:11Z",
+      "side": 1,
+      "message": "not agreed with stakeholder, stakeholder expects correct URI-FDN which would avoid causing this error. Used best judgement to set this error since it is not an error that the stakeholder expects to encounter",
+      "parentUuid": "8058c3f2_906de829",
+      "range": {
+        "startLine": 107,
+        "startChar": 45,
+        "endLine": 107,
+        "endChar": 65
+      },
+      "revId": "6f96b676876f243d6850c21d84a0f3feaff8c861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "014ead8c_e55f6248",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/exception/InvalidPathException.java",
         "patchSetId": 4
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36ec8b1d_82dadddc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/exception/InvalidPathException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-18T14:28:11Z",
+      "side": 1,
+      "message": "Since the error is thrown if the combined URI-LDN-first-part, className and Id is invalid and these are all path variables it seemed the most appropriate name to give it.",
+      "parentUuid": "014ead8c_e55f6248",
+      "revId": "6f96b676876f243d6850c21d84a0f3feaff8c861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74668993_b742cd5e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
         "patchSetId": 4
@@ -71,6 +113,30 @@
       "writtenOn": "2025-09-18T07:50:49Z",
       "side": 1,
       "message": "😊\nMaybe you do it once on the class level?",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 48
+      },
+      "revId": "6f96b676876f243d6850c21d84a0f3feaff8c861",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77185a65_9a17a8d0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-18T14:28:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74668993_b742cd5e",
       "range": {
         "startLine": 35,
         "startChar": 4,
