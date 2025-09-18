@@ -39,6 +39,30 @@
       },
       "revId": "6a3e1735577e5d988ef770847d89ba806b98ad68",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "122e6972_f85444d1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataServiceIntegrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-18T07:50:08Z",
+      "side": 1,
+      "message": "sorry my bad I missed it 😞",
+      "parentUuid": "697a0762_d85cae11",
+      "range": {
+        "startLine": 534,
+        "startChar": 64,
+        "endLine": 534,
+        "endChar": 167
+      },
+      "revId": "6a3e1735577e5d988ef770847d89ba806b98ad68",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
