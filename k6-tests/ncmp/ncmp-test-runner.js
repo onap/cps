@@ -42,7 +42,23 @@ import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/pas
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 import { executeWriteDataJob } from "./common/write-data-job.js";
 
-#METRICS-TRENDS-PLACEHOLDER#
+let cmHandlesCreatedTrend = new Trend('cm_handles_created', false);
+let cmHandlesDeletedTrend = new Trend('cm_handles_deleted', false);
+let cmHandleIdSearchNoFilterTrend = new Trend('cm_handle_id_search_no_filter', true);
+let cmHandleIdSearchModuleFilterTrend = new Trend('cm_handle_id_search_module_filter', true);
+let cmHandleIdSearchPropertyFilterTrend = new Trend('cm_handle_id_search_property_filter', true);
+let cmHandleIdSearchCpsPathFilterTrend = new Trend('cm_handle_id_search_cps_path_filter', true);
+let cmHandleIdSearchTrustLevelFilterTrend = new Trend('cm_handle_id_search_trust_level_filter', true);
+let cmHandleSearchNoFilterTrend = new Trend('cm_handle_search_no_filter', true);
+let cmHandleSearchModuleFilterTrend = new Trend('cm_handle_search_module_filter', true);
+let cmHandleSearchPropertyFilterTrend = new Trend('cm_handle_search_property_filter', true);
+let cmHandleSearchCpsPathFilterTrend = new Trend('cm_handle_search_cps_path_filter', true);
+let cmHandleSearchTrustLevelFilterTrend = new Trend('cm_handle_search_trust_level_filter', true);
+let ncmpReadOverheadTrend = new Trend('ncmp_read_overhead', true);
+let ncmpWriteOverheadTrend = new Trend('ncmp_write_overhead', true);
+let legacyBatchReadTrend = new Trend('legacy_batch_read', false);
+let dcmWriteDataJobSmallTrend = new Trend('dcm_write_data_job_small', true);
+let dcmWriteDataJobLargeTrend = new Trend('dcm_write_data_job_large', true);
 
 const EXPECTED_WRITE_RESPONSE_COUNT = 1;
 
@@ -86,7 +102,7 @@ export function teardown() {
         const nextBatchOfCmHandleIds = makeBatchOfCmHandleIds(REGISTRATION_BATCH_SIZE, batchNumber);
         const response = deleteCmHandles(nextBatchOfCmHandleIds);
         if (response.error_code === 0) {
-              numberOfDeregisteredCmHandles += REGISTRATION_BATCH_SIZE
+            numberOfDeregisteredCmHandles += REGISTRATION_BATCH_SIZE
         }
         check(response, { 'delete CM-handles status equals 200': (response) => response.status === 200 });
     }
@@ -200,7 +216,7 @@ export function handleSummary(data) {
     if (testProfile === 'kpi') {
         console.log("✅ Generating KPI summary...");
         return {
-            stdout: makeCustomSummaryReport(data.metrics, options.thresholds),
+            stdout: makeCustomSummaryReport(data, options),
         };
     }
     console.log("⛔ Skipping KPI summary (not in 'kpi' profile)");
