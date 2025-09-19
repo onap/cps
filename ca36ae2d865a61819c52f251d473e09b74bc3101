@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d1b388_c279f495",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "good.\nnow the generic XmlUtils doesnt have Delta Report code.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de593c99_d3247ba2",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "final keyword missed.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "763c3b43_3cd00e27",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "here u can return ur Element here.\nand then append in the method where this is called from.\ni.e\nline 74 and 75 can be\nelement \u003d convertMapToElement(document, \"source-data\", deltaReport.getSourceData());\n\nand similar.\n\nu dont have to pass the deltaReportElement to this method.\n\nsame for the method on line 75.\n\ndo similar to method createKeyValueElement",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee40b0da_f8039e18",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "format it correctly.\nindendation is off.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c568e3db_f71b9325",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "also since u made it public, this would need a javadoc.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d53bdac2_b919ffd8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "missed the copyright.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c596dad5_d4d99c95",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:35:04Z",
+      "side": 1,
+      "message": "also this class needs proper indendation.\ncheck with Arpit for the common formatter that we use in Intellij.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
