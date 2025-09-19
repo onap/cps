@@ -42,7 +42,5 @@ tmp/
 csit/env.properties
 csit/archives/
 
+/k6-tests/logs/
 /k6-tests/image/
-k6-tests/ncmp/config/kpi-scenario-execution-definition.json
-/k6-tests/ncmp/*Summary.csv
-/k6-tests/ncmp/scenario-javascript.js
