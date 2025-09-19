@@ -35,6 +35,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e23b3c0_ba02a8ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-19T08:30:35Z",
+      "side": 1,
+      "message": "Similar to Toine\u0027s comments, good start",
+      "revId": "901508ca422acffbb3676f9703f60f6282e1add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a416b0f_6f73050c",
@@ -215,6 +232,23 @@
         "endLine": 67,
         "endChar": 103
       },
+      "revId": "901508ca422acffbb3676f9703f60f6282e1add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499d834a_30a96856",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-19T08:30:35Z",
+      "side": 1,
+      "message": "Use full name",
       "revId": "901508ca422acffbb3676f9703f60f6282e1add1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
