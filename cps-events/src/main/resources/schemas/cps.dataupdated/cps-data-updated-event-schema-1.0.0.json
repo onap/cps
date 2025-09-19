@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "urn:cps:org.onap.cps:data-updated-event-schema:1.0.0",
-  "$ref": "#/definitions/CpsDataUpdatedEvent",
+  "$ref": "#/definitions/CpsDataUpdateEvent",
   "definitions": {
-    "CpsDataUpdatedEvent": {
+    "CpsDataUpdateEvent": {
       "description": "The payload for CPS data updated event.",
       "type": "object",
       "javaType": "org.onap.cps.events.model.CpsDataUpdatedEvent",
       "properties": {
-        "data": {
+        "eventPayload": {
           "type": "object",
           "properties": {
             "observedTimestamp": {
@@ -27,17 +27,17 @@
               "description": "The name of CPS Core anchor the data is attached to.",
               "type": "string"
             },
-            "operation": {
+            "action": {
               "description": "The operation on the data",
               "type": "string",
               "enum": [
-                "CREATE",
-                "UPDATE",
-                "DELETE"
+                "create",
+                "replace",
+                "remove"
               ]
             },
             "xpath": {
-              "description": "xpath of the updated content",
+              "description": "xpath of the modified content",
               "type": "string"
             }
           },
