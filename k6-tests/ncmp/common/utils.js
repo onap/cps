@@ -24,8 +24,7 @@ import {check} from 'k6';
 import {Trend} from 'k6/metrics';
 
 export const TEST_PROFILE = __ENV.TEST_PROFILE ? __ENV.TEST_PROFILE : 'kpi'
-export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}-scenario-execution-definition.json`));
-export const testKpiMetaData = JSON.parse(open(`../config/scenario-metadata.json`));
+export const testConfig = JSON.parse(open(`../config/${TEST_PROFILE}.json`));
 export const KAFKA_BOOTSTRAP_SERVERS = testConfig.hosts.kafkaBootstrapServer;
 export const NCMP_BASE_URL = testConfig.hosts.ncmpBaseUrl;
 export const DMI_PLUGIN_URL = testConfig.hosts.dmiStubUrl;
@@ -120,28 +119,36 @@ export function performGetRequest(url, metricTag) {
     return http.get(url, {tags: metricTags});
 }
 
-export function makeCustomSummaryReport(metrics, thresholds) {
+export function makeCustomSummaryReport(testResults, scenarioConfig) {
     const summaryCsvLines = [
         '#,Test Name,Unit,Fs Requirement,Current Expectation,Actual',
-        ...testKpiMetaData.map(test => {
-            return makeSummaryCsvLine(
-                test.label,
-                test.name,
-                test.unit,
-                test.metric,
-                test.cpsAverage,
-                metrics,
-                thresholds
-            );
-        })
+        makeSummaryCsvLine('0', 'HTTP request failures for all tests', 'rate of failed requests', 'http_req_failed', 0, testResults, scenarioConfig),
+        makeSummaryCsvLine('1', 'Registration of CM-handles', 'CM-handles/second', 'cm_handles_created', 100, testResults, scenarioConfig),
+        makeSummaryCsvLine('2', 'De-registration of CM-handles', 'CM-handles/second', 'cm_handles_deleted', 180, testResults, scenarioConfig),
+        makeSummaryCsvLine('3a', 'CM-handle ID search with No filter', 'milliseconds', 'cm_handle_id_search_no_filter', 550, testResults, scenarioConfig),
+        makeSummaryCsvLine('3b', 'CM-handle ID search with Module filter', 'milliseconds', 'cm_handle_id_search_module_filter', 2300, testResults, scenarioConfig),
+        makeSummaryCsvLine('3c', 'CM-handle ID search with Property filter', 'milliseconds', 'cm_handle_id_search_property_filter', 1450, testResults, scenarioConfig),
+        makeSummaryCsvLine('3d', 'CM-handle ID search with Cps Path filter', 'milliseconds', 'cm_handle_id_search_cps_path_filter', 1500, testResults, scenarioConfig),
+        makeSummaryCsvLine('3e', 'CM-handle ID search with Trust Level filter', 'milliseconds', 'cm_handle_id_search_trust_level_filter', 1600, testResults, scenarioConfig),
+        makeSummaryCsvLine('4a', 'CM-handle search with No filter', 'milliseconds', 'cm_handle_search_no_filter', 18000, testResults, scenarioConfig),
+        makeSummaryCsvLine('4b', 'CM-handle search with Module filter', 'milliseconds', 'cm_handle_search_module_filter', 18000, testResults, scenarioConfig),
+        makeSummaryCsvLine('4c', 'CM-handle search with Property filter', 'milliseconds', 'cm_handle_search_property_filter', 18000, testResults, scenarioConfig),
+        makeSummaryCsvLine('4d', 'CM-handle search with Cps Path filter', 'milliseconds', 'cm_handle_search_cps_path_filter', 18000, testResults, scenarioConfig),
+        makeSummaryCsvLine('4e', 'CM-handle search with Trust Level filter', 'milliseconds', 'cm_handle_search_trust_level_filter', 18000, testResults, scenarioConfig),
+        makeSummaryCsvLine('5b', 'NCMP overhead for Synchronous single CM-handle pass-through read with alternate id', 'milliseconds', 'ncmp_read_overhead', 18, testResults, scenarioConfig),
+        makeSummaryCsvLine('6b', 'NCMP overhead for Synchronous single CM-handle pass-through write with alternate id', 'milliseconds', 'ncmp_write_overhead', 18, testResults, scenarioConfig),
+        makeSummaryCsvLine('7', 'Legacy batch read operation', 'events/second', 'legacy_batch_read', 200, testResults, scenarioConfig),
+        makeSummaryCsvLine('8', 'Write data job scenario - small', 'milliseconds', 'dcm_write_data_job_small', 100, testResults, scenarioConfig),
+        makeSummaryCsvLine('9', 'Write data job scenario - large', 'milliseconds', 'dcm_write_data_job_large', 8000, testResults, scenarioConfig),
     ];
     return summaryCsvLines.join('\n') + '\n';
 }
 
-function makeSummaryCsvLine(testNumber, testName, unit, measurementName, currentExpectation, metrics, thresholds) {
-    const thresholdCondition = JSON.parse(JSON.stringify(thresholds[measurementName]))[0];
-    const [metricsFunction, thresholdOperator, thresholdValue] = thresholdCondition.split(/\s+/);
-    const actualValue = metrics[measurementName].values[metricsFunction].toFixed(3);
+function makeSummaryCsvLine(testNumber, testName, unit, measurementName, currentExpectation, testResults, scenarioConfig) {
+    const thresholdArray = JSON.parse(JSON.stringify(scenarioConfig.thresholds[measurementName]));
+    const thresholdString = thresholdArray[0];
+    const [thresholdKey, thresholdOperator, thresholdValue] = thresholdString.split(/\s+/);
+    const actualValue = testResults.metrics[measurementName].values[thresholdKey].toFixed(3);
     return `${testNumber},${testName},${unit},${thresholdValue},${currentExpectation},${actualValue}`;
 }
 
