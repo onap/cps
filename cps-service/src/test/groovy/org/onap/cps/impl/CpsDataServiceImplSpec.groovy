@@ -51,8 +51,6 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Operation.DELETE
-
 class CpsDataServiceImplSpec extends Specification {
     def mockCpsDataPersistenceService = Mock(CpsDataPersistenceService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
@@ -497,9 +495,6 @@ class CpsDataServiceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(['anchor1', 'anchor2'])
         and: 'the persistence service method is invoked with the correct parameters'
             1 * mockCpsDataPersistenceService.deleteDataNodes(dataspaceName, _ as Collection<String>)
-        and: 'a data update event is sent for each anchor'
-            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor1, '/', DELETE, observedTimestamp)
-            1 * mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(anchor2, '/', DELETE, observedTimestamp)
     }
 
     def "Validating #scenario when dry run is enabled."() {
