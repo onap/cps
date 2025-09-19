@@ -26,240 +26,93 @@ pushd "$(dirname "$0")" >/dev/null || {
 # ─────────────────────────────────────────────────────────────
 # 📌 Global Variables
 # ─────────────────────────────────────────────────────────────
-number_of_failures=0
+threshold_failures=0
 testProfile=$1
 summaryFile="${testProfile}Summary.csv"
-# Path to the JSON file containing metric metadata.
-# This JSON holds metric names, units, and threshold values.
-SCENARIO_METADATA_FILE="./config/scenario-metadata.json"
-
-echo
-echo "📢 Running NCMP K6 performance test for profile: [$testProfile]"
-echo
-
-chmod +x ./create-scenario-javascript.sh
-source ./create-scenario-javascript.sh
-
-if [[ "$testProfile" == "kpi" ]]; then
-  chmod +x ./create-scenario-execution-definition.sh
-  source ./create-scenario-execution-definition.sh
-fi
+echo "Running $testProfile performance tests..."
 
 # ─────────────────────────────────────────────────────────────
 # Run K6 and Capture Output
+# '$?' is immediately captures the exit code after k6 finishes,
+#   and assign it to k6_exit_code.
 # ─────────────────────────────────────────────────────────────
-k6 run scenario-javascript.js -e TEST_PROFILE="$testProfile" > "$summaryFile"
+k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile"
 k6_exit_code=$?
 
 case $k6_exit_code in
-  0) echo "✅ K6 executed successfully for profile: [$testProfile]." ;;
-  99) echo "⚠️  K6 thresholds failed (exit code 99). Processing failures..." ;;
-  *) echo "❌ K6 execution error (exit code $k6_exit_code)."; number_of_failures=$((number_of_failures + 1)) ;;
+  0) echo "✅ K6 executed successfully for profile: [$testProfile]" ;;
+  1) echo "⚠️  K6 thresholds failed (exit code 1)" ;;
+  *) echo "❌ K6 execution error (exit code $k6_exit_code)";;
 esac
 
-if [[ "$testProfile" == "kpi" ]]; then
-# ─────────────────────────────────────────────────────────────
-# Extract and Filter Summary Data
-# ─────────────────────────────────────────────────────────────
+###############################################################################
+# Adds a “Result” column with ✅ / ❌ to the given summary file
+#   • Increments global variable `threshold_failures` for each ❌ row
+# NR == 1 catches the header only once, appending “Result”
+# PASS rules
+#   • Throughput Tests #1, #2, #7: PASS when Actual ≥ Fs Requirement
+#   • All others (Duration Tests): PASS when Actual ≤ Fs Requirement
+###############################################################################
+addResultColumn() {
+  local summaryFile="$1"
+  local tmp
+  tmp=$(mktemp)
+
+  awk -F',' -v OFS=',' '
+    NR == 1 { print $0, "Result"; next }
+    {
+      throughputTests = ($1 == "1" || $1 == "2" || $1 == "7")
+      passCondition   = throughputTests ? (($6+0) >= ($4+0)) : (($6+0) <= ($4+0))
+      print $0, (passCondition ? "✅" : "❌")
+    }
+  ' "$summaryFile" > "$tmp"
+
+  mv "$tmp" "$summaryFile"
+
+  # how many failures (❌) occurred?
+  local newFails
+  newFails=$(grep -c '❌' "$summaryFile")
+  threshold_failures=$(( threshold_failures + newFails ))
+}
+
 if [ -f "$summaryFile" ]; then
-  echo "🔍 Extracting expected test names from metadata..."
-  expected_tests=()
-  while IFS= read -r test_name; do
-    [[ -n "$test_name" ]] && expected_tests+=("$test_name")
-  done < <(jq -r '.[].name' "$SCENARIO_METADATA_FILE")
-
-  if [[ ${#expected_tests[@]} -eq 0 ]]; then
-    echo "❌ No test names found in metadata. Aborting."
-    exit 1
-  fi
-
-  filtered_summary=$(mktemp)
-
-  # Extract the CSV header line starting with '#'
-  grep -m 1 "^#" "$summaryFile" > "$filtered_summary"
-
-  # Match each expected test name with summary rows
-  for test_name in "${expected_tests[@]}"; do
-    trimmedTestName="$(echo "$test_name" | xargs)"
-    matched_line=$(grep -F "$trimmedTestName" "$summaryFile")
-    [[ -n "$matched_line" ]] && echo "$matched_line" >> "$filtered_summary" || echo "⚠️ Result not found for [$trimmedTestName]"
-  done
 
   # Output raw CSV for plotting job
-  echo -e "\n📊 -- BEGIN CSV REPORT --"
-  cat "$filtered_summary"
-  echo -e "📊 -- -- END CSV REPORT --\n"
-
-  # ─────────────────────────────────────────────────────────────
-  # Evaluate FS Thresholds
-  # ─────────────────────────────────────────────────────────────
-
-  # Evaluate FS pass/fail thresholds
-  annotated_summary=$(mktemp)
-  threshold_failures=0
-
-  # Append header with new column "Pass FS"
-  head -n 1 "$filtered_summary" | awk '{print $0",Pass FS"}' > "$annotated_summary"
-  tail -n +2 "$filtered_summary" > tmp_input
-
-  # Exit early if no valid test results were found in the filtered summary
-  if [[ ! -s tmp_input ]]; then
-    echo "⚠️ No valid test results found in [$summaryFile]. Skipping FS evaluation."
-    echo "❌ Summary: No tests were executed or matched expected names."
-    ((number_of_failures++))
-    rm -f tmp_input "$summaryFile" "$filtered_summary"
-    popd >/dev/null || true
-    exit $number_of_failures
-  fi
-
-  # Process each test case (skip header and check values) append pass/fail to annotated_summary
-  while IFS=, read -r id test_name unit fs_requirement current_expected actual_value; do
-    [[ -z "$test_name" ]] && continue
-
-    # Trim whitespace from fs_requirement and actual
-    fs_req=$(echo "$fs_requirement" | xargs)
-    actual_val=$(echo "$actual_value" | xargs)
-    fs_pass_status="✅"
-
-    # Special case: zero actual is valid, assign ✅ without warning
-    if [[ "$test_name" == "HTTP request failures for all tests" ]]; then
-      if [[ "$actual_val" != "0" && "$actual_val" != "0.000" ]]; then
-        fs_condition_met=$(awk -v a="$actual_val" -v r="$fs_req" 'BEGIN { print (a <= r) ? 1 : 0 }')
-        [[ "$fs_condition_met" -ne 1 ]] && fs_pass_status="❌" && ((threshold_failures++))
-      fi
-    else
-
-      # For all other tests: if actual is 0 or 0.000, mark as ❌ failure
-      if [[ "$actual_val" == "0" || "$actual_val" == "0.000" ]]; then
-        fs_pass_status="❌"
-        echo "❌ Error: Actual value for metric '$test_name' is 0. This may indicate an error or missing data."
-        ((threshold_failures++))
-      else
-        if [[ "$unit" == *"millisecond"* || "$unit" == *"rate of failed requests"* ]]; then
-          fs_condition_met=$(awk -v a="$actual_val" -v r="$fs_req" 'BEGIN { print (a <= r) ? 1 : 0 }')
-        else
-          fs_condition_met=$(awk -v a="$actual_val" -v r="$fs_req" 'BEGIN { print (a >= r) ? 1 : 0 }')
-        fi
-        [[ "$fs_condition_met" -ne 1 ]] && fs_pass_status="❌" && ((threshold_failures++))
-      fi
-    fi
-
-    echo "$id,$test_name,$unit,$fs_requirement,$current_expected,$actual_value,$fs_pass_status" >> "$annotated_summary"
-  done < tmp_input
-  rm -f tmp_input
-
-  # ─────────────────────────────────────────────────────────────
-  # Print Human-Readable Report
-  # ─────────────────────────────────────────────────────────────
-  table_preview=$(column -t -s, "$annotated_summary")
-
-  # Compute table width safely
-  table_width=$(echo "$table_preview" | awk '{ if (length > max) max = length } END { print max }')
-
-  # Fallback if table_width is empty or not a valid number
-  if ! [[ "$table_width" =~ ^[0-9]+$ ]]; then
-    table_width=80
-  fi
-
-  # Now safely create the border line
-  border_line=$(printf '#%.0s' $(seq 1 "$table_width"))
-
-  format_title_spaced() {
-    local input="$1"
-    local result=""
-    for word in $input; do
-      for ((i=0; i<${#word}; i++)); do
-        result+="${word:$i:1} "
-      done
-      result+="  "
-    done
-    echo "$result"
-  }
-
-  # Pad title string to center it in the table width
-  raw_title="K6 ${testProfile^^} PERFORMANCE TEST RESULTS"
-
-  # Dynamically center title within the line
-  title="$(format_title_spaced "$raw_title")"
-  title_line=$(printf "## %*s %*s##" \
-    $(( (table_width - 6 + ${#title}) / 2 )) "$title" \
-    $(( (table_width - 6 - ${#title}) / 2 )) "")
-
-  # Print header
-  echo "$border_line"
-  echo "$title_line"
-  echo "$border_line"
-
-  # Then print the table
-  echo "$table_preview"
-
-  # Print closing border after the table
-  echo "$border_line"
+  echo "-- BEGIN CSV REPORT"
+  cat "$summaryFile"
+  echo "-- END CSV REPORT"
   echo
 
-  # 🎯 Final FS Summary of threshold result
-  if (( threshold_failures > 0 )); then
-    echo "❌ Summary: [$threshold_failures] test(s) failed FS requirements."
-    echo
-      echo "⚠️ Performance tests completed with issues for profile: [$testProfile]."
-      echo "❗ Number of failures or threshold breaches: $threshold_failures"
-      echo "Please check the summary reports and logs above for details."
-      echo "Investigate any failing metrics and consider re-running the tests after fixes."
-      echo
-    ((number_of_failures++))
-  else
-    echo "✅ All tests passed FS requirements."
-    echo "✅ No threshold violations or execution errors detected."
-    echo "You can review detailed results in the generated summary."
+  # Output human-readable report
+  echo "####################################################################################################"
+  if [ "$testProfile" = "kpi" ]; then
+    echo "##            K 6     K P I       P E R F O R M A N C E   T E S T   R E S U L T S                  ##"
   fi
+  echo "####################################################################################################"
+  addResultColumn "$summaryFile"
+  column -t -s, "$summaryFile"
+  echo
 
-  # Cleanup temp files related to reporting
-  rm -f "$filtered_summary" "$annotated_summary"
+  # Clean up
+  rm -f "$summaryFile"
 
-else  # no summary file
-  echo "❌ Error: Summary file [$summaryFile] was not generated. Possible K6 failure."
-  ((number_of_failures++))
-fi
 else
-# ─────────────────────────────────────────────────────────────
-# Endurance Profile: Investigative Guidance
-# ─────────────────────────────────────────────────────────────
-    echo
-    echo "🔍 Skipping KPI evaluation for profile [$testProfile]"
-    echo
-    echo "📌 Please use the following tools and dashboards to investigate performance:"
-    echo
-    echo "  • 📈 Grafana Dashboards:"
-    echo "     - Nordix Prometheus/Grafana can visualize memory and latency trends."
-    echo "     - Especially useful for endurance/stability runs."
-    echo "     - 🌐 https://monitoring.nordix.org/login"
-    echo "     - Dashboards include:"
-    echo "         ▪ Check CM Handle operation latency trends over time."
-    echo "         ▪ Focus on 'Pass-through Read/Write', 'Search', or 'Kafka Batch' graphs."
-    echo "         ▪ Memory usage patterns (cps/ncmp containers)"
-    echo "         ▪ Kafka lag and consumer trends (if applicable)"
-    echo
-    echo "  • 📊 GnuPlot:"
-    echo "     - Optional local alternative to visualize memory trends."
-    echo "     - Requires exporting memory data (CSV/JSON) and plotting manually."
-    echo
-    echo "  • 🔎 Important Metrics to Watch:"
-    echo "     - HTTP duration (avg, p95, max)"
-    echo "     - VU concurrency and iteration rates"
-    echo "     - Error rates and failed checks"
-    echo "     - Container memory growth over time (especially in endurance tests)"
-    echo
-    echo "  • 📄 Logs and Summary:"
-    echo "     - Check '$summaryFile' for raw execution summary."
-    echo "     - Inspect logs for timeout/retries/exception patterns."
-    echo
-    echo "ℹ️  Reminder: For KPI validation with FS thresholds, re-run with profile: 'kpi'"
-    echo
-fi # end of testProfile check
+  echo "Error: Failed to generate $summaryFile" >&2
+fi
 
-# Cleanup global temp file
-rm -f "$summaryFile"
+popd >/dev/null || exit 1
 
-# final exit
-popd >/dev/null || true
-exit $number_of_failures
+# 🎯 Final FS Summary of threshold result and exit if needed
+if (( threshold_failures > 0 )); then
+  echo "❌ Summary: [$threshold_failures] test(s) failed FS requirements."
+  echo
+    echo "⚠️ Performance tests completed with issues for profile: [$testProfile]."
+    echo "❗ Number of failures or threshold breaches: $threshold_failures"
+    echo "Please check the summary reports and logs above for details."
+    echo "Investigate any failing metrics and consider re-running the tests after fixes."
+    exit $threshold_failures
+else
+  echo "✅ All tests passed FS requirements."
+  echo "✅ No threshold violations or execution errors detected."
+  echo "You can review detailed results in the generated summary."
+fi
