@@ -169,6 +169,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2552a6ff_1f9a5ede",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:24:42Z",
+      "side": 1,
+      "message": "@Anjella : Remind me one thing.\nthe DMI is also responding with REJECTED event??\nfrom what I recall , if the subscription is ACCEPTED , then we recieve an event from DMI and no event in case of REJECTED/UNKNOWN. Please correct me if I am wrong here.",
+      "revId": "901508ca422acffbb3676f9703f60f6282e1add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4e23841_aa6a7a7b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
         "patchSetId": 2
