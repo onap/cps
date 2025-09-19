@@ -450,6 +450,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65666e60_e601a17a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-19T10:50:46Z",
+      "side": 1,
+      "message": "i somehow think that this can be simplified.\nmaybe we will connect on monday when we are in office 😊",
+      "parentUuid": "0fd744c3_959accb9",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 84
+      },
+      "revId": "4a1ebe72410f1622725756af533b4226cba5fd02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2729ccf_470c099a",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
         "patchSetId": 2
