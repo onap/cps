@@ -66,7 +66,7 @@ kafka:
       internal: 9092
       external: 9093
     nodePorts:
-      external: 30093  # Node port for external communication
+      external: 30093
   zookeeperConnect: "cps-cps-and-ncmp-zookeeper.default.svc.cluster.local"
   brokerId: 1
   listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
