@@ -34,6 +34,46 @@
       "parentUuid": "bc6cb53e_9304a689",
       "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "567916cb_69e83365",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-22T09:29:19Z",
+      "side": 1,
+      "message": "Just one outstanding question, otherwise looks good!",
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30aa9e77_59893767",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-22T09:29:19Z",
+      "side": 1,
+      "message": "Have this limit for the dmi stub been specified by stakeholders? Just being conscience of the combined limits being 8 Gigs between all the containers.",
+      "range": {
+        "startLine": 140,
+        "startChar": 15,
+        "endLine": 140,
+        "endChar": 18
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
