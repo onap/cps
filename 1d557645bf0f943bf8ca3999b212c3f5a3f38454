@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3055bc8_66730ae6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-22T12:25:34Z",
+      "side": 1,
+      "message": "use full name (you replied done but maybe it got reverted somehow)",
+      "range": {
+        "startLine": 47,
+        "startChar": 63,
+        "endLine": 47,
+        "endChar": 69
+      },
+      "revId": "1d557645bf0f943bf8ca3999b212c3f5a3f38454",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1babc69_bb8ac151",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-22T12:25:34Z",
+      "side": 1,
+      "message": "use full name",
+      "range": {
+        "startLine": 149,
+        "startChar": 101,
+        "endLine": 149,
+        "endChar": 107
+      },
+      "revId": "1d557645bf0f943bf8ca3999b212c3f5a3f38454",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37515bac_01f36805",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-22T12:25:34Z",
+      "side": 1,
+      "message": "add: and dmi #dmiName",
+      "range": {
+        "startLine": 147,
+        "startChar": 86,
+        "endLine": 147,
+        "endChar": 87
+      },
+      "revId": "1d557645bf0f943bf8ca3999b212c3f5a3f38454",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88dba907_541b6a4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-22T12:25:34Z",
+      "side": 1,
+      "message": "is only called for matching dmi name\u0027",
+      "range": {
+        "startLine": 149,
+        "startChar": 68,
+        "endLine": 149,
+        "endChar": 113
+      },
+      "revId": "1d557645bf0f943bf8ca3999b212c3f5a3f38454",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
