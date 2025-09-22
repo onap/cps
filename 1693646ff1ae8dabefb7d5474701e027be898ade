@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed548377_095c3721",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-22T13:22:49Z",
+      "side": 0,
+      "message": "you removed this from this patch as boolean is false by default??\n\nhope you will be bringing back the configurable parameter in the coming patchsets.",
+      "revId": "1693646ff1ae8dabefb7d5474701e027be898ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
