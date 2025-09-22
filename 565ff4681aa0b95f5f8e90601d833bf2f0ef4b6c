@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "731fa0e6_424e3376",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41df970f_0995d110",
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c7843e4_f9acaf78",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-09-17T14:06:29Z",
       "side": 1,
       "message": "this can be moved to the instance level.\nthen u dont need to pass the Document in each private method call. try that.",
+      "range": {
+        "startLine": 211,
+        "startChar": 12,
+        "endLine": 211,
+        "endChar": 68
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f971b862_6b297225",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c7843e4_f9acaf78",
       "range": {
         "startLine": 211,
         "startChar": 12,
@@ -81,6 +123,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "090dc0aa_c3819932",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a40ecd40_491e82b0",
+      "range": {
+        "startLine": 246,
+        "startChar": 19,
+        "endLine": 246,
+        "endChar": 24
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c759caf0_fffa98a8",
@@ -94,6 +160,30 @@
       "writtenOn": "2025-09-17T14:18:39Z",
       "side": 1,
       "message": "simply return null in this case and check OUTSIDE this method before appending it",
+      "range": {
+        "startLine": 252,
+        "startChar": 12,
+        "endLine": 252,
+        "endChar": 43
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cbdd507_75e52ba6",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c759caf0_fffa98a8",
       "range": {
         "startLine": 252,
         "startChar": 12,
@@ -127,6 +217,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fccd4984_991f1353",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26b6ac77_a255b66a",
+      "range": {
+        "startLine": 253,
+        "startChar": 26,
+        "endLine": 253,
+        "endChar": 39
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdbf130d_655ed0ec",
@@ -150,6 +264,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29501156_d0841c45",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdbf130d_655ed0ec",
+      "range": {
+        "startLine": 255,
+        "startChar": 55,
+        "endLine": 255,
+        "endChar": 73
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50dcecbf_21e8a8fe",
@@ -163,6 +301,30 @@
       "writtenOn": "2025-09-17T14:18:39Z",
       "side": 1,
       "message": "do not pass in the parent, append outside. One method one responsibility, easier naming (ie no need for \u0027child\u0027 prefix)",
+      "range": {
+        "startLine": 263,
+        "startChar": 80,
+        "endLine": 263,
+        "endChar": 97
+      },
+      "revId": "565ff4681aa0b95f5f8e90601d833bf2f0ef4b6c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b9c24fc_d89cae62",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50dcecbf_21e8a8fe",
       "range": {
         "startLine": 263,
         "startChar": 80,

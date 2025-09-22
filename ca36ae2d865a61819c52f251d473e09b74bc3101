@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a2eb82_bb571927",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93d1b388_c279f495",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de593c99_d3247ba2",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-19T10:35:04Z",
       "side": 1,
       "message": "final keyword missed.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3355483a_3a9b375a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de593c99_d3247ba2",
       "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -58,6 +94,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "930fdd14_b2050417",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "763c3b43_3cd00e27",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee40b0da_f8039e18",
@@ -71,6 +131,24 @@
       "writtenOn": "2025-09-19T10:35:04Z",
       "side": 1,
       "message": "format it correctly.\nindendation is off.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5441a72c_3a074a51",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee40b0da_f8039e18",
       "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -92,6 +170,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1be67147_659d6ed7",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c568e3db_f71b9325",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d53bdac2_b919ffd8",
@@ -109,6 +205,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32048991_2f0a1cd5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d53bdac2_b919ffd8",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c596dad5_d4d99c95",
@@ -122,6 +236,24 @@
       "writtenOn": "2025-09-19T10:35:04Z",
       "side": 1,
       "message": "also this class needs proper indendation.\ncheck with Arpit for the common formatter that we use in Intellij.",
+      "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e27e1c_9c7111bf",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-09-22T07:25:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c596dad5_d4d99c95",
       "revId": "ca36ae2d865a61819c52f251d473e09b74bc3101",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
