@@ -22,6 +22,30 @@
       },
       "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "956e9260_86784b0f",
+        "filename": "cps-charts/templates/kafka-deployment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-22T09:12:58Z",
+      "side": 0,
+      "message": "This is minimum required cpu and memory to be allocated. But it has no importance since we have limit given here. Thus, kubernetes will increase cps and memory until they reach the limits. \n\nFor later, we have a task to address this requirement, and I will place them back with the values that is used by our stakeholders:\n\nhttps://lf-onap.atlassian.net/browse/CPS-2961",
+      "parentUuid": "3b7288be_485e3671",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

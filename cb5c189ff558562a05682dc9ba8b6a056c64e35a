@@ -16,6 +16,24 @@
       "message": "dont have the skill to review really but looks good to me so far\nJust 1 question.\nAnd I will try to setup locally using the readme",
       "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4555e1f6_1d2c9216",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-22T09:12:58Z",
+      "side": 1,
+      "message": "The question answered.\n\nFor the local testing, I suggest to use the commit in Nordix along with readme.md file there.\n\n24235: PoC Local Kubernetes environment running k6 tests with smaller #number of cm handles | https://gerrit.nordix.org/c/onap/cps/+/24235",
+      "parentUuid": "bc6cb53e_9304a689",
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
