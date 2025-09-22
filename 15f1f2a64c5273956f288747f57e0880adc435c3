@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5553985d_90455f3b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-22T08:33:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d07d2c_106a48dc",
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69be15ac_e38b337f",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-09-18T14:28:02Z",
       "side": 1,
       "message": "if u want u can add some buffer time. if its too tight then the test might fail often.",
+      "range": {
+        "startLine": 28,
+        "startChar": 62,
+        "endLine": 28,
+        "endChar": 66
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa377c5_5ae7e3a0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-22T08:33:49Z",
+      "side": 1,
+      "message": "should I do it for all of them?",
+      "parentUuid": "69be15ac_e38b337f",
       "range": {
         "startLine": 28,
         "startChar": 62,
@@ -64,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90cf65e1_0eeee45a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-22T08:33:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff1bfc8e_934dfd10",
+      "range": {
+        "startLine": 51,
+        "startChar": 51,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3728c5f5_094f9825",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-09-18T14:28:02Z",
       "side": 1,
       "message": "?? do we need it here?\nleftover from the testing?",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 49
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c005aa_52db657d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-22T08:33:49Z",
+      "side": 1,
+      "message": "yes I was checking if there is any delta between \"openroadm1\" and \"openroadm2\" and found that they were identical, so we might have to add tests that also have some delta and compare the results",
+      "parentUuid": "3728c5f5_094f9825",
       "range": {
         "startLine": 79,
         "startChar": 12,
