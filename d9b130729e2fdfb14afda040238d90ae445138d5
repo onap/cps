@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b7288be_485e3671",
+        "filename": "cps-charts/templates/kafka-deployment.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-22T08:04:59Z",
+      "side": 0,
+      "message": "just trying to learn: why was this removed?",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
