@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e97b515_b985c88f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-22T12:14:46Z",
+      "side": 1,
+      "message": "yes. as Toine suggested you can run it 100 times just to see what timing u get.\nalso add minor buffer time for the stability of the builds.",
+      "parentUuid": "baa377c5_5ae7e3a0",
+      "range": {
+        "startLine": 28,
+        "startChar": 62,
+        "endLine": 28,
+        "endChar": 66
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff1bfc8e_934dfd10",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
         "patchSetId": 4
