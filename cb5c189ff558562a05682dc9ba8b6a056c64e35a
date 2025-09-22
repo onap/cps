@@ -74,6 +74,30 @@
       },
       "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffd8cac_3a1ea035",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-22T09:52:14Z",
+      "side": 1,
+      "message": "These resources have been kept as large as possible to get local setup working functionally. \n\nThere is a separate ticket: \"https://lf-onap.atlassian.net/browse/CPS-2961\" to address this requirement later.",
+      "parentUuid": "30aa9e77_59893767",
+      "range": {
+        "startLine": 140,
+        "startChar": 15,
+        "endLine": 140,
+        "endChar": 18
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
