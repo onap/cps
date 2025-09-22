@@ -186,6 +186,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8d79246_3e7a8485",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-09-22T11:23:37Z",
+      "side": 1,
+      "message": "we send an event if subscription in our database is rejected or unknown..then we wait for response, if it is accepted then we change any rejected/unknown to accepted.",
+      "parentUuid": "2552a6ff_1f9a5ede",
+      "revId": "901508ca422acffbb3676f9703f60f6282e1add1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4e23841_aa6a7a7b",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
         "patchSetId": 2
