@@ -37,6 +37,13 @@ public interface CmSubscriptionHandler {
                                    final List<String> dataNodeSelectors);
 
     /**
+     * Process CM notification subscription delete request.
+     *
+     * @param subscriptionId subscription id
+     */
+    void processSubscriptionDelete(final String subscriptionId);
+
+    /**
      * Update status of a subscription.
      *
      * @param subscriptionId       subscription id

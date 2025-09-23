@@ -20,7 +20,10 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.UNKNOWN;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -41,6 +44,7 @@ import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -59,7 +63,25 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         for (final String dataNodeSelector : dataNodeSelectors) {
             cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
         }
-        sendCreateEventToDmis(subscriptionId, dataSelector);
+        sendEventToDmis(subscriptionId,
+                cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId),
+                dataSelector, EventType.CREATE);
+    }
+
+    @Override
+    public void processSubscriptionDelete(final String subscriptionId) {
+        final Collection<String> dataNodeSelectors =
+                cmDataJobSubscriptionPersistenceService.getDataNodeSelectorsBySubscriptionId(subscriptionId);
+        final List<String> dataNodeSelectorsWithoutAnySubscriber = new ArrayList<>();
+        final String cmSubscriptionStatus = UNKNOWN.name();
+        for (final String dataNodeSelector : dataNodeSelectors) {
+            cmDataJobSubscriptionPersistenceService.delete(subscriptionId, dataNodeSelector);
+            if (cmDataJobSubscriptionPersistenceService.getSubscriptionIds(dataNodeSelector).isEmpty()) {
+                cmDataJobSubscriptionPersistenceService.updateStatus(dataNodeSelector, cmSubscriptionStatus);
+                dataNodeSelectorsWithoutAnySubscriber.add(dataNodeSelector);
+            }
+        }
+        sendEventToDmis(subscriptionId, dataNodeSelectorsWithoutAnySubscriber, null, EventType.DELETE);
     }
 
     @Override
@@ -82,23 +104,38 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         }
     }
 
-    private void sendCreateEventToDmis(final String subscriptionId, final DataSelector dataSelector) {
-        final List<String> dataNodeSelectors =
-                cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId);
+    private void sendEventToDmis(final String subscriptionId,
+                                 final List<String> dataNodeSelectors,
+                                 final DataSelector dataSelector,
+                                 final EventType eventType) {
         final Map<String, CmHandleIdsAndDataNodeSelectors> cmHandleIdsAndDataNodeSelectorsPerDmi =
                 createDmiInEventTargetsPerDmi(dataNodeSelectors);
-
         for (final Map.Entry<String, CmHandleIdsAndDataNodeSelectors> cmHandleIdsAndDataNodeSelectorsEntry :
                 cmHandleIdsAndDataNodeSelectorsPerDmi.entrySet()) {
             final String dmiServiceName = cmHandleIdsAndDataNodeSelectorsEntry.getKey();
             final CmHandleIdsAndDataNodeSelectors cmHandleIdsAndDataNodeSelectors =
                     cmHandleIdsAndDataNodeSelectorsEntry.getValue();
-            final DataJobSubscriptionDmiInEvent dmiInEvent =
-                    buildDmiInEvent(cmHandleIdsAndDataNodeSelectors, dataSelector);
-            eventProducer.send(subscriptionId, dmiServiceName, "subscriptionCreateRequest", dmiInEvent);
+
+            final DataJobSubscriptionDmiInEvent dmiInEvent;
+            final String eventName;
+
+            switch (eventType) {
+                case CREATE -> {
+                    dmiInEvent = buildDmiInEvent(cmHandleIdsAndDataNodeSelectors, dataSelector);
+                    eventName = "subscriptionCreateRequest";
+                }
+                case DELETE -> {
+                    dmiInEvent = dmiInEventMapper.toDmiInDeleteEvent(
+                            new ArrayList<>(cmHandleIdsAndDataNodeSelectors.cmHandleIds),
+                            new ArrayList<>(cmHandleIdsAndDataNodeSelectors.dataNodeSelectors));
+                    eventName = "subscriptionDeleteRequest";
+                }
+                default -> throw new IllegalArgumentException("Unsupported event type: " + eventType);
+            }
+
+            eventProducer.send(subscriptionId, dmiServiceName, eventName, dmiInEvent);
         }
     }
-
 
     private DataJobSubscriptionDmiInEvent buildDmiInEvent(
             final CmHandleIdsAndDataNodeSelectors cmHandleIdsAndDataNodeSelectors,
@@ -147,6 +184,6 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         return yangModelCmHandle.getDmiServiceName();
     }
 
-    private record CmHandleIdsAndDataNodeSelectors(Set<String> cmHandleIds, Set<String> dataNodeSelectors) {}
-
+    private record CmHandleIdsAndDataNodeSelectors(Set<String> cmHandleIds, Set<String> dataNodeSelectors) {
+    }
 }

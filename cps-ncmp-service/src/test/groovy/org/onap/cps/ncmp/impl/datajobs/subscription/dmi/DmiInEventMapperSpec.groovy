@@ -52,4 +52,19 @@ class DmiInEventMapperSpec extends Specification {
             assert result.data.productionJobDefinition.targetSelector.dataNodeSelector == dataNodeSelectorAsJsonExpression
 
     }
+
+    def 'Check for Cm Notification Subscription DMI In Delete Event mapping for multiple cmHandles'() {
+        given: 'subscription delete details with cm handle IDs and data node selectors'
+            def cmHandleIds = ['ch-1', 'ch-2']
+            def dataNodeSelectors = ['/toBeDeleted1', '/toBeDeleted2']
+            def dataNodeSelectorsAsJson = JexParser.toJsonExpressionsAsString(dataNodeSelectors)
+        when: 'we map the values to a delete event'
+            def result = objectUnderTest.toDmiInDeleteEvent(cmHandleIds, dataNodeSelectors)
+        then: 'it contains all cm handles mapped by inventory persistence'
+            assert result.data.cmHandles*.cmhandleId.containsAll(cmHandleIds)
+        and: 'it contains correct data node selectors in JSON format'
+            assert result.data.productionJobDefinition.targetSelector.dataNodeSelector == dataNodeSelectorsAsJson
+        and: 'no data selector is included for delete events'
+            assert result.data.productionJobDefinition.dataSelector == null
+    }
 }

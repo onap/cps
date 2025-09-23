@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
 import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.UNKNOWN
 
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp_to_dmi.DataJobSubscriptionDmiInEvent
@@ -132,6 +133,77 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             'new target overlaps with REJECTED targets'        | ['/existingDataNodeSelector[id=""]','/newDataNodeSelector[id=""]']|| 1
             'new target overlaps with UNKNOWN targets'         | ['/existingDataNodeSelector[id=""]','/newDataNodeSelector[id=""]']|| 1
             'new target does not overlap with existing targets'| ['/newDataNodeSelector[id=""]']                                   || 1
+    }
+
+    def 'Process subscription DELETE request where all selectors become unused'() {
+        given: 'a subscription id and its associated selectors'
+            def mySubId = 'deleteJobId'
+            def selectors = ['/node[id="1"]']
+            mockCmSubscriptionPersistenceService.getDataNodeSelectorsBySubscriptionId(mySubId) >> selectors
+        and: 'no other subscriptions exist for the selectors'
+            mockCmSubscriptionPersistenceService.getSubscriptionIds('/node[id="1"]') >> []
+        and: 'cm handle resolution setup'
+            def fdn = getFdn('/node[id="1"]')
+            mockAlternateIdMatcher.getCmHandleId(fdn) >> 'cmHandleId1'
+            mockInventoryPersistence.getYangModelCmHandle('cmHandleId1') >> new YangModelCmHandle(dmiServiceName: 'dmiService1')
+        and: 'mapper returns delete event'
+            def deleteEvent = new DataJobSubscriptionDmiInEvent()
+            mockDmiInEventMapper.toDmiInDeleteEvent(['cmHandleId1'], ['/node[id="1"]']) >> deleteEvent
+        when: 'the subscription delete request is processed'
+            objectUnderTest.processSubscriptionDelete(mySubId)
+        then: 'subscription is removed from persistence'
+            1 * mockCmSubscriptionPersistenceService.delete(mySubId, '/node[id="1"]')
+        and: 'status is updated to unknown'
+            1 * mockCmSubscriptionPersistenceService.updateStatus('/node[id="1"]', UNKNOWN.toString())
+        and: 'delete event is sent to correct DMI'
+            1 * mockDmiInEventProducer.send(mySubId, 'dmiService1', 'subscriptionDeleteRequest', deleteEvent)
+    }
+
+    def 'Process subscription DELETE request where some selectors are still in use'() {
+        given: 'a subscription id and two associated selectors'
+            def mySubId = 'deleteJobId2'
+            def selectors = ['/node[id="1"]','/node[id="2"]']
+            mockCmSubscriptionPersistenceService.getDataNodeSelectorsBySubscriptionId(mySubId) >> selectors
+        and: 'selector 1 has no more subscribers, selector 2 still has subscribers'
+            mockCmSubscriptionPersistenceService.getSubscriptionIds('/node[id="1"]') >> []
+            mockCmSubscriptionPersistenceService.getSubscriptionIds('/node[id="2"]') >> ['anotherSub']
+        and: 'cm handle resolution for selector 1'
+            def fdn = getFdn('/node[id="1"]')
+            mockAlternateIdMatcher.getCmHandleId(fdn) >> 'cmHandleIdX'
+            mockInventoryPersistence.getYangModelCmHandle('cmHandleIdX') >> new YangModelCmHandle(dmiServiceName: 'dmiServiceX')
+        and: 'mapper returns delete event'
+            def deleteEvent = new DataJobSubscriptionDmiInEvent()
+            mockDmiInEventMapper.toDmiInDeleteEvent(['cmHandleIdX'], ['/node[id="1"]']) >> deleteEvent
+        when: 'the subscription delete request is processed'
+            objectUnderTest.processSubscriptionDelete(mySubId)
+        then: 'subscription is removed from persistence for both selectors'
+            1 * mockCmSubscriptionPersistenceService.delete(mySubId, '/node[id="1"]')
+            1 * mockCmSubscriptionPersistenceService.delete(mySubId, '/node[id="2"]')
+        and: 'status is updated only for selector 1'
+            1 * mockCmSubscriptionPersistenceService.updateStatus('/node[id="1"]', 'UNKNOWN')
+            0 * mockCmSubscriptionPersistenceService.updateStatus('/node[id="2"]', _)
+        and: 'delete event is sent only for selector 1'
+            1 * mockDmiInEventProducer.send(mySubId, 'dmiServiceX', 'subscriptionDeleteRequest', deleteEvent)
+    }
+
+    def 'Process subscription DELETE request where cmHandleId cannot be resolved'() {
+        given: 'a subscription id and its selector'
+            def mySubId = 'deleteJobId3'
+            def selectors = ['/node[id="unresolvable"]']
+            mockCmSubscriptionPersistenceService.getDataNodeSelectorsBySubscriptionId(mySubId) >> selectors
+        and: 'no more subscriptions exist for the selector'
+            mockCmSubscriptionPersistenceService.getSubscriptionIds('/node[id="unresolvable"]') >> []
+        and: 'alternate id matcher cannot resolve cm handle id'
+            def fdn = getFdn('/node[id="unresolvable"]')
+            mockAlternateIdMatcher.getCmHandleId(fdn) >> null
+        when: 'the subscription delete request is processed'
+            objectUnderTest.processSubscriptionDelete(mySubId)
+        then: 'subscription is removed from persistence'
+            1 * mockCmSubscriptionPersistenceService.delete(mySubId, '/node[id="unresolvable"]')
+        and: 'status is updated to unknown'
+            1 * mockCmSubscriptionPersistenceService.updateStatus('/node[id="unresolvable"]', 'UNKNOWN')
+        and: 'no delete event is sent because cmHandleId was not resolved'
+            0 * mockDmiInEventProducer.send(_, _, _, _)
     }
 
     def 'Update subscription status to ACCEPTED: #scenario'() {
