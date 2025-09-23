@@ -21,13 +21,6 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.utils
 
-
-import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR
-import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID
-import static CmDataJobSubscriptionPersistenceService.CPS_PATH_TEMPLATE_FOR_INACTIVE_SUBSCRIPTIONS
-import static CmDataJobSubscriptionPersistenceService.PARENT_NODE_XPATH
-import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
@@ -36,6 +29,8 @@ import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Specification
 
+import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
+import static org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService.*
 
 class CmSubscriptionPersistenceServiceSpec extends Specification {
 
@@ -119,4 +114,44 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
             1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, subscriptionDetailsAsJson, _, ContentType.JSON)
     }
 
+    def 'Delete subscription removes last subscriber and sets status as UNKNOWN'() {
+        given: 'a dataNode with only one subscription'
+            def dataNodeSelector = '/dataNodeSelector1'
+            def cpsPathQuery = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR.formatted(dataNodeSelector)
+            def dataNode = new DataNode(leaves: ['dataJobId': ['sub1'], 'status': 'ACCEPTED'])
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions', cpsPathQuery, OMIT_DESCENDANTS) >> [dataNode]
+
+        and: 'subscription IDs for the data node'
+            objectUnderTest.getSubscriptionIds(dataNodeSelector) >> ['sub1']
+
+        when: 'delete method is called'
+            objectUnderTest.delete('sub1', dataNodeSelector)
+
+        then: 'data service is called to update status to UNKNOWN'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, { json ->
+                json.contains('"status":"UNKNOWN"') && json.contains('"dataJobId":[]')
+            }, _, ContentType.JSON)
+    }
+
+    def 'Delete subscription removes one of multiple subscribers'() {
+        given: 'a dataNode with multiple subscriptions'
+            def dataNodeSelector = '/dataNodeSelector2'
+            def query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR.formatted(dataNodeSelector)
+            def subscriptionIdToRemove = 'sub1'
+            def remainingSubscriptionId = 'sub2'
+            def dataNode = new DataNode(leaves: ['dataJobId': [subscriptionIdToRemove, remainingSubscriptionId], 'status': 'ACCEPTED'])
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions', query, OMIT_DESCENDANTS) >> [dataNode]
+
+        and: 'subscription IDs for the data node'
+            objectUnderTest.getSubscriptionIds(dataNodeSelector) >> [subscriptionIdToRemove, remainingSubscriptionId]
+
+        when: 'delete method is called'
+            objectUnderTest.delete(subscriptionIdToRemove, dataNodeSelector)
+
+        then: 'data service is called to update leaves with remaining subscription'
+            1 * mockCpsDataService.updateNodeLeaves('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, { json ->
+                json.contains('"status":"ACCEPTED"') &&
+                        json.contains('"dataJobId":["sub2"]')
+            }, _, ContentType.JSON)
+    }
 }
