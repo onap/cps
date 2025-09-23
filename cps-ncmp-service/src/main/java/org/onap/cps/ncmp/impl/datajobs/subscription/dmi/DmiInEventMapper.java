@@ -61,7 +61,9 @@ public class DmiInEventMapper {
         final String dataNodeSelectorsAsJson = JexParser.toJsonExpressionsAsString(dataNodeSelectors);
         data.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(new HashSet<>(cmHandleIds)));
         addProductJobDefinition(data, dataNodeSelectorsAsJson);
-        addDataSelector(data, notificationTypes, notificationFilter);
+        if (notificationTypes != null && notificationFilter != null) {
+            addDataSelector(data, notificationTypes, notificationFilter);
+        }
         dmiInEvent.setData(data);
         return dmiInEvent;
     }
@@ -97,5 +99,4 @@ public class DmiInEventMapper {
         return cmSubscriptionCmHandles;
 
     }
-
 }
