@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1137308f_0035d27a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:48:35Z",
+      "side": 1,
+      "message": "almost there but still a bit of confusion/incorrect naming between the CmSubscibtionStatus and just the name-property of that object",
+      "revId": "2a5ac9264ef14b60c3a45ff3a456d1e6b0f0407f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a850484c_cac4828e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:48:35Z",
+      "side": 1,
+      "message": "this is NOT a cmSubscriptionStatus but maybe\n- cmSubscriptionStatusName",
+      "range": {
+        "startLine": 137,
+        "startChar": 25,
+        "endLine": 137,
+        "endChar": 46
+      },
+      "revId": "2a5ac9264ef14b60c3a45ff3a456d1e6b0f0407f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14fb9162_fe858008",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:48:35Z",
+      "side": 1,
+      "message": "again just the name here, make sure you clear identify which is which to avoid confusion",
+      "range": {
+        "startLine": 166,
+        "startChar": 56,
+        "endLine": 166,
+        "endChar": 76
+      },
+      "revId": "2a5ac9264ef14b60c3a45ff3a456d1e6b0f0407f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76d4797e_75ccafe8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:48:35Z",
+      "side": 1,
+      "message": "again just the name here, make sure you clear identify which is which to avoid confusion",
+      "range": {
+        "startLine": 176,
+        "startChar": 64,
+        "endLine": 176,
+        "endChar": 84
+      },
+      "revId": "2a5ac9264ef14b60c3a45ff3a456d1e6b0f0407f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
