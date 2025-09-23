@@ -22,6 +22,30 @@
       },
       "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "202a64ed_47c4daa3",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-23T10:19:36Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "c24f50fa_b3208a78",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 4
+      },
+      "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
