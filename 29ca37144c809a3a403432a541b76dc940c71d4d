@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c575c62_cc2cda27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:53:47Z",
+      "side": 1,
+      "message": "Maybe this could be merged but I like to discuss with you and Priyank why you removed all the automation that was done before by Sourabh...\nAnd then maybe we can agree to bring (some of) it back in another commit",
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e0453c_b8690d73",
+        "filename": "k6-tests/ncmp/common/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:53:47Z",
+      "side": 1,
+      "message": "could this be improved using a json file with the required data, read it and iterate over it",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 146
+      },
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc9fee2_ab16ae34",
+        "filename": "k6-tests/ncmp/config/kpi.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:53:47Z",
+      "side": 1,
+      "message": "can this be extend or a  similar json structure with the data needed for the summary report?",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d60b4f_22474d2a",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T07:53:47Z",
+      "side": 1,
+      "message": "actually shoul this be restored?!",
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
