@@ -16,6 +16,121 @@
       "message": "resolved comments",
       "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4ffcff_2d2ea925",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:31:05Z",
+      "side": 1,
+      "message": "There is no need start and stopping the resourcemeter inside the loop, ie 10 times. just move start and stop outside the loop",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d74a2ea_41fcb60b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:31:05Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b234be_e3527e13",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:31:05Z",
+      "side": 1,
+      "message": "given the single test duration (is big enough) I don\u0027t think this test needs repetition",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 22
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc3b4e3_2581cd74",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:31:05Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2ba2f9a_b29269f0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:31:05Z",
+      "side": 1,
+      "message": "you might need a 1,000 :-) for this one!",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 16
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
