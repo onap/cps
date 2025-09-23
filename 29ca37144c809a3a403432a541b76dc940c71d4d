@@ -53,6 +53,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a95742ff_e2519195",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T16:32:29Z",
+      "side": 1,
+      "message": "as per our mail you DO need to restore some of the additional logging (that is not part of the  templating)",
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62e0453c_b8690d73",
