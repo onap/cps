@@ -37,12 +37,8 @@ class DmiInEventMapperSpec extends Specification {
         mockInventoryPersistence.getYangModelCmHandles(['ch-1', 'ch-2'] as Set) >> yangModelCmHandles
     }
 
-    def 'Check for Cm Notification Subscription DMI In Event mapping'() {
+    def 'Check for Cm Notification Subscription DMI In Event mapping #scenario.'() {
         given: 'data job subscription details'
-            def cmHandleIds = ['ch-1', 'ch-2'].asList()
-            def dataNodeSelectors = ['/dataNodeSelector1'].asList()
-            def notificationTypes = []
-            def notificationFilter = ''
             def dataNodeSelectorAsJsonExpression = JexParser.toJsonExpressionsAsString(dataNodeSelectors)
         when: 'we try to map the values'
             def result = objectUnderTest.toDmiInEvent(cmHandleIds, dataNodeSelectors, notificationTypes, notificationFilter)
@@ -50,6 +46,15 @@ class DmiInEventMapperSpec extends Specification {
             assert result.data.cmHandles.cmhandleId.containsAll(cmHandleIds)
         and: 'correct data node selector'
             assert result.data.productionJobDefinition.targetSelector.dataNodeSelector == dataNodeSelectorAsJsonExpression
-
+        and: 'data selector is only added if notificationTypes and filter are not null'
+            assert (notificationTypes != null && notificationFilter != null) ?
+                    result.data.productionJobDefinition.dataSelector != null :
+                    result.data.productionJobDefinition.dataSelector == null
+        where:
+            scenario                                                  | cmHandleIds      | dataNodeSelectors                                     | notificationTypes | notificationFilter
+            'with notificationTypes and notificationFilter values'    | ['ch-1', 'ch-2'] | ['/dataNodeSelector1'].asList()                       | []                | ''
+            'without notificationTypes and notificationFilter values' | ['ch-1', 'ch-2'] | ['/dataNodeSelector1', '/dataNodeSelector2'].asList() | null              | null
     }
 }
+
+
