@@ -33,8 +33,15 @@ public interface CmSubscriptionHandler {
      * @param subscriptionId    subscription id
      * @param dataNodeSelectors subscription data node selectors
      */
-    void processSubscriptionCreate(final DataSelector dataSelector, final String subscriptionId,
-                                   final List<String> dataNodeSelectors);
+    void createSubscription(final DataSelector dataSelector, final String subscriptionId,
+                            final List<String> dataNodeSelectors);
+
+    /**
+     * Process CM notification subscription delete request.
+     *
+     * @param subscriptionId subscription id
+     */
+    void deleteSubscription(final String subscriptionId);
 
     /**
      * Update status of a subscription.
@@ -45,5 +52,4 @@ public interface CmSubscriptionHandler {
      */
     void updateCmSubscriptionStatus(final String subscriptionId, final String dmiServiceName,
                                     final CmSubscriptionStatus cmSubscriptionStatus);
-
 }

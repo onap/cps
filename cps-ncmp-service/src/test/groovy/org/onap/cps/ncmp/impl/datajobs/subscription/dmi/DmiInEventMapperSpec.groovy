@@ -20,6 +20,7 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.dmi
 
+
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.JexParser
@@ -37,7 +38,7 @@ class DmiInEventMapperSpec extends Specification {
         mockInventoryPersistence.getYangModelCmHandles(['ch-1', 'ch-2'] as Set) >> yangModelCmHandles
     }
 
-    def 'Check for Cm Notification Subscription DMI In Event mapping'() {
+    def 'Check for Cm Notification Subscription DMI In Event mapping #scenario.'() {
         given: 'data job subscription details'
             def cmHandleIds = ['ch-1', 'ch-2'].asList()
             def dataNodeSelectors = ['/dataNodeSelector1'].asList()
@@ -50,6 +51,9 @@ class DmiInEventMapperSpec extends Specification {
             assert result.data.cmHandles.cmhandleId.containsAll(cmHandleIds)
         and: 'correct data node selector'
             assert result.data.productionJobDefinition.targetSelector.dataNodeSelector == dataNodeSelectorAsJsonExpression
-
     }
 }
+
+
+
+
