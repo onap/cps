@@ -107,6 +107,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c19edeeb_642a31b0",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-23T13:58:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e97b515_b985c88f",
+      "range": {
+        "startLine": 28,
+        "startChar": 62,
+        "endLine": 28,
+        "endChar": 66
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff1bfc8e_934dfd10",
@@ -191,6 +215,30 @@
       "side": 1,
       "message": "yes I was checking if there is any delta between \"openroadm1\" and \"openroadm2\" and found that they were identical, so we might have to add tests that also have some delta and compare the results",
       "parentUuid": "3728c5f5_094f9825",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 49
+      },
+      "revId": "15f1f2a64c5273956f288747f57e0880adc435c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a13f00_5d53c0ea",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-23T13:58:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c005aa_52db657d",
       "range": {
         "startLine": 79,
         "startChar": 12,
