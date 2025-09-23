@@ -43,14 +43,27 @@ public class DmiInEventMapper {
 
     private final InventoryPersistence inventoryPersistence;
 
+    private static void addProductJobDefinition(final Data data, final String dataNodeSelector) {
+        data.setProductionJobDefinition(new ProductionJobDefinition());
+        data.getProductionJobDefinition().setTargetSelector(new TargetSelector());
+        data.getProductionJobDefinition().getTargetSelector().setDataNodeSelector(dataNodeSelector);
+    }
+
+    private static void addDataSelector(final Data data, final List<String> notificationTypes,
+                                        final String notificationFilter) {
+        data.getProductionJobDefinition().setDataSelector(new DataSelector());
+        data.getProductionJobDefinition().getDataSelector().setNotificationTypes(notificationTypes);
+        data.getProductionJobDefinition().getDataSelector().setNotificationFilter(notificationFilter);
+    }
+
     /**
      * This method maps relevant details for a subscription to a data job subscription DMI in event.
      *
-     * @param cmHandleIds           list of cm handle ID(s)
-     * @param dataNodeSelectors     list of data node selectors
-     * @param notificationTypes     the list of notification types
-     * @param notificationFilter    the notification filter
-     * @return                      data job subscription DMI in event
+     * @param cmHandleIds        list of cm handle ID(s)
+     * @param dataNodeSelectors  list of data node selectors
+     * @param notificationTypes  the list of notification types
+     * @param notificationFilter the notification filter
+     * @return data job subscription DMI in event
      */
     public DataJobSubscriptionDmiInEvent toDmiInEvent(final List<String> cmHandleIds,
                                                       final List<String> dataNodeSelectors,
@@ -66,19 +79,6 @@ public class DmiInEventMapper {
         return dmiInEvent;
     }
 
-    private static void addProductJobDefinition(final Data data, final String dataNodeSelector) {
-        data.setProductionJobDefinition(new ProductionJobDefinition());
-        data.getProductionJobDefinition().setTargetSelector(new TargetSelector());
-        data.getProductionJobDefinition().getTargetSelector().setDataNodeSelector(dataNodeSelector);
-    }
-
-    private static void addDataSelector(final Data data, final List<String> notificationTypes,
-                                        final String notificationFilter) {
-        data.getProductionJobDefinition().setDataSelector(new DataSelector());
-        data.getProductionJobDefinition().getDataSelector().setNotificationTypes(notificationTypes);
-        data.getProductionJobDefinition().getDataSelector().setNotificationFilter(notificationFilter);
-    }
-
     private List<CmHandle> mapToCmSubscriptionCmHandleWithAdditionalProperties(final Set<String> cmHandleIds) {
 
         final List<CmHandle> cmSubscriptionCmHandles = new ArrayList<>();
@@ -87,8 +87,8 @@ public class DmiInEventMapper {
             final CmHandle cmHandle = new CmHandle();
             final Map<String, String> cmHandleAdditionalProperties = new LinkedHashMap<>();
             yangModelCmHandle.getAdditionalProperties()
-                .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.name(),
-                    additionalProperty.value()));
+                    .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.name(),
+                            additionalProperty.value()));
             cmHandle.setCmhandleId(yangModelCmHandle.getId());
             cmHandle.setPrivateProperties(cmHandleAdditionalProperties);
             cmSubscriptionCmHandles.add(cmHandle);
@@ -97,5 +97,4 @@ public class DmiInEventMapper {
         return cmSubscriptionCmHandles;
 
     }
-
 }
