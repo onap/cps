@@ -53,6 +53,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aca8749_2f45ee57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-23T15:23:43Z",
+      "side": 1,
+      "message": "U can check and let me know if we are able to get rid of the extra port.",
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9efb6ede_2cfd101f",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-23T15:23:43Z",
+      "side": 1,
+      "message": "we dont need an extra port here. try to remove it and map the NodePort 30093 to 9092 internally ( which is already advertised by kafka )",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 20
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30aa9e77_59893767",
