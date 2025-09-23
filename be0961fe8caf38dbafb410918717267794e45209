@@ -33,6 +33,69 @@
       "message": "recheck",
       "revId": "be0961fe8caf38dbafb410918717267794e45209",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ff1bd0_a06b5706",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-23T15:00:46Z",
+      "side": 1,
+      "message": "just minor comments.\nincorporate in the next patchset if possible.",
+      "revId": "be0961fe8caf38dbafb410918717267794e45209",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c89998_416289b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-23T15:00:46Z",
+      "side": 1,
+      "message": "NB: 2025",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "be0961fe8caf38dbafb410918717267794e45209",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa81458_5359e934",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-23T15:00:46Z",
+      "side": 1,
+      "message": "NB: formatting is a little off here.",
+      "range": {
+        "startLine": 154,
+        "startChar": 48,
+        "endLine": 154,
+        "endChar": 62
+      },
+      "revId": "be0961fe8caf38dbafb410918717267794e45209",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
