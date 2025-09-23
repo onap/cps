@@ -73,4 +73,8 @@ public class NcmpServiceCmHandle {
 
     @JsonSetter(nulls = Nulls.AS_EMPTY)
     private String dataProducerIdentifier;
+
+    @JsonSetter(nulls = Nulls.AS_EMPTY)
+    private String cmHandleStatus;
+
 }

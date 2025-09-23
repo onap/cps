@@ -318,6 +318,7 @@ components:
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
+          cmHandleStatus: READY
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
@@ -327,6 +328,7 @@ components:
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
+          cmHandleStatus: READY
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
@@ -337,6 +339,7 @@ components:
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
+          cmHandleStatus: READY
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
@@ -346,6 +349,7 @@ components:
           dataProducerIdentifier: my-data-producer-identifier
           publicCmHandleProperties:
             key: my-property
+          cmHandleStatus: READY
           cmHandleProperties:
             key: my-property
           moduleSetTag: my-module-set-tag
@@ -402,6 +406,7 @@ components:
         dataProducerIdentifier: my-data-producer-identifier
         publicCmHandleProperties:
           key: my-property
+        cmHandleStatus: READY
         cmHandleProperties:
           key: my-property
         moduleSetTag: my-module-set-tag
@@ -434,6 +439,9 @@ components:
           type: string
         dataProducerIdentifier:
           example: my-data-producer-identifier
+          type: string
+        cmHandleStatus:
+          example: READY
           type: string
       required:
       - cmHandle
@@ -616,6 +624,7 @@ components:
         publicCmHandleProperties:
         - key: 3gpp Type
         - key: 3gpp Type
+        cmHandleStatus: READY
         cmHandleProperties:
           key: 3gpp Type
         state:
@@ -665,6 +674,9 @@ components:
           type: string
         dataProducerIdentifier:
           example: my-data-producer-identifier
+          type: string
+        cmHandleStatus:
+          example: READY
           type: string
       title: CM handle Details
       type: object
