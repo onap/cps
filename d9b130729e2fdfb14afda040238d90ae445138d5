@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c24f50fa_b3208a78",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T09:53:44Z",
+      "side": 0,
+      "message": "\"testMetaData\": {\n    \"0\": [\"HTTP Request\", \"rate..\", \"req_failed\", 0,00, 0.01]\n    \n    }",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 4
+      },
+      "revId": "d9b130729e2fdfb14afda040238d90ae445138d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -79,6 +79,47 @@
       "message": "actually shoul this be restored?!",
       "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc72a81_87ac24e5",
+        "filename": "k6-tests/ncmp/config/scenario-metadata.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T09:53:44Z",
+      "side": 1,
+      "message": "maybe just add it to teh json in teh previosu file but using just 1 lien for each entry",
+      "parentUuid": "36d60b4f_22474d2a",
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf5613a_a679f905",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-23T09:53:44Z",
+      "side": 1,
+      "message": "can this be done in a loop using json metadata\n\n(separate commit)",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 76
+      },
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
