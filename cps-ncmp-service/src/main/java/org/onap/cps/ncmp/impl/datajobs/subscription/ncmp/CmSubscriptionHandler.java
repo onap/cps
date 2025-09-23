@@ -36,6 +36,8 @@ public interface CmSubscriptionHandler {
     void processSubscriptionCreate(final DataSelector dataSelector, final String subscriptionId,
                                    final List<String> dataNodeSelectors);
 
+    void processSubscriptionDelete(final String subscriptionId);
+
     /**
      * Update status of a subscription.
      *
