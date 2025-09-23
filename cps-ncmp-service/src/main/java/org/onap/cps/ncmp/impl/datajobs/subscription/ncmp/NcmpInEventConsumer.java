@@ -55,14 +55,18 @@ public class NcmpInEventConsumer {
 
         log.info("Consumed subscription event with details: | dataJobId={} | eventType={}", dataJobId, eventType);
 
-        if (eventType.equals("dataJobCreated")) {
-            final DataJob dataJob = dataJobSubscriptionOperationInEvent.getEvent().getDataJob();
-            final String dataNodeSelector =
-                    dataJob.getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
-            final List<String> dataNodeSelectors = JexParser.toXpaths(dataNodeSelector);
-            final DataSelector dataSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
-                            .getProductionJobDefinition().getDataSelector();
-            cmSubscriptionHandler.processSubscriptionCreate(dataSelector, dataJobId, dataNodeSelectors);
+        switch (eventType) {
+            case "dataJobCreated" -> {
+                final DataJob dataJob = dataJobSubscriptionOperationInEvent.getEvent().getDataJob();
+                final String dataNodeSelector =
+                        dataJob.getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
+                final List<String> dataNodeSelectors = JexParser.toXpaths(dataNodeSelector);
+                final DataSelector dataSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
+                        .getProductionJobDefinition().getDataSelector();
+                cmSubscriptionHandler.processSubscriptionCreate(dataSelector, dataJobId, dataNodeSelectors);
+            }
+            case "dataJobDeleted" -> cmSubscriptionHandler.processSubscriptionDelete(dataJobId);
+            default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
         }
     }
 }

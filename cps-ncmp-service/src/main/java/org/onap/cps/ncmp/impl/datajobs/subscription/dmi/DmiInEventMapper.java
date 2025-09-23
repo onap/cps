@@ -66,6 +66,31 @@ public class DmiInEventMapper {
         return dmiInEvent;
     }
 
+    /**
+     * This method maps relevant details for a subscription delete to a data job subscription DMI in event.
+     *
+     * @param cmHandleIds       list of cm handle ID(s)
+     * @param dataNodeSelectors list of data node selectors that should be deleted
+     * @return                  data job subscription DMI in event for deletion
+     */
+    public DataJobSubscriptionDmiInEvent toDmiInDeleteEvent(final List<String> cmHandleIds,
+                                                            final List<String> dataNodeSelectors) {
+        final DataJobSubscriptionDmiInEvent dmiInEvent = new DataJobSubscriptionDmiInEvent();
+        final Data data = new Data();
+
+        data.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(new HashSet<>(cmHandleIds)));
+
+        final ProductionJobDefinition productionJobDefinition = new ProductionJobDefinition();
+        final TargetSelector targetSelector = new TargetSelector();
+        final String dataNodeSelectorsAsJson = JexParser.toJsonExpressionsAsString(dataNodeSelectors);
+        targetSelector.setDataNodeSelector(dataNodeSelectorsAsJson);
+        productionJobDefinition.setTargetSelector(targetSelector);
+        data.setProductionJobDefinition(productionJobDefinition);
+
+        dmiInEvent.setData(data);
+        return dmiInEvent;
+    }
+
     private static void addProductJobDefinition(final Data data, final String dataNodeSelector) {
         data.setProductionJobDefinition(new ProductionJobDefinition());
         data.getProductionJobDefinition().setTargetSelector(new TargetSelector());
@@ -97,5 +122,4 @@ public class DmiInEventMapper {
         return cmSubscriptionCmHandles;
 
     }
-
 }
