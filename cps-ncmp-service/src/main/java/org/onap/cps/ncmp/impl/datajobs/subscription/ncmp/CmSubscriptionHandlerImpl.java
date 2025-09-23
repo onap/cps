@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -126,6 +127,43 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
         return yangModelCmHandle.getDmiServiceName();
     }
 
-    private record CmHandleIdsAndDataNodeSelectors(Set<String> cmHandleIds, Set<String> dataNodeSelectors) {}
+    @Override
+    public void processSubscriptionDelete(final String subscriptionId) {
 
+        final Collection<String> affectedDataNodeSelectors =
+                cmDataJobSubscriptionPersistenceService.getDataNodeSelectorsBySubscriptionId(subscriptionId);
+
+        final List<String> emptyDataNodeSelectors = new ArrayList<>();
+
+        for (final String dataNodeSelector : affectedDataNodeSelectors) {
+            cmDataJobSubscriptionPersistenceService.remove(subscriptionId, dataNodeSelector);
+
+            if (cmDataJobSubscriptionPersistenceService.getSubscribers(dataNodeSelector).isEmpty()) {
+                cmDataJobSubscriptionPersistenceService.updateStatus(dataNodeSelector, "unknown");
+                emptyDataNodeSelectors.add(dataNodeSelector);
+            }
+        }
+
+        if (!emptyDataNodeSelectors.isEmpty()) {
+            sendDeleteEventToDmis(subscriptionId, emptyDataNodeSelectors);
+        }
+    }
+
+    private void sendDeleteEventToDmis(final String subscriptionId, final List<String> selectorsNowEmpty) {
+        final Map<String, CmHandleIdsAndDataNodeSelectors> cmHandleIdsAndDataNodeSelectorsPerDmi =
+                createDmiInEventTargetsPerDmi(selectorsNowEmpty);
+
+        for (final Map.Entry<String, CmHandleIdsAndDataNodeSelectors> entry :
+                cmHandleIdsAndDataNodeSelectorsPerDmi.entrySet()) {
+            final String dmiServiceName = entry.getKey();
+            final CmHandleIdsAndDataNodeSelectors cmHandleIdsAndDataNodeSelectors = entry.getValue();
+            final DataJobSubscriptionDmiInEvent dmiInEvent = dmiInEventMapper.toDmiInDeleteEvent(
+                    new ArrayList<>(cmHandleIdsAndDataNodeSelectors.cmHandleIds),
+                    new ArrayList<>(cmHandleIdsAndDataNodeSelectors.dataNodeSelectors));
+            eventProducer.send(subscriptionId, dmiServiceName, "subscriptionDeleteRequest", dmiInEvent);
+        }
+    }
+
+    private record CmHandleIdsAndDataNodeSelectors(Set<String> cmHandleIds, Set<String> dataNodeSelectors) {
+    }
 }

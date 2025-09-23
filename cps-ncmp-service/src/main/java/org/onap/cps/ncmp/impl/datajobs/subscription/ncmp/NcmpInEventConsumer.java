@@ -63,6 +63,8 @@ public class NcmpInEventConsumer {
             final DataSelector dataSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
                             .getProductionJobDefinition().getDataSelector();
             cmSubscriptionHandler.processSubscriptionCreate(dataSelector, dataJobId, dataNodeSelectors);
+        } else if (eventType.equals("dataJobDeleted")) {
+            cmSubscriptionHandler.processSubscriptionDelete(dataJobId);
         }
     }
 }

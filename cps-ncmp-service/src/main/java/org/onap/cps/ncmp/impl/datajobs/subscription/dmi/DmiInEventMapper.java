@@ -98,4 +98,31 @@ public class DmiInEventMapper {
 
     }
 
+    /**
+     * This method maps relevant details for a subscription delete to a data job subscription DMI in event.
+     *
+     * @param cmHandleIds       list of cm handle ID(s)
+     * @param dataNodeSelectors list of data node selectors that should be deleted
+     * @return                  data job subscription DMI in event for deletion
+     */
+    public DataJobSubscriptionDmiInEvent toDmiInDeleteEvent(final List<String> cmHandleIds,
+                                                            final List<String> dataNodeSelectors) {
+        final DataJobSubscriptionDmiInEvent dmiInEvent = new DataJobSubscriptionDmiInEvent();
+        final Data data = new Data();
+
+        final String dataNodeSelectorsAsJson = JexParser.toJsonExpressionsAsString(dataNodeSelectors);
+
+        data.setCmHandles(mapToCmSubscriptionCmHandleWithAdditionalProperties(new HashSet<>(cmHandleIds)));
+
+        final ProductionJobDefinition productionJobDefinition = new ProductionJobDefinition();
+        final TargetSelector targetSelector = new TargetSelector();
+        targetSelector.setDataNodeSelector(dataNodeSelectorsAsJson);
+        productionJobDefinition.setTargetSelector(targetSelector);
+        data.setProductionJobDefinition(productionJobDefinition);
+
+        dmiInEvent.setData(data);
+        return dmiInEvent;
+    }
+
+
 }
