@@ -33,6 +33,24 @@
       "message": "u need to add specific api response for the InvalidPathException use case.\nyou are introducing a new response code.\n\nsame comment valid for all the endpoints.",
       "revId": "d3d3fb5f7ff4ed76b2f276f24c5213fd6ac2444c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdde4c7b_fd79f74a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-09-23T15:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98a10e4f_b4202e07",
+      "revId": "d3d3fb5f7ff4ed76b2f276f24c5213fd6ac2444c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
