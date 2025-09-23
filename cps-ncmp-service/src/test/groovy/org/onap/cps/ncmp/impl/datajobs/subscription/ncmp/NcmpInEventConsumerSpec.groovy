@@ -79,6 +79,25 @@ class NcmpInEventConsumerSpec extends Specification {
             1 * mockCmSubscriptionHandler.processSubscriptionCreate(dataSelector, "myDataJobId", dataNodeSelectorList)
     }
 
+    def 'Consuming DELETE cm data job subscription request.'() {
+        given: 'a JSON file for delete event'
+            def jsonData = TestUtils.getResourceFileContent(
+                    'datajobs/subscription/cmNotificationSubscriptionNcmpInEvent.json')
+            def myEventType = "dataJobDeleted"
+            jsonData = jsonData.replace('#myEventType', myEventType)
+        and: 'the event'
+            def event = objectMapper.readValue(jsonData, DataJobSubscriptionOperationInEvent)
+        when: 'the event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(event)
+        then: 'event details are logged at level INFO'
+            def loggingEvent = logger.list.last()
+            assert loggingEvent.level == Level.INFO
+            assert loggingEvent.formattedMessage.contains('dataJobId=myDataJobId')
+            assert loggingEvent.formattedMessage.contains("eventType=${myEventType}")
+        and: 'method to handle process subscription delete request is called'
+            1 * mockCmSubscriptionHandler.processSubscriptionDelete("myDataJobId")
+    }
+
     def getDataNodeSelectorsAsXpaths(event) {
         return JexParser.toXpaths(event.event.dataJob.productionJobDefinition.targetSelector.dataNodeSelector)
     }
