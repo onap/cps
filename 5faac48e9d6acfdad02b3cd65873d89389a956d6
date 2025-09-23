@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ec90ec_175c29de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-09-23T11:38:37Z",
+      "side": 1,
+      "message": "look good, but i have a concern with the controller",
+      "revId": "5faac48e9d6acfdad02b3cd65873d89389a956d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29b2576_27493ce3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-09-23T11:38:37Z",
+      "side": 1,
+      "message": "whats the point of converting them, if you return a not implemented http response? same applies to the above methods too",
+      "revId": "5faac48e9d6acfdad02b3cd65873d89389a956d6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
