@@ -36,6 +36,10 @@
 
   <artifactId>cps-service</artifactId>
 
+  <properties>
+    <minimum-coverage>0.99</minimum-coverage>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.commons</groupId>
