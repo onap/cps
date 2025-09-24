@@ -34,8 +34,10 @@ import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Listener for AVC events based on CM Subscriptions.
@@ -64,8 +66,9 @@ public class CmAvcEventConsumer {
      *
      * @param cmAvcEventAsConsumerRecord Incoming raw consumer record
      */
+    @Transactional
     @KafkaListener(topics = "${app.dmi.cm-events.topic}",
-        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactory")
+        containerFactory = "cloudEventConcurrentKafkaListenerContainerFactoryForEos")
     @Timed(value = "cps.ncmp.cm.notifications.consume.and.forward", description = "Time taken to forward CM AVC events")
     public void consumeAndForward(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
         if (isEventFromOnapDmiPlugin(cmAvcEventAsConsumerRecord.headers())) {
@@ -73,8 +76,14 @@ public class CmAvcEventConsumer {
         }
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
         final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
-        log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
-        eventsProducer.sendCloudEvent(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
+
+        // Only for testing/demo
+        if (outgoingAvcEventKey.equals("retry")) {
+            throw new KafkaException("test kafka exception for testing");
+        }
+
+        log.info("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
+        eventsProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 
     private void processCmAvcEventChanges(final ConsumerRecord<String, CloudEvent> cmAvcEventAsConsumerRecord) {
