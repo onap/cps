@@ -32,7 +32,7 @@ import org.springframework.test.context.ContextConfiguration
 @ContextConfiguration(classes = [CpsApplicationContext, ObjectMapper, JsonObjectMapper])
 class InventoryEventProducerSpec extends MessagingBaseSpec {
 
-    def mockEventsProducer = Mock(EventsProducer<CloudEvent>)
+    def mockEventsProducer = Mock(EventsProducer)
     def objectUnderTest = new InventoryEventProducer(mockEventsProducer)
 
     def 'Send an attribute value change event'() {
