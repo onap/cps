@@ -41,8 +41,9 @@ import java.util.concurrent.CompletableFuture
 
 class EventsProducerSpec extends Specification {
 
-    def legacyKafkaTemplateMock = Mock(KafkaTemplate)
+    def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
+    def mockCloudEventKafkaTemplateForEos = Mock(KafkaTemplate)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -56,7 +57,7 @@ class EventsProducerSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(EventsProducer.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventsProducer(legacyKafkaTemplateMock, mockCloudEventKafkaTemplate)
+    def objectUnderTest = new EventsProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, mockCloudEventKafkaTemplateForEos)
 
     def 'Send Cloud Event'() {
         given: 'a successfully sent event'
@@ -74,6 +75,39 @@ class EventsProducerSpec extends Specification {
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
             assert lastLoggingEvent.formattedMessage.contains('Successfully sent event')
+    }
+
+    def 'Send Cloud Event Using EOS'() {
+        given: 'a successfully sent event with EOS semantics'
+            def eventFuture = CompletableFuture.completedFuture(
+                new SendResult(
+                    new ProducerRecord('eos-topic', 'some-value'),
+                    new RecordMetadata(new TopicPartition('eos-topic', 0), 0, 0, 0, 0, 0)
+                )
+            )
+            def someCloudEvent = Mock(CloudEvent)
+            1 * mockCloudEventKafkaTemplateForEos.send('eos-topic', 'some-event-key', someCloudEvent) >> eventFuture
+        when: 'sending the cloud event using EOS'
+            objectUnderTest.sendCloudEventUsingEos('eos-topic', 'some-event-key', someCloudEvent)
+        then: 'the correct debug message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.DEBUG
+            assert lastLoggingEvent.formattedMessage.contains('Successfully sent event')
+    }
+
+    def 'Send Cloud Event Using EOS with KafkaException'() {
+        given: 'an event fails with KafkaException'
+            def kafkaException = new org.springframework.kafka.KafkaException('some kafka exception')
+            def eventFutureWithFailure = new CompletableFuture<SendResult<String, CloudEvent>>()
+            eventFutureWithFailure.completeExceptionally(kafkaException)
+            def someCloudEvent = Mock(CloudEvent)
+            1 * mockCloudEventKafkaTemplateForEos.send('eos-topic', 'some-event-key', someCloudEvent) >> eventFutureWithFailure
+        when: 'sending the cloud event using EOS'
+            objectUnderTest.sendCloudEventUsingEos('eos-topic', 'some-event-key', someCloudEvent)
+        then: 'the correct error message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.ERROR
+            assert lastLoggingEvent.formattedMessage.contains('Unable to send event')
     }
 
     def 'Send Cloud Event with Exception'() {
@@ -99,7 +133,7 @@ class EventsProducerSpec extends Specification {
                 )
             )
             def someLegacyEvent = Mock(LegacyEvent)
-            1 * legacyKafkaTemplateMock.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
         when: 'sending the cloud event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', someLegacyEvent)
         then: 'the correct debug message is logged'
@@ -121,7 +155,7 @@ class EventsProducerSpec extends Specification {
         when: 'sending the legacy event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
-            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send(_) >> eventFuture
         and: 'the correct debug message is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
@@ -142,7 +176,7 @@ class EventsProducerSpec extends Specification {
         when: 'sending the legacy event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
-            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send(_) >> eventFuture
         and: 'the correct debug message is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
@@ -172,6 +206,22 @@ class EventsProducerSpec extends Specification {
         when: 'handling legacy event callback'
             objectUnderTest.handleLegacyEventCallback('some-topic', eventFutureWithFailure)
         then: 'the correct error message is logged'
+            def lastLoggingEvent = logger.list[0]
+            assert lastLoggingEvent.level == Level.ERROR
+            assert lastLoggingEvent.formattedMessage.contains('Unable to send event')
+    }
+
+    def 'Log Outcome handles non-KafkaException gracefully'() {
+        given: 'a runtime exception that is not KafkaException'
+            def sendResult = Mock(SendResult) {
+                getProducerRecord() >> Mock(ProducerRecord)
+            }
+            def runtimeException = new RuntimeException('some runtime exception')
+            def logOutcomeMethod = EventsProducer.getDeclaredMethod('logOutcome', String, SendResult, Throwable, boolean)
+            logOutcomeMethod.accessible = true
+        when: 'logging the outcome with throwKafkaException set to true'
+            logOutcomeMethod.invoke(null, 'some-topic', sendResult, runtimeException, true)
+        then: 'error message is logged and no exception is thrown'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.ERROR
             assert lastLoggingEvent.formattedMessage.contains('Unable to send event')
