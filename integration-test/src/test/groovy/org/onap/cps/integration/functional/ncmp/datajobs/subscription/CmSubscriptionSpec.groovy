@@ -62,7 +62,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     def setup() {
         registerCmHandlesForSubscriptions()
         kafkaTestContainer.start()
-        dmiInConsumer = kafkaTestContainer.getConsumer('test-group', CloudEventDeserializer.class)
+        dmiInConsumer = kafkaTestContainer.getCloudEventConsumer('test-group')
         dmiInConsumer.subscribe([dmiInTopic])
         dmiInConsumer.poll(Duration.ofMillis(500))
         testRequestProducer = kafkaTestContainer.createProducer('test-client-id', StringSerializer.class)

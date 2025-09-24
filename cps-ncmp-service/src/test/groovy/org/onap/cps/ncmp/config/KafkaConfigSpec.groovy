@@ -26,6 +26,7 @@ import io.cloudevents.kafka.CloudEventSerializer
 import org.onap.cps.events.LegacyEvent
 import org.spockframework.spring.EnableSharedInjection
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
@@ -36,7 +37,7 @@ import org.springframework.test.context.TestPropertySource
 import spock.lang.Shared
 import spock.lang.Specification
 
-@SpringBootTest(classes = [KafkaProperties, KafkaConfig])
+@SpringBootTest(classes = [KafkaProperties, KafkaConfig, ExactlyOnceSemanticsKafkaConfig])
 @EnableSharedInjection
 @EnableConfigurationProperties
 @TestPropertySource(properties = ["cps.tracing.enabled=true"])
@@ -44,11 +45,19 @@ class KafkaConfigSpec extends Specification {
 
     @Shared
     @Autowired
+    @Qualifier("legacyEventKafkaTemplate")
     KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate
 
     @Shared
     @Autowired
+    @Qualifier("cloudEventKafkaTemplate")
     KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate
+
+    @Shared
+    @Autowired
+    @Qualifier("cloudEventKafkaTemplateForEos")
+    KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplateForEos
+
 
     def 'Verify kafka template serializer and deserializer configuration for #eventType.'() {
         expect: 'kafka template is instantiated'
@@ -58,8 +67,9 @@ class KafkaConfigSpec extends Specification {
         and: 'verify event key and value deserializer'
             assert kafkaTemplateInstance.properties['consumerFactory'].configs['spring.deserializer.value.delegate.class'].asType(String.class).contains(delegateDeserializer.getCanonicalName())
         where: 'the following event type is used'
-            eventType      | kafkaTemplateInstance    || beanName                   | valueSerializer      | delegateDeserializer
-            'legacy event' | legacyEventKafkaTemplate || 'legacyEventKafkaTemplate' | JsonSerializer       | JsonDeserializer
-            'cloud event'  | cloudEventKafkaTemplate  || 'cloudEventKafkaTemplate'  | CloudEventSerializer | CloudEventDeserializer
+            eventType                   | kafkaTemplateInstance         || beanName                        | valueSerializer      | delegateDeserializer
+            'legacy event'              | legacyEventKafkaTemplate      || 'legacyEventKafkaTemplate'      | JsonSerializer       | JsonDeserializer
+            'cloud event'               | cloudEventKafkaTemplate       || 'cloudEventKafkaTemplate'       | CloudEventSerializer | CloudEventDeserializer
+            'transactional cloud event' | cloudEventKafkaTemplateForEos || 'cloudEventKafkaTemplateForEos' | CloudEventSerializer | CloudEventDeserializer
     }
 }
