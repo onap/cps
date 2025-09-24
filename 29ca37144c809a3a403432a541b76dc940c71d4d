@@ -70,6 +70,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcbf0047_4fb28dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-24T15:32:17Z",
+      "side": 1,
+      "message": "Done!\n\nAlso, I sent an email including two logs file. These are collected by running latest of this patch set on my local machine.",
+      "parentUuid": "a95742ff_e2519195",
+      "revId": "29ca37144c809a3a403432a541b76dc940c71d4d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62e0453c_b8690d73",
