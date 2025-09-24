@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d6f2d0a_6e7d04cd",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-24T14:46:27Z",
+      "side": 1,
+      "message": "Hey Priyank, I removed this port. But, kafka broker never started back again.\n\nI also had to remove the same port used on Line 72 (along with label).\n\nThe error:\n\n[2025-09-24 09:26:04,072] ERROR Exiting Kafka due to fatal exception (kafka.Kafka$)\njava.lang.IllegalArgumentException: requirement failed: advertised.listeners listener names must be equal to or a subset of the ones defined in listeners. Found INTERNAL,EXTERNAL,NODEPORT. The valid options based on the current configuration are INTERNAL,EXTERNAL",
+      "parentUuid": "9efb6ede_2cfd101f",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 20
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30aa9e77_59893767",
         "filename": "cps-charts/values.yaml",
         "patchSetId": 1
