@@ -19,6 +19,8 @@
 
 package org.onap.cps.integration;
 
+import io.cloudevents.CloudEvent;
+import io.cloudevents.kafka.CloudEventDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.onap.cps.events.LegacyEvent;
 import org.testcontainers.kafka.ConfluentKafkaContainer;
 
 /**
@@ -68,8 +71,12 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
         return kafkaTestContainer;
     }
 
-    public static KafkaConsumer getConsumer(final String consumerGroupId, final Object valueDeserializer) {
-        return new KafkaConsumer<>(consumerProperties(consumerGroupId, valueDeserializer));
+    public static KafkaConsumer<String, LegacyEvent> getLegacyEventConsumer(final String consumerGroupId) {
+        return new KafkaConsumer<>(consumerProperties(consumerGroupId, StringDeserializer.class));
+    }
+
+    public static KafkaConsumer<String, CloudEvent> getCloudEventConsumer(final String consumerGroupId) {
+        return new KafkaConsumer<>(consumerProperties(consumerGroupId, CloudEventDeserializer.class));
     }
 
     /**

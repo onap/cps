@@ -41,8 +41,9 @@ import java.util.concurrent.CompletableFuture
 
 class EventsProducerSpec extends Specification {
 
-    def legacyKafkaTemplateMock = Mock(KafkaTemplate)
+    def mockLegacyKafkaTemplate = Mock(KafkaTemplate)
     def mockCloudEventKafkaTemplate = Mock(KafkaTemplate)
+    def mockCloudEventKafkaTemplateForEos = Mock(KafkaTemplate)
     def logger = Spy(ListAppender<ILoggingEvent>)
 
     void setup() {
@@ -56,7 +57,7 @@ class EventsProducerSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(EventsProducer.class)).detachAndStopAllAppenders()
     }
 
-    def objectUnderTest = new EventsProducer(legacyKafkaTemplateMock, mockCloudEventKafkaTemplate)
+    def objectUnderTest = new EventsProducer(mockLegacyKafkaTemplate, mockCloudEventKafkaTemplate, mockCloudEventKafkaTemplateForEos)
 
     def 'Send Cloud Event'() {
         given: 'a successfully sent event'
@@ -99,7 +100,7 @@ class EventsProducerSpec extends Specification {
                 )
             )
             def someLegacyEvent = Mock(LegacyEvent)
-            1 * legacyKafkaTemplateMock.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
         when: 'sending the cloud event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', someLegacyEvent)
         then: 'the correct debug message is logged'
@@ -121,7 +122,7 @@ class EventsProducerSpec extends Specification {
         when: 'sending the legacy event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
-            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send(_) >> eventFuture
         and: 'the correct debug message is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
@@ -142,7 +143,7 @@ class EventsProducerSpec extends Specification {
         when: 'sending the legacy event'
             objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
-            1 * legacyKafkaTemplateMock.send(_) >> eventFuture
+            1 * mockLegacyKafkaTemplate.send(_) >> eventFuture
         and: 'the correct debug message is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
