@@ -29,10 +29,12 @@ import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
 import org.onap.cps.init.actuator.ReadinessManager;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Order(3)
 public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     private static final String MODEL_FILE_NAME = "cm-data-job-subscriptions@2025-09-03.yang";
@@ -50,15 +52,16 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
+        log.info("Model Loader #3 Started: NCMP CM Data Notification Subscription Models");
         onboardSubscriptionModels();
-        log.info("Subscription Models onboarded successfully");
+        log.info("Model Loader #3 Completed");
     }
 
     private void onboardSubscriptionModels() {
-        createDataspace(NCMP_DATASPACE_NAME);
         createSchemaSet(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILE_NAME);
         createAnchor(NCMP_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATA_NODE_NAME);
+        log.info("NCMP CM Data Notification Subscription Models onboarded successfully");
     }
 
 }

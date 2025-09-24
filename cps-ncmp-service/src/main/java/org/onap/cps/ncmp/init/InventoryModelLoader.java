@@ -34,10 +34,12 @@ import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Order(2)
 public class InventoryModelLoader extends AbstractModelLoader {
 
     private final ApplicationEventPublisher applicationEventPublisher;
@@ -65,6 +67,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
     @Override
     public void onboardOrUpgradeModel() {
+        log.info("Model Loader #2 Started: NCMP Inventory Models");
         final String schemaToInstall = newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
         final String moduleRevision = getModuleRevision(schemaToInstall);
 
@@ -76,8 +79,8 @@ public class InventoryModelLoader extends AbstractModelLoader {
         } else {
             installInventoryModel(schemaToInstall);
         }
-
         applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
+        log.info("Model Loader #2 Completed");
     }
 
     private void installInventoryModel(final String schemaSetName) {

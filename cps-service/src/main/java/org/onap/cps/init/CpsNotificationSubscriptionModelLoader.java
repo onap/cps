@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024-2025 TechMahindra Ltd.
+ *  Modifications Copyright (C) 2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,10 +27,12 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.actuator.ReadinessManager;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Order(1)
 public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader {
 
     private static final String MODEL_FILENAME = "cps-notification-subscriptions@2024-07-03.yang";
@@ -48,8 +51,9 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
 
     @Override
     public void onboardOrUpgradeModel() {
+        log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
         onboardSubscriptionModels();
-        log.info("Subscription models onboarded successfully");
+        log.info("Model Loader #1 Completed");
     }
 
     private void onboardSubscriptionModels() {
@@ -57,6 +61,7 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
         createSchemaSet(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILENAME);
         createAnchor(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(CPS_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
+        log.info("CPS Data Notification Subscription models onboarded successfully");
     }
 
 }
