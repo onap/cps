@@ -7,6 +7,7 @@
       "description": "The payload of data operation event.",
       "type": "object",
       "javaType" : "org.onap.cps.ncmp.events.async1_0_0.DataOperationEvent",
+      "javaInterfaces" : ["org.onap.cps.events.LegacyEvent"],
       "properties": {
         "data": {
           "description": "The payload content of the requested data.",

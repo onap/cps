@@ -98,10 +98,10 @@ class EventsProducerSpec extends Specification {
                     new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
                 )
             )
-            def someEvent = Mock(Object)
-            1 * legacyKafkaTemplateMock.send('some-topic', 'some-event-key', someEvent) >> eventFuture
+            def someLegacyEvent = Mock(LegacyEvent)
+            1 * legacyKafkaTemplateMock.send('some-topic', 'some-event-key', someLegacyEvent) >> eventFuture
         when: 'sending the cloud event'
-            objectUnderTest.sendEvent('some-topic', 'some-event-key', someEvent)
+            objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', someLegacyEvent)
         then: 'the correct debug message is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.DEBUG
@@ -117,9 +117,9 @@ class EventsProducerSpec extends Specification {
                     new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
                 )
             )
-            def someEvent = Mock(Object.class)
+            def someLegacyEvent = Mock(LegacyEvent)
         when: 'sending the legacy event'
-            objectUnderTest.sendEvent('some-topic', 'some-event-key', sampleEventHeaders, someEvent)
+            objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
             1 * legacyKafkaTemplateMock.send(_) >> eventFuture
         and: 'the correct debug message is logged'
@@ -138,9 +138,9 @@ class EventsProducerSpec extends Specification {
                     new RecordMetadata(new TopicPartition('some-topic', 0), 0, 0, 0, 0, 0)
                 )
             )
-            def someEvent = Mock(Object.class)
+            def someLegacyEvent = Mock(LegacyEvent)
         when: 'sending the legacy event'
-            objectUnderTest.sendEvent('some-topic', 'some-event-key', sampleEventHeaders, someEvent)
+            objectUnderTest.sendLegacyEvent('some-topic', 'some-event-key', sampleEventHeaders, someLegacyEvent)
         then: 'event is sent'
             1 * legacyKafkaTemplateMock.send(_) >> eventFuture
         and: 'the correct debug message is logged'

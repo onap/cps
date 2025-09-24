@@ -38,7 +38,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class DmiAsyncRequestResponseEventConsumer {
 
-    private final EventsProducer<NcmpAsyncRequestResponseEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
     private final NcmpAsyncRequestResponseEventMapper ncmpAsyncRequestResponseEventMapper;
 
     /**
@@ -56,7 +56,7 @@ public class DmiAsyncRequestResponseEventConsumer {
         log.debug("Consuming event {} ...", dmiAsyncRequestResponseEvent);
         final NcmpAsyncRequestResponseEvent ncmpAsyncRequestResponseEvent =
                 ncmpAsyncRequestResponseEventMapper.toNcmpAsyncEvent(dmiAsyncRequestResponseEvent);
-        eventsProducer.sendEvent(ncmpAsyncRequestResponseEvent.getEventTarget(),
+        eventsProducer.sendLegacyEvent(ncmpAsyncRequestResponseEvent.getEventTarget(),
                                      ncmpAsyncRequestResponseEvent.getEventId(),
                                      ncmpAsyncRequestResponseEvent);
     }

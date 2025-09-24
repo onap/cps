@@ -40,13 +40,14 @@ import org.springframework.util.SerializationUtils;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventsProducer<T> {
+public class EventsProducer {
 
     /**
      * KafkaTemplate for legacy (non-cloud) events.
-     * Note: Cloud events should be used. This will be addressed as part of  <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
+     * Note: Cloud events should be used. This will be addressed as part of  <a
+     * href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      */
-    private final KafkaTemplate<String, T> legacyKafkaEventTemplate;
+    private final KafkaTemplate<String, LegacyEvent> legacyKafkaEventTemplate;
 
     private final KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate;
 
@@ -64,49 +65,52 @@ public class EventsProducer<T> {
     }
 
     /**
-     * Generic Event sender.
-     * Note: Cloud events should be used. This will be addressed as part of  <a href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
+     * Legacy Event sender. Schemas that implement LegacyEvent are eligible to use this method.
+     * Note: Cloud events should be used. This will be addressed as part of  <a
+     * href="https://lf-onap.atlassian.net/browse/CPS-1717">...</a>.
      *
      * @param topicName valid topic name
      * @param eventKey  message key
      * @param event     message payload
      */
-    public void sendEvent(final String topicName, final String eventKey, final T event) {
-        final CompletableFuture<SendResult<String, T>> eventFuture =
+    public void sendLegacyEvent(final String topicName, final String eventKey, final LegacyEvent event) {
+        final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
                 legacyKafkaEventTemplate.send(topicName, eventKey, event);
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
-     * Generic Event sender with headers.
+     * Legacy Event sender with headers. Schemas that implement LegacyEvent are eligible to use this method.
      *
      * @param topicName    valid topic name
      * @param eventKey     message key
      * @param eventHeaders event headers
      * @param event        message payload
      */
-    public void sendEvent(final String topicName, final String eventKey, final Headers eventHeaders, final T event) {
-        final ProducerRecord<String, T> producerRecord =
+    public void sendLegacyEvent(final String topicName, final String eventKey, final Headers eventHeaders,
+            final LegacyEvent event) {
+        final ProducerRecord<String, LegacyEvent> producerRecord =
                 new ProducerRecord<>(topicName, null, eventKey, event, eventHeaders);
-        final CompletableFuture<SendResult<String, T>> eventFuture = legacyKafkaEventTemplate.send(producerRecord);
+        final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture =
+                legacyKafkaEventTemplate.send(producerRecord);
         handleLegacyEventCallback(topicName, eventFuture);
     }
 
     /**
-     * Generic Event sender with headers.
+     * Legacy Event sender with headers in a Map. Schemas that implement LegacyEvent are eligible to use this method.
      *
      * @param topicName    valid topic name
      * @param eventKey     message key
      * @param eventHeaders map of event headers
      * @param event        message payload
      */
-    public void sendEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
-                          final T event) {
-        sendEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
+    public void sendLegacyEvent(final String topicName, final String eventKey, final Map<String, Object> eventHeaders,
+            final LegacyEvent event) {
+        sendLegacyEvent(topicName, eventKey, convertToKafkaHeaders(eventHeaders), event);
     }
 
     private void handleLegacyEventCallback(final String topicName,
-                                           final CompletableFuture<SendResult<String, T>> eventFuture) {
+            final CompletableFuture<SendResult<String, LegacyEvent>> eventFuture) {
         eventFuture.whenComplete((result, e) -> logOutcome(topicName, result, e));
     }
 

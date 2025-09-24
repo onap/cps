@@ -28,6 +28,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.onap.cps.events.LegacyEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.ssl.SslBundles;
@@ -46,13 +47,11 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 /**
  * kafka Configuration for legacy and cloud events.
- *
- * @param <T> valid legacy event to be sent over the wire.
  */
 @Configuration
 @EnableKafka
 @RequiredArgsConstructor
-public class KafkaConfig<T> {
+public class KafkaConfig {
 
     private final KafkaProperties kafkaProperties;
 
@@ -68,12 +67,12 @@ public class KafkaConfig<T> {
      * @return legacy event producer instance.
      */
     @Bean
-    public ProducerFactory<String, T> legacyEventProducerFactory() {
+    public ProducerFactory<String, LegacyEvent> legacyEventProducerFactory() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         producerConfigProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         if (tracingEnabled) {
-            producerConfigProperties.put(
-                ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, TracingProducerInterceptor.class.getName());
+            producerConfigProperties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
+                    TracingProducerInterceptor.class.getName());
         }
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
@@ -85,12 +84,12 @@ public class KafkaConfig<T> {
      * @return an instance of legacy consumer factory.
      */
     @Bean
-    public ConsumerFactory<String, T> legacyEventConsumerFactory() {
+    public ConsumerFactory<String, LegacyEvent> legacyEventConsumerFactory() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         consumerConfigProperties.put("spring.deserializer.value.delegate.class", JsonDeserializer.class);
         if (tracingEnabled) {
-            consumerConfigProperties.put(
-                ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG, TracingConsumerInterceptor.class.getName());
+            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
+                    TracingConsumerInterceptor.class.getName());
         }
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
@@ -102,8 +101,8 @@ public class KafkaConfig<T> {
      */
     @Bean
     @Primary
-    public KafkaTemplate<String, T> legacyEventKafkaTemplate() {
-        final KafkaTemplate<String, T> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
+    public KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate() {
+        final KafkaTemplate<String, LegacyEvent> kafkaTemplate = new KafkaTemplate<>(legacyEventProducerFactory());
         kafkaTemplate.setConsumerFactory(legacyEventConsumerFactory());
         if (tracingEnabled) {
             kafkaTemplate.setObservationEnabled(true);
@@ -117,8 +116,9 @@ public class KafkaConfig<T> {
      * @return instance of Concurrent kafka listener factory
      */
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, T> legacyEventConcurrentKafkaListenerContainerFactory() {
-        final ConcurrentKafkaListenerContainerFactory<String, T> containerFactory =
+    public ConcurrentKafkaListenerContainerFactory<String, LegacyEvent>
+                            legacyEventConcurrentKafkaListenerContainerFactory() {
+        final ConcurrentKafkaListenerContainerFactory<String, LegacyEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(legacyEventConsumerFactory());
         containerFactory.getContainerProperties().setAuthExceptionRetryInterval(Duration.ofSeconds(10));
@@ -138,8 +138,8 @@ public class KafkaConfig<T> {
     public ProducerFactory<String, CloudEvent> cloudEventProducerFactory() {
         final Map<String, Object> producerConfigProperties = kafkaProperties.buildProducerProperties(NO_SSL);
         if (tracingEnabled) {
-            producerConfigProperties.put(
-                ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, TracingProducerInterceptor.class.getName());
+            producerConfigProperties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
+                    TracingProducerInterceptor.class.getName());
         }
         return new DefaultKafkaProducerFactory<>(producerConfigProperties);
     }
@@ -154,8 +154,8 @@ public class KafkaConfig<T> {
     public ConsumerFactory<String, CloudEvent> cloudEventConsumerFactory() {
         final Map<String, Object> consumerConfigProperties = kafkaProperties.buildConsumerProperties(NO_SSL);
         if (tracingEnabled) {
-            consumerConfigProperties.put(
-                ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG, TracingConsumerInterceptor.class.getName());
+            consumerConfigProperties.put(ConsumerConfig.INTERCEPTOR_CLASSES_CONFIG,
+                    TracingConsumerInterceptor.class.getName());
         }
         return new DefaultKafkaConsumerFactory<>(consumerConfigProperties);
     }
@@ -168,8 +168,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public KafkaTemplate<String, CloudEvent> cloudEventKafkaTemplate() {
-        final KafkaTemplate<String, CloudEvent> kafkaTemplate =
-            new KafkaTemplate<>(cloudEventProducerFactory());
+        final KafkaTemplate<String, CloudEvent> kafkaTemplate = new KafkaTemplate<>(cloudEventProducerFactory());
         kafkaTemplate.setConsumerFactory(cloudEventConsumerFactory());
         if (tracingEnabled) {
             kafkaTemplate.setObservationEnabled(true);
@@ -184,7 +183,7 @@ public class KafkaConfig<T> {
      */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, CloudEvent>
-                                        cloudEventConcurrentKafkaListenerContainerFactory() {
+                        cloudEventConcurrentKafkaListenerContainerFactory() {
         final ConcurrentKafkaListenerContainerFactory<String, CloudEvent> containerFactory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         containerFactory.setConsumerFactory(cloudEventConsumerFactory());

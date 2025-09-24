@@ -61,7 +61,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         then: 'wait a little for async processing of message (must wait to try to avoid false positives)'
             TimeUnit.MILLISECONDS.sleep(300)
         and: 'event is not consumed'
-            0 * mockEventsProducer.sendEvent(*_)
+            0 * mockEventsProducer.sendLegacyEvent(*_)
     }
 
     def 'Legacy event consumer with valid legacy event.'() {
@@ -70,7 +70,7 @@ class FilterStrategiesIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the send event call'
             def sendEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called'
-            mockEventsProducer.sendEvent(*_) >> {
+            mockEventsProducer.sendLegacyEvent(*_) >> {
                 sendEventMethodCalled = true
             }
         when: 'send the cloud event'

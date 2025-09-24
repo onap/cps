@@ -49,7 +49,7 @@ public class LcmEventsProducer {
     private static final Tag TAG_METHOD = Tag.of("method", "sendLcmEvent");
     private static final Tag TAG_CLASS = Tag.of("class", LcmEventsProducer.class.getName());
     private static final String UNAVAILABLE_CM_HANDLE_STATE = "N/A";
-    private final EventsProducer<LcmEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
     private final JsonObjectMapper jsonObjectMapper;
     private final MeterRegistry meterRegistry;
 
@@ -75,7 +75,7 @@ public class LcmEventsProducer {
                 @SuppressWarnings("unchecked")
                 final Map<String, Object> lcmEventHeadersMap =
                         jsonObjectMapper.convertToValueType(lcmEventHeader, Map.class);
-                eventsProducer.sendEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
+                eventsProducer.sendLegacyEvent(topicName, cmHandleId, lcmEventHeadersMap, lcmEvent);
             } catch (final KafkaException e) {
                 log.error("Unable to send message to topic : {} and cause : {}", topicName, e.getMessage());
             } finally {

@@ -57,7 +57,7 @@ class LcmEventsProducerSpec extends Specification {
         when: 'service is called to send lcm event'
             objectUnderTest.sendLcmEvent('test-cm-handle-id', lcmEvent, lcmEventHeader)
         then: 'producer is called #expectedTimesMethodCalled times'
-            expectedTimesMethodCalled * mockLcmEventsProducer.sendEvent(_, cmHandleId, _, lcmEvent) >> {
+            expectedTimesMethodCalled * mockLcmEventsProducer.sendLegacyEvent(_, cmHandleId, _, lcmEvent) >> {
                 args -> {
                     def eventHeaders = (args[2] as Map<String,Object>)
                     assert eventHeaders.containsKey('eventId')
@@ -91,7 +91,7 @@ class LcmEventsProducerSpec extends Specification {
             def lcmEventHeader = new LcmEventHeader(eventId: eventId, eventCorrelationId: cmHandleId)
             objectUnderTest.notificationsEnabled = true
         when: 'producer set to throw an exception'
-            mockLcmEventsProducer.sendEvent(_, _, _, _) >> { throw new KafkaException('sending failed')}
+            mockLcmEventsProducer.sendLegacyEvent(_, _, _, _) >> { throw new KafkaException('sending failed')}
         and: 'an event is publised'
             objectUnderTest.sendLcmEvent(cmHandleId, lcmEvent, lcmEventHeader)
         then: 'the exception is just logged and not bubbled up'
