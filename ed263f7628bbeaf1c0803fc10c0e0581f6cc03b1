@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7327b786_09f277a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-24T12:48:26Z",
+      "side": 1,
+      "message": "All good!\nBut as discussed; please add Integration Tests (in a separate commit)",
+      "revId": "ed263f7628bbeaf1c0803fc10c0e0581f6cc03b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
