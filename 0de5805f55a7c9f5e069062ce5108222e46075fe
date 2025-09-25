@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06464624_e8542935",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-25T16:21:49Z",
+      "side": 1,
+      "message": "No explicit error code set is available. This is the only place it has been used.\n\nI will revert it back to 99 as it was before.",
+      "parentUuid": "a988bc51_a4702c3a",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 3
+      },
+      "revId": "0de5805f55a7c9f5e069062ce5108222e46075fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ee18b7f_28c3e261",
         "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
         "patchSetId": 4
@@ -71,6 +95,30 @@
       "writtenOn": "2025-09-25T15:56:11Z",
       "side": 1,
       "message": "why output a tmp file and then \u0027move\u0027 eeh tmp file to the summary file, why not output to summary immediately",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 0
+      },
+      "revId": "0de5805f55a7c9f5e069062ce5108222e46075fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf72e0b1_f7b5b2ca",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-25T16:21:49Z",
+      "side": 1,
+      "message": "I will address these two comments tomorrow.",
+      "parentUuid": "9ee18b7f_28c3e261",
       "range": {
         "startLine": 68,
         "startChar": 0,
