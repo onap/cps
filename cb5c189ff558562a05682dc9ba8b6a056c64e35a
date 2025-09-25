@@ -70,6 +70,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee396b5b_f4b8efd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-25T09:52:16Z",
+      "side": 1,
+      "message": "fine by me now.",
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9efb6ede_2cfd101f",
@@ -117,6 +134,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ddeaf9f_d400e843",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-25T09:52:16Z",
+      "side": 1,
+      "message": "yep.. we discussed the same and we need all the configs.",
+      "parentUuid": "3d6f2d0a_6e7d04cd",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 20
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d708788f_9c03eba6",
@@ -130,6 +171,30 @@
       "writtenOn": "2025-09-25T09:39:27Z",
       "side": 1,
       "message": "provide the fully qualified name here.",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 89
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76d2a4aa_2abd6d7a",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-25T09:52:16Z",
+      "side": 1,
+      "message": "not working by full qualified path. we tried.",
+      "parentUuid": "d708788f_9c03eba6",
       "range": {
         "startLine": 73,
         "startChar": 51,
