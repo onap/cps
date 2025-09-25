@@ -101,7 +101,7 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
         when: 'the method to add cm notification subscription is called'
             objectUnderTest.add('newSubId', dataNodeSelector)
         then: 'data service method to create new subscription for given subscriber is called once with the correct parameters'
-            1 * mockCpsDataService.saveData('NCMP-Admin', 'cm-data-job-subscriptions', subscriptionAsJson, _, ContentType.JSON)
+            1 * mockCpsDataService.saveData('NCMP-Admin', 'cm-data-job-subscriptions', PARENT_NODE_XPATH, subscriptionAsJson, _, ContentType.JSON)
     }
 
     def 'Add subscription for a data node selector that already have subscription(s).'() {

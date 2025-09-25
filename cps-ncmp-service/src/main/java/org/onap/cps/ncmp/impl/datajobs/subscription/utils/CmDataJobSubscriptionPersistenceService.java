@@ -158,7 +158,7 @@ public class CmDataJobSubscriptionPersistenceService {
         final String cmSubscriptionStatus = UNKNOWN.name();
         final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
                 newSubscriptionList, cmSubscriptionStatus);
-        cpsDataService.saveData(DATASPACE, ANCHOR, subscriptionDetailsAsJson,
+        cpsDataService.saveData(DATASPACE, ANCHOR, PARENT_NODE_XPATH, subscriptionDetailsAsJson,
             OffsetDateTime.now(), ContentType.JSON);
     }
 
@@ -166,8 +166,8 @@ public class CmDataJobSubscriptionPersistenceService {
                                            final String cmSubscriptionStatusName) {
         final String subscriptionDetailsAsJson = createSubscriptionDetailsAsJson(dataNodeSelector,
                 subscriptionIds, cmSubscriptionStatusName);
-        cpsDataService.updateNodeLeaves(DATASPACE, ANCHOR,
-                PARENT_NODE_XPATH, subscriptionDetailsAsJson, OffsetDateTime.now(),
+        cpsDataService.updateNodeLeaves(DATASPACE, ANCHOR, PARENT_NODE_XPATH, subscriptionDetailsAsJson,
+                OffsetDateTime.now(),
             ContentType.JSON);
     }
 
