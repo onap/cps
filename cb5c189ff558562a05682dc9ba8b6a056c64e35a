@@ -158,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd9b6667_a9c9627b",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-25T09:52:30Z",
+      "side": 1,
+      "message": "Thank you for discussing this issue on the call. As we both on agreed that external port will stay unchanged.",
+      "parentUuid": "3d6f2d0a_6e7d04cd",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 20
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d708788f_9c03eba6",
@@ -194,6 +218,30 @@
       "writtenOn": "2025-09-25T09:52:16Z",
       "side": 1,
       "message": "not working by full qualified path. we tried.",
+      "parentUuid": "d708788f_9c03eba6",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 89
+      },
+      "revId": "cb5c189ff558562a05682dc9ba8b6a056c64e35a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da42cb8_b205791f",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-25T09:52:30Z",
+      "side": 1,
+      "message": "Same as above.",
       "parentUuid": "d708788f_9c03eba6",
       "range": {
         "startLine": 73,
