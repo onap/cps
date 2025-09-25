@@ -43,9 +43,6 @@ spec:
             limits:
               cpu: "{{ .Values.kafka.resources.limits.cpu }}"
               memory: "{{ .Values.kafka.resources.limits.memory }}"
-            requests:
-              cpu: "{{ .Values.kafka.resources.requests.cpu }}"
-              memory: "{{ .Values.kafka.resources.requests.memory }}"
           readinessProbe:
             exec:
               command:

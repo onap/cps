@@ -29,8 +29,8 @@ cps:
     nodePort: 30080
   resources:
     limits:
-      cpu: "1"
-      memory: "1Gi"
+      cpu: "3"
+      memory: "3Gi"
   env:
     DB_HOST: "cps-cps-and-ncmp-postgresql"
     DB_USERNAME: "cps"
@@ -61,20 +61,23 @@ kafka:
     ports:
       external: 9092
       internal: 29092
+  externalService:
+    ports:
+      internal: 9092
+      external: 9093
+    nodePorts:
+      external: 30093  # Node port for external communication
   zookeeperConnect: "cps-cps-and-ncmp-zookeeper.default.svc.cluster.local"
   brokerId: 1
-  listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092"
-  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-cps-and-ncmp-kafka:9092"
+  listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
+  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-cps-and-ncmp-kafka:9092,NODEPORT://localhost:30093"
   interBrokerListenerName: "INTERNAL"
-  listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
+  listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
   offsetsTopicReplicationFactor: 1
   resources:
     limits:
       cpu: "500m"
       memory: "1Gi"
-    requests:
-      cpu: "250m"
-      memory: "512Mi"
   healthcheck:
     enabled: true
     command: >
@@ -123,7 +126,7 @@ dmiStub:
     nodePort: 30092
   containerPort: 8092
   env:
-    KAFKA_BOOTSTRAP_SERVER: "cps-and-ncmp-kafka:29092"
+    KAFKA_BOOTSTRAP_SERVER: "cps-cps-and-ncmp-kafka.default.svc.cluster.local:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
     NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
     MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
@@ -133,11 +136,8 @@ dmiStub:
     WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
   resources:
     limits:
-      cpu: "500m"
-      memory: "512Mi"
-    requests:
-      cpu: "100m"
-      memory: "128Mi"
+      cpu: "3"
+      memory: "3Gi"
   livenessProbe:
     httpGet:
       path: /actuator/health/readiness
