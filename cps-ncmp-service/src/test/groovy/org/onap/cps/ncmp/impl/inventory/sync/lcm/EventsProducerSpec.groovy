@@ -48,7 +48,7 @@ class EventsProducerSpec extends MessagingBaseSpec {
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventsProducer<LcmEvent> eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventsProducer eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper
@@ -85,7 +85,7 @@ class EventsProducerSpec extends MessagingBaseSpec {
         and: 'consumer has a subscription'
             legacyEventKafkaConsumer.subscribe([testTopic] as List<String>)
         when: 'an event is sent'
-            eventsProducer.sendEvent(testTopic, eventKey, eventHeader, eventData)
+            eventsProducer.sendLegacyEvent(testTopic, eventKey, eventHeader, eventData)
         and: 'topic is polled'
             def records = legacyEventKafkaConsumer.poll(Duration.ofMillis(1500))
         then: 'poll returns one record'

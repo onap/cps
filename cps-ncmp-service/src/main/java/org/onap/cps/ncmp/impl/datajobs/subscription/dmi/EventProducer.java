@@ -37,7 +37,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class EventProducer {
 
-    private final EventsProducer<CloudEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
 
     @Value("${app.ncmp.avc.cm-subscription-dmi-in}")
     private String dmiInEventTopic;

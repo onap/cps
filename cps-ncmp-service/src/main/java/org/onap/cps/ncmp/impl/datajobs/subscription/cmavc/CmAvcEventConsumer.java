@@ -52,7 +52,7 @@ public class CmAvcEventConsumer {
     @Value("${app.ncmp.avc.cm-events-topic}")
     private String cmEventsTopicName;
 
-    private final EventsProducer<CloudEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
     private final CmAvcEventService cmAvcEventService;
     private final InventoryPersistence inventoryPersistence;
 

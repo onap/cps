@@ -68,6 +68,7 @@
       "description": "The payload for LCM event",
       "type": "object",
       "javaType" : "org.onap.cps.ncmp.events.lcm.v1.LcmEvent",
+      "javaInterfaces" : ["org.onap.cps.events.LegacyEvent"],
       "properties": {
         "eventId": {
           "description": "The unique id identifying the event",

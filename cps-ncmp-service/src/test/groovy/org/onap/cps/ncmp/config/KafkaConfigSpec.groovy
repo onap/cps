@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2024 Nordix Foundation
+ *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.config
 import io.cloudevents.CloudEvent
 import io.cloudevents.kafka.CloudEventDeserializer
 import io.cloudevents.kafka.CloudEventSerializer
+import org.onap.cps.events.LegacyEvent
 import org.spockframework.spring.EnableSharedInjection
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
@@ -43,7 +44,7 @@ class KafkaConfigSpec extends Specification {
 
     @Shared
     @Autowired
-    KafkaTemplate<String, String> legacyEventKafkaTemplate
+    KafkaTemplate<String, LegacyEvent> legacyEventKafkaTemplate
 
     @Shared
     @Autowired

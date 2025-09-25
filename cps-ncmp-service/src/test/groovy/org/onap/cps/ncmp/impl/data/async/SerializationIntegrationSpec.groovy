@@ -80,7 +80,7 @@ class SerializationIntegrationSpec extends ConsumerBaseSpec {
         and: 'a flag to track the send event call'
             def sendEventMethodCalled = false
         and: 'the (mocked) events producer will use the flag to indicate if it is called and will capture the event'
-            mockEventsProducer.sendEvent(*_) >> {
+            mockEventsProducer.sendLegacyEvent(*_) >> {
                 sendEventMethodCalled = true
             }
         when: 'send the event'

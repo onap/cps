@@ -39,7 +39,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class DataOperationEventConsumer {
 
-    private final EventsProducer<CloudEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
 
     /**
      * Consume the DataOperation cloud event sent by producer to topic 'async-m2m.topic'

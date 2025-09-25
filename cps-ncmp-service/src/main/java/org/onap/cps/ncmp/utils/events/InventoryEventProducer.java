@@ -38,7 +38,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InventoryEventProducer {
 
-    private final EventsProducer<CloudEvent> eventsProducer;
+    private final EventsProducer eventsProducer;
 
     @Value("${app.ncmp.avc.inventory-events-topic}")
     private String ncmpInventoryEventsTopicName;
