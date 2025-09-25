@@ -60,6 +60,7 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setAlternateId(yangModelCmHandle.getAlternateId());
         ncmpServiceCmHandle.setDataProducerIdentifier(yangModelCmHandle.getDataProducerIdentifier());
         ncmpServiceCmHandle.setCmHandleStatus(yangModelCmHandle.getCmHandleStatus());
+        ncmpServiceCmHandle.setDmiProperties(yangModelCmHandle.getDmiProperties());
         setAdditionalProperties(additionalProperties, ncmpServiceCmHandle);
         setPublicProperties(publicProperties, ncmpServiceCmHandle);
 
@@ -97,7 +98,8 @@ public class YangDataConverter {
                 safeGetLeafValue(cmHandleDataNode, "module-set-tag"),
                 safeGetLeafValue(cmHandleDataNode, "alternate-id"),
                 safeGetLeafValue(cmHandleDataNode, "data-producer-identifier"),
-                safeGetLeafValue(cmHandleDataNode, "cm-handle-state")
+                safeGetLeafValue(cmHandleDataNode, "cm-handle-state"),
+                safeGetLeafValue(cmHandleDataNode, "dmi-properties")
         );
     }
 
@@ -140,6 +142,7 @@ public class YangDataConverter {
         ncmpServiceCmHandle.setAdditionalProperties(additionalProperties);
         ncmpServiceCmHandle.setPublicProperties(publicProperties);
         ncmpServiceCmHandle.setCompositeState(compositeState);
+        ncmpServiceCmHandle.setDmiProperties(ncmpServiceCmHandle.getDmiProperties());
     }
 
     private static void addProperty(final DataNode propertyDataNode, final Map<String, String> propertiesAsMap) {

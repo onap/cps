@@ -49,6 +49,7 @@ class RestOutputCmHandleMapperSpec extends Specification {
             assert result.alternateId == 'alt-1'
             assert result.cmHandle == 'ch-1'
             assert result.cmHandleStatus == 'REPORTED STATE'
+            assert result.dmiProperties == 'dmi property'
         where:
             scenario                        | includeAdditionalProperties || trustLevel
             'without additional properties' | false                       || null
@@ -60,6 +61,7 @@ class RestOutputCmHandleMapperSpec extends Specification {
         return new NcmpServiceCmHandle(cmHandleId: 'ch-1', additionalProperties: ['additional property key': 'some value'],
                 currentTrustLevel: trustLevel,
                 publicProperties: ['public property key': 'public property value'],
-                alternateId: 'alt-1', compositeState: new CompositeState(cmHandleState: 'ADVISED'), cmHandleStatus: 'REPORTED STATE')
+                alternateId: 'alt-1', compositeState: new CompositeState(cmHandleState: 'ADVISED'), cmHandleStatus: 'REPORTED STATE',
+                dmiProperties: 'dmi property')
     }
 }

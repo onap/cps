@@ -80,6 +80,9 @@ public class YangModelCmHandle {
     @JsonProperty("cm-handle-state")
     private String cmHandleStatus;
 
+    @JsonProperty("dmi-properties")
+    private String dmiProperties;
+
     /**
      * Creates a deep copy of Yang Model Cm Handle.
      *
@@ -102,6 +105,7 @@ public class YangModelCmHandle {
         copy.alternateId = original.getAlternateId();
         copy.dataProducerIdentifier = original.getDataProducerIdentifier();
         copy.cmHandleStatus = original.getCmHandleStatus();
+        copy.dmiProperties = original.getDmiProperties();
         return copy;
     }
 
@@ -116,6 +120,7 @@ public class YangModelCmHandle {
      * @param alternateId alternateId
      * @param dataProducerIdentifier dataProducerIdentifier
      * @param cmHandleStatus cm handle status
+     * @param dmiProperties dmi properties
      * @return instance of yangModelCmHandle
      */
     public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
@@ -125,7 +130,8 @@ public class YangModelCmHandle {
                                                         final String moduleSetTag,
                                                         final String alternateId,
                                                         final String dataProducerIdentifier,
-                                                        final String cmHandleStatus) {
+                                                        final String cmHandleStatus,
+                                                        final String dmiProperties) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
         yangModelCmHandle.setDmiServiceName(dmiServiceName);
@@ -139,6 +145,8 @@ public class YangModelCmHandle {
         yangModelCmHandle.setPublicProperties(asYangModelCmHandleProperties(ncmpServiceCmHandle.getPublicProperties()));
         yangModelCmHandle.setCompositeState(ncmpServiceCmHandle.getCompositeState());
         yangModelCmHandle.setCmHandleStatus(cmHandleStatus);
+        yangModelCmHandle.setDmiProperties(dmiProperties);
+
         return yangModelCmHandle;
     }
 

@@ -39,6 +39,7 @@ class YangModelCmHandleSpec extends Specification {
             ncmpServiceCmHandle.cmHandleId = 'cm-handle-id01'
             ncmpServiceCmHandle.additionalProperties = [myAdditionalProperty:'value1']
             ncmpServiceCmHandle.publicProperties = [myPublicProperty:'value2']
+            ncmpServiceCmHandle.dmiProperties = [myDmiProperty:'value3']
         and: 'with a composite state'
             def compositeState = new CompositeStateBuilder()
                 .withCmHandleState(CmHandleState.LOCKED)
@@ -47,7 +48,7 @@ class YangModelCmHandleSpec extends Specification {
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED')
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED', 'my-dmi-property')
         then: 'the result has the right size'
             assert objectUnderTest.additionalProperties.size() == 1
         and: 'the result has the correct values for module set tag, alternate ID, and data producer identifier'
@@ -65,12 +66,14 @@ class YangModelCmHandleSpec extends Specification {
             objectUnderTest.getCompositeState() == ncmpServiceCmHandle.getCompositeState()
         and: 'the cm-handle-state is correct'
             assert objectUnderTest.cmHandleStatus == 'ADVISED'
+        and: 'the dmi-properties are correct'
+            assert objectUnderTest.dmiProperties == 'my-dmi-property'
     }
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
             def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName,
-                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '', '')
+                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '', '', '')
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:
