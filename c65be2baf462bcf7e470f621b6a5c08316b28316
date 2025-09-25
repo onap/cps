@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c1054d6_e1a73cce",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-09-25T11:15:32Z",
+      "side": 0,
+      "message": "I didn\u0027t have a screen of this but in my mail I also mentioned that this should have been restored",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 8
+      },
+      "revId": "c65be2baf462bcf7e470f621b6a5c08316b28316",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
