@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4456341a_3ef06bb4",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-26T09:37:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06464624_e8542935",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 3
+      },
+      "revId": "0de5805f55a7c9f5e069062ce5108222e46075fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ee18b7f_28c3e261",
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "I will address these two comments tomorrow.",
       "parentUuid": "9ee18b7f_28c3e261",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 0
+      },
+      "revId": "0de5805f55a7c9f5e069062ce5108222e46075fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e24c07ae_7ecd1d0b",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-26T09:37:46Z",
+      "side": 1,
+      "message": "Because awk is reading from summaryFile, and it should redirect the new content to a tmp file so that it summaryFile wouldn\u0027t be truncated. (race condition kind of reading and writing to same file is not possible basically.)\n\nTo prove it, I changed it and tested on my local, then lost the summary table.",
+      "parentUuid": "bf72e0b1_f7b5b2ca",
       "range": {
         "startLine": 68,
         "startChar": 0,
