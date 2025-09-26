@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f53f0dba_ef46ea75",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-26T15:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e4ffcff_2d2ea925",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d74a2ea_41fcb60b",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-09-23T16:31:05Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a9b2c0c_cebe1d50",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-26T15:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d74a2ea_41fcb60b",
       "range": {
         "startLine": 59,
         "startChar": 16,
@@ -110,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f542e5_0196b779",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-26T15:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcc3b4e3_2581cd74",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 37
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2ba2f9a_b29269f0",
@@ -123,6 +195,30 @@
       "writtenOn": "2025-09-23T16:31:05Z",
       "side": 1,
       "message": "you might need a 1,000 :-) for this one!",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 16
+      },
+      "revId": "2ec08c3108b73e39e183621fcf17adcef30718d9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08661ef4_233e8dbc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-26T15:49:05Z",
+      "side": 1,
+      "message": "I figured that there was no delta between anchors openroadm1 and openroadm2. So basically, we were applying zero delta hence such small times. \nSo I added a method to generate slightly modified anchor data, so that some delta is generated. Now we get some realistic numbers in all the tests",
+      "parentUuid": "d2ba2f9a_b29269f0",
       "range": {
         "startLine": 107,
         "startChar": 12,
