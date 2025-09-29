@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e2b35e_d466abeb",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-29T12:23:56Z",
+      "side": 1,
+      "message": "are we ok to release part of the subscription flow??\nwe should check with Anjella here.",
+      "revId": "cbe5ebb5e2aec1f0ba0b30b07ba9563315524965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc1cf2b_53d33f41",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-29T12:23:56Z",
+      "side": 1,
+      "message": "also this is not complete , so we shouldnt mention this.",
+      "revId": "cbe5ebb5e2aec1f0ba0b30b07ba9563315524965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
