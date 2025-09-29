@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66872a87_435a5a65",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-09-29T12:32:19Z",
+      "side": 1,
+      "message": "Confirmed with Lee Anjella",
+      "parentUuid": "94e2b35e_d466abeb",
+      "revId": "cbe5ebb5e2aec1f0ba0b30b07ba9563315524965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efc1cf2b_53d33f41",
         "filename": "docs/release-notes.rst",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-29T12:23:56Z",
       "side": 1,
       "message": "also this is not complete , so we shouldnt mention this.",
+      "revId": "cbe5ebb5e2aec1f0ba0b30b07ba9563315524965",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3494620_3681eec4",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-09-29T12:32:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efc1cf2b_53d33f41",
       "revId": "cbe5ebb5e2aec1f0ba0b30b07ba9563315524965",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
