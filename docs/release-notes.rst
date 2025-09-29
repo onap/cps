@@ -31,6 +31,10 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-2892 <https://lf-onap.atlassian.net/browse/CPS-2892>`_ JEX expression parser
+
 Version: 3.7.0
 ==============
 
