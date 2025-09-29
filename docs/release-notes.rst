@@ -31,6 +31,12 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-2723 <https://lf-onap.atlassian.net/browse/CPS-2723>`_ Complete Subscription CREATE flow
+    - `CPS-2892 <https://lf-onap.atlassian.net/browse/CPS-2892>`_ JEX expression parser
+    - `CPS-2966 <https://lf-onap.atlassian.net/browse/CPS-2966>`_ Manual Implementation of ProvMnS controller
+
 Version: 3.7.0
 ==============
 
