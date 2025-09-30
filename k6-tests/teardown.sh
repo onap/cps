@@ -15,15 +15,25 @@
 # limitations under the License.
 #
 
-echo '================================== docker info =========================='
-docker ps -a
+# the default test profile is kpi, and deployment type is k8sHosts
+testProfile=${1:-kpi}
+deploymentType=${2:-k8sHosts}
 
-# Zip and store logs for the containers
-chmod +x make-logs.sh
-./make-logs.sh
+# Function to create and store logs
+make_logs() {
+  local deployment_type=$1
+  echo "Creating logs for deployment type: $deployment_type"
+  chmod +x make-logs.sh
+  ./make-logs.sh "$deployment_type"
+}
 
-testProfile=$1
-docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
+# Function to clean Docker images based on CLEAN_DOCKER_IMAGES environment variable
+clean_docker_images_if_needed() {
+  if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
+    echo "Also cleaning up all CPS images"
+    remove_cps_images
+  fi
+}
 
 # All CPS docker images:
 # nexus3.onap.org:10003/onap/cps-and-ncmp:latest
@@ -46,15 +56,50 @@ remove_cps_images() {
   done
 }
 
-# Check env. variable CLEAN_DOCKER_IMAGES=1 to decide removing CPS images
-echo "Stopping, Removing containers and volumes for $testProfile tests..."
-if [[ "${CLEAN_DOCKER_IMAGES:-0}" -eq 1 ]]; then
-  # down the compose stack, then purge any remaining CPS images,
-  # regardless of any test profile!
+# Function to teardown docker-compose deployment
+teardown_docker_deployment() {
+  echo '================================== docker info =========================='
+  docker ps -a
+
+  # Zip and store logs for the containers
+  make_logs "dockerHosts"
+
+  local docker_compose_shutdown_cmd="docker-compose -f ../docker-compose/docker-compose.yml --project-name $testProfile down --volumes"
+
+  # Check env. variable CLEAN_DOCKER_IMAGES=1 to decide removing CPS images
+  echo "Stopping, Removing containers and volumes for $testProfile tests..."
   eval "$docker_compose_shutdown_cmd"
-  echo "Also cleaning up all CPS images"
-  remove_cps_images
-else
-  # for local test operations
-  eval "$docker_compose_shutdown_cmd"
-fi
+
+  # Clean Docker images if requested
+  clean_docker_images_if_needed
+}
+
+# Function to teardown kubernetes deployment
+teardown_k8s_deployment() {
+  echo '================================== k8s info =========================='
+  kubectl get all -l app=cps-and-ncmp
+
+  # Zip and store logs for the containers
+  make_logs "k8sHosts"
+
+  echo '================================== uninstalling cps... =========================='
+  helm uninstall cps
+
+  # Clean Docker images if requested
+  clean_docker_images_if_needed
+}
+
+# Main logic: determine which deployment type to teardown
+case "$deploymentType" in
+  "k8sHosts")
+    teardown_k8s_deployment
+    ;;
+  "dockerHosts")
+    teardown_docker_deployment
+    ;;
+  *)
+    echo "Unknown deployment type: $deploymentType"
+    echo "Supported deployment types: k8sHosts, dockerHosts"
+    exit 1
+    ;;
+esac

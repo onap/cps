@@ -23,11 +23,15 @@ set -o pipefail # Use last non-zero exit code in a pipeline
 # Default test profile is kpi.
 testProfile=${1:-kpi}
 
+# the default deployment type is dockerCompose
+deploymentType=${2:-dockerHosts}
+
 # Cleanup handler: capture exit status, run teardown,
 # and restore directory, report failures, and exit with original code.
 on_exit() {
   rc=$?
-  ./teardown.sh "$testProfile"
+  chmod +x teardown.sh
+  ./teardown.sh "$testProfile" "$deploymentType"
   popd
   echo "TEST FAILURES: $rc"
   exit $rc
@@ -38,14 +42,34 @@ trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 
 pushd "$(dirname "$0")" || exit 1
 
-# Install needed dependencies.
-source install-deps.sh
+# Handle deployment type specific setup
+if [[ "$deploymentType" == "dockerHosts" ]]; then
+    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for docker-compose cluster"
 
-echo "Test profile provided: $testProfile"
+    # Install needed dependencies for docker deployment
+    source install-deps.sh
 
-# Run k6 test suite.
-./setup.sh "$testProfile"
-./ncmp/execute-k6-scenarios.sh "$testProfile"
+    # Run setup for docker-compose environment
+    ./setup.sh "$testProfile"
+
+elif [[ "$deploymentType" == "k8sHosts" ]]; then
+    echo "Test profile: $testProfile, and deployment type: $deploymentType provided for k8s cluster"
+
+    # Deploy cps charts for k8s
+    helm install cps ../cps-charts
+
+    # Wait for pods and services until becomes ready
+    echo "Waiting for cps and ncmp pods to be ready..."
+    kubectl wait --for=condition=available deploy -l app=cps-and-ncmp --timeout=300s
+
+else
+    echo "Error: Unsupported deployment type: $deploymentType"
+    echo "Supported deployment types: dockerHosts, k8sHosts"
+    exit 1
+fi
+
+# Run k6 test suite for both deployment types
+./ncmp/execute-k6-scenarios.sh "$testProfile" "$deploymentType"
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!
