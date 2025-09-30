@@ -59,12 +59,28 @@ addResultColumn() {
   tmp=$(mktemp)
 
   awk -F',' -v OFS=',' '
-    NR == 1 { print $0, "Result"; next }
-    {
-      throughputTests = ($1 == "1" || $1 == "2" || $1 == "7")
-      passCondition   = throughputTests ? (($6+0) >= ($4+0)) : (($6+0) <= ($4+0))
-      print $0, (passCondition ? "✅" : "❌")
-    }
+      NR == 1 {                               # ─── header row ───
+          titleRow = $0                       # keep full header if you need it later
+          print titleRow, "Result"            # append new column: result
+          next
+      }
+
+      {                                       # ─── data rows ───
+          titleRow = $0                       # save the complete current row
+          testNumber    = $1
+          fsRequirement = $4 + 0
+          actual        = $6 + 0
+          isThroughput  = (testNumber=="0" || testNumber=="1" || testNumber=="2" || testNumber=="7")
+
+          if (actual == 0 && testNumber != "0")
+              pass = 0
+          else if (isThroughput)
+              pass = (actual >= fsRequirement)
+          else
+              pass = (actual <= fsRequirement)
+
+          print titleRow, (pass ? "✅" : "❌")
+      }
   ' "$summaryFile" > "$tmp"
 
   mv "$tmp" "$summaryFile"
