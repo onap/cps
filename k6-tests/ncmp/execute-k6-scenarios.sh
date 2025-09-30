@@ -62,7 +62,16 @@ addResultColumn() {
     NR == 1 { print $0, "Result"; next }
     {
       throughputTests = ($1 == "1" || $1 == "2" || $1 == "7")
-      passCondition   = throughputTests ? (($6+0) >= ($4+0)) : (($6+0) <= ($4+0))
+
+      # If actual value is zero, always fail regardless of test type
+      # EXCEPT for test #0 (HTTP request failures) where zero means success
+      actualValue = ($6 + 0)
+      if (actualValue == 0 && $1 != "0") {
+        passCondition = 0
+      } else {
+        passCondition = throughputTests ? (actualValue >= ($4+0)) : (actualValue <= ($4+0))
+      }
+
       print $0, (passCondition ? "✅" : "❌")
     }
   ' "$summaryFile" > "$tmp"
