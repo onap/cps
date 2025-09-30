@@ -21,6 +21,7 @@ cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
     tag: "latest"
+    pullPolicy: Always
   replicas: 2
   servicePort: 8080
   service:

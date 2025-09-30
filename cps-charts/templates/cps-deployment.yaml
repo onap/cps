@@ -21,6 +21,7 @@ spec:
       containers:
         - name: cps
           image: "{{ .Values.cps.image.repository }}:{{ .Values.cps.image.tag }}"
+          imagePullPolicy: {{ .Values.cps.image.pullPolicy }}
           ports:
             - containerPort: 8080
             - containerPort: 5701
