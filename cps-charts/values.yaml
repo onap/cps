@@ -77,8 +77,8 @@ kafka:
   offsetsTopicReplicationFactor: 1
   resources:
     limits:
-      cpu: "500m"
-      memory: "1Gi"
+      cpu: "1"
+      memory: "3Gi"
   healthcheck:
     enabled: true
     command: >
@@ -99,11 +99,8 @@ zookeeper:
     port: 2181
   resources:
     limits:
-      cpu: "500m"
-      memory: "1Gi"
-    requests:
-      cpu: "250m"
-      memory: "512Mi"
+      cpu: "1"
+      memory: "3Gi"
   env:
     ZOOKEEPER_CLIENT_PORT: 2181
   healthcheck:
