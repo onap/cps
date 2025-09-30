@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaaf5cde_71b333a4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd763f85_753c3974",
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "782bfa44_130763ac",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-09-29T15:27:23Z",
       "side": 1,
       "message": "lower case\n\ndataNodeSelectorsWithoutAnySubscriber",
+      "range": {
+        "startLine": 155,
+        "startChar": 27,
+        "endLine": 155,
+        "endChar": 28
+      },
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ed3ae3_6b9ace55",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "782bfa44_130763ac",
       "range": {
         "startLine": 155,
         "startChar": 27,
@@ -81,6 +123,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ba1bf6_3d25425e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d10f4bbc_f2bfea0c",
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5aeda44d_f0e9e3ba",
@@ -94,6 +154,30 @@
       "writtenOn": "2025-09-29T15:27:23Z",
       "side": 1,
       "message": "this method has duplicated lines of code with sending to dmi for create event ,i suggest refactoring those relevant create methods to handle both create and delete\n\nsee line 86 sendCreateEventToDmis - you can modify this",
+      "range": {
+        "startLine": 166,
+        "startChar": 3,
+        "endLine": 183,
+        "endChar": 1
+      },
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d361cd8_b763656b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5aeda44d_f0e9e3ba",
       "range": {
         "startLine": 166,
         "startChar": 3,
@@ -127,6 +211,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d024ac_93f9ba1d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8ca4718c_77354208",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 100
+      },
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2395a07_aeecccd1",
@@ -140,6 +248,30 @@
       "writtenOn": "2025-09-29T15:27:23Z",
       "side": 1,
       "message": "i like switch case format but i suggest maybe can be handled in more readable way, extract to private methods\n\nsomething like\n\nswitch (eventType) {\n    case \"created\" -\u003e handleCreate();\n    case \"deleted\" -\u003e handleDelete();\n    default -\u003e log.warn....\n}",
+      "range": {
+        "startLine": 58,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 95
+      },
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d29823_9336c395",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-09-30T11:22:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2395a07_aeecccd1",
       "range": {
         "startLine": 58,
         "startChar": 7,
