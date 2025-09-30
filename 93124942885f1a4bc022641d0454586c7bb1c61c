@@ -33,6 +33,57 @@
       "message": "recheck",
       "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231b46ca_642c37ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-30T15:23:57Z",
+      "side": 1,
+      "message": "i understool why u had to write those methods.",
+      "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91e58d90_643380e1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-30T15:23:57Z",
+      "side": 1,
+      "message": "below methods needed to create some delta in the delta reports. ( closer to the real use case )",
+      "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b05e784_1925183b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-09-30T15:23:57Z",
+      "side": 1,
+      "message": "NB: can also add wtih grouping enabled as you are doing for the other tests.",
+      "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
