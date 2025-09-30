@@ -21,7 +21,8 @@
 import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
 import { Reader } from 'k6/x/kafka';
-import { testConfig,
+import {
+    testConfig,
     validateResponseAndRecordMetricWithOverhead,
     validateResponseAndRecordMetric,
     makeCustomSummaryReport,
@@ -42,23 +43,15 @@ import { passthroughRead, passthroughWrite, legacyBatchRead } from './common/pas
 import { sendBatchOfKafkaMessages } from './common/produce-avc-event.js';
 import { executeWriteDataJob } from "./common/write-data-job.js";
 
-let cmHandlesCreatedTrend = new Trend('cm_handles_created', false);
-let cmHandlesDeletedTrend = new Trend('cm_handles_deleted', false);
-let cmHandleIdSearchNoFilterTrend = new Trend('cm_handle_id_search_no_filter', true);
-let cmHandleIdSearchModuleFilterTrend = new Trend('cm_handle_id_search_module_filter', true);
-let cmHandleIdSearchPropertyFilterTrend = new Trend('cm_handle_id_search_property_filter', true);
-let cmHandleIdSearchCpsPathFilterTrend = new Trend('cm_handle_id_search_cps_path_filter', true);
-let cmHandleIdSearchTrustLevelFilterTrend = new Trend('cm_handle_id_search_trust_level_filter', true);
-let cmHandleSearchNoFilterTrend = new Trend('cm_handle_search_no_filter', true);
-let cmHandleSearchModuleFilterTrend = new Trend('cm_handle_search_module_filter', true);
-let cmHandleSearchPropertyFilterTrend = new Trend('cm_handle_search_property_filter', true);
-let cmHandleSearchCpsPathFilterTrend = new Trend('cm_handle_search_cps_path_filter', true);
-let cmHandleSearchTrustLevelFilterTrend = new Trend('cm_handle_search_trust_level_filter', true);
-let ncmpReadOverheadTrend = new Trend('ncmp_read_overhead', true);
-let ncmpWriteOverheadTrend = new Trend('ncmp_write_overhead', true);
-let legacyBatchReadTrend = new Trend('legacy_batch_read', false);
-let dcmWriteDataJobSmallTrend = new Trend('dcm_write_data_job_small', true);
-let dcmWriteDataJobLargeTrend = new Trend('dcm_write_data_job_large', true);
+
+const allKpiTrends = JSON.parse(open(`./config/kpi-trends.json`));
+const throughputTrends = ['cm_handles_created', 'cm_handles_deleted', 'legacy_batch_read'];
+const kpiTrendDeclarations = {};
+
+for (const [key, trendName] of Object.entries(allKpiTrends)) {
+    const isTimeTrend = !throughputTrends.includes(trendName);
+    kpiTrendDeclarations[key] = new Trend(trendName, isTimeTrend);
+}
 
 const EXPECTED_WRITE_RESPONSE_COUNT = 1;
 
@@ -90,7 +83,7 @@ export function setup() {
     const endTimeInMillis = Date.now();
     const totalRegistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
-    cmHandlesCreatedTrend.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
+    kpiTrendDeclarations.cmHandlesCreatedTrend.add(TOTAL_CM_HANDLES / totalRegistrationTimeInSeconds);
 }
 
 export function teardown() {
@@ -110,69 +103,69 @@ export function teardown() {
     const endTimeInMillis = Date.now();
     const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
-    cmHandlesDeletedTrend.add(numberOfDeregisteredCmHandles / totalDeregistrationTimeInSeconds);
+    kpiTrendDeclarations.cmHandlesDeletedTrend.add(numberOfDeregisteredCmHandles / totalDeregistrationTimeInSeconds);
 
     sleep(CONTAINER_COOL_DOWW_TIME_IN_SECONDS);
 }
 
 export function passthroughReadAltIdScenario() {
     const response = passthroughRead();
-    validateResponseAndRecordMetricWithOverhead(response, 200, 'passthrough read with alternate Id status equals 200', READ_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpReadOverheadTrend);
+    validateResponseAndRecordMetricWithOverhead(response, 200, 'passthrough read with alternate Id status equals 200', READ_DATA_FOR_CM_HANDLE_DELAY_MS, kpiTrendDeclarations.ncmpReadOverheadTrend);
 }
 
 export function passthroughWriteAltIdScenario() {
     const response = passthroughWrite();
-    validateResponseAndRecordMetricWithOverhead(response, 201, 'passthrough write with alternate Id status equals 201', WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, ncmpWriteOverheadTrend);
+    validateResponseAndRecordMetricWithOverhead(response, 201, 'passthrough write with alternate Id status equals 201', WRITE_DATA_FOR_CM_HANDLE_DELAY_MS, kpiTrendDeclarations.ncmpWriteOverheadTrend);
 }
 
 export function cmHandleIdSearchNoFilterScenario() {
     const response = executeCmHandleIdSearch('no-filter');
-    validateResponseAndRecordMetric(response, 200, 'CM handle ID no-filter search', TOTAL_CM_HANDLES, cmHandleIdSearchNoFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle ID no-filter search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleIdSearchNoFilterTrend);
 }
 
 export function cmHandleSearchNoFilterScenario() {
     const response = executeCmHandleSearch('no-filter');
-    validateResponseAndRecordMetric(response, 200, 'CM handle no-filter search', TOTAL_CM_HANDLES, cmHandleSearchNoFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle no-filter search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleSearchNoFilterTrend);
 }
 
 export function cmHandleIdSearchModuleScenario() {
     const response = executeCmHandleIdSearch('module');
-    validateResponseAndRecordMetric(response, 200, 'CM handle ID module search', TOTAL_CM_HANDLES, cmHandleIdSearchModuleFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle ID module search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleIdSearchModuleFilterTrend);
 }
 
 export function cmHandleSearchModuleScenario() {
     const response = executeCmHandleSearch('module');
-    validateResponseAndRecordMetric(response, 200, 'CM handle module search', TOTAL_CM_HANDLES, cmHandleSearchModuleFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle module search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleSearchModuleFilterTrend);
 }
 
 export function cmHandleIdSearchPropertyScenario() {
     const response = executeCmHandleIdSearch('property');
-    validateResponseAndRecordMetric(response, 200, 'CM handle ID property search', TOTAL_CM_HANDLES, cmHandleIdSearchPropertyFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle ID property search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleIdSearchPropertyFilterTrend);
 }
 
 export function cmHandleSearchPropertyScenario() {
     const response = executeCmHandleSearch('property');
-    validateResponseAndRecordMetric(response, 200, 'CM handle property search', TOTAL_CM_HANDLES, cmHandleSearchPropertyFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle property search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleSearchPropertyFilterTrend);
 }
 
 export function cmHandleIdSearchCpsPathScenario() {
     const response = executeCmHandleIdSearch('cps-path-for-ready-cm-handles');
-    validateResponseAndRecordMetric(response, 200, 'CM handle ID cps path search', TOTAL_CM_HANDLES, cmHandleIdSearchCpsPathFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle ID cps path search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleIdSearchCpsPathFilterTrend);
 }
 
 export function cmHandleSearchCpsPathScenario() {
     const response = executeCmHandleSearch('cps-path-for-ready-cm-handles');
-    validateResponseAndRecordMetric(response, 200, 'CM handle cps path search', TOTAL_CM_HANDLES, cmHandleSearchCpsPathFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle cps path search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleSearchCpsPathFilterTrend);
 }
 
 export function cmHandleIdSearchTrustLevelScenario() {
     const response = executeCmHandleIdSearch('trust-level');
-    validateResponseAndRecordMetric(response, 200, 'CM handle ID trust level search', TOTAL_CM_HANDLES, cmHandleIdSearchTrustLevelFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle ID trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleIdSearchTrustLevelFilterTrend);
 }
 
 export function cmHandleSearchTrustLevelScenario() {
     const response = executeCmHandleSearch('trust-level');
-    validateResponseAndRecordMetric(response, 200, 'CM handle trust level search', TOTAL_CM_HANDLES, cmHandleSearchTrustLevelFilterTrend);
+    validateResponseAndRecordMetric(response, 200, 'CM handle trust level search', TOTAL_CM_HANDLES, kpiTrendDeclarations.cmHandleSearchTrustLevelFilterTrend);
 }
 
 export function legacyBatchProduceScenario() {
@@ -190,7 +183,7 @@ export function legacyBatchConsumeScenario() {
         const messages = legacyBatchEventReader.consume({ limit: 220, expectTimeout: true });
         const timestamp2 = (new Date()).toISOString();
         console.debug(`✅ From ${timestamp1} to ${timestamp2} consumed ${messages.length} messages by legacy batch read\``);
-        legacyBatchReadTrend.add(messages.length);
+        kpiTrendDeclarations.legacyBatchReadTrend.add(messages.length);
     } catch (error) {
         const timestamp2 = (new Date()).toISOString();
         console.error(`❌ From ${timestamp1} to ${timestamp2} Consume error (legacy batch read): ${error.message}`);
@@ -199,12 +192,12 @@ export function legacyBatchConsumeScenario() {
 
 export function writeDataJobLargeScenario() {
     const response = executeWriteDataJob(100000);
-    validateResponseAndRecordMetric(response, 200, 'Large writeDataJob', EXPECTED_WRITE_RESPONSE_COUNT, dcmWriteDataJobLargeTrend);
+    validateResponseAndRecordMetric(response, 200, 'Large writeDataJob', EXPECTED_WRITE_RESPONSE_COUNT, kpiTrendDeclarations.dcmWriteDataJobLargeTrend);
 }
 
 export function writeDataJobSmallScenario() {
     const response = executeWriteDataJob(100);
-    validateResponseAndRecordMetric(response, 200, 'Small writeDataJob', EXPECTED_WRITE_RESPONSE_COUNT, dcmWriteDataJobSmallTrend);
+    validateResponseAndRecordMetric(response, 200, 'Small writeDataJob', EXPECTED_WRITE_RESPONSE_COUNT, kpiTrendDeclarations.dcmWriteDataJobSmallTrend);
 }
 
 export function produceAvcEventsScenario() {

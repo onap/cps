@@ -1,0 +1,19 @@
+{
+  "cmHandlesCreatedTrend": "cm_handles_created",
+  "cmHandlesDeletedTrend": "cm_handles_deleted",
+  "cmHandleIdSearchNoFilterTrend": "cm_handle_id_search_no_filter",
+  "cmHandleIdSearchModuleFilterTrend": "cm_handle_id_search_module_filter",
+  "cmHandleIdSearchPropertyFilterTrend": "cm_handle_id_search_property_filter",
+  "cmHandleIdSearchCpsPathFilterTrend": "cm_handle_id_search_cps_path_filter",
+  "cmHandleIdSearchTrustLevelFilterTrend": "cm_handle_id_search_trust_level_filter",
+  "cmHandleSearchNoFilterTrend": "cm_handle_search_no_filter",
+  "cmHandleSearchModuleFilterTrend": "cm_handle_search_module_filter",
+  "cmHandleSearchPropertyFilterTrend": "cm_handle_search_property_filter",
+  "cmHandleSearchCpsPathFilterTrend": "cm_handle_search_cps_path_filter",
+  "cmHandleSearchTrustLevelFilterTrend": "cm_handle_search_trust_level_filter",
+  "ncmpReadOverheadTrend": "ncmp_read_overhead",
+  "ncmpWriteOverheadTrend": "ncmp_write_overhead",
+  "legacyBatchReadTrend": "legacy_batch_read",
+  "dcmWriteDataJobSmallTrend": "dcm_write_data_job_small",
+  "dcmWriteDataJobLargeTrend": "dcm_write_data_job_large"
+}
