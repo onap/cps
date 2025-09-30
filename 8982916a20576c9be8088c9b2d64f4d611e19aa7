@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d52d83_bd747abc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-30T08:52:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edc7c83e_83c1b752",
+      "revId": "8982916a20576c9be8088c9b2d64f4d611e19aa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "834fcbe8_47fa5ca5",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-09-29T15:21:21Z",
       "side": 1,
       "message": "is this needed??",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "8982916a20576c9be8088c9b2d64f4d611e19aa7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f5d2680_809b390c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-30T08:52:33Z",
+      "side": 1,
+      "message": "nope, i used it to log some details during testing. Not needed anymore :)",
+      "parentUuid": "834fcbe8_47fa5ca5",
       "range": {
         "startLine": 30,
         "startChar": 0,
