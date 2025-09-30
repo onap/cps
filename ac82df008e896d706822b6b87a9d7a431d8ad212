@@ -22,6 +22,30 @@
       },
       "revId": "ac82df008e896d706822b6b87a9d7a431d8ad212",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d855938b_c6afae28",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/CpsDataUpdateEventsProducerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-30T08:30:59Z",
+      "side": 1,
+      "message": "in line #72 I added the .value() method to get the lower case string value of CREATE",
+      "parentUuid": "af79b33f_cf4d6449",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 99
+      },
+      "revId": "ac82df008e896d706822b6b87a9d7a431d8ad212",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

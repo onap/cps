@@ -16,6 +16,24 @@
       "message": "you removed this from this patch as boolean is false by default??\n\nhope you will be bringing back the configurable parameter in the coming patchsets.",
       "revId": "1693646ff1ae8dabefb7d5474701e027be898ade",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49f5387_14e6542b",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-09-30T08:30:59Z",
+      "side": 0,
+      "message": "as per our discussion on daily call I have added it back",
+      "parentUuid": "ed548377_095c3721",
+      "revId": "1693646ff1ae8dabefb7d5474701e027be898ade",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
