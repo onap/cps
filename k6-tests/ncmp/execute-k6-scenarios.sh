@@ -28,6 +28,7 @@ pushd "$(dirname "$0")" >/dev/null || {
 # ─────────────────────────────────────────────────────────────
 threshold_failures=0
 testProfile=$1
+deploymentType=$2
 summaryFile="${testProfile}Summary.csv"
 echo "Running $testProfile performance tests..."
 
@@ -36,7 +37,7 @@ echo "Running $testProfile performance tests..."
 # '$?' is immediately captures the exit code after k6 finishes,
 #   and assign it to k6_exit_code.
 # ─────────────────────────────────────────────────────────────
-k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile"  > "$summaryFile"
+k6 run ncmp-test-runner.js --quiet -e TEST_PROFILE="$testProfile" -e DEPLOYMENT_TYPE="$deploymentType" > "$summaryFile"
 k6_exit_code=$?
 
 case $k6_exit_code in

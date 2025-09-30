@@ -44,6 +44,3 @@ spec:
             limits:
               cpu: {{ .Values.zookeeper.resources.limits.cpu }}
               memory: {{ .Values.zookeeper.resources.limits.memory }}
-            requests:
-              cpu: {{ .Values.zookeeper.resources.requests.cpu }}
-              memory: {{ .Values.zookeeper.resources.requests.memory }}

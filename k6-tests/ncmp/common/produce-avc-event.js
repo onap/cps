@@ -20,12 +20,13 @@
 
 import {check} from 'k6';
 import {Writer, SchemaRegistry, SCHEMA_TYPE_STRING} from 'k6/x/kafka';
+import {KAFKA_BOOTSTRAP_SERVERS} from './utils.js';
 
 const testEventPayload = JSON.stringify(JSON.parse(open('../../resources/sampleAvcInputEvent.json')));
 const schemaRegistry = new SchemaRegistry();
 
 const kafkaProducer = new Writer({
-    brokers: ['localhost:9092'],
+    brokers: [KAFKA_BOOTSTRAP_SERVERS],
     topic: 'dmi-cm-events',
     autoCreateTopic: true,
     batchSize: 5000,
