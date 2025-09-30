@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a68f74ad_d42cddf3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-30T15:33:13Z",
+      "side": 1,
+      "message": "it seems you did more than adding an enum, please try to summarize the basic ideas that you implemented in this commit",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "a87e57a752936dc2515f193bb8909094c3cb9cb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7041b5e0_bbb71a9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-30T15:33:13Z",
+      "side": 1,
+      "message": "Some NB comments I have given.\n\nAlso, your unit tests doesn\u0027t cover all branches added, that is why the patchset hasn\u0027t verified. Please see the issue below:\n\nRule violated for bundle cps-ncmp-service: instructions covered ratio is 0.97, but expected minimum is 0.98",
+      "revId": "a87e57a752936dc2515f193bb8909094c3cb9cb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03000511_a5674a0d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-30T15:33:13Z",
+      "side": 1,
+      "message": "Please add some javadoc for this new interface... similar to aboves...",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "a87e57a752936dc2515f193bb8909094c3cb9cb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e70aa0b9_3130a1ba",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-09-30T15:33:13Z",
+      "side": 1,
+      "message": "You can extract this into a constant with meaningfull name",
+      "range": {
+        "startLine": 76,
+        "startChar": 87,
+        "endLine": 76,
+        "endChar": 96
+      },
+      "revId": "a87e57a752936dc2515f193bb8909094c3cb9cb2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
