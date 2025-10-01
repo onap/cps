@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a57f9662_74cecb0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-01T13:39:16Z",
+      "side": 1,
+      "message": "fine by me. you shared the screenshots offline.\nif still there is something left we can accomodate in the upcoming patchsets.",
+      "revId": "59233aab1cce1de03ea8b69fc2e313ab53a88d37",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
