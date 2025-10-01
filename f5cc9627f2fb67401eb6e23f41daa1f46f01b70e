@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "141a906a_65987fd7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T12:43:03Z",
+      "side": 1,
+      "message": "this is now to be up for a re groom with the team, errror scenario says that ncmp should do a \u0027fire and forget\u0027 for delete which means if it is the last one , just delete the whole entry already.",
+      "parentUuid": "cd2d9712_349c9e45",
+      "range": {
+        "startLine": 157,
+        "startChar": 11,
+        "endLine": 162,
+        "endChar": 9
+      },
+      "revId": "f5cc9627f2fb67401eb6e23f41daa1f46f01b70e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d10f4bbc_f2bfea0c",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
         "patchSetId": 5
