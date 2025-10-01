@@ -169,5 +169,24 @@
       "startTime": "923ms"
     }
   },
-  "thresholds": "#THRESHOLDS-PLACEHOLDER#"
+  "thresholds": {
+    "http_req_failed": ["rate <= 0.01"],
+    "cm_handles_created": ["avg >= 22"],
+    "cm_handles_deleted": ["avg >= 22"],
+    "cm_handle_id_search_no_filter": ["avg <= 2600"],
+    "cm_handle_id_search_module_filter": ["avg <= 2600"],
+    "cm_handle_id_search_property_filter": ["avg <= 2600"],
+    "cm_handle_id_search_cps_path_filter": ["avg <= 2600"],
+    "cm_handle_id_search_trust_level_filter": ["avg <= 2600"],
+    "cm_handle_search_no_filter": ["avg <= 24000"],
+    "cm_handle_search_module_filter": ["avg <= 24000"],
+    "cm_handle_search_property_filter": ["avg <= 24000"],
+    "cm_handle_search_cps_path_filter": ["avg <= 24000"],
+    "cm_handle_search_trust_level_filter": ["avg <= 24000"],
+    "ncmp_read_overhead": ["avg <= 40"],
+    "ncmp_write_overhead": ["avg <= 40"],
+    "legacy_batch_read": ["avg >= 150"],
+    "dcm_write_data_job_small": ["avg <= 500"],
+    "dcm_write_data_job_large": ["avg <= 30000"]
+  }
 }

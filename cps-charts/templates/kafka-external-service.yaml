@@ -11,7 +11,6 @@ spec:
     - name: internal
       port: {{ .Values.kafka.externalService.ports.internal }}
       targetPort: {{ .Values.kafka.externalService.ports.internal }}
-      nodePort: {{ .Values.kafka.externalService.nodePorts.internal }}
     - name: external
       port: {{ .Values.kafka.externalService.ports.external }}
       targetPort: {{ .Values.kafka.externalService.ports.external }}
