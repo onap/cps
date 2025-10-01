@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02c8dc9b_b40abd7d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/base/CpsPerfTestBase.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-01T07:36:23Z",
+      "side": 1,
+      "message": "addModifiedOpenRoadData and generateModifiedOpenRoadData generate slightly modified anchor and JSON string from openroadm data.\nremoveNodes removes every 2nd node to have deterministic randomness (I did not implement anything complex to have randomness in data as it would have caused different results in every run)\naddNodes adds data towards the end of the original openroadm data\nupdateNodes updates value of specific leaf nodes in the openoadm data.",
+      "parentUuid": "91e58d90_643380e1",
+      "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b05e784_1925183b",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
         "patchSetId": 12
@@ -82,6 +100,24 @@
       "writtenOn": "2025-09-30T15:23:57Z",
       "side": 1,
       "message": "NB: can also add wtih grouping enabled as you are doing for the other tests.",
+      "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96b0d9b_ad6af3c7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/DeltaPerfTest.groovy",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-01T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b05e784_1925183b",
       "revId": "93124942885f1a4bc022641d0454586c7bb1c61c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
