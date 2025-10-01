@@ -137,6 +137,52 @@
       },
       "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d68201a1_15dca513",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:23:28Z",
+      "side": 1,
+      "message": "\u0027Update status of a subscription\u0027",
+      "range": {
+        "startLine": 180,
+        "startChar": 9,
+        "endLine": 180,
+        "endChar": 78
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4444b7_4ba897cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:23:28Z",
+      "side": 1,
+      "message": "dont base the title on the method name strictly as it may change \n\nwhen: \u0027method to update status is called\u0027 should be fine",
+      "range": {
+        "startLine": 188,
+        "startChar": 15,
+        "endLine": 188,
+        "endChar": 44
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
