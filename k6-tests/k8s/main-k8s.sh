@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2024-2025 OpenInfra Foundation Europe. All rights reserved.
+# Copyright 2025 OpenInfra Foundation Europe. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,35 +20,39 @@ set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
 #set -o xtrace   # Uncomment for debugging
 
-# Default test profile is kpi.
+# the default test profile is kpi
 testProfile=${1:-kpi}
 
-# the default deployment type is dockerCompose
-deploymentType=${2:-dockerHosts}
+# the default deployment type is k8sHosts
+deploymentType=${2:-k8sHosts}
 
-# Cleanup handler: capture exit status, run teardown,
-# and restore directory, report failures, and exit with original code.
+# Cleanup handler:
+# 1- capture exit status
+# 2- run teardown
+# 3- restore directory
+# 4- report failures
+# 5- exit with original code
 on_exit() {
   rc=$?
-  ./teardown.sh "$testProfile"
+  ./teardown-k8s.sh
   popd
   echo "TEST FAILURES: $rc"
   exit $rc
 }
 
-# Call on_exit, on script exit (EXIT) or when interrupted (SIGINT, SIGTERM, SIGQUIT) to perform cleanup
+# call on_exit, on script exit (EXIT) or when interrupted (SIGINT, SIGTERM, SIGQUIT) to perform cleanup
 trap on_exit EXIT SIGINT SIGTERM SIGQUIT
-
 pushd "$(dirname "$0")" || exit 1
 
-# Install needed dependencies.
-source install-deps.sh
+echo "Test profile: $testProfile, and deployment type: $deploymentType provided for k8s cluster"
+# deploy cps charts
+helm install cps ../../cps-charts
+# wait for pods and services until becomes ready
+echo "Waiting for cps and ncmp pods to be ready..."
+kubectl wait --for=condition=available deploy -l app=cps-and-ncmp --timeout=120s
 
-echo "Test profile: $testProfile, and deployment type: $deploymentType provided for docker-compose cluster"
-
-# Run k6 test suite.
-./setup.sh "$testProfile"
-./ncmp/execute-k6-scenarios.sh "$testProfile" "$deploymentType"
+# run k6 test suite
+../ncmp/execute-k6-scenarios.sh "$testProfile" "$deploymentType"
 NCMP_RESULT=$?
 
 # Note that the final steps are done in on_exit function after this exit!
