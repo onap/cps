@@ -118,6 +118,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42c1fd6a_8133b2f9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:27:15Z",
+      "side": 1,
+      "message": "wont repeat but for this and other use- use full name \u0027data node selector\u0027",
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fef380b_ca06e4f7",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
         "patchSetId": 10
@@ -135,6 +152,23 @@
         "endLine": 34,
         "endChar": 55
       },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05a15de_12504824",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:27:15Z",
+      "side": 1,
+      "message": "see comment on line 188",
       "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
