@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e75aba00_4c24f194",
+        "filename": "cps-ncmp-rest/docs/openapi/components.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-01T14:27:49Z",
+      "side": 1,
+      "message": "Once the new variables are not in the request they will be ignored so the current requests will still work regardless of which model we use",
+      "parentUuid": "72f5ba41_9e599cda",
+      "range": {
+        "startLine": 288,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 34
+      },
+      "revId": "7a1817819f43a0d3165f5f2bf7ec46be7bb05b6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2773277_5152b757",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/api/inventory/models/NcmpServiceCmHandle.java",
         "patchSetId": 1
