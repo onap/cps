@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef1d071_1b78313f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "again this is repetitive code from line 55 ...",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 5
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc39df94_5ab09f51",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "might not need this, maybe call a re grooming with team for the updated requirement sign off agreed",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 109
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe36561e_8977b343",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "yes more readable",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbbcf83_b0786652",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "i think just \nUpdate subscription status should be enough",
+      "range": {
+        "startLine": 235,
+        "startChar": 7,
+        "endLine": 235,
+        "endChar": 90
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b635428a_dd5f5b47",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "data node selector",
+      "range": {
+        "startLine": 237,
+        "startChar": 31,
+        "endLine": 237,
+        "endChar": 43
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fef380b_ca06e4f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-01T13:21:41Z",
+      "side": 1,
+      "message": "dont do .*\n\nims urpised this was not flagged by sonar or checkstyle but maybe because its a groovy file",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
