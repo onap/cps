@@ -20,13 +20,15 @@
 
 package org.onap.cps.init;
 
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 
-public interface ModelLoader extends ApplicationListener<ApplicationStartedEvent> {
+public interface ModelLoader extends ApplicationListener<ApplicationReadyEvent> {
 
     @Override
-    void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent);
+    void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent);
 
     void onboardOrUpgradeModel();
+
+    String getName();
 }

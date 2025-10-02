@@ -20,14 +20,20 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
@@ -39,18 +45,46 @@ class DataSyncWatchdogSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleOperationUtils = Mock(ModuleOperationsUtils)
     def mockDataSyncSemaphores = Mock(IMap<String,Boolean>)
+    def mockReadinessManager = Mock(ReadinessManager)
 
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsModuleService, mockCpsDataService, mockModuleOperationUtils, mockDataSyncSemaphores)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsModuleService, mockCpsDataService, mockModuleOperationUtils, mockDataSyncSemaphores, mockReadinessManager)
 
     def compositeState = getCompositeState()
     def yangModelCmHandle1 = createSampleYangModelCmHandle('cm-handle-1')
     def yangModelCmHandle2 = createSampleYangModelCmHandle('cm-handle-2')
 
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
+
+    void setup() {
+        def logger = LoggerFactory.getLogger(DataSyncWatchdog)
+        logger.setLevel(Level.INFO)
+        logger.addAppender(logAppender)
+        logAppender.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(DataSyncWatchdog.class)).detachAndStopAllAppenders()
+    }
+
+    def 'Data sync watchdog is triggered'(){
+        given: 'the system is not ready to accept traffic'
+            mockReadinessManager.isReady() >> false
+        when: 'data sync is started'
+            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+        then: 'an event is logged with level INFO'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent.level == Level.INFO
+        and: 'the log indicates that the system is not ready yet'
+            assert loggingEvent.formattedMessage == 'System is not ready yet'
+    }
+
     def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED.'() {
         given: 'sample resource data'
             def resourceData = jsonString
+        and: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
         and: 'sync utilities returns a cm handle twice'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         and: 'we have the module and root nodes references to form the options field'
@@ -77,7 +111,9 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED without resource data.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'the module service returns the module and root nodes references to form the options field'
             mockCpsModuleService.getRootNodeReferences(_,'cm-handle-1') >> ['some-module-1:some-root-node']
@@ -92,7 +128,9 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data Sync for Cm Handle that is already being processed.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'the module service returns the module and root nodes references to form the options field'
             mockCpsModuleService.getRootNodeReferences(_,'cm-handle-1') >> ['some-module-1:some-root-node']
@@ -105,7 +143,9 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data sync handles exception during overall cm handle processing.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'semaphore map allows processing'
             mockDataSyncSemaphores.putIfAbsent('cm-handle-1', false, _, _) >> null
@@ -118,7 +158,9 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data sync handles exception during resource data retrieval.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'semaphore map allows processing'
             mockDataSyncSemaphores.putIfAbsent('cm-handle-1', false, _, _) >> null
@@ -152,5 +194,9 @@ class DataSyncWatchdogSpec extends Specification {
             .operationalDataStore(CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                 .build()).build())
         return compositeState
+    }
+
+    def getLoggingEvent() {
+        return logAppender.list[0]
     }
 }

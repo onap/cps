@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -65,11 +66,11 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
         applicationContext.close()
     }
 
-    def 'Onboard subscription model via application started event.'() {
+    def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use'
             mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
-        when: 'the application is started'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+        when: 'the application is ready'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
