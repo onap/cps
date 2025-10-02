@@ -23,23 +23,29 @@ package org.onap.cps.init.actuator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 @RequiredArgsConstructor
-public class ReadinessHealthIndicator implements HealthIndicator {
+public class ReadinessStateHealthIndicatorConfig {
 
     private final ReadinessManager readinessManager;
 
-    @Override
-    public Health health() {
-        if (readinessManager.isReady()) {
-            return Health.up()
-                    .withDetail("Startup Processes", "All startup processes completed")
-                    .build();
-        }
-        return Health.down()
-                .withDetail("Startup Processes active", readinessManager.getStartupProcessesAsString())
-                .build();
+    /**
+     * Overriding the default Readiness State Health Indicator.
+     *
+     * @return Health Status ( UP or DOWN )
+     */
+    @Bean("readinessStateHealthIndicator")
+    public HealthIndicator readinessStateHealthIndicator() {
+
+        return () -> {
+            if (readinessManager.isReady()) {
+                return Health.up().withDetail("Startup Processes", "All startup processes completed").build();
+            }
+            return Health.down().withDetail("Startup Processes active", readinessManager.getStartupProcessesAsString())
+                           .build();
+        };
     }
 }
