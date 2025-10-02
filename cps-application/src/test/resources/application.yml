@@ -226,10 +226,8 @@ ncmp:
 
     timers:
         advised-modules-sync:
-            initial-delay-ms: 40000
             sleep-time-ms: 5000
         cm-handle-data-sync:
-            initial-delay-ms: 40000
             sleep-time-ms: 30000
         model-loader:
             retry-time-ms: 1000

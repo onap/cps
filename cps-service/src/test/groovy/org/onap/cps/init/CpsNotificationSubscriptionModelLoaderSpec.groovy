@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -68,11 +69,11 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
         loggingListAppender.stop()
     }
 
-    def 'Onboard subscription model via application started event.'() {
+    def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is already present'
             mockCpsDataspaceService.getAllDataspaces() >> [new Dataspace('test')]
         when: 'the application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(CPS_DATASPACE_NAME, SCHEMASET_NAME, expectedYangResourcesToContents)
         and: 'the anchor service to create an anchor set is called once'

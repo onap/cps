@@ -33,6 +33,8 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.init.actuator.ModelLoaderRegistrationOnStartup
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
@@ -77,7 +79,6 @@ import java.util.concurrent.BlockingQueue
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
-@ActiveProfiles('module-sync-delayed')
 abstract class CpsIntegrationSpecBase extends Specification {
 
     static KafkaConsumer kafkaConsumer
@@ -157,6 +158,12 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
+    @Autowired
+    ModelLoaderRegistrationOnStartup modelLoaderRegistrationOnStartup
+
+    @Autowired
+    ReadinessManager readinessManager
+
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
 
@@ -199,6 +206,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
 
         DMI1_URL = String.format("http://%s:%s", mockDmiServer1.getHostName(), mockDmiServer1.getPort())
         DMI2_URL = String.format("http://%s:%s", mockDmiServer2.getHostName(), mockDmiServer2.getPort())
+
+        readinessManager.registerStartupProcess("dummy process indicating system is not ready yet")
     }
 
     def cleanup() {

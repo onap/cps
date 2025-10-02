@@ -37,6 +37,7 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
+import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -69,18 +70,18 @@ class AbstractModelLoaderSpec extends Specification {
         loggingListAppender.stop()
     }
 
-    def 'Application started event triggers onboarding/upgrade'() {
-        when: 'Application (started) event is triggered'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+    def 'Application ready event triggers onboarding/upgrade'() {
+        when: 'Application (ready) event is triggered'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
     }
 
-    def 'Application started event handles startup exception'() {
+    def 'Application ready event handles startup exception'() {
         given: 'a startup exception is thrown during model onboarding'
             objectUnderTest.onboardOrUpgradeModel() >> { throw new ModelOnboardingException('test message','details are not logged') }
-        when: 'Application (started) event is triggered'
-            objectUnderTest.onApplicationEvent(new ApplicationStartedEvent(new SpringApplication(), null, applicationContext, null))
+        when: 'Application (ready) event is triggered'
+            objectUnderTest.onApplicationEvent(new ApplicationReadyEvent(new SpringApplication(), null, applicationContext, null))
         then: 'the exception message is logged'
             def logs = loggingListAppender.list.toString()
             assert logs.contains('test message')
@@ -295,7 +296,12 @@ class AbstractModelLoaderSpec extends Specification {
 
         @Override
         void onboardOrUpgradeModel() {
-            // No operation needed for testing
+            // Not needed for testing
+        }
+
+        @Override
+        String getName() {
+            // Not needed for testing
         }
     }
 }

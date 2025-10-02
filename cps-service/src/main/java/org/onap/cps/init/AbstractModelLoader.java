@@ -43,7 +43,7 @@ import org.onap.cps.api.parameters.CascadeDeleteAllowed;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -60,17 +60,15 @@ public abstract class AbstractModelLoader implements ModelLoader {
     private static final int EXIT_CODE_ON_ERROR = 1;
 
     @Override
-    public void onApplicationEvent(final ApplicationStartedEvent applicationStartedEvent) {
-        final String modelLoaderName = this.getClass().getSimpleName();
-        readinessManager.registerStartupProcess(modelLoaderName);
+    public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
         try {
             onboardOrUpgradeModel();
         } catch (final Exception exception) {
             log.error("Exiting application due to failure in onboarding model: {} ",
                     exception.getMessage());
-            exitApplication(applicationStartedEvent);
+            exitApplication(applicationReadyEvent);
         } finally {
-            readinessManager.markStartupProcessComplete(modelLoaderName);
+            readinessManager.markStartupProcessComplete(getName());
         }
     }
 
@@ -192,6 +190,11 @@ public abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
+    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
+
     /**
      * Checks if the specified revision of a module is installed.
      */
@@ -202,6 +205,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
                         moduleRevision);
         return !moduleDefinitions.isEmpty();
     }
+
 
     Map<String, String> mapYangResourcesToContent(final String... resourceNames) {
         final Map<String, String> yangResourceContentByName = new HashMap<>();
@@ -221,7 +225,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
         }
     }
 
-    private void exitApplication(final ApplicationStartedEvent applicationStartedEvent) {
-        SpringApplication.exit(applicationStartedEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
+    private void exitApplication(final ApplicationReadyEvent applicationReadyEvent) {
+        SpringApplication.exit(applicationReadyEvent.getApplicationContext(), () -> EXIT_CODE_ON_ERROR);
     }
 }

@@ -173,7 +173,6 @@ ncmp:
 
   timers:
     advised-modules-sync:
-      initial-delay-ms: 0
       sleep-time-ms: 1000000
     cm-handle-data-sync:
       sleep-time-ms: 30000
