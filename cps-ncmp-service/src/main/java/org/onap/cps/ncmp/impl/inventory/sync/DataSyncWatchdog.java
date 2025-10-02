@@ -32,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsModuleService;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -52,14 +53,18 @@ public class DataSyncWatchdog {
     private final CpsDataService cpsDataService;
     private final ModuleOperationsUtils moduleOperationsUtils;
     private final IMap<String, Boolean> dataSyncSemaphores;
+    private final ReadinessManager readinessManager;
 
     /**
      * Execute Cm Handle poll which queries the cm handle state in 'READY' and Operational Datastore Sync State in
      * 'UNSYNCHRONIZED'.
      */
-    @Scheduled(initialDelayString = "${ncmp.timers.cm-handle-data-sync.initial-delay-ms:40000}",
-            fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.cm-handle-data-sync.sleep-time-ms:30000}")
     public void executeUnsynchronizedReadyCmHandleForInitialDataSync() {
+        if (!readinessManager.isReady()) {
+            log.info("System is not ready yet");
+            return;
+        }
         final List<YangModelCmHandle> unsynchronizedReadyCmHandles =
                 moduleOperationsUtils.getUnsynchronizedReadyCmHandles();
         unsynchronizedReadyCmHandles.stream().map(YangModelCmHandle::getId).forEach(this::synchronizeCmHandle);

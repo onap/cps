@@ -77,7 +77,6 @@ import java.util.concurrent.BlockingQueue
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
-@ActiveProfiles('module-sync-delayed')
 abstract class CpsIntegrationSpecBase extends Specification {
 
     static KafkaConsumer kafkaConsumer
