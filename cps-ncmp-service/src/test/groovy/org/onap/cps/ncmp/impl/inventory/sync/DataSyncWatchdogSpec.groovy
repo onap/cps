@@ -20,14 +20,20 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME
@@ -39,25 +45,53 @@ class DataSyncWatchdogSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockModuleOperationUtils = Mock(ModuleOperationsUtils)
     def mockDataSyncSemaphores = Mock(IMap<String,Boolean>)
+    def mockReadinessManager = Mock(ReadinessManager)
 
     def jsonString = '{"stores:bookstore":{"categories":[{"code":"01"}]}}'
 
-    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsModuleService, mockCpsDataService, mockModuleOperationUtils, mockDataSyncSemaphores)
+    def objectUnderTest = new DataSyncWatchdog(mockInventoryPersistence, mockCpsModuleService, mockCpsDataService, mockModuleOperationUtils, mockDataSyncSemaphores, mockReadinessManager)
 
     def compositeState = getCompositeState()
     def yangModelCmHandle1 = createSampleYangModelCmHandle('cm-handle-1')
     def yangModelCmHandle2 = createSampleYangModelCmHandle('cm-handle-2')
 
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
+
+    void setup() {
+        def logger = LoggerFactory.getLogger(DataSyncWatchdog)
+        logger.setLevel(Level.INFO)
+        logger.addAppender(logAppender)
+        logAppender.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(DataSyncWatchdog.class)).detachAndStopAllAppenders()
+    }
+
+    def 'Data sync watchdog is triggered'(){
+        given: 'the system is not ready to accept traffic'
+            mockReadinessManager.isReady() >> false
+        when: 'data sync is started'
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
+        then: 'an event is logged with level INFO'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent.level == Level.INFO
+        and: 'the log indicates that the system is not ready yet'
+            assert loggingEvent.formattedMessage == 'System is not ready yet'
+    }
+
     def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED.'() {
         given: 'sample resource data'
             def resourceData = jsonString
+        and: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
         and: 'sync utilities returns a cm handle twice'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1, yangModelCmHandle2]
         and: 'we have the module and root nodes references to form the options field'
             mockCpsModuleService.getRootNodeReferences(_, 'cm-handle-1') >> ['some-module-1:some-root-node']
             mockCpsModuleService.getRootNodeReferences(_, 'cm-handle-2') >> ['some-module-2:some-root-node']
         when: 'data sync poll is executed'
-            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
             1 * mockInventoryPersistence.getCmHandleState('cm-handle-1') >> compositeState
         and: 'the sync util returns first resource data'
@@ -77,12 +111,14 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data Sync for Cm Handle State in READY and Operational Sync State in UNSYNCHRONIZED without resource data.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'the module service returns the module and root nodes references to form the options field'
             mockCpsModuleService.getRootNodeReferences(_,'cm-handle-1') >> ['some-module-1:some-root-node']
         when: 'data sync poll is executed'
-            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
         then: 'the inventory persistence cm handle returns a composite state for the first cm handle'
             1 * mockInventoryPersistence.getCmHandleState('cm-handle-1') >> compositeState
         and: 'the sync util returns no resource data'
@@ -92,40 +128,46 @@ class DataSyncWatchdogSpec extends Specification {
     }
 
     def 'Data Sync for Cm Handle that is already being processed.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'the module service returns the module and root nodes references to form the options field'
             mockCpsModuleService.getRootNodeReferences(_,'cm-handle-1') >> ['some-module-1:some-root-node']
         and: 'the shared data sync semaphore indicate it is already being processed'
             mockDataSyncSemaphores.putIfAbsent('cm-handle-1', _, _, _) >> 'something (not null)'
         when: 'data sync poll is executed'
-            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
         then: 'it is NOT processed e.g. state is not requested'
             0 * mockInventoryPersistence.getCmHandleState(*_)
     }
 
     def 'Data sync handles exception during overall cm handle processing.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'semaphore map allows processing'
             mockDataSyncSemaphores.putIfAbsent('cm-handle-1', false, _, _) >> null
         and: 'getting cm handle state throws exception'
             mockInventoryPersistence.getCmHandleState('cm-handle-1') >> { throw new RuntimeException('some exception') }
         when: 'data sync poll is executed'
-            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
         then: 'no exception is thrown'
             noExceptionThrown()
     }
 
     def 'Data sync handles exception during resource data retrieval.'() {
-        given: 'sync utilities returns a cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'sync utilities returns a cm handle'
             mockModuleOperationUtils.getUnsynchronizedReadyCmHandles() >> [yangModelCmHandle1]
         and: 'semaphore map allows processing'
             mockDataSyncSemaphores.putIfAbsent('cm-handle-1', false, _, _) >> null
         and: 'module operations returns module and root nodes references'
             mockCpsModuleService.getRootNodeReferences(_,'cm-handle-1') >> ['some-module-1:some-root-node', 'some-module-2:some-root-node']
         when: 'data sync poll is executed'
-            objectUnderTest.executeUnsynchronizedReadyCmHandleForInitialDataSync()
+            objectUnderTest.scheduledUnsynchronizedReadyCmHandleForInitialDataSync()
         then: 'cm handle state is retrieved'
             1 * mockInventoryPersistence.getCmHandleState('cm-handle-1') >> compositeState
         and: 'first module sync succeeds'
@@ -152,5 +194,9 @@ class DataSyncWatchdogSpec extends Specification {
             .operationalDataStore(CompositeState.Operational.builder().dataStoreSyncState(DataStoreSyncState.SYNCHRONIZED)
                 .build()).build())
         return compositeState
+    }
+
+    def getLoggingEvent() {
+        return logAppender.list[0]
     }
 }

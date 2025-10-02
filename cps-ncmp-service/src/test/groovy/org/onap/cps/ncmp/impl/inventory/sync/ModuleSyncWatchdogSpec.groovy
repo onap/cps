@@ -21,7 +21,14 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import com.hazelcast.map.IMap
+import org.onap.cps.init.actuator.ReadinessManager
+import org.slf4j.LoggerFactory
+
 import java.util.concurrent.ArrayBlockingQueue
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import spock.lang.Specification
@@ -40,10 +47,39 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def mockCpsAndNcmpLock = Mock(IMap<String,String>)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsAndNcmpLock)
+    def mockReadinessManager = Mock(ReadinessManager)
+
+    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsAndNcmpLock, mockReadinessManager)
+
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
+
+    void setup() {
+        def logger = LoggerFactory.getLogger(ModuleSyncWatchdog)
+        logger.setLevel(Level.INFO)
+        logger.addAppender(logAppender)
+        logAppender.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(ModuleSyncWatchdog.class)).detachAndStopAllAppenders()
+    }
+
+    def 'Module sync watchdog is triggered'(){
+        given: 'the system is not ready to accept traffic'
+            mockReadinessManager.isReady() >> false
+        when: 'module sync is started'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
+        then: 'an event is logged with level INFO'
+            def loggingEvent = getLoggingEvent()
+            assert loggingEvent.level == Level.INFO
+        and: 'the log indicates that the system is not ready yet'
+            assert loggingEvent.formattedMessage == 'System is not ready yet'
+    }
 
     def 'Module sync advised cm handles with #scenario.'() {
-        given: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(numberOfAdvisedCmHandles)
         and: 'module sync utilities returns no failed (locked) cm handles'
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
@@ -66,7 +102,9 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Module sync cm handles starts with no available threads.'() {
-        given: 'module sync utilities returns a advise cm handles'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns a advise cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue can be locked'
             mockCpsAndNcmpLock.tryLock('workQueueLock') >> true
@@ -77,7 +115,9 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Module sync advised cm handle already handled by other thread.'() {
-        given: 'module sync utilities returns an advised cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue can be locked'
             mockCpsAndNcmpLock.tryLock('workQueueLock') >> true
@@ -90,7 +130,9 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Module sync with previous cm handle(s) left in work queue.'() {
-        given: 'there is still a cm handle in the queue'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'there is still a cm handle in the queue'
             moduleSyncWorkQueue.offer('ch-1')
         when: 'module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
@@ -99,7 +141,9 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Reset failed cm handles.'() {
-        given: 'module sync utilities returns failed cm handles'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns failed cm handles'
             def failedCmHandles = [new YangModelCmHandle()]
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> failedCmHandles
         when: 'reset failed cm handles is started'
@@ -109,7 +153,9 @@ class ModuleSyncWatchdogSpec extends Specification {
     }
 
     def 'Module Sync Locking.'() {
-        given: 'module sync utilities returns an advised cm handle'
+        given: 'system is ready to accept traffic'
+            mockReadinessManager.isReady() >> true
+        and: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'can be locked is : #canLock'
             mockCpsAndNcmpLock.tryLock('workQueueLock') >> canLock
@@ -127,5 +173,9 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def createCmHandleIds(numberOfCmHandles) {
         return (numberOfCmHandles > 0) ? (1..numberOfCmHandles).collect { 'ch-'+it } : []
+    }
+
+    def getLoggingEvent() {
+        return logAppender.list[0]
     }
 }

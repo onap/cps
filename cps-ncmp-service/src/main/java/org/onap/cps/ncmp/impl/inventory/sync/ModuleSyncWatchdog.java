@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.concurrent.BlockingQueue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -45,18 +46,32 @@ public class ModuleSyncWatchdog {
     private final ModuleSyncTasks moduleSyncTasks;
     @Qualifier("cpsAndNcmpLock")
     private final IMap<String, String> cpsAndNcmpLock;
+    private final ReadinessManager readinessManager;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
+
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
      * Queue and create batches to process them asynchronously.
      * This method will only finish when there are no more 'ADVISED' cm handles in the DB.
-     * This method is triggered on a configurable interval (ncmp.timers.advised-modules-sync.sleep-time-ms)
+     * This method is triggered on a configurable interval (ncmp.timers.advised-modules-sync.sleep-time-ms) and when the
+     * system is in the ready state.
      */
-    @Scheduled(initialDelayString = "${ncmp.timers.advised-modules-sync.initial-delay-ms:40000}",
-               fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
+    @Scheduled(fixedDelayString = "${ncmp.timers.advised-modules-sync.sleep-time-ms:5000}")
+    public void scheduledModuleSyncAdvisedCmHandles() {
+        if (!readinessManager.isReady()) {
+            log.info("System is not ready yet");
+            return;
+        }
+        moduleSyncAdvisedCmHandles();
+    }
+
+    /**
+     * This method is used when we dont want the scheduled behaviour.
+     * Mainly used in the integration testware.
+     */
     public void moduleSyncAdvisedCmHandles() {
         log.debug("Processing module sync watchdog waking up.");
         populateWorkQueueIfNeeded();

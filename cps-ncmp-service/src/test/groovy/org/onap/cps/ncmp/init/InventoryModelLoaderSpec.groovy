@@ -32,6 +32,7 @@ import org.onap.cps.api.model.Dataspace
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -79,8 +80,8 @@ class InventoryModelLoaderSpec extends Specification {
             mockCpsAdminService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
         and: 'module revision does not exist'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> Collections.emptyList()
-        when: 'the application is started'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+        when: 'the application is ready'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the module service is used to create the new schema set from the correct resource'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'dmi-registry-2024-02-23', expectedPreviousYangResourceToContentMap)
         and: 'No schema sets are being removed by the module service (yet)'
