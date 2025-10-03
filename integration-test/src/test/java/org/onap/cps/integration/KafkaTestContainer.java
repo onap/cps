@@ -24,7 +24,10 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.testcontainers.kafka.ConfluentKafkaContainer;
 
 /**
@@ -67,6 +70,23 @@ public class KafkaTestContainer extends ConfluentKafkaContainer {
 
     public static KafkaConsumer getConsumer(final String consumerGroupId, final Object valueDeserializer) {
         return new KafkaConsumer<>(consumerProperties(consumerGroupId, valueDeserializer));
+    }
+
+    /**
+     * Create kafka producer.
+     *
+     * @param clientId        client id
+     * @param valueSerializer value serializer
+     * @return                kafka test producer
+     */
+    public static KafkaProducer createProducer(final String clientId, final Object valueSerializer) {
+        final Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaTestContainer.getBootstrapServers());
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, valueSerializer);
+        configProps.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
+
+        return new KafkaProducer<>(configProps);
     }
 
     @Override
