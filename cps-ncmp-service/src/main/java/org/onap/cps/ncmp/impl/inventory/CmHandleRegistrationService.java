@@ -408,7 +408,8 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getModuleSetTag(),
             ncmpServiceCmHandle.getAlternateId(),
             ncmpServiceCmHandle.getDataProducerIdentifier(),
-            ncmpServiceCmHandle.getCmHandleStatus());
+            ncmpServiceCmHandle.getCmHandleStatus(),
+            ncmpServiceCmHandle.getDmiProperties());
     }
 
     void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
