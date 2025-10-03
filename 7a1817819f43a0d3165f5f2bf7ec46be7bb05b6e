@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97cd6d7c_66313062",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-03T09:52:25Z",
+      "side": 1,
+      "message": "checked the request and response. looks similar to what we have.\nso no NBC.",
+      "revId": "7a1817819f43a0d3165f5f2bf7ec46be7bb05b6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72f5ba41_9e599cda",
