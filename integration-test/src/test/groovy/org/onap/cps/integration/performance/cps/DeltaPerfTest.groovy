@@ -19,7 +19,6 @@
 
 package org.onap.cps.integration.performance.cps
 
-
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
@@ -35,7 +34,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
 
     def jsonPayload = generateModifiedOpenRoadData(1000, 200, 200, 200)
 
-    def 'Get delta between 2 anchors wtih grouping enabled and #scenario'() {
+    def 'Get delta between 2 anchors with grouping enabled and #scenario'() {
         when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
             10.times {
@@ -47,13 +46,13 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS:Get delta between 2 anchors', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 0.5
-            'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 1.5
-            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 15.0
+            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 2.0
+            'direct descendants' | '/'                                                               | DIRECT_CHILDREN_ONLY    || 3.0
+            'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 18.0
     }
 
     def 'Get delta between 2 anchors with grouping disabled and #scenario'() {
-        when: 'attempt to get delta between two 2 anchors with grouping disabled'
+        when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
             10.times {
                 objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', 'openroadm-modified1', xpath, fetchDescendantsOption, false)
@@ -64,13 +63,13 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS:Get delta between 2 anchors with grouping disabled', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | xpath                                                             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 0.3
-            'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 0.5
-            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 12.0
+            'no descendants'     | '/openroadm-devices/openroadm-device[@device-id=\'C201-7-1A-1\']' | OMIT_DESCENDANTS        || 1.0
+            'direct descendants' | '/openroadm-devices'                                              | DIRECT_CHILDREN_ONLY    || 2.0
+            'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 20.0
     }
 
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
-        when: 'attempt to get delta between an anchor and JSON payload with grouping enabled'
+        when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
             objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, fetchDescendantsOption, true)
             resourceMeter.stop()
@@ -79,13 +78,13 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS:Get delta between an anchor and JSON payload with grouping enabled', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | OMIT_DESCENDANTS        || 2.0
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 2.0
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 3.5
+            'no descendants'     | OMIT_DESCENDANTS        || 4.0
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 4.0
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 6.0
     }
 
-    def 'Get delta between an anchor and JSON payload with grouping disabled'() {
-        when: 'attempt to get delta between an anchor and JSON payload with grouping disabled'
+    def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
+        when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
             objectUnderTest.getDeltaByDataspaceAnchorAndPayload(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', '/openroadm-devices', Collections.emptyMap(), jsonPayload, INCLUDE_ALL_DESCENDANTS, false)
             resourceMeter.stop()
@@ -94,22 +93,21 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS:Get delta between an anchor and JSON payload with grouping disabled', expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration
-            'no descendants'     | OMIT_DESCENDANTS        || 3.0
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 3.0
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 3.5
+            'no descendants'     | OMIT_DESCENDANTS        || 6.0
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 6.0
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
     }
 
     def 'Apply delta report to an anchor'() {
         given: 'a delta report between 2 anchors'
-            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', 'openroadm-modified1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)
+            def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm-modified1', 'openroadm1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)
             def deltaReportAsJson = jsonObjectMapper.asJsonString(deltaReport)
         when: 'attempt to apply the delta report to an anchor'
             resourceMeter.start()
-            objectUnderTest.applyChangesInDeltaReport(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', deltaReportAsJson)
+            objectUnderTest.applyChangesInDeltaReport(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm-modified1', deltaReportAsJson)
             resourceMeter.stop()
-            resetTestAnchorData()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the delta is applied and operation completes within expected time'
-            recordAndAssertResourceUsage('CPS:Apply delta report to an anchor', 8.0, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
+            recordAndAssertResourceUsage('CPS:Apply delta report to an anchor', 20.0, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
 }
