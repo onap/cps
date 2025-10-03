@@ -100,7 +100,7 @@ class NcmpPerfTestBase extends PerfTestBase {
     }
 
     def createCmDataSubscriptionsSchemaSet() {
-        def modelAsString = readResourceDataFile('cm-data-subscriptions/cm-data-subscriptions@2023-09-21.yang')
+        def modelAsString = readResourceDataFile('datajobs/cm-data-subscriptions@2023-09-21.yang')
         cpsModuleService.createSchemaSet(NCMP_PERFORMANCE_TEST_DATASPACE, CM_DATA_SUBSCRIPTIONS_SCHEMA_SET, [registry: modelAsString])
     }
 
