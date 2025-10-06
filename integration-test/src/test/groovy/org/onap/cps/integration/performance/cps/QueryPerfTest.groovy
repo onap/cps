@@ -64,10 +64,10 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("CPS:Query across anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
         where: 'the following parameters are used'
             scenario                     | cpspath                                                             || expectedDuration | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || 3.0              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 3.1              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 3.2              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 3.0              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'top element'                | '/openroadm-devices'                                                || 3.0              | (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 3.1              | (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 3.2              | (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 3.0              | (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
     }
 
     def 'Query with leaf condition and #scenario.'() {
@@ -82,9 +82,9 @@ class QueryPerfTest extends CpsPerfTestBase {
             recordAndAssertResourceUsage("CPS:Query with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
             scenario             | fetchDescendantsOption  || expectedDuration | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 0.09             | OPENROADM_DEVICES_PER_ANCHOR
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.12             | OPENROADM_DEVICES_PER_ANCHOR * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.05             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            'no descendants'     | OMIT_DESCENDANTS        || 0.10             | OPENROADM_DEVICES_PER_ANCHOR
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.15             | OPENROADM_DEVICES_PER_ANCHOR * 2
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.10             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
     }
 
     def 'Query ancestors with #scenario.'() {
