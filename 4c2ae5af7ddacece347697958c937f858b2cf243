@@ -33,6 +33,23 @@
       "message": "recheck",
       "revId": "4c2ae5af7ddacece347697958c937f858b2cf243",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb1dda2_497ffd48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-06T14:20:43Z",
+      "side": 1,
+      "message": "can you remind me if there is , where we can see definitions of different deployment types we have?",
+      "revId": "4c2ae5af7ddacece347697958c937f858b2cf243",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
