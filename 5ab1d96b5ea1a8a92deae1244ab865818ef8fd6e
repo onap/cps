@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662f2534_6fb71c68",
+        "filename": "k6-tests/ncmp/config/kpi-trends.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "renem to \u0027trendNames\u0027 no need for map just a list of trend names will do",
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a30de7_3d111a34",
+        "filename": "k6-tests/ncmp/config/kpi-trends.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "no need for mapping, just convert to a list of \"trendNames\"\nThe trend \u0027objects\u0027 can be the same as the trend names",
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa46c34_019bb40f",
+        "filename": "k6-tests/ncmp/config/summary-report-metadata.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "use the name we had before you remove this metadata:  scenario-metadata.json",
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fce2a1_dd8bf3fc",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "can you map all $1 - $6 to variables with more readable names\n(like what happens on lien #30)",
+      "range": {
+        "startLine": 64,
+        "startChar": 25,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d074235b_0e421a90",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "no need to name,  inline on line #51",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "077b0804_89c5acd1",
+        "filename": "k6-tests/ncmp/ncmp-test-runner.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:07:54Z",
+      "side": 1,
+      "message": "no need for mapping, just use same name see comment on json file",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "5ab1d96b5ea1a8a92deae1244ab865818ef8fd6e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
