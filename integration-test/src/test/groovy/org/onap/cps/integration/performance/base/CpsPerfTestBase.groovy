@@ -33,6 +33,7 @@ class CpsPerfTestBase extends PerfTestBase {
 
     static final def CPS_PERFORMANCE_TEST_DATASPACE = 'cpsPerformanceDataspace'
     static final def OPENROADM_ANCHORS = 3
+    static final def MODIFIED_OPENROADM_ANCHORS = 1
     static final def OPENROADM_DEVICES_PER_ANCHOR = 1000
     static final def OPENROADM_DATANODES_PER_DEVICE = 86
 
