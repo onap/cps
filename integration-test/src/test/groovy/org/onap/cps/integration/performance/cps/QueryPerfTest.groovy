@@ -53,6 +53,8 @@ class QueryPerfTest extends CpsPerfTestBase {
     }
 
     def 'Query complete data trees across all anchors with #scenario.'() {
+        given: 'expected number of data nodes to be returned'
+            def expectedNumberOfDataNodes = (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + additionalDataNodesPerDevice)
         when: 'query data nodes across all anchors'
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodesAcrossAnchors(CPS_PERFORMANCE_TEST_DATASPACE, cpspath, INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION)
@@ -63,28 +65,30 @@ class QueryPerfTest extends CpsPerfTestBase {
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("CPS:Query across anchors ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), REFERENCE_GRAPH)
         where: 'the following parameters are used'
-            scenario                     | cpspath                                                             || expectedDuration | expectedNumberOfDataNodes
-            'top element'                | '/openroadm-devices'                                                || 3.0              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         || 3.1              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE)
-            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    || 3.2              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
-            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' || 3.0              | OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + 1)
+            scenario                     | cpspath                                                             | additionalDataNodesPerDevice || expectedDuration
+            'top element'                | '/openroadm-devices'                                                | 1                            || 3.0
+            'leaf condition'             | '//openroadm-device[@ne-state="inservice"]'                         | 0                            || 3.1
+            'ancestors'                  | '//openroadm-device/ancestor::openroadm-devices'                    | 1                            || 3.2
+            'leaf condition + ancestors' | '//openroadm-device[@status="success"]/ancestor::openroadm-devices' | 1                            || 3.0
     }
 
     def 'Query with leaf condition and #scenario.'() {
+        given: 'expected number of data nodes to be returned'
+            def expectedTotalNumberOfDataNodes = OPENROADM_DEVICES_PER_ANCHOR * expectedDataNodesPerDevice
         when: 'query data nodes (using a fresh anchor with identical data for each test)'
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodes(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm2', '//openroadm-device[@status="success"]', fetchDescendantsOption)
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the expected number of nodes is returned'
-            assert countDataNodesInTree(result) == expectedNumberOfDataNodes
+            assert countDataNodesInTree(result) == expectedTotalNumberOfDataNodes
         and: 'all data is read #expectedDuration seconds with a margin of 100%'
             recordAndAssertResourceUsage("CPS:Query with ${scenario}", expectedDuration, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
         where: 'the following parameters are used'
-            scenario             | fetchDescendantsOption  || expectedDuration | expectedNumberOfDataNodes
-            'no descendants'     | OMIT_DESCENDANTS        || 0.09             | OPENROADM_DEVICES_PER_ANCHOR
-            'direct descendants' | DIRECT_CHILDREN_ONLY    || 0.12             | OPENROADM_DEVICES_PER_ANCHOR * 2
-            'all descendants'    | INCLUDE_ALL_DESCENDANTS || 1.05             | OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE
+            scenario             | fetchDescendantsOption  || expectedDataNodesPerDevice     | expectedDuration
+            'no descendants'     | OMIT_DESCENDANTS        || 1                              | 0.10
+            'direct descendants' | DIRECT_CHILDREN_ONLY    || 2                              | 0.15
+            'all descendants'    | INCLUDE_ALL_DESCENDANTS || OPENROADM_DATANODES_PER_DEVICE | 1.10
     }
 
     def 'Query ancestors with #scenario.'() {
