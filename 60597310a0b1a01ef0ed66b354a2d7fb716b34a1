@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "521cb4db_9ac441ad",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "watch out for unnecessary double \" instead of single \u0027",
+      "range": {
+        "startLine": 69,
+        "startChar": 64,
+        "endLine": 69,
+        "endChar": 65
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79c2270_0eb2bab2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "(legacy) this is not needed for Groovy (IntelliJ will warn but is not relevant)",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 25
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d38d565_0c50b974",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "why being so specific about A (I see no other sub in this test) Is it needed/relevant to other tests this test class? if not just refer to \u0027a subscription\u0027 in the explanation and \u0027my data job id\u0027 (or similar) in the relevant property",
+      "range": {
+        "startLine": 87,
+        "startChar": 28,
+        "endLine": 87,
+        "endChar": 31
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d033bee_ea10a312",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "could be inlined at #96",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c30a0598_cef1dfe9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "could be inlined too especially if you choose an easy id: myDataJob",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 26
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6adc4932_b6d14296",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "could be inlined at #98\nI think this needs more explanation is it is relevant for the expectation so maybe split out like so\nand: \u0027a data node selectors with 3 paths affecting DMI-1 and DMI-2\u0027\n   eventPayload \u003d eventPayload.replace(\u0027#dataNodeSelector\u0027, .... )",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f862f6_bd4be834",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "is this 3 because you have 3 different datanode selectors?\nif so mention this expected number in the description",
+      "range": {
+        "startLine": 105,
+        "startChar": 109,
+        "endLine": 105,
+        "endChar": 110
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5e4662_9014add2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "you not really counting event just unique correlation ids...\nwhich is OK but the description is a bit misleading\ni split like so:\nand: \u0027get correlations ids from the events sent to the DMIs\n...\nand: \u0027there is a correlation id (event) for DMI-1 and DMI-2\u0027",
+      "range": {
+        "startLine": 106,
+        "startChar": 14,
+        "endLine": 106,
+        "endChar": 38
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "674452c7_35f6fb4a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "repeated 3x, time for a closure to handle this?!",
+      "range": {
+        "startLine": 135,
+        "startChar": 3,
+        "endLine": 144,
+        "endChar": 86
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb63de7e_c3ef4924",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "no need to name, just return directly",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 28
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a57d0a2c_682e271f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-06T14:50:49Z",
+      "side": 1,
+      "message": "don\u0027t think this part is needed?!\n(looks like AI suggestion ?!)",
+      "range": {
+        "startLine": 262,
+        "startChar": 28,
+        "endLine": 262,
+        "endChar": 47
+      },
+      "revId": "60597310a0b1a01ef0ed66b354a2d7fb716b34a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
