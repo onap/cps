@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83066fb3_e30b2de1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cef1d071_1b78313f",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 5
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc39df94_5ab09f51",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-01T13:21:41Z",
       "side": 1,
       "message": "might not need this, maybe call a re grooming with team for the updated requirement sign off agreed",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 109
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a734b3a5_d7c7ebe8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fc39df94_5ab09f51",
       "range": {
         "startLine": 80,
         "startChar": 12,
@@ -93,6 +141,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63e13e48_7bb6405d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2bbbcf83_b0786652",
+      "range": {
+        "startLine": 235,
+        "startChar": 7,
+        "endLine": 235,
+        "endChar": 90
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b635428a_dd5f5b47",
@@ -106,6 +178,30 @@
       "writtenOn": "2025-10-01T13:21:41Z",
       "side": 1,
       "message": "data node selector",
+      "range": {
+        "startLine": 237,
+        "startChar": 31,
+        "endLine": 237,
+        "endChar": 43
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3885976_f5eb0c99",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b635428a_dd5f5b47",
       "range": {
         "startLine": 237,
         "startChar": 31,
@@ -133,6 +229,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b88cecbd_56c46781",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42c1fd6a_8133b2f9",
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fef380b_ca06e4f7",
@@ -146,6 +260,30 @@
       "writtenOn": "2025-10-01T13:21:41Z",
       "side": 1,
       "message": "dont do .*\n\nims urpised this was not flagged by sonar or checkstyle but maybe because its a groovy file",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29941e66_76f75dc0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3fef380b_ca06e4f7",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -173,6 +311,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85d934b_5f8e2069",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f05a15de_12504824",
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d68201a1_15dca513",
@@ -196,6 +352,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e1fd6f_d085b5f9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d68201a1_15dca513",
+      "range": {
+        "startLine": 180,
+        "startChar": 9,
+        "endLine": 180,
+        "endChar": 78
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af4444b7_4ba897cd",
@@ -209,6 +389,30 @@
       "writtenOn": "2025-10-01T13:23:28Z",
       "side": 1,
       "message": "dont base the title on the method name strictly as it may change \n\nwhen: \u0027method to update status is called\u0027 should be fine",
+      "range": {
+        "startLine": 188,
+        "startChar": 15,
+        "endLine": 188,
+        "endChar": 44
+      },
+      "revId": "b54a0f1d33fe132562c3d90cbef39a88d5d8b4a3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae40781_033df1b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-06T15:27:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af4444b7_4ba897cd",
       "range": {
         "startLine": 188,
         "startChar": 15,
