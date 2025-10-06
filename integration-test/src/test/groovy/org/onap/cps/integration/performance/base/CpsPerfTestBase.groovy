@@ -29,8 +29,6 @@ import org.onap.cps.rest.utils.MultipartFileUtil
 import org.onap.cps.utils.ContentType
 import org.springframework.web.multipart.MultipartFile
 
-import java.time.OffsetDateTime
-
 class CpsPerfTestBase extends PerfTestBase {
 
     static final def CPS_PERFORMANCE_TEST_DATASPACE = 'cpsPerformanceDataspace'
@@ -142,13 +140,6 @@ class CpsPerfTestBase extends PerfTestBase {
             }
             return JsonOutput.toJson(jsonNode)
         }
-    }
-
-    def resetTestAnchorData() {
-        cpsAnchorService.deleteAnchor(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1')
-        def data = generateOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR)
-        cpsAnchorService.createAnchor(CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm1')
-        cpsDataService.saveData(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm1', data, OffsetDateTime.now())
     }
 
 }
