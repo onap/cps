@@ -1,6 +1,63 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "624d8b9a_9e9893a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-07T14:59:45Z",
+      "side": 1,
+      "message": "fine by me mostly.\njust looking for an answer for my understanding.",
+      "revId": "77c717b3f0e87bd2249757b50953ac93f88e2063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048f8ef9_12248475",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-07T14:59:45Z",
+      "side": 1,
+      "message": "oh. we forgot about this coz I see pullPolicy present for other images.\nits good that Ger pointed it out.",
+      "revId": "77c717b3f0e87bd2249757b50953ac93f88e2063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a70ae4_372a9b10",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-07T14:59:45Z",
+      "side": 1,
+      "message": "NB: plz elaborate this for my understanding.",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "77c717b3f0e87bd2249757b50953ac93f88e2063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd4b3782_52248efd",
