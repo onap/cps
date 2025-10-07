@@ -16,6 +16,23 @@
       "message": "manual testing",
       "revId": "8117d3b8d7ce7a255ba365253cf5f910954c17a1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8adb8375_b95326d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7833
+      },
+      "writtenOn": "2025-10-07T06:11:56Z",
+      "side": 1,
+      "message": "please release",
+      "revId": "8117d3b8d7ce7a255ba365253cf5f910954c17a1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ],
   "submitRequirementResults": [
