@@ -20,15 +20,27 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.RequiredDmiService;
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
+import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.rest.provmns.model.ConfigurationManagementDeleteInput;
 import org.onap.cps.ncmp.rest.provmns.model.Resource;
 import org.onap.cps.ncmp.rest.provmns.model.Scope;
 import org.onap.cps.ncmp.rest.util.ProvMnsRequestParameters;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +51,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("${rest.api.provmns-base-path}")
 @RequiredArgsConstructor
 public class ProvMnsController implements ProvMnS {
+
+    private final InventoryPersistence inventoryPersistence;
+    private final AlternateIdMatcher alternateIdMatcher;
+    private final PolicyExecutor policyExecutor;
+    private final DmiRestClient dmiRestClient;
+    private final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Replaces a complete single resource or creates it if it does not exist.
@@ -109,6 +127,40 @@ public class ProvMnsController implements ProvMnS {
     public ResponseEntity<Void> deleteMoi(final HttpServletRequest httpServletRequest) {
         final ProvMnsRequestParameters requestParameters =
             ProvMnsRequestParameters.toProvMnsRequestParameters(httpServletRequest);
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+        final String cmHandleId = alternateIdMatcher.getCmHandleId(requestParameters.getClassName());
+        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
+
+        if (!yangModelCmHandle.getDataProducerIdentifier().isEmpty()
+                && Objects.equals(CmHandleState.READY, yangModelCmHandle.getCompositeState().getCmHandleState())) {
+
+            final ConfigurationManagementDeleteInput configurationManagementDeleteInput =
+                                                               getConfigurationManagementDeleteInput(requestParameters);
+
+            policyExecutor.checkPermission(yangModelCmHandle,
+                                           OperationType.DELETE,
+                                null,
+                                           requestParameters.getUriLdnFirstPart(),
+                                           jsonObjectMapper.asJsonString(configurationManagementDeleteInput));
+
+            final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
+                    .fixedPathSegment(configurationManagementDeleteInput.getTargetIdentifier())
+                    .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(),
+                                                 "/ProvMns");
+
+            dmiRestClient.synchronousDeleteOperationWithJsonData(RequiredDmiService.DATA,
+                    urlTemplateParameters, OperationType.DELETE);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private static ConfigurationManagementDeleteInput getConfigurationManagementDeleteInput(
+                                                                     final ProvMnsRequestParameters requestParameters) {
+        final String targetIdentifier = String.format("/%s/%s=%s", requestParameters.getUriLdnFirstPart(),
+                                                                   requestParameters.getClassName(),
+                                                                   requestParameters.getId());
+
+        return new ConfigurationManagementDeleteInput(OperationType.DELETE.getOperationName(),
+                                                targetIdentifier);
     }
 }
