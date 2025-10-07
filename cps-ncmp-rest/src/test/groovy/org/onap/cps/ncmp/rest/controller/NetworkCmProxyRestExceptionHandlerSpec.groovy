@@ -35,7 +35,10 @@ import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
@@ -110,6 +113,16 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    AlternateIdMatcher alternateIdMatcher = Mock()
+
+    @SpringBean
+    DmiRestClient dmiRestClient = Mock()
+
+    @SpringBean
+    PolicyExecutor policyExecutor = Mock()
+
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp
