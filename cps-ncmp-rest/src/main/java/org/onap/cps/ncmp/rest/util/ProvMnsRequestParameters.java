@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
 @Setter
 public class ProvMnsRequestParameters {
 
+    private String fullUriLdn;
     private String uriLdnFirstPart;
     private String className;
     private String id;
@@ -61,6 +62,7 @@ public class ProvMnsRequestParameters {
             throw new InvalidPathException(uriPath);
         }
         final ProvMnsRequestParameters provMnsRequestParameters = new ProvMnsRequestParameters();
+        provMnsRequestParameters.setFullUriLdn("/" + pathVariables[1]);
         provMnsRequestParameters.setUriLdnFirstPart(pathVariables[1].substring(0, lastSlashIndex));
         final String classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
 
