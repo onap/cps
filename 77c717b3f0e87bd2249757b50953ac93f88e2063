@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e56c538_88c1c87e",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T15:12:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "048f8ef9_12248475",
+      "revId": "77c717b3f0e87bd2249757b50953ac93f88e2063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46a70ae4_372a9b10",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-10-07T14:59:45Z",
       "side": 1,
       "message": "NB: plz elaborate this for my understanding.",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "77c717b3f0e87bd2249757b50953ac93f88e2063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86f26a4f_ee518b7f",
+        "filename": "k6-tests/ncmp/execute-k6-scenarios.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T15:12:08Z",
+      "side": 1,
+      "message": "This function is to instantiate variable like titleRow, testNumber, and so on.\n\nWhen awk reading the lines from summarFile.csv, it assign each column to a variables starting from $0, $1, and so on. So we want to make them a sense by assigning to a variable name.\n\nThe reason why a zero value added to fsRequirement and actual, is to make these values to integer (by default they read as String).\n\nBTW, the awk command, opening and operating over summaryFile.csv that contain the test result (test by test on each line...).\n\nHope this help, if you need more please let me know...\n\nThanks",
+      "parentUuid": "46a70ae4_372a9b10",
       "range": {
         "startLine": 65,
         "startChar": 8,
