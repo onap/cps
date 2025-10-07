@@ -29,6 +29,7 @@ import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
 @Setter
 public class ProvMnsRequestParameters {
 
+    private String fullUriLdn;
     private String uriLdnFirstPart;
     private String className;
     private String id;
@@ -41,7 +42,8 @@ public class ProvMnsRequestParameters {
      * @param httpServletRequest HttpServletRequest object containing the path
      * @return ProvMnsRequestParameters object containing parsed parameters
      */
-    public static ProvMnsRequestParameters toProvMnsRequestParameters(final HttpServletRequest httpServletRequest) {
+    public static ProvMnsRequestParameters extractProvMnsRequestParameters(
+                                                                          final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
 
@@ -51,6 +53,7 @@ public class ProvMnsRequestParameters {
             throw new InvalidPathException(uriPath);
         }
         final ProvMnsRequestParameters provMnsRequestParameters = new ProvMnsRequestParameters();
+        provMnsRequestParameters.setFullUriLdn("/" + pathVariables[1]);
         provMnsRequestParameters.setUriLdnFirstPart(pathVariables[1].substring(0, lastSlashIndex));
         final String classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
 
