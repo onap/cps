@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3f7beac_de3fd361",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "Can these really be null?!\nAdding this line means you need 4 test scenarios instead of 1!",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c44b8793_2870cc5d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "why complicate the name, why not just \"createSubscrption\" ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 41
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eff6ba85_a124efeb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "why complicate the name, why not just \"deleteSubscrption\" ?",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 41
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e254ae1c_9ea305cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "Where will this exception be handled? Is it not better to just log a warning?\n(like you do in teh consumer)",
+      "range": {
+        "startLine": 127,
+        "startChar": 27,
+        "endLine": 127,
+        "endChar": 102
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13af27a1_f9439447",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "no need for wrapper method, can all cmSubscriptionHandler directly on line #61",
+      "range": {
+        "startLine": 74,
+        "startChar": 17,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "858e925b_46689a0a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "I am not a fan of constant (names) that do NOT add any value, please just use string literals. \nI can deal with SonarQuber warning in the DB",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 58
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad62a319_e0ea34d2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmDataJobSubscriptionPersistenceService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "this is method parameter no need to duplicate in the method name",
+      "range": {
+        "startLine": 117,
+        "startChar": 50,
+        "endLine": 117,
+        "endChar": 66
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a2cb87c_5db84b80",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "no needed",
+      "range": {
+        "startLine": 55,
+        "startChar": 113,
+        "endLine": 55,
+        "endChar": 124
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4679012b_47a6142c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 56,
+        "startChar": 135,
+        "endLine": 56,
+        "endChar": 144
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95b6569e_cddab63b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "below code is not proving this...\nI see no reference to data node selectors, maybe you need to examine the details of one of the parameters?",
+      "range": {
+        "startLine": 179,
+        "startChar": 14,
+        "endLine": 179,
+        "endChar": 64
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52afd613_d3480470",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "to proof methods are NOT call it is always better to NOT check the parameter to prevent false positives:\n0 * mockDmiInEventProducer.send(_*)\n\n(unless the method IS called with different parameters but I dont think that is the case here)",
+      "range": {
+        "startLine": 201,
+        "startChar": 44,
+        "endLine": 201,
+        "endChar": 108
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b3aa41_9c66b316",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "I think the asserting of logging was needed when we were NOT doing anything else.\nbut NOW we are calling a subsequent method asserting lof logging is no longer needed",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 77
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3698ba74_04815edc",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumerSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "not need since you test a subsequent method call",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 85
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae68e34_ae228ff6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "Overall very good new tests, well done!",
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39bea61d_fd0d2487",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "I think there is a containsAll() method",
+      "range": {
+        "startLine": 135,
+        "startChar": 25,
+        "endLine": 135,
+        "endChar": 34
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea01425_215453ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "suggestion: instead of variabel you could use string literals that convey meaning\neg \u0027id-to-remove\u0027  and \u0027id-remaining\u0027",
+      "range": {
+        "startLine": 160,
+        "startChar": 16,
+        "endLine": 160,
+        "endChar": 46
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bdb8c2c_1a5b4ac5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "if you use string literals this would be clearer",
+      "range": {
+        "startLine": 171,
+        "startChar": 53,
+        "endLine": 171,
+        "endChar": 56
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5def4a5_01e79c67",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T09:36:10Z",
+      "side": 1,
+      "message": "use _* or *_ I always forget which it is",
+      "range": {
+        "startLine": 181,
+        "startChar": 47,
+        "endLine": 181,
+        "endChar": 57
+      },
+      "revId": "362e2a4520c5bd52e962268f7298d1b5040300f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
