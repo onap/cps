@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6365de4d_7b60b59f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-07T14:06:20Z",
+      "side": 1,
+      "message": "Integration test broken (endpoint doesn\u0027t exist yet in stub dmi) but rest is good for review",
+      "revId": "dbfdf84d437fb20532b023f232ffe92b083f9063",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
