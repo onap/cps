@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6509bca3_cf3b7c03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T10:41:36Z",
+      "side": 1,
+      "message": "Just a few questions, for my understanding..",
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8a1d09a_25b71528",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T10:41:36Z",
+      "side": 1,
+      "message": "NB: I see you don\u0027t want use Kafka\u0027s native transation APIs, don\u0027t you?\nBecase you want to use Spring\u0027s @Transactional support.\n\nProducerConfig.TRANSACTIONAL_ID_CONFIG",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88710a7a_b80b7462",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T10:41:36Z",
+      "side": 1,
+      "message": "NB: Can be extracted into a constant",
+      "range": {
+        "startLine": 100,
+        "startChar": 77,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f5e5354_811c65cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T10:41:36Z",
+      "side": 1,
+      "message": "NB: We relying on Spring\u0027s transaction management rather than using a kafka\u0027s native transaction APIs that could be configured ProducerConfig.TRANSACTIONAL_ID_CONFIG (then using beginTransation(), commitTransaction(), etc..). Do you think if either way is perfectly fine?",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a51232b_e620f889",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-07T10:41:36Z",
+      "side": 1,
+      "message": "You are producing here don\u0027t you?",
+      "range": {
+        "startLine": 85,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
