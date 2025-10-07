@@ -161,9 +161,9 @@ public class DmiRestClient {
                 .retrieve()
                 .bodyToMono(JsonNode.class)
                 .map(responseHealthStatus -> responseHealthStatus.path("status").asText())
-                .onErrorResume(Exception.class, ex -> {
+                .onErrorResume(Exception.class, e -> {
                     log.warn("Failed to retrieve health status from {}. Status: {}",
-                            urlTemplateParameters.urlTemplate(), ex.getMessage());
+                            urlTemplateParameters.urlTemplate(), e.getMessage());
                     return Mono.empty();
                 })
                 .defaultIfEmpty(NOT_SPECIFIED);
@@ -199,11 +199,31 @@ public class DmiRestClient {
     public Mono<String> getDataJobResult(final UrlTemplateParameters urlTemplateParameters,
                                          final String authorization) {
         return dataServicesWebClient.get()
-                                        .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
-                                        .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
-                                        .retrieve().bodyToMono(String.class)
-                                        .onErrorMap(throwable -> handleDmiClientException(throwable,
-                                                                 OperationType.READ.getOperationName()));
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, authorization))
+                .retrieve().bodyToMono(String.class)
+                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.READ.getOperationName()));
+    }
+
+    /**
+     * Sends a synchronous (blocking) DELETE operation to the DMI with a JSON body.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @return ResponseEntity from the DMI Plugin
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     *
+     */
+    public ResponseEntity<Object> synchronousDeleteOperation(final RequiredDmiService requiredDmiService,
+                                                             final UrlTemplateParameters urlTemplateParameters) {
+        return getWebClient(requiredDmiService)
+                .delete()
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+                .retrieve()
+                .toEntity(Object.class)
+                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.DELETE.getOperationName()))
+                .block();
     }
 
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
