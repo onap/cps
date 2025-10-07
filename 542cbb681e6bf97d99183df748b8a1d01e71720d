@@ -16,6 +16,29 @@
       "message": "resolved comments",
       "revId": "542cbb681e6bf97d99183df748b8a1d01e71720d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5499edbb_292d723e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T14:45:19Z",
+      "side": 1,
+      "message": "NB: that name was correct in the prev. test but here I think it should be \u0027expectedDataNodesPerDevice\u0027 or somethign like that",
+      "range": {
+        "startLine": 88,
+        "startChar": 61,
+        "endLine": 88,
+        "endChar": 92
+      },
+      "revId": "542cbb681e6bf97d99183df748b8a1d01e71720d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
