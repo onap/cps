@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1153a19_68dd6d34",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T07:32:18Z",
+      "side": 1,
+      "message": "this should be split into a common part and \u0027additionalDataNodesPerDevice\u0027 to make the table more readable and compact:\n\n\nso in the tabel define \u0027additionalDataNodesPerDevice\u0027 with is 1 or 0\nthen on line 62 calculate expectedNumberOfDataNodes\nexpectedNumberOfDataNodes \u003d (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + additionalDataNodesPerDevice)",
+      "range": {
+        "startLine": 67,
+        "startChar": 133,
+        "endLine": 67,
+        "endChar": 251
+      },
+      "revId": "55bd4fc954cb1a625501188bde5ea1f3c4f4b485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61106211_63b318a5",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-07T07:32:18Z",
+      "side": 1,
+      "message": "like above you could extract out a formula on line 80 using \u0027expectedDataNodesPerDevice\u0027 in the table which would be 1,2,OPENROADM_DATANODES_PER_DEVICE",
+      "range": {
+        "startLine": 87,
+        "startChar": 81,
+        "endLine": 87,
+        "endChar": 142
+      },
+      "revId": "55bd4fc954cb1a625501188bde5ea1f3c4f4b485",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
