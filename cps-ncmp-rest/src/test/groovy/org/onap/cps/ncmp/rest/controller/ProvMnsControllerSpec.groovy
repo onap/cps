@@ -22,6 +22,9 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
+import org.onap.cps.ncmp.api.data.models.OperationType
+import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
@@ -40,10 +43,10 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
 
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 
 @WebMvcTest(ProvMnsController)
 class ProvMnsControllerSpec extends Specification {
@@ -58,12 +61,16 @@ class ProvMnsControllerSpec extends Specification {
     InventoryPersistence inventoryPersistence = Mock()
 
     @SpringBean
+    PolicyExecutor policyExecutor = Mock()
+
+    @SpringBean
     DmiRestClient dmiRestClient = Mock()
 
     @Autowired
     MockMvc mvc
 
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    @SpringBean
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath
@@ -102,11 +109,11 @@ class ProvMnsControllerSpec extends Specification {
     def 'Put Resource Data from provmns interface.'() {
         given: 'resource data url'
             def putUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
-        and: 'an example resource json object'
-            def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
-        when: 'put data resource request is performed'
-            def response = mvc.perform(put(putUrl)
-                    .contentType(MediaType.APPLICATION_JSON)
+        and: 'a valid json body containing a valid Resource instance'
+            def jsonBody = '{ "id": "some-resource" }'
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(putUrl)
+                    .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
                     .andReturn().response
         then: 'response status is Not Implemented (501)'
@@ -115,11 +122,20 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Delete Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def deleteUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
+            def deleteUrl = "$provMnSBasePath/v1/someLdnFirstPart/someClass=someId"
+            def readyState = new CompositeStateBuilder().withCmHandleState(READY).withLastUpdatedTimeNow().build()
+            def responseFromDmiService = new ResponseEntity<>('Response from DMI service', HttpStatus.I_AM_A_TEAPOT)
+        and: 'a cm handle found by alternate id and dmi returns a response'
+            alternateIdMatcher.getCmHandleId("/someLdnFirstPart/someClass=someId") >> "cm-1"
+            inventoryPersistence.getYangModelCmHandle("cm-1") >> new YangModelCmHandle(dmiServiceName: 'sampleDmiService', dataProducerIdentifier: 'some-producer', compositeState: readyState)
+            dmiRestClient.synchronousDeleteOperation(*_) >> new ResponseEntity<>('Response from DMI service', HttpStatus.I_AM_A_TEAPOT)
+        and: 'the policy executor invoked'
+            1 * policyExecutor.checkPermission(_, OperationType.DELETE, null, '/someLdnFirstPart/someClass=someId', _)
         when: 'delete data resource request is performed'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
-        then: 'response status is Not Implemented (501)'
-            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'response status and body equals the expected http code'
+            assert response.status == responseFromDmiService.statusCode.value()
+            assert response.contentAsString == responseFromDmiService.body
     }
 
     def 'Invalid path passed in to provmns interface, #scenario'() {
