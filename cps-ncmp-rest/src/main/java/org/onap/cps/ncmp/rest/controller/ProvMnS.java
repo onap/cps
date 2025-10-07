@@ -49,37 +49,69 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ProvMnS {
 
     /**
-     * DELETE /{URI-LDN-first-part}/{className}={id} : Deletes one resource
-     * With HTTP DELETE one resource is deleted. The resources to be deleted is identified with the target URI.
+     * PUT /{URI-LDN-first-part}/{className}={id} : Replaces a complete single resource or
+     * creates it if it does not exist
+     * With HTTP PUT a complete resource is replaced or created if it does not exist.
+     * The target resource is identified by the target URI.
      *
      * @param httpServletRequest (required)
-     * @return Success case "200 OK". This status code is returned, when the resource has been successfully deleted.
-     *         The response body is empty. (status code 200)
+     * @param resource  (required)
+     * @return Success case ("200 OK"). This status code shall be returned when the resource is replaced,
+     *         and when the replaced resource representation is not identical to the resource representation in
+     *         the request. This status code may be returned when the resource is updated and when the updated
+     *         resource representation is identical to the resource representation in the request.
+     *         The representation of the updated resource is returned in the response message body. (status code 200)
+     *         or Success case ("201 Created"). This status code shall be returned when the resource
+     *         is created.
+     *         The representation of the created resource is returned in the response message body. (status code 201)
+     *         or Success case ("204 No Content"). This status code may be returned only when the replaced
+     *         resource representation is identical to the representation in the request.
+     *         The response has no message body. (status code 204)
      *         or Error case. (status code 200)
      */
     @Operation(
-        operationId = "deleteMoi",
-        summary = "Deletes one resource",
-        description = "With HTTP DELETE one resource is deleted. "
-            + "The resources to be deleted is identified with the target URI.",
+        operationId = "putMoi",
+        summary = "Replaces a complete single resource or creates it if it does not exist",
+        description = "With HTTP PUT a complete resource is replaced or created if it does not exist. "
+            + "The target resource is identified by the target URI.",
         responses = {
-            @ApiResponse(responseCode = "200",
-                description = "Success case (\"200 OK\"). This status code is returned, "
-                    + "when the resource has been successfully deleted. The response body is empty."),
+            @ApiResponse(responseCode = "200", description = "Success case (\"200 OK\"). "
+                + "This status code shall be returned when the resource is replaced, and when the replaced "
+                + "resource representation is not identical to the resource representation in the request. "
+                + "This status code may be returned when the resource is updated and when the updated resource "
+                + "representation is identical to the resource representation in the request. "
+                + "The representation of the updated resource is returned in the response message body.", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class))
+                }),
+            @ApiResponse(responseCode = "201", description = "Success case (\"201 Created\"). "
+                + "This status code shall be returned when the resource is created. The representation of"
+                + " the created resource is returned in the response message body.", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class))
+                }),
+            @ApiResponse(responseCode = "204", description = "Success case (\"204 No Content\"). "
+                + "This status code may be returned only when the replaced resource representation is identical "
+                + "to the representation in the request. The response has no message body."),
             @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
-            }),
+                }),
             @ApiResponse(responseCode = "default", description = "Error case.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDefault.class))
+                @Content(mediaType = "application/json", schema =
+                                                                  @Schema(implementation = ErrorResponseDefault.class))
             })
         }
     )
-    @DeleteMapping(
+    @PutMapping(
         value = "v1/**",
-        produces = { "application/json" }
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
-    ResponseEntity<Void> deleteMoi(HttpServletRequest httpServletRequest);
 
+    ResponseEntity<Resource> putMoi(
+        HttpServletRequest httpServletRequest,
+        @Parameter(name = "Resource",
+            description = "The request body describes the resource that has been created or replaced", required = true)
+        @Valid @RequestBody Resource resource
+    );
 
     /**
      * GET /{URI-LDN-first-part}/{className}={id} : Reads one or multiple resources
@@ -155,6 +187,37 @@ public interface ProvMnS {
         ClassNameIdGetDataNodeSelectorParameter dataNodeSelector
     );
 
+    /**
+     * DELETE /{URI-LDN-first-part}/{className}={id} : Deletes one resource
+     * With HTTP DELETE one resource is deleted. The resources to be deleted is identified with the target URI.
+     *
+     * @param httpServletRequest (required)
+     * @return Success case "200 OK". This status code is returned, when the resource has been successfully deleted.
+     *         The response body is empty. (status code 200)
+     *         or Error case. (status code 200)
+     */
+    @Operation(
+        operationId = "deleteMoi",
+        summary = "Deletes one resource",
+        description = "With HTTP DELETE one resource is deleted. "
+            + "The resources to be deleted is identified with the target URI.",
+        responses = {
+            @ApiResponse(responseCode = "200",
+                description = "Success case (\"200 OK\"). This status code is returned, "
+                    + "when the resource has been successfully deleted. The response body is empty."),
+            @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+            }),
+            @ApiResponse(responseCode = "default", description = "Error case.", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDefault.class))
+            })
+        }
+    )
+    @DeleteMapping(
+        value = "v1/**",
+        produces = { "application/json" }
+    )
+    ResponseEntity<Void> deleteMoi(HttpServletRequest httpServletRequest);
 
     /**
      * PATCH /{URI-LDN-first-part}/{className}={id} : Patches one or multiple resources
@@ -206,7 +269,7 @@ public interface ProvMnS {
     @PatchMapping(
         value = "v1/**",
         produces = { "application/json" },
-        consumes = {"application/json-patch+json", "application/3gpp-json-patch+json" }
+        consumes = {"application/json", "application/json-patch+json", "application/3gpp-json-patch+json" }
     )
 
     ResponseEntity<Resource> patchMoi(
@@ -216,71 +279,6 @@ public interface ProvMnS {
             + "- \"application/json-patch+json\" (RFC 6902)   "
             + "- \"application/3gpp-json-patch+json\" (TS 32.158)", required = true) @Valid @RequestBody
         Resource resource
-    );
-
-
-    /**
-     * PUT /{URI-LDN-first-part}/{className}={id} : Replaces a complete single resource or
-     * creates it if it does not exist
-     * With HTTP PUT a complete resource is replaced or created if it does not exist.
-     * The target resource is identified by the target URI.
-     *
-     * @param httpServletRequest (required)
-     * @param resource  (required)
-     * @return Success case ("200 OK"). This status code shall be returned when the resource is replaced,
-     *         and when the replaced resource representation is not identical to the resource representation in
-     *         the request. This status code may be returned when the resource is updated and when the updated
-     *         resource representation is identical to the resource representation in the request.
-     *         The representation of the updated resource is returned in the response message body. (status code 200)
-     *         or Success case ("201 Created"). This status code shall be returned when the resource
-     *         is created.
-     *         The representation of the created resource is returned in the response message body. (status code 201)
-     *         or Success case ("204 No Content"). This status code may be returned only when the replaced
-     *         resource representation is identical to the representation in the request.
-     *         The response has no message body. (status code 204)
-     *         or Error case. (status code 200)
-     */
-    @Operation(
-        operationId = "putMoi",
-        summary = "Replaces a complete single resource or creates it if it does not exist",
-        description = "With HTTP PUT a complete resource is replaced or created if it does not exist. "
-            + "The target resource is identified by the target URI.",
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Success case (\"200 OK\"). "
-                + "This status code shall be returned when the resource is replaced, and when the replaced "
-                + "resource representation is not identical to the resource representation in the request. "
-                + "This status code may be returned when the resource is updated and when the updated resource "
-                + "representation is identical to the resource representation in the request. "
-                + "The representation of the updated resource is returned in the response message body.", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class))
-                }),
-            @ApiResponse(responseCode = "201", description = "Success case (\"201 Created\"). "
-                + "This status code shall be returned when the resource is created. The representation of"
-                + " the created resource is returned in the response message body.", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = Resource.class))
-                }),
-            @ApiResponse(responseCode = "204", description = "Success case (\"204 No Content\"). "
-                + "This status code may be returned only when the replaced resource representation is identical "
-                + "to the representation in the request. The response has no message body."),
-            @ApiResponse(responseCode = "422", description = "Invalid Path Exception", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
-                }),
-            @ApiResponse(responseCode = "default", description = "Error case.", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponseDefault.class))
-            })
-        }
-    )
-    @PutMapping(
-        value = "v1/**",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-
-    ResponseEntity<Resource> putMoi(
-        HttpServletRequest httpServletRequest,
-        @Parameter(name = "Resource",
-            description = "The request body describes the resource that has been created or replaced", required = true)
-        @Valid @RequestBody Resource resource
     );
 
 }
