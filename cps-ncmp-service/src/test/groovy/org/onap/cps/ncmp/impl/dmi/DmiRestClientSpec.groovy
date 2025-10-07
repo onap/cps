@@ -57,48 +57,47 @@ class DmiRestClientSpec extends Specification {
     def mockModelServicesWebClient = Mock(WebClient)
     def mockHealthChecksWebClient = Mock(WebClient)
 
-    def mockRequestBody = Mock(WebClient.RequestBodyUriSpec)
-    def mockResponse = Mock(WebClient.ResponseSpec)
+    def mockRequestBodyUriSpec = Mock(WebClient.RequestBodyUriSpec)
+    def mockResponseSpec = Mock(WebClient.ResponseSpec)
 
     def mockDmiServiceAuthenticationProperties = Mock(DmiServiceAuthenticationProperties)
 
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    def responseFromDmiService = new ResponseEntity<>('Response from DMI service', HttpStatus.I_AM_A_TEAPOT)
 
     DmiRestClient objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, mockDataServicesWebClient, mockModelServicesWebClient, mockHealthChecksWebClient)
 
     def setup() {
-        mockRequestBody.uri(_,_) >> mockRequestBody
-        mockRequestBody.headers(_) >> mockRequestBody
-        mockRequestBody.body(_) >> mockRequestBody
-        mockRequestBody.retrieve() >> mockResponse
+        mockRequestBodyUriSpec.uri(*_) >> mockRequestBodyUriSpec
+        mockRequestBodyUriSpec.headers(_) >> mockRequestBodyUriSpec
+        mockRequestBodyUriSpec.body(_) >> mockRequestBodyUriSpec
+        mockRequestBodyUriSpec.retrieve() >> mockResponseSpec
     }
 
-    def 'DMI POST Operation with JSON for DMI Data Service '() {
+    def 'DMI POST Operation with JSON for DMI Data Service.'() {
         given: 'the Data web client returns a valid response entity for the expected parameters'
-            mockDataServicesWebClient.post() >> mockRequestBody
-            mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Data service', HttpStatus.I_AM_A_TEAPOT))
-        when: 'POST operation is invoked fro Data Service'
-            def response = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
-        then: 'the output of the method is equal to the output from the test template'
-            assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
-            assert response.body == 'from Data service'
+            mockDataServicesWebClient.post() >> mockRequestBodyUriSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.just(responseFromDmiService)
+        when: 'POST operation is invoked for Data Service'
+            def result = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
+        then: 'the output of the method is equal to the output from dmi service'
+            assert result.equals(responseFromDmiService)
     }
 
-    def 'DMI POST Operation with JSON for DMI Model Service '() {
+    def 'DMI POST Operation with JSON for DMI Model Service.'() {
         given: 'the Model web client returns a valid response entity for the expected parameters'
-            mockModelServicesWebClient.post() >> mockRequestBody
-            mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Model service', HttpStatus.I_AM_A_TEAPOT))
+            mockModelServicesWebClient.post() >> mockRequestBodyUriSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.just(responseFromDmiService)
         when: 'POST operation is invoked for Model Service'
-            def response = objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
-        then: 'the output of the method is equal to the output from the test template'
-            assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
-            assert response.body == 'from Model service'
+            def result = objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
+        then: 'the output of the method is equal to the output from the dmi service'
+            assert result.equals(responseFromDmiService)
     }
 
-    def 'Dmi service sends client error response when #scenario'() {
+    def 'Synchronous DMI POST operation with #scenario.'() {
         given: 'the web client unable to return response entity but error'
-            mockDataServicesWebClient.post() >> mockRequestBody
-            mockResponse.toEntity(Object.class) >> Mono.error(exceptionType)
+            mockDataServicesWebClient.post() >> mockRequestBodyUriSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.error(exception)
         when: 'POST operation is invoked'
             objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
         then: 'a http client exception is thrown'
@@ -107,7 +106,7 @@ class DmiRestClientSpec extends Specification {
             assert thrown.ncmpResponseStatus == expectedNcmpResponseStatusCode
             assert thrown.httpStatusCode == httpStatusCode
         where: 'the following errors occur'
-            scenario                  | httpStatusCode | exceptionType                                                                                    || expectedNcmpResponseStatusCode
+            scenario                  | httpStatusCode | exception                                                                                        || expectedNcmpResponseStatusCode
             'dmi service unavailable' | 503            | new WebClientRequestException(new RuntimeException('some-error'), null, null, new HttpHeaders()) || DMI_SERVICE_NOT_RESPONDING
             'dmi request timeout'     | 408            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || DMI_SERVICE_NOT_RESPONDING
             'dmi server error'        | 500            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || UNABLE_TO_READ_RESOURCE_DATA
@@ -115,14 +114,23 @@ class DmiRestClientSpec extends Specification {
             'unknown error'           | 500            | new Throwable('message')                                                                         || UNKNOWN_ERROR
     }
 
-    def 'Dmi trust level is determined by spring boot health status'() {
+    def 'Synchronous DMI GET Operation.'() {
+        given: 'the Data web client returns a valid response entity for the expected parameters'
+            mockDataServicesWebClient.get() >> mockRequestBodyUriSpec
+            mockResponseSpec.toEntity(_) >> Mono.just(responseFromDmiService)
+        when: 'GET operation is invoked for Data Service'
+            def result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, READ)
+        then: 'the output of the method is equal to the output from the DMI service'
+            assert result.equals(responseFromDmiService)
+    }
+
+    def 'Dmi trust level is determined by spring boot health status.'() {
         given: 'a health check response'
             def dmiPluginHealthCheckResponseJsonData = TestUtils.getResourceFileContent('dmiPluginHealthCheckResponse.json')
             def jsonNode = jsonObjectMapper.convertJsonString(dmiPluginHealthCheckResponseJsonData, JsonNode.class)
             ((ObjectNode) jsonNode).put('status', 'my status')
-            mockHealthChecksWebClient.get() >> mockRequestBody
-            mockResponse.onStatus(_,_)>> mockResponse
-            mockResponse.bodyToMono(JsonNode.class) >> Mono.just(jsonNode)
+            mockHealthChecksWebClient.get() >> mockRequestBodyUriSpec
+            mockResponseSpec.bodyToMono(JsonNode.class) >> Mono.just(jsonNode)
         when: 'get trust level of the dmi plugin'
             def urlTemplateParameters = new UrlTemplateParameters('some url', [:])
             def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
@@ -130,11 +138,10 @@ class DmiRestClientSpec extends Specification {
             assert result == 'my status'
     }
 
-    def 'Failing to get dmi plugin health status #scenario'() {
+    def 'Failing to get dmi plugin health status #scenario.'() {
         given: 'web client instance with #scenario'
-            mockHealthChecksWebClient.get() >> mockRequestBody
-            mockResponse.onStatus(_, _) >> mockResponse
-            mockResponse.bodyToMono(_) >> Mono.error(exceptionType)
+            mockHealthChecksWebClient.get() >> mockRequestBodyUriSpec
+            mockResponseSpec.bodyToMono(_) >> Mono.error(exceptionType)
         when: 'attempt to get health status of the dmi plugin'
             def urlTemplateParameters = new UrlTemplateParameters('some url', [:])
             def result = objectUnderTest.getDmiHealthStatus(urlTemplateParameters).block()
@@ -146,7 +153,7 @@ class DmiRestClientSpec extends Specification {
             'dmi service unavailable' | new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE)
     }
 
-    def 'DMI auth header #scenario'() {
+    def 'DMI auth header #scenario.'() {
         when: 'Specific dmi properties are provided'
             mockDmiServiceAuthenticationProperties.dmiBasicAuthEnabled >> authEnabled
             mockDmiServiceAuthenticationProperties.authUsername >> 'some user'
@@ -165,26 +172,33 @@ class DmiRestClientSpec extends Specification {
             'DMI basic auth disabled, with NCMP basic auth'   | false       | BASIC_AUTH_HEADER  || NO_AUTH_HEADER
     }
 
-    def 'DMI GET Operation for DMI Data Service '() {
+    def 'DMI Dat Job Status request for DMI Data Service.'() {
         given: 'the Data web client returns a valid response entity for the expected parameters'
-            mockDataServicesWebClient.get() >> mockRequestBody
-            def result = '{"status":"some status"}'
-            mockResponse.bodyToMono(String.class) >> Mono.just(result)
-        when: 'GET operation is invoked for Data Service'
-            def response = objectUnderTest.getDataJobStatus(urlTemplateParameters, NO_AUTH_HEADER).block()
-        then: 'the response equals to the expected value'
-            assert response == '{"status":"some status"}'
+            mockDataServicesWebClient.get() >> mockRequestBodyUriSpec
+            mockResponseSpec.bodyToMono(String.class) >> Mono.just(responseFromDmiService)
+        when: 'Data job status is invoked for Data Service'
+            def result = objectUnderTest.getDataJobStatus(urlTemplateParameters, NO_AUTH_HEADER).block()
+        then: 'the response equals to response from the DMI service'
+            assert result.equals(responseFromDmiService)
     }
 
     def 'Get data job result from DMI.'() {
         given: 'the Data web client returns a valid response entity for the expected parameters'
-            mockDataServicesWebClient.get() >> mockRequestBody
-            def result = 'some result'
-            mockResponse.bodyToMono(String.class) >> Mono.just(result)
+            mockDataServicesWebClient.get() >> mockRequestBodyUriSpec
+            mockResponseSpec.bodyToMono(String.class) >> Mono.just(responseFromDmiService)
         when: 'GET operation is invoked for Data Service'
-            def response = objectUnderTest.getDataJobResult(urlTemplateParameters, NO_AUTH_HEADER).block()
+            def result = objectUnderTest.getDataJobResult(urlTemplateParameters, NO_AUTH_HEADER).block()
         then: 'the response has some value'
-            assert response != null
-            assert  result == 'some result'
+            assert result.equals(responseFromDmiService)
+    }
+
+    def 'DMI DELETE Operation for DMI Data Service.'() {
+        given: 'the Data web client returns a valid response entity for the expected parameters'
+            mockDataServicesWebClient.delete() >> mockRequestBodyUriSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.just(responseFromDmiService)
+        when: 'DELETE operation is invoked for Data Service'
+            def result = objectUnderTest.synchronousDeleteOperation(DATA, urlTemplateParameters)
+        then: 'The response is the same as the response from the DMI service'
+            assert result.equals(responseFromDmiService)
     }
 }
