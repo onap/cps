@@ -206,6 +206,29 @@ public class DmiRestClient {
                                                                  OperationType.READ.getOperationName()));
     }
 
+    /**
+     * Sends a synchronous (blocking) DELETE operation to the DMI with a JSON body.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param operationType         The type of operation being executed (for error reporting only).
+     * @return the ResponseEntity from the DMI Plugin
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     *
+     */
+    public ResponseEntity<Object> synchronousDeleteOperation(final RequiredDmiService requiredDmiService,
+                                           final UrlTemplateParameters urlTemplateParameters,
+                                           final OperationType operationType) {
+        return getWebClient(requiredDmiService)
+                .delete()
+                .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+                .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+                .retrieve()
+                .toEntity(Object.class)
+                .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+                .block();
+    }
+
     private WebClient getWebClient(final RequiredDmiService requiredDmiService) {
         return requiredDmiService.equals(RequiredDmiService.DATA) ? dataServicesWebClient : modelServicesWebClient;
     }

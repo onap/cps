@@ -24,7 +24,10 @@ package org.onap.cps.ncmp.impl.dmi
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
+import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
+import org.onap.cps.ncmp.impl.models.RequiredDmiService
+import org.onap.cps.ncmp.impl.provmns.model.Resource
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
 import org.onap.cps.utils.JsonObjectMapper
@@ -174,6 +177,25 @@ class DmiRestClientSpec extends Specification {
             def response = objectUnderTest.getDataJobStatus(urlTemplateParameters, NO_AUTH_HEADER).block()
         then: 'the response equals to the expected value'
             assert response == '{"status":"some status"}'
+    }
+
+    def 'DMI DELETE Operation for DMI Data Service '() {
+        given: 'the parameters for the DMI web client'
+            def mockRequestHeadersUriSpec = Mock(WebClient.RequestHeadersUriSpec)
+            def mockRequestHeadersSpec = Mock(WebClient.RequestHeadersSpec)
+            def mockResponseSpec = Mock(WebClient.ResponseSpec)
+            def urlTemplateParameters = new UrlTemplateParameters('some url', [:])
+            def responseEntity = ResponseEntity.ok(new Object())
+        and: 'the response from the DMI'
+            mockDataServicesWebClient.delete() >> mockRequestHeadersUriSpec
+            mockRequestHeadersUriSpec.uri(_, _) >> mockRequestHeadersSpec
+            mockRequestHeadersSpec.headers(_) >> mockRequestHeadersSpec
+            mockRequestHeadersSpec.retrieve() >> mockResponseSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.just(responseEntity)
+        when: 'DELETE operation is invoked for Data Service'
+            objectUnderTest.synchronousDeleteOperation(DATA, urlTemplateParameters, OperationType.DELETE)
+        then: 'no exception occurs'
+            noExceptionThrown()
     }
 
     def 'Get data job result from DMI.'() {
