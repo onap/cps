@@ -23,6 +23,7 @@ package org.onap.cps.ncmp.impl.inventory.models
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
 import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
@@ -48,7 +49,7 @@ class YangModelCmHandleSpec extends Specification {
                 .withOperationalDataStores(DataStoreSyncState.SYNCHRONIZED, 'some-sync-time').build()
             ncmpServiceCmHandle.setCompositeState(compositeState)
         when: 'it is converted to a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle('', '', '', ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED', 'my-dmi-property')
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(new DmiPluginRegistration(), ncmpServiceCmHandle,'my-module-set-tag', 'my-alternate-id', 'my-data-producer-identifier', 'ADVISED', 'my-dmi-property')
         then: 'the result has the right size'
             assert objectUnderTest.additionalProperties.size() == 1
         and: 'the result has the correct values for module set tag, alternate ID, and data producer identifier'
@@ -72,8 +73,12 @@ class YangModelCmHandleSpec extends Specification {
 
     def 'Resolve DMI service name: #scenario and #requiredService service require.'() {
         given: 'a yang model cm handle'
-            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiServiceName, dmiDataServiceName,
-                    dmiModelServiceName, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '', '', '')
+            def dmiInfo = new DmiPluginRegistration(
+                    dmiPlugin: dmiServiceName,
+                    dmiDataPlugin: dmiDataServiceName,
+                    dmiModelPlugin: dmiModelServiceName
+            )
+            def objectUnderTest = YangModelCmHandle.toYangModelCmHandle(dmiInfo, new NcmpServiceCmHandle(cmHandleId: 'cm-handle-id-1'),'', '', '', '', '')
         expect:
             assert objectUnderTest.resolveDmiServiceName(requiredService) == expectedService
         where:

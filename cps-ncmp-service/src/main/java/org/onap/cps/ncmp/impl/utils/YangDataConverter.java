@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 
@@ -90,10 +91,12 @@ public class YangDataConverter {
         final String cmHandleId = cmHandleDataNode.getLeaves().get("id").toString();
         ncmpServiceCmHandle.setCmHandleId(cmHandleId);
         populateCmHandleDetails(cmHandleDataNode, ncmpServiceCmHandle);
+        final DmiPluginRegistration dmiInfo = new DmiPluginRegistration();
+        dmiInfo.setDmiPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-service-name"));
+        dmiInfo.setDmiDataPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-data-service-name"));
+        dmiInfo.setDmiModelPlugin(safeGetLeafValue(cmHandleDataNode, "dmi-model-service-name"));
         return YangModelCmHandle.toYangModelCmHandle(
-                safeGetLeafValue(cmHandleDataNode, "dmi-service-name"),
-                safeGetLeafValue(cmHandleDataNode, "dmi-data-service-name"),
-                safeGetLeafValue(cmHandleDataNode, "dmi-model-service-name"),
+                dmiInfo,
                 ncmpServiceCmHandle,
                 safeGetLeafValue(cmHandleDataNode, "module-set-tag"),
                 safeGetLeafValue(cmHandleDataNode, "alternate-id"),
