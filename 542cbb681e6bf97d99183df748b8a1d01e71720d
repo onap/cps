@@ -62,6 +62,30 @@
       },
       "revId": "542cbb681e6bf97d99183df748b8a1d01e71720d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e603eec5_34f6145c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/performance/cps/QueryPerfTest.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T07:31:37Z",
+      "side": 1,
+      "message": "so I should change additionalNumberOfDataNodes to expectedDataNodesPerDevice and line #77 we will have expectedNumberOfDataNodes?",
+      "parentUuid": "5499edbb_292d723e",
+      "range": {
+        "startLine": 88,
+        "startChar": 61,
+        "endLine": 88,
+        "endChar": 92
+      },
+      "revId": "542cbb681e6bf97d99183df748b8a1d01e71720d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
