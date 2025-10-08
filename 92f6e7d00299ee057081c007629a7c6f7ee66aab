@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aeccb63_cbc6d71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "need to address the obvious duplication between k6 and k8 scripts...",
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa44541e_0e48cc6a",
+        "filename": "k6-tests/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "make this less \u0027personal\u0027 e.g.  \"Known issue: ... Resolution:... \"",
+      "range": {
+        "startLine": 34,
+        "startChar": 63,
+        "endLine": 34,
+        "endChar": 190
+      },
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23c69fd_07499e98",
+        "filename": "k6-tests/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "make this less personal: \"Recommended approached: ...\"",
+      "range": {
+        "startLine": 35,
+        "startChar": 88,
+        "endLine": 35,
+        "endChar": 115
+      },
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c344ed68_b8bda0b4",
+        "filename": "k6-tests/k8s/main-k8s.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "This file seems almost identical to file k6-tests.\nCan we prevent duplication/duplicate maintenance?",
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba876ac2_7a6dd5dc",
+        "filename": "k6-tests/k8s/make-logs-k8s.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "This file seems almost identical to file k6-tests.\nCan we prevent duplication/duplicate maintenance?",
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb8dcba_37ea1e47",
+        "filename": "k6-tests/ncmp/config/endurance.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-08T15:44:59Z",
+      "side": 1,
+      "message": "good!",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "92f6e7d00299ee057081c007629a7c6f7ee66aab",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
