@@ -32,6 +32,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
+import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.dmi.DmiServiceNameResolver;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
@@ -112,9 +113,7 @@ public class YangModelCmHandle {
     /**
      * Create a yangModelCmHandle.
      *
-     * @param dmiServiceName      dmi service name
-     * @param dmiDataServiceName  dmi data service name
-     * @param dmiModelServiceName dmi model service name
+     * @param dmiPluginRegistration dmi service name, dmi data service name, dmi model service name
      * @param ncmpServiceCmHandle the cm handle
      * @param moduleSetTag moduleSetTag
      * @param alternateId alternateId
@@ -123,9 +122,7 @@ public class YangModelCmHandle {
      * @param dmiProperties dmi properties
      * @return instance of yangModelCmHandle
      */
-    public static YangModelCmHandle toYangModelCmHandle(final String dmiServiceName,
-                                                        final String dmiDataServiceName,
-                                                        final String dmiModelServiceName,
+    public static YangModelCmHandle toYangModelCmHandle(final DmiPluginRegistration dmiPluginRegistration,
                                                         final NcmpServiceCmHandle ncmpServiceCmHandle,
                                                         final String moduleSetTag,
                                                         final String alternateId,
@@ -134,9 +131,9 @@ public class YangModelCmHandle {
                                                         final String dmiProperties) {
         final YangModelCmHandle yangModelCmHandle = new YangModelCmHandle();
         yangModelCmHandle.setId(ncmpServiceCmHandle.getCmHandleId());
-        yangModelCmHandle.setDmiServiceName(dmiServiceName);
-        yangModelCmHandle.setDmiDataServiceName(dmiDataServiceName);
-        yangModelCmHandle.setDmiModelServiceName(dmiModelServiceName);
+        yangModelCmHandle.setDmiServiceName(dmiPluginRegistration.getDmiPlugin());
+        yangModelCmHandle.setDmiDataServiceName(dmiPluginRegistration.getDmiDataPlugin());
+        yangModelCmHandle.setDmiModelServiceName(dmiPluginRegistration.getDmiModelPlugin());
         yangModelCmHandle.setModuleSetTag(StringUtils.trimToEmpty(moduleSetTag));
         yangModelCmHandle.setAlternateId(StringUtils.trimToEmpty(alternateId));
         yangModelCmHandle.setDataProducerIdentifier(StringUtils.trimToEmpty(dataProducerIdentifier));
