@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c0db89_ac5ad0c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-08T15:51:53Z",
+      "side": 1,
+      "message": "ah. nyc.. we were expanding it early.",
+      "range": {
+        "startLine": 404,
+        "startChar": 15,
+        "endLine": 404,
+        "endChar": 38
+      },
+      "revId": "55b391f05c2cd2da469c561c9aab844b3bc50b24",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
