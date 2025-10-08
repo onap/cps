@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fbff9cf_36297ebc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-08T16:09:10Z",
+      "side": 1,
+      "message": "yes. @Transactional takes care of the transaction boundries around the consumer method, hence no need to explicitly create custom transaction boundries using native methods.",
+      "parentUuid": "f8a1d09a_25b71528",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88710a7a_b80b7462",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
         "patchSetId": 2
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10f57524_2b2f6fd7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-08T16:09:10Z",
+      "side": 1,
+      "message": "the transaction manager is wrapped in the containerFactory and it will work with the spring transaction manager.",
+      "parentUuid": "2f5e5354_811c65cb",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a51232b_e620f889",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
         "patchSetId": 2
@@ -100,6 +148,30 @@
       "writtenOn": "2025-10-07T10:41:36Z",
       "side": 1,
       "message": "You are producing here don\u0027t you?",
+      "range": {
+        "startLine": 85,
+        "startChar": 18,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d50805_09f8606d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-08T16:09:10Z",
+      "side": 1,
+      "message": "consuming and producing.\nits forwarding basically.",
+      "parentUuid": "7a51232b_e620f889",
       "range": {
         "startLine": 85,
         "startChar": 18,
