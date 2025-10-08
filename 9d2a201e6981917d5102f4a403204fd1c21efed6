@@ -1,0 +1,319 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bb5471_2e2fc177",
+        "filename": "cps-rest/docs/openapi/cpsDelta.yml",
+        "patchSetId": 27
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "NB: This is not required since the copyright states same info.",
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0011b7b4_9b6b224f",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "NB: This is not required since the copyright states same info.",
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83cad12c_330ea797",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "deltaReports\nReplace all other instances as well.",
+      "range": {
+        "startLine": 66,
+        "startChar": 32,
+        "endLine": 66,
+        "endChar": 51
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a04220_3c8b8ea2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "NB: remove extra line",
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ca035c0_12ee08f2",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "deltaReports",
+      "range": {
+        "startLine": 104,
+        "startChar": 84,
+        "endLine": 104,
+        "endChar": 103
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69d703e_c62b095b",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "NB: This is not required since the copyright states same info. Check other files as well",
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3455ddca_a659da51",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "No need of a separate test. Combine with previous one using \u0027where\u0027 block",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef5c628d_6d7fd646",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "This file should be in the utils/deltareport folder as it is specific to delta report",
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d519a17e_75f9ebd5",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "NB: No need of camel casing. Just delta report is fine",
+      "range": {
+        "startLine": 32,
+        "startChar": 20,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb6a275_74e0005b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "Fix indentation",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 55
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ff971b_373f06a3",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "the permitted action fields are: replace, remove and create (all in lower case). Please change accordingly for all test cases",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 81
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda3a753_19fd601e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "I don\u0027t think this scenario is needed as delta report will never have null source and target data. Remove it and check if it impacts the coverage. If yes keep it else drop it",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 41
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce0d3282_e0fd26e7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "Add line space",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796e2a41_8e614f55",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "The legend is incorrect. Something liek:\n\u0027Converting delta reports with list nodes to XML\u0027",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 44
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa73fa4d_63030d8b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 27
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-10-08T12:52:04Z",
+      "side": 1,
+      "message": "This seems odd, it should be returning an empty string. Because delta report is designed to handle null cases. So maybe You will have to make changes to DeltaReportUtils.",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "9d2a201e6981917d5102f4a403204fd1c21efed6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
