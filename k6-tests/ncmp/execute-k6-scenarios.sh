@@ -58,14 +58,35 @@ addResultColumn() {
   local tmp
   tmp=$(mktemp)
 
-  awk -F',' -v OFS=',' '
-    NR == 1 { print $0, "Result"; next }
-    {
-      throughputTests = ($1 == "1" || $1 == "2" || $1 == "7")
-      passCondition   = throughputTests ? (($6+0) >= ($4+0)) : (($6+0) <= ($4+0))
-      print $0, (passCondition ? "✅" : "❌")
+awk -F',' -v OFS=',' '
+    function initRowVariables() {
+        titleRow      = $0
+        testNumber    = $1
+        fsRequirement = $4 + 0
+        actual        = $6 + 0
     }
-  ' "$summaryFile" > "$tmp"
+
+    NR == 1 { # block for header
+        titleRow      = $0
+        print titleRow, "Result"
+        next
+    }
+
+    { # block for every data row
+        initRowVariables()
+        isThroughput = (testNumber=="0" || testNumber=="1" || \
+                        testNumber=="2" || testNumber=="7")
+
+        if (actual == 0 && testNumber != "0")
+            pass = 0
+        else if (isThroughput)
+            pass = (actual >= fsRequirement)
+        else
+            pass = (actual <= fsRequirement)
+
+        print titleRow, (pass ? "✅" : "❌")
+    }
+' "$summaryFile" > "$tmp"
 
   mv "$tmp" "$summaryFile"
 
