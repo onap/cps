@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac794fc3_53011362",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14a6b28c_504ec452",
+      "range": {
+        "startLine": 125,
+        "startChar": 84,
+        "endLine": 125,
+        "endChar": 91
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "801379df_bc252320",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-10-08T13:24:12Z",
       "side": 1,
       "message": "use the class name ie dmiPluginRegistration",
+      "range": {
+        "startLine": 94,
+        "startChar": 36,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7fc3f15_8a313f59",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/utils/YangDataConverter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "801379df_bc252320",
       "range": {
         "startLine": 94,
         "startChar": 36,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e12a4f4_55459227",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/models/YangModelCmHandleSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31ffdb5_f1eee4a8",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b74ad81f_827f319f",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-10-08T13:24:12Z",
       "side": 1,
       "message": "dmiPluginRegistration",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba32a1f3_2935058e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b74ad81f_827f319f",
       "range": {
         "startLine": 143,
         "startChar": 12,
@@ -133,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d8531bb_cc31f3fa",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02b6016b_a39edcb8",
+      "range": {
+        "startLine": 145,
+        "startChar": 1,
+        "endLine": 146,
+        "endChar": 34
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7f44dcb_8d4e6d75",
@@ -156,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0425bd58_2a4f9251",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7f44dcb_8d4e6d75",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 9
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65867c5d_b0e825b0",
@@ -169,6 +313,30 @@
       "writtenOn": "2025-10-08T13:24:12Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 200,
+        "startChar": 1,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "f07dd0d37973d141ab0fc3bb54102b3f795cc55d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "215c6f0e_1d01ad4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-08T13:49:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65867c5d_b0e825b0",
       "range": {
         "startLine": 200,
         "startChar": 1,
