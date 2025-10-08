@@ -401,9 +401,7 @@ public class CmHandleRegistrationService {
     private YangModelCmHandle getYangModelCmHandle(final DmiPluginRegistration dmiPluginRegistration,
                                                    final NcmpServiceCmHandle ncmpServiceCmHandle) {
         return YangModelCmHandle.toYangModelCmHandle(
-            dmiPluginRegistration.getDmiPlugin(),
-            dmiPluginRegistration.getDmiDataPlugin(),
-            dmiPluginRegistration.getDmiModelPlugin(),
+                dmiPluginRegistration,
             ncmpServiceCmHandle,
             ncmpServiceCmHandle.getModuleSetTag(),
             ncmpServiceCmHandle.getAlternateId(),
