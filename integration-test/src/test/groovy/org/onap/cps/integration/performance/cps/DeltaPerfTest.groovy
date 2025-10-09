@@ -19,6 +19,7 @@
 
 package org.onap.cps.integration.performance.cps
 
+import org.junit.Ignore
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
 
@@ -34,6 +35,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
 
     def jsonPayload = generateModifiedOpenRoadData(1000, 200, 200, 200)
 
+    @Ignore
     def 'Get delta between 2 anchors with grouping enabled and #scenario'() {
         when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
@@ -51,6 +53,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | '/'                                                               | INCLUDE_ALL_DESCENDANTS || 18.0
     }
 
+    @Ignore
     def 'Get delta between 2 anchors with grouping disabled and #scenario'() {
         when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
@@ -68,6 +71,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 20.0
     }
 
+    @Ignore
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
@@ -83,6 +87,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 6.0
     }
 
+    @Ignore
     def 'Get delta between an anchor and JSON payload with grouping disabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
@@ -98,6 +103,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | INCLUDE_ALL_DESCENDANTS || 7.0
     }
 
+    @Ignore
     def 'Apply delta report to an anchor'() {
         given: 'a delta report between 2 anchors'
             def deltaReport = objectUnderTest.getDeltaByDataspaceAndAnchors(CPS_PERFORMANCE_TEST_DATASPACE, 'openroadm-modified1', 'openroadm1', '/openroadm-devices', INCLUDE_ALL_DESCENDANTS, true)

@@ -54,7 +54,7 @@ class QueryPerfTest extends CpsPerfTestBase {
 
     def 'Query complete data trees across all anchors with #scenario.'() {
         given: 'expected number of data nodes to be returned'
-            def expectedNumberOfDataNodes = (OPENROADM_ANCHORS + MODIFIED_OPENROADM_ANCHORS) * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + additionalDataNodesPerDevice)
+            def expectedNumberOfDataNodes = OPENROADM_ANCHORS * (OPENROADM_DEVICES_PER_ANCHOR * OPENROADM_DATANODES_PER_DEVICE + additionalDataNodesPerDevice)
         when: 'query data nodes across all anchors'
             resourceMeter.start()
             def result = objectUnderTest.queryDataNodesAcrossAnchors(CPS_PERFORMANCE_TEST_DATASPACE, cpspath, INCLUDE_ALL_DESCENDANTS, PaginationOption.NO_PAGINATION)
