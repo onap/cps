@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae33720e_9e9e38aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T15:46:53Z",
+      "side": 1,
+      "message": "few questions and observations",
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15357a2f_8f9d0814",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T15:46:53Z",
+      "side": 1,
+      "message": "why did you add this, was there a requierement for it, you think it will be useful ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8a1d09a_25b71528",
@@ -78,6 +118,30 @@
       "writtenOn": "2025-10-07T10:41:36Z",
       "side": 1,
       "message": "NB: Can be extracted into a constant",
+      "range": {
+        "startLine": 100,
+        "startChar": 77,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b908e3_c5389e58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T15:46:53Z",
+      "side": 1,
+      "message": "no, we do NOT want constant unless to clarify the string value, in most cases string literals are better",
+      "parentUuid": "88710a7a_b80b7462",
       "range": {
         "startLine": 100,
         "startChar": 77,
@@ -177,6 +241,52 @@
         "startChar": 18,
         "endLine": 85,
         "endChar": 27
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae21a5a_e99b0a52",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/KafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T15:46:53Z",
+      "side": 1,
+      "message": "why this ForEos its not clear what it is and I am not suer if it is needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d073d4a1_ebe90c56",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T15:46:53Z",
+      "side": 1,
+      "message": "needs to be addressed!",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 15
       },
       "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
