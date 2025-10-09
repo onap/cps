@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0454ee02_e288dae8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-09T11:26:47Z",
+      "side": 1,
+      "message": "strange but no integration test affected.",
+      "parentUuid": "110f999d_c85208c7",
+      "range": {
+        "startLine": 62,
+        "startChar": 5,
+        "endLine": 62,
+        "endChar": 91
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76c9d755_9950c50d",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "writtenOn": "2025-10-09T08:35:15Z",
       "side": 1,
       "message": "maybe add a comment about the spring magic here that this will be populated automatically with all the model loaders",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f63b977_f4edfde2",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ModelLoaderRegistrationOnStartup.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-09T11:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f88751b_58b469dd",
       "range": {
         "startLine": 37,
         "startChar": 18,
