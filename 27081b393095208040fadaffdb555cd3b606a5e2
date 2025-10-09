@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e42042cc_35aab638",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-09T12:11:51Z",
+      "side": 1,
+      "message": "somehow getting null pointer on the logger. m missing something here.\nbut in the meantime u can review other changes.",
+      "parentUuid": "e9bfa371_c2c07fcc",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f88751b_58b469dd",
         "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ModelLoaderRegistrationOnStartup.java",
         "patchSetId": 2
