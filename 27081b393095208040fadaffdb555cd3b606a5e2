@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb63a378_abe34258",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T13:49:32Z",
+      "side": 1,
+      "message": "is OK its not blocking anyway",
+      "parentUuid": "e42042cc_35aab638",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f88751b_58b469dd",
         "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ModelLoaderRegistrationOnStartup.java",
         "patchSetId": 2
@@ -161,6 +185,29 @@
         "startChar": 18,
         "endLine": 37,
         "endChar": 49
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdee0fc9_ecd08785",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T13:49:32Z",
+      "side": 1,
+      "message": "i think performance test could be affected by this!\nwe need to ensure the readiness manager keeps return \u0027false\u0027\npossibly by  insert one dummy task that never gets removed at startup?\nGive that a try",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 38
       },
       "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"

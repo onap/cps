@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0717f702_514e58ea",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ModelLoaderRegistrationOnStartup.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T13:49:32Z",
+      "side": 1,
+      "message": "Spring wil insert all concrete model loader classes here",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 50
+      },
+      "revId": "eeabb37eccd1730a1186dc3cf8dd170fe3f098b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
