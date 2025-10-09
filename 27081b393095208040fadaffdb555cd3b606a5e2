@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "110f999d_c85208c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdog.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T08:35:15Z",
+      "side": 1,
+      "message": "I am missing something in this commit:\nteh file that overrides ncmp.timers.cm-handle-data-sync.initial-delay-ms need to be removed and wherever it was used we need to manage readiness state instead to disable watchdog functionality... I think we might have some integration test affected by this",
+      "range": {
+        "startLine": 62,
+        "startChar": 5,
+        "endLine": 62,
+        "endChar": 91
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76c9d755_9950c50d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/DataSyncWatchdogSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T08:35:15Z",
+      "side": 1,
+      "message": "I think you can set this once in the setup and then override it in the nes test as you do on line #73",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f88751b_58b469dd",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/actuator/ModelLoaderRegistrationOnStartup.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-09T08:35:15Z",
+      "side": 1,
+      "message": "maybe add a comment about the spring magic here that this will be populated automatically with all the model loaders",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 49
+      },
+      "revId": "27081b393095208040fadaffdb555cd3b606a5e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
