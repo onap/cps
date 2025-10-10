@@ -19,9 +19,9 @@
 
 package org.onap.cps.integration.performance.cps
 
-import org.junit.Ignore
 import org.onap.cps.api.CpsDeltaService
 import org.onap.cps.integration.performance.base.CpsPerfTestBase
+import spock.lang.Ignore
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.DIRECT_CHILDREN_ONLY
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
