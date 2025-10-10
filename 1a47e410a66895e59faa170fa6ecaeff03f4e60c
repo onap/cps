@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85e76e42_cef94039",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-10T10:18:21Z",
+      "side": 1,
+      "message": "Should this be fullyOverlappingDataJob?",
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7846894_7d223b2b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-10T10:18:21Z",
+      "side": 1,
+      "message": "As above",
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
