@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache
+package org.onap.cps.impl.cache
 
 import com.hazelcast.core.Hazelcast
 import spock.lang.Specification
@@ -52,10 +52,10 @@ class HazelcastCacheConfigSpec extends Specification {
                 assert result.config.setConfigs.values()[0].name == 'my set config'
             }
         where: 'the following configs are used'
-            scenario       | config                                                    || expectMapConfig | expectQueueConfig | expectSetConfig
-            'Map Config'   | HazelcastCacheConfig.createGenericMapConfig('my map config') || true | false | false
-            'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config') || false           | true              | false
-            'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')     || false           | false             | true
+            scenario       | config                                                       || expectMapConfig | expectQueueConfig | expectSetConfig
+            'Map Config'   | HazelcastCacheConfig.createGenericMapConfig('my map config') || true            | false             | false
+            'Queue Config' | HazelcastCacheConfig.createQueueConfig('my queue config')    || false           | true              | false
+            'Set Config'   | HazelcastCacheConfig.createSetConfig('my set config')        || false           | false             | true
     }
 
 }

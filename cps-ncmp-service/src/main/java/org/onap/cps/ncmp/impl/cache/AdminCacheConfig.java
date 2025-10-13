@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.cache;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
+import org.onap.cps.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,7 +38,6 @@ public class AdminCacheConfig extends HazelcastCacheConfig {
      */
     @Bean
     public IMap<String, Integer> cmHandlesByState() {
-        return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap(
-                "cmHandlesByState");
+        return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap("cmHandlesByState");
     }
 }
