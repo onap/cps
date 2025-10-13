@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ * ============LICENSE_START========================================================
  *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,26 +18,34 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache;
+package org.onap.cps.init;
 
-import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
-import org.onap.cps.impl.cache.HazelcastCacheConfig;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
-@Configuration
-public class AdminCacheConfig extends HazelcastCacheConfig {
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ModelLoaderCoordinatorLock {
 
-    private static final MapConfig cmHandleStateCacheMapConfig = createGenericMapConfig("cmHandleStateCacheMapConfig");
+    @Qualifier("cpsCommonLocks")
+    private final IMap<String, String> cpsCommonLocks;
 
-    /**
-     * Distributed instance admin cache map for cm handles by state for use of gauge metrics.
-     *
-     * @return configured map of cm handles by state.
-     */
-    @Bean
-    public IMap<String, Integer> cmHandlesByState() {
-        return getOrCreateHazelcastInstance(cmHandleStateCacheMapConfig).getMap("cmHandlesByState");
+    private static final String MODULE_LOADER_LOCK_NAME = "modelLoaderLock";
+
+    boolean tryLock() {
+        return cpsCommonLocks.tryLock(MODULE_LOADER_LOCK_NAME);
     }
+
+    boolean isLocked() {
+        return cpsCommonLocks.isLocked(MODULE_LOADER_LOCK_NAME);
+    }
+
+    void unlock() {
+        cpsCommonLocks.forceUnlock(MODULE_LOADER_LOCK_NAME);
+    }
+
 }

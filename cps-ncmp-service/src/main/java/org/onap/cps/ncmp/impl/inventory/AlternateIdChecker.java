@@ -44,6 +44,7 @@ public class AlternateIdChecker {
     }
 
     private final InventoryPersistence inventoryPersistence;
+
     @Qualifier("cmHandleIdPerAlternateId")
     private final IMap<String, String> cmHandleIdPerAlternateId;
 

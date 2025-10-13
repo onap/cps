@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2024-2025 TechMahindra Ltd.
+ *  Modifications Copyright (c) 2022-2025 OpenInfra Foundation Europe.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,7 +41,8 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
+    def mockModelLoaderCoordinatorStart = Mock(ModelLoaderCoordinatorStart)
+    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockModelLoaderCoordinatorStart, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -54,6 +56,7 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
     def MODEL_FILENAME = 'cps-notification-subscriptions@2024-07-03.yang'
 
     void setup() {
+        mockModelLoaderCoordinatorStart.isMaster() >> true
         expectedYangResourcesToContents = objectUnderTest.mapYangResourcesToContent(MODEL_FILENAME)
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()

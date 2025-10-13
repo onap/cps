@@ -81,6 +81,7 @@ public class CmHandleRegistrationService {
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final TrustLevelManager trustLevelManager;
     private final AlternateIdChecker alternateIdChecker;
+
     @Qualifier("cmHandleIdPerAlternateId")
     private final IMap<String, String> cmHandleIdPerAlternateId;
 

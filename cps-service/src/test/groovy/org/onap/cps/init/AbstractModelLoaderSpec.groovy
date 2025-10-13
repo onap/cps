@@ -48,14 +48,16 @@ class AbstractModelLoaderSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
+    def mockModelLoaderCoordinatorStart = Mock(ModelLoaderCoordinatorStart)
+    def objectUnderTest = Spy(new TestModelLoader(mockModelLoaderCoordinatorStart, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
     def logger = (Logger) LoggerFactory.getLogger(AbstractModelLoader)
     def loggingListAppender
 
-    void setup() {
+    def setup() {
+        mockModelLoaderCoordinatorStart.isMaster() >> true
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -63,7 +65,7 @@ class AbstractModelLoaderSpec extends Specification {
         applicationContext.refresh()
     }
 
-    void cleanup() {
+    def cleanup() {
         logger.detachAndStopAllAppenders()
         applicationContext.close()
         loggingListAppender.stop()
@@ -74,6 +76,15 @@ class AbstractModelLoaderSpec extends Specification {
             objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
+    }
+
+    def 'Onboarding is skipped when instance is not master'() {
+        when: 'Application (started) event is triggered'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationStartedEvent))
+        then: 'the onboard/upgrade method is not executed'
+            0 * objectUnderTest.onboardOrUpgradeModel()
+        and: 'this instance is not master (can only override default setup behavior after then: block)'
+            mockModelLoaderCoordinatorStart.isMaster() >> false
     }
 
     def 'Application started event handles startup exception'() {
@@ -285,12 +296,13 @@ class AbstractModelLoaderSpec extends Specification {
 
     class TestModelLoader extends AbstractModelLoader {
 
-        TestModelLoader(final CpsDataspaceService cpsDataspaceService,
+        TestModelLoader(final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart,
+                        final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
                         final CpsAnchorService cpsAnchorService,
                         final CpsDataService cpsDataService,
                         final ReadinessManager readinessManager) {
-            super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
+            super(modelLoaderCoordinatorStart, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
         }
 
         @Override

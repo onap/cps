@@ -23,8 +23,8 @@ package org.onap.cps.ncmp.impl.inventory.trustlevel;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.NearCacheConfig;
 import com.hazelcast.map.IMap;
+import org.onap.cps.impl.cache.HazelcastCacheConfig;
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel;
-import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

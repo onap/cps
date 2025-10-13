@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2022-2025 Nordix Foundation
+ *  Copyright (C) 2022-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2022 Bell Canada
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,9 +38,9 @@ class ModuleSyncWatchdogSpec extends Specification {
 
     def mockModuleSyncTasks = Mock(ModuleSyncTasks)
 
-    def mockCpsAndNcmpLock = Mock(IMap<String,String>)
+    def mockCpsCommonLocks = Mock(IMap<String,String>)
 
-    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsAndNcmpLock)
+    def objectUnderTest = new ModuleSyncWatchdog(mockModuleOperationsUtils, moduleSyncWorkQueue , mockModuleSyncStartedOnCmHandles, mockModuleSyncTasks, mockCpsCommonLocks)
 
     def 'Module sync advised cm handles with #scenario.'() {
         given: 'module sync utilities returns #numberOfAdvisedCmHandles advised cm handles'
@@ -48,13 +48,13 @@ class ModuleSyncWatchdogSpec extends Specification {
         and: 'module sync utilities returns no failed (locked) cm handles'
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
-            mockCpsAndNcmpLock.tryLock('workQueueLock') >> true
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
         when: ' module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs #expectedNumberOfTaskExecutions tasks'
             expectedNumberOfTaskExecutions * mockModuleSyncTasks.performModuleSync(*_)
         and: 'the executing thread is unlocked'
-            1 * mockCpsAndNcmpLock.unlock('workQueueLock')
+            1 * mockCpsCommonLocks.unlock('workQueueLock')
         where: 'the following parameter are used'
             scenario              | numberOfAdvisedCmHandles                                          || expectedNumberOfTaskExecutions
             'none at all'         | 0                                                                 || 0
@@ -69,7 +69,7 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'module sync utilities returns a advise cm handles'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue can be locked'
-            mockCpsAndNcmpLock.tryLock('workQueueLock') >> true
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
         when: ' module sync is started'
             objectUnderTest.moduleSyncAdvisedCmHandles()
         then: 'it performs one task'
@@ -80,7 +80,7 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'the work queue can be locked'
-            mockCpsAndNcmpLock.tryLock('workQueueLock') >> true
+            mockCpsCommonLocks.tryLock('workQueueLock') >> true
         and: 'the semaphore cache indicates the cm handle is already being processed'
             mockModuleSyncStartedOnCmHandles.putIfAbsent(*_) >> 'Started'
         when: 'module sync is started'
@@ -112,13 +112,13 @@ class ModuleSyncWatchdogSpec extends Specification {
         given: 'module sync utilities returns an advised cm handle'
             mockModuleOperationsUtils.getAdvisedCmHandleIds() >> createCmHandleIds(1)
         and: 'can be locked is : #canLock'
-            mockCpsAndNcmpLock.tryLock('workQueueLock') >> canLock
+            mockCpsCommonLocks.tryLock('workQueueLock') >> canLock
         when: 'attempt to populate the work queue'
             objectUnderTest.populateWorkQueueIfNeeded()
         then: 'the queue remains empty is #expectQueueRemainsEmpty'
             assert moduleSyncWorkQueue.isEmpty() == expectQueueRemainsEmpty
         and: 'unlock is called only when thread is able to enter the critical section'
-            expectedInvocationToUnlock * mockCpsAndNcmpLock.unlock('workQueueLock')
+            expectedInvocationToUnlock * mockCpsCommonLocks.unlock('workQueueLock')
         where: 'the following lock states are applied'
             canLock || expectQueueRemainsEmpty || expectedInvocationToUnlock
             false   || true                    || 0

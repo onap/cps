@@ -41,12 +41,14 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
     private static final String CPS_DATASPACE_NAME = "CPS-Admin";
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
 
-    public CpsNotificationSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public CpsNotificationSubscriptionModelLoader(final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart,
+                                                  final CpsDataspaceService cpsDataspaceService,
                                                   final CpsModuleService cpsModuleService,
                                                   final CpsAnchorService cpsAnchorService,
                                                   final CpsDataService cpsDataService,
                                                   final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorStart, cpsDataspaceService, cpsModuleService, cpsAnchorService,
+            cpsDataService, readinessManager);
     }
 
     @Override
