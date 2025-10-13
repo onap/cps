@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
+import org.onap.cps.init.ModelLoaderCoordinatorStart
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -39,12 +40,13 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 
 class CmDataSubscriptionModelLoaderSpec extends Specification {
 
+    def mockModelLoaderCoordinatorStart = Mock(ModelLoaderCoordinatorStart)
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockModelLoaderCoordinatorStart, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -53,6 +55,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
+        mockModelLoaderCoordinatorStart.isMaster() >> true
         expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-job-subscriptions@2025-09-03.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()

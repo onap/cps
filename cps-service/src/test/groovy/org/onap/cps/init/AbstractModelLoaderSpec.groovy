@@ -28,17 +28,16 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
-import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
@@ -49,14 +48,16 @@ class AbstractModelLoaderSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
+    def mockModelLoaderCoordinatorStart = Mock(ModelLoaderCoordinatorStart)
+    def objectUnderTest = Spy(new TestModelLoader(mockModelLoaderCoordinatorStart, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
     def logger = (Logger) LoggerFactory.getLogger(AbstractModelLoader)
     def loggingListAppender
 
-    void setup() {
+    def setup() {
+        mockModelLoaderCoordinatorStart.isMaster() >> true
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -64,7 +65,7 @@ class AbstractModelLoaderSpec extends Specification {
         applicationContext.refresh()
     }
 
-    void cleanup() {
+    def cleanup() {
         logger.detachAndStopAllAppenders()
         applicationContext.close()
         loggingListAppender.stop()
@@ -75,6 +76,15 @@ class AbstractModelLoaderSpec extends Specification {
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
+    }
+
+    def 'Onboarding is skipped when instance is not master'() {
+        when: 'Application (started) event is triggered'
+            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+        then: 'the onboard/upgrade method is not executed'
+            0 * objectUnderTest.onboardOrUpgradeModel()
+        and: 'this instance is not master (can only override default setup behavior after then: block)'
+            mockModelLoaderCoordinatorStart.isMaster() >> false
     }
 
     def 'Application ready event handles startup exception'() {
@@ -286,12 +296,13 @@ class AbstractModelLoaderSpec extends Specification {
 
     class TestModelLoader extends AbstractModelLoader {
 
-        TestModelLoader(final CpsDataspaceService cpsDataspaceService,
+        TestModelLoader(final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart,
+                        final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
                         final CpsAnchorService cpsAnchorService,
                         final CpsDataService cpsDataService,
                         final ReadinessManager readinessManager) {
-            super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
+            super(modelLoaderCoordinatorStart, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
         }
 
         @Override

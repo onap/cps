@@ -49,6 +49,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 @RequiredArgsConstructor
 public abstract class AbstractModelLoader implements ModelLoader {
 
+    protected final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart;
     protected final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
     protected final CpsAnchorService cpsAnchorService;
@@ -62,9 +63,13 @@ public abstract class AbstractModelLoader implements ModelLoader {
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
         try {
-            onboardOrUpgradeModel();
+            if (modelLoaderCoordinatorStart.isMaster()) {
+                onboardOrUpgradeModel();
+            } else {
+                log.info("This instance is not model loader master, skipping model loader for: {}", getName());
+            }
         } catch (final Exception exception) {
-            log.error("Exiting application due to failure in onboarding model: {} ",
+            log.error("Exiting application due to failure in onboarding model: {}",
                     exception.getMessage());
             exitApplication(applicationReadyEvent);
         } finally {

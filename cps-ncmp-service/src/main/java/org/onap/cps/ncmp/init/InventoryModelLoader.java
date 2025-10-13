@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.init.ModelLoaderCoordinatorStart;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,13 +56,15 @@ public class InventoryModelLoader extends AbstractModelLoader {
      * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
      * the NCMP inventory model schema sets and managing readiness state during migration.
      */
-    public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public InventoryModelLoader(final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart,
+                                final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
                                 final CpsAnchorService cpsAnchorService,
                                 final CpsDataService cpsDataService,
                                 final ApplicationEventPublisher applicationEventPublisher,
                                 final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorStart, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+            readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
