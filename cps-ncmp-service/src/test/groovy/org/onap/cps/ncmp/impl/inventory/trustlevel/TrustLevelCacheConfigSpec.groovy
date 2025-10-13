@@ -20,7 +20,6 @@
 
 package org.onap.cps.ncmp.impl.inventory.trustlevel
 
-import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
@@ -92,20 +91,6 @@ class TrustLevelCacheConfigSpec extends Specification {
         expect: 'system created instance with correct config'
             assert trustLevelPerCmHandlePluginCacheConfig.join.autoDetectionConfig.enabled
             assert !trustLevelPerCmHandlePluginCacheConfig.join.kubernetesConfig.enabled
-    }
-
-    def 'Verify network config'() {
-        given: 'Synchronization config object and test configuration'
-            def objectUnderTest = new TrustLevelCacheConfig()
-            def testConfig = new Config()
-        when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
-            objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
-        and: 'method called to update the discovery mode'
-            objectUnderTest.updateDiscoveryMode(testConfig)
-        then: 'applied properties are reflected'
-            assert testConfig.networkConfig.join.kubernetesConfig.enabled
-            assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
     }
 
 }

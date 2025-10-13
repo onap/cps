@@ -53,6 +53,7 @@ import org.onap.cps.ri.utils.SessionManager
 import org.onap.cps.spi.CpsModulePersistenceService
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -146,7 +147,8 @@ abstract class CpsIntegrationSpecBase extends Specification {
     BlockingQueue<String> moduleSyncWorkQueue
 
     @Autowired
-    IMap<String, String> cpsAndNcmpLock
+    @Qualifier("cpsCommonLocks")
+    IMap<String, String> cpsCommonLocks
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

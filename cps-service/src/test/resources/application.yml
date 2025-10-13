@@ -41,3 +41,12 @@ spring:
 logging:
   level:
     org.apache.kafka: ERROR
+
+# Custom Hazelcast Config.
+hazelcast:
+  cluster-name: "cps-and-ncmp-test-caches"
+  instance-config-name: "cps-and-ncmp-hazelcast-instance-test-config"
+  mode:
+    kubernetes:
+      enabled: false
+      service-name: "cps-and-ncmp-service"
