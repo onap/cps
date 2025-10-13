@@ -41,19 +41,25 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
     private static final String CPS_DATASPACE_NAME = "CPS-Admin";
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
 
-    public CpsNotificationSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public CpsNotificationSubscriptionModelLoader(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
+                                                  final CpsDataspaceService cpsDataspaceService,
                                                   final CpsModuleService cpsModuleService,
                                                   final CpsAnchorService cpsAnchorService,
                                                   final CpsDataService cpsDataService,
                                                   final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+            readinessManager);
     }
 
     @Override
     public void onboardOrUpgradeModel() {
-        log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
-        onboardSubscriptionModels();
-        log.info("Model Loader #1 Completed");
+        if (isMaster) {
+            log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
+            onboardSubscriptionModels();
+            log.info("Model Loader #1 Completed");
+        } else {
+            logSkipMessage();
+        }
     }
 
     private void onboardSubscriptionModels() {

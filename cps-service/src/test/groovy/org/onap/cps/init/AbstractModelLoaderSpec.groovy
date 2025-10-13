@@ -28,35 +28,35 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
-import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
 class AbstractModelLoaderSpec extends Specification {
 
+    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
+    def objectUnderTest = Spy(new TestModelLoader(mockModelLoaderCoordinatorLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
     def logger = (Logger) LoggerFactory.getLogger(AbstractModelLoader)
     def loggingListAppender
 
-    void setup() {
+    def setup() {
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -64,7 +64,7 @@ class AbstractModelLoaderSpec extends Specification {
         applicationContext.refresh()
     }
 
-    void cleanup() {
+    def cleanup() {
         logger.detachAndStopAllAppenders()
         applicationContext.close()
         loggingListAppender.stop()
@@ -279,6 +279,34 @@ class AbstractModelLoaderSpec extends Specification {
             'Module revision does not exist' || []                       || false
     }
 
+    def 'Check if this instance is master when: #scenario'() {
+        given: 'the lock acquisition returns a specific result'
+            mockModelLoaderCoordinatorLock.tryLock() >> lockAcquired
+        when: 'checking if this instance is master'
+            objectUnderTest.checkIfThisInstanceIsMaster()
+        then: 'the master status is set correctly'
+            objectUnderTest.@isMaster == expectedMasterStatus
+        and: 'appropriate log message is produced'
+            assertLogContains(expectedLogMessage)
+        where: 'the following scenarios are used'
+            scenario                      || lockAcquired || expectedMasterStatus || expectedLogMessage
+            'lock is acquired'            || true         || true                 || 'This instance is model loader master'
+            'lock cannot be acquired'     || false        || false                || 'Another instance is model loader master'
+    }
+
+    def 'Check if this instance is master - isMaster already true (no lock attempt)'() {
+        given: 'instance already considers itself master'
+            objectUnderTest.@isMaster = true
+        when: 'checkIfThisInstanceIsMaster is called'
+            objectUnderTest.checkIfThisInstanceIsMaster()
+        then: 'isMaster remains true'
+            assert objectUnderTest.@isMaster == true
+        and: 'tryLock is not called at all'
+            0 * mockModelLoaderCoordinatorLock.tryLock()
+        and: 'log indicates master'
+            assertLogContains('This instance is model loader master')
+    }
+
     private void assertLogContains(String message) {
         def logs = loggingListAppender.list.toString()
         assert logs.contains(message)
@@ -286,12 +314,13 @@ class AbstractModelLoaderSpec extends Specification {
 
     class TestModelLoader extends AbstractModelLoader {
 
-        TestModelLoader(final CpsDataspaceService cpsDataspaceService,
+        TestModelLoader(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
+                        final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
                         final CpsAnchorService cpsAnchorService,
                         final CpsDataService cpsDataService,
                         final ReadinessManager readinessManager) {
-            super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
+            super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
         }
 
         @Override
@@ -303,5 +332,6 @@ class AbstractModelLoaderSpec extends Specification {
         String getName() {
             // Not needed for testing
         }
+
     }
 }
