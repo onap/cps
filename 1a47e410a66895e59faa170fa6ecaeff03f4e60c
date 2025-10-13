@@ -75,6 +75,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ec0114_bea6b3c4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a54740e_935683fd",
+      "range": {
+        "startLine": 68,
+        "startChar": 65,
+        "endLine": 68,
+        "endChar": 75
+      },
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e33f6205_34024047",
@@ -88,6 +112,30 @@
       "writtenOn": "2025-10-10T12:35:52Z",
       "side": 1,
       "message": "same as above.",
+      "range": {
+        "startLine": 69,
+        "startChar": 66,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea6be8a5_e8f5293a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e33f6205_34024047",
       "range": {
         "startLine": 69,
         "startChar": 66,
@@ -115,6 +163,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08fafa1a_1342ef57",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85e76e42_cef94039",
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7846894_7d223b2b",
@@ -128,6 +194,24 @@
       "writtenOn": "2025-10-10T10:18:21Z",
       "side": 1,
       "message": "As above",
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "895d127e_18e8aa1c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7846894_7d223b2b",
       "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -155,6 +239,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21c18cc1_49f7af93",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "yes , ive tried it with longer poll",
+      "parentUuid": "35d45211_381fb796",
+      "range": {
+        "startLine": 222,
+        "startChar": 8,
+        "endLine": 222,
+        "endChar": 19
+      },
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e6970d0_89791cb4",
@@ -168,6 +276,30 @@
       "writtenOn": "2025-10-10T12:35:52Z",
       "side": 1,
       "message": "NB: client-id and group-id are different.\nproducer needs a client-id.\nconsumer can be part of a consumer group.\n\nmaybe rename the formal parameter.",
+      "range": {
+        "startLine": 87,
+        "startChar": 24,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "1a47e410a66895e59faa170fa6ecaeff03f4e60c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97070f5e_a8028eb2",
+        "filename": "integration-test/src/test/java/org/onap/cps/integration/KafkaTestContainer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-13T09:37:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e6970d0_89791cb4",
       "range": {
         "startLine": 87,
         "startChar": 24,
