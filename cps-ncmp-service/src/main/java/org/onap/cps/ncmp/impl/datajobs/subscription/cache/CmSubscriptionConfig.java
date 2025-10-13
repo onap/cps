@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.impl.datajobs.subscription.cache;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
 import java.util.Map;
-import org.onap.cps.ncmp.impl.cache.HazelcastCacheConfig;
+import org.onap.cps.impl.cache.HazelcastCacheConfig;
 import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

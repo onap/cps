@@ -21,6 +21,8 @@
 
 package org.onap.cps.init;
 
+import java.util.concurrent.TimeUnit;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -41,12 +43,14 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
     private static final String CPS_DATASPACE_NAME = "CPS-Admin";
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
 
-    public CpsNotificationSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public CpsNotificationSubscriptionModelLoader(final ModelLoaderCoordinatorStart modelLoaderCoordinatorStart,
+                                                  final CpsDataspaceService cpsDataspaceService,
                                                   final CpsModuleService cpsModuleService,
                                                   final CpsAnchorService cpsAnchorService,
                                                   final CpsDataService cpsDataService,
                                                   final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorStart, cpsDataspaceService, cpsModuleService, cpsAnchorService,
+            cpsDataService, readinessManager);
     }
 
     @Override
