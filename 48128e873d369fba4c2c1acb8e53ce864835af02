@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0bcd36_f7dff1a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "few minor things",
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c3e1e2_3069368e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "dont think you need/should call thee schedule version here",
+      "range": {
+        "startLine": 89,
+        "startChar": 28,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63ed505_07cb5484",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "dont think you need/should call thee schedule version here",
+      "range": {
+        "startLine": 112,
+        "startChar": 28,
+        "endLine": 112,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe094aae_ebc88325",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "dont think you need/should call thee schedule version here",
+      "range": {
+        "startLine": 127,
+        "startChar": 28,
+        "endLine": 127,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4207da7_3cc671bf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "dont think you need/should call thee schedule version here",
+      "range": {
+        "startLine": 138,
+        "startChar": 28,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eaab85c_1675e6d9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "legacy: use single \u0027",
+      "range": {
+        "startLine": 207,
+        "startChar": 33,
+        "endLine": 207,
+        "endChar": 34
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a132f6b_9c6c4f2d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "use single \u0027",
+      "range": {
+        "startLine": 210,
+        "startChar": 47,
+        "endLine": 210,
+        "endChar": 49
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3716019_ae1695de",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-13T06:54:16Z",
+      "side": 1,
+      "message": "\u0027Dummy process to prevent watchdogs processes starting during integration tests\u0027",
+      "range": {
+        "startLine": 210,
+        "startChar": 48,
+        "endLine": 210,
+        "endChar": 97
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
