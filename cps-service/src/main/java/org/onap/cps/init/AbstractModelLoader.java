@@ -49,11 +49,14 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 @RequiredArgsConstructor
 public abstract class AbstractModelLoader implements ModelLoader {
 
+    protected final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock;
     protected final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
     protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
     protected final ReadinessManager readinessManager;
+
+    protected boolean isMaster = false;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
 
@@ -62,9 +65,10 @@ public abstract class AbstractModelLoader implements ModelLoader {
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
         try {
+            checkIfThisInstanceIsMaster();
             onboardOrUpgradeModel();
         } catch (final Exception exception) {
-            log.error("Exiting application due to failure in onboarding model: {} ",
+            log.error("Exiting application due to failure in onboarding model: {}",
                     exception.getMessage());
             exitApplication(applicationReadyEvent);
         } finally {
@@ -206,6 +210,9 @@ public abstract class AbstractModelLoader implements ModelLoader {
         return !moduleDefinitions.isEmpty();
     }
 
+    public void logSkipMessage() {
+        log.info("This instance is not model loader master, skipping model loader for: {}", getName());
+    }
 
     Map<String, String> mapYangResourcesToContent(final String... resourceNames) {
         final Map<String, String> yangResourceContentByName = new HashMap<>();
@@ -213,6 +220,15 @@ public abstract class AbstractModelLoader implements ModelLoader {
             yangResourceContentByName.put(resourceName, getFileContentAsString("models/" + resourceName));
         }
         return yangResourceContentByName;
+    }
+
+    void checkIfThisInstanceIsMaster() {
+        isMaster = isMaster || modelLoaderCoordinatorLock.tryLock();
+        if (isMaster) {
+            log.info("This instance is model loader master");
+        } else {
+            log.info("Another instance is model loader master");
+        }
     }
 
     private String getFileContentAsString(final String fileName) {

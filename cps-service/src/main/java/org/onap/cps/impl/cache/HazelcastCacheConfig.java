@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache;
+package org.onap.cps.impl.cache;
 
 import com.hazelcast.config.Config;
 import com.hazelcast.config.MapConfig;
@@ -51,7 +51,6 @@ public class HazelcastCacheConfig {
 
     protected HazelcastInstance getOrCreateHazelcastInstance(final NamedConfig namedConfig) {
         return Hazelcast.getOrCreateHazelcastInstance(defineInstanceConfig(instanceConfigName, namedConfig));
-
     }
 
     private Config defineInstanceConfig(final String instanceConfigName, final NamedConfig namedConfig) {
@@ -88,8 +87,6 @@ public class HazelcastCacheConfig {
         mapConfig.setBackupCount(1);
         return mapConfig;
     }
-
-
 
     protected static QueueConfig createQueueConfig(final String configName) {
         final QueueConfig commonQueueConfig = new QueueConfig(configName);
