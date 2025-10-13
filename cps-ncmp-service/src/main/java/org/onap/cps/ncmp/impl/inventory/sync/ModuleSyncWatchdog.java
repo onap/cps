@@ -21,8 +21,6 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync;
 
-import static org.onap.cps.ncmp.impl.cache.CpsAndNcmpLockConfig.MODULE_SYNC_WORK_QUEUE_LOCK_NAME;
-
 import com.hazelcast.map.IMap;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,13 +42,12 @@ public class ModuleSyncWatchdog {
     private final BlockingQueue<String> moduleSyncWorkQueue;
     private final IMap<String, Object> moduleSyncStartedOnCmHandles;
     private final ModuleSyncTasks moduleSyncTasks;
-    @Qualifier("cpsAndNcmpLock")
-    private final IMap<String, String> cpsAndNcmpLock;
+    @Qualifier("cpsCommonLocks") private final IMap<String, String> cpsCommonLocks;
     private final ReadinessManager readinessManager;
 
     private static final int MODULE_SYNC_BATCH_SIZE = 300;
     private static final String VALUE_FOR_HAZELCAST_IN_PROGRESS_MAP = "Started";
-
+    private static final String MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME = "workQueueLock";
 
     /**
      * Check DB for any cm handles in 'ADVISED' state.
@@ -91,7 +88,7 @@ public class ModuleSyncWatchdog {
      * So it can be tested without the queue being emptied immediately as the main public method does.
      */
     public void populateWorkQueueIfNeeded() {
-        if (moduleSyncWorkQueue.isEmpty() && cpsAndNcmpLock.tryLock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME)) {
+        if (moduleSyncWorkQueue.isEmpty() && cpsCommonLocks.tryLock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME)) {
             log.debug("Lock acquired by thread : {}", Thread.currentThread().getName());
             try {
                 populateWorkQueue();
@@ -99,7 +96,7 @@ public class ModuleSyncWatchdog {
                     setPreviouslyLockedCmHandlesToAdvised();
                 }
             } finally {
-                cpsAndNcmpLock.unlock(MODULE_SYNC_WORK_QUEUE_LOCK_NAME);
+                cpsCommonLocks.unlock(MODULE_SYNC_WORK_QUEUE_COMMON_LOCK_NAME);
                 log.debug("Lock released by thread : {}", Thread.currentThread().getName());
             }
         }

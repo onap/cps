@@ -30,10 +30,10 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.model.Dataspace
 import org.onap.cps.api.model.ModuleDefinition
+import org.onap.cps.init.ModelLoaderCoordinatorLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -43,13 +43,14 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 
 class InventoryModelLoaderSpec extends Specification {
 
+    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
     def mockCpsAdminService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new InventoryModelLoader(mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderCoordinatorLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -59,6 +60,7 @@ class InventoryModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
+        objectUnderTest.isMaster = true
         expectedPreviousYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2024-02-23.yang')
         expectedNewYangResourceToContentMap = objectUnderTest.mapYangResourcesToContent('dmi-registry@2025-07-22.yang')
         objectUnderTest.newRevisionEnabled = true
@@ -114,15 +116,27 @@ class InventoryModelLoaderSpec extends Specification {
             assert loggingListAppender.list.any { it.message.contains("Inventory upgraded successfully") }
     }
 
+    def 'Onboarding is skipped when instance is not master'() {
+        given: 'instance is not master'
+            objectUnderTest.isMaster = false
+        when: 'the model loader is started'
+            objectUnderTest.onboardOrUpgradeModel()
+        then: 'the onboard/upgrade methods are not executed'
+            0 * mockCpsModuleService.createSchemaSet(*_)
+    }
+
+
     def 'Skip upgrade model revision when new revision already installed'() {
         given: 'the anchor exists and the new model revision is already installed'
             mockCpsAnchorService.getAnchor(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR) >> {}
-            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(_, _, _, _) >> [new ModuleDefinition('', '', '')]
-        when: 'the inventory model loader is triggered'
+            mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(*_) >> [new ModuleDefinition('', '', '')]
+        when: 'the model loader is started'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'no new schema set is created'
-            0 * mockCpsModuleService.createSchemaSet(_, _, _)
+            0 * mockCpsModuleService.createSchemaSet(*_)
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
     }
+
+
 }
