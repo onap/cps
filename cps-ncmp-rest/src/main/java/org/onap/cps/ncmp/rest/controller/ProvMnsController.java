@@ -20,13 +20,18 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
@@ -39,8 +44,14 @@ import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParame
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.provmns.ErrorResponseBuilder;
+import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.ncmp.rest.provmns.model.mapped.ConfigurationManagementPatchInput;
+import org.onap.cps.ncmp.rest.util.ProvMnSMapper;
+import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper;
+import org.onap.cps.ncmp.rest.util.ProvMnsRequestParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,11 +70,11 @@ public class ProvMnsController implements ProvMnS {
     private final AlternateIdMatcher alternateIdMatcher;
     private final DmiRestClient dmiRestClient;
     private final InventoryPersistence inventoryPersistence;
+    private final JsonObjectMapper jsonObjectMapper;
     private final ParametersBuilder parametersBuilder;
     private final ParameterMapper parameterMapper;
     private final ErrorResponseBuilder errorResponseBuilder;
     private final PolicyExecutor policyExecutor;
-    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
@@ -103,6 +114,29 @@ public class ProvMnsController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
+
+            checkTarget(yangModelCmHandle);
+
+            final ConfigurationManagementPatchInput configurationManagementPatchInput =
+                        ProvMnSMapper.mapOperations(Collections.emptyList(), requestPathParameters.getUriLdnFirstPart());
+
+                final String requestBodyAsJsonString = jsonObjectMapper.asJsonString(configurationManagementPatchInput);
+
+                policyExecutor.checkPermission(yangModelCmHandle,
+                        OperationType.PATCH,
+                        NO_AUTHORIZATION,
+                        requestPathParameters.getUriLdnFirstPart(),
+                        requestBodyAsJsonString);
+
+                final UrlTemplateParameters urlTemplateParameters = RestServiceUrlTemplateBuilder.newInstance()
+                        .fixedPathSegment(requestPathParameters.getUriLdnFirstPart())
+                        .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(),
+                                "/ProvMns");
+
+                dmiRestClient.synchronousPatchOperationWithJsonData(RequiredDmiService.DATA,
+                        urlTemplateParameters,
+                        requestBodyAsJsonString,
+                        OperationType.PATCH);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_FOUND, reason);
