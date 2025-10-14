@@ -23,6 +23,8 @@
 package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.hazelcast.map.IMap
+
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -63,7 +65,9 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCpsValidator = Mock(CpsValidator)
 
-    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService)
+    def mockCmHandleIdPerAlternateId = Mock(IMap)
+
+    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId)
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))

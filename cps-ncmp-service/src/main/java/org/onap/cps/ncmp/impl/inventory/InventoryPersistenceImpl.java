@@ -26,6 +26,7 @@ import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DES
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS;
 
 import com.google.common.collect.Lists;
+import com.hazelcast.map.IMap;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,6 +63,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
 
     private final CpsModuleService cpsModuleService;
     private final CpsValidator cpsValidator;
+    private final IMap<String, String> cmHandleIdPerAlternateId;
 
     /**
      * initialize an inventory persistence object.
@@ -76,10 +78,12 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                                     final JsonObjectMapper jsonObjectMapper,
                                     final CpsAnchorService cpsAnchorService,
                                     final CpsModuleService cpsModuleService,
-                                    final CpsDataService cpsDataService) {
+                                    final CpsDataService cpsDataService,
+                                    final IMap<String, String> cmHandleIdPerAlternateId) {
         super(jsonObjectMapper, cpsAnchorService, cpsDataService);
         this.cpsModuleService = cpsModuleService;
         this.cpsValidator = cpsValidator;
+        this.cmHandleIdPerAlternateId = cmHandleIdPerAlternateId;
     }
 
     @Override
@@ -101,9 +105,13 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     @Override
     public void saveCmHandleStateBatch(final Map<String, CompositeState> cmHandleStatePerCmHandleId) {
         final Map<String, String> cmHandlesJsonDataMap = new HashMap<>();
-        cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> cmHandlesJsonDataMap.put(
-                getXPathForCmHandleById(cmHandleId),
-                createStateJsonData(jsonObjectMapper.asJsonString(compositeState))));
+        cmHandleStatePerCmHandleId.forEach((cmHandleId, compositeState) -> {
+            if (!cmHandleIdPerAlternateId.containsKey(cmHandleId)
+                    || !cmHandleIdPerAlternateId.containsValue(cmHandleId)) {
+                cmHandlesJsonDataMap.put(getXPathForCmHandleById(cmHandleId),
+                        createStateJsonData(jsonObjectMapper.asJsonString(compositeState)));
+            }
+        });
         cpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 cmHandlesJsonDataMap, OffsetDateTime.now(), ContentType.JSON);
     }
@@ -112,7 +120,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     public YangModelCmHandle getYangModelCmHandle(final String cmHandleId) {
         cpsValidator.validateNameCharacters(cmHandleId);
         final DataNode dataNode =
-            getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS).iterator().next();
+                getCmHandleDataNodeByCmHandleId(cmHandleId, INCLUDE_ALL_DESCENDANTS).iterator().next();
         return YangDataConverter.toYangModelCmHandle(dataNode);
     }
 
@@ -137,7 +145,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                                                                                 final String moduleRevision) {
         cpsValidator.validateNameCharacters(cmHandleId, moduleName);
         return cpsModuleService.getModuleDefinitionsByAnchorAndModule(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,
-                    cmHandleId, moduleName, moduleRevision);
+                cmHandleId, moduleName, moduleRevision);
     }
 
     @Override
@@ -209,9 +217,9 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
     }
 
     private Collection<YangModelCmHandle> getYangModelCmHandlesWithDescendantsOption(final Collection<String>
-                                                                                         cmHandleIds,
+                                                                                             cmHandleIds,
                                                                                      final FetchDescendantsOption
-                                                                                         fetchDescendantsOption) {
+                                                                                             fetchDescendantsOption) {
         final Collection<String> validCmHandleIds = new ArrayList<>(cmHandleIds.size());
         cmHandleIds.forEach(cmHandleId -> {
             try {
@@ -219,7 +227,7 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
                 validCmHandleIds.add(cmHandleId);
             } catch (final DataValidationException dataValidationException) {
                 log.error("DataValidationException in CmHandleId {} to be ignored",
-                    dataValidationException.getMessage());
+                        dataValidationException.getMessage());
             }
         });
         return YangDataConverter.toYangModelCmHandles(getCmHandleDataNodes(validCmHandleIds, fetchDescendantsOption));
