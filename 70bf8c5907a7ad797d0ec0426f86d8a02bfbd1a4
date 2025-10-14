@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0561d328_052d5de5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-14T16:41:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "58f4ad44_f2796f96",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 74
+      },
+      "revId": "70bf8c5907a7ad797d0ec0426f86d8a02bfbd1a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8be4ceae_811c2ffd",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-10-14T13:58:00Z",
       "side": 1,
       "message": "I presume you are still working on the 4 possible scenarios that you need to test now?",
+      "range": {
+        "startLine": 70,
+        "startChar": 160,
+        "endLine": 70,
+        "endChar": 188
+      },
+      "revId": "70bf8c5907a7ad797d0ec0426f86d8a02bfbd1a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "490f191d_3fcef63d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-14T16:41:55Z",
+      "side": 1,
+      "message": "see next patch",
+      "parentUuid": "8be4ceae_811c2ffd",
       "range": {
         "startLine": 70,
         "startChar": 160,
