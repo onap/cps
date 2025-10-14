@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
@@ -40,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -125,6 +127,23 @@ public class PolicyExecutor {
     /**
      * Build a OperationDetails object from ProvMnS request details.
      *
+     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @param patchItems               provided request resource
+     * @return OperationDetails object
+     */
+    public List<OperationDetails> buildPatchOperations(final RequestPathParameters requestPathParameters,
+                                                 final List<PatchItem> patchItems) {
+
+        return patchItems.stream()
+                .map(patchItem -> buildOperationDetails(determineOperationType(patchItem.getOp().getValue()),
+                        requestPathParameters,
+                        (Resource) patchItem.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Build a OperationDetails object from ProvMnS request details.
+     *
      * @param operationType            Type of operation delete, create etc.
      * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
      * @param resource                 provided request resource
@@ -183,6 +202,14 @@ public class PolicyExecutor {
             }
         }
         return operationAsMap;
+    }
+
+    private OperationType determineOperationType(final String operation) {
+        return switch (operation) {
+            case "add" -> OperationType.CREATE;
+            case "replace", "merge" -> OperationType.UPDATE;
+            default -> OperationType.DELETE;
+        };
     }
 
     private Object createBodyAsObject(final Map<String, Object> operationAsMap) {
