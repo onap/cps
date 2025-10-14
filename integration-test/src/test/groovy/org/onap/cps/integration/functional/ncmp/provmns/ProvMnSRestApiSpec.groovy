@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SuppressWarnings('SpellCheckingInspection')
-class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
+class ProvMnSRestApiSpec extends CpsIntegrationSpecBase {
 
     def 'Get Resource Data from provmns interface.'() {
         given: 'a registered cm handle'
@@ -55,13 +55,15 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
     }
 
     def 'Patch Resource Data from provmns interface.'() {
-        given: 'an example resource json body'
+        given: 'an example resource json body and a cm handle'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'ldnFirstPart')
         expect: 'not implemented response on PATCH endpoint'
-            mvc.perform(patch("/ProvMnS/v1/A=1/B=2/C=3")
+            mvc.perform(patch("/ProvMnS/v1/ldnFirstPart/someClass=someId")
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
-                    .andExpect(status().isNotImplemented())
+                    .andExpect(status().isOk())
     }
 
     def 'Delete Resource Data from provmns interface.'() {

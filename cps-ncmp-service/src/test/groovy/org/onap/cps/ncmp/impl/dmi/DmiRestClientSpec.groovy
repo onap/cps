@@ -24,6 +24,7 @@ package org.onap.cps.ncmp.impl.dmi
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
+import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.ncmp.utils.TestUtils
@@ -42,6 +43,7 @@ import spock.lang.Specification
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.DMI_SERVICE_NOT_RESPONDING
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNABLE_TO_READ_RESOURCE_DATA
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.UNKNOWN_ERROR
+import static org.onap.cps.ncmp.api.data.models.OperationType.DELETE
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
@@ -186,5 +188,24 @@ class DmiRestClientSpec extends Specification {
         then: 'the response has some value'
             assert response != null
             assert  result == 'some result'
+    }
+
+    def 'DMI PATCH Operation for DMI Data Service '() {
+        given: 'the parameters for the DMI web client'
+            def mockRequestHeadersUriSpec = Mock(WebClient.RequestHeadersUriSpec)
+            def mockRequestHeadersSpec = Mock(WebClient.RequestHeadersSpec)
+            def mockResponseSpec = Mock(WebClient.ResponseSpec)
+            def urlTemplateParameters = new UrlTemplateParameters('some url', [:])
+            def responseEntity = ResponseEntity.ok(new Object())
+        and: 'the response from the DMI'
+            mockDataServicesWebClient.patch() >> mockRequestHeadersUriSpec
+            mockRequestHeadersUriSpec.uri(_, _) >> mockRequestHeadersSpec
+            mockRequestHeadersSpec.headers(_) >> mockRequestHeadersSpec
+            mockRequestHeadersSpec.retrieve() >> mockResponseSpec
+            mockResponseSpec.toEntity(Object.class) >> Mono.just(responseEntity)
+        when: 'DELETE operation is invoked for Data Service'
+            objectUnderTest.synchronousPatchOperationWithJsonData(DATA, urlTemplateParameters, _, DELETE)
+        then: 'no exception occurs'
+            noExceptionThrown()
     }
 }
