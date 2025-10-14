@@ -311,6 +311,12 @@ public class CpsDataServiceImpl implements CpsDataService {
         yangParser.validateData(contentType, nodeData, anchor, xpath);
     }
 
+    @Override
+    public void deleteAllOrphanedData(String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsDataPersistenceService.deleteAllOrphanedFragmentEntities(dataspaceName);
+    }
+
     private void processDataNodeUpdate(final Anchor anchor, final DataNode dataNodeUpdate) {
         cpsDataPersistenceService.batchUpdateDataLeaves(anchor.getDataspaceName(), anchor.getName(),
                 Collections.singletonMap(dataNodeUpdate.getXpath(), dataNodeUpdate.getLeaves()));

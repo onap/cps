@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.api.CpsAnchorService;
+import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.CpsNotificationService;
@@ -58,6 +59,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminRestController implements CpsAdminApi {
 
     private final CpsDataspaceService cpsDataspaceService;
+    private final CpsDataService cpsDataService;
     private final CpsModuleService cpsModuleService;
     private final CpsRestInputMapper cpsRestInputMapper;
     private final CpsAnchorService cpsAnchorService;
@@ -192,6 +194,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> cleanDataspace(final String apiVersion, final String dataspaceName) {
         cpsModuleService.deleteAllUnusedYangModuleData(dataspaceName);
+        cpsDataService.deleteAllOrphanedData(dataspaceName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
