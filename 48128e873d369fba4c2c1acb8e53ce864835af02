@@ -58,6 +58,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49fdea72_c60a041f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d4c3e1e2_3069368e",
+      "range": {
+        "startLine": 89,
+        "startChar": 28,
+        "endLine": 89,
+        "endChar": 37
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d63ed505_07cb5484",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-10-13T06:54:16Z",
       "side": 1,
       "message": "dont think you need/should call thee schedule version here",
+      "range": {
+        "startLine": 112,
+        "startChar": 28,
+        "endLine": 112,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c38825_657f8af0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d63ed505_07cb5484",
       "range": {
         "startLine": 112,
         "startChar": 28,
@@ -104,6 +152,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80427d3_ab8cdbc7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fe094aae_ebc88325",
+      "range": {
+        "startLine": 127,
+        "startChar": 28,
+        "endLine": 127,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4207da7_3cc671bf",
@@ -127,6 +199,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e469a1_346c648d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdogSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4207da7_3cc671bf",
+      "range": {
+        "startLine": 138,
+        "startChar": 28,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eaab85c_1675e6d9",
@@ -140,6 +236,30 @@
       "writtenOn": "2025-10-13T06:54:16Z",
       "side": 1,
       "message": "legacy: use single \u0027",
+      "range": {
+        "startLine": 207,
+        "startChar": 33,
+        "endLine": 207,
+        "endChar": 34
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba889ac_3acbb5d1",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eaab85c_1675e6d9",
       "range": {
         "startLine": 207,
         "startChar": 33,
@@ -186,6 +306,54 @@
       "writtenOn": "2025-10-13T06:54:16Z",
       "side": 1,
       "message": "\u0027Dummy process to prevent watchdogs processes starting during integration tests\u0027",
+      "range": {
+        "startLine": 210,
+        "startChar": 48,
+        "endLine": 210,
+        "endChar": 97
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d210aa_c7580a55",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a132f6b_9c6c4f2d",
+      "range": {
+        "startLine": 210,
+        "startChar": 47,
+        "endLine": 210,
+        "endChar": 49
+      },
+      "revId": "48128e873d369fba4c2c1acb8e53ce864835af02",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db31a25e_10996ce4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/CpsIntegrationSpecBase.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-14T08:30:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3716019_ae1695de",
       "range": {
         "startLine": 210,
         "startChar": 48,
