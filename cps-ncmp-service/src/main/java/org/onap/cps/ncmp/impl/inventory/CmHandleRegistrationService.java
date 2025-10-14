@@ -188,10 +188,16 @@ public class CmHandleRegistrationService {
                     }
                 }
             }
+            final Collection<YangModelCmHandle> removedYangModelCmHandles =
+                    yangModelCmHandles.stream()
+                    .filter(yangModelCmHandle ->
+                            (new HashSet<>(tobeRemovedCmHandleBatch).contains(yangModelCmHandle.getId())
+                            && !notDeletedCmHandles.contains(yangModelCmHandle.getId())))
+                    .collect(Collectors.toList());
+            removeAlternateIdsFromCache(removedYangModelCmHandles);
         }
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
-        removeAlternateIdsFromCache(yangModelCmHandles);
         dmiPluginRegistrationResponse.setRemovedCmHandles(cmHandleRegistrationResponses);
     }
 
