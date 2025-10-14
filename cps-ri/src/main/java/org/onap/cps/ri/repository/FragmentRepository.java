@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2021-2024 Nordix Foundation.
+ * Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
  * Modifications Copyright (C) 2020-2021 Bell Canada.
  * Modifications Copyright (C) 2020-2021 Pantheon.tech.
  * Modifications Copyright (C) 2023 TechMahindra Ltd.
@@ -23,8 +23,10 @@
 
 package org.onap.cps.ri.repository;
 
+import jakarta.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import org.onap.cps.ri.models.AnchorEntity;
 import org.onap.cps.ri.models.FragmentEntity;
 import org.onap.cps.ri.utils.EscapeUtils;
@@ -106,4 +108,12 @@ public interface FragmentRepository extends JpaRepository<FragmentEntity, Long>,
     @Query(value = "SELECT * FROM fragment WHERE anchor_id = :anchorId AND parent_id IS NULL", nativeQuery = true)
     List<FragmentEntity> findRootsByAnchorId(@Param("anchorId") long anchorId);
 
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM fragment where parent_id in"
+            + " (SELECT id from fragment WHERE (LENGTH(xpath) - LENGTH(REPLACE(xpath, '/','')) > 1)"
+            + " AND parent_id is null)"
+            + " OR ((LENGTH(xpath) - LENGTH(REPLACE(xpath, '/', '')) > 1) AND parent_id is null)"
+            + " AND anchor_id IN (:anchorIds)", nativeQuery = true)
+    void deleteOrphanedFragmentEntities(@Param("anchorIds") Set<Long> anchorIds);
 }
