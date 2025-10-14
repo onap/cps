@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2020-2025 Nordix Foundation.
+ * Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  * Modifications Copyright (C) 2020-2022 Bell Canada.
  * Modifications Copyright (C) 2021 Pantheon.tech
  * Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -25,6 +25,9 @@ package org.onap.cps.ri;
 
 import jakarta.transaction.Transactional;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +40,7 @@ import org.onap.cps.ri.models.DataspaceEntity;
 import org.onap.cps.ri.models.SchemaSetEntity;
 import org.onap.cps.ri.repository.AnchorRepository;
 import org.onap.cps.ri.repository.DataspaceRepository;
+import org.onap.cps.ri.repository.FragmentRepository;
 import org.onap.cps.ri.repository.SchemaSetRepository;
 import org.onap.cps.spi.CpsAdminPersistenceService;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -50,6 +54,7 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
     private final DataspaceRepository dataspaceRepository;
     private final AnchorRepository anchorRepository;
     private final SchemaSetRepository schemaSetRepository;
+    private final FragmentRepository fragmentRepository;
 
     @Override
     public void createDataspace(final String dataspaceName) {
@@ -175,6 +180,17 @@ public class CpsAdminPersistenceServiceImpl implements CpsAdminPersistenceServic
         final SchemaSetEntity schemaSetEntity = schemaSetRepository
                 .getByDataspaceAndName(dataspaceEntity, schemaSetName);
         anchorRepository.updateAnchorSchemaSetId(schemaSetEntity.getId(), anchorEntity.getId());
+    }
+
+    @Override
+    public void deleteAllOrphanedFragmentEntities(final String dataspaceName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final List<AnchorEntity> anchorEntities = anchorRepository.getAnchorEntitiesByDataspace(dataspaceEntity);
+        final Set<Long> anchorIdList = new HashSet<>();
+        for (final AnchorEntity anchorEntity : anchorEntities) {
+            anchorIdList.add(anchorEntity.getId());
+        }
+        fragmentRepository.deleteOrphanedFragmentEntities(anchorIdList);
     }
 
     private AnchorEntity getAnchorEntity(final String dataspaceName, final String anchorName) {

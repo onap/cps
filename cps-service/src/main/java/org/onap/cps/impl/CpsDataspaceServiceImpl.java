@@ -61,4 +61,9 @@ public class CpsDataspaceServiceImpl implements CpsDataspaceService {
         return cpsAdminPersistenceService.getAllDataspaces();
     }
 
+    @Override
+    public void deleteAllOrphanedData(final String dataspaceName) {
+        cpsValidator.validateNameCharacters(dataspaceName);
+        cpsAdminPersistenceService.deleteAllOrphanedFragmentEntities(dataspaceName);
+    }
 }
