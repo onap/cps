@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ea1abbb_ccd17a11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-14T09:17:59Z",
+      "side": 1,
+      "message": "didnt have time to fully review but looks like  a good step in the right direction, need others to review too",
+      "revId": "8f619f2bdaeb9ba6b5df9f5365538ccae9229043",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8324d990_f4fea5b9",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-14T09:17:59Z",
+      "side": 1,
+      "message": "I think this still looks very much like the Docker version,  I think it can easily be done in a single method with one or 1 more parameter",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 27
+      },
+      "revId": "8f619f2bdaeb9ba6b5df9f5365538ccae9229043",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
