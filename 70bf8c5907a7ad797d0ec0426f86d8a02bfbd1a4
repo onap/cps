@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58f4ad44_f2796f96",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-14T13:58:00Z",
+      "side": 1,
+      "message": "extract out private exists(cmHandliId) method\nand then use !exist(...) here",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 74
+      },
+      "revId": "70bf8c5907a7ad797d0ec0426f86d8a02bfbd1a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8be4ceae_811c2ffd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-14T13:58:00Z",
+      "side": 1,
+      "message": "I presume you are still working on the 4 possible scenarios that you need to test now?",
+      "range": {
+        "startLine": 70,
+        "startChar": 160,
+        "endLine": 70,
+        "endChar": 188
+      },
+      "revId": "70bf8c5907a7ad797d0ec0426f86d8a02bfbd1a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
