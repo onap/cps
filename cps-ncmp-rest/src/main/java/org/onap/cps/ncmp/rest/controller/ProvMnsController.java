@@ -20,8 +20,11 @@
 
 package org.onap.cps.ncmp.rest.controller;
 
+
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
@@ -36,12 +39,16 @@ import org.onap.cps.ncmp.impl.provmns.ParameterMapper;
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
+import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.ncmp.rest.provmns.ErrorResponseBuilder;
 import org.onap.cps.utils.JsonObjectMapper;
+import org.onap.cps.ncmp.rest.provmns.model.mapped.ConfigurationManagementPatchInput;
+import org.onap.cps.ncmp.rest.util.ProvMnSMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,11 +66,11 @@ public class ProvMnsController implements ProvMnS {
     private final AlternateIdMatcher alternateIdMatcher;
     private final DmiRestClient dmiRestClient;
     private final InventoryPersistence inventoryPersistence;
+    private final JsonObjectMapper jsonObjectMapper;
     private final ParametersBuilder parametersBuilder;
     private final ParameterMapper parameterMapper;
     private final ErrorResponseBuilder errorResponseBuilder;
     private final PolicyExecutor policyExecutor;
-    private final JsonObjectMapper jsonObjectMapper;
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
@@ -96,18 +103,41 @@ public class ProvMnsController implements ProvMnS {
     }
 
     @Override
-    public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
+    public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest,
+                                           final List<PatchItem> resource) {
         final RequestPathParameters requestPathParameters =
             parameterMapper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
-                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
-                    requestPathParameters.toAlternateId(), "/"));
+                    alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
+                            requestPathParameters.toAlternateId(), "/"));
+            try {
+                checkTarget(yangModelCmHandle);
+            } catch (final ProvMnSException exception) {
+                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
+                        ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
+                return errorResponseBuilder.buildErrorResponseDefault(httpStatus, exception.getDetails());
+            }
+            try {
+                // TODO:
+                policyExecutor.checkPermission(yangModelCmHandle,
+                        OperationType.UPDATE,
+                        null,
+                        requestPathParameters.toAlternateId(),
+                        jsonObjectMapper.asJsonString(policyExecutor.buildOperationDetails(
+                                OperationType.PATCH, requestPathParameters, resource)));
+            } catch (final RuntimeException exception) {
+                return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
+                        exception.getMessage());
+            }
+            final UrlTemplateParameters urlTemplateParameters =
+                    parametersBuilder.createUrlTemplateParametersForPatch(resource, yangModelCmHandle);
+            return dmiRestClient.synchronousPatchOperationWithJsonData(
+                    RequiredDmiService.DATA, urlTemplateParameters, "", OperationType.CREATE);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_FOUND, reason);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override

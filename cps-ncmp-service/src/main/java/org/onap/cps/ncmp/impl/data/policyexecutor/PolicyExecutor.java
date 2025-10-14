@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
@@ -40,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -120,6 +122,23 @@ public class PolicyExecutor {
                 processException(runtimeException);
             }
         }
+    }
+
+    /**
+     * Build a OperationDetails object from ProvMnS request details.
+     *
+     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @param patchItems               provided request resource
+     * @return OperationDetails object
+     */
+    public List<OperationDetails> buildPatchOperations(final RequestPathParameters requestPathParameters,
+                                                 final List<PatchItem> patchItems) {
+
+        return patchItems.stream()
+                .map(patchItem -> buildOperationDetails(patchItem.getOp(),
+                        requestPathParameters,
+                        (Resource) patchItem.getValue()))
+                .collect(Collectors.toList());
     }
 
     /**

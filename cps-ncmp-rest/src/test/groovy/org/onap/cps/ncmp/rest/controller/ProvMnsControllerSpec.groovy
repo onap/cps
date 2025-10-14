@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
+import org.onap.cps.ncmp.api.data.models.OperationType
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
@@ -122,14 +125,23 @@ class ProvMnsControllerSpec extends Specification {
 
     def 'Patch Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def patchUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
+            def patchUrl = "$provMnSBasePath/v1/ldnFirstPart/someClass=someId"
+            def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
+        and: 'an example resource json object'
+            def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
+        and: 'a cm handle found by alternate id'
+            alternateIdMatcher.getCmHandleId("ldnFirstPart") >> "cm-1"
+            inventoryPersistence.getYangModelCmHandle("cm-1") >> new YangModelCmHandle(dmiServiceName: 'sampleDmiService', dataProducerIdentifier: 'some-producer', compositeState: readyState)
+            1 * dmiRestClient.synchronousPatchOperationWithJsonData(*_)
+        and: 'the policy executor invoked'
+            1 * policyExecutor.checkPermission(_, OperationType.PATCH, null, 'ldnFirstPart', _)
         when: 'patch data resource request is performed'
             def response = mvc.perform(patch(patchUrl)
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
                     .andReturn().response
-        then: 'response status is Not Implemented (501)'
-            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
+        then: 'response status is Ok (200)'
+            assert response.status == HttpStatus.OK.value()
     }
 
     def 'Patch resource data request with no match for alternate id'() {
@@ -259,7 +271,7 @@ class ProvMnsControllerSpec extends Specification {
         given: 'an invalid path'
             def url = "$provMnSBasePath/v1/" + invalidPath
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(url).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+            mvc.perform(get(url).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'invalid path exception is thrown'
             thrown(ServletException)
         where:

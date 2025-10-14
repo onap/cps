@@ -91,4 +91,19 @@ public class ParametersBuilder {
             .fixedPathSegment(yangModelCmHandle.getAlternateId())
             .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
     }
+
+    /**
+     * Creates a UrlTemplateParameters object containing the relevant fields for a patch.
+     *
+     * @param resource            Provided resource parameter.
+     * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
+     * @return UrlTemplateParameters object.
+     */
+    public UrlTemplateParameters createUrlTemplateParametersForPatch(final Resource resource,
+                                                                     final YangModelCmHandle yangModelCmHandle) {
+        return RestServiceUrlTemplateBuilder.newInstance()
+                .fixedPathSegment(yangModelCmHandle.getAlternateId())
+                .queryParameter("resource", resource.toString())
+                .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+    }
 }
