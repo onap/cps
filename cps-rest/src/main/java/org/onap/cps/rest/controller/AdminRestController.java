@@ -192,6 +192,7 @@ public class AdminRestController implements CpsAdminApi {
     @Override
     public ResponseEntity<Void> cleanDataspace(final String apiVersion, final String dataspaceName) {
         cpsModuleService.deleteAllUnusedYangModuleData(dataspaceName);
+        cpsDataspaceService.deleteAllOrphanedData(dataspaceName);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

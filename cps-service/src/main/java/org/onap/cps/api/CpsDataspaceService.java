@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2023 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2020-2022 Bell Canada.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2022 TechMahindra Ltd.
@@ -62,5 +62,12 @@ public interface CpsDataspaceService {
      * @return a collection of dataspaces
      */
     Collection<Dataspace> getAllDataspaces();
+
+    /**
+     *  Delete orphaned data for a given dataspace name.
+     *
+     * @param dataspaceName     the name of the dataspace where the data is located.
+     */
+    void deleteAllOrphanedData(String dataspaceName);
 
 }
