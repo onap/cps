@@ -34,6 +34,7 @@ import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParame
 import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdPatchDefaultResponse;
 import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseDefault;
 import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseGet;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
@@ -212,7 +213,7 @@ public interface ProvMnS {
             + "resources. The following patch media types are available   "
             + "- \"application/json-patch+json\" (RFC 6902)   "
             + "- \"application/3gpp-json-patch+json\" (TS 32.158)", required = true) @Valid @RequestBody
-        Resource resource
+        List<PatchItem> resource
     );
 
 

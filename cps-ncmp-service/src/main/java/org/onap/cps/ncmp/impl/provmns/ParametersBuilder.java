@@ -30,6 +30,8 @@ import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.springframework.stereotype.Service;
 
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+
 @Service
 @RequiredArgsConstructor
 public class ParametersBuilder {
@@ -90,5 +92,21 @@ public class ParametersBuilder {
         return RestServiceUrlTemplateBuilder.newInstance()
             .fixedPathSegment(yangModelCmHandle.getAlternateId())
             .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+    }
+
+
+    /**
+     * Creates a UrlTemplateParameters object containing the relevant fields for a put and patch request.
+     *
+     * @param yangModelCmHandle      yangModelCmHandle object for resolved alternate ID
+     * @param requestPathParameters  request path parameters.
+     * @return UrlTemplateParameters object.
+     */
+    public UrlTemplateParameters createUrlTemplateParametersForPutAndPatch(final YangModelCmHandle yangModelCmHandle,
+                                                                    final RequestPathParameters requestPathParameters) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
+        return RestServiceUrlTemplateBuilder.newInstance()
+                .fixedPathSegment(requestPathParameters.toAlternateId())
+                .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 }
