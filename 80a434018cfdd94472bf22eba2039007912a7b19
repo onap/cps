@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b83d1df2_9fda4102",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/impl/cache/CpsCommonLocksConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-14T09:45:39Z",
+      "side": 1,
+      "message": "Need more generic descritpions",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 53
+      },
+      "revId": "80a434018cfdd94472bf22eba2039007912a7b19",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
