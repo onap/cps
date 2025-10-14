@@ -39,6 +39,30 @@
       },
       "revId": "8f619f2bdaeb9ba6b5df9f5365538ccae9229043",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb176a3_988b5cac",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-14T11:04:12Z",
+      "side": 1,
+      "message": "I will address this soon.",
+      "parentUuid": "8324d990_f4fea5b9",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 27
+      },
+      "revId": "8f619f2bdaeb9ba6b5df9f5365538ccae9229043",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
