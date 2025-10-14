@@ -51,7 +51,7 @@ public class ProvMnsRequestParameters {
      * @return ProvMnsRequestParameters object containing parsed parameters
      */
     public static ProvMnsRequestParameters extractProvMnsRequestParameters(
-                                                                        final HttpServletRequest httpServletRequest) {
+                                                                          final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
 

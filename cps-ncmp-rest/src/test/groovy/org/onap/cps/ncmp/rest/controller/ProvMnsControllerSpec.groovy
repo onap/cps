@@ -28,6 +28,15 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper
+import org.onap.cps.ncmp.api.data.models.OperationType
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient
+import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
+import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -48,6 +57,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(ProvMnsController)
 class ProvMnsControllerSpec extends Specification {
 
+    @Autowired
+    MockMvc mvc
+
     @SpringBean
     ProvMnSParametersMapper provMnSParametersMapper = new ProvMnSParametersMapper()
 
@@ -55,15 +67,16 @@ class ProvMnsControllerSpec extends Specification {
     AlternateIdMatcher alternateIdMatcher = Mock()
 
     @SpringBean
+    DmiRestClient dmiRestClient = Mock()
+
+    @SpringBean
+    PolicyExecutor policyExecutor = Mock()
+
+    @SpringBean
     InventoryPersistence inventoryPersistence = Mock()
 
     @SpringBean
-    DmiRestClient dmiRestClient = Mock()
-
-    @Autowired
-    MockMvc mvc
-
-    def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+    JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
 
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath
@@ -85,23 +98,9 @@ class ProvMnsControllerSpec extends Specification {
             'with query params'      | '?attributes=[test,query,param]'
     }
 
-    def 'Patch Resource Data from provmns interface.'() {
-        given: 'resource data url'
-            def patchUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
-        and: 'an example resource json object'
-            def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
-        when: 'patch data resource request is performed'
-            def response = mvc.perform(patch(patchUrl)
-                    .contentType(new MediaType('application', 'json-patch+json'))
-                    .content(jsonBody))
-                    .andReturn().response
-        then: 'response status is Not Implemented (501)'
-            assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
-    }
-
     def 'Put Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def putUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
+            def putUrl = "$provMnSBasePath/v1/A=1/B=2/C=3"
         and: 'an example resource json object'
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         when: 'put data resource request is performed'
@@ -113,9 +112,30 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_IMPLEMENTED.value()
     }
 
+    def 'Patch Resource Data from provmns interface.'() {
+        given: 'resource data url'
+            def patchUrl = "$provMnSBasePath/v1/ldnFirstPart/someClass=someId"
+            def readyState = new CompositeStateBuilder().withCmHandleState(CmHandleState.READY).withLastUpdatedTimeNow().build()
+        and: 'an example resource json object'
+            def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
+        and: 'a cm handle found by alternate id'
+            alternateIdMatcher.getCmHandleId("ldnFirstPart") >> "cm-1"
+            inventoryPersistence.getYangModelCmHandle("cm-1") >> new YangModelCmHandle(dmiServiceName: 'sampleDmiService', dataProducerIdentifier: 'some-producer', compositeState: readyState)
+            1 * dmiRestClient.synchronousPatchOperationWithJsonData(*_)
+        and: 'the policy executor invoked'
+            1 * policyExecutor.checkPermission(_, OperationType.PATCH, null, 'ldnFirstPart', _)
+        when: 'patch data resource request is performed'
+            def response = mvc.perform(patch(patchUrl)
+                    .contentType(new MediaType('application', 'json-patch+json'))
+                    .content(jsonBody))
+                    .andReturn().response
+        then: 'response status is Ok (200)'
+            assert response.status == HttpStatus.OK.value()
+    }
+
     def 'Delete Resource Data from provmns interface.'() {
         given: 'resource data url'
-            def deleteUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
+            def deleteUrl = "$provMnSBasePath/v1/A=1/B=2/C=3"
         when: 'delete data resource request is performed'
             def response = mvc.perform(delete(deleteUrl)).andReturn().response
         then: 'response status is Not Implemented (501)'
