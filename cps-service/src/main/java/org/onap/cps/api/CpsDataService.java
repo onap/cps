@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2020-2024 Nordix Foundation
+ *  Copyright (C) 2020-2025 OpenInfra Foundation Europe. All rights reserved.
  *  Modifications Copyright (C) 2021 Pantheon.tech
  *  Modifications Copyright (C) 2021-2022 Bell Canada
  *  Modifications Copyright (C) 2022 Deutsche Telekom AG
@@ -305,4 +305,11 @@ public interface CpsDataService {
      */
     void validateData(String dataspaceName, String anchorName, String parentNodeXpath, String nodeData,
                                  ContentType contentType);
+
+    /**
+     *  Delete orphaned data for a given dataspace name.
+     *
+     * @param dataspaceName     the name of the dataspace where the data is located.
+     */
+    void deleteAllOrphanedData(String dataspaceName);
 }

@@ -319,6 +319,17 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
+    public void deleteAllOrphanedFragmentEntities(String dataspaceName) {
+        final DataspaceEntity dataspaceEntity = dataspaceRepository.getByName(dataspaceName);
+        final List<AnchorEntity> anchorEntities = anchorRepository.getAnchorEntitiesByDataspace(dataspaceEntity);
+        final Set<Long> anchorIdList = new HashSet<>();
+        for (AnchorEntity anchorEntity : anchorEntities) {
+            anchorIdList.add(anchorEntity.getId());
+        }
+        fragmentRepository.deleteOrphanedFragmentEntities(anchorIdList);
+    }
+
+    @Override
     @Transactional
     public void replaceListContent(final String dataspaceName, final String anchorName, final String parentNodeXpath,
                                    final Collection<DataNode> newListElements) {

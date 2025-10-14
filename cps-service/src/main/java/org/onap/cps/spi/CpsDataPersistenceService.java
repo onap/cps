@@ -251,4 +251,12 @@ public interface CpsDataPersistenceService {
      * @return total anchors for dataspace name and cps path
      */
     Integer countAnchorsForDataspaceAndCpsPath(String dataspaceName, String cpsPath);
+
+
+    /**
+     * Delete all fragment entities that have no parent.
+     *
+     * @param dataspaceName     dataspace name
+     */
+    void deleteAllOrphanedFragmentEntities(String dataspaceName);
 }
