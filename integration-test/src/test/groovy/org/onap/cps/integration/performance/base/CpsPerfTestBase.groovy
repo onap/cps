@@ -89,15 +89,6 @@ class CpsPerfTestBase extends PerfTestBase {
             ']}}'
     }
 
-    def addModifiedOpenRoadData() {
-        def data = generateModifiedOpenRoadData(OPENROADM_DEVICES_PER_ANCHOR, 200, 200, 200)
-        resourceMeter.start()
-        addAnchorsWithData(1, CPS_PERFORMANCE_TEST_DATASPACE, LARGE_SCHEMA_SET, 'openroadm-modified', data, ContentType.JSON)
-        resourceMeter.stop()
-        def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
-        recordAndAssertResourceUsage('CPS:Creating modified openroadm anchor with large data tree', 100, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
-    }
-
     def generateModifiedOpenRoadData(numberOfNodes, removeNodesCount, addNodesCount, updateCount) {
         def innerNode = readResourceDataFile('openroadm/innerNode.json')
         def allIndices = (0..<numberOfNodes).toList()
