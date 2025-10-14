@@ -441,7 +441,7 @@ class CmHandleRegistrationServiceSpec extends Specification {
         then: 'it is added to the cache with the expected key'
             1 * mockCmHandleIdPerAlternateId.putAll([(expectedKey):'ch-1'])
         when: 'it is removed from the cache'
-            objectUnderTest.removeAlternateIdsFromCache([yangModelCmHandle])
+            objectUnderTest.removeAlternateIdsFromCache([yangModelCmHandle], ['ch-1'],[].toSet())
         then: 'the correct key is deleted from the cache'
             1 * mockCmHandleIdPerAlternateId.delete(expectedKey)
         where: 'the following alternate ids are used'

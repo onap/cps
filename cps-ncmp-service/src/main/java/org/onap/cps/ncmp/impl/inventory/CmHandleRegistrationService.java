@@ -188,10 +188,10 @@ public class CmHandleRegistrationService {
                     }
                 }
             }
+            removeAlternateIdsFromCache(yangModelCmHandles, tobeRemovedCmHandleBatch, notDeletedCmHandles);
         }
         yangModelCmHandles.removeIf(yangModelCmHandle -> notDeletedCmHandles.contains(yangModelCmHandle.getId()));
         updateCmHandleStateBatch(yangModelCmHandles, CmHandleState.DELETED);
-        removeAlternateIdsFromCache(yangModelCmHandles);
         dmiPluginRegistrationResponse.setRemovedCmHandles(cmHandleRegistrationResponses);
     }
 
@@ -410,8 +410,16 @@ public class CmHandleRegistrationService {
             ncmpServiceCmHandle.getDmiProperties());
     }
 
-    void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
+    void removeAlternateIdsFromCache(final Collection<YangModelCmHandle> yangModelCmHandles,
+                                     final List<String> toBeRemovedCmHandleBatch,
+                                     final Set<String> cmHandlesIdsToExclude) {
+        final Collection<YangModelCmHandle> removedYangModelCmHandles =
+                yangModelCmHandles.stream()
+                        .filter(yangModelCmHandle ->
+                                (new HashSet<>(toBeRemovedCmHandleBatch).contains(yangModelCmHandle.getId())
+                                        && !cmHandlesIdsToExclude.contains(yangModelCmHandle.getId())))
+                        .toList();
+        for (final YangModelCmHandle yangModelCmHandle : removedYangModelCmHandles) {
             final String cmHandleId = yangModelCmHandle.getId();
             final String alternateId = yangModelCmHandle.getAlternateId();
             if (StringUtils.isNotBlank(alternateId)) {
