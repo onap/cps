@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a5e066_8b315142",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T09:44:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c14ef232_ec52b08a",
+      "range": {
+        "startLine": 41,
+        "startChar": 69,
+        "endLine": 41,
+        "endChar": 79
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f4994df_f950646f",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-10-15T09:29:22Z",
       "side": 1,
       "message": "only one involved here. So say \u0027to the correct DMI\u0027",
+      "range": {
+        "startLine": 68,
+        "startChar": 34,
+        "endLine": 68,
+        "endChar": 51
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db7eaad0_e84a2174",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T09:44:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f4994df_f950646f",
       "range": {
         "startLine": 68,
         "startChar": 34,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fed24fa_6e7c33df",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T09:44:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39db9fa1_557f42c4",
+      "range": {
+        "startLine": 158,
+        "startChar": 43,
+        "endLine": 158,
+        "endChar": 51
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1238a761_ba9965f9",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-10-15T09:29:22Z",
       "side": 1,
       "message": "again parameter values",
+      "range": {
+        "startLine": 183,
+        "startChar": 44,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa5c56c_d496a161",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T09:44:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1238a761_ba9965f9",
       "range": {
         "startLine": 183,
         "startChar": 44,
