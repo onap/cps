@@ -148,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c3ded25_f82cae95",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T10:11:09Z",
+      "side": 1,
+      "message": "the difference with that query is only on \u0027anchor_id IN (:anchorIds)\u0027 check before",
+      "parentUuid": "51dca2e1_5583d98f",
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08f4139d_fb89a929",
         "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
         "patchSetId": 5
