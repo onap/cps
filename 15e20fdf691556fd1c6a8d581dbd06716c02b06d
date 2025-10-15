@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3778a83_55320697",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T10:54:56Z",
+      "side": 1,
+      "message": "why are we passing full dataspaceEntity here??\n\nis this working fine ??\ngetAnchorEntitiesByDataspace --\u003e jpa provider will be creating a query like this .",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 83
+      },
+      "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
