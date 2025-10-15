@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52b57599_e879ffe2",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/CpsAdminPersistenceServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T09:42:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6149920b_9f91a441",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 37
+      },
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac0050f0_63bc07f4",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "146ab3d1_3a01fe7e",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T09:42:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac0050f0_63bc07f4",
+      "range": {
+        "startLine": 112,
+        "startChar": 68,
+        "endLine": 112,
+        "endChar": 77
+      },
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08f4139d_fb89a929",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-10-15T09:10:06Z",
       "side": 1,
       "message": "Suggestion: use AI and maybe check with Daniel for optimization of this query\n(it might be as good as it gets)",
+      "range": {
+        "startLine": 113,
+        "startChar": 1,
+        "endLine": 117,
+        "endChar": 66
+      },
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "470ebe1c_9532d964",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T09:42:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "08f4139d_fb89a929",
       "range": {
         "startLine": 113,
         "startChar": 1,
@@ -123,6 +195,30 @@
       "writtenOn": "2025-10-15T09:10:06Z",
       "side": 1,
       "message": "nb: add \u0027remove the data for this test\u0027",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 16
+      },
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4758b2ab_e1e618db",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/cps/DataspaceServiceIntegrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T09:42:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebc2823d_28f2f0de",
       "range": {
         "startLine": 133,
         "startChar": 8,
