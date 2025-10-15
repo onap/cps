@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8126837e_b07f065e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T12:34:02Z",
+      "side": 1,
+      "message": "ok, let me double check\nI think I was thrown by the gerrit view only showing me changed lines",
+      "parentUuid": "e7c9cdd4_32c6ff08",
+      "range": {
+        "startLine": 80,
+        "startChar": 36,
+        "endLine": 80,
+        "endChar": 42
+      },
+      "revId": "e6febd09a95b368500e3169303c0216fc7e9d77c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f169894e_2aa35fe0",
