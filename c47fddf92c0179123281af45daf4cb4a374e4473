@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "550af66f_892028f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T13:43:07Z",
+      "side": 1,
+      "message": "why are these methods at the top now ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988f9a35_8fe627f4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T13:43:07Z",
+      "side": 1,
+      "message": "nb: inconsistent with line 30, would change line 30",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2643e1f9_9f54c1e0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T13:43:07Z",
+      "side": 1,
+      "message": "you can use the same method as above ? buildDmiInEvent? which can eliminate this whole switch-case",
+      "range": {
+        "startLine": 122,
+        "startChar": 33,
+        "endLine": 124,
+        "endChar": 108
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c14ef232_ec52b08a",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapperSpec.groovy",
         "patchSetId": 13
