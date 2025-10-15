@@ -22,6 +22,30 @@
       },
       "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc94839b_2f672bb5",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/AnchorRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T11:13:09Z",
+      "side": 1,
+      "message": "SELECT a.*\nFROM anchor a\nWHERE a.dataspace_id \u003d ?",
+      "parentUuid": "d3778a83_55320697",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 83
+      },
+      "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
