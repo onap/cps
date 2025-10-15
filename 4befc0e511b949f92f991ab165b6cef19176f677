@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e4dd61f_fc03ddeb",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T14:03:30Z",
+      "side": 1,
+      "message": "i see why u havent used the unlock method.\nwe will have to call the unlock method multiple times( as many times we have call the lock or tryLock method) to actually unlock.",
+      "parentUuid": "f39565c3_21e981d5",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 34
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c7da674_1b3f8b07",
         "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorStart.java",
         "patchSetId": 5
