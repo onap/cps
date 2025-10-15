@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6851f800_55609083",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "i wa trying to see if this looked betterr ie one line for each service",
+      "parentUuid": "077dbab7_1d8a635a",
+      "range": {
+        "startLine": 45,
+        "startChar": 33,
+        "endLine": 45,
+        "endChar": 83
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f39565c3_21e981d5",
         "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
         "patchSetId": 5
@@ -90,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec77fc25_f6effcf2",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "yep I did and then realised that reentrant locking introduce a count and then  need multiple unlocks (proved this by unit test) so forceUnlock is safer and better in our case",
+      "parentUuid": "3e4dd61f_fc03ddeb",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 34
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c7da674_1b3f8b07",
         "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorStart.java",
         "patchSetId": 5
@@ -101,6 +149,30 @@
       "writtenOn": "2025-10-15T13:55:44Z",
       "side": 1,
       "message": "ok so u are registering the model loader end here so that there is a process present which prevents the readiness check to come up unless the ModelLoaderCoordinatorEnd has finished.",
+      "range": {
+        "startLine": 46,
+        "startChar": 48,
+        "endLine": 46,
+        "endChar": 95
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c9bc5e5_467c5790",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorStart.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "exactly",
+      "parentUuid": "3c7da674_1b3f8b07",
       "range": {
         "startLine": 46,
         "startChar": 48,
@@ -130,6 +202,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d8b8e74_67c4cae1",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "agrred",
+      "parentUuid": "be2fd42e_3333c2f0",
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cefadc37_59f4a717",
         "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
         "patchSetId": 5
@@ -141,6 +231,30 @@
       "writtenOn": "2025-10-15T13:55:44Z",
       "side": 1,
       "message": "this is strange.\ni think this is the same problem i was struggling in my other test regarding the readinessmanager. u asked me to have common isReady() as true , and then override in the specific test. I was unable to do that 😊\ni guess this is the solution for that.",
+      "range": {
+        "startLine": 86,
+        "startChar": 43,
+        "endLine": 86,
+        "endChar": 101
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a704a4f1_3a42fd23",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "indeed , meant to tell you that. Found this out with the help of Gemini. this is the only way overriding default mock behavior works.  its a strange thing from Spock indeed",
+      "parentUuid": "cefadc37_59f4a717",
       "range": {
         "startLine": 86,
         "startChar": 43,
@@ -187,6 +301,30 @@
       "writtenOn": "2025-10-15T13:55:44Z",
       "side": 1,
       "message": "do we need a mock event here??",
+      "range": {
+        "startLine": 40,
+        "startChar": 47,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbf90ae_b425084a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "obvoisly not, since teh ptest apsses and it makes sens as we dont use this object in our code at all",
+      "parentUuid": "0c3cf411_6af8de64",
       "range": {
         "startLine": 40,
         "startChar": 47,
@@ -256,6 +394,30 @@
       "writtenOn": "2025-10-15T13:55:44Z",
       "side": 1,
       "message": "do u think we need to elaborate here.\nregarding the number of attempts??",
+      "range": {
+        "startLine": 65,
+        "startChar": 62,
+        "endLine": 65,
+        "endChar": 76
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d5edb4_f759ae00",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T14:19:13Z",
+      "side": 1,
+      "message": "this is my best explanation for \u003e\u003e\u003e [ true, false ] Suggestions welcome",
+      "parentUuid": "6b1786ab_b4dd134b",
       "range": {
         "startLine": 65,
         "startChar": 62,
