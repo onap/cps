@@ -33,6 +33,24 @@
       "message": "Can\u0027t see anything too offensive there",
       "revId": "cc4558f38ae78f66e169f64448c2b682b99c320e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76c5701f_91a54030",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-15T08:25:05Z",
+      "side": 1,
+      "message": "in next patch :)",
+      "parentUuid": "95d1ec24_b1934373",
+      "revId": "cc4558f38ae78f66e169f64448c2b682b99c320e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
