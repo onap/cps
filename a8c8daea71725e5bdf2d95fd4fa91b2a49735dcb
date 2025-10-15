@@ -135,6 +135,30 @@
       },
       "revId": "a8c8daea71725e5bdf2d95fd4fa91b2a49735dcb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623e761f_39423b46",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-15T12:43:47Z",
+      "side": 1,
+      "message": "I can do it in my next commit (Split-5) because it would have affect on some connection urls, and labels. Also, this commit will grow more.",
+      "parentUuid": "d0372638_d0265aec",
+      "range": {
+        "startLine": 29,
+        "startChar": 37,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "a8c8daea71725e5bdf2d95fd4fa91b2a49735dcb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
