@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "825c6d2d_fd25b856",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "blocking the commit to review my comments.",
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "077dbab7_1d8a635a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: can be moved to next line for consistency of the codebase.",
+      "range": {
+        "startLine": 45,
+        "startChar": 33,
+        "endLine": 45,
+        "endChar": 83
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39565c3_21e981d5",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "have u tried using simple unlock() ??",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 34
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c7da674_1b3f8b07",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorStart.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "ok so u are registering the model loader end here so that there is a process present which prevents the readiness check to come up unless the ModelLoaderCoordinatorEnd has finished.",
+      "range": {
+        "startLine": 46,
+        "startChar": 48,
+        "endLine": 46,
+        "endChar": 95
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be2fd42e_3333c2f0",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: can be at the top just for consistency.",
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefadc37_59f4a717",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "this is strange.\ni think this is the same problem i was struggling in my other test regarding the readinessmanager. u asked me to have common isReady() as true , and then override in the specific test. I was unable to do that 😊\ni guess this is the solution for that.",
+      "range": {
+        "startLine": 86,
+        "startChar": 43,
+        "endLine": 86,
+        "endChar": 101
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbc8817_c87e500f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: application started event triggers the end coordinator",
+      "range": {
+        "startLine": 39,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 72
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3cf411_6af8de64",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "do we need a mock event here??",
+      "range": {
+        "startLine": 40,
+        "startChar": 47,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db9e5b6_b9a41090",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: the",
+      "range": {
+        "startLine": 52,
+        "startChar": 45,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f26fa1e2_31a1fdea",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: same as before",
+      "range": {
+        "startLine": 55,
+        "startChar": 47,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b1786ab_b4dd134b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "do u think we need to elaborate here.\nregarding the number of attempts??",
+      "range": {
+        "startLine": 65,
+        "startChar": 62,
+        "endLine": 65,
+        "endChar": 76
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02db7fdf_2cc3418c",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorEndSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: same as before",
+      "range": {
+        "startLine": 70,
+        "startChar": 47,
+        "endLine": 70,
+        "endChar": 51
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad80b2f_21f751b7",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/ModelLoaderCoordinatorStartSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T13:55:44Z",
+      "side": 1,
+      "message": "NB: same as before",
+      "range": {
+        "startLine": 37,
+        "startChar": 47,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
