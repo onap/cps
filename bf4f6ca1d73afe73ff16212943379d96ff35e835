@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20fdb777_38e1b165",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T09:57:05Z",
+      "side": 1,
+      "message": "can u plz check the query again.\nother part of the code is ok for me.",
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6149920b_9f91a441",
@@ -108,6 +125,23 @@
         "endLine": 112,
         "endChar": 77
       },
+      "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51dca2e1_5583d98f",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-15T09:57:05Z",
+      "side": 1,
+      "message": "can you check the below query instead??\n\nDELETE FROM fragment \nWHERE anchor_id IN (:anchorIds)\nAND (\n    parent_id IN (\n        SELECT id FROM fragment \n        WHERE (LENGTH(xpath) - LENGTH(REPLACE(xpath, \u0027/\u0027, \u0027\u0027)) \u003e 1)\n        AND parent_id IS NULL\n    )\n    OR (\n        (LENGTH(xpath) - LENGTH(REPLACE(xpath, \u0027/\u0027, \u0027\u0027)) \u003e 1) \n        AND parent_id IS NULL\n    )\n)\n\n\n\ni was trying to understand it and I think there might be some issue with the operator precedence.",
       "revId": "bf4f6ca1d73afe73ff16212943379d96ff35e835",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
