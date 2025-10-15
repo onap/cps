@@ -46,6 +46,52 @@
       },
       "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10118c4c_ef9875c4",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T11:16:50Z",
+      "side": 1,
+      "message": "NB: WHERE",
+      "range": {
+        "startLine": 113,
+        "startChar": 41,
+        "endLine": 113,
+        "endChar": 47
+      },
+      "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4af96e_90ff1172",
+        "filename": "cps-ri/src/main/java/org/onap/cps/ri/repository/FragmentRepository.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-15T11:16:50Z",
+      "side": 1,
+      "message": "NB: IS",
+      "range": {
+        "startLine": 118,
+        "startChar": 88,
+        "endLine": 118,
+        "endChar": 90
+      },
+      "revId": "15e20fdf691556fd1c6a8d581dbd06716c02b06d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
