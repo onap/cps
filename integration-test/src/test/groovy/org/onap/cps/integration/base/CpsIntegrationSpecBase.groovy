@@ -33,6 +33,8 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.CpsQueryService
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.model.DataNode
+import org.onap.cps.init.actuator.ModelLoaderRegistrationOnStartup
+import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.integration.DatabaseTestContainer
 import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
@@ -60,7 +62,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
@@ -77,7 +78,6 @@ import java.util.concurrent.BlockingQueue
 @EnableJpaRepositories(basePackageClasses = [DataspaceRepository])
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
-@ActiveProfiles('module-sync-delayed')
 abstract class CpsIntegrationSpecBase extends Specification {
 
     static KafkaConsumer kafkaConsumer
@@ -157,6 +157,12 @@ abstract class CpsIntegrationSpecBase extends Specification {
     @Autowired
     AlternateIdMatcher alternateIdMatcher
 
+    @Autowired
+    ModelLoaderRegistrationOnStartup modelLoaderRegistrationOnStartup
+
+    @Autowired
+    ReadinessManager readinessManager
+
     @Value('${ncmp.policy-executor.server.port:8080}')
     private String policyServerPort;
 
@@ -197,8 +203,10 @@ abstract class CpsIntegrationSpecBase extends Specification {
         mockPolicyServer.setDispatcher(policyDispatcher)
         mockPolicyServer.start(Integer.valueOf(policyServerPort))
 
-        DMI1_URL = String.format("http://%s:%s", mockDmiServer1.getHostName(), mockDmiServer1.getPort())
-        DMI2_URL = String.format("http://%s:%s", mockDmiServer2.getHostName(), mockDmiServer2.getPort())
+        DMI1_URL = String.format('http://%s:%s', mockDmiServer1.getHostName(), mockDmiServer1.getPort())
+        DMI2_URL = String.format('http://%s:%s', mockDmiServer2.getHostName(), mockDmiServer2.getPort())
+
+        readinessManager.registerStartupProcess('Dummy process to prevent watchdogs processes starting during integration tests')
     }
 
     def cleanup() {

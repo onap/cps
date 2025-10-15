@@ -22,15 +22,15 @@ package org.onap.cps.init.actuator
 
 import spock.lang.Specification;
 
-class ReadinessHealthIndicatorSpec extends Specification {
+class ReadinessStateHealthIndicatorConfigSpec extends Specification {
 
     def readinessManager = new ReadinessManager()
-    def objectUnderTest = new ReadinessHealthIndicator(readinessManager)
+    def objectUnderTest = new ReadinessStateHealthIndicatorConfig(readinessManager)
 
     def 'CPS service UP when all loaders are completed'() {
         given: 'no loaders are in progress'
         when: 'cps health check is invoked'
-            def cpsHealth = objectUnderTest.health()
+            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
         then: 'health status is UP with following message'
             assert cpsHealth.status.code == 'UP'
             assert cpsHealth.details['Startup Processes'] == 'All startup processes completed'
@@ -40,7 +40,7 @@ class ReadinessHealthIndicatorSpec extends Specification {
         given: 'any module loader is still running'
             readinessManager.registerStartupProcess('someLoader')
         when: 'cps health check is invoked'
-            def cpsHealth = objectUnderTest.health()
+            def cpsHealth = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
         then: 'cps service is DOWN with loaders listed'
             assert cpsHealth.status.code == 'DOWN'
             def busyLoaders = cpsHealth.details['Startup Processes active']
@@ -52,7 +52,7 @@ class ReadinessHealthIndicatorSpec extends Specification {
             readinessManager.registerStartupProcess('someLoader')
         when: 'module loader completes'
             readinessManager.markStartupProcessComplete('someLoader')
-            def health = objectUnderTest.health()
+            def health = objectUnderTest.readinessStateHealthIndicator().getHealth(true)
         then: 'cps health status flips to UP'
             assert health.status.code == 'UP'
             assert health.details['Startup Processes'] == 'All startup processes completed'

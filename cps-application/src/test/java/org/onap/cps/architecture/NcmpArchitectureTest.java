@@ -77,6 +77,7 @@ public class NcmpArchitectureTest extends ArchitectureTestBase {
                                                                 "org.onap.cps.cpspath..",
                                                                 "org.onap.cps.events..",
                                                                 "org.onap.cps.impl..",
-                                                                "org.onap.cps.utils.."));
+                                                                "org.onap.cps.utils..",
+                                                                "org.onap.cps.init.."));
 }
 
