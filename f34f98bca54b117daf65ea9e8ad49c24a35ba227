@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80466cb5_f822a6bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-15T11:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82544a80_6304f108",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "f34f98bca54b117daf65ea9e8ad49c24a35ba227",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfeb4d7f_5398da72",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "would this wording work better\n\"invalid operation for cm handle\"",
       "parentUuid": "dfeb4d7f_5398da72",
+      "range": {
+        "startLine": 77,
+        "startChar": 47,
+        "endLine": 77,
+        "endChar": 61
+      },
+      "revId": "f34f98bca54b117daf65ea9e8ad49c24a35ba227",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed08861_ab585ec4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-15T11:01:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e09b1133_28123d28",
       "range": {
         "startLine": 77,
         "startChar": 47,
@@ -296,6 +344,30 @@
       "side": 1,
       "message": "The dataProducerIdentifier is required to be populated otherwise an exception is thrown. It doesn\u0027t necessarily have to match what was passed in",
       "parentUuid": "cf638bcd_03c55675",
+      "range": {
+        "startLine": 76,
+        "startChar": 148,
+        "endLine": 76,
+        "endChar": 155
+      },
+      "revId": "f34f98bca54b117daf65ea9e8ad49c24a35ba227",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "063ba20f_62d132ba",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-15T11:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "996dcdca_704d10ff",
       "range": {
         "startLine": 76,
         "startChar": 148,
