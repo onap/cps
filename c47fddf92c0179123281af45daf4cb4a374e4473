@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "856e1a15_fd65417e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/DmiInEventMapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T14:27:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "550af66f_892028f8",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "988f9a35_8fe627f4",
@@ -64,6 +88,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "012e605d_c5cfcd46",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandler.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T14:27:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "988f9a35_8fe627f4",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2643e1f9_9f54c1e0",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-10-15T13:43:07Z",
       "side": 1,
       "message": "you can use the same method as above ? buildDmiInEvent? which can eliminate this whole switch-case",
+      "range": {
+        "startLine": 122,
+        "startChar": 33,
+        "endLine": 124,
+        "endChar": 108
+      },
+      "revId": "c47fddf92c0179123281af45daf4cb4a374e4473",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad83e263_2a3bb41a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-10-15T14:27:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2643e1f9_9f54c1e0",
       "range": {
         "startLine": 122,
         "startChar": 33,
