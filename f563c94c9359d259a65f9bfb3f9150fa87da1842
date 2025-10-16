@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "914626a9_91edab12",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad0c1589_db28b4fb",
+      "range": {
+        "startLine": 272,
+        "startChar": 21,
+        "endLine": 272,
+        "endChar": 37
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f38e8cad_ae5d9faa",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-10-16T08:14:50Z",
       "side": 1,
       "message": "FDN will be the UriLdnFirstPart + ClassName + Id",
+      "range": {
+        "startLine": 133,
+        "startChar": 67,
+        "endLine": 133,
+        "endChar": 112
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4216efa3_3bc0d046",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f38e8cad_ae5d9faa",
       "range": {
         "startLine": 133,
         "startChar": 67,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdba72ba_8f9c8a60",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8871915_f90fcb8e",
+      "range": {
+        "startLine": 145,
+        "startChar": 43,
+        "endLine": 145,
+        "endChar": 88
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fc0919a_cd8e1439",
@@ -106,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79b846f0_4f7d5886",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "no need for this after assigning the full FDN to a separate variable in ProvMnsRequestParameters",
+      "parentUuid": "0fc0919a_cd8e1439",
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20cfc30b_33a8b111",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
         "patchSetId": 10
@@ -117,6 +207,30 @@
       "writtenOn": "2025-10-16T08:14:50Z",
       "side": 1,
       "message": "remove \u0027withJsonData\u0027 java doc description will suffice",
+      "range": {
+        "startLine": 194,
+        "startChar": 42,
+        "endLine": 194,
+        "endChar": 54
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf57f1a_ae21d7b0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20cfc30b_33a8b111",
       "range": {
         "startLine": 194,
         "startChar": 42,
@@ -150,6 +264,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92ccf65_cf49866b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "194190f4_1a5c4abe",
+      "range": {
+        "startLine": 108,
+        "startChar": 15,
+        "endLine": 108,
+        "endChar": 39
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4db0e41a_1aaefbb7",
@@ -163,6 +301,30 @@
       "writtenOn": "2025-10-16T08:14:50Z",
       "side": 1,
       "message": "someUriLdnFirstPart/someClassName\u003dsomeId just to add clarity",
+      "range": {
+        "startLine": 67,
+        "startChar": 44,
+        "endLine": 67,
+        "endChar": 73
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6719c6e_9a8f4ca9",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-16T10:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4db0e41a_1aaefbb7",
       "range": {
         "startLine": 67,
         "startChar": 44,
