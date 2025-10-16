@@ -392,8 +392,8 @@ public class CmHandleRegistrationService {
                 succeededCmHandleIds.add(ncmpServiceCmHandle.getCmHandleId());
             }
         }
-        lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandlesToRegister);
         addAlternateIdsToCache(yangModelCmHandlesToRegister);
+        lcmEventsCmHandleStateHandler.initiateStateAdvised(yangModelCmHandlesToRegister);
         dmiPluginRegistrationResponse.setCreatedCmHandles(cmHandleRegistrationResponses);
         return succeededCmHandleIds;
     }
