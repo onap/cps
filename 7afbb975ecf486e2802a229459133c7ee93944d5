@@ -16,6 +16,23 @@
       "message": "just the revert code raised manually.\nthe details of the revert are present in the bug description.",
       "revId": "7afbb975ecf486e2802a229459133c7ee93944d5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbb9a864_3f0cba69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-16T13:51:31Z",
+      "side": 1,
+      "message": "Looks a straightforward revert",
+      "revId": "7afbb975ecf486e2802a229459133c7ee93944d5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
