@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cd7469d_586bc12d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "Overall Good, some minor comments. Will need to rebase when GET is merged. -1 to prevent merging before then",
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad0c1589_db28b4fb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "As per the original open api spec and stakeholders request we will only be supporting application/json-patch+json and application/3gpp-json-patch+json",
+      "range": {
+        "startLine": 272,
+        "startChar": 21,
+        "endLine": 272,
+        "endChar": 37
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f38e8cad_ae5d9faa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "FDN will be the UriLdnFirstPart + ClassName + Id",
+      "range": {
+        "startLine": 133,
+        "startChar": 67,
+        "endLine": 133,
+        "endChar": 112
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8871915_f90fcb8e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 145,
+        "startChar": 43,
+        "endLine": 145,
+        "endChar": 88
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fc0919a_cd8e1439",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "Should be moved to util class",
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cfc30b_33a8b111",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "remove \u0027withJsonData\u0027 java doc description will suffice",
+      "range": {
+        "startLine": 194,
+        "startChar": 42,
+        "endLine": 194,
+        "endChar": 54
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194190f4_1a5c4abe",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "\u0027provmns endpoint\u0027 same endpoint used for all operations",
+      "range": {
+        "startLine": 108,
+        "startChar": 15,
+        "endLine": 108,
+        "endChar": 39
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db0e41a_1aaefbb7",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-16T08:14:50Z",
+      "side": 1,
+      "message": "someUriLdnFirstPart/someClassName\u003dsomeId just to add clarity",
+      "range": {
+        "startLine": 67,
+        "startChar": 44,
+        "endLine": 67,
+        "endChar": 73
+      },
+      "revId": "f563c94c9359d259a65f9bfb3f9150fa87da1842",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
