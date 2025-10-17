@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-cps
+  name: {{ include "cps-and-ncmp.fullname" . }}
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp
