@@ -35,7 +35,7 @@ helm install cps ./<chart-directory>
 Replace <chart-directory> with the path to this Helm chart.
 You can verify the deployment using:
 ```bash
-kubectl get all -l app=cps-and-ncmp
+kubectl get all -l app=ncmp
 ```
 ---
 ## Uninstallation
@@ -49,14 +49,14 @@ You can access the services locally using kubectl port-forward.
 ---
 ## CPS and NCMP (API) Service
 ```bash
-kubectl port-forward service/cps-cps-and-ncmp-cps 8080:8080
+kubectl port-forward service/cps-ncmp 8080:8080
 ```
 Once port forwarding is active, you can access the CPS/NCMP API at:
 http://localhost:8080
 ---
 ## DMI Stub Service
 ```bash
-kubectl port-forward service/cps-cps-and-ncmp-dmi-stub 8092:8092
+kubectl port-forward service/cps-ncmp-dmi-stub 8092:8092
 ```
 Access the DMI stub API at:
 http://localhost:8092
