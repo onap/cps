@@ -159,6 +159,30 @@
       },
       "revId": "a8c8daea71725e5bdf2d95fd4fa91b2a49735dcb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c74d591e_14d7f651",
+        "filename": "k6-tests/make-logs.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-17T15:40:09Z",
+      "side": 1,
+      "message": "Please find the commit in nordix: 24466: modified pod and service names (split-5) | https://gerrit.nordix.org/c/onap/cps/+/24466",
+      "parentUuid": "623e761f_39423b46",
+      "range": {
+        "startLine": 29,
+        "startChar": 37,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "a8c8daea71725e5bdf2d95fd4fa91b2a49735dcb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
