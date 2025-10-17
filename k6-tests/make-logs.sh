@@ -26,7 +26,7 @@ readonly TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 readonly DOCKER_SERVICES_TO_BE_LOGGED=("cps-and-ncmp" "ncmp-dmi-plugin-demo-and-csit-stub" "dbpostgresql")
 
 # Kubernetes services
-readonly K8S_SERVICES_TO_BE_LOGGED=("cps-cps-and-ncmp-cps" "cps-cps-and-ncmp-dmi-stub" "cps-cps-and-ncmp-postgresql")
+readonly K8S_SERVICES_TO_BE_LOGGED=("cps-ncmp" "cps-ncmp-dmi-stub" "cps-ncmp-postgresql")
 readonly K8S_APP_LABEL="app=cps-and-ncmp"
 
 # The default deployment type is dockerHosts
