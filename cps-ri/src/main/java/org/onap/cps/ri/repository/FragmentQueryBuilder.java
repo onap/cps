@@ -354,13 +354,8 @@ public class FragmentQueryBuilder {
     private static void addAncestorNodeSearchCondition(final CpsPathQuery ancestorCpsPathQuery,
                                                        final StringBuilder sqlStringBuilder,
                                                        final Map<String, Object> queryParameters) {
-        if (ancestorCpsPathQuery.hasLeafConditions()) {
-            final String pathWithoutSlashes = ancestorCpsPathQuery.getNormalizedXpath().substring(2);
-            queryParameters.put("ancestorXpath", "%/" + EscapeUtils.escapeForSqlLike(pathWithoutSlashes));
-            sqlStringBuilder.append(" xpath LIKE :ancestorXpath");
-        } else {
-            addXpathSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters, "ancestorXpath");
-        }
+        addXpathSearchCondition(ancestorCpsPathQuery, sqlStringBuilder, queryParameters, "ancestorXpath");
+        addLeafConditions(ancestorCpsPathQuery, sqlStringBuilder);
     }
 
     @SuppressWarnings("SameParameterValue")
