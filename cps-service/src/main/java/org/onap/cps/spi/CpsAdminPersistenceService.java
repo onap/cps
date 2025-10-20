@@ -151,11 +151,4 @@ public interface CpsAdminPersistenceService {
      * @param schemaSetName schema set name
      */
     void updateAnchorSchemaSet(String dataspaceName, String anchorName, String schemaSetName);
-
-    /**
-     * Delete all fragment entities that have no parent.
-     *
-     * @param dataspaceName     dataspace name
-     */
-    void deleteAllOrphanedFragmentEntities(String dataspaceName);
 }

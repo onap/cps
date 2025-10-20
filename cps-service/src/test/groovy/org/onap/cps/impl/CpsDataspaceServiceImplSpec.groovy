@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -63,13 +63,6 @@ class CpsDataspaceServiceImplSpec extends Specification {
             1 * mockCpsAdminPersistenceService.deleteDataspace('someDataspace')
         and: 'the CpsValidator is called on the dataspaceName'
             1 * mockCpsValidator.validateNameCharacters('someDataspace')
-    }
-
-    def 'Delete all orphaned data.'(){
-        when: 'deleting all orphaned data'
-            objectUnderTest.deleteAllOrphanedData('some-dataspaceName')
-        then: 'the persistence service method to delete all orphaned fragment entities is invoked'
-            1 * mockCpsAdminPersistenceService.deleteAllOrphanedFragmentEntities('some-dataspaceName')
     }
 
 }

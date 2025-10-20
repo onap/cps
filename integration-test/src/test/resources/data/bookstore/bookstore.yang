@@ -102,17 +102,6 @@ module stores {
                 type string;
             }
 
-            container sub-categories {
-                leaf code {
-                    type string;
-                }
-                container additional-info {
-                    leaf info-name {
-                        type string;
-                    }
-                }
-            }
-
             list books {
                 key title;
 
