@@ -31,6 +31,11 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-89 <https://lf-onap.atlassian.net/browse/CPS-89>`_ Update Spring Boot to version 3.5.6
+
+
 Version: 3.7.1
 ==============
 
