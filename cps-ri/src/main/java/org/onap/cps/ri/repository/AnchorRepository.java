@@ -1,7 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
  *  Copyright (C) 2021 Pantheon.tech
- *  Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Modifications Copyright (C) 2021-2024 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
 package org.onap.cps.ri.repository;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import org.onap.cps.api.exceptions.AnchorNotFoundException;
 import org.onap.cps.ri.models.AnchorEntity;
@@ -109,5 +108,4 @@ public interface AnchorRepository extends JpaRepository<AnchorEntity, Long> {
     @Query(value = "UPDATE anchor SET schema_set_id =:schemaSetId WHERE id = :anchorId ", nativeQuery = true)
     void updateAnchorSchemaSetId(@Param("schemaSetId") int schemaSetId, @Param("anchorId") long anchorId);
 
-    List<AnchorEntity> getAnchorEntitiesByDataspace(DataspaceEntity dataspaceEntity);
 }

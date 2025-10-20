@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2023-2025 Nordix Foundation
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the 'License');
  *  you may not use this file except in compliance with the License.
@@ -20,18 +20,11 @@
 
 package org.onap.cps.integration.functional.cps
 
-import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
-import static org.onap.cps.api.parameters.PaginationOption.NO_PAGINATION
-
 import org.onap.cps.api.CpsDataspaceService
-import java.time.OffsetDateTime
-import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.integration.base.FunctionalSpecBase
 import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.DataspaceInUseException
 import org.onap.cps.api.exceptions.DataspaceNotFoundException
-import org.onap.cps.ri.repository.FragmentRepository
-import org.onap.cps.utils.ContentType
 
 class DataspaceServiceIntegrationSpec extends FunctionalSpecBase {
 
@@ -109,29 +102,6 @@ class DataspaceServiceIntegrationSpec extends FunctionalSpecBase {
             objectUnderTest.createDataspace(GENERAL_TEST_DATASPACE)
         then: 'an exception is thrown indicating the dataspace already exists'
             thrown(AlreadyDefinedException)
-    }
-
-    def 'Delete all orphaned data in a dataspace.'() {
-        setup: 'an anchor'
-            cpsAnchorService.createAnchor(GENERAL_TEST_DATASPACE, BOOKSTORE_SCHEMA_SET, 'testAnchor')
-        and: 'orphaned data'
-            def jsonDataMap = [:]
-            jsonDataMap.put('/bookstore/categories[@code=\'3\']', '{"books":[{"title": "Matilda"}]}')
-            jsonDataMap.put('/bookstore/categories[@code=\'3\']', '{"sub-categories":{"code":"1","additional-info":{"info-name":"sample"}}}')
-            cpsDataService.updateDataNodesAndDescendants(GENERAL_TEST_DATASPACE, 'testAnchor', jsonDataMap,  OffsetDateTime.now(), ContentType.JSON)
-            def dataNodes = cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'testAnchor','/', INCLUDE_ALL_DESCENDANTS)
-            assert dataNodes.size() == 1
-            assert dataNodes.childDataNodes.size() == 1
-        and: 'parent node does not exist'
-            assert cpsQueryService.queryDataNodesAcrossAnchors(GENERAL_TEST_DATASPACE, '/bookstore', INCLUDE_ALL_DESCENDANTS, NO_PAGINATION).size() == 0
-        when: 'deleting all orphaned data in a dataspace'
-            objectUnderTest.deleteAllOrphanedData(GENERAL_TEST_DATASPACE)
-        and: 'get data nodes in dataspace'
-            cpsDataService.getDataNodes(GENERAL_TEST_DATASPACE, 'testAnchor','/', INCLUDE_ALL_DESCENDANTS)
-        then: 'there will be no more data nodes available'
-            thrown(DataNodeNotFoundException)
-        cleanup: 'remove the data for this test'
-            cpsAnchorService.deleteAnchor(GENERAL_TEST_DATASPACE, 'testAnchor')
     }
 
 }
