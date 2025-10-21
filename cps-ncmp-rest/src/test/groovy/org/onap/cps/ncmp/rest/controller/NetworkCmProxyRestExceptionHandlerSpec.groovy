@@ -35,7 +35,9 @@ import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NetworkCmProxyFacade
+import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
+import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
@@ -45,6 +47,7 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -110,6 +113,15 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
 
     @SpringBean
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
+
+    @SpringBean
+    ProvMnSParametersMapper provMnSParametersMapper = Mock()
+
+    @SpringBean
+    AlternateIdMatcher alternateIdMatcher = Mock()
+
+    @SpringBean
+    DmiRestClient dmiRestClient = Mock()
 
     @Value('${rest.api.ncmp-base-path}')
     def basePathNcmp

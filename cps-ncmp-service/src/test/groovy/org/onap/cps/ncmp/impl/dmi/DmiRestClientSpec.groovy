@@ -78,7 +78,7 @@ class DmiRestClientSpec extends Specification {
             mockDataServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Data service', HttpStatus.I_AM_A_TEAPOT))
         when: 'POST operation is invoked fro Data Service'
-            def response = objectUnderTest.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
+            def response = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
         then: 'the output of the method is equal to the output from the test template'
             assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
             assert response.body == 'from Data service'
@@ -89,7 +89,7 @@ class DmiRestClientSpec extends Specification {
             mockModelServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.just(new ResponseEntity<>('from Model service', HttpStatus.I_AM_A_TEAPOT))
         when: 'POST operation is invoked for Model Service'
-            def response = objectUnderTest.synchronousPostOperationWithJsonData(MODEL, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
+            def response = objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
         then: 'the output of the method is equal to the output from the test template'
             assert response.statusCode == HttpStatus.I_AM_A_TEAPOT
             assert response.body == 'from Model service'
@@ -100,7 +100,7 @@ class DmiRestClientSpec extends Specification {
             mockDataServicesWebClient.post() >> mockRequestBody
             mockResponse.toEntity(Object.class) >> Mono.error(exceptionType)
         when: 'POST operation is invoked'
-            objectUnderTest.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
+            objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'some json', READ, NO_AUTH_HEADER)
         then: 'a http client exception is thrown'
             def thrown = thrown(DmiClientRequestException)
         and: 'the exception has the relevant details from the error response'

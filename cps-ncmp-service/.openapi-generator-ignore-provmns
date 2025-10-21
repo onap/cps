@@ -1,0 +1,17 @@
+# Ignore generation of all the models for ProvMns
+target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/*.java
+target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/api/*.java
+
+# Allow generation of the below model for ProvMns
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ClassNameIdPatchDefaultResponse.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponseDefault.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponseDefaultOtherProblemsInner.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponseGet.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponseGetOtherProblemsInner.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponsePatch.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ErrorResponsePatchOtherProblemsInner.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/PatchItem.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/PatchOperation.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ResourceOneOf.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/Scope.java
+!target/generated-sources/openapi/src/gen/java/org/onap/cps/ncmp/impl/provmns/model/ScopeType.java

@@ -103,7 +103,7 @@ public class DmiDataOperations {
         final String jsonRequestBody = getDmiRequestBody(READ, requestId, null, null, yangModelCmHandle);
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(cmResourceAddress
                 .datastoreName(), yangModelCmHandle, cmResourceAddress.resourceIdentifier(), options, topic);
-        return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
+        return dmiRestClient.asynchronousPostOperation(DATA, urlTemplateParameters, jsonRequestBody, READ,
                 authorization);
     }
 
@@ -127,7 +127,7 @@ public class DmiDataOperations {
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
                 PASSTHROUGH_OPERATIONAL.getDatastoreName(), yangModelCmHandle, "/", options,
                 null);
-        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody, READ,
+        return dmiRestClient.synchronousPostOperation(DATA, urlTemplateParameters, jsonRequestBody, READ,
                 DmiRestClient.NO_AUTHORIZATION);
     }
 
@@ -192,7 +192,7 @@ public class DmiDataOperations {
         final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(
                 PASSTHROUGH_RUNNING.getDatastoreName(), yangModelCmHandle, resourceId, null,
                 null);
-        return dmiRestClient.synchronousPostOperationWithJsonData(DATA, urlTemplateParameters, jsonRequestBody,
+        return dmiRestClient.synchronousPostOperation(DATA, urlTemplateParameters, jsonRequestBody,
                 operationType, authorization);
     }
 
@@ -284,7 +284,7 @@ public class DmiDataOperations {
                     final List<DmiDataOperation> dmiDataOperations = entry.getValue();
                     final String dmiDataOperationRequestAsJsonString
                             = createDmiDataOperationRequestAsJsonString(dmiDataOperations);
-                    return dmiRestClient.asynchronousPostOperationWithJsonData(DATA, urlTemplateParameters,
+                    return dmiRestClient.asynchronousPostOperation(DATA, urlTemplateParameters,
                                     dmiDataOperationRequestAsJsonString, READ, authorization)
                             .then()
                             .onErrorResume(DmiClientRequestException.class, dmiClientRequestException -> {
