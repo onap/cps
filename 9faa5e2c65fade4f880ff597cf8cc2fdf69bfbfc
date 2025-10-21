@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6d279e_3c8cec87",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-21T10:09:32Z",
+      "side": 1,
+      "message": "This lock is never released I don\u0027t think. What happens if the pod is restarted?",
+      "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
