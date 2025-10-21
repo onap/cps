@@ -103,7 +103,6 @@ export function teardown() {
     const totalDeregistrationTimeInSeconds = (endTimeInMillis - startTimeInMillis) / 1000.0;
 
     kpiTrendDeclarations.cm_handles_deleted.add(numberOfDeregisteredCmHandles / totalDeregistrationTimeInSeconds);
-
     sleep(CONTAINER_COOL_DOWW_TIME_IN_SECONDS);
 }
 
