@@ -46,11 +46,11 @@ public class DmiInEventMapper {
     /**
      * This method maps relevant details for a subscription to a data job subscription DMI in event.
      *
-     * @param cmHandleIds           list of cm handle ID(s)
-     * @param dataNodeSelectors     list of data node selectors
-     * @param notificationTypes     the list of notification types
-     * @param notificationFilter    the notification filter
-     * @return                      data job subscription DMI in event
+     * @param cmHandleIds        list of cm handle ID(s)
+     * @param dataNodeSelectors  list of data node selectors
+     * @param notificationTypes  the list of notification types
+     * @param notificationFilter the notification filter
+     * @return data job subscription DMI in event
      */
     public DataJobSubscriptionDmiInEvent toDmiInEvent(final List<String> cmHandleIds,
                                                       final List<String> dataNodeSelectors,
@@ -87,8 +87,8 @@ public class DmiInEventMapper {
             final CmHandle cmHandle = new CmHandle();
             final Map<String, String> cmHandleAdditionalProperties = new LinkedHashMap<>();
             yangModelCmHandle.getAdditionalProperties()
-                .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.name(),
-                    additionalProperty.value()));
+                    .forEach(additionalProperty -> cmHandleAdditionalProperties.put(additionalProperty.name(),
+                            additionalProperty.value()));
             cmHandle.setCmhandleId(yangModelCmHandle.getId());
             cmHandle.setPrivateProperties(cmHandleAdditionalProperties);
             cmSubscriptionCmHandles.add(cmHandle);
@@ -97,5 +97,4 @@ public class DmiInEventMapper {
         return cmSubscriptionCmHandles;
 
     }
-
 }

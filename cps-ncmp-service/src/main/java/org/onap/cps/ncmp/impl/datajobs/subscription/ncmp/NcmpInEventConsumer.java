@@ -51,18 +51,23 @@ public class NcmpInEventConsumer {
     public void consumeSubscriptionEvent(
         final DataJobSubscriptionOperationInEvent dataJobSubscriptionOperationInEvent) {
         final String eventType = dataJobSubscriptionOperationInEvent.getEventType();
-        final String dataJobId = dataJobSubscriptionOperationInEvent.getEvent().getDataJob().getId();
+        final DataJob dataJob = dataJobSubscriptionOperationInEvent.getEvent().getDataJob();
+        final String dataJobId = dataJob.getId();
 
         log.info("Consumed subscription event with details: | dataJobId={} | eventType={}", dataJobId, eventType);
 
-        if (eventType.equals("dataJobCreated")) {
-            final DataJob dataJob = dataJobSubscriptionOperationInEvent.getEvent().getDataJob();
-            final String dataNodeSelector =
-                    dataJob.getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
-            final List<String> dataNodeSelectors = JexParser.toXpaths(dataNodeSelector);
-            final DataSelector dataSelector = dataJobSubscriptionOperationInEvent.getEvent().getDataJob()
-                            .getProductionJobDefinition().getDataSelector();
-            cmSubscriptionHandler.processSubscriptionCreate(dataSelector, dataJobId, dataNodeSelectors);
+        switch (eventType) {
+            case "dataJobCreated" -> handleCreate(dataJobId, dataJob);
+            case "dataJobDeleted" -> cmSubscriptionHandler.deleteSubscription(dataJobId);
+            default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
         }
+    }
+
+    private void handleCreate(final String dataJobId, final DataJob dataJob) {
+        final String dataNodeSelector =
+                dataJob.getProductionJobDefinition().getTargetSelector().getDataNodeSelector();
+        final List<String> dataNodeSelectors = JexParser.toXpaths(dataNodeSelector);
+        final DataSelector dataSelector = dataJob.getProductionJobDefinition().getDataSelector();
+        cmSubscriptionHandler.createSubscription(dataSelector, dataJobId, dataNodeSelectors);
     }
 }
