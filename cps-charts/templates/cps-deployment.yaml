@@ -33,6 +33,9 @@ spec:
             - name: CPS_NCMP_SERVICE_NAME
               value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast
           resources:
+            requests:
+              cpu: {{ .Values.cps.resources.requests.cpu }}
+              memory: {{ .Values.cps.resources.requests.memory }}
             limits:
               cpu: {{ .Values.cps.resources.limits.cpu }}
               memory: {{ .Values.cps.resources.limits.memory }}

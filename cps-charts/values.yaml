@@ -1,8 +1,11 @@
 postgresql:
   image: "postgres:14.1-alpine"
   resources:
+    requests:
+      cpu: "2000m"
+      memory: "1Gi"
     limits:
-      cpu: "6"
+      cpu: "6000m"
       memory: "3Gi"
   servicePort: 5432
   env:
@@ -26,9 +29,12 @@ cps:
     port: 8080
     nodePort: 30080
   resources:
-    limits:
-      cpu: "3"
+    requests:
+      cpu: "2000m"
       memory: "3Gi"
+    limits:
+      cpu: "6000m"
+      memory: "5Gi"
   env:
     DB_HOST: "cps-ncmp-postgresql"
     DB_USERNAME: "cps"
@@ -73,9 +79,12 @@ kafka:
   listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
   offsetsTopicReplicationFactor: 1
   resources:
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
     limits:
-      cpu: "1"
-      memory: "3Gi"
+      cpu: "2000m"
+      memory: "2Gi"
   healthcheck:
     enabled: true
     command: >
@@ -95,9 +104,12 @@ zookeeper:
     type: ClusterIP
     port: 2181
   resources:
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
     limits:
-      cpu: "1"
-      memory: "3Gi"
+      cpu: "1000m"
+      memory: "1Gi"
   env:
     ZOOKEEPER_CLIENT_PORT: 2181
   healthcheck:
@@ -130,9 +142,12 @@ dmiStub:
     READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
     WRITE_DATA_FOR_CM_HANDLE_DELAY_MS: 670
   resources:
+    requests:
+      cpu: "100m"
+      memory: "350Mi"
     limits:
-      cpu: "3"
-      memory: "3Gi"
+      cpu: "1000m"
+      memory: "2Gi"
   livenessProbe:
     httpGet:
       path: /actuator/health/readiness
