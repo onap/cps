@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f214e1ee_4c1ff7bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-22T10:00:57Z",
+      "side": 1,
+      "message": "some minor stuff, but nice. also, needs to be rebased.",
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ba2b0c_33f50277",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-22T10:00:57Z",
+      "side": 1,
+      "message": "in case of an error should this be returning 200?",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30113581_3cbedc96",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-22T10:00:57Z",
+      "side": 1,
+      "message": "Which error code exactly this api return in case of error? it should not be 200 I believe.",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98c6122_817aa8c6",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-22T10:00:57Z",
+      "side": 1,
+      "message": "NB: needs to be in line with line 196",
+      "range": {
+        "startLine": 196,
+        "startChar": 78,
+        "endLine": 196,
+        "endChar": 99
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6eb82cb_51dcd56e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/base/DmiDispatcher.groovy",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-22T10:00:57Z",
+      "side": 1,
+      "message": "NB: you can place a comment like above on line 104, and tell which http operations does it intercept.",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 39
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
