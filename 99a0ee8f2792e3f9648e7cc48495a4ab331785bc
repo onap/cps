@@ -16,6 +16,23 @@
       "message": "ready for review",
       "revId": "99a0ee8f2792e3f9648e7cc48495a4ab331785bc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e703de4e_2c1b56f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-22T05:58:23Z",
+      "side": 1,
+      "message": "fine by me as anchor creation is isolated to delta related testware.\nalso the description are shortened. so looks fine.",
+      "revId": "99a0ee8f2792e3f9648e7cc48495a4ab331785bc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
