@@ -33,6 +33,9 @@ spec:
             - name: init-sql
               mountPath: {{ .Values.postgresql.initSql.mountPath }}
           resources:
+            requests:
+              cpu: {{ .Values.postgresql.resources.requests.cpu }}
+              memory: {{ .Values.postgresql.resources.requests.memory }}
             limits:
               cpu: {{ .Values.postgresql.resources.limits.cpu }}
               memory: {{ .Values.postgresql.resources.limits.memory }}
