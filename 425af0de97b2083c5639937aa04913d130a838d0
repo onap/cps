@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcca5e46_8b335603",
+        "filename": "cps-charts/templates/cps-deployment.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-23T15:29:42Z",
+      "side": 1,
+      "message": "this also needs to be corrected.\nalso check if there are any other occurences.",
+      "range": {
+        "startLine": 34,
+        "startChar": 21,
+        "endLine": 34,
+        "endChar": 70
+      },
+      "revId": "425af0de97b2083c5639937aa04913d130a838d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
