@@ -40,6 +40,9 @@ spec:
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "{{ .Values.kafka.offsetsTopicReplicationFactor }}"
           resources:
+            requests:
+              cpu: {{ .Values.kafka.resources.requests.cpu }}
+              memory: {{ .Values.kafka.resources.requests.memory }}
             limits:
               cpu: "{{ .Values.kafka.resources.limits.cpu }}"
               memory: "{{ .Values.kafka.resources.limits.memory }}"

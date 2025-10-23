@@ -28,10 +28,9 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
+import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
-import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
@@ -39,12 +38,13 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 
 class CmDataSubscriptionModelLoaderSpec extends Specification {
 
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockModelLoaderLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -53,6 +53,7 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def loggingListAppender
 
     void setup() {
+        objectUnderTest.isMaster = true
         expectedYangResourcesToContentMap = objectUnderTest.mapYangResourcesToContent('cm-data-job-subscriptions@2025-09-03.yang')
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
@@ -69,14 +70,23 @@ class CmDataSubscriptionModelLoaderSpec extends Specification {
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use'
             mockCpsDataspaceService.getDataspace(NCMP_DATASPACE_NAME) >> new Dataspace('')
-        when: 'the application is ready'
-            objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
+        when: 'the model loader is started'
+            objectUnderTest.onboardOrUpgradeModel()
         then: 'the module service to create schema set is called once'
             1 * mockCpsModuleService.createSchemaSet(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', expectedYangResourcesToContentMap)
         and: 'the admin service to create an anchor set is called once'
             1 * mockCpsAnchorService.createAnchor(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', 'cm-data-job-subscriptions')
         and: 'the data service to create a top level datanode is called once'
             1 * mockCpsDataService.saveData(NCMP_DATASPACE_NAME, 'cm-data-job-subscriptions', '{"dataJob":{}}', _)
+    }
+
+    def 'Onboarding is skipped when instance is not master'() {
+        given: 'instance is not master'
+            objectUnderTest.isMaster = false
+        when: 'the model loader is started'
+            objectUnderTest.onboardOrUpgradeModel()
+        then: 'the onboard/upgrade methods are not executed'
+            0 * mockCpsModuleService.createSchemaSet(*_)
     }
 
 }

@@ -41,19 +41,25 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
     private static final String CPS_DATASPACE_NAME = "CPS-Admin";
     private static final String REGISTRY_DATANODE_NAME = "dataspaces";
 
-    public CpsNotificationSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public CpsNotificationSubscriptionModelLoader(final ModelLoaderLock modelLoaderLock,
+                                                  final CpsDataspaceService cpsDataspaceService,
                                                   final CpsModuleService cpsModuleService,
                                                   final CpsAnchorService cpsAnchorService,
                                                   final CpsDataService cpsDataService,
                                                   final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+            readinessManager);
     }
 
     @Override
     public void onboardOrUpgradeModel() {
-        log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
-        onboardSubscriptionModels();
-        log.info("Model Loader #1 Completed");
+        if (isMaster) {
+            log.info("Model Loader #1 Started: CPS Data Notification Subscription Models");
+            onboardSubscriptionModels();
+            log.info("Model Loader #1 Completed");
+        } else {
+            logMessageForNonMasterInstance();
+        }
     }
 
     private void onboardSubscriptionModels() {
@@ -61,7 +67,7 @@ public class CpsNotificationSubscriptionModelLoader extends AbstractModelLoader 
         createSchemaSet(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, MODEL_FILENAME);
         createAnchor(CPS_DATASPACE_NAME, SCHEMA_SET_NAME, ANCHOR_NAME);
         createTopLevelDataNode(CPS_DATASPACE_NAME, ANCHOR_NAME, REGISTRY_DATANODE_NAME);
-        log.info("CPS Data Notification Subscription models onboarded successfully");
+        log.info("Model Loader #1: CPS Data Notification Subscription models onboarded successfully");
     }
 
 }

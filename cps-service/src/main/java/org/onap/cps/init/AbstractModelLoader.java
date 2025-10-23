@@ -36,6 +36,7 @@ import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.api.exceptions.AnchorNotFoundException;
+import org.onap.cps.api.exceptions.DataspaceNotFoundException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.ModuleDefinition;
@@ -49,11 +50,14 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 @RequiredArgsConstructor
 public abstract class AbstractModelLoader implements ModelLoader {
 
+    protected final ModelLoaderLock modelLoaderLock;
     protected final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
     protected final CpsAnchorService cpsAnchorService;
     protected final CpsDataService cpsDataService;
     protected final ReadinessManager readinessManager;
+
+    protected boolean isMaster = false;
 
     private final JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper());
 
@@ -62,9 +66,10 @@ public abstract class AbstractModelLoader implements ModelLoader {
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent applicationReadyEvent) {
         try {
+            checkIfThisInstanceIsMaster();
             onboardOrUpgradeModel();
         } catch (final Exception exception) {
-            log.error("Exiting application due to failure in onboarding model: {} ",
+            log.error("Exiting application due to failure in onboarding model: {}",
                     exception.getMessage());
             exitApplication(applicationReadyEvent);
         } finally {
@@ -129,12 +134,15 @@ public abstract class AbstractModelLoader implements ModelLoader {
      *
      * @param dataspaceName the name of the dataspace
      * @param anchorName    the name of the anchor within the dataspace
-     * @return {@code true} if the anchor exists, {@code false} otherwise
+     * @return {@code true} if the dataspace and anchor exists, {@code false} otherwise
      */
     public boolean doesAnchorExist(final String dataspaceName, final String anchorName) {
         try {
             cpsAnchorService.getAnchor(dataspaceName, anchorName);
             return true;
+        } catch (final DataspaceNotFoundException dataspaceNotFoundException) {
+            log.debug("Dataspace '{}' does not exist", dataspaceName);
+            return false;
         } catch (final AnchorNotFoundException anchorNotFoundException) {
             log.debug("Anchor '{}' not found in dataspace '{}'", anchorName, dataspaceName);
             return false;
@@ -206,6 +214,9 @@ public abstract class AbstractModelLoader implements ModelLoader {
         return !moduleDefinitions.isEmpty();
     }
 
+    public void logMessageForNonMasterInstance() {
+        log.info("This instance is not model loader master, skipping model loader for: {}", getName());
+    }
 
     Map<String, String> mapYangResourcesToContent(final String... resourceNames) {
         final Map<String, String> yangResourceContentByName = new HashMap<>();
@@ -213,6 +224,15 @@ public abstract class AbstractModelLoader implements ModelLoader {
             yangResourceContentByName.put(resourceName, getFileContentAsString("models/" + resourceName));
         }
         return yangResourceContentByName;
+    }
+
+    void checkIfThisInstanceIsMaster() {
+        isMaster = isMaster || modelLoaderLock.tryLock();
+        if (isMaster) {
+            log.info("This instance is model loader master");
+        } else {
+            log.info("Another instance is model loader master");
+        }
     }
 
     private String getFileContentAsString(final String fileName) {

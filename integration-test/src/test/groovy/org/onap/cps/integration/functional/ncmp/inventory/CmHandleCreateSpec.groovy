@@ -20,7 +20,9 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
-
+import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.onap.cps.events.LegacyEvent
+import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
@@ -31,10 +33,14 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
+import java.time.Duration
+
 class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
     def uniqueId = 'ch-unique-id-for-create-test'
+
+    KafkaConsumer<String, LegacyEvent> kafkaConsumer
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
@@ -72,7 +78,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert ['M1', 'M2'] == objectUnderTest.getYangResourcesModuleReferences(uniqueId).moduleName.sort()
 
         then: 'get the latest messages'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(2)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
 
         and: 'both converted messages are for the correct cm handle'
             def notificationMessages = []
@@ -90,7 +96,7 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
             assert notificationMessages[1].event.dataProducerIdentifier == 'my-data-producer-identifier'
 
         and: 'there are no more messages to be read'
-            assert getLatestConsumerRecordsWithMaxPollOf1Second(1).size() == 0
+            assert getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1).size() == 0
 
         cleanup: 'deregister CM handle'
             deregisterCmHandle(DMI1_URL, uniqueId)
@@ -213,6 +219,12 @@ class CmHandleCreateSpec extends CpsIntegrationSpecBase {
 
         cleanup: 'deregister CM handles'
             deregisterCmHandles(DMI1_URL, ['ch-1', 'ch-2'])
+    }
+
+    def subscribeAndClearPreviousMessages(consumerGroupId, topicName) {
+        kafkaConsumer = KafkaTestContainer.getLegacyEventConsumer(consumerGroupId)
+        kafkaConsumer.subscribe([topicName])
+        kafkaConsumer.poll(Duration.ofMillis(500))
     }
 
 }

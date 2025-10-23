@@ -22,6 +22,7 @@ package org.onap.cps.ncmp.impl.cache;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
+import org.onap.cps.impl.cache.HazelcastCacheConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,7 +37,7 @@ public class AlternateIdCacheConfig extends HazelcastCacheConfig {
      *
      * @return configured map of cm handle id by alternate id
      */
-    @Bean
+    @Bean("cmHandleIdPerAlternateId")
     public IMap<String, String> cmHandleIdPerAlternateId() {
         return getOrCreateHazelcastInstance(cmHandleIdPerAlternateIdMapConfig).getMap("cmHandleIdPerAlternateId");
     }

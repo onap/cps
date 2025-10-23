@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.events.EventsProducer
+import org.onap.cps.events.LegacyEvent
 import org.onap.cps.ncmp.events.lcm.v1.Event
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.utils.TestUtils
@@ -43,12 +44,12 @@ import java.time.Duration
 @DirtiesContext
 class EventsProducerSpec extends MessagingBaseSpec {
 
-    def legacyEventKafkaConsumer = new KafkaConsumer<>(eventConsumerConfigProperties('ncmp-group', StringDeserializer))
+    def legacyEventKafkaConsumer = new KafkaConsumer<String, LegacyEvent>(eventConsumerConfigProperties('ncmp-group', StringDeserializer))
 
     def testTopic = 'ncmp-events-test'
 
     @SpringBean
-    EventsProducer eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate)
+    EventsProducer eventsProducer = new EventsProducer(legacyEventKafkaTemplate, cloudEventKafkaTemplate, cloudEventKafkaTemplateForEos)
 
     @Autowired
     JsonObjectMapper jsonObjectMapper

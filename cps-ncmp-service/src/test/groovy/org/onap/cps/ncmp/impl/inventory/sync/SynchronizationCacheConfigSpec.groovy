@@ -20,16 +20,17 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync
 
-import com.hazelcast.config.Config
+
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
-import java.util.concurrent.BlockingQueue
-import java.util.concurrent.TimeUnit
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 import spock.util.concurrent.PollingConditions
+
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.TimeUnit
 
 @SpringBootTest
 @ContextConfiguration(classes = [SynchronizationCacheConfig])
@@ -88,20 +89,6 @@ class SynchronizationCacheConfigSpec extends Specification {
         and: 'all configs has the correct settings'
             assert hzConfig.join.autoDetectionConfig.enabled
             assert !hzConfig.join.kubernetesConfig.enabled
-    }
-
-    def 'Verify network config'() {
-        given: 'Synchronization config object and test configuration'
-            def objectUnderTest = new SynchronizationCacheConfig()
-            def testConfig = new Config()
-        when: 'kubernetes properties are enabled'
-            objectUnderTest.cacheKubernetesEnabled = true
-            objectUnderTest.cacheKubernetesServiceName = 'test-service-name'
-        and: 'method called to update the discovery mode'
-            objectUnderTest.updateDiscoveryMode(testConfig)
-        then: 'applied properties are reflected'
-            assert testConfig.networkConfig.join.kubernetesConfig.enabled
-            assert testConfig.networkConfig.join.kubernetesConfig.properties.get('service-name') == 'test-service-name'
     }
 
     def 'Time to Live Verify for Module Sync Semaphore'() {

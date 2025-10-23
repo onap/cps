@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-cps
+  name: {{ include "cps-and-ncmp.fullname" . }}
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: cps-and-ncmp
@@ -31,8 +31,11 @@ spec:
               value: "{{ $envValue }}"
             {{- end }}
             - name: CPS_NCMP_SERVICE_NAME
-              value: {{ include "cps-and-ncmp.name" . }}-cps-hazelcast
+              value: cps-{{ include "cps-and-ncmp.name" . }}-hazelcast
           resources:
+            requests:
+              cpu: {{ .Values.cps.resources.requests.cpu }}
+              memory: {{ .Values.cps.resources.requests.memory }}
             limits:
               cpu: {{ .Values.cps.resources.limits.cpu }}
               memory: {{ .Values.cps.resources.limits.memory }}

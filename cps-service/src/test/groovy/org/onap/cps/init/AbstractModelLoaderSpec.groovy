@@ -28,35 +28,36 @@ import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
+import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.AnchorNotFoundException
+import org.onap.cps.api.exceptions.DataspaceNotFoundException
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException
 import org.onap.cps.api.exceptions.ModelOnboardingException
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.parameters.CascadeDeleteAllowed
-import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
 
 class AbstractModelLoaderSpec extends Specification {
 
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = Spy(new TestModelLoader(mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
+    def objectUnderTest = Spy(new TestModelLoader(mockModelLoaderLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager))
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
     def logger = (Logger) LoggerFactory.getLogger(AbstractModelLoader)
     def loggingListAppender
 
-    void setup() {
+    def setup() {
         logger.setLevel(Level.DEBUG)
         loggingListAppender = new ListAppender()
         logger.addAppender(loggingListAppender)
@@ -64,20 +65,20 @@ class AbstractModelLoaderSpec extends Specification {
         applicationContext.refresh()
     }
 
-    void cleanup() {
+    def cleanup() {
         logger.detachAndStopAllAppenders()
         applicationContext.close()
         loggingListAppender.stop()
     }
 
-    def 'Application ready event triggers onboarding/upgrade'() {
-        when: 'Application (ready) event is triggered'
+    def 'Application ready.'() {
+        when: 'Application ready event is triggered'
             objectUnderTest.onApplicationEvent(Mock(ApplicationReadyEvent))
         then: 'the onboard/upgrade method is executed'
             1 * objectUnderTest.onboardOrUpgradeModel()
     }
 
-    def 'Application ready event handles startup exception'() {
+    def 'Application ready event with exception.'() {
         given: 'a startup exception is thrown during model onboarding'
             objectUnderTest.onboardOrUpgradeModel() >> { throw new ModelOnboardingException('test message','details are not logged') }
         when: 'Application (ready) event is triggered'
@@ -87,14 +88,14 @@ class AbstractModelLoaderSpec extends Specification {
             assert logs.contains('test message')
     }
 
-    def 'Creating a dataspace delegates to the service.'() {
+    def 'Creating a dataspace.'() {
         when: 'creating a dataspace'
             objectUnderTest.createDataspace('some dataspace')
         then: 'the operation is delegated to the dataspace service'
             1 * mockCpsDataspaceService.createDataspace('some dataspace')
     }
 
-    def 'Creating a dataspace handles already defined exception.'() {
+    def 'Creating a dataspace that already exists.'() {
         given: 'dataspace service throws an already defined exception'
             mockCpsDataspaceService.createDataspace(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
         when: 'creating a dataspace'
@@ -102,10 +103,10 @@ class AbstractModelLoaderSpec extends Specification {
         then: 'the exception is ignored i.e. no exception thrown up'
             noExceptionThrown()
         and: 'the exception is ignored, and a log message is produced'
-            assertLogContains('Dataspace already exists')
+            assert logContains('Dataspace already exists')
     }
 
-    def 'Creating a dataspace handles other exception.'() {
+    def 'Attempt to create a dataspace with other exception.'() {
         given: 'dataspace service throws a runtime exception'
             mockCpsDataspaceService.createDataspace(*_) >> { throw new RuntimeException('test message')  }
         when: 'creating a dataspace'
@@ -116,34 +117,34 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('test message')
     }
 
-    def 'Creating a schema set delegates to the service.'() {
+    def 'Creating a schema set.'() {
         when: 'creating a schema set'
             objectUnderTest.createSchemaSet('some dataspace','new name','cps-notification-subscriptions@2024-07-03.yang')
         then: 'the operation is delegated to the module service'
             1 * mockCpsModuleService.createSchemaSet('some dataspace','new name',_)
     }
 
-    def 'Creating a schema set handles duplicated yang resource exception'() {
+    def 'Creating a schema set with duplicated yang resource.'() {
         given: 'module service throws duplicated yang resource exception'
             mockCpsModuleService.createSchemaSet(*_) >> { throw new DuplicatedYangResourceException('my-yang-resource', 'my-yang-resource-checksum', null) }
         when: 'attempt to create a schema set'
             objectUnderTest.createSchemaSet('some dataspace','some schema set','cps-notification-subscriptions@2024-07-03.yang')
         then: 'exception is ignored, and correct exception message is logged'
             noExceptionThrown()
-            assertLogContains('Ignoring yang resource duplication exception. Assuming model was created by another instance')
+            assert logContains('Ignoring yang resource duplication exception. Assuming model was created by another instance')
     }
 
-    def 'Creating a schema set handles already defined exception.'() {
+    def 'Creating a schema that already exists.'() {
         given: 'the module service throws an already defined exception'
             mockCpsModuleService.createSchemaSet(*_) >>  { throw AlreadyDefinedException.forSchemaSet('name','context',null) }
         when: 'attempt to create a schema set'
             objectUnderTest.createSchemaSet('some dataspace','new name','cps-notification-subscriptions@2024-07-03.yang')
         then: 'the exception is ignored, and a log message is produced'
             noExceptionThrown()
-            assertLogContains('Creating new schema set failed as schema set already exists')
+            assert logContains('Creating new schema set failed as schema set already exists')
     }
 
-    def 'Creating a schema set from a non-existing YANG file.'() {
+    def 'Attempt to creating a schema set from a non-existing YANG file.'() {
         when: 'attempting to create a schema set from a non-existing file'
             objectUnderTest.createSchemaSet('some dataspace','some name','no such yang file')
         then: 'a startup exception with correct message and details is thrown'
@@ -152,24 +153,24 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('unable to read file')
     }
 
-    def 'Creating an anchor delegates to the service.'() {
+    def 'Creating an anchor.'() {
         when: 'creating an anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
         then: 'the operation is delegated to the anchor service'
             1 * mockCpsAnchorService.createAnchor('some dataspace','some schema set', 'new name')
     }
 
-    def 'Creating an anchor handles already defined exception.'() {
+    def 'Creating an anchor that already exists.'() {
         given: 'the anchor service throws an already defined exception'
             mockCpsAnchorService.createAnchor(*_)>>  { throw AlreadyDefinedException.forAnchor('name','context',null) }
         when: 'attempting to create an anchor'
             objectUnderTest.createAnchor('some dataspace','some schema set','new name')
         then: 'the exception is ignored, and a log message is produced'
             noExceptionThrown()
-            assertLogContains('Creating new anchor failed as anchor already exists')
+            assert logContains('Creating new anchor failed as anchor already exists')
     }
 
-    def 'Creating an anchor handles other exceptions.'() {
+    def 'Attempt to create an anchor with other exception.'() {
         given: 'the anchor service throws a runtime exception'
             mockCpsAnchorService.createAnchor(*_)>>  { throw new RuntimeException('test message') }
         when: 'attempt to create anchor'
@@ -180,24 +181,24 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('test message')
     }
 
-    def 'Creating a top-level data node delegates to the service.'() {
+    def 'Creating a top-level data node.'() {
         when: 'top-level node is created'
             objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
         then: 'the correct JSON is saved using the data service'
             1 * mockCpsDataService.saveData('dataspace','anchor', '{"new node":{}}',_)
     }
 
-    def 'Creating a top-level node handles already defined exception.'() {
+    def 'Creating a top-level node that already exists.'() {
         given: 'the data service throws an Already Defined exception'
             mockCpsDataService.saveData(*_) >> { throw AlreadyDefinedException.forDataNodes([], 'some context') }
         when: 'attempting to create a top-level node'
             objectUnderTest.createTopLevelDataNode('dataspace','anchor','new node')
         then: 'the exception is ignored, and a log message is produced'
             noExceptionThrown()
-            assertLogContains('failed as data node already exists')
+            assert logContains('failed as data node already exists')
     }
 
-    def 'Create a top-level node with any other exception.'() {
+    def 'Attempt to create a top-level node with other exception.'() {
         given: 'the data service throws a runtime exception'
             mockCpsDataService.saveData(*_) >> { throw new RuntimeException('test message') }
         when: 'attempt to create a top-level node'
@@ -208,7 +209,7 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('test message')
     }
 
-    def 'Delete unused schema sets delegates to the service.'() {
+    def 'Delete unused schema sets.'() {
         when: 'unused schema sets get deleted'
             objectUnderTest.deleteUnusedSchemaSets('some dataspace','schema set 1', 'schema set 2')
         then: 'a request to delete each (without cascade) is delegated to the module service'
@@ -247,7 +248,7 @@ class AbstractModelLoaderSpec extends Specification {
             assert thrown.details.contains('test message')
     }
 
-    def 'Checking if an anchor exists'() {
+    def 'Checking if an anchor exists.'() {
         given: 'the anchor service returns an anchor without throwing an exception'
             mockCpsAnchorService.getAnchor('my-dataspace', 'my-anchor') >> {}
         when: 'checking if the anchor exists'
@@ -256,8 +257,8 @@ class AbstractModelLoaderSpec extends Specification {
             assert result == true
     }
 
-    def 'Checking if an anchor exists with unknown anchor'() {
-        given: 'the anchor service throws an exception'
+    def 'Checking if an anchor exists with unknown anchor.'() {
+        given: 'the anchor service throws an anchor not found exception'
             def anchorNotFoundException = new AnchorNotFoundException('my-dataspace', 'missing-anchor')
             mockCpsAnchorService.getAnchor('my-dataspace', 'missing-anchor') >> {throw anchorNotFoundException}
         when: 'checking if the anchor exists'
@@ -266,7 +267,17 @@ class AbstractModelLoaderSpec extends Specification {
             assert result == false
     }
 
-    def 'Checking if module revision is installed when: #scenario'() {
+    def 'Checking if an anchor exists with unknown dataspace.'() {
+        given: 'the anchor service throws a dataspace not fond exception'
+            def dataspaceNotFoundException = new DataspaceNotFoundException ('missing-dataspace')
+            mockCpsAnchorService.getAnchor('missing-dataspace', 'some anchor') >> {throw dataspaceNotFoundException}
+        when: 'checking if the anchor exists'
+            def result = objectUnderTest.doesAnchorExist('missing-dataspace', 'some anchor')
+        then: 'the expected boolean value is returned'
+            assert result == false
+    }
+
+    def 'Checking if module revision is installed when: #scenario.'() {
         given: 'the module service returns module definitions'
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule('some-dataspace', 'some-anchor', 'some-module', 'my-revision') >> moduleDefinitions
         when: 'checking if a module revision is installed'
@@ -279,19 +290,47 @@ class AbstractModelLoaderSpec extends Specification {
             'Module revision does not exist' || []                       || false
     }
 
-    private void assertLogContains(String message) {
-        def logs = loggingListAppender.list.toString()
-        assert logs.contains(message)
+    def 'Check if this instance is master when: #scenario.'() {
+        given: 'the lock acquisition returns #lockAcquired'
+            mockModelLoaderLock.tryLock() >> lockAcquired
+        when: 'checking if this instance is master'
+            objectUnderTest.checkIfThisInstanceIsMaster()
+        then: 'the master status is set correctly'
+            assert objectUnderTest.@isMaster == expectedMasterStatus
+        and: 'expected log message is produced'
+            assert logContains(expectedLogMessage)
+        where: 'the following scenarios are used'
+            scenario                  | lockAcquired || expectedMasterStatus || expectedLogMessage
+            'lock can be acquired'    | true         || true                 || 'This instance is model loader master'
+            'lock cannot be acquired' | false        || false                || 'Another instance is model loader master'
+    }
+
+    def 'Check if this instance is master when already master.'() {
+        given: 'instance is already master'
+            objectUnderTest.@isMaster = true
+        when: 'check for master again'
+            objectUnderTest.checkIfThisInstanceIsMaster()
+        then: 'instance remains remains master'
+            assert objectUnderTest.@isMaster == true
+        and: 'no attempt is made to lock'
+            0 * mockModelLoaderLock.tryLock()
+        and: 'log reports this instance is master'
+            assert logContains('This instance is model loader master')
+    }
+
+    def logContains(expectedMessage) {
+        return loggingListAppender.list.toString().contains(expectedMessage)
     }
 
     class TestModelLoader extends AbstractModelLoader {
 
-        TestModelLoader(final CpsDataspaceService cpsDataspaceService,
+        TestModelLoader(final ModelLoaderLock modelLoaderLock,
+                        final CpsDataspaceService cpsDataspaceService,
                         final CpsModuleService cpsModuleService,
                         final CpsAnchorService cpsAnchorService,
                         final CpsDataService cpsDataService,
                         final ReadinessManager readinessManager) {
-            super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
+            super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager)
         }
 
         @Override
@@ -303,5 +342,6 @@ class AbstractModelLoaderSpec extends Specification {
         String getName() {
             // Not needed for testing
         }
+
     }
 }
