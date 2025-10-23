@@ -70,6 +70,24 @@
       "parentUuid": "0a6d279e_3c8cec87",
       "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff24da6_a1c10a6c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-10-23T14:17:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0be260d9_cd216fd0",
+      "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
