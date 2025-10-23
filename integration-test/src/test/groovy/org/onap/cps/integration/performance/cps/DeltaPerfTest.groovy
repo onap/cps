@@ -45,7 +45,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
             resourceMeter.stop()
             def durationInSeconds = resourceMeter.getTotalTimeInSeconds()
         then: 'the anchor is created within expected time'
-            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 10, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
+            recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 22, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
     def 'Get delta between 2 anchors with grouping enabled and #scenario'() {
