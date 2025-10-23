@@ -98,6 +98,30 @@
       },
       "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54d8e70d_888f2f47",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-23T14:35:10Z",
+      "side": 1,
+      "message": "as agreed we will have a call offline to discuss it a bit more in details.",
+      "parentUuid": "c5c68abb_1bf6360a",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
