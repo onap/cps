@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef7c3bf1_1f91569e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-23T10:41:08Z",
+      "side": 1,
+      "message": "this is for Open Telemetry.\nAlso present in the KafkaConfig class.",
+      "parentUuid": "15357a2f_8f9d0814",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8a1d09a_25b71528",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
         "patchSetId": 2
@@ -283,6 +307,30 @@
       "writtenOn": "2025-10-09T15:46:53Z",
       "side": 1,
       "message": "why this ForEos its not clear what it is and I am not suer if it is needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3b90219_e3712920",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/KafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-23T10:41:08Z",
+      "side": 1,
+      "message": "Eos : Exactly Once Semantics ( all the config that we are doing is for achieving this only.\nOpen for any name sugestion here.",
+      "parentUuid": "7ae21a5a_e99b0a52",
       "range": {
         "startLine": 59,
         "startChar": 61,
