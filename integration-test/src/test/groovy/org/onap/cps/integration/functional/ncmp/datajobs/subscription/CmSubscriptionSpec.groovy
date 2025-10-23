@@ -92,10 +92,10 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             def eventDataNodeSelector = (dmi1DataNodeSelector + dmi2DataNodeSelector)
             def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'myDataJobId', eventDataNodeSelector)
         when: 'a subscription create request is sent'
-            sendSubscriptionCreateRequest(subscriptionTopic, 'key', eventPayload)
+            sendSubscriptionRequest(subscriptionTopic, 'key', eventPayload)
         then: 'log shows event is consumed by ncmp'
             def messages = listAppender.list*.formattedMessage
-            messages.any { msg -> msg.contains('myDataJobId') && msg.contains('dataJobCreated')}
+            messages.any { msg -> msg.contains('myDataJobId') && msg.contains('dataJobCreated') }
         and: 'the 3 different data node selectors for the given data job id is persisted'
             assert cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors('myDataJobId').size() == 3
         and: 'get correlation ids from event sent to DMIs'
@@ -108,15 +108,15 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     def 'Update subscription status'() {
         given: 'a persisted subscription'
             def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'newDataJob', '/parent[id=\\\'0\\\']\\n')
-            sendSubscriptionCreateRequest(subscriptionTopic, 'newDataJob', eventPayload)
+            sendSubscriptionRequest(subscriptionTopic, 'newDataJob', eventPayload)
         when: 'dmi accepts the subscription create request'
             sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-0', 'newDataJob#dmi-0')
         then: 'there are no more inactive data node selector for given datajob id'
             assert cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors('newDataJob').size() == 0
         and: 'status for the data node selector for given data job id is ACCEPTED'
-            def affectedDataNodes =  cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
-                '//subscription/dataJobId[text()=\'newDataJob\']', DIRECT_CHILDREN_ONLY)
-            assert affectedDataNodes.leaves.every( entry -> entry.get('status') == 'ACCEPTED')
+            def affectedDataNodes = cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
+                    '//subscription/dataJobId[text()=\'newDataJob\']', DIRECT_CHILDREN_ONLY)
+            assert affectedDataNodes.leaves.every(entry -> entry.get('status') == 'ACCEPTED')
     }
 
     def 'Create new subscription which partially overlaps with an existing active subscription'() {
@@ -130,13 +130,13 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
         and: 'an active subscription in database'
             createAndAcceptSubscriptionA()
         when: 'a new subscription create request is sent'
-            sendSubscriptionCreateRequest(subscriptionTopic, 'partialOverlappingDataJob', eventPayload)
+            sendSubscriptionRequest(subscriptionTopic, 'partialOverlappingDataJob', eventPayload)
         then: 'log shows event is consumed by ncmp'
             def messages = listAppender.list*.formattedMessage
-            messages.any { msg -> msg.contains('partialOverlappingDataJob') && msg.contains('dataJobCreated')}
+            messages.any { msg -> msg.contains('partialOverlappingDataJob') && msg.contains('dataJobCreated') }
         and: 'the 3 data node selectors for the given data job id is persisted'
             assert cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
-                '//subscription/dataJobId[text()=\'partialOverlappingDataJob\']', DIRECT_CHILDREN_ONLY).size() == 3
+                    '//subscription/dataJobId[text()=\'partialOverlappingDataJob\']', DIRECT_CHILDREN_ONLY).size() == 3
         and: 'only one data node selector is not active'
             assert cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors('partialOverlappingDataJob').size() == 1
         and: 'get correlation ids from event sent to DMIs'
@@ -155,13 +155,13 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             createAndAcceptSubscriptionA()
             createAndAcceptSubscriptionB()
         when: 'a new subscription create request is sent'
-            sendSubscriptionCreateRequest(subscriptionTopic, 'fullyOverlappingDataJob', eventPayload)
+            sendSubscriptionRequest(subscriptionTopic, 'fullyOverlappingDataJob', eventPayload)
         then: 'log shows event is consumed by ncmp'
             def messages = listAppender.list*.formattedMessage
-            messages.any { msg -> msg.contains('fullyOverlappingDataJob') && msg.contains('dataJobCreated')}
+            messages.any { msg -> msg.contains('fullyOverlappingDataJob') && msg.contains('dataJobCreated') }
         and: 'the 2 data node selectors for the given data job id is persisted'
             assert cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
-                '//subscription/dataJobId[text()=\'fullyOverlappingDataJob\']', DIRECT_CHILDREN_ONLY).size() == 2
+                    '//subscription/dataJobId[text()=\'fullyOverlappingDataJob\']', DIRECT_CHILDREN_ONLY).size() == 2
         and: 'there are no inactive data node selector'
             assert cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors('fullyOverlappingDataJob').size() == 0
         and: 'get correlation ids from event sent to DMIs'
@@ -170,12 +170,76 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
             assert !correlationIds.any { correlationId -> correlationId.startsWith('fullyOverlappingDataJob') }
     }
 
+    def 'Delete subscription removes last subscriber.'() {
+        given: 'an existing subscription with only one data node selector'
+            def dataNodeSelector = '/parent[id=\\\"1\\\"]'
+        and: 'a subscription created and accepted by DMI'
+            def createEventPayload = createSubscriptionEventPayload('dataJobCreated', 'myDataJobId', dataNodeSelector)
+            sendSubscriptionRequest(subscriptionTopic, 'myDataJobId', createEventPayload)
+        when: 'a delete event is received for the subscription'
+            def deleteEventPayload = createSubscriptionEventPayload('dataJobDeleted', 'myDataJobId', dataNodeSelector)
+            sendSubscriptionRequest(subscriptionTopic, 'myDataJobId', deleteEventPayload)
+        then: 'the subscription is fully removed from persistence'
+            def remainingDataNodeSelector = cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
+                    "/dataJob/subscription[@dataNodeSelector='${dataNodeSelector}']", DIRECT_CHILDREN_ONLY)
+            assert remainingDataNodeSelector.isEmpty()
+        and: 'no other subscriptions exist for the same dataJobId'
+            def remainingDataJobId = cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
+                    "//subscription/dataJobId[text()=\'myDataJobId\']", DIRECT_CHILDREN_ONLY)
+            assert remainingDataJobId.isEmpty()
+        and: 'a DMI delete event is published for the affected DMI'
+            def correlationIds = getAllConsumedCorrelationIds()
+            assert correlationIds.contains('myDataJobId#dmi-1')
+    }
+
+    def 'Delete subscription removes one of multiple subscribers.'() {
+        given: 'a data node with multiple subscriptions'
+            def dataNodeSelector = '/myDataNodeSelector'
+        and: 'subscriptions are created and accepted by DMI'
+            def createEventPayload1 = createSubscriptionEventPayload('dataJobCreated', 'id-to-remove', dataNodeSelector)
+            def createEventPayload2 = createSubscriptionEventPayload('dataJobCreated', 'id-remaining', dataNodeSelector)
+            sendSubscriptionRequest(subscriptionTopic, 'id-to-remove', createEventPayload1)
+            sendSubscriptionRequest(subscriptionTopic, 'id-remaining', createEventPayload2)
+        when: 'a delete event is received for one subscription'
+            def deleteEventPayload = createSubscriptionEventPayload('dataJobDeleted', 'id-to-remove', dataNodeSelector)
+            sendSubscriptionRequest(subscriptionTopic, 'id-to-remove', deleteEventPayload)
+        then: 'the removed subscription is deleted from persistence'
+            def remainingForRemoved = cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
+                    "//subscription/dataJobId[text()=\'id-to-remove\']", DIRECT_CHILDREN_ONLY)
+            assert remainingForRemoved.isEmpty()
+        and: 'the remaining subscription is still present'
+            def remainingForRemaining = cpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions',
+                    "//subscription/dataJobId[text()=\'id-remaining\']", DIRECT_CHILDREN_ONLY)
+            assert !remainingForRemaining.isEmpty()
+        and: 'no DMI delete event is published for a non-last subscription'
+            def correlationIds = getAllConsumedCorrelationIds()
+            assert !correlationIds.contains('id-to-remove#dmi-1')
+            assert !correlationIds.contains('id-remaining#dmi-1')
+    }
+
+    def 'Deleting non-existent subscription logs error but does not throw.'() {
+        given: 'a subscription that does not exist'
+            def dataNodeSelector = '/parent[id="11"]'
+        and: 'an event payload'
+            def deleteEventPayload = createSubscriptionEventPayload('dataJobDeleted', 'nonExistingDataJobId', dataNodeSelector)
+        when: 'a delete event is received for the non-existent subscription'
+            sendSubscriptionRequest(subscriptionTopic, 'nonExistingDataJobId', deleteEventPayload)
+        then: 'no exception is thrown'
+            noExceptionThrown()
+        and: 'an error is logged for the failed deletion'
+            def messages = listAppender.list*.formattedMessage
+            assert messages.empty || messages.any { it.contains('dataJobDeleted') && it.contains('nonExistingDataJobId') }
+        and: 'no correlation IDs are published to DMI'
+            def correlationIds = getAllConsumedCorrelationIds()
+            assert !correlationIds.any { it.startsWith('nonExistingDataJobId') }
+    }
+
     def registerCmHandlesForSubscriptions() {
-        registerCmHandle('dmi-0', 'cmHandle0', '','/parent=0')
-        registerCmHandle('dmi-1', 'cmHandle1', '','/parent=1')
-        registerCmHandle('dmi-1', 'cmHandle2', '','/parent=2')
-        registerCmHandle('dmi-2', 'cmHandle3', '','/parent=3')
-        registerCmHandle('dmi-2', 'cmHandle4', '','/parent=4')
+        registerCmHandle('dmi-0', 'cmHandle0', '', '/parent=0')
+        registerCmHandle('dmi-1', 'cmHandle1', '', '/parent=1')
+        registerCmHandle('dmi-1', 'cmHandle2', '', '/parent=2')
+        registerCmHandle('dmi-2', 'cmHandle3', '', '/parent=3')
+        registerCmHandle('dmi-2', 'cmHandle4', '', '/parent=4')
     }
 
     def createSubscriptionEventPayload(eventType, dataJobId, dataNodeSelector) {
@@ -189,7 +253,7 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     def createAndAcceptSubscriptionA() {
         def dataNodeSelector = '''/parent[id=\\\"1\\\"]\\n/parent[id=\\\"2\\\"]/child\\n/parent[id=\\\"3\\\"]/child'''
         def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'dataJobA', dataNodeSelector)
-        sendSubscriptionCreateRequest(subscriptionTopic, 'dataJobA', eventPayload)
+        sendSubscriptionRequest(subscriptionTopic, 'dataJobA', eventPayload)
         sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-1', 'dataJobA#dmi-1')
         sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-2', 'dataJobA#dmi-2')
     }
@@ -197,33 +261,33 @@ class CmSubscriptionSpec extends CpsIntegrationSpecBase {
     def createAndAcceptSubscriptionB() {
         def dataNodeSelector = '''/parent[id=\\\"1\\\"]\\n/parent[id=\\\"3\\\"]/child\\n/parent[id=\\\"4\\\"]'''
         def eventPayload = createSubscriptionEventPayload('dataJobCreated', 'dataJobB', dataNodeSelector)
-        sendSubscriptionCreateRequest(subscriptionTopic, 'dataJobB', eventPayload)
+        sendSubscriptionRequest(subscriptionTopic, 'dataJobB', eventPayload)
         sendDmiResponse('1', 'ACCEPTED', 'subscriptionCreateResponse', 'dmi-2', 'dataJobB#dmi-2')
     }
 
-    def sendSubscriptionCreateRequest(topic, eventKey, eventPayload) {
-        def event = new ProducerRecord<>(topic, eventKey, eventPayload);
+    def sendSubscriptionRequest(topic, eventKey, eventPayload) {
+        def event = new ProducerRecord<>(topic, eventKey, eventPayload)
         testRequestProducer.send(event)
-        sleep(1000)
+        sleep(2000)
     }
 
     def sendDmiResponse(statusCode, statusMessage, eventType, eventSource, correlationId) {
-        def eventPayload =  readResourceDataFile('datajobs/subscription/dmiSubscriptionResponseEvent.json')
+        def eventPayload = readResourceDataFile('datajobs/subscription/dmiSubscriptionResponseEvent.json')
         eventPayload = eventPayload.replace('#statusCode', statusCode)
         eventPayload = eventPayload.replace('#statusMessage', statusMessage)
         def cloudEvent = CloudEventBuilder.v1()
-            .withData(eventPayload.getBytes(StandardCharsets.UTF_8))
-            .withId('random-uuid')
-            .withType(eventType)
-            .withSource(URI.create(eventSource))
-            .withExtension('correlationid', correlationId).build()
-        def event = new ProducerRecord<>(dmiOutTopic, 'key', cloudEvent);
+                .withData(eventPayload.getBytes(StandardCharsets.UTF_8))
+                .withId('random-uuid')
+                .withType(eventType)
+                .withSource(URI.create(eventSource))
+                .withExtension('correlationid', correlationId).build()
+        def event = new ProducerRecord<>(dmiOutTopic, 'key', cloudEvent)
         testResponseProducer.send(event)
         sleep(2000)
     }
 
     def getAllConsumedCorrelationIds() {
-        def consumedEvents = dmiInConsumer.poll(Duration.ofMillis(1000))
+        def consumedEvents = dmiInConsumer.poll(Duration.ofMillis(2000))
         def headersMap = getAllHeaders(consumedEvents)
         return headersMap.get('ce_correlationid')
     }
