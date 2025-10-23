@@ -56,10 +56,14 @@ public class NcmpInEventConsumer {
 
         log.info("Consumed subscription event with details: | dataJobId={} | eventType={}", dataJobId, eventType);
 
-        switch (eventType) {
-            case "dataJobCreated" -> handleCreate(dataJobId, dataJob);
-            case "dataJobDeleted" -> cmSubscriptionHandler.deleteSubscription(dataJobId);
-            default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
+        try {
+            switch (eventType) {
+                case "dataJobCreated" -> handleCreate(dataJobId, dataJob);
+                case "dataJobDeleted" -> cmSubscriptionHandler.deleteSubscription(dataJobId);
+                default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
+            }
+        } finally {
+            log.info("NCMP In Event has been Processed for dataJobId={}", dataJobId);
         }
     }
 
