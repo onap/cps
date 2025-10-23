@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e384f130_a6d60750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-23T13:09:39Z",
+      "side": 1,
+      "message": "Please see my comments...",
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3265f924_15c1c275",
@@ -32,6 +49,29 @@
       "side": 1,
       "message": "NB",
       "parentUuid": "3265f924_15c1c275",
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0523e567_a3c69c79",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-23T13:09:39Z",
+      "side": 1,
+      "message": "shouldn\u0027t you release the lock once the model loading finished?\n\nif the lock is not released here, then ModelLoaderCoordinatorEnd with Order(999) can not acquire the lock to release it at final stage. \n\nThe smilar behaviour does exist for the other model loaders: InventoryModelLoader with Order(2) and CmDataSubscriptionModelLoader with Order(3)",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 50
+      },
       "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }

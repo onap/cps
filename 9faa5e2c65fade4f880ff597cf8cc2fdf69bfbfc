@@ -34,6 +34,24 @@
       "parentUuid": "0a6d279e_3c8cec87",
       "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68be2800_893a0926",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-23T13:09:39Z",
+      "side": 1,
+      "message": "I agree with gerard. Please see my previous comment above. \n\nit seems ModelLoaderCoordinatorEnd.java never be master to release the lock at the final stage.",
+      "parentUuid": "e0e75c99_32099fa9",
+      "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
