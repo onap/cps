@@ -16,6 +16,23 @@
       "message": "i ran this patch in my local.\nthe service for hazelcast is shown as : ncmp-cps-hazelcast.\nyou can correct it to cps-ncmp-hazelcast for consistency.\n\nother changes looks fine so far.",
       "revId": "a9b89b41662fa5aa4af5987fbc5f54c98283c48f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5accccd2_262264c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-23T11:16:10Z",
+      "side": 1,
+      "message": "have not executed the k6 tests yet.",
+      "revId": "a9b89b41662fa5aa4af5987fbc5f54c98283c48f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
