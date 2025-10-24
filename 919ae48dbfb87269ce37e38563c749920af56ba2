@@ -122,6 +122,30 @@
       },
       "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30284f70_2092143d",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-24T14:45:07Z",
+      "side": 1,
+      "message": "I was thinking on the scenario below:\n\n1- All model loaders successfully loaded models (assuming).\n\n2- ModelLoaderCoordinatorEnd with Order(999) be called. Then, it will check isMaster flag true to release the lock. \n\n3- Then, it will go AbstractModelLoader.java -\u003e checkIfThisInstanceIsMaster\n\n4- Then, ModelLoaderCoordinatorLock -\u003e cpsCommonLocks.tryLock(\"modelLoaderLock\")\n\nDo you think that tryLock function will return true, to make ModelLoaderCoordinatorEnd master and set isMaster to true?",
+      "parentUuid": "54d8e70d_888f2f47",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
