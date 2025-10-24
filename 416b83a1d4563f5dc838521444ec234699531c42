@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07900f23_c98d58b4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 176,
+        "startChar": 37,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b609e34f_0e4bf094",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "you only to create one subscription for this (the one that you will remove) as you can show that others still exist",
+      "range": {
+        "startLine": 200,
+        "startChar": 9,
+        "endLine": 200,
+        "endChar": 68
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd7b215_83ff063f",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "given: a data node selector that is used by other subscriptions",
+      "range": {
+        "startLine": 201,
+        "startChar": 28,
+        "endLine": 201,
+        "endChar": 88
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee53c51_913c8d36",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 203,
+        "startChar": 40,
+        "endLine": 203,
+        "endChar": 59
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064c6703_f2698293",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "and: a new subscription",
+      "range": {
+        "startLine": 203,
+        "startChar": 14,
+        "endLine": 203,
+        "endChar": 40
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09808ce4_4dcc4c8e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 205,
+        "startChar": 10,
+        "endLine": 205,
+        "endChar": 120
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa0e33c_ee1abec4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove , u dont need two subscriptions for this",
+      "range": {
+        "startLine": 207,
+        "startChar": 11,
+        "endLine": 207,
+        "endChar": 91
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1041229d_ab0868f4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 208,
+        "startChar": 42,
+        "endLine": 208,
+        "endChar": 62
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841b9fad_7b697d45",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "data job id does not exist in database",
+      "range": {
+        "startLine": 211,
+        "startChar": 19,
+        "endLine": 211,
+        "endChar": 67
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70f78c2_ff1864d4",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "data nodes still exist for the same data node selector",
+      "range": {
+        "startLine": 215,
+        "startChar": 14,
+        "endLine": 215,
+        "endChar": 57
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e39e44f_d138a22d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 219,
+        "startChar": 47,
+        "endLine": 219,
+        "endChar": 74
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56dbfb1_56894e2c",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 225,
+        "startChar": 54,
+        "endLine": 225,
+        "endChar": 73
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bfd1e74_11277403",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-10-24T11:57:23Z",
+      "side": 1,
+      "message": "this can be in line 229\n ie. \n def deleteEventPayload \u003d createSubscriptionEventPayload(\u0027dataJobDeleted\u0027, \u0027nonExistingDataJobId\u0027, \u0027/nonExisting\u0027)",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 53
+      },
+      "revId": "416b83a1d4563f5dc838521444ec234699531c42",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
