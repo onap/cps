@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache;
+package org.onap.cps.impl.cache;
 
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.map.IMap;
@@ -26,23 +26,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CpsAndNcmpLockConfig extends HazelcastCacheConfig {
+public class CpsCommonLocksConfig extends HazelcastCacheConfig {
 
-    // Lock names for different use cases ( to be used as cpsAndNcmpLock keys)
-    public static final String MODULE_SYNC_WORK_QUEUE_LOCK_NAME = "workQueueLock";
-
-    private static final MapConfig cpsAndNcmpLockMapConfig = createGenericMapConfig("cpsAndNcmpLockConfig");
+    private static final MapConfig cpsCommonLocksMapConfig = createGenericMapConfig("cpsCommonLocksMapConfig");
 
     /**
-     * Distributed instance used for locking purpose for various use cases in cps-and-ncmp.
+     * Distributed instance used for locking purpose for various use cases in cps and dependant services.
      * The key of the map entry is name of the lock and should be based on the use case we are locking.
      *
-     * @return configured map of lock object to have distributed coordination.
+     * @return configured map of lock objects to have distributed coordination.
      */
-    @Bean
-    public IMap<String, String> cpsAndNcmpLock() {
-        return getOrCreateHazelcastInstance(cpsAndNcmpLockMapConfig).getMap("cpsAndNcmpLock");
+    @Bean("cpsCommonLocks")
+    public IMap<String, String> cpsCommonLocks() {
+        return getOrCreateHazelcastInstance(cpsCommonLocksMapConfig).getMap("cpsCommonLocks");
     }
-
 
 }

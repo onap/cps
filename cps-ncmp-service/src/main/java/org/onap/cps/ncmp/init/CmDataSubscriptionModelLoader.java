@@ -28,6 +28,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.init.ModelLoaderCoordinatorLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -42,19 +43,25 @@ public class CmDataSubscriptionModelLoader extends AbstractModelLoader {
     private static final String ANCHOR_NAME = "cm-data-job-subscriptions";
     private static final String REGISTRY_DATA_NODE_NAME = "dataJob";
 
-    public CmDataSubscriptionModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public CmDataSubscriptionModelLoader(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
+                                         final CpsDataspaceService cpsDataspaceService,
                                          final CpsModuleService cpsModuleService,
                                          final CpsAnchorService cpsAnchorService,
                                          final CpsDataService cpsDataService,
                                          final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+            readinessManager);
     }
 
     @Override
     public void onboardOrUpgradeModel() {
-        log.info("Model Loader #3 Started: NCMP CM Data Notification Subscription Models");
-        onboardSubscriptionModels();
-        log.info("Model Loader #3 Completed");
+        if (isMaster) {
+            log.info("Model Loader #3 Started: NCMP CM Data Notification Subscription Models");
+            onboardSubscriptionModels();
+            log.info("Model Loader #3 Completed");
+        } else {
+            logMessageForNonMasterInstance();
+        }
     }
 
     private void onboardSubscriptionModels() {
