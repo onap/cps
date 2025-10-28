@@ -82,6 +82,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c45f5602_3ef5e3ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/config/ExactlyOnceSemanticsKafkaConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ef7c3bf1_1f91569e",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8a1d09a_25b71528",
@@ -343,6 +367,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb038c3a_c6793c76",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/config/KafkaConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "OK I can see EOS is an established acronym for Kafka and thus like FDN.\nI dont like just have to get used to it...",
+      "parentUuid": "b3b90219_e3712920",
+      "range": {
+        "startLine": 59,
+        "startChar": 61,
+        "endLine": 59,
+        "endChar": 67
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d073d4a1_ebe90c56",
         "filename": "cps-service/pom.xml",
         "patchSetId": 2
@@ -354,6 +402,30 @@
       "writtenOn": "2025-10-09T15:46:53Z",
       "side": 1,
       "message": "needs to be addressed!",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "c92d255ab8ebaecead9ee2f7de58d8d26583868e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8da41377_b463aa4f",
+        "filename": "cps-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d073d4a1_ebe90c56",
       "range": {
         "startLine": 39,
         "startChar": 0,

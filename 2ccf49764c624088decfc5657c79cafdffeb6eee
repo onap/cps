@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ec91e2a_356183e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "Nothing blocking really",
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1934cec4_634e465d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: result from send event",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daf3af87_a897911a",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: can we use use Groovy map-bases constructors to get rid of all tos \",0\" values ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 89
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b3c0ed_44f3472e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "repeated a few times can easily be extracted out with expectedLevel as parameter",
+      "range": {
+        "startLine": 93,
+        "startChar": 7,
+        "endLine": 95,
+        "endChar": 88
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b88611_513eeae4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: this is an \u0027extension\u0027 of the basic event test case below so I would test this one after the next one (just swap them)",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e2f619_a7ee1a9f",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: Avoid expectations in test titles\nsuggestion: \u0027Logging of non-kafka exceptions\u0027",
+      "range": {
+        "startLine": 214,
+        "startChar": 9,
+        "endLine": 214,
+        "endChar": 58
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e051d9_1454ba3d",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: Implicit, no need to mention",
+      "range": {
+        "startLine": 224,
+        "startChar": 39,
+        "endLine": 224,
+        "endChar": 66
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85a992a2_dc585948",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/data/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "NB: have I seen this before?, should it be in a common helper class for Kafka related testing?",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 52
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fcc895e_6216251e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T15:48:15Z",
+      "side": 1,
+      "message": "did you (just) move this test class?",
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
