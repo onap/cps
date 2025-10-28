@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2939001a_f7ce2559",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorEnd.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-28T13:54:01Z",
+      "side": 1,
+      "message": "@Order(Ordered.LOWEST_PRECEDENCE) could be used to ensure it will be last in order regardless of the number of models. May need further investigation to see if it works as intended",
+      "range": {
+        "startLine": 35,
+        "startChar": 7,
+        "endLine": 35,
+        "endChar": 10
+      },
+      "revId": "48a5db0e73c28ff15ae27ca24bb3ae2a3891add8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
