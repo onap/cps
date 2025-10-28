@@ -30,6 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
+import org.onap.cps.init.ModelLoaderCoordinatorLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,32 +56,39 @@ public class InventoryModelLoader extends AbstractModelLoader {
      * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
      * the NCMP inventory model schema sets and managing readiness state during migration.
      */
-    public InventoryModelLoader(final CpsDataspaceService cpsDataspaceService,
+    public InventoryModelLoader(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
+                                final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
                                 final CpsAnchorService cpsAnchorService,
                                 final CpsDataService cpsDataService,
                                 final ApplicationEventPublisher applicationEventPublisher,
                                 final ReadinessManager readinessManager) {
-        super(cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService, readinessManager);
+        super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+            readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
     @Override
     public void onboardOrUpgradeModel() {
-        log.info("Model Loader #2 Started: NCMP Inventory Models");
-        final String schemaToInstall = newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
-        final String moduleRevision = getModuleRevision(schemaToInstall);
+        if (isMaster) {
+            log.info("Model Loader #2 Started: NCMP Inventory Models");
+            final String schemaToInstall =
+                newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
+            final String moduleRevision = getModuleRevision(schemaToInstall);
 
-        if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
+            if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
                 moduleRevision)) {
-            log.info("Revision {} is already installed.", moduleRevision);
-        } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
-            upgradeAndMigrateInventoryModel();
+                log.info("Revision {} is already installed.", moduleRevision);
+            } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+                upgradeAndMigrateInventoryModel();
+            } else {
+                installInventoryModel(schemaToInstall);
+            }
+            applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
+            log.info("Model Loader #2 Completed");
         } else {
-            installInventoryModel(schemaToInstall);
+            logMessageForNonMasterInstance();
         }
-        applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
-        log.info("Model Loader #2 Completed");
     }
 
     private void installInventoryModel(final String schemaSetName) {
