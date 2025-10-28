@@ -71,6 +71,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "253f103d_0b0541f8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T13:39:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8363175c_f7e60568",
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5df9e21_eb9633ae",
@@ -84,6 +102,30 @@
       "writtenOn": "2025-10-28T11:46:53Z",
       "side": 1,
       "message": "add more info here about module sync",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc523c2_1bf5ab56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T13:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5df9e21_eb9633ae",
       "range": {
         "startLine": 86,
         "startChar": 15,
@@ -237,6 +279,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00b91f1d_ad7a731e",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T13:39:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6e55554e_a3e47cd4",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "562792db_03fccd02",
@@ -260,6 +326,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1b8532c_417a7b50",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorEnd.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T13:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "562792db_03fccd02",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc903682_13f7bfeb",
@@ -273,6 +363,30 @@
       "writtenOn": "2025-10-28T11:46:53Z",
       "side": 1,
       "message": "forceUnlock",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 15
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3bffbd_a78c76a4",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T13:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc903682_13f7bfeb",
       "range": {
         "startLine": 47,
         "startChar": 9,
