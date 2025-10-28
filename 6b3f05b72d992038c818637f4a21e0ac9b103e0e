@@ -52,6 +52,46 @@
       "parentUuid": "cd7c9e20_bd9bd4cf",
       "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ead466e_fcbb2058",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-28T13:39:11Z",
+      "side": 1,
+      "message": "Looks good, just one minor NB",
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d36a763c_f3beff8e",
+        "filename": "k6-tests/k6-main.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-28T13:39:11Z",
+      "side": 1,
+      "message": "NB: remove",
+      "range": {
+        "startLine": 62,
+        "startChar": 22,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
