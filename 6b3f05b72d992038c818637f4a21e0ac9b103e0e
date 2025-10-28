@@ -71,6 +71,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ecb0ed1_d1b6bd1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T17:06:47Z",
+      "side": 1,
+      "message": "just one question",
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30bbdffc_c142b85d",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T17:06:47Z",
+      "side": 1,
+      "message": "want to doubek check this:\nWhy again are w change this policy?\nWill it still ensure test will always run with the most recently build image?",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d36a763c_f3beff8e",
