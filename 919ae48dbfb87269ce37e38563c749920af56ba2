@@ -146,6 +146,30 @@
       },
       "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e55554e_a3e47cd4",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T10:27:14Z",
+      "side": 1,
+      "message": "Locks are held be an CPS instance not by a class/object or thread ie the \u0027master\u0027 instance HAS the lock ie. any time a class tries to acquire the lock it realizes it already has it... \nThe lock gets released AFTER all model loaders are finished by the last \u0027model loader\u0027: ModelLoaderCoordinatorEnd",
+      "parentUuid": "30284f70_2092143d",
+      "range": {
+        "startLine": 59,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

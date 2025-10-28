@@ -88,6 +88,24 @@
       "parentUuid": "0be260d9_cd216fd0",
       "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da4f4f5e_46311903",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T10:27:14Z",
+      "side": 1,
+      "message": "the master restarting due to an error could cause issues I suppose. But that is an edgecase not the normal scenario.This would be the case for ANY hazelcast lock so I hope that Hazelcast has a way of release locks in case of an instance crash...",
+      "parentUuid": "5ff24da6_a1c10a6c",
+      "revId": "9faa5e2c65fade4f880ff597cf8cc2fdf69bfbfc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }

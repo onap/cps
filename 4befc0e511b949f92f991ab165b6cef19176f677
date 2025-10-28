@@ -218,6 +218,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48ebc70_e5b64550",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T10:27:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8d8b8e74_67c4cae1",
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cefadc37_59f4a717",
@@ -255,6 +273,30 @@
       "side": 1,
       "message": "indeed , meant to tell you that. Found this out with the help of Gemini. this is the only way overriding default mock behavior works.  its a strange thing from Spock indeed",
       "parentUuid": "cefadc37_59f4a717",
+      "range": {
+        "startLine": 86,
+        "startChar": 43,
+        "endLine": 86,
+        "endChar": 101
+      },
+      "revId": "4befc0e511b949f92f991ab165b6cef19176f677",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3be8add7_02e8c387",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/init/AbstractModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T10:27:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a704a4f1_3a42fd23",
       "range": {
         "startLine": 86,
         "startChar": 43,
