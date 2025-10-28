@@ -16,6 +16,24 @@
       "message": "m unable to deploy on my local machine.\nare u able to verify the deployment using 2 pods??",
       "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd7c9e20_bd9bd4cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-28T09:17:16Z",
+      "side": 1,
+      "message": "yes it is running well on my machine. we can connect offline today after daily if you want ...",
+      "parentUuid": "6c04bf1b_1ca1ab48",
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
