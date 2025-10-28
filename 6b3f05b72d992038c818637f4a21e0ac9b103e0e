@@ -34,6 +34,24 @@
       "parentUuid": "6c04bf1b_1ca1ab48",
       "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "664b1e09_627e1ef1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-28T13:19:05Z",
+      "side": 1,
+      "message": "Thanks Priyank for the call. Please let me know if you get it done working on your local after removing all cps-and-ncmp images from your local.",
+      "parentUuid": "cd7c9e20_bd9bd4cf",
+      "revId": "6b3f05b72d992038c818637f4a21e0ac9b103e0e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
