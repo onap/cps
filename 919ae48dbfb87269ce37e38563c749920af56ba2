@@ -55,6 +55,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8363175c_f7e60568",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T11:46:53Z",
+      "side": 1,
+      "message": "would be better but we have to consider backward compatibilty during upgrade",
+      "parentUuid": "f705d3ac_ed300a77",
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5df9e21_eb9633ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/ModuleSyncWatchdog.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T11:46:53Z",
+      "side": 1,
+      "message": "add more info here about module sync",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0523e567_a3c69c79",
         "filename": "cps-service/src/main/java/org/onap/cps/init/CpsNotificationSubscriptionModelLoader.java",
         "patchSetId": 8
@@ -191,6 +232,52 @@
         "startChar": 12,
         "endLine": 59,
         "endChar": 50
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "562792db_03fccd02",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorEnd.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T11:46:53Z",
+      "side": 1,
+      "message": "add log to explaining what model loader #999 does like other model loaders",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc903682_13f7bfeb",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoaderCoordinatorLock.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-10-28T11:46:53Z",
+      "side": 1,
+      "message": "forceUnlock",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 15
       },
       "revId": "919ae48dbfb87269ce37e38563c749920af56ba2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
