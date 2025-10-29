@@ -23,8 +23,6 @@ package org.onap.cps.integration.base
 
 import com.hazelcast.map.IMap
 import okhttp3.mockwebserver.MockWebServer
-import org.apache.kafka.clients.consumer.KafkaConsumer
-import org.apache.kafka.common.serialization.StringDeserializer
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
@@ -80,8 +78,6 @@ import java.util.concurrent.BlockingQueue
 @ComponentScan(basePackages = ['org.onap.cps'])
 @EntityScan('org.onap.cps.ri.models')
 abstract class CpsIntegrationSpecBase extends Specification {
-
-    static KafkaConsumer kafkaConsumer
 
     @Shared
     DatabaseTestContainer databaseTestContainer = DatabaseTestContainer.getInstance()
@@ -344,13 +340,7 @@ abstract class CpsIntegrationSpecBase extends Specification {
         networkCmProxyInventoryFacade.updateDmiRegistration(new DmiPluginRegistration(dmiPlugin: dmiPlugin, removedCmHandles: cmHandleIds))
     }
 
-    def subscribeAndClearPreviousMessages(consumerGroupId, topicName) {
-        kafkaConsumer = KafkaTestContainer.getConsumer(consumerGroupId, StringDeserializer.class)
-        kafkaConsumer.subscribe([topicName])
-        kafkaConsumer.poll(Duration.ofMillis(500))
-    }
-
-    def getLatestConsumerRecordsWithMaxPollOf1Second(numberOfRecordsToRead) {
+    def getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, numberOfRecordsToRead) {
         def consumerRecords = []
         def retryAttempts = 10
         while (consumerRecords.size() < numberOfRecordsToRead) {

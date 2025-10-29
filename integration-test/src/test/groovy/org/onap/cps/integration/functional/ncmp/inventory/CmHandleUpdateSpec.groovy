@@ -20,6 +20,9 @@
 
 package org.onap.cps.integration.functional.ncmp.inventory
 
+import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.onap.cps.events.LegacyEvent
+import org.onap.cps.integration.KafkaTestContainer
 import org.onap.cps.integration.base.CpsIntegrationSpecBase
 import org.onap.cps.ncmp.api.NcmpResponseStatus
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse
@@ -28,9 +31,14 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 
+import java.time.Duration
+
 class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
 
     NetworkCmProxyInventoryFacadeImpl objectUnderTest
+
+    KafkaConsumer<String, LegacyEvent> kafkaConsumer
+
 
     def setup() {
         objectUnderTest = networkCmProxyInventoryFacade
@@ -111,7 +119,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             moduleSyncWatchdog.moduleSyncAdvisedCmHandles()
 
         and: 'flush the latest cm handle registration events( state transition from NONE to ADVISED and ADVISED to READY)'
-            getLatestConsumerRecordsWithMaxPollOf1Second(2)
+            getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 2)
 
         and: 'cm handle updated with the data producer identifier'
             def cmHandleToUpdate = new NcmpServiceCmHandle(cmHandleId: cmHandleId, dataProducerIdentifier: 'my-data-producer-id')
@@ -122,7 +130,7 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             assert dmiPluginRegistrationResponseForUpdate.updatedCmHandles == [CmHandleRegistrationResponse.createSuccessResponse(cmHandleId)]
 
         and: 'get the latest message'
-            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(1)
+            def consumerRecords = getLatestConsumerRecordsWithMaxPollOf1Second(kafkaConsumer, 1)
 
         and: 'the message has the updated data producer identifier'
             def notificationMessages = []
@@ -136,4 +144,9 @@ class CmHandleUpdateSpec extends CpsIntegrationSpecBase {
             deregisterCmHandle(DMI1_URL, cmHandleId)
     }
 
+    def subscribeAndClearPreviousMessages(consumerGroupId, topicName) {
+        kafkaConsumer = KafkaTestContainer.getLegacyEventConsumer(consumerGroupId)
+        kafkaConsumer.subscribe([topicName])
+        kafkaConsumer.poll(Duration.ofMillis(500))
+    }
 }
