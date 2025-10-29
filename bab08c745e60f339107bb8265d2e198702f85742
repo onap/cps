@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69d33ecf_1dfad445",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-29T15:41:21Z",
+      "side": 1,
+      "message": "Looks good, similar to Toine wasn\u0027t familiar with Eos",
+      "revId": "bab08c745e60f339107bb8265d2e198702f85742",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d45e82_9c1b6380",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-10-29T15:41:21Z",
+      "side": 1,
+      "message": "NB: Based of other comments could EOS be added to javadoc above for clarification",
+      "range": {
+        "startLine": 71,
+        "startChar": 77,
+        "endLine": 71,
+        "endChar": 83
+      },
+      "revId": "bab08c745e60f339107bb8265d2e198702f85742",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
