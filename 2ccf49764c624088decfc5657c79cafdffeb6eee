@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4451686e_2bddae6b",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1934cec4_634e465d",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daf3af87_a897911a",
@@ -87,6 +111,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e81754bb_3e199bc4",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6b3c0ed_44f3472e",
+      "range": {
+        "startLine": 93,
+        "startChar": 7,
+        "endLine": 95,
+        "endChar": 88
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8b88611_513eeae4",
@@ -100,6 +148,30 @@
       "writtenOn": "2025-10-28T15:48:15Z",
       "side": 1,
       "message": "NB: this is an \u0027extension\u0027 of the basic event test case below so I would test this one after the next one (just swap them)",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0493c33d_8933d0f8",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8b88611_513eeae4",
       "range": {
         "startLine": 98,
         "startChar": 4,
@@ -133,6 +205,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1ba6a0_d7e62851",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8e2f619_a7ee1a9f",
+      "range": {
+        "startLine": 214,
+        "startChar": 9,
+        "endLine": 214,
+        "endChar": 58
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24e051d9_1454ba3d",
@@ -146,6 +242,30 @@
       "writtenOn": "2025-10-28T15:48:15Z",
       "side": 1,
       "message": "NB: Implicit, no need to mention",
+      "range": {
+        "startLine": 224,
+        "startChar": 39,
+        "endLine": 224,
+        "endChar": 66
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8dd924_c15f7e35",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/events/EventsProducerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24e051d9_1454ba3d",
       "range": {
         "startLine": 224,
         "startChar": 39,
@@ -181,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13d34833_9d509e69",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/data/LegacyBatchDataOperationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "moved to CpsIntegrationSpecBase class.\ni had to move it to individual test as part of the POC to make everything running.\nBut now since things are sorted , it can be moved back to the base class.",
+      "parentUuid": "85a992a2_dc585948",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 52
+      },
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4fcc895e_6216251e",
         "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
         "patchSetId": 7
@@ -192,6 +336,24 @@
       "writtenOn": "2025-10-28T15:48:15Z",
       "side": 1,
       "message": "did you (just) move this test class?",
+      "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a2fb7f_d6110bc2",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-29T06:25:01Z",
+      "side": 1,
+      "message": "amm. no.\ni had to fix the consumer used here.",
+      "parentUuid": "4fcc895e_6216251e",
       "revId": "2ccf49764c624088decfc5657c79cafdffeb6eee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
