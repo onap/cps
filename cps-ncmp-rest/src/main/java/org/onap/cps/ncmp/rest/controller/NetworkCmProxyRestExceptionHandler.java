@@ -38,10 +38,10 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
+import org.onap.cps.ncmp.impl.provmns.exceptions.InvalidPathException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
-import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -52,7 +52,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class, NetworkCmProxyInventoryController.class})
+@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class,
+    NetworkCmProxyInventoryController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 

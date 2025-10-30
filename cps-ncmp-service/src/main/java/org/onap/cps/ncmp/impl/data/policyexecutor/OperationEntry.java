@@ -18,6 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.model;
+package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-public record ConfigurationManagementDeleteInput (String operationType, String targetIdentifier) {}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Represents a single managed object included in a change request,
+ * containing its identifier and arbitrary attributes.
+ */
+@Setter
+@Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OperationEntry {
+    private String id;
+    private Object attributes;
+
+}

@@ -26,9 +26,14 @@ import ch.qos.logback.classic.spi.ILoggingEvent
 import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.api.data.models.OperationType
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.provmns.RequestParameters
+import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
+import org.onap.cps.ncmp.utils.TestUtils
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -50,8 +55,9 @@ class PolicyExecutorSpec extends Specification {
     def mockRequestBodyUriSpec = Mock(WebClient.RequestBodyUriSpec)
     def mockResponseSpec = Mock(WebClient.ResponseSpec)
     def spiedObjectMapper = Spy(ObjectMapper)
+    def jsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
 
-    PolicyExecutor objectUnderTest = new PolicyExecutor(mockWebClient, spiedObjectMapper)
+    PolicyExecutor objectUnderTest = new PolicyExecutor(mockWebClient, spiedObjectMapper,jsonObjectMapper)
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
@@ -221,6 +227,17 @@ class PolicyExecutorSpec extends Specification {
             thrownException.message == 'Operation not allowed. Decision id N/A : deny'
             thrownException.details == 'Network or I/O error while attempting to contact Policy Executor. Falling back to configured default decision: deny'
             thrownException.cause == webClientRequestException
+    }
+
+    def 'Convert a configurationManagementOperation to json string'() {
+        given: 'a provMnsRequestParameter and a resource'
+            def path = new RequestParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'])
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            def result = objectUnderTest.createOperationDetailsFromRequest(CREATE, path, resource)
+        then:
+            String expectedJsonString = TestUtils.getResourceFileContent('sample-provmns-json-translation.json')
+            assert jsonObjectMapper.asJsonString(result) == expectedJsonString
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {

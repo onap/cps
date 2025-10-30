@@ -18,18 +18,17 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.util;
+package org.onap.cps.ncmp.impl.provmns;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.Setter;
-import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
+import org.onap.cps.ncmp.impl.provmns.exceptions.InvalidPathException;
 
 @Getter
 @Setter
-public class ProvMnsRequestParameters {
+public class RequestParameters {
 
-    private String fullUriLdn;
     private String uriLdnFirstPart;
     private String className;
     private String id;
@@ -46,13 +45,12 @@ public class ProvMnsRequestParameters {
     }
 
     /**
-     * Converts HttpServletRequest to ProvMnsRequestParameters.
+     * Converts HttpServletRequest to RequestParameters.
      *
      * @param httpServletRequest HttpServletRequest object containing the path
-     * @return ProvMnsRequestParameters object containing parsed parameters
+     * @return RequestParameters object containing parsed parameters
      */
-    public static ProvMnsRequestParameters extractProvMnsRequestParameters(
-                                                                        final HttpServletRequest httpServletRequest) {
+    public static RequestParameters extractProvMnsRequestParameters(final HttpServletRequest httpServletRequest) {
         final String uriPath = (String) httpServletRequest.getAttribute(
             "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
 
@@ -61,18 +59,17 @@ public class ProvMnsRequestParameters {
         if (lastSlashIndex == -1) {
             throw new InvalidPathException(uriPath);
         }
-        final ProvMnsRequestParameters provMnsRequestParameters = new ProvMnsRequestParameters();
-        provMnsRequestParameters.setFullUriLdn("/" + pathVariables[1]);
-        provMnsRequestParameters.setUriLdnFirstPart(pathVariables[1].substring(0, lastSlashIndex));
+        final RequestParameters requestParameters = new RequestParameters();
+        requestParameters.setUriLdnFirstPart("/" + pathVariables[1].substring(0, lastSlashIndex));
         final String classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
 
         final String[] splitClassNameId = classNameAndId.split("=", 2);
         if (splitClassNameId.length != 2) {
             throw new InvalidPathException(uriPath);
         }
-        provMnsRequestParameters.setClassName(splitClassNameId[0]);
-        provMnsRequestParameters.setId(splitClassNameId[1]);
+        requestParameters.setClassName(splitClassNameId[0]);
+        requestParameters.setId(splitClassNameId[1]);
 
-        return provMnsRequestParameters;
+        return requestParameters;
     }
 }

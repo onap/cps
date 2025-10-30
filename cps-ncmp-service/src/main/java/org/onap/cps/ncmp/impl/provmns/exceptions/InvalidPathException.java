@@ -18,7 +18,7 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.exception;
+package org.onap.cps.ncmp.impl.provmns.exceptions;
 
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 

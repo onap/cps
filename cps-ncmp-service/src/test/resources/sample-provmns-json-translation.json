@@ -1,0 +1,1 @@
+{"operation":"CREATE","targetIdentifier":"someUriLdnFirstPart/someClassName=someId","changeRequest":{"someClassName":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}

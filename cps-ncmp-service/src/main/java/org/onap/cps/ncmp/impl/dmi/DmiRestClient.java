@@ -34,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
-import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -129,7 +128,7 @@ public class DmiRestClient {
      * @return ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
-    public ResponseEntity<Resource> synchronousGetOperation(final RequiredDmiService requiredDmiService,
+    public ResponseEntity<Object> synchronousGetOperation(final RequiredDmiService requiredDmiService,
                                                                         final UrlTemplateParameters
                                                                             urlTemplateParameters,
                                                                         final OperationType operationType) {
@@ -138,7 +137,30 @@ public class DmiRestClient {
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
             .retrieve()
-            .toEntity(Resource.class)
+            .toEntity(Object.class)
+            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
+    }
+
+    /**
+     * Sends a synchronous (blocking) PUT operation to the DMI.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param operationType         The type of operation being executed (for error reporting only).
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public ResponseEntity<Object> synchronousPutOperation(final RequiredDmiService requiredDmiService,
+                                                            final UrlTemplateParameters
+                                                                urlTemplateParameters,
+                                                            final OperationType operationType) {
+        return getWebClient(requiredDmiService)
+            .get()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .retrieve()
+            .toEntity(Object.class)
             .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
             .block();
     }
