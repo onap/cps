@@ -60,7 +60,7 @@ elif [[ "$deploymentType" == "k8sHosts" ]]; then
 
     # Wait for pods and services until becomes ready
     echo "Waiting for cps and ncmp pods to be ready..."
-    kubectl wait --for=condition=available deploy -l app=cps-and-ncmp --timeout=300s
+    kubectl wait --for=condition=available deploy -l app=ncmp --timeout=300s
 
 else
     echo "Error: Unsupported deployment type: $deploymentType"

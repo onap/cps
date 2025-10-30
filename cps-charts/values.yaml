@@ -21,7 +21,7 @@ cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
     tag: "latest"
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   replicas: 2
   servicePort: 8080
   service:
@@ -36,12 +36,12 @@ cps:
       cpu: "6000m"
       memory: "5Gi"
   env:
-    DB_HOST: "cps-cps-and-ncmp-postgresql"
+    DB_HOST: "cps-ncmp-postgresql"
     DB_USERNAME: "cps"
     DB_PASSWORD: "cps"
     DMI_USERNAME: "cpsuser"
     DMI_PASSWORD: "cpsr0cks!"
-    KAFKA_BOOTSTRAP_SERVER: "cps-cps-and-ncmp-kafka.default.svc.cluster.local:9092"
+    KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
     notification_enabled: "true"
     ONAP_TRACING_ENABLED: "false"
     ONAP_OTEL_SAMPLER_JAEGER_REMOTE_ENDPOINT: "http://jaeger-service:14250"
@@ -71,10 +71,10 @@ kafka:
       external: 9093
     nodePorts:
       external: 30093
-  zookeeperConnect: "cps-cps-and-ncmp-zookeeper.default.svc.cluster.local"
+  zookeeperConnect: "cps-ncmp-zookeeper.default.svc.cluster.local"
   brokerId: 1
   listeners: "INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,NODEPORT://0.0.0.0:9093"
-  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-cps-and-ncmp-kafka:9092,NODEPORT://localhost:30093"
+  advertisedListeners: "INTERNAL://localhost:29092,EXTERNAL://cps-ncmp-kafka:9092,NODEPORT://localhost:30093"
   interBrokerListenerName: "INTERNAL"
   listenerSecurityProtocolMap: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,NODEPORT:PLAINTEXT"
   offsetsTopicReplicationFactor: 1
@@ -88,7 +88,7 @@ kafka:
   healthcheck:
     enabled: true
     command: >
-      kafka-topics --bootstrap-server cps-cps-and-ncmp-kafka:29092 --list || exit 1
+      kafka-topics --bootstrap-server cps-ncmp-kafka:29092 --list || exit 1
     interval: 10
     timeout: 10
     retries: 3
@@ -133,7 +133,7 @@ dmiStub:
     nodePort: 30092
   containerPort: 8092
   env:
-    KAFKA_BOOTSTRAP_SERVER: "cps-cps-and-ncmp-kafka.default.svc.cluster.local:9092"
+    KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
     NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
     MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
