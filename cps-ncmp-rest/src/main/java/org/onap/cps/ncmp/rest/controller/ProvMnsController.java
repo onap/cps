@@ -25,6 +25,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.api.data.models.OperationType;
+import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException;
+import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor;
 import org.onap.cps.ncmp.impl.dmi.DmiRestClient;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
@@ -34,6 +36,7 @@ import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
+import org.onap.cps.ncmp.rest.util.ProvMnSErrorResponseBuilder;
 import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper;
 import org.onap.cps.ncmp.rest.util.ProvMnsRequestParameters;
 import org.springframework.http.HttpStatus;
@@ -50,37 +53,86 @@ public class ProvMnsController implements ProvMnS {
     private final DmiRestClient dmiRestClient;
     private final InventoryPersistence inventoryPersistence;
     private final ProvMnSParametersMapper provMnsParametersMapper;
+    private final ProvMnSErrorResponseBuilder provMnSErrorResponseBuilder;
+    private final PolicyExecutor policyExecutor;
 
     @Override
-    public ResponseEntity<Resource> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
+    public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
                                                    final String filter, final List<String> attributes,
                                                    final List<String> fields,
                                                    final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector) {
-        final ProvMnsRequestParameters requestParameters =
-            ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
-        final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
-            alternateIdMatcher.getCmHandleId(requestParameters.getAlternateId()));
-        provMnsParametersMapper.checkDataProducerIdentifier(yangModelCmHandle);
-        final UrlTemplateParameters urlTemplateParameters = provMnsParametersMapper.getUrlTemplateParameters(scope,
-                                                                                     filter, attributes,
-                                                                                     fields, dataNodeSelector,
-                                                                                     yangModelCmHandle);
-        return dmiRestClient.synchronousGetOperation(
-            RequiredDmiService.DATA, urlTemplateParameters, OperationType.READ);
-    }
-
-    @Override
-    public ResponseEntity<Resource> patchMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
-        final ProvMnsRequestParameters requestParameters =
-            ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    @Override
-    public ResponseEntity<Resource> putMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
         final ProvMnsRequestParameters provMnsRequestParameters =
             ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
+        try {
+            final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
+                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
+                    provMnsRequestParameters.getAlternateId(), "/"));
+            final ResponseEntity<Object> errorResponse =
+                provMnsParametersMapper.checkDataProducerIdentifierAndReadyState(yangModelCmHandle, "GET");
+            if (errorResponse != null) {
+                return errorResponse;
+            }
+            final UrlTemplateParameters urlTemplateParameters = provMnsParametersMapper.getUrlTemplateParameters(scope,
+                filter, attributes,
+                fields, dataNodeSelector,
+                yangModelCmHandle);
+            return dmiRestClient.synchronousGetOperation(
+                RequiredDmiService.DATA, urlTemplateParameters, OperationType.READ);
+        } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
+            return provMnSErrorResponseBuilder.buildErrorResponseGet(HttpStatus.NOT_FOUND,
+                provMnSErrorResponseBuilder.buildNotFoundMessage(provMnsRequestParameters.getAlternateId()));
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
+        final ProvMnsRequestParameters provMnsRequestParameters =
+            ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
+        try {
+            final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
+                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
+                    provMnsRequestParameters.getAlternateId(), "/"));
+        } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
+            return provMnSErrorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_FOUND,
+                provMnSErrorResponseBuilder.buildNotFoundMessage(provMnsRequestParameters.getAlternateId()));
+        }
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    @Override
+    public ResponseEntity<Object> putMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
+        final ProvMnsRequestParameters provMnsRequestParameters =
+            ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
+        try {
+            final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
+                alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
+                    provMnsRequestParameters.getAlternateId(), "/"));
+            final ResponseEntity<Object> errorResponse =
+                provMnsParametersMapper.checkDataProducerIdentifierAndReadyState(yangModelCmHandle, "PUT");
+            if (errorResponse != null) {
+                return errorResponse;
+            }
+            try {
+                policyExecutor.checkPermission(yangModelCmHandle,
+                    OperationType.CREATE,
+                    null,
+                    provMnsRequestParameters.getAlternateId(),
+                    provMnsParametersMapper.policyExecutorOperationToJson(
+                        "create", provMnsRequestParameters, resource)
+                );
+            } catch (final RuntimeException exception) {
+                return provMnSErrorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
+                                                                            exception.getMessage());
+            }
+            final UrlTemplateParameters urlTemplateParameters =
+                provMnsParametersMapper.putUrlTemplateParameters(resource,
+                    yangModelCmHandle);
+            return dmiRestClient.synchronousPutOperation(
+                RequiredDmiService.DATA, urlTemplateParameters, OperationType.CREATE);
+        } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
+            return provMnSErrorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND,
+                provMnSErrorResponseBuilder.buildNotFoundMessage(provMnsRequestParameters.getAlternateId()));
+        }
     }
 
     @Override
@@ -89,4 +141,5 @@ public class ProvMnsController implements ProvMnS {
             ProvMnsRequestParameters.extractProvMnsRequestParameters(httpServletRequest);
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
+
 }

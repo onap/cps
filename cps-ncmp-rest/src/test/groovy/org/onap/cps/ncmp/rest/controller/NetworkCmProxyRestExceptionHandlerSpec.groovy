@@ -115,7 +115,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @SpringBean
-    ProvMnSParametersMapper provMnSParametersMapper = Mock()
+    ProvMnSParametersMapper mockProvMnSParametersMapper = Mock()
+
+    @SpringBean
+    ProvMnsController mockProvMnsController = Mock()
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()

@@ -46,22 +46,30 @@ class ProvMnSRestApiSpec extends CpsIntegrationSpecBase{
 
     def 'Put Resource Data from provmns interface.'() {
         given: 'an example resource json body'
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'A=1/B=2/C=3')
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PUT endpoint'
             mvc.perform(put("/ProvMnS/v1/A=1/B=2/C=3")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(jsonBody))
-                    .andExpect(status().isNotImplemented())
+                    .andExpect(status().isOk())
+        cleanup: 'deregister CM handles'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'Patch Resource Data from provmns interface.'() {
         given: 'an example resource json body'
+            dmiDispatcher1.moduleNamesPerCmHandleId['ch-1'] = ['M1', 'M2']
+            registerCmHandle(DMI1_URL, 'ch-1', NO_MODULE_SET_TAG, 'A=1/B=2/C=3')
             def jsonBody = jsonObjectMapper.asJsonString(new ResourceOneOf('test'))
         expect: 'not implemented response on PATCH endpoint'
             mvc.perform(patch("/ProvMnS/v1/A=1/B=2/C=3")
                     .contentType(new MediaType('application', 'json-patch+json'))
                     .content(jsonBody))
                     .andExpect(status().isNotImplemented())
+        cleanup: 'deregister CM handles'
+            deregisterCmHandle(DMI1_URL, 'ch-1')
     }
 
     def 'Delete Resource Data from provmns interface.'() {
