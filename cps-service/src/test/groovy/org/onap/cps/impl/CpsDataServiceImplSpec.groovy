@@ -41,6 +41,7 @@ import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSet
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
@@ -60,9 +61,10 @@ class CpsDataServiceImplSpec extends Specification {
     def yangParser = new YangParser(new YangParserHelper(), mockYangTextSchemaSourceSetCache, mockTimedYangTextSchemaSourceSetBuilder)
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
+    def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)
 
     def objectUnderTest = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService,
-            dataNodeFactory, mockCpsValidator, yangParser)
+            dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator)
 
     def logger = (Logger) LoggerFactory.getLogger(objectUnderTest.class)
     def loggingListAppender
@@ -559,7 +561,7 @@ class CpsDataServiceImplSpec extends Specification {
         given: 'schema set for given anchor and dataspace references test-tree model'
             setupSchemaSetMocks('test-tree.yang')
         when: 'producer throws an exception while sending event'
-            mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(_, _, _, _) >> { throw new Exception("Sending failed")}
+            mockCpsDataUpdateEventsProducer.sendCpsDataUpdateEvent(_, _, _, _, _) >> { throw new Exception("Sending failed")}
         and: 'an update event is performed'
             objectUnderTest.updateNodeLeaves(dataspaceName, anchorName, '/', '{"test-tree": {"branch": []}}', observedTimestamp, ContentType.JSON)
         then: 'the exception is not bubbled up'

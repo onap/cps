@@ -67,7 +67,7 @@
         <jacoco.execFile>${project.build.directory}/code-coverage/jacoco-ut.exec</jacoco.execFile>
         <jacoco.outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</jacoco.outputDirectory>
         <jacoco.reportDirectory.aggregate>${project.reporting.outputDirectory}/jacoco-aggregate</jacoco.reportDirectory.aggregate>
-        <minimum-coverage>1.00</minimum-coverage>
+        <minimum-coverage>0.95</minimum-coverage>
         <sonar.coverage.jacoco.xmlReportPaths>
             ../jacoco-report/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>

@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "urn:cps:org.onap.cps:data-updated-event-schema:1.0.0",
-  "$ref": "#/definitions/CpsDataUpdatedEvent",
+  "$ref": "#/definitions/CpsDataUpdateEvent",
   "definitions": {
-    "CpsDataUpdatedEvent": {
-      "description": "The payload for CPS data updated event.",
+    "CpsDataUpdateEvent": {
+      "description": "The payload for CPS data update event.",
       "type": "object",
       "javaType": "org.onap.cps.events.model.CpsDataUpdatedEvent",
       "properties": {
-        "data": {
+        "eventPayload": {
           "type": "object",
           "properties": {
             "observedTimestamp": {
@@ -39,6 +39,24 @@
             "xpath": {
               "description": "xpath of the modified content",
               "type": "string"
+            },
+            "cloudEventData": {
+              "description": "Source and target data from delta report",
+              "type": "object",
+              "properties": {
+                "sourceData": {
+                  "description": "Source data from delta report",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "targetData": {
+                  "description": "Target data from delta report",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": ["source", "target"],
+              "additionalProperties": false
             }
           },
           "required": [

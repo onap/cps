@@ -34,22 +34,25 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Action.CREATE
-import static org.onap.cps.events.model.Data.Action.REMOVE
-import static org.onap.cps.events.model.Data.Action.REPLACE
+import static org.onap.cps.events.model.EventPayload.Action.CREATE
+import static org.onap.cps.events.model.EventPayload.Action.REMOVE
+import static org.onap.cps.events.model.EventPayload.Action.REPLACE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
     def mockEventsProducer = Mock(EventsProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
+    def jsonObjectMapper = new JsonObjectMapper(objectMapper)
 
-    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService)
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, jsonObjectMapper, mockCpsNotificationService)
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         objectUnderTest.topicName = 'cps-core-event'
     }
+
+    static def deltaReport = []
 
     def 'Create and send cps event with #scenario.'() {
         given: 'an anchor, action and observed timestamp'
@@ -60,7 +63,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to send data REPLACE event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, action, OffsetDateTime.now())
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, action, deltaReport, OffsetDateTime.now())
         then: 'the event contains the required attributes'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
@@ -69,7 +72,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
                     assert cpsDataUpdatedEvent.getExtension('correlationid') == 'dataspace01:anchor01'
                     assert cpsDataUpdatedEvent.type == 'org.onap.cps.events.model.CpsDataUpdatedEvent'
                     assert cpsDataUpdatedEvent.source.toString() == 'CPS'
-                    def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.action.value()
+                    def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().eventPayload.action.value()
                     assert actualEventOperation == expectedAction.value()
                 }
             }
@@ -93,7 +96,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'cpsChangeEventNotificationsEnabled is true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to send data event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE.value(), null)
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE.value(), deltaReport, null)
         then: 'the event is sent'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
@@ -108,7 +111,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'notification service enabled is: #cpsNotificationServiceisNotificationEnabled'
             mockCpsNotificationService.isNotificationEnabled(_, 'anchor02') >> cpsNotificationServiceisNotificationEnabled
         when: 'service is called to send data event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE.value(), null)
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE.value(), deltaReport, null)
         then: 'the event is only sent when all related flags are true'
             expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
         where: 'the following flags are used'
