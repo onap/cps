@@ -4,7 +4,7 @@
   "$ref": "#/definitions/CpsDataUpdateEvent",
   "definitions": {
     "CpsDataUpdateEvent": {
-      "description": "The payload for CPS data updated event.",
+      "description": "The payload for CPS data update event.",
       "type": "object",
       "javaType": "org.onap.cps.events.model.CpsDataUpdatedEvent",
       "properties": {
@@ -39,6 +39,24 @@
             "xpath": {
               "description": "xpath of the modified content",
               "type": "string"
+            },
+            "cloudEventData": {
+              "description": "Source and target data from delta report",
+              "type": "object",
+              "properties": {
+                "sourceData": {
+                  "description": "Source data from delta report",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "targetData": {
+                  "description": "Target data from delta report",
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": ["source", "target"],
+              "additionalProperties": false
             }
           },
           "required": [
