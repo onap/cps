@@ -18,14 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.util;
+package org.onap.cps.ncmp.impl.provmns;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.onap.cps.ncmp.api.exceptions.NcmpException;
-import org.onap.cps.ncmp.impl.dmi.DmiServiceAuthenticationProperties;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -33,9 +32,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProvMnSParametersMapper {
-
-    private final DmiServiceAuthenticationProperties dmiServiceAuthenticationProperties;
+public class ParametersBuilder {
 
     /**
      * Creates a UrlTemplateParameters object containing the relevant fields for a get.
@@ -48,12 +45,13 @@ public class ProvMnSParametersMapper {
      * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
      * @return UrlTemplateParameters object.
      */
-    public UrlTemplateParameters getUrlTemplateParameters(final Scope scope, final String filter,
-                                                      final List<String> attributes, final List<String> fields,
-                                                      final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector,
-                                                      final YangModelCmHandle yangModelCmHandle) {
-
+    public UrlTemplateParameters createUrlTemplateParametersForGet(final Scope scope, final String filter,
+                                                       final List<String> attributes,
+                                                       final List<String> fields,
+                                                       final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector,
+                                                       final YangModelCmHandle yangModelCmHandle) {
         return RestServiceUrlTemplateBuilder.newInstance()
+            .fixedPathSegment(yangModelCmHandle.getAlternateId())
             .queryParameter("scopeType", scope.getScopeType() != null
                 ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null
@@ -61,21 +59,36 @@ public class ProvMnSParametersMapper {
             .queryParameter("filter", filter)
             .queryParameter("attributes", attributes != null ? attributes.toString() : null)
             .queryParameter("fields", fields != null ? fields.toString() : null)
-            .queryParameter("dataNodeSelector", dataNodeSelector.getDataNodeSelector() != null
-                ? dataNodeSelector.getDataNodeSelector() : null)
+            .queryParameter("dataNodeSelector", dataNodeSelector.getDataNodeSelector())
             .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
     }
 
     /**
-     * Check if dataProducerIdentifier is empty or null, if so throw exception.
+     * Creates a UrlTemplateParameters object containing the relevant fields for a put.
      *
-     * @param yangModelCmHandle given yangModelCmHandle.
+     * @param resource            Provided resource parameter.
+     * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
+     * @return UrlTemplateParameters object.
      */
-    public void checkDataProducerIdentifier(final YangModelCmHandle yangModelCmHandle) {
-        if (yangModelCmHandle.getDataProducerIdentifier() == null
-            || yangModelCmHandle.getDataProducerIdentifier().isEmpty()) {
-            throw new NcmpException("No data producer identifier registered for cm handle",
-                "Cm Handle " + yangModelCmHandle.getId() + " has empty data producer identifier");
-        }
+    public UrlTemplateParameters createUrlTemplateParametersForPut(final Resource resource,
+                                                                   final YangModelCmHandle yangModelCmHandle) {
+
+        return RestServiceUrlTemplateBuilder.newInstance()
+            .fixedPathSegment(yangModelCmHandle.getAlternateId())
+            .queryParameter("resource", resource.toString())
+            .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+    }
+
+    /**
+     * Creates a UrlTemplateParameters object containing the relevant fields for a delete action.
+     *
+     * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
+     * @return UrlTemplateParameters object.
+     */
+    public UrlTemplateParameters createUrlTemplateParametersForDelete(final YangModelCmHandle yangModelCmHandle) {
+
+        return RestServiceUrlTemplateBuilder.newInstance()
+            .fixedPathSegment(yangModelCmHandle.getAlternateId())
+            .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
     }
 }

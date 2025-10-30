@@ -24,13 +24,14 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.config.PolicyExecutorHttpClientConfig
 import org.onap.cps.ncmp.impl.policyexecutor.PolicyExecutorWebClientConfiguration
 import org.onap.cps.ncmp.utils.WebClientBuilderTestConfig
+import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 @SpringBootTest
-@ContextConfiguration(classes = [ObjectMapper, PolicyExecutor, PolicyExecutorWebClientConfiguration,  PolicyExecutorHttpClientConfig, WebClientBuilderTestConfig ])
+@ContextConfiguration(classes = [JsonObjectMapper, ObjectMapper, PolicyExecutor, PolicyExecutorWebClientConfiguration,  PolicyExecutorHttpClientConfig, WebClientBuilderTestConfig ])
 class PolicyExecutorConfigurationSpec extends Specification {
 
     @Autowired

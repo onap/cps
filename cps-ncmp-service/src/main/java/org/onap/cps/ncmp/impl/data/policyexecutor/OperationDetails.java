@@ -18,6 +18,13 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.model;
+package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-public record ConfigurationManagementDeleteInput (String operationType, String targetIdentifier) {}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+import java.util.Map;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record OperationDetails(String operation,
+                               String targetIdentifier,
+                               Map<String, List<OperationEntry>> changeRequest) {}
