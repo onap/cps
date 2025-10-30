@@ -29,12 +29,16 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.provmns.RequestPathParameters
+import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
+import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientRequestException
 import org.springframework.web.reactive.function.client.WebClientResponseException
+import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException
 import reactor.core.publisher.Mono
 import spock.lang.Specification
 import java.util.concurrent.TimeoutException
@@ -50,8 +54,9 @@ class PolicyExecutorSpec extends Specification {
     def mockRequestBodyUriSpec = Mock(WebClient.RequestBodyUriSpec)
     def mockResponseSpec = Mock(WebClient.ResponseSpec)
     def spiedObjectMapper = Spy(ObjectMapper)
+    def jsonObjectMapper = new JsonObjectMapper(spiedObjectMapper)
 
-    PolicyExecutor objectUnderTest = new PolicyExecutor(mockWebClient, spiedObjectMapper)
+    PolicyExecutor objectUnderTest = new PolicyExecutor(mockWebClient, spiedObjectMapper,jsonObjectMapper)
 
     def logAppender = Spy(ListAppender<ILoggingEvent>)
 
@@ -221,6 +226,31 @@ class PolicyExecutorSpec extends Specification {
             thrownException.message == 'Operation not allowed. Decision id N/A : deny'
             thrownException.details == 'Network or I/O error while attempting to contact Policy Executor. Falling back to configured default decision: deny'
             thrownException.cause == webClientRequestException
+    }
+
+    def 'Build policy executor operation details from ProvMnS request parameters.'() {
+        given: 'a provMnsRequestParameter and a resource'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'])
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            def result = objectUnderTest.buildOperationDetails(CREATE, path, resource)
+        then: 'the result is as expected (using json to compare)'
+            String expectedJsonString = '{"operation":"CREATE","targetIdentifier":"someUriLdnFirstPart/someClassName=someId","changeRequest":{"someClassName":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}'
+            assert jsonObjectMapper.asJsonString(result) == expectedJsonString
+    }
+
+    def 'Build Policy Executor Operation Details with a exception during conversion'() {
+        given: 'a provMnsRequestParameter and a resource'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'])
+        and: 'json object mapper throws an exception'
+            def originalException = new JsonProcessingException('some-exception')
+            spiedObjectMapper.readValue(_,_) >> {throw originalException}
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            objectUnderTest.buildOperationDetails(CREATE, path, resource)
+        then: 'the expected exception is throw and matches the original'
+            def resultException = thrown(JsonProcessingException)
+            assert resultException == originalException
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {
