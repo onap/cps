@@ -33,6 +33,7 @@ import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.YangParser
 import org.onap.cps.utils.YangParserHelper
+import org.onap.cps.utils.deltareport.GroupedDeltaReportGenerator
 import org.onap.cps.yang.TimedYangTextSchemaSourceSetBuilder
 import org.onap.cps.yang.YangTextSchemaSourceSetBuilder
 import spock.lang.Specification
@@ -48,7 +49,8 @@ class E2ENetworkSliceSpec extends Specification {
     def cpsModuleServiceImpl = new CpsModuleServiceImpl(mockCpsModulePersistenceService, mockYangTextSchemaSourceSetCache, mockCpsAnchorService, mockCpsValidator,timedYangTextSchemaSourceSetBuilder,yangParser)
     def mockCpsDataUpdateEventsProducer = Mock(CpsDataUpdateEventsProducer)
     def dataNodeFactory = new DataNodeFactoryImpl(yangParser)
-    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser)
+    def mockGroupedDeltaReportGenerator = Mock(GroupedDeltaReportGenerator)
+    def cpsDataServiceImpl = new CpsDataServiceImpl(mockCpsDataPersistenceService, mockCpsDataUpdateEventsProducer, mockCpsAnchorService, dataNodeFactory, mockCpsValidator, yangParser, mockGroupedDeltaReportGenerator)
     def dataspaceName = 'someDataspace'
     def anchorName = 'someAnchor'
     def schemaSetName = 'someSchemaSet'
