@@ -101,7 +101,7 @@ public interface ProvMnS {
         produces = { "application/json"}
     )
 
-    ResponseEntity<Resource> getMoi(
+    ResponseEntity<Object> getMoi(
         HttpServletRequest httpServletRequest,
         @Parameter(name = "scope", description = "This parameter extends the set of targeted resources beyond the "
             + "base resource identified with the path component of the URI. "
@@ -206,7 +206,7 @@ public interface ProvMnS {
         consumes = { "application/json-patch+json", "application/3gpp-json-patch+json" }
     )
 
-    ResponseEntity<Resource> patchMoi(
+    ResponseEntity<Object> patchMoi(
         HttpServletRequest httpServletRequest,
         @Parameter(name = "Resource", description = "The request body describes changes to be made to the target "
             + "resources. The following patch media types are available   "
@@ -273,7 +273,7 @@ public interface ProvMnS {
         consumes = { "application/json" }
     )
 
-    ResponseEntity<Resource> putMoi(
+    ResponseEntity<Object> putMoi(
         HttpServletRequest httpServletRequest,
         @Parameter(name = "Resource",
             description = "The request body describes the resource that has been created or replaced", required = true)
