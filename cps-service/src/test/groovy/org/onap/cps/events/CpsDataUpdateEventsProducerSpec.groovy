@@ -34,9 +34,9 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Action.CREATE
-import static org.onap.cps.events.model.Data.Action.REMOVE
-import static org.onap.cps.events.model.Data.Action.REPLACE
+import static org.onap.cps.events.model.EventPayload.Action.CREATE
+import static org.onap.cps.events.model.EventPayload.Action.REMOVE
+import static org.onap.cps.events.model.EventPayload.Action.REPLACE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
