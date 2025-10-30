@@ -28,12 +28,16 @@ import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class LcmEventsHelper {
+
+    @Value("${app.lcm.events.event-schema-version}")
+    private String eventSchemaVersion;
 
     private final LcmEventsProducerHelper lcmEventsProducerHelper;
     private final LcmEventsProducer lcmEventsProducer;
@@ -65,16 +69,31 @@ public class LcmEventsHelper {
     private void sendLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final String cmHandleId = targetNcmpServiceCmHandle.getCmHandleId();
-        final LcmEventHeader lcmEventHeader =
+        if (useSchemaV2()) {
+            final org.onap.cps.ncmp.events.lcm.v2.LcmEventHeader lcmEventHeader =
+                lcmEventsProducerHelper.populateLcmEventHeaderV2(cmHandleId, targetNcmpServiceCmHandle,
+                    existingNcmpServiceCmHandle);
+            final org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEvent =
+                lcmEventsProducerHelper.populateLcmEventV2(cmHandleId, targetNcmpServiceCmHandle,
+                    existingNcmpServiceCmHandle);
+            lcmEventsProducer.sendLcmEventV2(cmHandleId, lcmEvent, lcmEventHeader);
+        } else {
+            final LcmEventHeader lcmEventHeader =
                 lcmEventsProducerHelper.populateLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle,
-                        existingNcmpServiceCmHandle);
-        final LcmEvent lcmEvent =
+                    existingNcmpServiceCmHandle);
+            final LcmEvent lcmEvent =
                 lcmEventsProducerHelper.populateLcmEvent(cmHandleId, targetNcmpServiceCmHandle,
-                        existingNcmpServiceCmHandle);
-        lcmEventsProducer.sendLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+                    existingNcmpServiceCmHandle);
+            lcmEventsProducer.sendLcmEvent(cmHandleId, lcmEvent, lcmEventHeader);
+
+        }
     }
 
     private static NcmpServiceCmHandle toNcmpServiceCmHandle(final YangModelCmHandle yangModelCmHandle) {
         return YangDataConverter.toNcmpServiceCmHandle(yangModelCmHandle);
+    }
+
+    private boolean useSchemaV2() {
+        return "v2".equals(eventSchemaVersion);
     }
 }

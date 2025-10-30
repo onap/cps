@@ -68,6 +68,20 @@ public class LcmEventsProducerHelper {
     }
 
     /**
+     * Populate Lifecycle Management Event Version 2.
+     *
+     * @param cmHandleId                  cm handle identifier
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
+     * @return Populated LcmEvent
+     */
+    public org.onap.cps.ncmp.events.lcm.v2.LcmEvent populateLcmEventV2(final String cmHandleId,
+                                     final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                     final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return createLcmEventV2(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
+    /**
      * Populate Lifecycle Management Event Header.
      *
      * @param cmHandleId                  cm handle identifier
@@ -81,6 +95,20 @@ public class LcmEventsProducerHelper {
         return createLcmEventHeader(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
     }
 
+    /**
+     * Populate Lifecycle Management Event Header Version 2.
+     *
+     * @param cmHandleId                  cm handle identifier
+     * @param targetNcmpServiceCmHandle   target ncmp service cmhandle
+     * @param existingNcmpServiceCmHandle existing ncmp service cmhandle
+     * @return Populated LcmEventHeader
+     */
+    public org.onap.cps.ncmp.events.lcm.v2.LcmEventHeader populateLcmEventHeaderV2(final String cmHandleId,
+                                                   final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                                   final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        return createLcmEventHeaderV2(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+    }
+
     private LcmEvent createLcmEvent(final String cmHandleId, final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
         final LcmEventType lcmEventType =
@@ -91,6 +119,17 @@ public class LcmEventsProducerHelper {
         return lcmEvent;
     }
 
+    private org.onap.cps.ncmp.events.lcm.v2.LcmEvent createLcmEventV2(final String cmHandleId,
+                                    final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                    final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final LcmEventType lcmEventType =
+            determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEvent = lcmEventHeaderV2(cmHandleId, lcmEventType);
+        lcmEvent.setEvent(
+            lcmEventPayloadV2(cmHandleId, targetNcmpServiceCmHandle, existingNcmpServiceCmHandle, lcmEventType));
+        return lcmEvent;
+    }
+
     private LcmEventHeader createLcmEventHeader(final String cmHandleId,
             final NcmpServiceCmHandle targetNcmpServiceCmHandle,
             final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
@@ -98,6 +137,16 @@ public class LcmEventsProducerHelper {
                 determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
         final LcmEvent lcmEventWithHeaderInformation = lcmEventHeader(cmHandleId, lcmEventType);
         return lcmEventHeaderMapper.toLcmEventHeader(lcmEventWithHeaderInformation);
+    }
+
+    private org.onap.cps.ncmp.events.lcm.v2.LcmEventHeader createLcmEventHeaderV2(final String cmHandleId,
+                                                final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                                final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
+        final LcmEventType lcmEventType =
+            determineEventType(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
+        final org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEventWithHeaderInformation
+            = lcmEventHeaderV2(cmHandleId, lcmEventType);
+        return lcmEventHeaderMapper.toLcmEventHeaderV2(lcmEventWithHeaderInformation);
     }
 
     private static LcmEventType determineEventType(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
@@ -139,9 +188,32 @@ public class LcmEventsProducerHelper {
 
         return event;
     }
+    
+    private org.onap.cps.ncmp.events.lcm.v2.Event lcmEventPayloadV2(final String eventCorrelationId,
+                                  final NcmpServiceCmHandle targetNcmpServiceCmHandle,
+                                  final NcmpServiceCmHandle existingNcmpServiceCmHandle,
+                                  final LcmEventType lcmEventType) {
+        final org.onap.cps.ncmp.events.lcm.v2.Event event = new org.onap.cps.ncmp.events.lcm.v2.Event();
+        event.setCmHandleId(eventCorrelationId);
+        //TODO Populate event V2 schema
+        return event;
+    }
 
     private LcmEvent lcmEventHeader(final String eventCorrelationId, final LcmEventType lcmEventType) {
         final LcmEvent lcmEvent = new LcmEvent();
+        lcmEvent.setEventId(UUID.randomUUID().toString());
+        lcmEvent.setEventCorrelationId(eventCorrelationId);
+        lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());
+        lcmEvent.setEventSource("org.onap.ncmp");
+        lcmEvent.setEventType(lcmEventType.getEventType());
+        lcmEvent.setEventSchema("org.onap.ncmp:cmhandle-lcm-event");
+        lcmEvent.setEventSchemaVersion("1.0");
+        return lcmEvent;
+    }
+
+    private org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEventHeaderV2(final String eventCorrelationId,
+                                                                    final LcmEventType lcmEventType) {
+        final org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEvent = new org.onap.cps.ncmp.events.lcm.v2.LcmEvent();
         lcmEvent.setEventId(UUID.randomUUID().toString());
         lcmEvent.setEventCorrelationId(eventCorrelationId);
         lcmEvent.setEventTime(EventDateTimeFormatter.getCurrentIsoFormattedDateTime());

@@ -33,4 +33,7 @@ public interface LcmEventHeaderMapper {
 
     LcmEventHeader toLcmEventHeader(LcmEvent lcmEvent);
 
+    org.onap.cps.ncmp.events.lcm.v2.LcmEventHeader toLcmEventHeaderV2(
+        org.onap.cps.ncmp.events.lcm.v2.LcmEvent lcmEvent);
+
 }
