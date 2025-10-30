@@ -18,15 +18,25 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.provmns.model;
+package org.onap.cps.ncmp.impl.provmns;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * This interface serves as a replacement for the generated Resource class, which has dependencies on the NRM-related
- * models that we want to avoid for our implementation of Provisioning and Management Services (ProvMnS) API.
- */
-@JsonSerialize(as = ResourceOneOf.class)
-@JsonDeserialize(as = ResourceOneOf.class)
-public interface Resource { }
+@Getter
+@Setter
+public class RequestParameters {
+
+    private String uriLdnFirstPart;
+    private String className;
+    private String id;
+
+    /**
+     * Gets alternate id from combining URI-LDN-First-Part, className and id.
+     *
+     * @return String of alternate id.
+     */
+    public String getAlternateId() {
+        return uriLdnFirstPart + "/" + className + "=" + id;
+    }
+}

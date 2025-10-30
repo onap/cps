@@ -1,0 +1,89 @@
+/*
+ *  ============LICENSE_START=======================================================
+ *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  ================================================================================
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ *  SPDX-License-Identifier: Apache-2.0
+ *  ============LICENSE_END=========================================================
+ */
+
+package org.onap.cps.ncmp.impl.provmns;
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
+import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class Validator {
+
+    private static final String PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE =
+        "Registered DMI does not support the ProvMnS interface.";
+    private static final String PROVMNS_BASE_PATH = "ProvMnS/v\\d+/";
+    private static final String INVALID_PATH_DETAILS_FORMAT = "%s not a valid path";
+
+    /**
+     * Check if dataProducerIdentifier is empty or null
+     * and yangModelCmHandle is not in a ready state, if so return error response.
+     *
+     * @param yangModelCmHandle given yangModelCmHandle.
+     */
+    public void checkValidParameters(final YangModelCmHandle yangModelCmHandle) {
+        if (yangModelCmHandle.getDataProducerIdentifier() == null
+            || yangModelCmHandle.getDataProducerIdentifier().isEmpty()) {
+            throw new ProvMnSException("NO DATA PRODUCER ID", PROVMNS_NOT_SUPPORTED_ERROR_MESSAGE);
+        } else if (yangModelCmHandle.getCompositeState().getCmHandleState() != CmHandleState.READY) {
+            throw new ProvMnSException("NOT READY", buildNotReadyStateMessage(yangModelCmHandle));
+        }
+    }
+
+    /**
+     * Converts HttpServletRequest to RequestParameters.
+     *
+     * @param httpServletRequest HttpServletRequest object containing the path
+     * @return RequestParameters object containing parsed parameters
+     */
+    public RequestParameters extractRequestParameters(final HttpServletRequest httpServletRequest) {
+        final String uriPath = (String) httpServletRequest.getAttribute(
+            "org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping");
+
+        final String[] pathVariables = uriPath.split(PROVMNS_BASE_PATH);
+        final int lastSlashIndex = pathVariables[1].lastIndexOf('/');
+        if (lastSlashIndex == -1) {
+            throw new ProvMnSException("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT, uriPath));
+        }
+        final RequestParameters requestParameters = new RequestParameters();
+        requestParameters.setUriLdnFirstPart("/" + pathVariables[1].substring(0, lastSlashIndex));
+        final String classNameAndId = pathVariables[1].substring(lastSlashIndex + 1);
+
+        final String[] splitClassNameId = classNameAndId.split("=", 2);
+        if (splitClassNameId.length != 2) {
+            throw new ProvMnSException("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT, uriPath));
+        }
+        requestParameters.setClassName(splitClassNameId[0]);
+        requestParameters.setId(splitClassNameId[1]);
+
+        return requestParameters;
+    }
+
+    private String buildNotReadyStateMessage(final YangModelCmHandle yangModelCmHandle) {
+        return yangModelCmHandle.getId() + " is not in ready state. Current state:"
+            + yangModelCmHandle.getCompositeState().getCmHandleState().name();
+    }
+}

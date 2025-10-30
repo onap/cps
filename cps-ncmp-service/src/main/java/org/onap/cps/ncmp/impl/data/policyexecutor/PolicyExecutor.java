@@ -21,6 +21,7 @@
 package org.onap.cps.ncmp.impl.data.policyexecutor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.UnknownHostException;
@@ -29,6 +30,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +39,11 @@ import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.provmns.RequestParameters;
+import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -78,6 +83,7 @@ public class PolicyExecutor {
     private final WebClient policyExecutorWebClient;
 
     private final ObjectMapper objectMapper;
+    private final JsonObjectMapper jsonObjectMapper;
 
     private static final Throwable NO_ERROR = null;
 
@@ -114,6 +120,47 @@ public class PolicyExecutor {
                 processException(runtimeException);
             }
         }
+    }
+
+    /**
+     * Creates a OperationDetails object from provided request details.
+     *
+     * @param operationType            Type of operation delete, create etc.
+     * @param requestParameters        request parameters including uri-ldn-first-part, className and id
+     * @param resource                 provided request resource
+     * @return OperationDetails object
+     */
+    public OperationDetails createOperationDetails(final OperationType operationType,
+                                                   final RequestParameters requestParameters,
+                                                   final Resource resource) {
+        final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
+        final OperationEntry operationEntry = new OperationEntry();
+
+        final String resourceJson = jsonObjectMapper.asJsonString(resource);
+
+        try {
+            final TypeReference<HashMap<String, Object>> typeReference =
+                new TypeReference<HashMap<String, Object>>() {};
+            final Map<String, Object> fullValue = objectMapper.readValue(resourceJson, typeReference);
+
+            operationEntry.setId(requestParameters.getId());
+            operationEntry.setAttributes(fullValue.get("attributes"));
+        } catch (final JsonProcessingException exception) {
+            log.debug("JSON processing error: {}", exception);
+        }
+
+        changeRequest.put(requestParameters.getClassName(), List.of(operationEntry));
+        return new OperationDetails(operationType.name(), requestParameters.getAlternateId(), changeRequest);
+    }
+
+    /**
+     * Creates a DeleteOperationDetails object from provided request details.
+     *
+     * @param alternateId        alternate id for request
+     * @return DeleteOperationDetails object
+     */
+    public DeleteOperationDetails deleteOperationDetails(final String alternateId) {
+        return new DeleteOperationDetails(OperationType.DELETE.name(), alternateId);
     }
 
     private Map<String, Object> getSingleOperationAsMap(final YangModelCmHandle yangModelCmHandle,

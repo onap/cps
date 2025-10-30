@@ -18,15 +18,6 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.provmns.model;
+package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-/**
- * This interface serves as a replacement for the generated Resource class, which has dependencies on the NRM-related
- * models that we want to avoid for our implementation of Provisioning and Management Services (ProvMnS) API.
- */
-@JsonSerialize(as = ResourceOneOf.class)
-@JsonDeserialize(as = ResourceOneOf.class)
-public interface Resource { }
+public record DeleteOperationDetails(String operationType, String targetIdentifier) {}

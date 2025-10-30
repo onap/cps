@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
+ *  Copyright (C) 2025 OpenInfra Foundation Europe
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,23 +18,21 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.rest.provmns.exception;
+package org.onap.cps.ncmp.impl.data.policyexecutor;
 
-import org.onap.cps.ncmp.api.exceptions.NcmpException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
-public class InvalidPathException extends NcmpException {
-
-    private static final String INVALID_PATH_DETAILS_FORMAT =
-        "%s not a valid path";
-
-    /**
-     * Constructor.
-     *
-     * @param path provmns uri path
-     */
-    public InvalidPathException(final String path) {
-        super("not a valid path", String.format(INVALID_PATH_DETAILS_FORMAT,
-            path));
-    }
+/**
+ * Represents a single managed object included in a change request,
+ * containing its identifier and arbitrary attributes.
+ */
+@Setter
+@Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OperationEntry {
+    private String id;
+    private Object attributes;
 
 }
