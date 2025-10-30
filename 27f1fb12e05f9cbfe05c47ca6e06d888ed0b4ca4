@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac80099_d9fb99b2",
+        "filename": "cps-service/src/main/java/org/onap/cps/init/ModelLoadersCompletedCheck.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-30T15:21:21Z",
+      "side": 1,
+      "message": "NB: modelLoaderLock",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 60
+      },
+      "revId": "27f1fb12e05f9cbfe05c47ca6e06d888ed0b4ca4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
