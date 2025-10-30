@@ -40,8 +40,8 @@ class CpsNotificationSubscriptionModelLoaderSpec extends Specification {
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
-    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockModelLoaderCoordinatorLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
+    def objectUnderTest = new CpsNotificationSubscriptionModelLoader(mockModelLoaderLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 

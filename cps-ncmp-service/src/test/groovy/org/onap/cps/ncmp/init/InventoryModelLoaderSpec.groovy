@@ -30,7 +30,7 @@ import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.exceptions.AnchorNotFoundException
 import org.onap.cps.api.model.Dataspace
 import org.onap.cps.api.model.ModuleDefinition
-import org.onap.cps.init.ModelLoaderCoordinatorLock
+import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
@@ -43,14 +43,14 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 
 class InventoryModelLoaderSpec extends Specification {
 
-    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
     def mockCpsAdminService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new InventoryModelLoader(mockModelLoaderCoordinatorLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 

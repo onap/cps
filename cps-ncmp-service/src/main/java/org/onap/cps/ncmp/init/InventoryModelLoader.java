@@ -30,7 +30,7 @@ import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
-import org.onap.cps.init.ModelLoaderCoordinatorLock;
+import org.onap.cps.init.ModelLoaderLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,14 +56,14 @@ public class InventoryModelLoader extends AbstractModelLoader {
      * Creates a new {@code InventoryModelLoader} instance responsible for onboarding or upgrading
      * the NCMP inventory model schema sets and managing readiness state during migration.
      */
-    public InventoryModelLoader(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
+    public InventoryModelLoader(final ModelLoaderLock modelLoaderLock,
                                 final CpsDataspaceService cpsDataspaceService,
                                 final CpsModuleService cpsModuleService,
                                 final CpsAnchorService cpsAnchorService,
                                 final CpsDataService cpsDataService,
                                 final ApplicationEventPublisher applicationEventPublisher,
                                 final ReadinessManager readinessManager) {
-        super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
             readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
     }
@@ -78,10 +78,12 @@ public class InventoryModelLoader extends AbstractModelLoader {
 
             if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
                 moduleRevision)) {
-                log.info("Revision {} is already installed.", moduleRevision);
+                log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
             } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
+                log.info("Model Loader #2: Upgrading already installed inventory to revision {}.", moduleRevision);
                 upgradeAndMigrateInventoryModel();
             } else {
+                log.info("Model Loader #2: New installation using inventory model revision {}.", moduleRevision);
                 installInventoryModel(schemaToInstall);
             }
             applicationEventPublisher.publishEvent(new NcmpInventoryModelOnboardingFinishedEvent(this));
@@ -99,7 +101,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
         createAnchor(NCMP_DATASPACE_NAME, schemaSetName, NCMP_DMI_REGISTRY_ANCHOR);
         createTopLevelDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME);
         deleteOldButNotThePreviousSchemaSets();
-        log.info("Inventory model {} installed successfully,", schemaSetName);
+        log.info("Model Loader #2: Inventory model {} installed successfully,", schemaSetName);
     }
 
     private void deleteOldButNotThePreviousSchemaSets() {
@@ -113,13 +115,14 @@ public class InventoryModelLoader extends AbstractModelLoader {
         createSchemaSet(NCMP_DATASPACE_NAME, NEW_INVENTORY_SCHEMA_SET_NAME, yangFileName);
         cpsAnchorService.updateAnchorSchemaSet(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
                 NEW_INVENTORY_SCHEMA_SET_NAME);
-        log.info("Inventory upgraded successfully to model {}", NEW_INVENTORY_SCHEMA_SET_NAME);
+        log.info("Model Loader #2: Inventory upgraded successfully to model {}", NEW_INVENTORY_SCHEMA_SET_NAME);
     }
 
     private void performInventoryDataMigration() {
+
         //1. Load all the cm handles (in batch)
         //2. Copy the state and known properties
-        log.info("Inventory module data migration is completed successfully.");
+        log.info("Model Loader #2: Inventory module data migration is completed successfully.");
     }
 
     private static String toYangFileName(final String schemaSetName) {

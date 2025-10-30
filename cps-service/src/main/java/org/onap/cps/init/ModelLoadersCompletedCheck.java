@@ -35,14 +35,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Order(LOWEST_PRECEDENCE)
-public class ModelLoaderCoordinatorEnd extends AbstractModelLoader {
+public class ModelLoadersCompletedCheck extends AbstractModelLoader {
 
     final Sleeper sleeper;
 
     /**
      * Constructor.
      *
-     * @param modelLoaderCoordinatorLock the modelLoaderCoordinatorLock
+     * @param modelLoaderLock the modelLoaderCoordinatorLock
      * @param cpsDataspaceService the cpsDataspaceService
      * @param cpsModuleService the cpsModuleService
      * @param cpsAnchorService the cpsAnchorService
@@ -50,39 +50,39 @@ public class ModelLoaderCoordinatorEnd extends AbstractModelLoader {
      * @param readinessManager the readinessManager
      * @param sleeper the sleeper
      */
-    public ModelLoaderCoordinatorEnd(final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock,
-                                     final CpsDataspaceService cpsDataspaceService,
-                                     final CpsModuleService cpsModuleService,
-                                     final CpsAnchorService cpsAnchorService,
-                                     final CpsDataService cpsDataService,
-                                     final ReadinessManager readinessManager,
-                                     final Sleeper sleeper) {
-        super(modelLoaderCoordinatorLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+    public ModelLoadersCompletedCheck(final ModelLoaderLock modelLoaderLock,
+                                      final CpsDataspaceService cpsDataspaceService,
+                                      final CpsModuleService cpsModuleService,
+                                      final CpsAnchorService cpsAnchorService,
+                                      final CpsDataService cpsDataService,
+                                      final ReadinessManager readinessManager,
+                                      final Sleeper sleeper) {
+        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
             readinessManager);
         this.sleeper = sleeper;
     }
 
     @Override
     public void onboardOrUpgradeModel() {
-        log.info("Model Loader #999 Started: Coordinator End, check model loaders are completed");
+        log.info("Model Loader #LAST Started: Completion Check");
         if (isMaster) {
             releaseLock();
-            log.info("This instance is model loader master. Model loading completed");
+            log.info("Model Loader #LAST: This instance is model loader master. Model loading completed");
         } else {
-            log.info("Wait for model loader master to finish");
+            log.info("Model Loader #LAST: Wait for model loading on master to finish");
             waitForMasterToFinish();
         }
-        log.info("Model Loader #999 Completed");
+        log.info("Model Loader #LAST Completed");
     }
 
     private void releaseLock() {
-        modelLoaderCoordinatorLock.forceUnlock();
-        log.info("Model loading (on master) finished");
+        modelLoaderLock.forceUnlock();
+        log.info("Model Loader #LAST: Model loading (on master) finished");
     }
 
     private void waitForMasterToFinish() {
-        while (modelLoaderCoordinatorLock.isLocked()) {
-            log.info("Still waiting for model loader master to finish");
+        while (modelLoaderLock.isLocked()) {
+            log.info("Model Loader #LAST: Still waiting for model loading on master to finish");
             try {
                 sleeper.haveALittleRest(100);
             } catch (final InterruptedException e) {

@@ -25,16 +25,16 @@ import com.hazelcast.core.Hazelcast
 import com.hazelcast.instance.impl.HazelcastInstanceFactory
 import spock.lang.Specification
 
-class ModelLoaderCoordinatorLockSpec extends Specification {
+class ModelLoaderLockSpec extends Specification {
     def cpsCommonLocks = HazelcastInstanceFactory.getOrCreateHazelcastInstance(new Config('hazelcastInstanceName')).getMap('cpsCommonLocks')
 
-    def objectUnderTest = new ModelLoaderCoordinatorLock(cpsCommonLocks)
+    def objectUnderTest = new ModelLoaderLock(cpsCommonLocks)
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('hazelcastInstanceName').shutdown()
     }
 
-    def 'Locking and unlocking the coordinator lock.'() {
+    def 'Locking and unlocking the model loader lock.'() {
         when: 'try to get a lock'
             assert objectUnderTest.tryLock() == true
         then: 'the lock is acquired'

@@ -24,41 +24,41 @@ import org.onap.cps.init.actuator.ReadinessManager
 import org.onap.cps.utils.Sleeper
 import spock.lang.Specification
 
-class ModelLoaderCoordinatorEndSpec extends Specification {
+class ModelLoadersCompletedCheckSpec extends Specification {
 
-    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
     def spiedSleeper = Spy(new Sleeper())
     def mockReadinessManager = Mock(ReadinessManager)
 
-    def objectUnderTest = new ModelLoaderCoordinatorEnd(mockModelLoaderCoordinatorLock, null, null, null, null, mockReadinessManager, spiedSleeper)
+    def objectUnderTest = new ModelLoadersCompletedCheck(mockModelLoaderLock, null, null, null, null, mockReadinessManager, spiedSleeper)
 
-    def 'Model Loader Coordinator End for master instance.'() {
+    def 'Model Loaders Completed Check for master instance.'() {
         given: 'instance is master'
             objectUnderTest.isMaster = true
         when: 'model loader is started'
             objectUnderTest.onboardOrUpgradeModel()
-        then: 'the model loader coordinator lock is released'
-            1 * mockModelLoaderCoordinatorLock.forceUnlock()
+        then: 'the model loader lock is released'
+            1 * mockModelLoaderLock.forceUnlock()
         and: 'no checks for locked are made'
-            0 * mockModelLoaderCoordinatorLock.isLocked()
+            0 * mockModelLoaderLock.isLocked()
     }
 
-    def 'Model Loader Coordinator End for non-master instance.'() {
+    def 'Model Loaders Completed Check for non-master instance.'() {
         given: 'instance is NOT master'
             objectUnderTest.isMaster = false
         and: 'the lock will be unlocked upon the third time checking (so expect 3 calls)'
-            3 * mockModelLoaderCoordinatorLock.isLocked() >>> [ true, true, false ]
+            3 * mockModelLoaderLock.isLocked() >>> [true, true, false ]
         when: 'model loader is started'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'the system sleeps twice'
             2 * spiedSleeper.haveALittleRest(_)
     }
 
-    def 'Model Loader Coordinator End for non-master with exception during sleep.'() {
+    def 'Model Loaders Completed Check for non-master with exception during sleep.'() {
         given: 'instance is NOT master'
             objectUnderTest.isMaster = false
         and: 'attempting the get the lock will succeed on the second attempt'
-            mockModelLoaderCoordinatorLock.isLocked() >>> [ true, false ]
+            mockModelLoaderLock.isLocked() >>> [true, false ]
         when: 'model loader is started'
             objectUnderTest.onboardOrUpgradeModel()
         then: 'the system sleeps once (but is interrupted)'
