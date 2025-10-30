@@ -25,16 +25,23 @@ import static org.onap.cps.events.model.EventPayload.Action.fromValue;
 
 import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
+import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
+import org.onap.cps.api.model.DeltaReport;
+import org.onap.cps.events.model.CloudEventData;
 import org.onap.cps.events.model.CpsDataUpdatedEvent;
 import org.onap.cps.events.model.EventPayload;
 import org.onap.cps.utils.DateTimeUtility;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +51,7 @@ import org.springframework.stereotype.Service;
 public class CpsDataUpdateEventsProducer {
 
     private final EventsProducer eventsProducer;
-
+    private final JsonObjectMapper jsonObjectMapper;
     private final CpsNotificationService cpsNotificationService;
 
     @Value("${app.cps.data-updated.topic:cps-data-updated-events}")
@@ -65,20 +72,26 @@ public class CpsDataUpdateEventsProducer {
      * @param observedTimestamp timestamp when data was updated.
      */
     @Timed(value = "cps.data.update.events.send", description = "Time taken to send Data Update event")
-    public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath,
-                                       final String action, final OffsetDateTime observedTimestamp) {
+    public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath, final String action,
+                                       final List<DeltaReport> deltaReports, final boolean deltaNotificationEnabled,
+                                       final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
-            final CpsDataUpdatedEvent cpsDataUpdatedEvent =
-                createCpsDataUpdatedEvent(anchor, observedTimestamp, xpath, action);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
             final Map<String, String> extensions = createUpdateEventExtensions(updateEventId);
-            final CloudEvent cpsDataUpdatedEventAsCloudEvent =
-                    CpsEvent.builder().type(CpsDataUpdatedEvent.class.getTypeName()).data(cpsDataUpdatedEvent)
-                            .extensions(extensions).build().asCloudEvent();
-            eventsProducer.sendCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
+            if (deltaNotificationEnabled) {
+                final Collection<CpsDataUpdatedEvent> cpsDataUpdatedEvents =
+                    createUpdatedEventsFromDeltaReport(anchor, observedTimestamp, deltaReports);
+                cpsDataUpdatedEvents.forEach(cpsDataUpdatedEvent ->
+                        sendCpsDataUpdatedEvent(updateEventId, cpsDataUpdatedEvent, extensions));
+            } else {
+                final CpsDataUpdatedEvent cpsDataUpdatedEvent =
+                    createCpsDataUpdatedEvent(anchor, observedTimestamp, xpath, action);
+                sendCpsDataUpdatedEvent(updateEventId, cpsDataUpdatedEvent, extensions);
+            }
         } else {
             log.debug("State of Overall Notifications : {} and Cps Change Event Notifications : {}",
-                    notificationsEnabled, cpsChangeEventNotificationsEnabled);
+                notificationsEnabled, cpsChangeEventNotificationsEnabled);
+            log.debug("State of Delta Report Notification : {}", deltaNotificationEnabled);
         }
     }
 
@@ -100,9 +113,51 @@ public class CpsDataUpdateEventsProducer {
         return cpsDataUpdatedEvent;
     }
 
+    private Collection<CpsDataUpdatedEvent> createUpdatedEventsFromDeltaReport(final Anchor anchor,
+                                                                               final OffsetDateTime observedTimestamp,
+                                                                               final List<DeltaReport> deltaReports) {
+        if (deltaReports == null || deltaReports.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return deltaReports.stream().flatMap(deltaReport -> {
+            final CloudEventData cloudEventData = new CloudEventData();
+
+            final Map<String, Serializable> sourceData = deltaReport.getSourceData();
+            final Map<String, Serializable> targetData = deltaReport.getTargetData();
+            if (sourceData != null) {
+                cloudEventData.setSourceData(jsonObjectMapper.asJsonString(sourceData));
+            }
+            if (targetData != null) {
+                cloudEventData.setTargetData(jsonObjectMapper.asJsonString(targetData));
+            }
+            if (cloudEventData.getSourceData() == null && cloudEventData.getTargetData() == null) {
+                return Stream.empty();
+            }
+            final EventPayload updateEventData = new EventPayload();
+            updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
+            updateEventData.setDataspaceName(anchor.getDataspaceName());
+            updateEventData.setAnchorName(anchor.getName());
+            updateEventData.setSchemaSetName(anchor.getSchemaSetName());
+            updateEventData.setXpath(deltaReport.getXpath());
+            updateEventData.setAction(fromValue(deltaReport.getAction()));
+            updateEventData.setCloudEventData(cloudEventData);
+
+            final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
+            cpsDataUpdatedEvent.setEventPayload(updateEventData);
+            return Stream.of(cpsDataUpdatedEvent);
+        }).toList();
+    }
+
+    private void sendCpsDataUpdatedEvent(final String updateEventId,
+                                        final CpsDataUpdatedEvent cpsDataUpdatedEvent,
+                                        final Map<String, String> extensions) {
+        final CloudEvent cpsDataUpdatedEventAsCloudEvent =
+            CpsEvent.builder().type(CpsDataUpdatedEvent.class.getTypeName()).data(cpsDataUpdatedEvent)
+                .extensions(extensions).build().asCloudEvent();
+        eventsProducer.sendCloudEvent(topicName, updateEventId, cpsDataUpdatedEventAsCloudEvent);
+    }
+
     private Map<String, String> createUpdateEventExtensions(final String eventKey) {
-        final Map<String, String> extensions = new HashMap<>();
-        extensions.put("correlationid", eventKey);
-        return extensions;
+        return Map.of("correlationid", eventKey);
     }
 }
