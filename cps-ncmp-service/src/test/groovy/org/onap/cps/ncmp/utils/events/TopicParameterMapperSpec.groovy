@@ -23,7 +23,7 @@ package org.onap.cps.ncmp.utils.events
 import org.onap.cps.ncmp.api.exceptions.InvalidTopicException
 import spock.lang.Specification
 
-class TopicValidatorSpec extends Specification {
+class TopicParameterMapperSpec extends Specification {
 
     def 'Valid topic name validation.'() {
         when: 'a valid topic name is validated'

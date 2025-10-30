@@ -106,7 +106,7 @@ class DmiDispatcher extends Dispatcher {
                 return mockWriteJobResponse(request)
 
             // provmns endpoint
-            case ~'^/ProvMnS/v1(.*)$':
+            case ~'^/ProvMnS/v1/(.*)$':
                 dmiResourceDataUrl = request.path
                 return mockResponseWithBody(HttpStatus.OK, '{}')
 

@@ -37,11 +37,11 @@ import org.onap.cps.ncmp.api.exceptions.InvalidTopicException;
 import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
-import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -52,7 +52,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class, NetworkCmProxyInventoryController.class})
+@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class,
+    NetworkCmProxyInventoryController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 
@@ -102,7 +103,7 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.PAYLOAD_TOO_LARGE, exception);
     }
 
-    @ExceptionHandler({InvalidPathException.class})
+    @ExceptionHandler({ProvMnSException.class})
     public static ResponseEntity<Object> invalidPathExceptions(final Exception exception) {
         return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
     }
