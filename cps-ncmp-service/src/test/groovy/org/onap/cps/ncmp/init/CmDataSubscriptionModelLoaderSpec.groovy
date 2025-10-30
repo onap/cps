@@ -28,7 +28,7 @@ import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsDataspaceService
 import org.onap.cps.api.CpsModuleService
 import org.onap.cps.api.model.Dataspace
-import org.onap.cps.init.ModelLoaderCoordinatorLock
+import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -38,13 +38,13 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 
 class CmDataSubscriptionModelLoaderSpec extends Specification {
 
-    def mockModelLoaderCoordinatorLock = Mock(ModelLoaderCoordinatorLock)
+    def mockModelLoaderLock = Mock(ModelLoaderLock)
     def mockCpsDataspaceService = Mock(CpsDataspaceService)
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new CmDataSubscriptionModelLoader(mockModelLoaderCoordinatorLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
+    def objectUnderTest = new CmDataSubscriptionModelLoader(mockModelLoaderLock, mockCpsDataspaceService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockReadinessManager)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 

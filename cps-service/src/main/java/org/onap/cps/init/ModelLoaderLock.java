@@ -29,7 +29,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ModelLoaderCoordinatorLock {
+public class ModelLoaderLock {
 
     @Qualifier("cpsCommonLocks")
     private final IMap<String, String> cpsCommonLocks;

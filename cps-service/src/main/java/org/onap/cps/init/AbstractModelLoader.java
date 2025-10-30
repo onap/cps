@@ -36,6 +36,7 @@ import org.onap.cps.api.CpsDataspaceService;
 import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.api.exceptions.AnchorNotFoundException;
+import org.onap.cps.api.exceptions.DataspaceNotFoundException;
 import org.onap.cps.api.exceptions.DuplicatedYangResourceException;
 import org.onap.cps.api.exceptions.ModelOnboardingException;
 import org.onap.cps.api.model.ModuleDefinition;
@@ -49,7 +50,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 @RequiredArgsConstructor
 public abstract class AbstractModelLoader implements ModelLoader {
 
-    protected final ModelLoaderCoordinatorLock modelLoaderCoordinatorLock;
+    protected final ModelLoaderLock modelLoaderLock;
     protected final CpsDataspaceService cpsDataspaceService;
     private final CpsModuleService cpsModuleService;
     protected final CpsAnchorService cpsAnchorService;
@@ -133,12 +134,15 @@ public abstract class AbstractModelLoader implements ModelLoader {
      *
      * @param dataspaceName the name of the dataspace
      * @param anchorName    the name of the anchor within the dataspace
-     * @return {@code true} if the anchor exists, {@code false} otherwise
+     * @return {@code true} if the dataspace and anchor exists, {@code false} otherwise
      */
     public boolean doesAnchorExist(final String dataspaceName, final String anchorName) {
         try {
             cpsAnchorService.getAnchor(dataspaceName, anchorName);
             return true;
+        } catch (final DataspaceNotFoundException dataspaceNotFoundException) {
+            log.debug("Dataspace '{}' does not exist", dataspaceName);
+            return false;
         } catch (final AnchorNotFoundException anchorNotFoundException) {
             log.debug("Anchor '{}' not found in dataspace '{}'", anchorName, dataspaceName);
             return false;
@@ -223,7 +227,7 @@ public abstract class AbstractModelLoader implements ModelLoader {
     }
 
     void checkIfThisInstanceIsMaster() {
-        isMaster = isMaster || modelLoaderCoordinatorLock.tryLock();
+        isMaster = isMaster || modelLoaderLock.tryLock();
         if (isMaster) {
             log.info("This instance is model loader master");
         } else {
