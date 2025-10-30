@@ -28,6 +28,7 @@ import io.cloudevents.jackson.PojoCloudEventDataMapper
 import org.onap.cps.api.CpsNotificationService
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.events.model.CpsDataUpdatedEvent
+import org.onap.cps.impl.DeltaReportBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
@@ -48,13 +49,16 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
     def mockEventsProducer = Mock(EventsProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
+    def jsonObjectMapper = new JsonObjectMapper(objectMapper)
 
-    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, mockCpsNotificationService)
+    def objectUnderTest = new CpsDataUpdateEventsProducer(mockEventsProducer, jsonObjectMapper, mockCpsNotificationService)
 
     def setup() {
         mockCpsNotificationService.isNotificationEnabled('dataspace01', 'anchor01') >> true
         objectUnderTest.topicName = 'cps-core-event'
     }
+
+    static def deltaReport = []
 
     def 'Create and send cps event with #scenario.'() {
         given: 'an anchor'
@@ -64,7 +68,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, actionInRequest, OffsetDateTime.now())
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, actionInRequest, deltaReport, OffsetDateTime.now())
         then: 'the event contains the required attributes'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
@@ -97,7 +101,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'cpsChangeEventNotificationsEnabled is true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to send data event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, deltaReport, null)
         then: 'the event is sent'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
@@ -112,7 +116,7 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         and: 'notification service enabled is: #cpsNotificationServiceisNotificationEnabled'
             mockCpsNotificationService.isNotificationEnabled(_, 'anchor02') >> cpsNotificationServiceisNotificationEnabled
         when: 'service is called to send data event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, deltaReport, null)
         then: 'the event is only sent when all related flags are true'
             expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
         where: 'the following flags are used'
@@ -121,6 +125,39 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             true                 | false                              | true                                         || 0
             true                 | true                               | false                                        || 0
             true                 | true                               | true                                         || 1
+    }
+
+    def 'Send CPS event when delta report notifications is enabled'() {
+        given: 'an anchor and delta report'
+            def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
+        and: 'notificationsEnabled is true'
+            objectUnderTest.notificationsEnabled = true
+        and: 'cpsChangeEventNotificationsEnabled is false'
+            objectUnderTest.cpsChangeEventNotificationsEnabled = true
+        and: 'cpsDeltaReportEventNotificationsEnabled is true'
+            objectUnderTest.deltaNotificationEnabled = true
+        when: 'service is called to send data event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', REPLACE.value(), deltaReports, OffsetDateTime.now())
+        then: 'the event is sent for each entry in delta report'
+            deltaReports.forEach {deltaReport ->
+                expectedInvocationCount * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
+                    args ->
+                        {
+                            def cpsDataUpdatedEvent = (args[2] as CloudEvent)
+                            def eventPayload = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().eventPayload
+                            assert eventPayload.action.value() == deltaReport.getAction()
+                            assert eventPayload.xpath == deltaReport.xpath
+                            assert deltaReport.action == expectedEventAction
+                        }
+                }
+            }
+        where: 'the following values are used'
+            scenario                                        | deltaReports                                                                                                                                                                                                  || expectedInvocationCount | expectedEventAction
+            'delta report with source data'                 | [new DeltaReportBuilder().actionRemove().withXpath('/bookstore').withSourceData(['categorie': ['code': '4', 'name': 'Computing']]).build()]                                                                   || 1 | REMOVE_ACTION
+            'delta report with target data'                 | [new DeltaReportBuilder().actionCreate().withXpath('/bookstore').withTargetData(['categorie': ['code': '4', 'name': 'Computing']]).build()]                                                                   || 1 | CREATE_ACTION
+            'delta report with no source and target data'   | [new DeltaReportBuilder().build()]                                                                                                                                                                            || 0 | null
+            'delta report with both source and target data' | [new DeltaReportBuilder().actionReplace().withXpath('/bookstore').withSourceData(['categorie': ['code': '4', 'name': 'Computing']]).withTargetData(['categories': [['code': '4', 'name': 'Funny']]]).build()] || 1 | REPLACE_ACTION
+            'delta report with empty source and target data'| [new DeltaReportBuilder().actionReplace().withXpath('/bookstore').withSourceData([:]).withTargetData([:]).build()]                                              || 0 | CREATE_ACTION
     }
 
 }
