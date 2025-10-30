@@ -38,7 +38,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
 
     def jsonPayload = generateModifiedOpenRoadData(1000, 200, 200, 200)
 
-    @Ignore
     def 'Setup test anchor (please note, subsequent tests depend on this running first).'() {
         when: 'anchor with modified node data is created'
             resourceMeter.start()
@@ -131,8 +130,7 @@ class DeltaPerfTest extends CpsPerfTestBase{
         then: 'the delta is applied and operation completes within expected time'
             recordAndAssertResourceUsage('CPS:Apply delta report to an anchor', 20.0, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB())
     }
-
-    @Ignore
+    
     def 'Clean up test data'() {
         when: 'anchor is deleted'
             resourceMeter.start()
