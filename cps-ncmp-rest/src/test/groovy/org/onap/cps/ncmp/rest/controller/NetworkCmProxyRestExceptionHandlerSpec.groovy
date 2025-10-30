@@ -47,7 +47,7 @@ import org.onap.cps.api.exceptions.AlreadyDefinedException
 import org.onap.cps.api.exceptions.CpsException
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.ncmp.rest.util.ProvMnSParametersMapper
+import org.onap.cps.ncmp.rest.util.ProvMnSParametersUtil
 import org.onap.cps.ncmp.rest.util.RestOutputCmHandleMapper
 import org.onap.cps.utils.JsonObjectMapper
 import org.spockframework.spring.SpringBean
@@ -115,7 +115,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @SpringBean
-    ProvMnSParametersMapper provMnSParametersMapper = Mock()
+    ProvMnSParametersUtil mockProvMnSParametersMapper = Mock()
+
+    @SpringBean
+    ProvMnsController mockProvMnsController = Mock()
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
