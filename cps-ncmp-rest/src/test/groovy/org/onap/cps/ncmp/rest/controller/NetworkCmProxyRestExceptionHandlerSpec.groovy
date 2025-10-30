@@ -21,6 +21,7 @@
 
 package org.onap.cps.ncmp.rest.controller
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.json.JsonSlurper
 import org.mapstruct.factory.Mappers
 import org.onap.cps.TestUtils
@@ -31,6 +32,7 @@ import org.onap.cps.ncmp.api.exceptions.DmiRequestException
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
 import org.onap.cps.ncmp.impl.data.NcmpCachedResourceRequestHandler
 import org.onap.cps.ncmp.impl.data.NcmpPassthroughResourceRequestHandler
@@ -39,6 +41,10 @@ import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSAlternateIdNotFound
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSCoordinationManagementDenied
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSNotCompatible
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSNotReady
 import org.onap.cps.ncmp.rest.util.CmHandleStateMapper
 import org.onap.cps.ncmp.rest.util.DataOperationRequestMapper
 import org.onap.cps.ncmp.rest.util.DeprecationHelper
@@ -66,6 +72,7 @@ import static org.springframework.http.HttpStatus.BAD_GATEWAY
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.HttpStatus.CONFLICT
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.PAYLOAD_TOO_LARGE
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
@@ -115,7 +122,10 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
     RestOutputCmHandleMapper mockRestOutputCmHandleMapper = Mock()
 
     @SpringBean
-    ProvMnSParametersMapper provMnSParametersMapper = Mock()
+    ProvMnSParametersMapper mockProvMnSParametersMapper = Mock()
+
+    @SpringBean
+    ProvMnsController mockProvMnsController = Mock()
 
     @SpringBean
     AlternateIdMatcher alternateIdMatcher = Mock()
@@ -164,6 +174,34 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
             'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null) || CONFLICT              | sampleErrorMessage          | sampleErrorDetails
             'Invalid Path'          | new InvalidPathException("some invalid path")                             || UNPROCESSABLE_ENTITY  | 'not a valid path'          | 'some invalid path not a valid path'
     }
+
+    def 'ProvMnS request with #scenario exception returns correct HTTP Status with #scenario exception'() {
+        when: 'an exception is thrown by the service'
+            setupTestException(exception, NCMP)
+            def response = performTestRequest(NCMP)
+        then: 'an HTTP response is returned with correct message and details'
+            assert response.status == expectedErrorCode.value()
+            def content = new JsonSlurper().parseText(response.contentAsString)
+            assert content['status'].toString().contains(expectedErrorCode.toString())
+            assert expectedType == null || content['type'].toString().contains(expectedType)
+            assert expectedReason == null || content['reason'].toString().contains(expectedReason)
+        where:
+            scenario                                                | exception                                                                || expectedErrorCode    | expectedType              | expectedReason
+            'Alternate Id not found from DEFAULT source'            | new ProvMnSAlternateIdNotFound('some-cmHandleId', 'DEFAULT')             || NOT_FOUND            | 'IE_NOT_FOUND'            | 'some-cmHandleId not found'
+            'Alternate Id not found from GET source'                | new ProvMnSAlternateIdNotFound('some-cmHandleId', 'GET')                 || NOT_FOUND            | 'IE_NOT_FOUND'            | 'some-cmHandleId not found'
+            'Alternate Id not found from PATCH source'              | new ProvMnSAlternateIdNotFound('some-cmHandleId', 'PATCH')               || NOT_FOUND            | 'IE_NOT_FOUND'            | 'some-cmHandleId not found'
+            'Invalid DataProducerId from DEFAULT source'            | new ProvMnSNotCompatible('some-cmHandleId', 'DEFAULT')                   || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'Invalid DataProducerId from DEFAULT source'            | new ProvMnSNotCompatible('some-cmHandleId', 'GET')                       || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'Invalid DataProducerId from DEFAULT source'            | new ProvMnSNotCompatible('some-cmHandleId', 'PATCH')                     || UNPROCESSABLE_ENTITY | 'SERVER_LIMITATION'       | 'Registered DMI does not support the ProvMnS interface.'
+            'CmHandle not in ready state from DEFAULT source'       | new ProvMnSNotReady('some-cmHandleId', CmHandleState.ADVISED, 'DEFAULT') || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId is not in ready state. Current state:ADVISED'
+            'CmHandle not in ready state from GET source'           | new ProvMnSNotReady('some-cmHandleId', CmHandleState.ADVISED, 'GET')     || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId is not in ready state. Current state:ADVISED'
+            'CmHandle not in ready state from PATCH source'         | new ProvMnSNotReady('some-cmHandleId', CmHandleState.ADVISED, 'PATCH')   || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId is not in ready state. Current state:ADVISED'
+            'Coordination Management rejection from DEFAULT source' | new ProvMnSCoordinationManagementDenied('some-cmHandleId', 'DEFAULT')    || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId'
+            'Coordination Management rejection from GET source'     | new ProvMnSCoordinationManagementDenied('some-cmHandleId', 'GET')        || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId'
+            'Coordination Management rejection from PATCH source'   | new ProvMnSCoordinationManagementDenied('some-cmHandleId', 'PATCH')      || NOT_ACCEPTABLE       | 'APPLICATION_LAYER_ERROR' | 'some-cmHandleId'
+
+    }
+
 
     def 'Post request with exception returns correct HTTP Status.'() {
         given: 'the service throws data validation exception'

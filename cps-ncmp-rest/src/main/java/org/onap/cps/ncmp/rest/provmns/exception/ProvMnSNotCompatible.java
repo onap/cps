@@ -1,6 +1,6 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2025 OpenInfra Foundation Europe
+ *  Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,15 +18,18 @@
  *  ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.provmns.model;
+package org.onap.cps.ncmp.rest.provmns.exception;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.onap.cps.ncmp.api.exceptions.NcmpException;
 
-/**
- * This interface serves as a replacement for the generated Resource class, which has dependencies on the NRM-related
- * models that we want to avoid for our implementation of Provisioning and Management Services (ProvMnS) API.
- */
-@JsonSerialize(as = ResourceOneOf.class)
-@JsonDeserialize(as = ResourceOneOf.class)
-public interface Resource { }
+public class ProvMnSNotCompatible extends NcmpException {
+    /**
+     * Constructor.
+     *
+     * @param cmHandleId cmHandleId
+     * @param source     describes the source whether its DEFAULT,GET or PATCH
+     */
+    public ProvMnSNotCompatible(final String cmHandleId, final String source) {
+        super("Registered DMI does not support the ProvMnS interface." + "-" + source, null);
+    }
+}

@@ -38,10 +38,17 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PayloadTooLargeException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.api.exceptions.ServerNcmpException;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseDefault;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponseGet;
+import org.onap.cps.ncmp.impl.provmns.model.ErrorResponsePatch;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessage;
 import org.onap.cps.ncmp.rest.model.DmiErrorMessageDmiResponse;
 import org.onap.cps.ncmp.rest.model.ErrorMessage;
 import org.onap.cps.ncmp.rest.provmns.exception.InvalidPathException;
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSAlternateIdNotFound;
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSCoordinationManagementDenied;
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSNotCompatible;
+import org.onap.cps.ncmp.rest.provmns.exception.ProvMnSNotReady;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -52,7 +59,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Exception handler with error message return.
  */
 @Slf4j
-@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class, NetworkCmProxyInventoryController.class})
+@RestControllerAdvice(assignableTypes = {NetworkCmProxyController.class,
+    NetworkCmProxyInventoryController.class,
+    ProvMnsController.class})
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class NetworkCmProxyRestExceptionHandler {
 
@@ -107,6 +116,54 @@ public class NetworkCmProxyRestExceptionHandler {
         return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception);
     }
 
+    /**
+     * ProvMnS exception handler.
+     *
+     * @param exception the exception to handle
+     * @return response with response code 404.
+     */
+    @ExceptionHandler({ProvMnSAlternateIdNotFound.class})
+    public static ResponseEntity<Object> provMnSAlternateIdNotFoundException(final Exception exception) {
+        if (exception.getMessage().contains("GET")) {
+            return buildProvMnSErrorResponseGet(HttpStatus.NOT_FOUND, exception, "IE_NOT_FOUND");
+        } else if (exception.getMessage().contains("PATCH")) {
+            return buildProvMnSErrorResponsePatch(HttpStatus.NOT_FOUND, exception, "IE_NOT_FOUND");
+        }
+        return buildProvMnSErrorResponseDefault(HttpStatus.NOT_FOUND, exception, "IE_NOT_FOUND");
+    }
+
+    /**
+     * ProvMnS exception handler.
+     *
+     * @param exception the exception to handle
+     * @return response with response code 422.
+     */
+    @ExceptionHandler({ProvMnSNotCompatible.class})
+    public static ResponseEntity<Object> provMnSNotCompatibleException(final Exception exception) {
+        if (exception.getMessage().contains("GET")) {
+            return buildProvMnSErrorResponseGet(HttpStatus.UNPROCESSABLE_ENTITY, exception, "SERVER_LIMITATION");
+        } else if (exception.getMessage().contains("PATCH")) {
+            return buildProvMnSErrorResponsePatch(HttpStatus.UNPROCESSABLE_ENTITY, exception, "SERVER_LIMITATION");
+        }
+        return buildProvMnSErrorResponseDefault(HttpStatus.UNPROCESSABLE_ENTITY, exception, "SERVER_LIMITATION");
+    }
+
+    /**
+     * ProvMnS exception handler.
+     *
+     * @param exception the exception to handle
+     * @return response with response code 406.
+     */
+    @ExceptionHandler({ProvMnSNotReady.class, ProvMnSCoordinationManagementDenied.class})
+    public static ResponseEntity<Object> provMnSNotReadyException(final Exception exception) {
+        if (exception.getMessage().contains("GET")) {
+            return buildProvMnSErrorResponseGet(HttpStatus.NOT_ACCEPTABLE, exception, "APPLICATION_LAYER_ERROR");
+        } else if (exception.getMessage().contains("PATCH")) {
+            return buildProvMnSErrorResponsePatch(HttpStatus.NOT_ACCEPTABLE, exception, "APPLICATION_LAYER_ERROR");
+        }
+        return buildProvMnSErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE, exception, "APPLICATION_LAYER_ERROR");
+    }
+
     private static ResponseEntity<Object> buildErrorResponse(final HttpStatus status, final Exception exception) {
         if (exception.getCause() != null || !(exception instanceof CpsException)) {
             log.error("Exception occurred", exception);
@@ -133,5 +190,35 @@ public class NetworkCmProxyRestExceptionHandler {
         dmiErrorMessage.setMessage(dmiClientRequestException.getMessage());
         dmiErrorMessage.setDmiResponse(dmiErrorResponse);
         return new ResponseEntity<>(dmiErrorMessage, HttpStatus.BAD_GATEWAY);
+    }
+
+    private static ResponseEntity<Object> buildProvMnSErrorResponseDefault(final HttpStatus status,
+                                                                                         final Exception exception,
+                                                                                         final String type) {
+        final int endIndex = exception.getMessage().lastIndexOf("-");
+        final ErrorResponseDefault errorResponseDefault = new ErrorResponseDefault(type);
+        errorResponseDefault.setStatus(status.toString());
+        errorResponseDefault.setReason(exception.getMessage().substring(0, endIndex));
+        return new ResponseEntity<>(errorResponseDefault, status);
+    }
+
+    private static ResponseEntity<Object> buildProvMnSErrorResponseGet(final HttpStatus status,
+                                                                                 final Exception exception,
+                                                                                 final String type) {
+        final int endIndex = exception.getMessage().lastIndexOf("-");
+        final ErrorResponseGet errorResponseGet = new ErrorResponseGet(type);
+        errorResponseGet.setStatus(status.toString());
+        errorResponseGet.setReason(exception.getMessage().substring(0, endIndex));
+        return new ResponseEntity<>(errorResponseGet, status);
+    }
+
+    private static ResponseEntity<Object> buildProvMnSErrorResponsePatch(final HttpStatus status,
+                                                                                       final Exception exception,
+                                                                                       final String type) {
+        final int endIndex = exception.getMessage().lastIndexOf("-");
+        final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(type);
+        errorResponsePatch.setStatus(status.toString());
+        errorResponsePatch.setReason(exception.getMessage().substring(0, endIndex));
+        return new ResponseEntity<>(errorResponsePatch, status);
     }
 }
