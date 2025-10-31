@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8b9f397_68396437",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-31T10:32:34Z",
+      "side": 1,
+      "message": "it was a code gen issue. its not declared in the docs",
+      "parentUuid": "72ba2b0c_33f50277",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30113581_3cbedc96",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
         "patchSetId": 11
@@ -94,6 +118,30 @@
       "writtenOn": "2025-10-22T10:00:57Z",
       "side": 1,
       "message": "NB: needs to be in line with line 196",
+      "range": {
+        "startLine": 196,
+        "startChar": 78,
+        "endLine": 196,
+        "endChar": 99
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b315c9e3_fcdccd37",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-10-31T10:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b98c6122_817aa8c6",
       "range": {
         "startLine": 196,
         "startChar": 78,
