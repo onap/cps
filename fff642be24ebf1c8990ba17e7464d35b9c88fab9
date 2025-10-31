@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "486ecbc8_c73a7b15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-31T15:44:20Z",
+      "side": 1,
+      "message": "I have a few questions for my understanding of provmns delete operations...",
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9434e1_59eb3172",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-31T15:44:20Z",
+      "side": 1,
+      "message": "Since CmHandleState is ENUM (constant) you can compare them using \"\u003d\u003d\" because it will be faster. It also safer at compile time.\n\nCmHandleState.READY \u003d\u003d yangModelCmHandle.getCompositeState().getCmHandleState()",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 105,
+        "endChar": 33
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c59f2e_d7fc2a26",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-31T15:44:20Z",
+      "side": 1,
+      "message": "I cannot remember the requirement, but I see you always return 200 (even though you don\u0027t make a call towards dmi e.g. for non-ready cm handles).\n\nWas it the requirement that always returning 200?\n\nWhen I read the API spec for DELETE, you only mentions this:\n\n     * @return Success case \"200 OK\". This status code is returned, when the resource has been successfully deleted.\n     * The response body is empty. (status code 200)",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 51
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74a2af0_89454c38",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-10-31T15:44:20Z",
+      "side": 1,
+      "message": "You can have another test for non-ready cm handles. E.g. you can show us how does prov mns interface behaves for ADVISED cm handles? should you still make a call towards dmi for ADVISED cm handles to delete or not?",
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
