@@ -42,12 +42,12 @@ trap on_exit EXIT SIGINT SIGTERM SIGQUIT
 
 pushd "$(dirname "$0")" || exit 1
 
+# Install needed dependencies for any deployment type
+source install-deps.sh "$deploymentType"
+
 # Handle deployment type specific setup
 if [[ "$deploymentType" == "dockerHosts" ]]; then
     echo "Test profile: $testProfile, and deployment type: $deploymentType provided for docker-compose cluster"
-
-    # Install needed dependencies for docker deployment
-    source install-deps.sh
 
     # Run setup for docker-compose environment
     ./setup.sh "$testProfile"
