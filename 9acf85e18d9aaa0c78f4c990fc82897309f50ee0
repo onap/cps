@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b06867b_cf92f2f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7965
+      },
+      "writtenOn": "2025-10-31T05:00:23Z",
+      "side": 1,
+      "message": "I guess good for further review by the team.\nI see most of my comments are resolved.",
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
