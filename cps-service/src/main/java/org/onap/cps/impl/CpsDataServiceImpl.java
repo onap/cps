@@ -31,6 +31,8 @@ import static org.onap.cps.events.model.EventPayload.Action.REMOVE;
 import static org.onap.cps.events.model.EventPayload.Action.REPLACE;
 import static org.onap.cps.utils.ContentType.JSON;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -43,6 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.DataValidationException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
@@ -209,7 +212,11 @@ public class CpsDataServiceImpl implements CpsDataService {
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
         final Collection<DataNode> dataNodes = dataNodeFactory
                 .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
-        cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        if (!"/".equals(parentNodeXpath)) {
+            cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
+        } else {
+            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);
+        }
         sendDataUpdatedEvent(anchor, parentNodeXpath, REPLACE_ACTION, observedTimestamp);
     }
 
