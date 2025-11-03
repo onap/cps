@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be3a1176_65ff86d3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T17:18:21Z",
+      "side": 1,
+      "message": "this method only returns error response if its null if im right, it was a bit unclear from just reading this part and error response is not used anywhere else\n\neither change the method name or refactor for clarity",
+      "range": {
+        "startLine": 71,
+        "startChar": 40,
+        "endLine": 71,
+        "endChar": 107
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8efe8e8_99d97d81",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
         "patchSetId": 2
@@ -36,6 +59,29 @@
         "startChar": 100,
         "endLine": 103,
         "endChar": 109
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ac419f0_e9cf77c0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T17:18:21Z",
+      "side": 1,
+      "message": "can this be changed ?if so maybe mention put and delete for this",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 57
       },
       "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
