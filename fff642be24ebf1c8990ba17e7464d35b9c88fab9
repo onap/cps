@@ -67,6 +67,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa8753e0_45fb1cf3",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "not ready should be handle as an error , using Sean common new ErrorResponseBuilder for these case\nIgnore for now, leave a TO to handle NOT ready later",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 53
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98c59f2e_d7fc2a26",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
         "patchSetId": 13
@@ -114,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c4ac836_de80357b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "as agreed this is compliant with yaml definition of the 3GPP interface\nBUT we should return the response in status code from the DMI",
+      "parentUuid": "daac0125_487d34e1",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 51
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e74a2af0_89454c38",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
         "patchSetId": 13
@@ -125,6 +172,52 @@
       "writtenOn": "2025-10-31T15:44:20Z",
       "side": 1,
       "message": "You can have another test for non-ready cm handles. E.g. you can show us how does prov mns interface behaves for ADVISED cm handles? should you still make a call towards dmi for ADVISED cm handles to delete or not?",
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "430a45b2_07e1644b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "return reponsentity",
+      "range": {
+        "startLine": 217,
+        "startChar": 11,
+        "endLine": 217,
+        "endChar": 16
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b232648_a263e79a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "just return the response from DMI here too",
+      "range": {
+        "startLine": 220,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 40
+      },
       "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },

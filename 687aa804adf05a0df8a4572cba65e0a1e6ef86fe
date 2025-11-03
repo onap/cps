@@ -106,6 +106,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79967121_95bb8a37",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "This is fundamentally caused by the original 3GPP and effectively generated. we cannot change",
+      "parentUuid": "98e44c98_12495085",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30113581_3cbedc96",
@@ -119,6 +143,30 @@
       "writtenOn": "2025-10-22T10:00:57Z",
       "side": 1,
       "message": "Which error code exactly this api return in case of error? it should not be 200 I believe.",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc8dcb69_c959d59c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T11:07:58Z",
+      "side": 1,
+      "message": "as above",
+      "parentUuid": "30113581_3cbedc96",
       "range": {
         "startLine": 197,
         "startChar": 29,
