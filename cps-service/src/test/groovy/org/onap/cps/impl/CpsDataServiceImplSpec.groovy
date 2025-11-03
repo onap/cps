@@ -26,6 +26,7 @@ package org.onap.cps.impl
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import ch.qos.logback.core.read.ListAppender
+import org.jose4j.json.JsonUtil
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.exceptions.ConcurrencyException
@@ -48,6 +49,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import java.time.OffsetDateTime
 
@@ -577,4 +579,16 @@ class CpsDataServiceImplSpec extends Specification {
         mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
 
+    def 'should throw exception when JSON has no root element'() {
+        when: objectUnderTest.updateDataNodeAndDescendants(
+                dataspaceName, anchorName,'/','{}',null, ContentType.JSON)
+        then:def e = thrown(IllegalArgumentException)
+        e.message.contains('does not contain any root element')
+    }
+    def 'should throw exception for invalid JSON structure'() {
+        when:objectUnderTest.updateDataNodeAndDescendants(dataspaceName,anchorName,'/',
+                '{"test-tree": }',null,ContentType.JSON)
+        then:def e = thrown(IllegalArgumentException)
+            e.message.contains('Invalid JSON data for root node extraction')
+    }
 }
