@@ -28,6 +28,9 @@ import static org.onap.cps.cpspath.parser.CpsPathUtil.NO_PARENT_PATH;
 import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import io.micrometer.core.annotation.Timed;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -202,10 +205,28 @@ public class CpsDataServiceImpl implements CpsDataService {
                                              final OffsetDateTime observedTimestamp, final ContentType contentType) {
         cpsValidator.validateNameCharacters(dataspaceName, anchorName);
         final Anchor anchor = cpsAnchorService.getAnchor(dataspaceName, anchorName);
+        final String effectiveXpath = "/".equals(parentNodeXpath)
+                ? "/" + extractRootNodeName(nodeData)
+                : parentNodeXpath;
         final Collection<DataNode> dataNodes = dataNodeFactory
                 .createDataNodesWithAnchorParentXpathAndNodeData(anchor, parentNodeXpath, nodeData, contentType);
+        if (CpsPathUtil.isPathToListElement(effectiveXpath)) {
+            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, effectiveXpath, dataNodes);
+        }
         cpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName, dataNodes);
-        sendDataUpdatedEvent(anchor, parentNodeXpath, Operation.UPDATE, observedTimestamp);
+        sendDataUpdatedEvent(anchor, effectiveXpath, Operation.UPDATE, observedTimestamp);
+    }
+
+    private String extractRootNodeName(final String jsonData) {
+        try {
+            final JsonObject jsonObject = JsonParser.parseString(jsonData).getAsJsonObject();
+            if (jsonObject.entrySet().isEmpty()) {
+                throw new IllegalArgumentException("JSON data does not contain any root element.");
+            }
+            return jsonObject.entrySet().iterator().next().getKey();
+        } catch (final JsonSyntaxException e) {
+            throw new IllegalArgumentException("Invalid JSON data for root node extraction", e);
+        }
     }
 
     @Override
