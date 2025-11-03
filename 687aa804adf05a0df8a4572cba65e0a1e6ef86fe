@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98e44c98_12495085",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:03:51Z",
+      "side": 1,
+      "message": "can we discuss this",
+      "parentUuid": "c8b9f397_68396437",
+      "range": {
+        "startLine": 70,
+        "startChar": 30,
+        "endLine": 70,
+        "endChar": 47
+      },
+      "revId": "687aa804adf05a0df8a4572cba65e0a1e6ef86fe",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30113581_3cbedc96",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
         "patchSetId": 11
