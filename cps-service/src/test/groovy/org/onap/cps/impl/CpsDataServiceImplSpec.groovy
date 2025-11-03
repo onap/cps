@@ -299,11 +299,16 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'replace data method is invoked with json data #jsonData and parent node xpath #parentNodeXpath'
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, jsonData, observedTimestamp, ContentType.JSON)
         then: 'the persistence service method is invoked with correct parameters'
+            if (parentNodeXpath == '/') {
             1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
-                    { dataNode -> dataNode.xpath == expectedNodeXpath})
+                    { dataNodes -> dataNodes*.xpath == expectedNodeXpath })
+            } else {
+            1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
+                    { dataNodes -> dataNodes*.xpath == expectedNodeXpath })
+        }
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
-        where: 'following parameters were used'
+        where:'following parameters were used'
             scenario         | parentNodeXpath | jsonData                                           || expectedNodeXpath
             'top level node' | '/'             | '{"test-tree": {"branch": []}}'                    || ['/test-tree']
             'level 2 node'   | '/test-tree'    | '{"branch": [{"name":"Name"}]}'                    || ['/test-tree/branch[@name=\'Name\']']
@@ -316,14 +321,19 @@ class CpsDataServiceImplSpec extends Specification {
         when: 'replace data method is invoked with XML data #xmlData and parent node xpath #parentNodeXpath'
             objectUnderTest.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath, xmlData, observedTimestamp, ContentType.XML)
         then: 'the persistence service method is invoked with correct parameters'
-            1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
-                { dataNode -> dataNode.xpath == expectedNodeXpath })
+            if (parentNodeXpath == '/') {
+                1 * mockCpsDataPersistenceService.updateDataNodesAndDescendants(dataspaceName, anchorName,
+                    { dataNodes -> dataNodes*.xpath == expectedNodeXpath })
+        }    else {
+             1 * mockCpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath,
+                    { dataNodes -> dataNodes*.xpath == expectedNodeXpath })
+        }
         and: 'the CpsValidator is called on the dataspaceName and AnchorName'
-            1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
+             1 * mockCpsValidator.validateNameCharacters(dataspaceName, anchorName)
         where: 'following parameters were used'
-            scenario       | parentNodeXpath | xmlData                                                                                                                                  || expectedNodeXpath
-            'level 2 node' | '/test-tree'    | '<branch><name>Name</name></branch>'                                                                                                     || ['/test-tree/branch[@name=\'Name\']']
-            'xml list'     | '/test-tree'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch>' + '<branch><name>Name2</name></branch></test-tree>' || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
+             scenario       | parentNodeXpath | xmlData                                                                                                                                  || expectedNodeXpath
+             'level 2 node' | '/test-tree'    | '<branch><name>Name</name></branch>'                                                                                                     || ['/test-tree/branch[@name=\'Name\']']
+             'xml list'     | '/test-tree'    | '<test-tree xmlns="org:onap:cps:test:test-tree"><branch><name>Name1</name></branch><branch><name>Name2</name></branch></test-tree>'     || ["/test-tree/branch[@name='Name1']", "/test-tree/branch[@name='Name2']"]
     }
 
     def 'Replace data node using multiple JSON data nodes: #scenario.'() {
