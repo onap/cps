@@ -156,7 +156,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
 
         final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
-            .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
+                .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
 
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
@@ -164,7 +164,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         logMissingXPaths(xpaths, existingFragmentEntities);
 
         existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
 
         for (final FragmentEntity existingFragmentEntity : existingFragmentEntities) {
             final DataNode updatedDataNode = xpathToUpdatedDataNode.get(existingFragmentEntity.getXpath());
