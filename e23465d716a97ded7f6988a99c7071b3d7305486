@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c15cdf_cb9e9b45",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T14:04:02Z",
+      "side": 1,
+      "message": "why not 201? like the others",
+      "range": {
+        "startLine": 243,
+        "startChar": 6,
+        "endLine": 243,
+        "endChar": 12
+      },
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c34cc0_31f92894",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T14:04:02Z",
+      "side": 1,
+      "message": "201 for created?",
+      "range": {
+        "startLine": 1832,
+        "startChar": 8,
+        "endLine": 1832,
+        "endChar": 14
+      },
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
