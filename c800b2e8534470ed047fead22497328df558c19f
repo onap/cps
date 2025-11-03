@@ -45,6 +45,121 @@
       },
       "revId": "c800b2e8534470ed047fead22497328df558c19f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a93dffd0_3f9422bb",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T14:01:15Z",
+      "side": 1,
+      "message": "would have preferred a TODO bu this is OK",
+      "range": {
+        "startLine": 102,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 101
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a0dde3_49af93cf",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T14:01:15Z",
+      "side": 1,
+      "message": "howw wdoe this work now, sincce you have a mocked rest client?!\nDo you define the response from the emock somewhere?\n\nThe test should read like this\nthen: \u0027response is the same as the response from the DMIService\u0027\n            assert response.status \u003d\u003d responseFromDmi\n            \n            \nI often use 418, \"I am a Teapot\" for such mock response so it clearly not a hardcoded 200 from somewhere else....",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 59
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95933818_f1af6903",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T14:01:15Z",
+      "side": 1,
+      "message": "update javadox with return type and description",
+      "range": {
+        "startLine": 220,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 15
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cbc072_727855d2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T14:01:15Z",
+      "side": 1,
+      "message": "still requires splitting up",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 0
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21ba6a6_e73b2c63",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T14:01:15Z",
+      "side": 1,
+      "message": "sine this format is not validated (corect?) I would prefer myFdn or similar",
+      "range": {
+        "startLine": 70,
+        "startChar": 67,
+        "endLine": 70,
+        "endChar": 79
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
