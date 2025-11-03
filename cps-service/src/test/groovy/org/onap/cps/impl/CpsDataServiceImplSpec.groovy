@@ -576,5 +576,4 @@ class CpsDataServiceImplSpec extends Specification {
         def schemaContext = YangTextSchemaSourceSetBuilder.of(yangResourceNameToContent).schemaContext()
         mockYangTextSchemaSourceSet.schemaContext() >> schemaContext
     }
-
 }
