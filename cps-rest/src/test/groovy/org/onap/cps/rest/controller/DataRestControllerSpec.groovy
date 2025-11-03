@@ -440,6 +440,27 @@ class DataRestControllerSpec extends Specification {
             1 * mockCpsDataService.validateData(dataspaceName, anchorName, '/', requestBodyJson, ContentType.JSON)
     }
 
+    def 'Replace data node tree returns #hasNewNodes for #scenario.'() {
+        given: 'endpoint to replace node'
+        def endpoint = "$dataNodeBaseEndpointV2/anchors/$anchorName/nodes"
+        when: 'put request is performed'
+        def response =
+                mvc.perform(
+                        put(endpoint)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(requestBodyJson)
+                                .param('xpath', ''))
+                        .andReturn().response
+        then: 'the cps data service method is invoked with expected parameters'
+        1 * mockCpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, '/', expectedJsonData, noTimestamp, ContentType.JSON) >> hasNewNodes
+        and: 'response status indicates success or creation'
+        assert response.status == expectedStatus
+        where:
+        scenario                                      | hasNewNodes || expectedStatus
+        'JSON content: root node updated only'        | false       || HttpStatus.OK.value()
+        'JSON content: root node with new list items' | true        || HttpStatus.CREATED.value()
+    }
+
     def 'Update data node and descendants with observedTimestamp.'() {
         given: 'endpoint to replace node'
             def endpoint = "$dataNodeBaseEndpointV1/anchors/$anchorName/nodes"

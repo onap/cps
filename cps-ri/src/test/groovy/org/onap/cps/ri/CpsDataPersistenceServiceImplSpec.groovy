@@ -1,8 +1,8 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
- * Modifications Copyright (C) 2021-2023 Nordix Foundation
- * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
+ * Modifications Copyright (C) 2021-2023export  Nordix Foundation
+ * Modifications Copyright (C) 2022-2025 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -254,6 +254,28 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
                 assert fragmentEntityPerXpath.get('/test/xpath1').childFragments.first().attributes == '{"id":"childTestId1"}'
                 assert fragmentEntityPerXpath.get('/test/xpath2').childFragments.first().attributes == '{"id":"childTestId2"}'
             }})
+    }
+
+    def 'Replace data nodes and add new list item'() {
+        given: 'The fragment repository returns existing fragment for known XPath'
+        def existingFragmentEntity = new FragmentEntity(id: 1, xpath: '/bookstore/categories[@code=1]/books[@title="Matilda"]', attributes: '{"title":"Matilda","lang":"English"}', anchor: anchorEntity, childFragments: [] as Set)
+        mockFragmentRepository.findByAnchorAndXpathIn(_, _ as Set) >> [existingFragmentEntity]
+        and: 'a data node that represents replacing an attribute from an existing one'
+        def dataNode1 = new DataNode(xpath: '/bookstore/categories[@code=1]/books[@title="Matilda"]', leaves: ['title': 'Matilda', 'lang': 'French'])
+        and: 'a data node that represents adding a new list item'
+        def dataNode2 = new DataNode(xpath: '/bookstore/categories[@code=1]/books[@title="Book 2"]', leaves: ['title': 'Book 2', 'lang': 'English'])
+        when: 'the fragment entities are updated by the data nodes'
+        def result = objectUnderTest.updateDataNodesAndDescendants('dataspace', 'anchor', [dataNode1, dataNode2])
+        then: 'fragment repository saves the updated new fragments'
+        1 * mockFragmentRepository.saveAll({ fragmentEntities ->
+            {
+                assert fragmentEntities.size() == 2
+                def fragmentEntityPerXpath = fragmentEntities.collectEntries { [it.xpath, it] }
+                assert fragmentEntityPerXpath.get('/bookstore/categories[@code=1]/books[@title="Matilda"]').attributes.contains('"lang":"French"')
+                assert fragmentEntityPerXpath.get('/bookstore/categories[@code=1]/books[@title="Book 2"]').attributes.contains('"lang":"English"')
+            }})
+        and: 'result confirms new nodes were inserted'
+        assert result
     }
 
     def createDataNodeAndMockRepositoryMethodSupportingIt(xpath, scenario) {
