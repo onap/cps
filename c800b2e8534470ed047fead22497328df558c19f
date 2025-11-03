@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13918a6_9312f7c2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T13:59:23Z",
+      "side": 1,
+      "message": "can you add TODO\u0027s instead on comments or remove?",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 91
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917e08ef_6cc67aa8",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T13:59:23Z",
+      "side": 1,
+      "message": "same comment",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 101
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
