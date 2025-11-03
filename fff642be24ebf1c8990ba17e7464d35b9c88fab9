@@ -88,6 +88,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae817b5e_534985a6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404d6306_5ae88eaa",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 105,
+        "endChar": 33
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14329ab0_d2ed7bb2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa8753e0_45fb1cf3",
+      "range": {
+        "startLine": 105,
+        "startChar": 34,
+        "endLine": 105,
+        "endChar": 53
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98c59f2e_d7fc2a26",
@@ -159,6 +207,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16f1f9ea_f5ea928e",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c4ac836_de80357b",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 51
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e74a2af0_89454c38",
@@ -172,6 +244,24 @@
       "writtenOn": "2025-10-31T15:44:20Z",
       "side": 1,
       "message": "You can have another test for non-ready cm handles. E.g. you can show us how does prov mns interface behaves for ADVISED cm handles? should you still make a call towards dmi for ADVISED cm handles to delete or not?",
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2949ae57_bc9bdc62",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "as Toine pointed out no error handling now",
+      "parentUuid": "e74a2af0_89454c38",
       "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -199,6 +289,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a4c8c8_601c4763",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "430a45b2_07e1644b",
+      "range": {
+        "startLine": 217,
+        "startChar": 11,
+        "endLine": 217,
+        "endChar": 16
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b232648_a263e79a",
@@ -212,6 +326,30 @@
       "writtenOn": "2025-11-03T11:07:58Z",
       "side": 1,
       "message": "just return the response from DMI here too",
+      "range": {
+        "startLine": 220,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 40
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c481b5f_0ecc5d7c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T12:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b232648_a263e79a",
       "range": {
         "startLine": 220,
         "startChar": 8,
