@@ -95,6 +95,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5503e8be_8fb6c462",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "use classNameToErrorType static map. and the all the exception handler method probably can be combine into one...",
+      "range": {
+        "startLine": 128,
+        "startChar": 94,
+        "endLine": 128,
+        "endChar": 95
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8fe3267_fbf23e23",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "extact out common extracTReason to remove duplication",
+      "range": {
+        "startLine": 201,
+        "startChar": 38,
+        "endLine": 201,
+        "endChar": 84
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a7a6a66_3202ca2b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "suggestio, instead of springboot exception handling use Plain old Jav to directly build the error response here\nstill ahv a class called ProvMnsErrorResponseBuilder",
+      "range": {
+        "startLine": 78,
+        "startChar": 22,
+        "endLine": 78,
+        "endChar": 90
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3833f69b_e70639c4",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
         "patchSetId": 1
@@ -111,6 +180,75 @@
         "startChar": 96,
         "endLine": 97,
         "endChar": 105
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69695a27_1a86ee62",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/ConfigurationManagementOperation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "rename to\nPolicyExecutorOperationDetails",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff3dd876_9063bb4c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/OperationEntry.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "prepend with PolicyExecutor",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f8e4a9c_53dbc104",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/OperationValue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "prepend with PE",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 28
       },
       "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
@@ -141,6 +279,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b783b7f3_087f27ab",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "consider separate class for PolicyExecutorSomething",
+      "parentUuid": "dc4ca52d_62246bd0",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 11
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "090cae0d_26b78ea7",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
         "patchSetId": 1
@@ -157,6 +319,29 @@
         "startChar": 18,
         "endLine": 121,
         "endChar": 56
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb6948bc_89bbf7fa",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-03T10:49:20Z",
+      "side": 1,
+      "message": "typeReference",
+      "range": {
+        "startLine": 134,
+        "startChar": 57,
+        "endLine": 134,
+        "endChar": 65
       },
       "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
