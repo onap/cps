@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "410aac3f_f6dccea8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T16:30:04Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8efe8e8_99d97d81",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-03T16:30:04Z",
+      "side": 1,
+      "message": "i thought youre changing this with a handler class",
+      "range": {
+        "startLine": 103,
+        "startChar": 100,
+        "endLine": 103,
+        "endChar": 109
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
