@@ -399,6 +399,30 @@
       },
       "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1898316e_b841c0d7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 13
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-03T16:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eda70846_fe82f579",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 193,
+        "endChar": 80
+      },
+      "revId": "fff642be24ebf1c8990ba17e7464d35b9c88fab9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
