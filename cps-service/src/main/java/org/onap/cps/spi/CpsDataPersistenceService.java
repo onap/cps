@@ -114,8 +114,12 @@ public interface CpsDataPersistenceService {
      * @param dataspaceName dataspace name
      * @param anchorName    anchor name
      * @param dataNodes     data nodes
+     * @return              true if new data nodes were created during the update;
+     *                      false if only existing nodes were updated or no changes were applied
+     *
      */
-    void updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode> dataNodes);
+    boolean updateDataNodesAndDescendants(String dataspaceName, String anchorName, final Collection<DataNode>
+            dataNodes);
 
     /**
      * Replaces list content by removing all existing elements and inserting the given new elements

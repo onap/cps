@@ -169,11 +169,11 @@ public class DataRestController implements CpsDataApi {
         if (Boolean.TRUE.equals(dryRunEnabled)) {
             cpsDataService.validateData(dataspaceName, anchorName, parentNodeXpath, nodeData, contentType);
             return ResponseEntity.ok().build();
-        } else {
-            cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName, parentNodeXpath,
-                    nodeData, toOffsetDateTime(observedTimestamp), contentType);
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
+        final boolean hasNewDataNodes  = cpsDataService.updateDataNodeAndDescendants(dataspaceName, anchorName,
+                parentNodeXpath, nodeData, toOffsetDateTime(observedTimestamp), contentType);
+        final HttpStatus httpStatus = hasNewDataNodes  ? HttpStatus.CREATED : HttpStatus.OK;
+        return ResponseEntity.status(httpStatus).build();
     }
 
     @Override

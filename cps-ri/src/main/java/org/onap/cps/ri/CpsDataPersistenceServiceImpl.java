@@ -151,26 +151,49 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
     }
 
     @Override
-    public void updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
-                                              final Collection<DataNode> updatedDataNodes) {
+    public boolean updateDataNodesAndDescendants(final String dataspaceName, final String anchorName,
+                                                 final Collection<DataNode> updatedDataNodes) {
         final AnchorEntity anchorEntity = getAnchorEntity(dataspaceName, anchorName);
-
         final Map<String, DataNode> xpathToUpdatedDataNode = updatedDataNodes.stream()
-            .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
-
+                .collect(Collectors.toMap(DataNode::getXpath, dataNode -> dataNode));
         final Collection<String> xpaths = xpathToUpdatedDataNode.keySet();
         Collection<FragmentEntity> existingFragmentEntities = getFragmentEntities(anchorEntity, xpaths);
-
-        logMissingXPaths(xpaths, existingFragmentEntities);
-
+        final List<DataNode> newDataNodes = identifyNewDataNodes(updatedDataNodes, existingFragmentEntities);
         existingFragmentEntities = fragmentRepository.prefetchDescendantsOfFragmentEntities(
-            FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
+                FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS, existingFragmentEntities);
+        updateExistingFragments(existingFragmentEntities, xpathToUpdatedDataNode);
+        addFragmentEntitiesForNewDataNodes(anchorEntity, newDataNodes, existingFragmentEntities);
+        persistFragmentEntitiesWithRetry(anchorEntity, existingFragmentEntities);
+        return !newDataNodes.isEmpty();
+    }
 
+    private void updateExistingFragments(final Collection<FragmentEntity> existingFragmentEntities,
+                                         final Map<String, DataNode> xpathToUpdatedDataNode) {
         for (final FragmentEntity existingFragmentEntity : existingFragmentEntities) {
             final DataNode updatedDataNode = xpathToUpdatedDataNode.get(existingFragmentEntity.getXpath());
             updateFragmentEntityAndDescendantsWithDataNode(existingFragmentEntity, updatedDataNode);
         }
+    }
 
+    private void addFragmentEntitiesForNewDataNodes(final AnchorEntity anchorEntity, final List<DataNode> newNodes,
+                                                    final Collection<FragmentEntity> existingFragmentEntities) {
+
+        Long parentId = existingFragmentEntities.stream()
+                .filter(s -> s.getParentId() != null)
+                .map(FragmentEntity::getParentId)
+                .findFirst().get();
+
+        for (final DataNode newNode : newNodes) {
+            final FragmentEntity newFragmentEntity = convertToFragmentWithAllDescendants(anchorEntity, newNode);
+            if(newFragmentEntity.getParentId() == null){
+                newFragmentEntity.setParentId(parentId);
+            }
+            existingFragmentEntities.add(newFragmentEntity);
+        }
+    }
+
+    private void persistFragmentEntitiesWithRetry(final AnchorEntity anchorEntity,
+                                                  final Collection<FragmentEntity> existingFragmentEntities) {
         try {
             fragmentRepository.saveAll(existingFragmentEntities);
         } catch (final StaleStateException staleStateException) {
@@ -178,6 +201,15 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         }
     }
 
+    private List<DataNode> identifyNewDataNodes(final Collection<DataNode> updatedDataNodes,
+                                                final Collection<FragmentEntity> existingFragmentEntities) {
+        final Set<String> existingXpaths = existingFragmentEntities.stream()
+                .map(FragmentEntity::getXpath)
+                .collect(Collectors.toSet());
+        return updatedDataNodes.stream()
+                .filter(dataNode -> !existingXpaths.contains(dataNode.getXpath()))
+                .collect(Collectors.toList());
+    }
     private void retryUpdateDataNodesIndividually(final AnchorEntity anchorEntity,
                                                   final Collection<FragmentEntity> fragmentEntities) {
         final Collection<String> failedXpaths = new HashSet<>();

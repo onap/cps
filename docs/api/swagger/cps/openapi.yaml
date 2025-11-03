@@ -1829,6 +1829,13 @@ paths:
               schema:
                 type: object
           description: OK
+        "204":
+          content:
+            application/json:
+              schema:
+                example: my-resource
+                type: string
+          description: Created
         "400":
           content:
             application/json:
