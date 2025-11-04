@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29de937b_8744e8c4",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T11:26:07Z",
+      "side": 1,
+      "message": "rename to result",
+      "range": {
+        "startLine": 135,
+        "startChar": 16,
+        "endLine": 135,
+        "endChar": 25
+      },
+      "revId": "bc7d337b1510548b548639bb6ba28a2b34585dca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac127ddf_76cfdc87",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 23
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T11:26:07Z",
+      "side": 1,
+      "message": "you re asserting values(details) define by the test setup instead just do this:\n\nthen: \u0027the result is the same as the response from the dmi service\u0027\nassert result.equals(responseFromDmiService)",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 74
+      },
+      "revId": "bc7d337b1510548b548639bb6ba28a2b34585dca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
