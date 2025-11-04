@@ -45,7 +45,7 @@
         <dependency.check.version>9.2.0</dependency.check.version>
         <git.commit.id.version>9.0.1</git.commit.id.version>
         <gmavenplus.plugin.version>4.0.1</gmavenplus.plugin.version>
-        <jacoco.version>0.8.11</jacoco.version>
+        <jacoco.version>0.8.14</jacoco.version>
         <java.version>17</java.version>
         <jsonschema2pojo.maven.plugin.version>1.2.1</jsonschema2pojo.maven.plugin.version>
         <maven.checkstyle.plugin.version>3.3.1</maven.checkstyle.plugin.version>
