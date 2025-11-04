@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76fb6733_054fae57",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T16:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a00a07d3_c03eb716",
+      "range": {
+        "startLine": 104,
+        "startChar": 19,
+        "endLine": 104,
+        "endChar": 26
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd1294e2_6a5b0325",
@@ -94,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d927be_b4c1d10c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T16:01:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "25d8cb0a_37ca7dae",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8314174_b1d55bca",
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "I could be called from 4 different places in the controller, added it to make it easier to change if needed in future",
       "parentUuid": "6202df34_b450435a",
+      "range": {
+        "startLine": 100,
+        "startChar": 18,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0da7f3_2577b205",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T16:01:35Z",
+      "side": 1,
+      "message": "maybe private method in builder seems more natural",
+      "parentUuid": "0a78c1a9_2d167ff2",
       "range": {
         "startLine": 100,
         "startChar": 18,
