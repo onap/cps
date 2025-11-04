@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25d8cb0a_37ca7dae",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T14:39:21Z",
+      "side": 1,
+      "message": "Unfortunately these \u0027types\u0027 have been defined by the documentation",
+      "parentUuid": "80b15f1a_6dbb6a31",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8314174_b1d55bca",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
         "patchSetId": 3
@@ -106,6 +130,30 @@
       "writtenOn": "2025-11-04T10:23:55Z",
       "side": 1,
       "message": "NB: a bit OTT , do we really need this method? SUppose depends on hwo often it is called",
+      "range": {
+        "startLine": 100,
+        "startChar": 18,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a78c1a9_2d167ff2",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T14:39:21Z",
+      "side": 1,
+      "message": "I could be called from 4 different places in the controller, added it to make it easier to change if needed in future",
+      "parentUuid": "6202df34_b450435a",
       "range": {
         "startLine": 100,
         "startChar": 18,
