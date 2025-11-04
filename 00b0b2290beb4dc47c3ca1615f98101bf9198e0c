@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d318f046_6d3a0033",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 25
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-04T15:20:41Z",
+      "side": 1,
+      "message": "NB: unnecessary commit message, since it is a tiny detail.\nInstead you may have mentioned no unit test has been available for error-scenarios.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 42
+      },
+      "revId": "00b0b2290beb4dc47c3ca1615f98101bf9198e0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
