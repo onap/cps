@@ -22,6 +22,57 @@
       },
       "revId": "00b0b2290beb4dc47c3ca1615f98101bf9198e0c",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b98986_dd64db14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T16:12:39Z",
+      "side": 1,
+      "message": "Two NB, both can be addressed in later commits. Otherwise looks good",
+      "revId": "00b0b2290beb4dc47c3ca1615f98101bf9198e0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9494d092_e03ec7c1",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/model/ConfigurationManagementDeleteInput.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T16:12:39Z",
+      "side": 1,
+      "message": "NB: This class should be renamed to DeleteOperation and moved to policy executor package in ncmp-service. Can be resolved in another patch",
+      "revId": "00b0b2290beb4dc47c3ca1615f98101bf9198e0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fd2b36e_bf2db7da",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnsRequestParameters.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T16:12:39Z",
+      "side": 1,
+      "message": "NB: Not necessary, getAlternateId should return the same value. can be removed in later patch",
+      "revId": "00b0b2290beb4dc47c3ca1615f98101bf9198e0c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
