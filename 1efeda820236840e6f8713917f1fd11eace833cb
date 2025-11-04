@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "750e05fb_2647c284",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 24
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-04T12:37:43Z",
+      "side": 1,
+      "message": "when: get data job status",
+      "range": {
+        "startLine": 179,
+        "startChar": 15,
+        "endLine": 179,
+        "endChar": 59
+      },
+      "revId": "1efeda820236840e6f8713917f1fd11eace833cb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

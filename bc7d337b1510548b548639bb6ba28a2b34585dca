@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f120f4af_a0be6d16",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-04T12:37:43Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 51
+      },
+      "revId": "bc7d337b1510548b548639bb6ba28a2b34585dca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e1e806_89982944",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-04T12:37:43Z",
+      "side": 1,
+      "message": "say something like // TODO: Add handling for the case below in another story/task",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 51
+      },
+      "revId": "bc7d337b1510548b548639bb6ba28a2b34585dca",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29de937b_8744e8c4",
         "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
         "patchSetId": 23
