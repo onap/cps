@@ -109,6 +109,30 @@
       },
       "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088bfbb6_b200f905",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-04T16:19:49Z",
+      "side": 1,
+      "message": "It can, I\u0027ll add it to a line below.",
+      "parentUuid": "9ac419f0_e9cf77c0",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 57
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
