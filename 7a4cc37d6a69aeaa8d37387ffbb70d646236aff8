@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ed1b28_cb8dca4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:34:28Z",
+      "side": 1,
+      "message": "some very minor stuff",
+      "revId": "7a4cc37d6a69aeaa8d37387ffbb70d646236aff8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b639b8_82713c45",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:34:28Z",
+      "side": 1,
+      "message": "NB: Apply the same pattern as in the DmiRestClient tests:\nCheck the whole responseFromDmmiService",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 70
+      },
+      "revId": "7a4cc37d6a69aeaa8d37387ffbb70d646236aff8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227da7f4_3f6e51b9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:34:28Z",
+      "side": 1,
+      "message": "Data",
+      "range": {
+        "startLine": 175,
+        "startChar": 13,
+        "endLine": 175,
+        "endChar": 17
+      },
+      "revId": "7a4cc37d6a69aeaa8d37387ffbb70d646236aff8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412265f4_0a9033b4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 20
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:34:28Z",
+      "side": 1,
+      "message": "move up, ie just after Data Job Status test",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 38
+      },
+      "revId": "7a4cc37d6a69aeaa8d37387ffbb70d646236aff8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
