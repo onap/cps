@@ -70,6 +70,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c89c933_4023838c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6876c88_5fd59f50",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 28
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e96f4ac_d74a4129",
@@ -83,6 +107,30 @@
       "writtenOn": "2025-11-03T09:37:10Z",
       "side": 1,
       "message": "Why ProVMNS variatations, maybe this is not needed if we have a aspearte exception handler?!",
+      "range": {
+        "startLine": 125,
+        "startChar": 23,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "260ef752_95393367",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e96f4ac_d74a4129",
       "range": {
         "startLine": 125,
         "startChar": 23,
@@ -116,6 +164,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "719bd140_9e574e1d",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5503e8be_8fb6c462",
+      "range": {
+        "startLine": 128,
+        "startChar": 94,
+        "endLine": 128,
+        "endChar": 95
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8fe3267_fbf23e23",
@@ -129,6 +201,30 @@
       "writtenOn": "2025-11-03T10:49:20Z",
       "side": 1,
       "message": "extact out common extracTReason to remove duplication",
+      "range": {
+        "startLine": 201,
+        "startChar": 38,
+        "endLine": 201,
+        "endChar": 84
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62bed006_212f7ec5",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/NetworkCmProxyRestExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8fe3267_fbf23e23",
       "range": {
         "startLine": 201,
         "startChar": 38,
@@ -175,6 +271,30 @@
       "writtenOn": "2025-11-03T09:37:10Z",
       "side": 1,
       "message": "why not \"PUT\" and handle is where you check this value",
+      "range": {
+        "startLine": 97,
+        "startChar": 96,
+        "endLine": 97,
+        "endChar": 105
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8f38b4_68d3827c",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3833f69b_e70639c4",
       "range": {
         "startLine": 97,
         "startChar": 96,

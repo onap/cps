@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a00a07d3_c03eb716",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "should be mentioned  in the commit message, this is a very important change!",
+      "range": {
+        "startLine": 104,
+        "startChar": 19,
+        "endLine": 104,
+        "endChar": 26
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1294e2_6a5b0325",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "introduce local var for better readability",
+      "range": {
+        "startLine": 83,
+        "startChar": 16,
+        "endLine": 83,
+        "endChar": 106
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b15f1a_6dbb6a31",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "I suppose we didn\u0027t define these strings so we cannot calidy this btter?",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8314174_b1d55bca",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "familiar one: httpStatus, (almost) never shorten instance names\n(self review should have spotted this :-) )",
+      "range": {
+        "startLine": 48,
+        "startChar": 77,
+        "endLine": 48,
+        "endChar": 83
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6202df34_b450435a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "NB: a bit OTT , do we really need this method? SUppose depends on hwo often it is called",
+      "range": {
+        "startLine": 100,
+        "startChar": 18,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab717a2_8606f974",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "I think this can be simplified if you set a httpStatus first and then you need only one switch statement to process it for each operation",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 94
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efbf8500_66af9a32",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "provMnsRequestParameters",
+      "range": {
+        "startLine": 140,
+        "startChar": 103,
+        "endLine": 140,
+        "endChar": 107
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe938cff_fb4bfc8a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "can relax this when throwing exception ie just use *_",
+      "range": {
+        "startLine": 245,
+        "startChar": 70,
+        "endLine": 245,
+        "endChar": 118
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68f5fa97_9ef744f3",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "not correct!\nThe response status is ...",
+      "range": {
+        "startLine": 63,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 31
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ca99323_4b2f8a13",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "incorrect, describe expected status code instead",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 76
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e8c4a8b_90183110",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/Sleeper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "why the hell does Gerrit think this is a renamed file :-D",
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

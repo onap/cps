@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4a73b2a_4c19b524",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T10:23:55Z",
+      "side": 1,
+      "message": "it also seem bad separation of functionality\nie a class called ....Mapper does validation  either split into different classes or renamed the mapper if it does a lot more then just mapping",
+      "parentUuid": "be3a1176_65ff86d3",
+      "range": {
+        "startLine": 71,
+        "startChar": 40,
+        "endLine": 71,
+        "endChar": 107
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8efe8e8_99d97d81",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
         "patchSetId": 2
