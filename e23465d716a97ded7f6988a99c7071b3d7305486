@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ffe2ad9_756324dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-04T06:08:31Z",
+      "side": 1,
+      "message": "This approach is very complex not required as the issue is very simple, Replace a node with descendants fails to replace a data node under list node xpath, the logic for which is already implemented. The solution is to delegate the request to the logic handling list nodes.\n\nPlease refer documentation describing the issue: https://lf-onap.atlassian.net/wiki/spaces/DW/pages/30179456/CPS+Core+Rest+API+Replace+Node+with+List+Items",
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92c15cdf_cb9e9b45",
         "filename": "cps-rest/docs/openapi/cpsData.yml",
         "patchSetId": 1
