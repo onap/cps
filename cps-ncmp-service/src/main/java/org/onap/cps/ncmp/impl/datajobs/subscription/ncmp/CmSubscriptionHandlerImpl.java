@@ -58,12 +58,14 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     @Override
     public void createSubscription(final DataSelector dataSelector,
                                    final String subscriptionId, final List<String> dataNodeSelectors) {
-        for (final String dataNodeSelector : dataNodeSelectors) {
-            cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
+        if (cmDataJobSubscriptionPersistenceService.isNewSubscriptionId(subscriptionId)) {
+            for (final String dataNodeSelector : dataNodeSelectors) {
+                cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
+            }
+            sendEventToDmis(subscriptionId,
+                    cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId),
+                    dataSelector, "subscriptionCreateRequest");
         }
-        sendEventToDmis(subscriptionId,
-                cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId),
-                dataSelector, "subscriptionCreateRequest");
     }
 
     @Override

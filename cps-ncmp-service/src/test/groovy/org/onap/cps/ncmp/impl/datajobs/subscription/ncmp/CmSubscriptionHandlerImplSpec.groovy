@@ -44,6 +44,17 @@ class CmSubscriptionHandlerImplSpec extends Specification {
     def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService, mockDmiInEventMapper,
             mockDmiInEventProducer, mockInventoryPersistence, mockAlternateIdMatcher)
 
+    def 'Ignore CREATE request for existing subscription id'() {
+        given: 'an existing subscription id'
+            mockCmSubscriptionPersistenceService.isNewSubscriptionId('existingId') >> false
+        when: 'a subscription is created'
+            objectUnderTest.createSubscription(new DataSelector(), 'existingId', ['/someDataNodeSelector'])
+        then: 'request is ignored and no method is invoked'
+            0 * mockCmSubscriptionPersistenceService.add(*_)
+        and: 'an event is sent to the correct DMI'
+            0 * mockDmiInEventProducer.send(*_)
+    }
+
     def 'Process subscription CREATE request for new target [non existing]'() {
         given: 'relevant subscription details'
             def mySubId = 'dataJobId'

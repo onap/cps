@@ -22,16 +22,19 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.dmi;
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_DATA_SUBSCRIPTION_ACCEPTED;
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED;
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.REJECTED;
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
+import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi_to_ncmp.DataJobSubscriptionDmiOutEvent;
 import org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus;
 import org.onap.cps.ncmp.impl.datajobs.subscription.ncmp.CmSubscriptionHandler;
+import org.onap.cps.ncmp.impl.datajobs.subscription.utils.CmDataJobSubscriptionPersistenceService;
+import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -42,8 +45,10 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class EventConsumer {
 
-    private final CmSubscriptionHandler cmSubscriptionHandler;
     private static final String CORRELATION_ID_SEPARATOR = "#";
+
+    private final CmSubscriptionHandler cmSubscriptionHandler;
+    private final CmDataJobSubscriptionPersistenceService cmDataJobSubscriptionPersistenceService;
 
     /**
      * Consume the Cm Notification Subscription response event from the dmi-plugin.
@@ -69,9 +74,15 @@ public class EventConsumer {
 
             if ("subscriptionCreateResponse".equals(eventType)) {
                 final CmSubscriptionStatus cmSubscriptionStatus = getCmSubscriptionStatus(dmiOutEvent);
-                if (ACCEPTED.equals(cmSubscriptionStatus)) {
-                    cmSubscriptionHandler.updateCmSubscriptionStatus(
-                            subscriptionId, dmiPluginName, cmSubscriptionStatus);
+                cmSubscriptionHandler.updateCmSubscriptionStatus(subscriptionId, dmiPluginName, cmSubscriptionStatus);
+                if (REJECTED.equals(cmSubscriptionStatus)) {
+                    final Collection<String> dataNodeSelectors =
+                            cmDataJobSubscriptionPersistenceService.getDataNodeSelectors(subscriptionId);
+                    final String dataNodeSelectorAsString=
+                            JexParser.toJsonExpressionsAsString(dataNodeSelectors);
+                    log.info("DataJob CREATE request with the following details was rejected by DMI plugin {}: " +
+                            "dataJobId={} | dataNodeSelector={}", dmiPluginName, subscriptionId,
+                            dataNodeSelectorAsString);
                 }
             }
         }
