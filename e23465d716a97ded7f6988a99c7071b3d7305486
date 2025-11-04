@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bc2d515_c5ad31b7",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-04T12:46:58Z",
+      "side": 1,
+      "message": "201 Created - when something new is added to the database. \n204 No Content - when nothing new was added but something was updated, replaced or deleted",
+      "parentUuid": "92c15cdf_cb9e9b45",
+      "range": {
+        "startLine": 243,
+        "startChar": 6,
+        "endLine": 243,
+        "endChar": 12
+      },
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67c34cc0_31f92894",
         "filename": "docs/api/swagger/cps/openapi.yaml",
         "patchSetId": 1
