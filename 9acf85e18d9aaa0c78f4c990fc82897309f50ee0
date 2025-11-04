@@ -16,6 +16,29 @@
       "message": "I guess good for further review by the team.\nI see most of my comments are resolved.",
       "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2ad9d2_1049236a",
+        "filename": "cps-rest/src/main/java/org/onap/cps/rest/controller/DeltaRestController.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-04T16:54:51Z",
+      "side": 1,
+      "message": "NB: cant this be imported statically? so u can just call XML",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
