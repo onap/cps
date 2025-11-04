@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f010eac_413daa5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T08:52:48Z",
+      "side": 1,
+      "message": "I\u0027ll try teh testware update myself now, give me 10-15 minutes",
+      "revId": "c355c7b90b0df6ea58be5ec583d0fc574966172c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11cb5b12_88ba8d24",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T08:52:48Z",
+      "side": 1,
+      "message": "NB: the response(code) from the DMI service",
+      "range": {
+        "startLine": 135,
+        "startChar": 42,
+        "endLine": 135,
+        "endChar": 60
+      },
+      "revId": "c355c7b90b0df6ea58be5ec583d0fc574966172c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b0b165b_dd5f8e0c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T08:52:48Z",
+      "side": 1,
+      "message": "not quite what I meant.\nAlso most (maybe all) of this can/is already defined the common setup",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "c355c7b90b0df6ea58be5ec583d0fc574966172c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa2e226_0ead713f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientSpec.groovy",
+        "patchSetId": 17
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T08:52:48Z",
+      "side": 1,
+      "message": "you can now check teh result",
+      "range": {
+        "startLine": 196,
+        "startChar": 12,
+        "endLine": 196,
+        "endChar": 54
+      },
+      "revId": "c355c7b90b0df6ea58be5ec583d0fc574966172c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

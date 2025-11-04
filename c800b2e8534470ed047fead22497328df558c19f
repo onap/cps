@@ -328,6 +328,30 @@
       },
       "revId": "c800b2e8534470ed047fead22497328df558c19f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ff40a66_53785128",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/provmns/ProvMnSRestApiSpec.groovy",
+        "patchSetId": 15
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-04T08:52:48Z",
+      "side": 1,
+      "message": "ah, ok",
+      "parentUuid": "01961ac2_99c3b582",
+      "range": {
+        "startLine": 70,
+        "startChar": 67,
+        "endLine": 70,
+        "endChar": 79
+      },
+      "revId": "c800b2e8534470ed047fead22497328df558c19f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
