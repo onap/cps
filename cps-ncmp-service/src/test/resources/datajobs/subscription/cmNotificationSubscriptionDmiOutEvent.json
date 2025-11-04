@@ -1,6 +1,6 @@
 {
   "data": {
     "statusCode": "1",
-    "statusMessage": "ACCEPTED"
+    "statusMessage": "#statusMessage"
   }
 }

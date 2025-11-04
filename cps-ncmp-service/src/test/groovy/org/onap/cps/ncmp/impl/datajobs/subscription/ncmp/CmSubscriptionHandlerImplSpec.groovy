@@ -20,6 +20,14 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
+import ch.qos.logback.classic.Level
+
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.REJECTED
+
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataSelector
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.DmiInEventMapper
 import org.onap.cps.ncmp.impl.datajobs.subscription.dmi.EventProducer
@@ -29,9 +37,8 @@ import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.impl.utils.JexParser
+import org.slf4j.LoggerFactory
 import spock.lang.Specification
-
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
 
 class CmSubscriptionHandlerImplSpec extends Specification {
 
@@ -40,9 +47,30 @@ class CmSubscriptionHandlerImplSpec extends Specification {
     def mockDmiInEventProducer = Mock(EventProducer)
     def mockInventoryPersistence = Mock(InventoryPersistence)
     def mockAlternateIdMatcher = Mock(AlternateIdMatcher)
+    def logger = new ListAppender<ILoggingEvent>()
+
+    void setup() {
+        ((Logger) LoggerFactory.getLogger(CmSubscriptionHandlerImpl.class)).addAppender(logger)
+        logger.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CmSubscriptionHandlerImpl.class)).detachAndStopAllAppenders()
+    }
 
     def objectUnderTest = new CmSubscriptionHandlerImpl(mockCmSubscriptionPersistenceService, mockDmiInEventMapper,
             mockDmiInEventProducer, mockInventoryPersistence, mockAlternateIdMatcher)
+
+    def 'Ignore CREATE request for existing subscription id'() {
+        given: 'an existing subscription id'
+            mockCmSubscriptionPersistenceService.isNewSubscriptionId('existingId') >> false
+        when: 'a subscription is created'
+            objectUnderTest.createSubscription(new DataSelector(), 'existingId', ['/someDataNodeSelector'])
+        then: 'request is ignored and no method is invoked'
+            0 * mockCmSubscriptionPersistenceService.add(*_)
+        and: 'an event is sent to the correct DMI'
+            0 * mockDmiInEventProducer.send(*_)
+    }
 
     def 'Process subscription CREATE request for new target [non existing]'() {
         given: 'relevant subscription details'
@@ -51,6 +79,8 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def notificationTypes = []
             def notificationFilter = ''
             def dataSelector = new DataSelector(notificationTypes: notificationTypes, notificationFilter: notificationFilter)
+        and: 'persistence service confirms subscription id is new'
+            mockCmSubscriptionPersistenceService.isNewSubscriptionId(mySubId) >> true
         and: 'alternate Id matcher returns cm handle id for given data node selector'
             def fdn = getFdn(myDataNodeSelectors.iterator().next())
             mockAlternateIdMatcher.getCmHandleId(fdn) >> 'myCmHandleId'
@@ -79,6 +109,8 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def notificationTypes = []
             def notificationFilter = ''
             def dataSelector = new DataSelector(notificationTypes: notificationTypes, notificationFilter: notificationFilter)
+        and: 'persistence service confirms subscription id is new'
+            mockCmSubscriptionPersistenceService.isNewSubscriptionId(mySubId) >> true
         and: 'alternate Id matcher returns cm handle ids for given data node selectors'
             def fdn1 = getFdn(myDataNodeSelectors[0])
             def fdn2 = getFdn(myDataNodeSelectors[1])
@@ -115,6 +147,8 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             def myNewSubId = 'newId'
             def myDataNodeSelectors = ['/newDataNodeSelector[id=""]'].toList()
             def dataSelector = new DataSelector(notificationTypes: [], notificationFilter: '')
+        and: 'persistence service confirms subscription id is new'
+            mockCmSubscriptionPersistenceService.isNewSubscriptionId(myNewSubId) >> true
         and: 'alternate id matcher always returns a cm handle id'
             mockAlternateIdMatcher.getCmHandleId(_) >> 'someCmHandleId'
         and: 'the inventory persistence service returns cm handles with dmi information'
@@ -223,6 +257,29 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             scenario                           | dmiName        || expectedCallsToPersistenceService
             'data node selector for "myDmi"'   | 'myDmi'        || 1
             'data node selector for other dmi' | 'someOtherDmi' || 0
+    }
+
+    def 'Log update when subscription status is REJECTED'() {
+        given: 'dmi service name and subscription id'
+            def myDmi = 'myDmi'
+            def mySubscriptionId = 'mySubscriptionId'
+        and: 'the persistence service returns all inactive data node selectors'
+            def myDataNodeSelectors = ['/parent[id=""]'].asList()
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors(mySubscriptionId) >> myDataNodeSelectors
+        and: 'alternate id matcher always returns a cm handle id'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'someCmHandleId'
+        and: 'the inventory persistence service returns a yang model with the given dmi service name'
+            mockInventoryPersistence.getYangModelCmHandle(_) >> new YangModelCmHandle(dmiServiceName: myDmi)
+        when: 'update subscription status is called with status=REJECTED'
+            objectUnderTest.updateCmSubscriptionStatus(mySubscriptionId, myDmi, REJECTED)
+        then: 'the persistence service to update subscription status called with REJECTED for matching dmi name'
+            1 * mockCmSubscriptionPersistenceService.updateCmSubscriptionStatus('/parent[id=""]', REJECTED)
+        and: 'an event is logged with level INFO'
+            def loggingEvent = logger.list[0]
+            assert loggingEvent.level == Level.INFO
+        and: 'the log contains details of the rejected data node selectors'
+            assert loggingEvent.formattedMessage == 'DataJob CREATE request with the following details was rejected by DMI plugin myDmi: dataJobId=mySubscriptionId | dataNodeSelector=/parent[id=""]'
+
     }
 
 

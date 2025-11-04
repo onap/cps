@@ -20,6 +20,8 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp;
 
+import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.REJECTED;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,7 +44,6 @@ import org.onap.cps.ncmp.impl.utils.JexParser;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -58,12 +59,14 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
     @Override
     public void createSubscription(final DataSelector dataSelector,
                                    final String subscriptionId, final List<String> dataNodeSelectors) {
-        for (final String dataNodeSelector : dataNodeSelectors) {
-            cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
+        if (cmDataJobSubscriptionPersistenceService.isNewSubscriptionId(subscriptionId)) {
+            for (final String dataNodeSelector : dataNodeSelectors) {
+                cmDataJobSubscriptionPersistenceService.add(subscriptionId, dataNodeSelector);
+            }
+            sendEventToDmis(subscriptionId,
+                    cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId),
+                    dataSelector, "subscriptionCreateRequest");
         }
-        sendEventToDmis(subscriptionId,
-                cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId),
-                dataSelector, "subscriptionCreateRequest");
     }
 
     @Override
@@ -86,6 +89,7 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
                                            final CmSubscriptionStatus cmSubscriptionStatus) {
         final List<String> dataNodeSelectors =
                 cmDataJobSubscriptionPersistenceService.getInactiveDataNodeSelectors(subscriptionId);
+        final List<String> rejectedDataNodeSelectors = new ArrayList<>();
         for (final String dataNodeSelector : dataNodeSelectors) {
             final String cmHandleId = getCmHandleId(dataNodeSelector);
             if (cmHandleId == null) {
@@ -95,9 +99,24 @@ public class CmSubscriptionHandlerImpl implements CmSubscriptionHandler {
                 if (resolvedDmiServiceName.equals(dmiServiceName)) {
                     cmDataJobSubscriptionPersistenceService.updateCmSubscriptionStatus(dataNodeSelector,
                             cmSubscriptionStatus);
+                    if (cmSubscriptionStatus.equals(REJECTED)) {
+                        rejectedDataNodeSelectors.add(dataNodeSelector);
+                    }
                 }
             }
         }
+        if (!rejectedDataNodeSelectors.isEmpty()) {
+            logRejectedDataNodeSelectors(subscriptionId, dmiServiceName, rejectedDataNodeSelectors);
+        }
+    }
+
+    private static void logRejectedDataNodeSelectors(final String subscriptionId, final String dmiServiceName,
+                                                     final List<String> rejectedDataNodeSelectors) {
+        final String dataNodeSelectorAsString =
+                JexParser.toJsonExpressionsAsString(rejectedDataNodeSelectors);
+        log.info("DataJob CREATE request with the following details was rejected by DMI plugin {}: "
+                        + "dataJobId={} | dataNodeSelector={}", dmiServiceName, subscriptionId,
+                dataNodeSelectorAsString);
     }
 
     private void sendEventToDmis(final String subscriptionId,
