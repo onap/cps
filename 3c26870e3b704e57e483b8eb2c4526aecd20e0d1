@@ -221,6 +221,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99161839_9eec9f63",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ErrorResponseBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T10:00:11Z",
+      "side": 1,
+      "message": "belongs in REST layer",
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c00b4b00_327177cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ErrorResponseBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T10:00:11Z",
+      "side": 1,
+      "message": "this part belongs in the service layer ie in your validator",
+      "range": {
+        "startLine": 90,
+        "startChar": 18,
+        "endLine": 90,
+        "endChar": 43
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84319502_3aaac398",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
         "patchSetId": 5
@@ -290,6 +330,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37a40b64_1e4a14e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/RequestValidator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T10:00:11Z",
+      "side": 1,
+      "message": "dont use words like \u0027Request\u0027 in service layer.\njust provmns.Valdiator will do",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34cd08dd_b1bad51f",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/RequestValidator.java",
         "patchSetId": 5
@@ -301,6 +364,30 @@
       "writtenOn": "2025-11-05T09:24:22Z",
       "side": 1,
       "message": "the name is confusing and simply incorrect I think (it returns null when valid) and it really does 2 things\n1) Validation\n2) Error response buidling\n\nlet\u0027s split them!\ncome to think of it you can use your new ProvMsn InvalidPathException if you make it more generic and store the bits you need for the error response\n\nthe more I think about it is does 2 things that belong to different layers\na) Validation -\u003e Should be done in Service Layer (debatable but what we do in most cases)\nb) Error response building -\u003e Should be done in REST Layer (obviously!)\n\n\nSuggestion\nrename  and move provms.InvalidPathException to org.onap.cps.ncmp.api.exception.provMnsException (where all the exceptions for all features are)\n\nThis validator can do the validation and thrown an exception with the relevant message\n\nin the rest layer catch the exception and build the correct response depending on the type of request, probably in the Controller itself",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e33176_a51ee01b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/RequestValidator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T10:00:11Z",
+      "side": 1,
+      "message": "actually build error Response with dedicated class, just move it back into the REST layer",
+      "parentUuid": "34cd08dd_b1bad51f",
       "range": {
         "startLine": 47,
         "startChar": 34,
@@ -352,6 +439,29 @@
         "startChar": 21,
         "endLine": 40,
         "endChar": 25
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618436cb_2cbe04e3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/RequestValidatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T10:00:11Z",
+      "side": 1,
+      "message": "use \u0027",
+      "range": {
+        "startLine": 37,
+        "startChar": 85,
+        "endLine": 37,
+        "endChar": 94
       },
       "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
