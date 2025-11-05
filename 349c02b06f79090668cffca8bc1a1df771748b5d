@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d42500_2a1b6d94",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-05T10:12:45Z",
+      "side": 1,
+      "message": "being refactored to only use the data node selectors for relevant DMI",
+      "range": {
+        "startLine": 79,
+        "startChar": 18,
+        "endLine": 82,
+        "endChar": 83
+      },
+      "revId": "349c02b06f79090668cffca8bc1a1df771748b5d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
