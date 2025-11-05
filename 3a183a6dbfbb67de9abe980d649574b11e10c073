@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c212072_1b1eb1dc",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-05T09:42:18Z",
+      "side": 1,
+      "message": "Its now been moved to RequestValidator",
+      "parentUuid": "b8efe8e8_99d97d81",
+      "range": {
+        "startLine": 103,
+        "startChar": 100,
+        "endLine": 103,
+        "endChar": 109
+      },
+      "revId": "3a183a6dbfbb67de9abe980d649574b11e10c073",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ac419f0_e9cf77c0",
         "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSErrorResponseBuilder.java",
         "patchSetId": 2
