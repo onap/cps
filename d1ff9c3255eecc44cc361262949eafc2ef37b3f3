@@ -33,6 +33,23 @@
       "message": "Hey Shivani, I don\u0027t know really what strategy you used while rebasing your commit, but it seems wasn\u0027t right steps! you could have been using only these two while rebasing your commit:\n\n# Clean rebase against current master\ngit fetch origin\ngit rebase origin/master\n\nI know the file you changed only is CmSubscriptionSpec.groovy.\n\nI suggest raising a fresh commit from tha latest origin/master or try to rebase your patchset properly so that your file should only be available for review.\n\n\nI did a recheck your commit, since your current patchset does not work on my local machine. Your all delete integration tests are failigin.\n\nWhat other colleagues think or suggest?",
       "revId": "d1ff9c3255eecc44cc361262949eafc2ef37b3f3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46e19360_cc3afaf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-05T12:46:21Z",
+      "side": 1,
+      "message": "Please find the why verify job failed: \nYou can search it in the logs, it is similar what I had on my local machine.\n\n12:34:02 [ERROR] Crashed tests:\n12:34:02 [ERROR] org.onap.cps.integration.functional.ncmp.datajobs.subscription.CmSubscriptionSpec",
+      "revId": "d1ff9c3255eecc44cc361262949eafc2ef37b3f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
