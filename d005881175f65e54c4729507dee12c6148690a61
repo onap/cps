@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36071e33_7a5f156b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-05T15:55:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "604ed789_56055a9f",
+      "range": {
+        "startLine": 247,
+        "startChar": 43,
+        "endLine": 247,
+        "endChar": 45
+      },
+      "revId": "d005881175f65e54c4729507dee12c6148690a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50bf842a_de4e5e69",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-10-28T17:37:27Z",
       "side": 1,
       "message": "don\u0027t like hardcoded sleeps (which you are now increasing) , especially when these sleep statements kind of \u0027hidden\u0027 inside other methods\nthe risk is we end \u0027sleeping too much\u0027 and test take unnecessary long\nWe should be able to avoid these sleep when using Spock Poll feature properly,\nLook for \u0027PollingConditions().within\u0027 in groovy test classes on how to use this.  we can discuss later if you need help",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 276,
+        "endChar": 19
+      },
+      "revId": "d005881175f65e54c4729507dee12c6148690a61",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4137ee46_1cb55e0b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 8088
+      },
+      "writtenOn": "2025-11-05T15:55:48Z",
+      "side": 1,
+      "message": "Will do in separate commit",
+      "parentUuid": "50bf842a_de4e5e69",
       "range": {
         "startLine": 276,
         "startChar": 8,
