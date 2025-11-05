@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a8c0c9_6dd49f4a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "this is a Different (new?) Logger then the one define on line #61\nI think you can just use \nlogger.detachAndStopAllAppenders() here\nI that breaks the tests this line simply can be removed!",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 71
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29813e43_0c1b4345",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "this is NOT really checking for an error, it just check 2 words, nothing about it failing\n\nI woudl check with a single longer string here refleting the actual error message",
+      "range": {
+        "startLine": 235,
+        "startChar": 52,
+        "endLine": 235,
+        "endChar": 120
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a8e030_35ce7b3d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "Should not check for EMpty here?!",
+      "range": {
+        "startLine": 235,
+        "startChar": 19,
+        "endLine": 235,
+        "endChar": 34
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aede00f5_53907293",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "I know it is not being used (yet) but should be dataJobA",
+      "range": {
+        "startLine": 261,
+        "startChar": 78,
+        "endLine": 261,
+        "endChar": 89
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2d2229_76644bca",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "dataJobB",
+      "range": {
+        "startLine": 269,
+        "startChar": 78,
+        "endLine": 269,
+        "endChar": 89
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

@@ -50,6 +50,24 @@
       "message": "Please find the why verify job failed: \nYou can search it in the logs, it is similar what I had on my local machine.\n\n12:34:02 [ERROR] Crashed tests:\n12:34:02 [ERROR] org.onap.cps.integration.functional.ncmp.datajobs.subscription.CmSubscriptionSpec",
       "revId": "d1ff9c3255eecc44cc361262949eafc2ef37b3f3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfa3306_a1defb1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T17:13:40Z",
+      "side": 1,
+      "message": "I rebased it already yesterday (se Nordix patch) we are simply waiting on Shivani to fix the last issue with a test she has and push it to master",
+      "parentUuid": "ffd18b3c_7e39e80f",
+      "revId": "d1ff9c3255eecc44cc361262949eafc2ef37b3f3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
