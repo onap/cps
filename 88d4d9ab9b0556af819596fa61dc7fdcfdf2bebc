@@ -64,6 +64,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b362d317_79af3e52",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d31b85c9_2ae81eec",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "88d4d9ab9b0556af819596fa61dc7fdcfdf2bebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c8a647_ca7ec040",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69b7cbd_94a5e57d",
+      "range": {
+        "startLine": 40,
+        "startChar": 52,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "88d4d9ab9b0556af819596fa61dc7fdcfdf2bebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ac8e0c_355f29a4",
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37567de1_b6f2c45a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6ac8e0c_355f29a4",
+      "range": {
+        "startLine": 82,
+        "startChar": 25,
+        "endLine": 82,
+        "endChar": 46
+      },
+      "revId": "88d4d9ab9b0556af819596fa61dc7fdcfdf2bebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86f4db2c_b194f994",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-11-04T16:01:35Z",
       "side": 1,
       "message": "move PE stuff to \norg.onap.cps.ncmp.impl.data.policyexecutor packagee and/or PolicyExecutor class\n\nprobably no need to be ProvMnS specic ie that should not appear in any name",
+      "range": {
+        "startLine": 121,
+        "startChar": 42,
+        "endLine": 121,
+        "endChar": 71
+      },
+      "revId": "88d4d9ab9b0556af819596fa61dc7fdcfdf2bebc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21cd390_c0d2f20b",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86f4db2c_b194f994",
       "range": {
         "startLine": 121,
         "startChar": 42,

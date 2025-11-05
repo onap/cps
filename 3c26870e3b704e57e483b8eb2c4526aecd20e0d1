@@ -1,0 +1,400 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562bd975_b494ab32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Maybe we do a quick walkthrough of the comments later. SOme might need a bit of discussion ie they are more like proposal",
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f32830b_73082fb7",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "NB: Could use static imports to make this shorter",
+      "range": {
+        "startLine": 103,
+        "startChar": 94,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0d0db1_73dd8b24",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "NB: Normally test teh happy flow first and then the negative cases, positive scenario va be described shorten then too like so (also change variable names to \u0027english\u0027:\n\u0027ready cm handle\u0027\n\u0027cmhandle is not ready\u0027  (not the change of phrasing here)\n\u0027data producer if is not populated\u0027  (if relevant test both blank and null, i often feel it is good to \u0027describe\u0027 both even if is not really different paths\nin that case change the wording to \u0027null\u0027 and \u0027blank\u0027 (test this with one space)",
+      "range": {
+        "startLine": 106,
+        "startChar": 13,
+        "endLine": 106,
+        "endChar": 66
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dd4d688_f1056629",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/DeleteOperationDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Must be the copyright that makes gerrit think it is a renamed class :-)",
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b91e25_58aa4f66",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationDetails.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Can you use \u0027record\u0027 here too ?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7b6851_a93fb52a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationEntry.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Can you use \u0027record\u0027 here too ?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 42
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed39baa_72f2f351",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/OperationValue.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "Can you use \u0027record\u0027 here too ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c32375_483d5779",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "remove this part, its clear from the signature (ant not exacrly the request)",
+      "range": {
+        "startLine": 133,
+        "startChar": 50,
+        "endLine": 133,
+        "endChar": 61
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d38255_39e7cddb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "will this not always be delete?! Ie not needed\nIf you us eteh INtelliJ code check features it will probably point that out too",
+      "range": {
+        "startLine": 168,
+        "startChar": 74,
+        "endLine": 168,
+        "endChar": 101
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d9b38f_e931c2e4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "be consistent with previous method name\ncreateOPerationDetails",
+      "range": {
+        "startLine": 168,
+        "startChar": 34,
+        "endLine": 168,
+        "endChar": 67
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84319502_3aaac398",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "can this one really be null?!",
+      "range": {
+        "startLine": 64,
+        "startChar": 65,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a099fbe6_341d3b69",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "requires a lot of test, have you covered them all?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f456a9_50ed0f70",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/RequestParameters.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "\u0027ProvMNS\u0027 no longer needed given new context",
+      "range": {
+        "startLine": 53,
+        "startChar": 43,
+        "endLine": 53,
+        "endChar": 50
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34cd08dd_b1bad51f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/RequestValidator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "the name is confusing and simply incorrect I think (it returns null when valid) and it really does 2 things\n1) Validation\n2) Error response buidling\n\nlet\u0027s split them!\ncome to think of it you can use your new ProvMsn InvalidPathException if you make it more generic and store the bits you need for the error response\n\nthe more I think about it is does 2 things that belong to different layers\na) Validation -\u003e Should be done in Service Layer (debatable but what we do in most cases)\nb) Error response building -\u003e Should be done in REST Layer (obviously!)\n\n\nSuggestion\nrename  and move provms.InvalidPathException to org.onap.cps.ncmp.api.exception.provMnsException (where all the exceptions for all features are)\n\nThis validator can do the validation and thrown an exception with the relevant message\n\nin the rest layer catch the exception and build the correct response depending on the type of request, probably in the Controller itself",
+      "range": {
+        "startLine": 47,
+        "startChar": 34,
+        "endLine": 47,
+        "endChar": 58
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94a8aab5_455870e3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/exceptions/InvalidPathException.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "NB: fits on one line",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e66792ab_b46dc129",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParametersBuilderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "my-filter (since you check it later)",
+      "range": {
+        "startLine": 40,
+        "startChar": 21,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1534ca81_3ab5fa09",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/RequestValidatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "expand:\n\nGET with data producer null\nPUT with data producer blank\nPATH with data producer blank\n\nOR (maybe better):\n\nAdd the 3 operations (does DELETE use same validatio too?!) to your FIRST (happy) test on line #33\n\nDo your 2 negative scenarios here just with GET",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036dd491_7777ace6",
+        "filename": "cps-ncmp-service/src/test/resources/sample-provmns-json-translation.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-05T09:24:22Z",
+      "side": 1,
+      "message": "I think I prefer to see this hardcode in the test it is not too big and using triple \"\"\" it is easy to do",
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
