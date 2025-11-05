@@ -66,6 +66,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5a09f674_ac24501a",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-05T18:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb0d0db1_73dd8b24",
+      "range": {
+        "startLine": 106,
+        "startChar": 13,
+        "endLine": 106,
+        "endChar": 66
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3dd4d688_f1056629",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/DeleteOperationDetails.java",
         "patchSetId": 5
@@ -540,6 +564,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ae51a2_9e04a64a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-05T18:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7749fa51_c8fa6a6b",
+      "range": {
+        "startLine": 64,
+        "startChar": 65,
+        "endLine": 64,
+        "endChar": 84
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a099fbe6_341d3b69",
@@ -577,6 +625,30 @@
       "side": 1,
       "message": "All have been covered in test ware, Jacoco showing full coverage",
       "parentUuid": "a099fbe6_341d3b69",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb25f09_26fa77fe",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-05T18:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "117ba914_1790f563",
       "range": {
         "startLine": 55,
         "startChar": 0,
