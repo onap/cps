@@ -125,18 +125,25 @@ dmiStub:
   image:
     repository: nexus3.onap.org:10003/onap/dmi-stub
     tag: "1.8.0-SNAPSHOT"
-    pullPolicy: IfNotPresent
+    pullPolicy: Never
   replicaCount: 1
-  service:
+  deployment1:
+    containerPort: 8092
+  deployment2:
+    containerPort: 7092
+  service1:
     type: NodePort
     port: 8092
     nodePort: 30092
-  containerPort: 8092
+  service2:
+    type: NodePort
+    port: 7092
+    nodePort: 31092
   env:
     KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
     NCMP_ASYNC_M2M_TOPIC: "ncmp-async-m2m"
-    MODULE_INITIAL_PROCESSING_DELAY_MS: 180000
+    MODULE_INITIAL_PROCESSING_DELAY_MS: 0
     MODULE_REFERENCES_DELAY_MS: 100
     MODULE_RESOURCES_DELAY_MS: 1000
     READ_DATA_FOR_CM_HANDLE_DELAY_MS: 300
@@ -149,9 +156,17 @@ dmiStub:
       cpu: "1000m"
       memory: "2Gi"
   livenessProbe:
-    httpGet:
-      path: /actuator/health/readiness
-      port: 8092
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    failureThreshold: 3
+    deployment1:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 8092
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
+    deployment2:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 7092
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3

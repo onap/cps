@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub
+  name: {{ include "cps-and-ncmp.fullname" . }}-dmi-stub-2
   labels:
     app: {{ include "cps-and-ncmp.name" . }}
     component: dmi-stub
@@ -22,8 +22,10 @@ spec:
           image: "{{ .Values.dmiStub.image.repository }}:{{ .Values.dmiStub.image.tag }}"
           imagePullPolicy: {{ .Values.dmiStub.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.dmiStub.containerPort }}
+            - containerPort: {{ .Values.dmiStub.deployment2.containerPort }}
           env:
+            - name: DMI_STUB_SERVER_PORT
+              value: "{{ .Values.dmiStub.deployment2.containerPort }}"
             {{- range $key, $value := .Values.dmiStub.env }}
             - name: {{ $key }}
               value: "{{ $value }}"
@@ -31,4 +33,4 @@ spec:
           resources:
             {{- toYaml .Values.dmiStub.resources | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.dmiStub.livenessProbe | nindent 12 }}
+            {{- toYaml .Values.dmiStub.livenessProbe.deployment2 | nindent 12 }}
