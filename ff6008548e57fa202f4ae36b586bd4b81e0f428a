@@ -39,6 +39,30 @@
       },
       "revId": "ff6008548e57fa202f4ae36b586bd4b81e0f428a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbb25bd_8e2b3532",
+        "filename": "cps-service/src/main/java/org/onap/cps/events/CpsDataUpdateEventsProducer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T04:48:52Z",
+      "side": 1,
+      "message": "based on my analysis it will cause a conflict when we try to populate these fields using delta report. Because when we do deltaReport.getAction() it returns create, replace or remove as strings",
+      "parentUuid": "a2a9d166_258e28e2",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 52
+      },
+      "revId": "ff6008548e57fa202f4ae36b586bd4b81e0f428a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
