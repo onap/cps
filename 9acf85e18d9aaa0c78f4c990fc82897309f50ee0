@@ -80,6 +80,339 @@
       },
       "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e66f04_ca2841aa",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 11
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab67ff8_097a65f6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "Use \u0027some key\u0027 or \u0027some value\u0027, this looks like a single word \u0027somekey\u0027",
+      "range": {
+        "startLine": 97,
+        "startChar": 33,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2a9d7f_289956a9",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e97a1e_4c52dac3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "extra line",
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a74a3110_fb25b8d6",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "extra line, please check indentations and extra lines added throughout the file",
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "872f602b_020d17e3",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 120,
+        "startChar": 45,
+        "endLine": 120,
+        "endChar": 50
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7588a66e_473bc96b",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "change copyright",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c5da5a_a1b661bd",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/DeltaReportUtils.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 19
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe92597_918cf4df",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "incorrect copyright, remove line 2 and 3 only line 1 with updated year",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 59
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e759331a_38428864",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 38,
+        "startChar": 61,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd7b062_4b93a2fb",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "this is very lengthy, can make it simpler by extracting the deltaReports",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 43,
+        "endChar": 12
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11704ef6_52add645",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "delta report objects",
+      "range": {
+        "startLine": 46,
+        "startChar": 34,
+        "endLine": 46,
+        "endChar": 49
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fb78537_391212ae",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "use delta report in the legends, apply everywhere",
+      "range": {
+        "startLine": 47,
+        "startChar": 18,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bab8cf5_9b03587e",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe8eea4_0a8d04ac",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 28
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-06T11:02:33Z",
+      "side": 1,
+      "message": "if everything is set to null that means delta report does not conatain any info so an empty string should be returned. Need to verify this behavior",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "9acf85e18d9aaa0c78f4c990fc82897309f50ee0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
