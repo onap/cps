@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a4d5b4a_0be3cc29",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-06T09:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f32830b_73082fb7",
+      "range": {
+        "startLine": 103,
+        "startChar": 94,
+        "endLine": 103,
+        "endChar": 108
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb0d0db1_73dd8b24",

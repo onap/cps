@@ -236,6 +236,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b3f3d9_af999367",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-06T09:07:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49dd70fd_13175c08",
+      "range": {
+        "startLine": 168,
+        "startChar": 1,
+        "endLine": 175,
+        "endChar": 13
+      },
+      "revId": "9548949c30f4c610d403c1427f7a70d13a1f77b1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66e10477_5d941989",

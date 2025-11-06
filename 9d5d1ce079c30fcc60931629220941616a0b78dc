@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "012b39b7_2ef2ba36",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-06T09:07:10Z",
+      "side": 1,
+      "message": "NB: prefix with \u0027build\u0027 like to previous method to highlight the similarity of purpose",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 56
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb86169_23901ff3",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-06T09:07:10Z",
+      "side": 1,
+      "message": "NB: I think I prefer (usually use) \u0027\u003c 0\u0027",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "645e0980_c730f2c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-06T09:07:10Z",
+      "side": 1,
+      "message": "NB: *_",
+      "range": {
+        "startLine": 248,
+        "startChar": 39,
+        "endLine": 248,
+        "endChar": 44
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
