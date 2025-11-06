@@ -24,6 +24,7 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NA
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
+import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
@@ -33,7 +34,10 @@ import org.onap.cps.init.AbstractModelLoader;
 import org.onap.cps.init.ModelLoaderLock;
 import org.onap.cps.init.actuator.ReadinessManager;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -42,6 +46,9 @@ import org.springframework.stereotype.Service;
 @Service
 @Order(2)
 public class InventoryModelLoader extends AbstractModelLoader {
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
@@ -64,7 +71,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
                                 final ApplicationEventPublisher applicationEventPublisher,
                                 final ReadinessManager readinessManager) {
         super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
-            readinessManager);
+                readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
@@ -73,11 +80,11 @@ public class InventoryModelLoader extends AbstractModelLoader {
         if (isMaster) {
             log.info("Model Loader #2 Started: NCMP Inventory Models");
             final String schemaToInstall =
-                newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
+                    newRevisionEnabled ? NEW_INVENTORY_SCHEMA_SET_NAME : PREVIOUS_SCHEMA_SET_NAME;
             final String moduleRevision = getModuleRevision(schemaToInstall);
 
             if (isModuleRevisionInstalled(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, INVENTORY_YANG_MODULE_NAME,
-                moduleRevision)) {
+                    moduleRevision)) {
                 log.info("Model Loader #2: Revision {} is already installed.", moduleRevision);
             } else if (newRevisionEnabled && doesAnchorExist(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR)) {
                 log.info("Model Loader #2: Upgrading already installed inventory to revision {}.", moduleRevision);
@@ -119,9 +126,17 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void performInventoryDataMigration() {
-
         //1. Load all the cm handles (in batch)
         //2. Copy the state and known properties
+        try {
+            final Object migrationBean = applicationContext.getBean("inventoryDataMigration");
+            final Method migrateMethod = migrationBean.getClass().getMethod("migrate");
+            migrateMethod.invoke(migrationBean);
+        } catch (final NoSuchBeanDefinitionException e) {
+            log.info("No inventory data migration bean found. Skipping migration.");
+        } catch (final Exception e) {
+            log.error("Failed to execute inventory migration", e);
+        }
         log.info("Model Loader #2: Inventory module data migration is completed successfully.");
     }
 

@@ -86,9 +86,10 @@ public class CmHandleRegistrationServicePropertyHandler {
     public List<CmHandleRegistrationResponse> updateCmHandleProperties(
             final Collection<NcmpServiceCmHandle> updatedNcmpServiceCmHandles) {
         final Collection<String> rejectedCmHandleIds = alternateIdChecker
-            .getIdsOfCmHandlesWithRejectedAlternateId(updatedNcmpServiceCmHandles, AlternateIdChecker.Operation.UPDATE);
+                .getIdsOfCmHandlesWithRejectedAlternateId(
+                        updatedNcmpServiceCmHandles, AlternateIdChecker.Operation.UPDATE);
         final List<CmHandleRegistrationResponse> failureResponses =
-            CmHandleRegistrationResponse.createFailureResponses(rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST);
+                CmHandleRegistrationResponse.createFailureResponses(rejectedCmHandleIds, CM_HANDLE_ALREADY_EXIST);
         final List<CmHandleRegistrationResponse> cmHandleRegistrationResponses = new ArrayList<>(failureResponses);
         for (final NcmpServiceCmHandle updatedNcmpServiceCmHandle : updatedNcmpServiceCmHandles) {
             final String cmHandleId = updatedNcmpServiceCmHandle.getCmHandleId();
@@ -119,15 +120,16 @@ public class CmHandleRegistrationServicePropertyHandler {
 
     private void processUpdates(final DataNode existingCmHandleDataNode,
                                 final NcmpServiceCmHandle updatedNcmpServiceCmHandle) {
+        updateCmHandleStatus(updatedNcmpServiceCmHandle);
         updateAlternateId(updatedNcmpServiceCmHandle);
         updateDataProducerIdentifier(existingCmHandleDataNode, updatedNcmpServiceCmHandle);
         if (!updatedNcmpServiceCmHandle.getPublicProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, PUBLIC_PROPERTY,
-                updatedNcmpServiceCmHandle.getPublicProperties());
+                    updatedNcmpServiceCmHandle.getPublicProperties());
         }
         if (!updatedNcmpServiceCmHandle.getAdditionalProperties().isEmpty()) {
             updateProperties(existingCmHandleDataNode, ADDITIONAL_PROPERTY,
-                updatedNcmpServiceCmHandle.getAdditionalProperties());
+                    updatedNcmpServiceCmHandle.getAdditionalProperties());
         }
     }
 
@@ -141,8 +143,18 @@ public class CmHandleRegistrationServicePropertyHandler {
         }
     }
 
+    private void updateCmHandleStatus(final NcmpServiceCmHandle ncmpServiceCmHandle) {
+        final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
+        final String newCmHandleStatus = ncmpServiceCmHandle.getCmHandleStatus();
+        if (StringUtils.isNotBlank(newCmHandleStatus)) {
+            setAndUpdateCmHandleField(ncmpServiceCmHandle.getCmHandleId(), "cm-handle-state", newCmHandleStatus);
+            cmHandleIdPerAlternateId.delete(cmHandleId);
+            cmHandleIdPerAlternateId.set(newCmHandleStatus, cmHandleId);
+        }
+    }
+
     private void updateDataProducerIdentifier(final DataNode cmHandleDataNode,
-            final NcmpServiceCmHandle ncmpServiceCmHandle) {
+                                              final NcmpServiceCmHandle ncmpServiceCmHandle) {
         final String targetDataProducerIdentifier = ncmpServiceCmHandle.getDataProducerIdentifier();
         final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
 
@@ -167,7 +179,7 @@ public class CmHandleRegistrationServicePropertyHandler {
     }
 
     private void sendLcmEventForDataProducerIdentifier(final String cmHandleId,
-            final YangModelCmHandle existingYangModelCmHandle) {
+                                                       final YangModelCmHandle existingYangModelCmHandle) {
         final YangModelCmHandle updatedYangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
         final NcmpServiceCmHandle existingNcmpServiceCmHandle =
                 YangDataConverter.toNcmpServiceCmHandle(existingYangModelCmHandle);
