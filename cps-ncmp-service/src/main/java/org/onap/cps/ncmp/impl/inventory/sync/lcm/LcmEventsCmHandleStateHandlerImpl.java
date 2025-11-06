@@ -101,6 +101,14 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> {
             if (isNew(cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState())) {
+                final String existingStatus = cmHandleTransitionPair.getTargetYangModelCmHandle().getCmHandleStatus();
+                if (existingStatus != null && !existingStatus.isEmpty()) {
+                    cmHandleTransitionPair.getTargetYangModelCmHandle().setCmHandleStatus(
+                        cmHandleTransitionPair
+                                .getTargetYangModelCmHandle()
+                                .getCompositeState()
+                                .getCmHandleState().name());
+                }
                 newCmHandles.add(cmHandleTransitionPair.getTargetYangModelCmHandle());
             } else if (!isDeleted(cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState())) {
                 compositeStatePerCmHandleId.put(cmHandleTransitionPair.getTargetYangModelCmHandle().getId(),

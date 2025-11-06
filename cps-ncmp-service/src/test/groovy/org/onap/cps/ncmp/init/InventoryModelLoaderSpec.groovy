@@ -33,7 +33,9 @@ import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.NoSuchBeanDefinitionException
 import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -75,6 +77,13 @@ class InventoryModelLoaderSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
+
+    private void callPrivatePerformInventoryDataMigration() {
+        def method = objectUnderTest.class.getDeclaredMethod('performInventoryDataMigration')
+        method.accessible = true
+        method.invoke(objectUnderTest)
+    }
+
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
@@ -137,6 +146,65 @@ class InventoryModelLoaderSpec extends Specification {
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
     }
+
+
+
+    def 'performInventoryDataMigration executes migration successfully when bean is present'() {
+        given: 'a mock migration bean and an application context'
+        def mockMigrationBean = Mock(InventoryDataMigration)
+        def mockAppContext = Mock(ApplicationContext)
+
+        def field = objectUnderTest.class.getDeclaredField('applicationContext')
+        field.accessible = true
+        field.set(objectUnderTest, mockAppContext)
+
+        // return the mock bean when requested
+        mockAppContext.getBean('inventoryDataMigration') >> mockMigrationBean
+
+        when: 'the migration is performed'
+        callPrivatePerformInventoryDataMigration()
+
+        then: 'the migration bean migrate() method is invoked'
+        1 * mockMigrationBean.migrate()
+        and: 'a completion log message is written'
+        assert loggingListAppender.list.any { it.message.contains('completed successfully') }
+        assert !loggingListAppender.list.any { it.message.contains('Failed to execute') }
+    }
+
+
+    def 'performInventoryDataMigration logs info when migration bean is missing'() {
+        given: 'no migration bean available in the context'
+        objectUnderTest.applicationContext = Mock(ApplicationContext)
+        objectUnderTest.applicationContext.getBean('inventoryDataMigration') >> {
+            throw new NoSuchBeanDefinitionException('inventoryDataMigration')
+        }
+
+        when:
+        callPrivatePerformInventoryDataMigration()
+
+        then: 'logs that migration is skipped'
+        assert loggingListAppender.list.any { it.message.contains('No inventory data migration bean found') }
+        and: 'still logs completion message'
+        assert loggingListAppender.list.any { it.message.contains('completed successfully') }
+    }
+
+    def 'performInventoryDataMigration logs error when migration fails'() {
+        given: 'a migration bean whose migrate method throws an exception'
+        def mockMigrationBean = Mock(InventoryDataMigration)
+        objectUnderTest.applicationContext = Mock(ApplicationContext)
+        objectUnderTest.applicationContext.getBean('inventoryDataMigration') >> mockMigrationBean
+        mockMigrationBean.migrate() >> { throw new RuntimeException('boom') }
+
+        when:
+        callPrivatePerformInventoryDataMigration()
+
+        then: 'an error log is produced'
+        assert loggingListAppender.list.any { it.message.contains('Failed to execute inventory migration') }
+        and: 'the completion log still appears'
+        assert loggingListAppender.list.any { it.message.contains('completed successfully') }
+    }
+
+
 
 
 }
