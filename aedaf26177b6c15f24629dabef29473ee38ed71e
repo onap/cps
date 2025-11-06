@@ -355,6 +355,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3cf1a34_bb23b895",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ab717a2_8606f974",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 94
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efbf8500_66af9a32",
@@ -368,6 +392,30 @@
       "writtenOn": "2025-11-04T10:23:55Z",
       "side": 1,
       "message": "provMnsRequestParameters",
+      "range": {
+        "startLine": 140,
+        "startChar": 103,
+        "endLine": 140,
+        "endChar": 107
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "145e7fa5_114658b4",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efbf8500_66af9a32",
       "range": {
         "startLine": 140,
         "startChar": 103,
@@ -448,6 +496,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1259322_b0a5b532",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68f5fa97_9ef744f3",
+      "range": {
+        "startLine": 63,
+        "startChar": 15,
+        "endLine": 63,
+        "endChar": 31
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ca99323_4b2f8a13",
@@ -461,6 +533,30 @@
       "writtenOn": "2025-11-04T10:23:55Z",
       "side": 1,
       "message": "incorrect, describe expected status code instead",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 76
+      },
+      "revId": "aedaf26177b6c15f24629dabef29473ee38ed71e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6a384c1_cd46989b",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapperSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ca99323_4b2f8a13",
       "range": {
         "startLine": 86,
         "startChar": 15,

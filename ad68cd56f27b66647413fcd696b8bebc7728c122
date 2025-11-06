@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9712160d_3458bde0",
+        "filename": "cps-ncmp-rest/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "code coverage in rest back to 0.99",
+      "parentUuid": "a48107e8_596821cf",
+      "range": {
+        "startLine": 37,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6876c88_5fd59f50",
@@ -400,6 +424,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4fc24ea_c4a62f10",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/ConfigurationManagementOperation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Final Naming OperationDetails and moved to service layer",
+      "parentUuid": "69695a27_1a86ee62",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff3dd876_9063bb4c",
@@ -423,6 +471,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "996d2028_fe3b8038",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/OperationEntry.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Final Naming OperationEntry and moved to service layer",
+      "parentUuid": "ff3dd876_9063bb4c",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f8e4a9c_53dbc104",
@@ -436,6 +508,30 @@
       "writtenOn": "2025-11-03T10:49:20Z",
       "side": 1,
       "message": "prepend with PE",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f36bfe1_ee38aaa6",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/provmns/translation/OperationValue.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Final Naming OperationValue and moved to service layer",
+      "parentUuid": "8f8e4a9c_53dbc104",
       "range": {
         "startLine": 31,
         "startChar": 13,
@@ -493,6 +589,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d422bd_feef8418",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b783b7f3_087f27ab",
+      "range": {
+        "startLine": 114,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 11
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "090cae0d_26b78ea7",
@@ -516,6 +636,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ade0f5e6_d3ad0ba0",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "090cae0d_26b78ea7",
+      "range": {
+        "startLine": 121,
+        "startChar": 18,
+        "endLine": 121,
+        "endChar": 56
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb6948bc_89bbf7fa",
@@ -529,6 +673,30 @@
       "writtenOn": "2025-11-03T10:49:20Z",
       "side": 1,
       "message": "typeReference",
+      "range": {
+        "startLine": 134,
+        "startChar": 57,
+        "endLine": 134,
+        "endChar": 65
+      },
+      "revId": "ad68cd56f27b66647413fcd696b8bebc7728c122",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ebf4488_f6120d3a",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/util/ProvMnSParametersMapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-06T09:12:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb6948bc_89bbf7fa",
       "range": {
         "startLine": 134,
         "startChar": 57,
