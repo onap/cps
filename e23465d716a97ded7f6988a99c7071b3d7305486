@@ -65,6 +65,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe3f015_c5b3233d",
+        "filename": "cps-rest/docs/openapi/cpsData.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-06T05:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bc2d515_c5ad31b7",
+      "range": {
+        "startLine": 243,
+        "startChar": 6,
+        "endLine": 243,
+        "endChar": 12
+      },
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67c34cc0_31f92894",
@@ -78,6 +102,30 @@
       "writtenOn": "2025-11-03T14:04:02Z",
       "side": 1,
       "message": "201 for created?",
+      "range": {
+        "startLine": 1832,
+        "startChar": 8,
+        "endLine": 1832,
+        "endChar": 14
+      },
+      "revId": "e23465d716a97ded7f6988a99c7071b3d7305486",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ef31d6_e51537b4",
+        "filename": "docs/api/swagger/cps/openapi.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-06T05:20:15Z",
+      "side": 1,
+      "message": "201 Created - when something new is added to the database.\n204 No Content - when nothing new was added but something was updated, replaced or deleted",
+      "parentUuid": "67c34cc0_31f92894",
       "range": {
         "startLine": 1832,
         "startChar": 8,
