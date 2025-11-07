@@ -48,7 +48,7 @@ public class DataJobStatusServiceImpl implements DataJobStatusService {
         final UrlTemplateParameters urlTemplateParameters = buildUrlParameters(dmiServiceName,
                                                                               dataProducerId,
                                                                               dataProducerJobId);
-        return dmiRestClient.getDataJobStatus(urlTemplateParameters, authorization).block();
+        return dmiRestClient.asynchronousDmiDataRequest(urlTemplateParameters, authorization).block();
     }
 
     private UrlTemplateParameters buildUrlParameters(final String dmiServiceName,
