@@ -51,6 +51,6 @@ public class DataJobResultServiceImpl implements DataJobResultService {
                                            .queryParameter("destination", destination)
                                            .createUrlTemplateParameters(dmiServiceName,
                                                dmiServiceAuthenticationProperties.getDmiBasePath());
-        return dmiRestClient.getDataJobResult(urlTemplateParameters, authorization).block();
+        return dmiRestClient.asynchronousDmiDataRequest(urlTemplateParameters, authorization).block();
     }
 }
