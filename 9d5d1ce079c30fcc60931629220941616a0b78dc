@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a6ab38_309301d1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "012b39b7_2ef2ba36",
+      "range": {
+        "startLine": 162,
+        "startChar": 34,
+        "endLine": 162,
+        "endChar": 56
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcb86169_23901ff3",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-06T09:07:10Z",
       "side": 1,
       "message": "NB: I think I prefer (usually use) \u0027\u003c 0\u0027",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf126f3c_52a049cf",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParameterMapper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcb86169_23901ff3",
       "range": {
         "startLine": 49,
         "startChar": 27,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d72fad2b_a37616ab",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebf06d3c_3e2804a0",
+      "range": {
+        "startLine": 41,
+        "startChar": 60,
+        "endLine": 41,
+        "endChar": 83
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "645e0980_c730f2c6",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a6b3025_521e5033",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "645e0980_c730f2c6",
+      "range": {
+        "startLine": 248,
+        "startChar": 39,
+        "endLine": 248,
+        "endChar": 44
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ab40588_bc41617b",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-11-07T08:15:41Z",
       "side": 1,
       "message": "as we discovered yesterday, you should throw the correct exception and then the test result should be NO exception thrown",
+      "range": {
+        "startLine": 251,
+        "startChar": 3,
+        "endLine": 252,
+        "endChar": 65
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687eddd8_a90dc41b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ab40588_bc41617b",
       "range": {
         "startLine": 251,
         "startChar": 3,

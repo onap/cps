@@ -1036,6 +1036,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f24de61_2dc11de7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/RequestValidatorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-07T16:14:46Z",
+      "side": 1,
+      "message": "Test class has been removed",
+      "parentUuid": "ee665b74_156425af",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "3c26870e3b704e57e483b8eb2c4526aecd20e0d1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "036dd491_7777ace6",
