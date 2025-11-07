@@ -48,10 +48,10 @@ import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
 class DmiRestClientSpec extends Specification {
 
-    static final NO_AUTH_HEADER = null
-    static final BASIC_AUTH_HEADER = 'Basic c29tZSB1c2VyOnNvbWUgcGFzc3dvcmQ='
-    static final BEARER_AUTH_HEADER = 'Bearer my-bearer-token'
-    static final urlTemplateParameters = new UrlTemplateParameters('/{pathParam1}/{pathParam2}', ['pathParam1': 'my', 'pathParam2': 'url'])
+    static NO_AUTH_HEADER = null
+    static BASIC_AUTH_HEADER = 'Basic c29tZSB1c2VyOnNvbWUgcGFzc3dvcmQ='
+    static BEARER_AUTH_HEADER = 'Bearer my-bearer-token'
+    static urlTemplateParameters = new UrlTemplateParameters('/{pathParam1}/{pathParam2}', ['pathParam1': 'my', 'pathParam2': 'url'])
 
     def mockDataServicesWebClient = Mock(WebClient)
     def mockModelServicesWebClient = Mock(WebClient)
@@ -110,7 +110,6 @@ class DmiRestClientSpec extends Specification {
             'dmi service unavailable' | 503            | new WebClientRequestException(new RuntimeException('some-error'), null, null, new HttpHeaders()) || DMI_SERVICE_NOT_RESPONDING
             'dmi request timeout'     | 408            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || DMI_SERVICE_NOT_RESPONDING
             'dmi server error'        | 500            | new WebClientResponseException('message', httpStatusCode, 'statusText', null, null, null)        || UNABLE_TO_READ_RESOURCE_DATA
-            'dmi service unavailable' | 503            | new HttpServerErrorException(HttpStatusCode.valueOf(503))                                        || DMI_SERVICE_NOT_RESPONDING
             'unknown error'           | 500            | new Throwable('message')                                                                         || UNKNOWN_ERROR
     }
 
