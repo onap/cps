@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1694629_611791fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-07T06:28:15Z",
+      "side": 1,
+      "message": "Some major issue with the code, I ran it and the delta report generated is a mix of JSON nested in XML. Please look into this:\n\u003cdeltaReports\u003e\n    \u003cdeltaReport id\u003d\"1\"\u003e\n        \u003caction\u003eremove\u003c/action\u003e\n        \u003cxpath\u003e/bookstore\u003c/xpath\u003e\n        \u003csource-data\u003e\n            \u003ccategories\u003e{code\u003d1, name\u003dChildren, books\u003d[{lang\u003dEnglish, price\u003d20, title\u003dMatilda, authors\u003d[Roald Dahl], editions\u003d[1988, 2000]}, {lang\u003dEnglish, price\u003d15, title\u003dThe Gruffalo, authors\u003d[Julia Donaldson], editions\u003d[1999]}]}\u003c/categories\u003e\n        \u003c/source-data\u003e\n    \u003c/deltaReport\u003e\n    \u003cdeltaReport id\u003d\"2\"\u003e\n        \u003caction\u003eremove\u003c/action\u003e\n        \u003cxpath\u003e/bookstore/premises\u003c/xpath\u003e\n        \u003csource-data\u003e\n            \u003caddresses\u003e{town\u003dMaynooth, county\u003dKildare, street\u003dMain Street, house-number\u003d2}\u003c/addresses\u003e\n        \u003c/source-data\u003e\n    \u003c/deltaReport\u003e\n    \u003cdeltaReport id\u003d\"3\"\u003e\n        \u003caction\u003ereplace\u003c/action\u003e\n        \u003cxpath\u003e/bookstore/categories[@code\u003d\u00274\u0027]/books[@title\u003d\u0027Debian GNU/Linux\u0027]\u003c/xpath\u003e\n        \u003csource-data\u003e\n            \u003cbooks\u003e{editions\u003d[2007, 2013, 2021], price\u003d39, title\u003dDebian GNU/Linux}\u003c/books\u003e\n        \u003c/source-data\u003e\n        \u003ctarget-data\u003e\n            \u003cbooks\u003e{editions\u003d[2007, 2013], price\u003d39000, title\u003dDebian GNU/Linux}\u003c/books\u003e\n        \u003c/target-data\u003e\n    \u003c/deltaReport\u003e\n    \u003cdeltaReport id\u003d\"4\"\u003e\n        \u003caction\u003ecreate\u003c/action\u003e\n        \u003cxpath\u003e/bookstore\u003c/xpath\u003e\n        \u003ctarget-data\u003e\n            \u003ccategories\u003e{code\u003d100, name\u003dChildren, books\u003d[{lang\u003dEnglish, price\u003d20, title\u003dMatilda, authors\u003d[Roald Dahl], editions\u003d[1988, 2000]}, {lang\u003dEnglish, price\u003d15, title\u003dThe Gruffalo, authors\u003d[Julia Donaldson], editions\u003d[1999]}]}\u003c/categories\u003e\n        \u003c/target-data\u003e\n    \u003c/deltaReport\u003e\n\u003c/deltaReports\u003e",
+      "revId": "3e9f1631faa9d328a39bbcbb48c035c93c0246cd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "151ce22d_32b79ed2",
