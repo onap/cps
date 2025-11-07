@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebf06d3c_3e2804a0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-07T08:15:41Z",
+      "side": 1,
+      "message": "wrong exception (package!)",
+      "range": {
+        "startLine": 41,
+        "startChar": 60,
+        "endLine": 41,
+        "endChar": 83
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "645e0980_c730f2c6",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
         "patchSetId": 7
@@ -65,6 +88,29 @@
         "startChar": 39,
         "endLine": 248,
         "endChar": 44
+      },
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab40588_bc41617b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-07T08:15:41Z",
+      "side": 1,
+      "message": "as we discovered yesterday, you should throw the correct exception and then the test result should be NO exception thrown",
+      "range": {
+        "startLine": 251,
+        "startChar": 3,
+        "endLine": 252,
+        "endChar": 65
       },
       "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
