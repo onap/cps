@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f14905_6ee0d19e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:23:59Z",
+      "side": 1,
+      "message": "Losk good to me,\nJust worried about conflict with Shivani\u0027s update",
+      "revId": "a57f8b749ce4e4e5cfe99f8879a2011e70dd63e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a33f60_bc8a10f5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/utils/CmSubscriptionPersistenceServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:23:59Z",
+      "side": 1,
+      "message": "Is Shivane working on the same?!\nAccording to her versin ther is NO logging anymore?!",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 0
+      },
+      "revId": "a57f8b749ce4e4e5cfe99f8879a2011e70dd63e8",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
