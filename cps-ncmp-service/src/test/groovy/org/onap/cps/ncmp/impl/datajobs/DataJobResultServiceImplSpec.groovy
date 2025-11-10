@@ -45,7 +45,7 @@ class DataJobResultServiceImplSpec extends Specification {
             def destination = 'some-destination'
             def urlParams = new UrlTemplateParameters('some-dmi-service/dmi/v1/cmwriteJob/dataProducer/{dataProducerId}/dataProducerJob/{dataProducerJobId}/result?destination={destination}', ['dataProducerJobId':'some-data-producer-job-id', 'dataProducerId':'some-data-producer-id', 'destination': 'some-destination'])
         and: 'the rest client returns the result for the given parameters'
-            mockDmiRestClient.getDataJobResult(urlParams, authorization) >> Mono.just('some result')
+            mockDmiRestClient.asynchronousDmiDataRequest(urlParams, authorization) >> Mono.just('some result')
         when: 'the job status is queried'
             def result = objectUnderTest.getDataJobResult(authorization, dmiServiceName,dataProducerId,  dataProducerJobId, destination)
         then: 'the result from the rest client is returned'
