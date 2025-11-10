@@ -20,18 +20,21 @@
 
 package org.onap.cps.ncmp.impl.utils
 
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+
 import org.onap.cps.api.model.DataNode
 import spock.lang.Specification
 
 class YangDataConverterSpec extends Specification{
 
-    def 'Convert a cm handle data node with additional and public properties.'() {
-        given: 'a datanode with some additional and public properties'
+    def 'Convert a cm handle data node with additional properties, public properties and state.'() {
+        given: 'a datanode with some additional properties, public properties and state'
             def dataNodeAdditionalProperties = new DataNode(xpath:'/additional-properties[@name="dmiProp1"]',
                     leaves: ['name': 'dmiProp1', 'value': 'dmiValue1'])
             def dataNodePublicProperties = new DataNode(xpath:'/public-properties[@name="pubProp1"]',
                     leaves: ['name': 'pubProp1', 'value': 'pubValue1'])
-            def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id', 'alternate-id': 'alt-id', 'module-set-tag': 'my-tag', 'dmi-service-name': 'my-dmi', 'data-producer-identifier': 'my-dpi'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties])
+            def dataNodeState = new DataNode(xpath:'/parent/state', leaves: ['cm-handle-state': 'ADVISED', 'last-update-time': 'now'])
+            def dataNodeCmHandle = new DataNode(leaves:['id':'sample-id', 'alternate-id': 'alt-id', 'module-set-tag': 'my-tag', 'dmi-service-name': 'my-dmi', 'data-producer-identifier': 'my-dpi'], childDataNodes:[dataNodeAdditionalProperties, dataNodePublicProperties, dataNodeState])
         when: 'the dataNode is converted'
             def yangModelCmHandle = YangDataConverter.toYangModelCmHandle(dataNodeCmHandle)
         then: 'the converted object has the fields'
@@ -46,6 +49,9 @@ class YangDataConverterSpec extends Specification{
         and: 'the public properties are included'
             assert yangModelCmHandle.publicProperties[0].name == 'pubProp1'
             assert yangModelCmHandle.publicProperties[0].value == 'pubValue1'
+        and: 'the composite state is set'
+            assert yangModelCmHandle.compositeState.lastUpdateTime == 'now'
+            assert yangModelCmHandle.compositeState.cmHandleState == ADVISED
     }
 
     def 'Convert multiple cm handle data nodes'(){

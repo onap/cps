@@ -29,6 +29,11 @@ import static CmDataJobSubscriptionPersistenceService.PARENT_NODE_XPATH
 import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
 
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.read.ListAppender
+import org.slf4j.LoggerFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsQueryService
@@ -42,8 +47,19 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockCpsQueryService = Mock(CpsQueryService)
     def mockCpsDataService = Mock(CpsDataService)
+    def logAppender = Spy(ListAppender<ILoggingEvent>)
 
     def objectUnderTest = new CmDataJobSubscriptionPersistenceService(jsonObjectMapper, mockCpsQueryService, mockCpsDataService)
+
+    void setup() {
+        def logger = LoggerFactory.getLogger(CmDataJobSubscriptionPersistenceService)
+        logger.addAppender(logAppender)
+        logAppender.start()
+    }
+
+    void cleanup() {
+        ((Logger) LoggerFactory.getLogger(CmDataJobSubscriptionPersistenceService.class)).detachAndStopAllAppenders()
+    }
 
     def 'Check cm data job subscription details has at least one subscriber #scenario'() {
         given: 'a valid cm data job subscription query'
@@ -167,6 +183,22 @@ class CmSubscriptionPersistenceServiceSpec extends Specification {
                 json.contains('"status":"ACCEPTED"') &&
                         json.contains('"dataJobId":["id-remaining"]')
             }, _, ContentType.JSON)
+    }
+
+    def 'Delete subscription that does not exist'() {
+        given: 'the query service returns data node for given data node selector'
+            def query = CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR.formatted('/myDataNodeSelector')
+            def dataNode = new DataNode(leaves: ['dataJobId': ['some-id'], 'status': 'ACCEPTED'])
+            mockCpsQueryService.queryDataNodes('NCMP-Admin', 'cm-data-job-subscriptions', query, OMIT_DESCENDANTS) >> [dataNode]
+        when: 'deleting a subscription on a data node selector'
+            objectUnderTest.delete('non-existing-id', '/myDataNodeSelector')
+        then: 'no exception thrown'
+            noExceptionThrown()
+        and: 'an event is logged with level INFO'
+            def loggingEvent = logAppender.list[0]
+            assert loggingEvent.level == Level.WARN
+        and: 'the log indicates subscription id does not exist for data node selector'
+            assert loggingEvent.formattedMessage == 'SubscriptionId=non-existing-id not found under dataNodeSelector=/myDataNodeSelector'
     }
 
     def 'Update status of a subscription.'() {
