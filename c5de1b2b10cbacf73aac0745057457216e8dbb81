@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607de24c_0b4dc0c7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:00:44Z",
+      "side": 1,
+      "message": "private method with its own test\nPreferrably introduce isNullOrBlank method",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 13
+      },
+      "revId": "c5de1b2b10cbacf73aac0745057457216e8dbb81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ecbc744_66e4b5d6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 10
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:00:44Z",
+      "side": 1,
+      "message": "expand name",
+      "range": {
+        "startLine": 241,
+        "startChar": 63,
+        "endLine": 241,
+        "endChar": 72
+      },
+      "revId": "c5de1b2b10cbacf73aac0745057457216e8dbb81",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
