@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0fb59b_3973964b",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T14:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a8c0c9_6dd49f4a",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 71
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29813e43_0c1b4345",
@@ -70,6 +94,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce213fc_e0566032",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T14:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17a8e030_35ce7b3d",
+      "range": {
+        "startLine": 235,
+        "startChar": 19,
+        "endLine": 235,
+        "endChar": 34
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "609b73ca_f92afcdc",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T14:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29813e43_0c1b4345",
+      "range": {
+        "startLine": 235,
+        "startChar": 52,
+        "endLine": 235,
+        "endChar": 120
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aede00f5_53907293",
@@ -93,6 +165,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb18482f_f7780b0a",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T14:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aede00f5_53907293",
+      "range": {
+        "startLine": 261,
+        "startChar": 78,
+        "endLine": 261,
+        "endChar": 89
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d2d2229_76644bca",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-11-05T17:13:40Z",
       "side": 1,
       "message": "dataJobB",
+      "range": {
+        "startLine": 269,
+        "startChar": 78,
+        "endLine": 269,
+        "endChar": 89
+      },
+      "revId": "05803d4e3f449a288c749209975367fed4bf82a4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8fca94_8708145d",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T14:06:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d2d2229_76644bca",
       "range": {
         "startLine": 269,
         "startChar": 78,
