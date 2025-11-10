@@ -49,7 +49,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             recordAndAssertResourceUsage('CPS: Creating modified openroadm anchor', 25, durationInSeconds, resourceMeter.getTotalMemoryUsageInMB(), false)
     }
 
-    @Ignore
     def 'Get delta between 2 anchors with grouping enabled and #scenario'() {
         when: 'attempt to get delta between two 2 anchors'
             resourceMeter.start()
