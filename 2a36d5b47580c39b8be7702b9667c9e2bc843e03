@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bae409b_424a5e78",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:20:37Z",
+      "side": 1,
+      "message": "prefer to leave it so in case of future issues with coverage again",
+      "parentUuid": "734c326c_da7813a1",
+      "range": {
+        "startLine": 141,
+        "startChar": 13,
+        "endLine": 141,
+        "endChar": 16
+      },
+      "revId": "2a36d5b47580c39b8be7702b9667c9e2bc843e03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "742eb4d9_79cd092f",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
         "patchSetId": 1
@@ -88,6 +112,24 @@
       "writtenOn": "2025-11-10T15:24:28Z",
       "side": 1,
       "message": "no license",
+      "revId": "2a36d5b47580c39b8be7702b9667c9e2bc843e03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "116c2894_46edb459",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:20:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "742eb4d9_79cd092f",
       "revId": "2a36d5b47580c39b8be7702b9667c9e2bc843e03",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -105,6 +147,30 @@
       "writtenOn": "2025-11-10T14:14:31Z",
       "side": 1,
       "message": "replace \" with \u0027 ;D",
+      "range": {
+        "startLine": 105,
+        "startChar": 85,
+        "endLine": 105,
+        "endChar": 86
+      },
+      "revId": "2a36d5b47580c39b8be7702b9667c9e2bc843e03",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a1d208_0ee7d7c3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-10T16:20:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3b6c95_a8949d6d",
       "range": {
         "startLine": 105,
         "startChar": 85,
