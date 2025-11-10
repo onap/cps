@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb818b0_72d7d20e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-10T14:14:31Z",
+      "side": 0,
+      "message": "could a better name be chosen like handleWebClientException",
+      "revId": "9d5d1ce079c30fcc60931629220941616a0b78dc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
