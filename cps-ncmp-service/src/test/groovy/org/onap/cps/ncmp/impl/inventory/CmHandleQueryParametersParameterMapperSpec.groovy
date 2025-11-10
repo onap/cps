@@ -25,7 +25,7 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ConditionProperties
 import spock.lang.Specification
 
-class CmHandleQueryParametersValidatorSpec extends Specification {
+class CmHandleQueryParametersParameterMapperSpec extends Specification {
 
     def 'CM Handle Query validation: empty query.'() {
         given: 'a cm handle query'
