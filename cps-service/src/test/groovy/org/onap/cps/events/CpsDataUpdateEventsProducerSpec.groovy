@@ -34,12 +34,17 @@ import spock.lang.Specification
 
 import java.time.OffsetDateTime
 
-import static org.onap.cps.events.model.Data.Operation.CREATE
-import static org.onap.cps.events.model.Data.Operation.DELETE
-import static org.onap.cps.events.model.Data.Operation.UPDATE
+import static org.onap.cps.events.model.EventPayload.Action.CREATE
+import static org.onap.cps.events.model.EventPayload.Action.REMOVE
+import static org.onap.cps.events.model.EventPayload.Action.REPLACE
 
 @ContextConfiguration(classes = [ObjectMapper, JsonObjectMapper])
 class CpsDataUpdateEventsProducerSpec extends Specification {
+
+    static def CREATE_ACTION = CREATE.value()
+    static def REPLACE_ACTION = REPLACE.value()
+    static def REMOVE_ACTION = REMOVE.value()
+
     def mockEventsProducer = Mock(EventsProducer)
     def objectMapper = new ObjectMapper();
     def mockCpsNotificationService = Mock(CpsNotificationService)
@@ -51,17 +56,15 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
         objectUnderTest.topicName = 'cps-core-event'
     }
 
-    def 'Create and send cps update event where events are #scenario.'() {
-        given: 'an anchor, operation and observed timestamp'
+    def 'Create and send cps event with #scenario.'() {
+        given: 'an anchor'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
-            def operation = operationInRequest
-            def observedTimestamp = OffsetDateTime.now()
         and: 'notificationsEnabled is #notificationsEnabled and it will be true as default'
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is also true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
         when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, operation, observedTimestamp)
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, xpath, actionInRequest, OffsetDateTime.now())
         then: 'the event contains the required attributes'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _) >> {
             args ->
@@ -70,38 +73,37 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
                     assert cpsDataUpdatedEvent.getExtension('correlationid') == 'dataspace01:anchor01'
                     assert cpsDataUpdatedEvent.type == 'org.onap.cps.events.model.CpsDataUpdatedEvent'
                     assert cpsDataUpdatedEvent.source.toString() == 'CPS'
-                    def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().data.operation
-                    assert actualEventOperation == expectedOperation
+                    def actualEventOperation = CloudEventUtils.mapData(cpsDataUpdatedEvent, PojoCloudEventDataMapper.from(objectMapper, CpsDataUpdatedEvent.class)).getValue().eventPayload.action.value()
+                    assert actualEventOperation == expectedAction
                 }
             }
         where: 'the following values are used'
-        scenario                                   | xpath        | operationInRequest  || expectedOperation
-        'empty xpath'                              | ''           | CREATE              || CREATE
-        'root xpath and create operation'          | '/'          | CREATE              || CREATE
-        'root xpath and update operation'          | '/'          | UPDATE              || UPDATE
-        'root xpath and delete operation'          | '/'          | DELETE              || DELETE
-        'not root xpath and update operation'      | 'test'       | UPDATE              || UPDATE
-        'root node xpath and create operation'     | '/test'      | CREATE              || CREATE
-        'non root node xpath and update operation' | '/test/path' | CREATE              || UPDATE
-        'non root node xpath and delete operation' | '/test/path' | DELETE              || UPDATE
+            scenario                                 | xpath        | actionInRequest || expectedAction
+            'empty xpath'                            | ''           | CREATE_ACTION   || CREATE_ACTION
+            'root xpath and create action'           | '/'          | CREATE_ACTION   || CREATE_ACTION
+            'root xpath and replace action'          | '/'          | REPLACE_ACTION  || REPLACE_ACTION
+            'root xpath and remove action'           | '/'          | REMOVE_ACTION   || REMOVE_ACTION
+            'not root xpath and replace action'      | 'test'       | REPLACE_ACTION  || REPLACE_ACTION
+            'root node xpath and create action'      | '/test'      | CREATE_ACTION   || CREATE_ACTION
+            'non root node xpath and replace action' | '/test/path' | CREATE_ACTION   || CREATE_ACTION
+            'non root node xpath and remove action'  | '/test/path' | REMOVE_ACTION   || REMOVE_ACTION
     }
 
-    def 'Send cps update event when no timestamp provided.'() {
-        given: 'an anchor, operation and null timestamp'
+    def 'Send cps event when no timestamp provided.'() {
+        given: 'an anchor'
             def anchor = new Anchor('anchor01', 'dataspace01', 'schema01');
-            def observedTimestamp = null
         and: 'notificationsEnabled is true'
             objectUnderTest.notificationsEnabled = true
         and: 'cpsChangeEventNotificationsEnabled is true'
             objectUnderTest.cpsChangeEventNotificationsEnabled = true
-        when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, observedTimestamp)
+        when: 'service is called to send data event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
         then: 'the event is sent'
             1 * mockEventsProducer.sendCloudEvent('cps-core-event', 'dataspace01:anchor01', _)
     }
 
-    def 'Enabling and disabling sending cps update events.'() {
-        given: 'a different anchor'
+    def 'Enabling and disabling sending cps events.'() {
+        given: 'an anchor'
             def anchor = new Anchor('anchor02', 'some dataspace', 'some schema');
         and: 'notificationsEnabled is #notificationsEnabled'
             objectUnderTest.notificationsEnabled = notificationsEnabled
@@ -109,8 +111,8 @@ class CpsDataUpdateEventsProducerSpec extends Specification {
             objectUnderTest.cpsChangeEventNotificationsEnabled = cpsChangeEventNotificationsEnabled
         and: 'notification service enabled is: #cpsNotificationServiceisNotificationEnabled'
             mockCpsNotificationService.isNotificationEnabled(_, 'anchor02') >> cpsNotificationServiceisNotificationEnabled
-        when: 'service is called to send data update event'
-            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE, null)
+        when: 'service is called to send data event'
+            objectUnderTest.sendCpsDataUpdateEvent(anchor, '/', CREATE_ACTION, null)
         then: 'the event is only sent when all related flags are true'
             expectedCallsToProducer * mockEventsProducer.sendCloudEvent(*_)
         where: 'the following flags are used'

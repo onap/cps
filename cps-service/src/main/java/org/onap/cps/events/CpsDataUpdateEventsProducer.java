@@ -21,6 +21,8 @@
 
 package org.onap.cps.events;
 
+import static org.onap.cps.events.model.EventPayload.Action.fromValue;
+
 import io.cloudevents.CloudEvent;
 import io.micrometer.core.annotation.Timed;
 import java.time.OffsetDateTime;
@@ -31,8 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.api.CpsNotificationService;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.events.model.CpsDataUpdatedEvent;
-import org.onap.cps.events.model.Data;
-import org.onap.cps.events.model.Data.Operation;
+import org.onap.cps.events.model.EventPayload;
 import org.onap.cps.utils.DateTimeUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -58,17 +59,17 @@ public class CpsDataUpdateEventsProducer {
     /**
      * Send the cps data update event with header to the public topic.
      *
-     * @param anchor Anchor of the updated data
-     * @param xpath  xpath of the updated data
-     * @param operation operation performed on the data
+     * @param anchor            Anchor of the updated data
+     * @param xpath             xpath of the updated data
+     * @param action            operation performed on the data
      * @param observedTimestamp timestamp when data was updated.
      */
     @Timed(value = "cps.data.update.events.send", description = "Time taken to send Data Update event")
     public void sendCpsDataUpdateEvent(final Anchor anchor, final String xpath,
-                                       final Operation operation, final OffsetDateTime observedTimestamp) {
+                                       final String action, final OffsetDateTime observedTimestamp) {
         if (notificationsEnabled && cpsChangeEventNotificationsEnabled && isNotificationEnabledForAnchor(anchor)) {
-            final CpsDataUpdatedEvent cpsDataUpdatedEvent = createCpsDataUpdatedEvent(anchor,
-                    observedTimestamp, xpath, operation);
+            final CpsDataUpdatedEvent cpsDataUpdatedEvent =
+                createCpsDataUpdatedEvent(anchor, observedTimestamp, xpath, action);
             final String updateEventId = anchor.getDataspaceName() + ":" + anchor.getName();
             final Map<String, String> extensions = createUpdateEventExtensions(updateEventId);
             final CloudEvent cpsDataUpdatedEventAsCloudEvent =
@@ -86,17 +87,16 @@ public class CpsDataUpdateEventsProducer {
     }
 
     private CpsDataUpdatedEvent createCpsDataUpdatedEvent(final Anchor anchor, final OffsetDateTime observedTimestamp,
-                                                          final String xpath,
-                                                          final Operation rootNodeOperation) {
+                                                          final String xpath, final String action) {
         final CpsDataUpdatedEvent cpsDataUpdatedEvent = new CpsDataUpdatedEvent();
-        final Data updateEventData = new Data();
+        final EventPayload updateEventData = new EventPayload();
         updateEventData.setObservedTimestamp(DateTimeUtility.toString(observedTimestamp));
         updateEventData.setDataspaceName(anchor.getDataspaceName());
         updateEventData.setAnchorName(anchor.getName());
         updateEventData.setSchemaSetName(anchor.getSchemaSetName());
-        updateEventData.setOperation(getRootNodeOperation(xpath, rootNodeOperation));
+        updateEventData.setAction(fromValue(action));
         updateEventData.setXpath(xpath);
-        cpsDataUpdatedEvent.setData(updateEventData);
+        cpsDataUpdatedEvent.setEventPayload(updateEventData);
         return cpsDataUpdatedEvent;
     }
 
@@ -104,17 +104,5 @@ public class CpsDataUpdateEventsProducer {
         final Map<String, String> extensions = new HashMap<>();
         extensions.put("correlationid", eventKey);
         return extensions;
-    }
-
-    private Operation getRootNodeOperation(final String xpath, final Operation operation) {
-        return isRootXpath(xpath) || isRootContainerNodeXpath(xpath) ? operation : Operation.UPDATE;
-    }
-
-    private static boolean isRootXpath(final String xpath) {
-        return "/".equals(xpath) || "".equals(xpath);
-    }
-
-    private static boolean isRootContainerNodeXpath(final String xpath) {
-        return 0 == xpath.lastIndexOf('/');
     }
 }
