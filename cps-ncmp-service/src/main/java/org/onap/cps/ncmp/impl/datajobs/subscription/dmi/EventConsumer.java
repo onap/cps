@@ -1,6 +1,6 @@
 
 /*
- * ============LICENSE_START=======================================================
+ *  ===========LICENSE_START========================================================
  *  Copyright (C) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,6 +75,8 @@ public class EventConsumer {
                 }
             }
         }
+        log.info("Finished processing DMI subscription response event with details: | correlationId={} | eventType={}",
+                correlationId, eventType);
     }
 
     private CmSubscriptionStatus getCmSubscriptionStatus(final DataJobSubscriptionDmiOutEvent dmiOutEvent) {
