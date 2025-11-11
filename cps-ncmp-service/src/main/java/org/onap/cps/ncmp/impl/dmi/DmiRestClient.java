@@ -42,6 +42,7 @@ import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -76,7 +77,7 @@ public class DmiRestClient {
      * @param requestBodyAsJsonString JSON data body.
      * @param operationType           The type of operation being executed (for error reporting only).
      * @param authorization           Contents of the Authorization header, or null if not present.
-     * @return ResponseEntity containing the response from the DMI.
+     * @return                        ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
     public ResponseEntity<Object> synchronousPostOperation(final RequiredDmiService requiredDmiService,
@@ -100,7 +101,7 @@ public class DmiRestClient {
      * @param operationType           An enumeration or object that holds information about the type of operation
      *                                being performed.
      * @param authorization           The authorization token to be added to the request headers.
-     * @return A Mono emitting the response entity containing the server's response.
+     * @return                        A Mono emitting the response entity containing the server's response.
      */
     public Mono<ResponseEntity<Object>> asynchronousPostOperation(final RequiredDmiService requiredDmiService,
                                                                   final UrlTemplateParameters urlTemplateParameters,
@@ -118,47 +119,65 @@ public class DmiRestClient {
     }
 
     /**
-     * Sends a synchronous (blocking) GET operation to the DMI.
+     * Sends a synchronous (blocking) GET operation to the DMI without error mapping.
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param operationType         The type of operation being executed (for error reporting only).
-     * @return ResponseEntity containing the response from the DMI.
-     * @throws DmiClientRequestException If there is an error during the DMI request.
+     * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousGetOperation(final RequiredDmiService requiredDmiService,
-                                                          final UrlTemplateParameters urlTemplateParameters,
-                                                          final OperationType operationType) {
+                                                          final UrlTemplateParameters urlTemplateParameters) {
         return getWebClient(requiredDmiService)
             .get()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
             .retrieve()
             .toEntity(Object.class)
-            .onErrorMap(throwable ->
-                handleDmiClientException(throwable, operationType.getOperationName()))
             .block();
     }
 
     /**
-     * Sends a synchronous (blocking) PUT operation to the DMI.
+     * Sends a synchronous (blocking) PUT operation to the DMI without error mapping.
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param body                  resource object to be forwarded.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param operationType         The type of operation being executed (for error reporting only).
-     * @return ResponseEntity containing the response from the DMI.
-     * @throws DmiClientRequestException If there is an error during the DMI request.
+     * @return                      ResponseEntity containing the response from the DMI.
      */
     public ResponseEntity<Object> synchronousPutOperation(final RequiredDmiService requiredDmiService,
-                                                          final UrlTemplateParameters urlTemplateParameters,
-                                                          final OperationType operationType) {
+                                                          final Object body,
+                                                          final UrlTemplateParameters urlTemplateParameters) {
         return getWebClient(requiredDmiService)
-            .get()
+            .put()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .bodyValue(body)
             .retrieve()
             .toEntity(Object.class)
-            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
+    }
+
+    /**
+     * Sends a synchronous (blocking) PATCH operation to the DMI without error mapping.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param body                  object
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @param contentType           Content type example: application/json
+     * @return                      ResponseEntity containing the response from the DMI.
+     */
+    public ResponseEntity<Object> synchronousPatchOperation(final RequiredDmiService requiredDmiService,
+                                                          final Object body,
+                                                          final UrlTemplateParameters urlTemplateParameters,
+                                                          final String contentType) {
+        return getWebClient(requiredDmiService)
+            .patch()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .contentType(MediaType.parseMediaType(contentType))
+            .bodyValue(body)
+            .retrieve()
+            .toEntity(Object.class)
             .block();
     }
 
@@ -193,7 +212,7 @@ public class DmiRestClient {
      *
      * @param urlTemplateParameters   The URL template parameters for the DMI data endpoint.
      * @param authorization           The authorization token to be added to the request headers.
-     * @return A Mono emitting the result of the request as a String.
+     * @return                        A Mono emitting the result of the request as a String.
      */
     public Mono<String> asynchronousDmiDataRequest(final UrlTemplateParameters urlTemplateParameters,
                                                    final String authorization) {
@@ -207,7 +226,7 @@ public class DmiRestClient {
     }
 
     /**
-     * Sends a synchronous (blocking) DELETE operation to the DMI with a JSON body.
+     * Sends a synchronous (blocking) DELETE operation to the DMI with a JSON body without error mapping.
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
@@ -223,7 +242,6 @@ public class DmiRestClient {
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                 .retrieve()
                 .toEntity(Object.class)
-                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.DELETE.getOperationName()))
                 .block();
     }
 
