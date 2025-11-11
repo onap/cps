@@ -1,5 +1,5 @@
 /*
- * ============LICENSE_START=======================================================
+ * ============LICENSE_START========================================================
  * Copyright (c) 2024-2025 OpenInfra Foundation Europe. All rights reserved.
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,7 +63,7 @@ public class NcmpInEventConsumer {
                 default -> log.warn("Unknown eventType={} for dataJobId={}", eventType, dataJobId);
             }
         } finally {
-            log.info("NCMP In Event has been Processed for dataJobId={}", dataJobId);
+            log.info("NCMP In Event with eventType={} has been Processed for dataJobId={}", eventType, dataJobId);
         }
     }
 
