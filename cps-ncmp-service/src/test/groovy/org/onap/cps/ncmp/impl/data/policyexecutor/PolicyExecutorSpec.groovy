@@ -29,8 +29,10 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
+import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.utils.JsonObjectMapper
 import org.slf4j.LoggerFactory
@@ -228,14 +230,41 @@ class PolicyExecutorSpec extends Specification {
             thrownException.cause == webClientRequestException
     }
 
-    def 'Build policy executor operation details from ProvMnS request parameters where #scenario.'() {
+    def 'Build policy executor patch operation details from ProvMnS request parameters where #scenario.'() {
+        given: 'a provMnsRequestParameter and a patchItem list'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'], objectClass: objectClass)
+            def patchItemsList = [new PatchItem(op: 'ADD', 'path':'someUriLdnFirstPart', value: resource), new PatchItem(op: 'REPLACE', 'path':'someUriLdnFirstPart', value: resource)]
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+        then: 'the result is as expected (using json to compare)'
+            def expectedJsonString = '{"permissionId":"Some Permission Id","changeRequestFormat":"cm-legacy","operations":[{"operation":"CREATE","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"' + changeRequestClassReference + '":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}},{"operation":"UPDATE","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"' + changeRequestClassReference + '":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}]}'
+            assert expectedJsonString == jsonObjectMapper.asJsonString(result)
+        where:
+            scenario                   | objectClass        || changeRequestClassReference
+            'objectClass is populated' | 'someObjectClass'  || 'someObjectClass'
+            'objectClass is empty'     | ''                 || 'someClassName'
+            'objectClass is null'      | null               || 'someClassName'
+    }
+
+    def 'Build policy executor patch operation details from ProvMnS request parameters with invalid op.'() {
+        given: 'a provMnsRequestParameter and a patchItem list'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def patchItemsList = [new PatchItem(op: 'TEST', 'path':'someUriLdnFirstPart')]
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+        then: 'the result is as expected (using json to compare)'
+            thrown(ProvMnSException)
+    }
+
+    def 'Build policy executor create operation details from ProvMnS request parameters where #scenario.'() {
         given: 'a provMnsRequestParameter and a resource'
             def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
             def resource = new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'], objectClass: objectClass)
         when: 'a configurationManagementOperation is created and converted to JSON'
-            def result = objectUnderTest.buildOperationDetails(CREATE, path, resource)
+            def result = objectUnderTest.buildCreateOperationDetails(CREATE, path, resource)
         then: 'the result is as expected (using json to compare)'
-            String expectedJsonString = '{"operation":"CREATE","targetIdentifier":"someUriLdnFirstPart/someClassName=someId","changeRequest":{"' + changeRequestClassReference + '":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}'
+            String expectedJsonString = '{"operation":"CREATE","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"' + changeRequestClassReference + '":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}'
             assert jsonObjectMapper.asJsonString(result) == expectedJsonString
         where:
             scenario                   | objectClass        || changeRequestClassReference
@@ -252,7 +281,7 @@ class PolicyExecutorSpec extends Specification {
             def originalException = new JsonProcessingException('some-exception')
             spiedObjectMapper.readValue(*_) >> {throw originalException}
         when: 'a configurationManagementOperation is created and converted to JSON'
-            objectUnderTest.buildOperationDetails(CREATE, path, resource)
+            objectUnderTest.buildCreateOperationDetails(CREATE, path, resource)
         then: 'the expected exception is throw and matches the original'
             noExceptionThrown()
     }

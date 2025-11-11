@@ -30,6 +30,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.List;
 import java.util.Locale;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,8 @@ import org.onap.cps.ncmp.api.NcmpResponseStatus;
 import org.onap.cps.ncmp.api.data.models.OperationType;
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException;
 import org.onap.cps.ncmp.impl.models.RequiredDmiService;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
+import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -122,21 +125,17 @@ public class DmiRestClient {
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param operationType         The type of operation being executed (for error reporting only).
      * @return ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
     public ResponseEntity<Object> synchronousGetOperation(final RequiredDmiService requiredDmiService,
-                                                          final UrlTemplateParameters urlTemplateParameters,
-                                                          final OperationType operationType) {
+                                                          final UrlTemplateParameters urlTemplateParameters) {
         return getWebClient(requiredDmiService)
             .get()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
             .retrieve()
             .toEntity(Object.class)
-            .onErrorMap(throwable ->
-                handleDmiClientException(throwable, operationType.getOperationName()))
             .block();
     }
 
@@ -144,21 +143,43 @@ public class DmiRestClient {
      * Sends a synchronous (blocking) PUT operation to the DMI.
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param resource              resource object to be forwarded.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @param operationType         The type of operation being executed (for error reporting only).
      * @return ResponseEntity containing the response from the DMI.
      * @throws DmiClientRequestException If there is an error during the DMI request.
      */
     public ResponseEntity<Object> synchronousPutOperation(final RequiredDmiService requiredDmiService,
-                                                          final UrlTemplateParameters urlTemplateParameters,
-                                                          final OperationType operationType) {
+                                                          final Resource resource,
+                                                          final UrlTemplateParameters urlTemplateParameters) {
         return getWebClient(requiredDmiService)
-            .get()
+            .put()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .bodyValue(resource)
             .retrieve()
             .toEntity(Object.class)
-            .onErrorMap(throwable -> handleDmiClientException(throwable, operationType.getOperationName()))
+            .block();
+    }
+
+    /**
+     * Sends a synchronous (blocking) PATCH operation to the DMI.
+     *
+     * @param requiredDmiService    Determines if the required service is for a data or model operation.
+     * @param patchItems            List of patch items to be forwarded.
+     * @param urlTemplateParameters The DMI resource URL template with variables.
+     * @return ResponseEntity containing the response from the DMI.
+     * @throws DmiClientRequestException If there is an error during the DMI request.
+     */
+    public ResponseEntity<Object> synchronousPatchOperation(final RequiredDmiService requiredDmiService,
+                                                          final List<PatchItem> patchItems,
+                                                          final UrlTemplateParameters urlTemplateParameters) {
+        return getWebClient(requiredDmiService)
+            .patch()
+            .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
+            .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
+            .bodyValue(patchItems)
+            .retrieve()
+            .toEntity(Object.class)
             .block();
     }
 
@@ -223,7 +244,6 @@ public class DmiRestClient {
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
                 .retrieve()
                 .toEntity(Object.class)
-                .onErrorMap(throwable -> handleDmiClientException(throwable, OperationType.DELETE.getOperationName()))
                 .block();
     }
 

@@ -71,12 +71,15 @@ public class ErrorResponseBuilder {
      *
      * @param httpStatus   HTTP response
      * @param reason       reason for error response
+     * @param badOp        bad operation type
      * @return response entity
      */
-    public ResponseEntity<Object> buildErrorResponsePatch(final HttpStatus httpStatus, final String reason) {
+    public ResponseEntity<Object> buildErrorResponsePatch(final HttpStatus httpStatus, final String reason,
+                                                          final String badOp) {
         final ErrorResponsePatch errorResponsePatch = new ErrorResponsePatch(ERROR_MAP.get(httpStatus));
         errorResponsePatch.setStatus(httpStatus.toString());
         errorResponsePatch.setReason(reason);
+        errorResponsePatch.setBadOP(badOp);
         return new ResponseEntity<>(errorResponsePatch, httpStatus);
     }
 }

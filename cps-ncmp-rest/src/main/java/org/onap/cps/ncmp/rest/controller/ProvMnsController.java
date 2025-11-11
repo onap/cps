@@ -36,6 +36,7 @@ import org.onap.cps.ncmp.impl.provmns.ParameterMapper;
 import org.onap.cps.ncmp.impl.provmns.ParametersBuilder;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher;
@@ -86,9 +87,9 @@ public class ProvMnsController implements ProvMnS {
             final UrlTemplateParameters urlTemplateParameters = parametersBuilder.createUrlTemplateParametersForGet(
                 scope, filter, attributes,
                 fields, dataNodeSelector,
-                yangModelCmHandle);
+                yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousGetOperation(
-                RequiredDmiService.DATA, urlTemplateParameters, OperationType.READ);
+                RequiredDmiService.DATA, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseGet(HttpStatus.NOT_FOUND, reason);
@@ -96,18 +97,43 @@ public class ProvMnsController implements ProvMnS {
     }
 
     @Override
-    public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest, final Resource resource) {
+    public ResponseEntity<Object> patchMoi(final HttpServletRequest httpServletRequest,
+                                           final List<PatchItem> patchItems) {
         final RequestPathParameters requestPathParameters =
             parameterMapper.extractRequestParameters(httpServletRequest);
         try {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
+            try {
+                checkTarget(yangModelCmHandle);
+            } catch (final ProvMnSException exception) {
+                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
+                    ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
+                return errorResponseBuilder.buildErrorResponseDefault(httpStatus, exception.getDetails());
+            }
+            try {
+                policyExecutor.checkPermission(yangModelCmHandle,
+                    OperationType.CREATE,
+                    null,
+                    requestPathParameters.toAlternateId(),
+                    jsonObjectMapper.asJsonString(policyExecutor.buildPatchOperationDetails(
+                        requestPathParameters, patchItems))
+                );
+            } catch (final ProvMnSException provMnSException) {
+                return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_ACCEPTABLE,
+                    provMnSException.getMessage(), provMnSException.getDetails());
+            } catch (final RuntimeException exception) {
+                return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_ACCEPTABLE,
+                    exception.getMessage(), null);
+            }
+            final UrlTemplateParameters urlTemplateParameters =
+                parametersBuilder.createUrlTemplateParametersForPutAndPatch(yangModelCmHandle, requestPathParameters);
+            return dmiRestClient.synchronousPatchOperation(RequiredDmiService.DATA, patchItems, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
-            return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_FOUND, reason);
+            return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @Override
@@ -130,7 +156,7 @@ public class ProvMnsController implements ProvMnS {
                     OperationType.CREATE,
                     null,
                     requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildOperationDetails(
+                    jsonObjectMapper.asJsonString(policyExecutor.buildCreateOperationDetails(
                         OperationType.CREATE, requestPathParameters, resource))
                 );
             } catch (final RuntimeException exception) {
@@ -138,10 +164,8 @@ public class ProvMnsController implements ProvMnS {
                                                                             exception.getMessage());
             }
             final UrlTemplateParameters urlTemplateParameters =
-                parametersBuilder.createUrlTemplateParametersForPut(resource,
-                    yangModelCmHandle);
-            return dmiRestClient.synchronousPutOperation(
-                RequiredDmiService.DATA, urlTemplateParameters, OperationType.CREATE);
+                parametersBuilder.createUrlTemplateParametersForPutAndPatch(yangModelCmHandle, requestPathParameters);
+            return dmiRestClient.synchronousPutOperation(RequiredDmiService.DATA, resource, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
@@ -176,7 +200,7 @@ public class ProvMnsController implements ProvMnS {
                     exception.getMessage());
             }
             final UrlTemplateParameters urlTemplateParameters =
-                parametersBuilder.createUrlTemplateParametersForDelete(yangModelCmHandle);
+                parametersBuilder.createUrlTemplateParametersForDelete(yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousDeleteOperation(RequiredDmiService.DATA, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
