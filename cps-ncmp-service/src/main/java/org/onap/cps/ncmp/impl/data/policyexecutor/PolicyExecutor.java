@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,6 +41,7 @@ import org.onap.cps.ncmp.api.exceptions.NcmpException;
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
+import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
 import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
@@ -123,16 +125,42 @@ public class PolicyExecutor {
     }
 
     /**
-     * Build a OperationDetails object from ProvMnS request details.
+     * Build a PatchOperationDetails object from ProvMnS request details.
      *
-     * @param operationType            Type of operation delete, create etc.
+     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @param patchItems               provided request list of patch Items
+     * @return CreateOperationDetails object
+     */
+    public PatchOperationsDetails buildPatchOperationDetails(final RequestPathParameters requestPathParameters,
+                                                             final List<PatchItem> patchItems) {
+        final List<Object> operations = new ArrayList<>(patchItems.size());
+        for (final PatchItem patchItem : patchItems) {
+            switch (patchItem.getOp()) {
+                case ADD -> operations.add(
+                    buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
+                    (Resource) patchItem.getValue()));
+                case REPLACE -> operations.add(
+                    buildCreateOperationDetails(OperationType.UPDATE, requestPathParameters,
+                    (Resource) patchItem.getValue()));
+                case REMOVE -> operations.add(
+                    buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
+                default -> log.warn("Unsupported Patch Operation Type:{}", patchItem.getOp().getValue());
+            };
+        }
+        return new PatchOperationsDetails("Some Permission Id", CHANGE_REQUEST_FORMAT, operations);
+    }
+
+    /**
+     * Build a CreateOperationDetails object from ProvMnS request details.
+     *
+     * @param operationType            Type of operation create, update.
      * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
      * @param resource                 provided request resource
-     * @return OperationDetails object
+     * @return CreateOperationDetails object
      */
-    public OperationDetails buildOperationDetails(final OperationType operationType,
-                                                  final RequestPathParameters requestPathParameters,
-                                                  final Resource resource) {
+    public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
+                                                              final RequestPathParameters requestPathParameters,
+                                                              final Resource resource) {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
@@ -151,7 +179,8 @@ public class PolicyExecutor {
             log.debug("JSON processing error: {}", exception);
         }
         changeRequest.put(className, List.of(operationEntry));
-        return new OperationDetails(operationType.name(), requestPathParameters.toAlternateId(), changeRequest);
+        return new CreateOperationDetails(operationType.name(),
+            requestPathParameters.getUriLdnFirstPart(), changeRequest);
     }
 
     /**

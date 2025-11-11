@@ -32,7 +32,7 @@ class ParametersBuilderSpec extends Specification{
         when:'a set of given parameters from a call are passed in'
             def result = objectUnderTest.createUrlTemplateParametersForGet(new Scope(scopeLevel: 1, scopeType: 'BASE_ALL'),
                     'my-filter', ['some-attribute'], ['some-field'], new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'some-dataSelector'),
-                    new YangModelCmHandle(dmiServiceName: 'some-dmi-service'))
+                    new YangModelCmHandle(dmiServiceName: 'some-dmi-service'), new RequestPathParameters(uriLdnFirstPart:'somePathVariable=somePathValue', className: 'someClassName', id:'someId'))
         then:'verify object has been mapped correctly'
             result.urlVariables().get('filter') == 'my-filter'
     }
