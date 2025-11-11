@@ -20,19 +20,23 @@
 
 package org.onap.cps.ncmp.impl.provmns;
 
+import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.model.ClassNameIdGetDataNodeSelectorParameter;
-import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.provmns.model.Scope;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
+import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ParametersBuilder {
+
+    final JsonObjectMapper jsonObjectMapper;
 
     /**
      * Creates a UrlTemplateParameters object containing the relevant fields for a get.
@@ -49,34 +53,37 @@ public class ParametersBuilder {
                                                        final List<String> attributes,
                                                        final List<String> fields,
                                                        final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector,
-                                                       final YangModelCmHandle yangModelCmHandle) {
+                                                       final YangModelCmHandle yangModelCmHandle,
+                                                       final RequestPathParameters requestPathParameters) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
+        final String attributesString = removeBrackets(attributes);
+        final String fieldsString = removeBrackets(fields);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(yangModelCmHandle.getAlternateId())
+            .fixedPathSegment(requestPathParameters.toAlternateId())
             .queryParameter("scopeType", scope.getScopeType() != null
                 ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null
                 ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)
-            .queryParameter("attributes", attributes != null ? attributes.toString() : null)
-            .queryParameter("fields", fields != null ? fields.toString() : null)
+            .queryParameter("attributes", attributesString.isBlank() ? null : attributesString)
+            .queryParameter("fields", fieldsString.isBlank() ? null : fieldsString)
             .queryParameter("dataNodeSelector", dataNodeSelector.getDataNodeSelector())
-            .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+            .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 
     /**
-     * Creates a UrlTemplateParameters object containing the relevant fields for a put.
+     * Creates a UrlTemplateParameters object containing the relevant fields for a put and patch request.
      *
-     * @param resource            Provided resource parameter.
-     * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
+     * @param yangModelCmHandle      yangModelCmHandle object for resolved alternate ID
+     * @param requestPathParameters  request path parameters.
      * @return UrlTemplateParameters object.
      */
-    public UrlTemplateParameters createUrlTemplateParametersForPut(final Resource resource,
-                                                                   final YangModelCmHandle yangModelCmHandle) {
-
+    public UrlTemplateParameters createUrlTemplateParametersForPutAndPatch(final YangModelCmHandle yangModelCmHandle,
+                                                                   final RequestPathParameters requestPathParameters) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(yangModelCmHandle.getAlternateId())
-            .queryParameter("resource", resource.toString())
-            .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+            .fixedPathSegment(requestPathParameters.toAlternateId())
+            .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 
     /**
@@ -85,10 +92,19 @@ public class ParametersBuilder {
      * @param yangModelCmHandle   yangModelCmHandle object for resolved alternate ID
      * @return UrlTemplateParameters object.
      */
-    public UrlTemplateParameters createUrlTemplateParametersForDelete(final YangModelCmHandle yangModelCmHandle) {
-
+    public UrlTemplateParameters createUrlTemplateParametersForDelete(final YangModelCmHandle yangModelCmHandle,
+                                                                  final RequestPathParameters requestPathParameters) {
+        final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
         return RestServiceUrlTemplateBuilder.newInstance()
-            .fixedPathSegment(yangModelCmHandle.getAlternateId())
-            .createUrlTemplateParameters(yangModelCmHandle.getDmiServiceName(), "ProvMnS");
+            .fixedPathSegment(requestPathParameters.toAlternateId())
+            .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
+    }
+
+    private String removeBrackets(final List<String> queryParameterList) {
+        if (queryParameterList != null) {
+            final String queryParameterText = queryParameterList.toString();
+            return queryParameterText.substring(1, queryParameterText.length() - 1);
+        }
+        return "";
     }
 }
