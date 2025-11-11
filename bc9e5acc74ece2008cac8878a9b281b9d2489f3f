@@ -16,6 +16,69 @@
       "message": "Resolved",
       "revId": "bc9e5acc74ece2008cac8878a9b281b9d2489f3f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31970666_2888638c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T20:23:20Z",
+      "side": 1,
+      "message": "minor comments",
+      "revId": "bc9e5acc74ece2008cac8878a9b281b9d2489f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e105c4_174ea2bb",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T20:23:20Z",
+      "side": 1,
+      "message": "xpath",
+      "range": {
+        "startLine": 97,
+        "startChar": 27,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "bc9e5acc74ece2008cac8878a9b281b9d2489f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed54b969_a9998dee",
+        "filename": "cps-service/src/test/groovy/org/onap/cps/utils/DeltaReportUtilsSpec.groovy",
+        "patchSetId": 33
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T20:23:20Z",
+      "side": 1,
+      "message": "indent -\u003e",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "bc9e5acc74ece2008cac8878a9b281b9d2489f3f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
