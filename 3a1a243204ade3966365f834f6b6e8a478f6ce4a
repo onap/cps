@@ -16,6 +16,29 @@
       "message": "Done",
       "revId": "3a1a243204ade3966365f834f6b6e8a478f6ce4a",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bedbfab2_3ff02cb4",
+        "filename": "cps-service/src/main/java/org/onap/cps/impl/CpsDataServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-11T08:34:35Z",
+      "side": 1,
+      "message": "line #207:\nif (isPathToListElement(parentNodeXpath)) {\n            cpsDataPersistenceService.replaceListContent(dataspaceName, anchorName, parentNodeXpath, dataNodes);\n        }\n        \nThis works as the solution to this problem, using existing code. Would make things simpler as this code is already thoroughly tested.",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 13
+      },
+      "revId": "3a1a243204ade3966365f834f6b6e8a478f6ce4a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
