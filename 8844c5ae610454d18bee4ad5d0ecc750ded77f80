@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4652a9b_c088b926",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfd1c81a_f060b8dc",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "485197eb_7d72e484",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-11T00:54:38Z",
       "side": 1,
       "message": "duplicated code, also here you didnt need supress warnings",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b3b7bf_f37476a1",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "485197eb_7d72e484",
       "range": {
         "startLine": 251,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82966a07_ba1ff8b9",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f80262cb_5c7fdd77",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81c86ae5_8bc4c0c3",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-11-11T00:54:38Z",
       "side": 1,
       "message": "should be void? return element is never used in lines 71 and 72",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 47
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d37e0e9_e288610a",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81c86ae5_8bc4c0c3",
       "range": {
         "startLine": 110,
         "startChar": 19,
@@ -116,6 +212,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c50168ba_baa6dc59",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cd2b501_c00d3942",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28cac73f_cd33b3e4",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-11-11T00:54:38Z",
       "side": 1,
       "message": "this whole is duplicated code with XmlUtils.java line 251-256",
+      "range": {
+        "startLine": 136,
+        "startChar": 94,
+        "endLine": 142,
+        "endChar": 39
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a977e1f_d2479318",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 8513
+      },
+      "writtenOn": "2025-11-11T14:56:01Z",
+      "side": 1,
+      "message": "We verified that a similar method exists in XmlUtils.java but it has private access, so it cannot be reused here and its parameter type is documentfragment \n, while in DeltaReportUtils we need to handle document. Hence the method is not directly compatible.",
+      "parentUuid": "28cac73f_cd33b3e4",
       "range": {
         "startLine": 136,
         "startChar": 94,
