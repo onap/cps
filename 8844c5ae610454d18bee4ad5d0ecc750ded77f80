@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd1c81a_f060b8dc",
+        "filename": "cps-rest/src/test/groovy/org/onap/cps/rest/controller/DeltaRestControllerSpec.groovy",
+        "patchSetId": 32
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "put this before line 94 and use it for line 96",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "485197eb_7d72e484",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/XmlUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "duplicated code, also here you didnt need supress warnings",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 256,
+        "endChar": 39
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f80262cb_5c7fdd77",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "just \u0027buildXml\u0027 unless you have other method that builds xml using something else?",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 41
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c86ae5_8bc4c0c3",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "should be void? return element is never used in lines 71 and 72",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 47
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd2b501_c00d3942",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "this is wrong and misleading as the return here is not always the same",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 40
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28cac73f_cd33b3e4",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-11T00:54:38Z",
+      "side": 1,
+      "message": "this whole is duplicated code with XmlUtils.java line 251-256",
+      "range": {
+        "startLine": 136,
+        "startChar": 94,
+        "endLine": 142,
+        "endChar": 39
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
