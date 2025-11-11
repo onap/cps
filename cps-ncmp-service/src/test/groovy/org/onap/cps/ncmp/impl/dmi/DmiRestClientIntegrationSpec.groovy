@@ -33,7 +33,6 @@ import spock.lang.Specification
 
 import static org.onap.cps.ncmp.api.data.models.OperationType.CREATE
 import static org.onap.cps.ncmp.api.data.models.OperationType.READ
-import static org.onap.cps.ncmp.api.data.models.OperationType.UPDATE
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.DATA
 import static org.onap.cps.ncmp.impl.models.RequiredDmiService.MODEL
 
@@ -60,13 +59,16 @@ class DmiRestClientIntegrationSpec extends Specification {
             def result
             switch(method) {
                 case 'get':
-                    result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, READ)
+                    result = objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters)
                     break
                 case 'post':
                     result = objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters, 'body', CREATE, '')
                     break
                 case 'put':
-                    result = objectUnderTest.synchronousPutOperation(DATA, urlTemplateParameters, UPDATE)
+                    result = objectUnderTest.synchronousPutOperation(DATA, 'body', urlTemplateParameters)
+                    break
+                case 'patch':
+                    result = objectUnderTest.synchronousPatchOperation(DATA, 'body', urlTemplateParameters, 'application/json-patch+json')
                     break
                 case 'delete':
                     result = objectUnderTest.synchronousDeleteOperation(DATA, urlTemplateParameters)
@@ -74,41 +76,27 @@ class DmiRestClientIntegrationSpec extends Specification {
         then: 'the result has the same status code of 200'
             assert result.statusCode.value() == 200
         where: 'the following http methods are used'
-            method << ['get', 'post', 'put', 'delete']
+            method << ['get', 'post', 'put', 'patch', 'delete']
     }
 
-    def 'Synchronous DMI #method request with invalid JSON.'() {
+    def 'Synchronous DMI post request with invalid JSON.'() {
         given: 'Web Server wil return OK response'
             mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value)
                 .setBody('invalid-json:!!')
                 .addHeader('Content-Type', 'application/json'))
-        when: 'synchronous #method request is attempted (on Model service this time for coverage on service selector)'
-            switch(method) {
-                case 'get':
-                    objectUnderTest.synchronousGetOperation(MODEL, urlTemplateParameters, READ)
-                    break;
-                case 'post':
-                    objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'body', READ, 'some authorization')
-                    break
-                case 'put':
-                    objectUnderTest.synchronousPutOperation(MODEL, urlTemplateParameters, UPDATE)
-                    break
-                case 'delete':
-                    objectUnderTest.synchronousDeleteOperation(MODEL, urlTemplateParameters)
-            }
+        when: 'synchronous post request is attempted (on Model service this time for coverage on service selector)'
+            objectUnderTest.synchronousPostOperation(MODEL, urlTemplateParameters, 'body', READ, 'some authorization')
         then: 'a dmi client request exception is thrown with the correct error codes'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.getHttpStatusCode() == 500
             assert thrown.ncmpResponseStatus.code == '108'
-        where: 'the following http methods are used'
-            method << ['get','post','put','delete']
     }
 
     def 'DMI Request with non-responding server.'() {
         given: 'the web server is shut down'
             mockWebServer.shutdown()
-        when: 'a synchronous read request is attempted'
-            objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, READ)
+        when: 'a synchronous post request is attempted'
+            objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters,'body', CREATE, '' )
         then: 'a dmi client request exception is thrown with status code of 503 Service Unavailable'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.getHttpStatusCode() == 503
@@ -117,8 +105,8 @@ class DmiRestClientIntegrationSpec extends Specification {
     def 'DMI Request with #scenario.'() {
         given: 'the mock server or exception setup'
             mockWebServer.enqueue(new MockResponse().setResponseCode(responseCode.value))
-        when: 'a synchronous read request is attempted'
-            objectUnderTest.synchronousGetOperation(DATA, urlTemplateParameters, READ)
+        when: 'a synchronous post request is attempted'
+            objectUnderTest.synchronousPostOperation(DATA, urlTemplateParameters,'body', CREATE, '')
         then: 'a DMI client request exception is thrown with the right status'
             def thrown = thrown(DmiClientRequestException)
             assert thrown.httpStatusCode == expectedStatus
@@ -133,7 +121,7 @@ class DmiRestClientIntegrationSpec extends Specification {
         given: 'Mock a bad URL that causes IllegalArgumentException before HTTP call'
             def badUrlParameters = new UrlTemplateParameters(':://bad url', [someParam: 'value'])
         when: 'a synchronous request is attempted'
-            objectUnderTest.synchronousGetOperation(DATA, badUrlParameters, READ)
+            objectUnderTest.synchronousGetOperation(DATA, badUrlParameters)
         then: 'a invalid url exception is thrown (no mapping)'
             thrown(InvalidUrlException)
     }

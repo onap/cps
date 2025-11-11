@@ -42,7 +42,7 @@ public class ErrorResponseBuilder {
      * Default is used by PUT and DELETE
      *
      * @param httpStatus   HTTP response
-     * @param reason   reason for error response
+     * @param reason       reason for error response
      * @return response entity
      */
     public ResponseEntity<Object> buildErrorResponseDefault(final HttpStatus httpStatus, final String reason) {
@@ -56,7 +56,7 @@ public class ErrorResponseBuilder {
      * Create response entity for get error response.
      *
      * @param httpStatus   HTTP response
-     * @param reason   reason for error response
+     * @param reason       reason for error response
      * @return response entity
      */
     public ResponseEntity<Object> buildErrorResponseGet(final HttpStatus httpStatus, final String reason) {
