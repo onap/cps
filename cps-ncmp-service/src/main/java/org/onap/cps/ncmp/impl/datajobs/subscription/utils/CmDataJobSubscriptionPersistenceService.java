@@ -53,12 +53,16 @@ public class CmDataJobSubscriptionPersistenceService {
     private static final String CPS_PATH_FOR_SUBSCRIPTION_NODE = "//subscription";
     private static final String CPS_PATH_TEMPLATE_FOR_SUBSCRIPTIONS_WITH_DATA_NODE_SELECTOR =
             CPS_PATH_FOR_SUBSCRIPTION_NODE + "[@dataNodeSelector='%s']";
-    private static final String CPS_PATH_FOR_SUBSCRIPTION_WITH_DATA_NODE_SELECTOR =
-            "/dataJob/subscription[@dataNodeSelector='%s']";
+    private static final String CPS_PATH_FOR_SUBSCRIPTION_WITH_DATA_NODE_SELECTOR = PARENT_NODE_XPATH
+            + "/subscription[@dataNodeSelector='%s']";
     private static final String CPS_PATH_TEMPLATE_FOR_SUBSCRIPTION_WITH_DATA_JOB_ID =
             CPS_PATH_FOR_SUBSCRIPTION_NODE + "/dataJobId[text()='%s']";
     private static final String CPS_PATH_TEMPLATE_FOR_INACTIVE_SUBSCRIPTIONS =
             CPS_PATH_FOR_SUBSCRIPTION_NODE + "[@status='UNKNOWN' or @status='REJECTED']/dataJobId[text()='%s']";
+
+    private static final String DATANODE_SELECTOR_LEAF_NAME = "dataNodeSelector";
+    private static final String STATUS_LEAF_NAME = "status";
+    private static final String DATAJOB_ID_LEAF_NAME = "dataJobId";
 
     private final JsonObjectMapper jsonObjectMapper;
     private final CpsQueryService cpsQueryService;
@@ -101,7 +105,7 @@ public class CmDataJobSubscriptionPersistenceService {
         if (existingNodes.isEmpty()) {
             return Collections.emptyList();
         }
-        return (Collection<String>) existingNodes.iterator().next().getLeaves().get("dataJobId");
+        return (Collection<String>) existingNodes.iterator().next().getLeaves().get(DATAJOB_ID_LEAF_NAME);
     }
 
     /**
@@ -116,7 +120,7 @@ public class CmDataJobSubscriptionPersistenceService {
                 cpsQueryService.queryDataNodes(DATASPACE, ANCHOR, query, OMIT_DESCENDANTS);
         final List<String> dataNodeSelectors = new ArrayList<>();
         for (final DataNode dataNode : dataNodes) {
-            final String dataNodeSelector = dataNode.getLeaves().get("dataNodeSelector").toString();
+            final String dataNodeSelector = dataNode.getLeaves().get(DATANODE_SELECTOR_LEAF_NAME).toString();
             dataNodeSelectors.add(dataNodeSelector);
         }
         return dataNodeSelectors;
@@ -134,13 +138,13 @@ public class CmDataJobSubscriptionPersistenceService {
                 cpsQueryService.queryDataNodes(DATASPACE, ANCHOR, query, OMIT_DESCENDANTS);
         final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
         if (!subscriptionIds.remove(subscriptionId)) {
-            log.warn("SubscriptionId={} not found under {}={}", subscriptionId, "dataNodeSelector", dataNodeSelector);
+            log.warn("SubscriptionId={} not found under dataNodeSelector={}", subscriptionId, dataNodeSelector);
             return;
         }
         if (subscriptionIds.isEmpty()) {
             deleteEntireSubscription(dataNodeSelector);
         } else {
-            final String currentStatus = dataNodes.iterator().next().getLeaves().get("status").toString();
+            final String currentStatus = dataNodes.iterator().next().getLeaves().get(STATUS_LEAF_NAME).toString();
             updateSubscriptionDetails(dataNodeSelector, subscriptionIds, currentStatus);
         }
     }
@@ -167,7 +171,7 @@ public class CmDataJobSubscriptionPersistenceService {
                 OMIT_DESCENDANTS);
         final List<String> dataNodeSelectors = new ArrayList<>(dataNodes.size());
         for (final DataNode dataNode : dataNodes) {
-            final String dataNodeSelector = dataNode.getLeaves().get("dataNodeSelector").toString();
+            final String dataNodeSelector = dataNode.getLeaves().get(DATANODE_SELECTOR_LEAF_NAME).toString();
             dataNodeSelectors.add(dataNodeSelector);
         }
         return dataNodeSelectors;
@@ -187,7 +191,8 @@ public class CmDataJobSubscriptionPersistenceService {
             addNewSubscriptionDetails(subscriptionId, dataNodeSelector);
         } else {
             final Collection<String> subscriptionIds = getSubscriptionIds(dataNodeSelector);
-            final String cmSubscriptionStatusName = dataNodes.iterator().next().getLeaves().get("status").toString();
+            final String cmSubscriptionStatusName =
+                    dataNodes.iterator().next().getLeaves().get(STATUS_LEAF_NAME).toString();
             subscriptionIds.add(subscriptionId);
             updateSubscriptionDetails(dataNodeSelector, subscriptionIds, cmSubscriptionStatusName);
         }
@@ -227,9 +232,9 @@ public class CmDataJobSubscriptionPersistenceService {
                                                    final Collection<String> subscriptionIds,
                                                    final String cmSubscriptionStatusName) {
         final Map<String, Serializable> subscriptionDetailsAsMap =
-            Map.of("dataNodeSelector", dataNodeSelector,
-                    "dataJobId", (Serializable) subscriptionIds,
-                    "status", cmSubscriptionStatusName);
+            Map.of(DATANODE_SELECTOR_LEAF_NAME, dataNodeSelector,
+                    DATAJOB_ID_LEAF_NAME, (Serializable) subscriptionIds,
+                    STATUS_LEAF_NAME, cmSubscriptionStatusName);
         return "{\"subscription\":[" + jsonObjectMapper.asJsonString(subscriptionDetailsAsMap) + "]}";
     }
 
