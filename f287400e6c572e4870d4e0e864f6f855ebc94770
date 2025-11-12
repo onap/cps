@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "861287a1_cb229ed2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-12T10:41:44Z",
+      "side": 1,
+      "message": "I have create a sub-task for it. I can create it in our postman-collections module.\nTask id: CPS-3039",
+      "parentUuid": "da4bac7d_22e47805",
+      "revId": "f287400e6c572e4870d4e0e864f6f855ebc94770",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63999490_3a94918b",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-11-12T09:36:06Z",
       "side": 1,
       "message": "Could we use consecutive ports ie 8093, or alr they already in use?\nIf NOT 9092 would be more logical, higher and consistent with port choosen at line #141",
+      "range": {
+        "startLine": 140,
+        "startChar": 10,
+        "endLine": 140,
+        "endChar": 14
+      },
+      "revId": "f287400e6c572e4870d4e0e864f6f855ebc94770",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828ceff9_7a158718",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-12T10:41:44Z",
+      "side": 1,
+      "message": "8093 is never used in cps-charts I can use it.\n\n9092 has already been assigned to kafka broker, thus it cannot be used.",
+      "parentUuid": "63999490_3a94918b",
       "range": {
         "startLine": 140,
         "startChar": 10,
