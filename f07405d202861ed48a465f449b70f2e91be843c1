@@ -95,6 +95,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65fc0ff1_46d182ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T17:38:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "62f93bc4_84560610",
+      "range": {
+        "startLine": 141,
+        "startChar": 20,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "308193d3_a08f6c9b",
@@ -202,6 +226,30 @@
       "writtenOn": "2025-11-12T14:05:25Z",
       "side": 1,
       "message": "do you have test for the 2 branches here?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "621989f2_8bcd6015",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T17:38:24Z",
+      "side": 1,
+      "message": "I have done that for you now :-)",
+      "parentUuid": "daeb4981_346843cb",
       "range": {
         "startLine": 104,
         "startChar": 0,
