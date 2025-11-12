@@ -16,6 +16,23 @@
       "message": "Please don\u0027t merge since it depends on the other commit that is from dmi-plugin (below).\n\nFirst, the patchset below should be merged so that evn. variable will be ready for the charts:\n\n142405: Changed networkd id dynamically in response object for Create Resource Data Operation | https://gerrit.onap.org/r/c/cps/ncmp-dmi-plugin/+/142405",
       "revId": "d8af1832da750d02355cbd016a0f4f2f10a4eaeb",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "909c9008_b214a259",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-12T14:26:20Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "d8af1832da750d02355cbd016a0f4f2f10a4eaeb",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
