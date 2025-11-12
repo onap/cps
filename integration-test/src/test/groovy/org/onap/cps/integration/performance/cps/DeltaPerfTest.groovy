@@ -83,7 +83,6 @@ class DeltaPerfTest extends CpsPerfTestBase{
             'all descendants'    | '/openroadm-devices'                                              | INCLUDE_ALL_DESCENDANTS || 20.0
     }
 
-    @Ignore
     def 'Get delta between an anchor and JSON payload with grouping enabled and #scenario'() {
         when: 'attempt to get delta between an anchor and JSON payload'
             resourceMeter.start()
