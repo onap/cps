@@ -82,7 +82,7 @@ public class CmAvcEventConsumer {
             throw new KafkaException("test kafka exception for testing");
         }
 
-        log.info("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
+        log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
         eventsProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
 
