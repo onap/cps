@@ -71,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7527a50d_25e42a68",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnS.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa0b715_7143fbb8",
+      "range": {
+        "startLine": 216,
+        "startChar": 24,
+        "endLine": 216,
+        "endChar": 32
+      },
+      "revId": "9e807c5119cbf838281ac2ff0562198fccb2750b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28cc88a7_c4617a37",
@@ -353,6 +377,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebfe4507_ad37777d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfd926e3_954bb781",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 54
+      },
+      "revId": "9e807c5119cbf838281ac2ff0562198fccb2750b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8e456d8_95bdd9dd",
@@ -389,6 +437,30 @@
       "writtenOn": "2025-11-12T13:51:40Z",
       "side": 1,
       "message": "This will be handled in Levente\u0027s commit",
+      "parentUuid": "f8e456d8_95bdd9dd",
+      "range": {
+        "startLine": 161,
+        "startChar": 34,
+        "endLine": 161,
+        "endChar": 61
+      },
+      "revId": "9e807c5119cbf838281ac2ff0562198fccb2750b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f34faa_b7f9b0f2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "agreed this well be done in separate commit (by Levente)",
       "parentUuid": "f8e456d8_95bdd9dd",
       "range": {
         "startLine": 161,

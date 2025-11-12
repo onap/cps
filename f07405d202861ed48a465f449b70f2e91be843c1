@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc806b31_7c9cf658",
+        "filename": "cps-ncmp-rest/src/test/groovy/org/onap/cps/ncmp/rest/controller/ProvMnsControllerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "NB: some unnecessary spaces",
+      "range": {
+        "startLine": 258,
+        "startChar": 37,
+        "endLine": 258,
+        "endChar": 43
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9cae11d_5520c2e2",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "should we have break; after each case?",
+      "range": {
+        "startLine": 141,
+        "startChar": 20,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308193d3_a08f6c9b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "NB Align descrptions",
+      "range": {
+        "startLine": 142,
+        "startChar": 33,
+        "endLine": 143,
+        "endChar": 33
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b4f4d9_feeae5fa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "NB: align",
+      "range": {
+        "startLine": 167,
+        "startChar": 29,
+        "endLine": 167,
+        "endChar": 34
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daeb4981_346843cb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/provmns/ParametersBuilder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "do you have test for the 2 branches here?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e7bc0c7_c4c740b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "can we now use something more basic for this test, I think a String \u0027body\u0027 will sufice...\n(dont forget to clean up your import after)",
+      "range": {
+        "startLine": 71,
+        "startChar": 75,
+        "endLine": 71,
+        "endChar": 99
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c14e5f_03bf2675",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/dmi/DmiRestClientIntegrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T14:05:25Z",
+      "side": 1,
+      "message": "can we now use something more basic for this test, I think a String \u0027body\u0027 will sufice...\n(dont forget to clean up your import after)",
+      "range": {
+        "startLine": 74,
+        "startChar": 77,
+        "endLine": 74,
+        "endChar": 94
+      },
+      "revId": "f07405d202861ed48a465f449b70f2e91be843c1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
