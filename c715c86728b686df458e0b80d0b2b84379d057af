@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ecd009_c1478b2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T12:59:09Z",
+      "side": 1,
+      "message": "looking good, just one naming suggestion",
+      "revId": "c715c86728b686df458e0b80d0b2b84379d057af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96823b4a_81bd36e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T12:59:09Z",
+      "side": 1,
+      "message": "NB: looks leik you should have inserted space here instead of adding \u003d at thr end",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 4
+      },
+      "revId": "c715c86728b686df458e0b80d0b2b84379d057af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e720f8_07470a90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/NcmpInEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T12:59:09Z",
+      "side": 1,
+      "message": "NB: Same as previous file",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 4
+      },
+      "revId": "c715c86728b686df458e0b80d0b2b84379d057af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac62ccc_11b1171e",
+        "filename": "integration-test/src/test/groovy/org/onap/cps/integration/functional/ncmp/datajobs/subscription/CmSubscriptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-12T12:59:09Z",
+      "side": 1,
+      "message": "assertEventProcessedBasedOnLogging(expetedMessageInLog)",
+      "range": {
+        "startLine": 296,
+        "startChar": 8,
+        "endLine": 296,
+        "endChar": 26
+      },
+      "revId": "c715c86728b686df458e0b80d0b2b84379d057af",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
