@@ -25,13 +25,10 @@ import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY
 import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME;
 
 import lombok.extern.slf4j.Slf4j;
-import org.onap.cps.api.CpsAnchorService;
-import org.onap.cps.api.CpsDataService;
-import org.onap.cps.api.CpsDataspaceService;
-import org.onap.cps.api.CpsModuleService;
 import org.onap.cps.init.AbstractModelLoader;
 import org.onap.cps.init.ModelLoaderLock;
 import org.onap.cps.init.actuator.ReadinessManager;
+import org.onap.cps.ncmp.impl.models.CpsServices;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
@@ -43,6 +40,7 @@ import org.springframework.stereotype.Service;
 @Order(2)
 public class InventoryModelLoader extends AbstractModelLoader {
 
+    private final DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
@@ -57,15 +55,18 @@ public class InventoryModelLoader extends AbstractModelLoader {
      * the NCMP inventory model schema sets and managing readiness state during migration.
      */
     public InventoryModelLoader(final ModelLoaderLock modelLoaderLock,
-                                final CpsDataspaceService cpsDataspaceService,
-                                final CpsModuleService cpsModuleService,
-                                final CpsAnchorService cpsAnchorService,
-                                final CpsDataService cpsDataService,
+                                final CpsServices cpsServices,
                                 final ApplicationEventPublisher applicationEventPublisher,
-                                final ReadinessManager readinessManager) {
-        super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
+                                final ReadinessManager readinessManager,
+                                final DataMigration dataMigration) {
+        super(modelLoaderLock,
+                cpsServices.dataspaceService(),
+                cpsServices.moduleService(),
+                cpsServices.anchorService(),
+                cpsServices.dataService(),
             readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
+        this.dataMigration = dataMigration;
     }
 
     @Override
@@ -119,10 +120,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void performInventoryDataMigration() {
-
-        //1. Load all the cm handles (in batch)
-        //2. Copy the state and known properties
-        log.info("Model Loader #2: Inventory module data migration is completed successfully.");
+        this.dataMigration.migrateInventoryToModelRelease20250722();
     }
 
     private static String toYangFileName(final String schemaSetName) {
