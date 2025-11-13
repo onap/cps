@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem
@@ -247,6 +246,39 @@ class PolicyExecutorSpec extends Specification {
             'objectClass is null'      | null               || 'someClassName'
     }
 
+    def 'Build policy executor patch operation details from ProvMnS request parameters where the path #scenario'() {
+        given: 'a requestParameter and a patchItem list'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def patchItemsList = patchItemList
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+        then: 'the result is equal to the expected json string'
+            assert expectedJsonStringResult == jsonObjectMapper.asJsonString(result)
+        where:
+            scenario             | patchItemList                                                                                      || expectedJsonStringResult
+            'contains a #'       | [new PatchItem(op: 'REPLACE', 'path':'someUriLdnFirstPart#/attributes/simpleAttribute', value: 1)] || '{"permissionId":"Some Permission Id","changeRequestFormat":"cm-legacy","operations":[{"operation":"update","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"someClassName":[{"id":"someId","attributes":{"simpleAttribute":1}}]}}]}'
+            'does not contain #' | [new PatchItem(op: 'REPLACE', 'path':'someUriLdnFirstPart', value: getResource())]                 || '{"permissionId":"Some Permission Id","changeRequestFormat":"cm-legacy","operations":[{"operation":"UPDATE","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"someClassName":[{"id":"someId","attributes":["someAttribute1:someValue1","someAttribute2:someValue2"]}]}}]}'
+    }
+
+    def 'Build an attribute map with different depths of hierarchy with #scenario.'() {
+        given: 'a patch item with a path'
+            def patchItem = new PatchItem(op: 'REPLACE', 'path':path, value: 123)
+        when: 'transforming the attributes'
+            def hierarchyMap = objectUnderTest.getAttributeHierarchyMap(patchItem)
+        then: 'the map depth is equal to the expected number of attributes'
+            assert getAttributeMapDepth(hierarchyMap) == expectedDepth
+            assert getDeepestMapValue(hierarchyMap) == 123
+        where:
+            scenario                  | path                                                                            || expectedDepth
+            'a simple attribute'      | 'someUriLdnFirstPart#/attributes/simpleAttribute'                               || 1
+            'a complex attribute'     | 'someUriLdnFirstPart#/attributes/simpleAttribute/complexAttribute'              || 2
+            'a depth of 3 attributes' | 'someUriLdnFirstPart#/attributes/simpleAttribute/complexAttribute/anotherLayer' || 3
+    }
+
+    def getResource() {
+        return new ResourceOneOf(id: 'someResourceId', attributes: ['someAttribute1:someValue1', 'someAttribute2:someValue2'], objectClass: 'someClassName')
+    }
+
     def 'Build policy executor patch operation details from ProvMnS request parameters with invalid op.'() {
         given: 'a provMnsRequestParameter and a patchItem list'
             def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
@@ -285,6 +317,42 @@ class PolicyExecutorSpec extends Specification {
             objectUnderTest.buildCreateOperationDetails(CREATE, path, resource)
         then: 'the expected exception is throw and matches the original'
             noExceptionThrown()
+    }
+
+    def getAttributeMapDepth(Map hierarchyMap) {
+        if (!hierarchyMap) return 0
+        int maxChildDepth = 0
+        hierarchyMap.each { k, v ->
+            if (v instanceof Map) {
+                maxChildDepth = Math.max(maxChildDepth, getAttributeMapDepth(v))
+            }
+        }
+        return 1 + maxChildDepth
+    }
+
+    def getDeepestMapValue(Map hierarchyMap) {
+        if (!hierarchyMap) return null
+        def (deepestMap, _) = getDeepestMapWithDepth(hierarchyMap)
+        return deepestMap.values()[0]
+    }
+
+    private def getDeepestMapWithDepth(Map map) {
+        if (!map) return [null, 0]
+
+        Map innermostMap = map
+        int maxDepth = 1
+
+        map.each { k, v ->
+            if (v instanceof Map) {
+                def (nestedMap, childDepth) = getDeepestMapWithDepth(v)
+                if (childDepth + 1 > maxDepth) {
+                    maxDepth = childDepth + 1
+                    innermostMap = nestedMap
+                }
+            }
+        }
+
+        return [innermostMap, maxDepth]
     }
 
     def mockResponse(mockResponseAsMap, httpStatus) {
