@@ -50,7 +50,8 @@ class InventoryModelLoaderSpec extends Specification {
     def mockCpsAnchorService = Mock(CpsAnchorService)
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
+    def mockDataMigration = Mock(DataMigration)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager, mockDataMigration)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -75,6 +76,13 @@ class InventoryModelLoaderSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
+
+    def callPrivatePerformInventoryDataMigration() {
+        def method = objectUnderTest.class.getDeclaredMethod('performInventoryDataMigration')
+        method.accessible = true
+        method.invoke(objectUnderTest)
+    }
+
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
@@ -137,6 +145,15 @@ class InventoryModelLoaderSpec extends Specification {
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
     }
+
+    def "Perform inventory data migration to R20250722"()
+    {
+        when: 'the migration is performed'
+            callPrivatePerformInventoryDataMigration()
+        then: 'the migration bean migrate() method is invoked'
+            1 * mockDataMigration.migrateInventoryToR20250722()
+    }
+
 
 
 }

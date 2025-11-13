@@ -43,6 +43,7 @@ import org.springframework.stereotype.Service;
 @Order(2)
 public class InventoryModelLoader extends AbstractModelLoader {
 
+    private DataMigration dataMigration;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     private static final String PREVIOUS_SCHEMA_SET_NAME = "dmi-registry-2024-02-23";
@@ -62,10 +63,12 @@ public class InventoryModelLoader extends AbstractModelLoader {
                                 final CpsAnchorService cpsAnchorService,
                                 final CpsDataService cpsDataService,
                                 final ApplicationEventPublisher applicationEventPublisher,
-                                final ReadinessManager readinessManager) {
+                                final ReadinessManager readinessManager,
+                                final DataMigration dataMigration) {
         super(modelLoaderLock, cpsDataspaceService, cpsModuleService, cpsAnchorService, cpsDataService,
             readinessManager);
         this.applicationEventPublisher = applicationEventPublisher;
+        this.dataMigration = dataMigration;
     }
 
     @Override
@@ -119,10 +122,7 @@ public class InventoryModelLoader extends AbstractModelLoader {
     }
 
     private void performInventoryDataMigration() {
-
-        //1. Load all the cm handles (in batch)
-        //2. Copy the state and known properties
-        log.info("Model Loader #2: Inventory module data migration is completed successfully.");
+        this.dataMigration.migrateInventoryToR20250722();
     }
 
     private static String toYangFileName(final String schemaSetName) {
