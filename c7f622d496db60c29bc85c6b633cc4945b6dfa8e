@@ -16,6 +16,75 @@
       "message": "recheck",
       "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41406eda_94d5cd76",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-13T12:33:05Z",
+      "side": 1,
+      "message": "method called is buildPatchOperationDetails, is this correct ?",
+      "range": {
+        "startLine": 253,
+        "startChar": 17,
+        "endLine": 253,
+        "endChar": 50
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899bad33_9dc9bea5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-13T12:33:05Z",
+      "side": 1,
+      "message": "not happening on next line",
+      "range": {
+        "startLine": 253,
+        "startChar": 61,
+        "endLine": 253,
+        "endChar": 83
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06046152_23b2d8b0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-13T12:33:05Z",
+      "side": 1,
+      "message": "description does not seem correct? , its 2 different checks",
+      "range": {
+        "startLine": 268,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 58
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
