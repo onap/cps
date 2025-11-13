@@ -28,6 +28,7 @@ import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,6 +61,8 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 @Service
 @RequiredArgsConstructor
 public class PolicyExecutor {
+
+    public static final String ATTRIBUTES_WITH_HASHTAG = "#/attributes";
 
     @Value("${ncmp.policy-executor.enabled:false}")
     private boolean enabled;
@@ -140,8 +143,7 @@ public class PolicyExecutor {
                     buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
                     (Resource) patchItem.getValue()));
                 case REPLACE -> operations.add(
-                    buildCreateOperationDetails(OperationType.UPDATE, requestPathParameters,
-                    (Resource) patchItem.getValue()));
+                    buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
                 case REMOVE -> operations.add(
                     buildDeleteOperationDetails(requestPathParameters.toAlternateId()));
                 default -> log.warn("Unsupported Patch Operation Type:{}", patchItem.getOp().getValue());
@@ -164,12 +166,12 @@ public class PolicyExecutor {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
-        final String resourceJson = jsonObjectMapper.asJsonString(resource);
+        final String resourceAsJson = jsonObjectMapper.asJsonString(resource);
         String className = requestPathParameters.getClassName();
         try {
             final TypeReference<HashMap<String, Object>> typeReference =
                 new TypeReference<HashMap<String, Object>>() {};
-            final Map<String, Object> fullValue = objectMapper.readValue(resourceJson, typeReference);
+            final Map<String, Object> fullValue = objectMapper.readValue(resourceAsJson, typeReference);
 
             operationEntry.setId(requestPathParameters.getId());
             operationEntry.setAttributes(fullValue.get("attributes"));
@@ -181,6 +183,61 @@ public class PolicyExecutor {
         changeRequest.put(className, List.of(operationEntry));
         return new CreateOperationDetails(operationType.name(),
             requestPathParameters.getUriLdnFirstPart(), changeRequest);
+    }
+
+    /**
+     * Build a CreateOperationDetails object from ProvMnS request details.
+     *
+     * @param operationType            Type of operation create, update.
+     * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
+     * @param patchItem                 provided request
+     * @return CreateOperationDetails object
+     */
+    public CreateOperationDetails buildCreateOperationDetailsForUpdate(final OperationType operationType,
+                                                                     final RequestPathParameters requestPathParameters,
+                                                                     final PatchItem patchItem) {
+        if (patchItem.getPath().contains(ATTRIBUTES_WITH_HASHTAG)) {
+            return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
+        } else {
+            return buildCreateOperationDetails(operationType, requestPathParameters,(Resource) patchItem.getValue());
+        }
+    }
+
+    private CreateOperationDetails buildCreateOperationDetailsForUpdateWithHash(final OperationType operationType,
+                                                                      final RequestPathParameters requestPathParameters,
+                                                                      final PatchItem patchItem) {
+        final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
+        final OperationEntry operationEntry = new OperationEntry();
+        final String className = requestPathParameters.getClassName();
+
+        final Map<String, Object> attributeHiearchyAsMap = getAttributeHierarchyMap(patchItem);
+
+        operationEntry.setId(requestPathParameters.getId());
+        operationEntry.setAttributes(attributeHiearchyAsMap);
+        changeRequest.put(className, List.of(operationEntry));
+
+        return new CreateOperationDetails(operationType.getOperationName(),
+                                          requestPathParameters.getUriLdnFirstPart(),
+                                          changeRequest);
+    }
+
+    private Map<String, Object> getAttributeHierarchyMap(PatchItem patchItem) {
+        final String[] parts = patchItem.getPath().split(ATTRIBUTES_WITH_HASHTAG);
+
+        final String attributeHierarchy = parts[1];
+        final String[] attributeHierarchyAsArray = Arrays.stream(attributeHierarchy.split("/"))
+                .filter(attributeName -> !attributeName.isEmpty())
+                .toArray(String[]::new);
+
+        return buildAttributeHiearchyAsMap(attributeHierarchyAsArray, 0, patchItem.getValue());
+    }
+
+    private Map<String, Object> buildAttributeHiearchyAsMap(String[] parts, int index, Object value) {
+        if (index == parts.length - 1) {
+            return Map.of(parts[index], value);
+        }
+
+        return Map.of(parts[index], buildAttributeHiearchyAsMap(parts, index + 1, value));
     }
 
     /**
