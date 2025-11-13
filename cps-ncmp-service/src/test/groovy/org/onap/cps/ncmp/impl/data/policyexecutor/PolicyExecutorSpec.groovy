@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.ncmp.api.exceptions.NcmpException
 import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem
@@ -245,6 +244,17 @@ class PolicyExecutorSpec extends Specification {
             'objectClass is populated' | 'someObjectClass'  || 'someObjectClass'
             'objectClass is empty'     | ''                 || 'someClassName'
             'objectClass is null'      | null               || 'someClassName'
+    }
+
+    def 'Build policy executor patch operation details from ProvMnS request parameters where the attribute name is in the path.'() {
+        given: 'a requestParameter and a patchItem list'
+            def path = new RequestPathParameters(uriLdnFirstPart: 'someUriLdnFirstPart', className: 'someClassName', id: 'someId')
+            def patchItemsList = [new PatchItem(op: 'REPLACE', 'path':'someUriLdnFirstPart#/attributes/attrB', value: 1), new PatchItem(op: 'REPLACE', 'path':'someUriLdnFirstPart#/attributes/attrB/attrC', value: 2)]
+        when: 'a configurationManagementOperation is created and converted to JSON'
+            def result = objectUnderTest.buildPatchOperationDetails(path, patchItemsList)
+        then: 'the result is as expected (using json to compare)'
+            def expectedJsonString = '{"permissionId":"Some Permission Id","changeRequestFormat":"cm-legacy","operations":[{"operation":"update","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"someClassName":[{"id":"someId","attributes":{"attrB":1}}]}},{"operation":"update","targetIdentifier":"someUriLdnFirstPart","changeRequest":{"someClassName":[{"id":"someId","attributes":{"attrB":{"attrC":2}}}]}}]}'
+            assert expectedJsonString == jsonObjectMapper.asJsonString(result)
     }
 
     def 'Build policy executor patch operation details from ProvMnS request parameters with invalid op.'() {
