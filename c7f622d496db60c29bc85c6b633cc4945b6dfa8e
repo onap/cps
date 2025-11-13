@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f171abb3_8a669b35",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "no need to split this here and trying to come up with a more specific method name just merge it into 1 method",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 102
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99c5e7e_3ba473c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "test simplified togterh, will send you a nordix patch for this",
+      "range": {
+        "startLine": 237,
+        "startChar": 14,
+        "endLine": 237,
+        "endChar": 82
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b7d173_b6e9267d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "instead of validating compleet json just check if it contains the relevant part related to your scenarios\n\nresult.contains(\u0027changeRequest\":{\"\u0027 + changeRequestClassReference)",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 543
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41406eda_94d5cd76",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
         "patchSetId": 2
@@ -66,6 +135,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb1c9627_c146ce69",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "in the given block fo do this:\npathItems \u003d [new PatchItem(op: \u0027REPLACE\u0027, \u0027path\u0027:\"someUriLdnFirstPart${postFix}\", value: 1)]\n\nwhere\nscenario          | postfix \n\u0027without hashtag\u0027 | \u0027\n\u0027with hashtag\u0027    | \u0027#/attributes/simpleAttribute",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 133
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34901e9e_00f2a0f2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "don\u0027t put the wheel thing as a value in the table. A lot of duplication and obscures what is really different\n\nextract out \u0027path\u0027 and \u0027expectedAttributes\u0027 as columns instead\ninstead of assert the whole json just use a contains check on the attributes part",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 376
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06046152_23b2d8b0",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
         "patchSetId": 2
@@ -82,6 +197,52 @@
         "startChar": 8,
         "endLine": 270,
         "endChar": 58
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5488254c_7e6a2b10",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "Test with 2 input paths is enough\n\u0027set a simple attribute\u0027 : someUriLdnFirstPart#/attributes/simpleAttribute\n\u0027set a complex attribute\u0027 :someUriLdnFirstPart#/attributes/complexAttribute/simpleAttribute\n\nexpectedAttributesOutput \n\u0027\"attributes\":{\"simpleAttribute\":123}\u0027\n\u0027\"attributes\":{\"complexAttribute:{simpleAttribute\":123}}\u0027",
+      "range": {
+        "startLine": 272,
+        "startChar": 40,
+        "endLine": 272,
+        "endChar": 120
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64e04e0a_66efdc74",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T13:40:01Z",
+      "side": 1,
+      "message": "nod complex code in testware, it can contain bugs itself and doesn\u0027t help visualizing teh test result",
+      "range": {
+        "startLine": 322,
+        "startChar": 2,
+        "endLine": 356,
+        "endChar": 5
       },
       "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
