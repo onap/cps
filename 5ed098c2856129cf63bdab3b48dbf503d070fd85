@@ -20,6 +20,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "234b5d87_e4caca80",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T16:59:39Z",
+      "side": 1,
+      "message": "NB: you stil have a split here which is not needed",
+      "range": {
+        "startLine": 232,
+        "startChar": 1,
+        "endLine": 235,
+        "endChar": 81
+      },
+      "revId": "5ed098c2856129cf63bdab3b48dbf503d070fd85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f520fc_805bf1f7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T16:59:39Z",
+      "side": 1,
+      "message": "use the same as in prev test:\nsomething like result.operations[0].changeRequest...",
+      "range": {
+        "startLine": 266,
+        "startChar": 12,
+        "endLine": 266,
+        "endChar": 91
+      },
+      "revId": "5ed098c2856129cf63bdab3b48dbf503d070fd85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fe8bbb_b0ec4f14",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T16:59:39Z",
+      "side": 1,
+      "message": "is this need, why a method?!",
+      "range": {
+        "startLine": 270,
+        "startChar": 68,
+        "endLine": 270,
+        "endChar": 81
+      },
+      "revId": "5ed098c2856129cf63bdab3b48dbf503d070fd85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75b01474_02953529",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
         "patchSetId": 4
