@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf34330_08dbef55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-13T15:33:23Z",
+      "side": 1,
+      "message": "other than that its +1",
+      "revId": "5ed098c2856129cf63bdab3b48dbf503d070fd85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b01474_02953529",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-13T15:33:23Z",
+      "side": 1,
+      "message": "incorrect",
+      "range": {
+        "startLine": 278,
+        "startChar": 15,
+        "endLine": 278,
+        "endChar": 75
+      },
+      "revId": "5ed098c2856129cf63bdab3b48dbf503d070fd85",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
