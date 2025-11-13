@@ -64,6 +64,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6866d93a_66fcaa84",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a99c5e7e_3ba473c6",
+      "range": {
+        "startLine": 237,
+        "startChar": 14,
+        "endLine": 237,
+        "endChar": 82
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23b7d173_b6e9267d",
@@ -77,6 +101,30 @@
       "writtenOn": "2025-11-13T13:40:01Z",
       "side": 1,
       "message": "instead of validating compleet json just check if it contains the relevant part related to your scenarios\n\nresult.contains(\u0027changeRequest\":{\"\u0027 + changeRequestClassReference)",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 543
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "903593ae_b5d21bf6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23b7d173_b6e9267d",
       "range": {
         "startLine": 240,
         "startChar": 0,
@@ -133,6 +181,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "786b18ba_731b0c56",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41406eda_94d5cd76",
+      "range": {
+        "startLine": 253,
+        "startChar": 17,
+        "endLine": 253,
+        "endChar": 50
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080d3b6e_283fbd78",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "899bad33_9dc9bea5",
+      "range": {
+        "startLine": 253,
+        "startChar": 61,
+        "endLine": 253,
+        "endChar": 83
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb1c9627_c146ce69",
@@ -179,6 +275,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b37e3f_2cbfeb4b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb1c9627_c146ce69",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 133
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d530fa_2887a1c6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34901e9e_00f2a0f2",
+      "range": {
+        "startLine": 259,
+        "startChar": 35,
+        "endLine": 259,
+        "endChar": 376
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06046152_23b2d8b0",
@@ -192,6 +336,30 @@
       "writtenOn": "2025-11-13T12:33:05Z",
       "side": 1,
       "message": "description does not seem correct? , its 2 different checks",
+      "range": {
+        "startLine": 268,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 58
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74afb8af_6e3b523b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06046152_23b2d8b0",
       "range": {
         "startLine": 268,
         "startChar": 8,
@@ -225,6 +393,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a86b83cb_64f271c7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5488254c_7e6a2b10",
+      "range": {
+        "startLine": 272,
+        "startChar": 40,
+        "endLine": 272,
+        "endChar": 120
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64e04e0a_66efdc74",
@@ -238,6 +430,30 @@
       "writtenOn": "2025-11-13T13:40:01Z",
       "side": 1,
       "message": "nod complex code in testware, it can contain bugs itself and doesn\u0027t help visualizing teh test result",
+      "range": {
+        "startLine": 322,
+        "startChar": 2,
+        "endLine": 356,
+        "endChar": 5
+      },
+      "revId": "c7f622d496db60c29bc85c6b633cc4945b6dfa8e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e4fba87_951d9e25",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-13T14:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64e04e0a_66efdc74",
       "range": {
         "startLine": 322,
         "startChar": 2,
