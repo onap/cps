@@ -151,4 +151,16 @@ public interface InventoryPersistence extends NcmpPersistence {
      * @return boolean
      */
     boolean isExistingCmHandleId(String cmHandleId);
+
+    /**
+     * Updates the specified field of a CM handle with a new value in the DMI registry.
+     *
+     * @param cmHandleIdToUpdate                         the unique identifier of the CM handle to be updated
+     * @param fieldName                                  the name of the field within the CM handle to be updated
+     * @param newFieldValue                              the new value to be set for the
+     *                                                   specified field of the CM handle
+     */
+    void setAndUpdateCmHandleField(String cmHandleIdToUpdate, String fieldName,
+                                           String newFieldValue);
+
 }

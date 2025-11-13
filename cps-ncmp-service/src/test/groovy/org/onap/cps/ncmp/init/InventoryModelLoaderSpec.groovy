@@ -34,6 +34,7 @@ import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spock.lang.Specification
@@ -75,6 +76,13 @@ class InventoryModelLoaderSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
+
+    private void callPrivatePerformInventoryDataMigration() {
+        def method = objectUnderTest.class.getDeclaredMethod('performInventoryDataMigration')
+        method.accessible = true
+        method.invoke(objectUnderTest)
+    }
+
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
@@ -136,6 +144,23 @@ class InventoryModelLoaderSpec extends Specification {
             0 * mockCpsModuleService.createSchemaSet(*_)
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
+    }
+
+    def 'performInventoryDataMigration executes migration successfully when bean is present'() {
+        given: 'a mock migration bean and an application context'
+            def mockMigrationBean = Mock(InventoryDataMigration)
+            def mockAppContext = Mock(ApplicationContext)
+            def field = objectUnderTest.class.getDeclaredField('applicationContext')
+            field.accessible = true
+            field.set(objectUnderTest, mockAppContext)
+            mockAppContext.getBean('inventoryDataMigration') >> mockMigrationBean
+        when: 'the migration is performed'
+            callPrivatePerformInventoryDataMigration()
+        then: 'the migration bean migrate() method is invoked'
+            1 * mockMigrationBean.migrateData()
+        and: 'a completion log message is written'
+            assert loggingListAppender.list.any { it.message.contains('completed successfully') }
+            assert !loggingListAppender.list.any { it.message.contains('Failed to execute') }
     }
 
 
