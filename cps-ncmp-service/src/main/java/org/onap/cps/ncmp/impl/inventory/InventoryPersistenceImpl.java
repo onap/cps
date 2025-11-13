@@ -49,6 +49,7 @@ import org.onap.cps.api.parameters.FetchDescendantsOption;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeStateBuilder;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.CpsValidator;
@@ -198,6 +199,52 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         } catch (final DataNodeNotFoundException exception) {
             return false;
         }
+    }
+
+    /**
+     * Updates the specified field of a CM handle with a new value in the DMI registry.
+     *
+     * @param cmHandleId                         the unique identifier of the CM handle to be updated
+     * @param fieldName                                  the name of the field within the CM handle to be updated
+     * @param fieldValue                              the new value to be set for
+     *                                                   the specified field of the CM handle
+     */
+    @Override
+    public void updateCmHandleField(final String cmHandleId, final String fieldName,
+                                    final String fieldValue) {
+        updateCmHandleFields(Collections.singletonMap(cmHandleId, fieldValue), fieldName);
+    }
+
+    @Override
+    public void updateCmHandleFields(final Map<String, String> cmHandleIdToValueMap, final String fieldName) {
+        final Map<String, Object> cmHandleStateUpdates = new HashMap<>();
+        final List<Map<String, String>> cmStateUpdatesPerCmHandleId = new ArrayList<>();
+
+        for (final Map.Entry<String, String> entry : cmHandleIdToValueMap.entrySet()) {
+            final Map<String, String> cmHandleData = new HashMap<>();
+            cmHandleData.put("id", entry.getKey());
+            cmHandleData.put(fieldName, entry.getValue());
+            cmStateUpdatesPerCmHandleId.add(cmHandleData);
+            log.debug("Adding {} update for cmHandle {} to {}", fieldName, entry.getKey(), entry.getValue());
+        }
+        cmHandleStateUpdates.put("cm-handles", cmStateUpdatesPerCmHandleId);
+        cpsDataService.updateNodeLeaves(
+                NCMP_DATASPACE_NAME,
+                NCMP_DMI_REGISTRY_ANCHOR,
+                NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(cmHandleStateUpdates),
+                OffsetDateTime.now(),
+                ContentType.JSON);
+    }
+
+    @Override
+    public void bulkUpdateCmHandleStates(final List<CmHandleStateUpdate> updates) {
+        final Map<String, String> cmHandleStateUpdates = updates.stream()
+            .collect(Collectors.toMap(
+                    CmHandleStateUpdate::cmHandleId,
+                    CmHandleStateUpdate::state
+            ));
+        updateCmHandleFields(cmHandleStateUpdates, "cm-handle-state");
     }
 
     private static String getXPathForCmHandleById(final String cmHandleId) {

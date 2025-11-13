@@ -32,6 +32,7 @@ import org.onap.cps.api.model.Dataspace
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.init.ModelLoaderLock
 import org.onap.cps.init.actuator.ReadinessManager
+import org.onap.cps.impl.CpsServicesBundle
 import org.slf4j.LoggerFactory
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationEventPublisher
@@ -48,9 +49,17 @@ class InventoryModelLoaderSpec extends Specification {
     def mockCpsModuleService = Mock(CpsModuleService)
     def mockCpsDataService = Mock(CpsDataService)
     def mockCpsAnchorService = Mock(CpsAnchorService)
+    def cpsServices = new CpsServicesBundle(
+            mockCpsAdminService,
+            mockCpsModuleService,
+            mockCpsAnchorService,
+            mockCpsDataService
+    )
+
     def mockApplicationEventPublisher = Mock(ApplicationEventPublisher)
     def mockReadinessManager = Mock(ReadinessManager)
-    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, mockCpsAdminService, mockCpsModuleService, mockCpsAnchorService, mockCpsDataService, mockApplicationEventPublisher, mockReadinessManager)
+    def mockDataMigration = Mock(DataMigration)
+    def objectUnderTest = new InventoryModelLoader(mockModelLoaderLock, cpsServices, mockApplicationEventPublisher, mockReadinessManager, mockDataMigration)
 
     def applicationContext = new AnnotationConfigApplicationContext()
 
@@ -75,6 +84,13 @@ class InventoryModelLoaderSpec extends Specification {
         ((Logger) LoggerFactory.getLogger(CmDataSubscriptionModelLoader.class)).detachAndStopAllAppenders()
         applicationContext.close()
     }
+
+    def callPrivatePerformInventoryDataMigration() {
+        def method = objectUnderTest.class.getDeclaredMethod('performInventoryDataMigration')
+        method.accessible = true
+        method.invoke(objectUnderTest)
+    }
+
 
     def 'Onboard subscription model via application ready event.'() {
         given: 'dataspace is ready for use with default newRevisionEnabled flag'
@@ -137,6 +153,15 @@ class InventoryModelLoaderSpec extends Specification {
         and: 'a log message confirms the revision is already installed'
             assert loggingListAppender.list.any { it.message.contains("already installed") }
     }
+
+    def "Perform inventory data migration to R20250722"()
+    {
+        when: 'the migration is performed'
+            callPrivatePerformInventoryDataMigration()
+        then: 'the call is delegated to the Data Migration service\''
+            1 * mockDataMigration.migrateInventoryToModelRelease20250722()
+    }
+
 
 
 }
