@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de1b59c_48cdd26f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T17:54:44Z",
+      "side": 1,
+      "message": "All good, 2 very minor NB additions to describe test properly",
+      "revId": "6bd2bf5831452d53fa5b2a6a4b7413a798dc040f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7fe822_918fb031",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T17:54:44Z",
+      "side": 1,
+      "message": "above this include \nand: \u0027note that an Add And Replace both are defined using Create Operation Details\u0027",
+      "range": {
+        "startLine": 244,
+        "startChar": 11,
+        "endLine": 244,
+        "endChar": 18
+      },
+      "revId": "6bd2bf5831452d53fa5b2a6a4b7413a798dc040f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e6e8a23_4376fff0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-13T17:54:44Z",
+      "side": 1,
+      "message": "with single replace operation and #scenario",
+      "range": {
+        "startLine": 262,
+        "startChar": 55,
+        "endLine": 262,
+        "endChar": 111
+      },
+      "revId": "6bd2bf5831452d53fa5b2a6a4b7413a798dc040f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
