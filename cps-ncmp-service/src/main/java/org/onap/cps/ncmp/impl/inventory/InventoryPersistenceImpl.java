@@ -200,6 +200,26 @@ public class InventoryPersistenceImpl extends NcmpPersistenceImpl implements Inv
         }
     }
 
+    /**
+     * Updates the specified field of a CM handle with a new value in the DMI registry.
+     *
+     * @param cmHandleIdToUpdate                         the unique identifier of the CM handle to be updated
+     * @param fieldName                                  the name of the field within the CM handle to be updated
+     * @param newFieldValue                              the new value to be set for
+     *                                                   the specified field of the CM handle
+     */
+    public void setAndUpdateCmHandleField(final String cmHandleIdToUpdate, final String fieldName,
+                                           final String newFieldValue) {
+        final Map<String, Map<String, String>> dmiRegistryData = new HashMap<>(1);
+        final Map<String, String> cmHandleData = new HashMap<>(2);
+        cmHandleData.put("id", cmHandleIdToUpdate);
+        cmHandleData.put(fieldName, newFieldValue);
+        dmiRegistryData.put("cm-handles", cmHandleData);
+        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
+                jsonObjectMapper.asJsonString(dmiRegistryData), OffsetDateTime.now(), ContentType.JSON);
+        log.debug("Updating {} for cmHandle {} with value : {})", fieldName, cmHandleIdToUpdate, newFieldValue);
+    }
+
     private static String getXPathForCmHandleById(final String cmHandleId) {
         return NCMP_DMI_REGISTRY_PARENT + "/cm-handles[@id='" + cmHandleId + "']";
     }
