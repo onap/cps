@@ -28,16 +28,11 @@ import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_ALREADY_EXIST;
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_HANDLE_INVALID_ID;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.ADDITIONAL_PROPERTY;
 import static org.onap.cps.ncmp.impl.inventory.CmHandleRegistrationServicePropertyHandler.PropertyType.PUBLIC_PROPERTY;
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DATASPACE_NAME;
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_ANCHOR;
-import static org.onap.cps.ncmp.impl.inventory.NcmpPersistence.NCMP_DMI_REGISTRY_PARENT;
 
 import com.google.common.collect.ImmutableMap;
 import com.hazelcast.map.IMap;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -58,7 +53,6 @@ import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
-import org.onap.cps.utils.ContentType;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -136,7 +130,10 @@ public class CmHandleRegistrationServicePropertyHandler {
         final String cmHandleId = ncmpServiceCmHandle.getCmHandleId();
         final String newAlternateId = ncmpServiceCmHandle.getAlternateId();
         if (StringUtils.isNotBlank(newAlternateId)) {
-            setAndUpdateCmHandleField(ncmpServiceCmHandle.getCmHandleId(), "alternate-id", newAlternateId);
+            inventoryPersistence.updateCmHandleField(
+                    ncmpServiceCmHandle.getCmHandleId(),
+                    "alternate-id",
+                    newAlternateId);
             cmHandleIdPerAlternateId.delete(cmHandleId);
             cmHandleIdPerAlternateId.set(newAlternateId, cmHandleId);
         }
@@ -160,7 +157,11 @@ public class CmHandleRegistrationServicePropertyHandler {
                     targetDataProducerIdentifier);
             return;
         }
-        setAndUpdateCmHandleField(cmHandleId, "data-producer-identifier", targetDataProducerIdentifier);
+
+        inventoryPersistence.updateCmHandleField(
+                cmHandleId,
+                "data-producer-identifier",
+                targetDataProducerIdentifier);
         log.debug("dataProducerIdentifier for cmHandle {} updated from {} to {}", cmHandleId,
                 currentDataProducerIdentifier, targetDataProducerIdentifier);
         sendLcmEventForDataProducerIdentifier(cmHandleId, currentYangModelCmHandle);
@@ -241,18 +242,6 @@ public class CmHandleRegistrationServicePropertyHandler {
         log.debug("Building a new node with xpath {} with leaves (name : {} , value : {})", xpath, attributeKey,
                 attributeValue);
         return new DataNodeBuilder().withXpath(xpath).withLeaves(ImmutableMap.copyOf(updatedLeaves)).build();
-    }
-
-    private void setAndUpdateCmHandleField(final String cmHandleIdToUpdate, final String fieldName,
-                                           final String newFieldValue) {
-        final Map<String, Map<String, String>> dmiRegistryData = new HashMap<>(1);
-        final Map<String, String> cmHandleData = new HashMap<>(2);
-        cmHandleData.put("id", cmHandleIdToUpdate);
-        cmHandleData.put(fieldName, newFieldValue);
-        dmiRegistryData.put("cm-handles", cmHandleData);
-        cpsDataService.updateNodeLeaves(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, NCMP_DMI_REGISTRY_PARENT,
-                jsonObjectMapper.asJsonString(dmiRegistryData), OffsetDateTime.now(), ContentType.JSON);
-        log.debug("Updating {} for cmHandle {} with value : {})", fieldName, cmHandleIdToUpdate, newFieldValue);
     }
 
     enum PropertyType {
