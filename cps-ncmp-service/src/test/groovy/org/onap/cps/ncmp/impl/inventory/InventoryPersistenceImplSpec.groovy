@@ -35,6 +35,7 @@ import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
@@ -67,15 +68,19 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCmHandleIdPerAlternateId = Mock(IMap)
 
-    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId)
+    def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId))
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
-    def cmHandleId = 'some-cm-handle'
+    def cmHandleId = 'ch-1'
+    def updates = [
+            new CmHandleStateUpdate("ch-1", "READY"),
+            new CmHandleStateUpdate("ch-2", "DELETING")
+    ]
     def alternateId = 'some-alternate-id'
     def leaves = ["id":cmHandleId, "alternateId":alternateId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
-    def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
+    def xpath = "/dmi-registry/cm-handles[@id='ch-1']"
 
     def cmHandleId2 = 'another-cm-handle'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
@@ -87,13 +92,13 @@ class InventoryPersistenceImplSpec extends Specification {
                                                       new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithAdditionalProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"])]
+    def childDataNodesForCmHandleWithAdditionalProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']/additional-properties[@name='myAdditionalProperty']", leaves: ["name":"myAdditionalProperty", "value":"myAdditionalValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
+    def childDataNodesForCmHandleWithPublicProperties = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']/public-properties[@name='myPublicProperty']", leaves: ["name":"myPublicProperty","value":"myPublicValue"])]
 
     @Shared
-    def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='some-cm-handle']/state", leaves: ['cm-handle-state': 'ADVISED'])]
+    def childDataNodesForCmHandleWithState = [new DataNode(xpath: "/dmi-registry/cm-handles[@id='ch-1']/state", leaves: ['cm-handle-state': 'ADVISED'])]
 
     def 'Retrieve CmHandle using datanode with #scenario.'() {
         given: 'the cps data service returns a data node from the DMI registry'
@@ -161,11 +166,11 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'Get a Cm Handle Composite State.'() {
         given: 'a valid cm handle id'
-            def cmHandleId = 'Some-Cm-Handle'
+            def cmHandleId = 'ch-1'
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
         and: 'cps data service returns a valid data node'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,
-                    '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']/state', INCLUDE_ALL_DESCENDANTS) >> [dataNode]
+                    '/dmi-registry/cm-handles[@id=\'ch-1\']/state', INCLUDE_ALL_DESCENDANTS) >> [dataNode]
         when: 'get cm handle state is invoked'
             def result = objectUnderTest.getCmHandleState(cmHandleId)
         then: 'result has returned the correct cm handle state'
@@ -176,12 +181,12 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def 'Update Cm Handle with #scenario State.'() {
         given: 'a cm handle and a composite state'
-            def cmHandleId = 'Some-Cm-Handle'
+            def cmHandleId = 'ch-1'
             def compositeState = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
         when: 'update cm handle state is invoked with the #scenario state'
             objectUnderTest.saveCmHandleState(cmHandleId, compositeState)
         then: 'update node leaves is invoked with the correct params'
-            1 * mockCpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle\']', expectedJsonData, _ as OffsetDateTime, ContentType.JSON)
+            1 * mockCpsDataService.updateDataNodeAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, '/dmi-registry/cm-handles[@id=\'ch-1\']', expectedJsonData, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
             scenario    | cmHandleState          || expectedJsonData
             'READY'     | CmHandleState.READY    || '{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
@@ -196,21 +201,21 @@ class InventoryPersistenceImplSpec extends Specification {
         and: 'alternate id cache contains the given cm handle reference'
             mockCmHandleIdPerAlternateId.containsKey(_) >> true
         when: 'update cm handle state is invoked with the #scenario state'
-            def cmHandleStateMap = ['Some-Cm-Handle1' : compositeState1, 'Some-Cm-Handle2' : compositeState2]
+            def cmHandleStateMap = ['ch-11' : compositeState1, 'ch-12' : compositeState2]
             objectUnderTest.saveCmHandleStateBatch(cmHandleStateMap)
         then: 'update node leaves is invoked with the correct params'
             1 * mockCpsDataService.updateDataNodesAndDescendants(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, cmHandlesJsonDataMap, _ as OffsetDateTime, ContentType.JSON)
         where: 'the following states are used'
             scenario    | cmHandleState          || cmHandlesJsonDataMap
-            'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
-            'LOCKED'    | CmHandleState.LOCKED   || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
-            'DELETING'  | CmHandleState.DELETING || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
+            'READY'     | CmHandleState.READY    || ['/dmi-registry/cm-handles[@id=\'ch-11\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'ch-12\']':'{"state":{"cm-handle-state":"READY","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
+            'LOCKED'    | CmHandleState.LOCKED   || ['/dmi-registry/cm-handles[@id=\'ch-11\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'ch-12\']':'{"state":{"cm-handle-state":"LOCKED","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
+            'DELETING'  | CmHandleState.DELETING || ['/dmi-registry/cm-handles[@id=\'ch-11\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'ch-12\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
     }
 
     def 'Update cm handle states when #scenario in alternate id cache.'() {
         given: 'a map of cm handles composite states'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
-            def cmHandleStateMap = ['some-cm-handle' : compositeState]
+            def cmHandleStateMap = ['ch-1' : compositeState]
         and: 'alternate id cache returns #scenario'
             mockCmHandleIdPerAlternateId.containsKey(_) >> keyExists
             mockCmHandleIdPerAlternateId.containsValue(_) >> valueExists
@@ -392,5 +397,20 @@ class InventoryPersistenceImplSpec extends Specification {
             assert result.size() == 2
             assert result.id.containsAll([cmHandleId, cmHandleId2])
     }
+
+    def 'Update Cm Handle Field.'(){
+        when: 'update is called.'
+            objectUnderTest.updateCmHandleField('ch-1', 'my field', 'my new value')
+        then: 'call is delegated to updateCmHandleFields'
+        1 * objectUnderTest.updateCmHandleFields('my field', ['ch-1':'my new value'])
+    }
+
+    def 'Bulk update cm handle state.'(){
+        when: 'bulk update is called'
+            objectUnderTest.bulkUpdateCmHandleStates(updates)
+        then: 'call is made to update the fileds of the cm handle'
+            1 * objectUnderTest.updateCmHandleFields('cm-handle-state', ['ch-1':'READY','ch-2':'DELETING'])
+    }
+
 }
 
