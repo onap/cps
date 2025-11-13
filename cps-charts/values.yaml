@@ -20,7 +20,7 @@ postgresql:
 cps:
   image:
     repository: "nexus3.onap.org:10003/onap/cps-and-ncmp"
-    tag: "latest"
+    tag: "3.7.3-SNAPSHOT-20251124T112315Z"
     pullPolicy: IfNotPresent
   replicas: 2
   servicePort: 8080
@@ -51,7 +51,7 @@ cps:
     CPS_MONITORING_MICROMETER_JVM_EXTRAS: "true"
     JAVA_TOOL_OPTIONS: "-XX:InitialRAMPercentage=70.0 -XX:MaxRAMPercentage=70.0"
     HAZELCAST_MODE_KUBERNETES_ENABLED: "true"
-    NCMP_INVENTORY_MODEL_UPGRADE_R20250722_ENABLED: 'false'
+    NCMP_INVENTORY_MODEL_UPGRADE_R20250722_ENABLED: 'true'
 
 kafka:
   enabled: true
