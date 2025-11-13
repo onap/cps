@@ -35,6 +35,7 @@ import org.onap.cps.api.model.ModuleReference
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
+import org.onap.cps.ncmp.impl.models.CmHandleStateUpdate
 import org.onap.cps.utils.ContentType
 import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
@@ -67,12 +68,18 @@ class InventoryPersistenceImplSpec extends Specification {
 
     def mockCmHandleIdPerAlternateId = Mock(IMap)
 
-    def objectUnderTest = new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId)
+    def objectUnderTest = Spy(new InventoryPersistenceImpl(mockCpsValidator, spiedJsonObjectMapper, mockCpsAnchorService, mockCpsModuleService, mockCpsDataService, mockCmHandleIdPerAlternateId))
 
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
     def cmHandleId = 'some-cm-handle'
+    def fieldName = 'some-field-name'
+    def fieldValue = 'some-field-value'
+    def updates = [
+            new CmHandleStateUpdate("cm-1", "READY"),
+            new CmHandleStateUpdate("cm-2", "DELETING")
+    ]
     def alternateId = 'some-alternate-id'
     def leaves = ["id":cmHandleId, "alternateId":alternateId,"dmi-service-name":"common service name","dmi-data-service-name":"data service name","dmi-model-service-name":"model service name"]
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
@@ -392,5 +399,30 @@ class InventoryPersistenceImplSpec extends Specification {
             assert result.size() == 2
             assert result.id.containsAll([cmHandleId, cmHandleId2])
     }
+
+    def 'Update Cm Handle Field.'(){
+        when: 'update is called.'
+            objectUnderTest.updateCmHandleField(cmHandleId, fieldName, fieldValue)
+        then: 'call is delegated to updateCmHandleFields'
+            1 * objectUnderTest.updateCmHandleFields(
+                { Map<String, String> m -> m.size() == 1 && m[cmHandleId] == fieldValue },
+                fieldName
+        )
+    }
+
+    def 'Bulk update cm handle state.'(){
+        when:
+            objectUnderTest.bulkUpdateCmHandleStates(updates)
+        then:
+            1 * objectUnderTest.updateCmHandleFields(
+            { Map<String, String> m ->
+                m.size() == 2 &&
+                m["cm-1"] == "READY" &&
+                m["cm-2"] == "DELETING"
+            },
+            "cm-handle-state"
+        )
+    }
+
 }
 
