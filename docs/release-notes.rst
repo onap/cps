@@ -31,6 +31,14 @@ Release Data
 |                                      |                                                        |
 +--------------------------------------+--------------------------------------------------------+
 
+Features
+--------
+    - `CPS-2966 <https://lf-onap.atlassian.net/browse/CPS-2966>`_ Manual Implementation of ProvMnS controller
+    - `CPS-2702 <https://lf-onap.atlassian.net/browse/CPS-2702>`_ Implement PUT operation for ProvMns
+    - `CPS-2703 <https://lf-onap.atlassian.net/browse/CPS-2703>`_ Implement GET operation for ProvMns
+    - `CPS-2704 <https://lf-onap.atlassian.net/browse/CPS-2704>`_ Implement PATCH operation for ProvMns
+    - `CPS-2705 <https://lf-onap.atlassian.net/browse/CPS-2705>`_ Implement DELETE operation for ProvMns
+
 
 Version: 3.7.2
 ==============
