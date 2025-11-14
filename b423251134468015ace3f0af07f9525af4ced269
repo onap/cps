@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c98aade1_c844a519",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParametersBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T13:45:09Z",
+      "side": 1,
+      "message": "NB: test title and this nearly the same, and duplicated.",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 79
+      },
+      "revId": "b423251134468015ace3f0af07f9525af4ced269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "912bb80e_4eda16a8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/provmns/ParametersBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T13:45:09Z",
+      "side": 1,
+      "message": "NB: you can extract these into meainingfull variables.",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "b423251134468015ace3f0af07f9525af4ced269",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
