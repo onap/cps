@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b71d6a6d_e7890d3e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T10:11:46Z",
+      "side": 1,
+      "message": "Why is this import needed now?",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2b2c2f_76e52e3d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T10:11:46Z",
+      "side": 1,
+      "message": "Can this entire section be made more readable using guard clauses? Just a thought",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b52c8b62_21d861d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T10:11:46Z",
+      "side": 1,
+      "message": "Does this need a try/catch in case the JexParser throws an exception",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
