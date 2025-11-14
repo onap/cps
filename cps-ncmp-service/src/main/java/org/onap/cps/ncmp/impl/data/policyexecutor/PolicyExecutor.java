@@ -141,7 +141,7 @@ public class PolicyExecutor {
             switch (patchItem.getOp()) {
                 case ADD -> operations.add(
                     buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                    (Resource) patchItem.getValue()));
+                    patchItem.getValue()));
                 case REPLACE -> operations.add(
                     buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
                 case REMOVE -> operations.add(
@@ -162,7 +162,7 @@ public class PolicyExecutor {
      */
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
                                                               final RequestPathParameters requestPathParameters,
-                                                              final Resource resource) {
+                                                              final Object resource) {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
@@ -199,7 +199,7 @@ public class PolicyExecutor {
         if (patchItem.getPath().contains(ATTRIBUTES_WITH_HASHTAG)) {
             return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
         } else {
-            return buildCreateOperationDetails(operationType, requestPathParameters, (Resource) patchItem.getValue());
+            return buildCreateOperationDetails(operationType, requestPathParameters, patchItem.getValue());
         }
     }
 
