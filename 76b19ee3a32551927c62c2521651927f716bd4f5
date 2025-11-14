@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41836a6_ea62e0d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T10:35:23Z",
+      "side": 1,
+      "message": "some NB comments...",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b71d6a6d_e7890d3e",
@@ -48,6 +65,75 @@
       "writtenOn": "2025-11-14T10:11:46Z",
       "side": 1,
       "message": "Does this need a try/catch in case the JexParser throws an exception",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b156b025_6dc8e71f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T10:35:23Z",
+      "side": 1,
+      "message": "NB: ||",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 39
+      },
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddbed48_d3302a05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T10:35:23Z",
+      "side": 1,
+      "message": "dmiResponseEvent",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 25
+      },
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "853665cf_4b86c7a5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T10:35:23Z",
+      "side": 1,
+      "message": "NB: this variable name is too generic, can you use sth. like dmiResponseCloudEvent",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 30
+      },
       "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
