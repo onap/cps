@@ -141,7 +141,7 @@ public class PolicyExecutor {
             switch (patchItem.getOp()) {
                 case ADD -> operations.add(
                     buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                    (Resource) patchItem.getValue()));
+                    patchItem.getValue()));
                 case REPLACE -> operations.add(
                     buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
                 case REMOVE -> operations.add(
@@ -162,7 +162,7 @@ public class PolicyExecutor {
      */
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
                                                               final RequestPathParameters requestPathParameters,
-                                                              final Resource resource) {
+                                                              final Object resource) {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
