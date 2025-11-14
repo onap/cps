@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1a955ed1-f754-4206-a3dd-b2b975b3098f",
+		"_postman_id": "c9d04091-c178-484a-8b20-03b3bcc65aee",
 		"name": "CPS",
 		"description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26733783"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21077354"
 	},
 	"item": [
 		{
@@ -60,22 +60,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces/my-store",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"admin",
-										"dataspaces",
-										"my-store"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces/my-store",
 								"description": "Read a dataspace given a dataspace name"
 							},
 							"response": []
@@ -90,21 +75,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"admin",
-										"dataspaces"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/admin/dataspaces",
 								"description": "Read all dataspaces"
 							},
 							"response": []
@@ -167,23 +138,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"schema-sets",
-										"stores-module"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
 								"description": "Read a schema set given a schema set name and a dataspace"
 							},
 							"response": []
@@ -198,22 +153,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"schema-sets"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets",
 								"description": "Read all schema sets, given a dataspace"
 							},
 							"response": []
@@ -262,23 +202,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"anchors",
-										"bookstore-anchor"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
 								"description": "Read all anchors, given a dataspace"
 							},
 							"response": []
@@ -293,22 +217,7 @@
 										"value": "application/json"
 									}
 								],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"anchors"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors",
 								"description": "Read all anchors, given a dataspace"
 							},
 							"response": []
@@ -335,23 +244,7 @@
 										}
 									]
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"schema-sets",
-										"stores-module"
-									]
-								},
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/schema-sets/stores-module",
 								"description": "Make sure in the body there is form data. key = file and value will be the zip/yang file."
 							},
 							"response": []
@@ -361,23 +254,7 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"anchors",
-										"bookstore-anchor"
-									]
-								}
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor"
 							},
 							"response": []
 						},
@@ -429,24 +306,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes",
-									"protocol": "http",
-									"host": [
-										"{{CPS_HOST}}"
-									],
-									"port": "{{CPS_PORT}}",
-									"path": [
-										"cps",
-										"api",
-										"v2",
-										"dataspaces",
-										"my-store",
-										"anchors",
-										"bookstore-anchor",
-										"nodes"
-									]
-								}
+								"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/cps/api/v2/dataspaces/my-store/anchors/bookstore-anchor/nodes"
 							},
 							"response": []
 						},
@@ -827,19 +687,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmpInventory",
-												"v1",
-												"ch"
-											]
-										},
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
 										"description": "DMI notifies NCMP of new CM handles"
 									},
 									"response": []
@@ -910,19 +758,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmpInventory",
-												"v1",
-												"ch"
-											]
-										},
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmpInventory/v1/ch",
 										"description": "DMI notifies NCMP of new CM handles"
 									},
 									"response": []
@@ -1107,18 +943,7 @@
 													"mode": "raw",
 													"raw": ""
 												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
+												"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another"
 											},
 											"response": []
 										},
@@ -1147,18 +972,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
+												"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another"
 											},
 											"response": []
 										},
@@ -1179,18 +993,7 @@
 														}
 													}
 												},
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
+												"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another"
 											},
 											"response": []
 										},
@@ -1199,18 +1002,7 @@
 											"request": {
 												"method": "DELETE",
 												"header": [],
-												"url": {
-													"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another",
-													"protocol": "http",
-													"host": [
-														"{{CPS_HOST}}"
-													],
-													"port": "{{CPS_PORT}}",
-													"path": [
-														"ProvMnS",
-														"test=another"
-													]
-												}
+												"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ProvMnS/test=another"
 											},
 											"response": []
 										}
@@ -1234,21 +1026,7 @@
 											"mode": "raw",
 											"raw": ""
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"cm-handle-1",
-												"modules"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules"
 									},
 									"response": []
 								},
@@ -1275,22 +1053,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"cm-handle-1",
-												"modules",
-												"definitions"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/modules/definitions"
 									},
 									"response": []
 								},
@@ -1314,20 +1077,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"searches"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/searches"
 									},
 									"response": []
 								},
@@ -1342,20 +1092,7 @@
 												"type": "text"
 											}
 										],
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"cm-handle-1"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1"
 									},
 									"response": []
 								},
@@ -1370,20 +1107,7 @@
 												"type": "text"
 											}
 										],
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"Subnetwork%3DEurope%2CManagedElement%3DX1"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/Subnetwork%3DEurope%2CManagedElement%3DX1"
 									},
 									"response": []
 								},
@@ -1398,21 +1122,7 @@
 												"type": "text"
 											}
 										],
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/properties",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"cm-handle-1",
-												"properties"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/properties"
 									},
 									"response": []
 								},
@@ -1439,21 +1149,7 @@
 												}
 											}
 										},
-										"url": {
-											"raw": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/state",
-											"protocol": "http",
-											"host": [
-												"{{CPS_HOST}}"
-											],
-											"port": "{{CPS_PORT}}",
-											"path": [
-												"ncmp",
-												"v1",
-												"ch",
-												"cm-handle-1",
-												"state"
-											]
-										}
+										"url": "http://{{CPS_HOST}}:{{CPS_PORT}}/ncmp/v1/ch/cm-handle-1/state"
 									},
 									"response": []
 								},
@@ -1947,21 +1643,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm/moduleResources",
-							"protocol": "http",
-							"host": [
-								"{{DMI_HOST}}"
-							],
-							"port": "{{DMI_PORT}}",
-							"path": [
-								"dmi",
-								"v1",
-								"ch",
-								"cm",
-								"moduleResources"
-							]
-						}
+						"url": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm/moduleResources"
 					},
 					"response": []
 				},
@@ -1990,26 +1672,214 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm-bookStore/modules",
-							"protocol": "http",
-							"host": [
-								"{{DMI_HOST}}"
-							],
-							"port": "{{DMI_PORT}}",
-							"path": [
-								"dmi",
-								"v1",
-								"ch",
-								"cm-bookStore",
-								"modules"
-							]
-						}
+						"url": "http://{{DMI_HOST}}:{{DMI_PORT}}/dmi/v1/ch/cm-bookStore/modules"
 					},
 					"response": []
 				}
 			],
 			"description": "NCMP-DMI-Stub endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html#offered-apis)\n\n**To utilise NCMP-DMI-Stub begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`"
+		},
+		{
+			"name": "CPS-NCMP-K8s",
+			"item": [
+				{
+					"name": "CM handle registration with dmi-stub-1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"my-cm-handle-1\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X124\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"publicCmHandleProperties\": {\r\n        \"key\": \"my-property\"\r\n      },\r\n      \"cmHandleProperties\": {\r\n        \"key\": \"my-property\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ],\r\n  \"dmiPlugin\": \"http://cps-ncmp-dmi-stub-1:8092\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				},
+				{
+					"name": "CM handle registration with dmi-stub-2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"createdCmHandles\": [\r\n    {\r\n      \"cmHandle\": \"my-cm-handle-2\",\r\n      \"alternateId\": \"Subnetwork=Europe,ManagedElement=X123\",\r\n      \"dataProducerIdentifier\": \"my-data-producer-identifier\",\r\n      \"publicCmHandleProperties\": {\r\n        \"key\": \"my-property\"\r\n      },\r\n      \"cmHandleProperties\": {\r\n        \"key\": \"my-property\"\r\n      },\r\n      \"moduleSetTag\": \"my-module-set-tag\",\r\n      \"trustLevel\": \"COMPLETE\"\r\n    }\r\n  ],\r\n  \"dmiPlugin\": \"http://cps-ncmp-dmi-stub-2:8093\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get CM handle with dmi-stub-1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://cps-ncmp-dmi-stub-1:8092",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch",
+								"cmHandles"
+							],
+							"query": [
+								{
+									"key": "dmi-plugin-identifier",
+									"value": "http://cps-ncmp-dmi-stub-1:8092"
+								},
+								{
+									"key": "outputAlternateId",
+									"value": "true",
+									"description": "Returns alternate ids rather then cm handle ids",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get CM handle with dmi-stub-2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://cps-ncmp-dmi-stub-2:8093",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch",
+								"cmHandles"
+							],
+							"query": [
+								{
+									"key": "dmi-plugin-identifier",
+									"value": "http://cps-ncmp-dmi-stub-2:8093"
+								},
+								{
+									"key": "outputAlternateId",
+									"value": "true",
+									"description": "Returns alternate ids rather then cm handle ids",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get resource data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmp/v1/ch/my-cm-handle-2/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-data-producer-identifier",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmp",
+								"v1",
+								"ch",
+								"my-cm-handle-2",
+								"data",
+								"ds",
+								"ncmp-datastore:passthrough-running"
+							],
+							"query": [
+								{
+									"key": "resourceIdentifier",
+									"value": "my-data-producer-identifier"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
