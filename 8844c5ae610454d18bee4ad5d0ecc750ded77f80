@@ -281,6 +281,30 @@
       },
       "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7487e13_2185c120",
+        "filename": "cps-service/src/main/java/org/onap/cps/utils/deltareport/DeltaReportUtils.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7846
+      },
+      "writtenOn": "2025-11-14T06:32:21Z",
+      "side": 1,
+      "message": "I agree with Lee Anjella. Quick search says Node is their common supreclass, so use it",
+      "parentUuid": "9a977e1f_d2479318",
+      "range": {
+        "startLine": 136,
+        "startChar": 94,
+        "endLine": 142,
+        "endChar": 39
+      },
+      "revId": "8844c5ae610454d18bee4ad5d0ecc750ded77f80",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
