@@ -43,7 +43,6 @@ import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
-import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -141,7 +140,7 @@ public class PolicyExecutor {
             switch (patchItem.getOp()) {
                 case ADD -> operations.add(
                     buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                    (Resource) patchItem.getValue()));
+                    patchItem.getValue()));
                 case REPLACE -> operations.add(
                     buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
                 case REMOVE -> operations.add(
@@ -157,26 +156,26 @@ public class PolicyExecutor {
      *
      * @param operationType            Type of operation create, update.
      * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param resource                 provided request resource
+     * @param resourceAsObject                 provided request payload
      * @return CreateOperationDetails object
      */
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
                                                               final RequestPathParameters requestPathParameters,
-                                                              final Resource resource) {
+                                                              final Object resourceAsObject) {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
-        final String resourceAsJson = jsonObjectMapper.asJsonString(resource);
+        final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
         String className = requestPathParameters.getClassName();
         try {
             final TypeReference<HashMap<String, Object>> typeReference =
                 new TypeReference<HashMap<String, Object>>() {};
-            final Map<String, Object> fullValue = objectMapper.readValue(resourceAsJson, typeReference);
+            final Map<String, Object> valueMap = objectMapper.readValue(resourceAsJson, typeReference);
 
             operationEntry.setId(requestPathParameters.getId());
-            operationEntry.setAttributes(fullValue.get("attributes"));
-            className = isNullEmptyOrBlank(fullValue)
-                ? requestPathParameters.getClassName() : fullValue.get("objectClass").toString();
+            operationEntry.setAttributes(valueMap.get("attributes"));
+            className = isNullEmptyOrBlank(valueMap)
+                ? requestPathParameters.getClassName() : valueMap.get("objectClass").toString();
         } catch (final JsonProcessingException exception) {
             log.debug("JSON processing error: {}", exception);
         }
@@ -199,7 +198,7 @@ public class PolicyExecutor {
         if (patchItem.getPath().contains(ATTRIBUTES_WITH_HASHTAG)) {
             return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
         } else {
-            return buildCreateOperationDetails(operationType, requestPathParameters, (Resource) patchItem.getValue());
+            return buildCreateOperationDetails(operationType, requestPathParameters, patchItem.getValue());
         }
     }
 
@@ -234,12 +233,12 @@ public class PolicyExecutor {
 
     private Map<String, Object> buildAttributeHiearchyAsMap(final String[] parts,
                                                             final int index,
-                                                            final Object value) {
+                                                            final Object patchItemValue) {
         if (index == parts.length - 1) {
-            return Map.of(parts[index], value);
+            return Map.of(parts[index], patchItemValue);
         }
 
-        return Map.of(parts[index], buildAttributeHiearchyAsMap(parts, index + 1, value));
+        return Map.of(parts[index], buildAttributeHiearchyAsMap(parts, index + 1, patchItemValue));
     }
 
     /**
