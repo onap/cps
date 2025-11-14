@@ -35,6 +35,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "851f89e5_80485c1f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b71d6a6d_e7890d3e",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab2b2c2f_76e52e3d",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-11-14T10:11:46Z",
       "side": 1,
       "message": "Can this entire section be made more readable using guard clauses? Just a thought",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fe7b640_510d52ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "tried to incorporate that as much as possible, let me know if its okay ? :)",
+      "parentUuid": "ab2b2c2f_76e52e3d",
       "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -69,6 +105,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5caf2c56_817d1ad7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "i think its okay without, could only throw nullPointerException by String.join but this is covered by line 109",
+      "parentUuid": "b52c8b62_21d861d5",
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b156b025_6dc8e71f",
@@ -82,6 +136,30 @@
       "writtenOn": "2025-11-14T10:35:23Z",
       "side": 1,
       "message": "NB: ||",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 39
+      },
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d8bcb0_c325946e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b156b025_6dc8e71f",
       "range": {
         "startLine": 75,
         "startChar": 38,
@@ -115,6 +193,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a24dba56_8aa711b3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ddbed48_d3302a05",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 25
+      },
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "853665cf_4b86c7a5",
@@ -128,6 +230,30 @@
       "writtenOn": "2025-11-14T10:35:23Z",
       "side": 1,
       "message": "NB: this variable name is too generic, can you use sth. like dmiResponseCloudEvent",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "76b19ee3a32551927c62c2521651927f716bd4f5",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf01b37f_f7a82ab2",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-14T12:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "853665cf_4b86c7a5",
       "range": {
         "startLine": 85,
         "startChar": 12,
