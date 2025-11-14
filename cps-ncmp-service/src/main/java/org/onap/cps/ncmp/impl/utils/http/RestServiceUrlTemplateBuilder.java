@@ -73,7 +73,7 @@ public class RestServiceUrlTemplateBuilder {
 
     /**
      * Add a query parameter to the URL.
-     * Do NOT encode as the builder wil take care of encoding
+     * Do NOT encode as the builder will take care of encoding
      *
      * @param queryParameterName  the name of the variable
      * @param queryParameterValue the value of the variable (only Strings are supported).
@@ -83,6 +83,23 @@ public class RestServiceUrlTemplateBuilder {
     public RestServiceUrlTemplateBuilder queryParameter(final String queryParameterName,
                                                         final String queryParameterValue) {
         if (StringUtils.isNotBlank(queryParameterValue)) {
+            queryParameters.put(queryParameterName, queryParameterValue);
+        }
+        return this;
+    }
+
+    /**
+     * Add a query parameter to the URL. Query parameter could have a blank value.
+     * Do NOT encode as the builder will take care of encoding
+     *
+     * @param queryParameterName  the name of the variable
+     * @param queryParameterValue the value of the variable (only Strings are supported).
+     *
+     * @return this builder instance
+     */
+    public RestServiceUrlTemplateBuilder queryParameterWithBlankValue(final String queryParameterName,
+                                                                      final String queryParameterValue) {
+        if (queryParameterValue != null) {
             queryParameters.put(queryParameterName, queryParameterValue);
         }
         return this;

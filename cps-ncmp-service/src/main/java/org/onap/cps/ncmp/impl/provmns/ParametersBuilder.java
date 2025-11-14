@@ -61,7 +61,7 @@ public class ParametersBuilder {
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)
-            .queryParameter("attributes", attributesString.isBlank() ? null : attributesString)
+            .queryParameterWithBlankValue("attributes", attributes == null ? null : attributesString)
             .queryParameter("fields", fieldsString.isBlank() ? null : fieldsString)
             .queryParameter("dataNodeSelector", dataNodeSelector.getDataNodeSelector())
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
