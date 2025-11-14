@@ -1,6 +1,7 @@
 /*
  *  ============LICENSE_START=======================================================
- *  Copyright (C) 2023-2025 TechMahindra Ltd.
+ *  Copyright (C) 2023 Deutsche Telekom AG
+ *  Modifications Copyright (C) 2023-2025 Deutsche Telekom AG
  *  ================================================================================
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -140,6 +141,16 @@ class CpsDeltaServiceImplSpec extends Specification {
             'added with grouping enabled'    | []                       | targetDataNodeWithChild | GROUPING_ENABLED  || 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
             'removed with grouping enabled'  | sourceDataNodeWithChild  | []                      | GROUPING_ENABLED  || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
             'updated with grouping enabled'  | sourceDataNode           | targetDataNode          | GROUPING_ENABLED  || 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
+    }
+
+    def 'Get delta between 2 anchors with invalid xpath'() {
+        given: 'an invalid xpath'
+            def invalidXpath = '/test[invalid'
+        when: 'attempt to get delta between 2 anchors with invalid xpath'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, invalidXpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+        then: 'DataValidationException is thrown'
+            def exception = thrown(DataValidationException)
+            assert exception.message == 'Invalid xpath: /test[invalid'
     }
 
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {
