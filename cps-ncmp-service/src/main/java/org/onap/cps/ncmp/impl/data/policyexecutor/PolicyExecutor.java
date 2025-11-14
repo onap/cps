@@ -28,7 +28,6 @@ import java.net.UnknownHostException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,7 +42,6 @@ import org.onap.cps.ncmp.api.exceptions.PolicyExecutorException;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.onap.cps.ncmp.impl.provmns.RequestPathParameters;
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem;
-import org.onap.cps.ncmp.impl.provmns.model.Resource;
 import org.onap.cps.ncmp.impl.utils.http.RestServiceUrlTemplateBuilder;
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -91,6 +89,8 @@ public class PolicyExecutor {
     private final JsonObjectMapper jsonObjectMapper;
 
     private static final Throwable NO_ERROR = null;
+    private static final String ATTRIBUTE_NAME_SEPARATOR = "/";
+    private static final String REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS = "(^/)|(/$)";;
 
     /**
      * Use the Policy Executor to check permission for a cm write operation.
@@ -141,7 +141,7 @@ public class PolicyExecutor {
             switch (patchItem.getOp()) {
                 case ADD -> operations.add(
                     buildCreateOperationDetails(OperationType.CREATE, requestPathParameters,
-                    (Resource) patchItem.getValue()));
+                    patchItem.getValue()));
                 case REPLACE -> operations.add(
                     buildCreateOperationDetailsForUpdate(OperationType.UPDATE, requestPathParameters, patchItem));
                 case REMOVE -> operations.add(
@@ -157,26 +157,26 @@ public class PolicyExecutor {
      *
      * @param operationType            Type of operation create, update.
      * @param requestPathParameters    request parameters including uri-ldn-first-part, className and id
-     * @param resource                 provided request resource
+     * @param resourceAsObject         provided request payload
      * @return CreateOperationDetails object
      */
     public CreateOperationDetails buildCreateOperationDetails(final OperationType operationType,
                                                               final RequestPathParameters requestPathParameters,
-                                                              final Resource resource) {
+                                                              final Object resourceAsObject) {
         final Map<String, List<OperationEntry>> changeRequest = new HashMap<>();
         final OperationEntry operationEntry = new OperationEntry();
 
-        final String resourceAsJson = jsonObjectMapper.asJsonString(resource);
+        final String resourceAsJson = jsonObjectMapper.asJsonString(resourceAsObject);
         String className = requestPathParameters.getClassName();
         try {
             final TypeReference<HashMap<String, Object>> typeReference =
                 new TypeReference<HashMap<String, Object>>() {};
-            final Map<String, Object> fullValue = objectMapper.readValue(resourceAsJson, typeReference);
+            final Map<String, Object> valueMap = objectMapper.readValue(resourceAsJson, typeReference);
 
             operationEntry.setId(requestPathParameters.getId());
-            operationEntry.setAttributes(fullValue.get("attributes"));
-            className = isNullEmptyOrBlank(fullValue)
-                ? requestPathParameters.getClassName() : fullValue.get("objectClass").toString();
+            operationEntry.setAttributes(valueMap.get("attributes"));
+            className = isNullEmptyOrBlank(valueMap)
+                ? requestPathParameters.getClassName() : valueMap.get("objectClass").toString();
         } catch (final JsonProcessingException exception) {
             log.debug("JSON processing error: {}", exception);
         }
@@ -199,7 +199,7 @@ public class PolicyExecutor {
         if (patchItem.getPath().contains(ATTRIBUTES_WITH_HASHTAG)) {
             return buildCreateOperationDetailsForUpdateWithHash(operationType, requestPathParameters, patchItem);
         } else {
-            return buildCreateOperationDetails(operationType, requestPathParameters, (Resource) patchItem.getValue());
+            return buildCreateOperationDetails(operationType, requestPathParameters, patchItem.getValue());
         }
     }
 
@@ -210,7 +210,7 @@ public class PolicyExecutor {
         final OperationEntry operationEntry = new OperationEntry();
         final String className = requestPathParameters.getClassName();
 
-        final Map<String, Object> attributeHiearchyAsMap = getAttributeHierarchyMap(patchItem);
+        final Map<String, Object> attributeHiearchyAsMap = createNestedMap(patchItem);
 
         operationEntry.setId(requestPathParameters.getId());
         operationEntry.setAttributes(attributeHiearchyAsMap);
@@ -221,25 +221,26 @@ public class PolicyExecutor {
                                           changeRequest);
     }
 
-    private Map<String, Object> getAttributeHierarchyMap(final PatchItem patchItem) {
-        final String[] parts = patchItem.getPath().split(ATTRIBUTES_WITH_HASHTAG);
+    private Map<String, Object> createNestedMap(final PatchItem patchItem) {
+        final Map<String, Object> attributeHierarchyMap = new HashMap<>();
+        Map<String, Object> currentLevel = attributeHierarchyMap;
 
-        final String attributeHierarchy = parts[1];
-        final String[] attributeHierarchyAsArray = Arrays.stream(attributeHierarchy.split("/"))
-                .filter(attributeName -> !attributeName.isEmpty())
-                .toArray(String[]::new);
+        final String[] attributeHierarchyNames = patchItem.getPath().split(ATTRIBUTES_WITH_HASHTAG)[1]
+                                                   .replaceAll(REGEX_FOR_LEADING_AND_TRAILING_SEPARATORS, "")
+                                                       .split(ATTRIBUTE_NAME_SEPARATOR);
 
-        return buildAttributeHiearchyAsMap(attributeHierarchyAsArray, 0, patchItem.getValue());
-    }
+        for (int level = 0; level < attributeHierarchyNames.length; level++) {
+            final String attributeName = attributeHierarchyNames[level];
 
-    private Map<String, Object> buildAttributeHiearchyAsMap(final String[] parts,
-                                                            final int index,
-                                                            final Object value) {
-        if (index == parts.length - 1) {
-            return Map.of(parts[index], value);
+            if (isLastLevel(attributeHierarchyNames, level)) {
+                currentLevel.put(attributeName, patchItem.getValue());
+            } else {
+                final Map<String, Object> nextLevel = new HashMap<>();
+                currentLevel.put(attributeName, nextLevel);
+                currentLevel = nextLevel;
+            }
         }
-
-        return Map.of(parts[index], buildAttributeHiearchyAsMap(parts, index + 1, value));
+        return attributeHierarchyMap;
     }
 
     /**
@@ -384,5 +385,9 @@ public class PolicyExecutor {
         } catch (final NullPointerException exception) {
             return true;
         }
+    }
+
+    private boolean isLastLevel(final String[] attributeNamesArray, final int level) {
+        return level == attributeNamesArray.length - 1;
     }
 }
