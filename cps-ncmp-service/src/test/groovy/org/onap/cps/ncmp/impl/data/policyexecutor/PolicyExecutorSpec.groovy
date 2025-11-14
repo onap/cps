@@ -281,7 +281,7 @@ class PolicyExecutorSpec extends Specification {
         given: 'a patch item with a path'
             def patchItem = new PatchItem(op: 'REPLACE', 'path':path, value: 123)
         when: 'transforming the attributes'
-            def hierarchyMap = objectUnderTest.getAttributeHierarchyMap(patchItem)
+            def hierarchyMap = objectUnderTest.createNestedMap(patchItem)
         then: 'the map depth is equal to the expected number of attributes'
             assert hierarchyMap.get(expectedAttributeName).toString() == expectedAttributeValue
         where: 'simple and complex attributes are tested'
