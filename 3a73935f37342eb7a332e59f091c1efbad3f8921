@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e4f3df_00f4d2ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-14T10:54:32Z",
+      "side": 1,
+      "message": "NB: you would have said why do you need to replace sleep(2000) with PollingConditions().within(2) briefly either in commit message or in jira task CPS-3037",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "3a73935f37342eb7a332e59f091c1efbad3f8921",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
