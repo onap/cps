@@ -142,6 +142,15 @@ class CpsDeltaServiceImplSpec extends Specification {
             'updated with grouping enabled'  | sourceDataNode           | targetDataNode          | GROUPING_ENABLED  || 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
     }
 
+    def 'Get delta between 2 anchors with invalid xpath'() {
+        def invalidXpath = '/test[invalid'
+        when: 'attempt to get delta between 2 anchors with invalid xpath'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, invalidXpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+        then: 'DataValidationException is thrown'
+            def exception = thrown(DataValidationException)
+            assert exception.message == "Invalid xpath: $invalidXpath"
+    }
+
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {
         given: 'root node xpath and expected source and target data'
             def xpath = '/'
