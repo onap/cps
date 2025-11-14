@@ -60,4 +60,22 @@ class RestServiceUrlTemplateBuilderSpec extends Specification {
         where: 'the following parameter values are used'
             value << [ null, '', ' ' ]
     }
+
+    def 'Build URL template parameters with empty value query parameters.'() {
+        when: 'the query parameter with a blank value is given to the builder'
+            objectUnderTest.queryParameterWithBlankValue('myParam', '')
+        and: 'the URL template parameters are created'
+            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
+        then: 'parameter myParam is added with empty value'
+            assert result.urlVariables() == ['myParam': '']
+    }
+
+    def 'Build URL template parameters with null value query parameters.'() {
+        when: 'the query parameter with null value is given to the builder'
+            objectUnderTest.queryParameterWithBlankValue('myParam', null)
+        and: 'the URL template parameters are created'
+            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
+        then: 'parameter myParam is not added'
+            assert result.urlVariables().size() == 0
+    }
 }

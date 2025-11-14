@@ -68,11 +68,12 @@ public class ProvMnsController implements ProvMnS {
 
     @Override
     public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
-                                                   final String filter, final List<String> attributes,
+                                                   final String filter, List<String> attributes,
                                                    final List<String> fields,
                                                    final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector) {
         final RequestPathParameters requestPathParameters =
             parameterMapper.extractRequestParameters(httpServletRequest);
+        attributes = isAttributesInRequest(httpServletRequest) ? attributes : null;
         try {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
@@ -224,4 +225,7 @@ public class ProvMnsController implements ProvMnS {
         return alternateId + " not found";
     }
 
+    private boolean isAttributesInRequest(final HttpServletRequest httpServletRequest) {
+        return httpServletRequest.getParameterMap().containsKey("attributes");
+    }
 }

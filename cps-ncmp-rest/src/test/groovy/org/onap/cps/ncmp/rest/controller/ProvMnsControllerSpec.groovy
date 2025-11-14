@@ -22,8 +22,6 @@ package org.onap.cps.ncmp.rest.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.ServletException
-import org.onap.cps.ncmp.api.data.models.OperationType
-import org.onap.cps.ncmp.api.exceptions.ProvMnSException
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.exceptions.NoAlternateIdMatchFoundException
 import org.onap.cps.ncmp.impl.data.policyexecutor.PolicyExecutor
@@ -31,7 +29,6 @@ import org.onap.cps.ncmp.impl.dmi.DmiRestClient
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.provmns.model.PatchItem
-import org.onap.cps.ncmp.impl.provmns.model.PatchOperation
 import org.onap.cps.ncmp.impl.provmns.model.ResourceOneOf
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
 import org.onap.cps.ncmp.rest.provmns.ErrorResponseBuilder
