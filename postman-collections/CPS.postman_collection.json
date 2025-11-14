@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1a955ed1-f754-4206-a3dd-b2b975b3098f",
+		"_postman_id": "3f6568cb-d4de-49e9-a12e-b6039f4dff5c",
 		"name": "CPS",
 		"description": "<img src=\"https://content.pstmn.io/bfbd86c2-7aa4-4afd-bd4a-207de1305bb7/Q1BTTG9nby5wbmc=\">\n\n# [CPS ONAP Documentation](https://docs.onap.org/projects/onap-cps/en/latest/index.html)\n\n# [DMI ONAP Documentation](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/index.html)\n\n### How-to\n\nBuild CPS docker images with maven:\n\n`mvn clean install`\n\nor\n\n`mvn clean install -DskipTests`\n\nNavigate to docker-compose folder:\n\n`cd .\\docker-compose\\`\n\nBring up docker containers using commands found in docker-compose.yaml or run CPS services including dmi plugin\n\n`docker-compose --profile dmi-service up -d`\n\n### CPS-Enviroment\n\nTo enable the CPS enviroment, go to the top right of the screen in Postman and click envrioments. Import the CPS-envrioment file from the Postman Collections file in CPS.\n\n**To utilise NCMP-DMI-Stub endpoints begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`\n\n# CPS Core Example\n\n- Create dataspace\n    \n- Verify dataspace exists\n    \n- etc...\n    \n\n# CPS-NCMP Example\n\n- Create CM handles\n    \n- Verify CM handles exist\n    \n- etc...",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26733783"
+		"_exporter_id": "21077354"
 	},
 	"item": [
 		{
@@ -2010,6 +2010,433 @@
 				}
 			],
 			"description": "NCMP-DMI-Stub endpoints as defined by Rest OpenApi Specification [here](https://docs.onap.org/projects/onap-cps-ncmp-dmi-plugin/en/latest/design.html#offered-apis)\n\n**To utilise NCMP-DMI-Stub begin the docker containers with:**\n\n`docker-compose --profile dmi-stub --profile monitoring up -d`"
+		},
+		{
+			"name": "CPS-NCMP-K8s",
+			"item": [
+				{
+					"name": "CM handle registration main",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Total cm handles overall",
+									"const TOTAL_CMHANDLES = 4;",
+									"",
+									"var cmHandleIds = [];",
+									"var createdCmHandlesForDmiStub1 = [];",
+									"var createdCmHandlesForDmiStub2 = [];",
+									"",
+									"// Define stubs",
+									"const stubs = [",
+									"    { name: \"dmi-stub-1\", url: \"http://cps-ncmp-dmi-stub-1:8092\" },",
+									"    { name: \"dmi-stub-2\", url: \"http://cps-ncmp-dmi-stub-2:8093\" }",
+									"];",
+									"",
+									"// Generate sequential IDs 1..4",
+									"for (let i = 1; i <= TOTAL_CMHANDLES; i++) {",
+									"    let cmHandleId = `my-cmhandle-${i}`;",
+									"    let alternateId = `Subnetwork=Europe,ManagedElement=X${i}`;",
+									"",
+									"    cmHandleIds.push(cmHandleId);",
+									"",
+									"    let cmHandleObj = {",
+									"        \"cmHandle\": cmHandleId,",
+									"        \"alternateId\": alternateId,",
+									"        \"dataProducerIdentifier\": \"my-data-producer-identifier\",",
+									"        \"publicCmHandleProperties\": { \"key\": \"my-property\" },",
+									"        \"cmHandleProperties\": { \"key\": \"my-property\" },",
+									"        \"moduleSetTag\": \"my-module-set-tag\",",
+									"        \"trustLevel\": \"COMPLETE\"",
+									"    };",
+									"",
+									"    // First two go to stub-1, next two go to stub-2",
+									"    if (i <= 2) {",
+									"        createdCmHandlesForDmiStub1.push(cmHandleObj);",
+									"    } else {",
+									"        createdCmHandlesForDmiStub2.push(cmHandleObj);",
+									"    }",
+									"}",
+									"",
+									"// Save collection variables",
+									"pm.collectionVariables.set(\"dmi-stub-1\", stubs[0].url);",
+									"pm.collectionVariables.set(\"dmi-stub-2\", stubs[1].url);",
+									"pm.collectionVariables.set(\"createdCmHandleIds\", JSON.stringify(cmHandleIds));",
+									"pm.collectionVariables.set(\"createdCmHandlesForDmiStub1\", JSON.stringify(createdCmHandlesForDmiStub1));",
+									"pm.collectionVariables.set(\"createdCmHandlesForDmiStub2\", JSON.stringify(createdCmHandlesForDmiStub2));",
+									"pm.collectionVariables.set(\"targetIds\", cmHandleIds);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setNextRequest(\"CM handle registration for dmi-stub 2\");",
+									"",
+									"pm.test(\"HTTP Status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dmiPlugin\": \"{{dmi-stub-1}}\",\r\n    \"createdCmHandles\": {{createdCmHandlesForDmiStub1}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch"
+							]
+						},
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				},
+				{
+					"name": "CM handle registration for dmi-stub 2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"HTTP Status is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});",
+									"",
+									"postman.setNextRequest(null);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dmiPlugin\": \"{{dmi-stub-2}}\",\r\n    \"createdCmHandles\": {{createdCmHandlesForDmiStub2}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch"
+							]
+						},
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All CM handles for dmi-stub-1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://cps-ncmp-dmi-stub-1:8092",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch",
+								"cmHandles"
+							],
+							"query": [
+								{
+									"key": "dmi-plugin-identifier",
+									"value": "http://cps-ncmp-dmi-stub-1:8092"
+								},
+								{
+									"key": "outputAlternateId",
+									"value": "true",
+									"description": "Returns alternate ids rather then cm handle ids",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All CM handles for dmi-stub-2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Y3BzdXNlcjpjcHNyMGNrcyE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch/cmHandles?dmi-plugin-identifier=http://cps-ncmp-dmi-stub-2:8093",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch",
+								"cmHandles"
+							],
+							"query": [
+								{
+									"key": "dmi-plugin-identifier",
+									"value": "http://cps-ncmp-dmi-stub-2:8093"
+								},
+								{
+									"key": "outputAlternateId",
+									"value": "true",
+									"description": "Returns alternate ids rather then cm handle ids",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get resource data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmp/v1/ch/my-cmhandle-1/data/ds/ncmp-datastore:passthrough-running?resourceIdentifier=my-data-producer-identifier",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmp",
+								"v1",
+								"ch",
+								"my-cmhandle-1",
+								"data",
+								"ds",
+								"ncmp-datastore:passthrough-running"
+							],
+							"query": [
+								{
+									"key": "resourceIdentifier",
+									"value": "my-data-producer-identifier"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CM handle de-registration for dmi-stub-1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dmiPlugin\": \"http://cps-ncmp-dmi-stub-1:8092\",\r\n  \"removedCmHandles\": [\r\n    \"my-cmhandle-1\",\r\n    \"my-cmhandle-2\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch"
+							]
+						},
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				},
+				{
+					"name": "CM handle de-registration for dmi-stub-2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"dmiPlugin\": \"http://cps-ncmp-dmi-stub-2:8093\",\r\n  \"removedCmHandles\": [\r\n    \"my-cmhandle-3\",\r\n    \"my-cmhandle-4\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{CPS_HOST}}:{{CPS_PORT_K8s}}/ncmpInventory/v1/ch",
+							"protocol": "http",
+							"host": [
+								"{{CPS_HOST}}"
+							],
+							"port": "{{CPS_PORT_K8s}}",
+							"path": [
+								"ncmpInventory",
+								"v1",
+								"ch"
+							]
+						},
+						"description": "DMI notifies NCMP of new CM handles"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "createdCmHandleIds",
+			"value": ""
+		},
+		{
+			"key": "createdCmHandles",
+			"value": ""
+		},
+		{
+			"key": "targetIds",
+			"value": ""
+		},
+		{
+			"key": "dmi-stub-1",
+			"value": ""
+		},
+		{
+			"key": "createdCmHandlesForDmiStub1",
+			"value": ""
+		},
+		{
+			"key": "createdCmHandlesForDmiStub2",
+			"value": ""
+		},
+		{
+			"key": "dmi-stub-2",
+			"value": ""
+		},
+		{
+			"key": "currentDmiPlugin",
+			"value": ""
+		},
+		{
+			"key": "currentCreatedCmHandles",
+			"value": ""
+		},
+		{
+			"key": "stubCounter",
+			"value": ""
 		}
 	]
 }
