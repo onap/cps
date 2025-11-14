@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.TestUtils
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
+import org.onap.cps.api.exceptions.CpsPathException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.Anchor
 import org.onap.cps.api.model.DataNode
@@ -140,6 +141,15 @@ class CpsDeltaServiceImplSpec extends Specification {
             'added with grouping enabled'    | []                       | targetDataNodeWithChild | GROUPING_ENABLED  || 'create'       | null                                                                                                          | ['parent':['parent-leaf': 'parent-leaf-as-target-data', 'child':['child-leaf': 'child-leaf-as-target-data']]]
             'removed with grouping enabled'  | sourceDataNodeWithChild  | []                      | GROUPING_ENABLED  || 'remove'       | ['parent':['parent-leaf': 'parent-leaf-as-source-data', 'child':['child-leaf': 'child-leaf-as-source-data']]] | null
             'updated with grouping enabled'  | sourceDataNode           | targetDataNode          | GROUPING_ENABLED  || 'replace'      | ['parent':['parent-leaf': 'parent-leaf-as-source-data']]                                                      | ['parent':['parent-leaf': 'parent-leaf-as-target-data']]
+    }
+
+    def 'Get delta between 2 anchors with invalid xpath'() {
+        def invalidXpath = '/test[invalid'
+        when: 'attempt to get delta between 2 anchors with invalid xpath'
+            objectUnderTest.getDeltaByDataspaceAndAnchors(dataspaceName, ANCHOR_NAME_1, ANCHOR_NAME_2, invalidXpath, INCLUDE_ALL_DESCENDANTS, GROUPING_DISABLED)
+        then: 'DataValidationException is thrown'
+            def exception = thrown(CpsPathException)
+            assert exception.message == "Error while parsing cpsPath expression"
     }
 
     def 'Delta Report between parent nodes with children where data node is #scenario without grouping of data nodes'() {

@@ -20,6 +20,7 @@
 
 package org.onap.cps.impl;
 
+import static org.onap.cps.cpspath.parser.CpsPathUtil.ROOT_NODE_XPATH;
 import static org.onap.cps.utils.ContentType.JSON;
 
 import io.micrometer.core.annotation.Timed;
@@ -34,10 +35,13 @@ import org.onap.cps.api.CpsAnchorService;
 import org.onap.cps.api.CpsDataService;
 import org.onap.cps.api.CpsDeltaService;
 import org.onap.cps.api.DataNodeFactory;
+import org.onap.cps.api.exceptions.CpsPathException;
 import org.onap.cps.api.model.Anchor;
 import org.onap.cps.api.model.DataNode;
 import org.onap.cps.api.model.DeltaReport;
 import org.onap.cps.api.parameters.FetchDescendantsOption;
+import org.onap.cps.cpspath.parser.CpsPathUtil;
+import org.onap.cps.cpspath.parser.PathParsingException;
 import org.onap.cps.utils.CpsValidator;
 import org.onap.cps.utils.DataMapper;
 import org.onap.cps.utils.JsonObjectMapper;
@@ -71,11 +75,20 @@ public class CpsDeltaServiceImpl implements CpsDeltaService {
                                                            final FetchDescendantsOption fetchDescendantsOption,
                                                            final boolean groupDataNodes) {
 
+        final String xpathForDeltaReport = validateXpath(xpath);
         final Collection<DataNode> sourceDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            sourceAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+            sourceAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
         final Collection<DataNode> targetDataNodes = cpsDataService.getDataNodesForMultipleXpaths(dataspaceName,
-            targetAnchorName, Collections.singletonList(xpath), fetchDescendantsOption);
+            targetAnchorName, Collections.singletonList(xpathForDeltaReport), fetchDescendantsOption);
         return getDeltaReports(sourceDataNodes, targetDataNodes, groupDataNodes);
+    }
+
+    private String validateXpath(final String xpath) {
+        try {
+            return xpath.equals(ROOT_NODE_XPATH) ? ROOT_NODE_XPATH : CpsPathUtil.getNormalizedXpath(xpath);
+        } catch (final PathParsingException pathParsingException) {
+            throw new CpsPathException(pathParsingException.getMessage() + " Invalid xpath: " + xpath);
+        }
     }
 
     @Timed(value = "cps.delta.service.get.delta",
