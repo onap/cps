@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f32a51_d9a35eb5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d349fba4_6e5cfb8e",
+      "range": {
+        "startLine": 160,
+        "startChar": 41,
+        "endLine": 160,
+        "endChar": 54
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "991888d8_ce1d549c",
@@ -47,6 +71,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc911551_a868b333",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "991888d8_ce1d549c",
+      "range": {
+        "startLine": 2,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 54
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ec0a2ef_868598ba",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-11-14T10:38:21Z",
       "side": 1,
       "message": "\u0027int final\u0027 to keep it safe",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 18
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d8b873_f1ee5ea8",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Didn\u0027t make it final to help with testing. I\u0027ll see if I can find another solution",
+      "parentUuid": "9ec0a2ef_868598ba",
       "range": {
         "startLine": 43,
         "startChar": 14,
@@ -139,6 +211,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f6d3afc_216f0327",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2392cb7_2e0b1519",
+      "range": {
+        "startLine": 57,
+        "startChar": 28,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b20ecd4_15044439",
@@ -175,6 +271,30 @@
       "writtenOn": "2025-11-14T10:38:21Z",
       "side": 1,
       "message": "ncmpServiceCmHandle",
+      "range": {
+        "startLine": 77,
+        "startChar": 42,
+        "endLine": 77,
+        "endChar": 49
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95fdca5c_37c2bf01",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fae28c1f_fd64358a",
       "range": {
         "startLine": 77,
         "startChar": 42,
@@ -225,6 +345,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79341cc6_d2e77f60",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01475a73_b9f87711",
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9d6e1d0_0de28010",
@@ -248,6 +386,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4b68638_13e06833",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9d6e1d0_0de28010",
+      "range": {
+        "startLine": 43,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bec4b716_5d4356f1",
@@ -261,6 +423,30 @@
       "writtenOn": "2025-11-14T10:38:21Z",
       "side": 1,
       "message": "same as previous comment,use indents",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 158,
+        "endChar": 46
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "570dc743_a7968cff",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-14T15:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bec4b716_5d4356f1",
       "range": {
         "startLine": 151,
         "startChar": 7,
