@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93faab5c_36fc5b56",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T14:19:41Z",
+      "side": 1,
+      "message": "just wondering should we change the name here to indicate the typechange is deliberate\nie resourceAsObject ? or pathItemValue\nNote: the same object is called just \u0027value\u0027 on line #236 below...",
+      "range": {
+        "startLine": 164,
+        "startChar": 75,
+        "endLine": 164,
+        "endChar": 83
+      },
+      "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
