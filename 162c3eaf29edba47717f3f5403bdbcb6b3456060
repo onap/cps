@@ -1,0 +1,550 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3380af0d_a40ee155",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "NB: when last parameter doesn\u0027t fit I always start put all parameters on a line each\n(jut a preference thing)",
+      "range": {
+        "startLine": 163,
+        "startChar": 35,
+        "endLine": 164,
+        "endChar": 63
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495bc3d5_8c5059ec",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "two verbs is a bit strange set AND update ?!\nI think it could just be \u0027update\u0027",
+      "range": {
+        "startLine": 211,
+        "startChar": 16,
+        "endLine": 211,
+        "endChar": 28
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a392f4_9f7d3777",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "remove \u0027toUpdate\u0027 is superfluous, obvious from the method name",
+      "range": {
+        "startLine": 211,
+        "startChar": 65,
+        "endLine": 211,
+        "endChar": 73
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44029d63_d43cb50a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "not sure if \u0027new\u0027 is really need, pretty clear from method context?",
+      "range": {
+        "startLine": 212,
+        "startChar": 56,
+        "endLine": 212,
+        "endChar": 59
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae425795_0fc70538",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "maybe keep the classname more generic but make the method name more specific\n\nDataMigration.migrateInventoryToModel....\n\n\nI think we need to include the model version target in the method name for clarity and future reference and/or deciding on deprecation",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 36
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9ec5e7_b8599a1a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "\u0027i\u0027 and \u0027end\u0027 make more readable using\n\u0027batchStart\u0027 and \u0027\u0027batchEnd\u0027  ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 19
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec210ba1_eb7e2755",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "k ?",
+      "range": {
+        "startLine": 81,
+        "startChar": 24,
+        "endLine": 81,
+        "endChar": 25
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386d6c0d_b6f1ffaa",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "maybe extract out variable for readability and clarify context context:\nvalueFromOldModel \u003d handle.getCompositeState().getCmHandleState().name()",
+      "range": {
+        "startLine": 92,
+        "startChar": 24,
+        "endLine": 92,
+        "endChar": 76
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38e6f3a9_a5121283",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "why can we not inject the bean here as normal?!\nIf we cannot inject it does/should it need to be a bean at all?",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44413a96_955b8a22",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "since this cannot really happen and you are catching ALL exceptions on the next line I dont think this is needed",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 84
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b8f4a7b_1549095f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "much better!",
+      "range": {
+        "startLine": 219,
+        "startChar": 66,
+        "endLine": 219,
+        "endChar": 103
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4004df9_afdde344",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "NB: one line (no limits in Groovy and I prefer single lines unless they are really way too long",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35e6f7d6_d61c380e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "dont think any logging assert are needed (or done currently) so this is not needed\nLoggingn asserts are really only doen as a last resort if theer are no real results or interactions to be checked",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e758284_ed8c2bdd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "Replace all \" with \u0027",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e332cabc_7f37b079",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "no expectation ins slogans\nTest 1: \u0027CM Handle migration.\u0027\nTest 2: \u0027CM Handle migration with exception for one cm handle.\u0027\nTest 3: \u0027CM Handle migration without any cm handles\u0027",
+      "range": {
+        "startLine": 60,
+        "startChar": 9,
+        "endLine": 60,
+        "endChar": 70
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aaae5a2_f3a07974",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "what is grouped, how is that asserted?!",
+      "range": {
+        "startLine": 73,
+        "startChar": 41,
+        "endLine": 73,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210fc8f8_784a48c5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "why SIX i think the test can be done with just 2 (maybe 3) cm handles?\nLess maintanence!",
+      "range": {
+        "startLine": 86,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 80
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37cabb74_5343abb3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "is this really covering a branch?, would go agaist the clean code rule of no empty check before (simple) iterations....",
+      "range": {
+        "startLine": 119,
+        "startChar": 28,
+        "endLine": 119,
+        "endChar": 41
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "323b9756_70f8225e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "just \u0027def\u0027 will do",
+      "range": {
+        "startLine": 126,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8375f9b6_78b558e9",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "no short names\n(that was the rule I meant to add in this morning review of common mishaps)",
+      "range": {
+        "startLine": 126,
+        "startChar": 94,
+        "endLine": 126,
+        "endChar": 95
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b40dacab_775152d4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "not sure why you are mocking basic data holders?!\nYou can use groovy map-constructors instead to only define the properties you need.\nI am sure we have test doing exactly this all over our testware for NcmpServiceCmHandle and otehr types....",
+      "range": {
+        "startLine": 127,
+        "startChar": 29,
+        "endLine": 127,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37caa89e_35289431",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "no short names",
+      "range": {
+        "startLine": 130,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 19
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28804d19_e13050d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "have some doubts about the whole reflection bit, need to discuss",
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5cc72f_0854e23a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "def",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 17
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

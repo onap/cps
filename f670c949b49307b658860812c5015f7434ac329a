@@ -142,6 +142,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f77b9289_728fd941",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T17:28:32Z",
+      "side": 1,
+      "message": "it OK to use \u0027protected\u0027 for testing purposes, wouldn\u0027t be the first time",
+      "parentUuid": "d5d8b873_f1ee5ea8",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 18
+      },
+      "revId": "f670c949b49307b658860812c5015f7434ac329a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49cd276d_5040879d",
