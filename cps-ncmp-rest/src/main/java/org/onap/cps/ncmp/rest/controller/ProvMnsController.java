@@ -67,13 +67,14 @@ public class ProvMnsController implements ProvMnS {
     private final JsonObjectMapper jsonObjectMapper;
 
     @Override
-    public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest, final Scope scope,
-                                                   final String filter, List<String> attributes,
-                                                   final List<String> fields,
-                                                   final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector) {
+    public ResponseEntity<Object> getMoi(final HttpServletRequest httpServletRequest,
+                                         final Scope scope,
+                                         final String filter,
+                                         final List<String> attributes,
+                                         final List<String> fields,
+                                         final ClassNameIdGetDataNodeSelectorParameter dataNodeSelector) {
         final RequestPathParameters requestPathParameters =
             parameterMapper.extractRequestParameters(httpServletRequest);
-        attributes = isAttributesInRequest(httpServletRequest) ? attributes : null;
         try {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
@@ -86,9 +87,7 @@ public class ProvMnsController implements ProvMnS {
                 return errorResponseBuilder.buildErrorResponseGet(httpStatus, exception.getDetails());
             }
             final UrlTemplateParameters urlTemplateParameters = parametersBuilder.createUrlTemplateParametersForRead(
-                scope, filter, attributes,
-                fields, dataNodeSelector,
-                yangModelCmHandle, requestPathParameters);
+                scope, filter, attributes, fields, dataNodeSelector, yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousGetOperation(
                 RequiredDmiService.DATA, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
@@ -225,7 +224,4 @@ public class ProvMnsController implements ProvMnS {
         return alternateId + " not found";
     }
 
-    private boolean isAttributesInRequest(final HttpServletRequest httpServletRequest) {
-        return httpServletRequest.getParameterMap().containsKey("attributes");
-    }
 }

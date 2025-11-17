@@ -89,7 +89,7 @@ public class RestServiceUrlTemplateBuilder {
     }
 
     /**
-     * Add a query parameter to the URL. Query parameter could have a blank value.
+     * Add a query parameter to the URL. Accept blank but ignore null.
      * Do NOT encode as the builder will take care of encoding
      *
      * @param queryParameterName  the name of the variable
@@ -97,8 +97,8 @@ public class RestServiceUrlTemplateBuilder {
      *
      * @return this builder instance
      */
-    public RestServiceUrlTemplateBuilder queryParameterWithBlankValue(final String queryParameterName,
-                                                                      final String queryParameterValue) {
+    public RestServiceUrlTemplateBuilder queryParameterAllowBlankValue(final String queryParameterName,
+                                                                       final String queryParameterValue) {
         if (queryParameterValue != null) {
             queryParameters.put(queryParameterName, queryParameterValue);
         }

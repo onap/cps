@@ -51,31 +51,32 @@ class RestServiceUrlTemplateBuilderSpec extends Specification {
     }
 
     def 'Build URL template parameters with empty query parameters.'() {
-        when: 'the query parameter is given to the builder'
-            objectUnderTest.queryParameter('param', value)
-        and: 'the URL template parameters are create'
+        when: 'a query parameter with value #scenario is added'
+            objectUnderTest.queryParameter('myParam', value)
+        and: 'the URL template parameters are created'
             def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
         then: 'no parameter gets added'
             assert result.urlVariables.isEmpty()
         where: 'the following parameter values are used'
-            value << [ null, '', ' ' ]
+            scenario | value
+            'empty'  | ''
+            'blank'  | ' '
+            'null'   | null
     }
 
-    def 'Build URL template parameters with empty value query parameters.'() {
-        when: 'the query parameter with a blank value is given to the builder'
-            objectUnderTest.queryParameterWithBlankValue('myParam', '')
+    def 'Build URL template parameters allowing blank.'() {
+        when: 'a query parameter with value #scenario is added while allowing blank values'
+            objectUnderTest.queryParameterAllowBlankValue('myParam', value)
         and: 'the URL template parameters are created'
             def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
-        then: 'parameter myParam is added with empty value'
-            assert result.urlVariables() == ['myParam': '']
+        then: 'the parameter has the expected value'
+            assert result.urlVariables().get('myParam') == value
+        where:
+            scenario    | value
+            'has value' | 'my value'
+            'empty'     | ''
+            'blank'     | ' '
+            'null'      | null
     }
 
-    def 'Build URL template parameters with null value query parameters.'() {
-        when: 'the query parameter with null value is given to the builder'
-            objectUnderTest.queryParameterWithBlankValue('myParam', null)
-        and: 'the URL template parameters are created'
-            def result = objectUnderTest.createUrlTemplateParameters('myServer', 'myBasePath')
-        then: 'parameter myParam is not added'
-            assert result.urlVariables().size() == 0
-    }
 }

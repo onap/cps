@@ -54,15 +54,13 @@ public class ParametersBuilder {
                                                 final YangModelCmHandle yangModelCmHandle,
                                                 final RequestPathParameters requestPathParameters) {
         final String dmiServiceName = yangModelCmHandle.resolveDmiServiceName(DATA);
-        final String attributesString = removeBrackets(attributes);
-        final String fieldsString = removeBrackets(fields);
         return RestServiceUrlTemplateBuilder.newInstance()
             .fixedPathSegment(requestPathParameters.toAlternateId())
             .queryParameter("scopeType", scope.getScopeType() != null ? scope.getScopeType().getValue() : null)
             .queryParameter("scopeLevel", scope.getScopeLevel() != null ? scope.getScopeLevel().toString() : null)
             .queryParameter("filter", filter)
-            .queryParameterWithBlankValue("attributes", attributes == null ? null : attributesString)
-            .queryParameter("fields", fieldsString.isBlank() ? null : fieldsString)
+            .queryParameterAllowBlankValue("attributes", attributes == null ? null : String.join(",", attributes))
+            .queryParameterAllowBlankValue("fields", fields == null ? null : String.join(",", fields))
             .queryParameter("dataNodeSelector", dataNodeSelector.getDataNodeSelector())
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
@@ -82,11 +80,4 @@ public class ParametersBuilder {
             .createUrlTemplateParameters(dmiServiceName, "ProvMnS");
     }
 
-    private String removeBrackets(final List<String> queryParameterList) {
-        if (queryParameterList != null) {
-            final String queryParameterText = queryParameterList.toString();
-            return queryParameterText.substring(1, queryParameterText.length() - 1);
-        }
-        return "";
-    }
 }

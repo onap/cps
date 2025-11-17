@@ -88,9 +88,9 @@ class ProvMnsControllerSpec extends Specification {
     @Value('${rest.api.provmns-base-path}')
     def provMnSBasePath
 
-    def 'Get resource data request where #scenario'() {
+    def 'Get resource data request where #scenario.'() {
         given: 'resource data url'
-            def getUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId?attributes=[test,query,param]"
+            def getUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
             alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/someUriLdnFirstPart/someClassName=someId', "/") >> 'cm-1'
         and: 'persistence service returns yangModelCmHandle'
@@ -102,14 +102,39 @@ class ProvMnsControllerSpec extends Specification {
         then: 'response status as expected'
             assert response.status == expectedHttpStatus.value()
         where:
-            scenario                                                 | dataProducerId       | state   || expectedHttpStatus
-            'cmHandle state is Ready with populated dataProducerId'  | 'someDataProducerId' | READY   || HttpStatus.OK
-            'dataProducerId is blank'                                | ' '                  | READY   || HttpStatus.UNPROCESSABLE_ENTITY
-            'dataProducerId is null'                                 | null                 | READY   || HttpStatus.UNPROCESSABLE_ENTITY
-            'cmHandle state is Advised'                              | 'someDataProducerId' | ADVISED || HttpStatus.NOT_ACCEPTABLE
+            scenario                                                | dataProducerId       | state   || expectedHttpStatus
+            'cmHandle state is Ready with populated dataProducerId' | 'someDataProducerId' | READY   || HttpStatus.OK
+            'dataProducerId is blank'                               | ' '                  | READY   || HttpStatus.UNPROCESSABLE_ENTITY
+            'dataProducerId is null'                                | null                 | READY   || HttpStatus.UNPROCESSABLE_ENTITY
+            'cmHandle state is Advised'                             | 'someDataProducerId' | ADVISED || HttpStatus.NOT_ACCEPTABLE
     }
 
-    def 'Get resource data request with no match for alternate id'() {
+    def 'Get resource data request with list parameter: #scenario.'() {
+        given: 'resource data url'
+            def getUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId$parameterInProvMnsRequest"
+        and: 'alternate Id can be matched'
+            alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId('/someUriLdnFirstPart/someClassName=someId', "/") >> 'cm-1'
+        and: 'persistence service returns yangModelCmHandle'
+            inventoryPersistence.getYangModelCmHandle('cm-1') >> new YangModelCmHandle(id:'cm-1', dmiServiceName: 'someDmiService', dataProducerIdentifier: 'someDataProducerId', compositeState: new CompositeState(cmHandleState: READY))
+        when: 'get data resource request is performed'
+             mvc.perform(get(getUrl).contentType(MediaType.APPLICATION_JSON))
+        then: 'the request to dmi contains the expected url parameters and values and then returns OK'
+            1 * dmiRestClient.synchronousGetOperation(*_) >> { arguments -> def urlTemplateParameters = arguments[1]
+                assert urlTemplateParameters.urlTemplate.contains(expectedParameterInUri)
+                assert urlTemplateParameters.urlVariables().get(parameterName) == expectedParameterValuesInDmiRequest
+                return new ResponseEntity<>('Some response from DMI service', HttpStatus.OK)
+            }
+        where: 'attributes is populated with the following '
+            scenario               | parameterName | parameterInProvMnsRequest   || expectedParameterInUri     || expectedParameterValuesInDmiRequest
+            'some attributes'      | 'attributes'  | '?attributes=value1,value2' || '?attributes={attributes}' || 'value1,value2'
+            'empty attributes'     | 'attributes'  | '?attributes='              || '?attributes={attributes}' || ''
+            'no attributes (null)' | 'attributes'  | ''                          || ''                         || null
+            'some fields'          | 'fields'      | '?fields=value3,value4'     || '?fields={fields}'         || 'value3,value4'
+            'empty fields'         | 'fields'      | '?fields='                  || '?fields={fields}'         || ''
+            'no fields (null)'     | 'fields'      | ''                          || ''                         || null
+    }
+
+    def 'Get resource data request with no match for alternate id.'() {
         given: 'resource data url'
             def getUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id cannot be matched'
@@ -122,7 +147,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_FOUND.value()
     }
 
-    def 'Patch request where #scenario'() {
+    def 'Patch request where #scenario.'() {
         given: 'provmns url'
             def provmnsUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -146,7 +171,7 @@ class ProvMnsControllerSpec extends Specification {
             'cmHandle state is Advised' | 'someDataProducerId' | ADVISED || HttpStatus.NOT_ACCEPTABLE
     }
 
-    def 'Patch request with no match for alternate id'() {
+    def 'Patch request with no match for alternate id.'() {
         given: 'resource data url'
             def provmnsUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id cannot be matched'
@@ -162,7 +187,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_FOUND.value()
     }
 
-    def 'Patch request with no permission from coordination management'() {
+    def 'Patch request with no permission from coordination management.'() {
         given: 'resource data url'
             def url = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -180,7 +205,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_ACCEPTABLE.value()
     }
 
-    def 'Put resource data request where #scenario'() {
+    def 'Put resource data request where #scenario.'() {
         given: 'resource data url'
             def putUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -204,7 +229,7 @@ class ProvMnsControllerSpec extends Specification {
             'cmHandle state is Advised' | 'someDataProducerId' | ADVISED || HttpStatus.NOT_ACCEPTABLE
     }
 
-    def 'Put resource data request with no match for alternate id'() {
+    def 'Put resource data request with no match for alternate id.'() {
         given: 'resource data url'
             def putUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id cannot be matched'
@@ -220,7 +245,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_FOUND.value()
     }
 
-    def 'Put resource data request with no permission from coordination management'() {
+    def 'Put resource data request with no permission from coordination management.'() {
         given: 'resource data url'
             def putUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -238,7 +263,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_ACCEPTABLE.value()
     }
 
-    def 'Delete resource data request where #scenario'() {
+    def 'Delete resource data request where #scenario.'() {
         given: 'resource data url'
             def deleteUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -259,7 +284,7 @@ class ProvMnsControllerSpec extends Specification {
             'cmHandle state is Advised' | 'someDataProducerId' | ADVISED || HttpStatus.NOT_ACCEPTABLE
     }
 
-    def 'Delete resource data request with no match for alternate id'() {
+    def 'Delete resource data request with no match for alternate id.'() {
         given: 'resource data url'
             def deleteUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id cannot be matched'
@@ -272,7 +297,7 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_FOUND.value()
     }
 
-    def 'Delete resource data request with no permission from coordination management'() {
+    def 'Delete resource data request with no permission from coordination management.'() {
         given: 'resource data url'
             def deleteUrl = "$provMnSBasePath/v1/someUriLdnFirstPart/someClassName=someId"
         and: 'alternate Id can be matched'
@@ -287,11 +312,11 @@ class ProvMnsControllerSpec extends Specification {
             assert response.status == HttpStatus.NOT_ACCEPTABLE.value()
     }
 
-    def 'Invalid path passed in to provmns interface, #scenario'() {
+    def 'Invalid path passed in to provmns interface, #scenario.'() {
         given: 'an invalid path'
             def url = "$provMnSBasePath/v1/" + invalidPath
         when: 'get data resource request is performed'
-            def response = mvc.perform(get(url).contentType(MediaType.APPLICATION_JSON)).andReturn().response
+            mvc.perform(get(url).contentType(MediaType.APPLICATION_JSON)).andReturn().response
         then: 'invalid path exception is thrown'
             thrown(ServletException)
         where:
