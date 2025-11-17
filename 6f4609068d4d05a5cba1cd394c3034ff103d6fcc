@@ -18,6 +18,46 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a98cc659_ce4f44b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-17T14:47:17Z",
+      "side": 1,
+      "message": "a few questions..",
+      "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bdca539_787b883d",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-17T14:47:17Z",
+      "side": 1,
+      "message": "NB: do you mean the payload? e.g. payload of the upcoming request?",
+      "range": {
+        "startLine": 159,
+        "startChar": 39,
+        "endLine": 159,
+        "endChar": 64
+      },
+      "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93faab5c_36fc5b56",
@@ -36,6 +76,29 @@
         "startChar": 75,
         "endLine": 164,
         "endChar": 83
+      },
+      "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b3d090_562294fd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-17T14:47:17Z",
+      "side": 1,
+      "message": "Nb: can be more meaningful variable name.",
+      "range": {
+        "startLine": 173,
+        "startChar": 38,
+        "endLine": 173,
+        "endChar": 47
       },
       "revId": "6f4609068d4d05a5cba1cd394c3034ff103d6fcc",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
