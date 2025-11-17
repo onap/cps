@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9fa2d3_314692d5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "NB: Mention that it is ignored e.g\n\"Ignoring  dataNodeSelector\u003d{} because no matching CM Handle ID found\"",
+      "range": {
+        "startLine": 96,
+        "startChar": 61,
+        "endLine": 96,
+        "endChar": 80
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf0ae7c_f465ebc7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "The verb in the calling method is \u0027Update\u0027 instead of \u0027Create\u0027? Does it apply to both?!",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70134ab2_dc788f17",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "the following status is used",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828c883e_6d6c4c71",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "i think \u0027create\u0027 is more appropriate",
+      "range": {
+        "startLine": 79,
+        "startChar": 7,
+        "endLine": 79,
+        "endChar": 11
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b7d1e8_1a864259",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "listAppender\n\nBUT also check comment at the test where you use this, do we really need logger assertion ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 15
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a6980b_16435398",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "can you not declare this once as a class variable outside the setup and cleanup blocks?",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 75
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1ebfb4_a602d916",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "no expectations!\n\u0027Attempt to create already existing subscription.\u0027",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 59
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "811074de_c93b28cd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "Since you are mocking and this is not E2E test you need to be more specific:\n\u0027the persistence service indicates the id is not new\u0027",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 65,
+        "endChar": 43
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a190779_6a99c129",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "attempt to create the subscription",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c28099e_2318df01",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "no events are send",
+      "range": {
+        "startLine": 71,
+        "startChar": 14,
+        "endLine": 71,
+        "endChar": 49
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da643dc9_c4885b8f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "I think you can set this in the setup and then override it for the negative test only",
+      "range": {
+        "startLine": 82,
+        "startChar": 1,
+        "endLine": 83,
+        "endChar": 85
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb698396_2473474f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "NB: not sure if logging asserts are really need here as you also have a production code call you can check and do on line #276",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 198
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95927b0a_229fe073",
+        "filename": "cps-ncmp-service/src/test/resources/datajobs/subscription/cmNotificationSubscriptionDmiOutEvent.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:50:08Z",
+      "side": 1,
+      "message": "NB: this is very little json, I prefer to see it hardcode in teh test for better readability i.e have all in one place",
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
