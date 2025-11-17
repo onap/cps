@@ -16,6 +16,29 @@
       "message": "recheck",
       "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7622609_752be83d",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-17T16:55:45Z",
+      "side": 1,
+      "message": "why not 30093\nI see now, that conflict with a Kafka Port but can that be moved (easily) ?",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
