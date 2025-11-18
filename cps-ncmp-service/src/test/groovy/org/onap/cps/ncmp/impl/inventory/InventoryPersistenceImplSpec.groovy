@@ -24,10 +24,6 @@ package org.onap.cps.ncmp.impl.inventory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
-
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import org.onap.cps.api.CpsAnchorService
 import org.onap.cps.api.CpsDataService
 import org.onap.cps.api.CpsModuleService
@@ -36,14 +32,18 @@ import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.api.model.ModuleDefinition
 import org.onap.cps.api.model.ModuleReference
-import org.onap.cps.utils.CpsValidator
-import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState
+import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.utils.ContentType
+import org.onap.cps.utils.CpsValidator
 import org.onap.cps.utils.JsonObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
+
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 import static org.onap.cps.api.parameters.FetchDescendantsOption.INCLUDE_ALL_DESCENDANTS
 import static org.onap.cps.api.parameters.FetchDescendantsOption.OMIT_DESCENDANTS
@@ -138,7 +138,7 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
-    def 'Retrieve multiple YangModelCmHandles using cm handle ids'() {
+    def 'Retrieve multiple YangModelCmHandles using cm handle ids.'() {
         given: 'the cps data service returns 2 data nodes from the DMI registry'
             def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
             mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , INCLUDE_ALL_DESCENDANTS) >> dataNodes
@@ -149,7 +149,7 @@ class InventoryPersistenceImplSpec extends Specification {
             assert results.id.containsAll([cmHandleId, cmHandleId2])
     }
 
-    def 'YangModelCmHandles are not returned for invalid cm handle ids'() {
+    def 'YangModelCmHandles are not returned for invalid cm handle ids.'() {
         given: 'invalid cm handle id throws a data validation exception'
             mockCpsValidator.validateNameCharacters('Invalid Cm Handle Id') >> {throw new DataValidationException('','')}
         and: 'empty collection is returned as no valid cm handle ids are given'
@@ -160,7 +160,7 @@ class InventoryPersistenceImplSpec extends Specification {
             assert results.size() == 0
     }
 
-    def 'Get a Cm Handle Composite State'() {
+    def 'Get a Cm Handle Composite State.'() {
         given: 'a valid cm handle id'
             def cmHandleId = 'Some-Cm-Handle'
             def dataNode = new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
@@ -175,7 +175,7 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters(cmHandleId)
     }
 
-    def 'Update Cm Handle with #scenario State'() {
+    def 'Update Cm Handle with #scenario State.'() {
         given: 'a cm handle and a composite state'
             def cmHandleId = 'Some-Cm-Handle'
             def compositeState = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
@@ -190,7 +190,7 @@ class InventoryPersistenceImplSpec extends Specification {
             'DELETING'  | CmHandleState.DELETING || '{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}'
     }
 
-    def 'Update Cm Handles with #scenario States'() {
+    def 'Update Cm Handles with #scenario States.'() {
         given: 'a map of cm handles composite states'
             def compositeState1 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
             def compositeState2 = new CompositeState(cmHandleState: cmHandleState, lastUpdateTime: formattedDateAndTime)
@@ -208,7 +208,7 @@ class InventoryPersistenceImplSpec extends Specification {
             'DELETING'  | CmHandleState.DELETING || ['/dmi-registry/cm-handles[@id=\'Some-Cm-Handle1\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}', '/dmi-registry/cm-handles[@id=\'Some-Cm-Handle2\']':'{"state":{"cm-handle-state":"DELETING","last-update-time":"2022-12-31T20:30:40.000+0000"}}']
     }
 
-    def 'Update cm handle states when #scenario in alternate id cache'() {
+    def 'Update cm handle states when #scenario in alternate id cache.'() {
         given: 'a map of cm handles composite states'
             def compositeState = new CompositeState(cmHandleState: CmHandleState.ADVISED, lastUpdateTime: formattedDateAndTime)
             def cmHandleStateMap = ['some-cm-handle' : compositeState]
@@ -227,7 +227,7 @@ class InventoryPersistenceImplSpec extends Specification {
 
     }
 
-    def 'Getting module definitions by module'() {
+    def 'Getting module definitions by module.'() {
         given: 'cps module service returns module definition for module name'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
             mockCpsModuleService.getModuleDefinitionsByAnchorAndModule(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id', 'some-module', '2024-01-25') >> moduleDefinitions
@@ -239,7 +239,7 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('some-cmHandle-Id', 'some-module')
     }
 
-    def 'Getting module definitions with cm handle id'() {
+    def 'Getting module definitions with cm handle id.'() {
         given: 'cps module service returns module definitions for cm handle id'
             def moduleDefinitions = [new ModuleDefinition('moduleName','revision','content')]
             mockCpsModuleService.getModuleDefinitionsByAnchorName(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id') >> moduleDefinitions
@@ -249,7 +249,7 @@ class InventoryPersistenceImplSpec extends Specification {
             assert result == moduleDefinitions
     }
 
-    def 'Get module references'() {
+    def 'Get module references.'() {
         given: 'cps module service returns a collection of module references'
             def moduleReferences = [new ModuleReference('moduleName','revision','namespace')]
             mockCpsModuleService.getYangResourcesModuleReferences(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME,'some-cmHandle-Id') >> moduleReferences
@@ -261,7 +261,7 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsValidator.validateNameCharacters('some-cmHandle-Id')
     }
 
-    def 'Save Cmhandle'() {
+    def 'Save Cmhandle.'() {
         given: 'cmHandle represented as Yang Model'
             def yangModelCmHandle = new YangModelCmHandle(id: 'cmhandle', additionalProperties: [], publicProperties: [])
         when: 'the method to save cmhandle is called'
@@ -275,7 +275,7 @@ class InventoryPersistenceImplSpec extends Specification {
             }
     }
 
-    def 'Save Multiple Cmhandles'() {
+    def 'Save Multiple Cmhandles.'() {
         given: 'cm handles represented as Yang Model'
             def yangModelCmHandle1 = new YangModelCmHandle(id: 'cmhandle1')
             def yangModelCmHandle2 = new YangModelCmHandle(id: 'cmhandle2')
@@ -292,21 +292,21 @@ class InventoryPersistenceImplSpec extends Specification {
             }
     }
 
-    def 'Delete list or list elements'() {
+    def 'Delete list or list elements.'() {
         when: 'the method to delete list or list elements is called'
             objectUnderTest.deleteListOrListElement('sample xPath')
         then: 'the data service method to save list elements is called once'
             1 * mockCpsDataService.deleteListOrListElement(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xPath',null)
     }
 
-    def 'Get data node via xPath'() {
+    def 'Get data node via xPath.'() {
         when: 'the method to get data nodes is called'
             objectUnderTest.getDataNode('sample xPath')
         then: 'the data persistence service method to get data node is invoked once'
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xPath', INCLUDE_ALL_DESCENDANTS)
     }
 
-    def 'Get cmHandle data node'() {
+    def 'Get cmHandle data node.'() {
         given: 'expected xPath to get cmHandle data node'
             def expectedXPath = '/dmi-registry/cm-handles[@id=\'sample cmHandleId\']'
         when: 'the method to get data nodes is called'
@@ -315,14 +315,14 @@ class InventoryPersistenceImplSpec extends Specification {
             1 * mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, expectedXPath, INCLUDE_ALL_DESCENDANTS)
     }
 
-    def 'Get CM handle ids for CM Handles that has given module names'() {
+    def 'Get CM handle ids for CM Handles that has given module names.'() {
         when: 'the method to get cm handles is called'
             objectUnderTest.getCmHandleReferencesWithGivenModules(['sample-module-name'], false)
         then: 'the admin persistence service method to query anchors is invoked once with the same parameter'
             1 * mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name'])
     }
 
-    def 'Get Alternate Ids for CM Handles that has given module names'() {
+    def 'Get Alternate Ids for CM Handles that has given module names.'() {
         given: 'cps anchor service returns a CM-handle ID for the given module name'
             mockCpsAnchorService.queryAnchorNames(NFP_OPERATIONAL_DATASTORE_DATASPACE_NAME, ['sample-module-name']) >> ['ch-1']
         and: 'cps data service returns some data nodes for the given CM-handle ID'
@@ -334,45 +334,53 @@ class InventoryPersistenceImplSpec extends Specification {
             assert result == ['alt-1'] as Set
     }
 
-    def 'Replace list content'() {
+    def 'Replace list content.'() {
         when: 'replace list content method is called with xpath and data nodes collection'
             objectUnderTest.replaceListContent('sample xpath', [new DataNode()])
         then: 'the cps data service method to replace list content is invoked once with same parameters'
             1 * mockCpsDataService.replaceListContent(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR,'sample xpath', [new DataNode()], NO_TIMESTAMP);
     }
 
-    def 'Delete data node via xPath'() {
+    def 'Delete data node via xPath.'() {
         when: 'Delete data node method is called with xpath as parameter'
             objectUnderTest.deleteDataNode('sample dataNode xpath')
         then: 'the cps data service method to delete data node is invoked once with the same xPath'
             1 * mockCpsDataService.deleteDataNode(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, 'sample dataNode xpath', NO_TIMESTAMP);
     }
 
-    def 'Delete multiple data nodes via xPath'() {
+    def 'Delete multiple data nodes via xPath.'() {
         when: 'Delete data nodes method is called with multiple xpaths as parameters'
             objectUnderTest.deleteDataNodes(['xpath1', 'xpath2'])
         then: 'the cps data service method to delete data nodes is invoked once with the same xPaths'
             1 * mockCpsDataService.deleteDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, ['xpath1', 'xpath2'], NO_TIMESTAMP);
     }
 
-    def 'CM handle exists'() {
+    def 'CM handle exists.'() {
         given: 'data service returns a datanode with correct cm handle id'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, OMIT_DESCENDANTS) >> [dataNode]
         expect: 'cm handle exists for given cm handle id'
             assert true == objectUnderTest.isExistingCmHandleId(cmHandleId)
     }
 
-    def 'CM handle does not exist, empty dataNode collection returned'() {
+    def 'CM handle does not exist (data service returns empty collection).'() {
         given: 'data service returns an empty datanode'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, xpath, OMIT_DESCENDANTS) >> []
         expect: 'false is returned for non-existent cm handle'
             assert false == objectUnderTest.isExistingCmHandleId(cmHandleId)
     }
 
-    def 'CM handle does not exist, exception thrown'() {
+    def 'CM handle does not exist (data service throws).'() {
         given: 'data service throws an exception'
             mockCpsDataService.getDataNodes(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, "/dmi-registry/cm-handles[@id='non-existent-cm-handle']", OMIT_DESCENDANTS) >> {throw new DataNodeNotFoundException('','')}
         expect: 'false is returned for non-existent cm handle'
             assert false == objectUnderTest.isExistingCmHandleId('non-existent-cm-handle')
     }
+
+    def 'Delete anchors.'() {
+        when: 'Deleting some anchors'
+            objectUnderTest.deleteAnchors(['anchor1' ,'anchor2'])
+        then: 'The call is delegated to the anchor service with teh correct parameters'
+            mockCpsAnchorService.deleteAnchors(NCMP_DATASPACE_NAME ,['anchor1' ,'anchor2'])
+        }
 }
+

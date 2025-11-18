@@ -18,31 +18,32 @@
  * ============LICENSE_END=========================================================
  */
 
-package org.onap.cps.ncmp.impl.cache
+package org.onap.cps.ncmp.impl.datajobs.subscription.cache
 
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
+import org.onap.cps.ncmp.impl.datajobs.subscription.models.DmiCmSubscriptionDetails
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration;
-import spock.lang.Specification;
+import org.springframework.test.context.ContextConfiguration
+import spock.lang.Specification
 
-@SpringBootTest(classes = [AdminCacheConfig])
-class AdminCacheConfigSpec extends Specification {
+@SpringBootTest(classes = [CmSubscriptionConfig])
+class CmSubscriptionConfigSpec extends Specification {
 
     @Autowired
-    IMap<String, Integer> cmHandlesByState
+    IMap<String, Map<String, DmiCmSubscriptionDetails>> cmNotificationSubscriptionCache
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast cache for cm handle by state gauge'() {
-        expect: 'system is able to create an instance of the cm handle by state cache'
-            assert null != cmHandlesByState
+    def 'Hazelcast cache for cm subscriptions.'() {
+        expect: 'system is able to create an instance of the cm subscription cache'
+            assert null != cmNotificationSubscriptionCache
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for cm handle by state is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandlesByState') != null
+        and: 'Hazelcast cache instance for cm subscriptions present'
+            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmNotificationSubscriptionCache') != null
     }
 }

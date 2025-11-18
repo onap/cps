@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.onap.cps.ncmp.api.exceptions.DmiClientRequestException
+import org.onap.cps.ncmp.config.DmiHttpClientConfig
 import org.onap.cps.ncmp.impl.utils.http.UrlTemplateParameters
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.http.HttpStatus
@@ -40,12 +41,16 @@ class DmiRestClientIntegrationSpec extends Specification {
 
     def mockWebServer = new MockWebServer()
     def baseUrl = mockWebServer.url('/')
-    def webClientForMockServer = WebClient.builder().baseUrl(baseUrl.toString()).build()
 
     def urlTemplateParameters = new UrlTemplateParameters('/myPath', [someParam: 'value'])
     def mockDmiServiceAuthenticationProperties = Mock(DmiServiceAuthenticationProperties)
 
     JsonObjectMapper jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
+
+    def webClientBuilder = WebClient.builder().baseUrl(baseUrl.toString())
+    def dmiWebClientsConfiguration = new DmiWebClientsConfiguration(new DmiHttpClientConfig())
+    def webClientForMockServer = dmiWebClientsConfiguration.dataServicesWebClient(webClientBuilder)
+
     def objectUnderTest = new DmiRestClient(mockDmiServiceAuthenticationProperties, jsonObjectMapper, webClientForMockServer, webClientForMockServer, webClientForMockServer)
 
     def cleanup() throws IOException {

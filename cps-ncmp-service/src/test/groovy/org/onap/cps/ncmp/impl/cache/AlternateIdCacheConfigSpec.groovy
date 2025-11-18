@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 Nordix Foundation.
+ * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,26 +23,28 @@ package org.onap.cps.ncmp.impl.cache
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration;
-import spock.lang.Specification;
+import org.springframework.test.context.ContextConfiguration
+import spock.lang.Specification
 
-@SpringBootTest(classes = [AdminCacheConfig])
-class AdminCacheConfigSpec extends Specification {
+@SpringBootTest(classes = [AlternateIdCacheConfig])
+class AlternateIdCacheConfigSpec extends Specification {
 
     @Autowired
-    IMap<String, Integer> cmHandlesByState
+    @Qualifier("cmHandleIdPerAlternateId")
+    IMap<String, String> cmHandleIdPerAlternateId
 
     def cleanupSpec() {
         Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').shutdown()
     }
 
-    def 'Hazelcast cache for cm handle by state gauge'() {
-        expect: 'system is able to create an instance of the cm handle by state cache'
-            assert null != cmHandlesByState
+    def 'Hazelcast cache for alternate ids.'() {
+        expect: 'system is able to create an instance alternate id cache'
+            assert null != cmHandleIdPerAlternateId
         and: 'there is at least 1 instance'
             assert Hazelcast.allHazelcastInstances.size() > 0
-        and: 'Hazelcast cache instance for cm handle by state is present'
-            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandlesByState') != null
+        and: 'Hazelcast cache instance for alternate ids is present'
+            assert Hazelcast.getHazelcastInstanceByName('cps-and-ncmp-hazelcast-instance-test-config').getMap('cmHandleIdPerAlternateId') != null
     }
 }

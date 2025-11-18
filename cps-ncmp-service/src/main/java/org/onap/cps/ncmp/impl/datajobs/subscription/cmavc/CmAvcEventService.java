@@ -63,7 +63,10 @@ public class CmAvcEventService {
             cmAvcEvent.getData().getPushChangeUpdate().getDatastoreChanges().getIetfYangPatchYangPatch().getEdit();
 
         edits.forEach(
-            edit -> handleCmAvcEventOperation(CmAvcOperationEnum.fromValue(edit.getOperation()), cmHandleId, edit));
+            edit -> {
+                final String operationNameUpperCase = edit.getOperation().toUpperCase();
+                handleCmAvcEventOperation(CmAvcOperationEnum.valueOf(operationNameUpperCase), cmHandleId, edit);
+            });
     }
 
     private void handleCmAvcEventOperation(final CmAvcOperationEnum cmAvcOperation, final String cmHandleId,
@@ -72,24 +75,17 @@ public class CmAvcEventService {
         log.info("Operation : {} requested for cmHandleId : {}", cmAvcOperation.getValue(), cmHandleId);
 
         switch (cmAvcOperation) {
-            case CREATE:
-                handleCreate(cmHandleId, cmAvcEventEdit);
-                break;
-
             case UPDATE:
                 handleUpdate(cmHandleId, cmAvcEventEdit);
                 break;
-
             case PATCH:
                 handlePatch(cmHandleId, cmAvcEventEdit);
                 break;
-
             case DELETE:
                 handleDelete(cmHandleId, cmAvcEventEdit);
                 break;
-
-            default:
-                log.error("Unhandled operation : {} for cmHandleId : {}", cmAvcOperation, cmHandleId);
+            default:  // CREATE (checkstyle complains if there is NO default)
+                handleCreate(cmHandleId, cmAvcEventEdit);
         }
     }
 

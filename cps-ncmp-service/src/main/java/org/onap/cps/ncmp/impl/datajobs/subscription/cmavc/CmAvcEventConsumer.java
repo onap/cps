@@ -34,7 +34,6 @@ import org.onap.cps.ncmp.events.avc1_0_0.AvcEvent;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.kafka.KafkaException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +46,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class CmAvcEventConsumer {
-
 
     private static final String CLOUD_EVENT_SOURCE_SYSTEM_HEADER_KEY = "ce_source";
 
@@ -77,11 +75,6 @@ public class CmAvcEventConsumer {
         final CloudEvent outgoingAvcEvent = cmAvcEventAsConsumerRecord.value();
         final String outgoingAvcEventKey = cmAvcEventAsConsumerRecord.key();
 
-        // Only for testing/demo
-        if (outgoingAvcEventKey.equals("retry")) {
-            throw new KafkaException("test kafka exception for testing");
-        }
-
         log.debug("Consuming AVC event with key : {} and value : {}", outgoingAvcEventKey, outgoingAvcEvent);
         eventsProducer.sendCloudEventUsingEos(cmEventsTopicName, outgoingAvcEventKey, outgoingAvcEvent);
     }
@@ -100,6 +93,6 @@ public class CmAvcEventConsumer {
 
     private boolean isEventFromOnapDmiPlugin(final Headers headers) {
         final String sourceSystem = KafkaHeaders.getParsedKafkaHeader(headers, CLOUD_EVENT_SOURCE_SYSTEM_HEADER_KEY);
-        return sourceSystem != null && sourceSystem.equals("ONAP-DMI-PLUGIN");
+        return "ONAP-DMI-PLUGIN".equals(sourceSystem);
     }
 }
