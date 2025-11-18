@@ -44,10 +44,10 @@ public class CloudEventMapper {
      * @return mapped target event
      */
     public static <T> T toTargetEvent(final CloudEvent cloudEvent, final Class<T> targetEventClass) {
-        PojoCloudEventData<T> mappedCloudEvent = null;
+        PojoCloudEventData<T> pojoCloudEventData = null;
 
         try {
-            mappedCloudEvent =
+            pojoCloudEventData =
                     CloudEventUtils.mapData(cloudEvent, PojoCloudEventDataMapper.from(objectMapper, targetEventClass));
 
         } catch (final RuntimeException runtimeException) {
@@ -55,7 +55,7 @@ public class CloudEventMapper {
                     runtimeException.getMessage());
         }
 
-        return mappedCloudEvent == null ? null : mappedCloudEvent.getValue();
+        return pojoCloudEventData == null ? null : pojoCloudEventData.getValue();
     }
 
 }

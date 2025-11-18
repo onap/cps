@@ -55,7 +55,7 @@ class CmAvcEventServiceSpec extends Specification {
     def cmHandleId = 'test-cmhandle-id'
     def sampleJson = '{"some-data": "test-data"}'
 
-    def 'process CREATE operation'() {
+    def 'Process CREATE operation.'() {
         given: 'An edit with CREATE operation'
             def testAvcEventForCreate = testAvcEvent('create', NO_XPATH)
         when: 'The AVC event is processed'
@@ -64,7 +64,7 @@ class CmAvcEventServiceSpec extends Specification {
             1 * mockCpsDataService.saveData(_, cmHandleId, sampleJson, NO_TIMESTAMP)
     }
 
-    def 'Process UPDATE operation'() {
+    def 'Process UPDATE operation.'() {
         given: 'An edit with UPDATE operation and a valid target path'
             def targetPath = '/test/path'
             def anchor = Mock(Anchor)
@@ -77,7 +77,7 @@ class CmAvcEventServiceSpec extends Specification {
             1 * mockCpsDataService.updateDataNodeAndDescendants(_, cmHandleId, _, sampleJson, NO_TIMESTAMP, _)
     }
 
-    def 'Process PATCH operation'() {
+    def 'Process PATCH operation.'() {
         given: 'An edit with PATCH operation and a valid target path'
             def targetPath = '/test/path'
             def anchor = Mock(Anchor)
@@ -90,7 +90,7 @@ class CmAvcEventServiceSpec extends Specification {
             1 * mockCpsDataService.updateNodeLeaves(_, cmHandleId, _, sampleJson, NO_TIMESTAMP, _)
     }
 
-    def 'Process DELETE operation with target'() {
+    def 'Process DELETE operation with target.'() {
         given: 'An edit with DELETE operation and a specific target path'
             def targetPath = '/test/path'
             def anchor = Mock(Anchor)
@@ -103,7 +103,7 @@ class CmAvcEventServiceSpec extends Specification {
             1 * mockCpsDataService.deleteDataNode(_, cmHandleId, '/parsed/cps/path', NO_TIMESTAMP)
     }
 
-    def 'Process DELETE operation with no target (delete all)'() {
+    def 'Process DELETE operation with no target (delete all).'() {
         given: 'An edit with DELETE operation and no target'
             def testAvcEventForDelete = testAvcEvent('delete', NO_XPATH)
         when: 'The AVC event is processed'
@@ -114,7 +114,7 @@ class CmAvcEventServiceSpec extends Specification {
             target << [null, '']
     }
 
-    def 'Resolve parent xpath correctly: #scenario'() {
+    def 'Resolve parent xpath correctly: #scenario.'() {
         expect: 'Parent xpath is resolved as expected'
             assert objectUnderTest.resolveParentNodeXpath(inputXpath) == expectedXpath
         where: 'following scenarios are used'

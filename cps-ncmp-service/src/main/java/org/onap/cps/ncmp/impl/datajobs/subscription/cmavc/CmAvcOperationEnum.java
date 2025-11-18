@@ -48,19 +48,4 @@ public enum CmAvcOperationEnum {
         return value;
     }
 
-    /**
-     * Returns the Operation Enum.
-     *
-     * @param value string operation
-     * @return CmAvcOperationEnum
-     */
-    public static CmAvcOperationEnum fromValue(final String value) {
-        for (final CmAvcOperationEnum b : CmAvcOperationEnum.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
 }
