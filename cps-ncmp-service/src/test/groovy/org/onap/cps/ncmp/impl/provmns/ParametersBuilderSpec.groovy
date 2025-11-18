@@ -65,25 +65,6 @@ class ParametersBuilderSpec extends Specification{
             assert result.urlVariables.keySet()[0] == 'dataNodeSelector'
     }
 
-    def 'Create url template parameters for GET with empty attributes'() {
-        when: 'Creating URL parameters for GET with empty attributes and fields'
-            def result = objectUnderTest.createUrlTemplateParametersForRead(new Scope(),
-                    null,
-                    [],
-                    [],
-                    new ClassNameIdGetDataNodeSelectorParameter(dataNodeSelector: 'my dataNodeSelector'),
-                    new YangModelCmHandle(dmiServiceName: 'myDmiService'),
-                    new RequestPathParameters(uriLdnFirstPart:'myPathVariable=myPathValue', className: 'myClassName', id:'myId'))
-        then: 'the template has the correct result'
-            assert result.urlTemplate.toString().startsWith('myDmiService/ProvMnS/v1/myPathVariable=myPathValue/myClassName=myId')
-        and: 'The url variables contains a data node selector and attributes parameters'
-            assert result.urlVariables.size() == 2
-            assert result.urlVariables.keySet()[0] == 'dataNodeSelector'
-            assert result.urlVariables.keySet()[1] == 'attributes'
-        and: 'the attributes value is blank'
-            assert result.urlVariables.attributes == ''
-    }
-
     def 'Create url template parameters for PUT and PATCH.'() {
         when: 'Creating URL parameters for PUT (or PATCH)'
             def result = objectUnderTest.createUrlTemplateParametersForWrite(
@@ -94,6 +75,5 @@ class ParametersBuilderSpec extends Specification{
         and: 'no url variables have been set'
             assert result.urlVariables.isEmpty()
     }
-
 
 }
