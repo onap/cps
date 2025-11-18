@@ -53,7 +53,7 @@ class DmiRestClientIntegrationSpec extends Specification {
     }
 
     def 'Synchronous DMI #method request.'() {
-        given: 'Web Server wil return OK response'
+        given: 'Web Server will return OK response'
             mockWebServer.enqueue(new MockResponse().setResponseCode(HttpStatus.OK.value))
         when: 'synchronous #method request is made'
             def result

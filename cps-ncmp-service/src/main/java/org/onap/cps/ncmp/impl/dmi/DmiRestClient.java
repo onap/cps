@@ -46,6 +46,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -131,8 +132,7 @@ public class DmiRestClient {
             .get()
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
-            .retrieve()
-            .toEntity(Object.class)
+            .exchangeToMono(this::createIdenticalResponseForClient)
             .block();
     }
 
@@ -152,8 +152,7 @@ public class DmiRestClient {
             .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
             .bodyValue(body)
-            .retrieve()
-            .toEntity(Object.class)
+            .exchangeToMono(this::createIdenticalResponseForClient)
             .block();
     }
 
@@ -176,8 +175,7 @@ public class DmiRestClient {
             .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
             .contentType(MediaType.parseMediaType(contentType))
             .bodyValue(body)
-            .retrieve()
-            .toEntity(Object.class)
+            .exchangeToMono(this::createIdenticalResponseForClient)
             .block();
     }
 
@@ -226,12 +224,11 @@ public class DmiRestClient {
     }
 
     /**
-     * Sends a synchronous (blocking) DELETE operation to the DMI with a JSON body without error mapping.
+     * Sends a synchronous (blocking) DELETE operation to the DMI without error mapping.
      *
      * @param requiredDmiService    Determines if the required service is for a data or model operation.
      * @param urlTemplateParameters The DMI resource URL template with variables.
-     * @return ResponseEntity from the DMI Plugin
-     * @throws DmiClientRequestException If there is an error during the DMI request.
+     * @return                      ResponseEntity containing the response from the DMI.
      *
      */
     public ResponseEntity<Object> synchronousDeleteOperation(final RequiredDmiService requiredDmiService,
@@ -240,8 +237,7 @@ public class DmiRestClient {
                 .delete()
                 .uri(urlTemplateParameters.urlTemplate(), urlTemplateParameters.urlVariables())
                 .headers(httpHeaders -> configureHttpHeaders(httpHeaders, NO_AUTHORIZATION))
-                .retrieve()
-                .toEntity(Object.class)
+                .exchangeToMono(this::createIdenticalResponseForClient)
                 .block();
     }
 
@@ -274,6 +270,18 @@ public class DmiRestClient {
         }
         return new DmiClientRequestException(INTERNAL_SERVER_ERROR.value(), exceptionMessage, throwable.getMessage(),
                 UNKNOWN_ERROR);
+    }
+
+    private Mono<ResponseEntity<Object>> createIdenticalResponseForClient(final ClientResponse clientResponse) {
+        final HttpStatus status = (HttpStatus) clientResponse.statusCode();
+        return clientResponse.bodyToMono(String.class)
+            .defaultIfEmpty("")
+            .map(body -> {
+                return ResponseEntity
+                    .status(status)
+                    .headers(clientResponse.headers().asHttpHeaders())
+                    .body(body);
+            });
     }
 
 }
