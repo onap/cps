@@ -63,6 +63,30 @@
       },
       "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91377fc_20079441",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T15:41:44Z",
+      "side": 1,
+      "message": "Maybe we need to document an overview of all the ports on the Wiki in a simple table and then review with the team and decide if we want to make changes or not",
+      "parentUuid": "627781c6_445164ea",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
