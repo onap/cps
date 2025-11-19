@@ -111,6 +111,30 @@
       },
       "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3c9ef5_094b1123",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-19T16:07:21Z",
+      "side": 1,
+      "message": "Sorry for the typo above; I meant I reached out to Gerard to get his approval on this patchset.",
+      "parentUuid": "cfcd3138_b8e9074e",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
