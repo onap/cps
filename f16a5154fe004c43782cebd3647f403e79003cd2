@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1e5f69a_4be93dcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "some suggestions\ndid not review testware yet as there could be some significant prod code changes needed",
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621d4587_71678425",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "don\u0027t use word like Map or List in instance names\nfor Map I usually do somethign like\nvaluePerCmHadnleId\nbut cmHandleIdToValue is ok too",
+      "range": {
+        "startLine": 175,
+        "startChar": 73,
+        "endLine": 175,
+        "endChar": 76
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "142d9687_df5e07cd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "cmHandleStateUpdates",
+      "range": {
+        "startLine": 182,
+        "startChar": 60,
+        "endLine": 182,
+        "endChar": 67
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a26b4f_15c0c087",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "see comment on pathset #3",
+      "range": {
+        "startLine": 213,
+        "startChar": 16,
+        "endLine": 213,
+        "endChar": 28
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cd87aed_e50abd45",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "yes,please rename",
+      "range": {
+        "startLine": 220,
+        "startChar": 67,
+        "endLine": 220,
+        "endChar": 75
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee468f8f_82061362",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "(new)ValuePerCmHandleId",
+      "range": {
+        "startLine": 224,
+        "startChar": 38,
+        "endLine": 224,
+        "endChar": 51
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06980776_425d7547",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "why i list of maps with only one entry each, you can just all add them in oen map ?!\nAlso did you not create  a dedicated \u0027record\u0027 instead of using a Map or did that cause problems here?!\n\nConsider add a generic (ie stndard java types, no Cps-NCMP types) method to convert whatever you need here to\n\norg.onap.cps.utils.JsonObjectMapper (we already have a few variations here)\n \nso something like String asJsonString(List\u003c...\u003e objects)",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a083311a_b849c4cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CmHandleStateUpdate.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "yes, this is what I meant on my last comment, in the previous file",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 34
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b64116_3d1d3214",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "meant to leave to word model as well so:\nmigrateInventoryToModelR20250722 or maybe even \nmigrateInventoryToModelRelease20250722",
+      "range": {
+        "startLine": 52,
+        "startChar": 34,
+        "endLine": 52,
+        "endChar": 43
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8eabf8_77fa4159",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "cmHandleStateUpdates",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 53
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3167dc8b_1ec5f8a9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "bit confused; this variable, doesn\u0027t seem to be used?",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55dcfa53_5e24708b",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "ncmpServiceCmHandle",
+      "range": {
+        "startLine": 87,
+        "startChar": 41,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5c4511_9dacc132",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T09:21:22Z",
+      "side": 1,
+      "message": "will this cause a SonarQube error (too many parameters ?!)",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
