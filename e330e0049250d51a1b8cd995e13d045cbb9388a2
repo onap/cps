@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d102cc_079cb615",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T12:39:42Z",
+      "side": 1,
+      "message": "still very confused about this code, I think we need to talk about it (incl. Sean too)",
+      "revId": "e330e0049250d51a1b8cd995e13d045cbb9388a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c87b0bf6_1bcd0654",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T12:39:42Z",
+      "side": 1,
+      "message": "NB: align",
+      "range": {
+        "startLine": 159,
+        "startChar": 39,
+        "endLine": 159,
+        "endChar": 46
+      },
+      "revId": "e330e0049250d51a1b8cd995e13d045cbb9388a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee8b22d7_d2bec3a0",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T12:39:42Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 172,
+        "startChar": 60,
+        "endLine": 172,
+        "endChar": 64
+      },
+      "revId": "e330e0049250d51a1b8cd995e13d045cbb9388a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "484414eb_4d8401d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T12:39:42Z",
+      "side": 1,
+      "message": "Indicate key and value names in the map name (and don\u0027t use Map in the name for a map)\nsugegstion: fieldValuePerfieldName ?\n\nI am actylyl confused what exactly is in this map as there is also a key \u0027objectClass\u0027",
+      "range": {
+        "startLine": 173,
+        "startChar": 38,
+        "endLine": 173,
+        "endChar": 47
+      },
+      "revId": "e330e0049250d51a1b8cd995e13d045cbb9388a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ca029c_58ff6964",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T12:39:42Z",
+      "side": 1,
+      "message": "you doing a check AFTER you (attempted) to get a value from this map",
+      "range": {
+        "startLine": 177,
+        "startChar": 24,
+        "endLine": 177,
+        "endChar": 42
+      },
+      "revId": "e330e0049250d51a1b8cd995e13d045cbb9388a2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
