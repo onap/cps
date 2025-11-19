@@ -43,7 +43,6 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.StaleStateException;
 import org.onap.cps.api.exceptions.AlreadyDefinedException;
 import org.onap.cps.api.exceptions.ConcurrencyException;
 import org.onap.cps.api.exceptions.CpsAdminException;
@@ -67,6 +66,7 @@ import org.onap.cps.ri.utils.SessionManager;
 import org.onap.cps.spi.CpsDataPersistenceService;
 import org.onap.cps.utils.JsonObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -145,7 +145,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         try {
             fragmentRepository.saveAll(fragmentEntities);
-        } catch (final StaleStateException staleStateException) {
+        } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
             retryUpdateDataNodesIndividually(anchorEntity, fragmentEntities);
         }
     }
@@ -173,7 +173,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
 
         try {
             fragmentRepository.saveAll(existingFragmentEntities);
-        } catch (final StaleStateException staleStateException) {
+        } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
             retryUpdateDataNodesIndividually(anchorEntity, existingFragmentEntities);
         }
     }
@@ -184,7 +184,7 @@ public class CpsDataPersistenceServiceImpl implements CpsDataPersistenceService 
         for (final FragmentEntity dataNodeFragment : fragmentEntities) {
             try {
                 fragmentRepository.save(dataNodeFragment);
-            } catch (final StaleStateException staleStateException) {
+            } catch (final ObjectOptimisticLockingFailureException objectOptimisticLockingFailureException) {
                 failedXpaths.add(dataNodeFragment.getXpath());
             }
         }

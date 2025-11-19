@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (c) 2021 Bell Canada.
- * Modifications Copyright (C) 2021-2023 Nordix Foundation
+ * Modifications Copyright (C) 2021-2025 OpenInfra Foundation Europe.
  * Modifications Copyright (C) 2022-2023 TechMahindra Ltd.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +21,12 @@
 package org.onap.cps.ri
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.hibernate.StaleStateException
+import org.onap.cps.api.exceptions.ConcurrencyException
 import org.onap.cps.api.exceptions.DataNodeNotFoundExceptionBatch
+import org.onap.cps.api.exceptions.DataValidationException
+import org.onap.cps.api.model.DataNode
+import org.onap.cps.api.parameters.FetchDescendantsOption
+import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.ri.models.AnchorEntity
 import org.onap.cps.ri.models.DataspaceEntity
 import org.onap.cps.ri.models.FragmentEntity
@@ -30,13 +34,9 @@ import org.onap.cps.ri.repository.AnchorRepository
 import org.onap.cps.ri.repository.DataspaceRepository
 import org.onap.cps.ri.repository.FragmentRepository
 import org.onap.cps.ri.utils.SessionManager
-import org.onap.cps.api.parameters.FetchDescendantsOption
-import org.onap.cps.api.exceptions.ConcurrencyException
-import org.onap.cps.api.exceptions.DataValidationException
-import org.onap.cps.api.model.DataNode
-import org.onap.cps.impl.DataNodeBuilder
 import org.onap.cps.utils.JsonObjectMapper
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.orm.ObjectOptimisticLockingFailureException
 import spock.lang.Specification
 
 import java.util.stream.Collectors
@@ -48,6 +48,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
     def mockFragmentRepository = Mock(FragmentRepository)
     def jsonObjectMapper = new JsonObjectMapper(new ObjectMapper())
     def mockSessionManager = Mock(SessionManager)
+    def someCause = Mock(Throwable)
 
     def objectUnderTest = Spy(new CpsDataPersistenceServiceImpl(mockDataspaceRepository, mockAnchorRepository,
             mockFragmentRepository, jsonObjectMapper, mockSessionManager))
@@ -72,7 +73,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             2 * mockFragmentRepository.save(_)
     }
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during patch operation for data nodes.'() {
+    def 'Handling of ObjectOptimisticLockingFailureException (caused by concurrent updates) during patch operation for data nodes.'() {
         given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
             def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
                     '/node1': 'OK',
@@ -81,7 +82,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             def updatedLeavesPerXPath = dataNodes.stream()
                     .collect(Collectors.toMap(DataNode::getXpath, DataNode::getLeaves))
         and: 'the batch update will therefore also fail'
-            mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
+            mockFragmentRepository.saveAll(*_) >> { throw new ObjectOptimisticLockingFailureException('concurrent updates', someCause) }
         when: 'attempt batch update data nodes'
             objectUnderTest.batchUpdateDataLeaves('some-dataspace', 'some-anchor', updatedLeavesPerXPath)
         then: 'concurrency exception is thrown'
@@ -131,14 +132,14 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             assert thrown.message == 'DataNode not found'
     }
 
-    def 'Handling of StaleStateException (caused by concurrent updates) during update data nodes and descendants.'() {
+    def 'Handling of ObjectOptimisticLockingFailureException (caused by concurrent updates) during update data nodes and descendants.'() {
         given: 'the system can update one datanode and has two more datanodes that throw an exception while updating'
             def dataNodes = createDataNodesAndMockRepositoryMethodSupportingThem([
                 '/node1': 'OK',
                 '/node2': 'EXCEPTION',
                 '/node3': 'EXCEPTION'])
         and: 'the batch update will therefore also fail'
-            mockFragmentRepository.saveAll(*_) >> { throw new StaleStateException("concurrent updates") }
+            mockFragmentRepository.saveAll(*_) >> { throw new ObjectOptimisticLockingFailureException('concurrent updates', someCause) }
         when: 'attempt batch update data nodes'
             objectUnderTest.updateDataNodesAndDescendants('some-dataspace', 'some-anchor', dataNodes)
         then: 'concurrency exception is thrown'
@@ -261,7 +262,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
         def fragmentEntity = new FragmentEntity(xpath: xpath, childFragments: [])
         mockFragmentRepository.findByAnchorIdAndXpath(_, xpath) >> fragmentEntity
         if ('EXCEPTION' == scenario) {
-            mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
+            mockFragmentRepository.save(fragmentEntity) >> { throw new ObjectOptimisticLockingFailureException('concurrent updates', someCause) }
         }
         return dataNode
     }
@@ -278,7 +279,7 @@ class CpsDataPersistenceServiceImplSpec extends Specification {
             def fragmentEntity = new FragmentEntity(id: fragmentId, anchor: anchorEntity, xpath: xpath, childFragments: [])
             fragmentEntities.add(fragmentEntity)
             if ('EXCEPTION' == scenario) {
-                mockFragmentRepository.save(fragmentEntity) >> { throw new StaleStateException("concurrent updates") }
+                mockFragmentRepository.save(fragmentEntity) >> { throw new ObjectOptimisticLockingFailureException('concurrent updates', someCause) }
             }
             fragmentId++
         }
