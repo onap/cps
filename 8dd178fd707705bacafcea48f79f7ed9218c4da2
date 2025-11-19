@@ -87,6 +87,30 @@
       },
       "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcd3138_b8e9074e",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-19T16:06:18Z",
+      "side": 1,
+      "message": "Yep, Agreed. I suggest to get it merge as it is. After that wiki page created, we can further optimize the ports.\n\nP.S I reached to Gerard offline, got het his approval on this patchset so that can get it merged.",
+      "parentUuid": "f91377fc_20079441",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
