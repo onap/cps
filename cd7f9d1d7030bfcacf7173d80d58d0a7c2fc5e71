@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59af626d_a62fb550",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 8155
+      },
+      "writtenOn": "2025-11-19T11:51:28Z",
+      "side": 1,
+      "message": "NB: either extract all props as you did with the status or just map them directly i think",
+      "revId": "cd7f9d1d7030bfcacf7173d80d58d0a7c2fc5e71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
