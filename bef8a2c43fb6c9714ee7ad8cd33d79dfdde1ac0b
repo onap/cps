@@ -16,6 +16,115 @@
       "message": "recheck",
       "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed36f6f_0bb12c31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T16:50:33Z",
+      "side": 1,
+      "message": "very good, some minor sugegstions",
+      "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed92bed_85c7d9ea",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T16:50:33Z",
+      "side": 1,
+      "message": "I like but need to make it more readable: \nextract out : REGEX_FOR_LEADING_AND_TRAILING_SEPARRTORS",
+      "range": {
+        "startLine": 228,
+        "startChar": 84,
+        "endLine": 228,
+        "endChar": 91
+      },
+      "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6587c97_fee4d211",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T16:50:33Z",
+      "side": 1,
+      "message": "level instead of i",
+      "range": {
+        "startLine": 231,
+        "startChar": 17,
+        "endLine": 231,
+        "endChar": 18
+      },
+      "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc6d2f1_6a18c366",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutor.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T16:50:33Z",
+      "side": 1,
+      "message": "NB: as suggested earlier extract isLastLevel(attributeNamesHierarchy, level)",
+      "range": {
+        "startLine": 234,
+        "startChar": 16,
+        "endLine": 234,
+        "endChar": 55
+      },
+      "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071699f7_64e5abe4",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/data/policyexecutor/PolicyExecutorSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-19T16:50:33Z",
+      "side": 1,
+      "message": "add test with trailing /",
+      "range": {
+        "startLine": 290,
+        "startChar": 41,
+        "endLine": 290,
+        "endChar": 103
+      },
+      "revId": "bef8a2c43fb6c9714ee7ad8cd33d79dfdde1ac0b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
