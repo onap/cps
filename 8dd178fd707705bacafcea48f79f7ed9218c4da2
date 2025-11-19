@@ -39,6 +39,30 @@
       },
       "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627781c6_445164ea",
+        "filename": "cps-charts/values.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-19T10:24:07Z",
+      "side": 1,
+      "message": "it is an easy change tbh, but will trigger the other port changes on kafka external service that had already been decided.\n\nAlso, if I do the change, need to re-test the commit on on-demand pipeline.",
+      "parentUuid": "a7622609_752be83d",
+      "range": {
+        "startLine": 141,
+        "startChar": 14,
+        "endLine": 141,
+        "endChar": 19
+      },
+      "revId": "8dd178fd707705bacafcea48f79f7ed9218c4da2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
