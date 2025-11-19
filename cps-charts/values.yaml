@@ -127,11 +127,18 @@ dmiStub:
     tag: "1.8.0-SNAPSHOT"
     pullPolicy: IfNotPresent
   replicaCount: 1
-  service:
+  deployment1:
+    containerPort: 8092
+  deployment2:
+    containerPort: 8093
+  service1:
     type: NodePort
     port: 8092
     nodePort: 30092
-  containerPort: 8092
+  service2:
+    type: NodePort
+    port: 8093
+    nodePort: 31092
   env:
     KAFKA_BOOTSTRAP_SERVER: "cps-ncmp-kafka.default.svc.cluster.local:9092"
     NCMP_CONSUMER_GROUP_ID: "ncmp-group"
@@ -149,9 +156,17 @@ dmiStub:
       cpu: "1000m"
       memory: "2Gi"
   livenessProbe:
-    httpGet:
-      path: /actuator/health/readiness
-      port: 8092
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    failureThreshold: 3
+    deployment1:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 8092
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
+    deployment2:
+      httpGet:
+        path: /actuator/health/readiness
+        port: 8093
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
