@@ -229,6 +229,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "920a0c72_006554af",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-20T16:01:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ee468f8f_82061362",
+      "range": {
+        "startLine": 224,
+        "startChar": 38,
+        "endLine": 224,
+        "endChar": 51
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06980776_425d7547",
@@ -252,6 +276,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5315e0c_fba613de",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-20T16:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06980776_425d7547",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a083311a_b849c4cc",
@@ -265,6 +313,30 @@
       "writtenOn": "2025-11-19T09:21:22Z",
       "side": 1,
       "message": "yes, this is what I meant on my last comment, in the previous file",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 23,
+        "endChar": 34
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e31faca_430c790e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CmHandleStateUpdate.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-20T16:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a083311a_b849c4cc",
       "range": {
         "startLine": 23,
         "startChar": 14,
@@ -439,6 +511,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ee1efb_1850b2dd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-20T16:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55dcfa53_5e24708b",
+      "range": {
+        "startLine": 87,
+        "startChar": 41,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae5c4511_9dacc132",
@@ -452,6 +548,30 @@
       "writtenOn": "2025-11-19T09:21:22Z",
       "side": 1,
       "message": "will this cause a SonarQube error (too many parameters ?!)",
+      "range": {
+        "startLine": 60,
+        "startChar": 38,
+        "endLine": 67,
+        "endChar": 65
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a0c500_8d94ed74",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-20T16:01:18Z",
+      "side": 1,
+      "message": "Could do so I made a CpsServicesBundle",
+      "parentUuid": "ae5c4511_9dacc132",
       "range": {
         "startLine": 60,
         "startChar": 38,
