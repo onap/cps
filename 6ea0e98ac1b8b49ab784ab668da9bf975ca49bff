@@ -181,6 +181,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37d455e1_6203db90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T10:38:42Z",
+      "side": 1,
+      "message": "is this really needed, if teh method belwo just iteratores over teh list it is not",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17ea97fb_023d9a7e",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
         "patchSetId": 5
