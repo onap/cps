@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "151450dd_8d2d6f58",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 8171
+      },
+      "writtenOn": "2025-11-20T11:55:43Z",
+      "side": 1,
+      "message": "Yes It\u0027s been fully covered where jacoco is just run on ncmp-service",
+      "parentUuid": "fab72b2e_cf085ca2",
+      "range": {
+        "startLine": 135,
+        "startChar": 13,
+        "endLine": 135,
+        "endChar": 67
+      },
+      "revId": "cd7f9d1d7030bfcacf7173d80d58d0a7c2fc5e71",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59af626d_a62fb550",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/dmi/DmiRestClient.java",
         "patchSetId": 1
