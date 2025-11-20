@@ -18,6 +18,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c0825f_c66c7d04",
+        "filename": "cps-ncmp-service/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T14:46:17Z",
+      "side": 1,
+      "message": "yes but I think it is always rounded down so even 99.99 counts as 99% I see if we can get there we have in other modules...\n(luckily this percentage is only based on missed instructions ie not branches otherwise it would be even harder)",
+      "parentUuid": "1f68b9ba_8d83acbe",
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01bd1c9e_b5864242",
