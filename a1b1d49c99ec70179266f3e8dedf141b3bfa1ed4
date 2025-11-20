@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03fd0e3b_72f5d8b4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T10:09:48Z",
+      "side": 1,
+      "message": "ok I see but still it is called from  updateCmSubscriptionStatus on line #87, codul it also be a delete or anything else, maybe things should call in a slightly different order, maybe it all OK and I just misunderstand, maybe a small cht about this is required",
+      "parentUuid": "7b675925_c441bf05",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70134ab2_dc788f17",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
         "patchSetId": 4
