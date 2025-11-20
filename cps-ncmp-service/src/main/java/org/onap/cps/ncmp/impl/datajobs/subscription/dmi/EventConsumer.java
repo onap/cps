@@ -22,7 +22,6 @@
 package org.onap.cps.ncmp.impl.datajobs.subscription.dmi;
 
 import static org.onap.cps.ncmp.api.NcmpResponseStatus.CM_DATA_SUBSCRIPTION_ACCEPTED;
-import static org.onap.cps.ncmp.impl.datajobs.subscription.models.CmSubscriptionStatus.ACCEPTED;
 import static org.onap.cps.ncmp.utils.events.CloudEventMapper.toTargetEvent;
 
 import io.cloudevents.CloudEvent;
@@ -42,8 +41,9 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "notification.enabled", havingValue = "true", matchIfMissing = true)
 public class EventConsumer {
 
-    private final CmSubscriptionHandler cmSubscriptionHandler;
     private static final String CORRELATION_ID_SEPARATOR = "#";
+
+    private final CmSubscriptionHandler cmSubscriptionHandler;
 
     /**
      * Consume the Cm Notification Subscription response event from the dmi-plugin.
@@ -69,10 +69,7 @@ public class EventConsumer {
 
             if ("subscriptionCreateResponse".equals(eventType)) {
                 final CmSubscriptionStatus cmSubscriptionStatus = getCmSubscriptionStatus(dmiOutEvent);
-                if (ACCEPTED.equals(cmSubscriptionStatus)) {
-                    cmSubscriptionHandler.updateCmSubscriptionStatus(
-                            subscriptionId, dmiPluginName, cmSubscriptionStatus);
-                }
+                cmSubscriptionHandler.updateCmSubscriptionStatus(subscriptionId, dmiPluginName, cmSubscriptionStatus);
             }
         }
         log.info("Finished processing DMI subscription response event with details: | correlationId={} | eventType={}",
