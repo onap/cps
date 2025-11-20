@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01bd1c9e_b5864242",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-20T13:10:37Z",
+      "side": 1,
+      "message": "can remove this comment ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 21,
+        "endLine": 87,
+        "endChar": 77
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61be1484_2fe13456",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
         "patchSetId": 2
@@ -65,6 +88,29 @@
         "startChar": 0,
         "endLine": 28,
         "endChar": 60
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c728f9_42400760",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-20T13:10:37Z",
+      "side": 1,
+      "message": "i dont understand these in brackets for every test\nare \u0027Test A\u0027, \u0027test B\u0027, \u0027test C\u0027 referenced anywhere else ? if not why do we need that?",
+      "range": {
+        "startLine": 125,
+        "startChar": 69,
+        "endLine": 125,
+        "endChar": 97
       },
       "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
