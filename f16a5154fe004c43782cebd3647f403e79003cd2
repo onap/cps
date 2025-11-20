@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "601b7335_1860c5cc",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "621d4587_71678425",
+      "range": {
+        "startLine": 175,
+        "startChar": 73,
+        "endLine": 175,
+        "endChar": 76
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "142d9687_df5e07cd",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-11-19T09:21:22Z",
       "side": 1,
       "message": "cmHandleStateUpdates",
+      "range": {
+        "startLine": 182,
+        "startChar": 60,
+        "endLine": 182,
+        "endChar": 67
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7721385b_83f3a574",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "142d9687_df5e07cd",
       "range": {
         "startLine": 182,
         "startChar": 60,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a358224_3c9ef855",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29a26b4f_15c0c087",
+      "range": {
+        "startLine": 213,
+        "startChar": 16,
+        "endLine": 213,
+        "endChar": 28
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cd87aed_e50abd45",
@@ -100,6 +172,30 @@
       "writtenOn": "2025-11-19T09:21:22Z",
       "side": 1,
       "message": "yes,please rename",
+      "range": {
+        "startLine": 220,
+        "startChar": 67,
+        "endLine": 220,
+        "endChar": 75
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3acfa98_0c804619",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cd87aed_e50abd45",
       "range": {
         "startLine": 220,
         "startChar": 67,
@@ -202,6 +298,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5caf8dbb_a11c30c9",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91b64116_3d1d3214",
+      "range": {
+        "startLine": 52,
+        "startChar": 34,
+        "endLine": 52,
+        "endChar": 43
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa8eabf8_77fa4159",
@@ -225,6 +345,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0231a1d1_6f02c8eb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa8eabf8_77fa4159",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 53
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3167dc8b_1ec5f8a9",
@@ -238,6 +382,30 @@
       "writtenOn": "2025-11-19T09:21:22Z",
       "side": 1,
       "message": "bit confused; this variable, doesn\u0027t seem to be used?",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "f16a5154fe004c43782cebd3647f403e79003cd2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd77e8a_14d3a5e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3167dc8b_1ec5f8a9",
       "range": {
         "startLine": 80,
         "startChar": 24,

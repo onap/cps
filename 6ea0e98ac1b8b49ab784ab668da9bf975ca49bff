@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c4f6cf_c975ab40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "I will push a patch with changes DataMigrationSpec as i wanted to do some experimentation and needed quiet a few updates. Just 2 speed things up...",
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d47b2698_e10df026",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CpsServicesConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "I think the Config should go  here: org.onap.cps.config",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271b0f9d_e161a045",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/CpsServicesConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "do you really need a config class, where /howis it used. I must have missed it...",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4595bd4_3849c29f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "missed thsion,me obviously needs a better name use ..to... to ...per... pattern",
+      "range": {
+        "startLine": 221,
+        "startChar": 40,
+        "endLine": 221,
+        "endChar": 54
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc742647_2783975c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "cmHandleIdToValue\n  OR\nvaluePerCmHandleId",
+      "range": {
+        "startLine": 224,
+        "startChar": 38,
+        "endLine": 224,
+        "endChar": 51
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e89b48_63aca5db",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CpsServices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "i think this should move to where the CPS Service are instead.\nI think here: org.onap.cps.impl",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d74c483_9543a51a",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CpsServices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "i was thinking about teh name of this class when I saw this word:\nwhat about CpsServicesBundle\nor CpsCorseServiceBundle",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8055663_ef44bf53",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/models/CpsServices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "I think you can use LOmbok herte to generate getters",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 5
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ea97fb_023d9a7e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "move outside the conditional block. The process has still completed!",
+      "range": {
+        "startLine": 86,
+        "startChar": 16,
+        "endLine": 86,
+        "endChar": 93
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d902ed13_e6941c91",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "great improvement :-)",
+      "range": {
+        "startLine": 218,
+        "startChar": 11,
+        "endLine": 218,
+        "endChar": 97
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b197772_9105e00b",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "I think this could be done in common setup or even just make teh class variables and assign them directly under the mocks",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 94
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3a8fdf_230f08ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "sien there is only 1 argument this can be simplified like so: \n({ List updates -\u003e\nupdates.size() \u003d\u003d 3\nupdates.any { it.cmHandleId \u003d\u003d \u0027cmhandle1\u0027 \u0026\u0026 it.state \u003d\u003d \u0027READY\u0027 }\n        updates.any { it.cmHandleId \u003d\u003d \u0027cmhandle2\u0027 \u0026\u0026 it.state \u003d\u003d \u0027ADVISED\u0027 }\n        updates.any { it.cmHandleId \u003d\u003d \u0027cmhandle3\u0027 \u0026\u0026 it.state \u003d\u003d \u0027READY\u0027 }\n    })",
+      "range": {
+        "startLine": 55,
+        "startChar": 66,
+        "endLine": 56,
+        "endChar": 37
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2bd29da_cc8e9985",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "cmHandleStateUpdates\n(dont shorten in testware either!)",
+      "range": {
+        "startLine": 56,
+        "startChar": 20,
+        "endLine": 56,
+        "endChar": 28
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa974b60_48763b20",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "thsi coudl eb simplied fliek so:\ndef actualData \u003d updates.collect { [id: it.cmHandleId, state: it.state] }\n        assert actualData.size() \u003d\u003d 3\n        assert actualData.containsAll([\n            [id: \u0027cmhandle1\u0027, state: \u0027READY\u0027],\n            [id: \u0027cmhandle2\u0027, state: \u0027ADVISED\u0027],\n            [id: \u0027cmhandle3\u0027, state: \u0027READY\u0027]\n        ])",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 89
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc297301_4dce5e6e",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "split in separate and: to clarify better\n\nlike so\ngiven: \u0027a list of CM handle IDs\u0027\n...\nand: \u0027a batch size of 1 so we get 3 batches\u0027",
+      "range": {
+        "startLine": 65,
+        "startChar": 39,
+        "endLine": 65,
+        "endChar": 67
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17425ef9_44da54b5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "took me awhile to realize these  names are inconsistent with the first test :-(\nfor cm handle names as we use them a lot in out test ware I tent to use short but clear enough names \u0027ch-1\u0027,\u0027ch-2\u0027 etc.",
+      "range": {
+        "startLine": 67,
+        "startChar": 32,
+        "endLine": 67,
+        "endChar": 39
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e16f762_d92d3290",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "why wrap a simple constructur in another method?",
+      "range": {
+        "startLine": 85,
+        "startChar": 24,
+        "endLine": 85,
+        "endChar": 38
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a2b5d04_38bfff47",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "i call this a \u0027delegation\u0027 test and like to use that word like so\n\u0027the call is delegated to the Data Migration service\u0027",
+      "range": {
+        "startLine": 161,
+        "startChar": 15,
+        "endLine": 161,
+        "endChar": 61
+      },
+      "revId": "6ea0e98ac1b8b49ab784ab668da9bf975ca49bff",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}

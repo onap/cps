@@ -94,6 +94,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02624dca_eae97fc5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a392f4_9f7d3777",
+      "range": {
+        "startLine": 211,
+        "startChar": 65,
+        "endLine": 211,
+        "endChar": 73
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1337d789_73e84934",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "495bc3d5_8c5059ec",
+      "range": {
+        "startLine": 211,
+        "startChar": 16,
+        "endLine": 211,
+        "endChar": 28
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44029d63_d43cb50a",
@@ -107,6 +155,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "not sure if \u0027new\u0027 is really need, pretty clear from method context?",
+      "range": {
+        "startLine": 212,
+        "startChar": 56,
+        "endLine": 212,
+        "endChar": 59
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a4a5c86_ad63493f",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44029d63_d43cb50a",
       "range": {
         "startLine": 212,
         "startChar": 56,
@@ -568,6 +640,24 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "have some doubts about the whole reflection bit, need to discuss",
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80796a93_9b935bdd",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T09:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28804d19_e13050d0",
       "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
