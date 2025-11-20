@@ -47,6 +47,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cbcde52_e9e771b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-20T11:21:09Z",
+      "side": 1,
+      "message": "not mistake, all tests cases but one that uses \u0027existingId\u0027 as id in string will return true",
+      "parentUuid": "7972f2a3_8e688924",
+      "range": {
+        "startLine": 46,
+        "startChar": 65,
+        "endLine": 46,
+        "endChar": 78
+      },
+      "revId": "9c3058d2a8e812741f0c05b1f3a10221e0c27ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea9529f2_6a9f7748",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-11-20T10:53:45Z",
       "side": 1,
       "message": "NB: update is delegated to persistence service",
+      "range": {
+        "startLine": 257,
+        "startChar": 15,
+        "endLine": 257,
+        "endChar": 111
+      },
+      "revId": "9c3058d2a8e812741f0c05b1f3a10221e0c27ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af480483_ac781b51",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-20T11:21:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea9529f2_6a9f7748",
       "range": {
         "startLine": 257,
         "startChar": 15,
