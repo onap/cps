@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61be1484_2fe13456",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AdminCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:06:57Z",
+      "side": 1,
+      "message": "NB: redundant import",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 61
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7233ba_949a02d1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AlternateIdCacheConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:06:57Z",
+      "side": 1,
+      "message": "NB: redundant import",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72a0006_92a576fe",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cache/CmSubscriptionConfigSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:06:57Z",
+      "side": 1,
+      "message": "NB: redundant import",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
