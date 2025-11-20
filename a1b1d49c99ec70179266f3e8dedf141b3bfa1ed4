@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f956fe26_b0f2c5e7",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T10:27:40Z",
+      "side": 1,
+      "message": "\"DMI plugin {} rejected dataNodeSelector \u0027{}\u0027 for dataJobId {}\"",
+      "parentUuid": "03fd0e3b_72f5d8b4",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70134ab2_dc788f17",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
         "patchSetId": 4
