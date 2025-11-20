@@ -41,6 +41,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fdedcf0_8eb82d90",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3dce9f_cbb50256",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "301ba6c1d06357e5603c93224b8b7aae36856a90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d3bbdad_f9522d23",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-11-20T11:32:01Z",
       "side": 1,
       "message": "@SpringBootTest(classes \u003d [AlternateIdCacheConfig])\n\nwill do the same thing. No need extra @ContextConfiguration is needed!",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 57
+      },
+      "revId": "301ba6c1d06357e5603c93224b8b7aae36856a90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f47412c4_c6c8550d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/cache/AlternateIdCacheConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d3bbdad_f9522d23",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d53e89b_34e0ff02",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cache/CmSubscriptionConfigSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52175362_a3205b7c",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 55
+      },
+      "revId": "301ba6c1d06357e5603c93224b8b7aae36856a90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c2b9d83_ed6f310c",
@@ -104,6 +176,24 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd698f6_e7e3e43d",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:05:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7c2b9d83_ed6f310c",
+      "revId": "301ba6c1d06357e5603c93224b8b7aae36856a90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c18d4d67_0dd85f77",
@@ -117,6 +207,30 @@
       "writtenOn": "2025-11-20T11:32:01Z",
       "side": 1,
       "message": "Can\u0027t you use scenario since these two nearly the same except the operation?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "301ba6c1d06357e5603c93224b8b7aae36856a90",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd74ac48_dd964020",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventServiceSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T13:05:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c18d4d67_0dd85f77",
       "range": {
         "startLine": 67,
         "startChar": 0,
