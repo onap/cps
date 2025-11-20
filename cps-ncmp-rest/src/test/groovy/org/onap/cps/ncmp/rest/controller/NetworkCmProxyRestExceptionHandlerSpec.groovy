@@ -156,21 +156,20 @@ class NetworkCmProxyRestExceptionHandlerSpec extends Specification {
         then: 'an HTTP response is returned with correct message and details'
             assertTestResponse(response, expectedErrorCode, expectedErrorMessage, expectedErrorDetails)
         where:
-            scenario                | exception                                                                      || expectedErrorCode     | expectedErrorMessage                 | expectedErrorDetails
-            'CPS'                   | new CpsException(sampleErrorMessage, sampleErrorDetails)                       || INTERNAL_SERVER_ERROR | sampleErrorMessage                   | sampleErrorDetails
-            'NCMP-server'           | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)                || INTERNAL_SERVER_ERROR | sampleErrorMessage                   | null
-            'DMI Request'           | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)                || BAD_REQUEST           | sampleErrorMessage                   | null
-            'Invalid Operation'     | new InvalidOperationException('some reason')                                   || BAD_REQUEST           | 'some reason'                        | null
-            'Unsupported Operation' | new OperationNotSupportedException('not yet')                                  || BAD_REQUEST           | 'not yet'                            | null
-            'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')               || NOT_FOUND             | 'DataNode not found'                 | null
-            'other'                 | new IllegalStateException(sampleErrorMessage)                                  || INTERNAL_SERVER_ERROR | sampleErrorMessage                   | null
-            'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')               || NOT_FOUND             | 'DataNode not found'                 | 'DataNode not found'
-            'Existing entry'        | new AlreadyDefinedException('name',null)                                       || CONFLICT              | 'Already defined exception'          | 'name already exists'
-            'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')               || CONFLICT              | 'Already defined exception'          | '2 data node(s) already exist'
-            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                               || PAYLOAD_TOO_LARGE     | sampleErrorMessage                   | 'Check logs'
-            'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null)      || CONFLICT              | sampleErrorMessage                   | sampleErrorDetails
-            'Invalid Path'          | new ProvMnSException('not a valid path' ,'some invalid path not a valid path') || UNPROCESSABLE_ENTITY  | 'not a valid path'                   | 'some invalid path not a valid path'
-            'Invalid Path'          | new ProvMnSException('some invalid path not a valid path')                     || UNPROCESSABLE_ENTITY  | 'some invalid path not a valid path' | null
+            scenario                | exception                                                                 || expectedErrorCode     | expectedErrorMessage        | expectedErrorDetails
+            'CPS'                   | new CpsException(sampleErrorMessage, sampleErrorDetails)                  || INTERNAL_SERVER_ERROR | sampleErrorMessage          | sampleErrorDetails
+            'NCMP-server'           | new ServerNcmpException(sampleErrorMessage, sampleErrorDetails)           || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'DMI Request'           | new DmiRequestException(sampleErrorMessage, sampleErrorDetails)           || BAD_REQUEST           | sampleErrorMessage          | null
+            'Invalid Operation'     | new InvalidOperationException('some reason')                              || BAD_REQUEST           | 'some reason'               | null
+            'Unsupported Operation' | new OperationNotSupportedException('not yet')                             || BAD_REQUEST           | 'not yet'                   | null
+            'DataNode Validation'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')          || NOT_FOUND             | 'DataNode not found'        | null
+            'other'                 | new IllegalStateException(sampleErrorMessage)                             || INTERNAL_SERVER_ERROR | sampleErrorMessage          | null
+            'Data Node Not Found'   | new DataNodeNotFoundException('myDataspaceName', 'myAnchorName')          || NOT_FOUND             | 'DataNode not found'        | 'DataNode not found'
+            'Existing entry'        | new AlreadyDefinedException('name',null)                                  || CONFLICT              | 'Already defined exception' | 'name already exists'
+            'Existing entries'      | AlreadyDefinedException.forDataNodes(['A', 'B'], 'myAnchorName')          || CONFLICT              | 'Already defined exception' | '2 data node(s) already exist'
+            'Operation too large'   | new PayloadTooLargeException(sampleErrorMessage)                          || PAYLOAD_TOO_LARGE     | sampleErrorMessage          | 'Check logs'
+            'Policy Executor'       | new PolicyExecutorException(sampleErrorMessage, sampleErrorDetails, null) || CONFLICT              | sampleErrorMessage          | sampleErrorDetails
+            'Invalid Path'          | new ProvMnSException('not a valid path' ,'some details')                  || UNPROCESSABLE_ENTITY  | 'not a valid path'          | 'some details'
     }
 
     def 'Post request with exception returns correct HTTP Status.'() {

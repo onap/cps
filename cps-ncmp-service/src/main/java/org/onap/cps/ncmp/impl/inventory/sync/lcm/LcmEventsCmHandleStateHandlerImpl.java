@@ -32,10 +32,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -43,6 +40,7 @@ import org.onap.cps.ncmp.impl.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.stereotype.Service;
+
 
 @Slf4j
 @Service
@@ -56,9 +54,9 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
     @Override
     @Timed(value = "cps.ncmp.cmhandle.state.update.batch",
             description = "Time taken to update a batch of cm handle states")
-    public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
+    public void updateCmHandleStateBatch(final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle) {
         final Collection<CmHandleTransitionPair> cmHandleTransitionPairs =
-                prepareCmHandleTransitionBatch(cmHandleStatePerCmHandle);
+                prepareCmHandleTransitionBatch(targetCmHandleStatePerCmHandle);
         persistCmHandleBatch(cmHandleTransitionPairs);
         lcmEventsHelper.sendLcmEventBatchAsynchronously(cmHandleTransitionPairs);
         cmHandleStateMonitor.updateCmHandleStateMetrics(cmHandleTransitionPairs);
@@ -66,28 +64,27 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     @Override
     public void initiateStateAdvised(final Collection<YangModelCmHandle> yangModelCmHandles) {
-        final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle = new HashMap<>(yangModelCmHandles.size());
+        final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle
+            = new HashMap<>(yangModelCmHandles.size());
         for (final YangModelCmHandle yangModelCmHandle : yangModelCmHandles) {
-            cmHandleStatePerCmHandle.put(yangModelCmHandle, ADVISED);
+            targetCmHandleStatePerCmHandle.put(yangModelCmHandle, ADVISED);
         }
-        updateCmHandleStateBatch(cmHandleStatePerCmHandle);
+        updateCmHandleStateBatch(targetCmHandleStatePerCmHandle);
     }
 
     private Collection<CmHandleTransitionPair> prepareCmHandleTransitionBatch(
-            final Map<YangModelCmHandle, CmHandleState> cmHandleStatePerCmHandle) {
-        final List<CmHandleTransitionPair> cmHandleTransitionPairs = new ArrayList<>(cmHandleStatePerCmHandle.size());
-        cmHandleStatePerCmHandle.forEach((yangModelCmHandle, targetCmHandleState) -> {
-
-            final CompositeState compositeState = yangModelCmHandle.getCompositeState();
-
-            if (isCompositeStateSame(compositeState, targetCmHandleState)) {
-                log.debug("CmHandle with id : {} already in state : {}", yangModelCmHandle.getId(),
-                        targetCmHandleState);
+            final Map<YangModelCmHandle, CmHandleState> targetCmHandleStatePerCmHandle) {
+        final List<CmHandleTransitionPair> cmHandleTransitionPairs
+            = new ArrayList<>(targetCmHandleStatePerCmHandle.size());
+        targetCmHandleStatePerCmHandle.forEach((yangModelCmHandle, targetCmHandleState) -> {
+            final CompositeState currentCmHandleState = yangModelCmHandle.getCompositeState();
+            if (isCompositeStateSame(currentCmHandleState, targetCmHandleState)) {
+                log.debug("CmHandle: {} already in state: {}", yangModelCmHandle.getId(), targetCmHandleState);
             } else {
-                final CmHandleTransitionPair cmHandleTransitionPair = new CmHandleTransitionPair();
-                cmHandleTransitionPair.setCurrentYangModelCmHandle(YangModelCmHandle.deepCopyOf(yangModelCmHandle));
-                updateToSpecifiedCmHandleState(yangModelCmHandle, targetCmHandleState);
-                cmHandleTransitionPair.setTargetYangModelCmHandle(yangModelCmHandle);
+                final YangModelCmHandle oldYangModelCmHandle = YangModelCmHandle.deepCopyOf(yangModelCmHandle);
+                updateCmHandleState(yangModelCmHandle, targetCmHandleState);
+                final CmHandleTransitionPair cmHandleTransitionPair = new CmHandleTransitionPair(
+                    oldYangModelCmHandle, yangModelCmHandle);
                 cmHandleTransitionPairs.add(cmHandleTransitionPair);
             }
         });
@@ -100,25 +97,22 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         final Map<String, CompositeState> compositeStatePerCmHandleId = new LinkedHashMap<>();
 
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> {
-            if (isNew(cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState())) {
-                newCmHandles.add(cmHandleTransitionPair.getTargetYangModelCmHandle());
-            } else if (!isDeleted(cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState())) {
-                compositeStatePerCmHandleId.put(cmHandleTransitionPair.getTargetYangModelCmHandle().getId(),
-                        cmHandleTransitionPair.getTargetYangModelCmHandle().getCompositeState());
+            if (isNew(cmHandleTransitionPair.currentYangModelCmHandle().getCompositeState())) {
+                newCmHandles.add(cmHandleTransitionPair.targetYangModelCmHandle());
+            } else if (!isDeleted(cmHandleTransitionPair.targetYangModelCmHandle().getCompositeState())) {
+                compositeStatePerCmHandleId.put(cmHandleTransitionPair.targetYangModelCmHandle().getId(),
+                        cmHandleTransitionPair.targetYangModelCmHandle().getCompositeState());
             }
         });
-
         inventoryPersistence.saveCmHandleBatch(newCmHandles);
         inventoryPersistence.saveCmHandleStateBatch(compositeStatePerCmHandleId);
-
         logCmHandleStateChanges(cmHandleTransitionPairs);
     }
 
-    private void updateToSpecifiedCmHandleState(final YangModelCmHandle yangModelCmHandle,
-                                                final CmHandleState targetCmHandleState) {
-
+    private void updateCmHandleState(final YangModelCmHandle yangModelCmHandle,
+                                     final CmHandleState targetCmHandleState) {
         if (READY == targetCmHandleState) {
-            setInitialStates(yangModelCmHandle);
+            setInitialState(yangModelCmHandle);
         } else if (ADVISED == targetCmHandleState) {
             if (yangModelCmHandle.getCompositeState() == null) {
                 registerNewCmHandle(yangModelCmHandle);
@@ -130,7 +124,7 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
         }
     }
 
-    private void setInitialStates(final YangModelCmHandle yangModelCmHandle) {
+    private void setInitialState(final YangModelCmHandle yangModelCmHandle) {
         CompositeStateUtils.setInitialDataStoreSyncState(yangModelCmHandle.getCompositeState());
         CompositeStateUtils.setCompositeState(READY, yangModelCmHandle.getCompositeState());
     }
@@ -162,17 +156,10 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
 
     private static void logCmHandleStateChanges(final Collection<CmHandleTransitionPair> cmHandleTransitionPairs) {
         cmHandleTransitionPairs.stream()
-                .map(CmHandleTransitionPair::getTargetYangModelCmHandle)
+                .map(CmHandleTransitionPair::targetYangModelCmHandle)
                 .forEach(yangModelCmHandle -> log.debug("{} is now in {} state", yangModelCmHandle.getId(),
                         yangModelCmHandle.getCompositeState().getCmHandleState().name()));
     }
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    public static class CmHandleTransitionPair {
 
-        private YangModelCmHandle currentYangModelCmHandle;
-        private YangModelCmHandle targetYangModelCmHandle;
-    }
 }

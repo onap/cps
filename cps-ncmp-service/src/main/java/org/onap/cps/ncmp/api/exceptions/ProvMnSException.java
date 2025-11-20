@@ -32,13 +32,4 @@ public class ProvMnSException extends NcmpException {
         super(message, details);
     }
 
-    /**
-     * Constructor.
-     *
-     * @param message exception message
-     */
-    public ProvMnSException(final String message) {
-        super(message, null);
-    }
-
 }

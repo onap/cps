@@ -29,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
-import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
@@ -76,12 +75,12 @@ public class CmHandleStateMonitor {
     }
 
     private void updateMetricWithStateChange(final CmHandleTransitionPair cmHandleTransitionPair) {
-        final CmHandleState targetCmHandleState = cmHandleTransitionPair.getTargetYangModelCmHandle()
+        final CmHandleState targetCmHandleState = cmHandleTransitionPair.targetYangModelCmHandle()
                 .getCompositeState().getCmHandleState();
-        if (isNew(cmHandleTransitionPair.getCurrentYangModelCmHandle().getCompositeState())) {
+        if (isNew(cmHandleTransitionPair.currentYangModelCmHandle().getCompositeState())) {
             updateTargetStateCount(targetCmHandleState);
         } else {
-            final CmHandleState previousCmHandleState = cmHandleTransitionPair.getCurrentYangModelCmHandle()
+            final CmHandleState previousCmHandleState = cmHandleTransitionPair.currentYangModelCmHandle()
                     .getCompositeState().getCmHandleState();
             updatePreviousStateCount(previousCmHandleState);
             updateTargetStateCount(targetCmHandleState);
@@ -98,8 +97,8 @@ public class CmHandleStateMonitor {
         cmHandlesByState.executeOnKey(keyName, new IncreasingEntryProcessor());
     }
 
-    private boolean isNew(final CompositeState existingCompositeState) {
-        return (existingCompositeState == null);
+    private boolean isNew(final CompositeState currentCompositeState) {
+        return (currentCompositeState == null);
     }
 
     static class DecreasingEntryProcessor implements EntryProcessor<String, Integer, Void> {

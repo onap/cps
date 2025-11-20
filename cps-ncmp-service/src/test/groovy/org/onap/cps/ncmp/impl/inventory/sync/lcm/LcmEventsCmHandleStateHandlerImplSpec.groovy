@@ -64,22 +64,19 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
     def objectUnderTest = new LcmEventsCmHandleStateHandlerImpl(mockInventoryPersistence, lcmEventsHelper, mockCmHandleStateMonitor)
 
     def cmHandleId = 'cmhandle-id-1'
-    def compositeState
+    def currentCompositeState
     def yangModelCmHandle
 
     def 'Update and Send Events on State Change #stateChange'() {
         given: 'Cm Handle represented as YangModelCmHandle'
-            compositeState = new CompositeState(cmHandleState: fromCmHandleState)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            currentCompositeState = new CompositeState(cmHandleState: fromCmHandleState)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
         when: 'update state is invoked'
-            objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, toCmHandleState))
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): toCmHandleState])
         then: 'state is saved using inventory persistence'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
-                args -> {
-                    def cmHandleStatePerCmHandleId = args[0] as Map<String, CompositeState>
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).cmHandleState == toCmHandleState
-                }
-            }
+                })
         and: 'log message shows state change at DEBUG level'
             def loggingEvent = logAppender.list[0]
             assert loggingEvent.level == Level.DEBUG
@@ -109,18 +106,14 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def 'Update and Send Events on State Change from LOCKED to ADVISED'() {
         given: 'Cm Handle represented as YangModelCmHandle in LOCKED state'
-            compositeState = new CompositeState(cmHandleState: LOCKED,
-                lockReason: CompositeState.LockReason.builder().lockReasonCategory(MODULE_SYNC_FAILED).details('some lock details').build())
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            currentCompositeState = new CompositeState(cmHandleState: LOCKED, lockReason: CompositeState.LockReason.builder().lockReasonCategory(MODULE_SYNC_FAILED).details('some lock details').build())
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
         when: 'update state is invoked'
-            objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, ADVISED))
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): ADVISED])
         then: 'state is saved using inventory persistence and old lock reason details are retained'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
-                args -> {
-                    def cmHandleStatePerCmHandleId = args[0] as Map<String, CompositeState>
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).lockReason.details == 'some lock details'
-                }
-            }
+                })
         and: 'event service is called to send event'
             1 * mockLcmEventsProducer.sendLcmEvent(cmHandleId, _, _)
         and: 'a log entry is written'
@@ -129,20 +122,17 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def 'Update and Send Events on State Change to from ADVISED to READY'() {
         given: 'Cm Handle represented as YangModelCmHandle'
-            compositeState = new CompositeState(cmHandleState: ADVISED)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            currentCompositeState = new CompositeState(cmHandleState: ADVISED)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
         and: 'global sync flag is set'
-            compositeState.setDataSyncEnabled(false)
+            currentCompositeState.setDataSyncEnabled(false)
         when: 'update cmhandle state is invoked'
             objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, READY))
         then: 'state is saved using inventory persistence with expected dataSyncState'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
-                args-> {
-                    def cmHandleStatePerCmHandleId = args[0] as Map<String, CompositeState>
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).dataSyncEnabled == false
                     assert cmHandleStatePerCmHandleId.get(cmHandleId).dataStores.operationalDataStore.dataStoreSyncState == DataStoreSyncState.NONE_REQUESTED
-                }
-            }
+                })
         and: 'event service is called to send event'
             1 * mockLcmEventsProducer.sendLcmEvent(cmHandleId, _, _)
         and: 'a log entry is written'
@@ -151,24 +141,24 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
 
     def 'Update cmHandle state from READY to DELETING' (){
         given: 'cm Handle as Yang model'
-            compositeState = new CompositeState(cmHandleState: READY)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            currentCompositeState = new CompositeState(cmHandleState: READY)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
         when: 'updating cm handle state to "DELETING"'
-            objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, DELETING))
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): DELETING])
         then: 'the cm handle state is as expected'
             yangModelCmHandle.getCompositeState().getCmHandleState() == DELETING
         and: 'method to persist cm handle state is called once'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(Map.of(yangModelCmHandle.getId(), yangModelCmHandle.getCompositeState()))
+            1 * mockInventoryPersistence.saveCmHandleStateBatch([(cmHandleId): yangModelCmHandle.compositeState])
         and: 'the method to send Lcm event is called once'
             1 * mockLcmEventsProducer.sendLcmEvent(cmHandleId, _, _)
     }
 
     def 'Update cmHandle state to DELETING to DELETED' (){
         given: 'cm Handle with state "DELETING" as Yang model '
-            compositeState = new CompositeState(cmHandleState: DELETING)
-            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: compositeState)
+            currentCompositeState = new CompositeState(cmHandleState: DELETING)
+            yangModelCmHandle = new YangModelCmHandle(id: cmHandleId, additionalProperties: [], publicProperties: [], compositeState: currentCompositeState)
         when: 'updating cm handle state to "DELETED"'
-            objectUnderTest.updateCmHandleStateBatch(Map.of(yangModelCmHandle, DELETED))
+            objectUnderTest.updateCmHandleStateBatch([(yangModelCmHandle): DELETED])
         then: 'the cm handle state is as expected'
             yangModelCmHandle.getCompositeState().getCmHandleState() == DELETED
         and: 'the method to send Lcm event is called once'
@@ -193,11 +183,9 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'instantiating a batch of new cm handles'
             objectUnderTest.initiateStateAdvised(yangModelCmHandlesToBeCreated)
         then: 'new cm handles are saved using inventory persistence'
-            1 * mockInventoryPersistence.saveCmHandleBatch(_) >> {
-                args -> {
-                    assert (args[0] as Collection<YangModelCmHandle>).id.containsAll('cmhandle1', 'cmhandle2')
-                }
-            }
+            1 * mockInventoryPersistence.saveCmHandleBatch(yangModelCmHandles -> {
+                    assert yangModelCmHandles.id.containsAll('cmhandle1', 'cmhandle2')
+                })
         and: 'no state updates are persisted'
             1 * mockInventoryPersistence.saveCmHandleStateBatch(EMPTY_MAP)
         and: 'event service is called to send events'
@@ -213,11 +201,9 @@ class LcmEventsCmHandleStateHandlerImplSpec extends Specification {
         when: 'updating a batch of changes'
             objectUnderTest.updateCmHandleStateBatch(cmHandleStateMap)
         then: 'existing cm handles composite states are persisted'
-            1 * mockInventoryPersistence.saveCmHandleStateBatch(_) >> {
-                args -> {
-                    assert (args[0] as Map<String, CompositeState>).keySet().containsAll(['cmhandle1', 'cmhandle2'])
-                }
-            }
+            1 * mockInventoryPersistence.saveCmHandleStateBatch(cmHandleStatePerCmHandleId -> {
+                    assert cmHandleStatePerCmHandleId.keySet().containsAll(['cmhandle1', 'cmhandle2'])
+                })
         and: 'no new handles are persisted'
             1 * mockInventoryPersistence.saveCmHandleBatch(EMPTY_LIST)
         and: 'event service is called to send events'
