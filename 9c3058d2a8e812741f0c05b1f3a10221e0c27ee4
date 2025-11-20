@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba963dce_b3b2efc0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/dmi/EventConsumerSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T10:53:45Z",
+      "side": 1,
+      "message": "redundant import (not used!)",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "9c3058d2a8e812741f0c05b1f3a10221e0c27ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7972f2a3_8e688924",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T10:53:45Z",
+      "side": 1,
+      "message": "Why do you use a negate operator on a sting literal? By mistake?",
+      "range": {
+        "startLine": 46,
+        "startChar": 65,
+        "endLine": 46,
+        "endChar": 78
+      },
+      "revId": "9c3058d2a8e812741f0c05b1f3a10221e0c27ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea9529f2_6a9f7748",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImplSpec.groovy",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-20T10:53:45Z",
+      "side": 1,
+      "message": "NB: update is delegated to persistence service",
+      "range": {
+        "startLine": 257,
+        "startChar": 15,
+        "endLine": 257,
+        "endChar": 111
+      },
+      "revId": "9c3058d2a8e812741f0c05b1f3a10221e0c27ee4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
