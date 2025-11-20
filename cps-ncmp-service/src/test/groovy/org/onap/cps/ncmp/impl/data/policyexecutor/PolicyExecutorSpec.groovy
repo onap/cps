@@ -281,13 +281,14 @@ class PolicyExecutorSpec extends Specification {
         given: 'a patch item with a path'
             def patchItem = new PatchItem(op: 'REPLACE', 'path':path, value: 123)
         when: 'transforming the attributes'
-            def hierarchyMap = objectUnderTest.getAttributeHierarchyMap(patchItem)
+            def hierarchyMap = objectUnderTest.createNestedMap(patchItem)
         then: 'the map depth is equal to the expected number of attributes'
             assert hierarchyMap.get(expectedAttributeName).toString() == expectedAttributeValue
         where: 'simple and complex attributes are tested'
-            scenario                  | path                                                             || expectedAttributeName || expectedAttributeValue
-            'set a simple attribute'  | 'myUriLdnFirstPart#/attributes/simpleAttribute'                  || 'simpleAttribute'     || '123'
-            'set a complex attribute' | 'myUriLdnFirstPart#/attributes/complexAttribute/simpleAttribute' || 'complexAttribute'    || '[simpleAttribute:123]'
+            scenario                                   | path                                                             || expectedAttributeName || expectedAttributeValue
+            'set a simple attribute'                   | 'myUriLdnFirstPart#/attributes/simpleAttribute'                  || 'simpleAttribute'     || '123'
+            'set a simple attribute with a trailing /' | 'myUriLdnFirstPart#/attributes/simpleAttribute/'                 || 'simpleAttribute'     || '123'
+            'set a complex attribute'                  | 'myUriLdnFirstPart#/attributes/complexAttribute/simpleAttribute' || 'complexAttribute'    || '[simpleAttribute:123]'
     }
 
     def 'Build policy executor patch operation details from ProvMnS request parameters with invalid op.'() {
