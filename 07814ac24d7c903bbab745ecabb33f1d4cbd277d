@@ -24,6 +24,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4743f86d_95e064f5",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T14:04:16Z",
+      "side": 1,
+      "message": "I think it is need to explain why CREATE is not there",
+      "parentUuid": "01bd1c9e_b5864242",
+      "range": {
+        "startLine": 87,
+        "startChar": 21,
+        "endLine": 87,
+        "endChar": 77
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61be1484_2fe13456",
@@ -130,6 +154,30 @@
       "writtenOn": "2025-11-20T13:10:37Z",
       "side": 1,
       "message": "i dont understand these in brackets for every test\nare \u0027Test A\u0027, \u0027test B\u0027, \u0027test C\u0027 referenced anywhere else ? if not why do we need that?",
+      "range": {
+        "startLine": 125,
+        "startChar": 69,
+        "endLine": 125,
+        "endChar": 97
+      },
+      "revId": "07814ac24d7c903bbab745ecabb33f1d4cbd277d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199e4e9b_4c3341d3",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/datajobs/subscription/cmavc/CmAvcEventConsumerSpec.groovy",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-20T14:04:16Z",
+      "side": 1,
+      "message": "each test A,B,C us their own topic\u0027Topic for Test A etc.\nIt is important for the test to work as expected (I didn\u0027t try to fix that, just added a 3rd test C)",
+      "parentUuid": "32c728f9_42400760",
       "range": {
         "startLine": 125,
         "startChar": 69,
