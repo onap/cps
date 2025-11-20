@@ -32,10 +32,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
@@ -43,6 +40,7 @@ import org.onap.cps.ncmp.impl.inventory.CompositeStateUtils;
 import org.onap.cps.ncmp.impl.inventory.InventoryPersistence;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
 import org.springframework.stereotype.Service;
+
 
 @Slf4j
 @Service
@@ -167,12 +165,5 @@ public class LcmEventsCmHandleStateHandlerImpl implements LcmEventsCmHandleState
                         yangModelCmHandle.getCompositeState().getCmHandleState().name()));
     }
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    public static class CmHandleTransitionPair {
 
-        private YangModelCmHandle currentYangModelCmHandle;
-        private YangModelCmHandle targetYangModelCmHandle;
-    }
 }

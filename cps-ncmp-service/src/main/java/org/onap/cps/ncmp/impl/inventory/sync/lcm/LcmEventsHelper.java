@@ -26,7 +26,6 @@ import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEvent;
 import org.onap.cps.ncmp.events.lcm.v1.LcmEventHeader;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
-import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -48,18 +47,6 @@ public class LcmEventsHelper {
         cmHandleTransitionPairs.forEach(cmHandleTransitionPair -> sendLcmEvent(
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getTargetYangModelCmHandle()),
                 toNcmpServiceCmHandle(cmHandleTransitionPair.getCurrentYangModelCmHandle())));
-    }
-
-    /**
-     * Sends LcmEvent asynchronously.
-     *
-     * @param targetNcmpServiceCmHandle   target Ncmp Service Cm Handle
-     * @param existingNcmpServiceCmHandle existing Ncmp Service Cm Handle
-     */
-    @Async("notificationExecutor")
-    public void sendLcmEventAsynchronously(final NcmpServiceCmHandle targetNcmpServiceCmHandle,
-                              final NcmpServiceCmHandle existingNcmpServiceCmHandle) {
-        sendLcmEvent(targetNcmpServiceCmHandle, existingNcmpServiceCmHandle);
     }
 
     private void sendLcmEvent(final NcmpServiceCmHandle targetNcmpServiceCmHandle,

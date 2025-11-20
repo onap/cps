@@ -55,6 +55,7 @@ import org.onap.cps.impl.DataNodeBuilder;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleRegistrationResponse;
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle;
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle;
+import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleTransitionPair;
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper;
 import org.onap.cps.ncmp.impl.utils.YangDataConverter;
 import org.onap.cps.utils.ContentType;
@@ -169,13 +170,9 @@ public class CmHandleRegistrationServicePropertyHandler {
     private void sendLcmEventForDataProducerIdentifier(final String cmHandleId,
             final YangModelCmHandle existingYangModelCmHandle) {
         final YangModelCmHandle updatedYangModelCmHandle = inventoryPersistence.getYangModelCmHandle(cmHandleId);
-        final NcmpServiceCmHandle existingNcmpServiceCmHandle =
-                YangDataConverter.toNcmpServiceCmHandle(existingYangModelCmHandle);
-        final NcmpServiceCmHandle updatedNcmpServiceCmHandle =
-                YangDataConverter.toNcmpServiceCmHandle(updatedYangModelCmHandle);
-
-        lcmEventsHelper.sendLcmEventAsynchronously(updatedNcmpServiceCmHandle,
-                existingNcmpServiceCmHandle);
+        final CmHandleTransitionPair cmHandleTransitionPair =
+            new CmHandleTransitionPair(updatedYangModelCmHandle, existingYangModelCmHandle);
+        lcmEventsHelper.sendLcmEventBatchAsynchronously(List.of(cmHandleTransitionPair));
     }
 
     private void updateProperties(final DataNode existingCmHandleDataNode, final PropertyType propertyType,

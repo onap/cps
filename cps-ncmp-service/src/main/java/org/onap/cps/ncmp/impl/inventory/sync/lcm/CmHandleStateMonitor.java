@@ -29,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.onap.cps.ncmp.api.inventory.models.CmHandleState;
 import org.onap.cps.ncmp.api.inventory.models.CompositeState;
 import org.onap.cps.ncmp.impl.inventory.CmHandleQueryService;
-import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair;
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.event.EventListener;
