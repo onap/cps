@@ -241,7 +241,17 @@ class CmSubscriptionHandlerImplSpec extends Specification {
             'data node selector for other dmi' | 'someOtherDmi' || 0
     }
 
-    def 'Log update when subscription status is REJECTED'() {
+    def 'Ignoring data node selector with no FDN prefix.'() {
+        given: 'the persistence service returns data node selector with no FDN prefix'
+            def myDataNodeSelectors = ['/noFdnPrefix'].asList()
+            mockCmSubscriptionPersistenceService.getInactiveDataNodeSelectors('someSubId') >> myDataNodeSelectors
+        when: 'method to update subscription status is called'
+            objectUnderTest.updateCmSubscriptionStatus('someSubId', 'someDmiServiceName', ACCEPTED)
+        then: 'update status is not delegated to persistence service'
+            0 * mockCmSubscriptionPersistenceService.updateCmSubscriptionStatus('/noFdnPrefix', ACCEPTED)
+    }
+
+    def 'Update subscription status to REJECTED'() {
         given: 'dmi service name and subscription id'
             def myDmi = 'myDmi'
             def mySubscriptionId = 'mySubscriptionId'

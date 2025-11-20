@@ -20,15 +20,12 @@
 
 package org.onap.cps.ncmp.impl.datajobs.subscription.ncmp
 
-import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.Logger
-import ch.qos.logback.classic.spi.ILoggingEvent
-import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJob
 import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.DataJobSubscriptionOperationInEvent
+import org.onap.cps.ncmp.impl.datajobs.subscription.client_to_ncmp.Event
 import org.onap.cps.ncmp.impl.utils.JexParser
 import org.onap.cps.ncmp.utils.TestUtils
-import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
 class NcmpInEventConsumerSpec extends Specification {
@@ -68,6 +65,22 @@ class NcmpInEventConsumerSpec extends Specification {
             objectUnderTest.consumeSubscriptionEvent(event)
         then: 'subscription delete request is called'
             1 * mockCmSubscriptionHandler.deleteSubscription("myDataJobId")
+    }
+
+    def 'Consuming subscription request with unknown event type.'() {
+        given: 'a subscription event with invalid event type'
+            def event = new DataJobSubscriptionOperationInEvent()
+            event.setEvent(new Event())
+            event.setEventType('invalidEventType')
+            event.getEvent().setDataJob(new DataJob())
+            event.getEvent().getDataJob().setId('someId')
+        when: 'the event is consumed'
+            objectUnderTest.consumeSubscriptionEvent(event)
+        then: 'no error thrown'
+            noExceptionThrown()
+        and: 'request was not delegated to be handled as CREATE or DELETE'
+            0 * mockCmSubscriptionHandler.deleteSubscription(_)
+            0 * mockCmSubscriptionHandler.createSubscription(_)
     }
 
     def getDataNodeSelectorsAsXpaths(event) {
