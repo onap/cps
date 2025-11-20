@@ -143,6 +143,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7c494b2_28a3cacd",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/datajobs/subscription/ncmp/CmSubscriptionHandlerImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-20T10:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f956fe26_b0f2c5e7",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "a1b1d49c99ec70179266f3e8dedf141b3bfa1ed4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70134ab2_dc788f17",
