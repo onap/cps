@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca5967b_4f7cd954",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "Just a couple of typos. Nothing blocking.",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb50c82d_8cae1635",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleTransitionPair.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "I like this change taking it out of the class.\nI assume this is not a record because it can\u0027t be immutable?",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f60265_b8ce27cf",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/datajobs/models/DataJobRequestSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "the data job request consisting of meta data and a write request.",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92fc473d_d97455d5",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/exceptions/ServerNcmpExceptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "Typo",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fb20e93_d5911d7a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "NB should this be leaf",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27c84cb_edf95587",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/inventory/models/CompositeStateBuilderSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-21T10:33:31Z",
+      "side": 1,
+      "message": "NB Typo",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
