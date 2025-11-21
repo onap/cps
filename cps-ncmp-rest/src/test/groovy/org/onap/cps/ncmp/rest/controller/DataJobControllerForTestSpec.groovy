@@ -36,7 +36,7 @@ class DataJobControllerForTestSpec extends Specification {
 
     def 'Write Data Job request'() {
         given: 'a valid datajob write request'
-            def dataJobMetadata = new DataJobMetadata('some destination', 'some accept type', 'some content type')
+            def dataJobMetadata = new DataJobMetadata('some destination', 'some accept type', 'some content type', 'some job execution policy')
             def writeOperations = [ new WriteOperation('/path/to/node', 'create', 'op123', 'value1') ]
             def dataJobWriteRequest = new DataJobWriteRequest(writeOperations)
             def dataJobRequest = new DataJobRequest(dataJobMetadata, dataJobWriteRequest)

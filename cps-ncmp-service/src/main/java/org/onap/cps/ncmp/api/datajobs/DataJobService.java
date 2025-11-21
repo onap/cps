@@ -29,7 +29,7 @@ import org.onap.cps.ncmp.api.datajobs.models.SubJobWriteResponse;
 public interface DataJobService {
 
     /**
-     * process read data job operations.
+     * Process read data job operations.
      *
      * @param authorization      the authorization header from the REST request
      * @param dataJobId          unique identifier of the job within the request
@@ -42,7 +42,7 @@ public interface DataJobService {
                      DataJobReadRequest dataJobReadRequest);
 
     /**
-     * process write data job operations.
+     * Process write data job operations.
      *
      * @param authorization       the authorization header from the REST request
      * @param dataJobId           unique identifier of the job within the request

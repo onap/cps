@@ -65,14 +65,15 @@ public class DmiSubJobRequestHandler {
         final List<SubJobWriteResponse> subJobWriteResponses = new ArrayList<>(dmiWriteOperationsPerProducerKey.size());
         dmiWriteOperationsPerProducerKey.forEach((producerKey, dmi3ggpWriteOperations) -> {
             final SubJobWriteRequest subJobWriteRequest = new SubJobWriteRequest(dataJobMetadata.destination(),
-                                                                                 dataJobMetadata.dataAcceptType(),
-                                                                                 dataJobMetadata.dataContentType(),
-                                                                                 producerKey.dataProducerIdentifier(),
-                                                                                 dataJobId,
-                                                                                 dmi3ggpWriteOperations);
+                    dataJobMetadata.dataAcceptType(),
+                    dataJobMetadata.dataContentType(),
+                    dataJobMetadata.jobExecutionPolicy(),
+                    producerKey.dataProducerIdentifier(),
+                    dataJobId,
+                    dmi3ggpWriteOperations);
 
             final UrlTemplateParameters urlTemplateParameters = getUrlTemplateParameters(dataJobMetadata.destination(),
-                                                                                         producerKey);
+                    producerKey);
             final ResponseEntity<Object> responseEntity = dmiRestClient.synchronousPostOperation(
                     RequiredDmiService.DATA,
                     urlTemplateParameters,
@@ -96,6 +97,6 @@ public class DmiSubJobRequestHandler {
                 .fixedPathSegment("cmwriteJob")
                 .queryParameter("destination", destination)
                 .createUrlTemplateParameters(producerKey.dmiServiceName(),
-                    dmiServiceAuthenticationProperties.getDmiBasePath());
+                        dmiServiceAuthenticationProperties.getDmiBasePath());
     }
 }
