@@ -41,7 +41,7 @@ class DataJobServiceImplSpec extends Specification {
 
     def objectUnderTest = new DataJobServiceImpl(mockDmiSubJobRequestHandler, mockWriteRequestExaminer, mockJsonObjectMapper)
 
-    def myDataJobMetadata = new DataJobMetadata('', '', '')
+    def myDataJobMetadata = new DataJobMetadata('', '', '','')
     def authorization = 'my authorization header'
 
     def logger = Spy(ListAppender<ILoggingEvent>)

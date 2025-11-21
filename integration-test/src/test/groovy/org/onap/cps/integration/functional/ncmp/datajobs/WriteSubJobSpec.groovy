@@ -52,7 +52,7 @@ class WriteSubJobSpec extends CpsIntegrationSpecBase {
         given: 'the required input data for the write job'
             def authorization = 'my authorization header'
             def dataJobWriteRequest = new DataJobWriteRequest([new WriteOperation('p1', '', '', null), new WriteOperation('p2', '', '', null), new WriteOperation('p3', '', '', null)])
-            def myDataJobMetadata = new DataJobMetadata('d1', '', '')
+            def myDataJobMetadata = new DataJobMetadata('d1', '', '','')
             def dataJobId = 'my-data-job-id'
         when: 'sending a write job to NCMP with 2 sub-jobs for DMI 1 and 1 sub-job for DMI 2'
             def response = dataJobService.writeDataJob(authorization, dataJobId, myDataJobMetadata, dataJobWriteRequest)

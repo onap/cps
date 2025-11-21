@@ -158,6 +158,10 @@ components:
           description: ID of the producer registered by DMI for the paths in the operations in this request
           example: my-data-producer-identifier
           type: string
+        JobExecutionPolicy:
+          description: The type of execution policy. Supported values are "stop-on-error", "continue-on-error-node", "continue-on-error-operation", "parallel", "sequential", "skip-unsync-nodes", "exec-unsync-nodes".
+          type: string
+          example:  "continue-on-error-operation"
         data:
           example:
             op: read
@@ -237,6 +241,10 @@ components:
           description: Identifier for the overall Data Job
           example: my-data-producer-identifier
           type: string
+        JobExecutionPolicy:
+          description: The type of execution policy. Supported values are "stop-on-error", "continue-on-error-node", "continue-on-error-operation", "parallel", "sequential", "skip-unsync-nodes", "exec-unsync-nodes".
+          type: string
+          example:  "continue-on-error-operation"
         data:
           example:
             op: add

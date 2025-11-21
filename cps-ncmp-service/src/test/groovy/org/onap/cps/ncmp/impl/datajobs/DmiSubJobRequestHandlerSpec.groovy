@@ -23,14 +23,14 @@ class DmiSubJobRequestHandlerSpec extends Specification {
     def 'Send a sub-job request to the DMI Plugin.'() {
         given: 'a data job id, metadata and a map of producer keys and write operations to create a request'
             def dataJobId = 'some-job-id'
-            def dataJobMetadata = new DataJobMetadata('d1', 't1', 't2')
+            def dataJobMetadata = new DataJobMetadata('d1', 't1', 't2','p1')
             def dmiWriteOperation = new DmiWriteOperation('p', 'operation', 'tag', null, 'o1')
             def dmiWriteOperationsPerProducerKey = [(new ProducerKey('dmi1', 'prod1')): [dmiWriteOperation]]
             def authorization = 'my authorization header'
         and: 'the dmi rest client will return a response (for the correct parameters)'
             def responseAsKeyValuePairs = [subJobId:'my-sub-job-id']
             def responseEntity = new ResponseEntity<>(responseAsKeyValuePairs, HttpStatus.OK)
-            def expectedJson = '{"destination":"d1","dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","dataJobId":"some-job-id","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1"}]}'
+            def expectedJson = '{"destination":"d1","dataAcceptType":"t1","dataContentType":"t2","dataProducerId":"prod1","jobExecutionPolicy":"p1","dataJobId":"some-job-id","data":[{"path":"p","op":"operation","moduleSetTag":"tag","value":null,"operationId":"o1"}]}'
             mockDmiRestClient.synchronousPostOperation(RequiredDmiService.DATA, _, expectedJson, OperationType.CREATE, authorization) >> responseEntity
         when: 'sending request to DMI invoked'
             objectUnderTest.sendRequestsToDmi(authorization, dataJobId, dataJobMetadata, dmiWriteOperationsPerProducerKey)

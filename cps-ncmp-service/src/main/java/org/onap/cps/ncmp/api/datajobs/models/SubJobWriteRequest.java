@@ -25,20 +25,23 @@ import java.util.Collection;
 /**
  * Request data for a write operation by the DMI Plugin.
  *
- * @param destination     The destination of the results. ( e.g. S3 Bucket)
- * @param dataAcceptType  Define the data response accept type.
- *                        e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
- *                        "application/vnd.3gpp.object-tree-flat+json" etc.
- * @param dataContentType Define the data request content type.
- *                        e.g. "application/3gpp-json-patch+json" etc.
- * @param dataProducerId  Identifier of the data producer.
- * @param dataJobId       Identifier for the overall data job
- * @param data            A collection of outgoing write operations.
+ * @param destination        The destination of the results. ( e.g. S3 Bucket)
+ * @param dataAcceptType     Define the data response accept type.
+ *                           e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
+ *                           "application/vnd.3gpp.object-tree-flat+json" etc.
+ * @param dataContentType    Define the data request content type.
+ *                           e.g. "application/3gpp-json-patch+json" etc.
+ * @param dataProducerId     Identifier of the data producer.
+ * @param jobExecutionPolicy The execution policy for the data job.
+ *                           e.g. "stop-on-error", "continue-on-error-node" etc.
+ * @param dataJobId          Identifier for the overall data job
+ * @param data               A collection of outgoing write operations.
  */
 public record SubJobWriteRequest (
         String destination,
         String dataAcceptType,
         String dataContentType,
         String dataProducerId,
+        String jobExecutionPolicy,
         String dataJobId,
         Collection<DmiWriteOperation> data) {}

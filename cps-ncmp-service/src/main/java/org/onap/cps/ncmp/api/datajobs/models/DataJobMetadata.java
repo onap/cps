@@ -23,11 +23,15 @@ package org.onap.cps.ncmp.api.datajobs.models;
 /**
  * Metadata of read/write data job request.
  *
- * @param destination     The destination of the data job results.
- * @param dataAcceptType  Define the data response accept type.
- *                        e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
- *                        "application/vnd.3gpp.object-tree-flat+json" etc.
- * @param dataContentType Define the data request content type.
- *                        e.g. "application/3gpp-json-patch+json" etc.
+ * @param destination           The destination of the data job results.
+ * @param dataAcceptType        Define the data response accept type.
+ *                              e.g. "application/vnd.3gpp.object-tree-hierarchical+json",
+ *                              "application/vnd.3gpp.object-tree-flat+json" etc.
+ * @param dataContentType       Define the data request content type.
+ *                              e.g. "application/3gpp-json-patch+json" etc.
+ *
+ * @param jobExecutionPolicy    The execution policy for the data job.
+ *                              e.g. "stop-on-error", "continue-on-error-node" etc.
  */
-public record DataJobMetadata(String destination, String dataAcceptType, String dataContentType) {}
+public record DataJobMetadata(String destination, String dataAcceptType, String dataContentType,
+                              String jobExecutionPolicy) {}

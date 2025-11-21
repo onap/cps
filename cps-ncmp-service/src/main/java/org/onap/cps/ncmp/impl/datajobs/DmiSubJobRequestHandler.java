@@ -68,6 +68,7 @@ public class DmiSubJobRequestHandler {
                                                                                  dataJobMetadata.dataAcceptType(),
                                                                                  dataJobMetadata.dataContentType(),
                                                                                  producerKey.dataProducerIdentifier(),
+                                                                                 dataJobMetadata.jobExecutionPolicy(),
                                                                                  dataJobId,
                                                                                  dmi3ggpWriteOperations);
 
