@@ -18,6 +18,23 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f840e28_fa9d493e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "some NB comments...",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb50c82d_8cae1635",
@@ -37,6 +54,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab08a8d2_f69fccdb",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/sync/lcm/CmHandleTransitionPair.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "yes agree with Gerard better to have it record if it is immutable.",
+      "parentUuid": "fb50c82d_8cae1635",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b5ee69_6036894f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/datajobs/models/DataJobRequestSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "NB: I don\u0027t think it is a good idea to add a constructor test to increase the coverage. it would have no value other than having extra test classes.",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 24
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01f60265_b8ce27cf",
         "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/datajobs/models/DataJobRequestSpec.groovy",
         "patchSetId": 1
@@ -48,6 +106,29 @@
       "writtenOn": "2025-11-21T10:33:31Z",
       "side": 1,
       "message": "the data job request consisting of meta data and a write request.",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e0b3e5_15d29e31",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/exceptions/ServerNcmpExceptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "NB: I don\u0027t think it is a good idea to add a constructor test to increase the coverage. it would have no value other than having extra test classes.",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 29
+      },
       "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
@@ -99,6 +180,52 @@
       "writtenOn": "2025-11-21T10:33:31Z",
       "side": 1,
       "message": "NB Typo",
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c145cc0_157b93f1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "NB: redundant field since never used.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 45
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2175d25f_790d1893",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T10:57:33Z",
+      "side": 1,
+      "message": "NB: wrong indentation",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 9
+      },
       "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
