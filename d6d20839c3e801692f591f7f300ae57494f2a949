@@ -158,6 +158,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8c7692a_30cb8bbb",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/datajobs/models/DataJobRequestSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T11:11:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61471f0a_0a842660",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 24
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01f60265_b8ce27cf",
@@ -230,6 +254,30 @@
       "side": 1,
       "message": "as above it is needed to get to 100% that is the value!",
       "parentUuid": "04e0b3e5_15d29e31",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88cd7b44_5499a368",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/api/exceptions/ServerNcmpExceptionSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T11:11:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "30e24f84_71f40a9f",
       "range": {
         "startLine": 25,
         "startChar": 6,
@@ -392,6 +440,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed624c6_f4ae55db",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T11:11:24Z",
+      "side": 1,
+      "message": "it can be done in another commit",
+      "parentUuid": "b46fdc82_032b3ef8",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 45
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2175d25f_790d1893",
@@ -429,6 +501,30 @@
       "side": 1,
       "message": "will do in next commit unless there are major comments on this one",
       "parentUuid": "2175d25f_790d1893",
+      "range": {
+        "startLine": 384,
+        "startChar": 8,
+        "endLine": 384,
+        "endChar": 9
+      },
+      "revId": "d6d20839c3e801692f591f7f300ae57494f2a949",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96a1e3cd_ac481ce0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImplSpec.groovy",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 8063
+      },
+      "writtenOn": "2025-11-24T11:11:24Z",
+      "side": 1,
+      "message": "it can be done in another commit",
+      "parentUuid": "ff18acc9_ac04e253",
       "range": {
         "startLine": 384,
         "startChar": 8,
