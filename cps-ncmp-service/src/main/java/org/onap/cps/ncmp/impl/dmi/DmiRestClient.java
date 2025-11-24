@@ -276,12 +276,12 @@ public class DmiRestClient {
         final HttpStatus status = (HttpStatus) clientResponse.statusCode();
         return clientResponse.bodyToMono(String.class)
             .defaultIfEmpty("")
-            .map(body -> {
-                return ResponseEntity
-                    .status(status)
-                    .headers(clientResponse.headers().asHttpHeaders())
-                    .body(body);
-            });
+            .map(body ->
+                ResponseEntity
+                .status(status)
+                .headers(clientResponse.headers().asHttpHeaders())
+                .body(body)
+            );
     }
 
 }

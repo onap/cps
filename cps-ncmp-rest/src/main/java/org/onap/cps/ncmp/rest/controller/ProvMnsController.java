@@ -79,13 +79,7 @@ public class ProvMnsController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
-            try {
-                checkTarget(yangModelCmHandle);
-            } catch (final ProvMnSException exception) {
-                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
-                    ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
-                return errorResponseBuilder.buildErrorResponseGet(httpStatus, exception.getDetails());
-            }
+            checkTarget(yangModelCmHandle);
             final UrlTemplateParameters urlTemplateParameters = parametersBuilder.createUrlTemplateParametersForRead(
                 scope, filter, attributes, fields, dataNodeSelector, yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousGetOperation(
@@ -93,6 +87,9 @@ public class ProvMnsController implements ProvMnS {
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseGet(HttpStatus.NOT_FOUND, reason);
+        } catch (final ProvMnSException exception) {
+            return errorResponseBuilder.buildErrorResponseGet(
+                getHttpStatusForProvMnSException(exception), exception.getDetails());
         }
     }
 
@@ -105,25 +102,14 @@ public class ProvMnsController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
-            try {
-                checkTarget(yangModelCmHandle);
-            } catch (final ProvMnSException exception) {
-                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
-                    ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
-                return errorResponseBuilder.buildErrorResponsePatch(httpStatus, exception.getDetails());
-            }
-            try {
-                policyExecutor.checkPermission(yangModelCmHandle,
-                    OperationType.CREATE,
-                    NO_AUTHORIZATION,
-                    requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildPatchOperationDetails(
-                        requestPathParameters, patchItems))
-                );
-            } catch (final RuntimeException exception) {
-                // Policy Executor Denied Execution
-                return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_ACCEPTABLE, exception.getMessage());
-            }
+            checkTarget(yangModelCmHandle);
+            policyExecutor.checkPermission(yangModelCmHandle,
+                OperationType.CREATE,
+                NO_AUTHORIZATION,
+                requestPathParameters.toAlternateId(),
+                jsonObjectMapper.asJsonString(
+                    policyExecutor.buildPatchOperationDetails(requestPathParameters, patchItems))
+            );
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousPatchOperation(RequiredDmiService.DATA, patchItems,
@@ -131,6 +117,11 @@ public class ProvMnsController implements ProvMnS {
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_FOUND, reason);
+        } catch (final ProvMnSException exception) {
+            return errorResponseBuilder.buildErrorResponsePatch(
+                getHttpStatusForProvMnSException(exception), exception.getDetails());
+        } catch (final RuntimeException exception) {
+            return errorResponseBuilder.buildErrorResponsePatch(HttpStatus.NOT_ACCEPTABLE, exception.getMessage());
         }
     }
 
@@ -142,31 +133,25 @@ public class ProvMnsController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
-            try {
-                checkTarget(yangModelCmHandle);
-            } catch (final ProvMnSException exception) {
-                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
-                    ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
-                return errorResponseBuilder.buildErrorResponseDefault(httpStatus, exception.getDetails());
-            }
-            try {
-                policyExecutor.checkPermission(yangModelCmHandle,
-                    OperationType.CREATE,
-                    NO_AUTHORIZATION,
-                    requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildCreateOperationDetails(
-                        OperationType.CREATE, requestPathParameters, resource))
-                );
-            } catch (final RuntimeException exception) {
-                return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
-                                                                            exception.getMessage());
-            }
+            checkTarget(yangModelCmHandle);
+            policyExecutor.checkPermission(yangModelCmHandle,
+                OperationType.CREATE,
+                NO_AUTHORIZATION,
+                requestPathParameters.toAlternateId(),
+                jsonObjectMapper.asJsonString(
+                    policyExecutor.buildCreateOperationDetails(OperationType.CREATE, requestPathParameters, resource))
+            );
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousPutOperation(RequiredDmiService.DATA, resource, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
+        } catch (final ProvMnSException exception) {
+            return errorResponseBuilder.buildErrorResponseDefault(
+                getHttpStatusForProvMnSException(exception), exception.getDetails());
+        } catch (final RuntimeException exception) {
+            return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE, exception.getMessage());
         }
     }
 
@@ -178,31 +163,26 @@ public class ProvMnsController implements ProvMnS {
             final YangModelCmHandle yangModelCmHandle = inventoryPersistence.getYangModelCmHandle(
                 alternateIdMatcher.getCmHandleIdByLongestMatchingAlternateId(
                     requestPathParameters.toAlternateId(), "/"));
-            try {
-                checkTarget(yangModelCmHandle);
-            } catch (final ProvMnSException exception) {
-                final HttpStatus httpStatus = "NOT READY".equals(exception.getMessage())
-                    ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
-                return errorResponseBuilder.buildErrorResponseDefault(httpStatus, exception.getDetails());
-            }
-            try {
-                policyExecutor.checkPermission(yangModelCmHandle,
-                    OperationType.DELETE,
-                    NO_AUTHORIZATION,
-                    requestPathParameters.toAlternateId(),
-                    jsonObjectMapper.asJsonString(policyExecutor.buildDeleteOperationDetails(
-                        requestPathParameters.toAlternateId()))
-                );
-            } catch (final RuntimeException exception) {
-                return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
-                    exception.getMessage());
-            }
+            checkTarget(yangModelCmHandle);
+            policyExecutor.checkPermission(yangModelCmHandle,
+                OperationType.DELETE,
+                NO_AUTHORIZATION,
+                requestPathParameters.toAlternateId(),
+                jsonObjectMapper.asJsonString(
+                    policyExecutor.buildDeleteOperationDetails(requestPathParameters.toAlternateId()))
+            );
             final UrlTemplateParameters urlTemplateParameters =
                 parametersBuilder.createUrlTemplateParametersForWrite(yangModelCmHandle, requestPathParameters);
             return dmiRestClient.synchronousDeleteOperation(RequiredDmiService.DATA, urlTemplateParameters);
         } catch (final NoAlternateIdMatchFoundException noAlternateIdMatchFoundException) {
             final String reason = buildNotFoundMessage(requestPathParameters.toAlternateId());
             return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_FOUND, reason);
+        } catch (final ProvMnSException exception) {
+            return errorResponseBuilder.buildErrorResponseDefault(
+                getHttpStatusForProvMnSException(exception), exception.getDetails());
+        } catch (final RuntimeException exception) {
+            return errorResponseBuilder.buildErrorResponseDefault(HttpStatus.NOT_ACCEPTABLE,
+                exception.getMessage());
         }
     }
 
@@ -222,6 +202,11 @@ public class ProvMnsController implements ProvMnS {
 
     private String buildNotFoundMessage(final String alternateId) {
         return alternateId + " not found";
+    }
+
+    private HttpStatus getHttpStatusForProvMnSException(final ProvMnSException exception) {
+        return "NOT READY".equals(exception.getMessage())
+            ? HttpStatus.NOT_ACCEPTABLE : HttpStatus.UNPROCESSABLE_ENTITY;
     }
 
 }
