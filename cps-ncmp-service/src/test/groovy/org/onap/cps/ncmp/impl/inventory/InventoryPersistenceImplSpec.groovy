@@ -78,7 +78,6 @@ class InventoryPersistenceImplSpec extends Specification {
     def xpath = "/dmi-registry/cm-handles[@id='some-cm-handle']"
 
     def cmHandleId2 = 'another-cm-handle'
-    def alternateId2 = 'another-alternate-id'
     def xpath2 = "/dmi-registry/cm-handles[@id='another-cm-handle']"
 
     def dataNode = new DataNode(xpath: "/dmi-registry/cm-handles[@id='some cm handle']/additional-properties[@name='myAdditionalProperty']", leaves: leaves)
@@ -381,7 +380,7 @@ class InventoryPersistenceImplSpec extends Specification {
             objectUnderTest.deleteAnchors(['anchor1' ,'anchor2'])
         then: 'The call is delegated to the anchor service with teh correct parameters'
             mockCpsAnchorService.deleteAnchors(NCMP_DATASPACE_NAME ,['anchor1' ,'anchor2'])
-        }
+    }
 
     def 'Get Yang Model CM Handles without properties.'() {
         given: 'the cps data service returns 2 data nodes from the DMI registry (omitting descendants)'

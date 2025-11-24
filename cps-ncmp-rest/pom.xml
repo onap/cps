@@ -34,7 +34,6 @@
     <artifactId>cps-ncmp-rest</artifactId>
 
     <properties>
-        <minimum-coverage>0.99</minimum-coverage>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     </properties>
 

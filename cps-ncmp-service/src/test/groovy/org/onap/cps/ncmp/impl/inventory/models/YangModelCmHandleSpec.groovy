@@ -95,31 +95,46 @@ class YangModelCmHandleSpec extends Specification {
             'only data service registered'  | null               | 'does not matter'  | null                | MODEL           || null
     }
 
-    def 'Yang Model Cm Handle Deep Copy'() {
+    def 'Yang Model Cm Handle Deep Copy.'() {
         given: 'a yang model cm handle'
-            def currentYangModelCmHandle = new YangModelCmHandle(id: 'cmhandle',
-                publicProperties: [new YangModelCmHandle.Property('publicProperty1', 'value1')],
-                additionalProperties: [new YangModelCmHandle.Property('additionalProperty1', 'value1')],
+            def original = new YangModelCmHandle(id: 'original id',
+                publicProperties: [new YangModelCmHandle.Property('publicProperty', 'value1')],
+                additionalProperties: [new YangModelCmHandle.Property('additionalProperty', 'value2')],
                 compositeState: new CompositeState(cmHandleState: CmHandleState.ADVISED, dataSyncEnabled: false))
         when: 'a deep copy is created'
-            def yangModelCmhandleDeepCopy = YangModelCmHandle.deepCopyOf(currentYangModelCmHandle)
-        and: 'we try to mutate current yang model cm handle'
-            currentYangModelCmHandle.id = 'cmhandle-changed'
-            currentYangModelCmHandle.additionalProperties = [new YangModelCmHandle.Property('updatedAdditionalProperty1', 'value1')]
-            currentYangModelCmHandle.publicProperties = [new YangModelCmHandle.Property('updatedPublicProperty1', 'value1')]
-            currentYangModelCmHandle.compositeState.cmHandleState = CmHandleState.READY
-            currentYangModelCmHandle.compositeState.dataSyncEnabled = true
-        then: 'there is no change in the deep copied object'
-            assert yangModelCmhandleDeepCopy.id == 'cmhandle'
-            assert yangModelCmhandleDeepCopy.additionalProperties == [new YangModelCmHandle.Property('additionalProperty1', 'value1')]
-            assert yangModelCmhandleDeepCopy.publicProperties == [new YangModelCmHandle.Property('publicProperty1', 'value1')]
-            assert yangModelCmhandleDeepCopy.compositeState.cmHandleState == CmHandleState.ADVISED
-            assert yangModelCmhandleDeepCopy.compositeState.dataSyncEnabled == false
-        and: 'equality on reference and hashcode behave as expected'
-            assert currentYangModelCmHandle.hashCode() != yangModelCmhandleDeepCopy.hashCode()
-            assert currentYangModelCmHandle != yangModelCmhandleDeepCopy
-
+            def copy = YangModelCmHandle.deepCopyOf(original)
+        then: 'the objects are equal'
+            assert original == copy
+            assert original.equals(copy)
+        and: 'have the same hash code'
+            assert original.hashCode() == copy.hashCode()
+        when: 'mutate the original yang model cm handle'
+            original.id = 'changed id'
+            original.publicProperties = [new YangModelCmHandle.Property('updatedPublicProperty', 'some new value')]
+            original.additionalProperties = [new YangModelCmHandle.Property('updatedAdditionalProperty', 'some new value')]
+            original.compositeState.cmHandleState = CmHandleState.READY
+            original.compositeState.dataSyncEnabled = true
+        then: 'there is no change in the copied object'
+            assert copy.id == 'original id'
+            assert copy.publicProperties == [new YangModelCmHandle.Property('publicProperty', 'value1')]
+            assert copy.additionalProperties == [new YangModelCmHandle.Property('additionalProperty', 'value2')]
+            assert copy.compositeState.cmHandleState == CmHandleState.ADVISED
+            assert copy.compositeState.dataSyncEnabled == false
+        and: 'the objects are not equal'
+            assert original != copy
+            assert original.equals(copy) == false
+        and: 'have different hash codes'
+            assert original.hashCode() != copy.hashCode()
     }
 
+    def 'Yang Model Cm Handle Deep Copy for cm handled without optional properties.'() {
+        given: 'a yang model cm handle'
+            def original = new YangModelCmHandle(id: 'some id')
+        when: 'a deep copy is created'
+            def copy = YangModelCmHandle.deepCopyOf(original)
+        then: 'the objects are equal'
+            assert original == copy
+            assert original.equals(copy)
+    }
 
 }

@@ -85,8 +85,8 @@ class ModuleSyncWatchdogSpec extends Specification {
             mockModuleOperationsUtils.getCmHandlesThatFailedModelSyncOrUpgrade() >> []
         and: 'the work queue can be locked'
             mockCpsCommonLocks.tryLock('workQueueLock') >> true
-        when: ' module sync is started'
-            objectUnderTest.moduleSyncAdvisedCmHandles()
+        when: ' module sync is started (using the scheduled method)'
+            objectUnderTest.scheduledModuleSyncAdvisedCmHandles()
         then: 'it performs #expectedNumberOfTaskExecutions tasks'
             expectedNumberOfTaskExecutions * mockModuleSyncTasks.performModuleSync(*_)
         and: 'the executing thread is unlocked'
