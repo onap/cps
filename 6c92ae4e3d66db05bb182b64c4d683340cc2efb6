@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69dd2842_7e4f4f0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T14:28:52Z",
+      "side": 1,
+      "message": "first refactoring can be done in a better way then just extracting constant...",
+      "revId": "6c92ae4e3d66db05bb182b64c4d683340cc2efb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1435b17c_6bbeb9da",
+        "filename": "cps-ncmp-rest/src/main/java/org/onap/cps/ncmp/rest/controller/ProvMnsController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T14:28:52Z",
+      "side": 1,
+      "message": "as i flagged before Sonar complain about a string being duplicated is usually a sign for some refactoring, instead of extract out a constant extract a method in these places to do something like \n\ndetermineHttpStatusFromCmHandleState(...)\nor\ncmHandleStateToHttpStatus(...)",
+      "range": {
+        "startLine": 59,
+        "startChar": 32,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "6c92ae4e3d66db05bb182b64c4d683340cc2efb6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
