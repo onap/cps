@@ -259,6 +259,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "998d743b_cfe7a989",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a9ec5e7_b8599a1a",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 19
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec210ba1_eb7e2755",
@@ -282,6 +306,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9830674d_d8b8e524",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec210ba1_eb7e2755",
+      "range": {
+        "startLine": 81,
+        "startChar": 24,
+        "endLine": 81,
+        "endChar": 25
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "386d6c0d_b6f1ffaa",
@@ -295,6 +343,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "maybe extract out variable for readability and clarify context context:\nvalueFromOldModel \u003d handle.getCompositeState().getCmHandleState().name()",
+      "range": {
+        "startLine": 92,
+        "startChar": 24,
+        "endLine": 92,
+        "endChar": 76
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfd8ee09_28d1e5e1",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryDataMigration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386d6c0d_b6f1ffaa",
       "range": {
         "startLine": 92,
         "startChar": 24,
@@ -445,6 +517,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccbe9196_311fb5ac",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4004df9_afdde344",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35e6f7d6_d61c380e",
@@ -458,6 +554,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "dont think any logging assert are needed (or done currently) so this is not needed\nLoggingn asserts are really only doen as a last resort if theer are no real results or interactions to be checked",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28cb1191_8747c2ce",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35e6f7d6_d61c380e",
       "range": {
         "startLine": 49,
         "startChar": 0,
@@ -514,6 +634,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc79e06f_97ac6529",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e758284_ed8c2bdd",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5aaae5a2_f3a07974",
@@ -537,6 +681,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c9ac4d2_f922587f",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aaae5a2_f3a07974",
+      "range": {
+        "startLine": 73,
+        "startChar": 41,
+        "endLine": 73,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "210fc8f8_784a48c5",
@@ -550,6 +718,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "why SIX i think the test can be done with just 2 (maybe 3) cm handles?\nLess maintanence!",
+      "range": {
+        "startLine": 86,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 80
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8fbe3cb_afe01f05",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "210fc8f8_784a48c5",
       "range": {
         "startLine": 86,
         "startChar": 3,
@@ -629,6 +821,54 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d36a8142_8d11094c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "323b9756_70f8225e",
+      "range": {
+        "startLine": 126,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb7308a5_3983b20a",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8375f9b6_78b558e9",
+      "range": {
+        "startLine": 126,
+        "startChar": 94,
+        "endLine": 126,
+        "endChar": 95
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b40dacab_775152d4",
@@ -652,6 +892,30 @@
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f95656_5009a519",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b40dacab_775152d4",
+      "range": {
+        "startLine": 127,
+        "startChar": 29,
+        "endLine": 127,
+        "endChar": 48
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37caa89e_35289431",
@@ -665,6 +929,30 @@
       "writtenOn": "2025-11-17T17:28:32Z",
       "side": 1,
       "message": "no short names",
+      "range": {
+        "startLine": 130,
+        "startChar": 12,
+        "endLine": 130,
+        "endChar": 19
+      },
+      "revId": "162c3eaf29edba47717f3f5403bdbcb6b3456060",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4682e910_5f5527c1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryDataMigrationSpec.groovy",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 4893
+      },
+      "writtenOn": "2025-11-24T14:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37caa89e_35289431",
       "range": {
         "startLine": 130,
         "startChar": 12,
