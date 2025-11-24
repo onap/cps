@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba199671_5ba661ae",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:35:09Z",
+      "side": 1,
+      "message": "looks like unreachable given the exception handling below, remove?",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 60,
+        "endChar": 37
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adc49711_79efd9fd",
         "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/DataMigration.java",
         "patchSetId": 10
@@ -42,6 +65,52 @@
         "startChar": 16,
         "endLine": 84,
         "endChar": 48
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e36720d_95cf72d4",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:35:09Z",
+      "side": 1,
+      "message": "no need to wrap anymore",
+      "range": {
+        "startLine": 122,
+        "startChar": 17,
+        "endLine": 122,
+        "endChar": 46
+      },
+      "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044d8eff_193e0b32",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/init/InventoryModelLoader.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 6639
+      },
+      "writtenOn": "2025-11-24T16:35:09Z",
+      "side": 1,
+      "message": "nogt needed",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 12
       },
       "revId": "95c644e68d7998e8603b3916aa940826bac5c504",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
