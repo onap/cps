@@ -33,6 +33,75 @@
       "message": "recheck",
       "revId": "428ee0f01a839cff969a183d378139be8497050d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01659099_9b0c6c97",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T13:23:37Z",
+      "side": 1,
+      "message": "make this generic \n{{ dmi-stub }}",
+      "range": {
+        "startLine": 2095,
+        "startChar": 41,
+        "endLine": 2095,
+        "endChar": 57
+      },
+      "revId": "428ee0f01a839cff969a183d378139be8497050d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95154b56_184cf3ad",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T13:23:37Z",
+      "side": 1,
+      "message": "make this generic {{ }}",
+      "range": {
+        "startLine": 2095,
+        "startChar": 87,
+        "endLine": 2095,
+        "endChar": 118
+      },
+      "revId": "428ee0f01a839cff969a183d378139be8497050d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d4dd12_b51e5e57",
+        "filename": "postman-collections/CPS.postman_collection.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2120,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T13:23:37Z",
+      "side": 1,
+      "message": "no need for this one if you re use the same request above",
+      "range": {
+        "startLine": 2120,
+        "startChar": 5,
+        "endLine": 2120,
+        "endChar": 53
+      },
+      "revId": "428ee0f01a839cff969a183d378139be8497050d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
     }
   ]
 }
