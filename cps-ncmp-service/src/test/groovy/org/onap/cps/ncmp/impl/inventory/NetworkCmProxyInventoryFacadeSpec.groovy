@@ -26,17 +26,18 @@ package org.onap.cps.ncmp.impl.inventory
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.ConditionProperties
+import org.onap.cps.ncmp.api.exceptions.CmHandleNotFoundException
 import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryApiParameters
 import org.onap.cps.ncmp.api.inventory.models.CmHandleQueryServiceParameters
+import org.onap.cps.ncmp.api.inventory.models.CmHandleState
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
 import org.onap.cps.ncmp.api.inventory.models.ConditionApiProperties
 import org.onap.cps.ncmp.api.inventory.models.DmiPluginRegistration
+import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.api.inventory.models.TrustLevel
 import org.onap.cps.ncmp.impl.NetworkCmProxyInventoryFacadeImpl
-import org.onap.cps.ncmp.api.inventory.models.CmHandleState
-import org.onap.cps.ncmp.api.inventory.models.LockReasonCategory
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.trustlevel.TrustLevelManager
 import org.onap.cps.ncmp.impl.utils.AlternateIdMatcher
@@ -100,7 +101,7 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
     def 'Getting Yang Resources for a given #scenario'() {
         when: 'yang resources is called'
             objectUnderTest.getYangResourcesModuleReferences(cmHandleRef)
-        then: 'alternate id matcher is called'
+        then: 'alternate id matcher can find it'
             mockAlternateIdMatcher.getCmHandleId(cmHandleRef) >> 'some-cm-handle'
         and: 'CPS module services is invoked for the correct cm handle'
             1 * mockInventoryPersistence.getYangResourcesModuleReferences('some-cm-handle')
@@ -109,6 +110,18 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
+
+    def 'Getting Yang Resources with exception.'() {
+        given: 'alternate id matcher can always find a cm handle'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+        and: 'CPS module services throws a not found exception'
+            mockInventoryPersistence.getYangResourcesModuleReferences(_) >> { throw new CmHandleNotFoundException('') }
+        when: 'attempt to get the yang resources'
+            def result = objectUnderTest.getYangResourcesModuleReferences('some id')
+        then: 'the result is an empty collection'
+            assert result == []
+    }
+
 
     def 'Get a cm handle details using #scenario'() {
         given: 'the system returns a yang modelled cm handle'
@@ -228,7 +241,18 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
     }
 
-    def 'Getting module definitions for a given #scenario'() {
+    def 'Getting module definitions by module with exception.'() {
+        given: 'alternate id matcher always finds a match'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+        and: 'ncmp inventory persistence service throws a not found exception'
+            mockInventoryPersistence.getModuleDefinitionsByCmHandleAndModule(*_) >> { throw new CmHandleNotFoundException ('') }
+        when: 'attempt to get the module definitions'
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleAndModule('some reference', 'some module', 'some revision')
+        then: 'the result is an empty collection'
+            assert result == []
+    }
+
+    def 'Getting module definitions by cm handle for a given #scenario'() {
         when: 'get module definitions is performed with cm handle reference'
             objectUnderTest.getModuleDefinitionsByCmHandleReference(cmHandleRef)
         then: 'alternate id matcher returns some cm handle id for a given cm handle reference'
@@ -239,6 +263,17 @@ class NetworkCmProxyInventoryFacadeSpec extends Specification {
             scenario                              | cmHandleRef
             'Cm Handle Reference as cm handle-id' | 'some-cm-handle'
             'Cm Handle Reference as alternate-id' | 'some-alternate-id'
+    }
+
+    def 'Getting module definitions by cm handle with exception.'() {
+        given: 'alternate id matcher always finds a match'
+            mockAlternateIdMatcher.getCmHandleId(_) >> 'some id'
+        and: 'ncmp inventory persistence service throws a not found exception'
+            mockInventoryPersistence.getModuleDefinitionsByCmHandleId(_) >> { throw new CmHandleNotFoundException ('') }
+        when: 'attempt to get the module definitions'
+            def result = objectUnderTest.getModuleDefinitionsByCmHandleReference('some reference')
+        then: 'the result is an empty collection'
+            assert result == []
     }
 
     def 'Execute northbound cm handle search'() {

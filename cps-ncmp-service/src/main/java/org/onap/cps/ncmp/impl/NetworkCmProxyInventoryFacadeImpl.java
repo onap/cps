@@ -98,6 +98,8 @@ public class NetworkCmProxyInventoryFacadeImpl implements NetworkCmProxyInventor
         }
     }
 
+
+
     @Override
     public Collection<ModuleDefinition> getModuleDefinitionsByCmHandleAndModule(final String cmHandleReference,
                                                                                 final String moduleName,

@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Modifications Copyright (C) 2022-2023 Nordix Foundation.
+ * Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,9 @@
 
 package org.onap.cps.ncmp.api.inventory.models
 
-
-import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
+import org.onap.cps.ncmp.api.inventory.DataStoreSyncState
 import spock.lang.Specification
 
 import java.time.OffsetDateTime
@@ -36,19 +35,21 @@ class CompositeStateBuilderSpec extends Specification {
     def formattedDateAndTime = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         .format(OffsetDateTime.of(2022, 12, 31, 20, 30, 40, 1, ZoneOffset.UTC))
 
-    def static cmHandleId = 'myHandle1'
-    def static cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
-    def static stateDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
+    def cmHandleId = 'myHandle1'
+    def cmHandleXpath = "/dmi-registry/cm-handles[@id='${cmHandleId}/state']"
+    def stateDataNodes = [new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/lock-reason")
                                          .withLeaves(['reason': 'MODULE_SYNC_FAILED', 'details': 'lock details']).build(),
                                  new DataNodeBuilder().withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores")
                                             .withChildDataNodes(Arrays.asList(new DataNodeBuilder()
                                                     .withXpath("/dmi-registry/cm-handles[@id='${cmHandleId}']/state/datastores/operational")
                                                     .withLeaves(['sync-state': 'UNSYNCHRONIZED']).build())).build()]
-    def static cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: stateDataNodes, leaves: ['cm-handle-state': 'ADVISED'])
+    def cmHandleDataNode = new DataNode(xpath: cmHandleXpath, childDataNodes: stateDataNodes, leaves: ['cm-handle-state': 'READY'])
 
-    def "Composite State Specification"() {
-        when: 'using composite state builder '
-            def compositeState = new CompositeStateBuilder().withCmHandleState(CmHandleState.ADVISED)
+    def objectUnderTest = new CompositeStateBuilder()
+
+    def 'Composite State Specification.'() {
+        when: 'using composite state builder'
+            def compositeState = objectUnderTest.withCmHandleState(CmHandleState.ADVISED)
                     .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED,"").withOperationalDataStores(DataStoreSyncState.UNSYNCHRONIZED,
                     formattedDateAndTime.toString()).withLastUpdatedTime(formattedDateAndTime).build()
         then: 'it matches expected cm handle state and data store sync state'
@@ -56,18 +57,16 @@ class CompositeStateBuilderSpec extends Specification {
             assert compositeState.dataStores.operationalDataStore.dataStoreSyncState == DataStoreSyncState.UNSYNCHRONIZED
     }
 
-    def "Build composite state from DataNode "() {
-        given: "a Data Node "
-            new DataNode(leaves: ['cm-handle-state': 'ADVISED'])
+    def 'Build composite state from DataNode.'() {
         when: 'build from data node function is invoked'
-            def compositeState = new CompositeStateBuilder().fromDataNode(cmHandleDataNode).build()
+            def compositeState = objectUnderTest.fromDataNode(cmHandleDataNode).build()
         then: 'it matches expected state model as JSON'
-            assert compositeState.cmHandleState == CmHandleState.ADVISED
+            assert compositeState.cmHandleState == CmHandleState.READY
     }
 
     def 'CompositeStateBuilder build'() {
         given: 'A CompositeStateBuilder with all private fields set'
-            def finalCompositeStateBuilder = new CompositeStateBuilder()
+            def finalCompositeStateBuilder = objectUnderTest
                 .withCmHandleState(CmHandleState.ADVISED)
                 .withLastUpdatedTime(formattedDateAndTime.toString())
                 .withLockReason(LockReasonCategory.MODULE_SYNC_FAILED, 'locked details')
@@ -84,6 +83,17 @@ class CompositeStateBuilderSpec extends Specification {
             assert result.getCmHandleState() == CmHandleState.ADVISED
             assert result.getDataStores().getOperationalDataStore().getDataStoreSyncState() == DataStoreSyncState.SYNCHRONIZED
             assert result.getDataStores().getOperationalDataStore().getLastSyncTime() == formattedDateAndTime
+    }
+
+    def 'Get lock reason without leaf for reason.'() {
+        given: 'a data node with details but no reason'
+            def dataNodeWithJustDetailsLeaf = new DataNode(leaves:[details:'my details'])
+        when: 'convert it to a lock reason'
+            def result = getObjectUnderTest().toLockReason(dataNodeWithJustDetailsLeaf)
+        then: 'the result has no reason category'
+            assert result.lockReasonCategory == null
+        and: 'the result has the correct details'
+            assert result.details == 'my details'
     }
 
 }

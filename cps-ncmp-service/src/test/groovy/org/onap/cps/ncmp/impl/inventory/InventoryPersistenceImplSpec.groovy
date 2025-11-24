@@ -382,5 +382,16 @@ class InventoryPersistenceImplSpec extends Specification {
         then: 'The call is delegated to the anchor service with teh correct parameters'
             mockCpsAnchorService.deleteAnchors(NCMP_DATASPACE_NAME ,['anchor1' ,'anchor2'])
         }
+
+    def 'Get Yang Model CM Handles without properties.'() {
+        given: 'the cps data service returns 2 data nodes from the DMI registry (omitting descendants)'
+            def dataNodes = [new DataNode(xpath: xpath, leaves: ['id': cmHandleId]), new DataNode(xpath: xpath2, leaves: ['id': cmHandleId2])]
+            mockCpsDataService.getDataNodesForMultipleXpaths(NCMP_DATASPACE_NAME, NCMP_DMI_REGISTRY_ANCHOR, [xpath, xpath2] , OMIT_DESCENDANTS) >> dataNodes
+        when: 'retrieving cm handles without properties'
+            def result = objectUnderTest.getYangModelCmHandlesWithoutProperties([cmHandleId, cmHandleId2])
+        then: 'The cm handles from the data service are returned'
+            assert result.size() == 2
+            assert result.id.containsAll([cmHandleId, cmHandleId2])
+    }
 }
 

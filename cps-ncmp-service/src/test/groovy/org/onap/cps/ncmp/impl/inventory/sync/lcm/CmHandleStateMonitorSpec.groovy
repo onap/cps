@@ -1,6 +1,6 @@
 /*
  * ============LICENSE_START=======================================================
- * Copyright (C) 2025 Nordix Foundation.
+ * Copyright (C) 2025 OpenInfra Foundation Europe. All rights reserved.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,6 @@
 
 package org.onap.cps.ncmp.impl.inventory.sync.lcm
 
-import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
-import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
-
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.map.IMap
 import org.onap.cps.ncmp.api.inventory.models.CompositeState
@@ -32,7 +29,10 @@ import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor.Decreasing
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.CmHandleStateMonitor.IncreasingEntryProcessor
 import org.onap.cps.ncmp.utils.events.NcmpInventoryModelOnboardingFinishedEvent
 import spock.lang.Shared
-import spock.lang.Specification;
+import spock.lang.Specification
+
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.ADVISED
+import static org.onap.cps.ncmp.api.inventory.models.CmHandleState.READY
 
 class CmHandleStateMonitorSpec extends Specification {
 
@@ -73,9 +73,9 @@ class CmHandleStateMonitorSpec extends Specification {
 
     def 'Update cm handle state metric'() {
         given: 'a collection of cm handle state pair'
-            def cmHandleTransitionPair = new LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair()
-            cmHandleTransitionPair.currentYangModelCmHandle = new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED))
-            cmHandleTransitionPair.targetYangModelCmHandle =  new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: READY))
+            def cmHandleTransitionPair = new CmHandleTransitionPair(new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED)),
+                                                                    new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: READY))
+            )
         when: 'method to update cm handle state metrics is called'
             objectUnderTest.updateCmHandleStateMetrics([cmHandleTransitionPair])
         then: 'cm handle by state cache map is called once for current and target state for entry processing'
@@ -85,9 +85,8 @@ class CmHandleStateMonitorSpec extends Specification {
 
     def 'Update cm handle state metric with no previous state'() {
         given: 'a collection of cm handle state pair wherein current state is null'
-            def cmHandleTransitionPair = new LcmEventsCmHandleStateHandlerImpl.CmHandleTransitionPair()
-            cmHandleTransitionPair.currentYangModelCmHandle = new YangModelCmHandle(compositeState: null)
-            cmHandleTransitionPair.targetYangModelCmHandle =  new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED))
+            def cmHandleTransitionPair = new CmHandleTransitionPair(new YangModelCmHandle(compositeState: null),
+                                                                    new YangModelCmHandle(compositeState: new CompositeState(cmHandleState: ADVISED)))
         when: 'updating cm handle state metrics'
             objectUnderTest.updateCmHandleStateMetrics([cmHandleTransitionPair])
         then: 'cm handle by state cache map is called only once'

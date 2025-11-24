@@ -1,7 +1,7 @@
 /*
  * ============LICENSE_START=======================================================
  * Copyright (C) 2022 Bell Canada
- * Modifications Copyright (C) 2022-2023 Nordix Foundation.
+ * Modifications Copyright (C) 2022-2025 OpenInfra Foundation Europe.
  * ================================================================================
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,13 +123,13 @@ public class CompositeStateBuilder {
         }
         for (final DataNode stateChildNode : dataNode.getChildDataNodes()) {
             if (stateChildNode.getXpath().endsWith("/lock-reason")) {
-                this.lockReason = getLockReason(stateChildNode);
+                this.lockReason = toLockReason(stateChildNode);
             }
             if (stateChildNode.getXpath().endsWith("/datastores")) {
                 for (final DataNode dataStoreNodes : stateChildNode.getChildDataNodes()) {
                     Operational operationalDataStore = null;
                     if (dataStoreNodes.getXpath().contains("/operational")) {
-                        operationalDataStore = getOperationalDataStore(dataStoreNodes);
+                        operationalDataStore = toOperationalDataStore(dataStoreNodes);
                     }
                     this.datastores = DataStores.builder().operationalDataStore(operationalDataStore).build();
                 }
@@ -138,14 +138,14 @@ public class CompositeStateBuilder {
         return this;
     }
 
-    private Operational getOperationalDataStore(final DataNode dataStoreNodes) {
+    private Operational toOperationalDataStore(final DataNode dataStoreNodes) {
         return Operational.builder()
                 .dataStoreSyncState(DataStoreSyncState.valueOf((String) dataStoreNodes.getLeaves().get("sync-state")))
                 .lastSyncTime((String) dataStoreNodes.getLeaves().get("last-sync-time"))
                 .build();
     }
 
-    private LockReason getLockReason(final DataNode stateChildNode) {
+    private LockReason toLockReason(final DataNode stateChildNode) {
         final boolean isLockReasonExists = stateChildNode.getLeaves().containsKey("reason");
         return new LockReason(isLockReasonExists
                 ? LockReasonCategory.valueOf((String) stateChildNode.getLeaves().get("reason"))

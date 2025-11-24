@@ -29,11 +29,11 @@ import ch.qos.logback.core.read.ListAppender
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.hazelcast.map.IMap
 import org.onap.cps.api.CpsDataService
-import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.api.exceptions.DataNodeNotFoundException
 import org.onap.cps.api.exceptions.DataValidationException
 import org.onap.cps.api.model.DataNode
 import org.onap.cps.impl.DataNodeBuilder
+import org.onap.cps.ncmp.api.inventory.models.NcmpServiceCmHandle
 import org.onap.cps.ncmp.impl.inventory.models.YangModelCmHandle
 import org.onap.cps.ncmp.impl.inventory.sync.lcm.LcmEventsHelper
 import org.onap.cps.utils.ContentType
@@ -258,9 +258,9 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
                 assert args[3].contains('New Data Producer Identifier')
             }
         and: 'LCM event is sent'
-            1 * mockLcmEventsHelper.sendLcmEventAsynchronously(_, _) >> { args ->
-                assert args[0].dataProducerIdentifier == 'New Data Producer Identifier'
-            }
+            1 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously({ cmHandleTransitionPairs ->
+                assert cmHandleTransitionPairs[0].targetYangModelCmHandle.dataProducerIdentifier == 'New Data Producer Identifier'
+            })
         where: 'the following scenarios are used'
             scenario             | oldDataProducerIdentifier
             'null to something'  | null
@@ -276,8 +276,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
-        and: 'LCM event is not sent'
-            0 * mockLcmEventsHelper.sendLcmEventAsynchronously(*_)
+        and: 'No LCM events are sent'
+            0 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously(*_)
         and: 'debug information is logged'
             def loggingEvent = logger.list[0]
             assert loggingEvent.level == Level.DEBUG
@@ -298,10 +298,10 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
                 assert args[3].contains('newDataProducerIdentifier')
             }
         and: 'LCM event is sent'
-            1 * mockLcmEventsHelper.sendLcmEventAsynchronously(_, _) >> { args ->
-                assert args[0].dataProducerIdentifier == 'newDataProducerIdentifier'
-                assert args[1].dataProducerIdentifier == 'oldDataProducerIdentifier'
-            }
+            1 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously( { cmHandleTransitionPairs ->
+                assert cmHandleTransitionPairs[0].targetYangModelCmHandle.dataProducerIdentifier == 'newDataProducerIdentifier'
+                assert cmHandleTransitionPairs[0].currentYangModelCmHandle.dataProducerIdentifier == 'oldDataProducerIdentifier'
+            })
         and: 'correct information is logged'
             def loggingEvent = logger.list[1]
             assert loggingEvent.level == Level.DEBUG
@@ -317,8 +317,8 @@ class CmHandleRegistrationServicePropertyHandlerSpec extends Specification {
             objectUnderTest.updateDataProducerIdentifier(existingCmHandleDataNode, ncmpServiceCmHandle)
         then: 'the update node leaves method is not invoked'
             0 * mockCpsDataService.updateNodeLeaves(*_)
-        and: 'LCM event is not sent'
-            0 * mockLcmEventsHelper.sendLcmEventAsynchronously(*_)
+        and: 'No LCM events are sent'
+            0 * mockLcmEventsHelper.sendLcmEventBatchAsynchronously(*_)
         and: 'warning is logged'
             def lastLoggingEvent = logger.list[0]
             assert lastLoggingEvent.level == Level.WARN
