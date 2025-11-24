@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c60062a_7d691c0e",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "singular",
+      "range": {
+        "startLine": 168,
+        "startChar": 39,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07fc225e_4f85714c",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistence.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "multiple Cm handles?",
+      "range": {
+        "startLine": 168,
+        "startChar": 43,
+        "endLine": 168,
+        "endChar": 55
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4794381_16ef0391",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "not aligned",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 211,
+        "endChar": 7
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a1aa1fb_6d2ce814",
+        "filename": "cps-ncmp-service/src/main/java/org/onap/cps/ncmp/impl/inventory/InventoryPersistenceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "Adding ?\n\nsuggestion: Updating {} for cm handle {} to {},...",
+      "range": {
+        "startLine": 228,
+        "startChar": 23,
+        "endLine": 228,
+        "endChar": 39
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87369846_a21a47b7",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "inventory persistence",
+      "range": {
+        "startLine": 217,
+        "startChar": 41,
+        "endLine": 217,
+        "endChar": 58
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b8a9ec_82d82aa6",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "not aligned with line below",
+      "range": {
+        "startLine": 252,
+        "startChar": 19,
+        "endLine": 252,
+        "endChar": 44
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b656ffa0_2a4a5f77",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/impl/inventory/CmHandleRegistrationServicePropertyHandlerSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "not aligned with line below",
+      "range": {
+        "startLine": 291,
+        "startChar": 18,
+        "endLine": 291,
+        "endChar": 46
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f48d18_f67d1cb8",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "no line below, can be rmeoved ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c34757e_82479f4c",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/DataMigrationSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "remove , no need to mention class  \n\nsuggestion something like\nand: an exception is thrown when getting 1 out of 3 cm handle",
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2314180c_888b95d0",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "didnt see it called this anyhwhere , change to \u0027Release20250722\u0027 like in method name ?",
+      "range": {
+        "startLine": 157,
+        "startChar": 45,
+        "endLine": 157,
+        "endChar": 54
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7ec307_61344ec1",
+        "filename": "cps-ncmp-service/src/test/groovy/org/onap/cps/ncmp/init/InventoryModelLoaderSpec.groovy",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 7931
+      },
+      "writtenOn": "2025-11-24T11:10:50Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 161,
+        "startChar": 66,
+        "endLine": 161,
+        "endChar": 68
+      },
+      "revId": "e8e4fff7bb18b3e4e109677f1abc58f944ba8c36",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a"
+    }
+  ]
+}
